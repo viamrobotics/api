@@ -1,0 +1,72 @@
+service:
+  golangci-lint-version: 1.43.x
+run:
+  deadline: 600s
+  skip-dirs:
+    - genfiles$
+    - gen$
+    - vendor$
+    - test$
+  tests: true
+linters:
+  enable-all: true
+  disable:
+    - cyclop
+    - exhaustivestruct
+    - funlen
+    - gocognit
+    - godox
+    - goerr113
+    - gochecknoglobals
+    - gochecknoinits
+    - gocyclo
+    - gofmt
+    - goimports
+    - golint
+    - gomnd
+    - interfacer
+    - ireturn
+    - maligned
+    - makezero
+    - nestif
+    - nlreturn
+    - paralleltest
+    - prealloc
+    - scopelint
+    - tagliatelle
+    - testpackage
+    - varnamelen
+    - wrapcheck
+    - wsl
+linters-settings:
+  errcheck:
+    check-blank: true
+  gosec:
+    excludes:
+      - G601
+  gci:
+    local-prefixes: go.viam.com/api
+  govet:
+    enable-all: true
+    disable:
+      - fieldalignment
+      - shadow
+  lll:
+    line-length: 140
+issues:
+  exclude:
+    - composites
+  exclude-rules:
+    - path: _test\.go$|^tests/|^samples/
+      linters:
+        - errcheck
+        - contextcheck
+        - exhaustive
+        - forcetypeassert
+        - goconst
+        - gosec
+        - govet
+        - noctx
+  exclude-use-default: false
+  max-per-linter: 0
+  max-same-issues: 0
