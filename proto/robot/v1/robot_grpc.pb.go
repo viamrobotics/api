@@ -22,9 +22,15 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RobotServiceClient interface {
+	ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error)
 	ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error)
+	// Get a specific robot by ID
+	GetRobot(ctx context.Context, in *GetRobotRequest, opts ...grpc.CallOption) (*GetRobotResponse, error)
+	GetRobotParts(ctx context.Context, in *GetRobotPartsRequest, opts ...grpc.CallOption) (*GetRobotPartsResponse, error)
 	// Get a specific robot part by ID
 	GetRobotPart(ctx context.Context, in *GetRobotPartRequest, opts ...grpc.CallOption) (*GetRobotPartResponse, error)
+	GetRobotPartLogs(ctx context.Context, in *GetRobotPartLogsRequest, opts ...grpc.CallOption) (*GetRobotPartLogsResponse, error)
+	TailRobotPartLogs(ctx context.Context, in *TailRobotPartLogsRequest, opts ...grpc.CallOption) (RobotService_TailRobotPartLogsClient, error)
 	// Get a specific robot part histy by ID
 	GetRobotPartHistory(ctx context.Context, in *GetRobotPartHistoryRequest, opts ...grpc.CallOption) (*GetRobotPartHistoryResponse, error)
 	// Update a robot
@@ -51,9 +57,36 @@ func NewRobotServiceClient(cc grpc.ClientConnInterface) RobotServiceClient {
 	return &robotServiceClient{cc}
 }
 
+func (c *robotServiceClient) ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error) {
+	out := new(ListOrganizationsResponse)
+	err := c.cc.Invoke(ctx, "/proto.robot.v1.RobotService/ListOrganizations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *robotServiceClient) ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error) {
 	out := new(ListLocationsResponse)
 	err := c.cc.Invoke(ctx, "/proto.robot.v1.RobotService/ListLocations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *robotServiceClient) GetRobot(ctx context.Context, in *GetRobotRequest, opts ...grpc.CallOption) (*GetRobotResponse, error) {
+	out := new(GetRobotResponse)
+	err := c.cc.Invoke(ctx, "/proto.robot.v1.RobotService/GetRobot", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *robotServiceClient) GetRobotParts(ctx context.Context, in *GetRobotPartsRequest, opts ...grpc.CallOption) (*GetRobotPartsResponse, error) {
+	out := new(GetRobotPartsResponse)
+	err := c.cc.Invoke(ctx, "/proto.robot.v1.RobotService/GetRobotParts", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,6 +100,47 @@ func (c *robotServiceClient) GetRobotPart(ctx context.Context, in *GetRobotPartR
 		return nil, err
 	}
 	return out, nil
+}
+
+func (c *robotServiceClient) GetRobotPartLogs(ctx context.Context, in *GetRobotPartLogsRequest, opts ...grpc.CallOption) (*GetRobotPartLogsResponse, error) {
+	out := new(GetRobotPartLogsResponse)
+	err := c.cc.Invoke(ctx, "/proto.robot.v1.RobotService/GetRobotPartLogs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *robotServiceClient) TailRobotPartLogs(ctx context.Context, in *TailRobotPartLogsRequest, opts ...grpc.CallOption) (RobotService_TailRobotPartLogsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &RobotService_ServiceDesc.Streams[0], "/proto.robot.v1.RobotService/TailRobotPartLogs", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &robotServiceTailRobotPartLogsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type RobotService_TailRobotPartLogsClient interface {
+	Recv() (*TailRobotPartLogsResponse, error)
+	grpc.ClientStream
+}
+
+type robotServiceTailRobotPartLogsClient struct {
+	grpc.ClientStream
+}
+
+func (x *robotServiceTailRobotPartLogsClient) Recv() (*TailRobotPartLogsResponse, error) {
+	m := new(TailRobotPartLogsResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func (c *robotServiceClient) GetRobotPartHistory(ctx context.Context, in *GetRobotPartHistoryRequest, opts ...grpc.CallOption) (*GetRobotPartHistoryResponse, error) {
@@ -145,9 +219,15 @@ func (c *robotServiceClient) DeleteRobot(ctx context.Context, in *DeleteRobotReq
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
 type RobotServiceServer interface {
+	ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error)
 	ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error)
+	// Get a specific robot by ID
+	GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error)
+	GetRobotParts(context.Context, *GetRobotPartsRequest) (*GetRobotPartsResponse, error)
 	// Get a specific robot part by ID
 	GetRobotPart(context.Context, *GetRobotPartRequest) (*GetRobotPartResponse, error)
+	GetRobotPartLogs(context.Context, *GetRobotPartLogsRequest) (*GetRobotPartLogsResponse, error)
+	TailRobotPartLogs(*TailRobotPartLogsRequest, RobotService_TailRobotPartLogsServer) error
 	// Get a specific robot part histy by ID
 	GetRobotPartHistory(context.Context, *GetRobotPartHistoryRequest) (*GetRobotPartHistoryResponse, error)
 	// Update a robot
@@ -171,11 +251,26 @@ type RobotServiceServer interface {
 type UnimplementedRobotServiceServer struct {
 }
 
+func (UnimplementedRobotServiceServer) ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizations not implemented")
+}
 func (UnimplementedRobotServiceServer) ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListLocations not implemented")
 }
+func (UnimplementedRobotServiceServer) GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRobot not implemented")
+}
+func (UnimplementedRobotServiceServer) GetRobotParts(context.Context, *GetRobotPartsRequest) (*GetRobotPartsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRobotParts not implemented")
+}
 func (UnimplementedRobotServiceServer) GetRobotPart(context.Context, *GetRobotPartRequest) (*GetRobotPartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPart not implemented")
+}
+func (UnimplementedRobotServiceServer) GetRobotPartLogs(context.Context, *GetRobotPartLogsRequest) (*GetRobotPartLogsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPartLogs not implemented")
+}
+func (UnimplementedRobotServiceServer) TailRobotPartLogs(*TailRobotPartLogsRequest, RobotService_TailRobotPartLogsServer) error {
+	return status.Errorf(codes.Unimplemented, "method TailRobotPartLogs not implemented")
 }
 func (UnimplementedRobotServiceServer) GetRobotPartHistory(context.Context, *GetRobotPartHistoryRequest) (*GetRobotPartHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPartHistory not implemented")
@@ -214,6 +309,24 @@ func RegisterRobotServiceServer(s grpc.ServiceRegistrar, srv RobotServiceServer)
 	s.RegisterService(&RobotService_ServiceDesc, srv)
 }
 
+func _RobotService_ListOrganizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOrganizationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).ListOrganizations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.robot.v1.RobotService/ListOrganizations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).ListOrganizations(ctx, req.(*ListOrganizationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _RobotService_ListLocations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListLocationsRequest)
 	if err := dec(in); err != nil {
@@ -228,6 +341,42 @@ func _RobotService_ListLocations_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RobotServiceServer).ListLocations(ctx, req.(*ListLocationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RobotService_GetRobot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRobotRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).GetRobot(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.robot.v1.RobotService/GetRobot",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).GetRobot(ctx, req.(*GetRobotRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RobotService_GetRobotParts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRobotPartsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).GetRobotParts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.robot.v1.RobotService/GetRobotParts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).GetRobotParts(ctx, req.(*GetRobotPartsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -248,6 +397,45 @@ func _RobotService_GetRobotPart_Handler(srv interface{}, ctx context.Context, de
 		return srv.(RobotServiceServer).GetRobotPart(ctx, req.(*GetRobotPartRequest))
 	}
 	return interceptor(ctx, in, info, handler)
+}
+
+func _RobotService_GetRobotPartLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRobotPartLogsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).GetRobotPartLogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.robot.v1.RobotService/GetRobotPartLogs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).GetRobotPartLogs(ctx, req.(*GetRobotPartLogsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RobotService_TailRobotPartLogs_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(TailRobotPartLogsRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(RobotServiceServer).TailRobotPartLogs(m, &robotServiceTailRobotPartLogsServer{stream})
+}
+
+type RobotService_TailRobotPartLogsServer interface {
+	Send(*TailRobotPartLogsResponse) error
+	grpc.ServerStream
+}
+
+type robotServiceTailRobotPartLogsServer struct {
+	grpc.ServerStream
+}
+
+func (x *robotServiceTailRobotPartLogsServer) Send(m *TailRobotPartLogsResponse) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 func _RobotService_GetRobotPartHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -402,12 +590,28 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*RobotServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "ListOrganizations",
+			Handler:    _RobotService_ListOrganizations_Handler,
+		},
+		{
 			MethodName: "ListLocations",
 			Handler:    _RobotService_ListLocations_Handler,
 		},
 		{
+			MethodName: "GetRobot",
+			Handler:    _RobotService_GetRobot_Handler,
+		},
+		{
+			MethodName: "GetRobotParts",
+			Handler:    _RobotService_GetRobotParts_Handler,
+		},
+		{
 			MethodName: "GetRobotPart",
 			Handler:    _RobotService_GetRobotPart_Handler,
+		},
+		{
+			MethodName: "GetRobotPartLogs",
+			Handler:    _RobotService_GetRobotPartLogs_Handler,
 		},
 		{
 			MethodName: "GetRobotPartHistory",
@@ -442,6 +646,12 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _RobotService_DeleteRobot_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "TailRobotPartLogs",
+			Handler:       _RobotService_TailRobotPartLogs_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "proto/robot/v1/robot.proto",
 }
