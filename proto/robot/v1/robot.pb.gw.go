@@ -578,13 +578,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/ListOrganizations", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/ListOrganizations"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/ListOrganizations", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/ListOrganizations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_ListOrganizations_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_ListOrganizations_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -602,13 +601,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/ListLocations", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/ListLocations"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/ListLocations", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/ListLocations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_ListLocations_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_ListLocations_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -626,13 +624,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/LocationAuth", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/LocationAuth"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/LocationAuth", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/LocationAuth"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_LocationAuth_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_LocationAuth_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -650,13 +647,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobot"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_GetRobot_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_GetRobot_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -674,13 +670,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotParts", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotParts"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotParts", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotParts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_GetRobotParts_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_GetRobotParts_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -698,13 +693,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotPart", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotPart"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotPart", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotPart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_GetRobotPart_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_GetRobotPart_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -722,13 +716,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotPartLogs", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotPartLogs"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotPartLogs", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotPartLogs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_GetRobotPartLogs_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_GetRobotPartLogs_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -753,13 +746,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotPartHistory", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotPartHistory"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotPartHistory", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotPartHistory"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_GetRobotPartHistory_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_GetRobotPartHistory_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -777,13 +769,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/UpdateRobotPart", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/UpdateRobotPart"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/UpdateRobotPart", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/UpdateRobotPart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_UpdateRobotPart_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_UpdateRobotPart_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -801,13 +792,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/NewRobotPart", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/NewRobotPart"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/NewRobotPart", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/NewRobotPart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_NewRobotPart_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_NewRobotPart_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -825,13 +815,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/MarkPartAsMain", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/MarkPartAsMain"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/MarkPartAsMain", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/MarkPartAsMain"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_MarkPartAsMain_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_MarkPartAsMain_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -849,13 +838,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/FindRobots", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/FindRobots"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/FindRobots", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/FindRobots"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_FindRobots_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_FindRobots_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -873,13 +861,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/NewRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/NewRobot"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/NewRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/NewRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_NewRobot_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_NewRobot_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -897,13 +884,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/UpdateRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/UpdateRobot"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/UpdateRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/UpdateRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_UpdateRobot_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_UpdateRobot_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -921,13 +907,12 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/DeleteRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/DeleteRobot"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.robot.v1.RobotService/DeleteRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/DeleteRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_DeleteRobot_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_DeleteRobot_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -984,13 +969,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/ListOrganizations", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/ListOrganizations"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/ListOrganizations", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/ListOrganizations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_ListOrganizations_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_ListOrganizations_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1005,13 +989,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/ListLocations", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/ListLocations"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/ListLocations", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/ListLocations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_ListLocations_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_ListLocations_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1026,13 +1009,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/LocationAuth", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/LocationAuth"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/LocationAuth", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/LocationAuth"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_LocationAuth_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_LocationAuth_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1047,13 +1029,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobot"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_GetRobot_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_GetRobot_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1068,13 +1049,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotParts", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotParts"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotParts", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotParts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_GetRobotParts_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_GetRobotParts_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1089,13 +1069,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotPart", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotPart"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotPart", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotPart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_GetRobotPart_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_GetRobotPart_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1110,13 +1089,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotPartLogs", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotPartLogs"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotPartLogs", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotPartLogs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_GetRobotPartLogs_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_GetRobotPartLogs_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1131,13 +1109,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/TailRobotPartLogs", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/TailRobotPartLogs"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/TailRobotPartLogs", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/TailRobotPartLogs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_TailRobotPartLogs_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_TailRobotPartLogs_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1152,13 +1129,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotPartHistory", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotPartHistory"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/GetRobotPartHistory", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/GetRobotPartHistory"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_GetRobotPartHistory_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_GetRobotPartHistory_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1173,13 +1149,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/UpdateRobotPart", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/UpdateRobotPart"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/UpdateRobotPart", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/UpdateRobotPart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_UpdateRobotPart_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_UpdateRobotPart_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1194,13 +1169,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/NewRobotPart", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/NewRobotPart"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/NewRobotPart", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/NewRobotPart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_NewRobotPart_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_NewRobotPart_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1215,13 +1189,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/MarkPartAsMain", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/MarkPartAsMain"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/MarkPartAsMain", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/MarkPartAsMain"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_MarkPartAsMain_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_MarkPartAsMain_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1236,13 +1209,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/FindRobots", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/FindRobots"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/FindRobots", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/FindRobots"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_FindRobots_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_FindRobots_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1257,13 +1229,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/NewRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/NewRobot"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/NewRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/NewRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_NewRobot_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_NewRobot_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1278,13 +1249,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/UpdateRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/UpdateRobot"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/UpdateRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/UpdateRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_UpdateRobot_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_UpdateRobot_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1299,13 +1269,12 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/DeleteRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/DeleteRobot"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.robot.v1.RobotService/DeleteRobot", runtime.WithHTTPPathPattern("/proto.robot.v1.RobotService/DeleteRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_DeleteRobot_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_DeleteRobot_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
