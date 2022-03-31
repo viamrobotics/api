@@ -24,6 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type RobotServiceClient interface {
 	ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error)
 	ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error)
+	LocationAuth(ctx context.Context, in *LocationAuthRequest, opts ...grpc.CallOption) (*LocationAuthResponse, error)
 	// Get a specific robot by ID
 	GetRobot(ctx context.Context, in *GetRobotRequest, opts ...grpc.CallOption) (*GetRobotResponse, error)
 	GetRobotParts(ctx context.Context, in *GetRobotPartsRequest, opts ...grpc.CallOption) (*GetRobotPartsResponse, error)
@@ -69,6 +70,15 @@ func (c *robotServiceClient) ListOrganizations(ctx context.Context, in *ListOrga
 func (c *robotServiceClient) ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error) {
 	out := new(ListLocationsResponse)
 	err := c.cc.Invoke(ctx, "/proto.robot.v1.RobotService/ListLocations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *robotServiceClient) LocationAuth(ctx context.Context, in *LocationAuthRequest, opts ...grpc.CallOption) (*LocationAuthResponse, error) {
+	out := new(LocationAuthResponse)
+	err := c.cc.Invoke(ctx, "/proto.robot.v1.RobotService/LocationAuth", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -221,6 +231,7 @@ func (c *robotServiceClient) DeleteRobot(ctx context.Context, in *DeleteRobotReq
 type RobotServiceServer interface {
 	ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error)
 	ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error)
+	LocationAuth(context.Context, *LocationAuthRequest) (*LocationAuthResponse, error)
 	// Get a specific robot by ID
 	GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error)
 	GetRobotParts(context.Context, *GetRobotPartsRequest) (*GetRobotPartsResponse, error)
@@ -256,6 +267,9 @@ func (UnimplementedRobotServiceServer) ListOrganizations(context.Context, *ListO
 }
 func (UnimplementedRobotServiceServer) ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListLocations not implemented")
+}
+func (UnimplementedRobotServiceServer) LocationAuth(context.Context, *LocationAuthRequest) (*LocationAuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LocationAuth not implemented")
 }
 func (UnimplementedRobotServiceServer) GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobot not implemented")
@@ -341,6 +355,24 @@ func _RobotService_ListLocations_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RobotServiceServer).ListLocations(ctx, req.(*ListLocationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RobotService_LocationAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LocationAuthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).LocationAuth(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.robot.v1.RobotService/LocationAuth",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).LocationAuth(ctx, req.(*LocationAuthRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -596,6 +628,10 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListLocations",
 			Handler:    _RobotService_ListLocations_Handler,
+		},
+		{
+			MethodName: "LocationAuth",
+			Handler:    _RobotService_LocationAuth_Handler,
 		},
 		{
 			MethodName: "GetRobot",
