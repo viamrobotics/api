@@ -20,7 +20,7 @@ dist/tool-install: Makefile
 
 dist/buf: dist/buf-go
 
-dist/buf-go: dist/tool-install proto/robot/v1/robot.proto proto/tagger/v1/tagger.proto
+dist/buf-go: dist/tool-install proto/viam/app/v1/app.proto proto/tagger/v1/tagger.proto
 	PATH=$(PATH_WITH_TOOLS) buf lint
 	PATH=$(PATH_WITH_TOOLS) buf generate
 	PATH=$(PATH_WITH_TOOLS) buf generate --template ./etc/buf.gen.tag.yaml
