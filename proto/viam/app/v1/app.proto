@@ -1,14 +1,14 @@
 syntax = "proto3";
 
-package proto.robot.v1;
+package proto.viam.app.v1;
 
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "proto/tagger/v1/tagger.proto";
 
-option go_package = "go.viam.com/api/proto/robot/v1";
+option go_package = "go.viam.com/api/proto/viam/app/v1";
 
-service RobotService {
+service AppService {
     rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
 
     rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);

@@ -1,4 +1,5 @@
-version: v1
+version: v1beta1
+name: buf.build/viamrobotics/api
 build:
   excludes: [node_modules]
 lint:
