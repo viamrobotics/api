@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package proto.viam.datasync.v1;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/proto/viam/datasync/v1";
+
+
+service DataSyncService {
+  rpc Upload(stream proto.viam.datasync.v1.UploadRequest) returns (proto.viam.datasync.v1.UploadResponse);
+}
+
+message SensorMetadata {
+  google.protobuf.Timestamp time_requested = 1;
+  google.protobuf.Timestamp time_received = 2;
+}
+
+message SensorData {
+  SensorMetadata metadata = 1;
+  google.protobuf.Struct data = 2;
+}
+
+message UploadMetadata {
+  string part_name = 1;
+  string component_name = 2;
+  string method_name = 3;
+}
+
+message UploadRequest {
+  oneof upload_packet {
+    UploadMetadata metadata = 1;
+    SensorData contents = 2;
+  }
+}
+
+message UploadResponse {}
