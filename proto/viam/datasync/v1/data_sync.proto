@@ -9,7 +9,7 @@ option go_package = "go.viam.com/api/proto/viam/datasync/v1";
 
 
 service DataSyncService {
-  rpc UploadData(stream proto.viam.datasync.v1.UploadDataRequest) returns (proto.viam.datasync.v1.UploadDataResponse);
+  rpc Upload(stream proto.viam.datasync.v1.UploadRequest) returns (proto.viam.datasync.v1.UploadResponse);
 }
 
 message SensorMetadata {
@@ -22,21 +22,21 @@ message SensorData {
   google.protobuf.Struct data = 2;
 }
 
-message UploadDataMetadata {
+message UploadMetadata {
   string part_name = 1;
   string component_name = 2;
   string method_name = 3;
 }
 
-message UploadDataContents {
+message UploadContents {
   SensorData data = 1;
 }
 
-message UploadDataRequest {
+message UploadRequest {
   oneof upload_packet {
-    UploadDataMetadata metadata = 1;
-    UploadDataContents contents = 2;
+    UploadMetadata metadata = 1;
+    UploadContents contents = 2;
   }
 }
 
-message UploadDataResponse {}
+message UploadResponse {}
