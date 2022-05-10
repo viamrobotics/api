@@ -28,14 +28,10 @@ message UploadMetadata {
   string method_name = 3;
 }
 
-message UploadContents {
-  SensorData data = 1;
-}
-
 message UploadRequest {
   oneof upload_packet {
     UploadMetadata metadata = 1;
-    UploadContents contents = 2;
+    SensorData contents = 2;
   }
 }
 
