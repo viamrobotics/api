@@ -5,7 +5,6 @@ package proto.viam.app.v1;
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "proto/tagger/v1/tagger.proto";
-import "proto/viam/data_sync/v1/data_sync.proto";
 
 option go_package = "go.viam.com/api/proto/viam/app/v1";
 
@@ -51,8 +50,6 @@ service AppService {
 
     // DelteRobot deletes a robot
     rpc DeleteRobot(DeleteRobotRequest) returns (DeleteRobotResponse);
-
-    rpc UploadData(stream proto.viam.data_sync.v1.UploadDataRequest) returns (proto.viam.data_sync.v1.UploadDataResponse);
 }
 
 message Robot {
