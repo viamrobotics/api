@@ -47,7 +47,11 @@ message SyncedFile {
   string component_model = 7;
   string method_name = 8;
   string blob_path = 9;
-  string data_type = 10;
-  // Only tabular data has column_names
+  enum  DataType {
+    BINARY = 0;
+    TABULAR = 1;
+  }
+  DataType data_type = 10;
+  // Only DataType.TABULAR data has column_names
   repeated string column_names = 11;
 }
