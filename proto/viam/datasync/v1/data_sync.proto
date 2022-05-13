@@ -36,3 +36,19 @@ message UploadRequest {
 }
 
 message UploadResponse {}
+
+// TODO: what do we need?
+message SyncedFile {
+  google.protobuf.Timestamp start = 1;
+  google.protobuf.Timestamp end = 2;
+  string robot_id = 3;
+  string part_id = 4;
+  string component_name = 5;
+  string component_type = 6;
+  string component_model = 7;
+  string method_name = 8;
+  string blob_path = 9;
+  string data_type = 10;
+  // Only tabular data has column_names
+  repeated string column_names = 11;
+}
