@@ -40,18 +40,19 @@ message UploadResponse {}
 message SyncedFile {
   google.protobuf.Timestamp start = 1;
   google.protobuf.Timestamp end = 2;
-  string robot_id = 3;
-  string part_id = 4;
-  string component_name = 5;
-  string component_type = 6;
-  string component_model = 7;
-  string method_name = 8;
-  string blob_path = 9;
+  string org_id = 3;
+  string robot_id = 4;
+  string part_id = 5;
+  string component_name = 6;
+  string component_type = 7;
+  string component_model = 8;
+  string method_name = 9;
+  string blob_path = 10;
   enum  DataType {
     BINARY = 0;
     TABULAR = 1;
   }
-  DataType data_type = 10;
+  DataType data_type = 11;
   // Only DataType.TABULAR data has column_names
-  repeated string column_names = 11;
+  repeated string column_names = 12;
 }
