@@ -19,11 +19,9 @@ message SensorMetadata {
 
 message SensorData {
   SensorMetadata metadata = 1;
-  google.protobuf.Struct deprecated_data = 2 [deprecated=true];
-  DataType type = 3;
   oneof data {
-    google.protobuf.Struct struct = 4;
-    bytes binary = 5;
+    google.protobuf.Struct struct = 2;
+    bytes binary = 3;
   }
 }
 
@@ -31,6 +29,7 @@ message UploadMetadata {
   string part_name = 1;
   string component_name = 2;
   string method_name = 3;
+  DataType type = 4;
 }
 
 message UploadRequest {
@@ -43,8 +42,9 @@ message UploadRequest {
 message UploadResponse {}
 
 enum  DataType {
-  BINARY = 0;
-  TABULAR = 1;
+  DATA_TYPE_UNSPECIFIED = 0;
+  DATA_TYPE_BINARY = 1;
+  DATA_TYPE_TABULAR = 2;
 }
 
 message SyncedFile {
