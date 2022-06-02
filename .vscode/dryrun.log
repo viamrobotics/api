@@ -1,5 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/maxhorowitz/repositories/api'
-bash etc/setup.sh
-make: Leaving directory `/Users/maxhorowitz/repositories/api'
- 
