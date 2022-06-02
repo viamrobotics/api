@@ -26,6 +26,7 @@ message SensorData {
 }
 
 message NonSensorMetadata {
+  // maxhorowitz: unsure what would go in here, TODO
 }
 
 message NonSensorData {
