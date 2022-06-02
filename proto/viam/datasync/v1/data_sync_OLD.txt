@@ -58,37 +58,9 @@ enum  DataType {
   DATA_TYPE_ARBITRARY = 3;
 }
 
-message TimingRelevant {
+message SyncedFile {
   google.protobuf.Timestamp start = 1;
   google.protobuf.Timestamp end = 2;
-}
-
-message TimingIrrelevant {
-}
-
-message Time {
-  oneof time {
-    TimingRelevant sensor_timing = 1;
-    TimingIrrelevant nonsensor = 2;
-  }
-}
-
-message SyncedFile {
-
-  // Not all synced files have timestamps (if its nonsensor data)
-  // there is clearly no timing...for this reason I created a Time
-  // message which contains either a relevant / irrelevant message
-  // which can contain those time fields -- Max Horowitz
-
-  // THIS IS WHAT AARON PREVIOUSLY HAD:
-  // google.protobuf.Timestamp start = 1;
-  // google.protobuf.Timestamp end = 2;
-
-  // THIS IS WHAT MAX ADDED:
-  Time time = 1;
-
-  // Unclear if I need to reassign indexes below
-
   string org_id = 3;
   string robot_id = 4;
   string part_id = 5;
