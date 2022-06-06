@@ -39,6 +39,7 @@ message UploadMetadata {
   string component_name = 2;
   string method_name = 3;
   DataType type = 4;
+  string file_name_extension = 5;
 }
 
 message UploadRequest {
