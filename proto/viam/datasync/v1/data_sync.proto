@@ -67,7 +67,7 @@ message Time {
 }
 
 message SyncedFile {
-  Time relevant_time = 1;
+  Time time = 1;
   string org_id = 2;
   string robot_id = 3;
   string part_id = 4;
