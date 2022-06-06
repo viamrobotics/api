@@ -9,66 +9,66 @@ import "proto/tagger/v1/tagger.proto";
 option go_package = "go.viam.com/api/proto/viam/app/v1";
 
 service AppService {
-    rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
+  rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
 
-    rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
+  rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
 
-    rpc LocationAuth(LocationAuthRequest) returns (LocationAuthResponse);
+  rpc LocationAuth(LocationAuthRequest) returns (LocationAuthResponse);
 
-    // Get a specific robot by ID
-    rpc GetRobot (GetRobotRequest) returns (GetRobotResponse);
+  // Get a specific robot by ID
+  rpc GetRobot(GetRobotRequest) returns (GetRobotResponse);
 
-    rpc GetRobotParts (GetRobotPartsRequest) returns (GetRobotPartsResponse);
+  rpc GetRobotParts(GetRobotPartsRequest) returns (GetRobotPartsResponse);
 
-    // Get a specific robot part by ID
-    rpc GetRobotPart (GetRobotPartRequest) returns (GetRobotPartResponse);
+  // Get a specific robot part by ID
+  rpc GetRobotPart(GetRobotPartRequest) returns (GetRobotPartResponse);
 
-    rpc GetRobotPartLogs (GetRobotPartLogsRequest) returns (GetRobotPartLogsResponse);
+  rpc GetRobotPartLogs(GetRobotPartLogsRequest) returns (GetRobotPartLogsResponse);
 
-    rpc TailRobotPartLogs (TailRobotPartLogsRequest) returns (stream TailRobotPartLogsResponse);
+  rpc TailRobotPartLogs(TailRobotPartLogsRequest) returns (stream TailRobotPartLogsResponse);
 
   // Get a specific robot part histy by ID
-    rpc GetRobotPartHistory (GetRobotPartHistoryRequest) returns (GetRobotPartHistoryResponse);
+  rpc GetRobotPartHistory(GetRobotPartHistoryRequest) returns (GetRobotPartHistoryResponse);
 
-    // Update a robot
-    rpc UpdateRobotPart (UpdateRobotPartRequest) returns (UpdateRobotPartResponse);
+  // Update a robot
+  rpc UpdateRobotPart(UpdateRobotPartRequest) returns (UpdateRobotPartResponse);
 
-    // Create a new robot part
-    rpc NewRobotPart (NewRobotPartRequest) returns (NewRobotPartResponse);
+  // Create a new robot part
+  rpc NewRobotPart(NewRobotPartRequest) returns (NewRobotPartResponse);
 
-    // Marks the given part as the main part, and all the others as not
-    rpc MarkPartAsMain (MarkPartAsMainRequest) returns (MarkPartAsMainResponse);
+  // Marks the given part as the main part, and all the others as not
+  rpc MarkPartAsMain(MarkPartAsMainRequest) returns (MarkPartAsMainResponse);
 
-    // Finds robots given a query
-    rpc FindRobots(FindRobotsRequest) returns (FindRobotsResponse);
+  // Finds robots given a query
+  rpc FindRobots(FindRobotsRequest) returns (FindRobotsResponse);
 
-    // NewRobot creates a new robot
-    rpc NewRobot(NewRobotRequest) returns (NewRobotResponse);
+  // NewRobot creates a new robot
+  rpc NewRobot(NewRobotRequest) returns (NewRobotResponse);
 
-    // UpdateRobot updates a robot
-    rpc UpdateRobot(UpdateRobotRequest) returns (UpdateRobotResponse);
+  // UpdateRobot updates a robot
+  rpc UpdateRobot(UpdateRobotRequest) returns (UpdateRobotResponse);
 
-    // DelteRobot deletes a robot
-    rpc DeleteRobot(DeleteRobotRequest) returns (DeleteRobotResponse);
+  // DelteRobot deletes a robot
+  rpc DeleteRobot(DeleteRobotRequest) returns (DeleteRobotResponse);
 }
 
 message Robot {
-    string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
-    string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
-    string location = 3 [(tagger.v1.tags) = "bson:\"location\" json:\"location\""];
-    google.protobuf.Timestamp last_access = 4 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
+  string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+  string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
+  string location = 3 [(tagger.v1.tags) = "bson:\"location\" json:\"location\""];
+  google.protobuf.Timestamp last_access = 4 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
 }
 
 message RobotPart {
-    string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
-    string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
-    string secret = 3 [(tagger.v1.tags) = "bson:\"secret\" json:\"secret,omitempty\""];
-    string robot = 4 [(tagger.v1.tags) = "bson:\"robot\" json:\"robot\""];
-    google.protobuf.Struct robot_config = 5 [(tagger.v1.tags) = "bson:\"config\" json:\"robot_config\""];
-    google.protobuf.Timestamp last_access = 6 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
-    google.protobuf.Struct user_supplied_info = 7 [(tagger.v1.tags) = "bson:\"user_supplied_info\" json:\"user_supplied_info\""];
-    bool main_part = 8 [(tagger.v1.tags) = "bson:\"main_part\" json:\"main_part\""];
-    string fqdn = 9;
+  string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+  string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
+  string secret = 3 [(tagger.v1.tags) = "bson:\"secret\" json:\"secret,omitempty\""];
+  string robot = 4 [(tagger.v1.tags) = "bson:\"robot\" json:\"robot\""];
+  google.protobuf.Struct robot_config = 5 [(tagger.v1.tags) = "bson:\"config\" json:\"robot_config\""];
+  google.protobuf.Timestamp last_access = 6 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
+  google.protobuf.Struct user_supplied_info = 7 [(tagger.v1.tags) = "bson:\"user_supplied_info\" json:\"user_supplied_info\""];
+  bool main_part = 8 [(tagger.v1.tags) = "bson:\"main_part\" json:\"main_part\""];
+  string fqdn = 9;
 }
 
 message RobotPartHistoryEntry {
@@ -78,21 +78,20 @@ message RobotPartHistoryEntry {
   RobotPart old = 4 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
 }
 
-message ListOrganizationsRequest {
-}
+message ListOrganizationsRequest {}
 
 message Organization {
-    string id = 1;
-    string name = 2;
+  string id = 1;
+  string name = 2;
 }
 
 message ListOrganizationsResponse {
-    repeated Organization organizations = 1;
+  repeated Organization organizations = 1;
 }
 
 message Location {
-    string id = 1;
-    string name = 2;
+  string id = 1;
+  string name = 2;
 }
 
 message ListLocationsRequest {
@@ -100,11 +99,11 @@ message ListLocationsRequest {
 }
 
 message ListLocationsResponse {
-    repeated Location locations = 1;
+  repeated Location locations = 1;
 }
 
 message LocationAuth {
-    string secret = 1;
+  string secret = 1;
 }
 
 message LocationAuthRequest {
@@ -112,37 +111,37 @@ message LocationAuthRequest {
 }
 
 message LocationAuthResponse {
-    LocationAuth auth = 1;
+  LocationAuth auth = 1;
 }
 
 message GetRobotRequest {
-    string id = 1;
+  string id = 1;
 }
 
 message GetRobotResponse {
-    Robot robot = 1;
+  Robot robot = 1;
 }
 
 message GetRobotPartsRequest {
-    string robot_id = 1;
+  string robot_id = 1;
 }
 
 message GetRobotPartsResponse {
-    repeated RobotPart parts = 1;
+  repeated RobotPart parts = 1;
 }
 
 message GetRobotPartRequest {
-    string id = 1;
+  string id = 1;
 }
 
 message GetRobotPartResponse {
-    RobotPart part = 1;
-    string    config_json = 2;
+  RobotPart part = 1;
+  string config_json = 2;
 }
 
 message GetRobotPartLogsRequest {
-    string id = 1;
-    bool errors_only = 2;
+  string id = 1;
+  bool errors_only = 2;
 }
 
 message LogEntry {
@@ -157,20 +156,20 @@ message LogEntry {
 }
 
 message GetRobotPartLogsResponse {
-    repeated LogEntry logs = 1;
+  repeated LogEntry logs = 1;
 }
 
 message TailRobotPartLogsRequest {
-    string id = 1;
-    bool errors_only = 2;
+  string id = 1;
+  bool errors_only = 2;
 }
 
 message TailRobotPartLogsResponse {
-    repeated LogEntry logs = 1;
+  repeated LogEntry logs = 1;
 }
 
 message GetRobotPartHistoryRequest {
-    string id = 1;
+  string id = 1;
 }
 
 message GetRobotPartHistoryResponse {
@@ -178,13 +177,13 @@ message GetRobotPartHistoryResponse {
 }
 
 message UpdateRobotPartRequest {
-    string id = 1;
-    string name = 2;
-    google.protobuf.Struct robot_config = 3;
+  string id = 1;
+  string name = 2;
+  google.protobuf.Struct robot_config = 3;
 }
 
 message UpdateRobotPartResponse {
-    RobotPart part = 1;
+  RobotPart part = 1;
 }
 
 message NewRobotPartRequest {
