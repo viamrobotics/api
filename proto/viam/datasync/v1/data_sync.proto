@@ -26,7 +26,7 @@ message SensorData {
 }
 
 message FileData {
-  bytes arbitrary_data = 2; 
+  bytes arbitrary_data = 1; 
 }
 
 message UploadMetadata {
@@ -34,14 +34,14 @@ message UploadMetadata {
   string component_name = 2;
   string method_name = 3;
   DataType type = 4;
-  string file_name_extension = 5;
+  string file_name = 5;
 }
 
 message UploadRequest {
   oneof upload_packet {
     UploadMetadata metadata = 1;
     SensorData sensor_contents = 2;
-    FileData nonsensor_contents = 3;
+    FileData file_contents = 3;
   }
 }
 
