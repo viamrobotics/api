@@ -80,4 +80,5 @@ message SyncedFile {
   DataType data_type = 10;
   // Only DataType.TABULAR data has column_names
   repeated string column_names = 11;
+  map<string, google.protobuf.Any> method_parameters = 12;
 }
