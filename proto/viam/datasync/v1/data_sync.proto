@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package proto.viam.datasync.v1;
 
+import "google/protobuf/any.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -25,7 +26,7 @@ message SensorData {
 }
 
 message FileData {
-  bytes data = 1; 
+  bytes data = 1;
 }
 
 message UploadMetadata {
@@ -34,6 +35,7 @@ message UploadMetadata {
   string method_name = 3;
   DataType type = 4;
   string file_name = 5;
+  map<string, google.protobuf.Any> method_parameters = 6;
 }
 
 message UploadRequest {
@@ -78,4 +80,5 @@ message SyncedFile {
   DataType data_type = 10;
   // Only DataType.TABULAR data has column_names
   repeated string column_names = 11;
+  map<string, google.protobuf.Any> method_parameters = 12;
 }
