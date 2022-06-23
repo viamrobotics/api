@@ -2,46 +2,36 @@ syntax = "proto3";
 
 package proto.viam.model.v1;
 
-import "google/protobuf/any.proto";
-import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "go.viam.com/api/proto/viam/datasync/v1";
+option go_package = "go.viam.com/api/proto/viam/model/v1";
 
-service DataSyncService {
+service ModelService {
   rpc Upload(stream proto.viam.model.v1.UploadRequest) returns (proto.viam.model.v1.UploadResponse);
 }
 
-
-
 message UploadMetadata {
-  string org_id = 0;
-  string file_name = 1;
+  string org_id = 1;
+  string model_folder = 2;
+  string associated_dataset = 3;
+  string file_name = 4;
 }
 
 message UploadRequest {
-  UploadMetadata metadata = 0;
-}
-
-message UploadResponse {
-  String status = 0;
-}
-
-
-message CaptureInterval {
-  google.protobuf.Timestamp start = 1;
-  google.protobuf.Timestamp end = 2;
-}
-
-message Time {
-  oneof time {
-    CaptureInterval sensor_capture_interval = 1;
-    google.protobuf.Timestamp sync_time = 2;
+  oneof upload_packet {
+    UploadMetadata metadata = 1;
+    bytes filedata = 2;
   }
 }
 
+message UploadResponse {
+  string status = 1;
+}
+
 message SyncedFile {
-  Time time = 0;
-  string org_id = 1;
-  string blob_path = 2;
+  google.protobuf.Timestamp sync_time = 1;
+  string org_id = 2;
+  string model_folder = 3;
+  string blob_path = 4;
+  string associated_dataset = 5;
 }
