@@ -15,6 +15,7 @@ message UploadMetadata {
   string model_folder = 2;
   string associated_dataset = 3;
   string file_name = 4;
+  string secret = 5;
 }
 
 message UploadRequest {
