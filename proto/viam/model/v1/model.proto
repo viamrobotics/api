@@ -12,10 +12,8 @@ service ModelService {
 
 message UploadMetadata {
   string org_id = 1;
-  string model_folder = 2;
+  string model_name = 2;
   string associated_dataset = 3;
-  string file_name = 4;
-  string secret = 5;
 }
 
 message UploadRequest {
@@ -29,10 +27,10 @@ message UploadResponse {
   string status = 1;
 }
 
-message SyncedFile {
-  google.protobuf.Timestamp sync_time = 1;
-  string org_id = 2;
-  string model_folder = 3;
+message SyncedModel {
+  string org_id = 1;
+  string model_name = 2;
+  string associated_dataset = 3;
   string blob_path = 4;
-  string associated_dataset = 5;
+  google.protobuf.Timestamp sync_time = 5;
 }
