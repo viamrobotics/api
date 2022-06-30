@@ -8,6 +8,16 @@ option go_package = "go.viam.com/api/proto/viam/model/v1";
 
 service ModelService {
   rpc Upload(stream proto.viam.model.v1.UploadRequest) returns (proto.viam.model.v1.UploadResponse);
+  rpc Delete(proto.viam.model.v1.DeleteRequest) returns (proto.viam.model.v1.DeleteResponse);
+}
+
+message DeleteMetadata {
+  string org_id = 1;
+  string model_name = 2;
+}
+
+message DeleteRequest {
+  DeleteMetadata metadata = 1;
 }
 
 message UploadMetadata {
@@ -16,15 +26,28 @@ message UploadMetadata {
   string associated_dataset = 3;
 }
 
+message FileData {
+  bytes data = 1;
+}
+
 message UploadRequest {
   oneof upload_packet {
     UploadMetadata metadata = 1;
-    bytes filedata = 2;
+    FileData file_contents = 2;
   }
 }
 
+enum Status {
+  FAIL = 0;
+  OK = 1;
+}
+
 message UploadResponse {
-  string status = 1;
+  string message = 1;
+  Status status = 2;
+}
+
+message DeleteResponse {
 }
 
 message SyncedModel {
