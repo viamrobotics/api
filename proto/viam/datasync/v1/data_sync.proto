@@ -30,12 +30,13 @@ message FileData {
 }
 
 message UploadMetadata {
-  string part_name = 1;
-  string component_name = 2;
-  string method_name = 3;
-  DataType type = 4;
-  string file_name = 5;
-  map<string, google.protobuf.Any> method_parameters = 6;
+  string part_id = 1;
+  string component_type = 2;
+  string component_name = 3;
+  string method_name = 4;
+  DataType type = 5;
+  string file_name = 6;
+  map<string, string> method_parameters = 7;
 }
 
 message UploadRequest {
@@ -67,6 +68,14 @@ message Time {
   }
 }
 
+message DataCaptureMetadata {
+  string component_type = 1;
+  string component_name = 2;
+  string method_name = 3;
+  DataType type = 4;
+  map<string, string> method_parameters = 5;
+}
+
 message SyncedFile {
   Time time = 1;
   string org_id = 2;
@@ -81,4 +90,5 @@ message SyncedFile {
   // Only DataType.TABULAR data has column_names
   repeated string column_names = 11;
   map<string, google.protobuf.Any> method_parameters = 12;
+  string file_id = 13;
 }
