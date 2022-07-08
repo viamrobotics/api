@@ -38,8 +38,9 @@ message UploadRequest {
 }
 
 enum Status {
-  FAIL = 0;
-  OK = 1;
+  UNKNOWN = 0;
+  FAIL = 1;
+  OK = 2;
 }
 
 message UploadResponse {
@@ -48,6 +49,8 @@ message UploadResponse {
 }
 
 message DeleteResponse {
+  string message = 1;
+  Status status = 2;
 }
 
 message SyncedModel {
