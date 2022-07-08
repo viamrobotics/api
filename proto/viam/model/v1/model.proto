@@ -23,6 +23,8 @@ message DeleteRequest {
 message UploadMetadata {
   string org_id = 1;
   string model_name = 2;
+  // TODO: Determine the format of the associated dataset. Update when it's decided
+  // whether it should be by ID or name.
   string associated_dataset = 3;
 }
 
