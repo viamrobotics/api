@@ -40,8 +40,12 @@ message UploadRequest {
 }
 
 enum Status {
-  UNKNOWN = 0;
+  // buf:lint:ignore ENUM_VALUE_PREFIX
+  // buf:lint:ignore ENUM_ZERO_VALUE_SUFFIX
+  UNSPECIFIED = 0;
+  // buf:lint:ignore ENUM_VALUE_PREFIX
   FAIL = 1;
+  // buf:lint:ignore ENUM_VALUE_PREFIX
   OK = 2;
 }
 
