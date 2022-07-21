@@ -9,6 +9,26 @@ option go_package = "go.viam.com/api/proto/viam/model/v1";
 service ModelService {
   rpc Upload(stream proto.viam.model.v1.UploadRequest) returns (proto.viam.model.v1.UploadResponse);
   rpc Delete(proto.viam.model.v1.DeleteRequest) returns (proto.viam.model.v1.DeleteResponse);
+  rpc Deploy(proto.viam.model.v1.DeployRequest) returns (proto.viam.model.v1.DeployResponse);
+}
+
+message FileData {
+  bytes data = 1;
+}
+
+message UploadMetadata {
+  string org_id = 1;
+  string model_name = 2;
+  // TODO: Determine the format of the associated dataset. Update when it's decided
+  // whether it should be by ID or name.
+  string associated_dataset = 3;
+}
+
+message UploadRequest {
+  oneof upload_packet {
+    UploadMetadata metadata = 1;
+    FileData file_contents = 2;
+  }
 }
 
 message DeleteMetadata {
@@ -20,23 +40,12 @@ message DeleteRequest {
   DeleteMetadata metadata = 1;
 }
 
-message UploadMetadata {
-  string org_id = 1;
-  string model_name = 2;
-  // TODO: Determine the format of the associated dataset. Update when it's decided
-  // whether it should be by ID or name.
-  string associated_dataset = 3;
+message DeployMetadata {
+  string model_name = 1;
 }
 
-message FileData {
-  bytes data = 1;
-}
-
-message UploadRequest {
-  oneof upload_packet {
-    UploadMetadata metadata = 1;
-    FileData file_contents = 2;
-  }
+message DeployRequest {
+  DeployMetadata metadata = 1;
 }
 
 enum Status {
@@ -58,6 +67,12 @@ message DeleteResponse {
   string message = 1;
   Status status = 2;
 }
+
+message DeployResponse {
+  string message = 1;
+  Status status = 2;
+}
+
 
 message SyncedModel {
   string org_id = 1;
