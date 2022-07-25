@@ -129,11 +129,6 @@ fi
 echo "Brew installed software versions..."
 brew list --version
 
-git config --global --get-regexp url. > /dev/null
-if [ $? -ne 0 ]; then
-	git config --global url.ssh://git@github.com/.insteadOf https://github.com/
-fi
-
 echo -e "\033[0;32m""Dev environment setup is complete!""\033[0m"
 echo -e "Don't forget to restart your shell, or execute: ""\033[41m""source ~/.viamdevrc""\033[0m"
 exit 0
