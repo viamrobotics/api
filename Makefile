@@ -14,7 +14,7 @@ dist/tool-install: Makefile
 		github.com/srikrsna/protoc-gen-gotag \
 		github.com/edaniels/golinters/cmd/combined \
 		github.com/golangci/golangci-lint/cmd/golangci-lint
-	GOBIN=`pwd`/$(TOOL_BIN) go install github.com/bufbuild/buf/cmd/buf@v1.4.0
+	GOBIN=`pwd`/bin go install github.com/bufbuild/buf/cmd/buf@v1.4.0
 	mkdir -p dist
 	touch dist/tool-install
 

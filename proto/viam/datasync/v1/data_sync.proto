@@ -47,7 +47,9 @@ message UploadRequest {
   }
 }
 
-message UploadResponse {}
+message UploadResponse {
+  int32 requests_written = 1;
+}
 
 enum DataType {
   DATA_TYPE_UNSPECIFIED = 0;
