@@ -31,7 +31,7 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_DataSyncService_Upload_0(ctx context.Context, marshaler runtime.Marshaler, client DataSyncServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_DataSyncService_Upload_0(ctx context.Context, marshaler runtime.Marshaler, client DataSyncServiceClient, req *http.Request, pathParams map[string]string) (DataSyncService_UploadClient, runtime.ServerMetadata, error) {
 	var metadata runtime.ServerMetadata
 	stream, err := client.Upload(ctx)
 	if err != nil {
@@ -39,40 +39,39 @@ func request_DataSyncService_Upload_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, err
 	}
 	dec := marshaler.NewDecoder(req.Body)
-	for {
+	handleSend := func() error {
 		var protoReq UploadRequest
-		err = dec.Decode(&protoReq)
+		err := dec.Decode(&protoReq)
 		if err == io.EOF {
-			break
+			return err
 		}
 		if err != nil {
 			grpclog.Infof("Failed to decode request: %v", err)
-			return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+			return err
 		}
-		if err = stream.Send(&protoReq); err != nil {
-			if err == io.EOF {
+		if err := stream.Send(&protoReq); err != nil {
+			grpclog.Infof("Failed to send request: %v", err)
+			return err
+		}
+		return nil
+	}
+	go func() {
+		for {
+			if err := handleSend(); err != nil {
 				break
 			}
-			grpclog.Infof("Failed to send request: %v", err)
-			return nil, metadata, err
 		}
-	}
-
-	if err := stream.CloseSend(); err != nil {
-		grpclog.Infof("Failed to terminate client stream: %v", err)
-		return nil, metadata, err
-	}
+		if err := stream.CloseSend(); err != nil {
+			grpclog.Infof("Failed to terminate client stream: %v", err)
+		}
+	}()
 	header, err := stream.Header()
 	if err != nil {
 		grpclog.Infof("Failed to get header from client: %v", err)
 		return nil, metadata, err
 	}
 	metadata.HeaderMD = header
-
-	msg, err := stream.CloseAndRecv()
-	metadata.TrailerMD = stream.Trailer()
-	return msg, metadata, err
-
+	return stream, metadata, nil
 }
 
 // RegisterDataSyncServiceHandlerServer registers the http handlers for service DataSyncService to "mux".
@@ -145,7 +144,7 @@ func RegisterDataSyncServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_DataSyncService_Upload_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DataSyncService_Upload_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -157,5 +156,5 @@ var (
 )
 
 var (
-	forward_DataSyncService_Upload_0 = runtime.ForwardResponseMessage
+	forward_DataSyncService_Upload_0 = runtime.ForwardResponseStream
 )
