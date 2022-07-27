@@ -73,7 +73,6 @@ message DeployResponse {
   Status status = 2;
 }
 
-
 message SyncedModel {
   string org_id = 1;
   string model_name = 2;
