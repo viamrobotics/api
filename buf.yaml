@@ -1,11 +1,12 @@
-version: v1beta1
+version: v1
 name: buf.build/viamrobotics/api
 build:
-  excludes: [node_modules]
+  excludes:
+    - node_modules
+breaking:
+  use:
+    - FILE
 lint:
   use:
     - DEFAULT
   allow_comment_ignores: true
-breaking:
-  use:
-    - FILE
