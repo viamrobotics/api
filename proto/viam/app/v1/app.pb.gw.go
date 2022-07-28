@@ -578,12 +578,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/ListOrganizations", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/ListOrganizations"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/ListOrganizations", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/ListOrganizations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_ListOrganizations_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_ListOrganizations_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -601,12 +602,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/ListLocations", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/ListLocations"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/ListLocations", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/ListLocations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_ListLocations_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_ListLocations_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -624,12 +626,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/LocationAuth", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/LocationAuth"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/LocationAuth", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/LocationAuth"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_LocationAuth_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_LocationAuth_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -647,12 +650,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobot"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_GetRobot_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_GetRobot_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -670,12 +674,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotParts", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotParts"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotParts", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotParts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_GetRobotParts_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_GetRobotParts_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -693,12 +698,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotPart", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotPart"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotPart", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotPart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_GetRobotPart_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_GetRobotPart_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -716,12 +722,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotPartLogs", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotPartLogs"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotPartLogs", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotPartLogs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_GetRobotPartLogs_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_GetRobotPartLogs_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -746,12 +753,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotPartHistory", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotPartHistory"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotPartHistory", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotPartHistory"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_GetRobotPartHistory_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_GetRobotPartHistory_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -769,12 +777,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/UpdateRobotPart", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/UpdateRobotPart"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/UpdateRobotPart", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/UpdateRobotPart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_UpdateRobotPart_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_UpdateRobotPart_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -792,12 +801,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/NewRobotPart", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/NewRobotPart"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/NewRobotPart", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/NewRobotPart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_NewRobotPart_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_NewRobotPart_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -815,12 +825,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/MarkPartAsMain", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/MarkPartAsMain"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/MarkPartAsMain", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/MarkPartAsMain"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_MarkPartAsMain_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_MarkPartAsMain_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -838,12 +849,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/FindRobots", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/FindRobots"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/FindRobots", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/FindRobots"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_FindRobots_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_FindRobots_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -861,12 +873,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/NewRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/NewRobot"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/NewRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/NewRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_NewRobot_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_NewRobot_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -884,12 +897,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/UpdateRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/UpdateRobot"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/UpdateRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/UpdateRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_UpdateRobot_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_UpdateRobot_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -907,12 +921,13 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/DeleteRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/DeleteRobot"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.AppService/DeleteRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/DeleteRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_DeleteRobot_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_DeleteRobot_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -969,12 +984,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/ListOrganizations", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/ListOrganizations"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/ListOrganizations", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/ListOrganizations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_ListOrganizations_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_ListOrganizations_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -989,12 +1005,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/ListLocations", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/ListLocations"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/ListLocations", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/ListLocations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_ListLocations_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_ListLocations_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1009,12 +1026,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/LocationAuth", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/LocationAuth"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/LocationAuth", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/LocationAuth"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_LocationAuth_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_LocationAuth_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1029,12 +1047,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobot"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_GetRobot_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_GetRobot_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1049,12 +1068,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotParts", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotParts"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotParts", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotParts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_GetRobotParts_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_GetRobotParts_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1069,12 +1089,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotPart", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotPart"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotPart", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotPart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_GetRobotPart_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_GetRobotPart_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1089,12 +1110,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotPartLogs", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotPartLogs"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotPartLogs", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotPartLogs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_GetRobotPartLogs_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_GetRobotPartLogs_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1109,12 +1131,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/TailRobotPartLogs", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/TailRobotPartLogs"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/TailRobotPartLogs", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/TailRobotPartLogs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_TailRobotPartLogs_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_TailRobotPartLogs_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1129,12 +1152,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotPartHistory", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotPartHistory"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/GetRobotPartHistory", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/GetRobotPartHistory"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_GetRobotPartHistory_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_GetRobotPartHistory_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1149,12 +1173,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/UpdateRobotPart", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/UpdateRobotPart"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/UpdateRobotPart", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/UpdateRobotPart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_UpdateRobotPart_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_UpdateRobotPart_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1169,12 +1194,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/NewRobotPart", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/NewRobotPart"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/NewRobotPart", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/NewRobotPart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_NewRobotPart_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_NewRobotPart_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1189,12 +1215,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/MarkPartAsMain", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/MarkPartAsMain"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/MarkPartAsMain", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/MarkPartAsMain"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_MarkPartAsMain_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_MarkPartAsMain_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1209,12 +1236,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/FindRobots", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/FindRobots"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/FindRobots", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/FindRobots"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_FindRobots_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_FindRobots_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1229,12 +1257,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/NewRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/NewRobot"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/NewRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/NewRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_NewRobot_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_NewRobot_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1249,12 +1278,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/UpdateRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/UpdateRobot"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/UpdateRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/UpdateRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_UpdateRobot_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_UpdateRobot_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1269,12 +1299,13 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/DeleteRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/DeleteRobot"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.AppService/DeleteRobot", runtime.WithHTTPPathPattern("/proto.viam.app.v1.AppService/DeleteRobot"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_DeleteRobot_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_DeleteRobot_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)

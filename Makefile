@@ -3,6 +3,9 @@ PATH_WITH_TOOLS="`pwd`/bin:`pwd`/frontend/node_modules/.bin:${PATH}"
 setup:
 	bash etc/setup.sh
 
+clean-all:
+	git clean -fxd
+
 dist/tool-install: Makefile
 	GOBIN=`pwd`/bin go install google.golang.org/protobuf/cmd/protoc-gen-go \
 		github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking \
@@ -13,8 +16,8 @@ dist/tool-install: Makefile
 		github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \
 		github.com/srikrsna/protoc-gen-gotag \
 		github.com/edaniels/golinters/cmd/combined \
-		github.com/golangci/golangci-lint/cmd/golangci-lint
-	GOBIN=`pwd`/bin go install github.com/bufbuild/buf/cmd/buf@v1.4.0
+		github.com/golangci/golangci-lint/cmd/golangci-lint \
+		github.com/bufbuild/buf/cmd/buf
 	mkdir -p dist
 	touch dist/tool-install
 
