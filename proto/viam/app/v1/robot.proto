@@ -22,6 +22,8 @@ message RobotoConfig {
     string signaling_address = 5;
     string signaling_insecure = 6;
     string location_secret = 7;
+    // cloud app url. eg: http://localhost:8080
+    string app_url = 8;
   }
 
   message Certificate {
