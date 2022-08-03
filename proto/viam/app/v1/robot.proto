@@ -15,7 +15,7 @@ service RobotService {
 // Robot's config from the cloud used to configure the RDK at runtime.
 message RobotoConfig {
   message Cloud {
-      // Robot part id.
+    // Robot part id.
     string id = 1;
     string fqdn = 2;
     string local_fqdn = 3;
