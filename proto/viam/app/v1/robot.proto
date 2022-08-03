@@ -6,7 +6,6 @@ option go_package = "go.viam.com/api/proto/viam/app/v1";
 
 // Service used by the RDK to retrieve configs, report logs, etc...
 service RobotService {
-
   // RDK request to load the current robot config and updates the robot user
   // supplied info.
   rpc RetrieveConfig(RetrieveConfigRequest) returns (RetrieveConfigResponse);
@@ -27,7 +26,7 @@ message RobotoConfig {
 
   message Certificate {
     string tls_certificate = 1;
-    string tls_private_key= 2;
+    string tls_private_key = 2;
   }
 
   string components_json = 1;
@@ -56,7 +55,7 @@ message RetrieveConfigRequest {
   UserInfo user_info = 2;
 
   // Include the robot's TLS certificate in the config response.
-  bool include_cert_in_resposne = 3; 
+  bool include_cert_in_response = 3;
 }
 
 message RetrieveConfigResponse {
