@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package proto.viam.app.v1;
+
+option go_package = "go.viam.com/api/proto/viam/app/v1";
+
+// Service used by the RDK to retrieve configs, report logs, etc...
+service RobotService {
+
+  // RDK request to load the current robot config and updates the robot user
+  // supplied info.
+  rpc RetrieveConfig(RetrieveConfigRequest) returns (RetrieveConfigResponse);
+}
+
+// Robot's config from the cloud used to configure the RDK at runtime.
+message RobotoConfig {
+  message Cloud {
+      // Robot part id.
+    string id = 1;
+    string fqdn = 2;
+    string local_fqdn = 3;
+    string managed_by = 4;
+    string signaling_address = 5;
+    string signaling_insecure = 6;
+    string location_secret = 7;
+  }
+
+  message Certificate {
+    string tls_certificate = 1;
+    string tls_private_key= 2;
+  }
+
+  string components_json = 1;
+  Cloud cloud = 2;
+  Certificate certificate = 3;
+}
+
+// Details about the robot reported to the backend.
+message UserInfo {
+  // hostname
+  string host = 1;
+  // operating system
+  string os = 2;
+  // list of all ipv4 ips.
+  repeated string ips = 3;
+  // RDK version
+  string version = 4;
+  // RDK git version
+  string git_revision = 5;
+}
+
+message RetrieveConfigRequest {
+  // Robot part id.
+  string id = 1;
+
+  UserInfo user_info = 2;
+
+  // Include the robot's TLS certificate in the config response.
+  bool include_cert_in_resposne = 3; 
+}
+
+message RetrieveConfigResponse {
+  RobotoConfig config = 1;
+}
