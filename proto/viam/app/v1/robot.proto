@@ -20,7 +20,7 @@ message RobotoConfig {
     string local_fqdn = 3;
     string managed_by = 4;
     string signaling_address = 5;
-    string signaling_insecure = 6;
+    bool signaling_insecure = 6;
     string location_secret = 7;
     // cloud app url. eg: http://localhost:8080
     string app_url = 8;
