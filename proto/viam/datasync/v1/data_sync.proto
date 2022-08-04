@@ -63,13 +63,6 @@ message CaptureInterval {
   google.protobuf.Timestamp end = 2;
 }
 
-message Time {
-  oneof time {
-    CaptureInterval sensor_capture_interval = 1;
-    google.protobuf.Timestamp sync_time = 2;
-  }
-}
-
 message DataCaptureMetadata {
   string component_type = 1;
   string component_name = 2;
@@ -78,8 +71,8 @@ message DataCaptureMetadata {
   map<string, string> method_parameters = 5;
 }
 
-message SyncedFile {
-  Time time = 1;
+message TabularCapture {
+  CaptureInterval interval = 1;
   string org_id = 2;
   string robot_id = 3;
   string part_id = 4;
@@ -88,9 +81,31 @@ message SyncedFile {
   string component_model = 7;
   string method_name = 8;
   string blob_path = 9;
-  DataType data_type = 10;
-  // Only DataType.TABULAR data has column_names
-  repeated string column_names = 11;
-  map<string, google.protobuf.Any> method_parameters = 12;
-  string file_id = 13;
+  repeated string column_names = 10;
+  map<string, google.protobuf.Any> method_parameters = 11;
+  string file_id = 12;
+}
+
+message BinaryCapture {
+  CaptureInterval interval = 1;
+  string org_id = 2;
+  string robot_id = 3;
+  string part_id = 4;
+  string component_name = 5;
+  string component_type = 6;
+  string component_model = 7;
+  string method_name = 8;
+  string blob_path = 9;
+  map<string, google.protobuf.Any> method_parameters = 10;
+  string file_id = 11;
+}
+
+message UserFile {
+  google.protobuf.Timestamp sync_time = 1;
+  string org_id = 2;
+  string robot_id = 3;
+  string part_id = 4;
+  string blob_path = 5;
+  map<string, google.protobuf.Any> method_parameters = 6;
+  string file_id = 7;
 }
