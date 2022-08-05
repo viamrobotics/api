@@ -17,7 +17,6 @@ service RobotService {
   rpc GetCertificate(GetCertificateRequest) returns (GetCertificateResponse);
 }
 
-// Robot's config from the cloud used to configure the RDK at runtime.
 message RobotoConfig {
   CloudConfig cloud = 1;
   repeated RemoteConfig remotes = 2;
