@@ -8,38 +8,38 @@ import "proto/tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/proto/viam/app/v1";
 
-// Service used by the RDK to retrieve configs, report logs, etc...
+// RobotService used by the RDK to retrieve configs, report logs, etc...
 service RobotService {
   // RDK request to load the current robot config and updates the robot user
   // supplied info.
-  rpc RetrieveConfig(RetrieveConfigRequest) returns (RetrieveConfigResponse);
+  rpc GetConfig(GetConfigRequest) returns (GetConfigResponse);
+
+  rpc GetCertificate(GetCertificateRequest) returns (GetCertificateResponse);
 }
 
 // Robot's config from the cloud used to configure the RDK at runtime.
 message RobotoConfig {
-  message Cloud {
-    // Robot part id.
-    string id = 1;
-    string fqdn = 2;
-    string local_fqdn = 3;
-    string managed_by = 4;
-    string signaling_address = 5;
-    bool signaling_insecure = 6;
-    string location_secret = 7;
-  }
-
-  message Certificate {
-    string tls_certificate = 1;
-    string tls_private_key = 2;
-  }
-
-  Cloud cloud = 1;
-  Certificate certificate = 2;
-  repeated RobotComponentConfig components = 3;
-  repeated RemoteConfig remotes = 4;
+  CloudConfig cloud = 1;
+  repeated RemoteConfig remotes = 2;
+  repeated ComponentConfig components = 3;
+  repeated ProcessConfig processes = 4;
+  repeated ServiceConfig services = 5;
+  optional NetworkConfig network = 6;
+  optional AuthConfig auth = 7;
 }
 
-message RobotComponentConfig {
+message CloudConfig {
+  // Robot part id.
+  string id = 1;
+  string fqdn = 2;
+  string local_fqdn = 3;
+  string managed_by = 4;
+  string signaling_address = 5;
+  bool signaling_insecure = 6;
+  string location_secret = 7;
+}
+
+message ComponentConfig {
   string name = 1;
   string namespace = 2;
   string type = 3;
@@ -56,6 +56,33 @@ message ServiceConfig {
   string type = 1;
   // TODO(adam): Should this be move to a structured type as defined in the typescript frontend.
   google.protobuf.Struct attributes = 2;
+}
+
+// A ProcessConfig describes how to manage a system process.
+message ProcessConfig {
+  string id = 1;
+  string name = 2;
+  repeated string args = 3;
+  string cwd = 4;
+  bool on_shot = 5;
+  bool log = 6;
+}
+
+message NetworkConfig {
+  string fqdn = 1;
+  string bind_address = 2;
+  string tls_cert_file = 3;
+  string tls_key_file = 4;
+}
+
+message AuthConfig {
+  repeated AuthHandlerConfig handlers = 1;
+  repeated string tls_auth_entities = 2;
+}
+
+message AuthHandlerConfig {
+  CredentialsType type = 1;
+  google.protobuf.Struct robot_config = 5;
 }
 
 message Frame {
@@ -165,14 +192,7 @@ message RemoteAuth {
   // Credentials packages up both a type of credential along with its payload which
   // is formatted specific to the type.
   message Credentials {
-    enum Type {
-      TYPE_UNSPECIFIED = 0;
-      TYPE_INTERNAL = 1;
-      TYPE_API_KEY = 2;
-      TYPE_ROBOT_SECRET = 3;
-      TYPE_ROBOT_LOCATION_SECRET = 4;
-    }
-    Type type = 1;
+    CredentialsType type = 1;
     string payload = 2;
   }
 
@@ -180,30 +200,44 @@ message RemoteAuth {
   string entity = 2;
 }
 
-// Details about the robot reported to the backend.
 message UserInfo {
-  // hostname
   string host = 1;
-  // operating system
   string os = 2;
   // list of all ipv4 ips.
   repeated string ips = 3;
   // RDK version
   string version = 4;
-  // RDK git version
   string git_revision = 5;
 }
 
-message RetrieveConfigRequest {
+enum CredentialsType {
+  CREDENTIALS_TYPE_UNSPECIFIED = 0;
+  CREDENTIALS_TYPE_INTERNAL = 1;
+  CREDENTIALS_TYPE_API_KEY = 2;
+  CREDENTIALS_TYPE_ROBOT_SECRET = 3;
+  CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET = 4;
+}
+
+message GetConfigRequest {
   // Robot part id.
   string id = 1;
 
-  UserInfo user_info = 2;
-
-  // Include the robot's TLS certificate in the config response.
-  bool include_cert_in_response = 3;
+  // Details about the RDK (os, version) are updated during this request.
+  optional UserInfo user_info = 2;
 }
 
-message RetrieveConfigResponse {
+message GetConfigResponse {
   RobotoConfig config = 1;
+}
+
+message GetCertificateRequest {
+  // Robot part id.
+  string id = 1;
+}
+
+message GetCertificateResponse {
+  // Robot part id.
+  string id = 1;
+  string tls_certificate = 2;
+  string tls_private_key = 3;
 }
