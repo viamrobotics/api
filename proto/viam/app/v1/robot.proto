@@ -64,7 +64,7 @@ message ProcessConfig {
   string name = 2;
   repeated string args = 3;
   string cwd = 4;
-  bool on_shot = 5;
+  bool one_shot = 5;
   bool log = 6;
 }
 
