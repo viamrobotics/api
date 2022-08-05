@@ -71,7 +71,7 @@ message ProcessConfig {
 message ServiceConfig {
   string name = 1;
   string namespace = 2;
-  string service_type = 3;
+  string type = 3;
   google.protobuf.Struct attributes = 4;
 }
 
