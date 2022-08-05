@@ -18,10 +18,10 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RobotServiceClient interface {
-	// RDK request to load the current robot config and updates the robot user
-	// supplied info.
-	GetConfig(ctx context.Context, in *GetConfigRequest, opts ...grpc.CallOption) (*GetConfigResponse, error)
-	GetCertificate(ctx context.Context, in *GetCertificateRequest, opts ...grpc.CallOption) (*GetCertificateResponse, error)
+	// Config requests the current robot config
+	Config(ctx context.Context, in *ConfigRequest, opts ...grpc.CallOption) (*ConfigResponse, error)
+	// Certificate requests the current robot certificate
+	Certificate(ctx context.Context, in *CertificateRequest, opts ...grpc.CallOption) (*CertificateResponse, error)
 }
 
 type robotServiceClient struct {
@@ -32,18 +32,18 @@ func NewRobotServiceClient(cc grpc.ClientConnInterface) RobotServiceClient {
 	return &robotServiceClient{cc}
 }
 
-func (c *robotServiceClient) GetConfig(ctx context.Context, in *GetConfigRequest, opts ...grpc.CallOption) (*GetConfigResponse, error) {
-	out := new(GetConfigResponse)
-	err := c.cc.Invoke(ctx, "/proto.viam.app.v1.RobotService/GetConfig", in, out, opts...)
+func (c *robotServiceClient) Config(ctx context.Context, in *ConfigRequest, opts ...grpc.CallOption) (*ConfigResponse, error) {
+	out := new(ConfigResponse)
+	err := c.cc.Invoke(ctx, "/proto.viam.app.v1.RobotService/Config", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *robotServiceClient) GetCertificate(ctx context.Context, in *GetCertificateRequest, opts ...grpc.CallOption) (*GetCertificateResponse, error) {
-	out := new(GetCertificateResponse)
-	err := c.cc.Invoke(ctx, "/proto.viam.app.v1.RobotService/GetCertificate", in, out, opts...)
+func (c *robotServiceClient) Certificate(ctx context.Context, in *CertificateRequest, opts ...grpc.CallOption) (*CertificateResponse, error) {
+	out := new(CertificateResponse)
+	err := c.cc.Invoke(ctx, "/proto.viam.app.v1.RobotService/Certificate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -54,10 +54,10 @@ func (c *robotServiceClient) GetCertificate(ctx context.Context, in *GetCertific
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
 type RobotServiceServer interface {
-	// RDK request to load the current robot config and updates the robot user
-	// supplied info.
-	GetConfig(context.Context, *GetConfigRequest) (*GetConfigResponse, error)
-	GetCertificate(context.Context, *GetCertificateRequest) (*GetCertificateResponse, error)
+	// Config requests the current robot config
+	Config(context.Context, *ConfigRequest) (*ConfigResponse, error)
+	// Certificate requests the current robot certificate
+	Certificate(context.Context, *CertificateRequest) (*CertificateResponse, error)
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -65,11 +65,11 @@ type RobotServiceServer interface {
 type UnimplementedRobotServiceServer struct {
 }
 
-func (UnimplementedRobotServiceServer) GetConfig(context.Context, *GetConfigRequest) (*GetConfigResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetConfig not implemented")
+func (UnimplementedRobotServiceServer) Config(context.Context, *ConfigRequest) (*ConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Config not implemented")
 }
-func (UnimplementedRobotServiceServer) GetCertificate(context.Context, *GetCertificateRequest) (*GetCertificateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCertificate not implemented")
+func (UnimplementedRobotServiceServer) Certificate(context.Context, *CertificateRequest) (*CertificateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Certificate not implemented")
 }
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
@@ -84,38 +84,38 @@ func RegisterRobotServiceServer(s grpc.ServiceRegistrar, srv RobotServiceServer)
 	s.RegisterService(&RobotService_ServiceDesc, srv)
 }
 
-func _RobotService_GetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetConfigRequest)
+func _RobotService_Config_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConfigRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RobotServiceServer).GetConfig(ctx, in)
+		return srv.(RobotServiceServer).Config(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.viam.app.v1.RobotService/GetConfig",
+		FullMethod: "/proto.viam.app.v1.RobotService/Config",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RobotServiceServer).GetConfig(ctx, req.(*GetConfigRequest))
+		return srv.(RobotServiceServer).Config(ctx, req.(*ConfigRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RobotService_GetCertificate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCertificateRequest)
+func _RobotService_Certificate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CertificateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RobotServiceServer).GetCertificate(ctx, in)
+		return srv.(RobotServiceServer).Certificate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.viam.app.v1.RobotService/GetCertificate",
+		FullMethod: "/proto.viam.app.v1.RobotService/Certificate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RobotServiceServer).GetCertificate(ctx, req.(*GetCertificateRequest))
+		return srv.(RobotServiceServer).Certificate(ctx, req.(*CertificateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -128,12 +128,12 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*RobotServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetConfig",
-			Handler:    _RobotService_GetConfig_Handler,
+			MethodName: "Config",
+			Handler:    _RobotService_Config_Handler,
 		},
 		{
-			MethodName: "GetCertificate",
-			Handler:    _RobotService_GetCertificate_Handler,
+			MethodName: "Certificate",
+			Handler:    _RobotService_Certificate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

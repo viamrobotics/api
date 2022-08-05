@@ -31,8 +31,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_RobotService_GetConfig_0(ctx context.Context, marshaler runtime.Marshaler, client RobotServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetConfigRequest
+func request_RobotService_Config_0(ctx context.Context, marshaler runtime.Marshaler, client RobotServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ConfigRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -43,13 +43,13 @@ func request_RobotService_GetConfig_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetConfig(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Config(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_RobotService_GetConfig_0(ctx context.Context, marshaler runtime.Marshaler, server RobotServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetConfigRequest
+func local_request_RobotService_Config_0(ctx context.Context, marshaler runtime.Marshaler, server RobotServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ConfigRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -60,13 +60,13 @@ func local_request_RobotService_GetConfig_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetConfig(ctx, &protoReq)
+	msg, err := server.Config(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_RobotService_GetCertificate_0(ctx context.Context, marshaler runtime.Marshaler, client RobotServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetCertificateRequest
+func request_RobotService_Certificate_0(ctx context.Context, marshaler runtime.Marshaler, client RobotServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CertificateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -77,13 +77,13 @@ func request_RobotService_GetCertificate_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetCertificate(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Certificate(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_RobotService_GetCertificate_0(ctx context.Context, marshaler runtime.Marshaler, server RobotServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetCertificateRequest
+func local_request_RobotService_Certificate_0(ctx context.Context, marshaler runtime.Marshaler, server RobotServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CertificateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -94,7 +94,7 @@ func local_request_RobotService_GetCertificate_0(ctx context.Context, marshaler 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetCertificate(ctx, &protoReq)
+	msg, err := server.Certificate(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -105,19 +105,19 @@ func local_request_RobotService_GetCertificate_0(ctx context.Context, marshaler 
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterRobotServiceHandlerFromEndpoint instead.
 func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server RobotServiceServer) error {
 
-	mux.Handle("POST", pattern_RobotService_GetConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_RobotService_Config_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.RobotService/GetConfig", runtime.WithHTTPPathPattern("/proto.viam.app.v1.RobotService/GetConfig"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.RobotService/Config", runtime.WithHTTPPathPattern("/proto.viam.app.v1.RobotService/Config"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_GetConfig_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_Config_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -125,23 +125,23 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			return
 		}
 
-		forward_RobotService_GetConfig_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_RobotService_Config_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_RobotService_GetCertificate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_RobotService_Certificate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.RobotService/GetCertificate", runtime.WithHTTPPathPattern("/proto.viam.app.v1.RobotService/GetCertificate"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.app.v1.RobotService/Certificate", runtime.WithHTTPPathPattern("/proto.viam.app.v1.RobotService/Certificate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_RobotService_GetCertificate_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_RobotService_Certificate_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -149,7 +149,7 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			return
 		}
 
-		forward_RobotService_GetCertificate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_RobotService_Certificate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -194,45 +194,45 @@ func RegisterRobotServiceHandler(ctx context.Context, mux *runtime.ServeMux, con
 // "RobotServiceClient" to call the correct interceptors.
 func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client RobotServiceClient) error {
 
-	mux.Handle("POST", pattern_RobotService_GetConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_RobotService_Config_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.RobotService/GetConfig", runtime.WithHTTPPathPattern("/proto.viam.app.v1.RobotService/GetConfig"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.RobotService/Config", runtime.WithHTTPPathPattern("/proto.viam.app.v1.RobotService/Config"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_GetConfig_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_Config_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_RobotService_GetConfig_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_RobotService_Config_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_RobotService_GetCertificate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_RobotService_Certificate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.RobotService/GetCertificate", runtime.WithHTTPPathPattern("/proto.viam.app.v1.RobotService/GetCertificate"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.app.v1.RobotService/Certificate", runtime.WithHTTPPathPattern("/proto.viam.app.v1.RobotService/Certificate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_RobotService_GetCertificate_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_RobotService_Certificate_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_RobotService_GetCertificate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_RobotService_Certificate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -240,13 +240,13 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_RobotService_GetConfig_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"proto.viam.app.v1.RobotService", "GetConfig"}, ""))
+	pattern_RobotService_Config_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"proto.viam.app.v1.RobotService", "Config"}, ""))
 
-	pattern_RobotService_GetCertificate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"proto.viam.app.v1.RobotService", "GetCertificate"}, ""))
+	pattern_RobotService_Certificate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"proto.viam.app.v1.RobotService", "Certificate"}, ""))
 )
 
 var (
-	forward_RobotService_GetConfig_0 = runtime.ForwardResponseMessage
+	forward_RobotService_Config_0 = runtime.ForwardResponseMessage
 
-	forward_RobotService_GetCertificate_0 = runtime.ForwardResponseMessage
+	forward_RobotService_Certificate_0 = runtime.ForwardResponseMessage
 )

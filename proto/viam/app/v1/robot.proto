@@ -8,16 +8,16 @@ import "proto/tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/proto/viam/app/v1";
 
-// RobotService used by the RDK to retrieve configs, report logs, etc...
+// RobotService is used by robots to retrieve configs, report logs, etc...
 service RobotService {
-  // RDK request to load the current robot config and updates the robot user
-  // supplied info.
-  rpc GetConfig(GetConfigRequest) returns (GetConfigResponse);
+  // Config requests the current robot config
+  rpc Config(ConfigRequest) returns (ConfigResponse);
 
-  rpc GetCertificate(GetCertificateRequest) returns (GetCertificateResponse);
+  // Certificate requests the current robot certificate
+  rpc Certificate(CertificateRequest) returns (CertificateResponse);
 }
 
-message RobotoConfig {
+message RobotConfig {
   CloudConfig cloud = 1;
   repeated RemoteConfig remotes = 2;
   repeated ComponentConfig components = 3;
@@ -36,6 +36,7 @@ message CloudConfig {
   string signaling_address = 5;
   bool signaling_insecure = 6;
   string location_secret = 7;
+  string secret = 8;
 }
 
 message ComponentConfig {
@@ -46,12 +47,12 @@ message ComponentConfig {
   string model = 5;
   Frame frame = 6;
   repeated string depends_on = 7;
-  repeated ServiceConfig service_configs = 8 [(tagger.v1.tags) = "json:\"service_config\""];
+  repeated ResourceLevelServiceConfig service_configs = 8 [(tagger.v1.tags) = "json:\"service_config\""];
   google.protobuf.Struct attributes = 9;
 }
 
 // A ResourceLevelServiceConfig describes component or remote configuration for a service.
-message ServiceConfig {
+message ResourceLevelServiceConfig {
   string type = 1;
   // TODO(adam): Should this be move to a structured type as defined in the typescript frontend.
   google.protobuf.Struct attributes = 2;
@@ -65,6 +66,13 @@ message ProcessConfig {
   string cwd = 4;
   bool on_shot = 5;
   bool log = 6;
+}
+
+message ServiceConfig {
+  string name = 1;
+  string namespace = 2;
+  string service_type = 3;
+  google.protobuf.Struct attributes = 4;
 }
 
 message NetworkConfig {
@@ -178,7 +186,7 @@ message RemoteConfig {
   bool insecure = 7;
   google.protobuf.Duration connection_check_interval = 8;
   google.protobuf.Duration reconnect_interval = 9;
-  repeated ServiceConfig service_configs = 10 [(tagger.v1.tags) = "json:\"service_config\""];
+  repeated ResourceLevelServiceConfig service_configs = 10 [(tagger.v1.tags) = "json:\"service_config\""];
 
   // Secret is a helper for a robot location secret.
   string secret = 11;
@@ -199,7 +207,7 @@ message RemoteAuth {
   string entity = 2;
 }
 
-message UserInfo {
+message AgentInfo {
   string host = 1;
   string os = 2;
   // list of all ipv4 ips.
@@ -217,24 +225,24 @@ enum CredentialsType {
   CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET = 4;
 }
 
-message GetConfigRequest {
+message ConfigRequest {
   // Robot part id.
   string id = 1;
 
   // Details about the RDK (os, version) are updated during this request.
-  optional UserInfo user_info = 2;
+  optional AgentInfo agent_info = 2;
 }
 
-message GetConfigResponse {
-  RobotoConfig config = 1;
+message ConfigResponse {
+  RobotConfig config = 1;
 }
 
-message GetCertificateRequest {
+message CertificateRequest {
   // Robot part id.
   string id = 1;
 }
 
-message GetCertificateResponse {
+message CertificateResponse {
   // Robot part id.
   string id = 1;
   string tls_certificate = 2;
