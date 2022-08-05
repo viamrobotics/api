@@ -2,6 +2,10 @@ syntax = "proto3";
 
 package proto.viam.app.v1;
 
+import "google/protobuf/duration.proto";
+import "google/protobuf/struct.proto";
+import "proto/tagger/v1/tagger.proto";
+
 option go_package = "go.viam.com/api/proto/viam/app/v1";
 
 // Service used by the RDK to retrieve configs, report logs, etc...
@@ -22,8 +26,6 @@ message RobotoConfig {
     string signaling_address = 5;
     bool signaling_insecure = 6;
     string location_secret = 7;
-    // cloud app url. eg: http://localhost:8080
-    string app_url = 8;
   }
 
   message Certificate {
@@ -31,9 +33,151 @@ message RobotoConfig {
     string tls_private_key = 2;
   }
 
-  string components_json = 1;
-  Cloud cloud = 2;
-  Certificate certificate = 3;
+  Cloud cloud = 1;
+  Certificate certificate = 2;
+  repeated RobotComponentConfig components = 3;
+  repeated RemoteConfig remotes = 4;
+}
+
+message RobotComponentConfig {
+  string name = 1;
+  string namespace = 2;
+  string type = 3;
+  string sub_type = 4;
+  string model = 5;
+  Frame frame = 6;
+  repeated string depends_on = 7;
+  repeated ServiceConfig service_configs = 8 [(tagger.v1.tags) = "json:\"service_config\""];
+  google.protobuf.Struct attributes = 9;
+}
+
+// A ResourceLevelServiceConfig describes component or remote configuration for a service.
+message ServiceConfig {
+  string type = 1;
+  // TODO(adam): Should this be move to a structured type as defined in the typescript frontend.
+  google.protobuf.Struct attributes = 2;
+}
+
+message Frame {
+  string parent = 1;
+  Translation translation = 2;
+  Orientation orientation = 3;
+}
+
+message Translation {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+}
+
+message Orientation {
+  message NoOrientation {}
+
+  // OrientationVector containing ox, oy, oz, theta represents an orientation vector
+  // Structured similarly to an angle axis, an orientation vector works differently. Rather than representing an orientation
+  // with an arbitrary axis and a rotation around it from an origin, an orientation vector represents orientation
+  // such that the ox/oy/oz components represent the point on the cartesian unit sphere at which your end effector is pointing
+  // from the origin, and that unit vector forms an axis around which theta rotates. This means that incrementing/decrementing
+  // theta will perform an in-line rotation of the end effector.
+  // Theta is defined as rotation between two planes: the plane defined by the origin, the point (0,0,1), and the rx,ry,rz
+  // point, and the plane defined by the origin, the rx,ry,rz point, and the new local Z axis. So if theta is kept at
+  // zero as the north/south pole is circled, the Roll will correct itself to remain in-line.
+  message OrientationVectorRadians {
+    double theta = 1 [(tagger.v1.tags) = "json:\"th\""];
+    double x = 2;
+    double y = 3;
+    double z = 4;
+  }
+
+  // OrientationVectorDegrees is the orientation vector between two objects, but expressed in degrees rather than radians.
+  // Because protobuf Pose is in degrees, this is necessary.
+  message OrientationVectorDegrees {
+    double theta = 1 [(tagger.v1.tags) = "json:\"th\""];
+    double x = 2;
+    double y = 3;
+    double z = 4;
+  }
+
+  // EulerAngles are three angles (in radians) used to represent the rotation of an object in 3D Euclidean space
+  // The Tait–Bryan angle formalism is used, with rotations around three distinct axes in the z-y′-x″ sequence.
+  message EulerAngles {
+    double roll = 1;
+    double pitch = 2;
+    double yaw = 3;
+  }
+
+  // See here for a thorough explanation: https://en.wikipedia.org/wiki/Axis%E2%80%93angle_representation
+  // Basic explanation: Imagine a 3d cartesian grid centered at 0,0,0, and a sphere of radius 1 centered at
+  // that same point. An orientation can be expressed by first specifying an axis, i.e. a line from the origin
+  // to a point on that sphere, represented by (rx, ry, rz), and a rotation around that axis, theta.
+  // These four numbers can be used as-is (R4), or they can be converted to R3, where theta is multiplied by each of
+  // the unit sphere components to give a vector whose length is theta and whose direction is the original axis.
+  // AxisAngles represents an R4 axis angle.
+  message AxisAngles {
+    double theta = 1 [(tagger.v1.tags) = "json:\"th\""];
+    double x = 2;
+    double y = 3;
+    double z = 4;
+  }
+
+  // Quaternion is a float64 precision quaternion.
+  message Quaternion {
+    double w = 1;
+    double x = 2;
+    double y = 3;
+    double z = 4;
+  }
+
+  oneof type {
+    NoOrientation no_orientation = 1;
+    OrientationVectorRadians vector_radians = 2;
+    OrientationVectorDegrees vector_degrees = 3;
+    EulerAngles euler_angles = 4;
+    AxisAngles axis_angles = 5;
+    Quaternion quaternion = 6;
+  }
+}
+
+// A RemoteConfig describes a remote robot that should be integrated.
+// The Frame field defines how the "world" node of the remote robot should be reconciled with the "world" node of the
+// the current robot. All components of the remote robot who have Parent as "world" will be attached to the parent defined
+// in Frame, and with the given offset as well.
+message RemoteConfig {
+  string name = 1;
+  string address = 2;
+  bool prefix = 3;
+  Frame frame = 4;
+  RemoteAuth auth = 5;
+  string managed_by = 6;
+  bool insecure = 7;
+  google.protobuf.Duration connection_check_interval = 8;
+  google.protobuf.Duration reconnect_interval = 9;
+  repeated ServiceConfig service_configs = 10 [(tagger.v1.tags) = "json:\"service_config\""];
+
+  // Secret is a helper for a robot location secret.
+  string secret = 11;
+}
+
+// RemoteAuth specifies how to authenticate against a remote. If no credentials are
+// specified, authentication does not happen. If an entity is specified, the
+// authentication request will specify it.
+message RemoteAuth {
+  // Credentials packages up both a type of credential along with its payload which
+  // is formatted specific to the type.
+  message Credentials {
+    enum Type {
+      TYPE_UNSPECIFIED = 0;
+      TYPE_INTERNAL = 1;
+      TYPE_API_KEY = 2;
+      TYPE_ROBOT_SECRET = 3;
+      TYPE_ROBOT_LOCATION_SECRET = 4;
+    }
+    Type type = 1;
+    string payload = 2;
+  }
+
+  Credentials credentials = 1;
+  string entity = 2;
 }
 
 // Details about the robot reported to the backend.
