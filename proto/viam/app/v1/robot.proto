@@ -89,7 +89,7 @@ message AuthConfig {
 
 message AuthHandlerConfig {
   CredentialsType type = 1;
-  google.protobuf.Struct robot_config = 5;
+  google.protobuf.Struct config = 5;
 }
 
 message Frame {
