@@ -38,7 +38,6 @@ message UploadMetadata {
   DataType type = 6;
   string file_name = 7;
   map<string, string> method_parameters = 8;
-  
 }
 
 message UploadRequest {
@@ -70,7 +69,6 @@ message DataCaptureMetadata {
   string method_name = 4;
   DataType type = 5;
   map<string, string> method_parameters = 6;
-  
 }
 
 message TabularCapture {
