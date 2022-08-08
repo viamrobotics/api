@@ -36,6 +36,9 @@ service AppService {
   // Create a new robot part
   rpc NewRobotPart(NewRobotPartRequest) returns (NewRobotPartResponse);
 
+  // Delete a new robot part
+  rpc DeleteRobotPart(DeleteRobotPartRequest) returns (DeleteRobotPartResponse);
+
   // Marks the given part as the main part, and all the others as not
   rpc MarkPartAsMain(MarkPartAsMainRequest) returns (MarkPartAsMainResponse);
 
@@ -192,6 +195,15 @@ message NewRobotPartRequest {
 }
 
 message NewRobotPartResponse {
+  string part_id = 1;
+}
+
+message DeleteRobotPartRequest {
+  string robot_id = 1;
+  string part_name = 2;
+}
+
+message DeleteRobotPartResponse {
   string part_id = 1;
 }
 
