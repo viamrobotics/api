@@ -199,13 +199,10 @@ message NewRobotPartResponse {
 }
 
 message DeleteRobotPartRequest {
-  string robot_id = 1;
-  string part_name = 2;
-}
-
-message DeleteRobotPartResponse {
   string part_id = 1;
 }
+
+message DeleteRobotPartResponse {}
 
 message Fragment {
   string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
