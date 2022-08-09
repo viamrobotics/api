@@ -62,7 +62,7 @@ message CaptureInterval {
   google.protobuf.Timestamp end = 2;
 }
 
-message BuildCaptureMetadata {
+message DataCaptureMetadata {
   string component_type = 1;
   string component_name = 2;
   string component_model = 3;
