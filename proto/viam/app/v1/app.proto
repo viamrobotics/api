@@ -36,6 +36,9 @@ service AppService {
   // Create a new robot part
   rpc NewRobotPart(NewRobotPartRequest) returns (NewRobotPartResponse);
 
+  // Delete a robot part
+  rpc DeleteRobotPart(DeleteRobotPartRequest) returns (DeleteRobotPartResponse);
+
   // Marks the given part as the main part, and all the others as not
   rpc MarkPartAsMain(MarkPartAsMainRequest) returns (MarkPartAsMainResponse);
 
@@ -48,7 +51,7 @@ service AppService {
   // UpdateRobot updates a robot
   rpc UpdateRobot(UpdateRobotRequest) returns (UpdateRobotResponse);
 
-  // DelteRobot deletes a robot
+  // DeleteRobot deletes a robot
   rpc DeleteRobot(DeleteRobotRequest) returns (DeleteRobotResponse);
 }
 
@@ -194,6 +197,12 @@ message NewRobotPartRequest {
 message NewRobotPartResponse {
   string part_id = 1;
 }
+
+message DeleteRobotPartRequest {
+  string part_id = 1;
+}
+
+message DeleteRobotPartResponse {}
 
 message Fragment {
   string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
