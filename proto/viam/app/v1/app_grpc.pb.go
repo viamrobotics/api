@@ -34,7 +34,7 @@ type AppServiceClient interface {
 	UpdateRobotPart(ctx context.Context, in *UpdateRobotPartRequest, opts ...grpc.CallOption) (*UpdateRobotPartResponse, error)
 	// Create a new robot part
 	NewRobotPart(ctx context.Context, in *NewRobotPartRequest, opts ...grpc.CallOption) (*NewRobotPartResponse, error)
-	// Delete a new robot part
+	// Delete a robot part
 	DeleteRobotPart(ctx context.Context, in *DeleteRobotPartRequest, opts ...grpc.CallOption) (*DeleteRobotPartResponse, error)
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(ctx context.Context, in *MarkPartAsMainRequest, opts ...grpc.CallOption) (*MarkPartAsMainResponse, error)
@@ -252,7 +252,7 @@ type AppServiceServer interface {
 	UpdateRobotPart(context.Context, *UpdateRobotPartRequest) (*UpdateRobotPartResponse, error)
 	// Create a new robot part
 	NewRobotPart(context.Context, *NewRobotPartRequest) (*NewRobotPartResponse, error)
-	// Delete a new robot part
+	// Delete a robot part
 	DeleteRobotPart(context.Context, *DeleteRobotPartRequest) (*DeleteRobotPartResponse, error)
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(context.Context, *MarkPartAsMainRequest) (*MarkPartAsMainResponse, error)
