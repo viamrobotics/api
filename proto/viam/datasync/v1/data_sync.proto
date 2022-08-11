@@ -69,6 +69,7 @@ message DataCaptureMetadata {
   string method_name = 4;
   DataType type = 5;
   map<string, string> method_parameters = 6;
+  string file_extension = 7;
 }
 
 message TabularCapture {
