@@ -132,12 +132,13 @@ func RegisterDataSyncServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.datasync.v1.DataSyncService/Upload", runtime.WithHTTPPathPattern("/proto.viam.datasync.v1.DataSyncService/Upload"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.datasync.v1.DataSyncService/Upload", runtime.WithHTTPPathPattern("/proto.viam.datasync.v1.DataSyncService/Upload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_DataSyncService_Upload_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_DataSyncService_Upload_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
