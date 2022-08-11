@@ -162,12 +162,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.model.v1.ModelService/Delete", runtime.WithHTTPPathPattern("/proto.viam.model.v1.ModelService/Delete"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.model.v1.ModelService/Delete", runtime.WithHTTPPathPattern("/proto.viam.model.v1.ModelService/Delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_Delete_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_Delete_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -185,12 +186,13 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.model.v1.ModelService/Deploy", runtime.WithHTTPPathPattern("/proto.viam.model.v1.ModelService/Deploy"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.viam.model.v1.ModelService/Deploy", runtime.WithHTTPPathPattern("/proto.viam.model.v1.ModelService/Deploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModelService_Deploy_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModelService_Deploy_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -247,12 +249,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.model.v1.ModelService/Upload", runtime.WithHTTPPathPattern("/proto.viam.model.v1.ModelService/Upload"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.model.v1.ModelService/Upload", runtime.WithHTTPPathPattern("/proto.viam.model.v1.ModelService/Upload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_Upload_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_Upload_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -267,12 +270,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.model.v1.ModelService/Delete", runtime.WithHTTPPathPattern("/proto.viam.model.v1.ModelService/Delete"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.model.v1.ModelService/Delete", runtime.WithHTTPPathPattern("/proto.viam.model.v1.ModelService/Delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_Delete_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_Delete_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -287,12 +291,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/proto.viam.model.v1.ModelService/Deploy", runtime.WithHTTPPathPattern("/proto.viam.model.v1.ModelService/Deploy"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/proto.viam.model.v1.ModelService/Deploy", runtime.WithHTTPPathPattern("/proto.viam.model.v1.ModelService/Deploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModelService_Deploy_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModelService_Deploy_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
