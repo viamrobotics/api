@@ -38,6 +38,7 @@ message UploadMetadata {
   DataType type = 6;
   string file_name = 7;
   map<string, string> method_parameters = 8;
+  string file_extension = 9;
 }
 
 message UploadRequest {
