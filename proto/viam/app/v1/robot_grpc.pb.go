@@ -22,6 +22,10 @@ type RobotServiceClient interface {
 	Config(ctx context.Context, in *ConfigRequest, opts ...grpc.CallOption) (*ConfigResponse, error)
 	// Certificate requests the current robot certificate
 	Certificate(ctx context.Context, in *CertificateRequest, opts ...grpc.CallOption) (*CertificateResponse, error)
+	// Log insert log entries associated with the robot. Allows up to 1000 entries to be added in one request.
+	Log(ctx context.Context, in *LogRequest, opts ...grpc.CallOption) (*LogResponse, error)
+	// NeedsRestart returns if the robot should restart and the interval it should check to restart.
+	NeedsRestart(ctx context.Context, in *NeedsRestartRequest, opts ...grpc.CallOption) (*NeedsRestartResponse, error)
 }
 
 type robotServiceClient struct {
@@ -50,6 +54,24 @@ func (c *robotServiceClient) Certificate(ctx context.Context, in *CertificateReq
 	return out, nil
 }
 
+func (c *robotServiceClient) Log(ctx context.Context, in *LogRequest, opts ...grpc.CallOption) (*LogResponse, error) {
+	out := new(LogResponse)
+	err := c.cc.Invoke(ctx, "/proto.viam.app.v1.RobotService/Log", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *robotServiceClient) NeedsRestart(ctx context.Context, in *NeedsRestartRequest, opts ...grpc.CallOption) (*NeedsRestartResponse, error) {
+	out := new(NeedsRestartResponse)
+	err := c.cc.Invoke(ctx, "/proto.viam.app.v1.RobotService/NeedsRestart", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RobotServiceServer is the server API for RobotService service.
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
@@ -58,6 +80,10 @@ type RobotServiceServer interface {
 	Config(context.Context, *ConfigRequest) (*ConfigResponse, error)
 	// Certificate requests the current robot certificate
 	Certificate(context.Context, *CertificateRequest) (*CertificateResponse, error)
+	// Log insert log entries associated with the robot. Allows up to 1000 entries to be added in one request.
+	Log(context.Context, *LogRequest) (*LogResponse, error)
+	// NeedsRestart returns if the robot should restart and the interval it should check to restart.
+	NeedsRestart(context.Context, *NeedsRestartRequest) (*NeedsRestartResponse, error)
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -70,6 +96,12 @@ func (UnimplementedRobotServiceServer) Config(context.Context, *ConfigRequest) (
 }
 func (UnimplementedRobotServiceServer) Certificate(context.Context, *CertificateRequest) (*CertificateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Certificate not implemented")
+}
+func (UnimplementedRobotServiceServer) Log(context.Context, *LogRequest) (*LogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Log not implemented")
+}
+func (UnimplementedRobotServiceServer) NeedsRestart(context.Context, *NeedsRestartRequest) (*NeedsRestartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NeedsRestart not implemented")
 }
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
@@ -120,6 +152,42 @@ func _RobotService_Certificate_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_Log_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).Log(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.viam.app.v1.RobotService/Log",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).Log(ctx, req.(*LogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RobotService_NeedsRestart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NeedsRestartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).NeedsRestart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.viam.app.v1.RobotService/NeedsRestart",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).NeedsRestart(ctx, req.(*NeedsRestartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RobotService_ServiceDesc is the grpc.ServiceDesc for RobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -134,6 +202,14 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Certificate",
 			Handler:    _RobotService_Certificate_Handler,
+		},
+		{
+			MethodName: "Log",
+			Handler:    _RobotService_Log_Handler,
+		},
+		{
+			MethodName: "NeedsRestart",
+			Handler:    _RobotService_NeedsRestart_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
