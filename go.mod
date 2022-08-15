@@ -7,6 +7,7 @@ require (
 	github.com/cosmtrek/air v1.29.0
 	github.com/edaniels/golinters v0.0.5-0.20210512224240-495d3b8eed19
 	github.com/fullstorydev/grpcurl v1.8.0
+	github.com/golang/mock v1.6.0
 	github.com/golang/protobuf v1.5.2
 	github.com/golangci/golangci-lint v1.43.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.0
