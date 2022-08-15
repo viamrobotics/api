@@ -76,6 +76,46 @@ func (mr *MockRobotServiceClientMockRecorder) Config(ctx, in interface{}, opts .
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Config", reflect.TypeOf((*MockRobotServiceClient)(nil).Config), varargs...)
 }
 
+// Log mocks base method.
+func (m *MockRobotServiceClient) Log(ctx context.Context, in *v1.LogRequest, opts ...grpc.CallOption) (*v1.LogResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "Log", varargs...)
+	ret0, _ := ret[0].(*v1.LogResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Log indicates an expected call of Log.
+func (mr *MockRobotServiceClientMockRecorder) Log(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Log", reflect.TypeOf((*MockRobotServiceClient)(nil).Log), varargs...)
+}
+
+// NeedsRestart mocks base method.
+func (m *MockRobotServiceClient) NeedsRestart(ctx context.Context, in *v1.NeedsRestartRequest, opts ...grpc.CallOption) (*v1.NeedsRestartResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "NeedsRestart", varargs...)
+	ret0, _ := ret[0].(*v1.NeedsRestartResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// NeedsRestart indicates an expected call of NeedsRestart.
+func (mr *MockRobotServiceClientMockRecorder) NeedsRestart(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NeedsRestart", reflect.TypeOf((*MockRobotServiceClient)(nil).NeedsRestart), varargs...)
+}
+
 // MockRobotServiceServer is a mock of RobotServiceServer interface.
 type MockRobotServiceServer struct {
 	ctrl     *gomock.Controller
@@ -127,6 +167,36 @@ func (m *MockRobotServiceServer) Config(arg0 context.Context, arg1 *v1.ConfigReq
 func (mr *MockRobotServiceServerMockRecorder) Config(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Config", reflect.TypeOf((*MockRobotServiceServer)(nil).Config), arg0, arg1)
+}
+
+// Log mocks base method.
+func (m *MockRobotServiceServer) Log(arg0 context.Context, arg1 *v1.LogRequest) (*v1.LogResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Log", arg0, arg1)
+	ret0, _ := ret[0].(*v1.LogResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Log indicates an expected call of Log.
+func (mr *MockRobotServiceServerMockRecorder) Log(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Log", reflect.TypeOf((*MockRobotServiceServer)(nil).Log), arg0, arg1)
+}
+
+// NeedsRestart mocks base method.
+func (m *MockRobotServiceServer) NeedsRestart(arg0 context.Context, arg1 *v1.NeedsRestartRequest) (*v1.NeedsRestartResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "NeedsRestart", arg0, arg1)
+	ret0, _ := ret[0].(*v1.NeedsRestartResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// NeedsRestart indicates an expected call of NeedsRestart.
+func (mr *MockRobotServiceServerMockRecorder) NeedsRestart(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NeedsRestart", reflect.TypeOf((*MockRobotServiceServer)(nil).NeedsRestart), arg0, arg1)
 }
 
 // mustEmbedUnimplementedRobotServiceServer mocks base method.

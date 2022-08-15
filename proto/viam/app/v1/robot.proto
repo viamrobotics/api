@@ -259,9 +259,7 @@ message CertificateResponse {
 message LogRequest {
   // Robot part id.
   string id = 1;
-  string host = 2;
-  repeated LogEntry log = 3;
-  google.protobuf.Struct fields = 4;
+  repeated LogEntry logs = 2;
 }
 
 message LogResponse {}
