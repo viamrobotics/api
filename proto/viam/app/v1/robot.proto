@@ -5,6 +5,7 @@ package proto.viam.app.v1;
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "proto/tagger/v1/tagger.proto";
+import "proto/viam/app/v1/app.proto";
 
 option go_package = "go.viam.com/api/proto/viam/app/v1";
 
@@ -15,6 +16,12 @@ service RobotService {
 
   // Certificate requests the current robot certificate
   rpc Certificate(CertificateRequest) returns (CertificateResponse);
+
+  // Log insert log entries associated with the robot. Allows up to 1000 entries to be added in one request.
+  rpc Log(LogRequest) returns (LogResponse);
+
+  // NeedsRestart returns if the robot should restart and the interval it should check to restart.
+  rpc NeedsRestart(NeedsRestartRequest) returns (NeedsRestartResponse);
 }
 
 message RobotConfig {
@@ -247,4 +254,26 @@ message CertificateResponse {
   string id = 1;
   string tls_certificate = 2;
   string tls_private_key = 3;
+}
+
+message LogRequest {
+  // Robot part id.
+  string id = 1;
+  string host = 2;
+  repeated LogEntry log = 3;
+  google.protobuf.Struct fields = 4;
+}
+
+message LogResponse {}
+
+message NeedsRestartRequest {
+  // Robot part id.
+  string id = 1;
+}
+
+message NeedsRestartResponse {
+  // Robot part id.
+  string id = 1;
+  bool must_restart = 2;
+  google.protobuf.Duration restart_check_interval = 3;
 }
