@@ -17,7 +17,8 @@ dist/tool-install: Makefile
 		github.com/srikrsna/protoc-gen-gotag \
 		github.com/edaniels/golinters/cmd/combined \
 		github.com/golangci/golangci-lint/cmd/golangci-lint \
-		github.com/bufbuild/buf/cmd/buf
+		github.com/bufbuild/buf/cmd/buf \
+		github.com/golang/mock/mockgen
 	mkdir -p dist
 	touch dist/tool-install
 
@@ -28,6 +29,7 @@ dist/buf-go: dist/tool-install proto/viam/app/v1/app.proto proto/tagger/v1/tagge
 	PATH=$(PATH_WITH_TOOLS) buf format -w
 	PATH=$(PATH_WITH_TOOLS) buf generate
 	PATH=$(PATH_WITH_TOOLS) buf generate --template ./etc/buf.gen.tag.yaml
+	PATH=$(PATH_WITH_TOOLS) ls proto/viam/app/v1/*_grpc.pb.go | while read l; do mockgen -source="$$l" -destination=proto/viam/app/mock_v1/mock_`basename "$$l"`; done
 	touch dist/buf-go
 
 lint: dist/tool-install
