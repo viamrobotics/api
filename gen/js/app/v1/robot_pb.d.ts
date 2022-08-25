@@ -49,6 +49,11 @@ export class RobotConfig extends jspb.Message {
   getDebug(): boolean;
   setDebug(value: boolean): void;
 
+  clearModulesList(): void;
+  getModulesList(): Array<ModuleConfig>;
+  setModulesList(value: Array<ModuleConfig>): void;
+  addModules(value?: ModuleConfig, index?: number): ModuleConfig;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -69,6 +74,7 @@ export namespace RobotConfig {
     network?: NetworkConfig.AsObject,
     auth?: AuthConfig.AsObject,
     debug: boolean,
+    modulesList: Array<ModuleConfig.AsObject>,
   }
 }
 
@@ -315,6 +321,36 @@ export namespace ServiceConfig {
     attributes?: google_protobuf_struct_pb.Struct.AsObject,
     dependsOnList: Array<string>,
     model: string,
+  }
+}
+
+export class ModuleConfig extends jspb.Message {
+  getPath(): string;
+  setPath(value: string): void;
+
+  getType(): string;
+  setType(value: string): void;
+
+  clearModelsList(): void;
+  getModelsList(): Array<string>;
+  setModelsList(value: Array<string>): void;
+  addModels(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleConfig;
+  static deserializeBinaryFromReader(message: ModuleConfig, reader: jspb.BinaryReader): ModuleConfig;
+}
+
+export namespace ModuleConfig {
+  export type AsObject = {
+    path: string,
+    type: string,
+    modelsList: Array<string>,
   }
 }
 

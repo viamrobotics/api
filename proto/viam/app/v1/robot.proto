@@ -35,6 +35,7 @@ message RobotConfig {
   optional AuthConfig auth = 7;
   // Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart
   optional bool debug = 8;
+  repeated ModuleConfig modules = 9;
 }
 
 // Valid location secret that can be used for authentication to the robot.
@@ -95,6 +96,12 @@ message ServiceConfig {
   google.protobuf.Struct attributes = 4;
   repeated string depends_on = 5;
   string model = 6;
+}
+
+message ModuleConfig {
+  string path = 1;
+  string type = 2;
+  repeated string models = 3;
 }
 
 message NetworkConfig {
