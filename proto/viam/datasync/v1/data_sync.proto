@@ -90,6 +90,7 @@ message TabularCapture {
   repeated string column_names = 10;
   map<string, google.protobuf.Any> method_parameters = 11;
   string file_id = 12;
+  repeated string tags = 13;
 }
 
 message BinaryCapture {
@@ -104,6 +105,7 @@ message BinaryCapture {
   string blob_path = 9;
   map<string, google.protobuf.Any> method_parameters = 10;
   string file_id = 11;
+  repeated string tags = 12;
 }
 
 message UserFile {
