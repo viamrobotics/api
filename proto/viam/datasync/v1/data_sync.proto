@@ -9,7 +9,7 @@ import "google/protobuf/timestamp.proto";
 option go_package = "go.viam.com/api/proto/viam/datasync/v1";
 
 service DataSyncService {
-  rpc Upload(stream proto.viam.datasync.v1.UploadRequest) returns (proto.viam.datasync.v1.UploadResponse);
+  rpc Upload(stream proto.viam.datasync.v1.UploadRequest) returns (stream proto.viam.datasync.v1.UploadResponse);
 }
 
 message SensorMetadata {
@@ -50,7 +50,9 @@ message UploadRequest {
   }
 }
 
-message UploadResponse {}
+message UploadResponse {
+  int32 requests_written = 1;
+}
 
 enum DataType {
   DATA_TYPE_UNSPECIFIED = 0;
