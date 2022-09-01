@@ -32,6 +32,7 @@ message RobotConfig {
   repeated ServiceConfig services = 5;
   optional NetworkConfig network = 6;
   optional AuthConfig auth = 7;
+  optional bool debug = 8;
 }
 
 message CloudConfig {
