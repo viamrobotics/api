@@ -65,6 +65,8 @@ message Robot {
 message RobotPart {
   string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
   string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
+  // dns_name part name used for fqdn and local fqdn. Anytime the Name is updated this should be sanitized and updated as well.
+  string dns_name = 10 [(tagger.v1.tags) = "bson:\"dns_name\" json:\"dns_name\""];
   string secret = 3 [(tagger.v1.tags) = "bson:\"secret\" json:\"secret,omitempty\""];
   string robot = 4 [(tagger.v1.tags) = "bson:\"robot\" json:\"robot\""];
   google.protobuf.Struct robot_config = 5 [(tagger.v1.tags) = "bson:\"config\" json:\"robot_config\""];
@@ -72,6 +74,7 @@ message RobotPart {
   google.protobuf.Struct user_supplied_info = 7 [(tagger.v1.tags) = "bson:\"user_supplied_info\" json:\"user_supplied_info\""];
   bool main_part = 8 [(tagger.v1.tags) = "bson:\"main_part\" json:\"main_part\""];
   string fqdn = 9;
+  string local_fqdn = 11;
 }
 
 message RobotPartHistoryEntry {
