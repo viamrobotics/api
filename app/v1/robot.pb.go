@@ -704,69 +704,6 @@ func (x *ServiceConfig) GetModel() string {
 	return ""
 }
 
-type ModuleConfig struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Path   string   `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
-	Type   string   `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
-	Models []string `protobuf:"bytes,3,rep,name=models,proto3" json:"models,omitempty"`
-}
-
-func (x *ModuleConfig) Reset() {
-	*x = ModuleConfig{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ModuleConfig) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ModuleConfig) ProtoMessage() {}
-
-func (x *ModuleConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ModuleConfig.ProtoReflect.Descriptor instead.
-func (*ModuleConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *ModuleConfig) GetPath() string {
-	if x != nil {
-		return x.Path
-	}
-	return ""
-}
-
-func (x *ModuleConfig) GetType() string {
-	if x != nil {
-		return x.Type
-	}
-	return ""
-}
-
-func (x *ModuleConfig) GetModels() []string {
-	if x != nil {
-		return x.Models
-	}
-	return nil
-}
-
 type NetworkConfig struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -781,7 +718,7 @@ type NetworkConfig struct {
 func (x *NetworkConfig) Reset() {
 	*x = NetworkConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[8]
+		mi := &file_app_v1_robot_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -794,7 +731,7 @@ func (x *NetworkConfig) String() string {
 func (*NetworkConfig) ProtoMessage() {}
 
 func (x *NetworkConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[8]
+	mi := &file_app_v1_robot_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -807,7 +744,7 @@ func (x *NetworkConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NetworkConfig.ProtoReflect.Descriptor instead.
 func (*NetworkConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{8}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *NetworkConfig) GetFqdn() string {
@@ -850,7 +787,7 @@ type AuthConfig struct {
 func (x *AuthConfig) Reset() {
 	*x = AuthConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[9]
+		mi := &file_app_v1_robot_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -863,7 +800,7 @@ func (x *AuthConfig) String() string {
 func (*AuthConfig) ProtoMessage() {}
 
 func (x *AuthConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[9]
+	mi := &file_app_v1_robot_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -876,7 +813,7 @@ func (x *AuthConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthConfig.ProtoReflect.Descriptor instead.
 func (*AuthConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{9}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *AuthConfig) GetHandlers() []*AuthHandlerConfig {
@@ -906,7 +843,7 @@ type JWKSFile struct {
 func (x *JWKSFile) Reset() {
 	*x = JWKSFile{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[10]
+		mi := &file_app_v1_robot_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -919,7 +856,7 @@ func (x *JWKSFile) String() string {
 func (*JWKSFile) ProtoMessage() {}
 
 func (x *JWKSFile) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[10]
+	mi := &file_app_v1_robot_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -932,7 +869,7 @@ func (x *JWKSFile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JWKSFile.ProtoReflect.Descriptor instead.
 func (*JWKSFile) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{10}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *JWKSFile) GetJson() *structpb.Struct {
@@ -956,7 +893,7 @@ type AuthHandlerWebOauthConfig struct {
 func (x *AuthHandlerWebOauthConfig) Reset() {
 	*x = AuthHandlerWebOauthConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[11]
+		mi := &file_app_v1_robot_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -969,7 +906,7 @@ func (x *AuthHandlerWebOauthConfig) String() string {
 func (*AuthHandlerWebOauthConfig) ProtoMessage() {}
 
 func (x *AuthHandlerWebOauthConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[11]
+	mi := &file_app_v1_robot_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -982,7 +919,7 @@ func (x *AuthHandlerWebOauthConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthHandlerWebOauthConfig.ProtoReflect.Descriptor instead.
 func (*AuthHandlerWebOauthConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{11}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *AuthHandlerWebOauthConfig) GetAllowedAudiences() []string {
@@ -1014,7 +951,7 @@ type AuthHandlerConfig struct {
 func (x *AuthHandlerConfig) Reset() {
 	*x = AuthHandlerConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[12]
+		mi := &file_app_v1_robot_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1027,7 +964,7 @@ func (x *AuthHandlerConfig) String() string {
 func (*AuthHandlerConfig) ProtoMessage() {}
 
 func (x *AuthHandlerConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[12]
+	mi := &file_app_v1_robot_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1040,7 +977,7 @@ func (x *AuthHandlerConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthHandlerConfig.ProtoReflect.Descriptor instead.
 func (*AuthHandlerConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{12}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *AuthHandlerConfig) GetType() CredentialsType {
@@ -1078,7 +1015,7 @@ type Frame struct {
 func (x *Frame) Reset() {
 	*x = Frame{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[13]
+		mi := &file_app_v1_robot_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1091,7 +1028,7 @@ func (x *Frame) String() string {
 func (*Frame) ProtoMessage() {}
 
 func (x *Frame) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[13]
+	mi := &file_app_v1_robot_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1104,7 +1041,7 @@ func (x *Frame) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Frame.ProtoReflect.Descriptor instead.
 func (*Frame) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{13}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *Frame) GetParent() string {
@@ -1148,7 +1085,7 @@ type Translation struct {
 func (x *Translation) Reset() {
 	*x = Translation{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[14]
+		mi := &file_app_v1_robot_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1161,7 +1098,7 @@ func (x *Translation) String() string {
 func (*Translation) ProtoMessage() {}
 
 func (x *Translation) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[14]
+	mi := &file_app_v1_robot_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1174,7 +1111,7 @@ func (x *Translation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Translation.ProtoReflect.Descriptor instead.
 func (*Translation) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{14}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *Translation) GetX() float64 {
@@ -1217,7 +1154,7 @@ type Orientation struct {
 func (x *Orientation) Reset() {
 	*x = Orientation{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[15]
+		mi := &file_app_v1_robot_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1230,7 +1167,7 @@ func (x *Orientation) String() string {
 func (*Orientation) ProtoMessage() {}
 
 func (x *Orientation) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[15]
+	mi := &file_app_v1_robot_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1243,7 +1180,7 @@ func (x *Orientation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Orientation.ProtoReflect.Descriptor instead.
 func (*Orientation) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{15}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{14}
 }
 
 func (m *Orientation) GetType() isOrientation_Type {
@@ -1360,7 +1297,7 @@ type RemoteConfig struct {
 func (x *RemoteConfig) Reset() {
 	*x = RemoteConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[16]
+		mi := &file_app_v1_robot_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1373,7 +1310,7 @@ func (x *RemoteConfig) String() string {
 func (*RemoteConfig) ProtoMessage() {}
 
 func (x *RemoteConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[16]
+	mi := &file_app_v1_robot_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1386,7 +1323,7 @@ func (x *RemoteConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoteConfig.ProtoReflect.Descriptor instead.
 func (*RemoteConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{16}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *RemoteConfig) GetName() string {
@@ -1474,7 +1411,7 @@ type RemoteAuth struct {
 func (x *RemoteAuth) Reset() {
 	*x = RemoteAuth{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[17]
+		mi := &file_app_v1_robot_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1487,7 +1424,7 @@ func (x *RemoteAuth) String() string {
 func (*RemoteAuth) ProtoMessage() {}
 
 func (x *RemoteAuth) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[17]
+	mi := &file_app_v1_robot_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1500,7 +1437,7 @@ func (x *RemoteAuth) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoteAuth.ProtoReflect.Descriptor instead.
 func (*RemoteAuth) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{17}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *RemoteAuth) GetCredentials() *RemoteAuth_Credentials {
@@ -1534,7 +1471,7 @@ type AgentInfo struct {
 func (x *AgentInfo) Reset() {
 	*x = AgentInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[18]
+		mi := &file_app_v1_robot_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1547,7 +1484,7 @@ func (x *AgentInfo) String() string {
 func (*AgentInfo) ProtoMessage() {}
 
 func (x *AgentInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[18]
+	mi := &file_app_v1_robot_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1560,7 +1497,7 @@ func (x *AgentInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AgentInfo.ProtoReflect.Descriptor instead.
 func (*AgentInfo) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{18}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *AgentInfo) GetHost() string {
@@ -1612,7 +1549,7 @@ type ConfigRequest struct {
 func (x *ConfigRequest) Reset() {
 	*x = ConfigRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[19]
+		mi := &file_app_v1_robot_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1625,7 +1562,7 @@ func (x *ConfigRequest) String() string {
 func (*ConfigRequest) ProtoMessage() {}
 
 func (x *ConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[19]
+	mi := &file_app_v1_robot_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1638,7 +1575,7 @@ func (x *ConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigRequest.ProtoReflect.Descriptor instead.
 func (*ConfigRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{19}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ConfigRequest) GetId() string {
@@ -1666,7 +1603,7 @@ type ConfigResponse struct {
 func (x *ConfigResponse) Reset() {
 	*x = ConfigResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[20]
+		mi := &file_app_v1_robot_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1679,7 +1616,7 @@ func (x *ConfigResponse) String() string {
 func (*ConfigResponse) ProtoMessage() {}
 
 func (x *ConfigResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[20]
+	mi := &file_app_v1_robot_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1692,7 +1629,7 @@ func (x *ConfigResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigResponse.ProtoReflect.Descriptor instead.
 func (*ConfigResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{20}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ConfigResponse) GetConfig() *RobotConfig {
@@ -1714,7 +1651,7 @@ type CertificateRequest struct {
 func (x *CertificateRequest) Reset() {
 	*x = CertificateRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[21]
+		mi := &file_app_v1_robot_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1727,7 +1664,7 @@ func (x *CertificateRequest) String() string {
 func (*CertificateRequest) ProtoMessage() {}
 
 func (x *CertificateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[21]
+	mi := &file_app_v1_robot_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1740,7 +1677,7 @@ func (x *CertificateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CertificateRequest.ProtoReflect.Descriptor instead.
 func (*CertificateRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{21}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *CertificateRequest) GetId() string {
@@ -1764,7 +1701,7 @@ type CertificateResponse struct {
 func (x *CertificateResponse) Reset() {
 	*x = CertificateResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[22]
+		mi := &file_app_v1_robot_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1777,7 +1714,7 @@ func (x *CertificateResponse) String() string {
 func (*CertificateResponse) ProtoMessage() {}
 
 func (x *CertificateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[22]
+	mi := &file_app_v1_robot_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1790,7 +1727,7 @@ func (x *CertificateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CertificateResponse.ProtoReflect.Descriptor instead.
 func (*CertificateResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{22}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *CertificateResponse) GetId() string {
@@ -1827,7 +1764,7 @@ type LogRequest struct {
 func (x *LogRequest) Reset() {
 	*x = LogRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[23]
+		mi := &file_app_v1_robot_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1840,7 +1777,7 @@ func (x *LogRequest) String() string {
 func (*LogRequest) ProtoMessage() {}
 
 func (x *LogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[23]
+	mi := &file_app_v1_robot_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1853,7 +1790,7 @@ func (x *LogRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogRequest.ProtoReflect.Descriptor instead.
 func (*LogRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{23}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *LogRequest) GetId() string {
@@ -1879,7 +1816,7 @@ type LogResponse struct {
 func (x *LogResponse) Reset() {
 	*x = LogResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[24]
+		mi := &file_app_v1_robot_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1892,7 +1829,7 @@ func (x *LogResponse) String() string {
 func (*LogResponse) ProtoMessage() {}
 
 func (x *LogResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[24]
+	mi := &file_app_v1_robot_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1905,7 +1842,7 @@ func (x *LogResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogResponse.ProtoReflect.Descriptor instead.
 func (*LogResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{24}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{23}
 }
 
 type NeedsRestartRequest struct {
@@ -1920,7 +1857,7 @@ type NeedsRestartRequest struct {
 func (x *NeedsRestartRequest) Reset() {
 	*x = NeedsRestartRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[25]
+		mi := &file_app_v1_robot_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1933,7 +1870,7 @@ func (x *NeedsRestartRequest) String() string {
 func (*NeedsRestartRequest) ProtoMessage() {}
 
 func (x *NeedsRestartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[25]
+	mi := &file_app_v1_robot_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1946,7 +1883,7 @@ func (x *NeedsRestartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NeedsRestartRequest.ProtoReflect.Descriptor instead.
 func (*NeedsRestartRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{25}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *NeedsRestartRequest) GetId() string {
@@ -1970,7 +1907,7 @@ type NeedsRestartResponse struct {
 func (x *NeedsRestartResponse) Reset() {
 	*x = NeedsRestartResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[26]
+		mi := &file_app_v1_robot_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1983,7 +1920,7 @@ func (x *NeedsRestartResponse) String() string {
 func (*NeedsRestartResponse) ProtoMessage() {}
 
 func (x *NeedsRestartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[26]
+	mi := &file_app_v1_robot_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1996,7 +1933,7 @@ func (x *NeedsRestartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NeedsRestartResponse.ProtoReflect.Descriptor instead.
 func (*NeedsRestartResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{26}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *NeedsRestartResponse) GetId() string {
@@ -2016,6 +1953,77 @@ func (x *NeedsRestartResponse) GetMustRestart() bool {
 func (x *NeedsRestartResponse) GetRestartCheckInterval() *durationpb.Duration {
 	if x != nil {
 		return x.RestartCheckInterval
+	}
+	return nil
+}
+
+type ModuleConfig struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name   string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Path   string   `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
+	Type   string   `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
+	Models []string `protobuf:"bytes,4,rep,name=models,proto3" json:"models,omitempty"`
+}
+
+func (x *ModuleConfig) Reset() {
+	*x = ModuleConfig{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_v1_robot_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ModuleConfig) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ModuleConfig) ProtoMessage() {}
+
+func (x *ModuleConfig) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_robot_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ModuleConfig.ProtoReflect.Descriptor instead.
+func (*ModuleConfig) Descriptor() ([]byte, []int) {
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *ModuleConfig) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ModuleConfig) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
+func (x *ModuleConfig) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *ModuleConfig) GetModels() []string {
+	if x != nil {
+		return x.Models
 	}
 	return nil
 }
@@ -2055,7 +2063,7 @@ func (x *Orientation_NoOrientation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Orientation_NoOrientation.ProtoReflect.Descriptor instead.
 func (*Orientation_NoOrientation) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{15, 0}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{14, 0}
 }
 
 // OrientationVector containing ox, oy, oz, theta represents an orientation vector
@@ -2107,7 +2115,7 @@ func (x *Orientation_OrientationVectorRadians) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use Orientation_OrientationVectorRadians.ProtoReflect.Descriptor instead.
 func (*Orientation_OrientationVectorRadians) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{15, 1}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{14, 1}
 }
 
 func (x *Orientation_OrientationVectorRadians) GetTheta() float64 {
@@ -2180,7 +2188,7 @@ func (x *Orientation_OrientationVectorDegrees) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use Orientation_OrientationVectorDegrees.ProtoReflect.Descriptor instead.
 func (*Orientation_OrientationVectorDegrees) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{15, 2}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{14, 2}
 }
 
 func (x *Orientation_OrientationVectorDegrees) GetTheta() float64 {
@@ -2252,7 +2260,7 @@ func (x *Orientation_EulerAngles) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Orientation_EulerAngles.ProtoReflect.Descriptor instead.
 func (*Orientation_EulerAngles) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{15, 3}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{14, 3}
 }
 
 func (x *Orientation_EulerAngles) GetRoll() float64 {
@@ -2323,7 +2331,7 @@ func (x *Orientation_AxisAngles) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Orientation_AxisAngles.ProtoReflect.Descriptor instead.
 func (*Orientation_AxisAngles) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{15, 4}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{14, 4}
 }
 
 func (x *Orientation_AxisAngles) GetTheta() float64 {
@@ -2395,7 +2403,7 @@ func (x *Orientation_Quaternion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Orientation_Quaternion.ProtoReflect.Descriptor instead.
 func (*Orientation_Quaternion) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{15, 5}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{14, 5}
 }
 
 func (x *Orientation_Quaternion) GetW() float64 {
@@ -2466,7 +2474,7 @@ func (x *RemoteAuth_Credentials) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoteAuth_Credentials.ProtoReflect.Descriptor instead.
 func (*RemoteAuth_Credentials) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{17, 0}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{16, 0}
 }
 
 func (x *RemoteAuth_Credentials) GetType() CredentialsType {
@@ -2603,12 +2611,7 @@ var file_app_v1_robot_proto_rawDesc = []byte{
 	0x64, 0x65, 0x70, 0x65, 0x6e, 0x64, 0x73, 0x5f, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x03, 0x28, 0x09,
 	0x52, 0x09, 0x64, 0x65, 0x70, 0x65, 0x6e, 0x64, 0x73, 0x4f, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x6d,
 	0x6f, 0x64, 0x65, 0x6c, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6d, 0x6f, 0x64, 0x65,
-	0x6c, 0x22, 0x4e, 0x0a, 0x0c, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69,
-	0x67, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x74, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x04, 0x70, 0x61, 0x74, 0x68, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x6d, 0x6f, 0x64,
-	0x65, 0x6c, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x09, 0x52, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
-	0x73, 0x22, 0x8c, 0x01, 0x0a, 0x0d, 0x4e, 0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b, 0x43, 0x6f, 0x6e,
+	0x6c, 0x22, 0x8c, 0x01, 0x0a, 0x0d, 0x4e, 0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b, 0x43, 0x6f, 0x6e,
 	0x66, 0x69, 0x67, 0x12, 0x12, 0x0a, 0x04, 0x66, 0x71, 0x64, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x04, 0x66, 0x71, 0x64, 0x6e, 0x12, 0x21, 0x0a, 0x0c, 0x62, 0x69, 0x6e, 0x64, 0x5f,
 	0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x62,
@@ -2818,42 +2821,48 @@ var file_app_v1_robot_proto_rawDesc = []byte{
 	0x19, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
 	0x66, 0x2e, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x14, 0x72, 0x65, 0x73, 0x74,
 	0x61, 0x72, 0x74, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x49, 0x6e, 0x74, 0x65, 0x72, 0x76, 0x61, 0x6c,
-	0x2a, 0xdf, 0x01, 0x0a, 0x0f, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x73,
-	0x54, 0x79, 0x70, 0x65, 0x12, 0x20, 0x0a, 0x1c, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49,
-	0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49,
-	0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x1d, 0x0a, 0x19, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e,
-	0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x49, 0x4e, 0x54, 0x45, 0x52,
-	0x4e, 0x41, 0x4c, 0x10, 0x01, 0x12, 0x1c, 0x0a, 0x18, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54,
-	0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x41, 0x50, 0x49, 0x5f, 0x4b, 0x45,
-	0x59, 0x10, 0x02, 0x12, 0x21, 0x0a, 0x1d, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41,
-	0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x52, 0x4f, 0x42, 0x4f, 0x54, 0x5f, 0x53, 0x45,
-	0x43, 0x52, 0x45, 0x54, 0x10, 0x03, 0x12, 0x2a, 0x0a, 0x26, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e,
-	0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x52, 0x4f, 0x42, 0x4f, 0x54,
-	0x5f, 0x4c, 0x4f, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x53, 0x45, 0x43, 0x52, 0x45, 0x54,
-	0x10, 0x04, 0x12, 0x1e, 0x0a, 0x1a, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c,
-	0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x57, 0x45, 0x42, 0x5f, 0x4f, 0x41, 0x55, 0x54, 0x48,
-	0x10, 0x05, 0x32, 0xb2, 0x02, 0x0a, 0x0c, 0x52, 0x6f, 0x62, 0x6f, 0x74, 0x53, 0x65, 0x72, 0x76,
-	0x69, 0x63, 0x65, 0x12, 0x41, 0x0a, 0x06, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x1a, 0x2e,
+	0x22, 0x62, 0x0a, 0x0c, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x74, 0x68, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x16, 0x0a, 0x06,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x06, 0x6d, 0x6f,
+	0x64, 0x65, 0x6c, 0x73, 0x2a, 0xdf, 0x01, 0x0a, 0x0f, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74,
+	0x69, 0x61, 0x6c, 0x73, 0x54, 0x79, 0x70, 0x65, 0x12, 0x20, 0x0a, 0x1c, 0x43, 0x52, 0x45, 0x44,
+	0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53,
+	0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x1d, 0x0a, 0x19, 0x43, 0x52,
+	0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x49,
+	0x4e, 0x54, 0x45, 0x52, 0x4e, 0x41, 0x4c, 0x10, 0x01, 0x12, 0x1c, 0x0a, 0x18, 0x43, 0x52, 0x45,
+	0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x41, 0x50,
+	0x49, 0x5f, 0x4b, 0x45, 0x59, 0x10, 0x02, 0x12, 0x21, 0x0a, 0x1d, 0x43, 0x52, 0x45, 0x44, 0x45,
+	0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x52, 0x4f, 0x42, 0x4f,
+	0x54, 0x5f, 0x53, 0x45, 0x43, 0x52, 0x45, 0x54, 0x10, 0x03, 0x12, 0x2a, 0x0a, 0x26, 0x43, 0x52,
+	0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x52,
+	0x4f, 0x42, 0x4f, 0x54, 0x5f, 0x4c, 0x4f, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x53, 0x45,
+	0x43, 0x52, 0x45, 0x54, 0x10, 0x04, 0x12, 0x1e, 0x0a, 0x1a, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e,
+	0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x57, 0x45, 0x42, 0x5f, 0x4f,
+	0x41, 0x55, 0x54, 0x48, 0x10, 0x05, 0x32, 0xb2, 0x02, 0x0a, 0x0c, 0x52, 0x6f, 0x62, 0x6f, 0x74,
+	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x41, 0x0a, 0x06, 0x43, 0x6f, 0x6e, 0x66, 0x69,
+	0x67, 0x12, 0x1a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e,
+	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e,
 	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x66,
-	0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x76, 0x69, 0x61, 0x6d,
-	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x0b, 0x43, 0x65, 0x72, 0x74, 0x69, 0x66,
-	0x69, 0x63, 0x61, 0x74, 0x65, 0x12, 0x1f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x76, 0x31, 0x2e, 0x43, 0x65, 0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
-	0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x65, 0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x65,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x38, 0x0a, 0x03, 0x4c, 0x6f, 0x67, 0x12,
-	0x17, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x6f,
-	0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
-	0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x53, 0x0a, 0x0c, 0x4e, 0x65, 0x65, 0x64, 0x73, 0x52, 0x65, 0x73, 0x74, 0x61,
-	0x72, 0x74, 0x12, 0x20, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31,
-	0x2e, 0x4e, 0x65, 0x65, 0x64, 0x73, 0x52, 0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e,
-	0x76, 0x31, 0x2e, 0x4e, 0x65, 0x65, 0x64, 0x73, 0x52, 0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x6f, 0x2e, 0x76, 0x69,
-	0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x76,
-	0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x0b, 0x43, 0x65,
+	0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x12, 0x1f, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x65, 0x72, 0x74, 0x69, 0x66, 0x69, 0x63,
+	0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x65, 0x72, 0x74, 0x69, 0x66, 0x69,
+	0x63, 0x61, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x38, 0x0a, 0x03,
+	0x4c, 0x6f, 0x67, 0x12, 0x17, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76,
+	0x31, 0x2e, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x76,
+	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x6f, 0x67, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x0c, 0x4e, 0x65, 0x65, 0x64, 0x73, 0x52,
+	0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x12, 0x20, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
+	0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4e, 0x65, 0x65, 0x64, 0x73, 0x52, 0x65, 0x73, 0x74, 0x61, 0x72,
+	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
+	0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4e, 0x65, 0x65, 0x64, 0x73, 0x52, 0x65, 0x73, 0x74,
+	0x61, 0x72, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x18, 0x5a, 0x16, 0x67,
+	0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61,
+	0x70, 0x70, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2879,26 +2888,26 @@ var file_app_v1_robot_proto_goTypes = []interface{}{
 	(*ResourceLevelServiceConfig)(nil),           // 5: viam.app.v1.ResourceLevelServiceConfig
 	(*ProcessConfig)(nil),                        // 6: viam.app.v1.ProcessConfig
 	(*ServiceConfig)(nil),                        // 7: viam.app.v1.ServiceConfig
-	(*ModuleConfig)(nil),                         // 8: viam.app.v1.ModuleConfig
-	(*NetworkConfig)(nil),                        // 9: viam.app.v1.NetworkConfig
-	(*AuthConfig)(nil),                           // 10: viam.app.v1.AuthConfig
-	(*JWKSFile)(nil),                             // 11: viam.app.v1.JWKSFile
-	(*AuthHandlerWebOauthConfig)(nil),            // 12: viam.app.v1.AuthHandlerWebOauthConfig
-	(*AuthHandlerConfig)(nil),                    // 13: viam.app.v1.AuthHandlerConfig
-	(*Frame)(nil),                                // 14: viam.app.v1.Frame
-	(*Translation)(nil),                          // 15: viam.app.v1.Translation
-	(*Orientation)(nil),                          // 16: viam.app.v1.Orientation
-	(*RemoteConfig)(nil),                         // 17: viam.app.v1.RemoteConfig
-	(*RemoteAuth)(nil),                           // 18: viam.app.v1.RemoteAuth
-	(*AgentInfo)(nil),                            // 19: viam.app.v1.AgentInfo
-	(*ConfigRequest)(nil),                        // 20: viam.app.v1.ConfigRequest
-	(*ConfigResponse)(nil),                       // 21: viam.app.v1.ConfigResponse
-	(*CertificateRequest)(nil),                   // 22: viam.app.v1.CertificateRequest
-	(*CertificateResponse)(nil),                  // 23: viam.app.v1.CertificateResponse
-	(*LogRequest)(nil),                           // 24: viam.app.v1.LogRequest
-	(*LogResponse)(nil),                          // 25: viam.app.v1.LogResponse
-	(*NeedsRestartRequest)(nil),                  // 26: viam.app.v1.NeedsRestartRequest
-	(*NeedsRestartResponse)(nil),                 // 27: viam.app.v1.NeedsRestartResponse
+	(*NetworkConfig)(nil),                        // 8: viam.app.v1.NetworkConfig
+	(*AuthConfig)(nil),                           // 9: viam.app.v1.AuthConfig
+	(*JWKSFile)(nil),                             // 10: viam.app.v1.JWKSFile
+	(*AuthHandlerWebOauthConfig)(nil),            // 11: viam.app.v1.AuthHandlerWebOauthConfig
+	(*AuthHandlerConfig)(nil),                    // 12: viam.app.v1.AuthHandlerConfig
+	(*Frame)(nil),                                // 13: viam.app.v1.Frame
+	(*Translation)(nil),                          // 14: viam.app.v1.Translation
+	(*Orientation)(nil),                          // 15: viam.app.v1.Orientation
+	(*RemoteConfig)(nil),                         // 16: viam.app.v1.RemoteConfig
+	(*RemoteAuth)(nil),                           // 17: viam.app.v1.RemoteAuth
+	(*AgentInfo)(nil),                            // 18: viam.app.v1.AgentInfo
+	(*ConfigRequest)(nil),                        // 19: viam.app.v1.ConfigRequest
+	(*ConfigResponse)(nil),                       // 20: viam.app.v1.ConfigResponse
+	(*CertificateRequest)(nil),                   // 21: viam.app.v1.CertificateRequest
+	(*CertificateResponse)(nil),                  // 22: viam.app.v1.CertificateResponse
+	(*LogRequest)(nil),                           // 23: viam.app.v1.LogRequest
+	(*LogResponse)(nil),                          // 24: viam.app.v1.LogResponse
+	(*NeedsRestartRequest)(nil),                  // 25: viam.app.v1.NeedsRestartRequest
+	(*NeedsRestartResponse)(nil),                 // 26: viam.app.v1.NeedsRestartResponse
+	(*ModuleConfig)(nil),                         // 27: viam.app.v1.ModuleConfig
 	(*Orientation_NoOrientation)(nil),            // 28: viam.app.v1.Orientation.NoOrientation
 	(*Orientation_OrientationVectorRadians)(nil), // 29: viam.app.v1.Orientation.OrientationVectorRadians
 	(*Orientation_OrientationVectorDegrees)(nil), // 30: viam.app.v1.Orientation.OrientationVectorDegrees
@@ -2913,27 +2922,27 @@ var file_app_v1_robot_proto_goTypes = []interface{}{
 }
 var file_app_v1_robot_proto_depIdxs = []int32{
 	3,  // 0: viam.app.v1.RobotConfig.cloud:type_name -> viam.app.v1.CloudConfig
-	17, // 1: viam.app.v1.RobotConfig.remotes:type_name -> viam.app.v1.RemoteConfig
+	16, // 1: viam.app.v1.RobotConfig.remotes:type_name -> viam.app.v1.RemoteConfig
 	4,  // 2: viam.app.v1.RobotConfig.components:type_name -> viam.app.v1.ComponentConfig
 	6,  // 3: viam.app.v1.RobotConfig.processes:type_name -> viam.app.v1.ProcessConfig
 	7,  // 4: viam.app.v1.RobotConfig.services:type_name -> viam.app.v1.ServiceConfig
-	9,  // 5: viam.app.v1.RobotConfig.network:type_name -> viam.app.v1.NetworkConfig
-	10, // 6: viam.app.v1.RobotConfig.auth:type_name -> viam.app.v1.AuthConfig
-	8,  // 7: viam.app.v1.RobotConfig.modules:type_name -> viam.app.v1.ModuleConfig
+	8,  // 5: viam.app.v1.RobotConfig.network:type_name -> viam.app.v1.NetworkConfig
+	9,  // 6: viam.app.v1.RobotConfig.auth:type_name -> viam.app.v1.AuthConfig
+	27, // 7: viam.app.v1.RobotConfig.modules:type_name -> viam.app.v1.ModuleConfig
 	2,  // 8: viam.app.v1.CloudConfig.location_secrets:type_name -> viam.app.v1.LocationSecret
-	14, // 9: viam.app.v1.ComponentConfig.frame:type_name -> viam.app.v1.Frame
+	13, // 9: viam.app.v1.ComponentConfig.frame:type_name -> viam.app.v1.Frame
 	5,  // 10: viam.app.v1.ComponentConfig.service_configs:type_name -> viam.app.v1.ResourceLevelServiceConfig
 	35, // 11: viam.app.v1.ComponentConfig.attributes:type_name -> google.protobuf.Struct
 	35, // 12: viam.app.v1.ResourceLevelServiceConfig.attributes:type_name -> google.protobuf.Struct
 	35, // 13: viam.app.v1.ServiceConfig.attributes:type_name -> google.protobuf.Struct
-	13, // 14: viam.app.v1.AuthConfig.handlers:type_name -> viam.app.v1.AuthHandlerConfig
+	12, // 14: viam.app.v1.AuthConfig.handlers:type_name -> viam.app.v1.AuthHandlerConfig
 	35, // 15: viam.app.v1.JWKSFile.json:type_name -> google.protobuf.Struct
-	11, // 16: viam.app.v1.AuthHandlerWebOauthConfig.jwks:type_name -> viam.app.v1.JWKSFile
+	10, // 16: viam.app.v1.AuthHandlerWebOauthConfig.jwks:type_name -> viam.app.v1.JWKSFile
 	0,  // 17: viam.app.v1.AuthHandlerConfig.type:type_name -> viam.app.v1.CredentialsType
 	35, // 18: viam.app.v1.AuthHandlerConfig.config:type_name -> google.protobuf.Struct
-	12, // 19: viam.app.v1.AuthHandlerConfig.web_oauth_config:type_name -> viam.app.v1.AuthHandlerWebOauthConfig
-	15, // 20: viam.app.v1.Frame.translation:type_name -> viam.app.v1.Translation
-	16, // 21: viam.app.v1.Frame.orientation:type_name -> viam.app.v1.Orientation
+	11, // 19: viam.app.v1.AuthHandlerConfig.web_oauth_config:type_name -> viam.app.v1.AuthHandlerWebOauthConfig
+	14, // 20: viam.app.v1.Frame.translation:type_name -> viam.app.v1.Translation
+	15, // 21: viam.app.v1.Frame.orientation:type_name -> viam.app.v1.Orientation
 	36, // 22: viam.app.v1.Frame.geometry:type_name -> viam.common.v1.Geometry
 	28, // 23: viam.app.v1.Orientation.no_orientation:type_name -> viam.app.v1.Orientation.NoOrientation
 	29, // 24: viam.app.v1.Orientation.vector_radians:type_name -> viam.app.v1.Orientation.OrientationVectorRadians
@@ -2941,25 +2950,25 @@ var file_app_v1_robot_proto_depIdxs = []int32{
 	31, // 26: viam.app.v1.Orientation.euler_angles:type_name -> viam.app.v1.Orientation.EulerAngles
 	32, // 27: viam.app.v1.Orientation.axis_angles:type_name -> viam.app.v1.Orientation.AxisAngles
 	33, // 28: viam.app.v1.Orientation.quaternion:type_name -> viam.app.v1.Orientation.Quaternion
-	14, // 29: viam.app.v1.RemoteConfig.frame:type_name -> viam.app.v1.Frame
-	18, // 30: viam.app.v1.RemoteConfig.auth:type_name -> viam.app.v1.RemoteAuth
+	13, // 29: viam.app.v1.RemoteConfig.frame:type_name -> viam.app.v1.Frame
+	17, // 30: viam.app.v1.RemoteConfig.auth:type_name -> viam.app.v1.RemoteAuth
 	37, // 31: viam.app.v1.RemoteConfig.connection_check_interval:type_name -> google.protobuf.Duration
 	37, // 32: viam.app.v1.RemoteConfig.reconnect_interval:type_name -> google.protobuf.Duration
 	5,  // 33: viam.app.v1.RemoteConfig.service_configs:type_name -> viam.app.v1.ResourceLevelServiceConfig
 	34, // 34: viam.app.v1.RemoteAuth.credentials:type_name -> viam.app.v1.RemoteAuth.Credentials
-	19, // 35: viam.app.v1.ConfigRequest.agent_info:type_name -> viam.app.v1.AgentInfo
+	18, // 35: viam.app.v1.ConfigRequest.agent_info:type_name -> viam.app.v1.AgentInfo
 	1,  // 36: viam.app.v1.ConfigResponse.config:type_name -> viam.app.v1.RobotConfig
 	38, // 37: viam.app.v1.LogRequest.logs:type_name -> viam.app.v1.LogEntry
 	37, // 38: viam.app.v1.NeedsRestartResponse.restart_check_interval:type_name -> google.protobuf.Duration
 	0,  // 39: viam.app.v1.RemoteAuth.Credentials.type:type_name -> viam.app.v1.CredentialsType
-	20, // 40: viam.app.v1.RobotService.Config:input_type -> viam.app.v1.ConfigRequest
-	22, // 41: viam.app.v1.RobotService.Certificate:input_type -> viam.app.v1.CertificateRequest
-	24, // 42: viam.app.v1.RobotService.Log:input_type -> viam.app.v1.LogRequest
-	26, // 43: viam.app.v1.RobotService.NeedsRestart:input_type -> viam.app.v1.NeedsRestartRequest
-	21, // 44: viam.app.v1.RobotService.Config:output_type -> viam.app.v1.ConfigResponse
-	23, // 45: viam.app.v1.RobotService.Certificate:output_type -> viam.app.v1.CertificateResponse
-	25, // 46: viam.app.v1.RobotService.Log:output_type -> viam.app.v1.LogResponse
-	27, // 47: viam.app.v1.RobotService.NeedsRestart:output_type -> viam.app.v1.NeedsRestartResponse
+	19, // 40: viam.app.v1.RobotService.Config:input_type -> viam.app.v1.ConfigRequest
+	21, // 41: viam.app.v1.RobotService.Certificate:input_type -> viam.app.v1.CertificateRequest
+	23, // 42: viam.app.v1.RobotService.Log:input_type -> viam.app.v1.LogRequest
+	25, // 43: viam.app.v1.RobotService.NeedsRestart:input_type -> viam.app.v1.NeedsRestartRequest
+	20, // 44: viam.app.v1.RobotService.Config:output_type -> viam.app.v1.ConfigResponse
+	22, // 45: viam.app.v1.RobotService.Certificate:output_type -> viam.app.v1.CertificateResponse
+	24, // 46: viam.app.v1.RobotService.Log:output_type -> viam.app.v1.LogResponse
+	26, // 47: viam.app.v1.RobotService.NeedsRestart:output_type -> viam.app.v1.NeedsRestartResponse
 	44, // [44:48] is the sub-list for method output_type
 	40, // [40:44] is the sub-list for method input_type
 	40, // [40:40] is the sub-list for extension type_name
@@ -3059,18 +3068,6 @@ func file_app_v1_robot_proto_init() {
 			}
 		}
 		file_app_v1_robot_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ModuleConfig); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_app_v1_robot_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*NetworkConfig); i {
 			case 0:
 				return &v.state
@@ -3082,7 +3079,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AuthConfig); i {
 			case 0:
 				return &v.state
@@ -3094,7 +3091,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*JWKSFile); i {
 			case 0:
 				return &v.state
@@ -3106,7 +3103,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AuthHandlerWebOauthConfig); i {
 			case 0:
 				return &v.state
@@ -3118,7 +3115,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AuthHandlerConfig); i {
 			case 0:
 				return &v.state
@@ -3130,7 +3127,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Frame); i {
 			case 0:
 				return &v.state
@@ -3142,7 +3139,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Translation); i {
 			case 0:
 				return &v.state
@@ -3154,7 +3151,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Orientation); i {
 			case 0:
 				return &v.state
@@ -3166,7 +3163,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RemoteConfig); i {
 			case 0:
 				return &v.state
@@ -3178,7 +3175,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RemoteAuth); i {
 			case 0:
 				return &v.state
@@ -3190,7 +3187,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AgentInfo); i {
 			case 0:
 				return &v.state
@@ -3202,7 +3199,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigRequest); i {
 			case 0:
 				return &v.state
@@ -3214,7 +3211,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigResponse); i {
 			case 0:
 				return &v.state
@@ -3226,7 +3223,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CertificateRequest); i {
 			case 0:
 				return &v.state
@@ -3238,7 +3235,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CertificateResponse); i {
 			case 0:
 				return &v.state
@@ -3250,7 +3247,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogRequest); i {
 			case 0:
 				return &v.state
@@ -3262,7 +3259,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogResponse); i {
 			case 0:
 				return &v.state
@@ -3274,7 +3271,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*NeedsRestartRequest); i {
 			case 0:
 				return &v.state
@@ -3286,8 +3283,20 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_robot_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*NeedsRestartResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_app_v1_robot_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ModuleConfig); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3384,8 +3393,8 @@ func file_app_v1_robot_proto_init() {
 		}
 	}
 	file_app_v1_robot_proto_msgTypes[0].OneofWrappers = []interface{}{}
-	file_app_v1_robot_proto_msgTypes[12].OneofWrappers = []interface{}{}
-	file_app_v1_robot_proto_msgTypes[15].OneofWrappers = []interface{}{
+	file_app_v1_robot_proto_msgTypes[11].OneofWrappers = []interface{}{}
+	file_app_v1_robot_proto_msgTypes[14].OneofWrappers = []interface{}{
 		(*Orientation_NoOrientation_)(nil),
 		(*Orientation_VectorRadians)(nil),
 		(*Orientation_VectorDegrees)(nil),
@@ -3393,7 +3402,7 @@ func file_app_v1_robot_proto_init() {
 		(*Orientation_AxisAngles_)(nil),
 		(*Orientation_Quaternion_)(nil),
 	}
-	file_app_v1_robot_proto_msgTypes[19].OneofWrappers = []interface{}{}
+	file_app_v1_robot_proto_msgTypes[18].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

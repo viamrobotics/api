@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package viam.module.v1;
+
+import "app/v1/robot.proto";
+
+option go_package = "go.viam.com/api/module/v1";
+
+// ModuleService deals with modular resource registration
+service ModuleService {
+  // AddComponent tells a module about a new component to handle
+  rpc AddComponent(AddComponentRequest) returns (AddComponentResponse);
+
+  // RemoveComponent tells a module to close/stop a component and remove it
+  rpc RemoveComponent(RemoveComponentRequest) returns (RemoveComponentResponse);
+
+  // ReconfigureComponent tells a module to reconfigure an existing resource
+  rpc ReconfigureComponent(ReconfigureComponentRequest) returns (ReconfigureComponentResponse);
+
+  // CloseModule tells a module to stop all activity and terminate
+  rpc CloseModule(CloseModuleRequest) returns (CloseModuleResponse);
+
+  // Ready determines if the server is started and ready to recieve resource configurations.
+  rpc Ready(ReadyRequest) returns (ReadyResponse);
+}
+
+message AddComponentRequest {
+  viam.app.v1.ComponentConfig config = 1;
+  repeated string dependencies = 2;
+}
+message AddComponentResponse {}
+
+message RemoveComponentRequest {
+  string name = 1;
+}
+message RemoveComponentResponse {}
+
+message ReconfigureComponentRequest {
+  viam.app.v1.ComponentConfig config = 1;
+  repeated string dependencies = 2;
+}
+message ReconfigureComponentResponse {}
+
+message CloseModuleRequest {}
+message CloseModuleResponse {}
+
+message ReadyRequest {}
+message ReadyResponse {
+  bool ready = 1;
+}
