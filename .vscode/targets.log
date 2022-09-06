@@ -1,0 +1,331 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+
+# Make data base, printed on Thu Sep  1 08:53:22 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/aaroncasas/code/api
+# makefile
+SHELL = /bin/sh
+# environment
+TEST_MONGODB_URI = mongodb://localhost:27017
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/make
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+__CFBundleIdentifier = com.microsoft.VSCode
+# environment
+INFOPATH = /opt/homebrew/share/info:
+# environment
+CGO_CFLAGS = -I/opt/homebrew/include
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/nb/rl6smp0974x7rxs6mh5vpvvh0000gn/T/vscode-ipc-7f9b6a91-08ec-44bb-bc1d-951187e1960f.sock
+# environment
+VSCODE_CWD = /
+# environment
+GOPROXY = https://proxy.golang.org,direct
+# environment
+PATH = /Users/aaroncasas/miniforge3/bin:/Users/aaroncasas/miniforge3/condabin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+# environment
+LIBRARY_PATH = /opt/homebrew/lib
+# environment
+GOPATH = /Users/aaroncasas/go
+# environment
+LaunchInstanceID = CD9CAAD6-5C6F-4643-AE7E-B584A45F795E
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.NtbyPWEqvw/Listeners
+# automatic
+%F = $(notdir $%)
+# environment
+CONDA_EXE = /Users/aaroncasas/miniforge3/bin/conda
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /Users/aaroncasas/code/api
+# environment
+HOMEBREW_CELLAR = /opt/homebrew/Cellar
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+MANPATH = /opt/homebrew/share/man::
+# environment
+GOMODCACHE = /Users/aaroncasas/go/pkg/mod
+# environment
+HOME = /Users/aaroncasas
+# default
+MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/aaroncasas/Library/Application Support/Code/CachedData/da15b6fd3ef856477bf6f4fb29ba1b7af717770d
+# environment
+LOGNAME = aaroncasas
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+CONDA_PROMPT_MODIFIER = (base) 
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+MFLAGS = -Rrqp
+# environment
+CONDA_DEFAULT_ENV = base
+# environment
+XPC_FLAGS = 0x0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 1
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = aaroncasas
+# makefile
+.DEFAULT_GOAL := setup
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+CONDA_SHLVL = 1
+# default
+MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/nb/rl6smp0974x7rxs6mh5vpvvh0000gn/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/aaroncasas/Library/Application Support/Code/1.67.1-main.sock
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+CGO_LDFLAGS = -L/opt/homebrew/lib
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.27808878.27809000
+# environment
+HOMEBREW_PREFIX = /opt/homebrew
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# environment
+HOMEBREW_REPOSITORY = /opt/homebrew
+# environment
+__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+GOPRIVATE = github.com/viamrobotics/*,go.viam.com/*
+# makefile (from `Makefile', line 1)
+PATH_WITH_TOOLS = "`pwd`/bin:`pwd`/frontend/node_modules/.bin:${PATH}"
+# environment
+LC_ALL = C
+# environment
+CONDA_PYTHON_EXE = /Users/aaroncasas/miniforge3/bin/python
+# environment
+SECURITYSESSIONID = 186b7
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+_CE_M = 
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+CONDA_PREFIX = /Users/aaroncasas/miniforge3
+# environment
+VSCODE_PID = 640
+# environment
+_CE_CONDA = 
+# environment
+LANG = C
+# variable set hash-table stats:
+# Load=86/1024=8%, Rehash=0, Collisions=7/110=6%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 16777231, inode 26960843): 20 files, no impossibilities.
+
+# 20 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+setup:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 4):
+	bash etc/setup.sh
+	
+
+# Not a target:
+all:
+#  Command-line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+dist/buf: dist/buf-go
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-18 08:14:57
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+proto/viam/app/v1/app.proto:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean-all:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 7):
+	git clean -fxd
+	
+
+# Not a target:
+proto/tagger/v1/tagger.proto:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+lint: dist/tool-install
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 36):
+	PATH=$(PATH_WITH_TOOLS) buf lint
+	PATH=$(PATH_WITH_TOOLS) buf format -w
+	export pkgs=`go list -f '{{.Dir}}' ./... | grep -v gen | grep -v proto` && echo "$$pkgs" | xargs go vet -vettool=bin/combined
+	export pkgs=`go list -f '{{.Dir}}' ./... | grep -v gen | grep -v proto` && echo "$$pkgs" | xargs go run github.com/golangci/golangci-lint/cmd/golangci-lint run -v --fix --config=./etc/.golangci.yaml
+	
+
+dist/tool-install: Makefile
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 10):
+	GOBIN=`pwd`/bin go install google.golang.org/protobuf/cmd/protoc-gen-go \
+	github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking \
+	github.com/bufbuild/buf/cmd/protoc-gen-buf-lint \
+	github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc \
+	google.golang.org/grpc/cmd/protoc-gen-go-grpc \
+	github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway \
+	github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \
+	github.com/srikrsna/protoc-gen-gotag \
+	github.com/edaniels/golinters/cmd/combined \
+	github.com/golangci/golangci-lint/cmd/golangci-lint \
+	github.com/bufbuild/buf/cmd/buf \
+	github.com/golang/mock/mockgen
+	mkdir -p dist
+	touch dist/tool-install
+	
+
+dist/buf-go: dist/tool-install proto/viam/app/v1/app.proto proto/tagger/v1/tagger.proto
+ 
+make: *** No rule to make target `all'.  Stop.
+
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 28):
+	PATH=$(PATH_WITH_TOOLS) buf lint
+	PATH=$(PATH_WITH_TOOLS) buf format -w
+	PATH=$(PATH_WITH_TOOLS) buf generate
+	PATH=$(PATH_WITH_TOOLS) buf generate --template ./etc/buf.gen.tag.yaml
+	PATH=$(PATH_WITH_TOOLS) ls proto/viam/app/v1/*_grpc.pb.go | while read l; do mockgen -source="$$l" -destination=proto/viam/app/mock_v1/mock_`basename "$$l"`; done
+	touch dist/buf-go
+	
+
+# files hash-table stats:
+# Load=12/1024=1%, Rehash=0, Collisions=0/30=0%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Finished Make data base on Thu Sep  1 08:53:22 2022
+
+ 

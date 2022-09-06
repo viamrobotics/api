@@ -1,0 +1,1 @@
+{"buildTargets":["clean-all","dist/buf","dist/buf-go","dist/tool-install","lint","make","setup"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
