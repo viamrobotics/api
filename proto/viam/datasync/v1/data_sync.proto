@@ -92,6 +92,8 @@ message TabularCapture {
   map<string, google.protobuf.Any> method_parameters = 12;
   string file_id = 13;
   repeated string tags = 14;
+  int32 message_count = 15;
+  int64 file_size_bytes = 16;
 }
 
 message BinaryCapture {
@@ -108,6 +110,7 @@ message BinaryCapture {
   map<string, google.protobuf.Any> method_parameters = 11;
   string file_id = 12;
   repeated string tags = 13;
+  int64 file_size_bytes = 14;
 }
 
 message UserFile {
@@ -119,4 +122,5 @@ message UserFile {
   string blob_path = 6;
   map<string, google.protobuf.Any> method_parameters = 7;
   string file_id = 8;
+  int64 file_size_bytes = 9;
 }
