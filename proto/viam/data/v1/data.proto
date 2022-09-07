@@ -4,7 +4,7 @@ package proto.viam.data.v1;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "go.viam.com/api/proto/viam/datasync/v1";
+option go_package = "go.viam.com/api/proto/viam/data/v1";
 
 // DataService is used to query and export robot data.
 service DataService {
