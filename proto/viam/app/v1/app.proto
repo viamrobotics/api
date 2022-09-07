@@ -69,6 +69,9 @@ message RobotPart {
   string dns_name = 10 [(tagger.v1.tags) = "bson:\"dns_name\" json:\"dns_name\""];
   string secret = 3 [(tagger.v1.tags) = "bson:\"secret\" json:\"secret,omitempty\""];
   string robot = 4 [(tagger.v1.tags) = "bson:\"robot\" json:\"robot\""];
+  // Store the location_id to allow for unique indexes across parts and locations. This filed MUST be updated each time the robots location
+  // changes.
+  string location_id = 12 [(tagger.v1.tags) = "bson:\"location_id\" json:\"-\""];
   google.protobuf.Struct robot_config = 5 [(tagger.v1.tags) = "bson:\"config\" json:\"robot_config\""];
   google.protobuf.Timestamp last_access = 6 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
   google.protobuf.Struct user_supplied_info = 7 [(tagger.v1.tags) = "bson:\"user_supplied_info\" json:\"user_supplied_info\""];
