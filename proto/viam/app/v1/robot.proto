@@ -32,6 +32,7 @@ message RobotConfig {
   repeated ServiceConfig services = 5;
   optional NetworkConfig network = 6;
   optional AuthConfig auth = 7;
+  // Turns on debug mode for logging. Only works after restart
   optional bool debug = 8;
 }
 
