@@ -123,7 +123,7 @@ message ExportDataRequest {
   CaptureInterval interval = 3;
   DataType type = 4;
 
-  // Ignores the filters and only exports these IDs.
+  // Ignores the filters and only exports these ids.
   // If this is populated, exclude_ids must be empty.
   repeated string include_ids = 5;
 
