@@ -9,7 +9,7 @@ import "google/protobuf/timestamp.proto";
 option go_package = "go.viam.com/api/proto/viam/datasync/v1";
 
 service DataSyncService {
-  rpc Upload(stream proto.viam.datasync.v1.UploadRequest) returns (proto.viam.datasync.v1.UploadResponse);
+  rpc Upload(stream proto.viam.datasync.v1.UploadRequest) returns (stream proto.viam.datasync.v1.UploadResponse);
 }
 
 message SensorMetadata {
@@ -39,6 +39,7 @@ message UploadMetadata {
   string file_name = 7;
   map<string, string> method_parameters = 8;
   string file_extension = 9;
+  repeated string tags = 10;
 }
 
 message UploadRequest {
@@ -49,7 +50,9 @@ message UploadRequest {
   }
 }
 
-message UploadResponse {}
+message UploadResponse {
+  int32 requests_written = 1;
+}
 
 enum DataType {
   DATA_TYPE_UNSPECIFIED = 0;
@@ -71,6 +74,7 @@ message DataCaptureMetadata {
   DataType type = 5;
   map<string, string> method_parameters = 6;
   string file_extension = 7;
+  repeated string tags = 8;
 }
 
 message TabularCapture {
@@ -78,14 +82,18 @@ message TabularCapture {
   string org_id = 2;
   string robot_id = 3;
   string part_id = 4;
-  string component_name = 5;
-  string component_type = 6;
-  string component_model = 7;
-  string method_name = 8;
-  string blob_path = 9;
-  repeated string column_names = 10;
-  map<string, google.protobuf.Any> method_parameters = 11;
-  string file_id = 12;
+  string location_id = 5;
+  string component_name = 6;
+  string component_type = 7;
+  string component_model = 8;
+  string method_name = 9;
+  string blob_path = 10;
+  repeated string column_names = 11;
+  map<string, google.protobuf.Any> method_parameters = 12;
+  string file_id = 13;
+  repeated string tags = 14;
+  int32 message_count = 15;
+  int64 file_size_bytes = 16;
 }
 
 message BinaryCapture {
@@ -93,13 +101,16 @@ message BinaryCapture {
   string org_id = 2;
   string robot_id = 3;
   string part_id = 4;
-  string component_name = 5;
-  string component_type = 6;
-  string component_model = 7;
-  string method_name = 8;
-  string blob_path = 9;
-  map<string, google.protobuf.Any> method_parameters = 10;
-  string file_id = 11;
+  string location_id = 5;
+  string component_name = 6;
+  string component_type = 7;
+  string component_model = 8;
+  string method_name = 9;
+  string blob_path = 10;
+  map<string, google.protobuf.Any> method_parameters = 11;
+  string file_id = 12;
+  repeated string tags = 13;
+  int64 file_size_bytes = 14;
 }
 
 message UserFile {
@@ -107,7 +118,9 @@ message UserFile {
   string org_id = 2;
   string robot_id = 3;
   string part_id = 4;
-  string blob_path = 5;
-  map<string, google.protobuf.Any> method_parameters = 6;
-  string file_id = 7;
+  string location_id = 5;
+  string blob_path = 6;
+  map<string, google.protobuf.Any> method_parameters = 7;
+  string file_id = 8;
+  int64 file_size_bytes = 9;
 }
