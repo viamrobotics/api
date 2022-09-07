@@ -81,13 +81,13 @@ type QueryRequest struct {
 
 	ComponentDataFilters *ComponentDataFilters `protobuf:"bytes,1,opt,name=component_data_filters,json=componentDataFilters,proto3" json:"component_data_filters,omitempty"`
 	RobotDataFilters     *RobotDataFilters     `protobuf:"bytes,2,opt,name=robot_data_filters,json=robotDataFilters,proto3" json:"robot_data_filters,omitempty"`
-	// Skip over the number of specified results.
+	// Skips over the number of specified results.
 	Skip int32 `protobuf:"varint,3,opt,name=skip,proto3" json:"skip,omitempty"`
-	// Limit the number of results.
+	// Limits the number of results.
 	Limit    int32            `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
 	Interval *CaptureInterval `protobuf:"bytes,6,opt,name=interval,proto3" json:"interval,omitempty"`
 	Type     DataType         `protobuf:"varint,7,opt,name=type,proto3,enum=proto.viam.data.v1.DataType" json:"type,omitempty"`
-	// Only include number of results rather than getting the actual data.
+	// Only includes the number of results rather than getting actual data.
 	CountOnly bool `protobuf:"varint,8,opt,name=count_only,json=countOnly,proto3" json:"count_only,omitempty"`
 }
 
@@ -889,12 +889,10 @@ type ExportDataRequest struct {
 	RobotDataFilters     *RobotDataFilters     `protobuf:"bytes,2,opt,name=robot_data_filters,json=robotDataFilters,proto3" json:"robot_data_filters,omitempty"`
 	Interval             *CaptureInterval      `protobuf:"bytes,3,opt,name=interval,proto3" json:"interval,omitempty"`
 	Type                 DataType              `protobuf:"varint,4,opt,name=type,proto3,enum=proto.viam.data.v1.DataType" json:"type,omitempty"`
-	// Result ids to include. This ignores filters and only exports
-	// these IDs.
+	// Ignores the filters and only exports these IDs.
 	// If this is populated, exclude_ids must be empty.
 	IncludeIds []string `protobuf:"bytes,5,rep,name=include_ids,json=includeIds,proto3" json:"include_ids,omitempty"`
-	// Result ids to exclude. This applies the filters then excludes
-	// exporting these IDs.
+	// Applies the filters and excludes these ids.
 	// If this is populated, include_ids must be empty.
 	ExludeIds []string `protobuf:"bytes,6,rep,name=exlude_ids,json=exludeIds,proto3" json:"exlude_ids,omitempty"`
 }
