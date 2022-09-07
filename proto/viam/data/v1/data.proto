@@ -1,0 +1,141 @@
+syntax = "proto3";
+
+package proto.viam.data.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/proto/viam/datasync/v1";
+
+// DataService is used to query and export robot data.
+service DataService {
+  // QueryData queries metadata based on given filters.
+  rpc Query(proto.viam.data.v1.QueryRequest) returns (proto.viam.data.v1.QueryResponse);
+
+  // ExportData retrieves data as CSVs.
+  rpc ExportData(proto.viam.data.v1.ExportDataRequest) returns (proto.viam.data.v1.ExportDataResponse);
+}
+
+// QueryRequest specifies filters to get metadata from a particular component, method, robot, location, etc...
+message QueryRequest {
+  ComponentDataFilters component_data_filters = 1;
+  RobotDataFilters robot_data_filters = 2;
+
+  // Skip over the number of specified results.
+  int32 skip = 3;
+  // Limit the number of results.
+  int32 limit = 4;
+
+  CaptureInterval interval = 6;
+  DataType type = 7;
+
+  // Only include number of results rather than getting the actual data.
+  bool count_only = 8;
+}
+
+message ComponentDataFilters {
+  string component_name = 1;
+  string component_type = 2;
+  string component_model = 3;
+  string method = 4;
+  string tags = 5;
+}
+
+message RobotDataFilters {
+  string robot_name = 1;
+  string robot_id = 2;
+  string part_name = 3;
+  string part_id = 4;
+  CaptureInterval interval = 5;
+  string location_id = 6;
+  string org_id = 7;
+}
+
+message CaptureInterval {
+  google.protobuf.Timestamp start = 1;
+  google.protobuf.Timestamp end = 2;
+}
+
+enum DataType {
+  DATA_TYPE_UNSPECIFIED = 0;
+  DATA_TYPE_BINARY_SENSOR = 1;
+  DATA_TYPE_TABULAR_SENSOR = 2;
+  DATA_TYPE_FILE = 3;
+}
+  
+message QueryResponse {
+	repeated TabularMetadata tabular = 1;
+  repeated BinaryMetadata binary = 2;
+  repeated FileMetadata file = 3;
+	int32 tabular_count = 4;
+  int32 binary_count = 5;
+  int32 file_count = 6;
+}
+
+message TabularMetadata {
+  // Result id.
+  string id = 1;
+	string robot_name = 2;
+	string robot_id = 3;
+  string part_name = 4;
+	string part_id = 5;
+  string component_name = 6;
+	string component_type = 7; 
+	string component_model = 8;
+  string method = 9;
+  repeated string tags = 10;
+	CaptureInterval interval = 11;
+	int32 file_size_bytes = 12;
+	int32 num_readings = 13;
+}
+
+message BinaryMetadata {
+  // Result id.
+  string id = 1;
+	string robot_name = 2;
+	string robot_id = 3;
+  string part_name = 4;
+	string part_id = 5;
+  string component_name = 6;
+	string component_type = 7; 
+	string component_model = 8;
+  string method = 9;
+  repeated string tags = 10;
+	CaptureInterval interval = 11;
+	int32 file_size_bytes = 12;
+	string file_url = 13;
+}
+
+
+message FileMetadata {
+  // Result id.
+  string id = 1;
+	string robot_name = 2;
+	string robot_id = 3;
+  string part_name = 4;
+	string part_id = 5;
+	google.protobuf.Timestamp sync_time = 6;
+	int32 file_size_bytes = 7;
+  string file_url = 8;
+}
+
+message ExportDataRequest {
+	ComponentDataFilters component_data_filters = 1;
+	RobotDataFilters robot_data_filters = 2;
+	CaptureInterval interval = 3;
+	DataType type = 4;
+
+  // Result ids to include. This ignores filters and only exports
+  // these IDs.
+  // If this is populated, exclude_ids must be empty.
+	repeated string include_ids = 5;
+
+  // Result ids to exclude. This applies the filters then excludes
+  // exporting these IDs.
+  // If this is populated, include_ids must be empty.
+  repeated string exlude_ids = 6;
+}
+
+message ExportDataResponse {
+  // CSV file URLs.
+	repeated string file_urls = 1;
+}
