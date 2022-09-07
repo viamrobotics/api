@@ -20,15 +20,15 @@ message QueryRequest {
   ComponentDataFilters component_data_filters = 1;
   RobotDataFilters robot_data_filters = 2;
 
-  // Skip over the number of specified results.
+  // Skips over the number of specified results.
   int32 skip = 3;
-  // Limit the number of results.
+  // Limits the number of results.
   int32 limit = 4;
 
   CaptureInterval interval = 6;
   DataType type = 7;
 
-  // Only include number of results rather than getting the actual data.
+  // Only includes the number of results rather than getting actual data.
   bool count_only = 8;
 }
 
@@ -123,13 +123,11 @@ message ExportDataRequest {
   CaptureInterval interval = 3;
   DataType type = 4;
 
-  // Result ids to include. This ignores filters and only exports
-  // these IDs.
+  // Ignores the filters and only exports these IDs.
   // If this is populated, exclude_ids must be empty.
   repeated string include_ids = 5;
 
-  // Result ids to exclude. This applies the filters then excludes
-  // exporting these IDs.
+  // Applies the filters and excludes these ids.
   // If this is populated, include_ids must be empty.
   repeated string exlude_ids = 6;
 }
