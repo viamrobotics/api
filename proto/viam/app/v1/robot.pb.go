@@ -90,7 +90,7 @@ type RobotConfig struct {
 	Services   []*ServiceConfig   `protobuf:"bytes,5,rep,name=services,proto3" json:"services,omitempty"`
 	Network    *NetworkConfig     `protobuf:"bytes,6,opt,name=network,proto3,oneof" json:"network,omitempty"`
 	Auth       *AuthConfig        `protobuf:"bytes,7,opt,name=auth,proto3,oneof" json:"auth,omitempty"`
-	// Turns on debug mode for logging. Only works after restart
+	// Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart
 	Debug *bool `protobuf:"varint,8,opt,name=debug,proto3,oneof" json:"debug,omitempty"`
 }
 
