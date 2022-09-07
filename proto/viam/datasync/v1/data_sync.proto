@@ -40,6 +40,7 @@ message UploadMetadata {
   map<string, string> method_parameters = 8;
   string file_extension = 9;
   repeated string tags = 10;
+  string session_id = 11;
 }
 
 message UploadRequest {
@@ -75,6 +76,7 @@ message DataCaptureMetadata {
   map<string, string> method_parameters = 6;
   string file_extension = 7;
   repeated string tags = 8;
+  string session_id = 9;
 }
 
 message TabularCapture {
@@ -94,6 +96,7 @@ message TabularCapture {
   repeated string tags = 14;
   int32 message_count = 15;
   int64 file_size_bytes = 16;
+  string session_id = 17;
 }
 
 message BinaryCapture {
@@ -111,6 +114,7 @@ message BinaryCapture {
   string file_id = 12;
   repeated string tags = 13;
   int64 file_size_bytes = 14;
+  string session_id = 15;
 }
 
 message UserFile {
