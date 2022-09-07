@@ -40,7 +40,7 @@ func (c *dataSyncServiceClient) Upload(ctx context.Context, opts ...grpc.CallOpt
 
 type DataSyncService_UploadClient interface {
 	Send(*UploadRequest) error
-	CloseAndRecv() (*UploadResponse, error)
+	Recv() (*UploadResponse, error)
 	grpc.ClientStream
 }
 
@@ -52,10 +52,7 @@ func (x *dataSyncServiceUploadClient) Send(m *UploadRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *dataSyncServiceUploadClient) CloseAndRecv() (*UploadResponse, error) {
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
+func (x *dataSyncServiceUploadClient) Recv() (*UploadResponse, error) {
 	m := new(UploadResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -96,7 +93,7 @@ func _DataSyncService_Upload_Handler(srv interface{}, stream grpc.ServerStream) 
 }
 
 type DataSyncService_UploadServer interface {
-	SendAndClose(*UploadResponse) error
+	Send(*UploadResponse) error
 	Recv() (*UploadRequest, error)
 	grpc.ServerStream
 }
@@ -105,7 +102,7 @@ type dataSyncServiceUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *dataSyncServiceUploadServer) SendAndClose(m *UploadResponse) error {
+func (x *dataSyncServiceUploadServer) Send(m *UploadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -128,6 +125,7 @@ var DataSyncService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "Upload",
 			Handler:       _DataSyncService_Upload_Handler,
+			ServerStreams: true,
 			ClientStreams: true,
 		},
 	},
