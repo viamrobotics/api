@@ -889,10 +889,10 @@ type ExportDataRequest struct {
 	RobotDataFilters     *RobotDataFilters     `protobuf:"bytes,2,opt,name=robot_data_filters,json=robotDataFilters,proto3" json:"robot_data_filters,omitempty"`
 	Interval             *CaptureInterval      `protobuf:"bytes,3,opt,name=interval,proto3" json:"interval,omitempty"`
 	Type                 DataType              `protobuf:"varint,4,opt,name=type,proto3,enum=proto.viam.data.v1.DataType" json:"type,omitempty"`
-	// Ignores the filters and only exports these ids.
+	// Ignores the filters and only includes these ids in the export.
 	// If this is populated, exclude_ids must be empty.
 	IncludeIds []string `protobuf:"bytes,5,rep,name=include_ids,json=includeIds,proto3" json:"include_ids,omitempty"`
-	// Applies the filters and excludes these ids.
+	// Applies the filters and excludes these ids in the export.
 	// If this is populated, include_ids must be empty.
 	ExludeIds []string `protobuf:"bytes,6,rep,name=exlude_ids,json=exludeIds,proto3" json:"exlude_ids,omitempty"`
 }
