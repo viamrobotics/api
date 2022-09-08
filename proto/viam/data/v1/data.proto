@@ -8,7 +8,7 @@ option go_package = "go.viam.com/api/proto/viam/data/v1";
 
 // DataService is used to query and export robot data.
 service DataService {
-  // QueryData queries metadata based on given filters.
+  // Query queries metadata based on given filters.
   rpc Query(proto.viam.data.v1.QueryRequest) returns (proto.viam.data.v1.QueryResponse);
 
   // ExportData retrieves data as CSVs.
@@ -123,11 +123,11 @@ message ExportDataRequest {
   CaptureInterval interval = 3;
   DataType type = 4;
 
-  // Ignores the filters and only exports these ids.
+  // Ignores the filters and only includes these ids in the export.
   // If this is populated, exclude_ids must be empty.
   repeated string include_ids = 5;
 
-  // Applies the filters and excludes these ids.
+  // Applies the filters and excludes these ids in the export.
   // If this is populated, include_ids must be empty.
   repeated string exlude_ids = 6;
 }
