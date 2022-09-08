@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataServiceClient interface {
-	// QueryData queries metadata based on given filters.
+	// Query queries metadata based on given filters.
 	Query(ctx context.Context, in *QueryRequest, opts ...grpc.CallOption) (*QueryResponse, error)
 	// ExportData retrieves data as CSVs.
 	ExportData(ctx context.Context, in *ExportDataRequest, opts ...grpc.CallOption) (*ExportDataResponse, error)
@@ -54,7 +54,7 @@ func (c *dataServiceClient) ExportData(ctx context.Context, in *ExportDataReques
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
 type DataServiceServer interface {
-	// QueryData queries metadata based on given filters.
+	// Query queries metadata based on given filters.
 	Query(context.Context, *QueryRequest) (*QueryResponse, error)
 	// ExportData retrieves data as CSVs.
 	ExportData(context.Context, *ExportDataRequest) (*ExportDataResponse, error)
