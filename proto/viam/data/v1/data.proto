@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/proto/viam/data/v1";
 
-// DataService is used to query and export robot data.
+// DataService is used to query robot data.
 service DataService {
   // Query queries metadata based on given filters.
   rpc Query(proto.viam.data.v1.QueryRequest) returns (proto.viam.data.v1.QueryResponse);
