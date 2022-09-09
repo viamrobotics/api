@@ -20,8 +20,6 @@ const _ = grpc.SupportPackageIsVersion7
 type DataServiceClient interface {
 	// Query queries metadata based on given filters.
 	Query(ctx context.Context, in *QueryRequest, opts ...grpc.CallOption) (*QueryResponse, error)
-	// ExportData retrieves data as CSVs.
-	ExportData(ctx context.Context, in *ExportDataRequest, opts ...grpc.CallOption) (*ExportDataResponse, error)
 }
 
 type dataServiceClient struct {
@@ -41,23 +39,12 @@ func (c *dataServiceClient) Query(ctx context.Context, in *QueryRequest, opts ..
 	return out, nil
 }
 
-func (c *dataServiceClient) ExportData(ctx context.Context, in *ExportDataRequest, opts ...grpc.CallOption) (*ExportDataResponse, error) {
-	out := new(ExportDataResponse)
-	err := c.cc.Invoke(ctx, "/proto.viam.data.v1.DataService/ExportData", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
 type DataServiceServer interface {
 	// Query queries metadata based on given filters.
 	Query(context.Context, *QueryRequest) (*QueryResponse, error)
-	// ExportData retrieves data as CSVs.
-	ExportData(context.Context, *ExportDataRequest) (*ExportDataResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -67,9 +54,6 @@ type UnimplementedDataServiceServer struct {
 
 func (UnimplementedDataServiceServer) Query(context.Context, *QueryRequest) (*QueryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Query not implemented")
-}
-func (UnimplementedDataServiceServer) ExportData(context.Context, *ExportDataRequest) (*ExportDataResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ExportData not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -102,24 +86,6 @@ func _DataService_Query_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataService_ExportData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ExportDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataServiceServer).ExportData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/proto.viam.data.v1.DataService/ExportData",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).ExportData(ctx, req.(*ExportDataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -130,10 +96,6 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Query",
 			Handler:    _DataService_Query_Handler,
-		},
-		{
-			MethodName: "ExportData",
-			Handler:    _DataService_ExportData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
