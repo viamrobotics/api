@@ -72,7 +72,7 @@ message DataCaptureMetadata {
   string component_model = 3;
   string method_name = 4;
   DataType type = 5;
-  map<string, string> method_parameters = 6;
+  map<string, google.protobuf.Any> method_parameters = 6;
   string file_extension = 7;
   repeated string tags = 8;
 }
