@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package proto.viam.app.v1;
+package viam.app.v1;
 
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
-import "proto/tagger/v1/tagger.proto";
+import "tagger/v1/tagger.proto";
 
-option go_package = "go.viam.com/api/proto/viam/app/v1";
+option go_package = "go.viam.com/api/app/v1";
 
 service AppService {
   rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
