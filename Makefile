@@ -24,12 +24,12 @@ dist/tool-install: Makefile
 
 dist/buf: dist/buf-go
 
-dist/buf-go: dist/tool-install proto/viam/app/v1/app.proto proto/tagger/v1/tagger.proto
+#TODO(steve) add all proto files to the list
+dist/buf-go: dist/tool-install proto/viam/app/v1/app.proto proto/viam/tagger/v1/tagger.proto
 	PATH=$(PATH_WITH_TOOLS) buf lint
 	PATH=$(PATH_WITH_TOOLS) buf format -w
-	PATH=$(PATH_WITH_TOOLS) buf generate
-	PATH=$(PATH_WITH_TOOLS) buf generate --template ./etc/buf.gen.tag.yaml
-	PATH=$(PATH_WITH_TOOLS) ls proto/viam/app/v1/*_grpc.pb.go | while read l; do mockgen -source="$$l" -destination=proto/viam/app/mock_v1/mock_`basename "$$l"`; done
+	PATH=$(PATH_WITH_TOOLS) buf generate --template ./proto/viam/buf.gen.yaml
+	PATH=$(PATH_WITH_TOOLS) ls app/v1/*_grpc.pb.go | while read l; do mockgen -source="$$l" -destination=app/mock_v1/mock_`basename "$$l"`; done
 	touch dist/buf-go
 
 lint: dist/tool-install
