@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package proto.viam.app.v1;
+package viam.app.v1;
 
+import "app/v1/app.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
-import "proto/tagger/v1/tagger.proto";
-import "proto/viam/app/v1/app.proto";
+import "tagger/v1/tagger.proto";
 
-option go_package = "go.viam.com/api/proto/viam/app/v1";
+option go_package = "go.viam.com/api/app/v1";
 
 // RobotService is used by robots to retrieve configs, report logs, etc...
 service RobotService {
