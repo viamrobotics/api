@@ -271,16 +271,16 @@ type UploadMetadata struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PartId           string            `protobuf:"bytes,1,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
-	ComponentType    string            `protobuf:"bytes,2,opt,name=component_type,json=componentType,proto3" json:"component_type,omitempty"`
-	ComponentName    string            `protobuf:"bytes,3,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
-	ComponentModel   string            `protobuf:"bytes,4,opt,name=component_model,json=componentModel,proto3" json:"component_model,omitempty"`
-	MethodName       string            `protobuf:"bytes,5,opt,name=method_name,json=methodName,proto3" json:"method_name,omitempty"`
-	Type             DataType          `protobuf:"varint,6,opt,name=type,proto3,enum=proto.viam.datasync.v1.DataType" json:"type,omitempty"`
-	FileName         string            `protobuf:"bytes,7,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`
-	MethodParameters map[string]string `protobuf:"bytes,8,rep,name=method_parameters,json=methodParameters,proto3" json:"method_parameters,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	FileExtension    string            `protobuf:"bytes,9,opt,name=file_extension,json=fileExtension,proto3" json:"file_extension,omitempty"`
-	Tags             []string          `protobuf:"bytes,10,rep,name=tags,proto3" json:"tags,omitempty"`
+	PartId           string                `protobuf:"bytes,1,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
+	ComponentType    string                `protobuf:"bytes,2,opt,name=component_type,json=componentType,proto3" json:"component_type,omitempty"`
+	ComponentName    string                `protobuf:"bytes,3,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
+	ComponentModel   string                `protobuf:"bytes,4,opt,name=component_model,json=componentModel,proto3" json:"component_model,omitempty"`
+	MethodName       string                `protobuf:"bytes,5,opt,name=method_name,json=methodName,proto3" json:"method_name,omitempty"`
+	Type             DataType              `protobuf:"varint,6,opt,name=type,proto3,enum=proto.viam.datasync.v1.DataType" json:"type,omitempty"`
+	FileName         string                `protobuf:"bytes,7,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`
+	MethodParameters map[string]*anypb.Any `protobuf:"bytes,8,rep,name=method_parameters,json=methodParameters,proto3" json:"method_parameters,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	FileExtension    string                `protobuf:"bytes,9,opt,name=file_extension,json=fileExtension,proto3" json:"file_extension,omitempty"`
+	Tags             []string              `protobuf:"bytes,10,rep,name=tags,proto3" json:"tags,omitempty"`
 }
 
 func (x *UploadMetadata) Reset() {
@@ -364,7 +364,7 @@ func (x *UploadMetadata) GetFileName() string {
 	return ""
 }
 
-func (x *UploadMetadata) GetMethodParameters() map[string]string {
+func (x *UploadMetadata) GetMethodParameters() map[string]*anypb.Any {
 	if x != nil {
 		return x.MethodParameters
 	}
@@ -586,14 +586,14 @@ type DataCaptureMetadata struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ComponentType    string            `protobuf:"bytes,1,opt,name=component_type,json=componentType,proto3" json:"component_type,omitempty"`
-	ComponentName    string            `protobuf:"bytes,2,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
-	ComponentModel   string            `protobuf:"bytes,3,opt,name=component_model,json=componentModel,proto3" json:"component_model,omitempty"`
-	MethodName       string            `protobuf:"bytes,4,opt,name=method_name,json=methodName,proto3" json:"method_name,omitempty"`
-	Type             DataType          `protobuf:"varint,5,opt,name=type,proto3,enum=proto.viam.datasync.v1.DataType" json:"type,omitempty"`
-	MethodParameters map[string]string `protobuf:"bytes,6,rep,name=method_parameters,json=methodParameters,proto3" json:"method_parameters,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	FileExtension    string            `protobuf:"bytes,7,opt,name=file_extension,json=fileExtension,proto3" json:"file_extension,omitempty"`
-	Tags             []string          `protobuf:"bytes,8,rep,name=tags,proto3" json:"tags,omitempty"`
+	ComponentType    string                `protobuf:"bytes,1,opt,name=component_type,json=componentType,proto3" json:"component_type,omitempty"`
+	ComponentName    string                `protobuf:"bytes,2,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
+	ComponentModel   string                `protobuf:"bytes,3,opt,name=component_model,json=componentModel,proto3" json:"component_model,omitempty"`
+	MethodName       string                `protobuf:"bytes,4,opt,name=method_name,json=methodName,proto3" json:"method_name,omitempty"`
+	Type             DataType              `protobuf:"varint,5,opt,name=type,proto3,enum=proto.viam.datasync.v1.DataType" json:"type,omitempty"`
+	MethodParameters map[string]*anypb.Any `protobuf:"bytes,6,rep,name=method_parameters,json=methodParameters,proto3" json:"method_parameters,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	FileExtension    string                `protobuf:"bytes,7,opt,name=file_extension,json=fileExtension,proto3" json:"file_extension,omitempty"`
+	Tags             []string              `protobuf:"bytes,8,rep,name=tags,proto3" json:"tags,omitempty"`
 }
 
 func (x *DataCaptureMetadata) Reset() {
@@ -663,7 +663,7 @@ func (x *DataCaptureMetadata) GetType() DataType {
 	return DataType_DATA_TYPE_UNSPECIFIED
 }
 
-func (x *DataCaptureMetadata) GetMethodParameters() map[string]string {
+func (x *DataCaptureMetadata) GetMethodParameters() map[string]*anypb.Any {
 	if x != nil {
 		return x.MethodParameters
 	}
@@ -1534,16 +1534,18 @@ var file_proto_viam_datasync_v1_data_sync_proto_depIdxs = []int32{
 	15, // 16: proto.viam.datasync.v1.BinaryCapture.method_parameters:type_name -> proto.viam.datasync.v1.BinaryCapture.MethodParametersEntry
 	17, // 17: proto.viam.datasync.v1.UserFile.sync_time:type_name -> google.protobuf.Timestamp
 	16, // 18: proto.viam.datasync.v1.UserFile.method_parameters:type_name -> proto.viam.datasync.v1.UserFile.MethodParametersEntry
-	19, // 19: proto.viam.datasync.v1.TabularCapture.MethodParametersEntry.value:type_name -> google.protobuf.Any
-	19, // 20: proto.viam.datasync.v1.BinaryCapture.MethodParametersEntry.value:type_name -> google.protobuf.Any
-	19, // 21: proto.viam.datasync.v1.UserFile.MethodParametersEntry.value:type_name -> google.protobuf.Any
-	5,  // 22: proto.viam.datasync.v1.DataSyncService.Upload:input_type -> proto.viam.datasync.v1.UploadRequest
-	6,  // 23: proto.viam.datasync.v1.DataSyncService.Upload:output_type -> proto.viam.datasync.v1.UploadResponse
-	23, // [23:24] is the sub-list for method output_type
-	22, // [22:23] is the sub-list for method input_type
-	22, // [22:22] is the sub-list for extension type_name
-	22, // [22:22] is the sub-list for extension extendee
-	0,  // [0:22] is the sub-list for field type_name
+	19, // 19: proto.viam.datasync.v1.UploadMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	19, // 20: proto.viam.datasync.v1.DataCaptureMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	19, // 21: proto.viam.datasync.v1.TabularCapture.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	19, // 22: proto.viam.datasync.v1.BinaryCapture.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	19, // 23: proto.viam.datasync.v1.UserFile.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	5,  // 24: proto.viam.datasync.v1.DataSyncService.Upload:input_type -> proto.viam.datasync.v1.UploadRequest
+	6,  // 25: proto.viam.datasync.v1.DataSyncService.Upload:output_type -> proto.viam.datasync.v1.UploadResponse
+	25, // [25:26] is the sub-list for method output_type
+	24, // [24:25] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_proto_viam_datasync_v1_data_sync_proto_init() }
