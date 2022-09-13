@@ -1,0 +1,131 @@
+syntax = "proto3";
+
+package viam.app.datasync.v1;
+
+import "google/protobuf/any.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "tagger/v1/tagger.proto";
+
+option go_package = "go.viam.com/api/app/datasync/v1";
+
+service DataSyncService {
+  rpc Upload(stream viam.app.datasync.v1.UploadRequest) returns (stream viam.app.datasync.v1.UploadResponse);
+}
+
+message SensorMetadata {
+  google.protobuf.Timestamp time_requested = 1;
+  google.protobuf.Timestamp time_received = 2;
+}
+
+message SensorData {
+  SensorMetadata metadata = 1;
+  oneof data {
+    google.protobuf.Struct struct = 2;
+    bytes binary = 3;
+  }
+}
+
+message FileData {
+  bytes data = 1;
+}
+
+message UploadMetadata {
+  string part_id = 1;
+  string component_type = 2;
+  string component_name = 3;
+  string component_model = 4;
+  string method_name = 5;
+  DataType type = 6;
+  string file_name = 7;
+  map<string, string> method_parameters = 8;
+  string file_extension = 9;
+  repeated string tags = 10;
+  string session_id = 11;
+}
+
+message UploadRequest {
+  oneof upload_packet {
+    UploadMetadata metadata = 1;
+    SensorData sensor_contents = 2;
+    FileData file_contents = 3;
+  }
+}
+
+message UploadResponse {
+  int32 requests_written = 1;
+}
+
+enum DataType {
+  DATA_TYPE_UNSPECIFIED = 0;
+  DATA_TYPE_BINARY_SENSOR = 1;
+  DATA_TYPE_TABULAR_SENSOR = 2;
+  DATA_TYPE_FILE = 3;
+}
+
+message CaptureInterval {
+  google.protobuf.Timestamp start = 1;
+  google.protobuf.Timestamp end = 2;
+}
+
+message DataCaptureMetadata {
+  string component_type = 1;
+  string component_name = 2;
+  string component_model = 3;
+  string method_name = 4;
+  DataType type = 5;
+  map<string, string> method_parameters = 6;
+  string file_extension = 7;
+  repeated string tags = 8;
+  string session_id = 9;
+}
+
+message TabularCapture {
+  CaptureInterval interval = 1 [(tagger.v1.tags) = "bson:\"interval\" json:\"interval\""];
+  string org_id = 2 [(tagger.v1.tags) = "bson:\"org_id\" json:\"org_id\""];
+  string robot_id = 3 [(tagger.v1.tags) = "bson:\"robot_id\" json:\"robot_id\""];
+  string part_id = 4 [(tagger.v1.tags) = "bson:\"part_id\" json:\"part_id\""];
+  string location_id = 5 [(tagger.v1.tags) = "bson:\"location_id\" json:\"location_id\""];
+  string component_name = 6 [(tagger.v1.tags) = "bson:\"component_name\" json:\"component_name\""];
+  string component_type = 7 [(tagger.v1.tags) = "bson:\"component_type\" json:\"component_type\""];
+  string component_model = 8 [(tagger.v1.tags) = "bson:\"component_model\" json:\"component_model\""];
+  string method_name = 9 [(tagger.v1.tags) = "bson:\"method_name\" json:\"method_name\""];
+  string blob_path = 10 [(tagger.v1.tags) = "bson:\"blob_path\" json:\"blob_path\""];
+  repeated string column_names = 11 [(tagger.v1.tags) = "bson:\"column_names\" json:\"column_names\""];
+  map<string, google.protobuf.Any> method_parameters = 12 [(tagger.v1.tags) = "bson:\"method_parameters\" json:\"method_parameters\""];
+  string file_id = 13 [(tagger.v1.tags) = "bson:\"file_id\" json:\"file_id\""];
+  repeated string tags = 14 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
+  int32 message_count = 15 [(tagger.v1.tags) = "bson:\"message_count\" json:\"message_count\""];
+  int64 file_size_bytes = 16 [(tagger.v1.tags) = "bson:\"file_size_bytes\" json:\"file_size_bytes\""];
+  string session_id = 17 [(tagger.v1.tags) = "bson:\"session_id\" json:\"session_id\""];
+}
+
+message BinaryCapture {
+  CaptureInterval interval = 1 [(tagger.v1.tags) = "bson:\"interval\" json:\"interval\""];
+  string org_id = 2 [(tagger.v1.tags) = "bson:\"org_id\" json:\"org_id\""];
+  string robot_id = 3 [(tagger.v1.tags) = "bson:\"robot_id\" json:\"robot_id\""];
+  string part_id = 4 [(tagger.v1.tags) = "bson:\"part_id\" json:\"part_id\""];
+  string location_id = 5 [(tagger.v1.tags) = "bson:\"location_id\" json:\"location_id\""];
+  string component_name = 6 [(tagger.v1.tags) = "bson:\"component_name\" json:\"component_name\""];
+  string component_type = 7 [(tagger.v1.tags) = "bson:\"component_type\" json:\"component_type\""];
+  string component_model = 8 [(tagger.v1.tags) = "bson:\"component_model\" json:\"component_model\""];
+  string method_name = 9 [(tagger.v1.tags) = "bson:\"method_name\" json:\"method_name\""];
+  string blob_path = 10 [(tagger.v1.tags) = "bson:\"blob_path\" json:\"blob_path\""];
+  map<string, google.protobuf.Any> method_parameters = 11 [(tagger.v1.tags) = "bson:\"method_parameters\" json:\"method_parameters\""];
+  string file_id = 12 [(tagger.v1.tags) = "bson:\"file_id\" json:\"file_id\""];
+  repeated string tags = 13 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
+  int64 file_size_bytes = 14 [(tagger.v1.tags) = "bson:\"file_size_bytes\" json:\"file_size_bytes\""];
+  string session_id = 15 [(tagger.v1.tags) = "bson:\"session_id\" json:\"session_id\""];
+}
+
+message UserFile {
+  google.protobuf.Timestamp sync_time = 1 [(tagger.v1.tags) = "bson:\"sync_time\" json:\"sync_time\""];
+  string org_id = 2 [(tagger.v1.tags) = "bson:\"org_id\" json:\"org_id\""];
+  string robot_id = 3 [(tagger.v1.tags) = "bson:\"robot_id\" json:\"robot_id\""];
+  string part_id = 4 [(tagger.v1.tags) = "bson:\"part_id\" json:\"part_id\""];
+  string location_id = 5 [(tagger.v1.tags) = "bson:\"location_id\" json:\"location_id\""];
+  string blob_path = 6 [(tagger.v1.tags) = "bson:\"blob_path\" json:\"blob_path\""];
+  map<string, google.protobuf.Any> method_parameters = 7 [(tagger.v1.tags) = "bson:\"method_parameters\" json:\"method_parameters\""];
+  string file_id = 8 [(tagger.v1.tags) = "bson:\"file_id\" json:\"file_id\""];
+  int64 file_size_bytes = 9 [(tagger.v1.tags) = "bson:\"file_size_bytes\" json:\"file_size_bytes\""];
+}
