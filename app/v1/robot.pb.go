@@ -298,7 +298,7 @@ type ComponentConfig struct {
 	Model          string                        `protobuf:"bytes,5,opt,name=model,proto3" json:"model,omitempty"`
 	Frame          *Frame                        `protobuf:"bytes,6,opt,name=frame,proto3" json:"frame,omitempty"`
 	DependsOn      []string                      `protobuf:"bytes,7,rep,name=depends_on,json=dependsOn,proto3" json:"depends_on,omitempty"`
-	ServiceConfigs []*ResourceLevelServiceConfig `protobuf:"bytes,8,rep,name=service_configs,json=serviceConfigs,proto3" json:"service_configs,omitempty"`
+	ServiceConfigs []*ResourceLevelServiceConfig `protobuf:"bytes,8,rep,name=service_configs,json=serviceConfigs,proto3" json:"service_config"`
 	Attributes     *structpb.Struct              `protobuf:"bytes,9,opt,name=attributes,proto3" json:"attributes,omitempty"`
 }
 
@@ -1074,7 +1074,7 @@ type RemoteConfig struct {
 	Insecure                bool                          `protobuf:"varint,7,opt,name=insecure,proto3" json:"insecure,omitempty"`
 	ConnectionCheckInterval *durationpb.Duration          `protobuf:"bytes,8,opt,name=connection_check_interval,json=connectionCheckInterval,proto3" json:"connection_check_interval,omitempty"`
 	ReconnectInterval       *durationpb.Duration          `protobuf:"bytes,9,opt,name=reconnect_interval,json=reconnectInterval,proto3" json:"reconnect_interval,omitempty"`
-	ServiceConfigs          []*ResourceLevelServiceConfig `protobuf:"bytes,10,rep,name=service_configs,json=serviceConfigs,proto3" json:"service_configs,omitempty"`
+	ServiceConfigs          []*ResourceLevelServiceConfig `protobuf:"bytes,10,rep,name=service_configs,json=serviceConfigs,proto3" json:"service_config"`
 	// Secret is a helper for a robot location secret.
 	Secret string `protobuf:"bytes,11,opt,name=secret,proto3" json:"secret,omitempty"`
 }
@@ -1801,7 +1801,7 @@ type Orientation_OrientationVectorRadians struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Theta float64 `protobuf:"fixed64,1,opt,name=theta,proto3" json:"theta,omitempty"`
+	Theta float64 `protobuf:"fixed64,1,opt,name=theta,proto3" json:"th"`
 	X     float64 `protobuf:"fixed64,2,opt,name=x,proto3" json:"x,omitempty"`
 	Y     float64 `protobuf:"fixed64,3,opt,name=y,proto3" json:"y,omitempty"`
 	Z     float64 `protobuf:"fixed64,4,opt,name=z,proto3" json:"z,omitempty"`
@@ -1874,7 +1874,7 @@ type Orientation_OrientationVectorDegrees struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Theta float64 `protobuf:"fixed64,1,opt,name=theta,proto3" json:"theta,omitempty"`
+	Theta float64 `protobuf:"fixed64,1,opt,name=theta,proto3" json:"th"`
 	X     float64 `protobuf:"fixed64,2,opt,name=x,proto3" json:"x,omitempty"`
 	Y     float64 `protobuf:"fixed64,3,opt,name=y,proto3" json:"y,omitempty"`
 	Z     float64 `protobuf:"fixed64,4,opt,name=z,proto3" json:"z,omitempty"`
@@ -2017,7 +2017,7 @@ type Orientation_AxisAngles struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Theta float64 `protobuf:"fixed64,1,opt,name=theta,proto3" json:"theta,omitempty"`
+	Theta float64 `protobuf:"fixed64,1,opt,name=theta,proto3" json:"th"`
 	X     float64 `protobuf:"fixed64,2,opt,name=x,proto3" json:"x,omitempty"`
 	Y     float64 `protobuf:"fixed64,3,opt,name=y,proto3" json:"y,omitempty"`
 	Z     float64 `protobuf:"fixed64,4,opt,name=z,proto3" json:"z,omitempty"`
