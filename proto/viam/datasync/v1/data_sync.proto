@@ -41,6 +41,7 @@ message UploadMetadata {
   map<string, string> method_parameters = 8;
   string file_extension = 9;
   repeated string tags = 10;
+  string session_id = 11;
 }
 
 message UploadRequest {
@@ -76,6 +77,7 @@ message DataCaptureMetadata {
   map<string, string> method_parameters = 6;
   string file_extension = 7;
   repeated string tags = 8;
+  string session_id = 9;
 }
 
 message TabularCapture {
@@ -95,6 +97,7 @@ message TabularCapture {
   repeated string tags = 14 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
   int32 message_count = 15 [(tagger.v1.tags) = "bson:\"message_count\" json:\"message_count\""];
   int64 file_size_bytes = 16 [(tagger.v1.tags) = "bson:\"file_size_bytes\" json:\"file_size_bytes\""];
+  string session_id = 17 [(tagger.v1.tags) = "bson:\"session_id\" json:\"session_id\""];
 }
 
 message BinaryCapture {
@@ -112,6 +115,7 @@ message BinaryCapture {
   string file_id = 12 [(tagger.v1.tags) = "bson:\"file_id\" json:\"file_id\""];
   repeated string tags = 13 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
   int64 file_size_bytes = 14 [(tagger.v1.tags) = "bson:\"file_size_bytes\" json:\"file_size_bytes\""];
+  string session_id = 15 [(tagger.v1.tags) = "bson:\"session_id\" json:\"session_id\""];
 }
 
 message UserFile {
