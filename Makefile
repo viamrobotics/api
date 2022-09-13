@@ -24,7 +24,7 @@ dist/tool-install: Makefile
 
 dist/buf: dist/buf-go
 
-dist/buf-go: dist/tool-install proto/viam/app/v1/app.proto proto/tagger/v1/tagger.proto
+dist/buf-go: dist/tool-install proto/viam/app/v1/app.proto proto/tagger/v1/tagger.proto proto/viam/datasync/v1/data_sync.proto
 	PATH=$(PATH_WITH_TOOLS) buf lint
 	PATH=$(PATH_WITH_TOOLS) buf format -w
 	PATH=$(PATH_WITH_TOOLS) buf generate
