@@ -14,7 +14,7 @@ plugins:
       - paths=source_relative
       - generate_unbound_methods=true
   - name: doc
-    out: ../docs/proto
+    out: docs/proto
     opt:
       - html,index.html
     strategy: all
