@@ -14,37 +14,29 @@ service DataService {
 
 // QueryRequest specifies filters to get metadata from a particular component, method, robot, location, etc...
 message QueryRequest {
-  ComponentDataFilters component_data_filters = 1;
-  RobotDataFilters robot_data_filters = 2;
-
+  Filters filters = 1;
+  DataType type = 2;
   // Skips over the number of specified results.
   int32 skip = 3;
   // Limits the number of results.
   int32 limit = 4;
-
-  CaptureInterval interval = 6;
-  DataType type = 7;
-
   // Only includes the number of results rather than getting actual data.
-  bool count_only = 8;
+  bool count_only = 5;
 }
 
-message ComponentDataFilters {
+message Filters {
   string component_name = 1;
   string component_type = 2;
   string component_model = 3;
   string method = 4;
-  string tags = 5;
-}
-
-message RobotDataFilters {
-  string robot_name = 1;
-  string robot_id = 2;
-  string part_name = 3;
-  string part_id = 4;
-  CaptureInterval interval = 5;
-  string location_id = 6;
-  string org_id = 7;
+  repeated string tags = 5;
+  string robot_name = 6;
+  string robot_id = 7;
+  string part_name = 8;
+  string part_id = 9;
+  string location_id = 10;
+  string org_id = 11;
+  CaptureInterval interval = 12;
 }
 
 message CaptureInterval {
