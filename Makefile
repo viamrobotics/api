@@ -29,6 +29,7 @@ dist/buf-go: dist/tool-install proto/viam/app/v1/app.proto proto/viam/tagger/v1/
 	PATH=$(PATH_WITH_TOOLS) buf lint
 	PATH=$(PATH_WITH_TOOLS) buf format -w
 	PATH=$(PATH_WITH_TOOLS) buf generate --template ./proto/viam/buf.gen.yaml
+	PATH=$(PATH_WITH_TOOLS) buf generate --template ./proto/viam/buf.gen.tagger.yaml
 	PATH=$(PATH_WITH_TOOLS) ls app/v1/*_grpc.pb.go | while read l; do mockgen -source="$$l" -destination=app/mock_v1/mock_`basename "$$l"`; done
 	touch dist/buf-go
 
