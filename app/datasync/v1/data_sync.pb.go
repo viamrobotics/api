@@ -705,23 +705,23 @@ type TabularCapture struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Interval         *CaptureInterval      `protobuf:"bytes,1,opt,name=interval,proto3" json:"interval,omitempty"`
-	OrgId            string                `protobuf:"bytes,2,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
-	RobotId          string                `protobuf:"bytes,3,opt,name=robot_id,json=robotId,proto3" json:"robot_id,omitempty"`
-	PartId           string                `protobuf:"bytes,4,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
-	LocationId       string                `protobuf:"bytes,5,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
-	ComponentName    string                `protobuf:"bytes,6,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
-	ComponentType    string                `protobuf:"bytes,7,opt,name=component_type,json=componentType,proto3" json:"component_type,omitempty"`
-	ComponentModel   string                `protobuf:"bytes,8,opt,name=component_model,json=componentModel,proto3" json:"component_model,omitempty"`
-	MethodName       string                `protobuf:"bytes,9,opt,name=method_name,json=methodName,proto3" json:"method_name,omitempty"`
-	BlobPath         string                `protobuf:"bytes,10,opt,name=blob_path,json=blobPath,proto3" json:"blob_path,omitempty"`
-	ColumnNames      []string              `protobuf:"bytes,11,rep,name=column_names,json=columnNames,proto3" json:"column_names,omitempty"`
-	MethodParameters map[string]*anypb.Any `protobuf:"bytes,12,rep,name=method_parameters,json=methodParameters,proto3" json:"method_parameters,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	FileId           string                `protobuf:"bytes,13,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
-	Tags             []string              `protobuf:"bytes,14,rep,name=tags,proto3" json:"tags,omitempty"`
-	MessageCount     int32                 `protobuf:"varint,15,opt,name=message_count,json=messageCount,proto3" json:"message_count,omitempty"`
-	FileSizeBytes    int64                 `protobuf:"varint,16,opt,name=file_size_bytes,json=fileSizeBytes,proto3" json:"file_size_bytes,omitempty"`
-	SessionId        string                `protobuf:"bytes,17,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	Interval         *CaptureInterval      `protobuf:"bytes,1,opt,name=interval,proto3" json:"interval" bson:"interval"`
+	OrgId            string                `protobuf:"bytes,2,opt,name=org_id,json=orgId,proto3" json:"org_id" bson:"org_id"`
+	RobotId          string                `protobuf:"bytes,3,opt,name=robot_id,json=robotId,proto3" json:"robot_id" bson:"robot_id"`
+	PartId           string                `protobuf:"bytes,4,opt,name=part_id,json=partId,proto3" json:"part_id" bson:"part_id"`
+	LocationId       string                `protobuf:"bytes,5,opt,name=location_id,json=locationId,proto3" json:"location_id" bson:"location_id"`
+	ComponentName    string                `protobuf:"bytes,6,opt,name=component_name,json=componentName,proto3" json:"component_name" bson:"component_name"`
+	ComponentType    string                `protobuf:"bytes,7,opt,name=component_type,json=componentType,proto3" json:"component_type" bson:"component_type"`
+	ComponentModel   string                `protobuf:"bytes,8,opt,name=component_model,json=componentModel,proto3" json:"component_model" bson:"component_model"`
+	MethodName       string                `protobuf:"bytes,9,opt,name=method_name,json=methodName,proto3" json:"method_name" bson:"method_name"`
+	BlobPath         string                `protobuf:"bytes,10,opt,name=blob_path,json=blobPath,proto3" json:"blob_path" bson:"blob_path"`
+	ColumnNames      []string              `protobuf:"bytes,11,rep,name=column_names,json=columnNames,proto3" json:"column_names" bson:"column_names"`
+	MethodParameters map[string]*anypb.Any `protobuf:"bytes,12,rep,name=method_parameters,json=methodParameters,proto3" json:"method_parameters" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"method_parameters"`
+	FileId           string                `protobuf:"bytes,13,opt,name=file_id,json=fileId,proto3" json:"file_id" bson:"file_id"`
+	Tags             []string              `protobuf:"bytes,14,rep,name=tags,proto3" json:"tags" bson:"tags"`
+	MessageCount     int32                 `protobuf:"varint,15,opt,name=message_count,json=messageCount,proto3" json:"message_count" bson:"message_count"`
+	FileSizeBytes    int64                 `protobuf:"varint,16,opt,name=file_size_bytes,json=fileSizeBytes,proto3" json:"file_size_bytes" bson:"file_size_bytes"`
+	SessionId        string                `protobuf:"bytes,17,opt,name=session_id,json=sessionId,proto3" json:"session_id" bson:"session_id"`
 }
 
 func (x *TabularCapture) Reset() {
@@ -880,21 +880,21 @@ type BinaryCapture struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Interval         *CaptureInterval      `protobuf:"bytes,1,opt,name=interval,proto3" json:"interval,omitempty"`
-	OrgId            string                `protobuf:"bytes,2,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
-	RobotId          string                `protobuf:"bytes,3,opt,name=robot_id,json=robotId,proto3" json:"robot_id,omitempty"`
-	PartId           string                `protobuf:"bytes,4,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
-	LocationId       string                `protobuf:"bytes,5,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
-	ComponentName    string                `protobuf:"bytes,6,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
-	ComponentType    string                `protobuf:"bytes,7,opt,name=component_type,json=componentType,proto3" json:"component_type,omitempty"`
-	ComponentModel   string                `protobuf:"bytes,8,opt,name=component_model,json=componentModel,proto3" json:"component_model,omitempty"`
-	MethodName       string                `protobuf:"bytes,9,opt,name=method_name,json=methodName,proto3" json:"method_name,omitempty"`
-	BlobPath         string                `protobuf:"bytes,10,opt,name=blob_path,json=blobPath,proto3" json:"blob_path,omitempty"`
-	MethodParameters map[string]*anypb.Any `protobuf:"bytes,11,rep,name=method_parameters,json=methodParameters,proto3" json:"method_parameters,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	FileId           string                `protobuf:"bytes,12,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
-	Tags             []string              `protobuf:"bytes,13,rep,name=tags,proto3" json:"tags,omitempty"`
-	FileSizeBytes    int64                 `protobuf:"varint,14,opt,name=file_size_bytes,json=fileSizeBytes,proto3" json:"file_size_bytes,omitempty"`
-	SessionId        string                `protobuf:"bytes,15,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	Interval         *CaptureInterval      `protobuf:"bytes,1,opt,name=interval,proto3" json:"interval" bson:"interval"`
+	OrgId            string                `protobuf:"bytes,2,opt,name=org_id,json=orgId,proto3" json:"org_id" bson:"org_id"`
+	RobotId          string                `protobuf:"bytes,3,opt,name=robot_id,json=robotId,proto3" json:"robot_id" bson:"robot_id"`
+	PartId           string                `protobuf:"bytes,4,opt,name=part_id,json=partId,proto3" json:"part_id" bson:"part_id"`
+	LocationId       string                `protobuf:"bytes,5,opt,name=location_id,json=locationId,proto3" json:"location_id" bson:"location_id"`
+	ComponentName    string                `protobuf:"bytes,6,opt,name=component_name,json=componentName,proto3" json:"component_name" bson:"component_name"`
+	ComponentType    string                `protobuf:"bytes,7,opt,name=component_type,json=componentType,proto3" json:"component_type" bson:"component_type"`
+	ComponentModel   string                `protobuf:"bytes,8,opt,name=component_model,json=componentModel,proto3" json:"component_model" bson:"component_model"`
+	MethodName       string                `protobuf:"bytes,9,opt,name=method_name,json=methodName,proto3" json:"method_name" bson:"method_name"`
+	BlobPath         string                `protobuf:"bytes,10,opt,name=blob_path,json=blobPath,proto3" json:"blob_path" bson:"blob_path"`
+	MethodParameters map[string]*anypb.Any `protobuf:"bytes,11,rep,name=method_parameters,json=methodParameters,proto3" json:"method_parameters" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"method_parameters"`
+	FileId           string                `protobuf:"bytes,12,opt,name=file_id,json=fileId,proto3" json:"file_id" bson:"file_id"`
+	Tags             []string              `protobuf:"bytes,13,rep,name=tags,proto3" json:"tags" bson:"tags"`
+	FileSizeBytes    int64                 `protobuf:"varint,14,opt,name=file_size_bytes,json=fileSizeBytes,proto3" json:"file_size_bytes" bson:"file_size_bytes"`
+	SessionId        string                `protobuf:"bytes,15,opt,name=session_id,json=sessionId,proto3" json:"session_id" bson:"session_id"`
 }
 
 func (x *BinaryCapture) Reset() {
@@ -1039,15 +1039,15 @@ type UserFile struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SyncTime         *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=sync_time,json=syncTime,proto3" json:"sync_time,omitempty"`
-	OrgId            string                 `protobuf:"bytes,2,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
-	RobotId          string                 `protobuf:"bytes,3,opt,name=robot_id,json=robotId,proto3" json:"robot_id,omitempty"`
-	PartId           string                 `protobuf:"bytes,4,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
-	LocationId       string                 `protobuf:"bytes,5,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
-	BlobPath         string                 `protobuf:"bytes,6,opt,name=blob_path,json=blobPath,proto3" json:"blob_path,omitempty"`
-	MethodParameters map[string]*anypb.Any  `protobuf:"bytes,7,rep,name=method_parameters,json=methodParameters,proto3" json:"method_parameters,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	FileId           string                 `protobuf:"bytes,8,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
-	FileSizeBytes    int64                  `protobuf:"varint,9,opt,name=file_size_bytes,json=fileSizeBytes,proto3" json:"file_size_bytes,omitempty"`
+	SyncTime         *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=sync_time,json=syncTime,proto3" json:"sync_time" bson:"sync_time"`
+	OrgId            string                 `protobuf:"bytes,2,opt,name=org_id,json=orgId,proto3" json:"org_id" bson:"org_id"`
+	RobotId          string                 `protobuf:"bytes,3,opt,name=robot_id,json=robotId,proto3" json:"robot_id" bson:"robot_id"`
+	PartId           string                 `protobuf:"bytes,4,opt,name=part_id,json=partId,proto3" json:"part_id" bson:"part_id"`
+	LocationId       string                 `protobuf:"bytes,5,opt,name=location_id,json=locationId,proto3" json:"location_id" bson:"location_id"`
+	BlobPath         string                 `protobuf:"bytes,6,opt,name=blob_path,json=blobPath,proto3" json:"blob_path" bson:"blob_path"`
+	MethodParameters map[string]*anypb.Any  `protobuf:"bytes,7,rep,name=method_parameters,json=methodParameters,proto3" json:"method_parameters" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"method_parameters"`
+	FileId           string                 `protobuf:"bytes,8,opt,name=file_id,json=fileId,proto3" json:"file_id" bson:"file_id"`
+	FileSizeBytes    int64                  `protobuf:"varint,9,opt,name=file_size_bytes,json=fileSizeBytes,proto3" json:"file_size_bytes" bson:"file_size_bytes"`
 }
 
 func (x *UserFile) Reset() {
