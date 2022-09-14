@@ -15,14 +15,13 @@ service DataService {
 // QueryRequest specifies filters to get metadata from a particular component, method, robot, location, etc...
 message QueryRequest {
   Filters filters = 1;
-  CaptureInterval interval = 2;
-  DataType type = 3;
+  DataType type = 2;
   // Skips over the number of specified results.
-  int32 skip = 4;
+  int32 skip = 3;
   // Limits the number of results.
-  int32 limit = 5;
+  int32 limit = 4;
   // Only includes the number of results rather than getting actual data.
-  bool count_only = 6;
+  bool count_only = 5;
 }
 
 message Filters {
@@ -37,6 +36,7 @@ message Filters {
   string part_id = 9;
   string location_id = 10;
   string org_id = 11;
+  CaptureInterval interval = 12;
 }
 
 message CaptureInterval {
