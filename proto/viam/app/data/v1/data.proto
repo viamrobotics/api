@@ -91,7 +91,7 @@ message BinaryMetadata {
   repeated string tags = 10;
   CaptureInterval interval = 11;
   int32 file_size_bytes = 12;
-  string file_url = 13;
+  string file_id = 13;
 }
 
 message FileMetadata {
@@ -103,5 +103,5 @@ message FileMetadata {
   string part_id = 5;
   google.protobuf.Timestamp sync_time = 6;
   int32 file_size_bytes = 7;
-  string file_url = 8;
+  string file_id = 8;
 }
