@@ -52,12 +52,11 @@ message ComponentConfig {
   string name = 1;
   string namespace = 2;
   string type = 3;
-  string sub_type = 4;
-  string model = 5;
-  Frame frame = 6;
-  repeated string depends_on = 7;
-  repeated ResourceLevelServiceConfig service_configs = 8 [(tagger.v1.tags) = "json:\"service_config\""];
-  google.protobuf.Struct attributes = 9;
+  string model = 4;
+  Frame frame = 5;
+  repeated string depends_on = 6;
+  repeated ResourceLevelServiceConfig service_configs = 7 [(tagger.v1.tags) = "json:\"service_config\""];
+  google.protobuf.Struct attributes = 8;
 }
 
 // A ResourceLevelServiceConfig describes component or remote configuration for a service.
@@ -188,17 +187,16 @@ message Orientation {
 message RemoteConfig {
   string name = 1;
   string address = 2;
-  bool prefix = 3;
-  Frame frame = 4;
-  RemoteAuth auth = 5;
-  string managed_by = 6;
-  bool insecure = 7;
-  google.protobuf.Duration connection_check_interval = 8;
-  google.protobuf.Duration reconnect_interval = 9;
-  repeated ResourceLevelServiceConfig service_configs = 10 [(tagger.v1.tags) = "json:\"service_config\""];
+  Frame frame = 3;
+  RemoteAuth auth = 4;
+  string managed_by = 5;
+  bool insecure = 6;
+  google.protobuf.Duration connection_check_interval = 7;
+  google.protobuf.Duration reconnect_interval = 8;
+  repeated ResourceLevelServiceConfig service_configs = 9 [(tagger.v1.tags) = "json:\"service_config\""];
 
   // Secret is a helper for a robot location secret.
-  string secret = 11;
+  string secret = 10;
 }
 
 // RemoteAuth specifies how to authenticate against a remote. If no credentials are
