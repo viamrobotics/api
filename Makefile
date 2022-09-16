@@ -22,7 +22,7 @@ dist/tool-install: Makefile
 	mkdir -p dist
 	touch dist/tool-install
 
-dist/buf: dist/buf-go
+dist/buf: dist/buf-go dist/buf-web
 
 #TODO(steve) add all proto files to the list
 dist/buf-go: dist/tool-install proto/viam/app/v1/app.proto proto/viam/tagger/v1/tagger.proto proto/viam/app/datasync/v1/data_sync.proto
@@ -32,6 +32,12 @@ dist/buf-go: dist/tool-install proto/viam/app/v1/app.proto proto/viam/tagger/v1/
 	PATH=$(PATH_WITH_TOOLS) buf generate --template ./proto/viam/buf.gen.tagger.yaml
 	PATH=$(PATH_WITH_TOOLS) ls app/v1/*_grpc.pb.go | while read l; do mockgen -source="$$l" -destination=app/mock_v1/mock_`basename "$$l"`; done
 	touch dist/buf-go
+
+dist/buf-web: dist/tool-install
+	PATH=$(PATH_WITH_TOOLS) buf lint
+	PATH=$(PATH_WITH_TOOLS) buf format -w
+	PATH=$(PATH_WITH_TOOLS) buf generate --template ./proto/viam/buf.gen.web.yaml
+	PATH=$(PATH_WITH_TOOLS) buf generate --timeout 5m --template ./proto/viam/buf.gen.web.yaml buf.build/googleapis/googleapis
 
 lint: dist/tool-install
 	PATH=$(PATH_WITH_TOOLS) buf lint
