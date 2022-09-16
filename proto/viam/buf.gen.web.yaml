@@ -1,0 +1,15 @@
+version: v1
+plugins:
+  - name: js
+    out: gen/js
+    opt:
+      - import_style=commonjs
+  - name: grpc-web
+    out: gen/js
+    opt:
+      - import_style=commonjs
+      - mode=grpcwebtext
+  - name: ts
+    out: gen/js
+    opt:
+      - service=grpc-web
