@@ -34,12 +34,10 @@ dist/buf-go: dist/tool-install proto/viam/app/v1/app.proto proto/viam/tagger/v1/
 	touch dist/buf-go
 
 dist/buf-web: dist/tool-install
-	npm ci --audit=false
 	PATH=$(PATH_WITH_TOOLS) buf lint
 	PATH=$(PATH_WITH_TOOLS) buf format -w
 	PATH=$(PATH_WITH_TOOLS) buf generate --template ./proto/viam/buf.gen.web.yaml
 	PATH=$(PATH_WITH_TOOLS) buf generate --timeout 5m --template ./proto/viam/buf.gen.web.yaml buf.build/googleapis/googleapis
-	npm ci --audit=false --prefix gen/js
 
 lint: dist/tool-install
 	PATH=$(PATH_WITH_TOOLS) buf lint
