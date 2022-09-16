@@ -34,9 +34,14 @@ dist/buf-go: dist/tool-install proto/viam/app/v1/app.proto proto/viam/tagger/v1/
 	touch dist/buf-go
 
 dist/buf-web: dist/tool-install
+	rm -rf gen/js
 	PATH=$(PATH_WITH_TOOLS) buf lint
 	PATH=$(PATH_WITH_TOOLS) buf format -w
 	PATH=$(PATH_WITH_TOOLS) buf generate --template ./proto/viam/buf.gen.web.yaml
+	PATH=$(PATH_WITH_TOOLS) buf generate --timeout 5m --template ./proto/viam/buf.gen.web.yaml buf.build/googleapis/googleapis
+	PATH=$(PATH_WITH_TOOLS) buf generate --template ./proto/viam/buf.gen.web.yaml buf.build/erdaniels/gostream
+	mv gen/js/proto/* gen/js
+	rm -rf gen/js/proto
 
 lint: dist/tool-install
 	PATH=$(PATH_WITH_TOOLS) buf lint
