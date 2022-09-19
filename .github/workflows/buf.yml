@@ -22,8 +22,8 @@ jobs:
     container:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
-      - uses: actions/checkout@v2
-      - uses: bufbuild/buf-setup-action@v0.7.0
+      - uses: actions/checkout@v3
+      - uses: bufbuild/buf-setup-action@v1.8.0
       - uses: bufbuild/buf-push-action@v1
         with:
           input: proto/viam
@@ -37,10 +37,10 @@ jobs:
       image: ghcr.io/viamrobotics/canon:amd64
     strategy:
       matrix:
-        repo: ['viamrobotics/app']
+        repo: ['viamrobotics/app','viamrobotics/python-sdk','viamrobotics/rust-sdk']
     steps:
       - name: Notify Proto Watchers
-        uses: peter-evans/repository-dispatch@v1
+        uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.REPO_READ_TOKEN }}
           repository: ${{ matrix.repo }}
