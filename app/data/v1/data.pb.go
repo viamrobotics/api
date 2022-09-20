@@ -444,7 +444,7 @@ func (x *CaptureInterval) GetEnd() *timestamppb.Timestamp {
 	return nil
 }
 
-// TabularDataRequest requests tabular data based on filter values
+// TabularDataByFilterRequest requests tabular data based on filter values
 type TabularDataByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -500,7 +500,7 @@ func (x *TabularDataByFilterRequest) GetCountOnly() bool {
 	return false
 }
 
-// TabularDataResponse provides
+// TabularDataByFilterResponse provides the data and metadata of tabular data
 type TabularDataByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -674,13 +674,14 @@ func (x *BinaryData) GetBinary() []byte {
 	return nil
 }
 
+// BinaryDataByFilterRequest provides the data and metadata of binary (image + file) data when a filter is provided
 type BinaryDataByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	DataRequest   *DataRequest `protobuf:"bytes,1,opt,name=data_request,json=dataRequest,proto3" json:"data_request,omitempty"`
-	IncludeBinary bool         `protobuf:"varint,2,opt,name=include_binary,json=includeBinary,proto3" json:"include_binary,omitempty"` // false by default
+	IncludeBinary bool         `protobuf:"varint,2,opt,name=include_binary,json=includeBinary,proto3" json:"include_binary,omitempty"`
 	CountOnly     bool         `protobuf:"varint,3,opt,name=count_only,json=countOnly,proto3" json:"count_only,omitempty"`
 }
 
@@ -792,6 +793,7 @@ func (x *BinaryDataByFilterResponse) GetData() []*BinaryData {
 	return nil
 }
 
+// BinaryDataByFilterRequest provides the data and metadata of binary (image + file) data by file ids
 type BinaryDataByIDsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

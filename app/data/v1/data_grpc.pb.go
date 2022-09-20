@@ -18,9 +18,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataServiceClient interface {
-	// Query queries metadata based on given filters.
+	// TabularDataByFilter queries tabular data and metadata based on given filters.
 	TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (DataService_TabularDataByFilterClient, error)
-	// BinaryData is used for both images and file data
+	// BinaryData apis are used for both images and file data
 	BinaryDataByFilter(ctx context.Context, in *BinaryDataByFilterRequest, opts ...grpc.CallOption) (DataService_BinaryDataByFilterClient, error)
 	BinaryDataByIDs(ctx context.Context, in *BinaryDataByIDsRequest, opts ...grpc.CallOption) (DataService_BinaryDataByIDsClient, error)
 }
@@ -133,9 +133,9 @@ func (x *dataServiceBinaryDataByIDsClient) Recv() (*BinaryDataByIDsResponse, err
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
 type DataServiceServer interface {
-	// Query queries metadata based on given filters.
+	// TabularDataByFilter queries tabular data and metadata based on given filters.
 	TabularDataByFilter(*TabularDataByFilterRequest, DataService_TabularDataByFilterServer) error
-	// BinaryData is used for both images and file data
+	// BinaryData apis are used for both images and file data
 	BinaryDataByFilter(*BinaryDataByFilterRequest, DataService_BinaryDataByFilterServer) error
 	BinaryDataByIDs(*BinaryDataByIDsRequest, DataService_BinaryDataByIDsServer) error
 	mustEmbedUnimplementedDataServiceServer()
