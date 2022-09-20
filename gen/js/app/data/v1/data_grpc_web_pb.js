@@ -16,6 +16,10 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 
+var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js')
+
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
+
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 const proto = {};
 proto.viam = {};
@@ -78,61 +82,168 @@ proto.viam.app.data.v1.DataServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.data.v1.QueryRequest,
- *   !proto.viam.app.data.v1.QueryResponse>}
+ *   !proto.viam.app.data.v1.TabularDataByFilterRequest,
+ *   !proto.viam.app.data.v1.TabularDataByFilterResponse>}
  */
-const methodDescriptor_DataService_Query = new grpc.web.MethodDescriptor(
-  '/viam.app.data.v1.DataService/Query',
-  grpc.web.MethodType.UNARY,
-  proto.viam.app.data.v1.QueryRequest,
-  proto.viam.app.data.v1.QueryResponse,
+const methodDescriptor_DataService_TabularDataByFilter = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/TabularDataByFilter',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.viam.app.data.v1.TabularDataByFilterRequest,
+  proto.viam.app.data.v1.TabularDataByFilterResponse,
   /**
-   * @param {!proto.viam.app.data.v1.QueryRequest} request
+   * @param {!proto.viam.app.data.v1.TabularDataByFilterRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.app.data.v1.QueryResponse.deserializeBinary
+  proto.viam.app.data.v1.TabularDataByFilterResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.app.data.v1.QueryRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {!proto.viam.app.data.v1.TabularDataByFilterRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.QueryResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.QueryResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.TabularDataByFilterResponse>}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.data.v1.DataServiceClient.prototype.query =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/Query',
+proto.viam.app.data.v1.DataServiceClient.prototype.tabularDataByFilter =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.app.data.v1.DataService/TabularDataByFilter',
       request,
       metadata || {},
-      methodDescriptor_DataService_Query,
-      callback);
+      methodDescriptor_DataService_TabularDataByFilter);
 };
 
 
 /**
- * @param {!proto.viam.app.data.v1.QueryRequest} request The
- *     request proto
+ * @param {!proto.viam.app.data.v1.TabularDataByFilterRequest} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.app.data.v1.QueryResponse>}
- *     Promise that resolves to the response
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.TabularDataByFilterResponse>}
+ *     The XHR Node Readable Stream
  */
-proto.viam.app.data.v1.DataServicePromiseClient.prototype.query =
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.tabularDataByFilter =
     function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/Query',
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.app.data.v1.DataService/TabularDataByFilter',
       request,
       metadata || {},
-      methodDescriptor_DataService_Query);
+      methodDescriptor_DataService_TabularDataByFilter);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.BinaryDataByFilterRequest,
+ *   !proto.viam.app.data.v1.BinaryDataByFilterResponse>}
+ */
+const methodDescriptor_DataService_BinaryDataByFilter = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/BinaryDataByFilter',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.viam.app.data.v1.BinaryDataByFilterRequest,
+  proto.viam.app.data.v1.BinaryDataByFilterResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.BinaryDataByFilterRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.BinaryDataByFilterResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.BinaryDataByFilterRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.BinaryDataByFilterResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.binaryDataByFilter =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.app.data.v1.DataService/BinaryDataByFilter',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_BinaryDataByFilter);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.BinaryDataByFilterRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.BinaryDataByFilterResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.binaryDataByFilter =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.app.data.v1.DataService/BinaryDataByFilter',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_BinaryDataByFilter);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.BinaryDataByIDsRequest,
+ *   !proto.viam.app.data.v1.BinaryDataByIDsResponse>}
+ */
+const methodDescriptor_DataService_BinaryDataByIDs = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/BinaryDataByIDs',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.viam.app.data.v1.BinaryDataByIDsRequest,
+  proto.viam.app.data.v1.BinaryDataByIDsResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.BinaryDataByIDsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.BinaryDataByIDsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.BinaryDataByIDsRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.BinaryDataByIDsResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.binaryDataByIDs =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.app.data.v1.DataService/BinaryDataByIDs',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_BinaryDataByIDs);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.BinaryDataByIDsRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.BinaryDataByIDsResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.binaryDataByIDs =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.app.data.v1.DataService/BinaryDataByIDs',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_BinaryDataByIDs);
 };
 
 

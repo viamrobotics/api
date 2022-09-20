@@ -19,7 +19,10 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataServiceClient interface {
 	// Query queries metadata based on given filters.
-	Query(ctx context.Context, in *QueryRequest, opts ...grpc.CallOption) (*QueryResponse, error)
+	TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (DataService_TabularDataByFilterClient, error)
+	// BinaryData is used for both images and file data
+	BinaryDataByFilter(ctx context.Context, in *BinaryDataByFilterRequest, opts ...grpc.CallOption) (DataService_BinaryDataByFilterClient, error)
+	BinaryDataByIDs(ctx context.Context, in *BinaryDataByIDsRequest, opts ...grpc.CallOption) (DataService_BinaryDataByIDsClient, error)
 }
 
 type dataServiceClient struct {
@@ -30,13 +33,100 @@ func NewDataServiceClient(cc grpc.ClientConnInterface) DataServiceClient {
 	return &dataServiceClient{cc}
 }
 
-func (c *dataServiceClient) Query(ctx context.Context, in *QueryRequest, opts ...grpc.CallOption) (*QueryResponse, error) {
-	out := new(QueryResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/Query", in, out, opts...)
+func (c *dataServiceClient) TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (DataService_TabularDataByFilterClient, error) {
+	stream, err := c.cc.NewStream(ctx, &DataService_ServiceDesc.Streams[0], "/viam.app.data.v1.DataService/TabularDataByFilter", opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &dataServiceTabularDataByFilterClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type DataService_TabularDataByFilterClient interface {
+	Recv() (*TabularDataByFilterResponse, error)
+	grpc.ClientStream
+}
+
+type dataServiceTabularDataByFilterClient struct {
+	grpc.ClientStream
+}
+
+func (x *dataServiceTabularDataByFilterClient) Recv() (*TabularDataByFilterResponse, error) {
+	m := new(TabularDataByFilterResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *dataServiceClient) BinaryDataByFilter(ctx context.Context, in *BinaryDataByFilterRequest, opts ...grpc.CallOption) (DataService_BinaryDataByFilterClient, error) {
+	stream, err := c.cc.NewStream(ctx, &DataService_ServiceDesc.Streams[1], "/viam.app.data.v1.DataService/BinaryDataByFilter", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &dataServiceBinaryDataByFilterClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type DataService_BinaryDataByFilterClient interface {
+	Recv() (*BinaryDataByFilterResponse, error)
+	grpc.ClientStream
+}
+
+type dataServiceBinaryDataByFilterClient struct {
+	grpc.ClientStream
+}
+
+func (x *dataServiceBinaryDataByFilterClient) Recv() (*BinaryDataByFilterResponse, error) {
+	m := new(BinaryDataByFilterResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *dataServiceClient) BinaryDataByIDs(ctx context.Context, in *BinaryDataByIDsRequest, opts ...grpc.CallOption) (DataService_BinaryDataByIDsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &DataService_ServiceDesc.Streams[2], "/viam.app.data.v1.DataService/BinaryDataByIDs", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &dataServiceBinaryDataByIDsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type DataService_BinaryDataByIDsClient interface {
+	Recv() (*BinaryDataByIDsResponse, error)
+	grpc.ClientStream
+}
+
+type dataServiceBinaryDataByIDsClient struct {
+	grpc.ClientStream
+}
+
+func (x *dataServiceBinaryDataByIDsClient) Recv() (*BinaryDataByIDsResponse, error) {
+	m := new(BinaryDataByIDsResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 // DataServiceServer is the server API for DataService service.
@@ -44,7 +134,10 @@ func (c *dataServiceClient) Query(ctx context.Context, in *QueryRequest, opts ..
 // for forward compatibility
 type DataServiceServer interface {
 	// Query queries metadata based on given filters.
-	Query(context.Context, *QueryRequest) (*QueryResponse, error)
+	TabularDataByFilter(*TabularDataByFilterRequest, DataService_TabularDataByFilterServer) error
+	// BinaryData is used for both images and file data
+	BinaryDataByFilter(*BinaryDataByFilterRequest, DataService_BinaryDataByFilterServer) error
+	BinaryDataByIDs(*BinaryDataByIDsRequest, DataService_BinaryDataByIDsServer) error
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -52,8 +145,14 @@ type DataServiceServer interface {
 type UnimplementedDataServiceServer struct {
 }
 
-func (UnimplementedDataServiceServer) Query(context.Context, *QueryRequest) (*QueryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Query not implemented")
+func (UnimplementedDataServiceServer) TabularDataByFilter(*TabularDataByFilterRequest, DataService_TabularDataByFilterServer) error {
+	return status.Errorf(codes.Unimplemented, "method TabularDataByFilter not implemented")
+}
+func (UnimplementedDataServiceServer) BinaryDataByFilter(*BinaryDataByFilterRequest, DataService_BinaryDataByFilterServer) error {
+	return status.Errorf(codes.Unimplemented, "method BinaryDataByFilter not implemented")
+}
+func (UnimplementedDataServiceServer) BinaryDataByIDs(*BinaryDataByIDsRequest, DataService_BinaryDataByIDsServer) error {
+	return status.Errorf(codes.Unimplemented, "method BinaryDataByIDs not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -68,22 +167,67 @@ func RegisterDataServiceServer(s grpc.ServiceRegistrar, srv DataServiceServer) {
 	s.RegisterService(&DataService_ServiceDesc, srv)
 }
 
-func _DataService_Query_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
+func _DataService_TabularDataByFilter_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(TabularDataByFilterRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(DataServiceServer).Query(ctx, in)
+	return srv.(DataServiceServer).TabularDataByFilter(m, &dataServiceTabularDataByFilterServer{stream})
+}
+
+type DataService_TabularDataByFilterServer interface {
+	Send(*TabularDataByFilterResponse) error
+	grpc.ServerStream
+}
+
+type dataServiceTabularDataByFilterServer struct {
+	grpc.ServerStream
+}
+
+func (x *dataServiceTabularDataByFilterServer) Send(m *TabularDataByFilterResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _DataService_BinaryDataByFilter_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(BinaryDataByFilterRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/Query",
+	return srv.(DataServiceServer).BinaryDataByFilter(m, &dataServiceBinaryDataByFilterServer{stream})
+}
+
+type DataService_BinaryDataByFilterServer interface {
+	Send(*BinaryDataByFilterResponse) error
+	grpc.ServerStream
+}
+
+type dataServiceBinaryDataByFilterServer struct {
+	grpc.ServerStream
+}
+
+func (x *dataServiceBinaryDataByFilterServer) Send(m *BinaryDataByFilterResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _DataService_BinaryDataByIDs_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(BinaryDataByIDsRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).Query(ctx, req.(*QueryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(DataServiceServer).BinaryDataByIDs(m, &dataServiceBinaryDataByIDsServer{stream})
+}
+
+type DataService_BinaryDataByIDsServer interface {
+	Send(*BinaryDataByIDsResponse) error
+	grpc.ServerStream
+}
+
+type dataServiceBinaryDataByIDsServer struct {
+	grpc.ServerStream
+}
+
+func (x *dataServiceBinaryDataByIDsServer) Send(m *BinaryDataByIDsResponse) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
@@ -92,12 +236,23 @@ func _DataService_Query_Handler(srv interface{}, ctx context.Context, dec func(i
 var DataService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "viam.app.data.v1.DataService",
 	HandlerType: (*DataServiceServer)(nil),
-	Methods: []grpc.MethodDesc{
+	Methods:     []grpc.MethodDesc{},
+	Streams: []grpc.StreamDesc{
 		{
-			MethodName: "Query",
-			Handler:    _DataService_Query_Handler,
+			StreamName:    "TabularDataByFilter",
+			Handler:       _DataService_TabularDataByFilter_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "BinaryDataByFilter",
+			Handler:       _DataService_BinaryDataByFilter_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "BinaryDataByIDs",
+			Handler:       _DataService_BinaryDataByIDs_Handler,
+			ServerStreams: true,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
 	Metadata: "app/data/v1/data.proto",
 }
