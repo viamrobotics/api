@@ -229,6 +229,7 @@ func (x *Filter) GetInterval() *CaptureInterval {
 	return nil
 }
 
+// CaptureMetadata contains information on the settings used for the data capture
 type CaptureMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
