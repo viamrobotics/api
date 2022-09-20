@@ -2128,7 +2128,7 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.deserializeBinaryFromReader =
       msg.addData(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {number} */ (reader.readInt64());
       msg.setCount(value);
       break;
     default:
@@ -2178,7 +2178,7 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.serializeBinaryToWriter = fun
   }
   f = message.getCount();
   if (f !== 0) {
-    writer.writeInt32(
+    writer.writeInt64(
       3,
       f
     );
@@ -2263,7 +2263,7 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.clearDataList = fun
 
 
 /**
- * optional int32 count = 3;
+ * optional int64 count = 3;
  * @return {number}
  */
 proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.getCount = function() {
@@ -2947,7 +2947,7 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.deserializeBinaryFromReader = 
       msg.addData(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {number} */ (reader.readInt64());
       msg.setCount(value);
       break;
     default:
@@ -2997,7 +2997,7 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.serializeBinaryToWriter = func
   }
   f = message.getCount();
   if (f !== 0) {
-    writer.writeInt32(
+    writer.writeInt64(
       3,
       f
     );
@@ -3082,7 +3082,7 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.clearDataList = func
 
 
 /**
- * optional int32 count = 3;
+ * optional int64 count = 3;
  * @return {number}
  */
 proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.getCount = function() {
@@ -3376,7 +3376,7 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.deserializeBinaryFromReader = fun
       msg.addData(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {number} */ (reader.readInt64());
       msg.setCount(value);
       break;
     default:
@@ -3426,7 +3426,7 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.serializeBinaryToWriter = functio
   }
   f = message.getCount();
   if (f !== 0) {
-    writer.writeInt32(
+    writer.writeInt64(
       3,
       f
     );
@@ -3511,7 +3511,7 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.clearDataList = functio
 
 
 /**
- * optional int32 count = 3;
+ * optional int64 count = 3;
  * @return {number}
  */
 proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.getCount = function() {
