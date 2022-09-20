@@ -2,29 +2,31 @@ syntax = "proto3";
 
 package viam.app.data.v1;
 
+import "google/protobuf/any.proto";
+import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/app/data/v1";
 
 // DataService is used to query robot data.
 service DataService {
-  // Query queries metadata based on given filters.
-  rpc Query(viam.app.data.v1.QueryRequest) returns (viam.app.data.v1.QueryResponse);
+  // TabularDataByFilter queries tabular data and metadata based on given filters.
+  rpc TabularDataByFilter(TabularDataByFilterRequest) returns (stream TabularDataByFilterResponse);
+
+  // BinaryDataByFilter queries binary data and metadata based on given filters.
+  rpc BinaryDataByFilter(BinaryDataByFilterRequest) returns (stream BinaryDataByFilterResponse);
+
+  // BinaryDataByIDs queries binary data and metadata based on given IDs.
+  rpc BinaryDataByIDs(BinaryDataByIDsRequest) returns (stream BinaryDataByIDsResponse);
 }
 
-// QueryRequest specifies filters to get metadata from a particular component, method, robot, location, etc...
-message QueryRequest {
-  Filters filters = 1;
-  DataType type = 2;
-  // Skips over the number of specified results.
-  int32 skip = 3;
-  // Limits the number of results.
-  int32 limit = 4;
-  // Only includes the number of results rather than getting actual data.
-  bool count_only = 5;
+message DataRequest {
+  Filter filter = 1;
+  int32 skip = 2;
+  int32 limit = 3;
 }
 
-message Filters {
+message Filter {
   string component_name = 1;
   string component_type = 2;
   string component_model = 3;
@@ -36,72 +38,81 @@ message Filters {
   string part_id = 9;
   string location_id = 10;
   string org_id = 11;
-  CaptureInterval interval = 12;
+  string mime_type = 12;
+  CaptureInterval interval = 13;
 }
 
+// CaptureMetadata contains information on the settings used for the data capture
+message CaptureMetadata {
+  string location_id = 1;
+  string robot_name = 2;
+  string robot_id = 3;
+  string part_name = 4;
+  string part_id = 5;
+  string component_type = 6;
+  string component_model = 7;
+  string component_name = 8;
+  string method_name = 9;
+  map<string, google.protobuf.Any> method_parameters = 10;
+  repeated string tags = 11;
+  google.protobuf.Timestamp time_requested = 12;
+  google.protobuf.Timestamp time_received = 13;
+  string mime_type = 14;
+  string file_id = 15;
+}
+
+// CaptureInterval describes the start and end time of the capture in this file
 message CaptureInterval {
   google.protobuf.Timestamp start = 1;
   google.protobuf.Timestamp end = 2;
 }
 
-enum DataType {
-  DATA_TYPE_UNSPECIFIED = 0;
-  DATA_TYPE_BINARY_SENSOR = 1;
-  DATA_TYPE_TABULAR_SENSOR = 2;
-  DATA_TYPE_FILE = 3;
+// TabularDataByFilterRequest requests tabular data based on filter values
+message TabularDataByFilterRequest {
+  DataRequest data_request = 1;
+  bool count_only = 2;
 }
 
-message QueryResponse {
-  repeated TabularMetadata tabular = 1;
-  repeated BinaryMetadata binary = 2;
-  repeated FileMetadata file = 3;
-  int32 tabular_count = 4;
-  int32 binary_count = 5;
-  int32 file_count = 6;
+// TabularDataByFilterResponse provides the data and metadata of tabular data
+message TabularDataByFilterResponse {
+  repeated CaptureMetadata metadata = 1;
+  repeated TabularData data = 2;
+  int64 count = 3;
 }
 
-message TabularMetadata {
-  // Result id.
+message TabularData {
+  google.protobuf.Struct data = 1;
+}
+
+message BinaryData {
   string id = 1;
-  string robot_name = 2;
-  string robot_id = 3;
-  string part_name = 4;
-  string part_id = 5;
-  string component_name = 6;
-  string component_type = 7;
-  string component_model = 8;
-  string method = 9;
-  repeated string tags = 10;
-  CaptureInterval interval = 11;
-  int32 file_size_bytes = 12;
-  int32 num_readings = 13;
+  string uri = 2;
+  bytes binary = 3;
 }
 
-message BinaryMetadata {
-  // Result id.
-  string id = 1;
-  string robot_name = 2;
-  string robot_id = 3;
-  string part_name = 4;
-  string part_id = 5;
-  string component_name = 6;
-  string component_type = 7;
-  string component_model = 8;
-  string method = 9;
-  repeated string tags = 10;
-  CaptureInterval interval = 11;
-  int32 file_size_bytes = 12;
-  string file_id = 13;
+// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when by filter
+message BinaryDataByFilterRequest {
+  DataRequest data_request = 1;
+  bool include_binary = 2;
+  bool count_only = 3;
 }
 
-message FileMetadata {
-  // Result id.
-  string id = 1;
-  string robot_name = 2;
-  string robot_id = 3;
-  string part_name = 4;
-  string part_id = 5;
-  google.protobuf.Timestamp sync_time = 6;
-  int32 file_size_bytes = 7;
-  string file_id = 8;
+// BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided
+message BinaryDataByFilterResponse {
+  repeated CaptureMetadata metadata = 1;
+  repeated BinaryData data = 2;
+  int64 count = 3;
+}
+
+// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by file ids
+message BinaryDataByIDsRequest {
+  repeated string file_ids = 1;
+  bool include_binary = 2; // by default
+}
+
+// BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided
+message BinaryDataByIDsResponse {
+  repeated CaptureMetadata metadata = 1;
+  repeated BinaryData data = 2;
+  int64 count = 3;
 }
