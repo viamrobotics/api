@@ -13,6 +13,7 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.0
 	github.com/pseudomuto/protoc-gen-doc v1.3.2
 	github.com/srikrsna/protoc-gen-gotag v0.6.2
+	google.golang.org/genproto v0.0.0-20220914142337-ca0e39ece12f
 	google.golang.org/grpc v1.48.0
 	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.1.0
 	google.golang.org/protobuf v1.28.1
@@ -206,5 +207,4 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/rs/cors v1.8.2 // indirect
 	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4 // indirect
-	google.golang.org/genproto v0.0.0-20220914142337-ca0e39ece12f // indirect
 )

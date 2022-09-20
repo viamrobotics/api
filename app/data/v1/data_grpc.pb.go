@@ -20,8 +20,9 @@ const _ = grpc.SupportPackageIsVersion7
 type DataServiceClient interface {
 	// TabularDataByFilter queries tabular data and metadata based on given filters.
 	TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (DataService_TabularDataByFilterClient, error)
-	// BinaryData apis are used for both images and file data
+	// BinaryDataByFilter queries binary data and metadata based on given filters.
 	BinaryDataByFilter(ctx context.Context, in *BinaryDataByFilterRequest, opts ...grpc.CallOption) (DataService_BinaryDataByFilterClient, error)
+	// BinaryDataByIDs queries binary data and metadata based on given IDs.
 	BinaryDataByIDs(ctx context.Context, in *BinaryDataByIDsRequest, opts ...grpc.CallOption) (DataService_BinaryDataByIDsClient, error)
 }
 
@@ -135,8 +136,9 @@ func (x *dataServiceBinaryDataByIDsClient) Recv() (*BinaryDataByIDsResponse, err
 type DataServiceServer interface {
 	// TabularDataByFilter queries tabular data and metadata based on given filters.
 	TabularDataByFilter(*TabularDataByFilterRequest, DataService_TabularDataByFilterServer) error
-	// BinaryData apis are used for both images and file data
+	// BinaryDataByFilter queries binary data and metadata based on given filters.
 	BinaryDataByFilter(*BinaryDataByFilterRequest, DataService_BinaryDataByFilterServer) error
+	// BinaryDataByIDs queries binary data and metadata based on given IDs.
 	BinaryDataByIDs(*BinaryDataByIDsRequest, DataService_BinaryDataByIDsServer) error
 	mustEmbedUnimplementedDataServiceServer()
 }
