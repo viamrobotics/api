@@ -98,6 +98,7 @@ message BinaryDataByFilterRequest {
 message BinaryDataByFilterResponse {
   repeated CaptureMetadata metadata = 1;
   repeated BinaryData data = 2;
+  int32 count = 3;
 }
 
 // BinaryDataByFilterRequest provides the data and metadata of binary (image + file) data by file ids
@@ -109,4 +110,5 @@ message BinaryDataByIDsRequest {
 message BinaryDataByIDsResponse {
   repeated CaptureMetadata metadata = 1;
   repeated BinaryData data = 2;
+  int32 count = 3;
 }

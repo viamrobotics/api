@@ -368,6 +368,9 @@ export class BinaryDataByFilterResponse extends jspb.Message {
   setDataList(value: Array<BinaryData>): void;
   addData(value?: BinaryData, index?: number): BinaryData;
 
+  getCount(): number;
+  setCount(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataByFilterResponse.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryDataByFilterResponse): BinaryDataByFilterResponse.AsObject;
@@ -382,6 +385,7 @@ export namespace BinaryDataByFilterResponse {
   export type AsObject = {
     metadataList: Array<CaptureMetadata.AsObject>,
     dataList: Array<BinaryData.AsObject>,
+    count: number,
   }
 }
 
@@ -422,6 +426,9 @@ export class BinaryDataByIDsResponse extends jspb.Message {
   setDataList(value: Array<BinaryData>): void;
   addData(value?: BinaryData, index?: number): BinaryData;
 
+  getCount(): number;
+  setCount(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataByIDsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryDataByIDsResponse): BinaryDataByIDsResponse.AsObject;
@@ -436,6 +443,7 @@ export namespace BinaryDataByIDsResponse {
   export type AsObject = {
     metadataList: Array<CaptureMetadata.AsObject>,
     dataList: Array<BinaryData.AsObject>,
+    count: number,
   }
 }
 
