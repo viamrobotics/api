@@ -4,18 +4,38 @@
 import * as app_data_v1_data_pb from "../../../app/data/v1/data_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type DataServiceQuery = {
+type DataServiceTabularDataByFilter = {
   readonly methodName: string;
   readonly service: typeof DataService;
   readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof app_data_v1_data_pb.QueryRequest;
-  readonly responseType: typeof app_data_v1_data_pb.QueryResponse;
+  readonly responseStream: true;
+  readonly requestType: typeof app_data_v1_data_pb.TabularDataByFilterRequest;
+  readonly responseType: typeof app_data_v1_data_pb.TabularDataByFilterResponse;
+};
+
+type DataServiceBinaryDataByFilter = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof app_data_v1_data_pb.BinaryDataByFilterRequest;
+  readonly responseType: typeof app_data_v1_data_pb.BinaryDataByFilterResponse;
+};
+
+type DataServiceBinaryDataByIDs = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof app_data_v1_data_pb.BinaryDataByIDsRequest;
+  readonly responseType: typeof app_data_v1_data_pb.BinaryDataByIDsResponse;
 };
 
 export class DataService {
   static readonly serviceName: string;
-  static readonly Query: DataServiceQuery;
+  static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
+  static readonly BinaryDataByFilter: DataServiceBinaryDataByFilter;
+  static readonly BinaryDataByIDs: DataServiceBinaryDataByIDs;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -50,14 +70,8 @@ export class DataServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  query(
-    requestMessage: app_data_v1_data_pb.QueryRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.QueryResponse|null) => void
-  ): UnaryResponse;
-  query(
-    requestMessage: app_data_v1_data_pb.QueryRequest,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.QueryResponse|null) => void
-  ): UnaryResponse;
+  tabularDataByFilter(requestMessage: app_data_v1_data_pb.TabularDataByFilterRequest, metadata?: grpc.Metadata): ResponseStream<app_data_v1_data_pb.TabularDataByFilterResponse>;
+  binaryDataByFilter(requestMessage: app_data_v1_data_pb.BinaryDataByFilterRequest, metadata?: grpc.Metadata): ResponseStream<app_data_v1_data_pb.BinaryDataByFilterResponse>;
+  binaryDataByIDs(requestMessage: app_data_v1_data_pb.BinaryDataByIDsRequest, metadata?: grpc.Metadata): ResponseStream<app_data_v1_data_pb.BinaryDataByIDsResponse>;
 }
 

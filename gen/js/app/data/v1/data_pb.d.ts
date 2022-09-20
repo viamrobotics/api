@@ -2,16 +2,15 @@
 // file: app/data/v1/data.proto
 
 import * as jspb from "google-protobuf";
+import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
-export class QueryRequest extends jspb.Message {
-  hasFilters(): boolean;
-  clearFilters(): void;
-  getFilters(): Filters | undefined;
-  setFilters(value?: Filters): void;
-
-  getType(): DataTypeMap[keyof DataTypeMap];
-  setType(value: DataTypeMap[keyof DataTypeMap]): void;
+export class DataRequest extends jspb.Message {
+  hasFilter(): boolean;
+  clearFilter(): void;
+  getFilter(): Filter | undefined;
+  setFilter(value?: Filter): void;
 
   getSkip(): number;
   setSkip(value: number): void;
@@ -19,30 +18,25 @@ export class QueryRequest extends jspb.Message {
   getLimit(): number;
   setLimit(value: number): void;
 
-  getCountOnly(): boolean;
-  setCountOnly(value: boolean): void;
-
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): QueryRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: QueryRequest): QueryRequest.AsObject;
+  toObject(includeInstance?: boolean): DataRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DataRequest): DataRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: QueryRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): QueryRequest;
-  static deserializeBinaryFromReader(message: QueryRequest, reader: jspb.BinaryReader): QueryRequest;
+  static serializeBinaryToWriter(message: DataRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DataRequest;
+  static deserializeBinaryFromReader(message: DataRequest, reader: jspb.BinaryReader): DataRequest;
 }
 
-export namespace QueryRequest {
+export namespace DataRequest {
   export type AsObject = {
-    filters?: Filters.AsObject,
-    type: DataTypeMap[keyof DataTypeMap],
+    filter?: Filter.AsObject,
     skip: number,
     limit: number,
-    countOnly: boolean,
   }
 }
 
-export class Filters extends jspb.Message {
+export class Filter extends jspb.Message {
   getComponentName(): string;
   setComponentName(value: string): void;
 
@@ -78,22 +72,25 @@ export class Filters extends jspb.Message {
   getOrgId(): string;
   setOrgId(value: string): void;
 
+  getMimeType(): string;
+  setMimeType(value: string): void;
+
   hasInterval(): boolean;
   clearInterval(): void;
   getInterval(): CaptureInterval | undefined;
   setInterval(value?: CaptureInterval): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Filters.AsObject;
-  static toObject(includeInstance: boolean, msg: Filters): Filters.AsObject;
+  toObject(includeInstance?: boolean): Filter.AsObject;
+  static toObject(includeInstance: boolean, msg: Filter): Filter.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Filters, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Filters;
-  static deserializeBinaryFromReader(message: Filters, reader: jspb.BinaryReader): Filters;
+  static serializeBinaryToWriter(message: Filter, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Filter;
+  static deserializeBinaryFromReader(message: Filter, reader: jspb.BinaryReader): Filter;
 }
 
-export namespace Filters {
+export namespace Filter {
   export type AsObject = {
     componentName: string,
     componentType: string,
@@ -106,7 +103,89 @@ export namespace Filters {
     partId: string,
     locationId: string,
     orgId: string,
+    mimeType: string,
     interval?: CaptureInterval.AsObject,
+  }
+}
+
+export class CaptureMetadata extends jspb.Message {
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  getRobotName(): string;
+  setRobotName(value: string): void;
+
+  getRobotId(): string;
+  setRobotId(value: string): void;
+
+  getPartName(): string;
+  setPartName(value: string): void;
+
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  getComponentType(): string;
+  setComponentType(value: string): void;
+
+  getComponentModel(): string;
+  setComponentModel(value: string): void;
+
+  getComponentName(): string;
+  setComponentName(value: string): void;
+
+  getMethodName(): string;
+  setMethodName(value: string): void;
+
+  getMethodParametersMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
+  clearMethodParametersMap(): void;
+  clearTagsList(): void;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): void;
+  addTags(value: string, index?: number): string;
+
+  hasTimeRequested(): boolean;
+  clearTimeRequested(): void;
+  getTimeRequested(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeRequested(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasTimeReceived(): boolean;
+  clearTimeReceived(): void;
+  getTimeReceived(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeReceived(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getMimeType(): string;
+  setMimeType(value: string): void;
+
+  getFileId(): string;
+  setFileId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CaptureMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: CaptureMetadata): CaptureMetadata.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CaptureMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CaptureMetadata;
+  static deserializeBinaryFromReader(message: CaptureMetadata, reader: jspb.BinaryReader): CaptureMetadata;
+}
+
+export namespace CaptureMetadata {
+  export type AsObject = {
+    locationId: string,
+    robotName: string,
+    robotId: string,
+    partName: string,
+    partId: string,
+    componentType: string,
+    componentModel: string,
+    componentName: string,
+    methodName: string,
+    methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    tagsList: Array<string>,
+    timeRequested?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    timeReceived?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    mimeType: string,
+    fileId: string,
   }
 }
 
@@ -138,252 +217,233 @@ export namespace CaptureInterval {
   }
 }
 
-export class QueryResponse extends jspb.Message {
-  clearTabularList(): void;
-  getTabularList(): Array<TabularMetadata>;
-  setTabularList(value: Array<TabularMetadata>): void;
-  addTabular(value?: TabularMetadata, index?: number): TabularMetadata;
+export class TabularDataByFilterRequest extends jspb.Message {
+  hasDataRequest(): boolean;
+  clearDataRequest(): void;
+  getDataRequest(): DataRequest | undefined;
+  setDataRequest(value?: DataRequest): void;
 
-  clearBinaryList(): void;
-  getBinaryList(): Array<BinaryMetadata>;
-  setBinaryList(value: Array<BinaryMetadata>): void;
-  addBinary(value?: BinaryMetadata, index?: number): BinaryMetadata;
-
-  clearFileList(): void;
-  getFileList(): Array<FileMetadata>;
-  setFileList(value: Array<FileMetadata>): void;
-  addFile(value?: FileMetadata, index?: number): FileMetadata;
-
-  getTabularCount(): number;
-  setTabularCount(value: number): void;
-
-  getBinaryCount(): number;
-  setBinaryCount(value: number): void;
-
-  getFileCount(): number;
-  setFileCount(value: number): void;
+  getCountOnly(): boolean;
+  setCountOnly(value: boolean): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): QueryResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: QueryResponse): QueryResponse.AsObject;
+  toObject(includeInstance?: boolean): TabularDataByFilterRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TabularDataByFilterRequest): TabularDataByFilterRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: QueryResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): QueryResponse;
-  static deserializeBinaryFromReader(message: QueryResponse, reader: jspb.BinaryReader): QueryResponse;
+  static serializeBinaryToWriter(message: TabularDataByFilterRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TabularDataByFilterRequest;
+  static deserializeBinaryFromReader(message: TabularDataByFilterRequest, reader: jspb.BinaryReader): TabularDataByFilterRequest;
 }
 
-export namespace QueryResponse {
+export namespace TabularDataByFilterRequest {
   export type AsObject = {
-    tabularList: Array<TabularMetadata.AsObject>,
-    binaryList: Array<BinaryMetadata.AsObject>,
-    fileList: Array<FileMetadata.AsObject>,
-    tabularCount: number,
-    binaryCount: number,
-    fileCount: number,
+    dataRequest?: DataRequest.AsObject,
+    countOnly: boolean,
   }
 }
 
-export class TabularMetadata extends jspb.Message {
+export class TabularDataByFilterResponse extends jspb.Message {
+  clearMetadataList(): void;
+  getMetadataList(): Array<CaptureMetadata>;
+  setMetadataList(value: Array<CaptureMetadata>): void;
+  addMetadata(value?: CaptureMetadata, index?: number): CaptureMetadata;
+
+  clearDataList(): void;
+  getDataList(): Array<TabularData>;
+  setDataList(value: Array<TabularData>): void;
+  addData(value?: TabularData, index?: number): TabularData;
+
+  getCount(): number;
+  setCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TabularDataByFilterResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TabularDataByFilterResponse): TabularDataByFilterResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TabularDataByFilterResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TabularDataByFilterResponse;
+  static deserializeBinaryFromReader(message: TabularDataByFilterResponse, reader: jspb.BinaryReader): TabularDataByFilterResponse;
+}
+
+export namespace TabularDataByFilterResponse {
+  export type AsObject = {
+    metadataList: Array<CaptureMetadata.AsObject>,
+    dataList: Array<TabularData.AsObject>,
+    count: number,
+  }
+}
+
+export class TabularData extends jspb.Message {
+  hasData(): boolean;
+  clearData(): void;
+  getData(): google_protobuf_struct_pb.Struct | undefined;
+  setData(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TabularData.AsObject;
+  static toObject(includeInstance: boolean, msg: TabularData): TabularData.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TabularData, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TabularData;
+  static deserializeBinaryFromReader(message: TabularData, reader: jspb.BinaryReader): TabularData;
+}
+
+export namespace TabularData {
+  export type AsObject = {
+    data?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class BinaryData extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  getRobotName(): string;
-  setRobotName(value: string): void;
+  getUri(): string;
+  setUri(value: string): void;
 
-  getRobotId(): string;
-  setRobotId(value: string): void;
-
-  getPartName(): string;
-  setPartName(value: string): void;
-
-  getPartId(): string;
-  setPartId(value: string): void;
-
-  getComponentName(): string;
-  setComponentName(value: string): void;
-
-  getComponentType(): string;
-  setComponentType(value: string): void;
-
-  getComponentModel(): string;
-  setComponentModel(value: string): void;
-
-  getMethod(): string;
-  setMethod(value: string): void;
-
-  clearTagsList(): void;
-  getTagsList(): Array<string>;
-  setTagsList(value: Array<string>): void;
-  addTags(value: string, index?: number): string;
-
-  hasInterval(): boolean;
-  clearInterval(): void;
-  getInterval(): CaptureInterval | undefined;
-  setInterval(value?: CaptureInterval): void;
-
-  getFileSizeBytes(): number;
-  setFileSizeBytes(value: number): void;
-
-  getNumReadings(): number;
-  setNumReadings(value: number): void;
+  getBinary(): Uint8Array | string;
+  getBinary_asU8(): Uint8Array;
+  getBinary_asB64(): string;
+  setBinary(value: Uint8Array | string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TabularMetadata.AsObject;
-  static toObject(includeInstance: boolean, msg: TabularMetadata): TabularMetadata.AsObject;
+  toObject(includeInstance?: boolean): BinaryData.AsObject;
+  static toObject(includeInstance: boolean, msg: BinaryData): BinaryData.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TabularMetadata, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TabularMetadata;
-  static deserializeBinaryFromReader(message: TabularMetadata, reader: jspb.BinaryReader): TabularMetadata;
+  static serializeBinaryToWriter(message: BinaryData, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BinaryData;
+  static deserializeBinaryFromReader(message: BinaryData, reader: jspb.BinaryReader): BinaryData;
 }
 
-export namespace TabularMetadata {
+export namespace BinaryData {
   export type AsObject = {
     id: string,
-    robotName: string,
-    robotId: string,
-    partName: string,
-    partId: string,
-    componentName: string,
-    componentType: string,
-    componentModel: string,
-    method: string,
-    tagsList: Array<string>,
-    interval?: CaptureInterval.AsObject,
-    fileSizeBytes: number,
-    numReadings: number,
+    uri: string,
+    binary: Uint8Array | string,
   }
 }
 
-export class BinaryMetadata extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
+export class BinaryDataByFilterRequest extends jspb.Message {
+  hasDataRequest(): boolean;
+  clearDataRequest(): void;
+  getDataRequest(): DataRequest | undefined;
+  setDataRequest(value?: DataRequest): void;
 
-  getRobotName(): string;
-  setRobotName(value: string): void;
+  getIncludeBinary(): boolean;
+  setIncludeBinary(value: boolean): void;
 
-  getRobotId(): string;
-  setRobotId(value: string): void;
-
-  getPartName(): string;
-  setPartName(value: string): void;
-
-  getPartId(): string;
-  setPartId(value: string): void;
-
-  getComponentName(): string;
-  setComponentName(value: string): void;
-
-  getComponentType(): string;
-  setComponentType(value: string): void;
-
-  getComponentModel(): string;
-  setComponentModel(value: string): void;
-
-  getMethod(): string;
-  setMethod(value: string): void;
-
-  clearTagsList(): void;
-  getTagsList(): Array<string>;
-  setTagsList(value: Array<string>): void;
-  addTags(value: string, index?: number): string;
-
-  hasInterval(): boolean;
-  clearInterval(): void;
-  getInterval(): CaptureInterval | undefined;
-  setInterval(value?: CaptureInterval): void;
-
-  getFileSizeBytes(): number;
-  setFileSizeBytes(value: number): void;
-
-  getFileId(): string;
-  setFileId(value: string): void;
+  getCountOnly(): boolean;
+  setCountOnly(value: boolean): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BinaryMetadata.AsObject;
-  static toObject(includeInstance: boolean, msg: BinaryMetadata): BinaryMetadata.AsObject;
+  toObject(includeInstance?: boolean): BinaryDataByFilterRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: BinaryDataByFilterRequest): BinaryDataByFilterRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: BinaryMetadata, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BinaryMetadata;
-  static deserializeBinaryFromReader(message: BinaryMetadata, reader: jspb.BinaryReader): BinaryMetadata;
+  static serializeBinaryToWriter(message: BinaryDataByFilterRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BinaryDataByFilterRequest;
+  static deserializeBinaryFromReader(message: BinaryDataByFilterRequest, reader: jspb.BinaryReader): BinaryDataByFilterRequest;
 }
 
-export namespace BinaryMetadata {
+export namespace BinaryDataByFilterRequest {
   export type AsObject = {
-    id: string,
-    robotName: string,
-    robotId: string,
-    partName: string,
-    partId: string,
-    componentName: string,
-    componentType: string,
-    componentModel: string,
-    method: string,
-    tagsList: Array<string>,
-    interval?: CaptureInterval.AsObject,
-    fileSizeBytes: number,
-    fileId: string,
+    dataRequest?: DataRequest.AsObject,
+    includeBinary: boolean,
+    countOnly: boolean,
   }
 }
 
-export class FileMetadata extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
+export class BinaryDataByFilterResponse extends jspb.Message {
+  clearMetadataList(): void;
+  getMetadataList(): Array<CaptureMetadata>;
+  setMetadataList(value: Array<CaptureMetadata>): void;
+  addMetadata(value?: CaptureMetadata, index?: number): CaptureMetadata;
 
-  getRobotName(): string;
-  setRobotName(value: string): void;
+  clearDataList(): void;
+  getDataList(): Array<BinaryData>;
+  setDataList(value: Array<BinaryData>): void;
+  addData(value?: BinaryData, index?: number): BinaryData;
 
-  getRobotId(): string;
-  setRobotId(value: string): void;
-
-  getPartName(): string;
-  setPartName(value: string): void;
-
-  getPartId(): string;
-  setPartId(value: string): void;
-
-  hasSyncTime(): boolean;
-  clearSyncTime(): void;
-  getSyncTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setSyncTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
-  getFileSizeBytes(): number;
-  setFileSizeBytes(value: number): void;
-
-  getFileId(): string;
-  setFileId(value: string): void;
+  getCount(): number;
+  setCount(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FileMetadata.AsObject;
-  static toObject(includeInstance: boolean, msg: FileMetadata): FileMetadata.AsObject;
+  toObject(includeInstance?: boolean): BinaryDataByFilterResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: BinaryDataByFilterResponse): BinaryDataByFilterResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FileMetadata, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FileMetadata;
-  static deserializeBinaryFromReader(message: FileMetadata, reader: jspb.BinaryReader): FileMetadata;
+  static serializeBinaryToWriter(message: BinaryDataByFilterResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BinaryDataByFilterResponse;
+  static deserializeBinaryFromReader(message: BinaryDataByFilterResponse, reader: jspb.BinaryReader): BinaryDataByFilterResponse;
 }
 
-export namespace FileMetadata {
+export namespace BinaryDataByFilterResponse {
   export type AsObject = {
-    id: string,
-    robotName: string,
-    robotId: string,
-    partName: string,
-    partId: string,
-    syncTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    fileSizeBytes: number,
-    fileId: string,
+    metadataList: Array<CaptureMetadata.AsObject>,
+    dataList: Array<BinaryData.AsObject>,
+    count: number,
   }
 }
 
-export interface DataTypeMap {
-  DATA_TYPE_UNSPECIFIED: 0;
-  DATA_TYPE_BINARY_SENSOR: 1;
-  DATA_TYPE_TABULAR_SENSOR: 2;
-  DATA_TYPE_FILE: 3;
+export class BinaryDataByIDsRequest extends jspb.Message {
+  clearFileIdsList(): void;
+  getFileIdsList(): Array<string>;
+  setFileIdsList(value: Array<string>): void;
+  addFileIds(value: string, index?: number): string;
+
+  getIncludeBinary(): boolean;
+  setIncludeBinary(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BinaryDataByIDsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: BinaryDataByIDsRequest): BinaryDataByIDsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BinaryDataByIDsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BinaryDataByIDsRequest;
+  static deserializeBinaryFromReader(message: BinaryDataByIDsRequest, reader: jspb.BinaryReader): BinaryDataByIDsRequest;
 }
 
-export const DataType: DataTypeMap;
+export namespace BinaryDataByIDsRequest {
+  export type AsObject = {
+    fileIdsList: Array<string>,
+    includeBinary: boolean,
+  }
+}
+
+export class BinaryDataByIDsResponse extends jspb.Message {
+  clearMetadataList(): void;
+  getMetadataList(): Array<CaptureMetadata>;
+  setMetadataList(value: Array<CaptureMetadata>): void;
+  addMetadata(value?: CaptureMetadata, index?: number): CaptureMetadata;
+
+  clearDataList(): void;
+  getDataList(): Array<BinaryData>;
+  setDataList(value: Array<BinaryData>): void;
+  addData(value?: BinaryData, index?: number): BinaryData;
+
+  getCount(): number;
+  setCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BinaryDataByIDsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: BinaryDataByIDsResponse): BinaryDataByIDsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BinaryDataByIDsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BinaryDataByIDsResponse;
+  static deserializeBinaryFromReader(message: BinaryDataByIDsResponse, reader: jspb.BinaryReader): BinaryDataByIDsResponse;
+}
+
+export namespace BinaryDataByIDsResponse {
+  export type AsObject = {
+    metadataList: Array<CaptureMetadata.AsObject>,
+    dataList: Array<BinaryData.AsObject>,
+    count: number,
+  }
+}
 

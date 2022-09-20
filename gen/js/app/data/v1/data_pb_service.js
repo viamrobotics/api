@@ -10,13 +10,31 @@ var DataService = (function () {
   return DataService;
 }());
 
-DataService.Query = {
-  methodName: "Query",
+DataService.TabularDataByFilter = {
+  methodName: "TabularDataByFilter",
   service: DataService,
   requestStream: false,
-  responseStream: false,
-  requestType: app_data_v1_data_pb.QueryRequest,
-  responseType: app_data_v1_data_pb.QueryResponse
+  responseStream: true,
+  requestType: app_data_v1_data_pb.TabularDataByFilterRequest,
+  responseType: app_data_v1_data_pb.TabularDataByFilterResponse
+};
+
+DataService.BinaryDataByFilter = {
+  methodName: "BinaryDataByFilter",
+  service: DataService,
+  requestStream: false,
+  responseStream: true,
+  requestType: app_data_v1_data_pb.BinaryDataByFilterRequest,
+  responseType: app_data_v1_data_pb.BinaryDataByFilterResponse
+};
+
+DataService.BinaryDataByIDs = {
+  methodName: "BinaryDataByIDs",
+  service: DataService,
+  requestStream: false,
+  responseStream: true,
+  requestType: app_data_v1_data_pb.BinaryDataByIDsRequest,
+  responseType: app_data_v1_data_pb.BinaryDataByIDsResponse
 };
 
 exports.DataService = DataService;
@@ -26,32 +44,118 @@ function DataServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
-DataServiceClient.prototype.query = function query(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(DataService.Query, {
+DataServiceClient.prototype.tabularDataByFilter = function tabularDataByFilter(requestMessage, metadata) {
+  var listeners = {
+    data: [],
+    end: [],
+    status: []
+  };
+  var client = grpc.invoke(DataService.TabularDataByFilter, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
     transport: this.options.transport,
     debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
+    onMessage: function (responseMessage) {
+      listeners.data.forEach(function (handler) {
+        handler(responseMessage);
+      });
+    },
+    onEnd: function (status, statusMessage, trailers) {
+      listeners.status.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners.end.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners = null;
     }
   });
   return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
     cancel: function () {
-      callback = null;
+      listeners = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.binaryDataByFilter = function binaryDataByFilter(requestMessage, metadata) {
+  var listeners = {
+    data: [],
+    end: [],
+    status: []
+  };
+  var client = grpc.invoke(DataService.BinaryDataByFilter, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onMessage: function (responseMessage) {
+      listeners.data.forEach(function (handler) {
+        handler(responseMessage);
+      });
+    },
+    onEnd: function (status, statusMessage, trailers) {
+      listeners.status.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners.end.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners = null;
+    }
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    cancel: function () {
+      listeners = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.binaryDataByIDs = function binaryDataByIDs(requestMessage, metadata) {
+  var listeners = {
+    data: [],
+    end: [],
+    status: []
+  };
+  var client = grpc.invoke(DataService.BinaryDataByIDs, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onMessage: function (responseMessage) {
+      listeners.data.forEach(function (handler) {
+        handler(responseMessage);
+      });
+    },
+    onEnd: function (status, statusMessage, trailers) {
+      listeners.status.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners.end.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners = null;
+    }
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    cancel: function () {
+      listeners = null;
       client.close();
     }
   };
