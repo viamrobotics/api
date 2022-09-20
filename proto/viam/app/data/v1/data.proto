@@ -13,8 +13,10 @@ service DataService {
   // TabularDataByFilter queries tabular data and metadata based on given filters.
   rpc TabularDataByFilter(TabularDataByFilterRequest) returns (stream TabularDataByFilterResponse);
 
-  // BinaryData apis are used for both images and file data
+  // BinaryDataByFilter queries binary data and metadata based on given filters.
   rpc BinaryDataByFilter(BinaryDataByFilterRequest) returns (stream BinaryDataByFilterResponse);
+
+  // BinaryDataByIDs queries binary data and metadata based on given IDs.
   rpc BinaryDataByIDs(BinaryDataByIDsRequest) returns (stream BinaryDataByIDsResponse);
 }
 
@@ -88,25 +90,27 @@ message BinaryData {
   bytes binary = 3;
 }
 
-// BinaryDataByFilterRequest provides the data and metadata of binary (image + file) data when a filter is provided
+// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when by filter
 message BinaryDataByFilterRequest {
   DataRequest data_request = 1;
   bool include_binary = 2;
   bool count_only = 3;
 }
 
+// BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided
 message BinaryDataByFilterResponse {
   repeated CaptureMetadata metadata = 1;
   repeated BinaryData data = 2;
   int64 count = 3;
 }
 
-// BinaryDataByFilterRequest provides the data and metadata of binary (image + file) data by file ids
+// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by file ids
 message BinaryDataByIDsRequest {
   repeated string file_ids = 1;
   bool include_binary = 2; // by default
 }
 
+// BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided
 message BinaryDataByIDsResponse {
   repeated CaptureMetadata metadata = 1;
   repeated BinaryData data = 2;
