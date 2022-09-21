@@ -260,9 +260,6 @@ export namespace TabularDataByFilterResponse {
 }
 
 export class TabularData extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
   hasData(): boolean;
   clearData(): void;
   getData(): google_protobuf_struct_pb.Struct | undefined;
@@ -293,7 +290,6 @@ export class TabularData extends jspb.Message {
 
 export namespace TabularData {
   export type AsObject = {
-    id: string,
     data?: google_protobuf_struct_pb.Struct.AsObject,
     metadataIndex: number,
     timeRequested?: google_protobuf_timestamp_pb.Timestamp.AsObject,
