@@ -2180,9 +2180,8 @@ proto.viam.app.data.v1.TabularData.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.data.v1.TabularData.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    metadataIndex: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    metadataIndex: jspb.Message.getFieldWithDefault(msg, 2, 0),
     timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
@@ -2222,24 +2221,20 @@ proto.viam.app.data.v1.TabularData.deserializeBinaryFromReader = function(msg, r
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
-      break;
-    case 2:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setData(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setMetadataIndex(value);
       break;
-    case 4:
+    case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTimeRequested(value);
       break;
-    case 5:
+    case 4:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTimeReceived(value);
@@ -2273,17 +2268,10 @@ proto.viam.app.data.v1.TabularData.prototype.serializeBinary = function() {
  */
 proto.viam.app.data.v1.TabularData.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
   f = message.getData();
   if (f != null) {
     writer.writeMessage(
-      2,
+      1,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
@@ -2291,14 +2279,14 @@ proto.viam.app.data.v1.TabularData.serializeBinaryToWriter = function(message, w
   f = message.getMetadataIndex();
   if (f !== 0) {
     writer.writeInt32(
-      3,
+      2,
       f
     );
   }
   f = message.getTimeRequested();
   if (f != null) {
     writer.writeMessage(
-      4,
+      3,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -2306,7 +2294,7 @@ proto.viam.app.data.v1.TabularData.serializeBinaryToWriter = function(message, w
   f = message.getTimeReceived();
   if (f != null) {
     writer.writeMessage(
-      5,
+      4,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -2315,30 +2303,12 @@ proto.viam.app.data.v1.TabularData.serializeBinaryToWriter = function(message, w
 
 
 /**
- * optional string id = 1;
- * @return {string}
- */
-proto.viam.app.data.v1.TabularData.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.data.v1.TabularData} returns this
- */
-proto.viam.app.data.v1.TabularData.prototype.setId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional google.protobuf.Struct data = 2;
+ * optional google.protobuf.Struct data = 1;
  * @return {?proto.google.protobuf.Struct}
  */
 proto.viam.app.data.v1.TabularData.prototype.getData = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 1));
 };
 
 
@@ -2347,7 +2317,7 @@ proto.viam.app.data.v1.TabularData.prototype.getData = function() {
  * @return {!proto.viam.app.data.v1.TabularData} returns this
 */
 proto.viam.app.data.v1.TabularData.prototype.setData = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
+  return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
@@ -2365,16 +2335,16 @@ proto.viam.app.data.v1.TabularData.prototype.clearData = function() {
  * @return {boolean}
  */
 proto.viam.app.data.v1.TabularData.prototype.hasData = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional int32 metadata_index = 3;
+ * optional int32 metadata_index = 2;
  * @return {number}
  */
 proto.viam.app.data.v1.TabularData.prototype.getMetadataIndex = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
@@ -2383,17 +2353,17 @@ proto.viam.app.data.v1.TabularData.prototype.getMetadataIndex = function() {
  * @return {!proto.viam.app.data.v1.TabularData} returns this
  */
 proto.viam.app.data.v1.TabularData.prototype.setMetadataIndex = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional google.protobuf.Timestamp time_requested = 4;
+ * optional google.protobuf.Timestamp time_requested = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.viam.app.data.v1.TabularData.prototype.getTimeRequested = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
 
 
@@ -2402,7 +2372,7 @@ proto.viam.app.data.v1.TabularData.prototype.getTimeRequested = function() {
  * @return {!proto.viam.app.data.v1.TabularData} returns this
 */
 proto.viam.app.data.v1.TabularData.prototype.setTimeRequested = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
+  return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -2420,17 +2390,17 @@ proto.viam.app.data.v1.TabularData.prototype.clearTimeRequested = function() {
  * @return {boolean}
  */
 proto.viam.app.data.v1.TabularData.prototype.hasTimeRequested = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional google.protobuf.Timestamp time_received = 5;
+ * optional google.protobuf.Timestamp time_received = 4;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.viam.app.data.v1.TabularData.prototype.getTimeReceived = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
 };
 
 
@@ -2439,7 +2409,7 @@ proto.viam.app.data.v1.TabularData.prototype.getTimeReceived = function() {
  * @return {!proto.viam.app.data.v1.TabularData} returns this
 */
 proto.viam.app.data.v1.TabularData.prototype.setTimeReceived = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
+  return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
@@ -2457,7 +2427,7 @@ proto.viam.app.data.v1.TabularData.prototype.clearTimeReceived = function() {
  * @return {boolean}
  */
 proto.viam.app.data.v1.TabularData.prototype.hasTimeReceived = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 

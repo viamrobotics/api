@@ -78,11 +78,10 @@ message TabularDataByFilterResponse {
 }
 
 message TabularData {
-  string id = 1;
-  google.protobuf.Struct data = 2;
-  int32 metadata_index = 3;
-  google.protobuf.Timestamp time_requested = 4;
-  google.protobuf.Timestamp time_received = 5;
+  google.protobuf.Struct data = 1;
+  int32 metadata_index = 2;
+  google.protobuf.Timestamp time_requested = 3;
+  google.protobuf.Timestamp time_received = 4;
 }
 
 message BinaryData {
