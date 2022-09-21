@@ -1083,10 +1083,7 @@ proto.viam.app.data.v1.CaptureMetadata.toObject = function(includeInstance, msg)
     methodName: jspb.Message.getFieldWithDefault(msg, 9, ""),
     methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
     tagsList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
-    timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    mimeType: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    fileId: jspb.Message.getFieldWithDefault(msg, 15, "")
+    mimeType: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -1170,22 +1167,8 @@ proto.viam.app.data.v1.CaptureMetadata.deserializeBinaryFromReader = function(ms
       msg.addTags(value);
       break;
     case 12:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setTimeRequested(value);
-      break;
-    case 13:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setTimeReceived(value);
-      break;
-    case 14:
       var value = /** @type {string} */ (reader.readString());
       msg.setMimeType(value);
-      break;
-    case 15:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setFileId(value);
       break;
     default:
       reader.skipField();
@@ -1290,33 +1273,10 @@ proto.viam.app.data.v1.CaptureMetadata.serializeBinaryToWriter = function(messag
       f
     );
   }
-  f = message.getTimeRequested();
-  if (f != null) {
-    writer.writeMessage(
-      12,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
-    );
-  }
-  f = message.getTimeReceived();
-  if (f != null) {
-    writer.writeMessage(
-      13,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
-    );
-  }
   f = message.getMimeType();
   if (f.length > 0) {
     writer.writeString(
-      14,
-      f
-    );
-  }
-  f = message.getFileId();
-  if (f.length > 0) {
-    writer.writeString(
-      15,
+      12,
       f
     );
   }
@@ -1545,85 +1505,11 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.clearTagsList = function() {
 
 
 /**
- * optional google.protobuf.Timestamp time_requested = 12;
- * @return {?proto.google.protobuf.Timestamp}
- */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getTimeRequested = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 12));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
-*/
-proto.viam.app.data.v1.CaptureMetadata.prototype.setTimeRequested = function(value) {
-  return jspb.Message.setWrapperField(this, 12, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
- */
-proto.viam.app.data.v1.CaptureMetadata.prototype.clearTimeRequested = function() {
-  return this.setTimeRequested(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.data.v1.CaptureMetadata.prototype.hasTimeRequested = function() {
-  return jspb.Message.getField(this, 12) != null;
-};
-
-
-/**
- * optional google.protobuf.Timestamp time_received = 13;
- * @return {?proto.google.protobuf.Timestamp}
- */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getTimeReceived = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 13));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
-*/
-proto.viam.app.data.v1.CaptureMetadata.prototype.setTimeReceived = function(value) {
-  return jspb.Message.setWrapperField(this, 13, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
- */
-proto.viam.app.data.v1.CaptureMetadata.prototype.clearTimeReceived = function() {
-  return this.setTimeReceived(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.data.v1.CaptureMetadata.prototype.hasTimeReceived = function() {
-  return jspb.Message.getField(this, 13) != null;
-};
-
-
-/**
- * optional string mime_type = 14;
+ * optional string mime_type = 12;
  * @return {string}
  */
 proto.viam.app.data.v1.CaptureMetadata.prototype.getMimeType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
 };
 
 
@@ -1632,25 +1518,7 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getMimeType = function() {
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
 proto.viam.app.data.v1.CaptureMetadata.prototype.setMimeType = function(value) {
-  return jspb.Message.setProto3StringField(this, 14, value);
-};
-
-
-/**
- * optional string file_id = 15;
- * @return {string}
- */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getFileId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
- */
-proto.viam.app.data.v1.CaptureMetadata.prototype.setFileId = function(value) {
-  return jspb.Message.setProto3StringField(this, 15, value);
+  return jspb.Message.setProto3StringField(this, 12, value);
 };
 
 
@@ -2312,7 +2180,10 @@ proto.viam.app.data.v1.TabularData.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.data.v1.TabularData.toObject = function(includeInstance, msg) {
   var f, obj = {
-    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    metadataIndex: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2354,6 +2225,20 @@ proto.viam.app.data.v1.TabularData.deserializeBinaryFromReader = function(msg, r
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setData(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMetadataIndex(value);
+      break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTimeRequested(value);
+      break;
+    case 4:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTimeReceived(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2389,6 +2274,29 @@ proto.viam.app.data.v1.TabularData.serializeBinaryToWriter = function(message, w
       1,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getMetadataIndex();
+  if (f !== 0) {
+    writer.writeInt32(
+      2,
+      f
+    );
+  }
+  f = message.getTimeRequested();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getTimeReceived();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -2431,6 +2339,98 @@ proto.viam.app.data.v1.TabularData.prototype.hasData = function() {
 };
 
 
+/**
+ * optional int32 metadata_index = 2;
+ * @return {number}
+ */
+proto.viam.app.data.v1.TabularData.prototype.getMetadataIndex = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.data.v1.TabularData} returns this
+ */
+proto.viam.app.data.v1.TabularData.prototype.setMetadataIndex = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp time_requested = 3;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.data.v1.TabularData.prototype.getTimeRequested = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.data.v1.TabularData} returns this
+*/
+proto.viam.app.data.v1.TabularData.prototype.setTimeRequested = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.data.v1.TabularData} returns this
+ */
+proto.viam.app.data.v1.TabularData.prototype.clearTimeRequested = function() {
+  return this.setTimeRequested(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.TabularData.prototype.hasTimeRequested = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp time_received = 4;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.data.v1.TabularData.prototype.getTimeReceived = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.data.v1.TabularData} returns this
+*/
+proto.viam.app.data.v1.TabularData.prototype.setTimeReceived = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.data.v1.TabularData} returns this
+ */
+proto.viam.app.data.v1.TabularData.prototype.clearTimeReceived = function() {
+  return this.setTimeReceived(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.TabularData.prototype.hasTimeReceived = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
 
 
 
@@ -2465,7 +2465,10 @@ proto.viam.app.data.v1.BinaryData.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     uri: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    binary: msg.getBinary_asB64()
+    binary: msg.getBinary_asB64(),
+    metadataIndex: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2513,6 +2516,20 @@ proto.viam.app.data.v1.BinaryData.deserializeBinaryFromReader = function(msg, re
     case 3:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setBinary(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMetadataIndex(value);
+      break;
+    case 5:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTimeRequested(value);
+      break;
+    case 6:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTimeReceived(value);
       break;
     default:
       reader.skipField();
@@ -2562,6 +2579,29 @@ proto.viam.app.data.v1.BinaryData.serializeBinaryToWriter = function(message, wr
     writer.writeBytes(
       3,
       f
+    );
+  }
+  f = message.getMetadataIndex();
+  if (f !== 0) {
+    writer.writeInt32(
+      4,
+      f
+    );
+  }
+  f = message.getTimeRequested();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getTimeReceived();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -2642,6 +2682,98 @@ proto.viam.app.data.v1.BinaryData.prototype.getBinary_asU8 = function() {
  */
 proto.viam.app.data.v1.BinaryData.prototype.setBinary = function(value) {
   return jspb.Message.setProto3BytesField(this, 3, value);
+};
+
+
+/**
+ * optional int32 metadata_index = 4;
+ * @return {number}
+ */
+proto.viam.app.data.v1.BinaryData.prototype.getMetadataIndex = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.data.v1.BinaryData} returns this
+ */
+proto.viam.app.data.v1.BinaryData.prototype.setMetadataIndex = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp time_requested = 5;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.data.v1.BinaryData.prototype.getTimeRequested = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.data.v1.BinaryData} returns this
+*/
+proto.viam.app.data.v1.BinaryData.prototype.setTimeRequested = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.data.v1.BinaryData} returns this
+ */
+proto.viam.app.data.v1.BinaryData.prototype.clearTimeRequested = function() {
+  return this.setTimeRequested(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.BinaryData.prototype.hasTimeRequested = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp time_received = 6;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.data.v1.BinaryData.prototype.getTimeReceived = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.data.v1.BinaryData} returns this
+*/
+proto.viam.app.data.v1.BinaryData.prototype.setTimeReceived = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.data.v1.BinaryData} returns this
+ */
+proto.viam.app.data.v1.BinaryData.prototype.clearTimeReceived = function() {
+  return this.setTimeReceived(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.BinaryData.prototype.hasTimeReceived = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 

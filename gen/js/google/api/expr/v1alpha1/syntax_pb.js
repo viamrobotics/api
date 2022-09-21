@@ -1668,7 +1668,8 @@ proto.google.api.expr.v1alpha1.Expr.CreateStruct.Entry.toObject = function(inclu
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     fieldKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
     mapKey: (f = msg.getMapKey()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
-    value: (f = msg.getValue()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f)
+    value: (f = msg.getValue()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
+    optionalEntry: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -1722,6 +1723,10 @@ proto.google.api.expr.v1alpha1.Expr.CreateStruct.Entry.deserializeBinaryFromRead
       var value = new proto.google.api.expr.v1alpha1.Expr;
       reader.readMessage(value,proto.google.api.expr.v1alpha1.Expr.deserializeBinaryFromReader);
       msg.setValue(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setOptionalEntry(value);
       break;
     default:
       reader.skipField();
@@ -1780,6 +1785,13 @@ proto.google.api.expr.v1alpha1.Expr.CreateStruct.Entry.serializeBinaryToWriter =
       4,
       f,
       proto.google.api.expr.v1alpha1.Expr.serializeBinaryToWriter
+    );
+  }
+  f = message.getOptionalEntry();
+  if (f) {
+    writer.writeBool(
+      5,
+      f
     );
   }
 };
@@ -1910,6 +1922,24 @@ proto.google.api.expr.v1alpha1.Expr.CreateStruct.Entry.prototype.clearValue = fu
  */
 proto.google.api.expr.v1alpha1.Expr.CreateStruct.Entry.prototype.hasValue = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional bool optional_entry = 5;
+ * @return {boolean}
+ */
+proto.google.api.expr.v1alpha1.Expr.CreateStruct.Entry.prototype.getOptionalEntry = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.google.api.expr.v1alpha1.Expr.CreateStruct.Entry} returns this
+ */
+proto.google.api.expr.v1alpha1.Expr.CreateStruct.Entry.prototype.setOptionalEntry = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
