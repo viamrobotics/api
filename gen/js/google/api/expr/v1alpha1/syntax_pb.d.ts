@@ -244,6 +244,9 @@ export namespace Expr {
       getValue(): Expr | undefined;
       setValue(value?: Expr): void;
 
+      getOptionalEntry(): boolean;
+      setOptionalEntry(value: boolean): void;
+
       getKeyKindCase(): Entry.KeyKindCase;
       serializeBinary(): Uint8Array;
       toObject(includeInstance?: boolean): Entry.AsObject;
@@ -261,6 +264,7 @@ export namespace Expr {
         fieldKey: string,
         mapKey?: Expr.AsObject,
         value?: Expr.AsObject,
+        optionalEntry: boolean,
       }
 
       export enum KeyKindCase {

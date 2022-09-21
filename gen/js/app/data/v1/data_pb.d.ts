@@ -143,21 +143,8 @@ export class CaptureMetadata extends jspb.Message {
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
-  hasTimeRequested(): boolean;
-  clearTimeRequested(): void;
-  getTimeRequested(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setTimeRequested(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
-  hasTimeReceived(): boolean;
-  clearTimeReceived(): void;
-  getTimeReceived(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setTimeReceived(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
   getMimeType(): string;
   setMimeType(value: string): void;
-
-  getFileId(): string;
-  setFileId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CaptureMetadata.AsObject;
@@ -182,10 +169,7 @@ export namespace CaptureMetadata {
     methodName: string,
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
     tagsList: Array<string>,
-    timeRequested?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    timeReceived?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     mimeType: string,
-    fileId: string,
   }
 }
 
@@ -276,10 +260,26 @@ export namespace TabularDataByFilterResponse {
 }
 
 export class TabularData extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
   hasData(): boolean;
   clearData(): void;
   getData(): google_protobuf_struct_pb.Struct | undefined;
   setData(value?: google_protobuf_struct_pb.Struct): void;
+
+  getMetadataIndex(): number;
+  setMetadataIndex(value: number): void;
+
+  hasTimeRequested(): boolean;
+  clearTimeRequested(): void;
+  getTimeRequested(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeRequested(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasTimeReceived(): boolean;
+  clearTimeReceived(): void;
+  getTimeReceived(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeReceived(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularData.AsObject;
@@ -293,7 +293,11 @@ export class TabularData extends jspb.Message {
 
 export namespace TabularData {
   export type AsObject = {
+    id: string,
     data?: google_protobuf_struct_pb.Struct.AsObject,
+    metadataIndex: number,
+    timeRequested?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    timeReceived?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -308,6 +312,19 @@ export class BinaryData extends jspb.Message {
   getBinary_asU8(): Uint8Array;
   getBinary_asB64(): string;
   setBinary(value: Uint8Array | string): void;
+
+  getMetadataIndex(): number;
+  setMetadataIndex(value: number): void;
+
+  hasTimeRequested(): boolean;
+  clearTimeRequested(): void;
+  getTimeRequested(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeRequested(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasTimeReceived(): boolean;
+  clearTimeReceived(): void;
+  getTimeReceived(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeReceived(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryData.AsObject;
@@ -324,6 +341,9 @@ export namespace BinaryData {
     id: string,
     uri: string,
     binary: Uint8Array | string,
+    metadataIndex: number,
+    timeRequested?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    timeReceived?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
