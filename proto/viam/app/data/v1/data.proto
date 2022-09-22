@@ -11,7 +11,7 @@ option go_package = "go.viam.com/api/app/data/v1";
 // DataService is used to query robot data.
 service DataService {
   // TabularDataByFilter queries tabular data and metadata based on given filters.
-  rpc TabularDataByFilter(TabularDataByFilterRequest) returns (stream TabularDataByFilterResponse);
+  rpc TabularDataByFilter(TabularDataByFilterRequest) returns (TabularDataByFilterResponse);
 
   // BinaryDataByFilter queries binary data and metadata based on given filters.
   rpc BinaryDataByFilter(BinaryDataByFilterRequest) returns (BinaryDataByFilterResponse);

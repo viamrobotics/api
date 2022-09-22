@@ -19,7 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataServiceClient interface {
 	// TabularDataByFilter queries tabular data and metadata based on given filters.
-	TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (DataService_TabularDataByFilterClient, error)
+	TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (*TabularDataByFilterResponse, error)
 	// BinaryDataByFilter queries binary data and metadata based on given filters.
 	BinaryDataByFilter(ctx context.Context, in *BinaryDataByFilterRequest, opts ...grpc.CallOption) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
@@ -34,36 +34,13 @@ func NewDataServiceClient(cc grpc.ClientConnInterface) DataServiceClient {
 	return &dataServiceClient{cc}
 }
 
-func (c *dataServiceClient) TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (DataService_TabularDataByFilterClient, error) {
-	stream, err := c.cc.NewStream(ctx, &DataService_ServiceDesc.Streams[0], "/viam.app.data.v1.DataService/TabularDataByFilter", opts...)
+func (c *dataServiceClient) TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (*TabularDataByFilterResponse, error) {
+	out := new(TabularDataByFilterResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/TabularDataByFilter", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &dataServiceTabularDataByFilterClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type DataService_TabularDataByFilterClient interface {
-	Recv() (*TabularDataByFilterResponse, error)
-	grpc.ClientStream
-}
-
-type dataServiceTabularDataByFilterClient struct {
-	grpc.ClientStream
-}
-
-func (x *dataServiceTabularDataByFilterClient) Recv() (*TabularDataByFilterResponse, error) {
-	m := new(TabularDataByFilterResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 func (c *dataServiceClient) BinaryDataByFilter(ctx context.Context, in *BinaryDataByFilterRequest, opts ...grpc.CallOption) (*BinaryDataByFilterResponse, error) {
@@ -89,7 +66,7 @@ func (c *dataServiceClient) BinaryDataByIDs(ctx context.Context, in *BinaryDataB
 // for forward compatibility
 type DataServiceServer interface {
 	// TabularDataByFilter queries tabular data and metadata based on given filters.
-	TabularDataByFilter(*TabularDataByFilterRequest, DataService_TabularDataByFilterServer) error
+	TabularDataByFilter(context.Context, *TabularDataByFilterRequest) (*TabularDataByFilterResponse, error)
 	// BinaryDataByFilter queries binary data and metadata based on given filters.
 	BinaryDataByFilter(context.Context, *BinaryDataByFilterRequest) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
@@ -101,8 +78,8 @@ type DataServiceServer interface {
 type UnimplementedDataServiceServer struct {
 }
 
-func (UnimplementedDataServiceServer) TabularDataByFilter(*TabularDataByFilterRequest, DataService_TabularDataByFilterServer) error {
-	return status.Errorf(codes.Unimplemented, "method TabularDataByFilter not implemented")
+func (UnimplementedDataServiceServer) TabularDataByFilter(context.Context, *TabularDataByFilterRequest) (*TabularDataByFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TabularDataByFilter not implemented")
 }
 func (UnimplementedDataServiceServer) BinaryDataByFilter(context.Context, *BinaryDataByFilterRequest) (*BinaryDataByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BinaryDataByFilter not implemented")
@@ -123,25 +100,22 @@ func RegisterDataServiceServer(s grpc.ServiceRegistrar, srv DataServiceServer) {
 	s.RegisterService(&DataService_ServiceDesc, srv)
 }
 
-func _DataService_TabularDataByFilter_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(TabularDataByFilterRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _DataService_TabularDataByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TabularDataByFilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(DataServiceServer).TabularDataByFilter(m, &dataServiceTabularDataByFilterServer{stream})
-}
-
-type DataService_TabularDataByFilterServer interface {
-	Send(*TabularDataByFilterResponse) error
-	grpc.ServerStream
-}
-
-type dataServiceTabularDataByFilterServer struct {
-	grpc.ServerStream
-}
-
-func (x *dataServiceTabularDataByFilterServer) Send(m *TabularDataByFilterResponse) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(DataServiceServer).TabularDataByFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/TabularDataByFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).TabularDataByFilter(ctx, req.(*TabularDataByFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _DataService_BinaryDataByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -188,6 +162,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*DataServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "TabularDataByFilter",
+			Handler:    _DataService_TabularDataByFilter_Handler,
+		},
+		{
 			MethodName: "BinaryDataByFilter",
 			Handler:    _DataService_BinaryDataByFilter_Handler,
 		},
@@ -196,12 +174,6 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataService_BinaryDataByIDs_Handler,
 		},
 	},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "TabularDataByFilter",
-			Handler:       _DataService_TabularDataByFilter_Handler,
-			ServerStreams: true,
-		},
-	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "app/data/v1/data.proto",
 }
