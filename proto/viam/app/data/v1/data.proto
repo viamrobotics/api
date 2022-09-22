@@ -11,13 +11,13 @@ option go_package = "go.viam.com/api/app/data/v1";
 // DataService is used to query robot data.
 service DataService {
   // TabularDataByFilter queries tabular data and metadata based on given filters.
-  rpc TabularDataByFilter(TabularDataByFilterRequest) returns (stream TabularDataByFilterResponse);
+  rpc TabularDataByFilter(TabularDataByFilterRequest) returns (TabularDataByFilterResponse);
 
   // BinaryDataByFilter queries binary data and metadata based on given filters.
-  rpc BinaryDataByFilter(BinaryDataByFilterRequest) returns (stream BinaryDataByFilterResponse);
+  rpc BinaryDataByFilter(BinaryDataByFilterRequest) returns (BinaryDataByFilterResponse);
 
   // BinaryDataByIDs queries binary data and metadata based on given IDs.
-  rpc BinaryDataByIDs(BinaryDataByIDsRequest) returns (stream BinaryDataByIDsResponse);
+  rpc BinaryDataByIDs(BinaryDataByIDsRequest) returns (BinaryDataByIDsResponse);
 }
 
 message DataRequest {
@@ -38,7 +38,7 @@ message Filter {
   string part_id = 9;
   string location_id = 10;
   string org_id = 11;
-  string mime_type = 12;
+  repeated string mime_type = 12;
   CaptureInterval interval = 13;
 }
 
