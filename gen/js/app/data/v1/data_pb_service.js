@@ -14,7 +14,7 @@ DataService.TabularDataByFilter = {
   methodName: "TabularDataByFilter",
   service: DataService,
   requestStream: false,
-  responseStream: true,
+  responseStream: false,
   requestType: app_data_v1_data_pb.TabularDataByFilterRequest,
   responseType: app_data_v1_data_pb.TabularDataByFilterResponse
 };
@@ -23,7 +23,7 @@ DataService.BinaryDataByFilter = {
   methodName: "BinaryDataByFilter",
   service: DataService,
   requestStream: false,
-  responseStream: true,
+  responseStream: false,
   requestType: app_data_v1_data_pb.BinaryDataByFilterRequest,
   responseType: app_data_v1_data_pb.BinaryDataByFilterResponse
 };
@@ -32,7 +32,7 @@ DataService.BinaryDataByIDs = {
   methodName: "BinaryDataByIDs",
   service: DataService,
   requestStream: false,
-  responseStream: true,
+  responseStream: false,
   requestType: app_data_v1_data_pb.BinaryDataByIDsRequest,
   responseType: app_data_v1_data_pb.BinaryDataByIDsResponse
 };
@@ -44,118 +44,94 @@ function DataServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
-DataServiceClient.prototype.tabularDataByFilter = function tabularDataByFilter(requestMessage, metadata) {
-  var listeners = {
-    data: [],
-    end: [],
-    status: []
-  };
-  var client = grpc.invoke(DataService.TabularDataByFilter, {
+DataServiceClient.prototype.tabularDataByFilter = function tabularDataByFilter(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.TabularDataByFilter, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
     transport: this.options.transport,
     debug: this.options.debug,
-    onMessage: function (responseMessage) {
-      listeners.data.forEach(function (handler) {
-        handler(responseMessage);
-      });
-    },
-    onEnd: function (status, statusMessage, trailers) {
-      listeners.status.forEach(function (handler) {
-        handler({ code: status, details: statusMessage, metadata: trailers });
-      });
-      listeners.end.forEach(function (handler) {
-        handler({ code: status, details: statusMessage, metadata: trailers });
-      });
-      listeners = null;
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
     }
   });
   return {
-    on: function (type, handler) {
-      listeners[type].push(handler);
-      return this;
-    },
     cancel: function () {
-      listeners = null;
+      callback = null;
       client.close();
     }
   };
 };
 
-DataServiceClient.prototype.binaryDataByFilter = function binaryDataByFilter(requestMessage, metadata) {
-  var listeners = {
-    data: [],
-    end: [],
-    status: []
-  };
-  var client = grpc.invoke(DataService.BinaryDataByFilter, {
+DataServiceClient.prototype.binaryDataByFilter = function binaryDataByFilter(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.BinaryDataByFilter, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
     transport: this.options.transport,
     debug: this.options.debug,
-    onMessage: function (responseMessage) {
-      listeners.data.forEach(function (handler) {
-        handler(responseMessage);
-      });
-    },
-    onEnd: function (status, statusMessage, trailers) {
-      listeners.status.forEach(function (handler) {
-        handler({ code: status, details: statusMessage, metadata: trailers });
-      });
-      listeners.end.forEach(function (handler) {
-        handler({ code: status, details: statusMessage, metadata: trailers });
-      });
-      listeners = null;
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
     }
   });
   return {
-    on: function (type, handler) {
-      listeners[type].push(handler);
-      return this;
-    },
     cancel: function () {
-      listeners = null;
+      callback = null;
       client.close();
     }
   };
 };
 
-DataServiceClient.prototype.binaryDataByIDs = function binaryDataByIDs(requestMessage, metadata) {
-  var listeners = {
-    data: [],
-    end: [],
-    status: []
-  };
-  var client = grpc.invoke(DataService.BinaryDataByIDs, {
+DataServiceClient.prototype.binaryDataByIDs = function binaryDataByIDs(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.BinaryDataByIDs, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
     transport: this.options.transport,
     debug: this.options.debug,
-    onMessage: function (responseMessage) {
-      listeners.data.forEach(function (handler) {
-        handler(responseMessage);
-      });
-    },
-    onEnd: function (status, statusMessage, trailers) {
-      listeners.status.forEach(function (handler) {
-        handler({ code: status, details: statusMessage, metadata: trailers });
-      });
-      listeners.end.forEach(function (handler) {
-        handler({ code: status, details: statusMessage, metadata: trailers });
-      });
-      listeners = null;
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
     }
   });
   return {
-    on: function (type, handler) {
-      listeners[type].push(handler);
-      return this;
-    },
     cancel: function () {
-      listeners = null;
+      callback = null;
       client.close();
     }
   };
