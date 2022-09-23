@@ -8,7 +8,7 @@ type DataServiceTabularDataByFilter = {
   readonly methodName: string;
   readonly service: typeof DataService;
   readonly requestStream: false;
-  readonly responseStream: true;
+  readonly responseStream: false;
   readonly requestType: typeof app_data_v1_data_pb.TabularDataByFilterRequest;
   readonly responseType: typeof app_data_v1_data_pb.TabularDataByFilterResponse;
 };
@@ -17,7 +17,7 @@ type DataServiceBinaryDataByFilter = {
   readonly methodName: string;
   readonly service: typeof DataService;
   readonly requestStream: false;
-  readonly responseStream: true;
+  readonly responseStream: false;
   readonly requestType: typeof app_data_v1_data_pb.BinaryDataByFilterRequest;
   readonly responseType: typeof app_data_v1_data_pb.BinaryDataByFilterResponse;
 };
@@ -26,7 +26,7 @@ type DataServiceBinaryDataByIDs = {
   readonly methodName: string;
   readonly service: typeof DataService;
   readonly requestStream: false;
-  readonly responseStream: true;
+  readonly responseStream: false;
   readonly requestType: typeof app_data_v1_data_pb.BinaryDataByIDsRequest;
   readonly responseType: typeof app_data_v1_data_pb.BinaryDataByIDsResponse;
 };
@@ -70,8 +70,32 @@ export class DataServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  tabularDataByFilter(requestMessage: app_data_v1_data_pb.TabularDataByFilterRequest, metadata?: grpc.Metadata): ResponseStream<app_data_v1_data_pb.TabularDataByFilterResponse>;
-  binaryDataByFilter(requestMessage: app_data_v1_data_pb.BinaryDataByFilterRequest, metadata?: grpc.Metadata): ResponseStream<app_data_v1_data_pb.BinaryDataByFilterResponse>;
-  binaryDataByIDs(requestMessage: app_data_v1_data_pb.BinaryDataByIDsRequest, metadata?: grpc.Metadata): ResponseStream<app_data_v1_data_pb.BinaryDataByIDsResponse>;
+  tabularDataByFilter(
+    requestMessage: app_data_v1_data_pb.TabularDataByFilterRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.TabularDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  tabularDataByFilter(
+    requestMessage: app_data_v1_data_pb.TabularDataByFilterRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.TabularDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  binaryDataByFilter(
+    requestMessage: app_data_v1_data_pb.BinaryDataByFilterRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  binaryDataByFilter(
+    requestMessage: app_data_v1_data_pb.BinaryDataByFilterRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  binaryDataByIDs(
+    requestMessage: app_data_v1_data_pb.BinaryDataByIDsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryDataByIDsResponse|null) => void
+  ): UnaryResponse;
+  binaryDataByIDs(
+    requestMessage: app_data_v1_data_pb.BinaryDataByIDsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryDataByIDsResponse|null) => void
+  ): UnaryResponse;
 }
 

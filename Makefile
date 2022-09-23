@@ -1,4 +1,4 @@
-PATH_WITH_TOOLS="`pwd`/bin:`pwd`/frontend/node_modules/.bin:${PATH}"
+PATH_WITH_TOOLS="$(shell pwd)/bin:$(shell pwd)/node_modules/.bin:${PATH}"
 
 setup:
 	bash etc/setup.sh
@@ -7,6 +7,7 @@ clean-all:
 	git clean -fxd
 
 dist/tool-install: Makefile
+	npm ci --audit=false
 	GOBIN=`pwd`/bin go install google.golang.org/protobuf/cmd/protoc-gen-go \
 		github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking \
 		github.com/bufbuild/buf/cmd/protoc-gen-buf-lint \
@@ -30,7 +31,7 @@ dist/buf-go: dist/tool-install proto/viam/app/v1/app.proto proto/viam/tagger/v1/
 	PATH=$(PATH_WITH_TOOLS) buf format -w
 	PATH=$(PATH_WITH_TOOLS) buf generate --template ./proto/viam/buf.gen.yaml
 	PATH=$(PATH_WITH_TOOLS) buf generate --template ./proto/viam/buf.gen.tagger.yaml
-	PATH=$(PATH_WITH_TOOLS) ls app/v1/*_grpc.pb.go | while read l; do mockgen -source="$$l" -destination=app/mock_v1/mock_`basename "$$l"`; done
+	export PATH=$(PATH_WITH_TOOLS) && ls app/v1/*_grpc.pb.go | while read l; do mockgen -source="$$l" -destination=app/mock_v1/mock_`basename "$$l"`; done
 	touch dist/buf-go
 
 dist/buf-web: dist/tool-install
