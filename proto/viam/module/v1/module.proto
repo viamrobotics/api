@@ -44,7 +44,20 @@ message ReconfigureComponentResponse {}
 message CloseModuleRequest {}
 message CloseModuleResponse {}
 
-message ReadyRequest {}
+message HandlerDefinition {
+  string api = 1;
+  repeated string models = 2;
+}
+
+message HandlerMap {
+  repeated HandlerDefinition handlers = 1;
+}
+
+message ReadyRequest {
+  string parent_address = 1;
+}
+
 message ReadyResponse {
   bool ready = 1;
+  HandlerMap handlermap = 2;
 }

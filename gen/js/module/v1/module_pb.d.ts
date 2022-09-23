@@ -160,7 +160,58 @@ export namespace CloseModuleResponse {
   }
 }
 
+export class HandlerDefinition extends jspb.Message {
+  getApi(): string;
+  setApi(value: string): void;
+
+  clearModelsList(): void;
+  getModelsList(): Array<string>;
+  setModelsList(value: Array<string>): void;
+  addModels(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): HandlerDefinition.AsObject;
+  static toObject(includeInstance: boolean, msg: HandlerDefinition): HandlerDefinition.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: HandlerDefinition, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): HandlerDefinition;
+  static deserializeBinaryFromReader(message: HandlerDefinition, reader: jspb.BinaryReader): HandlerDefinition;
+}
+
+export namespace HandlerDefinition {
+  export type AsObject = {
+    api: string,
+    modelsList: Array<string>,
+  }
+}
+
+export class HandlerMap extends jspb.Message {
+  clearHandlersList(): void;
+  getHandlersList(): Array<HandlerDefinition>;
+  setHandlersList(value: Array<HandlerDefinition>): void;
+  addHandlers(value?: HandlerDefinition, index?: number): HandlerDefinition;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): HandlerMap.AsObject;
+  static toObject(includeInstance: boolean, msg: HandlerMap): HandlerMap.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: HandlerMap, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): HandlerMap;
+  static deserializeBinaryFromReader(message: HandlerMap, reader: jspb.BinaryReader): HandlerMap;
+}
+
+export namespace HandlerMap {
+  export type AsObject = {
+    handlersList: Array<HandlerDefinition.AsObject>,
+  }
+}
+
 export class ReadyRequest extends jspb.Message {
+  getParentAddress(): string;
+  setParentAddress(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ReadyRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ReadyRequest): ReadyRequest.AsObject;
@@ -173,12 +224,18 @@ export class ReadyRequest extends jspb.Message {
 
 export namespace ReadyRequest {
   export type AsObject = {
+    parentAddress: string,
   }
 }
 
 export class ReadyResponse extends jspb.Message {
   getReady(): boolean;
   setReady(value: boolean): void;
+
+  hasHandlermap(): boolean;
+  clearHandlermap(): void;
+  getHandlermap(): HandlerMap | undefined;
+  setHandlermap(value?: HandlerMap): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ReadyResponse.AsObject;
@@ -193,6 +250,7 @@ export class ReadyResponse extends jspb.Message {
 export namespace ReadyResponse {
   export type AsObject = {
     ready: boolean,
+    handlermap?: HandlerMap.AsObject,
   }
 }
 
