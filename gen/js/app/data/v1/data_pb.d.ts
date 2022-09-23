@@ -72,8 +72,10 @@ export class Filter extends jspb.Message {
   getOrgId(): string;
   setOrgId(value: string): void;
 
-  getMimeType(): string;
-  setMimeType(value: string): void;
+  clearMimeTypeList(): void;
+  getMimeTypeList(): Array<string>;
+  setMimeTypeList(value: Array<string>): void;
+  addMimeType(value: string, index?: number): string;
 
   hasInterval(): boolean;
   clearInterval(): void;
@@ -103,7 +105,7 @@ export namespace Filter {
     partId: string,
     locationId: string,
     orgId: string,
-    mimeType: string,
+    mimeTypeList: Array<string>,
     interval?: CaptureInterval.AsObject,
   }
 }
