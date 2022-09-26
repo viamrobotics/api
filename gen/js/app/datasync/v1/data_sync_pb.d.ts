@@ -361,6 +361,9 @@ export class TabularCapture extends jspb.Message {
   getSessionId(): string;
   setSessionId(value: string): void;
 
+  getMimeType(): string;
+  setMimeType(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularCapture.AsObject;
   static toObject(includeInstance: boolean, msg: TabularCapture): TabularCapture.AsObject;
@@ -390,6 +393,7 @@ export namespace TabularCapture {
     messageCount: number,
     fileSizeBytes: number,
     sessionId: string,
+    mimeType: string,
   }
 }
 
@@ -442,6 +446,9 @@ export class BinaryCapture extends jspb.Message {
   getSessionId(): string;
   setSessionId(value: string): void;
 
+  getMimeType(): string;
+  setMimeType(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryCapture.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryCapture): BinaryCapture.AsObject;
@@ -469,6 +476,7 @@ export namespace BinaryCapture {
     tagsList: Array<string>,
     fileSizeBytes: number,
     sessionId: string,
+    mimeType: string,
   }
 }
 
@@ -501,6 +509,9 @@ export class UserFile extends jspb.Message {
   getFileSizeBytes(): number;
   setFileSizeBytes(value: number): void;
 
+  getMimeType(): string;
+  setMimeType(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UserFile.AsObject;
   static toObject(includeInstance: boolean, msg: UserFile): UserFile.AsObject;
@@ -522,6 +533,7 @@ export namespace UserFile {
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
     fileId: string,
     fileSizeBytes: number,
+    mimeType: string,
   }
 }
 
