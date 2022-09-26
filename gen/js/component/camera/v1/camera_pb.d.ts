@@ -242,11 +242,6 @@ export namespace Webcam {
 }
 
 export class Property extends jspb.Message {
-  hasVideo(): boolean;
-  clearVideo(): void;
-  getVideo(): Video | undefined;
-  setVideo(value?: Video): void;
-
   getWidth(): number;
   setWidth(value: number): void;
 
@@ -267,35 +262,6 @@ export class Property extends jspb.Message {
 }
 
 export namespace Property {
-  export type AsObject = {
-    video?: Video.AsObject,
-    width: number,
-    height: number,
-    frameFormat: string,
-  }
-}
-
-export class Video extends jspb.Message {
-  getWidth(): number;
-  setWidth(value: number): void;
-
-  getHeight(): number;
-  setHeight(value: number): void;
-
-  getFrameFormat(): string;
-  setFrameFormat(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Video.AsObject;
-  static toObject(includeInstance: boolean, msg: Video): Video.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Video, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Video;
-  static deserializeBinaryFromReader(message: Video, reader: jspb.BinaryReader): Video;
-}
-
-export namespace Video {
   export type AsObject = {
     width: number,
     height: number,
