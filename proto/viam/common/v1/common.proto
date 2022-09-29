@@ -94,6 +94,8 @@ message Geometry {
     Sphere sphere = 2;
     RectangularPrism box = 3;
   }
+  // Label of the geometry. If none supplied, will be an empty string.
+  string label = 4;
 }
 
 // GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was
