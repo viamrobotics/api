@@ -112,6 +112,8 @@ message PointCloudObject {
   bytes point_cloud = 1;
   // volume of a given geometry
   common.v1.GeometriesInFrame geometries = 2;
+  // label of the object
+  string label = 3;
 }
 
 message GeoPoint {
