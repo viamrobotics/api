@@ -94,6 +94,8 @@ message Geometry {
     Sphere sphere = 2;
     RectangularPrism box = 3;
   }
+  // label of the geometry
+  string label = 4;
 }
 
 // GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was
@@ -112,8 +114,6 @@ message PointCloudObject {
   bytes point_cloud = 1;
   // volume of a given geometry
   common.v1.GeometriesInFrame geometries = 2;
-  // label of the object
-  string label = 3;
 }
 
 message GeoPoint {
