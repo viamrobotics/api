@@ -22,8 +22,8 @@ service DataService {
 
 message DataRequest {
   Filter filter = 1;
-  int32 skip = 2;
-  int32 limit = 3;
+  int64 skip = 2;
+  int64 limit = 3;
 }
 
 message Filter {
