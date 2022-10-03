@@ -362,11 +362,11 @@ proto.viam.app.data.v1.DataRequest.deserializeBinaryFromReader = function(msg, r
       msg.setFilter(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {number} */ (reader.readInt64());
       msg.setSkip(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {number} */ (reader.readInt64());
       msg.setLimit(value);
       break;
     default:
@@ -408,14 +408,14 @@ proto.viam.app.data.v1.DataRequest.serializeBinaryToWriter = function(message, w
   }
   f = message.getSkip();
   if (f !== 0) {
-    writer.writeInt32(
+    writer.writeInt64(
       2,
       f
     );
   }
   f = message.getLimit();
   if (f !== 0) {
-    writer.writeInt32(
+    writer.writeInt64(
       3,
       f
     );
@@ -461,7 +461,7 @@ proto.viam.app.data.v1.DataRequest.prototype.hasFilter = function() {
 
 
 /**
- * optional int32 skip = 2;
+ * optional int64 skip = 2;
  * @return {number}
  */
 proto.viam.app.data.v1.DataRequest.prototype.getSkip = function() {
@@ -479,7 +479,7 @@ proto.viam.app.data.v1.DataRequest.prototype.setSkip = function(value) {
 
 
 /**
- * optional int32 limit = 3;
+ * optional int64 limit = 3;
  * @return {number}
  */
 proto.viam.app.data.v1.DataRequest.prototype.getLimit = function() {
