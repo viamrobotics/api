@@ -285,6 +285,9 @@ export class Geometry extends jspb.Message {
   getBox(): RectangularPrism | undefined;
   setBox(value?: RectangularPrism): void;
 
+  getLabel(): string;
+  setLabel(value: string): void;
+
   getGeometryTypeCase(): Geometry.GeometryTypeCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Geometry.AsObject;
@@ -301,6 +304,7 @@ export namespace Geometry {
     center?: Pose.AsObject,
     sphere?: Sphere.AsObject,
     box?: RectangularPrism.AsObject,
+    label: string,
   }
 
   export enum GeometryTypeCase {
