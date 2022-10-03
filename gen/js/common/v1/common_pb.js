@@ -2278,7 +2278,8 @@ proto.viam.common.v1.Geometry.toObject = function(includeInstance, msg) {
   var f, obj = {
     center: (f = msg.getCenter()) && proto.viam.common.v1.Pose.toObject(includeInstance, f),
     sphere: (f = msg.getSphere()) && proto.viam.common.v1.Sphere.toObject(includeInstance, f),
-    box: (f = msg.getBox()) && proto.viam.common.v1.RectangularPrism.toObject(includeInstance, f)
+    box: (f = msg.getBox()) && proto.viam.common.v1.RectangularPrism.toObject(includeInstance, f),
+    label: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -2329,6 +2330,10 @@ proto.viam.common.v1.Geometry.deserializeBinaryFromReader = function(msg, reader
       var value = new proto.viam.common.v1.RectangularPrism;
       reader.readMessage(value,proto.viam.common.v1.RectangularPrism.deserializeBinaryFromReader);
       msg.setBox(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLabel(value);
       break;
     default:
       reader.skipField();
@@ -2381,6 +2386,13 @@ proto.viam.common.v1.Geometry.serializeBinaryToWriter = function(message, writer
       3,
       f,
       proto.viam.common.v1.RectangularPrism.serializeBinaryToWriter
+    );
+  }
+  f = message.getLabel();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -2494,6 +2506,24 @@ proto.viam.common.v1.Geometry.prototype.clearBox = function() {
  */
 proto.viam.common.v1.Geometry.prototype.hasBox = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string label = 4;
+ * @return {string}
+ */
+proto.viam.common.v1.Geometry.prototype.getLabel = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.common.v1.Geometry} returns this
+ */
+proto.viam.common.v1.Geometry.prototype.setLabel = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
