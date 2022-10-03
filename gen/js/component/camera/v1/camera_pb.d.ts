@@ -242,11 +242,11 @@ export namespace Webcam {
 }
 
 export class Property extends jspb.Message {
-  getWidth(): number;
-  setWidth(value: number): void;
+  getWidthPx(): number;
+  setWidthPx(value: number): void;
 
-  getHeight(): number;
-  setHeight(value: number): void;
+  getHeightPx(): number;
+  setHeightPx(value: number): void;
 
   getFrameFormat(): string;
   setFrameFormat(value: string): void;
@@ -263,8 +263,8 @@ export class Property extends jspb.Message {
 
 export namespace Property {
   export type AsObject = {
-    width: number,
-    height: number,
+    widthPx: number,
+    heightPx: number,
     frameFormat: string,
   }
 }

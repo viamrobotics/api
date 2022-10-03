@@ -109,10 +109,10 @@ message Webcam {
 }
 
 message Property {
-  // Video resolution width
-  int32 width = 1;
-  // Video resolution height
-  int32 height = 2;
+  // Video resolution width in px
+  int32 width_px = 1;
+  // Video resolution height in px
+  int32 height_px = 2;
   // Video frame format
   string frame_format = 3;
 }
