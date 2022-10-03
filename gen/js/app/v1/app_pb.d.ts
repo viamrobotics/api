@@ -21,6 +21,11 @@ export class Robot extends jspb.Message {
   getLastAccess(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setLastAccess(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Robot.AsObject;
   static toObject(includeInstance: boolean, msg: Robot): Robot.AsObject;
@@ -37,6 +42,7 @@ export namespace Robot {
     name: string,
     location: string,
     lastAccess?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -68,6 +74,11 @@ export class RobotPart extends jspb.Message {
   clearLastAccess(): void;
   getLastAccess(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setLastAccess(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   hasUserSuppliedInfo(): boolean;
   clearUserSuppliedInfo(): void;
@@ -103,6 +114,7 @@ export namespace RobotPart {
     locationId: string,
     robotConfig?: google_protobuf_struct_pb.Struct.AsObject,
     lastAccess?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     userSuppliedInfo?: google_protobuf_struct_pb.Struct.AsObject,
     mainPart: boolean,
     fqdn: string,
@@ -169,6 +181,11 @@ export class Organization extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Organization.AsObject;
   static toObject(includeInstance: boolean, msg: Organization): Organization.AsObject;
@@ -183,6 +200,7 @@ export namespace Organization {
   export type AsObject = {
     id: string,
     name: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -215,6 +233,11 @@ export class Location extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Location.AsObject;
   static toObject(includeInstance: boolean, msg: Location): Location.AsObject;
@@ -229,12 +252,18 @@ export namespace Location {
   export type AsObject = {
     id: string,
     name: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
 export class ListLocationsRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
+
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListLocationsRequest.AsObject;
@@ -249,6 +278,7 @@ export class ListLocationsRequest extends jspb.Message {
 export namespace ListLocationsRequest {
   export type AsObject = {
     organizationId: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
