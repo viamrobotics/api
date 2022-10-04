@@ -109,7 +109,6 @@ message Location {
 
 message ListLocationsRequest {
   string organization_id = 1;
-  google.protobuf.Timestamp created_on = 2;
 }
 
 message ListLocationsResponse {

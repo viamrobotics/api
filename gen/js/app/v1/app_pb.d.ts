@@ -260,11 +260,6 @@ export class ListLocationsRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
-  hasCreatedOn(): boolean;
-  clearCreatedOn(): void;
-  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListLocationsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListLocationsRequest): ListLocationsRequest.AsObject;
@@ -278,7 +273,6 @@ export class ListLocationsRequest extends jspb.Message {
 export namespace ListLocationsRequest {
   export type AsObject = {
     organizationId: string,
-    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 

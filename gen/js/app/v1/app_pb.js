@@ -2788,8 +2788,7 @@ proto.viam.app.v1.ListLocationsRequest.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.ListLocationsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2830,11 +2829,6 @@ proto.viam.app.v1.ListLocationsRequest.deserializeBinaryFromReader = function(ms
       var value = /** @type {string} */ (reader.readString());
       msg.setOrganizationId(value);
       break;
-    case 2:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setCreatedOn(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -2871,14 +2865,6 @@ proto.viam.app.v1.ListLocationsRequest.serializeBinaryToWriter = function(messag
       f
     );
   }
-  f = message.getCreatedOn();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
-    );
-  }
 };
 
 
@@ -2897,43 +2883,6 @@ proto.viam.app.v1.ListLocationsRequest.prototype.getOrganizationId = function() 
  */
 proto.viam.app.v1.ListLocationsRequest.prototype.setOrganizationId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional google.protobuf.Timestamp created_on = 2;
- * @return {?proto.google.protobuf.Timestamp}
- */
-proto.viam.app.v1.ListLocationsRequest.prototype.getCreatedOn = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 2));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.viam.app.v1.ListLocationsRequest} returns this
-*/
-proto.viam.app.v1.ListLocationsRequest.prototype.setCreatedOn = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.app.v1.ListLocationsRequest} returns this
- */
-proto.viam.app.v1.ListLocationsRequest.prototype.clearCreatedOn = function() {
-  return this.setCreatedOn(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.v1.ListLocationsRequest.prototype.hasCreatedOn = function() {
-  return jspb.Message.getField(this, 2) != null;
 };
 
 
