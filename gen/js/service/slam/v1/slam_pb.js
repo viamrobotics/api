@@ -19,6 +19,8 @@ var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
+goog.object.extend(proto, google_protobuf_struct_pb);
 goog.exportSymbol('proto.viam.service.slam.v1.GetMapRequest', null, global);
 goog.exportSymbol('proto.viam.service.slam.v1.GetMapResponse', null, global);
 goog.exportSymbol('proto.viam.service.slam.v1.GetMapResponse.MapCase', null, global);
@@ -270,7 +272,8 @@ proto.viam.service.slam.v1.GetPositionResponse.prototype.toObject = function(opt
  */
 proto.viam.service.slam.v1.GetPositionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pose: (f = msg.getPose()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f)
+    pose: (f = msg.getPose()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -312,6 +315,11 @@ proto.viam.service.slam.v1.GetPositionResponse.deserializeBinaryFromReader = fun
       reader.readMessage(value,common_v1_common_pb.PoseInFrame.deserializeBinaryFromReader);
       msg.setPose(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -347,6 +355,14 @@ proto.viam.service.slam.v1.GetPositionResponse.serializeBinaryToWriter = functio
       1,
       f,
       common_v1_common_pb.PoseInFrame.serializeBinaryToWriter
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -386,6 +402,43 @@ proto.viam.service.slam.v1.GetPositionResponse.prototype.clearPose = function() 
  */
 proto.viam.service.slam.v1.GetPositionResponse.prototype.hasPose = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.slam.v1.GetPositionResponse.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.slam.v1.GetPositionResponse} returns this
+*/
+proto.viam.service.slam.v1.GetPositionResponse.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.slam.v1.GetPositionResponse} returns this
+ */
+proto.viam.service.slam.v1.GetPositionResponse.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.slam.v1.GetPositionResponse.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
