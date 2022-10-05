@@ -4,6 +4,7 @@
 import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
 export class GetPositionRequest extends jspb.Message {
   getName(): string;
@@ -31,6 +32,11 @@ export class GetPositionResponse extends jspb.Message {
   getPose(): common_v1_common_pb.PoseInFrame | undefined;
   setPose(value?: common_v1_common_pb.PoseInFrame): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPositionResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPositionResponse): GetPositionResponse.AsObject;
@@ -44,6 +50,7 @@ export class GetPositionResponse extends jspb.Message {
 export namespace GetPositionResponse {
   export type AsObject = {
     pose?: common_v1_common_pb.PoseInFrame.AsObject,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
