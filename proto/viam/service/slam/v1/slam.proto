@@ -4,6 +4,7 @@ package viam.service.slam.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/service/slam/v1";
 option java_package = "com.viam.service.slam.v1";
@@ -35,6 +36,8 @@ message GetPositionRequest {
 message GetPositionResponse {
   // Current position of the robot within the World frame.
   common.v1.PoseInFrame pose = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetMapRequest {
