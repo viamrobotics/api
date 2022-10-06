@@ -431,7 +431,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.GetRobotPartResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.GetRobotPartResponse.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.v1.GetRobotPartResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -3955,6 +3955,13 @@ proto.viam.app.v1.GetRobotPartRequest.prototype.setId = function(value) {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.GetRobotPartResponse.repeatedFields_ = [3];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -3987,7 +3994,9 @@ proto.viam.app.v1.GetRobotPartResponse.prototype.toObject = function(opt_include
 proto.viam.app.v1.GetRobotPartResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     part: (f = msg.getPart()) && proto.viam.app.v1.RobotPart.toObject(includeInstance, f),
-    configJson: jspb.Message.getFieldWithDefault(msg, 2, "")
+    configJson: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    recentErrorLogsList: jspb.Message.toObjectList(msg.getRecentErrorLogsList(),
+    proto.viam.app.v1.LogEntry.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -4033,6 +4042,11 @@ proto.viam.app.v1.GetRobotPartResponse.deserializeBinaryFromReader = function(ms
       var value = /** @type {string} */ (reader.readString());
       msg.setConfigJson(value);
       break;
+    case 3:
+      var value = new proto.viam.app.v1.LogEntry;
+      reader.readMessage(value,proto.viam.app.v1.LogEntry.deserializeBinaryFromReader);
+      msg.addRecentErrorLogs(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -4075,6 +4089,14 @@ proto.viam.app.v1.GetRobotPartResponse.serializeBinaryToWriter = function(messag
     writer.writeString(
       2,
       f
+    );
+  }
+  f = message.getRecentErrorLogsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      proto.viam.app.v1.LogEntry.serializeBinaryToWriter
     );
   }
 };
@@ -4132,6 +4154,44 @@ proto.viam.app.v1.GetRobotPartResponse.prototype.getConfigJson = function() {
  */
 proto.viam.app.v1.GetRobotPartResponse.prototype.setConfigJson = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * repeated LogEntry recent_error_logs = 3;
+ * @return {!Array<!proto.viam.app.v1.LogEntry>}
+ */
+proto.viam.app.v1.GetRobotPartResponse.prototype.getRecentErrorLogsList = function() {
+  return /** @type{!Array<!proto.viam.app.v1.LogEntry>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.v1.LogEntry, 3));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.app.v1.LogEntry>} value
+ * @return {!proto.viam.app.v1.GetRobotPartResponse} returns this
+*/
+proto.viam.app.v1.GetRobotPartResponse.prototype.setRecentErrorLogsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.LogEntry=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.LogEntry}
+ */
+proto.viam.app.v1.GetRobotPartResponse.prototype.addRecentErrorLogs = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.viam.app.v1.LogEntry, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.GetRobotPartResponse} returns this
+ */
+proto.viam.app.v1.GetRobotPartResponse.prototype.clearRecentErrorLogsList = function() {
+  return this.setRecentErrorLogsList([]);
 };
 
 

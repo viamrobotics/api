@@ -449,6 +449,11 @@ export class GetRobotPartResponse extends jspb.Message {
   getConfigJson(): string;
   setConfigJson(value: string): void;
 
+  clearRecentErrorLogsList(): void;
+  getRecentErrorLogsList(): Array<LogEntry>;
+  setRecentErrorLogsList(value: Array<LogEntry>): void;
+  addRecentErrorLogs(value?: LogEntry, index?: number): LogEntry;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartResponse): GetRobotPartResponse.AsObject;
@@ -463,6 +468,7 @@ export namespace GetRobotPartResponse {
   export type AsObject = {
     part?: RobotPart.AsObject,
     configJson: string,
+    recentErrorLogsList: Array<LogEntry.AsObject>,
   }
 }
 

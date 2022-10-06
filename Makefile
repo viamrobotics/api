@@ -1,5 +1,7 @@
 PATH_WITH_TOOLS="$(shell pwd)/bin:$(shell pwd)/node_modules/.bin:${PATH}"
 
+all: dist/buf
+
 setup:
 	bash etc/setup.sh
 

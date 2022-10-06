@@ -146,6 +146,7 @@ message GetRobotPartRequest {
 message GetRobotPartResponse {
   RobotPart part = 1;
   string config_json = 2;
+  repeated LogEntry recent_error_logs = 3;
 }
 
 message GetRobotPartLogsRequest {
