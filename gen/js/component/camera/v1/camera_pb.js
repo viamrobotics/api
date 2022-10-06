@@ -1965,8 +1965,8 @@ proto.viam.component.camera.v1.Property.prototype.toObject = function(opt_includ
  */
 proto.viam.component.camera.v1.Property.toObject = function(includeInstance, msg) {
   var f, obj = {
-    width: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    height: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    widthPx: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    heightPx: jspb.Message.getFieldWithDefault(msg, 2, 0),
     frameFormat: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
@@ -2006,11 +2006,11 @@ proto.viam.component.camera.v1.Property.deserializeBinaryFromReader = function(m
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setWidth(value);
+      msg.setWidthPx(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setHeight(value);
+      msg.setHeightPx(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -2045,14 +2045,14 @@ proto.viam.component.camera.v1.Property.prototype.serializeBinary = function() {
  */
 proto.viam.component.camera.v1.Property.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getWidth();
+  f = message.getWidthPx();
   if (f !== 0) {
     writer.writeInt32(
       1,
       f
     );
   }
-  f = message.getHeight();
+  f = message.getHeightPx();
   if (f !== 0) {
     writer.writeInt32(
       2,
@@ -2070,10 +2070,10 @@ proto.viam.component.camera.v1.Property.serializeBinaryToWriter = function(messa
 
 
 /**
- * optional int32 width = 1;
+ * optional int32 width_px = 1;
  * @return {number}
  */
-proto.viam.component.camera.v1.Property.prototype.getWidth = function() {
+proto.viam.component.camera.v1.Property.prototype.getWidthPx = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
@@ -2082,16 +2082,16 @@ proto.viam.component.camera.v1.Property.prototype.getWidth = function() {
  * @param {number} value
  * @return {!proto.viam.component.camera.v1.Property} returns this
  */
-proto.viam.component.camera.v1.Property.prototype.setWidth = function(value) {
+proto.viam.component.camera.v1.Property.prototype.setWidthPx = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional int32 height = 2;
+ * optional int32 height_px = 2;
  * @return {number}
  */
-proto.viam.component.camera.v1.Property.prototype.getHeight = function() {
+proto.viam.component.camera.v1.Property.prototype.getHeightPx = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -2100,7 +2100,7 @@ proto.viam.component.camera.v1.Property.prototype.getHeight = function() {
  * @param {number} value
  * @return {!proto.viam.component.camera.v1.Property} returns this
  */
-proto.viam.component.camera.v1.Property.prototype.setHeight = function(value) {
+proto.viam.component.camera.v1.Property.prototype.setHeightPx = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
