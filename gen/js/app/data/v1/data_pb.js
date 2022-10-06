@@ -502,7 +502,7 @@ proto.viam.app.data.v1.DataRequest.prototype.setLimit = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.Filter.repeatedFields_ = [5,12];
+proto.viam.app.data.v1.Filter.repeatedFields_ = [5,11,12];
 
 
 
@@ -545,7 +545,7 @@ proto.viam.app.data.v1.Filter.toObject = function(includeInstance, msg) {
     partName: jspb.Message.getFieldWithDefault(msg, 8, ""),
     partId: jspb.Message.getFieldWithDefault(msg, 9, ""),
     locationId: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    orgId: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    orgIdList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
     mimeTypeList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
     interval: (f = msg.getInterval()) && proto.viam.app.data.v1.CaptureInterval.toObject(includeInstance, f)
   };
@@ -626,7 +626,7 @@ proto.viam.app.data.v1.Filter.deserializeBinaryFromReader = function(msg, reader
       break;
     case 11:
       var value = /** @type {string} */ (reader.readString());
-      msg.setOrgId(value);
+      msg.addOrgId(value);
       break;
     case 12:
       var value = /** @type {string} */ (reader.readString());
@@ -736,9 +736,9 @@ proto.viam.app.data.v1.Filter.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getOrgId();
+  f = message.getOrgIdList();
   if (f.length > 0) {
-    writer.writeString(
+    writer.writeRepeatedString(
       11,
       f
     );
@@ -961,20 +961,39 @@ proto.viam.app.data.v1.Filter.prototype.setLocationId = function(value) {
 
 
 /**
- * optional string org_id = 11;
- * @return {string}
+ * repeated string org_id = 11;
+ * @return {!Array<string>}
  */
-proto.viam.app.data.v1.Filter.prototype.getOrgId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+proto.viam.app.data.v1.Filter.prototype.getOrgIdList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 11));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.data.v1.Filter} returns this
+ */
+proto.viam.app.data.v1.Filter.prototype.setOrgIdList = function(value) {
+  return jspb.Message.setField(this, 11, value || []);
 };
 
 
 /**
  * @param {string} value
+ * @param {number=} opt_index
  * @return {!proto.viam.app.data.v1.Filter} returns this
  */
-proto.viam.app.data.v1.Filter.prototype.setOrgId = function(value) {
-  return jspb.Message.setProto3StringField(this, 11, value);
+proto.viam.app.data.v1.Filter.prototype.addOrgId = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 11, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.data.v1.Filter} returns this
+ */
+proto.viam.app.data.v1.Filter.prototype.clearOrgIdList = function() {
+  return this.setOrgIdList([]);
 };
 
 
