@@ -111,6 +111,9 @@ export namespace Filter {
 }
 
 export class CaptureMetadata extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
   getLocationId(): string;
   setLocationId(value: string): void;
 
@@ -160,6 +163,7 @@ export class CaptureMetadata extends jspb.Message {
 
 export namespace CaptureMetadata {
   export type AsObject = {
+    orgId: string,
     locationId: string,
     robotName: string,
     robotId: string,
