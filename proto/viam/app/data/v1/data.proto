@@ -37,7 +37,7 @@ message Filter {
   string part_name = 8;
   string part_id = 9;
   string location_id = 10;
-  string org_id = 11;
+  repeated string org_id = 11;
   repeated string mime_type = 12;
   CaptureInterval interval = 13;
 }
