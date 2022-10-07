@@ -37,25 +37,26 @@ message Filter {
   string part_name = 8;
   string part_id = 9;
   string location_id = 10;
-  string org_id = 11;
+  repeated string org_id = 11;
   repeated string mime_type = 12;
   CaptureInterval interval = 13;
 }
 
 // CaptureMetadata contains information on the settings used for the data capture
 message CaptureMetadata {
-  string location_id = 1;
-  string robot_name = 2;
-  string robot_id = 3;
-  string part_name = 4;
-  string part_id = 5;
-  string component_type = 6;
-  string component_model = 7;
-  string component_name = 8;
-  string method_name = 9;
-  map<string, google.protobuf.Any> method_parameters = 10;
-  repeated string tags = 11;
-  string mime_type = 12;
+  string org_id = 1;
+  string location_id = 2;
+  string robot_name = 3;
+  string robot_id = 4;
+  string part_name = 5;
+  string part_id = 6;
+  string component_type = 7;
+  string component_model = 8;
+  string component_name = 9;
+  string method_name = 10;
+  map<string, google.protobuf.Any> method_parameters = 11;
+  repeated string tags = 12;
+  string mime_type = 13;
 }
 
 // CaptureInterval describes the start and end time of the capture in this file
