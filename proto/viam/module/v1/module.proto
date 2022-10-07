@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.module.v1;
 
 import "app/v1/robot.proto";
+import "robot/v1/robot.proto";
 
 option go_package = "go.viam.com/api/module/v1";
 
@@ -45,10 +46,9 @@ message CloseModuleRequest {}
 message CloseModuleResponse {}
 
 message HandlerDefinition {
-  string api = 1;
+  viam.robot.v1.ResourceRPCSubtype subtype = 1;
   repeated string models = 2;
 }
-
 message HandlerMap {
   repeated HandlerDefinition handlers = 1;
 }
@@ -56,7 +56,6 @@ message HandlerMap {
 message ReadyRequest {
   string parent_address = 1;
 }
-
 message ReadyResponse {
   bool ready = 1;
   HandlerMap handlermap = 2;

@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as app_v1_robot_pb from "../../app/v1/robot_pb";
+import * as robot_v1_robot_pb from "../../robot/v1/robot_pb";
 
 export class AddComponentRequest extends jspb.Message {
   hasConfig(): boolean;
@@ -161,8 +162,10 @@ export namespace CloseModuleResponse {
 }
 
 export class HandlerDefinition extends jspb.Message {
-  getApi(): string;
-  setApi(value: string): void;
+  hasSubtype(): boolean;
+  clearSubtype(): void;
+  getSubtype(): robot_v1_robot_pb.ResourceRPCSubtype | undefined;
+  setSubtype(value?: robot_v1_robot_pb.ResourceRPCSubtype): void;
 
   clearModelsList(): void;
   getModelsList(): Array<string>;
@@ -181,7 +184,7 @@ export class HandlerDefinition extends jspb.Message {
 
 export namespace HandlerDefinition {
   export type AsObject = {
-    api: string,
+    subtype?: robot_v1_robot_pb.ResourceRPCSubtype.AsObject,
     modelsList: Array<string>,
   }
 }

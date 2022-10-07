@@ -21,6 +21,8 @@ grpc.web = require('grpc-web');
 
 
 var app_v1_robot_pb = require('../../app/v1/robot_pb.js')
+
+var robot_v1_robot_pb = require('../../robot/v1/robot_pb.js')
 const proto = {};
 proto.viam = {};
 proto.viam.module = {};

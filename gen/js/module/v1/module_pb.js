@@ -17,6 +17,8 @@ var global = (function() { return this || window || global || self || Function('
 
 var app_v1_robot_pb = require('../../app/v1/robot_pb.js');
 goog.object.extend(proto, app_v1_robot_pb);
+var robot_v1_robot_pb = require('../../robot/v1/robot_pb.js');
+goog.object.extend(proto, robot_v1_robot_pb);
 goog.exportSymbol('proto.viam.module.v1.AddComponentRequest', null, global);
 goog.exportSymbol('proto.viam.module.v1.AddComponentResponse', null, global);
 goog.exportSymbol('proto.viam.module.v1.CloseModuleRequest', null, global);
@@ -1369,7 +1371,7 @@ proto.viam.module.v1.HandlerDefinition.prototype.toObject = function(opt_include
  */
 proto.viam.module.v1.HandlerDefinition.toObject = function(includeInstance, msg) {
   var f, obj = {
-    api: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    subtype: (f = msg.getSubtype()) && robot_v1_robot_pb.ResourceRPCSubtype.toObject(includeInstance, f),
     modelsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
@@ -1408,8 +1410,9 @@ proto.viam.module.v1.HandlerDefinition.deserializeBinaryFromReader = function(ms
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setApi(value);
+      var value = new robot_v1_robot_pb.ResourceRPCSubtype;
+      reader.readMessage(value,robot_v1_robot_pb.ResourceRPCSubtype.deserializeBinaryFromReader);
+      msg.setSubtype(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -1444,11 +1447,12 @@ proto.viam.module.v1.HandlerDefinition.prototype.serializeBinary = function() {
  */
 proto.viam.module.v1.HandlerDefinition.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getApi();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getSubtype();
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      robot_v1_robot_pb.ResourceRPCSubtype.serializeBinaryToWriter
     );
   }
   f = message.getModelsList();
@@ -1462,20 +1466,39 @@ proto.viam.module.v1.HandlerDefinition.serializeBinaryToWriter = function(messag
 
 
 /**
- * optional string api = 1;
- * @return {string}
+ * optional viam.robot.v1.ResourceRPCSubtype subtype = 1;
+ * @return {?proto.viam.robot.v1.ResourceRPCSubtype}
  */
-proto.viam.module.v1.HandlerDefinition.prototype.getApi = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.viam.module.v1.HandlerDefinition.prototype.getSubtype = function() {
+  return /** @type{?proto.viam.robot.v1.ResourceRPCSubtype} */ (
+    jspb.Message.getWrapperField(this, robot_v1_robot_pb.ResourceRPCSubtype, 1));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.viam.robot.v1.ResourceRPCSubtype|undefined} value
+ * @return {!proto.viam.module.v1.HandlerDefinition} returns this
+*/
+proto.viam.module.v1.HandlerDefinition.prototype.setSubtype = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.viam.module.v1.HandlerDefinition} returns this
  */
-proto.viam.module.v1.HandlerDefinition.prototype.setApi = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.viam.module.v1.HandlerDefinition.prototype.clearSubtype = function() {
+  return this.setSubtype(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.module.v1.HandlerDefinition.prototype.hasSubtype = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
