@@ -6600,7 +6600,8 @@ proto.viam.app.v1.Fragment.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     fragment: (f = msg.getFragment()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     organizationOwner: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+    pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6657,6 +6658,11 @@ proto.viam.app.v1.Fragment.deserializeBinaryFromReader = function(msg, reader) {
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setPublic(value);
+      break;
+    case 6:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedOn(value);
       break;
     default:
       reader.skipField();
@@ -6721,6 +6727,14 @@ proto.viam.app.v1.Fragment.serializeBinaryToWriter = function(message, writer) {
     writer.writeBool(
       5,
       f
+    );
+  }
+  f = message.getCreatedOn();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -6832,6 +6846,43 @@ proto.viam.app.v1.Fragment.prototype.getPublic = function() {
  */
 proto.viam.app.v1.Fragment.prototype.setPublic = function(value) {
   return jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_on = 6;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.Fragment.prototype.getCreatedOn = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.Fragment} returns this
+*/
+proto.viam.app.v1.Fragment.prototype.setCreatedOn = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.Fragment} returns this
+ */
+proto.viam.app.v1.Fragment.prototype.clearCreatedOn = function() {
+  return this.setCreatedOn(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Fragment.prototype.hasCreatedOn = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 

@@ -828,6 +828,11 @@ export class Fragment extends jspb.Message {
   getPublic(): boolean;
   setPublic(value: boolean): void;
 
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Fragment.AsObject;
   static toObject(includeInstance: boolean, msg: Fragment): Fragment.AsObject;
@@ -845,6 +850,7 @@ export namespace Fragment {
     fragment?: google_protobuf_struct_pb.Struct.AsObject,
     organizationOwner: string,
     pb_public: boolean,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
