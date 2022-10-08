@@ -502,7 +502,7 @@ proto.viam.app.data.v1.DataRequest.prototype.setLimit = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.Filter.repeatedFields_ = [5,12];
+proto.viam.app.data.v1.Filter.repeatedFields_ = [5,11,12];
 
 
 
@@ -545,7 +545,7 @@ proto.viam.app.data.v1.Filter.toObject = function(includeInstance, msg) {
     partName: jspb.Message.getFieldWithDefault(msg, 8, ""),
     partId: jspb.Message.getFieldWithDefault(msg, 9, ""),
     locationId: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    orgId: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    orgIdList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
     mimeTypeList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
     interval: (f = msg.getInterval()) && proto.viam.app.data.v1.CaptureInterval.toObject(includeInstance, f)
   };
@@ -626,7 +626,7 @@ proto.viam.app.data.v1.Filter.deserializeBinaryFromReader = function(msg, reader
       break;
     case 11:
       var value = /** @type {string} */ (reader.readString());
-      msg.setOrgId(value);
+      msg.addOrgId(value);
       break;
     case 12:
       var value = /** @type {string} */ (reader.readString());
@@ -736,9 +736,9 @@ proto.viam.app.data.v1.Filter.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getOrgId();
+  f = message.getOrgIdList();
   if (f.length > 0) {
-    writer.writeString(
+    writer.writeRepeatedString(
       11,
       f
     );
@@ -961,20 +961,39 @@ proto.viam.app.data.v1.Filter.prototype.setLocationId = function(value) {
 
 
 /**
- * optional string org_id = 11;
- * @return {string}
+ * repeated string org_id = 11;
+ * @return {!Array<string>}
  */
-proto.viam.app.data.v1.Filter.prototype.getOrgId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+proto.viam.app.data.v1.Filter.prototype.getOrgIdList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 11));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.data.v1.Filter} returns this
+ */
+proto.viam.app.data.v1.Filter.prototype.setOrgIdList = function(value) {
+  return jspb.Message.setField(this, 11, value || []);
 };
 
 
 /**
  * @param {string} value
+ * @param {number=} opt_index
  * @return {!proto.viam.app.data.v1.Filter} returns this
  */
-proto.viam.app.data.v1.Filter.prototype.setOrgId = function(value) {
-  return jspb.Message.setProto3StringField(this, 11, value);
+proto.viam.app.data.v1.Filter.prototype.addOrgId = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 11, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.data.v1.Filter} returns this
+ */
+proto.viam.app.data.v1.Filter.prototype.clearOrgIdList = function() {
+  return this.setOrgIdList([]);
 };
 
 
@@ -1058,7 +1077,7 @@ proto.viam.app.data.v1.Filter.prototype.hasInterval = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.CaptureMetadata.repeatedFields_ = [11];
+proto.viam.app.data.v1.CaptureMetadata.repeatedFields_ = [12];
 
 
 
@@ -1091,18 +1110,19 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.toObject = function(opt_include
  */
 proto.viam.app.data.v1.CaptureMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    robotName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    robotId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    partName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    partId: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    componentType: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    componentModel: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    componentName: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    methodName: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    locationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    robotName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    robotId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    partName: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    partId: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    componentType: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    componentModel: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    componentName: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    methodName: jspb.Message.getFieldWithDefault(msg, 10, ""),
     methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
-    mimeType: jspb.Message.getFieldWithDefault(msg, 12, "")
+    tagsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
+    mimeType: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -1141,51 +1161,55 @@ proto.viam.app.data.v1.CaptureMetadata.deserializeBinaryFromReader = function(ms
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setLocationId(value);
+      msg.setOrgId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRobotName(value);
+      msg.setLocationId(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRobotId(value);
+      msg.setRobotName(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPartName(value);
+      msg.setRobotId(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPartId(value);
+      msg.setPartName(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setComponentType(value);
+      msg.setPartId(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setComponentModel(value);
+      msg.setComponentType(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setComponentName(value);
+      msg.setComponentModel(value);
       break;
     case 9:
       var value = /** @type {string} */ (reader.readString());
-      msg.setMethodName(value);
+      msg.setComponentName(value);
       break;
     case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMethodName(value);
+      break;
+    case 11:
       var value = msg.getMethodParametersMap();
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.google.protobuf.Any.deserializeBinaryFromReader, "", new proto.google.protobuf.Any());
          });
       break;
-    case 11:
+    case 12:
       var value = /** @type {string} */ (reader.readString());
       msg.addTags(value);
       break;
-    case 12:
+    case 13:
       var value = /** @type {string} */ (reader.readString());
       msg.setMimeType(value);
       break;
@@ -1218,84 +1242,91 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.serializeBinary = function() {
  */
 proto.viam.app.data.v1.CaptureMetadata.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getLocationId();
+  f = message.getOrgId();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getRobotName();
+  f = message.getLocationId();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getRobotId();
+  f = message.getRobotName();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getPartName();
+  f = message.getRobotId();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getPartId();
+  f = message.getPartName();
   if (f.length > 0) {
     writer.writeString(
       5,
       f
     );
   }
-  f = message.getComponentType();
+  f = message.getPartId();
   if (f.length > 0) {
     writer.writeString(
       6,
       f
     );
   }
-  f = message.getComponentModel();
+  f = message.getComponentType();
   if (f.length > 0) {
     writer.writeString(
       7,
       f
     );
   }
-  f = message.getComponentName();
+  f = message.getComponentModel();
   if (f.length > 0) {
     writer.writeString(
       8,
       f
     );
   }
-  f = message.getMethodName();
+  f = message.getComponentName();
   if (f.length > 0) {
     writer.writeString(
       9,
       f
     );
   }
+  f = message.getMethodName();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
   f = message.getMethodParametersMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(10, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.google.protobuf.Any.serializeBinaryToWriter);
+    f.serializeBinary(11, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.google.protobuf.Any.serializeBinaryToWriter);
   }
   f = message.getTagsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      11,
+      12,
       f
     );
   }
   f = message.getMimeType();
   if (f.length > 0) {
     writer.writeString(
-      12,
+      13,
       f
     );
   }
@@ -1303,10 +1334,10 @@ proto.viam.app.data.v1.CaptureMetadata.serializeBinaryToWriter = function(messag
 
 
 /**
- * optional string location_id = 1;
+ * optional string org_id = 1;
  * @return {string}
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getLocationId = function() {
+proto.viam.app.data.v1.CaptureMetadata.prototype.getOrgId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -1315,16 +1346,16 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getLocationId = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.setLocationId = function(value) {
+proto.viam.app.data.v1.CaptureMetadata.prototype.setOrgId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string robot_name = 2;
+ * optional string location_id = 2;
  * @return {string}
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getRobotName = function() {
+proto.viam.app.data.v1.CaptureMetadata.prototype.getLocationId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -1333,16 +1364,16 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getRobotName = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.setRobotName = function(value) {
+proto.viam.app.data.v1.CaptureMetadata.prototype.setLocationId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string robot_id = 3;
+ * optional string robot_name = 3;
  * @return {string}
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getRobotId = function() {
+proto.viam.app.data.v1.CaptureMetadata.prototype.getRobotName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -1351,16 +1382,16 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getRobotId = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.setRobotId = function(value) {
+proto.viam.app.data.v1.CaptureMetadata.prototype.setRobotName = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string part_name = 4;
+ * optional string robot_id = 4;
  * @return {string}
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getPartName = function() {
+proto.viam.app.data.v1.CaptureMetadata.prototype.getRobotId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -1369,16 +1400,16 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getPartName = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.setPartName = function(value) {
+proto.viam.app.data.v1.CaptureMetadata.prototype.setRobotId = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string part_id = 5;
+ * optional string part_name = 5;
  * @return {string}
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getPartId = function() {
+proto.viam.app.data.v1.CaptureMetadata.prototype.getPartName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -1387,16 +1418,16 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getPartId = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.setPartId = function(value) {
+proto.viam.app.data.v1.CaptureMetadata.prototype.setPartName = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional string component_type = 6;
+ * optional string part_id = 6;
  * @return {string}
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getComponentType = function() {
+proto.viam.app.data.v1.CaptureMetadata.prototype.getPartId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -1405,16 +1436,16 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getComponentType = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.setComponentType = function(value) {
+proto.viam.app.data.v1.CaptureMetadata.prototype.setPartId = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional string component_model = 7;
+ * optional string component_type = 7;
  * @return {string}
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getComponentModel = function() {
+proto.viam.app.data.v1.CaptureMetadata.prototype.getComponentType = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -1423,16 +1454,16 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getComponentModel = function() 
  * @param {string} value
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.setComponentModel = function(value) {
+proto.viam.app.data.v1.CaptureMetadata.prototype.setComponentType = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
- * optional string component_name = 8;
+ * optional string component_model = 8;
  * @return {string}
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getComponentName = function() {
+proto.viam.app.data.v1.CaptureMetadata.prototype.getComponentModel = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -1441,16 +1472,16 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getComponentName = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.setComponentName = function(value) {
+proto.viam.app.data.v1.CaptureMetadata.prototype.setComponentModel = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
 /**
- * optional string method_name = 9;
+ * optional string component_name = 9;
  * @return {string}
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getMethodName = function() {
+proto.viam.app.data.v1.CaptureMetadata.prototype.getComponentName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
@@ -1459,20 +1490,38 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getMethodName = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.setMethodName = function(value) {
+proto.viam.app.data.v1.CaptureMetadata.prototype.setComponentName = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
 /**
- * map<string, google.protobuf.Any> method_parameters = 10;
+ * optional string method_name = 10;
+ * @return {string}
+ */
+proto.viam.app.data.v1.CaptureMetadata.prototype.getMethodName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
+ */
+proto.viam.app.data.v1.CaptureMetadata.prototype.setMethodName = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * map<string, google.protobuf.Any> method_parameters = 11;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
  * @return {!jspb.Map<string,!proto.google.protobuf.Any>}
  */
 proto.viam.app.data.v1.CaptureMetadata.prototype.getMethodParametersMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,!proto.google.protobuf.Any>} */ (
-      jspb.Message.getMapField(this, 10, opt_noLazyCreate,
+      jspb.Message.getMapField(this, 11, opt_noLazyCreate,
       proto.google.protobuf.Any));
 };
 
@@ -1487,11 +1536,11 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.clearMethodParametersMap = func
 
 
 /**
- * repeated string tags = 11;
+ * repeated string tags = 12;
  * @return {!Array<string>}
  */
 proto.viam.app.data.v1.CaptureMetadata.prototype.getTagsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 11));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 12));
 };
 
 
@@ -1500,7 +1549,7 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getTagsList = function() {
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
 proto.viam.app.data.v1.CaptureMetadata.prototype.setTagsList = function(value) {
-  return jspb.Message.setField(this, 11, value || []);
+  return jspb.Message.setField(this, 12, value || []);
 };
 
 
@@ -1510,7 +1559,7 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.setTagsList = function(value) {
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
 proto.viam.app.data.v1.CaptureMetadata.prototype.addTags = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 11, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 12, value, opt_index);
 };
 
 
@@ -1524,11 +1573,11 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.clearTagsList = function() {
 
 
 /**
- * optional string mime_type = 12;
+ * optional string mime_type = 13;
  * @return {string}
  */
 proto.viam.app.data.v1.CaptureMetadata.prototype.getMimeType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
 };
 
 
@@ -1537,7 +1586,7 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getMimeType = function() {
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
 proto.viam.app.data.v1.CaptureMetadata.prototype.setMimeType = function(value) {
-  return jspb.Message.setProto3StringField(this, 12, value);
+  return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 

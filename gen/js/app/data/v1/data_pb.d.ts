@@ -69,8 +69,10 @@ export class Filter extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;
 
-  getOrgId(): string;
-  setOrgId(value: string): void;
+  clearOrgIdList(): void;
+  getOrgIdList(): Array<string>;
+  setOrgIdList(value: Array<string>): void;
+  addOrgId(value: string, index?: number): string;
 
   clearMimeTypeList(): void;
   getMimeTypeList(): Array<string>;
@@ -104,13 +106,16 @@ export namespace Filter {
     partName: string,
     partId: string,
     locationId: string,
-    orgId: string,
+    orgIdList: Array<string>,
     mimeTypeList: Array<string>,
     interval?: CaptureInterval.AsObject,
   }
 }
 
 export class CaptureMetadata extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
   getLocationId(): string;
   setLocationId(value: string): void;
 
@@ -160,6 +165,7 @@ export class CaptureMetadata extends jspb.Message {
 
 export namespace CaptureMetadata {
   export type AsObject = {
+    orgId: string,
     locationId: string,
     robotName: string,
     robotId: string,
