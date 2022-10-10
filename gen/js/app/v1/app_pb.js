@@ -980,7 +980,8 @@ proto.viam.app.v1.Robot.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     location: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    lastAccess: (f = msg.getLastAccess()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    lastAccess: (f = msg.getLastAccess()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1033,6 +1034,11 @@ proto.viam.app.v1.Robot.deserializeBinaryFromReader = function(msg, reader) {
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setLastAccess(value);
+      break;
+    case 5:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedOn(value);
       break;
     default:
       reader.skipField();
@@ -1088,6 +1094,14 @@ proto.viam.app.v1.Robot.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeMessage(
       4,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreatedOn();
+  if (f != null) {
+    writer.writeMessage(
+      5,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -1186,6 +1200,43 @@ proto.viam.app.v1.Robot.prototype.hasLastAccess = function() {
 };
 
 
+/**
+ * optional google.protobuf.Timestamp created_on = 5;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.Robot.prototype.getCreatedOn = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.Robot} returns this
+*/
+proto.viam.app.v1.Robot.prototype.setCreatedOn = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.Robot} returns this
+ */
+proto.viam.app.v1.Robot.prototype.clearCreatedOn = function() {
+  return this.setCreatedOn(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Robot.prototype.hasCreatedOn = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
 
 
 
@@ -1229,7 +1280,8 @@ proto.viam.app.v1.RobotPart.toObject = function(includeInstance, msg) {
     userSuppliedInfo: (f = msg.getUserSuppliedInfo()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     mainPart: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
     fqdn: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    localFqdn: jspb.Message.getFieldWithDefault(msg, 11, "")
+    localFqdn: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1316,6 +1368,11 @@ proto.viam.app.v1.RobotPart.deserializeBinaryFromReader = function(msg, reader) 
     case 11:
       var value = /** @type {string} */ (reader.readString());
       msg.setLocalFqdn(value);
+      break;
+    case 13:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedOn(value);
       break;
     default:
       reader.skipField();
@@ -1431,6 +1488,14 @@ proto.viam.app.v1.RobotPart.serializeBinaryToWriter = function(message, writer) 
     writer.writeString(
       11,
       f
+    );
+  }
+  f = message.getCreatedOn();
+  if (f != null) {
+    writer.writeMessage(
+      13,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -1706,6 +1771,43 @@ proto.viam.app.v1.RobotPart.prototype.getLocalFqdn = function() {
  */
 proto.viam.app.v1.RobotPart.prototype.setLocalFqdn = function(value) {
   return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_on = 13;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.RobotPart.prototype.getCreatedOn = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 13));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+*/
+proto.viam.app.v1.RobotPart.prototype.setCreatedOn = function(value) {
+  return jspb.Message.setWrapperField(this, 13, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+ */
+proto.viam.app.v1.RobotPart.prototype.clearCreatedOn = function() {
+  return this.setCreatedOn(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.RobotPart.prototype.hasCreatedOn = function() {
+  return jspb.Message.getField(this, 13) != null;
 };
 
 
@@ -2105,7 +2207,8 @@ proto.viam.app.v1.Organization.prototype.toObject = function(opt_includeInstance
 proto.viam.app.v1.Organization.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, "")
+    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2150,6 +2253,11 @@ proto.viam.app.v1.Organization.deserializeBinaryFromReader = function(msg, reade
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedOn(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2193,6 +2301,14 @@ proto.viam.app.v1.Organization.serializeBinaryToWriter = function(message, write
       f
     );
   }
+  f = message.getCreatedOn();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -2229,6 +2345,43 @@ proto.viam.app.v1.Organization.prototype.getName = function() {
  */
 proto.viam.app.v1.Organization.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_on = 3;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.Organization.prototype.getCreatedOn = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.Organization} returns this
+*/
+proto.viam.app.v1.Organization.prototype.setCreatedOn = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.Organization} returns this
+ */
+proto.viam.app.v1.Organization.prototype.clearCreatedOn = function() {
+  return this.setCreatedOn(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Organization.prototype.hasCreatedOn = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -2425,7 +2578,8 @@ proto.viam.app.v1.Location.prototype.toObject = function(opt_includeInstance) {
 proto.viam.app.v1.Location.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, "")
+    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2470,6 +2624,11 @@ proto.viam.app.v1.Location.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedOn(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2513,6 +2672,14 @@ proto.viam.app.v1.Location.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getCreatedOn();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -2549,6 +2716,43 @@ proto.viam.app.v1.Location.prototype.getName = function() {
  */
 proto.viam.app.v1.Location.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_on = 3;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.Location.prototype.getCreatedOn = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.Location} returns this
+*/
+proto.viam.app.v1.Location.prototype.setCreatedOn = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.Location} returns this
+ */
+proto.viam.app.v1.Location.prototype.clearCreatedOn = function() {
+  return this.setCreatedOn(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Location.prototype.hasCreatedOn = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -6396,7 +6600,8 @@ proto.viam.app.v1.Fragment.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     fragment: (f = msg.getFragment()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     organizationOwner: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+    pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6453,6 +6658,11 @@ proto.viam.app.v1.Fragment.deserializeBinaryFromReader = function(msg, reader) {
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setPublic(value);
+      break;
+    case 6:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedOn(value);
       break;
     default:
       reader.skipField();
@@ -6517,6 +6727,14 @@ proto.viam.app.v1.Fragment.serializeBinaryToWriter = function(message, writer) {
     writer.writeBool(
       5,
       f
+    );
+  }
+  f = message.getCreatedOn();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -6628,6 +6846,43 @@ proto.viam.app.v1.Fragment.prototype.getPublic = function() {
  */
 proto.viam.app.v1.Fragment.prototype.setPublic = function(value) {
   return jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_on = 6;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.Fragment.prototype.getCreatedOn = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.Fragment} returns this
+*/
+proto.viam.app.v1.Fragment.prototype.setCreatedOn = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.Fragment} returns this
+ */
+proto.viam.app.v1.Fragment.prototype.clearCreatedOn = function() {
+  return this.setCreatedOn(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Fragment.prototype.hasCreatedOn = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 

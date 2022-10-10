@@ -60,6 +60,7 @@ message Robot {
   string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
   string location = 3 [(tagger.v1.tags) = "bson:\"location\" json:\"location\""];
   google.protobuf.Timestamp last_access = 4 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
+  google.protobuf.Timestamp created_on = 5 [(tagger.v1.tags) = "bson:\"created_on\""];
 }
 
 message RobotPart {
@@ -78,6 +79,7 @@ message RobotPart {
   bool main_part = 8 [(tagger.v1.tags) = "bson:\"main_part\" json:\"main_part\""];
   string fqdn = 9;
   string local_fqdn = 11;
+  google.protobuf.Timestamp created_on = 13 [(tagger.v1.tags) = "bson:\"created_on\""];
 }
 
 message RobotPartHistoryEntry {
@@ -92,6 +94,7 @@ message ListOrganizationsRequest {}
 message Organization {
   string id = 1;
   string name = 2;
+  google.protobuf.Timestamp created_on = 3;
 }
 
 message ListOrganizationsResponse {
@@ -101,6 +104,7 @@ message ListOrganizationsResponse {
 message Location {
   string id = 1;
   string name = 2;
+  google.protobuf.Timestamp created_on = 3;
 }
 
 message ListLocationsRequest {
@@ -216,6 +220,7 @@ message Fragment {
   google.protobuf.Struct fragment = 3 [(tagger.v1.tags) = "bson:\"fragment\" json:\"fragment\""];
   string organization_owner = 4 [(tagger.v1.tags) = "bson:\"organization_owner\" json:\"owner\""];
   bool public = 5 [(tagger.v1.tags) = "bson:\"public\" json:\"public\""];
+  google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
 }
 
 message FindRobotsRequest {
