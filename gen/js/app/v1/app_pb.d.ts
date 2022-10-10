@@ -75,11 +75,6 @@ export class RobotPart extends jspb.Message {
   getLastAccess(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setLastAccess(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  hasCreatedOn(): boolean;
-  clearCreatedOn(): void;
-  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
   hasUserSuppliedInfo(): boolean;
   clearUserSuppliedInfo(): void;
   getUserSuppliedInfo(): google_protobuf_struct_pb.Struct | undefined;
@@ -93,6 +88,11 @@ export class RobotPart extends jspb.Message {
 
   getLocalFqdn(): string;
   setLocalFqdn(value: string): void;
+
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotPart.AsObject;
@@ -114,11 +114,11 @@ export namespace RobotPart {
     locationId: string,
     robotConfig?: google_protobuf_struct_pb.Struct.AsObject,
     lastAccess?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     userSuppliedInfo?: google_protobuf_struct_pb.Struct.AsObject,
     mainPart: boolean,
     fqdn: string,
     localFqdn: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
