@@ -21,6 +21,11 @@ export class Robot extends jspb.Message {
   getLastAccess(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setLastAccess(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Robot.AsObject;
   static toObject(includeInstance: boolean, msg: Robot): Robot.AsObject;
@@ -37,6 +42,7 @@ export namespace Robot {
     name: string,
     location: string,
     lastAccess?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -83,6 +89,11 @@ export class RobotPart extends jspb.Message {
   getLocalFqdn(): string;
   setLocalFqdn(value: string): void;
 
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotPart.AsObject;
   static toObject(includeInstance: boolean, msg: RobotPart): RobotPart.AsObject;
@@ -107,6 +118,7 @@ export namespace RobotPart {
     mainPart: boolean,
     fqdn: string,
     localFqdn: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -169,6 +181,11 @@ export class Organization extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Organization.AsObject;
   static toObject(includeInstance: boolean, msg: Organization): Organization.AsObject;
@@ -183,6 +200,7 @@ export namespace Organization {
   export type AsObject = {
     id: string,
     name: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -215,6 +233,11 @@ export class Location extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Location.AsObject;
   static toObject(includeInstance: boolean, msg: Location): Location.AsObject;
@@ -229,6 +252,7 @@ export namespace Location {
   export type AsObject = {
     id: string,
     name: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -804,6 +828,11 @@ export class Fragment extends jspb.Message {
   getPublic(): boolean;
   setPublic(value: boolean): void;
 
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Fragment.AsObject;
   static toObject(includeInstance: boolean, msg: Fragment): Fragment.AsObject;
@@ -821,6 +850,7 @@ export namespace Fragment {
     fragment?: google_protobuf_struct_pb.Struct.AsObject,
     organizationOwner: string,
     pb_public: boolean,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
