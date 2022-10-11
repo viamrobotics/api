@@ -2507,7 +2507,8 @@ proto.viam.component.motor.v1.IsPoweredResponse.prototype.toObject = function(op
  */
 proto.viam.component.motor.v1.IsPoweredResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    isOn: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+    isOn: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    powerPct: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -2548,6 +2549,10 @@ proto.viam.component.motor.v1.IsPoweredResponse.deserializeBinaryFromReader = fu
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsOn(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setPowerPct(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2584,6 +2589,13 @@ proto.viam.component.motor.v1.IsPoweredResponse.serializeBinaryToWriter = functi
       f
     );
   }
+  f = message.getPowerPct();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -2602,6 +2614,24 @@ proto.viam.component.motor.v1.IsPoweredResponse.prototype.getIsOn = function() {
  */
 proto.viam.component.motor.v1.IsPoweredResponse.prototype.setIsOn = function(value) {
   return jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional double power_pct = 2;
+ * @return {number}
+ */
+proto.viam.component.motor.v1.IsPoweredResponse.prototype.getPowerPct = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 2, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.component.motor.v1.IsPoweredResponse} returns this
+ */
+proto.viam.component.motor.v1.IsPoweredResponse.prototype.setPowerPct = function(value) {
+  return jspb.Message.setProto3FloatField(this, 2, value);
 };
 
 

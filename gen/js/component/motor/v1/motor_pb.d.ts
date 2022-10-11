@@ -315,6 +315,9 @@ export class IsPoweredResponse extends jspb.Message {
   getIsOn(): boolean;
   setIsOn(value: boolean): void;
 
+  getPowerPct(): number;
+  setPowerPct(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): IsPoweredResponse.AsObject;
   static toObject(includeInstance: boolean, msg: IsPoweredResponse): IsPoweredResponse.AsObject;
@@ -328,6 +331,7 @@ export class IsPoweredResponse extends jspb.Message {
 export namespace IsPoweredResponse {
   export type AsObject = {
     isOn: boolean,
+    powerPct: number,
   }
 }
 
