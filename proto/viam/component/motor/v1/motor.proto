@@ -158,8 +158,9 @@ message IsPoweredRequest {
 message IsPoweredResponse {
   // Returns true if the motor is on
   bool is_on = 1;
-  // Returns power percent (from 0-1) based on the last command sent to motor. If the last command
-  // was a stop command, this value will be 0.
+  // Returns power percent (from 0 to 1, or from -1 to 1 for motors that support negative power),
+  // based on the last command sent to motor. If the last command was a stop command, this value
+  // will be 0.
   double power_pct = 2;
 }
 
