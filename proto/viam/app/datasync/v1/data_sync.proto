@@ -118,17 +118,6 @@ message BinaryCapture {
   int64 file_size_bytes = 14 [(tagger.v1.tags) = "bson:\"file_size_bytes\" json:\"file_size_bytes\""];
   string session_id = 15 [(tagger.v1.tags) = "bson:\"session_id\" json:\"session_id\""];
   string mime_type = 16 [(tagger.v1.tags) = "bson:\"mime_type\" json:\"mime_type\""];
+  string file_name = 17 [(tagger.v1.tags) = "bson:\"file_name\" json:\"file_name\""];
 }
 
-message UserFile {
-  google.protobuf.Timestamp sync_time = 1 [(tagger.v1.tags) = "bson:\"sync_time\" json:\"sync_time\""];
-  string org_id = 2 [(tagger.v1.tags) = "bson:\"org_id\" json:\"org_id\""];
-  string robot_id = 3 [(tagger.v1.tags) = "bson:\"robot_id\" json:\"robot_id\""];
-  string part_id = 4 [(tagger.v1.tags) = "bson:\"part_id\" json:\"part_id\""];
-  string location_id = 5 [(tagger.v1.tags) = "bson:\"location_id\" json:\"location_id\""];
-  string blob_path = 6 [(tagger.v1.tags) = "bson:\"blob_path\" json:\"blob_path\""];
-  map<string, google.protobuf.Any> method_parameters = 7 [(tagger.v1.tags) = "bson:\"method_parameters\" json:\"method_parameters\""];
-  string file_id = 8 [(tagger.v1.tags) = "bson:\"file_id\" json:\"file_id\""];
-  int64 file_size_bytes = 9 [(tagger.v1.tags) = "bson:\"file_size_bytes\" json:\"file_size_bytes\""];
-  string mime_type = 10 [(tagger.v1.tags) = "bson:\"mime_type\" json:\"mime_type\""];
-}
