@@ -120,4 +120,3 @@ message BinaryCapture {
   string mime_type = 16 [(tagger.v1.tags) = "bson:\"mime_type\" json:\"mime_type\""];
   string file_name = 17 [(tagger.v1.tags) = "bson:\"file_name\" json:\"file_name\""];
 }
-
