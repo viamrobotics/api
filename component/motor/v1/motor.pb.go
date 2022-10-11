@@ -720,8 +720,9 @@ type IsPoweredResponse struct {
 
 	// Returns true if the motor is on
 	IsOn bool `protobuf:"varint,1,opt,name=is_on,json=isOn,proto3" json:"is_on,omitempty"`
-	// Returns power percent (from 0-1) based on the last command sent to motor. If the last command
-	// was a stop command, this value will be 0.
+	// Returns power percent (from 0 to 1, or from -1 to 1 for motors that support negative power),
+	// based on the last command sent to motor. If the last command was a stop command, this value
+	// will be 0.
 	PowerPct float64 `protobuf:"fixed64,2,opt,name=power_pct,json=powerPct,proto3" json:"power_pct,omitempty"`
 }
 
