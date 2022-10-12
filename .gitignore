@@ -38,3 +38,6 @@ dist/*
 
 # license finder
 lf_logs/
+
+# vs code
+.vscode

@@ -1,816 +1,761 @@
-// package: viam.service.vision.v1
-// file: service/vision/v1/vision.proto
-
-import * as jspb from "google-protobuf";
-import * as common_v1_common_pb from "../../../common/v1/common_pb";
-import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
-import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
-
-export class GetModelParameterSchemaRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getModelType(): string;
-  setModelType(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetModelParameterSchemaRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetModelParameterSchemaRequest): GetModelParameterSchemaRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetModelParameterSchemaRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetModelParameterSchemaRequest;
-  static deserializeBinaryFromReader(message: GetModelParameterSchemaRequest, reader: jspb.BinaryReader): GetModelParameterSchemaRequest;
-}
-
-export namespace GetModelParameterSchemaRequest {
-  export type AsObject = {
-    name: string,
-    modelType: string,
-  }
-}
-
-export class GetModelParameterSchemaResponse extends jspb.Message {
-  getModelParameterSchema(): Uint8Array | string;
-  getModelParameterSchema_asU8(): Uint8Array;
-  getModelParameterSchema_asB64(): string;
-  setModelParameterSchema(value: Uint8Array | string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetModelParameterSchemaResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetModelParameterSchemaResponse): GetModelParameterSchemaResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetModelParameterSchemaResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetModelParameterSchemaResponse;
-  static deserializeBinaryFromReader(message: GetModelParameterSchemaResponse, reader: jspb.BinaryReader): GetModelParameterSchemaResponse;
-}
-
-export namespace GetModelParameterSchemaResponse {
-  export type AsObject = {
-    modelParameterSchema: Uint8Array | string,
-  }
-}
-
-export class GetDetectorNamesRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetDetectorNamesRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetDetectorNamesRequest): GetDetectorNamesRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetDetectorNamesRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetDetectorNamesRequest;
-  static deserializeBinaryFromReader(message: GetDetectorNamesRequest, reader: jspb.BinaryReader): GetDetectorNamesRequest;
-}
-
-export namespace GetDetectorNamesRequest {
-  export type AsObject = {
-    name: string,
-  }
-}
-
-export class GetDetectorNamesResponse extends jspb.Message {
-  clearDetectorNamesList(): void;
-  getDetectorNamesList(): Array<string>;
-  setDetectorNamesList(value: Array<string>): void;
-  addDetectorNames(value: string, index?: number): string;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetDetectorNamesResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetDetectorNamesResponse): GetDetectorNamesResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetDetectorNamesResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetDetectorNamesResponse;
-  static deserializeBinaryFromReader(message: GetDetectorNamesResponse, reader: jspb.BinaryReader): GetDetectorNamesResponse;
-}
-
-export namespace GetDetectorNamesResponse {
-  export type AsObject = {
-    detectorNamesList: Array<string>,
-  }
-}
-
-export class AddDetectorRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getDetectorName(): string;
-  setDetectorName(value: string): void;
-
-  getDetectorModelType(): string;
-  setDetectorModelType(value: string): void;
-
-  hasDetectorParameters(): boolean;
-  clearDetectorParameters(): void;
-  getDetectorParameters(): google_protobuf_struct_pb.Struct | undefined;
-  setDetectorParameters(value?: google_protobuf_struct_pb.Struct): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddDetectorRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddDetectorRequest): AddDetectorRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddDetectorRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddDetectorRequest;
-  static deserializeBinaryFromReader(message: AddDetectorRequest, reader: jspb.BinaryReader): AddDetectorRequest;
-}
-
-export namespace AddDetectorRequest {
-  export type AsObject = {
-    name: string,
-    detectorName: string,
-    detectorModelType: string,
-    detectorParameters?: google_protobuf_struct_pb.Struct.AsObject,
-  }
-}
-
-export class AddDetectorResponse extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddDetectorResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: AddDetectorResponse): AddDetectorResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddDetectorResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddDetectorResponse;
-  static deserializeBinaryFromReader(message: AddDetectorResponse, reader: jspb.BinaryReader): AddDetectorResponse;
-}
-
-export namespace AddDetectorResponse {
-  export type AsObject = {
-  }
-}
-
-export class RemoveDetectorRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getDetectorName(): string;
-  setDetectorName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveDetectorRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveDetectorRequest): RemoveDetectorRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveDetectorRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveDetectorRequest;
-  static deserializeBinaryFromReader(message: RemoveDetectorRequest, reader: jspb.BinaryReader): RemoveDetectorRequest;
-}
-
-export namespace RemoveDetectorRequest {
-  export type AsObject = {
-    name: string,
-    detectorName: string,
-  }
-}
-
-export class RemoveDetectorResponse extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveDetectorResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveDetectorResponse): RemoveDetectorResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveDetectorResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveDetectorResponse;
-  static deserializeBinaryFromReader(message: RemoveDetectorResponse, reader: jspb.BinaryReader): RemoveDetectorResponse;
-}
-
-export namespace RemoveDetectorResponse {
-  export type AsObject = {
-  }
-}
-
-export class GetDetectionsRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getImage(): Uint8Array | string;
-  getImage_asU8(): Uint8Array;
-  getImage_asB64(): string;
-  setImage(value: Uint8Array | string): void;
-
-  getWidth(): number;
-  setWidth(value: number): void;
-
-  getHeight(): number;
-  setHeight(value: number): void;
-
-  getMimeType(): string;
-  setMimeType(value: string): void;
-
-  getDetectorName(): string;
-  setDetectorName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetDetectionsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetDetectionsRequest): GetDetectionsRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetDetectionsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetDetectionsRequest;
-  static deserializeBinaryFromReader(message: GetDetectionsRequest, reader: jspb.BinaryReader): GetDetectionsRequest;
-}
-
-export namespace GetDetectionsRequest {
-  export type AsObject = {
-    name: string,
-    image: Uint8Array | string,
-    width: number,
-    height: number,
-    mimeType: string,
-    detectorName: string,
-  }
-}
-
-export class GetDetectionsResponse extends jspb.Message {
-  clearDetectionsList(): void;
-  getDetectionsList(): Array<Detection>;
-  setDetectionsList(value: Array<Detection>): void;
-  addDetections(value?: Detection, index?: number): Detection;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetDetectionsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetDetectionsResponse): GetDetectionsResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetDetectionsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetDetectionsResponse;
-  static deserializeBinaryFromReader(message: GetDetectionsResponse, reader: jspb.BinaryReader): GetDetectionsResponse;
-}
-
-export namespace GetDetectionsResponse {
-  export type AsObject = {
-    detectionsList: Array<Detection.AsObject>,
-  }
-}
-
-export class GetDetectionsFromCameraRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getCameraName(): string;
-  setCameraName(value: string): void;
-
-  getDetectorName(): string;
-  setDetectorName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetDetectionsFromCameraRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetDetectionsFromCameraRequest): GetDetectionsFromCameraRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetDetectionsFromCameraRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetDetectionsFromCameraRequest;
-  static deserializeBinaryFromReader(message: GetDetectionsFromCameraRequest, reader: jspb.BinaryReader): GetDetectionsFromCameraRequest;
-}
-
-export namespace GetDetectionsFromCameraRequest {
-  export type AsObject = {
-    name: string,
-    cameraName: string,
-    detectorName: string,
-  }
-}
-
-export class GetDetectionsFromCameraResponse extends jspb.Message {
-  clearDetectionsList(): void;
-  getDetectionsList(): Array<Detection>;
-  setDetectionsList(value: Array<Detection>): void;
-  addDetections(value?: Detection, index?: number): Detection;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetDetectionsFromCameraResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetDetectionsFromCameraResponse): GetDetectionsFromCameraResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetDetectionsFromCameraResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetDetectionsFromCameraResponse;
-  static deserializeBinaryFromReader(message: GetDetectionsFromCameraResponse, reader: jspb.BinaryReader): GetDetectionsFromCameraResponse;
-}
-
-export namespace GetDetectionsFromCameraResponse {
-  export type AsObject = {
-    detectionsList: Array<Detection.AsObject>,
-  }
-}
-
-export class Detection extends jspb.Message {
-  hasXMin(): boolean;
-  clearXMin(): void;
-  getXMin(): number;
-  setXMin(value: number): void;
-
-  hasYMin(): boolean;
-  clearYMin(): void;
-  getYMin(): number;
-  setYMin(value: number): void;
-
-  hasXMax(): boolean;
-  clearXMax(): void;
-  getXMax(): number;
-  setXMax(value: number): void;
-
-  hasYMax(): boolean;
-  clearYMax(): void;
-  getYMax(): number;
-  setYMax(value: number): void;
-
-  getConfidence(): number;
-  setConfidence(value: number): void;
-
-  getClassName(): string;
-  setClassName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Detection.AsObject;
-  static toObject(includeInstance: boolean, msg: Detection): Detection.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Detection, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Detection;
-  static deserializeBinaryFromReader(message: Detection, reader: jspb.BinaryReader): Detection;
-}
-
-export namespace Detection {
-  export type AsObject = {
-    xMin: number,
-    yMin: number,
-    xMax: number,
-    yMax: number,
-    confidence: number,
-    className: string,
-  }
-}
-
-export class GetClassifierNamesRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetClassifierNamesRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetClassifierNamesRequest): GetClassifierNamesRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetClassifierNamesRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetClassifierNamesRequest;
-  static deserializeBinaryFromReader(message: GetClassifierNamesRequest, reader: jspb.BinaryReader): GetClassifierNamesRequest;
-}
-
-export namespace GetClassifierNamesRequest {
-  export type AsObject = {
-    name: string,
-  }
-}
-
-export class GetClassifierNamesResponse extends jspb.Message {
-  clearClassifierNamesList(): void;
-  getClassifierNamesList(): Array<string>;
-  setClassifierNamesList(value: Array<string>): void;
-  addClassifierNames(value: string, index?: number): string;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetClassifierNamesResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetClassifierNamesResponse): GetClassifierNamesResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetClassifierNamesResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetClassifierNamesResponse;
-  static deserializeBinaryFromReader(message: GetClassifierNamesResponse, reader: jspb.BinaryReader): GetClassifierNamesResponse;
-}
-
-export namespace GetClassifierNamesResponse {
-  export type AsObject = {
-    classifierNamesList: Array<string>,
-  }
-}
-
-export class AddClassifierRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getClassifierName(): string;
-  setClassifierName(value: string): void;
-
-  getClassifierModelType(): string;
-  setClassifierModelType(value: string): void;
-
-  hasClassifierParameters(): boolean;
-  clearClassifierParameters(): void;
-  getClassifierParameters(): google_protobuf_struct_pb.Struct | undefined;
-  setClassifierParameters(value?: google_protobuf_struct_pb.Struct): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddClassifierRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddClassifierRequest): AddClassifierRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddClassifierRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddClassifierRequest;
-  static deserializeBinaryFromReader(message: AddClassifierRequest, reader: jspb.BinaryReader): AddClassifierRequest;
-}
-
-export namespace AddClassifierRequest {
-  export type AsObject = {
-    name: string,
-    classifierName: string,
-    classifierModelType: string,
-    classifierParameters?: google_protobuf_struct_pb.Struct.AsObject,
-  }
-}
-
-export class AddClassifierResponse extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddClassifierResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: AddClassifierResponse): AddClassifierResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddClassifierResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddClassifierResponse;
-  static deserializeBinaryFromReader(message: AddClassifierResponse, reader: jspb.BinaryReader): AddClassifierResponse;
-}
-
-export namespace AddClassifierResponse {
-  export type AsObject = {
-  }
-}
-
-export class RemoveClassifierRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getClassifierName(): string;
-  setClassifierName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveClassifierRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveClassifierRequest): RemoveClassifierRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveClassifierRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveClassifierRequest;
-  static deserializeBinaryFromReader(message: RemoveClassifierRequest, reader: jspb.BinaryReader): RemoveClassifierRequest;
-}
-
-export namespace RemoveClassifierRequest {
-  export type AsObject = {
-    name: string,
-    classifierName: string,
-  }
-}
-
-export class RemoveClassifierResponse extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveClassifierResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveClassifierResponse): RemoveClassifierResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveClassifierResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveClassifierResponse;
-  static deserializeBinaryFromReader(message: RemoveClassifierResponse, reader: jspb.BinaryReader): RemoveClassifierResponse;
-}
-
-export namespace RemoveClassifierResponse {
-  export type AsObject = {
-  }
-}
-
-export class GetClassificationsRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getImage(): Uint8Array | string;
-  getImage_asU8(): Uint8Array;
-  getImage_asB64(): string;
-  setImage(value: Uint8Array | string): void;
-
-  getWidth(): number;
-  setWidth(value: number): void;
-
-  getHeight(): number;
-  setHeight(value: number): void;
-
-  getMimeType(): string;
-  setMimeType(value: string): void;
-
-  getClassifierName(): string;
-  setClassifierName(value: string): void;
-
-  getN(): number;
-  setN(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetClassificationsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetClassificationsRequest): GetClassificationsRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetClassificationsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetClassificationsRequest;
-  static deserializeBinaryFromReader(message: GetClassificationsRequest, reader: jspb.BinaryReader): GetClassificationsRequest;
-}
-
-export namespace GetClassificationsRequest {
-  export type AsObject = {
-    name: string,
-    image: Uint8Array | string,
-    width: number,
-    height: number,
-    mimeType: string,
-    classifierName: string,
-    n: number,
-  }
-}
-
-export class GetClassificationsResponse extends jspb.Message {
-  clearClassificationsList(): void;
-  getClassificationsList(): Array<Classification>;
-  setClassificationsList(value: Array<Classification>): void;
-  addClassifications(value?: Classification, index?: number): Classification;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetClassificationsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetClassificationsResponse): GetClassificationsResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetClassificationsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetClassificationsResponse;
-  static deserializeBinaryFromReader(message: GetClassificationsResponse, reader: jspb.BinaryReader): GetClassificationsResponse;
-}
-
-export namespace GetClassificationsResponse {
-  export type AsObject = {
-    classificationsList: Array<Classification.AsObject>,
-  }
-}
-
-export class GetClassificationsFromCameraRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getCameraName(): string;
-  setCameraName(value: string): void;
-
-  getClassifierName(): string;
-  setClassifierName(value: string): void;
-
-  getN(): number;
-  setN(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetClassificationsFromCameraRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetClassificationsFromCameraRequest): GetClassificationsFromCameraRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetClassificationsFromCameraRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetClassificationsFromCameraRequest;
-  static deserializeBinaryFromReader(message: GetClassificationsFromCameraRequest, reader: jspb.BinaryReader): GetClassificationsFromCameraRequest;
-}
-
-export namespace GetClassificationsFromCameraRequest {
-  export type AsObject = {
-    name: string,
-    cameraName: string,
-    classifierName: string,
-    n: number,
-  }
-}
-
-export class GetClassificationsFromCameraResponse extends jspb.Message {
-  clearClassificationsList(): void;
-  getClassificationsList(): Array<Classification>;
-  setClassificationsList(value: Array<Classification>): void;
-  addClassifications(value?: Classification, index?: number): Classification;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetClassificationsFromCameraResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetClassificationsFromCameraResponse): GetClassificationsFromCameraResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetClassificationsFromCameraResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetClassificationsFromCameraResponse;
-  static deserializeBinaryFromReader(message: GetClassificationsFromCameraResponse, reader: jspb.BinaryReader): GetClassificationsFromCameraResponse;
-}
-
-export namespace GetClassificationsFromCameraResponse {
-  export type AsObject = {
-    classificationsList: Array<Classification.AsObject>,
-  }
-}
-
-export class Classification extends jspb.Message {
-  getClassName(): string;
-  setClassName(value: string): void;
-
-  getConfidence(): number;
-  setConfidence(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Classification.AsObject;
-  static toObject(includeInstance: boolean, msg: Classification): Classification.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Classification, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Classification;
-  static deserializeBinaryFromReader(message: Classification, reader: jspb.BinaryReader): Classification;
-}
-
-export namespace Classification {
-  export type AsObject = {
-    className: string,
-    confidence: number,
-  }
-}
-
-export class GetSegmenterNamesRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetSegmenterNamesRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetSegmenterNamesRequest): GetSegmenterNamesRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetSegmenterNamesRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetSegmenterNamesRequest;
-  static deserializeBinaryFromReader(message: GetSegmenterNamesRequest, reader: jspb.BinaryReader): GetSegmenterNamesRequest;
-}
-
-export namespace GetSegmenterNamesRequest {
-  export type AsObject = {
-    name: string,
-  }
-}
-
-export class GetSegmenterNamesResponse extends jspb.Message {
-  clearSegmenterNamesList(): void;
-  getSegmenterNamesList(): Array<string>;
-  setSegmenterNamesList(value: Array<string>): void;
-  addSegmenterNames(value: string, index?: number): string;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetSegmenterNamesResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetSegmenterNamesResponse): GetSegmenterNamesResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetSegmenterNamesResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetSegmenterNamesResponse;
-  static deserializeBinaryFromReader(message: GetSegmenterNamesResponse, reader: jspb.BinaryReader): GetSegmenterNamesResponse;
-}
-
-export namespace GetSegmenterNamesResponse {
-  export type AsObject = {
-    segmenterNamesList: Array<string>,
-  }
-}
-
-export class AddSegmenterRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getSegmenterName(): string;
-  setSegmenterName(value: string): void;
-
-  getSegmenterModelType(): string;
-  setSegmenterModelType(value: string): void;
-
-  hasSegmenterParameters(): boolean;
-  clearSegmenterParameters(): void;
-  getSegmenterParameters(): google_protobuf_struct_pb.Struct | undefined;
-  setSegmenterParameters(value?: google_protobuf_struct_pb.Struct): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddSegmenterRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddSegmenterRequest): AddSegmenterRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddSegmenterRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddSegmenterRequest;
-  static deserializeBinaryFromReader(message: AddSegmenterRequest, reader: jspb.BinaryReader): AddSegmenterRequest;
-}
-
-export namespace AddSegmenterRequest {
-  export type AsObject = {
-    name: string,
-    segmenterName: string,
-    segmenterModelType: string,
-    segmenterParameters?: google_protobuf_struct_pb.Struct.AsObject,
-  }
-}
-
-export class AddSegmenterResponse extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddSegmenterResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: AddSegmenterResponse): AddSegmenterResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddSegmenterResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddSegmenterResponse;
-  static deserializeBinaryFromReader(message: AddSegmenterResponse, reader: jspb.BinaryReader): AddSegmenterResponse;
-}
-
-export namespace AddSegmenterResponse {
-  export type AsObject = {
-  }
-}
-
-export class RemoveSegmenterRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getSegmenterName(): string;
-  setSegmenterName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveSegmenterRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveSegmenterRequest): RemoveSegmenterRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveSegmenterRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveSegmenterRequest;
-  static deserializeBinaryFromReader(message: RemoveSegmenterRequest, reader: jspb.BinaryReader): RemoveSegmenterRequest;
-}
-
-export namespace RemoveSegmenterRequest {
-  export type AsObject = {
-    name: string,
-    segmenterName: string,
-  }
-}
-
-export class RemoveSegmenterResponse extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveSegmenterResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveSegmenterResponse): RemoveSegmenterResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveSegmenterResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveSegmenterResponse;
-  static deserializeBinaryFromReader(message: RemoveSegmenterResponse, reader: jspb.BinaryReader): RemoveSegmenterResponse;
-}
-
-export namespace RemoveSegmenterResponse {
-  export type AsObject = {
-  }
-}
-
-export class GetObjectPointCloudsRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getCameraName(): string;
-  setCameraName(value: string): void;
-
-  getSegmenterName(): string;
-  setSegmenterName(value: string): void;
-
-  getMimeType(): string;
-  setMimeType(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetObjectPointCloudsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetObjectPointCloudsRequest): GetObjectPointCloudsRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetObjectPointCloudsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetObjectPointCloudsRequest;
-  static deserializeBinaryFromReader(message: GetObjectPointCloudsRequest, reader: jspb.BinaryReader): GetObjectPointCloudsRequest;
-}
-
-export namespace GetObjectPointCloudsRequest {
-  export type AsObject = {
-    name: string,
-    cameraName: string,
-    segmenterName: string,
-    mimeType: string,
-  }
-}
-
-export class GetObjectPointCloudsResponse extends jspb.Message {
-  getMimeType(): string;
-  setMimeType(value: string): void;
-
-  clearObjectsList(): void;
-  getObjectsList(): Array<common_v1_common_pb.PointCloudObject>;
-  setObjectsList(value: Array<common_v1_common_pb.PointCloudObject>): void;
-  addObjects(value?: common_v1_common_pb.PointCloudObject, index?: number): common_v1_common_pb.PointCloudObject;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetObjectPointCloudsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetObjectPointCloudsResponse): GetObjectPointCloudsResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetObjectPointCloudsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetObjectPointCloudsResponse;
-  static deserializeBinaryFromReader(message: GetObjectPointCloudsResponse, reader: jspb.BinaryReader): GetObjectPointCloudsResponse;
-}
-
-export namespace GetObjectPointCloudsResponse {
-  export type AsObject = {
-    mimeType: string,
-    objectsList: Array<common_v1_common_pb.PointCloudObject.AsObject>,
-  }
-}
-
+// @generated by protobuf-ts 2.8.1 with parameter add_pb_suffix,generate_dependencies,force_optimize_code_size,long_type_string,output_javascript
+// @generated from protobuf file "service/vision/v1/vision.proto" (package "viam.service.vision.v1", syntax proto3)
+// tslint:disable
+import { MessageType } from "@protobuf-ts/runtime";
+import { PointCloudObject } from "../../../common/v1/common_pb";
+import { Struct } from "../../../google/protobuf/struct_pb";
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetModelParameterSchemaRequest
+ */
+export interface GetModelParameterSchemaRequest {
+    /**
+     * name of the vision service
+     *
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+    /**
+     * name of the type of vision model
+     *
+     * @generated from protobuf field: string model_type = 2;
+     */
+    modelType: string;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetModelParameterSchemaResponse
+ */
+export interface GetModelParameterSchemaResponse {
+    /**
+     * the parameters as JSON bytes of a jsonschema.Schema
+     *
+     * @generated from protobuf field: bytes model_parameter_schema = 1;
+     */
+    modelParameterSchema: Uint8Array;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetDetectorNamesRequest
+ */
+export interface GetDetectorNamesRequest {
+    /**
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetDetectorNamesResponse
+ */
+export interface GetDetectorNamesResponse {
+    /**
+     * detectors in the registry
+     *
+     * @generated from protobuf field: repeated string detector_names = 1;
+     */
+    detectorNames: string[];
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.AddDetectorRequest
+ */
+export interface AddDetectorRequest {
+    /**
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+    /**
+     * @generated from protobuf field: string detector_name = 2;
+     */
+    detectorName: string;
+    /**
+     * @generated from protobuf field: string detector_model_type = 3;
+     */
+    detectorModelType: string;
+    /**
+     * @generated from protobuf field: google.protobuf.Struct detector_parameters = 4;
+     */
+    detectorParameters?: Struct;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.AddDetectorResponse
+ */
+export interface AddDetectorResponse {
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.RemoveDetectorRequest
+ */
+export interface RemoveDetectorRequest {
+    /**
+     * name of the vision service
+     *
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+    /**
+     * name of detector in registry
+     *
+     * @generated from protobuf field: string detector_name = 2;
+     */
+    detectorName: string;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.RemoveDetectorResponse
+ */
+export interface RemoveDetectorResponse {
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetDetectionsRequest
+ */
+export interface GetDetectionsRequest {
+    /**
+     * name of the vision service
+     *
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+    /**
+     * the image, encoded as bytes
+     *
+     * @generated from protobuf field: bytes image = 2;
+     */
+    image: Uint8Array;
+    /**
+     * the width of the image
+     *
+     * @generated from protobuf field: int64 width = 3;
+     */
+    width: string;
+    /**
+     * the height of the image
+     *
+     * @generated from protobuf field: int64 height = 4;
+     */
+    height: string;
+    /**
+     * the actual MIME type of image
+     *
+     * @generated from protobuf field: string mime_type = 5;
+     */
+    mimeType: string;
+    /**
+     * name of the registered detector to use
+     *
+     * @generated from protobuf field: string detector_name = 6;
+     */
+    detectorName: string;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetDetectionsResponse
+ */
+export interface GetDetectionsResponse {
+    /**
+     * the bounding boxes and labels
+     *
+     * @generated from protobuf field: repeated viam.service.vision.v1.Detection detections = 1;
+     */
+    detections: Detection[];
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetDetectionsFromCameraRequest
+ */
+export interface GetDetectionsFromCameraRequest {
+    /**
+     * name of the vision service
+     *
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+    /**
+     * name of camera source to use as input
+     *
+     * @generated from protobuf field: string camera_name = 2;
+     */
+    cameraName: string;
+    /**
+     * name of the registered detector to use
+     *
+     * @generated from protobuf field: string detector_name = 3;
+     */
+    detectorName: string;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetDetectionsFromCameraResponse
+ */
+export interface GetDetectionsFromCameraResponse {
+    /**
+     * the bounding boxes and labels
+     *
+     * @generated from protobuf field: repeated viam.service.vision.v1.Detection detections = 1;
+     */
+    detections: Detection[];
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.Detection
+ */
+export interface Detection {
+    /**
+     * the four corners of the box
+     *
+     * @generated from protobuf field: optional int64 x_min = 1;
+     */
+    xMin?: string;
+    /**
+     * @generated from protobuf field: optional int64 y_min = 2;
+     */
+    yMin?: string;
+    /**
+     * @generated from protobuf field: optional int64 x_max = 3;
+     */
+    xMax?: string;
+    /**
+     * @generated from protobuf field: optional int64 y_max = 4;
+     */
+    yMax?: string;
+    /**
+     * the confidence of the detection
+     *
+     * @generated from protobuf field: double confidence = 5;
+     */
+    confidence: number;
+    /**
+     * label associated with the detected object
+     *
+     * @generated from protobuf field: string class_name = 6;
+     */
+    className: string;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetClassifierNamesRequest
+ */
+export interface GetClassifierNamesRequest {
+    /**
+     * name of the vision service
+     *
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetClassifierNamesResponse
+ */
+export interface GetClassifierNamesResponse {
+    /**
+     * @generated from protobuf field: repeated string classifier_names = 1;
+     */
+    classifierNames: string[];
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.AddClassifierRequest
+ */
+export interface AddClassifierRequest {
+    /**
+     * name of the vision service
+     *
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+    /**
+     * name of classifier to add to registry
+     *
+     * @generated from protobuf field: string classifier_name = 2;
+     */
+    classifierName: string;
+    /**
+     * the type of classifier
+     *
+     * @generated from protobuf field: string classifier_model_type = 3;
+     */
+    classifierModelType: string;
+    /**
+     * additional parameters
+     *
+     * @generated from protobuf field: google.protobuf.Struct classifier_parameters = 4;
+     */
+    classifierParameters?: Struct;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.AddClassifierResponse
+ */
+export interface AddClassifierResponse {
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.RemoveClassifierRequest
+ */
+export interface RemoveClassifierRequest {
+    /**
+     * name of the vision service
+     *
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+    /**
+     * name of the classifier in registry
+     *
+     * @generated from protobuf field: string classifier_name = 2;
+     */
+    classifierName: string;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.RemoveClassifierResponse
+ */
+export interface RemoveClassifierResponse {
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetClassificationsRequest
+ */
+export interface GetClassificationsRequest {
+    /**
+     * name of the vision service
+     *
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+    /**
+     * the image encoded as bytes
+     *
+     * @generated from protobuf field: bytes image = 2;
+     */
+    image: Uint8Array;
+    /**
+     * the width of the image
+     *
+     * @generated from protobuf field: int32 width = 3;
+     */
+    width: number;
+    /**
+     * the height of the image
+     *
+     * @generated from protobuf field: int32 height = 4;
+     */
+    height: number;
+    /**
+     * the actual MIME type of image
+     *
+     * @generated from protobuf field: string mime_type = 5;
+     */
+    mimeType: string;
+    /**
+     * the name of the registered classifier
+     *
+     * @generated from protobuf field: string classifier_name = 6;
+     */
+    classifierName: string;
+    /**
+     * the number of classifications desired
+     *
+     * @generated from protobuf field: int32 n = 7;
+     */
+    n: number;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetClassificationsResponse
+ */
+export interface GetClassificationsResponse {
+    /**
+     * @generated from protobuf field: repeated viam.service.vision.v1.Classification classifications = 1;
+     */
+    classifications: Classification[];
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetClassificationsFromCameraRequest
+ */
+export interface GetClassificationsFromCameraRequest {
+    /**
+     * name of the vision service
+     *
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+    /**
+     * the image encoded as bytes
+     *
+     * @generated from protobuf field: string camera_name = 2;
+     */
+    cameraName: string;
+    /**
+     * the name of the registered classifier
+     *
+     * @generated from protobuf field: string classifier_name = 3;
+     */
+    classifierName: string;
+    /**
+     * the number of classifications desired
+     *
+     * @generated from protobuf field: int32 n = 4;
+     */
+    n: number;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetClassificationsFromCameraResponse
+ */
+export interface GetClassificationsFromCameraResponse {
+    /**
+     * @generated from protobuf field: repeated viam.service.vision.v1.Classification classifications = 1;
+     */
+    classifications: Classification[];
+}
+/**
+ * the general form of the output from a classifier
+ *
+ * @generated from protobuf message viam.service.vision.v1.Classification
+ */
+export interface Classification {
+    /**
+     * the class name
+     *
+     * @generated from protobuf field: string class_name = 1;
+     */
+    className: string;
+    /**
+     * the confidence score of the classification
+     *
+     * @generated from protobuf field: double confidence = 2;
+     */
+    confidence: number;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetSegmenterNamesRequest
+ */
+export interface GetSegmenterNamesRequest {
+    /**
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetSegmenterNamesResponse
+ */
+export interface GetSegmenterNamesResponse {
+    /**
+     * segmenters in the registry
+     *
+     * @generated from protobuf field: repeated string segmenter_names = 1;
+     */
+    segmenterNames: string[];
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.AddSegmenterRequest
+ */
+export interface AddSegmenterRequest {
+    /**
+     * name of the vision service
+     *
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+    /**
+     * name of the segmenter
+     *
+     * @generated from protobuf field: string segmenter_name = 2;
+     */
+    segmenterName: string;
+    /**
+     * name of the segmenter model
+     *
+     * @generated from protobuf field: string segmenter_model_type = 3;
+     */
+    segmenterModelType: string;
+    /**
+     * parameters of the segmenter model
+     *
+     * @generated from protobuf field: google.protobuf.Struct segmenter_parameters = 4;
+     */
+    segmenterParameters?: Struct;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.AddSegmenterResponse
+ */
+export interface AddSegmenterResponse {
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.RemoveSegmenterRequest
+ */
+export interface RemoveSegmenterRequest {
+    /**
+     * name of the vision service
+     *
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+    /**
+     * name of segmenter in registry
+     *
+     * @generated from protobuf field: string segmenter_name = 2;
+     */
+    segmenterName: string;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.RemoveSegmenterResponse
+ */
+export interface RemoveSegmenterResponse {
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetObjectPointCloudsRequest
+ */
+export interface GetObjectPointCloudsRequest {
+    /**
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+    /**
+     * Name of a camera
+     *
+     * @generated from protobuf field: string camera_name = 2;
+     */
+    cameraName: string;
+    /**
+     * Name of the segmentation algorithm
+     *
+     * @generated from protobuf field: string segmenter_name = 3;
+     */
+    segmenterName: string;
+    /**
+     * Requested MIME type of response
+     *
+     * @generated from protobuf field: string mime_type = 4;
+     */
+    mimeType: string;
+}
+/**
+ * @generated from protobuf message viam.service.vision.v1.GetObjectPointCloudsResponse
+ */
+export interface GetObjectPointCloudsResponse {
+    /**
+     * Actual MIME type of response
+     *
+     * @generated from protobuf field: string mime_type = 1;
+     */
+    mimeType: string;
+    /**
+     * List of objects in the scene
+     *
+     * @generated from protobuf field: repeated viam.common.v1.PointCloudObject objects = 2;
+     */
+    objects: PointCloudObject[];
+}
+declare class GetModelParameterSchemaRequest$Type extends MessageType<GetModelParameterSchemaRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetModelParameterSchemaRequest
+ */
+export declare const GetModelParameterSchemaRequest: GetModelParameterSchemaRequest$Type;
+declare class GetModelParameterSchemaResponse$Type extends MessageType<GetModelParameterSchemaResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetModelParameterSchemaResponse
+ */
+export declare const GetModelParameterSchemaResponse: GetModelParameterSchemaResponse$Type;
+declare class GetDetectorNamesRequest$Type extends MessageType<GetDetectorNamesRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetDetectorNamesRequest
+ */
+export declare const GetDetectorNamesRequest: GetDetectorNamesRequest$Type;
+declare class GetDetectorNamesResponse$Type extends MessageType<GetDetectorNamesResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetDetectorNamesResponse
+ */
+export declare const GetDetectorNamesResponse: GetDetectorNamesResponse$Type;
+declare class AddDetectorRequest$Type extends MessageType<AddDetectorRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.AddDetectorRequest
+ */
+export declare const AddDetectorRequest: AddDetectorRequest$Type;
+declare class AddDetectorResponse$Type extends MessageType<AddDetectorResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.AddDetectorResponse
+ */
+export declare const AddDetectorResponse: AddDetectorResponse$Type;
+declare class RemoveDetectorRequest$Type extends MessageType<RemoveDetectorRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.RemoveDetectorRequest
+ */
+export declare const RemoveDetectorRequest: RemoveDetectorRequest$Type;
+declare class RemoveDetectorResponse$Type extends MessageType<RemoveDetectorResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.RemoveDetectorResponse
+ */
+export declare const RemoveDetectorResponse: RemoveDetectorResponse$Type;
+declare class GetDetectionsRequest$Type extends MessageType<GetDetectionsRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetDetectionsRequest
+ */
+export declare const GetDetectionsRequest: GetDetectionsRequest$Type;
+declare class GetDetectionsResponse$Type extends MessageType<GetDetectionsResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetDetectionsResponse
+ */
+export declare const GetDetectionsResponse: GetDetectionsResponse$Type;
+declare class GetDetectionsFromCameraRequest$Type extends MessageType<GetDetectionsFromCameraRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetDetectionsFromCameraRequest
+ */
+export declare const GetDetectionsFromCameraRequest: GetDetectionsFromCameraRequest$Type;
+declare class GetDetectionsFromCameraResponse$Type extends MessageType<GetDetectionsFromCameraResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetDetectionsFromCameraResponse
+ */
+export declare const GetDetectionsFromCameraResponse: GetDetectionsFromCameraResponse$Type;
+declare class Detection$Type extends MessageType<Detection> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.Detection
+ */
+export declare const Detection: Detection$Type;
+declare class GetClassifierNamesRequest$Type extends MessageType<GetClassifierNamesRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetClassifierNamesRequest
+ */
+export declare const GetClassifierNamesRequest: GetClassifierNamesRequest$Type;
+declare class GetClassifierNamesResponse$Type extends MessageType<GetClassifierNamesResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetClassifierNamesResponse
+ */
+export declare const GetClassifierNamesResponse: GetClassifierNamesResponse$Type;
+declare class AddClassifierRequest$Type extends MessageType<AddClassifierRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.AddClassifierRequest
+ */
+export declare const AddClassifierRequest: AddClassifierRequest$Type;
+declare class AddClassifierResponse$Type extends MessageType<AddClassifierResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.AddClassifierResponse
+ */
+export declare const AddClassifierResponse: AddClassifierResponse$Type;
+declare class RemoveClassifierRequest$Type extends MessageType<RemoveClassifierRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.RemoveClassifierRequest
+ */
+export declare const RemoveClassifierRequest: RemoveClassifierRequest$Type;
+declare class RemoveClassifierResponse$Type extends MessageType<RemoveClassifierResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.RemoveClassifierResponse
+ */
+export declare const RemoveClassifierResponse: RemoveClassifierResponse$Type;
+declare class GetClassificationsRequest$Type extends MessageType<GetClassificationsRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetClassificationsRequest
+ */
+export declare const GetClassificationsRequest: GetClassificationsRequest$Type;
+declare class GetClassificationsResponse$Type extends MessageType<GetClassificationsResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetClassificationsResponse
+ */
+export declare const GetClassificationsResponse: GetClassificationsResponse$Type;
+declare class GetClassificationsFromCameraRequest$Type extends MessageType<GetClassificationsFromCameraRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetClassificationsFromCameraRequest
+ */
+export declare const GetClassificationsFromCameraRequest: GetClassificationsFromCameraRequest$Type;
+declare class GetClassificationsFromCameraResponse$Type extends MessageType<GetClassificationsFromCameraResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetClassificationsFromCameraResponse
+ */
+export declare const GetClassificationsFromCameraResponse: GetClassificationsFromCameraResponse$Type;
+declare class Classification$Type extends MessageType<Classification> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.Classification
+ */
+export declare const Classification: Classification$Type;
+declare class GetSegmenterNamesRequest$Type extends MessageType<GetSegmenterNamesRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetSegmenterNamesRequest
+ */
+export declare const GetSegmenterNamesRequest: GetSegmenterNamesRequest$Type;
+declare class GetSegmenterNamesResponse$Type extends MessageType<GetSegmenterNamesResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetSegmenterNamesResponse
+ */
+export declare const GetSegmenterNamesResponse: GetSegmenterNamesResponse$Type;
+declare class AddSegmenterRequest$Type extends MessageType<AddSegmenterRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.AddSegmenterRequest
+ */
+export declare const AddSegmenterRequest: AddSegmenterRequest$Type;
+declare class AddSegmenterResponse$Type extends MessageType<AddSegmenterResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.AddSegmenterResponse
+ */
+export declare const AddSegmenterResponse: AddSegmenterResponse$Type;
+declare class RemoveSegmenterRequest$Type extends MessageType<RemoveSegmenterRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.RemoveSegmenterRequest
+ */
+export declare const RemoveSegmenterRequest: RemoveSegmenterRequest$Type;
+declare class RemoveSegmenterResponse$Type extends MessageType<RemoveSegmenterResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.RemoveSegmenterResponse
+ */
+export declare const RemoveSegmenterResponse: RemoveSegmenterResponse$Type;
+declare class GetObjectPointCloudsRequest$Type extends MessageType<GetObjectPointCloudsRequest> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetObjectPointCloudsRequest
+ */
+export declare const GetObjectPointCloudsRequest: GetObjectPointCloudsRequest$Type;
+declare class GetObjectPointCloudsResponse$Type extends MessageType<GetObjectPointCloudsResponse> {
+    constructor();
+}
+/**
+ * @generated MessageType for protobuf message viam.service.vision.v1.GetObjectPointCloudsResponse
+ */
+export declare const GetObjectPointCloudsResponse: GetObjectPointCloudsResponse$Type;
+/**
+ * @generated ServiceType for protobuf service viam.service.vision.v1.VisionService
+ */
+export declare const VisionService: any;
+export {};

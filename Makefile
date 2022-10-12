@@ -7,7 +7,7 @@ clean-all:
 	git clean -fxd
 
 dist/tool-install: Makefile
-	npm ci --audit=false
+	npm ci --audit=false --prefix gen/js
 	GOBIN=`pwd`/bin go install google.golang.org/protobuf/cmd/protoc-gen-go \
 		github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking \
 		github.com/bufbuild/buf/cmd/protoc-gen-buf-lint \
@@ -38,6 +38,7 @@ dist/buf-web: dist/tool-install
 	PATH=$(PATH_WITH_TOOLS) buf lint
 	PATH=$(PATH_WITH_TOOLS) buf format -w
 	PATH=$(PATH_WITH_TOOLS) buf generate --template ./proto/viam/buf.gen.web.yaml
+	PATH=$(PATH_WITH_TOOLS) buf generate --template ./proto/viam/buf.gen.tagger.yaml
 	PATH=$(PATH_WITH_TOOLS) buf generate --timeout 5m --template ./proto/viam/buf.gen.web.yaml buf.build/googleapis/googleapis
 
 lint: dist/tool-install

@@ -2,14 +2,9 @@ version: v1
 plugins:
   - name: js
     out: gen/js
-    opt:
-      - import_style=commonjs
-  - name: grpc-web
-    out: gen/js
-    opt:
-      - import_style=commonjs
-      - mode=grpcwebtext
+    opt: add_pb_suffix,generate_dependencies,force_optimize_code_size,long_type_string,output_javascript
+    path: ./gen/js/node_modules/@protobuf-ts/plugin/bin/protoc-gen-ts
   - name: ts
     out: gen/js
-    opt:
-      - service=grpc-web
+    opt: add_pb_suffix,generate_dependencies,force_optimize_code_size,long_type_string,ts_nocheck
+    path: ./gen/js/node_modules/@protobuf-ts/plugin/bin/protoc-gen-ts
