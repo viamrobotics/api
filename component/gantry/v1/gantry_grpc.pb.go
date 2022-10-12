@@ -26,6 +26,8 @@ type GantryServiceClient interface {
 	GetLengths(ctx context.Context, in *GetLengthsRequest, opts ...grpc.CallOption) (*GetLengthsResponse, error)
 	// Stop stops a robot's gantry
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
+	// IsMoving reports if a component is in motion
+	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
 }
 
 type gantryServiceClient struct {
@@ -72,6 +74,15 @@ func (c *gantryServiceClient) Stop(ctx context.Context, in *StopRequest, opts ..
 	return out, nil
 }
 
+func (c *gantryServiceClient) IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error) {
+	out := new(IsMovingResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.gantry.v1.GantryService/IsMoving", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GantryServiceServer is the server API for GantryService service.
 // All implementations must embed UnimplementedGantryServiceServer
 // for forward compatibility
@@ -84,6 +95,8 @@ type GantryServiceServer interface {
 	GetLengths(context.Context, *GetLengthsRequest) (*GetLengthsResponse, error)
 	// Stop stops a robot's gantry
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
+	// IsMoving reports if a component is in motion
+	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
 	mustEmbedUnimplementedGantryServiceServer()
 }
 
@@ -102,6 +115,9 @@ func (UnimplementedGantryServiceServer) GetLengths(context.Context, *GetLengthsR
 }
 func (UnimplementedGantryServiceServer) Stop(context.Context, *StopRequest) (*StopResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stop not implemented")
+}
+func (UnimplementedGantryServiceServer) IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsMoving not implemented")
 }
 func (UnimplementedGantryServiceServer) mustEmbedUnimplementedGantryServiceServer() {}
 
@@ -188,6 +204,24 @@ func _GantryService_Stop_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GantryService_IsMoving_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsMovingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GantryServiceServer).IsMoving(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.gantry.v1.GantryService/IsMoving",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GantryServiceServer).IsMoving(ctx, req.(*IsMovingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GantryService_ServiceDesc is the grpc.ServiceDesc for GantryService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -210,6 +244,10 @@ var GantryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Stop",
 			Handler:    _GantryService_Stop_Handler,
+		},
+		{
+			MethodName: "IsMoving",
+			Handler:    _GantryService_IsMoving_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -55,6 +55,15 @@ ArmService.Stop = {
   responseType: component_arm_v1_arm_pb.StopResponse
 };
 
+ArmService.IsMoving = {
+  methodName: "IsMoving",
+  service: ArmService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_arm_v1_arm_pb.IsMovingRequest,
+  responseType: component_arm_v1_arm_pb.IsMovingResponse
+};
+
 exports.ArmService = ArmService;
 
 function ArmServiceClient(serviceHost, options) {
@@ -191,6 +200,37 @@ ArmServiceClient.prototype.stop = function stop(requestMessage, metadata, callba
     callback = arguments[1];
   }
   var client = grpc.unary(ArmService.Stop, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ArmServiceClient.prototype.isMoving = function isMoving(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ArmService.IsMoving, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
