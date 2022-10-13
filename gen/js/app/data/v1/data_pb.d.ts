@@ -69,10 +69,10 @@ export class Filter extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;
 
-  clearOrgIdList(): void;
-  getOrgIdList(): Array<string>;
-  setOrgIdList(value: Array<string>): void;
-  addOrgId(value: string, index?: number): string;
+  clearOrgIdsList(): void;
+  getOrgIdsList(): Array<string>;
+  setOrgIdsList(value: Array<string>): void;
+  addOrgIds(value: string, index?: number): string;
 
   clearMimeTypeList(): void;
   getMimeTypeList(): Array<string>;
@@ -106,7 +106,7 @@ export namespace Filter {
     partName: string,
     partId: string,
     locationId: string,
-    orgIdList: Array<string>,
+    orgIdsList: Array<string>,
     mimeTypeList: Array<string>,
     interval?: CaptureInterval.AsObject,
   }
@@ -330,6 +330,9 @@ export class BinaryData extends jspb.Message {
   getTimeReceived(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTimeReceived(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getName(): string;
+  setName(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryData.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryData): BinaryData.AsObject;
@@ -348,6 +351,7 @@ export namespace BinaryData {
     metadataIndex: number,
     timeRequested?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     timeReceived?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    name: string,
   }
 }
 

@@ -545,7 +545,7 @@ proto.viam.app.data.v1.Filter.toObject = function(includeInstance, msg) {
     partName: jspb.Message.getFieldWithDefault(msg, 8, ""),
     partId: jspb.Message.getFieldWithDefault(msg, 9, ""),
     locationId: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    orgIdList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
+    orgIdsList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
     mimeTypeList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
     interval: (f = msg.getInterval()) && proto.viam.app.data.v1.CaptureInterval.toObject(includeInstance, f)
   };
@@ -626,7 +626,7 @@ proto.viam.app.data.v1.Filter.deserializeBinaryFromReader = function(msg, reader
       break;
     case 11:
       var value = /** @type {string} */ (reader.readString());
-      msg.addOrgId(value);
+      msg.addOrgIds(value);
       break;
     case 12:
       var value = /** @type {string} */ (reader.readString());
@@ -736,7 +736,7 @@ proto.viam.app.data.v1.Filter.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getOrgIdList();
+  f = message.getOrgIdsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
       11,
@@ -961,10 +961,10 @@ proto.viam.app.data.v1.Filter.prototype.setLocationId = function(value) {
 
 
 /**
- * repeated string org_id = 11;
+ * repeated string org_ids = 11;
  * @return {!Array<string>}
  */
-proto.viam.app.data.v1.Filter.prototype.getOrgIdList = function() {
+proto.viam.app.data.v1.Filter.prototype.getOrgIdsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 11));
 };
 
@@ -973,7 +973,7 @@ proto.viam.app.data.v1.Filter.prototype.getOrgIdList = function() {
  * @param {!Array<string>} value
  * @return {!proto.viam.app.data.v1.Filter} returns this
  */
-proto.viam.app.data.v1.Filter.prototype.setOrgIdList = function(value) {
+proto.viam.app.data.v1.Filter.prototype.setOrgIdsList = function(value) {
   return jspb.Message.setField(this, 11, value || []);
 };
 
@@ -983,7 +983,7 @@ proto.viam.app.data.v1.Filter.prototype.setOrgIdList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.viam.app.data.v1.Filter} returns this
  */
-proto.viam.app.data.v1.Filter.prototype.addOrgId = function(value, opt_index) {
+proto.viam.app.data.v1.Filter.prototype.addOrgIds = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 11, value, opt_index);
 };
 
@@ -992,8 +992,8 @@ proto.viam.app.data.v1.Filter.prototype.addOrgId = function(value, opt_index) {
  * Clears the list making it empty but non-null.
  * @return {!proto.viam.app.data.v1.Filter} returns this
  */
-proto.viam.app.data.v1.Filter.prototype.clearOrgIdList = function() {
-  return this.setOrgIdList([]);
+proto.viam.app.data.v1.Filter.prototype.clearOrgIdsList = function() {
+  return this.setOrgIdsList([]);
 };
 
 
@@ -2536,7 +2536,8 @@ proto.viam.app.data.v1.BinaryData.toObject = function(includeInstance, msg) {
     binary: msg.getBinary_asB64(),
     metadataIndex: jspb.Message.getFieldWithDefault(msg, 4, 0),
     timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    name: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -2598,6 +2599,10 @@ proto.viam.app.data.v1.BinaryData.deserializeBinaryFromReader = function(msg, re
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTimeReceived(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
       break;
     default:
       reader.skipField();
@@ -2670,6 +2675,13 @@ proto.viam.app.data.v1.BinaryData.serializeBinaryToWriter = function(message, wr
       6,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
     );
   }
 };
@@ -2842,6 +2854,24 @@ proto.viam.app.data.v1.BinaryData.prototype.clearTimeReceived = function() {
  */
 proto.viam.app.data.v1.BinaryData.prototype.hasTimeReceived = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional string name = 7;
+ * @return {string}
+ */
+proto.viam.app.data.v1.BinaryData.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.BinaryData} returns this
+ */
+proto.viam.app.data.v1.BinaryData.prototype.setName = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
