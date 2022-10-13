@@ -330,6 +330,9 @@ export class BinaryData extends jspb.Message {
   getTimeReceived(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTimeReceived(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getName(): string;
+  setName(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryData.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryData): BinaryData.AsObject;
@@ -348,6 +351,7 @@ export namespace BinaryData {
     metadataIndex: number,
     timeRequested?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     timeReceived?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    name: string,
   }
 }
 

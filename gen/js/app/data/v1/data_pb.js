@@ -2536,7 +2536,8 @@ proto.viam.app.data.v1.BinaryData.toObject = function(includeInstance, msg) {
     binary: msg.getBinary_asB64(),
     metadataIndex: jspb.Message.getFieldWithDefault(msg, 4, 0),
     timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    name: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -2598,6 +2599,10 @@ proto.viam.app.data.v1.BinaryData.deserializeBinaryFromReader = function(msg, re
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTimeReceived(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
       break;
     default:
       reader.skipField();
@@ -2670,6 +2675,13 @@ proto.viam.app.data.v1.BinaryData.serializeBinaryToWriter = function(message, wr
       6,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
     );
   }
 };
@@ -2842,6 +2854,24 @@ proto.viam.app.data.v1.BinaryData.prototype.clearTimeReceived = function() {
  */
 proto.viam.app.data.v1.BinaryData.prototype.hasTimeReceived = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional string name = 7;
+ * @return {string}
+ */
+proto.viam.app.data.v1.BinaryData.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.BinaryData} returns this
+ */
+proto.viam.app.data.v1.BinaryData.prototype.setName = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
