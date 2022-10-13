@@ -57,6 +57,8 @@ message CaptureMetadata {
   map<string, google.protobuf.Any> method_parameters = 11;
   repeated string tags = 12;
   string mime_type = 13;
+  string file_name = 14;
+  string file_ext = 15;
 }
 
 // CaptureInterval describes the start and end time of the capture in this file
