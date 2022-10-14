@@ -1,0 +1,55 @@
+name: Pull Request Update
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ 'main' ]
+    types: [opened, synchronize, reopened, labeled]
+  push:
+    branches: [ '!main' ]
+
+jobs:
+  test:
+    name: Test For Lint and Breaking Changes
+    timeout-minutes: 5
+    runs-on: [self-hosted, x64]
+    container:
+      image: ghcr.io/viamrobotics/canon:amd64-cache
+      options: --platform linux/amd64
+    steps:
+    - uses: actions/checkout@v2
+    - uses: bufbuild/buf-setup-action@v1
+    # Run all Lint runs
+    - uses: bufbuild/buf-lint-action@v1
+    # Run breaking change detection against the `main` branch
+    - uses: bufbuild/buf-breaking-action@v1
+      with:
+        against: 'https://github.com/viamrobotics/api.git#branch=main'
+
+  validate-local-files:
+    name: Ensure dist/buf ran locally.
+    timeout-minutes: 5
+    runs-on: [self-hosted, x64]
+    container:
+      image: ghcr.io/viamrobotics/canon:amd64-cache
+      options: --platform linux/amd64
+    steps:
+    - uses: actions/checkout@v2
+    - name: Verify no uncommitted changes"
+      run: |
+        git init
+        git add .
+
+        make dist/buf
+
+        GEN_DIFF=$(git status -s)
+
+        if [ -n "$GEN_DIFF" ]; then
+            echo '"make build lint" resulted in changes not in git' 1>&2
+            git status
+            exit 1
+        fi
