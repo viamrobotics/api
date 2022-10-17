@@ -58,7 +58,7 @@ proto.google.longrunning.OperationsClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 
@@ -84,7 +84,7 @@ proto.google.longrunning.OperationsPromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 

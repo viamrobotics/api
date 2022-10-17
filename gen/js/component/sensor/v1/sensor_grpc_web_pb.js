@@ -50,7 +50,7 @@ proto.viam.component.sensor.v1.SensorServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 
@@ -76,7 +76,7 @@ proto.viam.component.sensor.v1.SensorServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 

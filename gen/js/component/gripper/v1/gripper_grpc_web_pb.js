@@ -48,7 +48,7 @@ proto.viam.component.gripper.v1.GripperServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 
@@ -74,7 +74,7 @@ proto.viam.component.gripper.v1.GripperServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 

@@ -52,7 +52,7 @@ proto.viam.service.motion.v1.MotionServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 
@@ -78,7 +78,7 @@ proto.viam.service.motion.v1.MotionServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 

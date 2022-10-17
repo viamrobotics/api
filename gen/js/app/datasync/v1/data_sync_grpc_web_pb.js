@@ -54,7 +54,7 @@ proto.viam.app.datasync.v1.DataSyncServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 
@@ -80,7 +80,7 @@ proto.viam.app.datasync.v1.DataSyncServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 

@@ -50,7 +50,7 @@ proto.viam.component.inputcontroller.v1.InputControllerServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 
@@ -76,7 +76,7 @@ proto.viam.component.inputcontroller.v1.InputControllerServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 

@@ -48,7 +48,7 @@ proto.viam.service.datamanager.v1.DataManagerServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 
@@ -74,7 +74,7 @@ proto.viam.service.datamanager.v1.DataManagerServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 

@@ -10,7 +10,6 @@
 // 	protoc              v0.0.0
 // source: component/base/v1/base.proto
 
-
 /* eslint-disable */
 // @ts-nocheck
 
@@ -52,7 +51,7 @@ proto.viam.component.base.v1.BaseServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 
@@ -78,7 +77,7 @@ proto.viam.component.base.v1.BaseServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname.replace(/\/+$/, '');
+  this.hostname_ = hostname;
 
 };
 
