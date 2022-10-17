@@ -55,7 +55,7 @@ proto.viam.robot.v1.RobotServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 
@@ -81,7 +81,7 @@ proto.viam.robot.v1.RobotServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 

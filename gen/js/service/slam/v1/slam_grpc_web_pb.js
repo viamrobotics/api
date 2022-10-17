@@ -52,7 +52,7 @@ proto.viam.service.slam.v1.SLAMServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 
@@ -78,7 +78,7 @@ proto.viam.service.slam.v1.SLAMServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 

@@ -48,7 +48,7 @@ proto.viam.component.servo.v1.ServoServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 
@@ -74,7 +74,7 @@ proto.viam.component.servo.v1.ServoServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 

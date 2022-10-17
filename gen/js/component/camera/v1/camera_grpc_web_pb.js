@@ -50,7 +50,7 @@ proto.viam.component.camera.v1.CameraServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 
@@ -76,7 +76,7 @@ proto.viam.component.camera.v1.CameraServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 

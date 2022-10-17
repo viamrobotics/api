@@ -52,7 +52,7 @@ proto.viam.component.board.v1.BoardServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 
@@ -78,7 +78,7 @@ proto.viam.component.board.v1.BoardServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 

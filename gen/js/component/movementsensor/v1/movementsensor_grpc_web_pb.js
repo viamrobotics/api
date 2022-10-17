@@ -50,7 +50,7 @@ proto.viam.component.movementsensor.v1.MovementSensorServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 
@@ -76,7 +76,7 @@ proto.viam.component.movementsensor.v1.MovementSensorServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 

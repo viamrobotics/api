@@ -52,7 +52,7 @@ proto.viam.component.audioinput.v1.AudioInputServiceClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 
@@ -78,7 +78,7 @@ proto.viam.component.audioinput.v1.AudioInputServicePromiseClient =
   /**
    * @private @const {string} The hostname
    */
-  this.hostname_ = hostname;
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
 };
 
