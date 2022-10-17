@@ -2,7 +2,6 @@ module go.viam.com/api
 
 go 1.18
 
-
 require (
 	github.com/bufbuild/buf v1.6.0
 	github.com/cosmtrek/air v1.29.0
