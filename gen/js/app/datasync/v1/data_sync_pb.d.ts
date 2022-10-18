@@ -449,6 +449,9 @@ export class BinaryCapture extends jspb.Message {
   getMimeType(): string;
   setMimeType(value: string): void;
 
+  getFileName(): string;
+  setFileName(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryCapture.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryCapture): BinaryCapture.AsObject;
@@ -477,63 +480,7 @@ export namespace BinaryCapture {
     fileSizeBytes: number,
     sessionId: string,
     mimeType: string,
-  }
-}
-
-export class UserFile extends jspb.Message {
-  hasSyncTime(): boolean;
-  clearSyncTime(): void;
-  getSyncTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setSyncTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
-  getOrgId(): string;
-  setOrgId(value: string): void;
-
-  getRobotId(): string;
-  setRobotId(value: string): void;
-
-  getPartId(): string;
-  setPartId(value: string): void;
-
-  getLocationId(): string;
-  setLocationId(value: string): void;
-
-  getBlobPath(): string;
-  setBlobPath(value: string): void;
-
-  getMethodParametersMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearMethodParametersMap(): void;
-  getFileId(): string;
-  setFileId(value: string): void;
-
-  getFileSizeBytes(): number;
-  setFileSizeBytes(value: number): void;
-
-  getMimeType(): string;
-  setMimeType(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UserFile.AsObject;
-  static toObject(includeInstance: boolean, msg: UserFile): UserFile.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UserFile, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UserFile;
-  static deserializeBinaryFromReader(message: UserFile, reader: jspb.BinaryReader): UserFile;
-}
-
-export namespace UserFile {
-  export type AsObject = {
-    syncTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    orgId: string,
-    robotId: string,
-    partId: string,
-    locationId: string,
-    blobPath: string,
-    methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
-    fileId: string,
-    fileSizeBytes: number,
-    mimeType: string,
+    fileName: string,
   }
 }
 

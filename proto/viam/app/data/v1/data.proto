@@ -94,6 +94,7 @@ message BinaryData {
   int32 metadata_index = 4;
   google.protobuf.Timestamp time_requested = 5;
   google.protobuf.Timestamp time_received = 6;
+  string name = 7;
 }
 
 // BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when by filter
