@@ -153,6 +153,12 @@ export class CaptureMetadata extends jspb.Message {
   getMimeType(): string;
   setMimeType(value: string): void;
 
+  getFileName(): string;
+  setFileName(value: string): void;
+
+  getFileExt(): string;
+  setFileExt(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CaptureMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: CaptureMetadata): CaptureMetadata.AsObject;
@@ -178,6 +184,8 @@ export namespace CaptureMetadata {
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
     tagsList: Array<string>,
     mimeType: string,
+    fileName: string,
+    fileExt: string,
   }
 }
 

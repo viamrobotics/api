@@ -3136,7 +3136,8 @@ proto.viam.app.datasync.v1.BinaryCapture.toObject = function(includeInstance, ms
     fileSizeBytes: jspb.Message.getFieldWithDefault(msg, 14, 0),
     sessionId: jspb.Message.getFieldWithDefault(msg, 15, ""),
     mimeType: jspb.Message.getFieldWithDefault(msg, 16, ""),
-    fileName: jspb.Message.getFieldWithDefault(msg, 17, "")
+    fileName: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    fileExt: jspb.Message.getFieldWithDefault(msg, 18, "")
   };
 
   if (includeInstance) {
@@ -3243,6 +3244,10 @@ proto.viam.app.datasync.v1.BinaryCapture.deserializeBinaryFromReader = function(
     case 17:
       var value = /** @type {string} */ (reader.readString());
       msg.setFileName(value);
+      break;
+    case 18:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFileExt(value);
       break;
     default:
       reader.skipField();
@@ -3387,6 +3392,13 @@ proto.viam.app.datasync.v1.BinaryCapture.serializeBinaryToWriter = function(mess
   if (f.length > 0) {
     writer.writeString(
       17,
+      f
+    );
+  }
+  f = message.getFileExt();
+  if (f.length > 0) {
+    writer.writeString(
+      18,
       f
     );
   }
@@ -3738,6 +3750,24 @@ proto.viam.app.datasync.v1.BinaryCapture.prototype.getFileName = function() {
  */
 proto.viam.app.datasync.v1.BinaryCapture.prototype.setFileName = function(value) {
   return jspb.Message.setProto3StringField(this, 17, value);
+};
+
+
+/**
+ * optional string file_ext = 18;
+ * @return {string}
+ */
+proto.viam.app.datasync.v1.BinaryCapture.prototype.getFileExt = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 18, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datasync.v1.BinaryCapture} returns this
+ */
+proto.viam.app.datasync.v1.BinaryCapture.prototype.setFileExt = function(value) {
+  return jspb.Message.setProto3StringField(this, 18, value);
 };
 
 
