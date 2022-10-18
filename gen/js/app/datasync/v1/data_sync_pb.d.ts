@@ -452,6 +452,9 @@ export class BinaryCapture extends jspb.Message {
   getFileName(): string;
   setFileName(value: string): void;
 
+  getFileExt(): string;
+  setFileExt(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryCapture.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryCapture): BinaryCapture.AsObject;
@@ -481,6 +484,7 @@ export namespace BinaryCapture {
     sessionId: string,
     mimeType: string,
     fileName: string,
+    fileExt: string,
   }
 }
 
