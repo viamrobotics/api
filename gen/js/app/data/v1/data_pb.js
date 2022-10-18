@@ -1122,7 +1122,9 @@ proto.viam.app.data.v1.CaptureMetadata.toObject = function(includeInstance, msg)
     methodName: jspb.Message.getFieldWithDefault(msg, 10, ""),
     methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
     tagsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
-    mimeType: jspb.Message.getFieldWithDefault(msg, 13, "")
+    mimeType: jspb.Message.getFieldWithDefault(msg, 13, ""),
+    fileName: jspb.Message.getFieldWithDefault(msg, 14, ""),
+    fileExt: jspb.Message.getFieldWithDefault(msg, 15, "")
   };
 
   if (includeInstance) {
@@ -1212,6 +1214,14 @@ proto.viam.app.data.v1.CaptureMetadata.deserializeBinaryFromReader = function(ms
     case 13:
       var value = /** @type {string} */ (reader.readString());
       msg.setMimeType(value);
+      break;
+    case 14:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFileName(value);
+      break;
+    case 15:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFileExt(value);
       break;
     default:
       reader.skipField();
@@ -1327,6 +1337,20 @@ proto.viam.app.data.v1.CaptureMetadata.serializeBinaryToWriter = function(messag
   if (f.length > 0) {
     writer.writeString(
       13,
+      f
+    );
+  }
+  f = message.getFileName();
+  if (f.length > 0) {
+    writer.writeString(
+      14,
+      f
+    );
+  }
+  f = message.getFileExt();
+  if (f.length > 0) {
+    writer.writeString(
+      15,
       f
     );
   }
@@ -1587,6 +1611,42 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getMimeType = function() {
  */
 proto.viam.app.data.v1.CaptureMetadata.prototype.setMimeType = function(value) {
   return jspb.Message.setProto3StringField(this, 13, value);
+};
+
+
+/**
+ * optional string file_name = 14;
+ * @return {string}
+ */
+proto.viam.app.data.v1.CaptureMetadata.prototype.getFileName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
+ */
+proto.viam.app.data.v1.CaptureMetadata.prototype.setFileName = function(value) {
+  return jspb.Message.setProto3StringField(this, 14, value);
+};
+
+
+/**
+ * optional string file_ext = 15;
+ * @return {string}
+ */
+proto.viam.app.data.v1.CaptureMetadata.prototype.getFileExt = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
+ */
+proto.viam.app.data.v1.CaptureMetadata.prototype.setFileExt = function(value) {
+  return jspb.Message.setProto3StringField(this, 15, value);
 };
 
 
