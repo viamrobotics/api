@@ -153,12 +153,6 @@ export class CaptureMetadata extends jspb.Message {
   getMimeType(): string;
   setMimeType(value: string): void;
 
-  getFileName(): string;
-  setFileName(value: string): void;
-
-  getFileExt(): string;
-  setFileExt(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CaptureMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: CaptureMetadata): CaptureMetadata.AsObject;
@@ -184,8 +178,6 @@ export namespace CaptureMetadata {
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
     tagsList: Array<string>,
     mimeType: string,
-    fileName: string,
-    fileExt: string,
   }
 }
 
@@ -317,29 +309,10 @@ export class BinaryData extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  getUri(): string;
-  setUri(value: string): void;
-
   getBinary(): Uint8Array | string;
   getBinary_asU8(): Uint8Array;
   getBinary_asB64(): string;
   setBinary(value: Uint8Array | string): void;
-
-  getMetadataIndex(): number;
-  setMetadataIndex(value: number): void;
-
-  hasTimeRequested(): boolean;
-  clearTimeRequested(): void;
-  getTimeRequested(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setTimeRequested(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
-  hasTimeReceived(): boolean;
-  clearTimeReceived(): void;
-  getTimeReceived(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setTimeReceived(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
-  getName(): string;
-  setName(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryData.AsObject;
@@ -354,12 +327,7 @@ export class BinaryData extends jspb.Message {
 export namespace BinaryData {
   export type AsObject = {
     id: string,
-    uri: string,
     binary: Uint8Array | string,
-    metadataIndex: number,
-    timeRequested?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    timeReceived?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    name: string,
   }
 }
 
@@ -395,9 +363,9 @@ export namespace BinaryDataByFilterRequest {
 
 export class BinaryDataByFilterResponse extends jspb.Message {
   clearMetadataList(): void;
-  getMetadataList(): Array<CaptureMetadata>;
-  setMetadataList(value: Array<CaptureMetadata>): void;
-  addMetadata(value?: CaptureMetadata, index?: number): CaptureMetadata;
+  getMetadataList(): Array<BinaryMetadata>;
+  setMetadataList(value: Array<BinaryMetadata>): void;
+  addMetadata(value?: BinaryMetadata, index?: number): BinaryMetadata;
 
   clearDataList(): void;
   getDataList(): Array<BinaryData>;
@@ -419,7 +387,7 @@ export class BinaryDataByFilterResponse extends jspb.Message {
 
 export namespace BinaryDataByFilterResponse {
   export type AsObject = {
-    metadataList: Array<CaptureMetadata.AsObject>,
+    metadataList: Array<BinaryMetadata.AsObject>,
     dataList: Array<BinaryData.AsObject>,
     count: number,
   }
@@ -480,6 +448,52 @@ export namespace BinaryDataByIDsResponse {
     metadataList: Array<CaptureMetadata.AsObject>,
     dataList: Array<BinaryData.AsObject>,
     count: number,
+  }
+}
+
+export class BinaryMetadata extends jspb.Message {
+  hasCaptureMetadata(): boolean;
+  clearCaptureMetadata(): void;
+  getCaptureMetadata(): CaptureMetadata | undefined;
+  setCaptureMetadata(value?: CaptureMetadata): void;
+
+  hasTimeRequested(): boolean;
+  clearTimeRequested(): void;
+  getTimeRequested(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeRequested(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasTimeReceived(): boolean;
+  clearTimeReceived(): void;
+  getTimeReceived(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeReceived(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  getFileExt(): string;
+  setFileExt(value: string): void;
+
+  getUri(): string;
+  setUri(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BinaryMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: BinaryMetadata): BinaryMetadata.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BinaryMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BinaryMetadata;
+  static deserializeBinaryFromReader(message: BinaryMetadata, reader: jspb.BinaryReader): BinaryMetadata;
+}
+
+export namespace BinaryMetadata {
+  export type AsObject = {
+    captureMetadata?: CaptureMetadata.AsObject,
+    timeRequested?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    timeReceived?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    name: string,
+    fileExt: string,
+    uri: string,
   }
 }
 
