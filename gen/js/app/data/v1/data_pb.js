@@ -3620,12 +3620,13 @@ proto.viam.app.data.v1.BinaryMetadata.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.data.v1.BinaryMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     captureMetadata: (f = msg.getCaptureMetadata()) && proto.viam.app.data.v1.CaptureMetadata.toObject(includeInstance, f),
     timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    fileExt: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    uri: jspb.Message.getFieldWithDefault(msg, 6, "")
+    fileName: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    fileExt: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    uri: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -3663,29 +3664,33 @@ proto.viam.app.data.v1.BinaryMetadata.deserializeBinaryFromReader = function(msg
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
       var value = new proto.viam.app.data.v1.CaptureMetadata;
       reader.readMessage(value,proto.viam.app.data.v1.CaptureMetadata.deserializeBinaryFromReader);
       msg.setCaptureMetadata(value);
       break;
-    case 2:
+    case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTimeRequested(value);
       break;
-    case 3:
+    case 4:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTimeReceived(value);
       break;
-    case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
-      break;
     case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFileName(value);
+      break;
+    case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setFileExt(value);
       break;
-    case 6:
+    case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setUri(value);
       break;
@@ -3718,10 +3723,17 @@ proto.viam.app.data.v1.BinaryMetadata.prototype.serializeBinary = function() {
  */
 proto.viam.app.data.v1.BinaryMetadata.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
   f = message.getCaptureMetadata();
   if (f != null) {
     writer.writeMessage(
-      1,
+      2,
       f,
       proto.viam.app.data.v1.CaptureMetadata.serializeBinaryToWriter
     );
@@ -3729,7 +3741,7 @@ proto.viam.app.data.v1.BinaryMetadata.serializeBinaryToWriter = function(message
   f = message.getTimeRequested();
   if (f != null) {
     writer.writeMessage(
-      2,
+      3,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -3737,29 +3749,29 @@ proto.viam.app.data.v1.BinaryMetadata.serializeBinaryToWriter = function(message
   f = message.getTimeReceived();
   if (f != null) {
     writer.writeMessage(
-      3,
+      4,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
-  f = message.getName();
-  if (f.length > 0) {
-    writer.writeString(
-      4,
-      f
-    );
-  }
-  f = message.getFileExt();
+  f = message.getFileName();
   if (f.length > 0) {
     writer.writeString(
       5,
       f
     );
   }
-  f = message.getUri();
+  f = message.getFileExt();
   if (f.length > 0) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = message.getUri();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
       f
     );
   }
@@ -3767,12 +3779,30 @@ proto.viam.app.data.v1.BinaryMetadata.serializeBinaryToWriter = function(message
 
 
 /**
- * optional CaptureMetadata capture_metadata = 1;
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.viam.app.data.v1.BinaryMetadata.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.BinaryMetadata} returns this
+ */
+proto.viam.app.data.v1.BinaryMetadata.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional CaptureMetadata capture_metadata = 2;
  * @return {?proto.viam.app.data.v1.CaptureMetadata}
  */
 proto.viam.app.data.v1.BinaryMetadata.prototype.getCaptureMetadata = function() {
   return /** @type{?proto.viam.app.data.v1.CaptureMetadata} */ (
-    jspb.Message.getWrapperField(this, proto.viam.app.data.v1.CaptureMetadata, 1));
+    jspb.Message.getWrapperField(this, proto.viam.app.data.v1.CaptureMetadata, 2));
 };
 
 
@@ -3781,7 +3811,7 @@ proto.viam.app.data.v1.BinaryMetadata.prototype.getCaptureMetadata = function() 
  * @return {!proto.viam.app.data.v1.BinaryMetadata} returns this
 */
 proto.viam.app.data.v1.BinaryMetadata.prototype.setCaptureMetadata = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -3799,17 +3829,17 @@ proto.viam.app.data.v1.BinaryMetadata.prototype.clearCaptureMetadata = function(
  * @return {boolean}
  */
 proto.viam.app.data.v1.BinaryMetadata.prototype.hasCaptureMetadata = function() {
-  return jspb.Message.getField(this, 1) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * optional google.protobuf.Timestamp time_requested = 2;
+ * optional google.protobuf.Timestamp time_requested = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.viam.app.data.v1.BinaryMetadata.prototype.getTimeRequested = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 2));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
 
 
@@ -3818,7 +3848,7 @@ proto.viam.app.data.v1.BinaryMetadata.prototype.getTimeRequested = function() {
  * @return {!proto.viam.app.data.v1.BinaryMetadata} returns this
 */
 proto.viam.app.data.v1.BinaryMetadata.prototype.setTimeRequested = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
+  return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -3836,17 +3866,17 @@ proto.viam.app.data.v1.BinaryMetadata.prototype.clearTimeRequested = function() 
  * @return {boolean}
  */
 proto.viam.app.data.v1.BinaryMetadata.prototype.hasTimeRequested = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional google.protobuf.Timestamp time_received = 3;
+ * optional google.protobuf.Timestamp time_received = 4;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.viam.app.data.v1.BinaryMetadata.prototype.getTimeReceived = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
 };
 
 
@@ -3855,7 +3885,7 @@ proto.viam.app.data.v1.BinaryMetadata.prototype.getTimeReceived = function() {
  * @return {!proto.viam.app.data.v1.BinaryMetadata} returns this
 */
 proto.viam.app.data.v1.BinaryMetadata.prototype.setTimeReceived = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
+  return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
@@ -3873,33 +3903,15 @@ proto.viam.app.data.v1.BinaryMetadata.prototype.clearTimeReceived = function() {
  * @return {boolean}
  */
 proto.viam.app.data.v1.BinaryMetadata.prototype.hasTimeReceived = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * optional string name = 4;
+ * optional string file_name = 5;
  * @return {string}
  */
-proto.viam.app.data.v1.BinaryMetadata.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.data.v1.BinaryMetadata} returns this
- */
-proto.viam.app.data.v1.BinaryMetadata.prototype.setName = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
-};
-
-
-/**
- * optional string file_ext = 5;
- * @return {string}
- */
-proto.viam.app.data.v1.BinaryMetadata.prototype.getFileExt = function() {
+proto.viam.app.data.v1.BinaryMetadata.prototype.getFileName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -3908,16 +3920,16 @@ proto.viam.app.data.v1.BinaryMetadata.prototype.getFileExt = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.BinaryMetadata} returns this
  */
-proto.viam.app.data.v1.BinaryMetadata.prototype.setFileExt = function(value) {
+proto.viam.app.data.v1.BinaryMetadata.prototype.setFileName = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional string uri = 6;
+ * optional string file_ext = 6;
  * @return {string}
  */
-proto.viam.app.data.v1.BinaryMetadata.prototype.getUri = function() {
+proto.viam.app.data.v1.BinaryMetadata.prototype.getFileExt = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -3926,8 +3938,26 @@ proto.viam.app.data.v1.BinaryMetadata.prototype.getUri = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.BinaryMetadata} returns this
  */
-proto.viam.app.data.v1.BinaryMetadata.prototype.setUri = function(value) {
+proto.viam.app.data.v1.BinaryMetadata.prototype.setFileExt = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional string uri = 7;
+ * @return {string}
+ */
+proto.viam.app.data.v1.BinaryMetadata.prototype.getUri = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.BinaryMetadata} returns this
+ */
+proto.viam.app.data.v1.BinaryMetadata.prototype.setUri = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 

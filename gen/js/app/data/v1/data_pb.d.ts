@@ -452,6 +452,9 @@ export namespace BinaryDataByIDsResponse {
 }
 
 export class BinaryMetadata extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
   hasCaptureMetadata(): boolean;
   clearCaptureMetadata(): void;
   getCaptureMetadata(): CaptureMetadata | undefined;
@@ -467,8 +470,8 @@ export class BinaryMetadata extends jspb.Message {
   getTimeReceived(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTimeReceived(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  getName(): string;
-  setName(value: string): void;
+  getFileName(): string;
+  setFileName(value: string): void;
 
   getFileExt(): string;
   setFileExt(value: string): void;
@@ -488,10 +491,11 @@ export class BinaryMetadata extends jspb.Message {
 
 export namespace BinaryMetadata {
   export type AsObject = {
+    id: string,
     captureMetadata?: CaptureMetadata.AsObject,
     timeRequested?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     timeReceived?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    name: string,
+    fileName: string,
     fileExt: string,
     uri: string,
   }

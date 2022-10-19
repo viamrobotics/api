@@ -118,10 +118,11 @@ message BinaryDataByIDsResponse {
 }
 
 message BinaryMetadata {
-  CaptureMetadata capture_metadata = 1;
-  google.protobuf.Timestamp time_requested = 2;
-  google.protobuf.Timestamp time_received = 3;
-  string name = 4;
-  string file_ext = 5;
-  string uri = 6;
+  string id = 1;
+  CaptureMetadata capture_metadata = 2;
+  google.protobuf.Timestamp time_requested = 3;
+  google.protobuf.Timestamp time_received = 4;
+  string file_name = 5;
+  string file_ext = 6;
+  string uri = 7;
 }
