@@ -57,8 +57,6 @@ message CaptureMetadata {
   map<string, google.protobuf.Any> method_parameters = 11;
   repeated string tags = 12;
   string mime_type = 13;
-  string file_name = 14;
-  string file_ext = 15;
 }
 
 // CaptureInterval describes the start and end time of the capture in this file
@@ -88,13 +86,8 @@ message TabularData {
 }
 
 message BinaryData {
-  string id = 1;
-  string uri = 2;
-  bytes binary = 3;
-  int32 metadata_index = 4;
-  google.protobuf.Timestamp time_requested = 5;
-  google.protobuf.Timestamp time_received = 6;
-  string name = 7;
+  bytes binary = 1;
+  BinaryMetadata metadata = 2;
 }
 
 // BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when by filter
@@ -106,9 +99,8 @@ message BinaryDataByFilterRequest {
 
 // BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided
 message BinaryDataByFilterResponse {
-  repeated CaptureMetadata metadata = 1;
-  repeated BinaryData data = 2;
-  int64 count = 3;
+  repeated BinaryData data = 1;
+  int64 count = 2;
 }
 
 // BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by file ids
@@ -119,7 +111,16 @@ message BinaryDataByIDsRequest {
 
 // BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided
 message BinaryDataByIDsResponse {
-  repeated CaptureMetadata metadata = 1;
-  repeated BinaryData data = 2;
-  int64 count = 3;
+  repeated BinaryData data = 1;
+  int64 count = 2;
+}
+
+message BinaryMetadata {
+  string id = 1;
+  CaptureMetadata capture_metadata = 2;
+  google.protobuf.Timestamp time_requested = 3;
+  google.protobuf.Timestamp time_received = 4;
+  string file_name = 5;
+  string file_ext = 6;
+  string uri = 7;
 }
