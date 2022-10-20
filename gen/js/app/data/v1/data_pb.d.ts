@@ -306,13 +306,15 @@ export namespace TabularData {
 }
 
 export class BinaryData extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
   getBinary(): Uint8Array | string;
   getBinary_asU8(): Uint8Array;
   getBinary_asB64(): string;
   setBinary(value: Uint8Array | string): void;
+
+  hasMetadata(): boolean;
+  clearMetadata(): void;
+  getMetadata(): BinaryMetadata | undefined;
+  setMetadata(value?: BinaryMetadata): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryData.AsObject;
@@ -326,8 +328,8 @@ export class BinaryData extends jspb.Message {
 
 export namespace BinaryData {
   export type AsObject = {
-    id: string,
     binary: Uint8Array | string,
+    metadata?: BinaryMetadata.AsObject,
   }
 }
 
@@ -362,11 +364,6 @@ export namespace BinaryDataByFilterRequest {
 }
 
 export class BinaryDataByFilterResponse extends jspb.Message {
-  clearMetadataList(): void;
-  getMetadataList(): Array<BinaryMetadata>;
-  setMetadataList(value: Array<BinaryMetadata>): void;
-  addMetadata(value?: BinaryMetadata, index?: number): BinaryMetadata;
-
   clearDataList(): void;
   getDataList(): Array<BinaryData>;
   setDataList(value: Array<BinaryData>): void;
@@ -387,7 +384,6 @@ export class BinaryDataByFilterResponse extends jspb.Message {
 
 export namespace BinaryDataByFilterResponse {
   export type AsObject = {
-    metadataList: Array<BinaryMetadata.AsObject>,
     dataList: Array<BinaryData.AsObject>,
     count: number,
   }
@@ -420,11 +416,6 @@ export namespace BinaryDataByIDsRequest {
 }
 
 export class BinaryDataByIDsResponse extends jspb.Message {
-  clearMetadataList(): void;
-  getMetadataList(): Array<CaptureMetadata>;
-  setMetadataList(value: Array<CaptureMetadata>): void;
-  addMetadata(value?: CaptureMetadata, index?: number): CaptureMetadata;
-
   clearDataList(): void;
   getDataList(): Array<BinaryData>;
   setDataList(value: Array<BinaryData>): void;
@@ -445,7 +436,6 @@ export class BinaryDataByIDsResponse extends jspb.Message {
 
 export namespace BinaryDataByIDsResponse {
   export type AsObject = {
-    metadataList: Array<CaptureMetadata.AsObject>,
     dataList: Array<BinaryData.AsObject>,
     count: number,
   }

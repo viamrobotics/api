@@ -86,8 +86,8 @@ message TabularData {
 }
 
 message BinaryData {
-  string id = 1;
-  bytes binary = 2;
+  bytes binary = 1;
+  BinaryMetadata metadata = 2;
 }
 
 // BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when by filter
@@ -99,9 +99,8 @@ message BinaryDataByFilterRequest {
 
 // BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided
 message BinaryDataByFilterResponse {
-  repeated BinaryMetadata metadata = 1;
-  repeated BinaryData data = 2;
-  int64 count = 3;
+  repeated BinaryData data = 1;
+  int64 count = 2;
 }
 
 // BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by file ids
@@ -112,9 +111,8 @@ message BinaryDataByIDsRequest {
 
 // BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided
 message BinaryDataByIDsResponse {
-  repeated CaptureMetadata metadata = 1;
-  repeated BinaryData data = 2;
-  int64 count = 3;
+  repeated BinaryData data = 1;
+  int64 count = 2;
 }
 
 message BinaryMetadata {

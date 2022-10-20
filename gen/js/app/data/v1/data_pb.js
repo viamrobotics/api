@@ -2553,8 +2553,8 @@ proto.viam.app.data.v1.BinaryData.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.app.data.v1.BinaryData.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    binary: msg.getBinary_asB64()
+    binary: msg.getBinary_asB64(),
+    metadata: (f = msg.getMetadata()) && proto.viam.app.data.v1.BinaryMetadata.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2592,12 +2592,13 @@ proto.viam.app.data.v1.BinaryData.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
-      break;
-    case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setBinary(value);
+      break;
+    case 2:
+      var value = new proto.viam.app.data.v1.BinaryMetadata;
+      reader.readMessage(value,proto.viam.app.data.v1.BinaryMetadata.deserializeBinaryFromReader);
+      msg.setMetadata(value);
       break;
     default:
       reader.skipField();
@@ -2628,52 +2629,35 @@ proto.viam.app.data.v1.BinaryData.prototype.serializeBinary = function() {
  */
 proto.viam.app.data.v1.BinaryData.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
+  f = message.getBinary_asU8();
   if (f.length > 0) {
-    writer.writeString(
+    writer.writeBytes(
       1,
       f
     );
   }
-  f = message.getBinary_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
+  f = message.getMetadata();
+  if (f != null) {
+    writer.writeMessage(
       2,
-      f
+      f,
+      proto.viam.app.data.v1.BinaryMetadata.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional string id = 1;
+ * optional bytes binary = 1;
  * @return {string}
  */
-proto.viam.app.data.v1.BinaryData.prototype.getId = function() {
+proto.viam.app.data.v1.BinaryData.prototype.getBinary = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {string} value
- * @return {!proto.viam.app.data.v1.BinaryData} returns this
- */
-proto.viam.app.data.v1.BinaryData.prototype.setId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional bytes binary = 2;
- * @return {string}
- */
-proto.viam.app.data.v1.BinaryData.prototype.getBinary = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * optional bytes binary = 2;
+ * optional bytes binary = 1;
  * This is a type-conversion wrapper around `getBinary()`
  * @return {string}
  */
@@ -2684,7 +2668,7 @@ proto.viam.app.data.v1.BinaryData.prototype.getBinary_asB64 = function() {
 
 
 /**
- * optional bytes binary = 2;
+ * optional bytes binary = 1;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getBinary()`
@@ -2701,7 +2685,44 @@ proto.viam.app.data.v1.BinaryData.prototype.getBinary_asU8 = function() {
  * @return {!proto.viam.app.data.v1.BinaryData} returns this
  */
 proto.viam.app.data.v1.BinaryData.prototype.setBinary = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
+  return jspb.Message.setProto3BytesField(this, 1, value);
+};
+
+
+/**
+ * optional BinaryMetadata metadata = 2;
+ * @return {?proto.viam.app.data.v1.BinaryMetadata}
+ */
+proto.viam.app.data.v1.BinaryData.prototype.getMetadata = function() {
+  return /** @type{?proto.viam.app.data.v1.BinaryMetadata} */ (
+    jspb.Message.getWrapperField(this, proto.viam.app.data.v1.BinaryMetadata, 2));
+};
+
+
+/**
+ * @param {?proto.viam.app.data.v1.BinaryMetadata|undefined} value
+ * @return {!proto.viam.app.data.v1.BinaryData} returns this
+*/
+proto.viam.app.data.v1.BinaryData.prototype.setMetadata = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.data.v1.BinaryData} returns this
+ */
+proto.viam.app.data.v1.BinaryData.prototype.clearMetadata = function() {
+  return this.setMetadata(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.BinaryData.prototype.hasMetadata = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -2922,7 +2943,7 @@ proto.viam.app.data.v1.BinaryDataByFilterRequest.prototype.setCountOnly = functi
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.BinaryDataByFilterResponse.repeatedFields_ = [1,2];
+proto.viam.app.data.v1.BinaryDataByFilterResponse.repeatedFields_ = [1];
 
 
 
@@ -2955,11 +2976,9 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.toObject = function(
  */
 proto.viam.app.data.v1.BinaryDataByFilterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    metadataList: jspb.Message.toObjectList(msg.getMetadataList(),
-    proto.viam.app.data.v1.BinaryMetadata.toObject, includeInstance),
     dataList: jspb.Message.toObjectList(msg.getDataList(),
     proto.viam.app.data.v1.BinaryData.toObject, includeInstance),
-    count: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    count: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -2997,16 +3016,11 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.deserializeBinaryFromReader = 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.viam.app.data.v1.BinaryMetadata;
-      reader.readMessage(value,proto.viam.app.data.v1.BinaryMetadata.deserializeBinaryFromReader);
-      msg.addMetadata(value);
-      break;
-    case 2:
       var value = new proto.viam.app.data.v1.BinaryData;
       reader.readMessage(value,proto.viam.app.data.v1.BinaryData.deserializeBinaryFromReader);
       msg.addData(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setCount(value);
       break;
@@ -3039,18 +3053,10 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.serializeBinary = fu
  */
 proto.viam.app.data.v1.BinaryDataByFilterResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMetadataList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.viam.app.data.v1.BinaryMetadata.serializeBinaryToWriter
-    );
-  }
   f = message.getDataList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      2,
+      1,
       f,
       proto.viam.app.data.v1.BinaryData.serializeBinaryToWriter
     );
@@ -3058,7 +3064,7 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.serializeBinaryToWriter = func
   f = message.getCount();
   if (f !== 0) {
     writer.writeInt64(
-      3,
+      2,
       f
     );
   }
@@ -3066,50 +3072,12 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.serializeBinaryToWriter = func
 
 
 /**
- * repeated BinaryMetadata metadata = 1;
- * @return {!Array<!proto.viam.app.data.v1.BinaryMetadata>}
- */
-proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.getMetadataList = function() {
-  return /** @type{!Array<!proto.viam.app.data.v1.BinaryMetadata>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.data.v1.BinaryMetadata, 1));
-};
-
-
-/**
- * @param {!Array<!proto.viam.app.data.v1.BinaryMetadata>} value
- * @return {!proto.viam.app.data.v1.BinaryDataByFilterResponse} returns this
-*/
-proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.setMetadataList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.viam.app.data.v1.BinaryMetadata=} opt_value
- * @param {number=} opt_index
- * @return {!proto.viam.app.data.v1.BinaryMetadata}
- */
-proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.addMetadata = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.app.data.v1.BinaryMetadata, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.viam.app.data.v1.BinaryDataByFilterResponse} returns this
- */
-proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.clearMetadataList = function() {
-  return this.setMetadataList([]);
-};
-
-
-/**
- * repeated BinaryData data = 2;
+ * repeated BinaryData data = 1;
  * @return {!Array<!proto.viam.app.data.v1.BinaryData>}
  */
 proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.getDataList = function() {
   return /** @type{!Array<!proto.viam.app.data.v1.BinaryData>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.data.v1.BinaryData, 2));
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.data.v1.BinaryData, 1));
 };
 
 
@@ -3118,7 +3086,7 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.getDataList = functi
  * @return {!proto.viam.app.data.v1.BinaryDataByFilterResponse} returns this
 */
 proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.setDataList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
@@ -3128,7 +3096,7 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.setDataList = functi
  * @return {!proto.viam.app.data.v1.BinaryData}
  */
 proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.addData = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.viam.app.data.v1.BinaryData, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.app.data.v1.BinaryData, opt_index);
 };
 
 
@@ -3142,11 +3110,11 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.clearDataList = func
 
 
 /**
- * optional int64 count = 3;
+ * optional int64 count = 2;
  * @return {number}
  */
 proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.getCount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
@@ -3155,7 +3123,7 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.getCount = function(
  * @return {!proto.viam.app.data.v1.BinaryDataByFilterResponse} returns this
  */
 proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.setCount = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -3351,7 +3319,7 @@ proto.viam.app.data.v1.BinaryDataByIDsRequest.prototype.setIncludeBinary = funct
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.BinaryDataByIDsResponse.repeatedFields_ = [1,2];
+proto.viam.app.data.v1.BinaryDataByIDsResponse.repeatedFields_ = [1];
 
 
 
@@ -3384,11 +3352,9 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.toObject = function(opt
  */
 proto.viam.app.data.v1.BinaryDataByIDsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    metadataList: jspb.Message.toObjectList(msg.getMetadataList(),
-    proto.viam.app.data.v1.CaptureMetadata.toObject, includeInstance),
     dataList: jspb.Message.toObjectList(msg.getDataList(),
     proto.viam.app.data.v1.BinaryData.toObject, includeInstance),
-    count: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    count: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -3426,16 +3392,11 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.deserializeBinaryFromReader = fun
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.viam.app.data.v1.CaptureMetadata;
-      reader.readMessage(value,proto.viam.app.data.v1.CaptureMetadata.deserializeBinaryFromReader);
-      msg.addMetadata(value);
-      break;
-    case 2:
       var value = new proto.viam.app.data.v1.BinaryData;
       reader.readMessage(value,proto.viam.app.data.v1.BinaryData.deserializeBinaryFromReader);
       msg.addData(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setCount(value);
       break;
@@ -3468,18 +3429,10 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.serializeBinary = funct
  */
 proto.viam.app.data.v1.BinaryDataByIDsResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMetadataList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.viam.app.data.v1.CaptureMetadata.serializeBinaryToWriter
-    );
-  }
   f = message.getDataList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      2,
+      1,
       f,
       proto.viam.app.data.v1.BinaryData.serializeBinaryToWriter
     );
@@ -3487,7 +3440,7 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.serializeBinaryToWriter = functio
   f = message.getCount();
   if (f !== 0) {
     writer.writeInt64(
-      3,
+      2,
       f
     );
   }
@@ -3495,50 +3448,12 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.serializeBinaryToWriter = functio
 
 
 /**
- * repeated CaptureMetadata metadata = 1;
- * @return {!Array<!proto.viam.app.data.v1.CaptureMetadata>}
- */
-proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.getMetadataList = function() {
-  return /** @type{!Array<!proto.viam.app.data.v1.CaptureMetadata>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.data.v1.CaptureMetadata, 1));
-};
-
-
-/**
- * @param {!Array<!proto.viam.app.data.v1.CaptureMetadata>} value
- * @return {!proto.viam.app.data.v1.BinaryDataByIDsResponse} returns this
-*/
-proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.setMetadataList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.viam.app.data.v1.CaptureMetadata=} opt_value
- * @param {number=} opt_index
- * @return {!proto.viam.app.data.v1.CaptureMetadata}
- */
-proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.addMetadata = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.app.data.v1.CaptureMetadata, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.viam.app.data.v1.BinaryDataByIDsResponse} returns this
- */
-proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.clearMetadataList = function() {
-  return this.setMetadataList([]);
-};
-
-
-/**
- * repeated BinaryData data = 2;
+ * repeated BinaryData data = 1;
  * @return {!Array<!proto.viam.app.data.v1.BinaryData>}
  */
 proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.getDataList = function() {
   return /** @type{!Array<!proto.viam.app.data.v1.BinaryData>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.data.v1.BinaryData, 2));
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.data.v1.BinaryData, 1));
 };
 
 
@@ -3547,7 +3462,7 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.getDataList = function(
  * @return {!proto.viam.app.data.v1.BinaryDataByIDsResponse} returns this
 */
 proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.setDataList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
@@ -3557,7 +3472,7 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.setDataList = function(
  * @return {!proto.viam.app.data.v1.BinaryData}
  */
 proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.addData = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.viam.app.data.v1.BinaryData, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.app.data.v1.BinaryData, opt_index);
 };
 
 
@@ -3571,11 +3486,11 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.clearDataList = functio
 
 
 /**
- * optional int64 count = 3;
+ * optional int64 count = 2;
  * @return {number}
  */
 proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.getCount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
@@ -3584,7 +3499,7 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.getCount = function() {
  * @return {!proto.viam.app.data.v1.BinaryDataByIDsResponse} returns this
  */
 proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.setCount = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
