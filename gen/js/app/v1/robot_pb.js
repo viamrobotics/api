@@ -171,7 +171,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.ServiceConfig = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.ServiceConfig.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.v1.ServiceConfig, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -2464,6 +2464,13 @@ proto.viam.app.v1.ProcessConfig.prototype.setLog = function(value) {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.ServiceConfig.repeatedFields_ = [5];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -2498,7 +2505,8 @@ proto.viam.app.v1.ServiceConfig.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     namespace: jspb.Message.getFieldWithDefault(msg, 2, ""),
     type: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    dependsOnList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2551,6 +2559,10 @@ proto.viam.app.v1.ServiceConfig.deserializeBinaryFromReader = function(msg, read
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setAttributes(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addDependsOn(value);
       break;
     default:
       reader.skipField();
@@ -2608,6 +2620,13 @@ proto.viam.app.v1.ServiceConfig.serializeBinaryToWriter = function(message, writ
       4,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getDependsOnList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      5,
+      f
     );
   }
 };
@@ -2701,6 +2720,43 @@ proto.viam.app.v1.ServiceConfig.prototype.clearAttributes = function() {
  */
 proto.viam.app.v1.ServiceConfig.prototype.hasAttributes = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * repeated string depends_on = 5;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.ServiceConfig.prototype.getDependsOnList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.ServiceConfig} returns this
+ */
+proto.viam.app.v1.ServiceConfig.prototype.setDependsOnList = function(value) {
+  return jspb.Message.setField(this, 5, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.ServiceConfig} returns this
+ */
+proto.viam.app.v1.ServiceConfig.prototype.addDependsOn = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.ServiceConfig} returns this
+ */
+proto.viam.app.v1.ServiceConfig.prototype.clearDependsOnList = function() {
+  return this.setDependsOnList([]);
 };
 
 
