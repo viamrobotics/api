@@ -37,6 +37,15 @@ ModelService.Deploy = {
   responseType: app_model_v1_model_pb.DeployResponse
 };
 
+ModelService.Info = {
+  methodName: "Info",
+  service: ModelService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_model_v1_model_pb.InfoRequest,
+  responseType: app_model_v1_model_pb.InfoResponse
+};
+
 exports.ModelService = ModelService;
 
 function ModelServiceClient(serviceHost, options) {
@@ -121,6 +130,37 @@ ModelServiceClient.prototype.deploy = function deploy(requestMessage, metadata, 
     callback = arguments[1];
   }
   var client = grpc.unary(ModelService.Deploy, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ModelServiceClient.prototype.info = function info(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ModelService.Info, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
