@@ -543,6 +543,7 @@ type ServiceConfig struct {
 	Namespace  string           `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
 	Type       string           `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
 	Attributes *structpb.Struct `protobuf:"bytes,4,opt,name=attributes,proto3" json:"attributes,omitempty"`
+	DependsOn  []string         `protobuf:"bytes,5,rep,name=depends_on,json=dependsOn,proto3" json:"depends_on,omitempty"`	
 }
 
 func (x *ServiceConfig) Reset() {
@@ -601,6 +602,13 @@ func (x *ServiceConfig) GetType() string {
 func (x *ServiceConfig) GetAttributes() *structpb.Struct {
 	if x != nil {
 		return x.Attributes
+	}
+	return nil
+}
+
+func (x *ServiceConfig) GetDependsOn() []string {
+	if x != nil {
+		return x.DependsOn
 	}
 	return nil
 }
