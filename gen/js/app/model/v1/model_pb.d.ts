@@ -31,8 +31,8 @@ export class File extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  getSize(): number;
-  setSize(value: number): void;
+  getSizeBytes(): number;
+  setSizeBytes(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): File.AsObject;
@@ -47,7 +47,7 @@ export class File extends jspb.Message {
 export namespace File {
   export type AsObject = {
     name: string,
-    size: number,
+    sizeBytes: number,
   }
 }
 
@@ -66,8 +66,8 @@ export class UploadMetadata extends jspb.Message {
   setFilesList(value: Array<File>): void;
   addFiles(value?: File, index?: number): File;
 
-  getModelSize(): number;
-  setModelSize(value: number): void;
+  getModelSizeBytes(): number;
+  setModelSizeBytes(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UploadMetadata.AsObject;
@@ -85,7 +85,7 @@ export namespace UploadMetadata {
     modelName: string,
     associatedDataset: string,
     filesList: Array<File.AsObject>,
-    modelSize: number,
+    modelSizeBytes: number,
   }
 }
 
@@ -213,16 +213,16 @@ export namespace DeployRequest {
 }
 
 export class Model extends jspb.Message {
-  getModelName(): string;
-  setModelName(value: string): void;
+  getName(): string;
+  setName(value: string): void;
+
+  getSizeBytes(): number;
+  setSizeBytes(value: number): void;
 
   clearFilesList(): void;
   getFilesList(): Array<File>;
   setFilesList(value: Array<File>): void;
   addFiles(value?: File, index?: number): File;
-
-  getModelSize(): number;
-  setModelSize(value: number): void;
 
   hasTimeCreated(): boolean;
   clearTimeCreated(): void;
@@ -241,9 +241,9 @@ export class Model extends jspb.Message {
 
 export namespace Model {
   export type AsObject = {
-    modelName: string,
+    name: string,
+    sizeBytes: number,
     filesList: Array<File.AsObject>,
-    modelSize: number,
     timeCreated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
