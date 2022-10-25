@@ -4,10 +4,16 @@
 import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
 export class GetModeRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetModeRequest.AsObject;
@@ -22,6 +28,7 @@ export class GetModeRequest extends jspb.Message {
 export namespace GetModeRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -52,6 +59,11 @@ export class SetModeRequest extends jspb.Message {
   getMode(): ModeMap[keyof ModeMap];
   setMode(value: ModeMap[keyof ModeMap]): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SetModeRequest.AsObject;
   static toObject(includeInstance: boolean, msg: SetModeRequest): SetModeRequest.AsObject;
@@ -66,6 +78,7 @@ export namespace SetModeRequest {
   export type AsObject = {
     name: string,
     mode: ModeMap[keyof ModeMap],
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -115,6 +128,11 @@ export class GetLocationRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetLocationRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetLocationRequest): GetLocationRequest.AsObject;
@@ -128,6 +146,7 @@ export class GetLocationRequest extends jspb.Message {
 export namespace GetLocationRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -157,6 +176,11 @@ export class GetWaypointsRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetWaypointsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetWaypointsRequest): GetWaypointsRequest.AsObject;
@@ -170,6 +194,7 @@ export class GetWaypointsRequest extends jspb.Message {
 export namespace GetWaypointsRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -204,6 +229,11 @@ export class AddWaypointRequest extends jspb.Message {
   getLocation(): common_v1_common_pb.GeoPoint | undefined;
   setLocation(value?: common_v1_common_pb.GeoPoint): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddWaypointRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AddWaypointRequest): AddWaypointRequest.AsObject;
@@ -218,6 +248,7 @@ export namespace AddWaypointRequest {
   export type AsObject = {
     name: string,
     location?: common_v1_common_pb.GeoPoint.AsObject,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -244,6 +275,11 @@ export class RemoveWaypointRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveWaypointRequest.AsObject;
   static toObject(includeInstance: boolean, msg: RemoveWaypointRequest): RemoveWaypointRequest.AsObject;
@@ -258,6 +294,7 @@ export namespace RemoveWaypointRequest {
   export type AsObject = {
     name: string,
     id: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
