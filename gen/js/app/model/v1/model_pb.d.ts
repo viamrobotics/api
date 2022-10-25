@@ -65,6 +65,9 @@ export class UploadMetadata extends jspb.Message {
   setFilesList(value: Array<File>): void;
   addFiles(value?: File, index?: number): File;
 
+  getModelSize(): number;
+  setModelSize(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UploadMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UploadMetadata): UploadMetadata.AsObject;
@@ -81,6 +84,7 @@ export namespace UploadMetadata {
     modelName: string,
     associatedDataset: string,
     filesList: Array<File.AsObject>,
+    modelSize: number,
   }
 }
 

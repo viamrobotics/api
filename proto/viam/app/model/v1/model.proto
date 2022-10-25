@@ -29,6 +29,7 @@ message UploadMetadata {
   // whether it should be by ID or name.
   string associated_dataset = 3;
   repeated File files = 4;
+  int64 model_size = 5;
 }
 
 message UploadRequest {
