@@ -2,12 +2,19 @@ syntax = "proto3";
 
 package viam.app.model.v1;
 
+import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/app/model/v1";
 
 service ModelService {
-  rpc Upload(stream viam.app.model.v1.UploadRequest) returns (viam.app.model.v1.UploadResponse);
+  rpc Upload(stream viam.app.model.v1.UploadRequest) returns (viam.app.model.v1.UploadResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/app/model"
+      body: "*"
+    };
+  }
+
   rpc Delete(viam.app.model.v1.DeleteRequest) returns (viam.app.model.v1.DeleteResponse);
   rpc Deploy(viam.app.model.v1.DeployRequest) returns (viam.app.model.v1.DeployResponse);
   rpc Info(viam.app.model.v1.InfoRequest) returns (viam.app.model.v1.InfoResponse);
