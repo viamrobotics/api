@@ -18,6 +18,15 @@ service DataService {
 
   // BinaryDataByIDs queries binary data and metadata based on given IDs.
   rpc BinaryDataByIDs(BinaryDataByIDsRequest) returns (BinaryDataByIDsResponse);
+
+  // DeleteTabularDataByFilter deletes tabular data based on given filters.
+  rpc DeleteTabularDataByFilter(DeleteTabularDataByFilterRequest) returns (DeleteTabularDataByFilterResponse);
+
+  // DeleteBinaryDataByFilter deletes binary data based on given filters.
+  rpc DeleteBinaryDataByFilter(DeleteBinaryDataByFilterRequest) returns (DeleteBinaryDataByFilterResponse);
+
+  // DeleteBinaryDataByIDs deletes binary data based on given IDs.
+  rpc DeleteBinaryDataByIDs(DeleteBinaryDataByIDsRequest) returns (DeleteBinaryDataByIDsResponse);
 }
 
 message DataRequest {
@@ -90,7 +99,7 @@ message BinaryData {
   BinaryMetadata metadata = 2;
 }
 
-// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when by filter
+// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when a filter is provided
 message BinaryDataByFilterRequest {
   DataRequest data_request = 1;
   bool include_binary = 2;
@@ -123,4 +132,34 @@ message BinaryMetadata {
   string file_name = 5;
   string file_ext = 6;
   string uri = 7;
+}
+
+// DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided
+message DeleteTabularDataByFilterRequest {
+  Filter filter = 1;
+}
+
+// DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided
+message DeleteTabularDataByFilterResponse {
+  int64 deleted_count = 1;
+}
+
+// DeleteBinaryDataByFilterRequest deletes the data and metadata of binary (image + file) data when a filter is provided
+message DeleteBinaryDataByFilterRequest {
+  Filter filter = 1;
+}
+
+// DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided
+message DeleteBinaryDataByFilterResponse {
+  int64 deleted_count = 1;
+}
+
+// DeleteBinaryDataByIDsRequest deletes the data and metadata of binary (image + file) data by file ids
+message DeleteBinaryDataByIDsRequest {
+  repeated string file_ids = 1;
+}
+
+// DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided
+message DeleteBinaryDataByIDsResponse {
+  int64 deleted_count = 1;
 }
