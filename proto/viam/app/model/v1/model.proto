@@ -11,7 +11,6 @@ service ModelService {
   rpc Upload(stream viam.app.model.v1.UploadRequest) returns (viam.app.model.v1.UploadResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/app/model"
-      body: "*"
     };
   }
 
