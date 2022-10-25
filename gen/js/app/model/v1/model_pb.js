@@ -536,7 +536,7 @@ proto.viam.app.model.v1.File.prototype.toObject = function(opt_includeInstance) 
 proto.viam.app.model.v1.File.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    size: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    sizeBytes: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -579,7 +579,7 @@ proto.viam.app.model.v1.File.deserializeBinaryFromReader = function(msg, reader)
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setSize(value);
+      msg.setSizeBytes(value);
       break;
     default:
       reader.skipField();
@@ -617,7 +617,7 @@ proto.viam.app.model.v1.File.serializeBinaryToWriter = function(message, writer)
       f
     );
   }
-  f = message.getSize();
+  f = message.getSizeBytes();
   if (f !== 0) {
     writer.writeInt64(
       2,
@@ -646,10 +646,10 @@ proto.viam.app.model.v1.File.prototype.setName = function(value) {
 
 
 /**
- * optional int64 size = 2;
+ * optional int64 size_bytes = 2;
  * @return {number}
  */
-proto.viam.app.model.v1.File.prototype.getSize = function() {
+proto.viam.app.model.v1.File.prototype.getSizeBytes = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -658,7 +658,7 @@ proto.viam.app.model.v1.File.prototype.getSize = function() {
  * @param {number} value
  * @return {!proto.viam.app.model.v1.File} returns this
  */
-proto.viam.app.model.v1.File.prototype.setSize = function(value) {
+proto.viam.app.model.v1.File.prototype.setSizeBytes = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
@@ -707,7 +707,7 @@ proto.viam.app.model.v1.UploadMetadata.toObject = function(includeInstance, msg)
     associatedDataset: jspb.Message.getFieldWithDefault(msg, 3, ""),
     filesList: jspb.Message.toObjectList(msg.getFilesList(),
     proto.viam.app.model.v1.File.toObject, includeInstance),
-    modelSize: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    modelSizeBytes: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -763,7 +763,7 @@ proto.viam.app.model.v1.UploadMetadata.deserializeBinaryFromReader = function(ms
       break;
     case 5:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setModelSize(value);
+      msg.setModelSizeBytes(value);
       break;
     default:
       reader.skipField();
@@ -823,7 +823,7 @@ proto.viam.app.model.v1.UploadMetadata.serializeBinaryToWriter = function(messag
       proto.viam.app.model.v1.File.serializeBinaryToWriter
     );
   }
-  f = message.getModelSize();
+  f = message.getModelSizeBytes();
   if (f !== 0) {
     writer.writeInt64(
       5,
@@ -926,10 +926,10 @@ proto.viam.app.model.v1.UploadMetadata.prototype.clearFilesList = function() {
 
 
 /**
- * optional int64 model_size = 5;
+ * optional int64 model_size_bytes = 5;
  * @return {number}
  */
-proto.viam.app.model.v1.UploadMetadata.prototype.getModelSize = function() {
+proto.viam.app.model.v1.UploadMetadata.prototype.getModelSizeBytes = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
@@ -938,7 +938,7 @@ proto.viam.app.model.v1.UploadMetadata.prototype.getModelSize = function() {
  * @param {number} value
  * @return {!proto.viam.app.model.v1.UploadMetadata} returns this
  */
-proto.viam.app.model.v1.UploadMetadata.prototype.setModelSize = function(value) {
+proto.viam.app.model.v1.UploadMetadata.prototype.setModelSizeBytes = function(value) {
   return jspb.Message.setProto3IntField(this, 5, value);
 };
 
@@ -1769,7 +1769,7 @@ proto.viam.app.model.v1.DeployRequest.prototype.hasMetadata = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.model.v1.Model.repeatedFields_ = [2];
+proto.viam.app.model.v1.Model.repeatedFields_ = [3];
 
 
 
@@ -1802,10 +1802,10 @@ proto.viam.app.model.v1.Model.prototype.toObject = function(opt_includeInstance)
  */
 proto.viam.app.model.v1.Model.toObject = function(includeInstance, msg) {
   var f, obj = {
-    modelName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    sizeBytes: jspb.Message.getFieldWithDefault(msg, 2, 0),
     filesList: jspb.Message.toObjectList(msg.getFilesList(),
     proto.viam.app.model.v1.File.toObject, includeInstance),
-    modelSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
     timeCreated: (f = msg.getTimeCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
@@ -1845,16 +1845,16 @@ proto.viam.app.model.v1.Model.deserializeBinaryFromReader = function(msg, reader
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setModelName(value);
+      msg.setName(value);
       break;
     case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setSizeBytes(value);
+      break;
+    case 3:
       var value = new proto.viam.app.model.v1.File;
       reader.readMessage(value,proto.viam.app.model.v1.File.deserializeBinaryFromReader);
       msg.addFiles(value);
-      break;
-    case 3:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setModelSize(value);
       break;
     case 4:
       var value = new google_protobuf_timestamp_pb.Timestamp;
@@ -1890,26 +1890,26 @@ proto.viam.app.model.v1.Model.prototype.serializeBinary = function() {
  */
 proto.viam.app.model.v1.Model.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getModelName();
+  f = message.getName();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
+  f = message.getSizeBytes();
+  if (f !== 0) {
+    writer.writeInt64(
+      2,
+      f
+    );
+  }
   f = message.getFilesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      2,
+      3,
       f,
       proto.viam.app.model.v1.File.serializeBinaryToWriter
-    );
-  }
-  f = message.getModelSize();
-  if (f !== 0) {
-    writer.writeInt64(
-      3,
-      f
     );
   }
   f = message.getTimeCreated();
@@ -1924,10 +1924,10 @@ proto.viam.app.model.v1.Model.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional string model_name = 1;
+ * optional string name = 1;
  * @return {string}
  */
-proto.viam.app.model.v1.Model.prototype.getModelName = function() {
+proto.viam.app.model.v1.Model.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -1936,18 +1936,36 @@ proto.viam.app.model.v1.Model.prototype.getModelName = function() {
  * @param {string} value
  * @return {!proto.viam.app.model.v1.Model} returns this
  */
-proto.viam.app.model.v1.Model.prototype.setModelName = function(value) {
+proto.viam.app.model.v1.Model.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * repeated File files = 2;
+ * optional int64 size_bytes = 2;
+ * @return {number}
+ */
+proto.viam.app.model.v1.Model.prototype.getSizeBytes = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.model.v1.Model} returns this
+ */
+proto.viam.app.model.v1.Model.prototype.setSizeBytes = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * repeated File files = 3;
  * @return {!Array<!proto.viam.app.model.v1.File>}
  */
 proto.viam.app.model.v1.Model.prototype.getFilesList = function() {
   return /** @type{!Array<!proto.viam.app.model.v1.File>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.model.v1.File, 2));
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.model.v1.File, 3));
 };
 
 
@@ -1956,7 +1974,7 @@ proto.viam.app.model.v1.Model.prototype.getFilesList = function() {
  * @return {!proto.viam.app.model.v1.Model} returns this
 */
 proto.viam.app.model.v1.Model.prototype.setFilesList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
 
@@ -1966,7 +1984,7 @@ proto.viam.app.model.v1.Model.prototype.setFilesList = function(value) {
  * @return {!proto.viam.app.model.v1.File}
  */
 proto.viam.app.model.v1.Model.prototype.addFiles = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.viam.app.model.v1.File, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.viam.app.model.v1.File, opt_index);
 };
 
 
@@ -1976,24 +1994,6 @@ proto.viam.app.model.v1.Model.prototype.addFiles = function(opt_value, opt_index
  */
 proto.viam.app.model.v1.Model.prototype.clearFilesList = function() {
   return this.setFilesList([]);
-};
-
-
-/**
- * optional int64 model_size = 3;
- * @return {number}
- */
-proto.viam.app.model.v1.Model.prototype.getModelSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.viam.app.model.v1.Model} returns this
- */
-proto.viam.app.model.v1.Model.prototype.setModelSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 

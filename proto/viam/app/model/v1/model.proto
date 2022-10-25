@@ -19,7 +19,7 @@ message FileData {
 
 message File {
   string name = 1;
-  int64 size = 2;
+  int64 size_bytes = 2;
 }
 
 message UploadMetadata {
@@ -29,7 +29,7 @@ message UploadMetadata {
   // whether it should be by ID or name.
   string associated_dataset = 3;
   repeated File files = 4;
-  int64 model_size = 5;
+  int64 model_size_bytes = 5;
 }
 
 message UploadRequest {
@@ -57,9 +57,9 @@ message DeployRequest {
 }
 
 message Model {
-  string model_name = 1;
-  repeated File files = 2;
-  int64 model_size = 3;
+  string name = 1;
+  int64 size_bytes = 2;
+  repeated File files = 3;
   google.protobuf.Timestamp time_created = 4;
 }
 
