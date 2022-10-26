@@ -341,7 +341,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.model.v1.SyncedModel = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.model.v1.SyncedModel.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.model.v1.SyncedModel, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -708,8 +708,7 @@ proto.viam.app.model.v1.UploadMetadata.toObject = function(includeInstance, msg)
     modelName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     associatedDataset: jspb.Message.getFieldWithDefault(msg, 3, ""),
     filesList: jspb.Message.toObjectList(msg.getFilesList(),
-    proto.viam.app.model.v1.File.toObject, includeInstance),
-    modelSizeBytes: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    proto.viam.app.model.v1.File.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -762,10 +761,6 @@ proto.viam.app.model.v1.UploadMetadata.deserializeBinaryFromReader = function(ms
       var value = new proto.viam.app.model.v1.File;
       reader.readMessage(value,proto.viam.app.model.v1.File.deserializeBinaryFromReader);
       msg.addFiles(value);
-      break;
-    case 5:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setModelSizeBytes(value);
       break;
     default:
       reader.skipField();
@@ -823,13 +818,6 @@ proto.viam.app.model.v1.UploadMetadata.serializeBinaryToWriter = function(messag
       4,
       f,
       proto.viam.app.model.v1.File.serializeBinaryToWriter
-    );
-  }
-  f = message.getModelSizeBytes();
-  if (f !== 0) {
-    writer.writeInt64(
-      5,
-      f
     );
   }
 };
@@ -924,24 +912,6 @@ proto.viam.app.model.v1.UploadMetadata.prototype.addFiles = function(opt_value, 
  */
 proto.viam.app.model.v1.UploadMetadata.prototype.clearFilesList = function() {
   return this.setFilesList([]);
-};
-
-
-/**
- * optional int64 model_size_bytes = 5;
- * @return {number}
- */
-proto.viam.app.model.v1.UploadMetadata.prototype.getModelSizeBytes = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.viam.app.model.v1.UploadMetadata} returns this
- */
-proto.viam.app.model.v1.UploadMetadata.prototype.setModelSizeBytes = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -2807,6 +2777,13 @@ proto.viam.app.model.v1.DeployResponse.prototype.setStatus = function(value) {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.model.v1.SyncedModel.repeatedFields_ = [4];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -2841,7 +2818,9 @@ proto.viam.app.model.v1.SyncedModel.toObject = function(includeInstance, msg) {
     orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     modelName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     associatedDataset: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    blobPath: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    filesList: jspb.Message.toObjectList(msg.getFilesList(),
+    proto.viam.app.model.v1.File.toObject, includeInstance),
+    blobPath: jspb.Message.getFieldWithDefault(msg, 5, ""),
     syncTime: (f = msg.getSyncTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
@@ -2892,10 +2871,15 @@ proto.viam.app.model.v1.SyncedModel.deserializeBinaryFromReader = function(msg, 
       msg.setAssociatedDataset(value);
       break;
     case 4:
+      var value = new proto.viam.app.model.v1.File;
+      reader.readMessage(value,proto.viam.app.model.v1.File.deserializeBinaryFromReader);
+      msg.addFiles(value);
+      break;
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setBlobPath(value);
       break;
-    case 5:
+    case 6:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setSyncTime(value);
@@ -2950,17 +2934,25 @@ proto.viam.app.model.v1.SyncedModel.serializeBinaryToWriter = function(message, 
       f
     );
   }
+  f = message.getFilesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.viam.app.model.v1.File.serializeBinaryToWriter
+    );
+  }
   f = message.getBlobPath();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      5,
       f
     );
   }
   f = message.getSyncTime();
   if (f != null) {
     writer.writeMessage(
-      5,
+      6,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -3023,11 +3015,49 @@ proto.viam.app.model.v1.SyncedModel.prototype.setAssociatedDataset = function(va
 
 
 /**
- * optional string blob_path = 4;
+ * repeated File files = 4;
+ * @return {!Array<!proto.viam.app.model.v1.File>}
+ */
+proto.viam.app.model.v1.SyncedModel.prototype.getFilesList = function() {
+  return /** @type{!Array<!proto.viam.app.model.v1.File>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.model.v1.File, 4));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.app.model.v1.File>} value
+ * @return {!proto.viam.app.model.v1.SyncedModel} returns this
+*/
+proto.viam.app.model.v1.SyncedModel.prototype.setFilesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.viam.app.model.v1.File=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.model.v1.File}
+ */
+proto.viam.app.model.v1.SyncedModel.prototype.addFiles = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.viam.app.model.v1.File, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.model.v1.SyncedModel} returns this
+ */
+proto.viam.app.model.v1.SyncedModel.prototype.clearFilesList = function() {
+  return this.setFilesList([]);
+};
+
+
+/**
+ * optional string blob_path = 5;
  * @return {string}
  */
 proto.viam.app.model.v1.SyncedModel.prototype.getBlobPath = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
@@ -3036,17 +3066,17 @@ proto.viam.app.model.v1.SyncedModel.prototype.getBlobPath = function() {
  * @return {!proto.viam.app.model.v1.SyncedModel} returns this
  */
 proto.viam.app.model.v1.SyncedModel.prototype.setBlobPath = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional google.protobuf.Timestamp sync_time = 5;
+ * optional google.protobuf.Timestamp sync_time = 6;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.viam.app.model.v1.SyncedModel.prototype.getSyncTime = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
 };
 
 
@@ -3055,7 +3085,7 @@ proto.viam.app.model.v1.SyncedModel.prototype.getSyncTime = function() {
  * @return {!proto.viam.app.model.v1.SyncedModel} returns this
 */
 proto.viam.app.model.v1.SyncedModel.prototype.setSyncTime = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
+  return jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -3073,7 +3103,7 @@ proto.viam.app.model.v1.SyncedModel.prototype.clearSyncTime = function() {
  * @return {boolean}
  */
 proto.viam.app.model.v1.SyncedModel.prototype.hasSyncTime = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
