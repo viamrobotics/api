@@ -308,7 +308,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Upload", runtime.WithHTTPPathPattern("/viam/api/v1/app/model"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Upload", runtime.WithHTTPPathPattern("/viam/api/v1/app/model/v1/upload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -391,7 +391,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_ModelService_Upload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"viam", "api", "v1", "app", "model"}, ""))
+	pattern_ModelService_Upload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 2, 2, 5}, []string{"viam", "api", "v1", "app", "model", "upload"}, ""))
 
 	pattern_ModelService_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.model.v1.ModelService", "Delete"}, ""))
 

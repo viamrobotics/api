@@ -10,7 +10,7 @@ option go_package = "go.viam.com/api/app/model/v1";
 service ModelService {
   rpc Upload(stream viam.app.model.v1.UploadRequest) returns (viam.app.model.v1.UploadResponse) {
     option (google.api.http) = {
-      post: "/viam/api/v1/app/model"
+      post: "/viam/api/v1/app/model/v1/upload"
     };
   }
 
