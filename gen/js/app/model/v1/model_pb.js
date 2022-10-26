@@ -2820,7 +2820,8 @@ proto.viam.app.model.v1.SyncedModel.toObject = function(includeInstance, msg) {
     associatedDataset: jspb.Message.getFieldWithDefault(msg, 3, ""),
     filesList: jspb.Message.toObjectList(msg.getFilesList(),
     proto.viam.app.model.v1.File.toObject, includeInstance),
-    blobPath: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    sizeBytes: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    blobPath: jspb.Message.getFieldWithDefault(msg, 6, ""),
     syncTime: (f = msg.getSyncTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
@@ -2876,10 +2877,14 @@ proto.viam.app.model.v1.SyncedModel.deserializeBinaryFromReader = function(msg, 
       msg.addFiles(value);
       break;
     case 5:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setSizeBytes(value);
+      break;
+    case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setBlobPath(value);
       break;
-    case 6:
+    case 7:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setSyncTime(value);
@@ -2942,17 +2947,24 @@ proto.viam.app.model.v1.SyncedModel.serializeBinaryToWriter = function(message, 
       proto.viam.app.model.v1.File.serializeBinaryToWriter
     );
   }
+  f = message.getSizeBytes();
+  if (f !== 0) {
+    writer.writeInt64(
+      5,
+      f
+    );
+  }
   f = message.getBlobPath();
   if (f.length > 0) {
     writer.writeString(
-      5,
+      6,
       f
     );
   }
   f = message.getSyncTime();
   if (f != null) {
     writer.writeMessage(
-      6,
+      7,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -3053,11 +3065,29 @@ proto.viam.app.model.v1.SyncedModel.prototype.clearFilesList = function() {
 
 
 /**
- * optional string blob_path = 5;
+ * optional int64 size_bytes = 5;
+ * @return {number}
+ */
+proto.viam.app.model.v1.SyncedModel.prototype.getSizeBytes = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.model.v1.SyncedModel} returns this
+ */
+proto.viam.app.model.v1.SyncedModel.prototype.setSizeBytes = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional string blob_path = 6;
  * @return {string}
  */
 proto.viam.app.model.v1.SyncedModel.prototype.getBlobPath = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
@@ -3066,17 +3096,17 @@ proto.viam.app.model.v1.SyncedModel.prototype.getBlobPath = function() {
  * @return {!proto.viam.app.model.v1.SyncedModel} returns this
  */
 proto.viam.app.model.v1.SyncedModel.prototype.setBlobPath = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional google.protobuf.Timestamp sync_time = 6;
+ * optional google.protobuf.Timestamp sync_time = 7;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.viam.app.model.v1.SyncedModel.prototype.getSyncTime = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
 };
 
 
@@ -3085,7 +3115,7 @@ proto.viam.app.model.v1.SyncedModel.prototype.getSyncTime = function() {
  * @return {!proto.viam.app.model.v1.SyncedModel} returns this
 */
 proto.viam.app.model.v1.SyncedModel.prototype.setSyncTime = function(value) {
-  return jspb.Message.setWrapperField(this, 6, value);
+  return jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -3103,7 +3133,7 @@ proto.viam.app.model.v1.SyncedModel.prototype.clearSyncTime = function() {
  * @return {boolean}
  */
 proto.viam.app.model.v1.SyncedModel.prototype.hasSyncTime = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 7) != null;
 };
 
 

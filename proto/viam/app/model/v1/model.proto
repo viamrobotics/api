@@ -106,6 +106,7 @@ message SyncedModel {
   string model_name = 2;
   string associated_dataset = 3;
   repeated File files = 4;
-  string blob_path = 5;
-  google.protobuf.Timestamp sync_time = 6;
+  int64 size_bytes = 5;
+  string blob_path = 6;
+  google.protobuf.Timestamp sync_time = 7;
 }
