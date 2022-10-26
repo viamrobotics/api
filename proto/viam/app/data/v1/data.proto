@@ -144,7 +144,7 @@ message DeleteTabularDataByFilterResponse {
   int64 deleted_count = 1;
 }
 
-// DeleteBinaryDataByFilterRequest deletes the data and metadata of binary (image + file) data when a filter is provided
+// DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
 message DeleteBinaryDataByFilterRequest {
   Filter filter = 1;
 }
@@ -154,7 +154,7 @@ message DeleteBinaryDataByFilterResponse {
   int64 deleted_count = 1;
 }
 
-// DeleteBinaryDataByIDsRequest deletes the data and metadata of binary (image + file) data by file ids
+// DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when file ids are provided
 message DeleteBinaryDataByIDsRequest {
   repeated string file_ids = 1;
 }

@@ -1098,7 +1098,7 @@ func (x *DeleteTabularDataByFilterResponse) GetDeletedCount() int64 {
 	return 0
 }
 
-// DeleteBinaryDataByFilterRequest deletes the data and metadata of binary (image + file) data when a filter is provided
+// DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
 type DeleteBinaryDataByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1194,7 +1194,7 @@ func (x *DeleteBinaryDataByFilterResponse) GetDeletedCount() int64 {
 	return 0
 }
 
-// DeleteBinaryDataByIDsRequest deletes the data and metadata of binary (image + file) data by file ids
+// DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when file ids are provided
 type DeleteBinaryDataByIDsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
