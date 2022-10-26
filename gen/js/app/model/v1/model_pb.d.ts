@@ -372,6 +372,9 @@ export class SyncedModel extends jspb.Message {
   setFilesList(value: Array<File>): void;
   addFiles(value?: File, index?: number): File;
 
+  getSizeBytes(): number;
+  setSizeBytes(value: number): void;
+
   getBlobPath(): string;
   setBlobPath(value: string): void;
 
@@ -396,6 +399,7 @@ export namespace SyncedModel {
     modelName: string,
     associatedDataset: string,
     filesList: Array<File.AsObject>,
+    sizeBytes: number,
     blobPath: string,
     syncTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
