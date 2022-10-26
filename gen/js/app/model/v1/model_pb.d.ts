@@ -65,9 +65,6 @@ export class UploadMetadata extends jspb.Message {
   setFilesList(value: Array<File>): void;
   addFiles(value?: File, index?: number): File;
 
-  getModelSizeBytes(): number;
-  setModelSizeBytes(value: number): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UploadMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UploadMetadata): UploadMetadata.AsObject;
@@ -84,7 +81,6 @@ export namespace UploadMetadata {
     modelName: string,
     associatedDataset: string,
     filesList: Array<File.AsObject>,
-    modelSizeBytes: number,
   }
 }
 
@@ -371,6 +367,11 @@ export class SyncedModel extends jspb.Message {
   getAssociatedDataset(): string;
   setAssociatedDataset(value: string): void;
 
+  clearFilesList(): void;
+  getFilesList(): Array<File>;
+  setFilesList(value: Array<File>): void;
+  addFiles(value?: File, index?: number): File;
+
   getBlobPath(): string;
   setBlobPath(value: string): void;
 
@@ -394,6 +395,7 @@ export namespace SyncedModel {
     orgId: string,
     modelName: string,
     associatedDataset: string,
+    filesList: Array<File.AsObject>,
     blobPath: string,
     syncTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
