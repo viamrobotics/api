@@ -37,6 +37,33 @@ ModuleService.ReconfigureComponent = {
   responseType: module_v1_module_pb.ReconfigureComponentResponse
 };
 
+ModuleService.AddService = {
+  methodName: "AddService",
+  service: ModuleService,
+  requestStream: false,
+  responseStream: false,
+  requestType: module_v1_module_pb.AddServiceRequest,
+  responseType: module_v1_module_pb.AddServiceResponse
+};
+
+ModuleService.RemoveService = {
+  methodName: "RemoveService",
+  service: ModuleService,
+  requestStream: false,
+  responseStream: false,
+  requestType: module_v1_module_pb.RemoveServiceRequest,
+  responseType: module_v1_module_pb.RemoveServiceResponse
+};
+
+ModuleService.ReconfigureService = {
+  methodName: "ReconfigureService",
+  service: ModuleService,
+  requestStream: false,
+  responseStream: false,
+  requestType: module_v1_module_pb.ReconfigureServiceRequest,
+  responseType: module_v1_module_pb.ReconfigureServiceResponse
+};
+
 ModuleService.CloseModule = {
   methodName: "CloseModule",
   service: ModuleService,
@@ -129,6 +156,99 @@ ModuleServiceClient.prototype.reconfigureComponent = function reconfigureCompone
     callback = arguments[1];
   }
   var client = grpc.unary(ModuleService.ReconfigureComponent, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ModuleServiceClient.prototype.addService = function addService(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ModuleService.AddService, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ModuleServiceClient.prototype.removeService = function removeService(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ModuleService.RemoveService, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ModuleServiceClient.prototype.reconfigureService = function reconfigureService(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ModuleService.ReconfigureService, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

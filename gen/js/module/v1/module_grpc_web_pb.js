@@ -266,6 +266,189 @@ proto.viam.module.v1.ModuleServicePromiseClient.prototype.reconfigureComponent =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.module.v1.AddServiceRequest,
+ *   !proto.viam.module.v1.AddServiceResponse>}
+ */
+const methodDescriptor_ModuleService_AddService = new grpc.web.MethodDescriptor(
+  '/viam.module.v1.ModuleService/AddService',
+  grpc.web.MethodType.UNARY,
+  proto.viam.module.v1.AddServiceRequest,
+  proto.viam.module.v1.AddServiceResponse,
+  /**
+   * @param {!proto.viam.module.v1.AddServiceRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.module.v1.AddServiceResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.module.v1.AddServiceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.module.v1.AddServiceResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.module.v1.AddServiceResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.module.v1.ModuleServiceClient.prototype.addService =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.module.v1.ModuleService/AddService',
+      request,
+      metadata || {},
+      methodDescriptor_ModuleService_AddService,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.module.v1.AddServiceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.module.v1.AddServiceResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.module.v1.ModuleServicePromiseClient.prototype.addService =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.module.v1.ModuleService/AddService',
+      request,
+      metadata || {},
+      methodDescriptor_ModuleService_AddService);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.module.v1.RemoveServiceRequest,
+ *   !proto.viam.module.v1.RemoveServiceResponse>}
+ */
+const methodDescriptor_ModuleService_RemoveService = new grpc.web.MethodDescriptor(
+  '/viam.module.v1.ModuleService/RemoveService',
+  grpc.web.MethodType.UNARY,
+  proto.viam.module.v1.RemoveServiceRequest,
+  proto.viam.module.v1.RemoveServiceResponse,
+  /**
+   * @param {!proto.viam.module.v1.RemoveServiceRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.module.v1.RemoveServiceResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.module.v1.RemoveServiceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.module.v1.RemoveServiceResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.module.v1.RemoveServiceResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.module.v1.ModuleServiceClient.prototype.removeService =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.module.v1.ModuleService/RemoveService',
+      request,
+      metadata || {},
+      methodDescriptor_ModuleService_RemoveService,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.module.v1.RemoveServiceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.module.v1.RemoveServiceResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.module.v1.ModuleServicePromiseClient.prototype.removeService =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.module.v1.ModuleService/RemoveService',
+      request,
+      metadata || {},
+      methodDescriptor_ModuleService_RemoveService);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.module.v1.ReconfigureServiceRequest,
+ *   !proto.viam.module.v1.ReconfigureServiceResponse>}
+ */
+const methodDescriptor_ModuleService_ReconfigureService = new grpc.web.MethodDescriptor(
+  '/viam.module.v1.ModuleService/ReconfigureService',
+  grpc.web.MethodType.UNARY,
+  proto.viam.module.v1.ReconfigureServiceRequest,
+  proto.viam.module.v1.ReconfigureServiceResponse,
+  /**
+   * @param {!proto.viam.module.v1.ReconfigureServiceRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.module.v1.ReconfigureServiceResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.module.v1.ReconfigureServiceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.module.v1.ReconfigureServiceResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.module.v1.ReconfigureServiceResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.module.v1.ModuleServiceClient.prototype.reconfigureService =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.module.v1.ModuleService/ReconfigureService',
+      request,
+      metadata || {},
+      methodDescriptor_ModuleService_ReconfigureService,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.module.v1.ReconfigureServiceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.module.v1.ReconfigureServiceResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.module.v1.ModuleServicePromiseClient.prototype.reconfigureService =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.module.v1.ModuleService/ReconfigureService',
+      request,
+      metadata || {},
+      methodDescriptor_ModuleService_ReconfigureService);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.module.v1.CloseModuleRequest,
  *   !proto.viam.module.v1.CloseModuleResponse>}
  */

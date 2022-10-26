@@ -18,6 +18,15 @@ service ModuleService {
   // ReconfigureComponent tells a module to reconfigure an existing resource
   rpc ReconfigureComponent(ReconfigureComponentRequest) returns (ReconfigureComponentResponse);
 
+  // AddService tells a module about a new service to handle
+  rpc AddService(AddServiceRequest) returns (AddServiceResponse);
+
+  // RemoveService tells a module to close/stop a service and remove it
+  rpc RemoveService(RemoveServiceRequest) returns (RemoveServiceResponse);
+
+  // ReconfigureService tells a module to reconfigure an existing resource
+  rpc ReconfigureService(ReconfigureServiceRequest) returns (ReconfigureServiceResponse);
+
   // CloseModule tells a module to stop all activity and terminate
   rpc CloseModule(CloseModuleRequest) returns (CloseModuleResponse);
 
@@ -41,6 +50,21 @@ message ReconfigureComponentRequest {
   repeated string dependencies = 2;
 }
 message ReconfigureComponentResponse {}
+
+message AddServiceRequest {
+  viam.app.v1.ServiceConfig config = 1;
+}
+message AddServiceResponse {}
+
+message RemoveServiceRequest {
+  string name = 1;
+}
+message RemoveServiceResponse {}
+
+message ReconfigureServiceRequest {
+  viam.app.v1.ServiceConfig config = 1;
+}
+message ReconfigureServiceResponse {}
 
 message CloseModuleRequest {}
 message CloseModuleResponse {}

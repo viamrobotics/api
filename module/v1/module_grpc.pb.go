@@ -24,6 +24,12 @@ type ModuleServiceClient interface {
 	RemoveComponent(ctx context.Context, in *RemoveComponentRequest, opts ...grpc.CallOption) (*RemoveComponentResponse, error)
 	// ReconfigureComponent tells a module to reconfigure an existing resource
 	ReconfigureComponent(ctx context.Context, in *ReconfigureComponentRequest, opts ...grpc.CallOption) (*ReconfigureComponentResponse, error)
+	// AddService tells a module about a new service to handle
+	AddService(ctx context.Context, in *AddServiceRequest, opts ...grpc.CallOption) (*AddServiceResponse, error)
+	// RemoveService tells a module to close/stop a service and remove it
+	RemoveService(ctx context.Context, in *RemoveServiceRequest, opts ...grpc.CallOption) (*RemoveServiceResponse, error)
+	// ReconfigureService tells a module to reconfigure an existing resource
+	ReconfigureService(ctx context.Context, in *ReconfigureServiceRequest, opts ...grpc.CallOption) (*ReconfigureServiceResponse, error)
 	// CloseModule tells a module to stop all activity and terminate
 	CloseModule(ctx context.Context, in *CloseModuleRequest, opts ...grpc.CallOption) (*CloseModuleResponse, error)
 	// Ready determines if the server is started and ready to recieve resource configurations.
@@ -65,6 +71,33 @@ func (c *moduleServiceClient) ReconfigureComponent(ctx context.Context, in *Reco
 	return out, nil
 }
 
+func (c *moduleServiceClient) AddService(ctx context.Context, in *AddServiceRequest, opts ...grpc.CallOption) (*AddServiceResponse, error) {
+	out := new(AddServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.module.v1.ModuleService/AddService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *moduleServiceClient) RemoveService(ctx context.Context, in *RemoveServiceRequest, opts ...grpc.CallOption) (*RemoveServiceResponse, error) {
+	out := new(RemoveServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.module.v1.ModuleService/RemoveService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *moduleServiceClient) ReconfigureService(ctx context.Context, in *ReconfigureServiceRequest, opts ...grpc.CallOption) (*ReconfigureServiceResponse, error) {
+	out := new(ReconfigureServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.module.v1.ModuleService/ReconfigureService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *moduleServiceClient) CloseModule(ctx context.Context, in *CloseModuleRequest, opts ...grpc.CallOption) (*CloseModuleResponse, error) {
 	out := new(CloseModuleResponse)
 	err := c.cc.Invoke(ctx, "/viam.module.v1.ModuleService/CloseModule", in, out, opts...)
@@ -93,6 +126,12 @@ type ModuleServiceServer interface {
 	RemoveComponent(context.Context, *RemoveComponentRequest) (*RemoveComponentResponse, error)
 	// ReconfigureComponent tells a module to reconfigure an existing resource
 	ReconfigureComponent(context.Context, *ReconfigureComponentRequest) (*ReconfigureComponentResponse, error)
+	// AddService tells a module about a new service to handle
+	AddService(context.Context, *AddServiceRequest) (*AddServiceResponse, error)
+	// RemoveService tells a module to close/stop a service and remove it
+	RemoveService(context.Context, *RemoveServiceRequest) (*RemoveServiceResponse, error)
+	// ReconfigureService tells a module to reconfigure an existing resource
+	ReconfigureService(context.Context, *ReconfigureServiceRequest) (*ReconfigureServiceResponse, error)
 	// CloseModule tells a module to stop all activity and terminate
 	CloseModule(context.Context, *CloseModuleRequest) (*CloseModuleResponse, error)
 	// Ready determines if the server is started and ready to recieve resource configurations.
@@ -112,6 +151,15 @@ func (UnimplementedModuleServiceServer) RemoveComponent(context.Context, *Remove
 }
 func (UnimplementedModuleServiceServer) ReconfigureComponent(context.Context, *ReconfigureComponentRequest) (*ReconfigureComponentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReconfigureComponent not implemented")
+}
+func (UnimplementedModuleServiceServer) AddService(context.Context, *AddServiceRequest) (*AddServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddService not implemented")
+}
+func (UnimplementedModuleServiceServer) RemoveService(context.Context, *RemoveServiceRequest) (*RemoveServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveService not implemented")
+}
+func (UnimplementedModuleServiceServer) ReconfigureService(context.Context, *ReconfigureServiceRequest) (*ReconfigureServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReconfigureService not implemented")
 }
 func (UnimplementedModuleServiceServer) CloseModule(context.Context, *CloseModuleRequest) (*CloseModuleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloseModule not implemented")
@@ -186,6 +234,60 @@ func _ModuleService_ReconfigureComponent_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModuleService_AddService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModuleServiceServer).AddService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.module.v1.ModuleService/AddService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModuleServiceServer).AddService(ctx, req.(*AddServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModuleService_RemoveService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModuleServiceServer).RemoveService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.module.v1.ModuleService/RemoveService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModuleServiceServer).RemoveService(ctx, req.(*RemoveServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModuleService_ReconfigureService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReconfigureServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModuleServiceServer).ReconfigureService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.module.v1.ModuleService/ReconfigureService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModuleServiceServer).ReconfigureService(ctx, req.(*ReconfigureServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ModuleService_CloseModule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CloseModuleRequest)
 	if err := dec(in); err != nil {
@@ -240,6 +342,18 @@ var ModuleService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReconfigureComponent",
 			Handler:    _ModuleService_ReconfigureComponent_Handler,
+		},
+		{
+			MethodName: "AddService",
+			Handler:    _ModuleService_AddService_Handler,
+		},
+		{
+			MethodName: "RemoveService",
+			Handler:    _ModuleService_RemoveService_Handler,
+		},
+		{
+			MethodName: "ReconfigureService",
+			Handler:    _ModuleService_ReconfigureService_Handler,
 		},
 		{
 			MethodName: "CloseModule",

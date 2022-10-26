@@ -31,6 +31,33 @@ type ModuleServiceReconfigureComponent = {
   readonly responseType: typeof module_v1_module_pb.ReconfigureComponentResponse;
 };
 
+type ModuleServiceAddService = {
+  readonly methodName: string;
+  readonly service: typeof ModuleService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof module_v1_module_pb.AddServiceRequest;
+  readonly responseType: typeof module_v1_module_pb.AddServiceResponse;
+};
+
+type ModuleServiceRemoveService = {
+  readonly methodName: string;
+  readonly service: typeof ModuleService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof module_v1_module_pb.RemoveServiceRequest;
+  readonly responseType: typeof module_v1_module_pb.RemoveServiceResponse;
+};
+
+type ModuleServiceReconfigureService = {
+  readonly methodName: string;
+  readonly service: typeof ModuleService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof module_v1_module_pb.ReconfigureServiceRequest;
+  readonly responseType: typeof module_v1_module_pb.ReconfigureServiceResponse;
+};
+
 type ModuleServiceCloseModule = {
   readonly methodName: string;
   readonly service: typeof ModuleService;
@@ -54,6 +81,9 @@ export class ModuleService {
   static readonly AddComponent: ModuleServiceAddComponent;
   static readonly RemoveComponent: ModuleServiceRemoveComponent;
   static readonly ReconfigureComponent: ModuleServiceReconfigureComponent;
+  static readonly AddService: ModuleServiceAddService;
+  static readonly RemoveService: ModuleServiceRemoveService;
+  static readonly ReconfigureService: ModuleServiceReconfigureService;
   static readonly CloseModule: ModuleServiceCloseModule;
   static readonly Ready: ModuleServiceReady;
 }
@@ -116,6 +146,33 @@ export class ModuleServiceClient {
   reconfigureComponent(
     requestMessage: module_v1_module_pb.ReconfigureComponentRequest,
     callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ReconfigureComponentResponse|null) => void
+  ): UnaryResponse;
+  addService(
+    requestMessage: module_v1_module_pb.AddServiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.AddServiceResponse|null) => void
+  ): UnaryResponse;
+  addService(
+    requestMessage: module_v1_module_pb.AddServiceRequest,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.AddServiceResponse|null) => void
+  ): UnaryResponse;
+  removeService(
+    requestMessage: module_v1_module_pb.RemoveServiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.RemoveServiceResponse|null) => void
+  ): UnaryResponse;
+  removeService(
+    requestMessage: module_v1_module_pb.RemoveServiceRequest,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.RemoveServiceResponse|null) => void
+  ): UnaryResponse;
+  reconfigureService(
+    requestMessage: module_v1_module_pb.ReconfigureServiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ReconfigureServiceResponse|null) => void
+  ): UnaryResponse;
+  reconfigureService(
+    requestMessage: module_v1_module_pb.ReconfigureServiceRequest,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ReconfigureServiceResponse|null) => void
   ): UnaryResponse;
   closeModule(
     requestMessage: module_v1_module_pb.CloseModuleRequest,
