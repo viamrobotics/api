@@ -37,6 +37,66 @@ func (m *MockAppServiceClient) EXPECT() *MockAppServiceClientMockRecorder {
 	return m.recorder
 }
 
+// CreateLocationSecret mocks base method.
+func (m *MockAppServiceClient) CreateLocationSecret(ctx context.Context, in *v1.CreateLocationSecretRequest, opts ...grpc.CallOption) (*v1.CreateLocationSecretResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "CreateLocationSecret", varargs...)
+	ret0, _ := ret[0].(*v1.CreateLocationSecretResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateLocationSecret indicates an expected call of CreateLocationSecret.
+func (mr *MockAppServiceClientMockRecorder) CreateLocationSecret(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateLocationSecret", reflect.TypeOf((*MockAppServiceClient)(nil).CreateLocationSecret), varargs...)
+}
+
+// CreateRobotPartSecret mocks base method.
+func (m *MockAppServiceClient) CreateRobotPartSecret(ctx context.Context, in *v1.CreateRobotPartSecretRequest, opts ...grpc.CallOption) (*v1.CreateRobotPartSecretResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "CreateRobotPartSecret", varargs...)
+	ret0, _ := ret[0].(*v1.CreateRobotPartSecretResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateRobotPartSecret indicates an expected call of CreateRobotPartSecret.
+func (mr *MockAppServiceClientMockRecorder) CreateRobotPartSecret(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateRobotPartSecret", reflect.TypeOf((*MockAppServiceClient)(nil).CreateRobotPartSecret), varargs...)
+}
+
+// DeleteLocationSecret mocks base method.
+func (m *MockAppServiceClient) DeleteLocationSecret(ctx context.Context, in *v1.DeleteLocationSecretRequest, opts ...grpc.CallOption) (*v1.DeleteLocationSecretResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "DeleteLocationSecret", varargs...)
+	ret0, _ := ret[0].(*v1.DeleteLocationSecretResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteLocationSecret indicates an expected call of DeleteLocationSecret.
+func (mr *MockAppServiceClientMockRecorder) DeleteLocationSecret(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteLocationSecret", reflect.TypeOf((*MockAppServiceClient)(nil).DeleteLocationSecret), varargs...)
+}
+
 // DeleteRobot mocks base method.
 func (m *MockAppServiceClient) DeleteRobot(ctx context.Context, in *v1.DeleteRobotRequest, opts ...grpc.CallOption) (*v1.DeleteRobotResponse, error) {
 	m.ctrl.T.Helper()
@@ -75,6 +135,26 @@ func (mr *MockAppServiceClientMockRecorder) DeleteRobotPart(ctx, in interface{},
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteRobotPart", reflect.TypeOf((*MockAppServiceClient)(nil).DeleteRobotPart), varargs...)
+}
+
+// DeleteRobotPartSecret mocks base method.
+func (m *MockAppServiceClient) DeleteRobotPartSecret(ctx context.Context, in *v1.DeleteRobotPartSecretRequest, opts ...grpc.CallOption) (*v1.DeleteRobotPartSecretResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "DeleteRobotPartSecret", varargs...)
+	ret0, _ := ret[0].(*v1.DeleteRobotPartSecretResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteRobotPartSecret indicates an expected call of DeleteRobotPartSecret.
+func (mr *MockAppServiceClientMockRecorder) DeleteRobotPartSecret(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteRobotPartSecret", reflect.TypeOf((*MockAppServiceClient)(nil).DeleteRobotPartSecret), varargs...)
 }
 
 // FindRobots mocks base method.
@@ -523,6 +603,51 @@ func (m *MockAppServiceServer) EXPECT() *MockAppServiceServerMockRecorder {
 	return m.recorder
 }
 
+// CreateLocationSecret mocks base method.
+func (m *MockAppServiceServer) CreateLocationSecret(arg0 context.Context, arg1 *v1.CreateLocationSecretRequest) (*v1.CreateLocationSecretResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateLocationSecret", arg0, arg1)
+	ret0, _ := ret[0].(*v1.CreateLocationSecretResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateLocationSecret indicates an expected call of CreateLocationSecret.
+func (mr *MockAppServiceServerMockRecorder) CreateLocationSecret(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateLocationSecret", reflect.TypeOf((*MockAppServiceServer)(nil).CreateLocationSecret), arg0, arg1)
+}
+
+// CreateRobotPartSecret mocks base method.
+func (m *MockAppServiceServer) CreateRobotPartSecret(arg0 context.Context, arg1 *v1.CreateRobotPartSecretRequest) (*v1.CreateRobotPartSecretResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateRobotPartSecret", arg0, arg1)
+	ret0, _ := ret[0].(*v1.CreateRobotPartSecretResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateRobotPartSecret indicates an expected call of CreateRobotPartSecret.
+func (mr *MockAppServiceServerMockRecorder) CreateRobotPartSecret(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateRobotPartSecret", reflect.TypeOf((*MockAppServiceServer)(nil).CreateRobotPartSecret), arg0, arg1)
+}
+
+// DeleteLocationSecret mocks base method.
+func (m *MockAppServiceServer) DeleteLocationSecret(arg0 context.Context, arg1 *v1.DeleteLocationSecretRequest) (*v1.DeleteLocationSecretResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteLocationSecret", arg0, arg1)
+	ret0, _ := ret[0].(*v1.DeleteLocationSecretResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteLocationSecret indicates an expected call of DeleteLocationSecret.
+func (mr *MockAppServiceServerMockRecorder) DeleteLocationSecret(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteLocationSecret", reflect.TypeOf((*MockAppServiceServer)(nil).DeleteLocationSecret), arg0, arg1)
+}
+
 // DeleteRobot mocks base method.
 func (m *MockAppServiceServer) DeleteRobot(arg0 context.Context, arg1 *v1.DeleteRobotRequest) (*v1.DeleteRobotResponse, error) {
 	m.ctrl.T.Helper()
@@ -551,6 +676,21 @@ func (m *MockAppServiceServer) DeleteRobotPart(arg0 context.Context, arg1 *v1.De
 func (mr *MockAppServiceServerMockRecorder) DeleteRobotPart(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteRobotPart", reflect.TypeOf((*MockAppServiceServer)(nil).DeleteRobotPart), arg0, arg1)
+}
+
+// DeleteRobotPartSecret mocks base method.
+func (m *MockAppServiceServer) DeleteRobotPartSecret(arg0 context.Context, arg1 *v1.DeleteRobotPartSecretRequest) (*v1.DeleteRobotPartSecretResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteRobotPartSecret", arg0, arg1)
+	ret0, _ := ret[0].(*v1.DeleteRobotPartSecretResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteRobotPartSecret indicates an expected call of DeleteRobotPartSecret.
+func (mr *MockAppServiceServerMockRecorder) DeleteRobotPartSecret(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteRobotPartSecret", reflect.TypeOf((*MockAppServiceServer)(nil).DeleteRobotPartSecret), arg0, arg1)
 }
 
 // FindRobots mocks base method.

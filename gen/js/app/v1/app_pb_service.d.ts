@@ -31,6 +31,24 @@ type AppServiceLocationAuth = {
   readonly responseType: typeof app_v1_app_pb.LocationAuthResponse;
 };
 
+type AppServiceCreateLocationSecret = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateLocationSecretRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateLocationSecretResponse;
+};
+
+type AppServiceDeleteLocationSecret = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteLocationSecretRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteLocationSecretResponse;
+};
+
 type AppServiceGetRobot = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -121,6 +139,24 @@ type AppServiceMarkPartAsMain = {
   readonly responseType: typeof app_v1_app_pb.MarkPartAsMainResponse;
 };
 
+type AppServiceCreateRobotPartSecret = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateRobotPartSecretRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateRobotPartSecretResponse;
+};
+
+type AppServiceDeleteRobotPartSecret = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteRobotPartSecretRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteRobotPartSecretResponse;
+};
+
 type AppServiceFindRobots = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -162,6 +198,8 @@ export class AppService {
   static readonly ListOrganizations: AppServiceListOrganizations;
   static readonly ListLocations: AppServiceListLocations;
   static readonly LocationAuth: AppServiceLocationAuth;
+  static readonly CreateLocationSecret: AppServiceCreateLocationSecret;
+  static readonly DeleteLocationSecret: AppServiceDeleteLocationSecret;
   static readonly GetRobot: AppServiceGetRobot;
   static readonly GetRobotParts: AppServiceGetRobotParts;
   static readonly GetRobotPart: AppServiceGetRobotPart;
@@ -172,6 +210,8 @@ export class AppService {
   static readonly NewRobotPart: AppServiceNewRobotPart;
   static readonly DeleteRobotPart: AppServiceDeleteRobotPart;
   static readonly MarkPartAsMain: AppServiceMarkPartAsMain;
+  static readonly CreateRobotPartSecret: AppServiceCreateRobotPartSecret;
+  static readonly DeleteRobotPartSecret: AppServiceDeleteRobotPartSecret;
   static readonly FindRobots: AppServiceFindRobots;
   static readonly NewRobot: AppServiceNewRobot;
   static readonly UpdateRobot: AppServiceUpdateRobot;
@@ -236,6 +276,24 @@ export class AppServiceClient {
   locationAuth(
     requestMessage: app_v1_app_pb.LocationAuthRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.LocationAuthResponse|null) => void
+  ): UnaryResponse;
+  createLocationSecret(
+    requestMessage: app_v1_app_pb.CreateLocationSecretRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateLocationSecretResponse|null) => void
+  ): UnaryResponse;
+  createLocationSecret(
+    requestMessage: app_v1_app_pb.CreateLocationSecretRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateLocationSecretResponse|null) => void
+  ): UnaryResponse;
+  deleteLocationSecret(
+    requestMessage: app_v1_app_pb.DeleteLocationSecretRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteLocationSecretResponse|null) => void
+  ): UnaryResponse;
+  deleteLocationSecret(
+    requestMessage: app_v1_app_pb.DeleteLocationSecretRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteLocationSecretResponse|null) => void
   ): UnaryResponse;
   getRobot(
     requestMessage: app_v1_app_pb.GetRobotRequest,
@@ -318,6 +376,24 @@ export class AppServiceClient {
   markPartAsMain(
     requestMessage: app_v1_app_pb.MarkPartAsMainRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.MarkPartAsMainResponse|null) => void
+  ): UnaryResponse;
+  createRobotPartSecret(
+    requestMessage: app_v1_app_pb.CreateRobotPartSecretRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateRobotPartSecretResponse|null) => void
+  ): UnaryResponse;
+  createRobotPartSecret(
+    requestMessage: app_v1_app_pb.CreateRobotPartSecretRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateRobotPartSecretResponse|null) => void
+  ): UnaryResponse;
+  deleteRobotPartSecret(
+    requestMessage: app_v1_app_pb.DeleteRobotPartSecretRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotPartSecretResponse|null) => void
+  ): UnaryResponse;
+  deleteRobotPartSecret(
+    requestMessage: app_v1_app_pb.DeleteRobotPartSecretRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotPartSecretResponse|null) => void
   ): UnaryResponse;
   findRobots(
     requestMessage: app_v1_app_pb.FindRobotsRequest,

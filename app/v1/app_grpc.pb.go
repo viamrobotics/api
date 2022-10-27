@@ -21,6 +21,11 @@ type AppServiceClient interface {
 	ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error)
 	ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error)
 	LocationAuth(ctx context.Context, in *LocationAuthRequest, opts ...grpc.CallOption) (*LocationAuthResponse, error)
+	// Create a new generated Secret in the Location.
+	//   - Succeeds if there are no more than 2 active secrets after creation.
+	CreateLocationSecret(ctx context.Context, in *CreateLocationSecretRequest, opts ...grpc.CallOption) (*CreateLocationSecretResponse, error)
+	// Delete a Secret from the Location.
+	DeleteLocationSecret(ctx context.Context, in *DeleteLocationSecretRequest, opts ...grpc.CallOption) (*DeleteLocationSecretResponse, error)
 	// Get a specific robot by ID
 	GetRobot(ctx context.Context, in *GetRobotRequest, opts ...grpc.CallOption) (*GetRobotResponse, error)
 	GetRobotParts(ctx context.Context, in *GetRobotPartsRequest, opts ...grpc.CallOption) (*GetRobotPartsResponse, error)
@@ -38,6 +43,11 @@ type AppServiceClient interface {
 	DeleteRobotPart(ctx context.Context, in *DeleteRobotPartRequest, opts ...grpc.CallOption) (*DeleteRobotPartResponse, error)
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(ctx context.Context, in *MarkPartAsMainRequest, opts ...grpc.CallOption) (*MarkPartAsMainResponse, error)
+	// Create a new generated Secret in the Robot Part.
+	//   - Succeeds if there are no more than 2 active secrets after creation.
+	CreateRobotPartSecret(ctx context.Context, in *CreateRobotPartSecretRequest, opts ...grpc.CallOption) (*CreateRobotPartSecretResponse, error)
+	// Delete a Secret from the RobotPart.
+	DeleteRobotPartSecret(ctx context.Context, in *DeleteRobotPartSecretRequest, opts ...grpc.CallOption) (*DeleteRobotPartSecretResponse, error)
 	// Finds robots given a query
 	FindRobots(ctx context.Context, in *FindRobotsRequest, opts ...grpc.CallOption) (*FindRobotsResponse, error)
 	// NewRobot creates a new robot
@@ -77,6 +87,24 @@ func (c *appServiceClient) ListLocations(ctx context.Context, in *ListLocationsR
 func (c *appServiceClient) LocationAuth(ctx context.Context, in *LocationAuthRequest, opts ...grpc.CallOption) (*LocationAuthResponse, error) {
 	out := new(LocationAuthResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/LocationAuth", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) CreateLocationSecret(ctx context.Context, in *CreateLocationSecretRequest, opts ...grpc.CallOption) (*CreateLocationSecretResponse, error) {
+	out := new(CreateLocationSecretResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateLocationSecret", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteLocationSecret(ctx context.Context, in *DeleteLocationSecretRequest, opts ...grpc.CallOption) (*DeleteLocationSecretResponse, error) {
+	out := new(DeleteLocationSecretResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteLocationSecret", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -196,6 +224,24 @@ func (c *appServiceClient) MarkPartAsMain(ctx context.Context, in *MarkPartAsMai
 	return out, nil
 }
 
+func (c *appServiceClient) CreateRobotPartSecret(ctx context.Context, in *CreateRobotPartSecretRequest, opts ...grpc.CallOption) (*CreateRobotPartSecretResponse, error) {
+	out := new(CreateRobotPartSecretResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateRobotPartSecret", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteRobotPartSecret(ctx context.Context, in *DeleteRobotPartSecretRequest, opts ...grpc.CallOption) (*DeleteRobotPartSecretResponse, error) {
+	out := new(DeleteRobotPartSecretResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteRobotPartSecret", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) FindRobots(ctx context.Context, in *FindRobotsRequest, opts ...grpc.CallOption) (*FindRobotsResponse, error) {
 	out := new(FindRobotsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/FindRobots", in, out, opts...)
@@ -239,6 +285,11 @@ type AppServiceServer interface {
 	ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error)
 	ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error)
 	LocationAuth(context.Context, *LocationAuthRequest) (*LocationAuthResponse, error)
+	// Create a new generated Secret in the Location.
+	//   - Succeeds if there are no more than 2 active secrets after creation.
+	CreateLocationSecret(context.Context, *CreateLocationSecretRequest) (*CreateLocationSecretResponse, error)
+	// Delete a Secret from the Location.
+	DeleteLocationSecret(context.Context, *DeleteLocationSecretRequest) (*DeleteLocationSecretResponse, error)
 	// Get a specific robot by ID
 	GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error)
 	GetRobotParts(context.Context, *GetRobotPartsRequest) (*GetRobotPartsResponse, error)
@@ -256,6 +307,11 @@ type AppServiceServer interface {
 	DeleteRobotPart(context.Context, *DeleteRobotPartRequest) (*DeleteRobotPartResponse, error)
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(context.Context, *MarkPartAsMainRequest) (*MarkPartAsMainResponse, error)
+	// Create a new generated Secret in the Robot Part.
+	//   - Succeeds if there are no more than 2 active secrets after creation.
+	CreateRobotPartSecret(context.Context, *CreateRobotPartSecretRequest) (*CreateRobotPartSecretResponse, error)
+	// Delete a Secret from the RobotPart.
+	DeleteRobotPartSecret(context.Context, *DeleteRobotPartSecretRequest) (*DeleteRobotPartSecretResponse, error)
 	// Finds robots given a query
 	FindRobots(context.Context, *FindRobotsRequest) (*FindRobotsResponse, error)
 	// NewRobot creates a new robot
@@ -279,6 +335,12 @@ func (UnimplementedAppServiceServer) ListLocations(context.Context, *ListLocatio
 }
 func (UnimplementedAppServiceServer) LocationAuth(context.Context, *LocationAuthRequest) (*LocationAuthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LocationAuth not implemented")
+}
+func (UnimplementedAppServiceServer) CreateLocationSecret(context.Context, *CreateLocationSecretRequest) (*CreateLocationSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateLocationSecret not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteLocationSecret(context.Context, *DeleteLocationSecretRequest) (*DeleteLocationSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteLocationSecret not implemented")
 }
 func (UnimplementedAppServiceServer) GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobot not implemented")
@@ -309,6 +371,12 @@ func (UnimplementedAppServiceServer) DeleteRobotPart(context.Context, *DeleteRob
 }
 func (UnimplementedAppServiceServer) MarkPartAsMain(context.Context, *MarkPartAsMainRequest) (*MarkPartAsMainResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MarkPartAsMain not implemented")
+}
+func (UnimplementedAppServiceServer) CreateRobotPartSecret(context.Context, *CreateRobotPartSecretRequest) (*CreateRobotPartSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateRobotPartSecret not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteRobotPartSecret(context.Context, *DeleteRobotPartSecretRequest) (*DeleteRobotPartSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRobotPartSecret not implemented")
 }
 func (UnimplementedAppServiceServer) FindRobots(context.Context, *FindRobotsRequest) (*FindRobotsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindRobots not implemented")
@@ -385,6 +453,42 @@ func _AppService_LocationAuth_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).LocationAuth(ctx, req.(*LocationAuthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_CreateLocationSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateLocationSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CreateLocationSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CreateLocationSecret",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CreateLocationSecret(ctx, req.(*CreateLocationSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteLocationSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteLocationSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteLocationSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteLocationSecret",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteLocationSecret(ctx, req.(*DeleteLocationSecretRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -572,6 +676,42 @@ func _AppService_MarkPartAsMain_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_CreateRobotPartSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateRobotPartSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CreateRobotPartSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CreateRobotPartSecret",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CreateRobotPartSecret(ctx, req.(*CreateRobotPartSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteRobotPartSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRobotPartSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteRobotPartSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteRobotPartSecret",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteRobotPartSecret(ctx, req.(*DeleteRobotPartSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_FindRobots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FindRobotsRequest)
 	if err := dec(in); err != nil {
@@ -664,6 +804,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_LocationAuth_Handler,
 		},
 		{
+			MethodName: "CreateLocationSecret",
+			Handler:    _AppService_CreateLocationSecret_Handler,
+		},
+		{
+			MethodName: "DeleteLocationSecret",
+			Handler:    _AppService_DeleteLocationSecret_Handler,
+		},
+		{
 			MethodName: "GetRobot",
 			Handler:    _AppService_GetRobot_Handler,
 		},
@@ -698,6 +846,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MarkPartAsMain",
 			Handler:    _AppService_MarkPartAsMain_Handler,
+		},
+		{
+			MethodName: "CreateRobotPartSecret",
+			Handler:    _AppService_CreateRobotPartSecret_Handler,
+		},
+		{
+			MethodName: "DeleteRobotPartSecret",
+			Handler:    _AppService_DeleteRobotPartSecret_Handler,
 		},
 		{
 			MethodName: "FindRobots",
