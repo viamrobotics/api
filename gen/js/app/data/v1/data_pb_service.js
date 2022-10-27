@@ -37,6 +37,33 @@ DataService.BinaryDataByIDs = {
   responseType: app_data_v1_data_pb.BinaryDataByIDsResponse
 };
 
+DataService.DeleteTabularDataByFilter = {
+  methodName: "DeleteTabularDataByFilter",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.DeleteTabularDataByFilterRequest,
+  responseType: app_data_v1_data_pb.DeleteTabularDataByFilterResponse
+};
+
+DataService.DeleteBinaryDataByFilter = {
+  methodName: "DeleteBinaryDataByFilter",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.DeleteBinaryDataByFilterRequest,
+  responseType: app_data_v1_data_pb.DeleteBinaryDataByFilterResponse
+};
+
+DataService.DeleteBinaryDataByIDs = {
+  methodName: "DeleteBinaryDataByIDs",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.DeleteBinaryDataByIDsRequest,
+  responseType: app_data_v1_data_pb.DeleteBinaryDataByIDsResponse
+};
+
 exports.DataService = DataService;
 
 function DataServiceClient(serviceHost, options) {
@@ -111,6 +138,99 @@ DataServiceClient.prototype.binaryDataByIDs = function binaryDataByIDs(requestMe
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.BinaryDataByIDs, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.deleteTabularDataByFilter = function deleteTabularDataByFilter(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.DeleteTabularDataByFilter, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.deleteBinaryDataByFilter = function deleteBinaryDataByFilter(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.DeleteBinaryDataByFilter, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.deleteBinaryDataByIDs = function deleteBinaryDataByIDs(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.DeleteBinaryDataByIDs, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
