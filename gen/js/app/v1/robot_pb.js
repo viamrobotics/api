@@ -2506,7 +2506,8 @@ proto.viam.app.v1.ServiceConfig.toObject = function(includeInstance, msg) {
     namespace: jspb.Message.getFieldWithDefault(msg, 2, ""),
     type: jspb.Message.getFieldWithDefault(msg, 3, ""),
     attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    dependsOnList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
+    dependsOnList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+    model: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -2563,6 +2564,10 @@ proto.viam.app.v1.ServiceConfig.deserializeBinaryFromReader = function(msg, read
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.addDependsOn(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setModel(value);
       break;
     default:
       reader.skipField();
@@ -2626,6 +2631,13 @@ proto.viam.app.v1.ServiceConfig.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeRepeatedString(
       5,
+      f
+    );
+  }
+  f = message.getModel();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -2757,6 +2769,24 @@ proto.viam.app.v1.ServiceConfig.prototype.addDependsOn = function(value, opt_ind
  */
 proto.viam.app.v1.ServiceConfig.prototype.clearDependsOnList = function() {
   return this.setDependsOnList([]);
+};
+
+
+/**
+ * optional string model = 6;
+ * @return {string}
+ */
+proto.viam.app.v1.ServiceConfig.prototype.getModel = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.ServiceConfig} returns this
+ */
+proto.viam.app.v1.ServiceConfig.prototype.setModel = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
