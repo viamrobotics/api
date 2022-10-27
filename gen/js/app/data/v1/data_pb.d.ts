@@ -491,3 +491,129 @@ export namespace BinaryMetadata {
   }
 }
 
+export class DeleteTabularDataByFilterRequest extends jspb.Message {
+  hasFilter(): boolean;
+  clearFilter(): void;
+  getFilter(): Filter | undefined;
+  setFilter(value?: Filter): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteTabularDataByFilterRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteTabularDataByFilterRequest): DeleteTabularDataByFilterRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteTabularDataByFilterRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteTabularDataByFilterRequest;
+  static deserializeBinaryFromReader(message: DeleteTabularDataByFilterRequest, reader: jspb.BinaryReader): DeleteTabularDataByFilterRequest;
+}
+
+export namespace DeleteTabularDataByFilterRequest {
+  export type AsObject = {
+    filter?: Filter.AsObject,
+  }
+}
+
+export class DeleteTabularDataByFilterResponse extends jspb.Message {
+  getDeletedCount(): number;
+  setDeletedCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteTabularDataByFilterResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteTabularDataByFilterResponse): DeleteTabularDataByFilterResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteTabularDataByFilterResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteTabularDataByFilterResponse;
+  static deserializeBinaryFromReader(message: DeleteTabularDataByFilterResponse, reader: jspb.BinaryReader): DeleteTabularDataByFilterResponse;
+}
+
+export namespace DeleteTabularDataByFilterResponse {
+  export type AsObject = {
+    deletedCount: number,
+  }
+}
+
+export class DeleteBinaryDataByFilterRequest extends jspb.Message {
+  hasFilter(): boolean;
+  clearFilter(): void;
+  getFilter(): Filter | undefined;
+  setFilter(value?: Filter): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteBinaryDataByFilterRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteBinaryDataByFilterRequest): DeleteBinaryDataByFilterRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteBinaryDataByFilterRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteBinaryDataByFilterRequest;
+  static deserializeBinaryFromReader(message: DeleteBinaryDataByFilterRequest, reader: jspb.BinaryReader): DeleteBinaryDataByFilterRequest;
+}
+
+export namespace DeleteBinaryDataByFilterRequest {
+  export type AsObject = {
+    filter?: Filter.AsObject,
+  }
+}
+
+export class DeleteBinaryDataByFilterResponse extends jspb.Message {
+  getDeletedCount(): number;
+  setDeletedCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteBinaryDataByFilterResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteBinaryDataByFilterResponse): DeleteBinaryDataByFilterResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteBinaryDataByFilterResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteBinaryDataByFilterResponse;
+  static deserializeBinaryFromReader(message: DeleteBinaryDataByFilterResponse, reader: jspb.BinaryReader): DeleteBinaryDataByFilterResponse;
+}
+
+export namespace DeleteBinaryDataByFilterResponse {
+  export type AsObject = {
+    deletedCount: number,
+  }
+}
+
+export class DeleteBinaryDataByIDsRequest extends jspb.Message {
+  clearFileIdsList(): void;
+  getFileIdsList(): Array<string>;
+  setFileIdsList(value: Array<string>): void;
+  addFileIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteBinaryDataByIDsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteBinaryDataByIDsRequest): DeleteBinaryDataByIDsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteBinaryDataByIDsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteBinaryDataByIDsRequest;
+  static deserializeBinaryFromReader(message: DeleteBinaryDataByIDsRequest, reader: jspb.BinaryReader): DeleteBinaryDataByIDsRequest;
+}
+
+export namespace DeleteBinaryDataByIDsRequest {
+  export type AsObject = {
+    fileIdsList: Array<string>,
+  }
+}
+
+export class DeleteBinaryDataByIDsResponse extends jspb.Message {
+  getDeletedCount(): number;
+  setDeletedCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteBinaryDataByIDsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteBinaryDataByIDsResponse): DeleteBinaryDataByIDsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteBinaryDataByIDsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteBinaryDataByIDsResponse;
+  static deserializeBinaryFromReader(message: DeleteBinaryDataByIDsResponse, reader: jspb.BinaryReader): DeleteBinaryDataByIDsResponse;
+}
+
+export namespace DeleteBinaryDataByIDsResponse {
+  export type AsObject = {
+    deletedCount: number,
+  }
+}
+
