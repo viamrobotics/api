@@ -12,11 +12,11 @@ export class DataRequest extends jspb.Message {
   getFilter(): Filter | undefined;
   setFilter(value?: Filter): void;
 
-  getSkip(): number;
-  setSkip(value: number): void;
-
   getLimit(): number;
   setLimit(value: number): void;
+
+  getMaxId(): string;
+  setMaxId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataRequest.AsObject;
@@ -31,8 +31,8 @@ export class DataRequest extends jspb.Message {
 export namespace DataRequest {
   export type AsObject = {
     filter?: Filter.AsObject,
-    skip: number,
     limit: number,
+    maxId: string,
   }
 }
 

@@ -340,8 +340,8 @@ proto.viam.app.data.v1.DataRequest.prototype.toObject = function(opt_includeInst
 proto.viam.app.data.v1.DataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f),
-    skip: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    limit: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    limit: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    maxId: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -385,11 +385,11 @@ proto.viam.app.data.v1.DataRequest.deserializeBinaryFromReader = function(msg, r
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setSkip(value);
+      msg.setLimit(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setLimit(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMaxId(value);
       break;
     default:
       reader.skipField();
@@ -428,16 +428,16 @@ proto.viam.app.data.v1.DataRequest.serializeBinaryToWriter = function(message, w
       proto.viam.app.data.v1.Filter.serializeBinaryToWriter
     );
   }
-  f = message.getSkip();
+  f = message.getLimit();
   if (f !== 0) {
     writer.writeInt64(
       2,
       f
     );
   }
-  f = message.getLimit();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = message.getMaxId();
+  if (f.length > 0) {
+    writer.writeString(
       3,
       f
     );
@@ -483,10 +483,10 @@ proto.viam.app.data.v1.DataRequest.prototype.hasFilter = function() {
 
 
 /**
- * optional int64 skip = 2;
+ * optional int64 limit = 2;
  * @return {number}
  */
-proto.viam.app.data.v1.DataRequest.prototype.getSkip = function() {
+proto.viam.app.data.v1.DataRequest.prototype.getLimit = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -495,26 +495,26 @@ proto.viam.app.data.v1.DataRequest.prototype.getSkip = function() {
  * @param {number} value
  * @return {!proto.viam.app.data.v1.DataRequest} returns this
  */
-proto.viam.app.data.v1.DataRequest.prototype.setSkip = function(value) {
+proto.viam.app.data.v1.DataRequest.prototype.setLimit = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional int64 limit = 3;
- * @return {number}
+ * optional string max_id = 3;
+ * @return {string}
  */
-proto.viam.app.data.v1.DataRequest.prototype.getLimit = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+proto.viam.app.data.v1.DataRequest.prototype.getMaxId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.viam.app.data.v1.DataRequest} returns this
  */
-proto.viam.app.data.v1.DataRequest.prototype.setLimit = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+proto.viam.app.data.v1.DataRequest.prototype.setMaxId = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
