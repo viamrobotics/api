@@ -31,11 +31,41 @@ type DataServiceBinaryDataByIDs = {
   readonly responseType: typeof app_data_v1_data_pb.BinaryDataByIDsResponse;
 };
 
+type DataServiceDeleteTabularDataByFilter = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.DeleteTabularDataByFilterRequest;
+  readonly responseType: typeof app_data_v1_data_pb.DeleteTabularDataByFilterResponse;
+};
+
+type DataServiceDeleteBinaryDataByFilter = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.DeleteBinaryDataByFilterRequest;
+  readonly responseType: typeof app_data_v1_data_pb.DeleteBinaryDataByFilterResponse;
+};
+
+type DataServiceDeleteBinaryDataByIDs = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.DeleteBinaryDataByIDsRequest;
+  readonly responseType: typeof app_data_v1_data_pb.DeleteBinaryDataByIDsResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
   static readonly BinaryDataByFilter: DataServiceBinaryDataByFilter;
   static readonly BinaryDataByIDs: DataServiceBinaryDataByIDs;
+  static readonly DeleteTabularDataByFilter: DataServiceDeleteTabularDataByFilter;
+  static readonly DeleteBinaryDataByFilter: DataServiceDeleteBinaryDataByFilter;
+  static readonly DeleteBinaryDataByIDs: DataServiceDeleteBinaryDataByIDs;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -96,6 +126,33 @@ export class DataServiceClient {
   binaryDataByIDs(
     requestMessage: app_data_v1_data_pb.BinaryDataByIDsRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryDataByIDsResponse|null) => void
+  ): UnaryResponse;
+  deleteTabularDataByFilter(
+    requestMessage: app_data_v1_data_pb.DeleteTabularDataByFilterRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteTabularDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  deleteTabularDataByFilter(
+    requestMessage: app_data_v1_data_pb.DeleteTabularDataByFilterRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteTabularDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  deleteBinaryDataByFilter(
+    requestMessage: app_data_v1_data_pb.DeleteBinaryDataByFilterRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteBinaryDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  deleteBinaryDataByFilter(
+    requestMessage: app_data_v1_data_pb.DeleteBinaryDataByFilterRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteBinaryDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  deleteBinaryDataByIDs(
+    requestMessage: app_data_v1_data_pb.DeleteBinaryDataByIDsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteBinaryDataByIDsResponse|null) => void
+  ): UnaryResponse;
+  deleteBinaryDataByIDs(
+    requestMessage: app_data_v1_data_pb.DeleteBinaryDataByIDsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteBinaryDataByIDsResponse|null) => void
   ): UnaryResponse;
 }
 

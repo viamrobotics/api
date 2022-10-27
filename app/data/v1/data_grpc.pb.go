@@ -24,6 +24,12 @@ type DataServiceClient interface {
 	BinaryDataByFilter(ctx context.Context, in *BinaryDataByFilterRequest, opts ...grpc.CallOption) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
 	BinaryDataByIDs(ctx context.Context, in *BinaryDataByIDsRequest, opts ...grpc.CallOption) (*BinaryDataByIDsResponse, error)
+	// DeleteTabularDataByFilter deletes tabular data based on given filters.
+	DeleteTabularDataByFilter(ctx context.Context, in *DeleteTabularDataByFilterRequest, opts ...grpc.CallOption) (*DeleteTabularDataByFilterResponse, error)
+	// DeleteBinaryDataByFilter deletes binary data based on given filters.
+	DeleteBinaryDataByFilter(ctx context.Context, in *DeleteBinaryDataByFilterRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByFilterResponse, error)
+	// DeleteBinaryDataByIDs deletes binary data based on given IDs.
+	DeleteBinaryDataByIDs(ctx context.Context, in *DeleteBinaryDataByIDsRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByIDsResponse, error)
 }
 
 type dataServiceClient struct {
@@ -61,6 +67,33 @@ func (c *dataServiceClient) BinaryDataByIDs(ctx context.Context, in *BinaryDataB
 	return out, nil
 }
 
+func (c *dataServiceClient) DeleteTabularDataByFilter(ctx context.Context, in *DeleteTabularDataByFilterRequest, opts ...grpc.CallOption) (*DeleteTabularDataByFilterResponse, error) {
+	out := new(DeleteTabularDataByFilterResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/DeleteTabularDataByFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) DeleteBinaryDataByFilter(ctx context.Context, in *DeleteBinaryDataByFilterRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByFilterResponse, error) {
+	out := new(DeleteBinaryDataByFilterResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/DeleteBinaryDataByFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) DeleteBinaryDataByIDs(ctx context.Context, in *DeleteBinaryDataByIDsRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByIDsResponse, error) {
+	out := new(DeleteBinaryDataByIDsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/DeleteBinaryDataByIDs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -71,6 +104,12 @@ type DataServiceServer interface {
 	BinaryDataByFilter(context.Context, *BinaryDataByFilterRequest) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
 	BinaryDataByIDs(context.Context, *BinaryDataByIDsRequest) (*BinaryDataByIDsResponse, error)
+	// DeleteTabularDataByFilter deletes tabular data based on given filters.
+	DeleteTabularDataByFilter(context.Context, *DeleteTabularDataByFilterRequest) (*DeleteTabularDataByFilterResponse, error)
+	// DeleteBinaryDataByFilter deletes binary data based on given filters.
+	DeleteBinaryDataByFilter(context.Context, *DeleteBinaryDataByFilterRequest) (*DeleteBinaryDataByFilterResponse, error)
+	// DeleteBinaryDataByIDs deletes binary data based on given IDs.
+	DeleteBinaryDataByIDs(context.Context, *DeleteBinaryDataByIDsRequest) (*DeleteBinaryDataByIDsResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -86,6 +125,15 @@ func (UnimplementedDataServiceServer) BinaryDataByFilter(context.Context, *Binar
 }
 func (UnimplementedDataServiceServer) BinaryDataByIDs(context.Context, *BinaryDataByIDsRequest) (*BinaryDataByIDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BinaryDataByIDs not implemented")
+}
+func (UnimplementedDataServiceServer) DeleteTabularDataByFilter(context.Context, *DeleteTabularDataByFilterRequest) (*DeleteTabularDataByFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTabularDataByFilter not implemented")
+}
+func (UnimplementedDataServiceServer) DeleteBinaryDataByFilter(context.Context, *DeleteBinaryDataByFilterRequest) (*DeleteBinaryDataByFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBinaryDataByFilter not implemented")
+}
+func (UnimplementedDataServiceServer) DeleteBinaryDataByIDs(context.Context, *DeleteBinaryDataByIDsRequest) (*DeleteBinaryDataByIDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBinaryDataByIDs not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -154,6 +202,60 @@ func _DataService_BinaryDataByIDs_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_DeleteTabularDataByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTabularDataByFilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).DeleteTabularDataByFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/DeleteTabularDataByFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).DeleteTabularDataByFilter(ctx, req.(*DeleteTabularDataByFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_DeleteBinaryDataByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteBinaryDataByFilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).DeleteBinaryDataByFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/DeleteBinaryDataByFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).DeleteBinaryDataByFilter(ctx, req.(*DeleteBinaryDataByFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_DeleteBinaryDataByIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteBinaryDataByIDsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).DeleteBinaryDataByIDs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/DeleteBinaryDataByIDs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).DeleteBinaryDataByIDs(ctx, req.(*DeleteBinaryDataByIDsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -172,6 +274,18 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BinaryDataByIDs",
 			Handler:    _DataService_BinaryDataByIDs_Handler,
+		},
+		{
+			MethodName: "DeleteTabularDataByFilter",
+			Handler:    _DataService_DeleteTabularDataByFilter_Handler,
+		},
+		{
+			MethodName: "DeleteBinaryDataByFilter",
+			Handler:    _DataService_DeleteBinaryDataByFilter_Handler,
+		},
+		{
+			MethodName: "DeleteBinaryDataByIDs",
+			Handler:    _DataService_DeleteBinaryDataByIDs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
