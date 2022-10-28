@@ -37,6 +37,24 @@ AppService.LocationAuth = {
   responseType: app_v1_app_pb.LocationAuthResponse
 };
 
+AppService.CreateLocationSecret = {
+  methodName: "CreateLocationSecret",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.CreateLocationSecretRequest,
+  responseType: app_v1_app_pb.CreateLocationSecretResponse
+};
+
+AppService.DeleteLocationSecret = {
+  methodName: "DeleteLocationSecret",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteLocationSecretRequest,
+  responseType: app_v1_app_pb.DeleteLocationSecretResponse
+};
+
 AppService.GetRobot = {
   methodName: "GetRobot",
   service: AppService,
@@ -125,6 +143,24 @@ AppService.MarkPartAsMain = {
   responseStream: false,
   requestType: app_v1_app_pb.MarkPartAsMainRequest,
   responseType: app_v1_app_pb.MarkPartAsMainResponse
+};
+
+AppService.CreateRobotPartSecret = {
+  methodName: "CreateRobotPartSecret",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.CreateRobotPartSecretRequest,
+  responseType: app_v1_app_pb.CreateRobotPartSecretResponse
+};
+
+AppService.DeleteRobotPartSecret = {
+  methodName: "DeleteRobotPartSecret",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteRobotPartSecretRequest,
+  responseType: app_v1_app_pb.DeleteRobotPartSecretResponse
 };
 
 AppService.FindRobots = {
@@ -237,6 +273,68 @@ AppServiceClient.prototype.locationAuth = function locationAuth(requestMessage, 
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.LocationAuth, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.createLocationSecret = function createLocationSecret(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.CreateLocationSecret, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteLocationSecret = function deleteLocationSecret(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteLocationSecret, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -555,6 +653,68 @@ AppServiceClient.prototype.markPartAsMain = function markPartAsMain(requestMessa
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.MarkPartAsMain, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.createRobotPartSecret = function createRobotPartSecret(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.CreateRobotPartSecret, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteRobotPartSecret = function deleteRobotPartSecret(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteRobotPartSecret, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

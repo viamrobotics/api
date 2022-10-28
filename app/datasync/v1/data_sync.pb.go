@@ -138,6 +138,7 @@ type SensorData struct {
 
 	Metadata *SensorMetadata `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	// Types that are assignable to Data:
+	//
 	//	*SensorData_Struct
 	//	*SensorData_Binary
 	Data isSensorData_Data `protobuf_oneof:"data"`
@@ -399,6 +400,7 @@ type UploadRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to UploadPacket:
+	//
 	//	*UploadRequest_Metadata
 	//	*UploadRequest_SensorContents
 	//	*UploadRequest_FileContents
