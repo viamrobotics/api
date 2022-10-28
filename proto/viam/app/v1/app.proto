@@ -15,6 +15,13 @@ service AppService {
 
   rpc LocationAuth(LocationAuthRequest) returns (LocationAuthResponse);
 
+  // Create a new generated Secret in the Location.
+  //  - Succeeds if there are no more than 2 active secrets after creation.
+  rpc CreateLocationSecret(CreateLocationSecretRequest) returns (CreateLocationSecretResponse);
+
+  // Delete a Secret from the Location.
+  rpc DeleteLocationSecret(DeleteLocationSecretRequest) returns (DeleteLocationSecretResponse);
+
   // Get a specific robot by ID
   rpc GetRobot(GetRobotRequest) returns (GetRobotResponse);
 
@@ -41,6 +48,13 @@ service AppService {
 
   // Marks the given part as the main part, and all the others as not
   rpc MarkPartAsMain(MarkPartAsMainRequest) returns (MarkPartAsMainResponse);
+
+  // Create a new generated Secret in the Robot Part.
+  //  - Succeeds if there are no more than 2 active secrets after creation.
+  rpc CreateRobotPartSecret(CreateRobotPartSecretRequest) returns (CreateRobotPartSecretResponse);
+
+  // Delete a Secret from the RobotPart.
+  rpc DeleteRobotPartSecret(DeleteRobotPartSecretRequest) returns (DeleteRobotPartSecretResponse);
 
   // Finds robots given a query
   rpc FindRobots(FindRobotsRequest) returns (FindRobotsResponse);
@@ -80,6 +94,9 @@ message RobotPart {
   string fqdn = 9;
   string local_fqdn = 11;
   google.protobuf.Timestamp created_on = 13 [(tagger.v1.tags) = "bson:\"created_on\""];
+
+  // List of secrets allowed for authentication.
+  repeated SharedSecret secrets = 14 [(tagger.v1.tags) = "bson:\"secrets\""];
 }
 
 message RobotPartHistoryEntry {
@@ -115,8 +132,54 @@ message ListLocationsResponse {
   repeated Location locations = 1;
 }
 
+message CreateLocationSecretRequest {
+  // Location ID to create the secret in.
+  string location_id = 1;
+}
+
+message CreateLocationSecretResponse {
+  // Location's auth after updates.
+  LocationAuth auth = 1;
+}
+
+message DeleteLocationSecretRequest {
+  string location_id = 1;
+  string secret_id = 2;
+}
+message DeleteLocationSecretResponse {}
+
 message LocationAuth {
-  string secret = 1;
+  // Deprecated: use secrets field.
+  string secret = 1 [deprecated = true];
+
+  // Location ID containing this LocationAuth.
+  string location_id = 2;
+
+  // List of secrets used to authenticate to the Location.
+  repeated SharedSecret secrets = 3;
+}
+
+// SharedSecret is a secret used for LocationAuth and RobotParts.
+message SharedSecret {
+  enum State {
+    STATE_UNSPECIFIED = 0;
+    // Secret is enabled and can be used in authentication.
+    STATE_ENABLED = 1;
+    // Secret is disabled and must not be used to authenticate to rpc.
+    STATE_DISABLED = 2;
+  }
+
+  string id = 1 [(tagger.v1.tags) = "bson:\"id\""];
+
+  // The payload of the secret. Used during authentication to the rpc framework.
+  string secret = 2 [(tagger.v1.tags) = "bson:\"secret\""];
+
+  // Date/time the secret was first created.
+  google.protobuf.Timestamp created_on = 3 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
+
+  // State of the shared secret. In most cases it should be enabled. We may support
+  // disabling a specific secret while keeping it in the database.
+  State state = 4 [(tagger.v1.tags) = "bson:\"state\""];
 }
 
 message LocationAuthRequest {
@@ -261,3 +324,19 @@ message MarkPartAsMainRequest {
 }
 
 message MarkPartAsMainResponse {}
+
+message CreateRobotPartSecretRequest {
+  // Robot Part ID to create the secret in.
+  string part_id = 1;
+}
+
+message CreateRobotPartSecretResponse {
+  // Location's auth after updates.
+  RobotPart part = 1;
+}
+
+message DeleteRobotPartSecretRequest {
+  string part_id = 1;
+  string secret_id = 2;
+}
+message DeleteRobotPartSecretResponse {}

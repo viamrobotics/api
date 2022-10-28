@@ -36,6 +36,13 @@ message RobotConfig {
   optional bool debug = 8;
 }
 
+// Valid location secret that can be used for authentication to the robot.
+message LocationSecret {
+  string id = 1;
+  // secret payload
+  string secret = 2;
+}
+
 message CloudConfig {
   // Robot part id.
   string id = 1;
@@ -44,8 +51,12 @@ message CloudConfig {
   string managed_by = 4;
   string signaling_address = 5;
   bool signaling_insecure = 6;
-  string location_secret = 7;
+  // Deprecated use location_secrets
+  string location_secret = 7 [deprecated = true];
+  // Robot part secret
   string secret = 8;
+  // All valid location secrets.
+  repeated LocationSecret location_secrets = 9;
 }
 
 message ComponentConfig {
