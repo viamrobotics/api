@@ -241,7 +241,7 @@ type GetJointPositionsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// a list JointPositions
+	//a list JointPositions
 	Positions *JointPositions `protobuf:"bytes,1,opt,name=positions,proto3" json:"positions,omitempty"`
 }
 
