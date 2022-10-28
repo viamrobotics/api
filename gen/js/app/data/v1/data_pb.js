@@ -31,6 +31,7 @@ goog.exportSymbol('proto.viam.app.data.v1.CaptureInterval', null, global);
 goog.exportSymbol('proto.viam.app.data.v1.CaptureMetadata', null, global);
 goog.exportSymbol('proto.viam.app.data.v1.DataRequest', null, global);
 goog.exportSymbol('proto.viam.app.data.v1.Filter', null, global);
+goog.exportSymbol('proto.viam.app.data.v1.Order', null, global);
 goog.exportSymbol('proto.viam.app.data.v1.TabularData', null, global);
 goog.exportSymbol('proto.viam.app.data.v1.TabularDataByFilterRequest', null, global);
 goog.exportSymbol('proto.viam.app.data.v1.TabularDataByFilterResponse', null, global);
@@ -341,7 +342,8 @@ proto.viam.app.data.v1.DataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f),
     limit: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    maxId: jspb.Message.getFieldWithDefault(msg, 3, "")
+    lastId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    sortOrder: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -389,7 +391,11 @@ proto.viam.app.data.v1.DataRequest.deserializeBinaryFromReader = function(msg, r
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setMaxId(value);
+      msg.setLastId(value);
+      break;
+    case 4:
+      var value = /** @type {!proto.viam.app.data.v1.Order} */ (reader.readEnum());
+      msg.setSortOrder(value);
       break;
     default:
       reader.skipField();
@@ -435,10 +441,17 @@ proto.viam.app.data.v1.DataRequest.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getMaxId();
+  f = message.getLastId();
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getSortOrder();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      4,
       f
     );
   }
@@ -501,10 +514,10 @@ proto.viam.app.data.v1.DataRequest.prototype.setLimit = function(value) {
 
 
 /**
- * optional string max_id = 3;
+ * optional string last_id = 3;
  * @return {string}
  */
-proto.viam.app.data.v1.DataRequest.prototype.getMaxId = function() {
+proto.viam.app.data.v1.DataRequest.prototype.getLastId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -513,8 +526,26 @@ proto.viam.app.data.v1.DataRequest.prototype.getMaxId = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.DataRequest} returns this
  */
-proto.viam.app.data.v1.DataRequest.prototype.setMaxId = function(value) {
+proto.viam.app.data.v1.DataRequest.prototype.setLastId = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional Order sort_order = 4;
+ * @return {!proto.viam.app.data.v1.Order}
+ */
+proto.viam.app.data.v1.DataRequest.prototype.getSortOrder = function() {
+  return /** @type {!proto.viam.app.data.v1.Order} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.Order} value
+ * @return {!proto.viam.app.data.v1.DataRequest} returns this
+ */
+proto.viam.app.data.v1.DataRequest.prototype.setSortOrder = function(value) {
+  return jspb.Message.setProto3EnumField(this, 4, value);
 };
 
 
@@ -3875,5 +3906,14 @@ proto.viam.app.data.v1.BinaryMetadata.prototype.setUri = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.data.v1.Order = {
+  ORDER_UNSPECIFIED: 0,
+  ORDER_DESCENDING: 1,
+  ORDER_ASCENDING: 2
+};
 
 goog.object.extend(exports, proto.viam.app.data.v1);

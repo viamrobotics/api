@@ -20,10 +20,17 @@ service DataService {
   rpc BinaryDataByIDs(BinaryDataByIDsRequest) returns (BinaryDataByIDsResponse);
 }
 
+enum Order {
+  ORDER_UNSPECIFIED = 0;
+  ORDER_DESCENDING = 1;
+  ORDER_ASCENDING = 2;
+}
+
 message DataRequest {
   Filter filter = 1;
   int64 limit = 2;
-  string max_id = 3;
+  string last_id = 3;
+  Order sort_order = 4;
 }
 
 message Filter {

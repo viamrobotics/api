@@ -15,8 +15,11 @@ export class DataRequest extends jspb.Message {
   getLimit(): number;
   setLimit(value: number): void;
 
-  getMaxId(): string;
-  setMaxId(value: string): void;
+  getLastId(): string;
+  setLastId(value: string): void;
+
+  getSortOrder(): OrderMap[keyof OrderMap];
+  setSortOrder(value: OrderMap[keyof OrderMap]): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataRequest.AsObject;
@@ -32,7 +35,8 @@ export namespace DataRequest {
   export type AsObject = {
     filter?: Filter.AsObject,
     limit: number,
-    maxId: string,
+    lastId: string,
+    sortOrder: OrderMap[keyof OrderMap],
   }
 }
 
@@ -490,4 +494,12 @@ export namespace BinaryMetadata {
     uri: string,
   }
 }
+
+export interface OrderMap {
+  ORDER_UNSPECIFIED: 0;
+  ORDER_DESCENDING: 1;
+  ORDER_ASCENDING: 2;
+}
+
+export const Order: OrderMap;
 
