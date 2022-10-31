@@ -29,7 +29,7 @@ enum Order {
 message DataRequest {
   Filter filter = 1;
   int64 limit = 2;
-  string last_id = 3;
+  string last = 3;
   Order sort_order = 4;
 }
 
@@ -83,6 +83,7 @@ message TabularDataByFilterResponse {
   repeated CaptureMetadata metadata = 1;
   repeated TabularData data = 2;
   int64 count = 3;
+  string last = 4;
 }
 
 message TabularData {
@@ -108,6 +109,7 @@ message BinaryDataByFilterRequest {
 message BinaryDataByFilterResponse {
   repeated BinaryData data = 1;
   int64 count = 2;
+  string last = 3;
 }
 
 // BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by file ids
@@ -120,6 +122,7 @@ message BinaryDataByIDsRequest {
 message BinaryDataByIDsResponse {
   repeated BinaryData data = 1;
   int64 count = 2;
+  string last = 3;
 }
 
 message BinaryMetadata {

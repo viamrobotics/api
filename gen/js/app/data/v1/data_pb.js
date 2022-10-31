@@ -342,7 +342,7 @@ proto.viam.app.data.v1.DataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f),
     limit: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    lastId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    last: jspb.Message.getFieldWithDefault(msg, 3, ""),
     sortOrder: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
@@ -391,7 +391,7 @@ proto.viam.app.data.v1.DataRequest.deserializeBinaryFromReader = function(msg, r
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setLastId(value);
+      msg.setLast(value);
       break;
     case 4:
       var value = /** @type {!proto.viam.app.data.v1.Order} */ (reader.readEnum());
@@ -441,7 +441,7 @@ proto.viam.app.data.v1.DataRequest.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getLastId();
+  f = message.getLast();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -514,10 +514,10 @@ proto.viam.app.data.v1.DataRequest.prototype.setLimit = function(value) {
 
 
 /**
- * optional string last_id = 3;
+ * optional string last = 3;
  * @return {string}
  */
-proto.viam.app.data.v1.DataRequest.prototype.getLastId = function() {
+proto.viam.app.data.v1.DataRequest.prototype.getLast = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -526,7 +526,7 @@ proto.viam.app.data.v1.DataRequest.prototype.getLastId = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.DataRequest} returns this
  */
-proto.viam.app.data.v1.DataRequest.prototype.setLastId = function(value) {
+proto.viam.app.data.v1.DataRequest.prototype.setLast = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -2069,7 +2069,8 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.toObject = function(includeIn
     proto.viam.app.data.v1.CaptureMetadata.toObject, includeInstance),
     dataList: jspb.Message.toObjectList(msg.getDataList(),
     proto.viam.app.data.v1.TabularData.toObject, includeInstance),
-    count: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    count: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    last: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -2120,6 +2121,10 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.deserializeBinaryFromReader =
       var value = /** @type {number} */ (reader.readInt64());
       msg.setCount(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLast(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2169,6 +2174,13 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.serializeBinaryToWriter = fun
   if (f !== 0) {
     writer.writeInt64(
       3,
+      f
+    );
+  }
+  f = message.getLast();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -2266,6 +2278,24 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.getCount = function
  */
 proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.setCount = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional string last = 4;
+ * @return {string}
+ */
+proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.getLast = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.TabularDataByFilterResponse} returns this
+ */
+proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.setLast = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -3009,7 +3039,8 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.toObject = function(includeIns
   var f, obj = {
     dataList: jspb.Message.toObjectList(msg.getDataList(),
     proto.viam.app.data.v1.BinaryData.toObject, includeInstance),
-    count: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    count: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    last: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -3055,6 +3086,10 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.deserializeBinaryFromReader = 
       var value = /** @type {number} */ (reader.readInt64());
       msg.setCount(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLast(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3096,6 +3131,13 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.serializeBinaryToWriter = func
   if (f !== 0) {
     writer.writeInt64(
       2,
+      f
+    );
+  }
+  f = message.getLast();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -3155,6 +3197,24 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.getCount = function(
  */
 proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.setCount = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional string last = 3;
+ * @return {string}
+ */
+proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.getLast = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.BinaryDataByFilterResponse} returns this
+ */
+proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.setLast = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -3385,7 +3445,8 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.toObject = function(includeInstan
   var f, obj = {
     dataList: jspb.Message.toObjectList(msg.getDataList(),
     proto.viam.app.data.v1.BinaryData.toObject, includeInstance),
-    count: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    count: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    last: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -3431,6 +3492,10 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.deserializeBinaryFromReader = fun
       var value = /** @type {number} */ (reader.readInt64());
       msg.setCount(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLast(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3472,6 +3537,13 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.serializeBinaryToWriter = functio
   if (f !== 0) {
     writer.writeInt64(
       2,
+      f
+    );
+  }
+  f = message.getLast();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -3531,6 +3603,24 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.getCount = function() {
  */
 proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.setCount = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional string last = 3;
+ * @return {string}
+ */
+proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.getLast = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.BinaryDataByIDsResponse} returns this
+ */
+proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.setLast = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

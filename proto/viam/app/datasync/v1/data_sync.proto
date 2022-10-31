@@ -99,6 +99,7 @@ message TabularCapture {
   int64 file_size_bytes = 16 [(tagger.v1.tags) = "bson:\"file_size_bytes\" json:\"file_size_bytes\""];
   string session_id = 17 [(tagger.v1.tags) = "bson:\"session_id\" json:\"session_id\""];
   string mime_type = 18 [(tagger.v1.tags) = "bson:\"mime_type\" json:\"mime_type\""];
+  string id = 19 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
 }
 
 message BinaryCapture {
@@ -120,4 +121,5 @@ message BinaryCapture {
   string mime_type = 16 [(tagger.v1.tags) = "bson:\"mime_type\" json:\"mime_type\""];
   string file_name = 17 [(tagger.v1.tags) = "bson:\"file_name\" json:\"file_name\""];
   string file_ext = 18 [(tagger.v1.tags) = "bson:\"file_ext\" json:\"file_ext\""];
+  string id = 19 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
 }

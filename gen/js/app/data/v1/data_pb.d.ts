@@ -15,8 +15,8 @@ export class DataRequest extends jspb.Message {
   getLimit(): number;
   setLimit(value: number): void;
 
-  getLastId(): string;
-  setLastId(value: string): void;
+  getLast(): string;
+  setLast(value: string): void;
 
   getSortOrder(): OrderMap[keyof OrderMap];
   setSortOrder(value: OrderMap[keyof OrderMap]): void;
@@ -35,7 +35,7 @@ export namespace DataRequest {
   export type AsObject = {
     filter?: Filter.AsObject,
     limit: number,
-    lastId: string,
+    last: string,
     sortOrder: OrderMap[keyof OrderMap],
   }
 }
@@ -253,6 +253,9 @@ export class TabularDataByFilterResponse extends jspb.Message {
   getCount(): number;
   setCount(value: number): void;
 
+  getLast(): string;
+  setLast(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataByFilterResponse.AsObject;
   static toObject(includeInstance: boolean, msg: TabularDataByFilterResponse): TabularDataByFilterResponse.AsObject;
@@ -268,6 +271,7 @@ export namespace TabularDataByFilterResponse {
     metadataList: Array<CaptureMetadata.AsObject>,
     dataList: Array<TabularData.AsObject>,
     count: number,
+    last: string,
   }
 }
 
@@ -376,6 +380,9 @@ export class BinaryDataByFilterResponse extends jspb.Message {
   getCount(): number;
   setCount(value: number): void;
 
+  getLast(): string;
+  setLast(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataByFilterResponse.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryDataByFilterResponse): BinaryDataByFilterResponse.AsObject;
@@ -390,6 +397,7 @@ export namespace BinaryDataByFilterResponse {
   export type AsObject = {
     dataList: Array<BinaryData.AsObject>,
     count: number,
+    last: string,
   }
 }
 
@@ -428,6 +436,9 @@ export class BinaryDataByIDsResponse extends jspb.Message {
   getCount(): number;
   setCount(value: number): void;
 
+  getLast(): string;
+  setLast(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataByIDsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryDataByIDsResponse): BinaryDataByIDsResponse.AsObject;
@@ -442,6 +453,7 @@ export namespace BinaryDataByIDsResponse {
   export type AsObject = {
     dataList: Array<BinaryData.AsObject>,
     count: number,
+    last: string,
   }
 }
 
