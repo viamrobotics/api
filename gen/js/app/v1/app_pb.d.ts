@@ -94,6 +94,11 @@ export class RobotPart extends jspb.Message {
   getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  clearSecretsList(): void;
+  getSecretsList(): Array<SharedSecret>;
+  setSecretsList(value: Array<SharedSecret>): void;
+  addSecrets(value?: SharedSecret, index?: number): SharedSecret;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotPart.AsObject;
   static toObject(includeInstance: boolean, msg: RobotPart): RobotPart.AsObject;
@@ -119,6 +124,7 @@ export namespace RobotPart {
     fqdn: string,
     localFqdn: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    secretsList: Array<SharedSecret.AsObject>,
   }
 }
 
@@ -298,9 +304,99 @@ export namespace ListLocationsResponse {
   }
 }
 
+export class CreateLocationSecretRequest extends jspb.Message {
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateLocationSecretRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateLocationSecretRequest): CreateLocationSecretRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateLocationSecretRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateLocationSecretRequest;
+  static deserializeBinaryFromReader(message: CreateLocationSecretRequest, reader: jspb.BinaryReader): CreateLocationSecretRequest;
+}
+
+export namespace CreateLocationSecretRequest {
+  export type AsObject = {
+    locationId: string,
+  }
+}
+
+export class CreateLocationSecretResponse extends jspb.Message {
+  hasAuth(): boolean;
+  clearAuth(): void;
+  getAuth(): LocationAuth | undefined;
+  setAuth(value?: LocationAuth): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateLocationSecretResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateLocationSecretResponse): CreateLocationSecretResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateLocationSecretResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateLocationSecretResponse;
+  static deserializeBinaryFromReader(message: CreateLocationSecretResponse, reader: jspb.BinaryReader): CreateLocationSecretResponse;
+}
+
+export namespace CreateLocationSecretResponse {
+  export type AsObject = {
+    auth?: LocationAuth.AsObject,
+  }
+}
+
+export class DeleteLocationSecretRequest extends jspb.Message {
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  getSecretId(): string;
+  setSecretId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteLocationSecretRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteLocationSecretRequest): DeleteLocationSecretRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteLocationSecretRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteLocationSecretRequest;
+  static deserializeBinaryFromReader(message: DeleteLocationSecretRequest, reader: jspb.BinaryReader): DeleteLocationSecretRequest;
+}
+
+export namespace DeleteLocationSecretRequest {
+  export type AsObject = {
+    locationId: string,
+    secretId: string,
+  }
+}
+
+export class DeleteLocationSecretResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteLocationSecretResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteLocationSecretResponse): DeleteLocationSecretResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteLocationSecretResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteLocationSecretResponse;
+  static deserializeBinaryFromReader(message: DeleteLocationSecretResponse, reader: jspb.BinaryReader): DeleteLocationSecretResponse;
+}
+
+export namespace DeleteLocationSecretResponse {
+  export type AsObject = {
+  }
+}
+
 export class LocationAuth extends jspb.Message {
   getSecret(): string;
   setSecret(value: string): void;
+
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  clearSecretsList(): void;
+  getSecretsList(): Array<SharedSecret>;
+  setSecretsList(value: Array<SharedSecret>): void;
+  addSecrets(value?: SharedSecret, index?: number): SharedSecret;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): LocationAuth.AsObject;
@@ -315,7 +411,51 @@ export class LocationAuth extends jspb.Message {
 export namespace LocationAuth {
   export type AsObject = {
     secret: string,
+    locationId: string,
+    secretsList: Array<SharedSecret.AsObject>,
   }
+}
+
+export class SharedSecret extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getSecret(): string;
+  setSecret(value: string): void;
+
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getState(): SharedSecret.StateMap[keyof SharedSecret.StateMap];
+  setState(value: SharedSecret.StateMap[keyof SharedSecret.StateMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SharedSecret.AsObject;
+  static toObject(includeInstance: boolean, msg: SharedSecret): SharedSecret.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SharedSecret, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SharedSecret;
+  static deserializeBinaryFromReader(message: SharedSecret, reader: jspb.BinaryReader): SharedSecret;
+}
+
+export namespace SharedSecret {
+  export type AsObject = {
+    id: string,
+    secret: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    state: SharedSecret.StateMap[keyof SharedSecret.StateMap],
+  }
+
+  export interface StateMap {
+    STATE_UNSPECIFIED: 0;
+    STATE_ENABLED: 1;
+    STATE_DISABLED: 2;
+  }
+
+  export const State: StateMap;
 }
 
 export class LocationAuthRequest extends jspb.Message {
@@ -1058,6 +1198,88 @@ export class MarkPartAsMainResponse extends jspb.Message {
 }
 
 export namespace MarkPartAsMainResponse {
+  export type AsObject = {
+  }
+}
+
+export class CreateRobotPartSecretRequest extends jspb.Message {
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateRobotPartSecretRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateRobotPartSecretRequest): CreateRobotPartSecretRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateRobotPartSecretRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateRobotPartSecretRequest;
+  static deserializeBinaryFromReader(message: CreateRobotPartSecretRequest, reader: jspb.BinaryReader): CreateRobotPartSecretRequest;
+}
+
+export namespace CreateRobotPartSecretRequest {
+  export type AsObject = {
+    partId: string,
+  }
+}
+
+export class CreateRobotPartSecretResponse extends jspb.Message {
+  hasPart(): boolean;
+  clearPart(): void;
+  getPart(): RobotPart | undefined;
+  setPart(value?: RobotPart): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateRobotPartSecretResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateRobotPartSecretResponse): CreateRobotPartSecretResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateRobotPartSecretResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateRobotPartSecretResponse;
+  static deserializeBinaryFromReader(message: CreateRobotPartSecretResponse, reader: jspb.BinaryReader): CreateRobotPartSecretResponse;
+}
+
+export namespace CreateRobotPartSecretResponse {
+  export type AsObject = {
+    part?: RobotPart.AsObject,
+  }
+}
+
+export class DeleteRobotPartSecretRequest extends jspb.Message {
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  getSecretId(): string;
+  setSecretId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteRobotPartSecretRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteRobotPartSecretRequest): DeleteRobotPartSecretRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteRobotPartSecretRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteRobotPartSecretRequest;
+  static deserializeBinaryFromReader(message: DeleteRobotPartSecretRequest, reader: jspb.BinaryReader): DeleteRobotPartSecretRequest;
+}
+
+export namespace DeleteRobotPartSecretRequest {
+  export type AsObject = {
+    partId: string,
+    secretId: string,
+  }
+}
+
+export class DeleteRobotPartSecretResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteRobotPartSecretResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteRobotPartSecretResponse): DeleteRobotPartSecretResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteRobotPartSecretResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteRobotPartSecretResponse;
+  static deserializeBinaryFromReader(message: DeleteRobotPartSecretResponse, reader: jspb.BinaryReader): DeleteRobotPartSecretResponse;
+}
+
+export namespace DeleteRobotPartSecretResponse {
   export type AsObject = {
   }
 }
