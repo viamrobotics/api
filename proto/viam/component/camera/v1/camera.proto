@@ -4,6 +4,7 @@ package viam.component.camera.v1;
 
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
+import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/component/camera/v1";
 option java_package = "com.viam.component.camera.v1";
@@ -47,6 +48,8 @@ message GetImageRequest {
   string name = 1;
   // Requested MIME type of response
   string mime_type = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetImageResponse {
@@ -65,6 +68,8 @@ message RenderFrameRequest {
   string name = 1;
   // Requested MIME type of response
   string mime_type = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetPointCloudRequest {
@@ -72,6 +77,8 @@ message GetPointCloudRequest {
   string name = 1;
   // Requested MIME type of response
   string mime_type = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetPointCloudResponse {
@@ -84,6 +91,8 @@ message GetPointCloudResponse {
 message GetPropertiesRequest {
   // Name of a camera
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetPropertiesResponse {
