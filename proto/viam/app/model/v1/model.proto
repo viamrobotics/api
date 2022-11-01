@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.app.model.v1;
 
 import "google/protobuf/timestamp.proto";
+import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/app/model/v1";
 
@@ -18,8 +19,8 @@ message FileData {
 }
 
 message File {
-  string name = 1;
-  int64 size_bytes = 2;
+  string name = 1 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
+  int64 size_bytes = 2 [(tagger.v1.tags) = "bson:\"size_bytes\" json:\"size_bytes\""];
 }
 
 message UploadMetadata {
@@ -96,11 +97,11 @@ message DeployResponse {
 }
 
 message SyncedModel {
-  string org_id = 1;
-  string model_name = 2;
-  string associated_dataset = 3;
-  repeated File files = 4;
-  int64 size_bytes = 5;
-  string blob_path = 6;
-  google.protobuf.Timestamp sync_time = 7;
+  string org_id = 1 [(tagger.v1.tags) = "bson:\"org_id\" json:\"org_id\""];
+  string model_name = 2 [(tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
+  string associated_dataset = 3 [(tagger.v1.tags) = "bson:\"associated_dataset\" json:\"associated_dataset\""];
+  repeated File files = 4 [(tagger.v1.tags) = "bson:\"files\" json:\"files\""];
+  int64 size_bytes = 5 [(tagger.v1.tags) = "bson:\"size_bytes\" json:\"size_bytes\""];
+  string blob_path = 6 [(tagger.v1.tags) = "bson:\"blob_path\" json:\"blob_path\""];
+  google.protobuf.Timestamp sync_time = 7 [(tagger.v1.tags) = "bson:\"sync_time\" json:\"sync_time\""];
 }

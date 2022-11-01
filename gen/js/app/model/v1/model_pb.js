@@ -17,6 +17,8 @@ var global = (function() { return this || window || global || self || Function('
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
+var tagger_v1_tagger_pb = require('../../../tagger/v1/tagger_pb.js');
+goog.object.extend(proto, tagger_v1_tagger_pb);
 goog.exportSymbol('proto.viam.app.model.v1.DeleteMetadata', null, global);
 goog.exportSymbol('proto.viam.app.model.v1.DeleteRequest', null, global);
 goog.exportSymbol('proto.viam.app.model.v1.DeleteResponse', null, global);

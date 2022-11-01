@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
+import * as tagger_v1_tagger_pb from "../../../tagger/v1/tagger_pb";
 
 export class FileData extends jspb.Message {
   getData(): Uint8Array | string;
