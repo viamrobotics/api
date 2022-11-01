@@ -71,6 +71,30 @@ export namespace RobotConfig {
   }
 }
 
+export class LocationSecret extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getSecret(): string;
+  setSecret(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LocationSecret.AsObject;
+  static toObject(includeInstance: boolean, msg: LocationSecret): LocationSecret.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: LocationSecret, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LocationSecret;
+  static deserializeBinaryFromReader(message: LocationSecret, reader: jspb.BinaryReader): LocationSecret;
+}
+
+export namespace LocationSecret {
+  export type AsObject = {
+    id: string,
+    secret: string,
+  }
+}
+
 export class CloudConfig extends jspb.Message {
   getId(): string;
   setId(value: string): void;
@@ -96,6 +120,11 @@ export class CloudConfig extends jspb.Message {
   getSecret(): string;
   setSecret(value: string): void;
 
+  clearLocationSecretsList(): void;
+  getLocationSecretsList(): Array<LocationSecret>;
+  setLocationSecretsList(value: Array<LocationSecret>): void;
+  addLocationSecrets(value?: LocationSecret, index?: number): LocationSecret;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CloudConfig.AsObject;
   static toObject(includeInstance: boolean, msg: CloudConfig): CloudConfig.AsObject;
@@ -116,6 +145,7 @@ export namespace CloudConfig {
     signalingInsecure: boolean,
     locationSecret: string,
     secret: string,
+    locationSecretsList: Array<LocationSecret.AsObject>,
   }
 }
 
@@ -258,6 +288,14 @@ export class ServiceConfig extends jspb.Message {
   getAttributes(): google_protobuf_struct_pb.Struct | undefined;
   setAttributes(value?: google_protobuf_struct_pb.Struct): void;
 
+  clearDependsOnList(): void;
+  getDependsOnList(): Array<string>;
+  setDependsOnList(value: Array<string>): void;
+  addDependsOn(value: string, index?: number): string;
+
+  getModel(): string;
+  setModel(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ServiceConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ServiceConfig): ServiceConfig.AsObject;
@@ -274,6 +312,8 @@ export namespace ServiceConfig {
     namespace: string,
     type: string,
     attributes?: google_protobuf_struct_pb.Struct.AsObject,
+    dependsOnList: Array<string>,
+    model: string,
   }
 }
 

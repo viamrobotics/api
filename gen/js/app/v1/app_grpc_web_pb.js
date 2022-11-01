@@ -268,6 +268,128 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.locationAuth =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.CreateLocationSecretRequest,
+ *   !proto.viam.app.v1.CreateLocationSecretResponse>}
+ */
+const methodDescriptor_AppService_CreateLocationSecret = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/CreateLocationSecret',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.CreateLocationSecretRequest,
+  proto.viam.app.v1.CreateLocationSecretResponse,
+  /**
+   * @param {!proto.viam.app.v1.CreateLocationSecretRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.CreateLocationSecretResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateLocationSecretRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.CreateLocationSecretResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.CreateLocationSecretResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.createLocationSecret =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateLocationSecret',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateLocationSecret,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateLocationSecretRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.CreateLocationSecretResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.createLocationSecret =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateLocationSecret',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateLocationSecret);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeleteLocationSecretRequest,
+ *   !proto.viam.app.v1.DeleteLocationSecretResponse>}
+ */
+const methodDescriptor_AppService_DeleteLocationSecret = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeleteLocationSecret',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeleteLocationSecretRequest,
+  proto.viam.app.v1.DeleteLocationSecretResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeleteLocationSecretRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeleteLocationSecretResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteLocationSecretRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeleteLocationSecretResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeleteLocationSecretResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deleteLocationSecret =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteLocationSecret',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteLocationSecret,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteLocationSecretRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeleteLocationSecretResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deleteLocationSecret =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteLocationSecret',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteLocationSecret);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.GetRobotRequest,
  *   !proto.viam.app.v1.GetRobotResponse>}
  */
@@ -867,6 +989,128 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.markPartAsMain =
       request,
       metadata || {},
       methodDescriptor_AppService_MarkPartAsMain);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.CreateRobotPartSecretRequest,
+ *   !proto.viam.app.v1.CreateRobotPartSecretResponse>}
+ */
+const methodDescriptor_AppService_CreateRobotPartSecret = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/CreateRobotPartSecret',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.CreateRobotPartSecretRequest,
+  proto.viam.app.v1.CreateRobotPartSecretResponse,
+  /**
+   * @param {!proto.viam.app.v1.CreateRobotPartSecretRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.CreateRobotPartSecretResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateRobotPartSecretRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.CreateRobotPartSecretResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.CreateRobotPartSecretResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.createRobotPartSecret =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateRobotPartSecret',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateRobotPartSecret,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateRobotPartSecretRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.CreateRobotPartSecretResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.createRobotPartSecret =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateRobotPartSecret',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateRobotPartSecret);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeleteRobotPartSecretRequest,
+ *   !proto.viam.app.v1.DeleteRobotPartSecretResponse>}
+ */
+const methodDescriptor_AppService_DeleteRobotPartSecret = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeleteRobotPartSecret',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeleteRobotPartSecretRequest,
+  proto.viam.app.v1.DeleteRobotPartSecretResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeleteRobotPartSecretRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeleteRobotPartSecretResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteRobotPartSecretRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeleteRobotPartSecretResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeleteRobotPartSecretResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deleteRobotPartSecret =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteRobotPartSecret',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteRobotPartSecret,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteRobotPartSecretRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeleteRobotPartSecretResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deleteRobotPartSecret =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteRobotPartSecret',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteRobotPartSecret);
 };
 
 
