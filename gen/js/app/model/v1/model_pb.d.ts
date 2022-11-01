@@ -120,35 +120,12 @@ export namespace UploadRequest {
   }
 }
 
-export class DeleteMetadata extends jspb.Message {
+export class DeleteRequest extends jspb.Message {
   getOrgId(): string;
   setOrgId(value: string): void;
 
   getModelName(): string;
   setModelName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteMetadata.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteMetadata): DeleteMetadata.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeleteMetadata, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteMetadata;
-  static deserializeBinaryFromReader(message: DeleteMetadata, reader: jspb.BinaryReader): DeleteMetadata;
-}
-
-export namespace DeleteMetadata {
-  export type AsObject = {
-    orgId: string,
-    modelName: string,
-  }
-}
-
-export class DeleteRequest extends jspb.Message {
-  hasMetadata(): boolean;
-  clearMetadata(): void;
-  getMetadata(): DeleteMetadata | undefined;
-  setMetadata(value?: DeleteMetadata): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteRequest.AsObject;
@@ -162,35 +139,17 @@ export class DeleteRequest extends jspb.Message {
 
 export namespace DeleteRequest {
   export type AsObject = {
-    metadata?: DeleteMetadata.AsObject,
-  }
-}
-
-export class DeployMetadata extends jspb.Message {
-  getModelName(): string;
-  setModelName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeployMetadata.AsObject;
-  static toObject(includeInstance: boolean, msg: DeployMetadata): DeployMetadata.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeployMetadata, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeployMetadata;
-  static deserializeBinaryFromReader(message: DeployMetadata, reader: jspb.BinaryReader): DeployMetadata;
-}
-
-export namespace DeployMetadata {
-  export type AsObject = {
+    orgId: string,
     modelName: string,
   }
 }
 
 export class DeployRequest extends jspb.Message {
-  hasMetadata(): boolean;
-  clearMetadata(): void;
-  getMetadata(): DeployMetadata | undefined;
-  setMetadata(value?: DeployMetadata): void;
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getModelName(): string;
+  setModelName(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeployRequest.AsObject;
@@ -204,7 +163,8 @@ export class DeployRequest extends jspb.Message {
 
 export namespace DeployRequest {
   export type AsObject = {
-    metadata?: DeployMetadata.AsObject,
+    orgId: string,
+    modelName: string,
   }
 }
 
