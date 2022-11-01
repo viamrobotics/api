@@ -19,6 +19,8 @@ var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
+goog.object.extend(proto, google_protobuf_struct_pb);
 goog.exportSymbol('proto.viam.component.posetracker.v1.GetPosesRequest', null, global);
 goog.exportSymbol('proto.viam.component.posetracker.v1.GetPosesResponse', null, global);
 /**
@@ -103,7 +105,8 @@ proto.viam.component.posetracker.v1.GetPosesRequest.prototype.toObject = functio
 proto.viam.component.posetracker.v1.GetPosesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    bodyNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+    bodyNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -148,6 +151,11 @@ proto.viam.component.posetracker.v1.GetPosesRequest.deserializeBinaryFromReader 
       var value = /** @type {string} */ (reader.readString());
       msg.addBodyNames(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -189,6 +197,14 @@ proto.viam.component.posetracker.v1.GetPosesRequest.serializeBinaryToWriter = fu
     writer.writeRepeatedString(
       2,
       f
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -246,6 +262,43 @@ proto.viam.component.posetracker.v1.GetPosesRequest.prototype.addBodyNames = fun
  */
 proto.viam.component.posetracker.v1.GetPosesRequest.prototype.clearBodyNamesList = function() {
   return this.setBodyNamesList([]);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.posetracker.v1.GetPosesRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.posetracker.v1.GetPosesRequest} returns this
+*/
+proto.viam.component.posetracker.v1.GetPosesRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.posetracker.v1.GetPosesRequest} returns this
+ */
+proto.viam.component.posetracker.v1.GetPosesRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.posetracker.v1.GetPosesRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
