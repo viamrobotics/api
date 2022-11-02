@@ -46,6 +46,8 @@ jobs:
 
         make dist/buf
 
+        git diff
+
         GEN_DIFF=$(git status -s)
 
         if [ -n "$GEN_DIFF" ]; then
