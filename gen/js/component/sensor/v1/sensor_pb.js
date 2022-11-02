@@ -95,7 +95,8 @@ proto.viam.component.sensor.v1.GetReadingsRequest.prototype.toObject = function(
  */
 proto.viam.component.sensor.v1.GetReadingsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -136,6 +137,11 @@ proto.viam.component.sensor.v1.GetReadingsRequest.deserializeBinaryFromReader = 
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -172,6 +178,14 @@ proto.viam.component.sensor.v1.GetReadingsRequest.serializeBinaryToWriter = func
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -190,6 +204,43 @@ proto.viam.component.sensor.v1.GetReadingsRequest.prototype.getName = function()
  */
 proto.viam.component.sensor.v1.GetReadingsRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.sensor.v1.GetReadingsRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.sensor.v1.GetReadingsRequest} returns this
+*/
+proto.viam.component.sensor.v1.GetReadingsRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.sensor.v1.GetReadingsRequest} returns this
+ */
+proto.viam.component.sensor.v1.GetReadingsRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.sensor.v1.GetReadingsRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
