@@ -19,15 +19,6 @@ ModuleService.AddComponent = {
   responseType: module_v1_module_pb.AddComponentResponse
 };
 
-ModuleService.RemoveComponent = {
-  methodName: "RemoveComponent",
-  service: ModuleService,
-  requestStream: false,
-  responseStream: false,
-  requestType: module_v1_module_pb.RemoveComponentRequest,
-  responseType: module_v1_module_pb.RemoveComponentResponse
-};
-
 ModuleService.ReconfigureComponent = {
   methodName: "ReconfigureComponent",
   service: ModuleService,
@@ -46,15 +37,6 @@ ModuleService.AddService = {
   responseType: module_v1_module_pb.AddServiceResponse
 };
 
-ModuleService.RemoveService = {
-  methodName: "RemoveService",
-  service: ModuleService,
-  requestStream: false,
-  responseStream: false,
-  requestType: module_v1_module_pb.RemoveServiceRequest,
-  responseType: module_v1_module_pb.RemoveServiceResponse
-};
-
 ModuleService.ReconfigureService = {
   methodName: "ReconfigureService",
   service: ModuleService,
@@ -64,13 +46,13 @@ ModuleService.ReconfigureService = {
   responseType: module_v1_module_pb.ReconfigureServiceResponse
 };
 
-ModuleService.CloseModule = {
-  methodName: "CloseModule",
+ModuleService.RemoveResource = {
+  methodName: "RemoveResource",
   service: ModuleService,
   requestStream: false,
   responseStream: false,
-  requestType: module_v1_module_pb.CloseModuleRequest,
-  responseType: module_v1_module_pb.CloseModuleResponse
+  requestType: module_v1_module_pb.RemoveResourceRequest,
+  responseType: module_v1_module_pb.RemoveResourceResponse
 };
 
 ModuleService.Ready = {
@@ -94,37 +76,6 @@ ModuleServiceClient.prototype.addComponent = function addComponent(requestMessag
     callback = arguments[1];
   }
   var client = grpc.unary(ModuleService.AddComponent, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-ModuleServiceClient.prototype.removeComponent = function removeComponent(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(ModuleService.RemoveComponent, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -213,37 +164,6 @@ ModuleServiceClient.prototype.addService = function addService(requestMessage, m
   };
 };
 
-ModuleServiceClient.prototype.removeService = function removeService(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(ModuleService.RemoveService, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
 ModuleServiceClient.prototype.reconfigureService = function reconfigureService(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -275,11 +195,11 @@ ModuleServiceClient.prototype.reconfigureService = function reconfigureService(r
   };
 };
 
-ModuleServiceClient.prototype.closeModule = function closeModule(requestMessage, metadata, callback) {
+ModuleServiceClient.prototype.removeResource = function removeResource(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ModuleService.CloseModule, {
+  var client = grpc.unary(ModuleService.RemoveResource, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

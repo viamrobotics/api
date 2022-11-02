@@ -13,15 +13,6 @@ type ModuleServiceAddComponent = {
   readonly responseType: typeof module_v1_module_pb.AddComponentResponse;
 };
 
-type ModuleServiceRemoveComponent = {
-  readonly methodName: string;
-  readonly service: typeof ModuleService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof module_v1_module_pb.RemoveComponentRequest;
-  readonly responseType: typeof module_v1_module_pb.RemoveComponentResponse;
-};
-
 type ModuleServiceReconfigureComponent = {
   readonly methodName: string;
   readonly service: typeof ModuleService;
@@ -40,15 +31,6 @@ type ModuleServiceAddService = {
   readonly responseType: typeof module_v1_module_pb.AddServiceResponse;
 };
 
-type ModuleServiceRemoveService = {
-  readonly methodName: string;
-  readonly service: typeof ModuleService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof module_v1_module_pb.RemoveServiceRequest;
-  readonly responseType: typeof module_v1_module_pb.RemoveServiceResponse;
-};
-
 type ModuleServiceReconfigureService = {
   readonly methodName: string;
   readonly service: typeof ModuleService;
@@ -58,13 +40,13 @@ type ModuleServiceReconfigureService = {
   readonly responseType: typeof module_v1_module_pb.ReconfigureServiceResponse;
 };
 
-type ModuleServiceCloseModule = {
+type ModuleServiceRemoveResource = {
   readonly methodName: string;
   readonly service: typeof ModuleService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof module_v1_module_pb.CloseModuleRequest;
-  readonly responseType: typeof module_v1_module_pb.CloseModuleResponse;
+  readonly requestType: typeof module_v1_module_pb.RemoveResourceRequest;
+  readonly responseType: typeof module_v1_module_pb.RemoveResourceResponse;
 };
 
 type ModuleServiceReady = {
@@ -79,12 +61,10 @@ type ModuleServiceReady = {
 export class ModuleService {
   static readonly serviceName: string;
   static readonly AddComponent: ModuleServiceAddComponent;
-  static readonly RemoveComponent: ModuleServiceRemoveComponent;
   static readonly ReconfigureComponent: ModuleServiceReconfigureComponent;
   static readonly AddService: ModuleServiceAddService;
-  static readonly RemoveService: ModuleServiceRemoveService;
   static readonly ReconfigureService: ModuleServiceReconfigureService;
-  static readonly CloseModule: ModuleServiceCloseModule;
+  static readonly RemoveResource: ModuleServiceRemoveResource;
   static readonly Ready: ModuleServiceReady;
 }
 
@@ -129,15 +109,6 @@ export class ModuleServiceClient {
     requestMessage: module_v1_module_pb.AddComponentRequest,
     callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.AddComponentResponse|null) => void
   ): UnaryResponse;
-  removeComponent(
-    requestMessage: module_v1_module_pb.RemoveComponentRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.RemoveComponentResponse|null) => void
-  ): UnaryResponse;
-  removeComponent(
-    requestMessage: module_v1_module_pb.RemoveComponentRequest,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.RemoveComponentResponse|null) => void
-  ): UnaryResponse;
   reconfigureComponent(
     requestMessage: module_v1_module_pb.ReconfigureComponentRequest,
     metadata: grpc.Metadata,
@@ -156,15 +127,6 @@ export class ModuleServiceClient {
     requestMessage: module_v1_module_pb.AddServiceRequest,
     callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.AddServiceResponse|null) => void
   ): UnaryResponse;
-  removeService(
-    requestMessage: module_v1_module_pb.RemoveServiceRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.RemoveServiceResponse|null) => void
-  ): UnaryResponse;
-  removeService(
-    requestMessage: module_v1_module_pb.RemoveServiceRequest,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.RemoveServiceResponse|null) => void
-  ): UnaryResponse;
   reconfigureService(
     requestMessage: module_v1_module_pb.ReconfigureServiceRequest,
     metadata: grpc.Metadata,
@@ -174,14 +136,14 @@ export class ModuleServiceClient {
     requestMessage: module_v1_module_pb.ReconfigureServiceRequest,
     callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ReconfigureServiceResponse|null) => void
   ): UnaryResponse;
-  closeModule(
-    requestMessage: module_v1_module_pb.CloseModuleRequest,
+  removeResource(
+    requestMessage: module_v1_module_pb.RemoveResourceRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.CloseModuleResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.RemoveResourceResponse|null) => void
   ): UnaryResponse;
-  closeModule(
-    requestMessage: module_v1_module_pb.CloseModuleRequest,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.CloseModuleResponse|null) => void
+  removeResource(
+    requestMessage: module_v1_module_pb.RemoveResourceRequest,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.RemoveResourceResponse|null) => void
   ): UnaryResponse;
   ready(
     requestMessage: module_v1_module_pb.ReadyRequest,

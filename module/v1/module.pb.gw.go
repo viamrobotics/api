@@ -65,40 +65,6 @@ func local_request_ModuleService_AddComponent_0(ctx context.Context, marshaler r
 
 }
 
-func request_ModuleService_RemoveComponent_0(ctx context.Context, marshaler runtime.Marshaler, client ModuleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq RemoveComponentRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.RemoveComponent(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_ModuleService_RemoveComponent_0(ctx context.Context, marshaler runtime.Marshaler, server ModuleServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq RemoveComponentRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.RemoveComponent(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
 func request_ModuleService_ReconfigureComponent_0(ctx context.Context, marshaler runtime.Marshaler, client ModuleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ReconfigureComponentRequest
 	var metadata runtime.ServerMetadata
@@ -167,40 +133,6 @@ func local_request_ModuleService_AddService_0(ctx context.Context, marshaler run
 
 }
 
-func request_ModuleService_RemoveService_0(ctx context.Context, marshaler runtime.Marshaler, client ModuleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq RemoveServiceRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.RemoveService(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_ModuleService_RemoveService_0(ctx context.Context, marshaler runtime.Marshaler, server ModuleServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq RemoveServiceRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.RemoveService(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
 func request_ModuleService_ReconfigureService_0(ctx context.Context, marshaler runtime.Marshaler, client ModuleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ReconfigureServiceRequest
 	var metadata runtime.ServerMetadata
@@ -235,8 +167,8 @@ func local_request_ModuleService_ReconfigureService_0(ctx context.Context, marsh
 
 }
 
-func request_ModuleService_CloseModule_0(ctx context.Context, marshaler runtime.Marshaler, client ModuleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CloseModuleRequest
+func request_ModuleService_RemoveResource_0(ctx context.Context, marshaler runtime.Marshaler, client ModuleServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq RemoveResourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -247,13 +179,13 @@ func request_ModuleService_CloseModule_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.CloseModule(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.RemoveResource(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ModuleService_CloseModule_0(ctx context.Context, marshaler runtime.Marshaler, server ModuleServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CloseModuleRequest
+func local_request_ModuleService_RemoveResource_0(ctx context.Context, marshaler runtime.Marshaler, server ModuleServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq RemoveResourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -264,7 +196,7 @@ func local_request_ModuleService_CloseModule_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.CloseModule(ctx, &protoReq)
+	msg, err := server.RemoveResource(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -333,30 +265,6 @@ func RegisterModuleServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("POST", pattern_ModuleService_RemoveComponent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.module.v1.ModuleService/RemoveComponent", runtime.WithHTTPPathPattern("/viam.module.v1.ModuleService/RemoveComponent"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ModuleService_RemoveComponent_0(ctx, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ModuleService_RemoveComponent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	mux.Handle("POST", pattern_ModuleService_ReconfigureComponent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -405,30 +313,6 @@ func RegisterModuleServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("POST", pattern_ModuleService_RemoveService_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.module.v1.ModuleService/RemoveService", runtime.WithHTTPPathPattern("/viam.module.v1.ModuleService/RemoveService"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_ModuleService_RemoveService_0(ctx, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ModuleService_RemoveService_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	mux.Handle("POST", pattern_ModuleService_ReconfigureService_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -453,19 +337,19 @@ func RegisterModuleServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("POST", pattern_ModuleService_CloseModule_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModuleService_RemoveResource_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.module.v1.ModuleService/CloseModule", runtime.WithHTTPPathPattern("/viam.module.v1.ModuleService/CloseModule"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.module.v1.ModuleService/RemoveResource", runtime.WithHTTPPathPattern("/viam.module.v1.ModuleService/RemoveResource"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ModuleService_CloseModule_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ModuleService_RemoveResource_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -473,7 +357,7 @@ func RegisterModuleServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_ModuleService_CloseModule_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModuleService_RemoveResource_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -563,27 +447,6 @@ func RegisterModuleServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("POST", pattern_ModuleService_RemoveComponent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.module.v1.ModuleService/RemoveComponent", runtime.WithHTTPPathPattern("/viam.module.v1.ModuleService/RemoveComponent"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ModuleService_RemoveComponent_0(ctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ModuleService_RemoveComponent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	mux.Handle("POST", pattern_ModuleService_ReconfigureComponent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -626,27 +489,6 @@ func RegisterModuleServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("POST", pattern_ModuleService_RemoveService_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.module.v1.ModuleService/RemoveService", runtime.WithHTTPPathPattern("/viam.module.v1.ModuleService/RemoveService"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ModuleService_RemoveService_0(ctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ModuleService_RemoveService_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	mux.Handle("POST", pattern_ModuleService_ReconfigureService_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -668,24 +510,24 @@ func RegisterModuleServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("POST", pattern_ModuleService_CloseModule_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ModuleService_RemoveResource_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.module.v1.ModuleService/CloseModule", runtime.WithHTTPPathPattern("/viam.module.v1.ModuleService/CloseModule"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.module.v1.ModuleService/RemoveResource", runtime.WithHTTPPathPattern("/viam.module.v1.ModuleService/RemoveResource"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ModuleService_CloseModule_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ModuleService_RemoveResource_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ModuleService_CloseModule_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ModuleService_RemoveResource_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -716,17 +558,13 @@ func RegisterModuleServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 var (
 	pattern_ModuleService_AddComponent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.module.v1.ModuleService", "AddComponent"}, ""))
 
-	pattern_ModuleService_RemoveComponent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.module.v1.ModuleService", "RemoveComponent"}, ""))
-
 	pattern_ModuleService_ReconfigureComponent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.module.v1.ModuleService", "ReconfigureComponent"}, ""))
 
 	pattern_ModuleService_AddService_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.module.v1.ModuleService", "AddService"}, ""))
 
-	pattern_ModuleService_RemoveService_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.module.v1.ModuleService", "RemoveService"}, ""))
-
 	pattern_ModuleService_ReconfigureService_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.module.v1.ModuleService", "ReconfigureService"}, ""))
 
-	pattern_ModuleService_CloseModule_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.module.v1.ModuleService", "CloseModule"}, ""))
+	pattern_ModuleService_RemoveResource_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.module.v1.ModuleService", "RemoveResource"}, ""))
 
 	pattern_ModuleService_Ready_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.module.v1.ModuleService", "Ready"}, ""))
 )
@@ -734,17 +572,13 @@ var (
 var (
 	forward_ModuleService_AddComponent_0 = runtime.ForwardResponseMessage
 
-	forward_ModuleService_RemoveComponent_0 = runtime.ForwardResponseMessage
-
 	forward_ModuleService_ReconfigureComponent_0 = runtime.ForwardResponseMessage
 
 	forward_ModuleService_AddService_0 = runtime.ForwardResponseMessage
 
-	forward_ModuleService_RemoveService_0 = runtime.ForwardResponseMessage
-
 	forward_ModuleService_ReconfigureService_0 = runtime.ForwardResponseMessage
 
-	forward_ModuleService_CloseModule_0 = runtime.ForwardResponseMessage
+	forward_ModuleService_RemoveResource_0 = runtime.ForwardResponseMessage
 
 	forward_ModuleService_Ready_0 = runtime.ForwardResponseMessage
 )

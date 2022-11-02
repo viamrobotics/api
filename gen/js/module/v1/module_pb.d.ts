@@ -49,42 +49,6 @@ export namespace AddComponentResponse {
   }
 }
 
-export class RemoveComponentRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveComponentRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveComponentRequest): RemoveComponentRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveComponentRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveComponentRequest;
-  static deserializeBinaryFromReader(message: RemoveComponentRequest, reader: jspb.BinaryReader): RemoveComponentRequest;
-}
-
-export namespace RemoveComponentRequest {
-  export type AsObject = {
-    name: string,
-  }
-}
-
-export class RemoveComponentResponse extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveComponentResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveComponentResponse): RemoveComponentResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveComponentResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveComponentResponse;
-  static deserializeBinaryFromReader(message: RemoveComponentResponse, reader: jspb.BinaryReader): RemoveComponentResponse;
-}
-
-export namespace RemoveComponentResponse {
-  export type AsObject = {
-  }
-}
-
 export class ReconfigureComponentRequest extends jspb.Message {
   hasConfig(): boolean;
   clearConfig(): void;
@@ -167,42 +131,6 @@ export namespace AddServiceResponse {
   }
 }
 
-export class RemoveServiceRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveServiceRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveServiceRequest): RemoveServiceRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveServiceRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveServiceRequest;
-  static deserializeBinaryFromReader(message: RemoveServiceRequest, reader: jspb.BinaryReader): RemoveServiceRequest;
-}
-
-export namespace RemoveServiceRequest {
-  export type AsObject = {
-    name: string,
-  }
-}
-
-export class RemoveServiceResponse extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveServiceResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveServiceResponse): RemoveServiceResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveServiceResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveServiceResponse;
-  static deserializeBinaryFromReader(message: RemoveServiceResponse, reader: jspb.BinaryReader): RemoveServiceResponse;
-}
-
-export namespace RemoveServiceResponse {
-  export type AsObject = {
-  }
-}
-
 export class ReconfigureServiceRequest extends jspb.Message {
   hasConfig(): boolean;
   clearConfig(): void;
@@ -241,34 +169,38 @@ export namespace ReconfigureServiceResponse {
   }
 }
 
-export class CloseModuleRequest extends jspb.Message {
+export class RemoveResourceRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CloseModuleRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: CloseModuleRequest): CloseModuleRequest.AsObject;
+  toObject(includeInstance?: boolean): RemoveResourceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveResourceRequest): RemoveResourceRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CloseModuleRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CloseModuleRequest;
-  static deserializeBinaryFromReader(message: CloseModuleRequest, reader: jspb.BinaryReader): CloseModuleRequest;
+  static serializeBinaryToWriter(message: RemoveResourceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveResourceRequest;
+  static deserializeBinaryFromReader(message: RemoveResourceRequest, reader: jspb.BinaryReader): RemoveResourceRequest;
 }
 
-export namespace CloseModuleRequest {
+export namespace RemoveResourceRequest {
   export type AsObject = {
+    name: string,
   }
 }
 
-export class CloseModuleResponse extends jspb.Message {
+export class RemoveResourceResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CloseModuleResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: CloseModuleResponse): CloseModuleResponse.AsObject;
+  toObject(includeInstance?: boolean): RemoveResourceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveResourceResponse): RemoveResourceResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CloseModuleResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CloseModuleResponse;
-  static deserializeBinaryFromReader(message: CloseModuleResponse, reader: jspb.BinaryReader): CloseModuleResponse;
+  static serializeBinaryToWriter(message: RemoveResourceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveResourceResponse;
+  static deserializeBinaryFromReader(message: RemoveResourceResponse, reader: jspb.BinaryReader): RemoveResourceResponse;
 }
 
-export namespace CloseModuleResponse {
+export namespace RemoveResourceResponse {
   export type AsObject = {
   }
 }

@@ -12,23 +12,17 @@ service ModuleService {
   // AddComponent tells a module about a new component to handle
   rpc AddComponent(AddComponentRequest) returns (AddComponentResponse);
 
-  // RemoveComponent tells a module to close/stop a component and remove it
-  rpc RemoveComponent(RemoveComponentRequest) returns (RemoveComponentResponse);
-
   // ReconfigureComponent tells a module to reconfigure an existing resource
   rpc ReconfigureComponent(ReconfigureComponentRequest) returns (ReconfigureComponentResponse);
 
   // AddService tells a module about a new service to handle
   rpc AddService(AddServiceRequest) returns (AddServiceResponse);
 
-  // RemoveService tells a module to close/stop a service and remove it
-  rpc RemoveService(RemoveServiceRequest) returns (RemoveServiceResponse);
-
   // ReconfigureService tells a module to reconfigure an existing resource
   rpc ReconfigureService(ReconfigureServiceRequest) returns (ReconfigureServiceResponse);
 
-  // CloseModule tells a module to stop all activity and terminate
-  rpc CloseModule(CloseModuleRequest) returns (CloseModuleResponse);
+  // RemoveResource tells a module to close/stop a component/service and remove it
+  rpc RemoveResource(RemoveResourceRequest) returns (RemoveResourceResponse);
 
   // Ready determines if the server is started and ready to recieve resource configurations.
   rpc Ready(ReadyRequest) returns (ReadyResponse);
@@ -39,11 +33,6 @@ message AddComponentRequest {
   repeated string dependencies = 2;
 }
 message AddComponentResponse {}
-
-message RemoveComponentRequest {
-  string name = 1;
-}
-message RemoveComponentResponse {}
 
 message ReconfigureComponentRequest {
   viam.app.v1.ComponentConfig config = 1;
@@ -56,18 +45,15 @@ message AddServiceRequest {
 }
 message AddServiceResponse {}
 
-message RemoveServiceRequest {
-  string name = 1;
-}
-message RemoveServiceResponse {}
-
 message ReconfigureServiceRequest {
   viam.app.v1.ServiceConfig config = 1;
 }
 message ReconfigureServiceResponse {}
 
-message CloseModuleRequest {}
-message CloseModuleResponse {}
+message RemoveResourceRequest {
+  string name = 1;
+}
+message RemoveResourceResponse {}
 
 message HandlerDefinition {
   viam.robot.v1.ResourceRPCSubtype subtype = 1;
