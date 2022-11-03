@@ -1,0 +1,157 @@
+syntax = "proto3";
+
+package robotreservation.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/robotreservation/v1";
+option java_package = "com.robotreservation.v1";
+
+// RobotReservationService is used to create and manage robot reservations in a queue.
+// This service is in pre-beta and is not guaranteed to be backwards compatible.
+service RobotReservationService {
+  // Create reservation
+  //  - User is the user logged in
+  //  - viam employees can add any user to the list.
+  rpc CreateRobotReservation(CreateRobotReservationRequest) returns (CreateRobotReservationResponse);
+
+  // Delete reservation
+  //  - Can delete reservation if logged in user the same as reservation
+  //  - viam employees can remove anyones.
+  rpc DeleteRobotReservation(DeleteRobotReservationRequest) returns (DeleteRobotReservationResponse);
+
+  // List reservations
+  //  - viam employees can list all reservations.
+  rpc ListRobotReservations(ListRobotReservationsRequest) returns (ListRobotReservationsResponse);
+
+  // Get reservation
+  //  - Can get reservation if logged in user the same as reservation
+  //  - viam employees can get anyones.
+  rpc GetRobotReservation(GetRobotReservationRequest) returns (GetRobotReservationResponse);
+
+  // Create and register a robot processor.
+  //  - Returns a key/config to provision the raspberry pi with.
+  rpc CreateRobotProcessor(CreateRobotProcessorRequest) returns (CreateRobotProcessorResponse);
+
+  // Deletes a robot processor.
+  rpc DeleteRobotProcessor(DeleteRobotProcessorRequest) returns (DeleteRobotProcessorResponse);
+
+  // List robot processors.
+  rpc ListRobotProcessors(ListRobotProcessorsRequest) returns (ListRobotProcessorsResponse);
+
+  // Robot Board - attempt to process.
+  //   - If queue is empty, return nothing and tell robot to sleep for X.
+  //
+  //   - If queue has item in it:
+  //     - Find and update highest priority, oldest item.
+  //     - Update with state:APP_PROVISIONING and metadata.
+  //     - Start create/associating robot/part/org details. If failed state=FAILED
+  //     - If completed update with APP_PROVISIONED.
+  //     - Return details about the org. And tell robot to provision /etc/viam.json.
+  // Notes:
+  //  - Need to handle cases where state=APP_PROVISIONING but robot failed to update to WORKING. Next request
+  //  by the same robot process should return the same queue item.
+  //  - Need to handle cases where APP_PROVISIONING fails completely and stuck in state.
+  rpc TryProcess(TryProcessRequest) returns (TryProcessResponse);
+
+  // Update the state to WORKING or FAILED when the robot is ready.
+  rpc UpdateProcessState(UpdateProcessStateRequest) returns (UpdateProcessStateResponse);
+}
+
+message StateProgress {
+  string state = 1;
+  bool done = 2;
+}
+
+message RobotReservation {
+  string id = 1;
+  string user_email = 2;
+  string org_id = 3;
+  string location_id = 4;
+  string robot_id = 5;
+  string part_id = 6;
+  int32 priority = 7;
+  string reservation_state = 8;
+  repeated StateProgress progress = 9;
+  google.protobuf.Timestamp last_state_update = 10;
+  google.protobuf.Timestamp state_deadline = 11;
+  google.protobuf.Timestamp created_on = 12;
+  google.protobuf.Timestamp ended_on = 13;
+}
+
+message CreateRobotReservationRequest {
+  string org_id = 1;
+  optional string location_id = 2;
+  optional string robot_id = 3;
+  optional string part_id = 4;
+  optional int32 priority = 5;
+  optional string reservation_state = 6;
+}
+
+message CreateRobotReservationResponse {
+  string id = 1;
+}
+
+message DeleteRobotReservationRequest {
+  string id = 1;
+}
+
+message DeleteRobotReservationResponse {
+  string id = 1;
+}
+
+message ListRobotReservationsRequest {}
+
+message ListRobotReservationsResponse {
+  repeated RobotReservation reservations = 1;
+}
+
+message GetRobotReservationRequest {
+  string id = 1;
+}
+
+message GetRobotReservationResponse {
+  RobotReservation reservation = 1;
+}
+
+message RobotProcessorKeys {}
+
+message RobotProcessor {
+  string id = 1;
+}
+
+message CreateRobotProcessorRequest {}
+
+message CreateRobotProcessorResponse {
+  string id = 1;
+}
+
+message DeleteRobotProcessorRequest {
+  string id = 1;
+}
+
+message DeleteRobotProcessorResponse {
+  string id = 1;
+}
+
+message ListRobotProcessorsRequest {}
+
+message ListRobotProcessorsResponse {
+  repeated RobotProcessor processors = 1;
+}
+
+message TryProcessRequest {}
+
+message TryProcessResponse {
+  bool queue_empty = 1;
+}
+
+message ProcessState {
+  string id = 1;
+}
+
+message UpdateProcessStateRequest {
+  string id = 1;
+}
+
+message UpdateProcessStateResponse {}
