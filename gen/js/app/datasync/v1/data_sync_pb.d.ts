@@ -364,6 +364,9 @@ export class TabularCapture extends jspb.Message {
   getMimeType(): string;
   setMimeType(value: string): void;
 
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularCapture.AsObject;
   static toObject(includeInstance: boolean, msg: TabularCapture): TabularCapture.AsObject;
@@ -394,6 +397,7 @@ export namespace TabularCapture {
     fileSizeBytes: number,
     sessionId: string,
     mimeType: string,
+    id: string,
   }
 }
 
@@ -455,6 +459,9 @@ export class BinaryCapture extends jspb.Message {
   getFileExt(): string;
   setFileExt(value: string): void;
 
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryCapture.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryCapture): BinaryCapture.AsObject;
@@ -485,6 +492,7 @@ export namespace BinaryCapture {
     mimeType: string,
     fileName: string,
     fileExt: string,
+    id: string,
   }
 }
 
