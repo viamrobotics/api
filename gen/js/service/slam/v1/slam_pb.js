@@ -142,7 +142,8 @@ proto.viam.service.slam.v1.GetPositionRequest.prototype.toObject = function(opt_
  */
 proto.viam.service.slam.v1.GetPositionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -183,6 +184,11 @@ proto.viam.service.slam.v1.GetPositionRequest.deserializeBinaryFromReader = func
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -219,6 +225,14 @@ proto.viam.service.slam.v1.GetPositionRequest.serializeBinaryToWriter = function
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -237,6 +251,43 @@ proto.viam.service.slam.v1.GetPositionRequest.prototype.getName = function() {
  */
 proto.viam.service.slam.v1.GetPositionRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.slam.v1.GetPositionRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.slam.v1.GetPositionRequest} returns this
+*/
+proto.viam.service.slam.v1.GetPositionRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.slam.v1.GetPositionRequest} returns this
+ */
+proto.viam.service.slam.v1.GetPositionRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.slam.v1.GetPositionRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -477,7 +528,8 @@ proto.viam.service.slam.v1.GetMapRequest.toObject = function(includeInstance, ms
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     mimeType: jspb.Message.getFieldWithDefault(msg, 2, ""),
     cameraPosition: (f = msg.getCameraPosition()) && common_v1_common_pb.Pose.toObject(includeInstance, f),
-    includeRobotMarker: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+    includeRobotMarker: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -530,6 +582,11 @@ proto.viam.service.slam.v1.GetMapRequest.deserializeBinaryFromReader = function(
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIncludeRobotMarker(value);
+      break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
       break;
     default:
       reader.skipField();
@@ -587,6 +644,14 @@ proto.viam.service.slam.v1.GetMapRequest.serializeBinaryToWriter = function(mess
     writer.writeBool(
       4,
       f
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -680,6 +745,43 @@ proto.viam.service.slam.v1.GetMapRequest.prototype.getIncludeRobotMarker = funct
  */
 proto.viam.service.slam.v1.GetMapRequest.prototype.setIncludeRobotMarker = function(value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.slam.v1.GetMapRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.slam.v1.GetMapRequest} returns this
+*/
+proto.viam.service.slam.v1.GetMapRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.slam.v1.GetMapRequest} returns this
+ */
+proto.viam.service.slam.v1.GetMapRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.slam.v1.GetMapRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 

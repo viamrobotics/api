@@ -19,6 +19,8 @@ var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
+goog.object.extend(proto, google_protobuf_struct_pb);
 goog.exportSymbol('proto.viam.service.navigation.v1.AddWaypointRequest', null, global);
 goog.exportSymbol('proto.viam.service.navigation.v1.AddWaypointResponse', null, global);
 goog.exportSymbol('proto.viam.service.navigation.v1.GetLocationRequest', null, global);
@@ -338,7 +340,8 @@ proto.viam.service.navigation.v1.GetModeRequest.prototype.toObject = function(op
  */
 proto.viam.service.navigation.v1.GetModeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -379,6 +382,11 @@ proto.viam.service.navigation.v1.GetModeRequest.deserializeBinaryFromReader = fu
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -415,6 +423,14 @@ proto.viam.service.navigation.v1.GetModeRequest.serializeBinaryToWriter = functi
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -433,6 +449,43 @@ proto.viam.service.navigation.v1.GetModeRequest.prototype.getName = function() {
  */
 proto.viam.service.navigation.v1.GetModeRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.navigation.v1.GetModeRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.navigation.v1.GetModeRequest} returns this
+*/
+proto.viam.service.navigation.v1.GetModeRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.navigation.v1.GetModeRequest} returns this
+ */
+proto.viam.service.navigation.v1.GetModeRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.navigation.v1.GetModeRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -599,7 +652,8 @@ proto.viam.service.navigation.v1.SetModeRequest.prototype.toObject = function(op
 proto.viam.service.navigation.v1.SetModeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    mode: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    mode: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -644,6 +698,11 @@ proto.viam.service.navigation.v1.SetModeRequest.deserializeBinaryFromReader = fu
       var value = /** @type {!proto.viam.service.navigation.v1.Mode} */ (reader.readEnum());
       msg.setMode(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -687,6 +746,14 @@ proto.viam.service.navigation.v1.SetModeRequest.serializeBinaryToWriter = functi
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -723,6 +790,43 @@ proto.viam.service.navigation.v1.SetModeRequest.prototype.getMode = function() {
  */
 proto.viam.service.navigation.v1.SetModeRequest.prototype.setMode = function(value) {
   return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.navigation.v1.SetModeRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.navigation.v1.SetModeRequest} returns this
+*/
+proto.viam.service.navigation.v1.SetModeRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.navigation.v1.SetModeRequest} returns this
+ */
+proto.viam.service.navigation.v1.SetModeRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.navigation.v1.SetModeRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1040,7 +1144,8 @@ proto.viam.service.navigation.v1.GetLocationRequest.prototype.toObject = functio
  */
 proto.viam.service.navigation.v1.GetLocationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1081,6 +1186,11 @@ proto.viam.service.navigation.v1.GetLocationRequest.deserializeBinaryFromReader 
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1117,6 +1227,14 @@ proto.viam.service.navigation.v1.GetLocationRequest.serializeBinaryToWriter = fu
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -1135,6 +1253,43 @@ proto.viam.service.navigation.v1.GetLocationRequest.prototype.getName = function
  */
 proto.viam.service.navigation.v1.GetLocationRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.navigation.v1.GetLocationRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.navigation.v1.GetLocationRequest} returns this
+*/
+proto.viam.service.navigation.v1.GetLocationRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.navigation.v1.GetLocationRequest} returns this
+ */
+proto.viam.service.navigation.v1.GetLocationRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.navigation.v1.GetLocationRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1321,7 +1476,8 @@ proto.viam.service.navigation.v1.GetWaypointsRequest.prototype.toObject = functi
  */
 proto.viam.service.navigation.v1.GetWaypointsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1362,6 +1518,11 @@ proto.viam.service.navigation.v1.GetWaypointsRequest.deserializeBinaryFromReader
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1398,6 +1559,14 @@ proto.viam.service.navigation.v1.GetWaypointsRequest.serializeBinaryToWriter = f
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -1416,6 +1585,43 @@ proto.viam.service.navigation.v1.GetWaypointsRequest.prototype.getName = functio
  */
 proto.viam.service.navigation.v1.GetWaypointsRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.navigation.v1.GetWaypointsRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.navigation.v1.GetWaypointsRequest} returns this
+*/
+proto.viam.service.navigation.v1.GetWaypointsRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.navigation.v1.GetWaypointsRequest} returns this
+ */
+proto.viam.service.navigation.v1.GetWaypointsRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.navigation.v1.GetWaypointsRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1612,7 +1818,8 @@ proto.viam.service.navigation.v1.AddWaypointRequest.prototype.toObject = functio
 proto.viam.service.navigation.v1.AddWaypointRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    location: (f = msg.getLocation()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f)
+    location: (f = msg.getLocation()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1658,6 +1865,11 @@ proto.viam.service.navigation.v1.AddWaypointRequest.deserializeBinaryFromReader 
       reader.readMessage(value,common_v1_common_pb.GeoPoint.deserializeBinaryFromReader);
       msg.setLocation(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1700,6 +1912,14 @@ proto.viam.service.navigation.v1.AddWaypointRequest.serializeBinaryToWriter = fu
       2,
       f,
       common_v1_common_pb.GeoPoint.serializeBinaryToWriter
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -1757,6 +1977,43 @@ proto.viam.service.navigation.v1.AddWaypointRequest.prototype.clearLocation = fu
  */
 proto.viam.service.navigation.v1.AddWaypointRequest.prototype.hasLocation = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.navigation.v1.AddWaypointRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.navigation.v1.AddWaypointRequest} returns this
+*/
+proto.viam.service.navigation.v1.AddWaypointRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.navigation.v1.AddWaypointRequest} returns this
+ */
+proto.viam.service.navigation.v1.AddWaypointRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.navigation.v1.AddWaypointRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1894,7 +2151,8 @@ proto.viam.service.navigation.v1.RemoveWaypointRequest.prototype.toObject = func
 proto.viam.service.navigation.v1.RemoveWaypointRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 2, "")
+    id: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1939,6 +2197,11 @@ proto.viam.service.navigation.v1.RemoveWaypointRequest.deserializeBinaryFromRead
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1982,6 +2245,14 @@ proto.viam.service.navigation.v1.RemoveWaypointRequest.serializeBinaryToWriter =
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -2018,6 +2289,43 @@ proto.viam.service.navigation.v1.RemoveWaypointRequest.prototype.getId = functio
  */
 proto.viam.service.navigation.v1.RemoveWaypointRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.navigation.v1.RemoveWaypointRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.navigation.v1.RemoveWaypointRequest} returns this
+*/
+proto.viam.service.navigation.v1.RemoveWaypointRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.navigation.v1.RemoveWaypointRequest} returns this
+ */
+proto.viam.service.navigation.v1.RemoveWaypointRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.navigation.v1.RemoveWaypointRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 

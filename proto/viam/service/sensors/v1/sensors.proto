@@ -28,6 +28,8 @@ service SensorsService {
 
 message GetSensorsRequest {
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetSensorsResponse {
@@ -37,6 +39,8 @@ message GetSensorsResponse {
 message GetReadingsRequest {
   string name = 1;
   repeated common.v1.ResourceName sensor_names = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message Readings {

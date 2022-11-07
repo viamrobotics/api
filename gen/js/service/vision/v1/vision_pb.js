@@ -758,7 +758,8 @@ proto.viam.service.vision.v1.GetModelParameterSchemaRequest.prototype.toObject =
 proto.viam.service.vision.v1.GetModelParameterSchemaRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    modelType: jspb.Message.getFieldWithDefault(msg, 2, "")
+    modelType: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -803,6 +804,11 @@ proto.viam.service.vision.v1.GetModelParameterSchemaRequest.deserializeBinaryFro
       var value = /** @type {string} */ (reader.readString());
       msg.setModelType(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -846,6 +852,14 @@ proto.viam.service.vision.v1.GetModelParameterSchemaRequest.serializeBinaryToWri
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -882,6 +896,43 @@ proto.viam.service.vision.v1.GetModelParameterSchemaRequest.prototype.getModelTy
  */
 proto.viam.service.vision.v1.GetModelParameterSchemaRequest.prototype.setModelType = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.GetModelParameterSchemaRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.GetModelParameterSchemaRequest} returns this
+*/
+proto.viam.service.vision.v1.GetModelParameterSchemaRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.GetModelParameterSchemaRequest} returns this
+ */
+proto.viam.service.vision.v1.GetModelParameterSchemaRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.GetModelParameterSchemaRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1071,7 +1122,8 @@ proto.viam.service.vision.v1.GetDetectorNamesRequest.prototype.toObject = functi
  */
 proto.viam.service.vision.v1.GetDetectorNamesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1112,6 +1164,11 @@ proto.viam.service.vision.v1.GetDetectorNamesRequest.deserializeBinaryFromReader
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1148,6 +1205,14 @@ proto.viam.service.vision.v1.GetDetectorNamesRequest.serializeBinaryToWriter = f
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -1166,6 +1231,43 @@ proto.viam.service.vision.v1.GetDetectorNamesRequest.prototype.getName = functio
  */
 proto.viam.service.vision.v1.GetDetectorNamesRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.GetDetectorNamesRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.GetDetectorNamesRequest} returns this
+*/
+proto.viam.service.vision.v1.GetDetectorNamesRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.GetDetectorNamesRequest} returns this
+ */
+proto.viam.service.vision.v1.GetDetectorNamesRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.GetDetectorNamesRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1360,7 +1462,8 @@ proto.viam.service.vision.v1.AddDetectorRequest.toObject = function(includeInsta
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     detectorName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     detectorModelType: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    detectorParameters: (f = msg.getDetectorParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    detectorParameters: (f = msg.getDetectorParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1413,6 +1516,11 @@ proto.viam.service.vision.v1.AddDetectorRequest.deserializeBinaryFromReader = fu
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setDetectorParameters(value);
+      break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
       break;
     default:
       reader.skipField();
@@ -1468,6 +1576,14 @@ proto.viam.service.vision.v1.AddDetectorRequest.serializeBinaryToWriter = functi
   if (f != null) {
     writer.writeMessage(
       4,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
@@ -1563,6 +1679,43 @@ proto.viam.service.vision.v1.AddDetectorRequest.prototype.clearDetectorParameter
  */
 proto.viam.service.vision.v1.AddDetectorRequest.prototype.hasDetectorParameters = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.AddDetectorRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.AddDetectorRequest} returns this
+*/
+proto.viam.service.vision.v1.AddDetectorRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.AddDetectorRequest} returns this
+ */
+proto.viam.service.vision.v1.AddDetectorRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.AddDetectorRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1700,7 +1853,8 @@ proto.viam.service.vision.v1.RemoveDetectorRequest.prototype.toObject = function
 proto.viam.service.vision.v1.RemoveDetectorRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    detectorName: jspb.Message.getFieldWithDefault(msg, 2, "")
+    detectorName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1745,6 +1899,11 @@ proto.viam.service.vision.v1.RemoveDetectorRequest.deserializeBinaryFromReader =
       var value = /** @type {string} */ (reader.readString());
       msg.setDetectorName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1788,6 +1947,14 @@ proto.viam.service.vision.v1.RemoveDetectorRequest.serializeBinaryToWriter = fun
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -1824,6 +1991,43 @@ proto.viam.service.vision.v1.RemoveDetectorRequest.prototype.getDetectorName = f
  */
 proto.viam.service.vision.v1.RemoveDetectorRequest.prototype.setDetectorName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.RemoveDetectorRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.RemoveDetectorRequest} returns this
+*/
+proto.viam.service.vision.v1.RemoveDetectorRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.RemoveDetectorRequest} returns this
+ */
+proto.viam.service.vision.v1.RemoveDetectorRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.RemoveDetectorRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1965,7 +2169,8 @@ proto.viam.service.vision.v1.GetDetectionsRequest.toObject = function(includeIns
     width: jspb.Message.getFieldWithDefault(msg, 3, 0),
     height: jspb.Message.getFieldWithDefault(msg, 4, 0),
     mimeType: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    detectorName: jspb.Message.getFieldWithDefault(msg, 6, "")
+    detectorName: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2025,6 +2230,11 @@ proto.viam.service.vision.v1.GetDetectionsRequest.deserializeBinaryFromReader = 
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setDetectorName(value);
+      break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
       break;
     default:
       reader.skipField();
@@ -2095,6 +2305,14 @@ proto.viam.service.vision.v1.GetDetectionsRequest.serializeBinaryToWriter = func
     writer.writeString(
       6,
       f
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -2229,6 +2447,43 @@ proto.viam.service.vision.v1.GetDetectionsRequest.prototype.getDetectorName = fu
  */
 proto.viam.service.vision.v1.GetDetectionsRequest.prototype.setDetectorName = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.GetDetectionsRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.GetDetectionsRequest} returns this
+*/
+proto.viam.service.vision.v1.GetDetectionsRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.GetDetectionsRequest} returns this
+ */
+proto.viam.service.vision.v1.GetDetectionsRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.GetDetectionsRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -2426,7 +2681,8 @@ proto.viam.service.vision.v1.GetDetectionsFromCameraRequest.toObject = function(
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     cameraName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    detectorName: jspb.Message.getFieldWithDefault(msg, 3, "")
+    detectorName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2474,6 +2730,11 @@ proto.viam.service.vision.v1.GetDetectionsFromCameraRequest.deserializeBinaryFro
     case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setDetectorName(value);
+      break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
       break;
     default:
       reader.skipField();
@@ -2523,6 +2784,14 @@ proto.viam.service.vision.v1.GetDetectionsFromCameraRequest.serializeBinaryToWri
     writer.writeString(
       3,
       f
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -2579,6 +2848,43 @@ proto.viam.service.vision.v1.GetDetectionsFromCameraRequest.prototype.getDetecto
  */
 proto.viam.service.vision.v1.GetDetectionsFromCameraRequest.prototype.setDetectorName = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.GetDetectionsFromCameraRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.GetDetectionsFromCameraRequest} returns this
+*/
+proto.viam.service.vision.v1.GetDetectionsFromCameraRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.GetDetectionsFromCameraRequest} returns this
+ */
+proto.viam.service.vision.v1.GetDetectionsFromCameraRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.GetDetectionsFromCameraRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -3126,7 +3432,8 @@ proto.viam.service.vision.v1.GetClassifierNamesRequest.prototype.toObject = func
  */
 proto.viam.service.vision.v1.GetClassifierNamesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3167,6 +3474,11 @@ proto.viam.service.vision.v1.GetClassifierNamesRequest.deserializeBinaryFromRead
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3203,6 +3515,14 @@ proto.viam.service.vision.v1.GetClassifierNamesRequest.serializeBinaryToWriter =
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -3221,6 +3541,43 @@ proto.viam.service.vision.v1.GetClassifierNamesRequest.prototype.getName = funct
  */
 proto.viam.service.vision.v1.GetClassifierNamesRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.GetClassifierNamesRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.GetClassifierNamesRequest} returns this
+*/
+proto.viam.service.vision.v1.GetClassifierNamesRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.GetClassifierNamesRequest} returns this
+ */
+proto.viam.service.vision.v1.GetClassifierNamesRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.GetClassifierNamesRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -3415,7 +3772,8 @@ proto.viam.service.vision.v1.AddClassifierRequest.toObject = function(includeIns
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     classifierName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     classifierModelType: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    classifierParameters: (f = msg.getClassifierParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    classifierParameters: (f = msg.getClassifierParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3468,6 +3826,11 @@ proto.viam.service.vision.v1.AddClassifierRequest.deserializeBinaryFromReader = 
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setClassifierParameters(value);
+      break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
       break;
     default:
       reader.skipField();
@@ -3523,6 +3886,14 @@ proto.viam.service.vision.v1.AddClassifierRequest.serializeBinaryToWriter = func
   if (f != null) {
     writer.writeMessage(
       4,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
@@ -3618,6 +3989,43 @@ proto.viam.service.vision.v1.AddClassifierRequest.prototype.clearClassifierParam
  */
 proto.viam.service.vision.v1.AddClassifierRequest.prototype.hasClassifierParameters = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.AddClassifierRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.AddClassifierRequest} returns this
+*/
+proto.viam.service.vision.v1.AddClassifierRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.AddClassifierRequest} returns this
+ */
+proto.viam.service.vision.v1.AddClassifierRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.AddClassifierRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -3755,7 +4163,8 @@ proto.viam.service.vision.v1.RemoveClassifierRequest.prototype.toObject = functi
 proto.viam.service.vision.v1.RemoveClassifierRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    classifierName: jspb.Message.getFieldWithDefault(msg, 2, "")
+    classifierName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3800,6 +4209,11 @@ proto.viam.service.vision.v1.RemoveClassifierRequest.deserializeBinaryFromReader
       var value = /** @type {string} */ (reader.readString());
       msg.setClassifierName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3843,6 +4257,14 @@ proto.viam.service.vision.v1.RemoveClassifierRequest.serializeBinaryToWriter = f
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -3879,6 +4301,43 @@ proto.viam.service.vision.v1.RemoveClassifierRequest.prototype.getClassifierName
  */
 proto.viam.service.vision.v1.RemoveClassifierRequest.prototype.setClassifierName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.RemoveClassifierRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.RemoveClassifierRequest} returns this
+*/
+proto.viam.service.vision.v1.RemoveClassifierRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.RemoveClassifierRequest} returns this
+ */
+proto.viam.service.vision.v1.RemoveClassifierRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.RemoveClassifierRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -4021,7 +4480,8 @@ proto.viam.service.vision.v1.GetClassificationsRequest.toObject = function(inclu
     height: jspb.Message.getFieldWithDefault(msg, 4, 0),
     mimeType: jspb.Message.getFieldWithDefault(msg, 5, ""),
     classifierName: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    n: jspb.Message.getFieldWithDefault(msg, 7, 0)
+    n: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4085,6 +4545,11 @@ proto.viam.service.vision.v1.GetClassificationsRequest.deserializeBinaryFromRead
     case 7:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setN(value);
+      break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
       break;
     default:
       reader.skipField();
@@ -4162,6 +4627,14 @@ proto.viam.service.vision.v1.GetClassificationsRequest.serializeBinaryToWriter =
     writer.writeInt32(
       7,
       f
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -4314,6 +4787,43 @@ proto.viam.service.vision.v1.GetClassificationsRequest.prototype.getN = function
  */
 proto.viam.service.vision.v1.GetClassificationsRequest.prototype.setN = function(value) {
   return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.GetClassificationsRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.GetClassificationsRequest} returns this
+*/
+proto.viam.service.vision.v1.GetClassificationsRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.GetClassificationsRequest} returns this
+ */
+proto.viam.service.vision.v1.GetClassificationsRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.GetClassificationsRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -4512,7 +5022,8 @@ proto.viam.service.vision.v1.GetClassificationsFromCameraRequest.toObject = func
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     cameraName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     classifierName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    n: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    n: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4564,6 +5075,11 @@ proto.viam.service.vision.v1.GetClassificationsFromCameraRequest.deserializeBina
     case 4:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setN(value);
+      break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
       break;
     default:
       reader.skipField();
@@ -4620,6 +5136,14 @@ proto.viam.service.vision.v1.GetClassificationsFromCameraRequest.serializeBinary
     writer.writeInt32(
       4,
       f
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -4694,6 +5218,43 @@ proto.viam.service.vision.v1.GetClassificationsFromCameraRequest.prototype.getN 
  */
 proto.viam.service.vision.v1.GetClassificationsFromCameraRequest.prototype.setN = function(value) {
   return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.GetClassificationsFromCameraRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.GetClassificationsFromCameraRequest} returns this
+*/
+proto.viam.service.vision.v1.GetClassificationsFromCameraRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.GetClassificationsFromCameraRequest} returns this
+ */
+proto.viam.service.vision.v1.GetClassificationsFromCameraRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.GetClassificationsFromCameraRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -5049,7 +5610,8 @@ proto.viam.service.vision.v1.GetSegmenterNamesRequest.prototype.toObject = funct
  */
 proto.viam.service.vision.v1.GetSegmenterNamesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5090,6 +5652,11 @@ proto.viam.service.vision.v1.GetSegmenterNamesRequest.deserializeBinaryFromReade
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -5126,6 +5693,14 @@ proto.viam.service.vision.v1.GetSegmenterNamesRequest.serializeBinaryToWriter = 
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -5144,6 +5719,43 @@ proto.viam.service.vision.v1.GetSegmenterNamesRequest.prototype.getName = functi
  */
 proto.viam.service.vision.v1.GetSegmenterNamesRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.GetSegmenterNamesRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.GetSegmenterNamesRequest} returns this
+*/
+proto.viam.service.vision.v1.GetSegmenterNamesRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.GetSegmenterNamesRequest} returns this
+ */
+proto.viam.service.vision.v1.GetSegmenterNamesRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.GetSegmenterNamesRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -5338,7 +5950,8 @@ proto.viam.service.vision.v1.AddSegmenterRequest.toObject = function(includeInst
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     segmenterName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     segmenterModelType: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    segmenterParameters: (f = msg.getSegmenterParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    segmenterParameters: (f = msg.getSegmenterParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5391,6 +6004,11 @@ proto.viam.service.vision.v1.AddSegmenterRequest.deserializeBinaryFromReader = f
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setSegmenterParameters(value);
+      break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
       break;
     default:
       reader.skipField();
@@ -5446,6 +6064,14 @@ proto.viam.service.vision.v1.AddSegmenterRequest.serializeBinaryToWriter = funct
   if (f != null) {
     writer.writeMessage(
       4,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
@@ -5541,6 +6167,43 @@ proto.viam.service.vision.v1.AddSegmenterRequest.prototype.clearSegmenterParamet
  */
 proto.viam.service.vision.v1.AddSegmenterRequest.prototype.hasSegmenterParameters = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.AddSegmenterRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.AddSegmenterRequest} returns this
+*/
+proto.viam.service.vision.v1.AddSegmenterRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.AddSegmenterRequest} returns this
+ */
+proto.viam.service.vision.v1.AddSegmenterRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.AddSegmenterRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -5678,7 +6341,8 @@ proto.viam.service.vision.v1.RemoveSegmenterRequest.prototype.toObject = functio
 proto.viam.service.vision.v1.RemoveSegmenterRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    segmenterName: jspb.Message.getFieldWithDefault(msg, 2, "")
+    segmenterName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5723,6 +6387,11 @@ proto.viam.service.vision.v1.RemoveSegmenterRequest.deserializeBinaryFromReader 
       var value = /** @type {string} */ (reader.readString());
       msg.setSegmenterName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -5766,6 +6435,14 @@ proto.viam.service.vision.v1.RemoveSegmenterRequest.serializeBinaryToWriter = fu
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -5802,6 +6479,43 @@ proto.viam.service.vision.v1.RemoveSegmenterRequest.prototype.getSegmenterName =
  */
 proto.viam.service.vision.v1.RemoveSegmenterRequest.prototype.setSegmenterName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.RemoveSegmenterRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.RemoveSegmenterRequest} returns this
+*/
+proto.viam.service.vision.v1.RemoveSegmenterRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.RemoveSegmenterRequest} returns this
+ */
+proto.viam.service.vision.v1.RemoveSegmenterRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.RemoveSegmenterRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -5941,7 +6655,8 @@ proto.viam.service.vision.v1.GetObjectPointCloudsRequest.toObject = function(inc
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     cameraName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     segmenterName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    mimeType: jspb.Message.getFieldWithDefault(msg, 4, "")
+    mimeType: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5993,6 +6708,11 @@ proto.viam.service.vision.v1.GetObjectPointCloudsRequest.deserializeBinaryFromRe
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setMimeType(value);
+      break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
       break;
     default:
       reader.skipField();
@@ -6049,6 +6769,14 @@ proto.viam.service.vision.v1.GetObjectPointCloudsRequest.serializeBinaryToWriter
     writer.writeString(
       4,
       f
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -6123,6 +6851,43 @@ proto.viam.service.vision.v1.GetObjectPointCloudsRequest.prototype.getMimeType =
  */
 proto.viam.service.vision.v1.GetObjectPointCloudsRequest.prototype.setMimeType = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.vision.v1.GetObjectPointCloudsRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.vision.v1.GetObjectPointCloudsRequest} returns this
+*/
+proto.viam.service.vision.v1.GetObjectPointCloudsRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.vision.v1.GetObjectPointCloudsRequest} returns this
+ */
+proto.viam.service.vision.v1.GetObjectPointCloudsRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.GetObjectPointCloudsRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
