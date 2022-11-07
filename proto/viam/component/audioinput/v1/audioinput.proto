@@ -4,7 +4,6 @@ package viam.component.audioinput.v1;
 
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
-import "google/protobuf/struct.proto";
 import "google/protobuf/duration.proto";
 
 option go_package = "go.viam.com/api/component/audioinput/v1";
@@ -42,8 +41,6 @@ message RecordRequest {
   // Name of an audio input
   string name = 1;
   google.protobuf.Duration duration = 2;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
 }
 
 message AudioChunkInfo {
@@ -67,8 +64,6 @@ message ChunksRequest {
   string name = 1;
   // Requested sample encoding format of the response
   SampleFormat sample_format = 2;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
 }
 
 message ChunksResponse {
@@ -81,8 +76,6 @@ message ChunksResponse {
 message PropertiesRequest {
   // Name of an audio input
   string name = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
 }
 
 message PropertiesResponse {
