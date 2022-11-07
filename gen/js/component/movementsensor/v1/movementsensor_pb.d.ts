@@ -4,10 +4,16 @@
 import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
 export class GetLinearVelocityRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetLinearVelocityRequest.AsObject;
@@ -22,6 +28,7 @@ export class GetLinearVelocityRequest extends jspb.Message {
 export namespace GetLinearVelocityRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -51,6 +58,11 @@ export class GetAngularVelocityRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAngularVelocityRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetAngularVelocityRequest): GetAngularVelocityRequest.AsObject;
@@ -64,6 +76,7 @@ export class GetAngularVelocityRequest extends jspb.Message {
 export namespace GetAngularVelocityRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -93,6 +106,11 @@ export class GetCompassHeadingRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetCompassHeadingRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetCompassHeadingRequest): GetCompassHeadingRequest.AsObject;
@@ -106,6 +124,7 @@ export class GetCompassHeadingRequest extends jspb.Message {
 export namespace GetCompassHeadingRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -133,6 +152,11 @@ export class GetOrientationRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetOrientationRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetOrientationRequest): GetOrientationRequest.AsObject;
@@ -146,6 +170,7 @@ export class GetOrientationRequest extends jspb.Message {
 export namespace GetOrientationRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -175,6 +200,11 @@ export class GetPositionRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPositionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPositionRequest): GetPositionRequest.AsObject;
@@ -188,6 +218,7 @@ export class GetPositionRequest extends jspb.Message {
 export namespace GetPositionRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -221,6 +252,11 @@ export class GetPropertiesRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPropertiesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPropertiesRequest): GetPropertiesRequest.AsObject;
@@ -234,6 +270,7 @@ export class GetPropertiesRequest extends jspb.Message {
 export namespace GetPropertiesRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -277,6 +314,11 @@ export class GetAccuracyRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAccuracyRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetAccuracyRequest): GetAccuracyRequest.AsObject;
@@ -290,6 +332,7 @@ export class GetAccuracyRequest extends jspb.Message {
 export namespace GetAccuracyRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
