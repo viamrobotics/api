@@ -19,7 +19,7 @@ service MotionService {
 
   rpc MoveSingleComponent(MoveSingleComponentRequest) returns (MoveSingleComponentResponse) {
     option (google.api.http) = {
-      post: "/viam/api/v1/service/motion/{name}/movesinglecomponent"
+      post: "/viam/api/v1/service/motion/{name}/move_single_component"
     };
   }
 
