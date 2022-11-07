@@ -4,6 +4,7 @@
 import * as jspb from "google-protobuf";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_api_httpbody_pb from "../../../google/api/httpbody_pb";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
 export class GetImageRequest extends jspb.Message {
   getName(): string;
@@ -11,6 +12,11 @@ export class GetImageRequest extends jspb.Message {
 
   getMimeType(): string;
   setMimeType(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetImageRequest.AsObject;
@@ -26,6 +32,7 @@ export namespace GetImageRequest {
   export type AsObject = {
     name: string,
     mimeType: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -70,6 +77,11 @@ export class RenderFrameRequest extends jspb.Message {
   getMimeType(): string;
   setMimeType(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RenderFrameRequest.AsObject;
   static toObject(includeInstance: boolean, msg: RenderFrameRequest): RenderFrameRequest.AsObject;
@@ -84,6 +96,7 @@ export namespace RenderFrameRequest {
   export type AsObject = {
     name: string,
     mimeType: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -93,6 +106,11 @@ export class GetPointCloudRequest extends jspb.Message {
 
   getMimeType(): string;
   setMimeType(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPointCloudRequest.AsObject;
@@ -108,6 +126,7 @@ export namespace GetPointCloudRequest {
   export type AsObject = {
     name: string,
     mimeType: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -141,6 +160,11 @@ export class GetPropertiesRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPropertiesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPropertiesRequest): GetPropertiesRequest.AsObject;
@@ -154,6 +178,7 @@ export class GetPropertiesRequest extends jspb.Message {
 export namespace GetPropertiesRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
