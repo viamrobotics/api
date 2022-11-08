@@ -21,6 +21,7 @@ type ModelServiceClient interface {
 	Upload(ctx context.Context, opts ...grpc.CallOption) (ModelService_UploadClient, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	Deploy(ctx context.Context, in *DeployRequest, opts ...grpc.CallOption) (*DeployResponse, error)
+	Info(ctx context.Context, in *InfoRequest, opts ...grpc.CallOption) (*InfoResponse, error)
 }
 
 type modelServiceClient struct {
@@ -83,6 +84,15 @@ func (c *modelServiceClient) Deploy(ctx context.Context, in *DeployRequest, opts
 	return out, nil
 }
 
+func (c *modelServiceClient) Info(ctx context.Context, in *InfoRequest, opts ...grpc.CallOption) (*InfoResponse, error) {
+	out := new(InfoResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.model.v1.ModelService/Info", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ModelServiceServer is the server API for ModelService service.
 // All implementations must embed UnimplementedModelServiceServer
 // for forward compatibility
@@ -90,6 +100,7 @@ type ModelServiceServer interface {
 	Upload(ModelService_UploadServer) error
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	Deploy(context.Context, *DeployRequest) (*DeployResponse, error)
+	Info(context.Context, *InfoRequest) (*InfoResponse, error)
 	mustEmbedUnimplementedModelServiceServer()
 }
 
@@ -105,6 +116,9 @@ func (UnimplementedModelServiceServer) Delete(context.Context, *DeleteRequest) (
 }
 func (UnimplementedModelServiceServer) Deploy(context.Context, *DeployRequest) (*DeployResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Deploy not implemented")
+}
+func (UnimplementedModelServiceServer) Info(context.Context, *InfoRequest) (*InfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Info not implemented")
 }
 func (UnimplementedModelServiceServer) mustEmbedUnimplementedModelServiceServer() {}
 
@@ -181,6 +195,24 @@ func _ModelService_Deploy_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ModelService_Info_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelServiceServer).Info(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.model.v1.ModelService/Info",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelServiceServer).Info(ctx, req.(*InfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ModelService_ServiceDesc is the grpc.ServiceDesc for ModelService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -195,6 +227,10 @@ var ModelService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Deploy",
 			Handler:    _ModelService_Deploy_Handler,
+		},
+		{
+			MethodName: "Info",
+			Handler:    _ModelService_Info_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
