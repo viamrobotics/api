@@ -27,6 +27,18 @@ service DataService {
 
   // DeleteBinaryDataByIDs deletes binary data based on given IDs.
   rpc DeleteBinaryDataByIDs(DeleteBinaryDataByIDsRequest) returns (DeleteBinaryDataByIDsResponse);
+
+  // AddAnnotationsToBinaryDataByFileID adds annotations to binary data based on given IDs.
+  rpc AddAnnotationsToBinaryDataByFileIDs(AddAnnotationsToBinaryDataByFileIDsRequest) returns (AddAnnotationsToBinaryDataByFileIDsResponse);
+
+  // AddAnnotationsToBinaryDataByFileID adds annotations to binary data based on given filters.
+  rpc AddAnnotationsToBinaryDataByFilter(AddAnnotationsToBinaryDataByFilterRequest) returns (AddAnnotationsToBinaryDataByFilterResponse);
+
+  // RemoveAnnotationsToBinaryDataByFileID removes annotations from binary data based on given IDs.
+  rpc RemoveAnnotationsFromBinaryDataByFileIDs(RemoveAnnotationsFromBinaryDataByFileIDsRequest) returns (RemoveAnnotationsFromBinaryDataByFileIDsResponse);
+
+  // RemoveAnnotationsToBinaryDataByFilter removes annotations from binary data based on given filters.
+  rpc RemoveAnnotationsFromBinaryDataByFilter(RemoveAnnotationsFromBinaryDataByFilterRequest) returns (RemoveAnnotationsFromBinaryDataByFilterResponse);
 }
 
 message DataRequest {
@@ -161,5 +173,56 @@ message DeleteBinaryDataByIDsRequest {
 
 // DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided
 message DeleteBinaryDataByIDsResponse {
+  int64 deleted_count = 1;
+}
+
+// Annotation specifies the ways in which we can associate annotations with data, e.g. with a text tag or image bounding box
+message Annotation {
+  string tag = 1;
+}
+
+// AddAnnotationsToBinaryDataByFileIDsRequest requests adding annotations to the files when file IDs are provided
+message AddAnnotationsToBinaryDataByFileIDsRequest {
+  repeated string file_ids = 1;
+  repeated Annotation annotations = 2;
+}
+
+// AddAnnotationsToBinaryDataByFileIDsResponse return IDs of added annotations in order to pass it to RemoveAnnotations
+message AddAnnotationsToBinaryDataByFileIDsResponse {
+  repeated string annotation_ids = 1;
+}
+
+// AddAnnotationsToBinaryDataByFilterRequest requests adding annotations to the files when a filter is provided
+message AddAnnotationsToBinaryDataByFilterRequest {
+  Filter filter = 1;
+  repeated Annotation annotations = 2;
+}
+
+// AddAnnotationsToBinaryDataByFilterResponse return IDs of added annotations in order to pass it to RemoveAnnotations
+message AddAnnotationsToBinaryDataByFilterResponse {
+  repeated string annotation_ids = 1;
+}
+
+// RemoveAnnotationsFromBinaryDataByFilterRequest requests removing the annotations from the file when file IDs are provided
+message RemoveAnnotationsFromBinaryDataByFileIDsRequest {
+  repeated string file_ids = 1;
+  // If annotation_ids is empty, remove all annotations for the specified files.
+  repeated string annotation_ids = 2;
+}
+
+// RemoveAnnotationsFromBinaryDataByFilterResponse returns the number of binary files whose annotations were removed when file IDs are provided
+message RemoveAnnotationsFromBinaryDataByFileIDsResponse {
+  int64 deleted_count = 1;
+}
+
+// RemoveAnnotationsFromBinaryDataByFilterRequest requests removing the annotations from the file when a filter is provided
+message RemoveAnnotationsFromBinaryDataByFilterRequest {
+  Filter filter = 1;
+  // If annotation_ids is empty, remove all annotations for the specified files.
+  repeated string annotation_ids = 2;
+}
+
+// RemoveAnnotationsFromBinaryDataByFilterResponse returns the number of binary files whose annotations were removed when a filter is provided
+message RemoveAnnotationsFromBinaryDataByFilterResponse {
   int64 deleted_count = 1;
 }
