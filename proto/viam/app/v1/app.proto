@@ -9,6 +9,8 @@ import "tagger/v1/tagger.proto";
 option go_package = "go.viam.com/api/app/v1";
 
 service AppService {
+  rpc CreateLocation(CreateLocationRequest) returns (CreateLocationResponse);
+
   rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
 
   rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
@@ -122,6 +124,15 @@ message Location {
   string id = 1;
   string name = 2;
   google.protobuf.Timestamp created_on = 3;
+}
+
+message CreateLocationRequest {
+  string organization_id = 1;
+  string name = 2;
+}
+
+message CreateLocationResponse {
+  Location location = 1;
 }
 
 message ListLocationsRequest {
