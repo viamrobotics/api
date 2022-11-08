@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
+import * as tagger_v1_tagger_pb from "../../../tagger/v1/tagger_pb";
 
 export class FileData extends jspb.Message {
   getData(): Uint8Array | string;
@@ -26,6 +27,30 @@ export namespace FileData {
   }
 }
 
+export class File extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getSizeBytes(): number;
+  setSizeBytes(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): File.AsObject;
+  static toObject(includeInstance: boolean, msg: File): File.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: File, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): File;
+  static deserializeBinaryFromReader(message: File, reader: jspb.BinaryReader): File;
+}
+
+export namespace File {
+  export type AsObject = {
+    name: string,
+    sizeBytes: number,
+  }
+}
+
 export class UploadMetadata extends jspb.Message {
   getOrgId(): string;
   setOrgId(value: string): void;
@@ -35,6 +60,11 @@ export class UploadMetadata extends jspb.Message {
 
   getAssociatedDataset(): string;
   setAssociatedDataset(value: string): void;
+
+  clearFilesList(): void;
+  getFilesList(): Array<File>;
+  setFilesList(value: Array<File>): void;
+  addFiles(value?: File, index?: number): File;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UploadMetadata.AsObject;
@@ -51,6 +81,7 @@ export namespace UploadMetadata {
     orgId: string,
     modelName: string,
     associatedDataset: string,
+    filesList: Array<File.AsObject>,
   }
 }
 
@@ -89,35 +120,12 @@ export namespace UploadRequest {
   }
 }
 
-export class DeleteMetadata extends jspb.Message {
+export class DeleteRequest extends jspb.Message {
   getOrgId(): string;
   setOrgId(value: string): void;
 
   getModelName(): string;
   setModelName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteMetadata.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteMetadata): DeleteMetadata.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeleteMetadata, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteMetadata;
-  static deserializeBinaryFromReader(message: DeleteMetadata, reader: jspb.BinaryReader): DeleteMetadata;
-}
-
-export namespace DeleteMetadata {
-  export type AsObject = {
-    orgId: string,
-    modelName: string,
-  }
-}
-
-export class DeleteRequest extends jspb.Message {
-  hasMetadata(): boolean;
-  clearMetadata(): void;
-  getMetadata(): DeleteMetadata | undefined;
-  setMetadata(value?: DeleteMetadata): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteRequest.AsObject;
@@ -131,35 +139,17 @@ export class DeleteRequest extends jspb.Message {
 
 export namespace DeleteRequest {
   export type AsObject = {
-    metadata?: DeleteMetadata.AsObject,
-  }
-}
-
-export class DeployMetadata extends jspb.Message {
-  getModelName(): string;
-  setModelName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeployMetadata.AsObject;
-  static toObject(includeInstance: boolean, msg: DeployMetadata): DeployMetadata.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeployMetadata, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeployMetadata;
-  static deserializeBinaryFromReader(message: DeployMetadata, reader: jspb.BinaryReader): DeployMetadata;
-}
-
-export namespace DeployMetadata {
-  export type AsObject = {
+    orgId: string,
     modelName: string,
   }
 }
 
 export class DeployRequest extends jspb.Message {
-  hasMetadata(): boolean;
-  clearMetadata(): void;
-  getMetadata(): DeployMetadata | undefined;
-  setMetadata(value?: DeployMetadata): void;
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getModelName(): string;
+  setModelName(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeployRequest.AsObject;
@@ -173,7 +163,86 @@ export class DeployRequest extends jspb.Message {
 
 export namespace DeployRequest {
   export type AsObject = {
-    metadata?: DeployMetadata.AsObject,
+    orgId: string,
+    modelName: string,
+  }
+}
+
+export class Model extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getSizeBytes(): number;
+  setSizeBytes(value: number): void;
+
+  clearFilesList(): void;
+  getFilesList(): Array<File>;
+  setFilesList(value: Array<File>): void;
+  addFiles(value?: File, index?: number): File;
+
+  hasTimeCreated(): boolean;
+  clearTimeCreated(): void;
+  getTimeCreated(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeCreated(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Model.AsObject;
+  static toObject(includeInstance: boolean, msg: Model): Model.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Model, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Model;
+  static deserializeBinaryFromReader(message: Model, reader: jspb.BinaryReader): Model;
+}
+
+export namespace Model {
+  export type AsObject = {
+    name: string,
+    sizeBytes: number,
+    filesList: Array<File.AsObject>,
+    timeCreated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class InfoRequest extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InfoRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: InfoRequest): InfoRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: InfoRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InfoRequest;
+  static deserializeBinaryFromReader(message: InfoRequest, reader: jspb.BinaryReader): InfoRequest;
+}
+
+export namespace InfoRequest {
+  export type AsObject = {
+    orgId: string,
+  }
+}
+
+export class InfoResponse extends jspb.Message {
+  clearModelList(): void;
+  getModelList(): Array<Model>;
+  setModelList(value: Array<Model>): void;
+  addModel(value?: Model, index?: number): Model;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InfoResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: InfoResponse): InfoResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: InfoResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InfoResponse;
+  static deserializeBinaryFromReader(message: InfoResponse, reader: jspb.BinaryReader): InfoResponse;
+}
+
+export namespace InfoResponse {
+  export type AsObject = {
+    modelList: Array<Model.AsObject>,
   }
 }
 
@@ -259,6 +328,14 @@ export class SyncedModel extends jspb.Message {
   getAssociatedDataset(): string;
   setAssociatedDataset(value: string): void;
 
+  clearFilesList(): void;
+  getFilesList(): Array<File>;
+  setFilesList(value: Array<File>): void;
+  addFiles(value?: File, index?: number): File;
+
+  getSizeBytes(): number;
+  setSizeBytes(value: number): void;
+
   getBlobPath(): string;
   setBlobPath(value: string): void;
 
@@ -282,6 +359,8 @@ export namespace SyncedModel {
     orgId: string,
     modelName: string,
     associatedDataset: string,
+    filesList: Array<File.AsObject>,
+    sizeBytes: number,
     blobPath: string,
     syncTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
