@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.component.gripper.v1;
 
 import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/component/gripper/v1";
 option java_package = "com.viam.component.gripper.v1";
@@ -33,21 +34,25 @@ service GripperService {
 
 message OpenRequest {
   string name = 1;
+  google.protobuf.Struct extra = 99;
 }
 
 message OpenResponse {}
 
 message GrabRequest {
   string name = 1;
+  google.protobuf.Struct extra = 99;
 }
 
 message GrabResponse {
   bool success = 1;
+  google.protobuf.Struct extra = 99;
 }
 
 message StopRequest {
   // Name of a gripper
   string name = 1;
+  google.protobuf.Struct extra = 99;
 }
 
 message StopResponse {}
