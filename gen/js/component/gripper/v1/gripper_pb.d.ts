@@ -3,10 +3,16 @@
 
 import * as jspb from "google-protobuf";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
 export class OpenRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OpenRequest.AsObject;
@@ -21,6 +27,7 @@ export class OpenRequest extends jspb.Message {
 export namespace OpenRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -44,6 +51,11 @@ export class GrabRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GrabRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GrabRequest): GrabRequest.AsObject;
@@ -57,12 +69,18 @@ export class GrabRequest extends jspb.Message {
 export namespace GrabRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
 export class GrabResponse extends jspb.Message {
   getSuccess(): boolean;
   setSuccess(value: boolean): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GrabResponse.AsObject;
@@ -77,12 +95,18 @@ export class GrabResponse extends jspb.Message {
 export namespace GrabResponse {
   export type AsObject = {
     success: boolean,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
 export class StopRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StopRequest.AsObject;
@@ -97,6 +121,7 @@ export class StopRequest extends jspb.Message {
 export namespace StopRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
