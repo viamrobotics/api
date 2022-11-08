@@ -12,11 +12,14 @@ export class DataRequest extends jspb.Message {
   getFilter(): Filter | undefined;
   setFilter(value?: Filter): void;
 
-  getSkip(): number;
-  setSkip(value: number): void;
-
   getLimit(): number;
   setLimit(value: number): void;
+
+  getLast(): string;
+  setLast(value: string): void;
+
+  getSortOrder(): OrderMap[keyof OrderMap];
+  setSortOrder(value: OrderMap[keyof OrderMap]): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataRequest.AsObject;
@@ -31,8 +34,9 @@ export class DataRequest extends jspb.Message {
 export namespace DataRequest {
   export type AsObject = {
     filter?: Filter.AsObject,
-    skip: number,
     limit: number,
+    last: string,
+    sortOrder: OrderMap[keyof OrderMap],
   }
 }
 
@@ -249,6 +253,9 @@ export class TabularDataByFilterResponse extends jspb.Message {
   getCount(): number;
   setCount(value: number): void;
 
+  getLast(): string;
+  setLast(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataByFilterResponse.AsObject;
   static toObject(includeInstance: boolean, msg: TabularDataByFilterResponse): TabularDataByFilterResponse.AsObject;
@@ -264,6 +271,7 @@ export namespace TabularDataByFilterResponse {
     metadataList: Array<CaptureMetadata.AsObject>,
     dataList: Array<TabularData.AsObject>,
     count: number,
+    last: string,
   }
 }
 
@@ -372,6 +380,9 @@ export class BinaryDataByFilterResponse extends jspb.Message {
   getCount(): number;
   setCount(value: number): void;
 
+  getLast(): string;
+  setLast(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataByFilterResponse.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryDataByFilterResponse): BinaryDataByFilterResponse.AsObject;
@@ -386,6 +397,7 @@ export namespace BinaryDataByFilterResponse {
   export type AsObject = {
     dataList: Array<BinaryData.AsObject>,
     count: number,
+    last: string,
   }
 }
 
@@ -424,6 +436,9 @@ export class BinaryDataByIDsResponse extends jspb.Message {
   getCount(): number;
   setCount(value: number): void;
 
+  getLast(): string;
+  setLast(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataByIDsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryDataByIDsResponse): BinaryDataByIDsResponse.AsObject;
@@ -438,6 +453,7 @@ export namespace BinaryDataByIDsResponse {
   export type AsObject = {
     dataList: Array<BinaryData.AsObject>,
     count: number,
+    last: string,
   }
 }
 
@@ -832,4 +848,12 @@ export namespace RemoveAnnotationsFromBinaryDataByFilterResponse {
     deletedCount: number,
   }
 }
+
+export interface OrderMap {
+  ORDER_UNSPECIFIED: 0;
+  ORDER_DESCENDING: 1;
+  ORDER_ASCENDING: 2;
+}
+
+export const Order: OrderMap;
 

@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.service.datamanager.v1;
 
 import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/service/datamanager/v1";
 option java_package = "com.viam.service.datamanager.v1";
@@ -19,6 +20,8 @@ service DataManagerService {
 
 message SyncRequest {
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message SyncResponse {}

@@ -10,6 +10,11 @@ export class GetSensorsRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetSensorsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetSensorsRequest): GetSensorsRequest.AsObject;
@@ -23,6 +28,7 @@ export class GetSensorsRequest extends jspb.Message {
 export namespace GetSensorsRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -57,6 +63,11 @@ export class GetReadingsRequest extends jspb.Message {
   setSensorNamesList(value: Array<common_v1_common_pb.ResourceName>): void;
   addSensorNames(value?: common_v1_common_pb.ResourceName, index?: number): common_v1_common_pb.ResourceName;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetReadingsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetReadingsRequest): GetReadingsRequest.AsObject;
@@ -71,6 +82,7 @@ export namespace GetReadingsRequest {
   export type AsObject = {
     name: string,
     sensorNamesList: Array<common_v1_common_pb.ResourceName.AsObject>,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 

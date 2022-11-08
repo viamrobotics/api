@@ -41,10 +41,17 @@ service DataService {
   rpc RemoveAnnotationsFromBinaryDataByFilter(RemoveAnnotationsFromBinaryDataByFilterRequest) returns (RemoveAnnotationsFromBinaryDataByFilterResponse);
 }
 
+enum Order {
+  ORDER_UNSPECIFIED = 0;
+  ORDER_DESCENDING = 1;
+  ORDER_ASCENDING = 2;
+}
+
 message DataRequest {
   Filter filter = 1;
-  int64 skip = 2;
-  int64 limit = 3;
+  uint64 limit = 2;
+  string last = 3;
+  Order sort_order = 4;
 }
 
 message Filter {
@@ -97,6 +104,7 @@ message TabularDataByFilterResponse {
   repeated CaptureMetadata metadata = 1;
   repeated TabularData data = 2;
   int64 count = 3;
+  string last = 4;
 }
 
 message TabularData {
@@ -121,7 +129,8 @@ message BinaryDataByFilterRequest {
 // BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided
 message BinaryDataByFilterResponse {
   repeated BinaryData data = 1;
-  int64 count = 2;
+  uint64 count = 2;
+  string last = 3;
 }
 
 // BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by file ids
@@ -133,7 +142,8 @@ message BinaryDataByIDsRequest {
 // BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided
 message BinaryDataByIDsResponse {
   repeated BinaryData data = 1;
-  int64 count = 2;
+  uint64 count = 2;
+  string last = 3;
 }
 
 message BinaryMetadata {
@@ -153,7 +163,7 @@ message DeleteTabularDataByFilterRequest {
 
 // DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided
 message DeleteTabularDataByFilterResponse {
-  int64 deleted_count = 1;
+  uint64 deleted_count = 1;
 }
 
 // DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
@@ -163,7 +173,7 @@ message DeleteBinaryDataByFilterRequest {
 
 // DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided
 message DeleteBinaryDataByFilterResponse {
-  int64 deleted_count = 1;
+  uint64 deleted_count = 1;
 }
 
 // DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when file ids are provided
@@ -173,7 +183,7 @@ message DeleteBinaryDataByIDsRequest {
 
 // DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided
 message DeleteBinaryDataByIDsResponse {
-  int64 deleted_count = 1;
+  uint64 deleted_count = 1;
 }
 
 // Annotation specifies the ways in which we can associate annotations with data, e.g. with a text tag or image bounding box
@@ -212,7 +222,7 @@ message RemoveAnnotationsFromBinaryDataByFileIDsRequest {
 
 // RemoveAnnotationsFromBinaryDataByFilterResponse returns the number of binary files whose annotations were removed when file IDs are provided
 message RemoveAnnotationsFromBinaryDataByFileIDsResponse {
-  int64 deleted_count = 1;
+  uint64 deleted_count = 1;
 }
 
 // RemoveAnnotationsFromBinaryDataByFilterRequest requests removing the annotations from the file when a filter is provided
@@ -224,5 +234,5 @@ message RemoveAnnotationsFromBinaryDataByFilterRequest {
 
 // RemoveAnnotationsFromBinaryDataByFilterResponse returns the number of binary files whose annotations were removed when a filter is provided
 message RemoveAnnotationsFromBinaryDataByFilterResponse {
-  int64 deleted_count = 1;
+  uint64 deleted_count = 1;
 }

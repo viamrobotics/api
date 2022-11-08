@@ -31,6 +31,8 @@ service SLAMService {
 message GetPositionRequest {
   // Name of slam service
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetPositionResponse {
@@ -51,6 +53,8 @@ message GetMapRequest {
   // Optional parameter for image/jpeg mime_type, defaults to false.
   // Tells us whether to include the robot position on the 2D image.
   bool include_robot_marker = 4;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetMapResponse {

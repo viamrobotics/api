@@ -129,6 +129,8 @@ message GetModelParameterSchemaRequest {
   string name = 1;
   // name of the type of vision model
   string model_type = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetModelParameterSchemaResponse {
@@ -138,6 +140,8 @@ message GetModelParameterSchemaResponse {
 
 message GetDetectorNamesRequest {
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetDetectorNamesResponse {
@@ -150,6 +154,8 @@ message AddDetectorRequest {
   string detector_name = 2;
   string detector_model_type = 3;
   google.protobuf.Struct detector_parameters = 4;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message AddDetectorResponse {}
@@ -159,6 +165,8 @@ message RemoveDetectorRequest {
   string name = 1;
   // name of detector in registry
   string detector_name = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message RemoveDetectorResponse {}
@@ -176,6 +184,8 @@ message GetDetectionsRequest {
   string mime_type = 5;
   // name of the registered detector to use
   string detector_name = 6;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetDetectionsResponse {
@@ -190,6 +200,8 @@ message GetDetectionsFromCameraRequest {
   string camera_name = 2;
   // name of the registered detector to use
   string detector_name = 3;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetDetectionsFromCameraResponse {
@@ -212,6 +224,8 @@ message Detection {
 message GetClassifierNamesRequest {
   // name of the vision service
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetClassifierNamesResponse {
@@ -227,6 +241,8 @@ message AddClassifierRequest {
   string classifier_model_type = 3;
   // additional parameters
   google.protobuf.Struct classifier_parameters = 4;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message AddClassifierResponse {}
@@ -236,6 +252,8 @@ message RemoveClassifierRequest {
   string name = 1;
   // name of the classifier in registry
   string classifier_name = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message RemoveClassifierResponse {}
@@ -255,6 +273,8 @@ message GetClassificationsRequest {
   string classifier_name = 6;
   // the number of classifications desired
   int32 n = 7;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetClassificationsResponse {
@@ -270,6 +290,8 @@ message GetClassificationsFromCameraRequest {
   string classifier_name = 3;
   // the number of classifications desired
   int32 n = 4;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetClassificationsFromCameraResponse {
@@ -286,6 +308,8 @@ message Classification {
 
 message GetSegmenterNamesRequest {
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetSegmenterNamesResponse {
@@ -302,6 +326,8 @@ message AddSegmenterRequest {
   string segmenter_model_type = 3;
   // parameters of the segmenter model
   google.protobuf.Struct segmenter_parameters = 4;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message AddSegmenterResponse {}
@@ -311,6 +337,8 @@ message RemoveSegmenterRequest {
   string name = 1;
   // name of segmenter in registry
   string segmenter_name = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message RemoveSegmenterResponse {}
@@ -323,6 +351,8 @@ message GetObjectPointCloudsRequest {
   string segmenter_name = 3;
   // Requested MIME type of response
   string mime_type = 4;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetObjectPointCloudsResponse {
