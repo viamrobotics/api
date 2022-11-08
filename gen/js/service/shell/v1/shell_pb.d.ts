@@ -2,6 +2,7 @@
 // file: service/shell/v1/shell.proto
 
 import * as jspb from "google-protobuf";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
 export class ShellRequest extends jspb.Message {
   getName(): string;
@@ -9,6 +10,11 @@ export class ShellRequest extends jspb.Message {
 
   getDataIn(): string;
   setDataIn(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ShellRequest.AsObject;
@@ -24,6 +30,7 @@ export namespace ShellRequest {
   export type AsObject = {
     name: string,
     dataIn: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 

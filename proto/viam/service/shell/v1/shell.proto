@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package viam.service.shell.v1;
 
+import "google/protobuf/struct.proto";
+
 option go_package = "go.viam.com/api/service/shell/v1";
 option java_package = "com.viam.service.shell.v1";
 
@@ -14,6 +16,8 @@ service ShellService {
 message ShellRequest {
   string name = 1;
   string data_in = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message ShellResponse {

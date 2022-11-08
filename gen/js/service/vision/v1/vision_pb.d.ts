@@ -13,6 +13,11 @@ export class GetModelParameterSchemaRequest extends jspb.Message {
   getModelType(): string;
   setModelType(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetModelParameterSchemaRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetModelParameterSchemaRequest): GetModelParameterSchemaRequest.AsObject;
@@ -27,6 +32,7 @@ export namespace GetModelParameterSchemaRequest {
   export type AsObject = {
     name: string,
     modelType: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -56,6 +62,11 @@ export class GetDetectorNamesRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetDetectorNamesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetDetectorNamesRequest): GetDetectorNamesRequest.AsObject;
@@ -69,6 +80,7 @@ export class GetDetectorNamesRequest extends jspb.Message {
 export namespace GetDetectorNamesRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -109,6 +121,11 @@ export class AddDetectorRequest extends jspb.Message {
   getDetectorParameters(): google_protobuf_struct_pb.Struct | undefined;
   setDetectorParameters(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddDetectorRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AddDetectorRequest): AddDetectorRequest.AsObject;
@@ -125,6 +142,7 @@ export namespace AddDetectorRequest {
     detectorName: string,
     detectorModelType: string,
     detectorParameters?: google_protobuf_struct_pb.Struct.AsObject,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -151,6 +169,11 @@ export class RemoveDetectorRequest extends jspb.Message {
   getDetectorName(): string;
   setDetectorName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveDetectorRequest.AsObject;
   static toObject(includeInstance: boolean, msg: RemoveDetectorRequest): RemoveDetectorRequest.AsObject;
@@ -165,6 +188,7 @@ export namespace RemoveDetectorRequest {
   export type AsObject = {
     name: string,
     detectorName: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -205,6 +229,11 @@ export class GetDetectionsRequest extends jspb.Message {
   getDetectorName(): string;
   setDetectorName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetDetectionsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetDetectionsRequest): GetDetectionsRequest.AsObject;
@@ -223,6 +252,7 @@ export namespace GetDetectionsRequest {
     height: number,
     mimeType: string,
     detectorName: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -258,6 +288,11 @@ export class GetDetectionsFromCameraRequest extends jspb.Message {
   getDetectorName(): string;
   setDetectorName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetDetectionsFromCameraRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetDetectionsFromCameraRequest): GetDetectionsFromCameraRequest.AsObject;
@@ -273,6 +308,7 @@ export namespace GetDetectionsFromCameraRequest {
     name: string,
     cameraName: string,
     detectorName: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -350,6 +386,11 @@ export class GetClassifierNamesRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetClassifierNamesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetClassifierNamesRequest): GetClassifierNamesRequest.AsObject;
@@ -363,6 +404,7 @@ export class GetClassifierNamesRequest extends jspb.Message {
 export namespace GetClassifierNamesRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -403,6 +445,11 @@ export class AddClassifierRequest extends jspb.Message {
   getClassifierParameters(): google_protobuf_struct_pb.Struct | undefined;
   setClassifierParameters(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddClassifierRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AddClassifierRequest): AddClassifierRequest.AsObject;
@@ -419,6 +466,7 @@ export namespace AddClassifierRequest {
     classifierName: string,
     classifierModelType: string,
     classifierParameters?: google_protobuf_struct_pb.Struct.AsObject,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -445,6 +493,11 @@ export class RemoveClassifierRequest extends jspb.Message {
   getClassifierName(): string;
   setClassifierName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveClassifierRequest.AsObject;
   static toObject(includeInstance: boolean, msg: RemoveClassifierRequest): RemoveClassifierRequest.AsObject;
@@ -459,6 +512,7 @@ export namespace RemoveClassifierRequest {
   export type AsObject = {
     name: string,
     classifierName: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -502,6 +556,11 @@ export class GetClassificationsRequest extends jspb.Message {
   getN(): number;
   setN(value: number): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetClassificationsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetClassificationsRequest): GetClassificationsRequest.AsObject;
@@ -521,6 +580,7 @@ export namespace GetClassificationsRequest {
     mimeType: string,
     classifierName: string,
     n: number,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -559,6 +619,11 @@ export class GetClassificationsFromCameraRequest extends jspb.Message {
   getN(): number;
   setN(value: number): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetClassificationsFromCameraRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetClassificationsFromCameraRequest): GetClassificationsFromCameraRequest.AsObject;
@@ -575,6 +640,7 @@ export namespace GetClassificationsFromCameraRequest {
     cameraName: string,
     classifierName: string,
     n: number,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -628,6 +694,11 @@ export class GetSegmenterNamesRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetSegmenterNamesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetSegmenterNamesRequest): GetSegmenterNamesRequest.AsObject;
@@ -641,6 +712,7 @@ export class GetSegmenterNamesRequest extends jspb.Message {
 export namespace GetSegmenterNamesRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -681,6 +753,11 @@ export class AddSegmenterRequest extends jspb.Message {
   getSegmenterParameters(): google_protobuf_struct_pb.Struct | undefined;
   setSegmenterParameters(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddSegmenterRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AddSegmenterRequest): AddSegmenterRequest.AsObject;
@@ -697,6 +774,7 @@ export namespace AddSegmenterRequest {
     segmenterName: string,
     segmenterModelType: string,
     segmenterParameters?: google_protobuf_struct_pb.Struct.AsObject,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -723,6 +801,11 @@ export class RemoveSegmenterRequest extends jspb.Message {
   getSegmenterName(): string;
   setSegmenterName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveSegmenterRequest.AsObject;
   static toObject(includeInstance: boolean, msg: RemoveSegmenterRequest): RemoveSegmenterRequest.AsObject;
@@ -737,6 +820,7 @@ export namespace RemoveSegmenterRequest {
   export type AsObject = {
     name: string,
     segmenterName: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -769,6 +853,11 @@ export class GetObjectPointCloudsRequest extends jspb.Message {
   getMimeType(): string;
   setMimeType(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetObjectPointCloudsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetObjectPointCloudsRequest): GetObjectPointCloudsRequest.AsObject;
@@ -785,6 +874,7 @@ export namespace GetObjectPointCloudsRequest {
     cameraName: string,
     segmenterName: string,
     mimeType: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
