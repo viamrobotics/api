@@ -10,6 +10,11 @@ export class GetPositionRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPositionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPositionRequest): GetPositionRequest.AsObject;
@@ -23,6 +28,7 @@ export class GetPositionRequest extends jspb.Message {
 export namespace GetPositionRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -69,6 +75,11 @@ export class GetMapRequest extends jspb.Message {
   getIncludeRobotMarker(): boolean;
   setIncludeRobotMarker(value: boolean): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetMapRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetMapRequest): GetMapRequest.AsObject;
@@ -85,6 +96,7 @@ export namespace GetMapRequest {
     mimeType: string,
     cameraPosition?: common_v1_common_pb.Pose.AsObject,
     includeRobotMarker: boolean,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 

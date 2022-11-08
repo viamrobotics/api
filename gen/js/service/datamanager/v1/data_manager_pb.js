@@ -17,6 +17,8 @@ var global = (function() { return this || window || global || self || Function('
 
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
+goog.object.extend(proto, google_protobuf_struct_pb);
 goog.exportSymbol('proto.viam.service.datamanager.v1.SyncRequest', null, global);
 goog.exportSymbol('proto.viam.service.datamanager.v1.SyncResponse', null, global);
 /**
@@ -93,7 +95,8 @@ proto.viam.service.datamanager.v1.SyncRequest.prototype.toObject = function(opt_
  */
 proto.viam.service.datamanager.v1.SyncRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -134,6 +137,11 @@ proto.viam.service.datamanager.v1.SyncRequest.deserializeBinaryFromReader = func
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -170,6 +178,14 @@ proto.viam.service.datamanager.v1.SyncRequest.serializeBinaryToWriter = function
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -188,6 +204,43 @@ proto.viam.service.datamanager.v1.SyncRequest.prototype.getName = function() {
  */
 proto.viam.service.datamanager.v1.SyncRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.service.datamanager.v1.SyncRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.service.datamanager.v1.SyncRequest} returns this
+*/
+proto.viam.service.datamanager.v1.SyncRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.datamanager.v1.SyncRequest} returns this
+ */
+proto.viam.service.datamanager.v1.SyncRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.datamanager.v1.SyncRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 

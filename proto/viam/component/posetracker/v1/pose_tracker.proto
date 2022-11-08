@@ -4,6 +4,7 @@ package viam.component.posetracker.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/component/v1";
 option java_package = "com.viam.component.v1";
@@ -25,6 +26,8 @@ message GetPosesRequest {
   // this parameter is not supplied or is an empty list, all available
   // poses are returned
   repeated string body_names = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetPosesResponse {

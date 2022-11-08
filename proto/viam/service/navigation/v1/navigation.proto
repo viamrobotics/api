@@ -4,6 +4,7 @@ package viam.service.navigation.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/service/navigation/v1";
 option java_package = "com.viam.service.navigation.v1";
@@ -55,6 +56,8 @@ enum Mode {
 
 message GetModeRequest {
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetModeResponse {
@@ -64,6 +67,8 @@ message GetModeResponse {
 message SetModeRequest {
   string name = 1;
   Mode mode = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message SetModeResponse {}
@@ -75,6 +80,8 @@ message Waypoint {
 
 message GetLocationRequest {
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetLocationResponse {
@@ -83,6 +90,8 @@ message GetLocationResponse {
 
 message GetWaypointsRequest {
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetWaypointsResponse {
@@ -92,6 +101,8 @@ message GetWaypointsResponse {
 message AddWaypointRequest {
   string name = 1;
   common.v1.GeoPoint location = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message AddWaypointResponse {}
@@ -99,6 +110,8 @@ message AddWaypointResponse {}
 message RemoveWaypointRequest {
   string name = 1;
   string id = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message RemoveWaypointResponse {}
