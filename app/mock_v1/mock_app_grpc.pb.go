@@ -37,6 +37,26 @@ func (m *MockAppServiceClient) EXPECT() *MockAppServiceClientMockRecorder {
 	return m.recorder
 }
 
+// CreateLocation mocks base method.
+func (m *MockAppServiceClient) CreateLocation(ctx context.Context, in *v1.CreateLocationRequest, opts ...grpc.CallOption) (*v1.CreateLocationResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "CreateLocation", varargs...)
+	ret0, _ := ret[0].(*v1.CreateLocationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateLocation indicates an expected call of CreateLocation.
+func (mr *MockAppServiceClientMockRecorder) CreateLocation(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateLocation", reflect.TypeOf((*MockAppServiceClient)(nil).CreateLocation), varargs...)
+}
+
 // CreateLocationSecret mocks base method.
 func (m *MockAppServiceClient) CreateLocationSecret(ctx context.Context, in *v1.CreateLocationSecretRequest, opts ...grpc.CallOption) (*v1.CreateLocationSecretResponse, error) {
 	m.ctrl.T.Helper()
@@ -601,6 +621,21 @@ func NewMockAppServiceServer(ctrl *gomock.Controller) *MockAppServiceServer {
 // EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockAppServiceServer) EXPECT() *MockAppServiceServerMockRecorder {
 	return m.recorder
+}
+
+// CreateLocation mocks base method.
+func (m *MockAppServiceServer) CreateLocation(arg0 context.Context, arg1 *v1.CreateLocationRequest) (*v1.CreateLocationResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateLocation", arg0, arg1)
+	ret0, _ := ret[0].(*v1.CreateLocationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateLocation indicates an expected call of CreateLocation.
+func (mr *MockAppServiceServerMockRecorder) CreateLocation(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateLocation", reflect.TypeOf((*MockAppServiceServer)(nil).CreateLocation), arg0, arg1)
 }
 
 // CreateLocationSecret mocks base method.
