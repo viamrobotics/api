@@ -476,9 +476,7 @@ proto.viam.component.camera.v1.GetImageResponse.prototype.toObject = function(op
 proto.viam.component.camera.v1.GetImageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     mimeType: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    image: msg.getImage_asB64(),
-    widthPx: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    heightPx: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    image: msg.getImage_asB64()
   };
 
   if (includeInstance) {
@@ -523,14 +521,6 @@ proto.viam.component.camera.v1.GetImageResponse.deserializeBinaryFromReader = fu
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setImage(value);
       break;
-    case 3:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setWidthPx(value);
-      break;
-    case 4:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setHeightPx(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -571,20 +561,6 @@ proto.viam.component.camera.v1.GetImageResponse.serializeBinaryToWriter = functi
   if (f.length > 0) {
     writer.writeBytes(
       2,
-      f
-    );
-  }
-  f = message.getWidthPx();
-  if (f !== 0) {
-    writer.writeInt64(
-      3,
-      f
-    );
-  }
-  f = message.getHeightPx();
-  if (f !== 0) {
-    writer.writeInt64(
-      4,
       f
     );
   }
@@ -648,42 +624,6 @@ proto.viam.component.camera.v1.GetImageResponse.prototype.getImage_asU8 = functi
  */
 proto.viam.component.camera.v1.GetImageResponse.prototype.setImage = function(value) {
   return jspb.Message.setProto3BytesField(this, 2, value);
-};
-
-
-/**
- * optional int64 width_px = 3;
- * @return {number}
- */
-proto.viam.component.camera.v1.GetImageResponse.prototype.getWidthPx = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.viam.component.camera.v1.GetImageResponse} returns this
- */
-proto.viam.component.camera.v1.GetImageResponse.prototype.setWidthPx = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
-};
-
-
-/**
- * optional int64 height_px = 4;
- * @return {number}
- */
-proto.viam.component.camera.v1.GetImageResponse.prototype.getHeightPx = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.viam.component.camera.v1.GetImageResponse} returns this
- */
-proto.viam.component.camera.v1.GetImageResponse.prototype.setHeightPx = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 

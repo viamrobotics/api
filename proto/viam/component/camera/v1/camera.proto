@@ -54,10 +54,6 @@ message GetImageResponse {
   string mime_type = 1;
   // Frame in bytes
   bytes image = 2;
-  // Width of frame in px
-  int64 width_px = 3;
-  // Height of frame in px
-  int64 height_px = 4;
 }
 
 message RenderFrameRequest {
