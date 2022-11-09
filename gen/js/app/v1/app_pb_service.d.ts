@@ -4,6 +4,15 @@
 import * as app_v1_app_pb from "../../app/v1/app_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
+type AppServiceCreateLocation = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateLocationRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateLocationResponse;
+};
+
 type AppServiceListOrganizations = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -195,6 +204,7 @@ type AppServiceDeleteRobot = {
 
 export class AppService {
   static readonly serviceName: string;
+  static readonly CreateLocation: AppServiceCreateLocation;
   static readonly ListOrganizations: AppServiceListOrganizations;
   static readonly ListLocations: AppServiceListLocations;
   static readonly LocationAuth: AppServiceLocationAuth;
@@ -250,6 +260,15 @@ export class AppServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
+  createLocation(
+    requestMessage: app_v1_app_pb.CreateLocationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateLocationResponse|null) => void
+  ): UnaryResponse;
+  createLocation(
+    requestMessage: app_v1_app_pb.CreateLocationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateLocationResponse|null) => void
+  ): UnaryResponse;
   listOrganizations(
     requestMessage: app_v1_app_pb.ListOrganizationsRequest,
     metadata: grpc.Metadata,

@@ -262,6 +262,52 @@ export namespace Location {
   }
 }
 
+export class CreateLocationRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateLocationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateLocationRequest): CreateLocationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateLocationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateLocationRequest;
+  static deserializeBinaryFromReader(message: CreateLocationRequest, reader: jspb.BinaryReader): CreateLocationRequest;
+}
+
+export namespace CreateLocationRequest {
+  export type AsObject = {
+    organizationId: string,
+    name: string,
+  }
+}
+
+export class CreateLocationResponse extends jspb.Message {
+  hasLocation(): boolean;
+  clearLocation(): void;
+  getLocation(): Location | undefined;
+  setLocation(value?: Location): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateLocationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateLocationResponse): CreateLocationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateLocationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateLocationResponse;
+  static deserializeBinaryFromReader(message: CreateLocationResponse, reader: jspb.BinaryReader): CreateLocationResponse;
+}
+
+export namespace CreateLocationResponse {
+  export type AsObject = {
+    location?: Location.AsObject,
+  }
+}
+
 export class ListLocationsRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
