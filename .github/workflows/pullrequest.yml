@@ -29,27 +29,3 @@ jobs:
     - uses: bufbuild/buf-breaking-action@v1
       with:
         against: 'https://github.com/viamrobotics/api.git#branch=main'
-
-  validate-local-files:
-    name: Ensure dist/buf ran locally.
-    timeout-minutes: 5
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64-cache
-      options: --platform linux/amd64
-    steps:
-    - uses: actions/checkout@v3
-    - name: Verify no uncommitted changes"
-      run: |
-        git init
-        git add .
-
-        make dist/buf
-
-        GEN_DIFF=$(git status -s)
-
-        if [ -n "$GEN_DIFF" ]; then
-            echo '"make dist/buf" resulted in changes not in git' 1>&2
-            git status
-            exit 1
-        fi
