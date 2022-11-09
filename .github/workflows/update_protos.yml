@@ -40,6 +40,13 @@ jobs:
           default_author: github_actions
           message: Built new protos from ${{ steps.short_sha.outputs.short_sha }} [skip ci]
 
+      - name: Bump tag
+        uses: anothrNick/github-tag-action@1.52.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          DEFAULT_BUMP: patch
+
   buf-push:
     if: github.repository_owner == 'viamrobotics'
     runs-on: [self-hosted, x64]
