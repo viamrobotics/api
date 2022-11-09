@@ -38,12 +38,6 @@ export class GetImageResponse extends jspb.Message {
   getImage_asB64(): string;
   setImage(value: Uint8Array | string): void;
 
-  getWidthPx(): number;
-  setWidthPx(value: number): void;
-
-  getHeightPx(): number;
-  setHeightPx(value: number): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetImageResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetImageResponse): GetImageResponse.AsObject;
@@ -58,8 +52,6 @@ export namespace GetImageResponse {
   export type AsObject = {
     mimeType: string,
     image: Uint8Array | string,
-    widthPx: number,
-    heightPx: number,
   }
 }
 
