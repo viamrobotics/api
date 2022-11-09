@@ -81,6 +81,67 @@ proto.viam.app.v1.AppServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.CreateLocationRequest,
+ *   !proto.viam.app.v1.CreateLocationResponse>}
+ */
+const methodDescriptor_AppService_CreateLocation = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/CreateLocation',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.CreateLocationRequest,
+  proto.viam.app.v1.CreateLocationResponse,
+  /**
+   * @param {!proto.viam.app.v1.CreateLocationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.CreateLocationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateLocationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.CreateLocationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.CreateLocationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.createLocation =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateLocation',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateLocation,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateLocationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.CreateLocationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.createLocation =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateLocation',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateLocation);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.ListOrganizationsRequest,
  *   !proto.viam.app.v1.ListOrganizationsResponse>}
  */

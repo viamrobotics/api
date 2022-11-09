@@ -9,6 +9,11 @@ export class GetReadingsRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetReadingsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetReadingsRequest): GetReadingsRequest.AsObject;
@@ -22,6 +27,7 @@ export class GetReadingsRequest extends jspb.Message {
 export namespace GetReadingsRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 

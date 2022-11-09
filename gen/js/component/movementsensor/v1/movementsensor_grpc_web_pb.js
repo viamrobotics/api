@@ -19,6 +19,8 @@ grpc.web = require('grpc-web');
 var common_v1_common_pb = require('../../../common/v1/common_pb.js')
 
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
+
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
 const proto = {};
 proto.viam = {};
 proto.viam.component = {};
