@@ -24,6 +24,8 @@ jobs:
       options: --platform linux/amd64
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.REPO_READ_TOKEN }}
       - uses: bufbuild/buf-setup-action@v1
       - uses: arduino/setup-protoc@v1
 
@@ -43,7 +45,7 @@ jobs:
       - name: Bump tag
         uses: anothrNick/github-tag-action@1.52.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REPO_READ_TOKEN }}
           WITH_V: true
           DEFAULT_BUMP: patch
 
