@@ -30,11 +30,11 @@ type DataServiceClient interface {
 	DeleteBinaryDataByFilter(ctx context.Context, in *DeleteBinaryDataByFilterRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByFilterResponse, error)
 	// DeleteBinaryDataByIDs deletes binary data based on given IDs.
 	DeleteBinaryDataByIDs(ctx context.Context, in *DeleteBinaryDataByIDsRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByIDsResponse, error)
-	// AddAnnotationsToBinaryDataByFileID adds annotations to binary data based on given IDs.
+	// AddAnnotationsToBinaryDataByFileIDs adds annotations to binary data based on given IDs.
 	AddAnnotationsToBinaryDataByFileIDs(ctx context.Context, in *AddAnnotationsToBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*AddAnnotationsToBinaryDataByFileIDsResponse, error)
-	// AddAnnotationsToBinaryDataByFileID adds annotations to binary data based on given filters.
+	// AddAnnotationsToBinaryDataByFilter adds annotations to binary data based on given filters.
 	AddAnnotationsToBinaryDataByFilter(ctx context.Context, in *AddAnnotationsToBinaryDataByFilterRequest, opts ...grpc.CallOption) (*AddAnnotationsToBinaryDataByFilterResponse, error)
-	// RemoveAnnotationsToBinaryDataByFileID removes annotations from binary data based on given IDs.
+	// RemoveAnnotationsToBinaryDataByFileIDs removes annotations from binary data based on given IDs.
 	RemoveAnnotationsFromBinaryDataByFileIDs(ctx context.Context, in *RemoveAnnotationsFromBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*RemoveAnnotationsFromBinaryDataByFileIDsResponse, error)
 	// RemoveAnnotationsToBinaryDataByFilter removes annotations from binary data based on given filters.
 	RemoveAnnotationsFromBinaryDataByFilter(ctx context.Context, in *RemoveAnnotationsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveAnnotationsFromBinaryDataByFilterResponse, error)
@@ -154,11 +154,11 @@ type DataServiceServer interface {
 	DeleteBinaryDataByFilter(context.Context, *DeleteBinaryDataByFilterRequest) (*DeleteBinaryDataByFilterResponse, error)
 	// DeleteBinaryDataByIDs deletes binary data based on given IDs.
 	DeleteBinaryDataByIDs(context.Context, *DeleteBinaryDataByIDsRequest) (*DeleteBinaryDataByIDsResponse, error)
-	// AddAnnotationsToBinaryDataByFileID adds annotations to binary data based on given IDs.
+	// AddAnnotationsToBinaryDataByFileIDs adds annotations to binary data based on given IDs.
 	AddAnnotationsToBinaryDataByFileIDs(context.Context, *AddAnnotationsToBinaryDataByFileIDsRequest) (*AddAnnotationsToBinaryDataByFileIDsResponse, error)
-	// AddAnnotationsToBinaryDataByFileID adds annotations to binary data based on given filters.
+	// AddAnnotationsToBinaryDataByFilter adds annotations to binary data based on given filters.
 	AddAnnotationsToBinaryDataByFilter(context.Context, *AddAnnotationsToBinaryDataByFilterRequest) (*AddAnnotationsToBinaryDataByFilterResponse, error)
-	// RemoveAnnotationsToBinaryDataByFileID removes annotations from binary data based on given IDs.
+	// RemoveAnnotationsToBinaryDataByFileIDs removes annotations from binary data based on given IDs.
 	RemoveAnnotationsFromBinaryDataByFileIDs(context.Context, *RemoveAnnotationsFromBinaryDataByFileIDsRequest) (*RemoveAnnotationsFromBinaryDataByFileIDsResponse, error)
 	// RemoveAnnotationsToBinaryDataByFilter removes annotations from binary data based on given filters.
 	RemoveAnnotationsFromBinaryDataByFilter(context.Context, *RemoveAnnotationsFromBinaryDataByFilterRequest) (*RemoveAnnotationsFromBinaryDataByFilterResponse, error)

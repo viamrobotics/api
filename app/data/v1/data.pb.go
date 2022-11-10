@@ -1475,7 +1475,7 @@ func (x *AddAnnotationsToBinaryDataByFileIDsRequest) GetAnnotations() []*Annotat
 	return nil
 }
 
-// AddAnnotationsToBinaryDataByFileIDsResponse return IDs of added annotations in order to pass it to RemoveAnnotations
+// AddAnnotationsToBinaryDataByFileIDsResponse returns IDs of added annotations in order to pass it to RemoveAnnotations
 type AddAnnotationsToBinaryDataByFileIDsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1579,7 +1579,7 @@ func (x *AddAnnotationsToBinaryDataByFilterRequest) GetAnnotations() []*Annotati
 	return nil
 }
 
-// AddAnnotationsToBinaryDataByFilterResponse return IDs of added annotations in order to pass it to RemoveAnnotations
+// AddAnnotationsToBinaryDataByFilterResponse returns IDs of added annotations in order to pass it to RemoveAnnotations
 type AddAnnotationsToBinaryDataByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
