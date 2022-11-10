@@ -17,6 +17,8 @@ var global = (function() { return this || window || global || self || Function('
 
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
+goog.object.extend(proto, google_protobuf_struct_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.viam.component.inputcontroller.v1.Event', null, global);
@@ -293,7 +295,8 @@ proto.viam.component.inputcontroller.v1.GetControlsRequest.prototype.toObject = 
  */
 proto.viam.component.inputcontroller.v1.GetControlsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    controller: jspb.Message.getFieldWithDefault(msg, 1, "")
+    controller: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -334,6 +337,11 @@ proto.viam.component.inputcontroller.v1.GetControlsRequest.deserializeBinaryFrom
       var value = /** @type {string} */ (reader.readString());
       msg.setController(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -370,6 +378,14 @@ proto.viam.component.inputcontroller.v1.GetControlsRequest.serializeBinaryToWrit
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -388,6 +404,43 @@ proto.viam.component.inputcontroller.v1.GetControlsRequest.prototype.getControll
  */
 proto.viam.component.inputcontroller.v1.GetControlsRequest.prototype.setController = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.inputcontroller.v1.GetControlsRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.inputcontroller.v1.GetControlsRequest} returns this
+*/
+proto.viam.component.inputcontroller.v1.GetControlsRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.inputcontroller.v1.GetControlsRequest} returns this
+ */
+proto.viam.component.inputcontroller.v1.GetControlsRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.inputcontroller.v1.GetControlsRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -579,7 +632,8 @@ proto.viam.component.inputcontroller.v1.GetEventsRequest.prototype.toObject = fu
  */
 proto.viam.component.inputcontroller.v1.GetEventsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    controller: jspb.Message.getFieldWithDefault(msg, 1, "")
+    controller: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -620,6 +674,11 @@ proto.viam.component.inputcontroller.v1.GetEventsRequest.deserializeBinaryFromRe
       var value = /** @type {string} */ (reader.readString());
       msg.setController(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -656,6 +715,14 @@ proto.viam.component.inputcontroller.v1.GetEventsRequest.serializeBinaryToWriter
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -674,6 +741,43 @@ proto.viam.component.inputcontroller.v1.GetEventsRequest.prototype.getController
  */
 proto.viam.component.inputcontroller.v1.GetEventsRequest.prototype.setController = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.inputcontroller.v1.GetEventsRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.inputcontroller.v1.GetEventsRequest} returns this
+*/
+proto.viam.component.inputcontroller.v1.GetEventsRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.inputcontroller.v1.GetEventsRequest} returns this
+ */
+proto.viam.component.inputcontroller.v1.GetEventsRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.inputcontroller.v1.GetEventsRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -870,7 +974,8 @@ proto.viam.component.inputcontroller.v1.TriggerEventRequest.prototype.toObject =
 proto.viam.component.inputcontroller.v1.TriggerEventRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     controller: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    event: (f = msg.getEvent()) && proto.viam.component.inputcontroller.v1.Event.toObject(includeInstance, f)
+    event: (f = msg.getEvent()) && proto.viam.component.inputcontroller.v1.Event.toObject(includeInstance, f),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -916,6 +1021,11 @@ proto.viam.component.inputcontroller.v1.TriggerEventRequest.deserializeBinaryFro
       reader.readMessage(value,proto.viam.component.inputcontroller.v1.Event.deserializeBinaryFromReader);
       msg.setEvent(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -958,6 +1068,14 @@ proto.viam.component.inputcontroller.v1.TriggerEventRequest.serializeBinaryToWri
       2,
       f,
       proto.viam.component.inputcontroller.v1.Event.serializeBinaryToWriter
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -1015,6 +1133,43 @@ proto.viam.component.inputcontroller.v1.TriggerEventRequest.prototype.clearEvent
  */
 proto.viam.component.inputcontroller.v1.TriggerEventRequest.prototype.hasEvent = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.inputcontroller.v1.TriggerEventRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.inputcontroller.v1.TriggerEventRequest} returns this
+*/
+proto.viam.component.inputcontroller.v1.TriggerEventRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.inputcontroller.v1.TriggerEventRequest} returns this
+ */
+proto.viam.component.inputcontroller.v1.TriggerEventRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.inputcontroller.v1.TriggerEventRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1401,7 +1556,8 @@ proto.viam.component.inputcontroller.v1.StreamEventsRequest.toObject = function(
   var f, obj = {
     controller: jspb.Message.getFieldWithDefault(msg, 1, ""),
     eventsList: jspb.Message.toObjectList(msg.getEventsList(),
-    proto.viam.component.inputcontroller.v1.StreamEventsRequest.Events.toObject, includeInstance)
+    proto.viam.component.inputcontroller.v1.StreamEventsRequest.Events.toObject, includeInstance),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1447,6 +1603,11 @@ proto.viam.component.inputcontroller.v1.StreamEventsRequest.deserializeBinaryFro
       reader.readMessage(value,proto.viam.component.inputcontroller.v1.StreamEventsRequest.Events.deserializeBinaryFromReader);
       msg.addEvents(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1489,6 +1650,14 @@ proto.viam.component.inputcontroller.v1.StreamEventsRequest.serializeBinaryToWri
       2,
       f,
       proto.viam.component.inputcontroller.v1.StreamEventsRequest.Events.serializeBinaryToWriter
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -1782,6 +1951,43 @@ proto.viam.component.inputcontroller.v1.StreamEventsRequest.prototype.addEvents 
  */
 proto.viam.component.inputcontroller.v1.StreamEventsRequest.prototype.clearEventsList = function() {
   return this.setEventsList([]);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.inputcontroller.v1.StreamEventsRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.inputcontroller.v1.StreamEventsRequest} returns this
+*/
+proto.viam.component.inputcontroller.v1.StreamEventsRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.inputcontroller.v1.StreamEventsRequest} returns this
+ */
+proto.viam.component.inputcontroller.v1.StreamEventsRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.inputcontroller.v1.StreamEventsRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
