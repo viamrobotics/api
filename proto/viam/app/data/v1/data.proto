@@ -28,13 +28,13 @@ service DataService {
   // DeleteBinaryDataByIDs deletes binary data based on given IDs.
   rpc DeleteBinaryDataByIDs(DeleteBinaryDataByIDsRequest) returns (DeleteBinaryDataByIDsResponse);
 
-  // AddAnnotationsToBinaryDataByFileID adds annotations to binary data based on given IDs.
+  // AddAnnotationsToBinaryDataByFileIDs adds annotations to binary data based on given IDs.
   rpc AddAnnotationsToBinaryDataByFileIDs(AddAnnotationsToBinaryDataByFileIDsRequest) returns (AddAnnotationsToBinaryDataByFileIDsResponse);
 
-  // AddAnnotationsToBinaryDataByFileID adds annotations to binary data based on given filters.
+  // AddAnnotationsToBinaryDataByFilters adds annotations to binary data based on given filters.
   rpc AddAnnotationsToBinaryDataByFilter(AddAnnotationsToBinaryDataByFilterRequest) returns (AddAnnotationsToBinaryDataByFilterResponse);
 
-  // RemoveAnnotationsToBinaryDataByFileID removes annotations from binary data based on given IDs.
+  // RemoveAnnotationsToBinaryDataByFileIDs removes annotations from binary data based on given IDs.
   rpc RemoveAnnotationsFromBinaryDataByFileIDs(RemoveAnnotationsFromBinaryDataByFileIDsRequest) returns (RemoveAnnotationsFromBinaryDataByFileIDsResponse);
 
   // RemoveAnnotationsToBinaryDataByFilter removes annotations from binary data based on given filters.
