@@ -1419,7 +1419,7 @@ func (x *Annotation) GetTag() string {
 	return ""
 }
 
-// AddAnnotationsToBinaryDataByFileIDsRequest requests adding annotations to the files when file IDs are provided
+// AddAnnotationsToBinaryDataByFileIDsRequest requests adding all specified annotations to each of the files when file IDs are provided
 type AddAnnotationsToBinaryDataByFileIDsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1475,7 +1475,7 @@ func (x *AddAnnotationsToBinaryDataByFileIDsRequest) GetAnnotations() []*Annotat
 	return nil
 }
 
-// AddAnnotationsToBinaryDataByFileIDsResponse returns IDs of added annotations in order to pass it to RemoveAnnotations
+// AddAnnotationsToBinaryDataByFileIDsResponse returns IDs of added annotations which can be passed to RemoveAnnotationsFromBinaryDataByFileIDs
 type AddAnnotationsToBinaryDataByFileIDsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1523,7 +1523,7 @@ func (x *AddAnnotationsToBinaryDataByFileIDsResponse) GetAnnotationIds() []strin
 	return nil
 }
 
-// AddAnnotationsToBinaryDataByFilterRequest requests adding annotations to the files when a filter is provided
+// AddAnnotationsToBinaryDataByFilterRequest requests adding all specified annotations to each of the files when a filter is provided
 type AddAnnotationsToBinaryDataByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1579,7 +1579,7 @@ func (x *AddAnnotationsToBinaryDataByFilterRequest) GetAnnotations() []*Annotati
 	return nil
 }
 
-// AddAnnotationsToBinaryDataByFilterResponse returns IDs of added annotations in order to pass it to RemoveAnnotations
+// AddAnnotationsToBinaryDataByFilterResponse returns IDs of added annotations which can be passed to RemoveAnnotationsFromBinaryDataByFileIDs
 type AddAnnotationsToBinaryDataByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1627,14 +1627,13 @@ func (x *AddAnnotationsToBinaryDataByFilterResponse) GetAnnotationIds() []string
 	return nil
 }
 
-// RemoveAnnotationsFromBinaryDataByFilterRequest requests removing the annotations from the file when file IDs are provided
+// RemoveAnnotationsFromBinaryDataByFileIDsRequest requests removing the given annotations from each file when file IDs are provided
 type RemoveAnnotationsFromBinaryDataByFileIDsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	FileIds []string `protobuf:"bytes,1,rep,name=file_ids,json=fileIds,proto3" json:"file_ids,omitempty"`
-	// If annotation_ids is empty, remove all annotations for the specified files.
+	FileIds       []string `protobuf:"bytes,1,rep,name=file_ids,json=fileIds,proto3" json:"file_ids,omitempty"`
 	AnnotationIds []string `protobuf:"bytes,2,rep,name=annotation_ids,json=annotationIds,proto3" json:"annotation_ids,omitempty"`
 }
 
@@ -1684,7 +1683,7 @@ func (x *RemoveAnnotationsFromBinaryDataByFileIDsRequest) GetAnnotationIds() []s
 	return nil
 }
 
-// RemoveAnnotationsFromBinaryDataByFilterResponse returns the number of binary files whose annotations were removed when file IDs are provided
+// RemoveAnnotationsFromBinaryDataByFileIDsResponse returns the number of binary files which had annotations removed
 type RemoveAnnotationsFromBinaryDataByFileIDsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1732,14 +1731,13 @@ func (x *RemoveAnnotationsFromBinaryDataByFileIDsResponse) GetDeletedCount() uin
 	return 0
 }
 
-// RemoveAnnotationsFromBinaryDataByFilterRequest requests removing the annotations from the file when a filter is provided
+// RemoveAnnotationsFromBinaryDataByFilterRequest requests removing the given annotations from each file when a filter is provided
 type RemoveAnnotationsFromBinaryDataByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Filter *Filter `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	// If annotation_ids is empty, remove all annotations for the specified files.
+	Filter        *Filter  `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
 	AnnotationIds []string `protobuf:"bytes,2,rep,name=annotation_ids,json=annotationIds,proto3" json:"annotation_ids,omitempty"`
 }
 
@@ -1789,7 +1787,7 @@ func (x *RemoveAnnotationsFromBinaryDataByFilterRequest) GetAnnotationIds() []st
 	return nil
 }
 
-// RemoveAnnotationsFromBinaryDataByFilterResponse returns the number of binary files whose annotations were removed when a filter is provided
+// RemoveAnnotationsFromBinaryDataByFilterResponse returns the number of binary files which had annotations removed
 type RemoveAnnotationsFromBinaryDataByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
