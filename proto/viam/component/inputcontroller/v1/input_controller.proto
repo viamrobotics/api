@@ -94,7 +94,6 @@ message StreamEventsRequest {
     // Name of a control (button or axis)
     string control = 1;
     // Specify which event types to recieve events for
-    // Right now this can be an empty list, but we should error in this case as opening a stream with no messages is expensive
     repeated string events = 2;
     // Specify which event types to stop recieving events for
     // This can be an empty list

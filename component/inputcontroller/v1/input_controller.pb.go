@@ -583,7 +583,6 @@ type StreamEventsRequest_Events struct {
 	// Name of a control (button or axis)
 	Control string `protobuf:"bytes,1,opt,name=control,proto3" json:"control,omitempty"`
 	// Specify which event types to recieve events for
-	// Right now this can be an empty list, but we should error in this case as opening a stream with no messages is expensive
 	Events []string `protobuf:"bytes,2,rep,name=events,proto3" json:"events,omitempty"`
 	// Specify which event types to stop recieving events for
 	// This can be an empty list
