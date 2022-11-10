@@ -256,7 +256,6 @@ type UploadRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to UploadPacket:
-	//
 	//	*UploadRequest_Metadata
 	//	*UploadRequest_FileContents
 	UploadPacket isUploadRequest_UploadPacket `protobuf_oneof:"upload_packet"`
