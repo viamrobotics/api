@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
 export class MoveRequest extends jspb.Message {
   getName(): string;
@@ -10,6 +11,11 @@ export class MoveRequest extends jspb.Message {
 
   getAngleDeg(): number;
   setAngleDeg(value: number): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MoveRequest.AsObject;
@@ -25,6 +31,7 @@ export namespace MoveRequest {
   export type AsObject = {
     name: string,
     angleDeg: number,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -48,6 +55,11 @@ export class GetPositionRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPositionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPositionRequest): GetPositionRequest.AsObject;
@@ -61,6 +73,7 @@ export class GetPositionRequest extends jspb.Message {
 export namespace GetPositionRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -88,6 +101,11 @@ export class StopRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StopRequest.AsObject;
   static toObject(includeInstance: boolean, msg: StopRequest): StopRequest.AsObject;
@@ -101,6 +119,7 @@ export class StopRequest extends jspb.Message {
 export namespace StopRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
