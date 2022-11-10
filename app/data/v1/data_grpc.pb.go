@@ -30,6 +30,14 @@ type DataServiceClient interface {
 	DeleteBinaryDataByFilter(ctx context.Context, in *DeleteBinaryDataByFilterRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByFilterResponse, error)
 	// DeleteBinaryDataByIDs deletes binary data based on given IDs.
 	DeleteBinaryDataByIDs(ctx context.Context, in *DeleteBinaryDataByIDsRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByIDsResponse, error)
+	// AddAnnotationsToBinaryDataByFileIDs adds annotations to binary data based on given IDs.
+	AddAnnotationsToBinaryDataByFileIDs(ctx context.Context, in *AddAnnotationsToBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*AddAnnotationsToBinaryDataByFileIDsResponse, error)
+	// AddAnnotationsToBinaryDataByFilter adds annotations to binary data based on the given filter.
+	AddAnnotationsToBinaryDataByFilter(ctx context.Context, in *AddAnnotationsToBinaryDataByFilterRequest, opts ...grpc.CallOption) (*AddAnnotationsToBinaryDataByFilterResponse, error)
+	// RemoveAnnotationsToBinaryDataByFileIDs removes annotations from binary data based on given IDs.
+	RemoveAnnotationsFromBinaryDataByFileIDs(ctx context.Context, in *RemoveAnnotationsFromBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*RemoveAnnotationsFromBinaryDataByFileIDsResponse, error)
+	// RemoveAnnotationsToBinaryDataByFilter removes annotations from binary data based on the given filter.
+	RemoveAnnotationsFromBinaryDataByFilter(ctx context.Context, in *RemoveAnnotationsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveAnnotationsFromBinaryDataByFilterResponse, error)
 }
 
 type dataServiceClient struct {
@@ -94,6 +102,42 @@ func (c *dataServiceClient) DeleteBinaryDataByIDs(ctx context.Context, in *Delet
 	return out, nil
 }
 
+func (c *dataServiceClient) AddAnnotationsToBinaryDataByFileIDs(ctx context.Context, in *AddAnnotationsToBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*AddAnnotationsToBinaryDataByFileIDsResponse, error) {
+	out := new(AddAnnotationsToBinaryDataByFileIDsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/AddAnnotationsToBinaryDataByFileIDs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) AddAnnotationsToBinaryDataByFilter(ctx context.Context, in *AddAnnotationsToBinaryDataByFilterRequest, opts ...grpc.CallOption) (*AddAnnotationsToBinaryDataByFilterResponse, error) {
+	out := new(AddAnnotationsToBinaryDataByFilterResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/AddAnnotationsToBinaryDataByFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) RemoveAnnotationsFromBinaryDataByFileIDs(ctx context.Context, in *RemoveAnnotationsFromBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*RemoveAnnotationsFromBinaryDataByFileIDsResponse, error) {
+	out := new(RemoveAnnotationsFromBinaryDataByFileIDsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/RemoveAnnotationsFromBinaryDataByFileIDs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) RemoveAnnotationsFromBinaryDataByFilter(ctx context.Context, in *RemoveAnnotationsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveAnnotationsFromBinaryDataByFilterResponse, error) {
+	out := new(RemoveAnnotationsFromBinaryDataByFilterResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/RemoveAnnotationsFromBinaryDataByFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -110,6 +154,14 @@ type DataServiceServer interface {
 	DeleteBinaryDataByFilter(context.Context, *DeleteBinaryDataByFilterRequest) (*DeleteBinaryDataByFilterResponse, error)
 	// DeleteBinaryDataByIDs deletes binary data based on given IDs.
 	DeleteBinaryDataByIDs(context.Context, *DeleteBinaryDataByIDsRequest) (*DeleteBinaryDataByIDsResponse, error)
+	// AddAnnotationsToBinaryDataByFileIDs adds annotations to binary data based on given IDs.
+	AddAnnotationsToBinaryDataByFileIDs(context.Context, *AddAnnotationsToBinaryDataByFileIDsRequest) (*AddAnnotationsToBinaryDataByFileIDsResponse, error)
+	// AddAnnotationsToBinaryDataByFilter adds annotations to binary data based on the given filter.
+	AddAnnotationsToBinaryDataByFilter(context.Context, *AddAnnotationsToBinaryDataByFilterRequest) (*AddAnnotationsToBinaryDataByFilterResponse, error)
+	// RemoveAnnotationsToBinaryDataByFileIDs removes annotations from binary data based on given IDs.
+	RemoveAnnotationsFromBinaryDataByFileIDs(context.Context, *RemoveAnnotationsFromBinaryDataByFileIDsRequest) (*RemoveAnnotationsFromBinaryDataByFileIDsResponse, error)
+	// RemoveAnnotationsToBinaryDataByFilter removes annotations from binary data based on the given filter.
+	RemoveAnnotationsFromBinaryDataByFilter(context.Context, *RemoveAnnotationsFromBinaryDataByFilterRequest) (*RemoveAnnotationsFromBinaryDataByFilterResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -134,6 +186,18 @@ func (UnimplementedDataServiceServer) DeleteBinaryDataByFilter(context.Context, 
 }
 func (UnimplementedDataServiceServer) DeleteBinaryDataByIDs(context.Context, *DeleteBinaryDataByIDsRequest) (*DeleteBinaryDataByIDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBinaryDataByIDs not implemented")
+}
+func (UnimplementedDataServiceServer) AddAnnotationsToBinaryDataByFileIDs(context.Context, *AddAnnotationsToBinaryDataByFileIDsRequest) (*AddAnnotationsToBinaryDataByFileIDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddAnnotationsToBinaryDataByFileIDs not implemented")
+}
+func (UnimplementedDataServiceServer) AddAnnotationsToBinaryDataByFilter(context.Context, *AddAnnotationsToBinaryDataByFilterRequest) (*AddAnnotationsToBinaryDataByFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddAnnotationsToBinaryDataByFilter not implemented")
+}
+func (UnimplementedDataServiceServer) RemoveAnnotationsFromBinaryDataByFileIDs(context.Context, *RemoveAnnotationsFromBinaryDataByFileIDsRequest) (*RemoveAnnotationsFromBinaryDataByFileIDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveAnnotationsFromBinaryDataByFileIDs not implemented")
+}
+func (UnimplementedDataServiceServer) RemoveAnnotationsFromBinaryDataByFilter(context.Context, *RemoveAnnotationsFromBinaryDataByFilterRequest) (*RemoveAnnotationsFromBinaryDataByFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveAnnotationsFromBinaryDataByFilter not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -256,6 +320,78 @@ func _DataService_DeleteBinaryDataByIDs_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_AddAnnotationsToBinaryDataByFileIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddAnnotationsToBinaryDataByFileIDsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).AddAnnotationsToBinaryDataByFileIDs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/AddAnnotationsToBinaryDataByFileIDs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).AddAnnotationsToBinaryDataByFileIDs(ctx, req.(*AddAnnotationsToBinaryDataByFileIDsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_AddAnnotationsToBinaryDataByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddAnnotationsToBinaryDataByFilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).AddAnnotationsToBinaryDataByFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/AddAnnotationsToBinaryDataByFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).AddAnnotationsToBinaryDataByFilter(ctx, req.(*AddAnnotationsToBinaryDataByFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_RemoveAnnotationsFromBinaryDataByFileIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveAnnotationsFromBinaryDataByFileIDsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).RemoveAnnotationsFromBinaryDataByFileIDs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/RemoveAnnotationsFromBinaryDataByFileIDs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).RemoveAnnotationsFromBinaryDataByFileIDs(ctx, req.(*RemoveAnnotationsFromBinaryDataByFileIDsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_RemoveAnnotationsFromBinaryDataByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveAnnotationsFromBinaryDataByFilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).RemoveAnnotationsFromBinaryDataByFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/RemoveAnnotationsFromBinaryDataByFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).RemoveAnnotationsFromBinaryDataByFilter(ctx, req.(*RemoveAnnotationsFromBinaryDataByFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -286,6 +422,22 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteBinaryDataByIDs",
 			Handler:    _DataService_DeleteBinaryDataByIDs_Handler,
+		},
+		{
+			MethodName: "AddAnnotationsToBinaryDataByFileIDs",
+			Handler:    _DataService_AddAnnotationsToBinaryDataByFileIDs_Handler,
+		},
+		{
+			MethodName: "AddAnnotationsToBinaryDataByFilter",
+			Handler:    _DataService_AddAnnotationsToBinaryDataByFilter_Handler,
+		},
+		{
+			MethodName: "RemoveAnnotationsFromBinaryDataByFileIDs",
+			Handler:    _DataService_RemoveAnnotationsFromBinaryDataByFileIDs_Handler,
+		},
+		{
+			MethodName: "RemoveAnnotationsFromBinaryDataByFilter",
+			Handler:    _DataService_RemoveAnnotationsFromBinaryDataByFilter_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
