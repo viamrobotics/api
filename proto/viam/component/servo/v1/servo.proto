@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.component.servo.v1;
 
 import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/component/servo/v1";
 option java_package = "com.viam.component.servo.v1";
@@ -37,6 +38,8 @@ message MoveRequest {
   string name = 1;
   // the degrees by which to rotate the servo. Accepted values are between 0 and 180
   uint32 angle_deg = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message MoveResponse {}
@@ -44,6 +47,8 @@ message MoveResponse {}
 message GetPositionRequest {
   // the name of the servo, as registered
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetPositionResponse {
@@ -54,6 +59,8 @@ message GetPositionResponse {
 message StopRequest {
   // Name of a servo
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message StopResponse {}
