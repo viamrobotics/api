@@ -31,7 +31,7 @@ service DataService {
   // AddAnnotationsToBinaryDataByFileIDs adds annotations to binary data based on given IDs.
   rpc AddAnnotationsToBinaryDataByFileIDs(AddAnnotationsToBinaryDataByFileIDsRequest) returns (AddAnnotationsToBinaryDataByFileIDsResponse);
 
-  // AddAnnotationsToBinaryDataByFilters adds annotations to binary data based on given filters.
+  // AddAnnotationsToBinaryDataByFilter adds annotations to binary data based on given filters.
   rpc AddAnnotationsToBinaryDataByFilter(AddAnnotationsToBinaryDataByFilterRequest) returns (AddAnnotationsToBinaryDataByFilterResponse);
 
   // RemoveAnnotationsToBinaryDataByFileIDs removes annotations from binary data based on given IDs.
@@ -197,7 +197,7 @@ message AddAnnotationsToBinaryDataByFileIDsRequest {
   repeated Annotation annotations = 2;
 }
 
-// AddAnnotationsToBinaryDataByFileIDsResponse return IDs of added annotations in order to pass it to RemoveAnnotations
+// AddAnnotationsToBinaryDataByFileIDsResponse returns IDs of added annotations in order to pass it to RemoveAnnotations
 message AddAnnotationsToBinaryDataByFileIDsResponse {
   repeated string annotation_ids = 1;
 }
@@ -208,7 +208,7 @@ message AddAnnotationsToBinaryDataByFilterRequest {
   repeated Annotation annotations = 2;
 }
 
-// AddAnnotationsToBinaryDataByFilterResponse return IDs of added annotations in order to pass it to RemoveAnnotations
+// AddAnnotationsToBinaryDataByFilterResponse returns IDs of added annotations in order to pass it to RemoveAnnotations
 message AddAnnotationsToBinaryDataByFilterResponse {
   repeated string annotation_ids = 1;
 }
