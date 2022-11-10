@@ -213,14 +213,14 @@ message AddAnnotationsToBinaryDataByFilterResponse {
   repeated string annotation_ids = 1;
 }
 
-// RemoveAnnotationsFromBinaryDataByFilterRequest requests removing the annotations from the file when file IDs are provided
+// RemoveAnnotationsFromBinaryDataByFileIDsRequest requests removing the annotations from the file when file IDs are provided
 message RemoveAnnotationsFromBinaryDataByFileIDsRequest {
   repeated string file_ids = 1;
   // If annotation_ids is empty, remove all annotations for the specified files.
   repeated string annotation_ids = 2;
 }
 
-// RemoveAnnotationsFromBinaryDataByFilterResponse returns the number of binary files whose annotations were removed when file IDs are provided
+// RemoveAnnotationsFromBinaryDataByFileIDsResponse returns the number of binary files whose annotations were removed when file IDs are provided
 message RemoveAnnotationsFromBinaryDataByFileIDsResponse {
   uint64 deleted_count = 1;
 }
