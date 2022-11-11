@@ -43,12 +43,12 @@ jobs:
           message: Built new protos from ${{ steps.short_sha.outputs.short_sha }} [skip ci]
           push: git push origin ${GITHUB_REF_NAME} --force
 
-      # - name: Bump tag
-      #   uses: anothrNick/github-tag-action@1.52.0
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.REPO_READ_TOKEN }}
-      #     WITH_V: true
-      #     DEFAULT_BUMP: patch
+      - name: Bump tag
+        uses: anothrNick/github-tag-action@1.52.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_READ_TOKEN }}
+          WITH_V: true
+          DEFAULT_BUMP: patch
 
   buf-push:
     if: github.repository_owner == 'viamrobotics'
