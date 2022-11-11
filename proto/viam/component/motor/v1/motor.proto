@@ -71,7 +71,6 @@ service MotorService {
   }
 
   // IsPowered returns true if the robot's motor off
-  // To Do (FA): This will be deprecated
   rpc IsPowered(IsPoweredRequest) returns (IsPoweredResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/motor/{name}/powered"

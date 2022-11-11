@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.component.inputcontroller.v1;
 
 import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/component/inputcontroller/v1";
@@ -43,6 +44,8 @@ service InputControllerService {
 message GetControlsRequest {
   // Name of an input controller
   string controller = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetControlsResponse {
@@ -54,6 +57,8 @@ message GetControlsResponse {
 message GetEventsRequest {
   // Name of an input controller
   string controller = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetEventsResponse {
@@ -67,6 +72,8 @@ message TriggerEventRequest {
   string controller = 1;
   // Digitally assert a given event
   Event event = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message TriggerEventResponse {}
@@ -87,7 +94,6 @@ message StreamEventsRequest {
     // Name of a control (button or axis)
     string control = 1;
     // Specify which event types to recieve events for
-    // To Do (FA): Right now this can be an empty list, but we should error in this case as opening a stream with no messages is expensive
     repeated string events = 2;
     // Specify which event types to stop recieving events for
     // This can be an empty list
@@ -97,6 +103,8 @@ message StreamEventsRequest {
   string controller = 1;
   // A list of Events
   repeated Events events = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message StreamEventsResponse {
