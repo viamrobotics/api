@@ -257,6 +257,11 @@ export class Operation extends jspb.Message {
   getStarted(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setStarted(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasSessionId(): boolean;
+  clearSessionId(): void;
+  getSessionId(): string;
+  setSessionId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Operation.AsObject;
   static toObject(includeInstance: boolean, msg: Operation): Operation.AsObject;
@@ -273,6 +278,7 @@ export namespace Operation {
     method: string,
     arguments?: google_protobuf_struct_pb.Struct.AsObject,
     started?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    sessionId: string,
   }
 }
 
@@ -383,6 +389,102 @@ export class BlockForOperationResponse extends jspb.Message {
 
 export namespace BlockForOperationResponse {
   export type AsObject = {
+  }
+}
+
+export class PeerConnectionInfo extends jspb.Message {
+  getType(): PeerConnectionTypeMap[keyof PeerConnectionTypeMap];
+  setType(value: PeerConnectionTypeMap[keyof PeerConnectionTypeMap]): void;
+
+  hasRemoteAddress(): boolean;
+  clearRemoteAddress(): void;
+  getRemoteAddress(): string;
+  setRemoteAddress(value: string): void;
+
+  hasLocalAddress(): boolean;
+  clearLocalAddress(): void;
+  getLocalAddress(): string;
+  setLocalAddress(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PeerConnectionInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: PeerConnectionInfo): PeerConnectionInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PeerConnectionInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PeerConnectionInfo;
+  static deserializeBinaryFromReader(message: PeerConnectionInfo, reader: jspb.BinaryReader): PeerConnectionInfo;
+}
+
+export namespace PeerConnectionInfo {
+  export type AsObject = {
+    type: PeerConnectionTypeMap[keyof PeerConnectionTypeMap],
+    remoteAddress: string,
+    localAddress: string,
+  }
+}
+
+export class Session extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  hasPeerConnectionInfo(): boolean;
+  clearPeerConnectionInfo(): void;
+  getPeerConnectionInfo(): PeerConnectionInfo | undefined;
+  setPeerConnectionInfo(value?: PeerConnectionInfo): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Session.AsObject;
+  static toObject(includeInstance: boolean, msg: Session): Session.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Session, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Session;
+  static deserializeBinaryFromReader(message: Session, reader: jspb.BinaryReader): Session;
+}
+
+export namespace Session {
+  export type AsObject = {
+    id: string,
+    peerConnectionInfo?: PeerConnectionInfo.AsObject,
+  }
+}
+
+export class GetSessionsRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSessionsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSessionsRequest): GetSessionsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSessionsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSessionsRequest;
+  static deserializeBinaryFromReader(message: GetSessionsRequest, reader: jspb.BinaryReader): GetSessionsRequest;
+}
+
+export namespace GetSessionsRequest {
+  export type AsObject = {
+  }
+}
+
+export class GetSessionsResponse extends jspb.Message {
+  clearSessionsList(): void;
+  getSessionsList(): Array<Session>;
+  setSessionsList(value: Array<Session>): void;
+  addSessions(value?: Session, index?: number): Session;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSessionsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSessionsResponse): GetSessionsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSessionsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSessionsResponse;
+  static deserializeBinaryFromReader(message: GetSessionsResponse, reader: jspb.BinaryReader): GetSessionsResponse;
+}
+
+export namespace GetSessionsResponse {
+  export type AsObject = {
+    sessionsList: Array<Session.AsObject>,
   }
 }
 
@@ -669,4 +771,94 @@ export namespace StopAllResponse {
   export type AsObject = {
   }
 }
+
+export class StartSessionRequest extends jspb.Message {
+  getResume(): string;
+  setResume(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StartSessionRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: StartSessionRequest): StartSessionRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StartSessionRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StartSessionRequest;
+  static deserializeBinaryFromReader(message: StartSessionRequest, reader: jspb.BinaryReader): StartSessionRequest;
+}
+
+export namespace StartSessionRequest {
+  export type AsObject = {
+    resume: string,
+  }
+}
+
+export class StartSessionResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  hasHeartbeatWindow(): boolean;
+  clearHeartbeatWindow(): void;
+  getHeartbeatWindow(): google_protobuf_duration_pb.Duration | undefined;
+  setHeartbeatWindow(value?: google_protobuf_duration_pb.Duration): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StartSessionResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: StartSessionResponse): StartSessionResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StartSessionResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StartSessionResponse;
+  static deserializeBinaryFromReader(message: StartSessionResponse, reader: jspb.BinaryReader): StartSessionResponse;
+}
+
+export namespace StartSessionResponse {
+  export type AsObject = {
+    id: string,
+    heartbeatWindow?: google_protobuf_duration_pb.Duration.AsObject,
+  }
+}
+
+export class SendSessionHeartbeatRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SendSessionHeartbeatRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SendSessionHeartbeatRequest): SendSessionHeartbeatRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SendSessionHeartbeatRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SendSessionHeartbeatRequest;
+  static deserializeBinaryFromReader(message: SendSessionHeartbeatRequest, reader: jspb.BinaryReader): SendSessionHeartbeatRequest;
+}
+
+export namespace SendSessionHeartbeatRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class SendSessionHeartbeatResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SendSessionHeartbeatResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SendSessionHeartbeatResponse): SendSessionHeartbeatResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SendSessionHeartbeatResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SendSessionHeartbeatResponse;
+  static deserializeBinaryFromReader(message: SendSessionHeartbeatResponse, reader: jspb.BinaryReader): SendSessionHeartbeatResponse;
+}
+
+export namespace SendSessionHeartbeatResponse {
+  export type AsObject = {
+  }
+}
+
+export interface PeerConnectionTypeMap {
+  PEER_CONNECTION_TYPE_UNSPECIFIED: 0;
+  PEER_CONNECTION_TYPE_GRPC: 1;
+  PEER_CONNECTION_TYPE_WEBRTC: 2;
+}
+
+export const PeerConnectionType: PeerConnectionTypeMap;
 
