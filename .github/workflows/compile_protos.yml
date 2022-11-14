@@ -1,0 +1,38 @@
+name: Compile Protos
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request_review:
+    branches: [ 'main' ]
+    types: [submitted]
+
+jobs:
+  compile-protos:
+    if: github.event.review.state == 'approved' && github.repository_owner == 'viamrobotics'
+    runs-on: [self-hosted, x64]
+    container:
+      image: ghcr.io/viamrobotics/canon:amd64-cache
+      options: --platform linux/amd64
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.REPO_READ_TOKEN }}
+      - uses: bufbuild/buf-setup-action@v1
+      - uses: arduino/setup-protoc@v1
+
+      - name: Compile protos
+        run: make dist/buf
+
+      - name: Add SHORT_SHA env property
+        id: short_sha
+        run: echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Commit + Push
+        uses: EndBug/add-and-commit@v9.0.0
+        with:
+          default_author: github_actions
+          message: Built new protos from ${{ steps.short_sha.outputs.short_sha }} [skip ci]
+          push: true
