@@ -189,6 +189,9 @@ export class ComponentConfig extends jspb.Message {
   getAttributes(): google_protobuf_struct_pb.Struct | undefined;
   setAttributes(value?: google_protobuf_struct_pb.Struct): void;
 
+  getApi(): string;
+  setApi(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ComponentConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ComponentConfig): ComponentConfig.AsObject;
@@ -209,6 +212,7 @@ export namespace ComponentConfig {
     dependsOnList: Array<string>,
     serviceConfigsList: Array<ResourceLevelServiceConfig.AsObject>,
     attributes?: google_protobuf_struct_pb.Struct.AsObject,
+    api: string,
   }
 }
 

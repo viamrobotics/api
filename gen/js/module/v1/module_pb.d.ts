@@ -5,7 +5,7 @@ import * as jspb from "google-protobuf";
 import * as app_v1_robot_pb from "../../app/v1/robot_pb";
 import * as robot_v1_robot_pb from "../../robot/v1/robot_pb";
 
-export class AddComponentRequest extends jspb.Message {
+export class AddResourceRequest extends jspb.Message {
   hasConfig(): boolean;
   clearConfig(): void;
   getConfig(): app_v1_robot_pb.ComponentConfig | undefined;
@@ -17,39 +17,39 @@ export class AddComponentRequest extends jspb.Message {
   addDependencies(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddComponentRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddComponentRequest): AddComponentRequest.AsObject;
+  toObject(includeInstance?: boolean): AddResourceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddResourceRequest): AddResourceRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddComponentRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddComponentRequest;
-  static deserializeBinaryFromReader(message: AddComponentRequest, reader: jspb.BinaryReader): AddComponentRequest;
+  static serializeBinaryToWriter(message: AddResourceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddResourceRequest;
+  static deserializeBinaryFromReader(message: AddResourceRequest, reader: jspb.BinaryReader): AddResourceRequest;
 }
 
-export namespace AddComponentRequest {
+export namespace AddResourceRequest {
   export type AsObject = {
     config?: app_v1_robot_pb.ComponentConfig.AsObject,
     dependenciesList: Array<string>,
   }
 }
 
-export class AddComponentResponse extends jspb.Message {
+export class AddResourceResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddComponentResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: AddComponentResponse): AddComponentResponse.AsObject;
+  toObject(includeInstance?: boolean): AddResourceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddResourceResponse): AddResourceResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddComponentResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddComponentResponse;
-  static deserializeBinaryFromReader(message: AddComponentResponse, reader: jspb.BinaryReader): AddComponentResponse;
+  static serializeBinaryToWriter(message: AddResourceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddResourceResponse;
+  static deserializeBinaryFromReader(message: AddResourceResponse, reader: jspb.BinaryReader): AddResourceResponse;
 }
 
-export namespace AddComponentResponse {
+export namespace AddResourceResponse {
   export type AsObject = {
   }
 }
 
-export class ReconfigureComponentRequest extends jspb.Message {
+export class ReconfigureResourceRequest extends jspb.Message {
   hasConfig(): boolean;
   clearConfig(): void;
   getConfig(): app_v1_robot_pb.ComponentConfig | undefined;
@@ -61,110 +61,34 @@ export class ReconfigureComponentRequest extends jspb.Message {
   addDependencies(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ReconfigureComponentRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: ReconfigureComponentRequest): ReconfigureComponentRequest.AsObject;
+  toObject(includeInstance?: boolean): ReconfigureResourceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ReconfigureResourceRequest): ReconfigureResourceRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ReconfigureComponentRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ReconfigureComponentRequest;
-  static deserializeBinaryFromReader(message: ReconfigureComponentRequest, reader: jspb.BinaryReader): ReconfigureComponentRequest;
+  static serializeBinaryToWriter(message: ReconfigureResourceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ReconfigureResourceRequest;
+  static deserializeBinaryFromReader(message: ReconfigureResourceRequest, reader: jspb.BinaryReader): ReconfigureResourceRequest;
 }
 
-export namespace ReconfigureComponentRequest {
+export namespace ReconfigureResourceRequest {
   export type AsObject = {
     config?: app_v1_robot_pb.ComponentConfig.AsObject,
     dependenciesList: Array<string>,
   }
 }
 
-export class ReconfigureComponentResponse extends jspb.Message {
+export class ReconfigureResourceResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ReconfigureComponentResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: ReconfigureComponentResponse): ReconfigureComponentResponse.AsObject;
+  toObject(includeInstance?: boolean): ReconfigureResourceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ReconfigureResourceResponse): ReconfigureResourceResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ReconfigureComponentResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ReconfigureComponentResponse;
-  static deserializeBinaryFromReader(message: ReconfigureComponentResponse, reader: jspb.BinaryReader): ReconfigureComponentResponse;
+  static serializeBinaryToWriter(message: ReconfigureResourceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ReconfigureResourceResponse;
+  static deserializeBinaryFromReader(message: ReconfigureResourceResponse, reader: jspb.BinaryReader): ReconfigureResourceResponse;
 }
 
-export namespace ReconfigureComponentResponse {
-  export type AsObject = {
-  }
-}
-
-export class AddServiceRequest extends jspb.Message {
-  hasConfig(): boolean;
-  clearConfig(): void;
-  getConfig(): app_v1_robot_pb.ServiceConfig | undefined;
-  setConfig(value?: app_v1_robot_pb.ServiceConfig): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddServiceRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddServiceRequest): AddServiceRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddServiceRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddServiceRequest;
-  static deserializeBinaryFromReader(message: AddServiceRequest, reader: jspb.BinaryReader): AddServiceRequest;
-}
-
-export namespace AddServiceRequest {
-  export type AsObject = {
-    config?: app_v1_robot_pb.ServiceConfig.AsObject,
-  }
-}
-
-export class AddServiceResponse extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddServiceResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: AddServiceResponse): AddServiceResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddServiceResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddServiceResponse;
-  static deserializeBinaryFromReader(message: AddServiceResponse, reader: jspb.BinaryReader): AddServiceResponse;
-}
-
-export namespace AddServiceResponse {
-  export type AsObject = {
-  }
-}
-
-export class ReconfigureServiceRequest extends jspb.Message {
-  hasConfig(): boolean;
-  clearConfig(): void;
-  getConfig(): app_v1_robot_pb.ServiceConfig | undefined;
-  setConfig(value?: app_v1_robot_pb.ServiceConfig): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ReconfigureServiceRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: ReconfigureServiceRequest): ReconfigureServiceRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ReconfigureServiceRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ReconfigureServiceRequest;
-  static deserializeBinaryFromReader(message: ReconfigureServiceRequest, reader: jspb.BinaryReader): ReconfigureServiceRequest;
-}
-
-export namespace ReconfigureServiceRequest {
-  export type AsObject = {
-    config?: app_v1_robot_pb.ServiceConfig.AsObject,
-  }
-}
-
-export class ReconfigureServiceResponse extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ReconfigureServiceResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: ReconfigureServiceResponse): ReconfigureServiceResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ReconfigureServiceResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ReconfigureServiceResponse;
-  static deserializeBinaryFromReader(message: ReconfigureServiceResponse, reader: jspb.BinaryReader): ReconfigureServiceResponse;
-}
-
-export namespace ReconfigureServiceResponse {
+export namespace ReconfigureResourceResponse {
   export type AsObject = {
   }
 }

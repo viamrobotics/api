@@ -70,6 +70,7 @@ message ComponentConfig {
   repeated string depends_on = 6;
   repeated ResourceLevelServiceConfig service_configs = 7 [(tagger.v1.tags) = "json:\"service_config\""];
   google.protobuf.Struct attributes = 8;
+  string api = 9;
 }
 
 // A ResourceLevelServiceConfig describes component or remote configuration for a service.

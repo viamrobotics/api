@@ -4,40 +4,22 @@
 import * as module_v1_module_pb from "../../module/v1/module_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type ModuleServiceAddComponent = {
+type ModuleServiceAddResource = {
   readonly methodName: string;
   readonly service: typeof ModuleService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof module_v1_module_pb.AddComponentRequest;
-  readonly responseType: typeof module_v1_module_pb.AddComponentResponse;
+  readonly requestType: typeof module_v1_module_pb.AddResourceRequest;
+  readonly responseType: typeof module_v1_module_pb.AddResourceResponse;
 };
 
-type ModuleServiceReconfigureComponent = {
+type ModuleServiceReconfigureResource = {
   readonly methodName: string;
   readonly service: typeof ModuleService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof module_v1_module_pb.ReconfigureComponentRequest;
-  readonly responseType: typeof module_v1_module_pb.ReconfigureComponentResponse;
-};
-
-type ModuleServiceAddService = {
-  readonly methodName: string;
-  readonly service: typeof ModuleService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof module_v1_module_pb.AddServiceRequest;
-  readonly responseType: typeof module_v1_module_pb.AddServiceResponse;
-};
-
-type ModuleServiceReconfigureService = {
-  readonly methodName: string;
-  readonly service: typeof ModuleService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof module_v1_module_pb.ReconfigureServiceRequest;
-  readonly responseType: typeof module_v1_module_pb.ReconfigureServiceResponse;
+  readonly requestType: typeof module_v1_module_pb.ReconfigureResourceRequest;
+  readonly responseType: typeof module_v1_module_pb.ReconfigureResourceResponse;
 };
 
 type ModuleServiceRemoveResource = {
@@ -60,10 +42,8 @@ type ModuleServiceReady = {
 
 export class ModuleService {
   static readonly serviceName: string;
-  static readonly AddComponent: ModuleServiceAddComponent;
-  static readonly ReconfigureComponent: ModuleServiceReconfigureComponent;
-  static readonly AddService: ModuleServiceAddService;
-  static readonly ReconfigureService: ModuleServiceReconfigureService;
+  static readonly AddResource: ModuleServiceAddResource;
+  static readonly ReconfigureResource: ModuleServiceReconfigureResource;
   static readonly RemoveResource: ModuleServiceRemoveResource;
   static readonly Ready: ModuleServiceReady;
 }
@@ -100,41 +80,23 @@ export class ModuleServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  addComponent(
-    requestMessage: module_v1_module_pb.AddComponentRequest,
+  addResource(
+    requestMessage: module_v1_module_pb.AddResourceRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.AddComponentResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.AddResourceResponse|null) => void
   ): UnaryResponse;
-  addComponent(
-    requestMessage: module_v1_module_pb.AddComponentRequest,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.AddComponentResponse|null) => void
+  addResource(
+    requestMessage: module_v1_module_pb.AddResourceRequest,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.AddResourceResponse|null) => void
   ): UnaryResponse;
-  reconfigureComponent(
-    requestMessage: module_v1_module_pb.ReconfigureComponentRequest,
+  reconfigureResource(
+    requestMessage: module_v1_module_pb.ReconfigureResourceRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ReconfigureComponentResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ReconfigureResourceResponse|null) => void
   ): UnaryResponse;
-  reconfigureComponent(
-    requestMessage: module_v1_module_pb.ReconfigureComponentRequest,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ReconfigureComponentResponse|null) => void
-  ): UnaryResponse;
-  addService(
-    requestMessage: module_v1_module_pb.AddServiceRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.AddServiceResponse|null) => void
-  ): UnaryResponse;
-  addService(
-    requestMessage: module_v1_module_pb.AddServiceRequest,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.AddServiceResponse|null) => void
-  ): UnaryResponse;
-  reconfigureService(
-    requestMessage: module_v1_module_pb.ReconfigureServiceRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ReconfigureServiceResponse|null) => void
-  ): UnaryResponse;
-  reconfigureService(
-    requestMessage: module_v1_module_pb.ReconfigureServiceRequest,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ReconfigureServiceResponse|null) => void
+  reconfigureResource(
+    requestMessage: module_v1_module_pb.ReconfigureResourceRequest,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ReconfigureResourceResponse|null) => void
   ): UnaryResponse;
   removeResource(
     requestMessage: module_v1_module_pb.RemoveResourceRequest,

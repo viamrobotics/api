@@ -10,40 +10,22 @@ var ModuleService = (function () {
   return ModuleService;
 }());
 
-ModuleService.AddComponent = {
-  methodName: "AddComponent",
+ModuleService.AddResource = {
+  methodName: "AddResource",
   service: ModuleService,
   requestStream: false,
   responseStream: false,
-  requestType: module_v1_module_pb.AddComponentRequest,
-  responseType: module_v1_module_pb.AddComponentResponse
+  requestType: module_v1_module_pb.AddResourceRequest,
+  responseType: module_v1_module_pb.AddResourceResponse
 };
 
-ModuleService.ReconfigureComponent = {
-  methodName: "ReconfigureComponent",
+ModuleService.ReconfigureResource = {
+  methodName: "ReconfigureResource",
   service: ModuleService,
   requestStream: false,
   responseStream: false,
-  requestType: module_v1_module_pb.ReconfigureComponentRequest,
-  responseType: module_v1_module_pb.ReconfigureComponentResponse
-};
-
-ModuleService.AddService = {
-  methodName: "AddService",
-  service: ModuleService,
-  requestStream: false,
-  responseStream: false,
-  requestType: module_v1_module_pb.AddServiceRequest,
-  responseType: module_v1_module_pb.AddServiceResponse
-};
-
-ModuleService.ReconfigureService = {
-  methodName: "ReconfigureService",
-  service: ModuleService,
-  requestStream: false,
-  responseStream: false,
-  requestType: module_v1_module_pb.ReconfigureServiceRequest,
-  responseType: module_v1_module_pb.ReconfigureServiceResponse
+  requestType: module_v1_module_pb.ReconfigureResourceRequest,
+  responseType: module_v1_module_pb.ReconfigureResourceResponse
 };
 
 ModuleService.RemoveResource = {
@@ -71,11 +53,11 @@ function ModuleServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
-ModuleServiceClient.prototype.addComponent = function addComponent(requestMessage, metadata, callback) {
+ModuleServiceClient.prototype.addResource = function addResource(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ModuleService.AddComponent, {
+  var client = grpc.unary(ModuleService.AddResource, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -102,73 +84,11 @@ ModuleServiceClient.prototype.addComponent = function addComponent(requestMessag
   };
 };
 
-ModuleServiceClient.prototype.reconfigureComponent = function reconfigureComponent(requestMessage, metadata, callback) {
+ModuleServiceClient.prototype.reconfigureResource = function reconfigureResource(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ModuleService.ReconfigureComponent, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-ModuleServiceClient.prototype.addService = function addService(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(ModuleService.AddService, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-ModuleServiceClient.prototype.reconfigureService = function reconfigureService(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(ModuleService.ReconfigureService, {
+  var client = grpc.unary(ModuleService.ReconfigureResource, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

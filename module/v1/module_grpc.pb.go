@@ -18,14 +18,10 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ModuleServiceClient interface {
-	// AddComponent tells a module about a new component to handle
-	AddComponent(ctx context.Context, in *AddComponentRequest, opts ...grpc.CallOption) (*AddComponentResponse, error)
-	// ReconfigureComponent tells a module to reconfigure an existing resource
-	ReconfigureComponent(ctx context.Context, in *ReconfigureComponentRequest, opts ...grpc.CallOption) (*ReconfigureComponentResponse, error)
-	// AddService tells a module about a new service to handle
-	AddService(ctx context.Context, in *AddServiceRequest, opts ...grpc.CallOption) (*AddServiceResponse, error)
-	// ReconfigureService tells a module to reconfigure an existing resource
-	ReconfigureService(ctx context.Context, in *ReconfigureServiceRequest, opts ...grpc.CallOption) (*ReconfigureServiceResponse, error)
+	// AddResource tells a module about a new component to handle
+	AddResource(ctx context.Context, in *AddResourceRequest, opts ...grpc.CallOption) (*AddResourceResponse, error)
+	// ReconfigureResource tells a module to reconfigure an existing resource
+	ReconfigureResource(ctx context.Context, in *ReconfigureResourceRequest, opts ...grpc.CallOption) (*ReconfigureResourceResponse, error)
 	// RemoveResource tells a module to close/stop a component/service and remove it
 	RemoveResource(ctx context.Context, in *RemoveResourceRequest, opts ...grpc.CallOption) (*RemoveResourceResponse, error)
 	// Ready determines if the server is started and ready to recieve resource configurations.
@@ -40,36 +36,18 @@ func NewModuleServiceClient(cc grpc.ClientConnInterface) ModuleServiceClient {
 	return &moduleServiceClient{cc}
 }
 
-func (c *moduleServiceClient) AddComponent(ctx context.Context, in *AddComponentRequest, opts ...grpc.CallOption) (*AddComponentResponse, error) {
-	out := new(AddComponentResponse)
-	err := c.cc.Invoke(ctx, "/viam.module.v1.ModuleService/AddComponent", in, out, opts...)
+func (c *moduleServiceClient) AddResource(ctx context.Context, in *AddResourceRequest, opts ...grpc.CallOption) (*AddResourceResponse, error) {
+	out := new(AddResourceResponse)
+	err := c.cc.Invoke(ctx, "/viam.module.v1.ModuleService/AddResource", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *moduleServiceClient) ReconfigureComponent(ctx context.Context, in *ReconfigureComponentRequest, opts ...grpc.CallOption) (*ReconfigureComponentResponse, error) {
-	out := new(ReconfigureComponentResponse)
-	err := c.cc.Invoke(ctx, "/viam.module.v1.ModuleService/ReconfigureComponent", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *moduleServiceClient) AddService(ctx context.Context, in *AddServiceRequest, opts ...grpc.CallOption) (*AddServiceResponse, error) {
-	out := new(AddServiceResponse)
-	err := c.cc.Invoke(ctx, "/viam.module.v1.ModuleService/AddService", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *moduleServiceClient) ReconfigureService(ctx context.Context, in *ReconfigureServiceRequest, opts ...grpc.CallOption) (*ReconfigureServiceResponse, error) {
-	out := new(ReconfigureServiceResponse)
-	err := c.cc.Invoke(ctx, "/viam.module.v1.ModuleService/ReconfigureService", in, out, opts...)
+func (c *moduleServiceClient) ReconfigureResource(ctx context.Context, in *ReconfigureResourceRequest, opts ...grpc.CallOption) (*ReconfigureResourceResponse, error) {
+	out := new(ReconfigureResourceResponse)
+	err := c.cc.Invoke(ctx, "/viam.module.v1.ModuleService/ReconfigureResource", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -98,14 +76,10 @@ func (c *moduleServiceClient) Ready(ctx context.Context, in *ReadyRequest, opts 
 // All implementations must embed UnimplementedModuleServiceServer
 // for forward compatibility
 type ModuleServiceServer interface {
-	// AddComponent tells a module about a new component to handle
-	AddComponent(context.Context, *AddComponentRequest) (*AddComponentResponse, error)
-	// ReconfigureComponent tells a module to reconfigure an existing resource
-	ReconfigureComponent(context.Context, *ReconfigureComponentRequest) (*ReconfigureComponentResponse, error)
-	// AddService tells a module about a new service to handle
-	AddService(context.Context, *AddServiceRequest) (*AddServiceResponse, error)
-	// ReconfigureService tells a module to reconfigure an existing resource
-	ReconfigureService(context.Context, *ReconfigureServiceRequest) (*ReconfigureServiceResponse, error)
+	// AddResource tells a module about a new component to handle
+	AddResource(context.Context, *AddResourceRequest) (*AddResourceResponse, error)
+	// ReconfigureResource tells a module to reconfigure an existing resource
+	ReconfigureResource(context.Context, *ReconfigureResourceRequest) (*ReconfigureResourceResponse, error)
 	// RemoveResource tells a module to close/stop a component/service and remove it
 	RemoveResource(context.Context, *RemoveResourceRequest) (*RemoveResourceResponse, error)
 	// Ready determines if the server is started and ready to recieve resource configurations.
@@ -117,17 +91,11 @@ type ModuleServiceServer interface {
 type UnimplementedModuleServiceServer struct {
 }
 
-func (UnimplementedModuleServiceServer) AddComponent(context.Context, *AddComponentRequest) (*AddComponentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddComponent not implemented")
+func (UnimplementedModuleServiceServer) AddResource(context.Context, *AddResourceRequest) (*AddResourceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddResource not implemented")
 }
-func (UnimplementedModuleServiceServer) ReconfigureComponent(context.Context, *ReconfigureComponentRequest) (*ReconfigureComponentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReconfigureComponent not implemented")
-}
-func (UnimplementedModuleServiceServer) AddService(context.Context, *AddServiceRequest) (*AddServiceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddService not implemented")
-}
-func (UnimplementedModuleServiceServer) ReconfigureService(context.Context, *ReconfigureServiceRequest) (*ReconfigureServiceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReconfigureService not implemented")
+func (UnimplementedModuleServiceServer) ReconfigureResource(context.Context, *ReconfigureResourceRequest) (*ReconfigureResourceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReconfigureResource not implemented")
 }
 func (UnimplementedModuleServiceServer) RemoveResource(context.Context, *RemoveResourceRequest) (*RemoveResourceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveResource not implemented")
@@ -148,74 +116,38 @@ func RegisterModuleServiceServer(s grpc.ServiceRegistrar, srv ModuleServiceServe
 	s.RegisterService(&ModuleService_ServiceDesc, srv)
 }
 
-func _ModuleService_AddComponent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddComponentRequest)
+func _ModuleService_AddResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddResourceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModuleServiceServer).AddComponent(ctx, in)
+		return srv.(ModuleServiceServer).AddResource(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.module.v1.ModuleService/AddComponent",
+		FullMethod: "/viam.module.v1.ModuleService/AddResource",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModuleServiceServer).AddComponent(ctx, req.(*AddComponentRequest))
+		return srv.(ModuleServiceServer).AddResource(ctx, req.(*AddResourceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModuleService_ReconfigureComponent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReconfigureComponentRequest)
+func _ModuleService_ReconfigureResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReconfigureResourceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModuleServiceServer).ReconfigureComponent(ctx, in)
+		return srv.(ModuleServiceServer).ReconfigureResource(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.module.v1.ModuleService/ReconfigureComponent",
+		FullMethod: "/viam.module.v1.ModuleService/ReconfigureResource",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModuleServiceServer).ReconfigureComponent(ctx, req.(*ReconfigureComponentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModuleService_AddService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddServiceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModuleServiceServer).AddService(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.module.v1.ModuleService/AddService",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModuleServiceServer).AddService(ctx, req.(*AddServiceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ModuleService_ReconfigureService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReconfigureServiceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ModuleServiceServer).ReconfigureService(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.module.v1.ModuleService/ReconfigureService",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModuleServiceServer).ReconfigureService(ctx, req.(*ReconfigureServiceRequest))
+		return srv.(ModuleServiceServer).ReconfigureResource(ctx, req.(*ReconfigureResourceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -264,20 +196,12 @@ var ModuleService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ModuleServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddComponent",
-			Handler:    _ModuleService_AddComponent_Handler,
+			MethodName: "AddResource",
+			Handler:    _ModuleService_AddResource_Handler,
 		},
 		{
-			MethodName: "ReconfigureComponent",
-			Handler:    _ModuleService_ReconfigureComponent_Handler,
-		},
-		{
-			MethodName: "AddService",
-			Handler:    _ModuleService_AddService_Handler,
-		},
-		{
-			MethodName: "ReconfigureService",
-			Handler:    _ModuleService_ReconfigureService_Handler,
+			MethodName: "ReconfigureResource",
+			Handler:    _ModuleService_ReconfigureResource_Handler,
 		},
 		{
 			MethodName: "RemoveResource",
