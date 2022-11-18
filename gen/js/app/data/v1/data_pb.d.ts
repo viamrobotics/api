@@ -6,6 +6,52 @@ import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb"
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
+export class Error extends jspb.Message {
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Error.AsObject;
+  static toObject(includeInstance: boolean, msg: Error): Error.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Error, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Error;
+  static deserializeBinaryFromReader(message: Error, reader: jspb.BinaryReader): Error;
+}
+
+export namespace Error {
+  export type AsObject = {
+    message: string,
+  }
+}
+
+export class Result extends jspb.Message {
+  getStatus(): StatusMap[keyof StatusMap];
+  setStatus(value: StatusMap[keyof StatusMap]): void;
+
+  hasError(): boolean;
+  clearError(): void;
+  getError(): Error | undefined;
+  setError(value?: Error): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Result.AsObject;
+  static toObject(includeInstance: boolean, msg: Result): Result.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Result, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Result;
+  static deserializeBinaryFromReader(message: Result, reader: jspb.BinaryReader): Result;
+}
+
+export namespace Result {
+  export type AsObject = {
+    status: StatusMap[keyof StatusMap],
+    error?: Error.AsObject,
+  }
+}
+
 export class DataRequest extends jspb.Message {
   hasFilter(): boolean;
   clearFilter(): void;
@@ -530,6 +576,11 @@ export namespace DeleteTabularDataByFilterRequest {
 }
 
 export class DeleteTabularDataByFilterResponse extends jspb.Message {
+  hasResult(): boolean;
+  clearResult(): void;
+  getResult(): Result | undefined;
+  setResult(value?: Result): void;
+
   getDeletedCount(): number;
   setDeletedCount(value: number): void;
 
@@ -545,6 +596,7 @@ export class DeleteTabularDataByFilterResponse extends jspb.Message {
 
 export namespace DeleteTabularDataByFilterResponse {
   export type AsObject = {
+    result?: Result.AsObject,
     deletedCount: number,
   }
 }
@@ -572,6 +624,11 @@ export namespace DeleteBinaryDataByFilterRequest {
 }
 
 export class DeleteBinaryDataByFilterResponse extends jspb.Message {
+  hasResult(): boolean;
+  clearResult(): void;
+  getResult(): Result | undefined;
+  setResult(value?: Result): void;
+
   getDeletedCount(): number;
   setDeletedCount(value: number): void;
 
@@ -587,6 +644,7 @@ export class DeleteBinaryDataByFilterResponse extends jspb.Message {
 
 export namespace DeleteBinaryDataByFilterResponse {
   export type AsObject = {
+    result?: Result.AsObject,
     deletedCount: number,
   }
 }
@@ -614,6 +672,11 @@ export namespace DeleteBinaryDataByIDsRequest {
 }
 
 export class DeleteBinaryDataByIDsResponse extends jspb.Message {
+  hasResult(): boolean;
+  clearResult(): void;
+  getResult(): Result | undefined;
+  setResult(value?: Result): void;
+
   getDeletedCount(): number;
   setDeletedCount(value: number): void;
 
@@ -629,6 +692,7 @@ export class DeleteBinaryDataByIDsResponse extends jspb.Message {
 
 export namespace DeleteBinaryDataByIDsResponse {
   export type AsObject = {
+    result?: Result.AsObject,
     deletedCount: number,
   }
 }
@@ -856,4 +920,13 @@ export interface OrderMap {
 }
 
 export const Order: OrderMap;
+
+export interface StatusMap {
+  STATUS_UNSPECIFIED: 0;
+  STATUS_FAILURE: 1;
+  STATUS_PARTIAL_SUCCESS: 2;
+  STATUS_SUCCESS: 3;
+}
+
+export const Status: StatusMap;
 

@@ -47,6 +47,22 @@ enum Order {
   ORDER_ASCENDING = 2;
 }
 
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  STATUS_FAILURE = 1;
+  STATUS_PARTIAL_SUCCESS = 2;
+  STATUS_SUCCESS = 3;
+}
+
+message Error {
+  string message = 1;
+}
+
+message Result {
+  Status status = 1;
+  Error error = 2;
+}
+
 message DataRequest {
   Filter filter = 1;
   uint64 limit = 2;
@@ -163,7 +179,8 @@ message DeleteTabularDataByFilterRequest {
 
 // DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided
 message DeleteTabularDataByFilterResponse {
-  uint64 deleted_count = 1;
+  Result result = 1;
+  uint64 deleted_count = 2;
 }
 
 // DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
@@ -173,7 +190,8 @@ message DeleteBinaryDataByFilterRequest {
 
 // DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided
 message DeleteBinaryDataByFilterResponse {
-  uint64 deleted_count = 1;
+  Result result = 1;
+  uint64 deleted_count = 2;
 }
 
 // DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when file ids are provided
@@ -183,7 +201,8 @@ message DeleteBinaryDataByIDsRequest {
 
 // DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided
 message DeleteBinaryDataByIDsResponse {
-  uint64 deleted_count = 1;
+  Result result = 1;
+  uint64 deleted_count = 2;
 }
 
 // Annotation specifies the ways in which we can associate annotations with data, e.g. with a text tag or image bounding box
