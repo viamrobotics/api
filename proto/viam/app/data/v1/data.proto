@@ -179,8 +179,8 @@ message DeleteTabularDataByFilterRequest {
 
 // DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided
 message DeleteTabularDataByFilterResponse {
-  Result result = 1;
-  uint64 deleted_count = 2;
+  uint64 deleted_count = 1;
+  Result result = 2;
 }
 
 // DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
@@ -190,8 +190,8 @@ message DeleteBinaryDataByFilterRequest {
 
 // DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided
 message DeleteBinaryDataByFilterResponse {
-  Result result = 1;
-  uint64 deleted_count = 2;
+  uint64 deleted_count = 1;
+  Result result = 2;
 }
 
 // DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when file ids are provided
@@ -201,8 +201,8 @@ message DeleteBinaryDataByIDsRequest {
 
 // DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided
 message DeleteBinaryDataByIDsResponse {
-  Result result = 1;
-  uint64 deleted_count = 2;
+  uint64 deleted_count = 1;
+  Result result = 2;
 }
 
 // Annotation specifies the ways in which we can associate annotations with data, e.g. with a text tag or image bounding box

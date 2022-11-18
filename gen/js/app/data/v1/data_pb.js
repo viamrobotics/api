@@ -4866,8 +4866,8 @@ proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.prototype.toObject = fu
  */
 proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    result: (f = msg.getResult()) && proto.viam.app.data.v1.Result.toObject(includeInstance, f),
-    deletedCount: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    result: (f = msg.getResult()) && proto.viam.app.data.v1.Result.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4905,13 +4905,13 @@ proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.deserializeBinaryFromRe
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setDeletedCount(value);
+      break;
+    case 2:
       var value = new proto.viam.app.data.v1.Result;
       reader.readMessage(value,proto.viam.app.data.v1.Result.deserializeBinaryFromReader);
       msg.setResult(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setDeletedCount(value);
       break;
     default:
       reader.skipField();
@@ -4942,31 +4942,49 @@ proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.prototype.serializeBina
  */
 proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getResult();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.viam.app.data.v1.Result.serializeBinaryToWriter
-    );
-  }
   f = message.getDeletedCount();
   if (f !== 0) {
     writer.writeUint64(
-      2,
+      1,
       f
+    );
+  }
+  f = message.getResult();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.viam.app.data.v1.Result.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional Result result = 1;
+ * optional uint64 deleted_count = 1;
+ * @return {number}
+ */
+proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.prototype.getDeletedCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.data.v1.DeleteTabularDataByFilterResponse} returns this
+ */
+proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.prototype.setDeletedCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional Result result = 2;
  * @return {?proto.viam.app.data.v1.Result}
  */
 proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.prototype.getResult = function() {
   return /** @type{?proto.viam.app.data.v1.Result} */ (
-    jspb.Message.getWrapperField(this, proto.viam.app.data.v1.Result, 1));
+    jspb.Message.getWrapperField(this, proto.viam.app.data.v1.Result, 2));
 };
 
 
@@ -4975,7 +4993,7 @@ proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.prototype.getResult = f
  * @return {!proto.viam.app.data.v1.DeleteTabularDataByFilterResponse} returns this
 */
 proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.prototype.setResult = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -4993,25 +5011,7 @@ proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.prototype.clearResult =
  * @return {boolean}
  */
 proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.prototype.hasResult = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional uint64 deleted_count = 2;
- * @return {number}
- */
-proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.prototype.getDeletedCount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.viam.app.data.v1.DeleteTabularDataByFilterResponse} returns this
- */
-proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.prototype.setDeletedCount = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -5198,8 +5198,8 @@ proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.prototype.toObject = fun
  */
 proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    result: (f = msg.getResult()) && proto.viam.app.data.v1.Result.toObject(includeInstance, f),
-    deletedCount: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    result: (f = msg.getResult()) && proto.viam.app.data.v1.Result.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5237,13 +5237,13 @@ proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.deserializeBinaryFromRea
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setDeletedCount(value);
+      break;
+    case 2:
       var value = new proto.viam.app.data.v1.Result;
       reader.readMessage(value,proto.viam.app.data.v1.Result.deserializeBinaryFromReader);
       msg.setResult(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setDeletedCount(value);
       break;
     default:
       reader.skipField();
@@ -5274,31 +5274,49 @@ proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.prototype.serializeBinar
  */
 proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getResult();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.viam.app.data.v1.Result.serializeBinaryToWriter
-    );
-  }
   f = message.getDeletedCount();
   if (f !== 0) {
     writer.writeUint64(
-      2,
+      1,
       f
+    );
+  }
+  f = message.getResult();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.viam.app.data.v1.Result.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional Result result = 1;
+ * optional uint64 deleted_count = 1;
+ * @return {number}
+ */
+proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.prototype.getDeletedCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse} returns this
+ */
+proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.prototype.setDeletedCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional Result result = 2;
  * @return {?proto.viam.app.data.v1.Result}
  */
 proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.prototype.getResult = function() {
   return /** @type{?proto.viam.app.data.v1.Result} */ (
-    jspb.Message.getWrapperField(this, proto.viam.app.data.v1.Result, 1));
+    jspb.Message.getWrapperField(this, proto.viam.app.data.v1.Result, 2));
 };
 
 
@@ -5307,7 +5325,7 @@ proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.prototype.getResult = fu
  * @return {!proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse} returns this
 */
 proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.prototype.setResult = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -5325,25 +5343,7 @@ proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.prototype.clearResult = 
  * @return {boolean}
  */
 proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.prototype.hasResult = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional uint64 deleted_count = 2;
- * @return {number}
- */
-proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.prototype.getDeletedCount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse} returns this
- */
-proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.prototype.setDeletedCount = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -5535,8 +5535,8 @@ proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.prototype.toObject = functi
  */
 proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    result: (f = msg.getResult()) && proto.viam.app.data.v1.Result.toObject(includeInstance, f),
-    deletedCount: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    result: (f = msg.getResult()) && proto.viam.app.data.v1.Result.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5574,13 +5574,13 @@ proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.deserializeBinaryFromReader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setDeletedCount(value);
+      break;
+    case 2:
       var value = new proto.viam.app.data.v1.Result;
       reader.readMessage(value,proto.viam.app.data.v1.Result.deserializeBinaryFromReader);
       msg.setResult(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setDeletedCount(value);
       break;
     default:
       reader.skipField();
@@ -5611,31 +5611,49 @@ proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.prototype.serializeBinary =
  */
 proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getResult();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.viam.app.data.v1.Result.serializeBinaryToWriter
-    );
-  }
   f = message.getDeletedCount();
   if (f !== 0) {
     writer.writeUint64(
-      2,
+      1,
       f
+    );
+  }
+  f = message.getResult();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.viam.app.data.v1.Result.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional Result result = 1;
+ * optional uint64 deleted_count = 1;
+ * @return {number}
+ */
+proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.prototype.getDeletedCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse} returns this
+ */
+proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.prototype.setDeletedCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional Result result = 2;
  * @return {?proto.viam.app.data.v1.Result}
  */
 proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.prototype.getResult = function() {
   return /** @type{?proto.viam.app.data.v1.Result} */ (
-    jspb.Message.getWrapperField(this, proto.viam.app.data.v1.Result, 1));
+    jspb.Message.getWrapperField(this, proto.viam.app.data.v1.Result, 2));
 };
 
 
@@ -5644,7 +5662,7 @@ proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.prototype.getResult = funct
  * @return {!proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse} returns this
 */
 proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.prototype.setResult = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -5662,25 +5680,7 @@ proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.prototype.clearResult = fun
  * @return {boolean}
  */
 proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.prototype.hasResult = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional uint64 deleted_count = 2;
- * @return {number}
- */
-proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.prototype.getDeletedCount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse} returns this
- */
-proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.prototype.setDeletedCount = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.getField(this, 2) != null;
 };
 
 

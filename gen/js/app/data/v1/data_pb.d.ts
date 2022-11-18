@@ -576,13 +576,13 @@ export namespace DeleteTabularDataByFilterRequest {
 }
 
 export class DeleteTabularDataByFilterResponse extends jspb.Message {
+  getDeletedCount(): number;
+  setDeletedCount(value: number): void;
+
   hasResult(): boolean;
   clearResult(): void;
   getResult(): Result | undefined;
   setResult(value?: Result): void;
-
-  getDeletedCount(): number;
-  setDeletedCount(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteTabularDataByFilterResponse.AsObject;
@@ -596,8 +596,8 @@ export class DeleteTabularDataByFilterResponse extends jspb.Message {
 
 export namespace DeleteTabularDataByFilterResponse {
   export type AsObject = {
-    result?: Result.AsObject,
     deletedCount: number,
+    result?: Result.AsObject,
   }
 }
 
@@ -624,13 +624,13 @@ export namespace DeleteBinaryDataByFilterRequest {
 }
 
 export class DeleteBinaryDataByFilterResponse extends jspb.Message {
+  getDeletedCount(): number;
+  setDeletedCount(value: number): void;
+
   hasResult(): boolean;
   clearResult(): void;
   getResult(): Result | undefined;
   setResult(value?: Result): void;
-
-  getDeletedCount(): number;
-  setDeletedCount(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteBinaryDataByFilterResponse.AsObject;
@@ -644,8 +644,8 @@ export class DeleteBinaryDataByFilterResponse extends jspb.Message {
 
 export namespace DeleteBinaryDataByFilterResponse {
   export type AsObject = {
-    result?: Result.AsObject,
     deletedCount: number,
+    result?: Result.AsObject,
   }
 }
 
@@ -672,13 +672,13 @@ export namespace DeleteBinaryDataByIDsRequest {
 }
 
 export class DeleteBinaryDataByIDsResponse extends jspb.Message {
+  getDeletedCount(): number;
+  setDeletedCount(value: number): void;
+
   hasResult(): boolean;
   clearResult(): void;
   getResult(): Result | undefined;
   setResult(value?: Result): void;
-
-  getDeletedCount(): number;
-  setDeletedCount(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteBinaryDataByIDsResponse.AsObject;
@@ -692,8 +692,8 @@ export class DeleteBinaryDataByIDsResponse extends jspb.Message {
 
 export namespace DeleteBinaryDataByIDsResponse {
   export type AsObject = {
-    result?: Result.AsObject,
     deletedCount: number,
+    result?: Result.AsObject,
   }
 }
 
