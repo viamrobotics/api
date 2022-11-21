@@ -194,7 +194,7 @@ message Annotation {
 
 enum Type {
   ANNOTATION_TYPE_UNSPECIFIED = 0;
-  TAG_ANNOTATION = 1;
+  TYPE_TAG = 1;
 }
 
 // AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when file IDs are provided
