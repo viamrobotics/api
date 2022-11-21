@@ -53,7 +53,7 @@ message GetEndPositionRequest {
   // Name of an arm
   string name = 1;
   // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
+  google.protobuf.Struct extra_params = 99;
 }
 
 message GetEndPositionResponse {
