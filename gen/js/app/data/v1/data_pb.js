@@ -7232,9 +7232,8 @@ proto.viam.app.data.v1.Order = {
  */
 proto.viam.app.data.v1.Status = {
   STATUS_UNSPECIFIED: 0,
-  STATUS_FAILURE: 1,
-  STATUS_PARTIAL_SUCCESS: 2,
-  STATUS_SUCCESS: 3
+  STATUS_PARTIAL_SUCCESS: 1,
+  STATUS_SUCCESS: 2
 };
 
 goog.object.extend(exports, proto.viam.app.data.v1);

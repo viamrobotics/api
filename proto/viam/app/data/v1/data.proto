@@ -49,11 +49,11 @@ enum Order {
 
 enum Status {
   STATUS_UNSPECIFIED = 0;
-  STATUS_FAILURE = 1;
-  STATUS_PARTIAL_SUCCESS = 2;
-  STATUS_SUCCESS = 3;
+  STATUS_PARTIAL_SUCCESS = 1;
+  STATUS_SUCCESS = 2;
 }
 
+// Error message is an aggregated error message string
 message Error {
   string message = 1;
 }

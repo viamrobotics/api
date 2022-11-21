@@ -923,9 +923,8 @@ export const Order: OrderMap;
 
 export interface StatusMap {
   STATUS_UNSPECIFIED: 0;
-  STATUS_FAILURE: 1;
-  STATUS_PARTIAL_SUCCESS: 2;
-  STATUS_SUCCESS: 3;
+  STATUS_PARTIAL_SUCCESS: 1;
+  STATUS_SUCCESS: 2;
 }
 
 export const Status: StatusMap;
