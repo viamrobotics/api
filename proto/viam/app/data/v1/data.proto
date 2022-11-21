@@ -193,7 +193,7 @@ message Annotation {
 }
 
 enum Type {
-  ANNOTATION_TYPE_UNSPECIFIED = 0;
+  TYPE_UNSPECIFIED = 0;
   TYPE_TAG = 1;
 }
 
