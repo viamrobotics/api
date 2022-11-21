@@ -28,18 +28,18 @@ service DataService {
   // DeleteBinaryDataByIDs deletes binary data based on given IDs.
   rpc DeleteBinaryDataByIDs(DeleteBinaryDataByIDsRequest) returns (DeleteBinaryDataByIDsResponse);
 
-    // AddAnnotationsToBinaryDataByFileIDs adds annotations to binary data based on given IDs.
-    rpc AddAnnotationsToBinaryDataByFileIDs(AddAnnotationsToBinaryDataByFileIDsRequest) returns (AddAnnotationsToBinaryDataByFileIDsResponse);
+  // AddAnnotationsToBinaryDataByFileIDs adds annotations to binary data based on given IDs.
+  rpc AddAnnotationsToBinaryDataByFileIDs(AddAnnotationsToBinaryDataByFileIDsRequest) returns (AddAnnotationsToBinaryDataByFileIDsResponse);
 
-    // AddAnnotationsToBinaryDataByFilter adds annotations to binary data based on the given filter.
-    rpc AddAnnotationsToBinaryDataByFilter(AddAnnotationsToBinaryDataByFilterRequest) returns (AddAnnotationsToBinaryDataByFilterResponse);
-  
-    // RemoveAnnotationsToBinaryDataByFileIDs removes annotations from binary data based on given IDs.
-    rpc RemoveAnnotationsFromBinaryDataByFileIDs(RemoveAnnotationsFromBinaryDataByFileIDsRequest) returns (RemoveAnnotationsFromBinaryDataByFileIDsResponse);
-  
-    // RemoveAnnotationsToBinaryDataByFilter removes annotations from binary data based on the given filter.
-    rpc RemoveAnnotationsFromBinaryDataByFilter(RemoveAnnotationsFromBinaryDataByFilterRequest) returns (RemoveAnnotationsFromBinaryDataByFilterResponse);
-  
+  // AddAnnotationsToBinaryDataByFilter adds annotations to binary data based on the given filter.
+  rpc AddAnnotationsToBinaryDataByFilter(AddAnnotationsToBinaryDataByFilterRequest) returns (AddAnnotationsToBinaryDataByFilterResponse);
+
+  // RemoveAnnotationsToBinaryDataByFileIDs removes annotations from binary data based on given IDs.
+  rpc RemoveAnnotationsFromBinaryDataByFileIDs(RemoveAnnotationsFromBinaryDataByFileIDsRequest) returns (RemoveAnnotationsFromBinaryDataByFileIDsResponse);
+
+  // RemoveAnnotationsToBinaryDataByFilter removes annotations from binary data based on the given filter.
+  rpc RemoveAnnotationsFromBinaryDataByFilter(RemoveAnnotationsFromBinaryDataByFilterRequest) returns (RemoveAnnotationsFromBinaryDataByFilterResponse);
+
   // AddTagsToBinaryDataByFileIDs adds string tags to binary data based on given IDs.
   rpc AddTagsToBinaryDataByFileIDs(AddTagsToBinaryDataByFileIDsRequest) returns (AddTagsToBinaryDataByFileIDsResponse);
 
@@ -200,7 +200,7 @@ message DeleteBinaryDataByIDsResponse {
 
 // Annotation specifies the ways in which we can associate annotations with data, e.g. with a text tag or image bounding box
 message Annotation {
-  string value = 1;
+  string value = 3;
   Type type = 2;
 }
 
@@ -260,8 +260,7 @@ message AddTagsToBinaryDataByFileIDsRequest {
 }
 
 // AddTagsToBinaryDataByFileIDsResponse returns nothing
-message AddTagsToBinaryDataByFileIDsResponse {
-}
+message AddTagsToBinaryDataByFileIDsResponse {}
 
 // AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided
 message AddTagsToBinaryDataByFilterRequest {
@@ -270,8 +269,7 @@ message AddTagsToBinaryDataByFilterRequest {
 }
 
 // AddTagsToBinaryDataByFilterResponse returns nothing
-message AddTagsToBinaryDataByFilterResponse {
-}
+message AddTagsToBinaryDataByFilterResponse {}
 
 // RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when file IDs are provided
 message RemoveTagsFromBinaryDataByFileIDsRequest {
