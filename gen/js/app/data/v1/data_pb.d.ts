@@ -6,34 +6,12 @@ import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb"
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
-export class Error extends jspb.Message {
-  getMessage(): string;
-  setMessage(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Error.AsObject;
-  static toObject(includeInstance: boolean, msg: Error): Error.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Error, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Error;
-  static deserializeBinaryFromReader(message: Error, reader: jspb.BinaryReader): Error;
-}
-
-export namespace Error {
-  export type AsObject = {
-    message: string,
-  }
-}
-
 export class Result extends jspb.Message {
   getStatus(): StatusMap[keyof StatusMap];
   setStatus(value: StatusMap[keyof StatusMap]): void;
 
-  hasError(): boolean;
-  clearError(): void;
-  getError(): Error | undefined;
-  setError(value?: Error): void;
+  getMessage(): string;
+  setMessage(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Result.AsObject;
@@ -48,7 +26,7 @@ export class Result extends jspb.Message {
 export namespace Result {
   export type AsObject = {
     status: StatusMap[keyof StatusMap],
-    error?: Error.AsObject,
+    message: string,
   }
 }
 

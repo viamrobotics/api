@@ -53,14 +53,10 @@ enum Status {
   STATUS_SUCCESS = 2;
 }
 
-// Error message is an aggregated error message string
-message Error {
-  string message = 1;
-}
-
 message Result {
   Status status = 1;
-  Error error = 2;
+  // message is an aggregated error message string
+  string message = 2;
 }
 
 message DataRequest {
