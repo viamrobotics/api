@@ -200,13 +200,13 @@ message DeleteBinaryDataByIDsResponse {
 
 // Annotation specifies the ways in which we can associate annotations with data, e.g. with a text tag or image bounding box
 message Annotation {
-  string tags = 1;
+  string tag = 1;
 }
 
 // AddAnnotationsToBinaryDataByFileIDsRequest requests adding all specified annotations to each of the files when file IDs are provided
 message AddAnnotationsToBinaryDataByFileIDsRequest {
   repeated string file_ids = 1;
-  repeated string annotations = 2;
+  repeated Annotation annotations = 2;
 }
 
 // AddAnnotationsToBinaryDataByFileIDsResponse returns IDs of added annotations which can be passed to RemoveAnnotationsFromBinaryDataByFileIDs
