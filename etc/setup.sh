@@ -27,14 +27,18 @@ do_bullseye(){
 	echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x $(grep VERSION_CODENAME /etc/os-release | cut -d= -f2) main" > /etc/apt/sources.list.d/nodesource.list
 
 	# Install most things
-	apt-get update && apt-get install -y build-essential nodejs libnlopt-dev libx264-dev libtensorflowlite-dev protobuf-compiler protoc-gen-grpc-web ffmpeg && apt-get clean
+	apt-get update && apt-get install -y build-essential nodejs libnlopt-dev libx264-dev libopus-dev libtensorflowlite-dev protobuf-compiler protoc-gen-grpc-web ffmpeg && apt-get clean
 
 	# Install backports
 	apt-get install -y -t $(grep VERSION_CODENAME /etc/os-release | cut -d= -f2)-backports golang-go
 
 	# Raspberry Pi support
+	grep -q Raspberry /proc/cpuinfo && apt-get install -y wiringpi libpigpio-dev && exit
+
+	# Other arm64 (bring in pi repo at low priority for build support)
 	test "$(uname -m)" != "aarch64" || curl -fsSL https://archive.raspberrypi.org/debian/raspberrypi.gpg.key | gpg --yes --dearmor -o /usr/share/keyrings/raspberrypi.gpg
 	test "$(uname -m)" != "aarch64" || echo "deb [signed-by=/usr/share/keyrings/raspberrypi.gpg] http://archive.raspberrypi.org/debian/ $(grep VERSION_CODENAME /etc/os-release | cut -d= -f2) main" > /etc/apt/sources.list.d/raspi.list
+	test "$(uname -m)" != "aarch64" || echo -e "Package: *\nPin: origin archive.raspberrypi.org\nPin-Priority: 1" > /etc/apt/preferences.d/raspi-low-prio
 	test "$(uname -m)" != "aarch64" || ( apt-get update && apt-get install -y wiringpi libpigpio-dev && apt-get clean )
 	EOS
 
@@ -48,6 +52,7 @@ do_bullseye(){
 	EOS
 
 	mod_profiles
+	check_gcloud_auth
 }
 
 do_linux(){
@@ -78,10 +83,12 @@ do_linux(){
 	export GOPRIVATE=github.com/viamrobotics/*,go.viam.com/*
 	export CC=gcc-11
 	export CXX=g++-11
+	export PATH="\$PATH:\$(ruby -e 'puts Gem.user_dir')/bin"
 	EOS
 
 	do_brew
 	mod_profiles
+	check_gcloud_auth
 }
 
 
@@ -100,20 +107,23 @@ do_darwin(){
 		export CGO_LDFLAGS=-L/opt/homebrew/lib
 		export CGO_CFLAGS=-I/opt/homebrew/include
 		export GOPRIVATE=github.com/viamrobotics/*,go.viam.com/*
+		export PATH="\$PATH:\$(ruby -e 'puts Gem.user_dir')/bin"
 		EOS
 
-	else # assuming x86_64, but untested
+  	else # assuming x86_64, but untested
 
 		cat > ~/.viamdevrc <<-EOS
 		eval "\$(/usr/local/bin/brew shellenv)"
 		export LIBRARY_PATH=/usr/local/lib
 		export GOPRIVATE=github.com/viamrobotics/*,go.viam.com/*
+		export PATH="\$PATH:\$(ruby -e 'puts Gem.user_dir')/bin"
 		EOS
 
 	fi
 
 	do_brew
 	mod_profiles
+	check_gcloud_auth
 }
 
 mod_profiles(){
@@ -133,9 +143,23 @@ mod_profiles(){
 	grep -q github.com ~/.ssh/known_hosts || ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 }
 
+# This workaround is for https://viam.atlassian.net/browse/RSDK-526, without the application default credential file our tests will
+# create goroutines that get leaked and fail. Once https://github.com/googleapis/google-cloud-go/issues/5430 is fixed we can remove this.
+check_gcloud_auth(){
+	APP_CREDENTIALS_DIR="$HOME/.config/gcloud"
+	mkdir -p $APP_CREDENTIALS_DIR
+	APP_CREDENTIALS_FILE="$APP_CREDENTIALS_DIR/application_default_credentials.json"	
+	if [ ! -f "$APP_CREDENTIALS_FILE" ]; then
+		echo "Missing gcloud application default credentials, this can cause goroutines to leak if not configured. Creating with empty config at $APP_CREDENTIALS_FILE"
+		echo '{"client_id":"XXXX","client_secret":"XXXX","refresh_token":"XXXX","type":"authorized_user"}' > $APP_CREDENTIALS_FILE
+	fi
+}
+
 do_brew(){
 	# Install brew
 	brew --version > /dev/null 2>&1 || bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || exit 1
+
+	gem install license_finder --conservative
 
 	# Has to be after the install so the brew eval can run
 	source ~/.viamdevrc
@@ -144,19 +168,20 @@ do_brew(){
 	# viam tap
 	tap  "viamrobotics/brews"
 
+	# pinned
+	brew "gcc@11"
+	brew "go@1.19"
+	brew "node@18"
+	brew "protobuf@3"
+
 	# unpinned
 	brew "nlopt"
 	brew "x264"
+	brew "opus"
 	brew "protoc-gen-grpc-web"
 	brew "pkg-config"
-	brew "tensorflowlite"
 	brew "ffmpeg"
-
-	# pinned
-	brew "gcc@11"
-	brew "go@1.18"
-	brew "node@18"
-	brew "protobuf@3"
+	brew "tensorflowlite" # Needs to be last
 
 	EOS
 
@@ -165,7 +190,7 @@ do_brew(){
 	fi
 
 	brew unlink "gcc" "go" "node" "protobuf"
-	brew link --overwrite "gcc@11" "go@1.18" "node@18" "protobuf@3" || exit 1
+	brew link --overwrite "gcc@11" "go@1.19" "node@18" "protobuf@3" || exit 1
 
 	echo "Brew installed software versions..."
 	brew list --version

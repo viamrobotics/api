@@ -58,6 +58,42 @@ type DataServiceDeleteBinaryDataByIDs = {
   readonly responseType: typeof app_data_v1_data_pb.DeleteBinaryDataByIDsResponse;
 };
 
+type DataServiceAddAnnotationsToBinaryDataByFileIDs = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.AddAnnotationsToBinaryDataByFileIDsRequest;
+  readonly responseType: typeof app_data_v1_data_pb.AddAnnotationsToBinaryDataByFileIDsResponse;
+};
+
+type DataServiceAddAnnotationsToBinaryDataByFilter = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.AddAnnotationsToBinaryDataByFilterRequest;
+  readonly responseType: typeof app_data_v1_data_pb.AddAnnotationsToBinaryDataByFilterResponse;
+};
+
+type DataServiceRemoveAnnotationsFromBinaryDataByFileIDs = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFileIDsRequest;
+  readonly responseType: typeof app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFileIDsResponse;
+};
+
+type DataServiceRemoveAnnotationsFromBinaryDataByFilter = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFilterRequest;
+  readonly responseType: typeof app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFilterResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
@@ -66,6 +102,10 @@ export class DataService {
   static readonly DeleteTabularDataByFilter: DataServiceDeleteTabularDataByFilter;
   static readonly DeleteBinaryDataByFilter: DataServiceDeleteBinaryDataByFilter;
   static readonly DeleteBinaryDataByIDs: DataServiceDeleteBinaryDataByIDs;
+  static readonly AddAnnotationsToBinaryDataByFileIDs: DataServiceAddAnnotationsToBinaryDataByFileIDs;
+  static readonly AddAnnotationsToBinaryDataByFilter: DataServiceAddAnnotationsToBinaryDataByFilter;
+  static readonly RemoveAnnotationsFromBinaryDataByFileIDs: DataServiceRemoveAnnotationsFromBinaryDataByFileIDs;
+  static readonly RemoveAnnotationsFromBinaryDataByFilter: DataServiceRemoveAnnotationsFromBinaryDataByFilter;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -153,6 +193,42 @@ export class DataServiceClient {
   deleteBinaryDataByIDs(
     requestMessage: app_data_v1_data_pb.DeleteBinaryDataByIDsRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteBinaryDataByIDsResponse|null) => void
+  ): UnaryResponse;
+  addAnnotationsToBinaryDataByFileIDs(
+    requestMessage: app_data_v1_data_pb.AddAnnotationsToBinaryDataByFileIDsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddAnnotationsToBinaryDataByFileIDsResponse|null) => void
+  ): UnaryResponse;
+  addAnnotationsToBinaryDataByFileIDs(
+    requestMessage: app_data_v1_data_pb.AddAnnotationsToBinaryDataByFileIDsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddAnnotationsToBinaryDataByFileIDsResponse|null) => void
+  ): UnaryResponse;
+  addAnnotationsToBinaryDataByFilter(
+    requestMessage: app_data_v1_data_pb.AddAnnotationsToBinaryDataByFilterRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddAnnotationsToBinaryDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  addAnnotationsToBinaryDataByFilter(
+    requestMessage: app_data_v1_data_pb.AddAnnotationsToBinaryDataByFilterRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddAnnotationsToBinaryDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  removeAnnotationsFromBinaryDataByFileIDs(
+    requestMessage: app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFileIDsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFileIDsResponse|null) => void
+  ): UnaryResponse;
+  removeAnnotationsFromBinaryDataByFileIDs(
+    requestMessage: app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFileIDsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFileIDsResponse|null) => void
+  ): UnaryResponse;
+  removeAnnotationsFromBinaryDataByFilter(
+    requestMessage: app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFilterRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  removeAnnotationsFromBinaryDataByFilter(
+    requestMessage: app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFilterRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFilterResponse|null) => void
   ): UnaryResponse;
 }
 

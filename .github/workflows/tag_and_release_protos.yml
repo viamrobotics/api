@@ -1,4 +1,4 @@
-name: Buf Push
+name: Tag Version and Update Buf
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -16,14 +16,29 @@ on:
   workflow_dispatch:
 
 jobs:
+  bump-tag:
+    if: github.repository_owner == 'viamrobotics'
+    runs-on: [self-hosted, x64]
+    container:
+      image: ghcr.io/viamrobotics/canon:amd64-cache
+      options: --platform linux/amd64
+    steps:
+      - uses: actions/checkout@v3
+      - name: Bump tag
+        uses: anothrNick/github-tag-action@1.52.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_READ_TOKEN }}
+          WITH_V: true
+          DEFAULT_BUMP: patch
+
   buf-push:
     if: github.repository_owner == 'viamrobotics'
     runs-on: [self-hosted, x64]
     container:
-      image: ghcr.io/viamrobotics/canon:amd64
+      image: ghcr.io/viamrobotics/canon:amd64-cache
     steps:
       - uses: actions/checkout@v3
-      - uses: bufbuild/buf-setup-action@v1.8.0
+      - uses: bufbuild/buf-setup-action@v1
       - uses: bufbuild/buf-push-action@v1
         with:
           input: proto/viam

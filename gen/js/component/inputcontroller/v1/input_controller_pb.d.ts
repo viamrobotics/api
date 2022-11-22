@@ -3,11 +3,17 @@
 
 import * as jspb from "google-protobuf";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class GetControlsRequest extends jspb.Message {
   getController(): string;
   setController(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetControlsRequest.AsObject;
@@ -22,6 +28,7 @@ export class GetControlsRequest extends jspb.Message {
 export namespace GetControlsRequest {
   export type AsObject = {
     controller: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -51,6 +58,11 @@ export class GetEventsRequest extends jspb.Message {
   getController(): string;
   setController(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetEventsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetEventsRequest): GetEventsRequest.AsObject;
@@ -64,6 +76,7 @@ export class GetEventsRequest extends jspb.Message {
 export namespace GetEventsRequest {
   export type AsObject = {
     controller: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -98,6 +111,11 @@ export class TriggerEventRequest extends jspb.Message {
   getEvent(): Event | undefined;
   setEvent(value?: Event): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TriggerEventRequest.AsObject;
   static toObject(includeInstance: boolean, msg: TriggerEventRequest): TriggerEventRequest.AsObject;
@@ -112,6 +130,7 @@ export namespace TriggerEventRequest {
   export type AsObject = {
     controller: string,
     event?: Event.AsObject,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -174,6 +193,11 @@ export class StreamEventsRequest extends jspb.Message {
   setEventsList(value: Array<StreamEventsRequest.Events>): void;
   addEvents(value?: StreamEventsRequest.Events, index?: number): StreamEventsRequest.Events;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StreamEventsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: StreamEventsRequest): StreamEventsRequest.AsObject;
@@ -188,6 +212,7 @@ export namespace StreamEventsRequest {
   export type AsObject = {
     controller: string,
     eventsList: Array<StreamEventsRequest.Events.AsObject>,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 
   export class Events extends jspb.Message {

@@ -19,6 +19,8 @@ var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
+goog.object.extend(proto, google_protobuf_struct_pb);
 goog.exportSymbol('proto.viam.component.movementsensor.v1.GetAccuracyRequest', null, global);
 goog.exportSymbol('proto.viam.component.movementsensor.v1.GetAccuracyResponse', null, global);
 goog.exportSymbol('proto.viam.component.movementsensor.v1.GetAngularVelocityRequest', null, global);
@@ -359,7 +361,8 @@ proto.viam.component.movementsensor.v1.GetLinearVelocityRequest.prototype.toObje
  */
 proto.viam.component.movementsensor.v1.GetLinearVelocityRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -400,6 +403,11 @@ proto.viam.component.movementsensor.v1.GetLinearVelocityRequest.deserializeBinar
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -436,6 +444,14 @@ proto.viam.component.movementsensor.v1.GetLinearVelocityRequest.serializeBinaryT
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -454,6 +470,43 @@ proto.viam.component.movementsensor.v1.GetLinearVelocityRequest.prototype.getNam
  */
 proto.viam.component.movementsensor.v1.GetLinearVelocityRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.movementsensor.v1.GetLinearVelocityRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.movementsensor.v1.GetLinearVelocityRequest} returns this
+*/
+proto.viam.component.movementsensor.v1.GetLinearVelocityRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.movementsensor.v1.GetLinearVelocityRequest} returns this
+ */
+proto.viam.component.movementsensor.v1.GetLinearVelocityRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.movementsensor.v1.GetLinearVelocityRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -640,7 +693,8 @@ proto.viam.component.movementsensor.v1.GetAngularVelocityRequest.prototype.toObj
  */
 proto.viam.component.movementsensor.v1.GetAngularVelocityRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -681,6 +735,11 @@ proto.viam.component.movementsensor.v1.GetAngularVelocityRequest.deserializeBina
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -717,6 +776,14 @@ proto.viam.component.movementsensor.v1.GetAngularVelocityRequest.serializeBinary
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -735,6 +802,43 @@ proto.viam.component.movementsensor.v1.GetAngularVelocityRequest.prototype.getNa
  */
 proto.viam.component.movementsensor.v1.GetAngularVelocityRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.movementsensor.v1.GetAngularVelocityRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.movementsensor.v1.GetAngularVelocityRequest} returns this
+*/
+proto.viam.component.movementsensor.v1.GetAngularVelocityRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.movementsensor.v1.GetAngularVelocityRequest} returns this
+ */
+proto.viam.component.movementsensor.v1.GetAngularVelocityRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.movementsensor.v1.GetAngularVelocityRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -921,7 +1025,8 @@ proto.viam.component.movementsensor.v1.GetCompassHeadingRequest.prototype.toObje
  */
 proto.viam.component.movementsensor.v1.GetCompassHeadingRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -962,6 +1067,11 @@ proto.viam.component.movementsensor.v1.GetCompassHeadingRequest.deserializeBinar
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -998,6 +1108,14 @@ proto.viam.component.movementsensor.v1.GetCompassHeadingRequest.serializeBinaryT
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -1016,6 +1134,43 @@ proto.viam.component.movementsensor.v1.GetCompassHeadingRequest.prototype.getNam
  */
 proto.viam.component.movementsensor.v1.GetCompassHeadingRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.movementsensor.v1.GetCompassHeadingRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.movementsensor.v1.GetCompassHeadingRequest} returns this
+*/
+proto.viam.component.movementsensor.v1.GetCompassHeadingRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.movementsensor.v1.GetCompassHeadingRequest} returns this
+ */
+proto.viam.component.movementsensor.v1.GetCompassHeadingRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.movementsensor.v1.GetCompassHeadingRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1181,7 +1336,8 @@ proto.viam.component.movementsensor.v1.GetOrientationRequest.prototype.toObject 
  */
 proto.viam.component.movementsensor.v1.GetOrientationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1222,6 +1378,11 @@ proto.viam.component.movementsensor.v1.GetOrientationRequest.deserializeBinaryFr
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1258,6 +1419,14 @@ proto.viam.component.movementsensor.v1.GetOrientationRequest.serializeBinaryToWr
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -1276,6 +1445,43 @@ proto.viam.component.movementsensor.v1.GetOrientationRequest.prototype.getName =
  */
 proto.viam.component.movementsensor.v1.GetOrientationRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.movementsensor.v1.GetOrientationRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.movementsensor.v1.GetOrientationRequest} returns this
+*/
+proto.viam.component.movementsensor.v1.GetOrientationRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.movementsensor.v1.GetOrientationRequest} returns this
+ */
+proto.viam.component.movementsensor.v1.GetOrientationRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.movementsensor.v1.GetOrientationRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1462,7 +1668,8 @@ proto.viam.component.movementsensor.v1.GetPositionRequest.prototype.toObject = f
  */
 proto.viam.component.movementsensor.v1.GetPositionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1503,6 +1710,11 @@ proto.viam.component.movementsensor.v1.GetPositionRequest.deserializeBinaryFromR
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1539,6 +1751,14 @@ proto.viam.component.movementsensor.v1.GetPositionRequest.serializeBinaryToWrite
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -1557,6 +1777,43 @@ proto.viam.component.movementsensor.v1.GetPositionRequest.prototype.getName = fu
  */
 proto.viam.component.movementsensor.v1.GetPositionRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.movementsensor.v1.GetPositionRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.movementsensor.v1.GetPositionRequest} returns this
+*/
+proto.viam.component.movementsensor.v1.GetPositionRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.movementsensor.v1.GetPositionRequest} returns this
+ */
+proto.viam.component.movementsensor.v1.GetPositionRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.movementsensor.v1.GetPositionRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1773,7 +2030,8 @@ proto.viam.component.movementsensor.v1.GetPropertiesRequest.prototype.toObject =
  */
 proto.viam.component.movementsensor.v1.GetPropertiesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1814,6 +2072,11 @@ proto.viam.component.movementsensor.v1.GetPropertiesRequest.deserializeBinaryFro
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1850,6 +2113,14 @@ proto.viam.component.movementsensor.v1.GetPropertiesRequest.serializeBinaryToWri
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -1868,6 +2139,43 @@ proto.viam.component.movementsensor.v1.GetPropertiesRequest.prototype.getName = 
  */
 proto.viam.component.movementsensor.v1.GetPropertiesRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.movementsensor.v1.GetPropertiesRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.movementsensor.v1.GetPropertiesRequest} returns this
+*/
+proto.viam.component.movementsensor.v1.GetPropertiesRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.movementsensor.v1.GetPropertiesRequest} returns this
+ */
+proto.viam.component.movementsensor.v1.GetPropertiesRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.movementsensor.v1.GetPropertiesRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -2153,7 +2461,8 @@ proto.viam.component.movementsensor.v1.GetAccuracyRequest.prototype.toObject = f
  */
 proto.viam.component.movementsensor.v1.GetAccuracyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2194,6 +2503,11 @@ proto.viam.component.movementsensor.v1.GetAccuracyRequest.deserializeBinaryFromR
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2230,6 +2544,14 @@ proto.viam.component.movementsensor.v1.GetAccuracyRequest.serializeBinaryToWrite
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -2248,6 +2570,43 @@ proto.viam.component.movementsensor.v1.GetAccuracyRequest.prototype.getName = fu
  */
 proto.viam.component.movementsensor.v1.GetAccuracyRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.movementsensor.v1.GetAccuracyRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.movementsensor.v1.GetAccuracyRequest} returns this
+*/
+proto.viam.component.movementsensor.v1.GetAccuracyRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.movementsensor.v1.GetAccuracyRequest} returns this
+ */
+proto.viam.component.movementsensor.v1.GetAccuracyRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.movementsensor.v1.GetAccuracyRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 

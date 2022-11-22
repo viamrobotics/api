@@ -19,7 +19,10 @@ service SensorService {
 }
 
 message GetReadingsRequest {
+  // Name of a sensor
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetReadingsResponse {

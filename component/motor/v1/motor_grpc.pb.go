@@ -42,7 +42,6 @@ type MotorServiceClient interface {
 	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsPowered returns true if the robot's motor off
-	// To Do (FA): This will be deprecated
 	IsPowered(ctx context.Context, in *IsPoweredRequest, opts ...grpc.CallOption) (*IsPoweredResponse, error)
 }
 
@@ -154,7 +153,6 @@ type MotorServiceServer interface {
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsPowered returns true if the robot's motor off
-	// To Do (FA): This will be deprecated
 	IsPowered(context.Context, *IsPoweredRequest) (*IsPoweredResponse, error)
 	mustEmbedUnimplementedMotorServiceServer()
 }
