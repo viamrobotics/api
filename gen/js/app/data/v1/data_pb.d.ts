@@ -6,6 +6,30 @@ import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb"
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
+export class Result extends jspb.Message {
+  getStatus(): StatusMap[keyof StatusMap];
+  setStatus(value: StatusMap[keyof StatusMap]): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Result.AsObject;
+  static toObject(includeInstance: boolean, msg: Result): Result.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Result, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Result;
+  static deserializeBinaryFromReader(message: Result, reader: jspb.BinaryReader): Result;
+}
+
+export namespace Result {
+  export type AsObject = {
+    status: StatusMap[keyof StatusMap],
+    message: string,
+  }
+}
+
 export class DataRequest extends jspb.Message {
   hasFilter(): boolean;
   clearFilter(): void;
@@ -533,6 +557,11 @@ export class DeleteTabularDataByFilterResponse extends jspb.Message {
   getDeletedCount(): number;
   setDeletedCount(value: number): void;
 
+  hasResult(): boolean;
+  clearResult(): void;
+  getResult(): Result | undefined;
+  setResult(value?: Result): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteTabularDataByFilterResponse.AsObject;
   static toObject(includeInstance: boolean, msg: DeleteTabularDataByFilterResponse): DeleteTabularDataByFilterResponse.AsObject;
@@ -546,6 +575,7 @@ export class DeleteTabularDataByFilterResponse extends jspb.Message {
 export namespace DeleteTabularDataByFilterResponse {
   export type AsObject = {
     deletedCount: number,
+    result?: Result.AsObject,
   }
 }
 
@@ -575,6 +605,11 @@ export class DeleteBinaryDataByFilterResponse extends jspb.Message {
   getDeletedCount(): number;
   setDeletedCount(value: number): void;
 
+  hasResult(): boolean;
+  clearResult(): void;
+  getResult(): Result | undefined;
+  setResult(value?: Result): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteBinaryDataByFilterResponse.AsObject;
   static toObject(includeInstance: boolean, msg: DeleteBinaryDataByFilterResponse): DeleteBinaryDataByFilterResponse.AsObject;
@@ -588,6 +623,7 @@ export class DeleteBinaryDataByFilterResponse extends jspb.Message {
 export namespace DeleteBinaryDataByFilterResponse {
   export type AsObject = {
     deletedCount: number,
+    result?: Result.AsObject,
   }
 }
 
@@ -617,6 +653,11 @@ export class DeleteBinaryDataByIDsResponse extends jspb.Message {
   getDeletedCount(): number;
   setDeletedCount(value: number): void;
 
+  hasResult(): boolean;
+  clearResult(): void;
+  getResult(): Result | undefined;
+  setResult(value?: Result): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteBinaryDataByIDsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: DeleteBinaryDataByIDsResponse): DeleteBinaryDataByIDsResponse.AsObject;
@@ -630,6 +671,7 @@ export class DeleteBinaryDataByIDsResponse extends jspb.Message {
 export namespace DeleteBinaryDataByIDsResponse {
   export type AsObject = {
     deletedCount: number,
+    result?: Result.AsObject,
   }
 }
 
@@ -824,4 +866,12 @@ export interface OrderMap {
 }
 
 export const Order: OrderMap;
+
+export interface StatusMap {
+  STATUS_UNSPECIFIED: 0;
+  STATUS_PARTIAL_SUCCESS: 1;
+  STATUS_SUCCESS: 2;
+}
+
+export const Status: StatusMap;
 

@@ -47,6 +47,18 @@ enum Order {
   ORDER_ASCENDING = 2;
 }
 
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  STATUS_PARTIAL_SUCCESS = 1;
+  STATUS_SUCCESS = 2;
+}
+
+message Result {
+  Status status = 1;
+  // message is an aggregated error message string
+  string message = 2;
+}
+
 message DataRequest {
   Filter filter = 1;
   uint64 limit = 2;
@@ -164,6 +176,7 @@ message DeleteTabularDataByFilterRequest {
 // DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided
 message DeleteTabularDataByFilterResponse {
   uint64 deleted_count = 1;
+  Result result = 2;
 }
 
 // DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
@@ -174,6 +187,7 @@ message DeleteBinaryDataByFilterRequest {
 // DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided
 message DeleteBinaryDataByFilterResponse {
   uint64 deleted_count = 1;
+  Result result = 2;
 }
 
 // DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when file ids are provided
@@ -184,6 +198,7 @@ message DeleteBinaryDataByIDsRequest {
 // DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided
 message DeleteBinaryDataByIDsResponse {
   uint64 deleted_count = 1;
+  Result result = 2;
 }
 
 // AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when file IDs are provided
