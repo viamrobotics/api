@@ -200,19 +200,13 @@ message DeleteBinaryDataByIDsResponse {
 
 // Annotation specifies the ways in which we can associate annotations with data, e.g. with a text tag or image bounding box
 message Annotation {
-  string value = 3;
-  Type type = 2;
-}
-
-enum Type {
-  TYPE_UNSPECIFIED = 0;
-  TYPE_TAG = 1;
+  string tags = 1;
 }
 
 // AddAnnotationsToBinaryDataByFileIDsRequest requests adding all specified annotations to each of the files when file IDs are provided
 message AddAnnotationsToBinaryDataByFileIDsRequest {
   repeated string file_ids = 1;
-  repeated Annotation annotations = 2;
+  repeated string annotations = 2;
 }
 
 // AddAnnotationsToBinaryDataByFileIDsResponse returns IDs of added annotations which can be passed to RemoveAnnotationsFromBinaryDataByFileIDs
@@ -256,7 +250,7 @@ message RemoveAnnotationsFromBinaryDataByFilterResponse {
 // AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when file IDs are provided
 message AddTagsToBinaryDataByFileIDsRequest {
   repeated string file_ids = 1;
-  repeated Annotation tags = 2;
+  repeated string tags = 2;
 }
 
 // AddTagsToBinaryDataByFileIDsResponse returns nothing
@@ -265,7 +259,7 @@ message AddTagsToBinaryDataByFileIDsResponse {}
 // AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided
 message AddTagsToBinaryDataByFilterRequest {
   Filter filter = 1;
-  repeated Annotation tags = 2;
+  repeated string tags = 2;
 }
 
 // AddTagsToBinaryDataByFilterResponse returns nothing
@@ -274,7 +268,7 @@ message AddTagsToBinaryDataByFilterResponse {}
 // RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when file IDs are provided
 message RemoveTagsFromBinaryDataByFileIDsRequest {
   repeated string file_ids = 1;
-  repeated string value = 2;
+  repeated string tags = 2;
 }
 
 // RemoveTagsFromBinaryDataByFileIDsResponse returns the number of binary files which had tags removed
