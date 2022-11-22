@@ -1565,7 +1565,7 @@ type AddTagsToBinaryDataByFileIDsResponse struct {
 func (x *AddTagsToBinaryDataByFileIDsResponse) Reset() {
 	*x = AddTagsToBinaryDataByFileIDsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_data_v1_data_proto_msgTypes[20]
+		mi := &file_app_data_v1_data_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1607,7 +1607,7 @@ type AddTagsToBinaryDataByFilterRequest struct {
 func (x *AddTagsToBinaryDataByFilterRequest) Reset() {
 	*x = AddTagsToBinaryDataByFilterRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_data_v1_data_proto_msgTypes[21]
+		mi := &file_app_data_v1_data_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1659,7 +1659,7 @@ type AddTagsToBinaryDataByFilterResponse struct {
 func (x *AddTagsToBinaryDataByFilterResponse) Reset() {
 	*x = AddTagsToBinaryDataByFilterResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_data_v1_data_proto_msgTypes[22]
+		mi := &file_app_data_v1_data_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1701,7 +1701,7 @@ type RemoveTagsFromBinaryDataByFileIDsRequest struct {
 func (x *RemoveTagsFromBinaryDataByFileIDsRequest) Reset() {
 	*x = RemoveTagsFromBinaryDataByFileIDsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_data_v1_data_proto_msgTypes[23]
+		mi := &file_app_data_v1_data_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1756,7 +1756,7 @@ type RemoveTagsFromBinaryDataByFileIDsResponse struct {
 func (x *RemoveTagsFromBinaryDataByFileIDsResponse) Reset() {
 	*x = RemoveTagsFromBinaryDataByFileIDsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_data_v1_data_proto_msgTypes[24]
+		mi := &file_app_data_v1_data_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1805,7 +1805,7 @@ type RemoveTagsFromBinaryDataByFilterRequest struct {
 func (x *RemoveTagsFromBinaryDataByFilterRequest) Reset() {
 	*x = RemoveTagsFromBinaryDataByFilterRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_data_v1_data_proto_msgTypes[25]
+		mi := &file_app_data_v1_data_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1860,7 +1860,7 @@ type RemoveTagsFromBinaryDataByFilterResponse struct {
 func (x *RemoveTagsFromBinaryDataByFilterResponse) Reset() {
 	*x = RemoveTagsFromBinaryDataByFilterResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_data_v1_data_proto_msgTypes[26]
+		mi := &file_app_data_v1_data_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
