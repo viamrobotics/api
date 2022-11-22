@@ -192,9 +192,7 @@ message AddTagsToBinaryDataByFileIDsRequest {
   repeated string tags = 2;
 }
 
-// AddTagsToBinaryDataByFileIDsResponse returns nothing
-message AddTagsToBinaryDataByFileIDsResponse {
-}
+message AddTagsToBinaryDataByFileIDsResponse {}
 
 // AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided
 message AddTagsToBinaryDataByFilterRequest {
@@ -202,9 +200,7 @@ message AddTagsToBinaryDataByFilterRequest {
   repeated string tags = 2;
 }
 
-// AddTagsToBinaryDataByFilterResponse returns nothing
-message AddTagsToBinaryDataByFilterResponse {
-}
+message AddTagsToBinaryDataByFilterResponse {}
 
 // RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when file IDs are provided
 message RemoveTagsFromBinaryDataByFileIDsRequest {
