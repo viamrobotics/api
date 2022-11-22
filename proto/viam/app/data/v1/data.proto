@@ -220,7 +220,7 @@ message RemoveTagsFromBinaryDataByFileIDsResponse {
 // RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided
 message RemoveTagsFromBinaryDataByFilterRequest {
   Filter filter = 1;
-  repeated string value = 2;
+  repeated string tags = 2;
 }
 
 // RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed
