@@ -1502,15 +1502,18 @@ func (x *DeleteBinaryDataByIDsResponse) GetResult() *Result {
 
 // Annotation specifies the ways in which we can associate annotations with data, e.g. with a text tag or image bounding box
 type Annotation struct {
+// AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when file IDs are provided
+type AddTagsToBinaryDataByFileIDsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Tag string `protobuf:"bytes,1,opt,name=tag,proto3" json:"tag,omitempty"`
+	FileIds []string `protobuf:"bytes,1,rep,name=file_ids,json=fileIds,proto3" json:"file_ids,omitempty"`
+	Tags    []string `protobuf:"bytes,2,rep,name=tags,proto3" json:"tags,omitempty"`
 }
 
-func (x *Annotation) Reset() {
-	*x = Annotation{}
+func (x *AddTagsToBinaryDataByFileIDsRequest) Reset() {
+	*x = AddTagsToBinaryDataByFileIDsRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_data_v1_data_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1518,14 +1521,16 @@ func (x *Annotation) Reset() {
 	}
 }
 
-func (x *Annotation) String() string {
+func (x *AddTagsToBinaryDataByFileIDsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Annotation) ProtoMessage() {}
+func (*AddTagsToBinaryDataByFileIDsRequest) ProtoMessage() {}
 
 func (x *Annotation) ProtoReflect() protoreflect.Message {
 	mi := &file_app_data_v1_data_proto_msgTypes[20]
+func (x *AddTagsToBinaryDataByFileIDsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1539,9 +1544,12 @@ func (x *Annotation) ProtoReflect() protoreflect.Message {
 // Deprecated: Use Annotation.ProtoReflect.Descriptor instead.
 func (*Annotation) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{20}
+// Deprecated: Use AddTagsToBinaryDataByFileIDsRequest.ProtoReflect.Descriptor instead.
+func (*AddTagsToBinaryDataByFileIDsRequest) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{19}
 }
 
-func (x *Annotation) GetTag() string {
+func (x *AddTagsToBinaryDataByFileIDsRequest) GetFileIds() []string {
 	if x != nil {
 		return x.Tag
 	}
@@ -1597,39 +1605,39 @@ func (x *AddAnnotationsToBinaryDataByFileIDsRequest) GetFileIds() []string {
 	return nil
 }
 
-func (x *AddAnnotationsToBinaryDataByFileIDsRequest) GetAnnotations() []*Annotation {
+func (x *AddTagsToBinaryDataByFileIDsRequest) GetTags() []string {
 	if x != nil {
-		return x.Annotations
+		return x.Tags
 	}
 	return nil
 }
 
-// AddAnnotationsToBinaryDataByFileIDsResponse returns IDs of added annotations which can be passed to RemoveAnnotationsFromBinaryDataByFileIDs
-type AddAnnotationsToBinaryDataByFileIDsResponse struct {
+type AddTagsToBinaryDataByFileIDsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	AnnotationIds []string `protobuf:"bytes,1,rep,name=annotation_ids,json=annotationIds,proto3" json:"annotation_ids,omitempty"`
 }
 
-func (x *AddAnnotationsToBinaryDataByFileIDsResponse) Reset() {
-	*x = AddAnnotationsToBinaryDataByFileIDsResponse{}
+func (x *AddTagsToBinaryDataByFileIDsResponse) Reset() {
+	*x = AddTagsToBinaryDataByFileIDsResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_data_v1_data_proto_msgTypes[22]
+		mi := &file_app_data_v1_data_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *AddAnnotationsToBinaryDataByFileIDsResponse) String() string {
+func (x *AddTagsToBinaryDataByFileIDsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AddAnnotationsToBinaryDataByFileIDsResponse) ProtoMessage() {}
+func (*AddTagsToBinaryDataByFileIDsResponse) ProtoMessage() {}
 
 func (x *AddAnnotationsToBinaryDataByFileIDsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_data_v1_data_proto_msgTypes[22]
+func (x *AddTagsToBinaryDataByFileIDsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1643,42 +1651,41 @@ func (x *AddAnnotationsToBinaryDataByFileIDsResponse) ProtoReflect() protoreflec
 // Deprecated: Use AddAnnotationsToBinaryDataByFileIDsResponse.ProtoReflect.Descriptor instead.
 func (*AddAnnotationsToBinaryDataByFileIDsResponse) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{22}
+// Deprecated: Use AddTagsToBinaryDataByFileIDsResponse.ProtoReflect.Descriptor instead.
+func (*AddTagsToBinaryDataByFileIDsResponse) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *AddAnnotationsToBinaryDataByFileIDsResponse) GetAnnotationIds() []string {
-	if x != nil {
-		return x.AnnotationIds
-	}
-	return nil
-}
-
-// AddAnnotationsToBinaryDataByFilterRequest requests adding all specified annotations to each of the files when a filter is provided
-type AddAnnotationsToBinaryDataByFilterRequest struct {
+// AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided
+type AddTagsToBinaryDataByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Filter      *Filter       `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	Annotations []*Annotation `protobuf:"bytes,2,rep,name=annotations,proto3" json:"annotations,omitempty"`
+	Filter *Filter  `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Tags   []string `protobuf:"bytes,2,rep,name=tags,proto3" json:"tags,omitempty"`
 }
 
-func (x *AddAnnotationsToBinaryDataByFilterRequest) Reset() {
-	*x = AddAnnotationsToBinaryDataByFilterRequest{}
+func (x *AddTagsToBinaryDataByFilterRequest) Reset() {
+	*x = AddTagsToBinaryDataByFilterRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_data_v1_data_proto_msgTypes[23]
+		mi := &file_app_data_v1_data_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *AddAnnotationsToBinaryDataByFilterRequest) String() string {
+func (x *AddTagsToBinaryDataByFilterRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AddAnnotationsToBinaryDataByFilterRequest) ProtoMessage() {}
+func (*AddTagsToBinaryDataByFilterRequest) ProtoMessage() {}
 
 func (x *AddAnnotationsToBinaryDataByFilterRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_data_v1_data_proto_msgTypes[23]
+func (x *AddTagsToBinaryDataByFilterRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1692,48 +1699,51 @@ func (x *AddAnnotationsToBinaryDataByFilterRequest) ProtoReflect() protoreflect.
 // Deprecated: Use AddAnnotationsToBinaryDataByFilterRequest.ProtoReflect.Descriptor instead.
 func (*AddAnnotationsToBinaryDataByFilterRequest) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{23}
+// Deprecated: Use AddTagsToBinaryDataByFilterRequest.ProtoReflect.Descriptor instead.
+func (*AddTagsToBinaryDataByFilterRequest) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{21}
 }
 
-func (x *AddAnnotationsToBinaryDataByFilterRequest) GetFilter() *Filter {
+func (x *AddTagsToBinaryDataByFilterRequest) GetFilter() *Filter {
 	if x != nil {
 		return x.Filter
 	}
 	return nil
 }
 
-func (x *AddAnnotationsToBinaryDataByFilterRequest) GetAnnotations() []*Annotation {
+func (x *AddTagsToBinaryDataByFilterRequest) GetTags() []string {
 	if x != nil {
-		return x.Annotations
+		return x.Tags
 	}
 	return nil
 }
 
-// AddAnnotationsToBinaryDataByFilterResponse returns IDs of added annotations which can be passed to RemoveAnnotationsFromBinaryDataByFileIDs
-type AddAnnotationsToBinaryDataByFilterResponse struct {
+type AddTagsToBinaryDataByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	AnnotationIds []string `protobuf:"bytes,1,rep,name=annotation_ids,json=annotationIds,proto3" json:"annotation_ids,omitempty"`
 }
 
-func (x *AddAnnotationsToBinaryDataByFilterResponse) Reset() {
-	*x = AddAnnotationsToBinaryDataByFilterResponse{}
+func (x *AddTagsToBinaryDataByFilterResponse) Reset() {
+	*x = AddTagsToBinaryDataByFilterResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_data_v1_data_proto_msgTypes[24]
+		mi := &file_app_data_v1_data_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *AddAnnotationsToBinaryDataByFilterResponse) String() string {
+func (x *AddTagsToBinaryDataByFilterResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AddAnnotationsToBinaryDataByFilterResponse) ProtoMessage() {}
+func (*AddTagsToBinaryDataByFilterResponse) ProtoMessage() {}
 
 func (x *AddAnnotationsToBinaryDataByFilterResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_data_v1_data_proto_msgTypes[24]
+func (x *AddTagsToBinaryDataByFilterResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1747,42 +1757,41 @@ func (x *AddAnnotationsToBinaryDataByFilterResponse) ProtoReflect() protoreflect
 // Deprecated: Use AddAnnotationsToBinaryDataByFilterResponse.ProtoReflect.Descriptor instead.
 func (*AddAnnotationsToBinaryDataByFilterResponse) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{24}
+// Deprecated: Use AddTagsToBinaryDataByFilterResponse.ProtoReflect.Descriptor instead.
+func (*AddTagsToBinaryDataByFilterResponse) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{22}
 }
 
-func (x *AddAnnotationsToBinaryDataByFilterResponse) GetAnnotationIds() []string {
-	if x != nil {
-		return x.AnnotationIds
-	}
-	return nil
-}
-
-// RemoveAnnotationsFromBinaryDataByFileIDsRequest requests removing the given annotations from each file when file IDs are provided
-type RemoveAnnotationsFromBinaryDataByFileIDsRequest struct {
+// RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when file IDs are provided
+type RemoveTagsFromBinaryDataByFileIDsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	FileIds       []string `protobuf:"bytes,1,rep,name=file_ids,json=fileIds,proto3" json:"file_ids,omitempty"`
-	AnnotationIds []string `protobuf:"bytes,2,rep,name=annotation_ids,json=annotationIds,proto3" json:"annotation_ids,omitempty"`
+	FileIds []string `protobuf:"bytes,1,rep,name=file_ids,json=fileIds,proto3" json:"file_ids,omitempty"`
+	Tags    []string `protobuf:"bytes,2,rep,name=tags,proto3" json:"tags,omitempty"`
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFileIDsRequest) Reset() {
-	*x = RemoveAnnotationsFromBinaryDataByFileIDsRequest{}
+func (x *RemoveTagsFromBinaryDataByFileIDsRequest) Reset() {
+	*x = RemoveTagsFromBinaryDataByFileIDsRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_data_v1_data_proto_msgTypes[25]
+		mi := &file_app_data_v1_data_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFileIDsRequest) String() string {
+func (x *RemoveTagsFromBinaryDataByFileIDsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RemoveAnnotationsFromBinaryDataByFileIDsRequest) ProtoMessage() {}
+func (*RemoveTagsFromBinaryDataByFileIDsRequest) ProtoMessage() {}
 
 func (x *RemoveAnnotationsFromBinaryDataByFileIDsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_data_v1_data_proto_msgTypes[25]
+func (x *RemoveTagsFromBinaryDataByFileIDsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1796,24 +1805,27 @@ func (x *RemoveAnnotationsFromBinaryDataByFileIDsRequest) ProtoReflect() protore
 // Deprecated: Use RemoveAnnotationsFromBinaryDataByFileIDsRequest.ProtoReflect.Descriptor instead.
 func (*RemoveAnnotationsFromBinaryDataByFileIDsRequest) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{25}
+// Deprecated: Use RemoveTagsFromBinaryDataByFileIDsRequest.ProtoReflect.Descriptor instead.
+func (*RemoveTagsFromBinaryDataByFileIDsRequest) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{23}
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFileIDsRequest) GetFileIds() []string {
+func (x *RemoveTagsFromBinaryDataByFileIDsRequest) GetFileIds() []string {
 	if x != nil {
 		return x.FileIds
 	}
 	return nil
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFileIDsRequest) GetAnnotationIds() []string {
+func (x *RemoveTagsFromBinaryDataByFileIDsRequest) GetTags() []string {
 	if x != nil {
-		return x.AnnotationIds
+		return x.Tags
 	}
 	return nil
 }
 
-// RemoveAnnotationsFromBinaryDataByFileIDsResponse returns the number of binary files which had annotations removed
-type RemoveAnnotationsFromBinaryDataByFileIDsResponse struct {
+// RemoveTagsFromBinaryDataByFileIDsResponse returns the number of binary files which had tags removed
+type RemoveTagsFromBinaryDataByFileIDsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1821,23 +1833,26 @@ type RemoveAnnotationsFromBinaryDataByFileIDsResponse struct {
 	DeletedCount uint64 `protobuf:"varint,1,opt,name=deleted_count,json=deletedCount,proto3" json:"deleted_count,omitempty"`
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFileIDsResponse) Reset() {
-	*x = RemoveAnnotationsFromBinaryDataByFileIDsResponse{}
+func (x *RemoveTagsFromBinaryDataByFileIDsResponse) Reset() {
+	*x = RemoveTagsFromBinaryDataByFileIDsResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_data_v1_data_proto_msgTypes[26]
+		mi := &file_app_data_v1_data_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFileIDsResponse) String() string {
+func (x *RemoveTagsFromBinaryDataByFileIDsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RemoveAnnotationsFromBinaryDataByFileIDsResponse) ProtoMessage() {}
+func (*RemoveTagsFromBinaryDataByFileIDsResponse) ProtoMessage() {}
 
 func (x *RemoveAnnotationsFromBinaryDataByFileIDsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_data_v1_data_proto_msgTypes[26]
+func (x *RemoveTagsFromBinaryDataByFileIDsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1851,42 +1866,48 @@ func (x *RemoveAnnotationsFromBinaryDataByFileIDsResponse) ProtoReflect() protor
 // Deprecated: Use RemoveAnnotationsFromBinaryDataByFileIDsResponse.ProtoReflect.Descriptor instead.
 func (*RemoveAnnotationsFromBinaryDataByFileIDsResponse) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{26}
+// Deprecated: Use RemoveTagsFromBinaryDataByFileIDsResponse.ProtoReflect.Descriptor instead.
+func (*RemoveTagsFromBinaryDataByFileIDsResponse) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{24}
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFileIDsResponse) GetDeletedCount() uint64 {
+func (x *RemoveTagsFromBinaryDataByFileIDsResponse) GetDeletedCount() uint64 {
 	if x != nil {
 		return x.DeletedCount
 	}
 	return 0
 }
 
-// RemoveAnnotationsFromBinaryDataByFilterRequest requests removing the given annotations from each file when a filter is provided
-type RemoveAnnotationsFromBinaryDataByFilterRequest struct {
+// RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided
+type RemoveTagsFromBinaryDataByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Filter        *Filter  `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	AnnotationIds []string `protobuf:"bytes,2,rep,name=annotation_ids,json=annotationIds,proto3" json:"annotation_ids,omitempty"`
+	Filter *Filter  `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Tags   []string `protobuf:"bytes,2,rep,name=tags,proto3" json:"tags,omitempty"`
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFilterRequest) Reset() {
-	*x = RemoveAnnotationsFromBinaryDataByFilterRequest{}
+func (x *RemoveTagsFromBinaryDataByFilterRequest) Reset() {
+	*x = RemoveTagsFromBinaryDataByFilterRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_data_v1_data_proto_msgTypes[27]
+		mi := &file_app_data_v1_data_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFilterRequest) String() string {
+func (x *RemoveTagsFromBinaryDataByFilterRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RemoveAnnotationsFromBinaryDataByFilterRequest) ProtoMessage() {}
+func (*RemoveTagsFromBinaryDataByFilterRequest) ProtoMessage() {}
 
 func (x *RemoveAnnotationsFromBinaryDataByFilterRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_data_v1_data_proto_msgTypes[27]
+func (x *RemoveTagsFromBinaryDataByFilterRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1900,24 +1921,27 @@ func (x *RemoveAnnotationsFromBinaryDataByFilterRequest) ProtoReflect() protoref
 // Deprecated: Use RemoveAnnotationsFromBinaryDataByFilterRequest.ProtoReflect.Descriptor instead.
 func (*RemoveAnnotationsFromBinaryDataByFilterRequest) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{27}
+// Deprecated: Use RemoveTagsFromBinaryDataByFilterRequest.ProtoReflect.Descriptor instead.
+func (*RemoveTagsFromBinaryDataByFilterRequest) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{25}
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFilterRequest) GetFilter() *Filter {
+func (x *RemoveTagsFromBinaryDataByFilterRequest) GetFilter() *Filter {
 	if x != nil {
 		return x.Filter
 	}
 	return nil
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFilterRequest) GetAnnotationIds() []string {
+func (x *RemoveTagsFromBinaryDataByFilterRequest) GetTags() []string {
 	if x != nil {
-		return x.AnnotationIds
+		return x.Tags
 	}
 	return nil
 }
 
-// RemoveAnnotationsFromBinaryDataByFilterResponse returns the number of binary files which had annotations removed
-type RemoveAnnotationsFromBinaryDataByFilterResponse struct {
+// RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed
+type RemoveTagsFromBinaryDataByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1925,23 +1949,26 @@ type RemoveAnnotationsFromBinaryDataByFilterResponse struct {
 	DeletedCount uint64 `protobuf:"varint,1,opt,name=deleted_count,json=deletedCount,proto3" json:"deleted_count,omitempty"`
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFilterResponse) Reset() {
-	*x = RemoveAnnotationsFromBinaryDataByFilterResponse{}
+func (x *RemoveTagsFromBinaryDataByFilterResponse) Reset() {
+	*x = RemoveTagsFromBinaryDataByFilterResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_data_v1_data_proto_msgTypes[28]
+		mi := &file_app_data_v1_data_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFilterResponse) String() string {
+func (x *RemoveTagsFromBinaryDataByFilterResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RemoveAnnotationsFromBinaryDataByFilterResponse) ProtoMessage() {}
+func (*RemoveTagsFromBinaryDataByFilterResponse) ProtoMessage() {}
 
 func (x *RemoveAnnotationsFromBinaryDataByFilterResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_data_v1_data_proto_msgTypes[28]
+func (x *RemoveTagsFromBinaryDataByFilterResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1955,9 +1982,12 @@ func (x *RemoveAnnotationsFromBinaryDataByFilterResponse) ProtoReflect() protore
 // Deprecated: Use RemoveAnnotationsFromBinaryDataByFilterResponse.ProtoReflect.Descriptor instead.
 func (*RemoveAnnotationsFromBinaryDataByFilterResponse) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{28}
+// Deprecated: Use RemoveTagsFromBinaryDataByFilterResponse.ProtoReflect.Descriptor instead.
+func (*RemoveTagsFromBinaryDataByFilterResponse) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{26}
 }
 
-func (x *RemoveAnnotationsFromBinaryDataByFilterResponse) GetDeletedCount() uint64 {
+func (x *RemoveTagsFromBinaryDataByFilterResponse) GetDeletedCount() uint64 {
 	if x != nil {
 		return x.DeletedCount
 	}
@@ -2351,6 +2381,146 @@ var file_app_data_v1_data_proto_rawDesc = []byte{
 	0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61,
 	0x70, 0x70, 0x2f, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x33,
+	0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x39, 0x0a, 0x1c,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61,
+	0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x19, 0x0a, 0x08,
+	0x66, 0x69, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x07,
+	0x66, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x73, 0x22, 0x44, 0x0a, 0x1d, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x23, 0x0a, 0x0d, 0x64, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x64, 0x5f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x0c, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x54, 0x0a,
+	0x23, 0x41, 0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79,
+	0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x44, 0x73, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x19, 0x0a, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x73,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x07, 0x66, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x73, 0x12,
+	0x12, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x74,
+	0x61, 0x67, 0x73, 0x22, 0x26, 0x0a, 0x24, 0x41, 0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f,
+	0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x65,
+	0x49, 0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x6a, 0x0a, 0x22, 0x41,
+	0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61,
+	0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x30, 0x0a, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x18, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74,
+	0x61, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x06, 0x66, 0x69, 0x6c,
+	0x74, 0x65, 0x72, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28,
+	0x09, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x22, 0x25, 0x0a, 0x23, 0x41, 0x64, 0x64, 0x54, 0x61,
+	0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79,
+	0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x59,
+	0x0a, 0x28, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d,
+	0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x65,
+	0x49, 0x44, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x19, 0x0a, 0x08, 0x66, 0x69,
+	0x6c, 0x65, 0x5f, 0x69, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x07, 0x66, 0x69,
+	0x6c, 0x65, 0x49, 0x64, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18, 0x02, 0x20,
+	0x03, 0x28, 0x09, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x22, 0x50, 0x0a, 0x29, 0x52, 0x65, 0x6d,
+	0x6f, 0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69, 0x6e, 0x61, 0x72,
+	0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x44, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x23, 0x0a, 0x0d, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x64, 0x5f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0c, 0x64,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x6f, 0x0a, 0x27, 0x52,
+	0x65, 0x6d, 0x6f, 0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69, 0x6e,
+	0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x30, 0x0a, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
+	0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72,
+	0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73,
+	0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x22, 0x4f, 0x0a, 0x28,
+	0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69,
+	0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x23, 0x0a, 0x0d, 0x64, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x64, 0x5f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x0c, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x2a, 0x49, 0x0a,
+	0x05, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x15, 0x0a, 0x11, 0x4f, 0x52, 0x44, 0x45, 0x52, 0x5f,
+	0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x14, 0x0a,
+	0x10, 0x4f, 0x52, 0x44, 0x45, 0x52, 0x5f, 0x44, 0x45, 0x53, 0x43, 0x45, 0x4e, 0x44, 0x49, 0x4e,
+	0x47, 0x10, 0x01, 0x12, 0x13, 0x0a, 0x0f, 0x4f, 0x52, 0x44, 0x45, 0x52, 0x5f, 0x41, 0x53, 0x43,
+	0x45, 0x4e, 0x44, 0x49, 0x4e, 0x47, 0x10, 0x02, 0x32, 0xb7, 0x0a, 0x0a, 0x0b, 0x44, 0x61, 0x74,
+	0x61, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x72, 0x0a, 0x13, 0x54, 0x61, 0x62, 0x75,
+	0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12,
+	0x2c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e,
+	0x76, 0x31, 0x2e, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79,
+	0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2d, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31,
+	0x2e, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69,
+	0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6f, 0x0a, 0x12,
+	0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74,
+	0x65, 0x72, 0x12, 0x2b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61,
+	0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61,
+	0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x2c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e,
+	0x76, 0x31, 0x2e, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46,
+	0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x66, 0x0a,
+	0x0f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73,
+	0x12, 0x28, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61,
+	0x2e, 0x76, 0x31, 0x2e, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79,
+	0x49, 0x44, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x69,
+	0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x84, 0x01, 0x0a, 0x19, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c,
+	0x74, 0x65, 0x72, 0x12, 0x32, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64,
+	0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x61, 0x62,
+	0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x33, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69,
+	0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x81, 0x01, 0x0a,
+	0x18, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74,
+	0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x31, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c,
+	0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46,
+	0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x32, 0x2e, 0x76,
+	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61,
+	0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x78, 0x0a, 0x15, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79,
+	0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x12, 0x2e, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c,
+	0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49,
+	0x44, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2f, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c,
+	0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49,
+	0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x8d, 0x01, 0x0a, 0x1c, 0x41,
+	0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61,
+	0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x44, 0x73, 0x12, 0x35, 0x2e, 0x76, 0x69,
+	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41,
+	0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61,
+	0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x44, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x36, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61,
+	0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42,
+	0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49,
+	0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x8a, 0x01, 0x0a, 0x1b, 0x41,
+	0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61,
+	0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x34, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64,
+	0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74,
+	0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x35, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61,
+	0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e,
+	0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x9c, 0x01, 0x0a, 0x21, 0x52, 0x65, 0x6d, 0x6f,
+	0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79,
+	0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x44, 0x73, 0x12, 0x3a, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31,
+	0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42,
+	0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49,
+	0x44, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3b, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d,
+	0x6f, 0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69, 0x6e, 0x61, 0x72,
+	0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x44, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x99, 0x01, 0x0a, 0x20, 0x52, 0x65, 0x6d, 0x6f, 0x76,
+	0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44,
+	0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x39, 0x2e, 0x76, 0x69,
+	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x52,
+	0x65, 0x6d, 0x6f, 0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69, 0x6e,
+	0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
+	0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65,
+	0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61,
+	0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x42, 0x1d, 0x5a, 0x1b, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x76,
+	0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2367,6 +2537,8 @@ func file_app_data_v1_data_proto_rawDescGZIP() []byte {
 
 var file_app_data_v1_data_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_app_data_v1_data_proto_msgTypes = make([]protoimpl.MessageInfo, 30)
+var file_app_data_v1_data_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_app_data_v1_data_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_app_data_v1_data_proto_goTypes = []interface{}{
 	(Order)(0),                                               // 0: viam.app.data.v1.Order
 	(Status)(0),                                              // 1: viam.app.data.v1.Status
@@ -2403,6 +2575,38 @@ var file_app_data_v1_data_proto_goTypes = []interface{}{
 	(*timestamppb.Timestamp)(nil), // 32: google.protobuf.Timestamp
 	(*structpb.Struct)(nil),       // 33: google.protobuf.Struct
 	(*anypb.Any)(nil),             // 34: google.protobuf.Any
+	(Order)(0),                                        // 0: viam.app.data.v1.Order
+	(*DataRequest)(nil),                               // 1: viam.app.data.v1.DataRequest
+	(*Filter)(nil),                                    // 2: viam.app.data.v1.Filter
+	(*CaptureMetadata)(nil),                           // 3: viam.app.data.v1.CaptureMetadata
+	(*CaptureInterval)(nil),                           // 4: viam.app.data.v1.CaptureInterval
+	(*TabularDataByFilterRequest)(nil),                // 5: viam.app.data.v1.TabularDataByFilterRequest
+	(*TabularDataByFilterResponse)(nil),               // 6: viam.app.data.v1.TabularDataByFilterResponse
+	(*TabularData)(nil),                               // 7: viam.app.data.v1.TabularData
+	(*BinaryData)(nil),                                // 8: viam.app.data.v1.BinaryData
+	(*BinaryDataByFilterRequest)(nil),                 // 9: viam.app.data.v1.BinaryDataByFilterRequest
+	(*BinaryDataByFilterResponse)(nil),                // 10: viam.app.data.v1.BinaryDataByFilterResponse
+	(*BinaryDataByIDsRequest)(nil),                    // 11: viam.app.data.v1.BinaryDataByIDsRequest
+	(*BinaryDataByIDsResponse)(nil),                   // 12: viam.app.data.v1.BinaryDataByIDsResponse
+	(*BinaryMetadata)(nil),                            // 13: viam.app.data.v1.BinaryMetadata
+	(*DeleteTabularDataByFilterRequest)(nil),          // 14: viam.app.data.v1.DeleteTabularDataByFilterRequest
+	(*DeleteTabularDataByFilterResponse)(nil),         // 15: viam.app.data.v1.DeleteTabularDataByFilterResponse
+	(*DeleteBinaryDataByFilterRequest)(nil),           // 16: viam.app.data.v1.DeleteBinaryDataByFilterRequest
+	(*DeleteBinaryDataByFilterResponse)(nil),          // 17: viam.app.data.v1.DeleteBinaryDataByFilterResponse
+	(*DeleteBinaryDataByIDsRequest)(nil),              // 18: viam.app.data.v1.DeleteBinaryDataByIDsRequest
+	(*DeleteBinaryDataByIDsResponse)(nil),             // 19: viam.app.data.v1.DeleteBinaryDataByIDsResponse
+	(*AddTagsToBinaryDataByFileIDsRequest)(nil),       // 20: viam.app.data.v1.AddTagsToBinaryDataByFileIDsRequest
+	(*AddTagsToBinaryDataByFileIDsResponse)(nil),      // 21: viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse
+	(*AddTagsToBinaryDataByFilterRequest)(nil),        // 22: viam.app.data.v1.AddTagsToBinaryDataByFilterRequest
+	(*AddTagsToBinaryDataByFilterResponse)(nil),       // 23: viam.app.data.v1.AddTagsToBinaryDataByFilterResponse
+	(*RemoveTagsFromBinaryDataByFileIDsRequest)(nil),  // 24: viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsRequest
+	(*RemoveTagsFromBinaryDataByFileIDsResponse)(nil), // 25: viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse
+	(*RemoveTagsFromBinaryDataByFilterRequest)(nil),   // 26: viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest
+	(*RemoveTagsFromBinaryDataByFilterResponse)(nil),  // 27: viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse
+	nil,                           // 28: viam.app.data.v1.CaptureMetadata.MethodParametersEntry
+	(*timestamppb.Timestamp)(nil), // 29: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),       // 30: google.protobuf.Struct
+	(*anypb.Any)(nil),             // 31: google.protobuf.Any
 }
 var file_app_data_v1_data_proto_depIdxs = []int32{
 	1,  // 0: viam.app.data.v1.Result.status:type_name -> viam.app.data.v1.Status
@@ -2460,6 +2664,55 @@ var file_app_data_v1_data_proto_depIdxs = []int32{
 	30, // [30:30] is the sub-list for extension type_name
 	30, // [30:30] is the sub-list for extension extendee
 	0,  // [0:30] is the sub-list for field type_name
+	2,  // 0: viam.app.data.v1.DataRequest.filter:type_name -> viam.app.data.v1.Filter
+	0,  // 1: viam.app.data.v1.DataRequest.sort_order:type_name -> viam.app.data.v1.Order
+	4,  // 2: viam.app.data.v1.Filter.interval:type_name -> viam.app.data.v1.CaptureInterval
+	28, // 3: viam.app.data.v1.CaptureMetadata.method_parameters:type_name -> viam.app.data.v1.CaptureMetadata.MethodParametersEntry
+	29, // 4: viam.app.data.v1.CaptureInterval.start:type_name -> google.protobuf.Timestamp
+	29, // 5: viam.app.data.v1.CaptureInterval.end:type_name -> google.protobuf.Timestamp
+	1,  // 6: viam.app.data.v1.TabularDataByFilterRequest.data_request:type_name -> viam.app.data.v1.DataRequest
+	3,  // 7: viam.app.data.v1.TabularDataByFilterResponse.metadata:type_name -> viam.app.data.v1.CaptureMetadata
+	7,  // 8: viam.app.data.v1.TabularDataByFilterResponse.data:type_name -> viam.app.data.v1.TabularData
+	30, // 9: viam.app.data.v1.TabularData.data:type_name -> google.protobuf.Struct
+	29, // 10: viam.app.data.v1.TabularData.time_requested:type_name -> google.protobuf.Timestamp
+	29, // 11: viam.app.data.v1.TabularData.time_received:type_name -> google.protobuf.Timestamp
+	13, // 12: viam.app.data.v1.BinaryData.metadata:type_name -> viam.app.data.v1.BinaryMetadata
+	1,  // 13: viam.app.data.v1.BinaryDataByFilterRequest.data_request:type_name -> viam.app.data.v1.DataRequest
+	8,  // 14: viam.app.data.v1.BinaryDataByFilterResponse.data:type_name -> viam.app.data.v1.BinaryData
+	8,  // 15: viam.app.data.v1.BinaryDataByIDsResponse.data:type_name -> viam.app.data.v1.BinaryData
+	3,  // 16: viam.app.data.v1.BinaryMetadata.capture_metadata:type_name -> viam.app.data.v1.CaptureMetadata
+	29, // 17: viam.app.data.v1.BinaryMetadata.time_requested:type_name -> google.protobuf.Timestamp
+	29, // 18: viam.app.data.v1.BinaryMetadata.time_received:type_name -> google.protobuf.Timestamp
+	2,  // 19: viam.app.data.v1.DeleteTabularDataByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
+	2,  // 20: viam.app.data.v1.DeleteBinaryDataByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
+	2,  // 21: viam.app.data.v1.AddTagsToBinaryDataByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
+	2,  // 22: viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
+	31, // 23: viam.app.data.v1.CaptureMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	5,  // 24: viam.app.data.v1.DataService.TabularDataByFilter:input_type -> viam.app.data.v1.TabularDataByFilterRequest
+	9,  // 25: viam.app.data.v1.DataService.BinaryDataByFilter:input_type -> viam.app.data.v1.BinaryDataByFilterRequest
+	11, // 26: viam.app.data.v1.DataService.BinaryDataByIDs:input_type -> viam.app.data.v1.BinaryDataByIDsRequest
+	14, // 27: viam.app.data.v1.DataService.DeleteTabularDataByFilter:input_type -> viam.app.data.v1.DeleteTabularDataByFilterRequest
+	16, // 28: viam.app.data.v1.DataService.DeleteBinaryDataByFilter:input_type -> viam.app.data.v1.DeleteBinaryDataByFilterRequest
+	18, // 29: viam.app.data.v1.DataService.DeleteBinaryDataByIDs:input_type -> viam.app.data.v1.DeleteBinaryDataByIDsRequest
+	20, // 30: viam.app.data.v1.DataService.AddTagsToBinaryDataByFileIDs:input_type -> viam.app.data.v1.AddTagsToBinaryDataByFileIDsRequest
+	22, // 31: viam.app.data.v1.DataService.AddTagsToBinaryDataByFilter:input_type -> viam.app.data.v1.AddTagsToBinaryDataByFilterRequest
+	24, // 32: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByFileIDs:input_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsRequest
+	26, // 33: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByFilter:input_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest
+	6,  // 34: viam.app.data.v1.DataService.TabularDataByFilter:output_type -> viam.app.data.v1.TabularDataByFilterResponse
+	10, // 35: viam.app.data.v1.DataService.BinaryDataByFilter:output_type -> viam.app.data.v1.BinaryDataByFilterResponse
+	12, // 36: viam.app.data.v1.DataService.BinaryDataByIDs:output_type -> viam.app.data.v1.BinaryDataByIDsResponse
+	15, // 37: viam.app.data.v1.DataService.DeleteTabularDataByFilter:output_type -> viam.app.data.v1.DeleteTabularDataByFilterResponse
+	17, // 38: viam.app.data.v1.DataService.DeleteBinaryDataByFilter:output_type -> viam.app.data.v1.DeleteBinaryDataByFilterResponse
+	19, // 39: viam.app.data.v1.DataService.DeleteBinaryDataByIDs:output_type -> viam.app.data.v1.DeleteBinaryDataByIDsResponse
+	21, // 40: viam.app.data.v1.DataService.AddTagsToBinaryDataByFileIDs:output_type -> viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse
+	23, // 41: viam.app.data.v1.DataService.AddTagsToBinaryDataByFilter:output_type -> viam.app.data.v1.AddTagsToBinaryDataByFilterResponse
+	25, // 42: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByFileIDs:output_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse
+	27, // 43: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByFilter:output_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse
+	34, // [34:44] is the sub-list for method output_type
+	24, // [24:34] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_app_data_v1_data_proto_init() }
@@ -2698,6 +2951,7 @@ func file_app_data_v1_data_proto_init() {
 		}
 		file_app_data_v1_data_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteBinaryDataByIDsResponse); i {
+			switch v := v.(*AddTagsToBinaryDataByFileIDsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2710,6 +2964,7 @@ func file_app_data_v1_data_proto_init() {
 		}
 		file_app_data_v1_data_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Annotation); i {
+			switch v := v.(*AddTagsToBinaryDataByFileIDsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2722,6 +2977,7 @@ func file_app_data_v1_data_proto_init() {
 		}
 		file_app_data_v1_data_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AddAnnotationsToBinaryDataByFileIDsRequest); i {
+			switch v := v.(*AddTagsToBinaryDataByFilterRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2734,6 +2990,7 @@ func file_app_data_v1_data_proto_init() {
 		}
 		file_app_data_v1_data_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AddAnnotationsToBinaryDataByFileIDsResponse); i {
+			switch v := v.(*AddTagsToBinaryDataByFilterResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2746,6 +3003,7 @@ func file_app_data_v1_data_proto_init() {
 		}
 		file_app_data_v1_data_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AddAnnotationsToBinaryDataByFilterRequest); i {
+			switch v := v.(*RemoveTagsFromBinaryDataByFileIDsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2758,6 +3016,7 @@ func file_app_data_v1_data_proto_init() {
 		}
 		file_app_data_v1_data_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AddAnnotationsToBinaryDataByFilterResponse); i {
+			switch v := v.(*RemoveTagsFromBinaryDataByFileIDsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2770,6 +3029,7 @@ func file_app_data_v1_data_proto_init() {
 		}
 		file_app_data_v1_data_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RemoveAnnotationsFromBinaryDataByFileIDsRequest); i {
+			switch v := v.(*RemoveTagsFromBinaryDataByFilterRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2782,6 +3042,7 @@ func file_app_data_v1_data_proto_init() {
 		}
 		file_app_data_v1_data_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RemoveAnnotationsFromBinaryDataByFileIDsResponse); i {
+			switch v := v.(*RemoveTagsFromBinaryDataByFilterResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2817,6 +3078,7 @@ func file_app_data_v1_data_proto_init() {
 			}
 		}
 	}
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
@@ -2824,6 +3086,8 @@ func file_app_data_v1_data_proto_init() {
 			RawDescriptor: file_app_data_v1_data_proto_rawDesc,
 			NumEnums:      2,
 			NumMessages:   30,
+			NumEnums:      1,
+			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
