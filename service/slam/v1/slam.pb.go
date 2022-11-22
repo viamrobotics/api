@@ -231,7 +231,6 @@ type GetMapResponse struct {
 	// Image or point cloud of mime_type.
 	//
 	// Types that are assignable to Map:
-	//
 	//	*GetMapResponse_PointCloud
 	//	*GetMapResponse_Image
 	Map isGetMapResponse_Map `protobuf_oneof:"map"`

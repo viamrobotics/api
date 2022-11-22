@@ -64,40 +64,40 @@ DataService.DeleteBinaryDataByIDs = {
   responseType: app_data_v1_data_pb.DeleteBinaryDataByIDsResponse
 };
 
-DataService.AddAnnotationsToBinaryDataByFileIDs = {
-  methodName: "AddAnnotationsToBinaryDataByFileIDs",
+DataService.AddTagsToBinaryDataByFileIDs = {
+  methodName: "AddTagsToBinaryDataByFileIDs",
   service: DataService,
   requestStream: false,
   responseStream: false,
-  requestType: app_data_v1_data_pb.AddAnnotationsToBinaryDataByFileIDsRequest,
-  responseType: app_data_v1_data_pb.AddAnnotationsToBinaryDataByFileIDsResponse
+  requestType: app_data_v1_data_pb.AddTagsToBinaryDataByFileIDsRequest,
+  responseType: app_data_v1_data_pb.AddTagsToBinaryDataByFileIDsResponse
 };
 
-DataService.AddAnnotationsToBinaryDataByFilter = {
-  methodName: "AddAnnotationsToBinaryDataByFilter",
+DataService.AddTagsToBinaryDataByFilter = {
+  methodName: "AddTagsToBinaryDataByFilter",
   service: DataService,
   requestStream: false,
   responseStream: false,
-  requestType: app_data_v1_data_pb.AddAnnotationsToBinaryDataByFilterRequest,
-  responseType: app_data_v1_data_pb.AddAnnotationsToBinaryDataByFilterResponse
+  requestType: app_data_v1_data_pb.AddTagsToBinaryDataByFilterRequest,
+  responseType: app_data_v1_data_pb.AddTagsToBinaryDataByFilterResponse
 };
 
-DataService.RemoveAnnotationsFromBinaryDataByFileIDs = {
-  methodName: "RemoveAnnotationsFromBinaryDataByFileIDs",
+DataService.RemoveTagsFromBinaryDataByFileIDs = {
+  methodName: "RemoveTagsFromBinaryDataByFileIDs",
   service: DataService,
   requestStream: false,
   responseStream: false,
-  requestType: app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFileIDsRequest,
-  responseType: app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFileIDsResponse
+  requestType: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFileIDsRequest,
+  responseType: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFileIDsResponse
 };
 
-DataService.RemoveAnnotationsFromBinaryDataByFilter = {
-  methodName: "RemoveAnnotationsFromBinaryDataByFilter",
+DataService.RemoveTagsFromBinaryDataByFilter = {
+  methodName: "RemoveTagsFromBinaryDataByFilter",
   service: DataService,
   requestStream: false,
   responseStream: false,
-  requestType: app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFilterRequest,
-  responseType: app_data_v1_data_pb.RemoveAnnotationsFromBinaryDataByFilterResponse
+  requestType: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFilterRequest,
+  responseType: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFilterResponse
 };
 
 exports.DataService = DataService;
@@ -293,11 +293,11 @@ DataServiceClient.prototype.deleteBinaryDataByIDs = function deleteBinaryDataByI
   };
 };
 
-DataServiceClient.prototype.addAnnotationsToBinaryDataByFileIDs = function addAnnotationsToBinaryDataByFileIDs(requestMessage, metadata, callback) {
+DataServiceClient.prototype.addTagsToBinaryDataByFileIDs = function addTagsToBinaryDataByFileIDs(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataService.AddAnnotationsToBinaryDataByFileIDs, {
+  var client = grpc.unary(DataService.AddTagsToBinaryDataByFileIDs, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -324,11 +324,11 @@ DataServiceClient.prototype.addAnnotationsToBinaryDataByFileIDs = function addAn
   };
 };
 
-DataServiceClient.prototype.addAnnotationsToBinaryDataByFilter = function addAnnotationsToBinaryDataByFilter(requestMessage, metadata, callback) {
+DataServiceClient.prototype.addTagsToBinaryDataByFilter = function addTagsToBinaryDataByFilter(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataService.AddAnnotationsToBinaryDataByFilter, {
+  var client = grpc.unary(DataService.AddTagsToBinaryDataByFilter, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -355,11 +355,11 @@ DataServiceClient.prototype.addAnnotationsToBinaryDataByFilter = function addAnn
   };
 };
 
-DataServiceClient.prototype.removeAnnotationsFromBinaryDataByFileIDs = function removeAnnotationsFromBinaryDataByFileIDs(requestMessage, metadata, callback) {
+DataServiceClient.prototype.removeTagsFromBinaryDataByFileIDs = function removeTagsFromBinaryDataByFileIDs(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataService.RemoveAnnotationsFromBinaryDataByFileIDs, {
+  var client = grpc.unary(DataService.RemoveTagsFromBinaryDataByFileIDs, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -386,11 +386,11 @@ DataServiceClient.prototype.removeAnnotationsFromBinaryDataByFileIDs = function 
   };
 };
 
-DataServiceClient.prototype.removeAnnotationsFromBinaryDataByFilter = function removeAnnotationsFromBinaryDataByFilter(requestMessage, metadata, callback) {
+DataServiceClient.prototype.removeTagsFromBinaryDataByFilter = function removeTagsFromBinaryDataByFilter(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataService.RemoveAnnotationsFromBinaryDataByFilter, {
+  var client = grpc.unary(DataService.RemoveTagsFromBinaryDataByFilter, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
