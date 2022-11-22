@@ -31,11 +31,21 @@ type ModelServiceDeploy = {
   readonly responseType: typeof app_model_v1_model_pb.DeployResponse;
 };
 
+type ModelServiceInfo = {
+  readonly methodName: string;
+  readonly service: typeof ModelService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_model_v1_model_pb.InfoRequest;
+  readonly responseType: typeof app_model_v1_model_pb.InfoResponse;
+};
+
 export class ModelService {
   static readonly serviceName: string;
   static readonly Upload: ModelServiceUpload;
   static readonly Delete: ModelServiceDelete;
   static readonly Deploy: ModelServiceDeploy;
+  static readonly Info: ModelServiceInfo;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -88,6 +98,15 @@ export class ModelServiceClient {
   deploy(
     requestMessage: app_model_v1_model_pb.DeployRequest,
     callback: (error: ServiceError|null, responseMessage: app_model_v1_model_pb.DeployResponse|null) => void
+  ): UnaryResponse;
+  info(
+    requestMessage: app_model_v1_model_pb.InfoRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_model_v1_model_pb.InfoResponse|null) => void
+  ): UnaryResponse;
+  info(
+    requestMessage: app_model_v1_model_pb.InfoRequest,
+    callback: (error: ServiceError|null, responseMessage: app_model_v1_model_pb.InfoResponse|null) => void
   ): UnaryResponse;
 }
 
