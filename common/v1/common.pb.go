@@ -245,13 +245,13 @@ func (x *DigitalInterruptStatus) GetValue() int64 {
 }
 
 // Pose is a combination of location and orientation.
-// Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which
-// is represented by o_x, o_y, o_z and theta. The o_x, o_y, o_z coordinates represent the point on the cartesian unit sphere that the end of
-// the arm is pointing to (with the origin as reference). That unit vector forms an axis around which theta rotates. This means that
-// incrementing / decrementing theta will perform an inline rotation of the end effector.
-// Theta is defined as rotation between two planes: the first being defined by the origin, the point (0,0,1), and the rx, ry, rz point, and the
-// second being defined by the origin, the rx, ry, rz point and the local Z axis. Therefore, if theta is kept at zero as the north/south pole
-// is circled, the Roll will correct itself to remain in-line.
+//Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which
+//is represented by o_x, o_y, o_z and theta. The o_x, o_y, o_z coordinates represent the point on the cartesian unit sphere that the end of
+//the arm is pointing to (with the origin as reference). That unit vector forms an axis around which theta rotates. This means that
+//incrementing / decrementing theta will perform an inline rotation of the end effector.
+//Theta is defined as rotation between two planes: the first being defined by the origin, the point (0,0,1), and the rx, ry, rz point, and the
+//second being defined by the origin, the rx, ry, rz point and the local Z axis. Therefore, if theta is kept at zero as the north/south pole
+//is circled, the Roll will correct itself to remain in-line.
 type Pose struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -655,7 +655,6 @@ type Geometry struct {
 	// Deminsions of a give geometry. This can be a sphere or box
 	//
 	// Types that are assignable to GeometryType:
-	//
 	//	*Geometry_Sphere
 	//	*Geometry_Box
 	GeometryType isGeometry_GeometryType `protobuf_oneof:"geometry_type"`

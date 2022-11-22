@@ -633,217 +633,185 @@ export namespace DeleteBinaryDataByIDsResponse {
   }
 }
 
-export class Annotation extends jspb.Message {
-  getTag(): string;
-  setTag(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Annotation.AsObject;
-  static toObject(includeInstance: boolean, msg: Annotation): Annotation.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Annotation, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Annotation;
-  static deserializeBinaryFromReader(message: Annotation, reader: jspb.BinaryReader): Annotation;
-}
-
-export namespace Annotation {
-  export type AsObject = {
-    tag: string,
-  }
-}
-
-export class AddAnnotationsToBinaryDataByFileIDsRequest extends jspb.Message {
+export class AddTagsToBinaryDataByFileIDsRequest extends jspb.Message {
   clearFileIdsList(): void;
   getFileIdsList(): Array<string>;
   setFileIdsList(value: Array<string>): void;
   addFileIds(value: string, index?: number): string;
 
-  clearAnnotationsList(): void;
-  getAnnotationsList(): Array<Annotation>;
-  setAnnotationsList(value: Array<Annotation>): void;
-  addAnnotations(value?: Annotation, index?: number): Annotation;
+  clearTagsList(): void;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): void;
+  addTags(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddAnnotationsToBinaryDataByFileIDsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddAnnotationsToBinaryDataByFileIDsRequest): AddAnnotationsToBinaryDataByFileIDsRequest.AsObject;
+  toObject(includeInstance?: boolean): AddTagsToBinaryDataByFileIDsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddTagsToBinaryDataByFileIDsRequest): AddTagsToBinaryDataByFileIDsRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddAnnotationsToBinaryDataByFileIDsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddAnnotationsToBinaryDataByFileIDsRequest;
-  static deserializeBinaryFromReader(message: AddAnnotationsToBinaryDataByFileIDsRequest, reader: jspb.BinaryReader): AddAnnotationsToBinaryDataByFileIDsRequest;
+  static serializeBinaryToWriter(message: AddTagsToBinaryDataByFileIDsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddTagsToBinaryDataByFileIDsRequest;
+  static deserializeBinaryFromReader(message: AddTagsToBinaryDataByFileIDsRequest, reader: jspb.BinaryReader): AddTagsToBinaryDataByFileIDsRequest;
 }
 
-export namespace AddAnnotationsToBinaryDataByFileIDsRequest {
+export namespace AddTagsToBinaryDataByFileIDsRequest {
   export type AsObject = {
     fileIdsList: Array<string>,
-    annotationsList: Array<Annotation.AsObject>,
+    tagsList: Array<string>,
   }
 }
 
-export class AddAnnotationsToBinaryDataByFileIDsResponse extends jspb.Message {
-  clearAnnotationIdsList(): void;
-  getAnnotationIdsList(): Array<string>;
-  setAnnotationIdsList(value: Array<string>): void;
-  addAnnotationIds(value: string, index?: number): string;
-
+export class AddTagsToBinaryDataByFileIDsResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddAnnotationsToBinaryDataByFileIDsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: AddAnnotationsToBinaryDataByFileIDsResponse): AddAnnotationsToBinaryDataByFileIDsResponse.AsObject;
+  toObject(includeInstance?: boolean): AddTagsToBinaryDataByFileIDsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddTagsToBinaryDataByFileIDsResponse): AddTagsToBinaryDataByFileIDsResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddAnnotationsToBinaryDataByFileIDsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddAnnotationsToBinaryDataByFileIDsResponse;
-  static deserializeBinaryFromReader(message: AddAnnotationsToBinaryDataByFileIDsResponse, reader: jspb.BinaryReader): AddAnnotationsToBinaryDataByFileIDsResponse;
+  static serializeBinaryToWriter(message: AddTagsToBinaryDataByFileIDsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddTagsToBinaryDataByFileIDsResponse;
+  static deserializeBinaryFromReader(message: AddTagsToBinaryDataByFileIDsResponse, reader: jspb.BinaryReader): AddTagsToBinaryDataByFileIDsResponse;
 }
 
-export namespace AddAnnotationsToBinaryDataByFileIDsResponse {
+export namespace AddTagsToBinaryDataByFileIDsResponse {
   export type AsObject = {
-    annotationIdsList: Array<string>,
   }
 }
 
-export class AddAnnotationsToBinaryDataByFilterRequest extends jspb.Message {
+export class AddTagsToBinaryDataByFilterRequest extends jspb.Message {
   hasFilter(): boolean;
   clearFilter(): void;
   getFilter(): Filter | undefined;
   setFilter(value?: Filter): void;
 
-  clearAnnotationsList(): void;
-  getAnnotationsList(): Array<Annotation>;
-  setAnnotationsList(value: Array<Annotation>): void;
-  addAnnotations(value?: Annotation, index?: number): Annotation;
+  clearTagsList(): void;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): void;
+  addTags(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddAnnotationsToBinaryDataByFilterRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddAnnotationsToBinaryDataByFilterRequest): AddAnnotationsToBinaryDataByFilterRequest.AsObject;
+  toObject(includeInstance?: boolean): AddTagsToBinaryDataByFilterRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddTagsToBinaryDataByFilterRequest): AddTagsToBinaryDataByFilterRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddAnnotationsToBinaryDataByFilterRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddAnnotationsToBinaryDataByFilterRequest;
-  static deserializeBinaryFromReader(message: AddAnnotationsToBinaryDataByFilterRequest, reader: jspb.BinaryReader): AddAnnotationsToBinaryDataByFilterRequest;
+  static serializeBinaryToWriter(message: AddTagsToBinaryDataByFilterRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddTagsToBinaryDataByFilterRequest;
+  static deserializeBinaryFromReader(message: AddTagsToBinaryDataByFilterRequest, reader: jspb.BinaryReader): AddTagsToBinaryDataByFilterRequest;
 }
 
-export namespace AddAnnotationsToBinaryDataByFilterRequest {
+export namespace AddTagsToBinaryDataByFilterRequest {
   export type AsObject = {
     filter?: Filter.AsObject,
-    annotationsList: Array<Annotation.AsObject>,
+    tagsList: Array<string>,
   }
 }
 
-export class AddAnnotationsToBinaryDataByFilterResponse extends jspb.Message {
-  clearAnnotationIdsList(): void;
-  getAnnotationIdsList(): Array<string>;
-  setAnnotationIdsList(value: Array<string>): void;
-  addAnnotationIds(value: string, index?: number): string;
-
+export class AddTagsToBinaryDataByFilterResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddAnnotationsToBinaryDataByFilterResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: AddAnnotationsToBinaryDataByFilterResponse): AddAnnotationsToBinaryDataByFilterResponse.AsObject;
+  toObject(includeInstance?: boolean): AddTagsToBinaryDataByFilterResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddTagsToBinaryDataByFilterResponse): AddTagsToBinaryDataByFilterResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddAnnotationsToBinaryDataByFilterResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddAnnotationsToBinaryDataByFilterResponse;
-  static deserializeBinaryFromReader(message: AddAnnotationsToBinaryDataByFilterResponse, reader: jspb.BinaryReader): AddAnnotationsToBinaryDataByFilterResponse;
+  static serializeBinaryToWriter(message: AddTagsToBinaryDataByFilterResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddTagsToBinaryDataByFilterResponse;
+  static deserializeBinaryFromReader(message: AddTagsToBinaryDataByFilterResponse, reader: jspb.BinaryReader): AddTagsToBinaryDataByFilterResponse;
 }
 
-export namespace AddAnnotationsToBinaryDataByFilterResponse {
+export namespace AddTagsToBinaryDataByFilterResponse {
   export type AsObject = {
-    annotationIdsList: Array<string>,
   }
 }
 
-export class RemoveAnnotationsFromBinaryDataByFileIDsRequest extends jspb.Message {
+export class RemoveTagsFromBinaryDataByFileIDsRequest extends jspb.Message {
   clearFileIdsList(): void;
   getFileIdsList(): Array<string>;
   setFileIdsList(value: Array<string>): void;
   addFileIds(value: string, index?: number): string;
 
-  clearAnnotationIdsList(): void;
-  getAnnotationIdsList(): Array<string>;
-  setAnnotationIdsList(value: Array<string>): void;
-  addAnnotationIds(value: string, index?: number): string;
+  clearTagsList(): void;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): void;
+  addTags(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveAnnotationsFromBinaryDataByFileIDsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveAnnotationsFromBinaryDataByFileIDsRequest): RemoveAnnotationsFromBinaryDataByFileIDsRequest.AsObject;
+  toObject(includeInstance?: boolean): RemoveTagsFromBinaryDataByFileIDsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveTagsFromBinaryDataByFileIDsRequest): RemoveTagsFromBinaryDataByFileIDsRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveAnnotationsFromBinaryDataByFileIDsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveAnnotationsFromBinaryDataByFileIDsRequest;
-  static deserializeBinaryFromReader(message: RemoveAnnotationsFromBinaryDataByFileIDsRequest, reader: jspb.BinaryReader): RemoveAnnotationsFromBinaryDataByFileIDsRequest;
+  static serializeBinaryToWriter(message: RemoveTagsFromBinaryDataByFileIDsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveTagsFromBinaryDataByFileIDsRequest;
+  static deserializeBinaryFromReader(message: RemoveTagsFromBinaryDataByFileIDsRequest, reader: jspb.BinaryReader): RemoveTagsFromBinaryDataByFileIDsRequest;
 }
 
-export namespace RemoveAnnotationsFromBinaryDataByFileIDsRequest {
+export namespace RemoveTagsFromBinaryDataByFileIDsRequest {
   export type AsObject = {
     fileIdsList: Array<string>,
-    annotationIdsList: Array<string>,
+    tagsList: Array<string>,
   }
 }
 
-export class RemoveAnnotationsFromBinaryDataByFileIDsResponse extends jspb.Message {
+export class RemoveTagsFromBinaryDataByFileIDsResponse extends jspb.Message {
   getDeletedCount(): number;
   setDeletedCount(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveAnnotationsFromBinaryDataByFileIDsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveAnnotationsFromBinaryDataByFileIDsResponse): RemoveAnnotationsFromBinaryDataByFileIDsResponse.AsObject;
+  toObject(includeInstance?: boolean): RemoveTagsFromBinaryDataByFileIDsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveTagsFromBinaryDataByFileIDsResponse): RemoveTagsFromBinaryDataByFileIDsResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveAnnotationsFromBinaryDataByFileIDsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveAnnotationsFromBinaryDataByFileIDsResponse;
-  static deserializeBinaryFromReader(message: RemoveAnnotationsFromBinaryDataByFileIDsResponse, reader: jspb.BinaryReader): RemoveAnnotationsFromBinaryDataByFileIDsResponse;
+  static serializeBinaryToWriter(message: RemoveTagsFromBinaryDataByFileIDsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveTagsFromBinaryDataByFileIDsResponse;
+  static deserializeBinaryFromReader(message: RemoveTagsFromBinaryDataByFileIDsResponse, reader: jspb.BinaryReader): RemoveTagsFromBinaryDataByFileIDsResponse;
 }
 
-export namespace RemoveAnnotationsFromBinaryDataByFileIDsResponse {
+export namespace RemoveTagsFromBinaryDataByFileIDsResponse {
   export type AsObject = {
     deletedCount: number,
   }
 }
 
-export class RemoveAnnotationsFromBinaryDataByFilterRequest extends jspb.Message {
+export class RemoveTagsFromBinaryDataByFilterRequest extends jspb.Message {
   hasFilter(): boolean;
   clearFilter(): void;
   getFilter(): Filter | undefined;
   setFilter(value?: Filter): void;
 
-  clearAnnotationIdsList(): void;
-  getAnnotationIdsList(): Array<string>;
-  setAnnotationIdsList(value: Array<string>): void;
-  addAnnotationIds(value: string, index?: number): string;
+  clearTagsList(): void;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): void;
+  addTags(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveAnnotationsFromBinaryDataByFilterRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveAnnotationsFromBinaryDataByFilterRequest): RemoveAnnotationsFromBinaryDataByFilterRequest.AsObject;
+  toObject(includeInstance?: boolean): RemoveTagsFromBinaryDataByFilterRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveTagsFromBinaryDataByFilterRequest): RemoveTagsFromBinaryDataByFilterRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveAnnotationsFromBinaryDataByFilterRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveAnnotationsFromBinaryDataByFilterRequest;
-  static deserializeBinaryFromReader(message: RemoveAnnotationsFromBinaryDataByFilterRequest, reader: jspb.BinaryReader): RemoveAnnotationsFromBinaryDataByFilterRequest;
+  static serializeBinaryToWriter(message: RemoveTagsFromBinaryDataByFilterRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveTagsFromBinaryDataByFilterRequest;
+  static deserializeBinaryFromReader(message: RemoveTagsFromBinaryDataByFilterRequest, reader: jspb.BinaryReader): RemoveTagsFromBinaryDataByFilterRequest;
 }
 
-export namespace RemoveAnnotationsFromBinaryDataByFilterRequest {
+export namespace RemoveTagsFromBinaryDataByFilterRequest {
   export type AsObject = {
     filter?: Filter.AsObject,
-    annotationIdsList: Array<string>,
+    tagsList: Array<string>,
   }
 }
 
-export class RemoveAnnotationsFromBinaryDataByFilterResponse extends jspb.Message {
+export class RemoveTagsFromBinaryDataByFilterResponse extends jspb.Message {
   getDeletedCount(): number;
   setDeletedCount(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveAnnotationsFromBinaryDataByFilterResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveAnnotationsFromBinaryDataByFilterResponse): RemoveAnnotationsFromBinaryDataByFilterResponse.AsObject;
+  toObject(includeInstance?: boolean): RemoveTagsFromBinaryDataByFilterResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveTagsFromBinaryDataByFilterResponse): RemoveTagsFromBinaryDataByFilterResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveAnnotationsFromBinaryDataByFilterResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveAnnotationsFromBinaryDataByFilterResponse;
-  static deserializeBinaryFromReader(message: RemoveAnnotationsFromBinaryDataByFilterResponse, reader: jspb.BinaryReader): RemoveAnnotationsFromBinaryDataByFilterResponse;
+  static serializeBinaryToWriter(message: RemoveTagsFromBinaryDataByFilterResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveTagsFromBinaryDataByFilterResponse;
+  static deserializeBinaryFromReader(message: RemoveTagsFromBinaryDataByFilterResponse, reader: jspb.BinaryReader): RemoveTagsFromBinaryDataByFilterResponse;
 }
 
-export namespace RemoveAnnotationsFromBinaryDataByFilterResponse {
+export namespace RemoveTagsFromBinaryDataByFilterResponse {
   export type AsObject = {
     deletedCount: number,
   }
