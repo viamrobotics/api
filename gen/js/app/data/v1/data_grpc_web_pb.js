@@ -452,244 +452,244 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.deleteBinaryDataByIDs 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFileIDsRequest,
- *   !proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFileIDsResponse>}
+ *   !proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsRequest,
+ *   !proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse>}
  */
-const methodDescriptor_DataService_AddAnnotationsToBinaryDataByFileIDs = new grpc.web.MethodDescriptor(
-  '/viam.app.data.v1.DataService/AddAnnotationsToBinaryDataByFileIDs',
+const methodDescriptor_DataService_AddTagsToBinaryDataByFileIDs = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/AddTagsToBinaryDataByFileIDs',
   grpc.web.MethodType.UNARY,
-  proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFileIDsRequest,
-  proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFileIDsResponse,
+  proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsRequest,
+  proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse,
   /**
-   * @param {!proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFileIDsRequest} request
+   * @param {!proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFileIDsResponse.deserializeBinary
+  proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFileIDsRequest} request The
+ * @param {!proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFileIDsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFileIDsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.data.v1.DataServiceClient.prototype.addAnnotationsToBinaryDataByFileIDs =
+proto.viam.app.data.v1.DataServiceClient.prototype.addTagsToBinaryDataByFileIDs =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/AddAnnotationsToBinaryDataByFileIDs',
+      '/viam.app.data.v1.DataService/AddTagsToBinaryDataByFileIDs',
       request,
       metadata || {},
-      methodDescriptor_DataService_AddAnnotationsToBinaryDataByFileIDs,
+      methodDescriptor_DataService_AddTagsToBinaryDataByFileIDs,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFileIDsRequest} request The
+ * @param {!proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFileIDsResponse>}
+ * @return {!Promise<!proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.data.v1.DataServicePromiseClient.prototype.addAnnotationsToBinaryDataByFileIDs =
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.addTagsToBinaryDataByFileIDs =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/AddAnnotationsToBinaryDataByFileIDs',
+      '/viam.app.data.v1.DataService/AddTagsToBinaryDataByFileIDs',
       request,
       metadata || {},
-      methodDescriptor_DataService_AddAnnotationsToBinaryDataByFileIDs);
+      methodDescriptor_DataService_AddTagsToBinaryDataByFileIDs);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFilterRequest,
- *   !proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFilterResponse>}
+ *   !proto.viam.app.data.v1.AddTagsToBinaryDataByFilterRequest,
+ *   !proto.viam.app.data.v1.AddTagsToBinaryDataByFilterResponse>}
  */
-const methodDescriptor_DataService_AddAnnotationsToBinaryDataByFilter = new grpc.web.MethodDescriptor(
-  '/viam.app.data.v1.DataService/AddAnnotationsToBinaryDataByFilter',
+const methodDescriptor_DataService_AddTagsToBinaryDataByFilter = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/AddTagsToBinaryDataByFilter',
   grpc.web.MethodType.UNARY,
-  proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFilterRequest,
-  proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFilterResponse,
+  proto.viam.app.data.v1.AddTagsToBinaryDataByFilterRequest,
+  proto.viam.app.data.v1.AddTagsToBinaryDataByFilterResponse,
   /**
-   * @param {!proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFilterRequest} request
+   * @param {!proto.viam.app.data.v1.AddTagsToBinaryDataByFilterRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFilterResponse.deserializeBinary
+  proto.viam.app.data.v1.AddTagsToBinaryDataByFilterResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFilterRequest} request The
+ * @param {!proto.viam.app.data.v1.AddTagsToBinaryDataByFilterRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFilterResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.AddTagsToBinaryDataByFilterResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFilterResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.AddTagsToBinaryDataByFilterResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.data.v1.DataServiceClient.prototype.addAnnotationsToBinaryDataByFilter =
+proto.viam.app.data.v1.DataServiceClient.prototype.addTagsToBinaryDataByFilter =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/AddAnnotationsToBinaryDataByFilter',
+      '/viam.app.data.v1.DataService/AddTagsToBinaryDataByFilter',
       request,
       metadata || {},
-      methodDescriptor_DataService_AddAnnotationsToBinaryDataByFilter,
+      methodDescriptor_DataService_AddTagsToBinaryDataByFilter,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFilterRequest} request The
+ * @param {!proto.viam.app.data.v1.AddTagsToBinaryDataByFilterRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.app.data.v1.AddAnnotationsToBinaryDataByFilterResponse>}
+ * @return {!Promise<!proto.viam.app.data.v1.AddTagsToBinaryDataByFilterResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.data.v1.DataServicePromiseClient.prototype.addAnnotationsToBinaryDataByFilter =
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.addTagsToBinaryDataByFilter =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/AddAnnotationsToBinaryDataByFilter',
+      '/viam.app.data.v1.DataService/AddTagsToBinaryDataByFilter',
       request,
       metadata || {},
-      methodDescriptor_DataService_AddAnnotationsToBinaryDataByFilter);
+      methodDescriptor_DataService_AddTagsToBinaryDataByFilter);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFileIDsRequest,
- *   !proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFileIDsResponse>}
+ *   !proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsRequest,
+ *   !proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse>}
  */
-const methodDescriptor_DataService_RemoveAnnotationsFromBinaryDataByFileIDs = new grpc.web.MethodDescriptor(
-  '/viam.app.data.v1.DataService/RemoveAnnotationsFromBinaryDataByFileIDs',
+const methodDescriptor_DataService_RemoveTagsFromBinaryDataByFileIDs = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFileIDs',
   grpc.web.MethodType.UNARY,
-  proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFileIDsRequest,
-  proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFileIDsResponse,
+  proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsRequest,
+  proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse,
   /**
-   * @param {!proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFileIDsRequest} request
+   * @param {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFileIDsResponse.deserializeBinary
+  proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFileIDsRequest} request The
+ * @param {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFileIDsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFileIDsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.data.v1.DataServiceClient.prototype.removeAnnotationsFromBinaryDataByFileIDs =
+proto.viam.app.data.v1.DataServiceClient.prototype.removeTagsFromBinaryDataByFileIDs =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/RemoveAnnotationsFromBinaryDataByFileIDs',
+      '/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFileIDs',
       request,
       metadata || {},
-      methodDescriptor_DataService_RemoveAnnotationsFromBinaryDataByFileIDs,
+      methodDescriptor_DataService_RemoveTagsFromBinaryDataByFileIDs,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFileIDsRequest} request The
+ * @param {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFileIDsResponse>}
+ * @return {!Promise<!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeAnnotationsFromBinaryDataByFileIDs =
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeTagsFromBinaryDataByFileIDs =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/RemoveAnnotationsFromBinaryDataByFileIDs',
+      '/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFileIDs',
       request,
       metadata || {},
-      methodDescriptor_DataService_RemoveAnnotationsFromBinaryDataByFileIDs);
+      methodDescriptor_DataService_RemoveTagsFromBinaryDataByFileIDs);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFilterRequest,
- *   !proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFilterResponse>}
+ *   !proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest,
+ *   !proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse>}
  */
-const methodDescriptor_DataService_RemoveAnnotationsFromBinaryDataByFilter = new grpc.web.MethodDescriptor(
-  '/viam.app.data.v1.DataService/RemoveAnnotationsFromBinaryDataByFilter',
+const methodDescriptor_DataService_RemoveTagsFromBinaryDataByFilter = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFilter',
   grpc.web.MethodType.UNARY,
-  proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFilterRequest,
-  proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFilterResponse,
+  proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest,
+  proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse,
   /**
-   * @param {!proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFilterRequest} request
+   * @param {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFilterResponse.deserializeBinary
+  proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFilterRequest} request The
+ * @param {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFilterResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFilterResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.data.v1.DataServiceClient.prototype.removeAnnotationsFromBinaryDataByFilter =
+proto.viam.app.data.v1.DataServiceClient.prototype.removeTagsFromBinaryDataByFilter =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/RemoveAnnotationsFromBinaryDataByFilter',
+      '/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFilter',
       request,
       metadata || {},
-      methodDescriptor_DataService_RemoveAnnotationsFromBinaryDataByFilter,
+      methodDescriptor_DataService_RemoveTagsFromBinaryDataByFilter,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFilterRequest} request The
+ * @param {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.app.data.v1.RemoveAnnotationsFromBinaryDataByFilterResponse>}
+ * @return {!Promise<!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeAnnotationsFromBinaryDataByFilter =
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeTagsFromBinaryDataByFilter =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/RemoveAnnotationsFromBinaryDataByFilter',
+      '/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFilter',
       request,
       metadata || {},
-      methodDescriptor_DataService_RemoveAnnotationsFromBinaryDataByFilter);
+      methodDescriptor_DataService_RemoveTagsFromBinaryDataByFilter);
 };
 
 
