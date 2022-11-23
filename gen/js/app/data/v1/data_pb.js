@@ -1046,7 +1046,7 @@ proto.viam.app.data.v1.DataRequest.prototype.setSortOrder = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.Filter.repeatedFields_ = [5,11,12];
+proto.viam.app.data.v1.Filter.repeatedFields_ = [5,10,11,12];
 
 
 
@@ -1088,7 +1088,7 @@ proto.viam.app.data.v1.Filter.toObject = function(includeInstance, msg) {
     robotId: jspb.Message.getFieldWithDefault(msg, 7, ""),
     partName: jspb.Message.getFieldWithDefault(msg, 8, ""),
     partId: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    locationIdsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
     orgIdsList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
     mimeTypeList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
     interval: (f = msg.getInterval()) && proto.viam.app.data.v1.CaptureInterval.toObject(includeInstance, f)
@@ -1166,7 +1166,7 @@ proto.viam.app.data.v1.Filter.deserializeBinaryFromReader = function(msg, reader
       break;
     case 10:
       var value = /** @type {string} */ (reader.readString());
-      msg.setLocationId(value);
+      msg.addLocationIds(value);
       break;
     case 11:
       var value = /** @type {string} */ (reader.readString());
@@ -1273,9 +1273,9 @@ proto.viam.app.data.v1.Filter.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getLocationId();
+  f = message.getLocationIdsList();
   if (f.length > 0) {
-    writer.writeString(
+    writer.writeRepeatedString(
       10,
       f
     );
@@ -1487,20 +1487,39 @@ proto.viam.app.data.v1.Filter.prototype.setPartId = function(value) {
 
 
 /**
- * optional string location_id = 10;
- * @return {string}
+ * repeated string location_ids = 10;
+ * @return {!Array<string>}
  */
-proto.viam.app.data.v1.Filter.prototype.getLocationId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+proto.viam.app.data.v1.Filter.prototype.getLocationIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 10));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.data.v1.Filter} returns this
+ */
+proto.viam.app.data.v1.Filter.prototype.setLocationIdsList = function(value) {
+  return jspb.Message.setField(this, 10, value || []);
 };
 
 
 /**
  * @param {string} value
+ * @param {number=} opt_index
  * @return {!proto.viam.app.data.v1.Filter} returns this
  */
-proto.viam.app.data.v1.Filter.prototype.setLocationId = function(value) {
-  return jspb.Message.setProto3StringField(this, 10, value);
+proto.viam.app.data.v1.Filter.prototype.addLocationIds = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 10, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.data.v1.Filter} returns this
+ */
+proto.viam.app.data.v1.Filter.prototype.clearLocationIdsList = function() {
+  return this.setLocationIdsList([]);
 };
 
 

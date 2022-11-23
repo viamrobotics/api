@@ -94,8 +94,10 @@ export class Filter extends jspb.Message {
   getPartId(): string;
   setPartId(value: string): void;
 
-  getLocationId(): string;
-  setLocationId(value: string): void;
+  clearLocationIdsList(): void;
+  getLocationIdsList(): Array<string>;
+  setLocationIdsList(value: Array<string>): void;
+  addLocationIds(value: string, index?: number): string;
 
   clearOrgIdsList(): void;
   getOrgIdsList(): Array<string>;
@@ -133,7 +135,7 @@ export namespace Filter {
     robotId: string,
     partName: string,
     partId: string,
-    locationId: string,
+    locationIdsList: Array<string>,
     orgIdsList: Array<string>,
     mimeTypeList: Array<string>,
     interval?: CaptureInterval.AsObject,
