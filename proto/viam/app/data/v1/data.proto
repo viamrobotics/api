@@ -76,7 +76,7 @@ message Filter {
   string robot_id = 7;
   string part_name = 8;
   string part_id = 9;
-  string location_id = 10;
+  repeated string location_ids = 10;
   repeated string org_ids = 11;
   repeated string mime_type = 12;
   CaptureInterval interval = 13;
