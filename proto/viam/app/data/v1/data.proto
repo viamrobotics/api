@@ -80,6 +80,14 @@ message Filter {
   repeated string org_ids = 11;
   repeated string mime_type = 12;
   CaptureInterval interval = 13;
+  TagsOption tags_option = 14;
+}
+
+enum TagsOption {
+  TAGS_OPTION_UNSPECIFIED = 0;
+  TAGS_OPTION_MATCHING = 1;
+  TAGS_OPTION_ALL = 2;
+  TAGS_OPTION_NONE = 3;
 }
 
 // CaptureMetadata contains information on the settings used for the data capture
