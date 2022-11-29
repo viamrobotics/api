@@ -80,14 +80,18 @@ message Filter {
   repeated string org_ids = 11;
   repeated string mime_type = 12;
   CaptureInterval interval = 13;
-  TagsOption tags_option = 14;
+  TagsFilterType tags_filter_type = 14;
 }
 
-enum TagsOption {
-  TAGS_OPTION_UNSPECIFIED = 0;
-  TAGS_OPTION_MATCHING = 1;
-  TAGS_OPTION_ALL = 2;
-  TAGS_OPTION_NONE = 3;
+// TagsFilterType specifies how data can be filtered based on tags
+enum TagsFilterType {
+  TAGS_FILTER_TYPE_UNSPECIFIED = 0;
+  // TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched based on OR on inputted string tags should be returned
+  TAGS_FILTER_TYPE_MATCH_BY_OR = 1;
+  // TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned
+  TAGS_FILTER_TYPE_TAGGED = 2;
+  // TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned
+  TAGS_FILTER_TYPE_UNTAGGED = 3;
 }
 
 // CaptureMetadata contains information on the settings used for the data capture
