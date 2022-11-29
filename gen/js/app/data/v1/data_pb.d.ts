@@ -114,8 +114,8 @@ export class Filter extends jspb.Message {
   getInterval(): CaptureInterval | undefined;
   setInterval(value?: CaptureInterval): void;
 
-  getTagsOption(): TagsOptionMap[keyof TagsOptionMap];
-  setTagsOption(value: TagsOptionMap[keyof TagsOptionMap]): void;
+  getTagsFilterType(): TagsFilterTypeMap[keyof TagsFilterTypeMap];
+  setTagsFilterType(value: TagsFilterTypeMap[keyof TagsFilterTypeMap]): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Filter.AsObject;
@@ -142,7 +142,7 @@ export namespace Filter {
     orgIdsList: Array<string>,
     mimeTypeList: Array<string>,
     interval?: CaptureInterval.AsObject,
-    tagsOption: TagsOptionMap[keyof TagsOptionMap],
+    tagsFilterType: TagsFilterTypeMap[keyof TagsFilterTypeMap],
   }
 }
 
@@ -881,12 +881,12 @@ export interface StatusMap {
 
 export const Status: StatusMap;
 
-export interface TagsOptionMap {
-  TAGS_OPTION_UNSPECIFIED: 0;
-  TAGS_OPTION_MATCHING: 1;
-  TAGS_OPTION_ALL: 2;
-  TAGS_OPTION_NONE: 3;
+export interface TagsFilterTypeMap {
+  TAGS_FILTER_TYPE_UNSPECIFIED: 0;
+  TAGS_FILTER_TYPE_MATCH_BY_OR: 1;
+  TAGS_FILTER_TYPE_TAGGED: 2;
+  TAGS_FILTER_TYPE_UNTAGGED: 3;
 }
 
-export const TagsOption: TagsOptionMap;
+export const TagsFilterType: TagsFilterTypeMap;
 
