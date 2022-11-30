@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.component.servo.v1;
 
+import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
@@ -13,6 +14,7 @@ service ServoService {
   // Move requests the servo of the underlying robot to move.
   // This will block until done or a new operation cancels this one
   rpc Move(MoveRequest) returns (MoveResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
       put: "/viam/api/v1/component/servo/{name}/move"
     };

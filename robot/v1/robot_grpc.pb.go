@@ -19,6 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RobotServiceClient interface {
 	GetOperations(ctx context.Context, in *GetOperationsRequest, opts ...grpc.CallOption) (*GetOperationsResponse, error)
+	GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*GetSessionsResponse, error)
 	// ResourceNames returns the list of all resources.
 	ResourceNames(ctx context.Context, in *ResourceNamesRequest, opts ...grpc.CallOption) (*ResourceNamesResponse, error)
 	// ResourceRPCSubtypes returns the list of all resource types.
@@ -35,6 +36,13 @@ type RobotServiceClient interface {
 	StreamStatus(ctx context.Context, in *StreamStatusRequest, opts ...grpc.CallOption) (RobotService_StreamStatusClient, error)
 	// StopAll will stop all current and outstanding operations for the robot and stops all actuators and movement
 	StopAll(ctx context.Context, in *StopAllRequest, opts ...grpc.CallOption) (*StopAllResponse, error)
+	// StartSession creates a new session that expects at least one heartbeat within the returned window.
+	// If the window lapses, any resources that have safety heart monitored methods, where this session was
+	// the last caller on the resource, will be stopped.
+	StartSession(ctx context.Context, in *StartSessionRequest, opts ...grpc.CallOption) (*StartSessionResponse, error)
+	// SendSessionHeartbeat sends a heartbeat to the given session. If the session has expired, a
+	// SESSION_EXPIRED error will be returned.
+	SendSessionHeartbeat(ctx context.Context, in *SendSessionHeartbeatRequest, opts ...grpc.CallOption) (*SendSessionHeartbeatResponse, error)
 }
 
 type robotServiceClient struct {
@@ -48,6 +56,15 @@ func NewRobotServiceClient(cc grpc.ClientConnInterface) RobotServiceClient {
 func (c *robotServiceClient) GetOperations(ctx context.Context, in *GetOperationsRequest, opts ...grpc.CallOption) (*GetOperationsResponse, error) {
 	out := new(GetOperationsResponse)
 	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetOperations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *robotServiceClient) GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*GetSessionsResponse, error) {
+	out := new(GetSessionsResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetSessions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -167,11 +184,30 @@ func (c *robotServiceClient) StopAll(ctx context.Context, in *StopAllRequest, op
 	return out, nil
 }
 
+func (c *robotServiceClient) StartSession(ctx context.Context, in *StartSessionRequest, opts ...grpc.CallOption) (*StartSessionResponse, error) {
+	out := new(StartSessionResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/StartSession", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *robotServiceClient) SendSessionHeartbeat(ctx context.Context, in *SendSessionHeartbeatRequest, opts ...grpc.CallOption) (*SendSessionHeartbeatResponse, error) {
+	out := new(SendSessionHeartbeatResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/SendSessionHeartbeat", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RobotServiceServer is the server API for RobotService service.
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
 type RobotServiceServer interface {
 	GetOperations(context.Context, *GetOperationsRequest) (*GetOperationsResponse, error)
+	GetSessions(context.Context, *GetSessionsRequest) (*GetSessionsResponse, error)
 	// ResourceNames returns the list of all resources.
 	ResourceNames(context.Context, *ResourceNamesRequest) (*ResourceNamesResponse, error)
 	// ResourceRPCSubtypes returns the list of all resource types.
@@ -188,6 +224,13 @@ type RobotServiceServer interface {
 	StreamStatus(*StreamStatusRequest, RobotService_StreamStatusServer) error
 	// StopAll will stop all current and outstanding operations for the robot and stops all actuators and movement
 	StopAll(context.Context, *StopAllRequest) (*StopAllResponse, error)
+	// StartSession creates a new session that expects at least one heartbeat within the returned window.
+	// If the window lapses, any resources that have safety heart monitored methods, where this session was
+	// the last caller on the resource, will be stopped.
+	StartSession(context.Context, *StartSessionRequest) (*StartSessionResponse, error)
+	// SendSessionHeartbeat sends a heartbeat to the given session. If the session has expired, a
+	// SESSION_EXPIRED error will be returned.
+	SendSessionHeartbeat(context.Context, *SendSessionHeartbeatRequest) (*SendSessionHeartbeatResponse, error)
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -197,6 +240,9 @@ type UnimplementedRobotServiceServer struct {
 
 func (UnimplementedRobotServiceServer) GetOperations(context.Context, *GetOperationsRequest) (*GetOperationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOperations not implemented")
+}
+func (UnimplementedRobotServiceServer) GetSessions(context.Context, *GetSessionsRequest) (*GetSessionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSessions not implemented")
 }
 func (UnimplementedRobotServiceServer) ResourceNames(context.Context, *ResourceNamesRequest) (*ResourceNamesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResourceNames not implemented")
@@ -228,6 +274,12 @@ func (UnimplementedRobotServiceServer) StreamStatus(*StreamStatusRequest, RobotS
 func (UnimplementedRobotServiceServer) StopAll(context.Context, *StopAllRequest) (*StopAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StopAll not implemented")
 }
+func (UnimplementedRobotServiceServer) StartSession(context.Context, *StartSessionRequest) (*StartSessionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartSession not implemented")
+}
+func (UnimplementedRobotServiceServer) SendSessionHeartbeat(context.Context, *SendSessionHeartbeatRequest) (*SendSessionHeartbeatResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendSessionHeartbeat not implemented")
+}
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
 // UnsafeRobotServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -255,6 +307,24 @@ func _RobotService_GetOperations_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RobotServiceServer).GetOperations(ctx, req.(*GetOperationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RobotService_GetSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSessionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).GetSessions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/GetSessions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).GetSessions(ctx, req.(*GetSessionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -442,6 +512,42 @@ func _RobotService_StopAll_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_StartSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StartSessionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).StartSession(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/StartSession",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).StartSession(ctx, req.(*StartSessionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RobotService_SendSessionHeartbeat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendSessionHeartbeatRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).SendSessionHeartbeat(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/SendSessionHeartbeat",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).SendSessionHeartbeat(ctx, req.(*SendSessionHeartbeatRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RobotService_ServiceDesc is the grpc.ServiceDesc for RobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -452,6 +558,10 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOperations",
 			Handler:    _RobotService_GetOperations_Handler,
+		},
+		{
+			MethodName: "GetSessions",
+			Handler:    _RobotService_GetSessions_Handler,
 		},
 		{
 			MethodName: "ResourceNames",
@@ -488,6 +598,14 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StopAll",
 			Handler:    _RobotService_StopAll_Handler,
+		},
+		{
+			MethodName: "StartSession",
+			Handler:    _RobotService_StartSession_Handler,
+		},
+		{
+			MethodName: "SendSessionHeartbeat",
+			Handler:    _RobotService_SendSessionHeartbeat_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
