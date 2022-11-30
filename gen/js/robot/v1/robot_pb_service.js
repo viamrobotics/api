@@ -19,6 +19,15 @@ RobotService.GetOperations = {
   responseType: robot_v1_robot_pb.GetOperationsResponse
 };
 
+RobotService.GetSessions = {
+  methodName: "GetSessions",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.GetSessionsRequest,
+  responseType: robot_v1_robot_pb.GetSessionsResponse
+};
+
 RobotService.ResourceNames = {
   methodName: "ResourceNames",
   service: RobotService,
@@ -109,6 +118,24 @@ RobotService.StopAll = {
   responseType: robot_v1_robot_pb.StopAllResponse
 };
 
+RobotService.StartSession = {
+  methodName: "StartSession",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.StartSessionRequest,
+  responseType: robot_v1_robot_pb.StartSessionResponse
+};
+
+RobotService.SendSessionHeartbeat = {
+  methodName: "SendSessionHeartbeat",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.SendSessionHeartbeatRequest,
+  responseType: robot_v1_robot_pb.SendSessionHeartbeatResponse
+};
+
 exports.RobotService = RobotService;
 
 function RobotServiceClient(serviceHost, options) {
@@ -121,6 +148,37 @@ RobotServiceClient.prototype.getOperations = function getOperations(requestMessa
     callback = arguments[1];
   }
   var client = grpc.unary(RobotService.GetOperations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.getSessions = function getSessions(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.GetSessions, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -439,6 +497,68 @@ RobotServiceClient.prototype.stopAll = function stopAll(requestMessage, metadata
     callback = arguments[1];
   }
   var client = grpc.unary(RobotService.StopAll, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.startSession = function startSession(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.StartSession, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.sendSessionHeartbeat = function sendSessionHeartbeat(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.SendSessionHeartbeat, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

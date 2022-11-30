@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.component.gripper.v1;
 
+import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
@@ -12,6 +13,7 @@ option java_package = "com.viam.component.gripper.v1";
 service GripperService {
   // Open opens a gripper of the underlying robot.
   rpc Open(OpenRequest) returns (OpenResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
       put: "/viam/api/v1/component/gripper/{name}/open"
     };
@@ -19,6 +21,7 @@ service GripperService {
 
   // Grab requests a gripper of the underlying robot to grab.
   rpc Grab(GrabRequest) returns (GrabResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
       put: "/viam/api/v1/component/gripper/{name}/grab"
     };
