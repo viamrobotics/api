@@ -126,7 +126,7 @@ type TagsFilterType int32
 
 const (
 	TagsFilterType_TAGS_FILTER_TYPE_UNSPECIFIED TagsFilterType = 0
-	// TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched based on OR on inputted string tags should be returned
+	// TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the Filter tags field should be returned
 	TagsFilterType_TAGS_FILTER_TYPE_MATCH_BY_OR TagsFilterType = 1
 	// TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned
 	TagsFilterType_TAGS_FILTER_TYPE_TAGGED TagsFilterType = 2
