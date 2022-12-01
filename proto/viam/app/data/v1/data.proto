@@ -28,10 +28,10 @@ service DataService {
   // DeleteBinaryDataByIDs deletes binary data based on given IDs.
   rpc DeleteBinaryDataByIDs(DeleteBinaryDataByIDsRequest) returns (DeleteBinaryDataByIDsResponse);
 
-  // AddTagsToBinaryDataByFileIDs adds string tags, unless the strings are already present, to binary data based on given IDs.
+  // AddTagsToBinaryDataByFileIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
   rpc AddTagsToBinaryDataByFileIDs(AddTagsToBinaryDataByFileIDsRequest) returns (AddTagsToBinaryDataByFileIDsResponse);
 
-  // AddTagsToBinaryDataByFilter adds string tags, unless the strings are already present, to binary data based on the given filter.
+  // AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
   rpc AddTagsToBinaryDataByFilter(AddTagsToBinaryDataByFilterRequest) returns (AddTagsToBinaryDataByFilterResponse);
 
   // RemoveTagsToBinaryDataByFileIDs removes string tags from binary data based on given IDs.
@@ -85,13 +85,14 @@ message Filter {
 
 message TagsFilter {
   TagsFilterType type = 1;
-  repeated string tags = 2; // tags are used to match documents (using logical OR) if the TagsFilterType is TAGS_FILTER_TYPE_MATCH_BY_OR
+  // Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_ORG
+  repeated string tags = 2;
 }
 
 // TagsFilterType specifies how data can be filtered based on tags
 enum TagsFilterType {
   TAGS_FILTER_TYPE_UNSPECIFIED = 0;
-  // TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter should be returned
+  // TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter 
   TAGS_FILTER_TYPE_MATCH_BY_OR = 1;
   // TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned
   TAGS_FILTER_TYPE_TAGGED = 2;
