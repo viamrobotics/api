@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.component.motor.v1;
 
+import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
@@ -14,6 +15,7 @@ service MotorService {
   // expressed a value between -1 and 1 where negative values indicate a backwards
   // direction and positive values a forward direction
   rpc SetPower(SetPowerRequest) returns (SetPowerResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
       put: "/viam/api/v1/component/motor/{name}/power"
     };
@@ -25,6 +27,7 @@ service MotorService {
   // If revolutions is 0, this will run the motor at rpm indefinitely
   // If revolutions != 0, this will block until the number of revolutions has been completed or another operation comes in.
   rpc GoFor(GoForRequest) returns (GoForResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
       put: "/viam/api/v1/component/motor/{name}/go_for"
     };
@@ -34,6 +37,7 @@ service MotorService {
   // is relative to its home position at a specified speed which is expressed in RPM
   // This method will return an error if position reporting is not supported
   rpc GoTo(GoToRequest) returns (GoToResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
       put: "/viam/api/v1/component/motor/{name}/go_to"
     };

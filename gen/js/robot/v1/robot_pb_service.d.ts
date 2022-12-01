@@ -13,6 +13,15 @@ type RobotServiceGetOperations = {
   readonly responseType: typeof robot_v1_robot_pb.GetOperationsResponse;
 };
 
+type RobotServiceGetSessions = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.GetSessionsRequest;
+  readonly responseType: typeof robot_v1_robot_pb.GetSessionsResponse;
+};
+
 type RobotServiceResourceNames = {
   readonly methodName: string;
   readonly service: typeof RobotService;
@@ -103,9 +112,28 @@ type RobotServiceStopAll = {
   readonly responseType: typeof robot_v1_robot_pb.StopAllResponse;
 };
 
+type RobotServiceStartSession = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.StartSessionRequest;
+  readonly responseType: typeof robot_v1_robot_pb.StartSessionResponse;
+};
+
+type RobotServiceSendSessionHeartbeat = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.SendSessionHeartbeatRequest;
+  readonly responseType: typeof robot_v1_robot_pb.SendSessionHeartbeatResponse;
+};
+
 export class RobotService {
   static readonly serviceName: string;
   static readonly GetOperations: RobotServiceGetOperations;
+  static readonly GetSessions: RobotServiceGetSessions;
   static readonly ResourceNames: RobotServiceResourceNames;
   static readonly ResourceRPCSubtypes: RobotServiceResourceRPCSubtypes;
   static readonly CancelOperation: RobotServiceCancelOperation;
@@ -116,6 +144,8 @@ export class RobotService {
   static readonly GetStatus: RobotServiceGetStatus;
   static readonly StreamStatus: RobotServiceStreamStatus;
   static readonly StopAll: RobotServiceStopAll;
+  static readonly StartSession: RobotServiceStartSession;
+  static readonly SendSessionHeartbeat: RobotServiceSendSessionHeartbeat;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -158,6 +188,15 @@ export class RobotServiceClient {
   getOperations(
     requestMessage: robot_v1_robot_pb.GetOperationsRequest,
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetOperationsResponse|null) => void
+  ): UnaryResponse;
+  getSessions(
+    requestMessage: robot_v1_robot_pb.GetSessionsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetSessionsResponse|null) => void
+  ): UnaryResponse;
+  getSessions(
+    requestMessage: robot_v1_robot_pb.GetSessionsRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetSessionsResponse|null) => void
   ): UnaryResponse;
   resourceNames(
     requestMessage: robot_v1_robot_pb.ResourceNamesRequest,
@@ -240,6 +279,24 @@ export class RobotServiceClient {
   stopAll(
     requestMessage: robot_v1_robot_pb.StopAllRequest,
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.StopAllResponse|null) => void
+  ): UnaryResponse;
+  startSession(
+    requestMessage: robot_v1_robot_pb.StartSessionRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.StartSessionResponse|null) => void
+  ): UnaryResponse;
+  startSession(
+    requestMessage: robot_v1_robot_pb.StartSessionRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.StartSessionResponse|null) => void
+  ): UnaryResponse;
+  sendSessionHeartbeat(
+    requestMessage: robot_v1_robot_pb.SendSessionHeartbeatRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.SendSessionHeartbeatResponse|null) => void
+  ): UnaryResponse;
+  sendSessionHeartbeat(
+    requestMessage: robot_v1_robot_pb.SendSessionHeartbeatRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.SendSessionHeartbeatResponse|null) => void
   ): UnaryResponse;
 }
 

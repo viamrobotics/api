@@ -19,9 +19,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: ${{ github.event.review.pull_request.head.repo.full_name }}
-          ref: ${{ github.event.review.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          token: ${{ secrets.REPO_READ_TOKEN }}
       - uses: bufbuild/buf-setup-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: arduino/setup-protoc@v1
 
       - name: Compile protos
@@ -36,4 +39,4 @@ jobs:
         with:
           default_author: github_actions
           message: Built new protos from ${{ steps.short_sha.outputs.short_sha }} [skip ci]
-          push: origin ${{ github.event.review.pull_request.head.ref }}
+          push: true
