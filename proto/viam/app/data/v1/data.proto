@@ -71,7 +71,6 @@ message Filter {
   string component_type = 2;
   string component_model = 3;
   string method = 4;
-  repeated string tags = 5;
   string robot_name = 6;
   string robot_id = 7;
   string part_name = 8;
@@ -80,13 +79,19 @@ message Filter {
   repeated string org_ids = 11;
   repeated string mime_type = 12;
   CaptureInterval interval = 13;
-  TagsFilterType tags_filter_type = 14;
+  TagsFilter tags_filter = 14;
+  repeated string tags = 5 [deprecated=true];
+}
+
+message TagsFilter {
+  TagsFilterType type = 1;
+  repeated string tags = 2; // Tags are used to match documents (using logical OR) if the TagsFilterType is TAGS_FILTER_TYPE_MATCH_BY_OR
 }
 
 // TagsFilterType specifies how data can be filtered based on tags
 enum TagsFilterType {
   TAGS_FILTER_TYPE_UNSPECIFIED = 0;
-  // TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the Filter tags field should be returned
+  // TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter should be returned
   TAGS_FILTER_TYPE_MATCH_BY_OR = 1;
   // TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned
   TAGS_FILTER_TYPE_TAGGED = 2;
