@@ -314,7 +314,6 @@ type ChunksResponse struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Type:
-	//
 	//	*ChunksResponse_Info
 	//	*ChunksResponse_Chunk
 	Type isChunksResponse_Type `protobuf_oneof:"type"`
