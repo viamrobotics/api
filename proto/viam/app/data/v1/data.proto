@@ -80,12 +80,12 @@ message Filter {
   repeated string mime_type = 12;
   CaptureInterval interval = 13;
   TagsFilter tags_filter = 14;
-  repeated string tags = 5 [deprecated=true];
+  repeated string tags = 5 [deprecated = true];
 }
 
 message TagsFilter {
   TagsFilterType type = 1;
-  repeated string tags = 2; // Tags are used to match documents (using logical OR) if the TagsFilterType is TAGS_FILTER_TYPE_MATCH_BY_OR
+  repeated string tags = 2; // tags are used to match documents (using logical OR) if the TagsFilterType is TAGS_FILTER_TYPE_MATCH_BY_OR
 }
 
 // TagsFilterType specifies how data can be filtered based on tags
