@@ -30,9 +30,9 @@ type DataServiceClient interface {
 	DeleteBinaryDataByFilter(ctx context.Context, in *DeleteBinaryDataByFilterRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByFilterResponse, error)
 	// DeleteBinaryDataByIDs deletes binary data based on given IDs.
 	DeleteBinaryDataByIDs(ctx context.Context, in *DeleteBinaryDataByIDsRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByIDsResponse, error)
-	// AddTagsToBinaryDataByFileIDs adds string tags, unless the strings are already present, to binary data based on given IDs.
+	// AddTagsToBinaryDataByFileIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
 	AddTagsToBinaryDataByFileIDs(ctx context.Context, in *AddTagsToBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*AddTagsToBinaryDataByFileIDsResponse, error)
-	// AddTagsToBinaryDataByFilter adds string tags, unless the strings are already present, to binary data based on the given filter.
+	// AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
 	AddTagsToBinaryDataByFilter(ctx context.Context, in *AddTagsToBinaryDataByFilterRequest, opts ...grpc.CallOption) (*AddTagsToBinaryDataByFilterResponse, error)
 	// RemoveTagsToBinaryDataByFileIDs removes string tags from binary data based on given IDs.
 	RemoveTagsFromBinaryDataByFileIDs(ctx context.Context, in *RemoveTagsFromBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFileIDsResponse, error)
@@ -154,9 +154,9 @@ type DataServiceServer interface {
 	DeleteBinaryDataByFilter(context.Context, *DeleteBinaryDataByFilterRequest) (*DeleteBinaryDataByFilterResponse, error)
 	// DeleteBinaryDataByIDs deletes binary data based on given IDs.
 	DeleteBinaryDataByIDs(context.Context, *DeleteBinaryDataByIDsRequest) (*DeleteBinaryDataByIDsResponse, error)
-	// AddTagsToBinaryDataByFileIDs adds string tags, unless the strings are already present, to binary data based on given IDs.
+	// AddTagsToBinaryDataByFileIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
 	AddTagsToBinaryDataByFileIDs(context.Context, *AddTagsToBinaryDataByFileIDsRequest) (*AddTagsToBinaryDataByFileIDsResponse, error)
-	// AddTagsToBinaryDataByFilter adds string tags, unless the strings are already present, to binary data based on the given filter.
+	// AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
 	AddTagsToBinaryDataByFilter(context.Context, *AddTagsToBinaryDataByFilterRequest) (*AddTagsToBinaryDataByFilterResponse, error)
 	// RemoveTagsToBinaryDataByFileIDs removes string tags from binary data based on given IDs.
 	RemoveTagsFromBinaryDataByFileIDs(context.Context, *RemoveTagsFromBinaryDataByFileIDsRequest) (*RemoveTagsFromBinaryDataByFileIDsResponse, error)

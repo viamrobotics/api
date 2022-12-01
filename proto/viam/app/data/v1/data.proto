@@ -92,7 +92,7 @@ message TagsFilter {
 // TagsFilterType specifies how data can be filtered based on tags
 enum TagsFilterType {
   TAGS_FILTER_TYPE_UNSPECIFIED = 0;
-  // TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter 
+  // TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter
   TAGS_FILTER_TYPE_MATCH_BY_OR = 1;
   // TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned
   TAGS_FILTER_TYPE_TAGGED = 2;

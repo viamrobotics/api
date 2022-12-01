@@ -126,7 +126,7 @@ type TagsFilterType int32
 
 const (
 	TagsFilterType_TAGS_FILTER_TYPE_UNSPECIFIED TagsFilterType = 0
-	// TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter should be returned
+	// TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter
 	TagsFilterType_TAGS_FILTER_TYPE_MATCH_BY_OR TagsFilterType = 1
 	// TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned
 	TagsFilterType_TAGS_FILTER_TYPE_TAGGED TagsFilterType = 2
@@ -463,7 +463,8 @@ type TagsFilter struct {
 	unknownFields protoimpl.UnknownFields
 
 	Type TagsFilterType `protobuf:"varint,1,opt,name=type,proto3,enum=viam.app.data.v1.TagsFilterType" json:"type,omitempty"`
-	Tags []string       `protobuf:"bytes,2,rep,name=tags,proto3" json:"tags,omitempty"` // tags are used to match documents (using logical OR) if the TagsFilterType is TAGS_FILTER_TYPE_MATCH_BY_OR
+	// Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_ORG
+	Tags []string `protobuf:"bytes,2,rep,name=tags,proto3" json:"tags,omitempty"`
 }
 
 func (x *TagsFilter) Reset() {
