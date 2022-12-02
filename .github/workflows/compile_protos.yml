@@ -103,7 +103,7 @@ jobs:
         uses: EndBug/add-and-commit@v9.0.0
         with:
           default_author: github_actions
-          message: ${{ env.CI_COMMIT_MESSAGE_PREFIX }} ${{ steps.short_sha.outputs.short_sha }} [skip ci]
+          message: ${{ env.CI_COMMIT_MESSAGE_PREFIX }} ${{ steps.short_sha.outputs.short_sha }}
           push: true
 
       - name: Add label
