@@ -4,17 +4,65 @@ package viam.app.v1;
 
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
-import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/app/v1";
 
 service AppService {
-  rpc CreateLocation(CreateLocationRequest) returns (CreateLocationResponse);
+  // Organization
+  //
 
+  // Create an organization
+  rpc CreateOrganization(CreateOrganizationRequest) returns (CreateOrganizationResponse);
+
+  // List all organizations 
   rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
 
+  // Get an organization
+  rpc GetOrganization(GetOrganizationRequest) returns (GetOrganizationResponse);
+  
+  // Update an organization
+  rpc UpdateOrganization(UpdateOrganizationRequest) returns (UpdateOrganizationResponse);
+
+  // Delete an organization
+  rpc DeleteOrganization(DeleteOrganizationRequest) returns (DeleteOrganizationResponse);
+
+  // List all members of an organization
+  rpc ListOrganizationMembers(ListOrganizationMembersRequest) returns (ListOrganizationMembersResponse);
+
+  // Create an organization invite to an organization
+  rpc CreateOrganizationInvite(CreateOrganizationInviteRequest) returns (CreateOrganizationInviteResponse);
+  
+  // Delete an organization member from an organization
+  rpc DeleteOrganizationMember(DeleteOrganizationMemberRequest) returns (DeleteOrganizationMemberResponse);
+
+  // Delete an organization invite
+  rpc DeleteOrganizationInvite(DeleteOrganizationInviteRequest) returns (DeleteOrganizationInviteResponse);
+
+  // Location
+  //
+
+  // Create a location
+  rpc CreateLocation(CreateLocationRequest) returns (CreateLocationResponse);
+
+  // List all locations
   rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
 
+  // Get a location
+  rpc GetLocation(GetLocationRequest) returns (GetLocationResponse);
+
+  // Update a location
+  rpc UpdateLocation(UpdateLocationRequest) returns (UpdateLocationResponse);
+
+  // Delete a location
+  rpc DeleteLocation(DeleteLocationRequest) returns (DeleteLocationResponse);
+
+  // Share a location with an organization
+  rpc ShareLocation(ShareLocationRequest) returns (ShareLocationResponse);
+
+  // Stop sharing a location with an organization
+  rpc UnshareLocation(UnshareLocationRequest) returns (UnshareLocationResponse);
+
+  // Get a location's authorization secrets
   rpc LocationAuth(LocationAuthRequest) returns (LocationAuthResponse);
 
   // Create a new generated Secret in the Location.
@@ -24,15 +72,36 @@ service AppService {
   // Delete a Secret from the Location.
   rpc DeleteLocationSecret(DeleteLocationSecretRequest) returns (DeleteLocationSecretResponse);
 
+  // Fragment
+  //
+
+  // Create a fragment
+  rpc CreateFragment(CreateFragmentRequest) returns (CreateFragmentResponse);
+
+  // List all fragments
+  rpc ListFragments(ListFragmentsRequest) returns (ListFragmentsResponse);
+
+  // Get a fragment
+  rpc GetFragment(GetFragmentRequest) returns (GetFragmentResponse);
+
+  // Update a fragment
+  rpc UpdateFragment(UpdateFragmentRequest) returns (UpdateFragmentResponse);
+
+  // Delete a fragment
+  rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
+
+  // Robot
+  //
+
   // Get a specific robot by ID
   rpc GetRobot(GetRobotRequest) returns (GetRobotResponse);
 
-  rpc GetRobotParts(GetRobotPartsRequest) returns (GetRobotPartsResponse);
+  rpc ListRobotParts(ListRobotPartsRequest) returns (ListRobotPartsResponse);
 
   // Get a specific robot part by ID
   rpc GetRobotPart(GetRobotPartRequest) returns (GetRobotPartResponse);
 
-  rpc GetRobotPartLogs(GetRobotPartLogsRequest) returns (GetRobotPartLogsResponse);
+  rpc ListRobotPartLogs(ListRobotPartLogsRequest) returns (ListRobotPartLogsResponse);
 
   rpc TailRobotPartLogs(TailRobotPartLogsRequest) returns (stream TailRobotPartLogsResponse);
 
@@ -43,7 +112,7 @@ service AppService {
   rpc UpdateRobotPart(UpdateRobotPartRequest) returns (UpdateRobotPartResponse);
 
   // Create a new robot part
-  rpc NewRobotPart(NewRobotPartRequest) returns (NewRobotPartResponse);
+  rpc CreateRobotPart(CreateRobotPartRequest) returns (CreateRobotPartResponse);
 
   // Delete a robot part
   rpc DeleteRobotPart(DeleteRobotPartRequest) returns (DeleteRobotPartResponse);
@@ -59,10 +128,10 @@ service AppService {
   rpc DeleteRobotPartSecret(DeleteRobotPartSecretRequest) returns (DeleteRobotPartSecretResponse);
 
   // Finds robots given a query
-  rpc FindRobots(FindRobotsRequest) returns (FindRobotsResponse);
+  rpc ListRobots(ListRobotsRequest) returns (ListRobotsResponse);
 
-  // NewRobot creates a new robot
-  rpc NewRobot(NewRobotRequest) returns (NewRobotResponse);
+  // CreateRobot creates a new robot
+  rpc CreateRobot(CreateRobotRequest) returns (CreateRobotResponse);
 
   // UpdateRobot updates a robot
   rpc UpdateRobot(UpdateRobotRequest) returns (UpdateRobotResponse);
@@ -71,44 +140,13 @@ service AppService {
   rpc DeleteRobot(DeleteRobotRequest) returns (DeleteRobotResponse);
 }
 
-message Robot {
-  string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
-  string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
-  string location = 3 [(tagger.v1.tags) = "bson:\"location\" json:\"location\""];
-  google.protobuf.Timestamp last_access = 4 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
-  google.protobuf.Timestamp created_on = 5 [(tagger.v1.tags) = "bson:\"created_on\""];
+// Organization
+//
+
+message OrganizationMember {
+  string user_id = 1;
+  google.protobuf.Timestamp date_added = 2;
 }
-
-message RobotPart {
-  string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
-  string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
-  // dns_name part name used for fqdn and local fqdn. Anytime the Name is updated this should be sanitized and updated as well.
-  string dns_name = 10 [(tagger.v1.tags) = "bson:\"dns_name\" json:\"dns_name\""];
-  string secret = 3 [(tagger.v1.tags) = "bson:\"secret\" json:\"secret,omitempty\""];
-  string robot = 4 [(tagger.v1.tags) = "bson:\"robot\" json:\"robot\""];
-  // Store the location_id to allow for unique indexes across parts and locations. This filed MUST be updated each time the robots location
-  // changes.
-  string location_id = 12 [(tagger.v1.tags) = "bson:\"location_id\" json:\"-\""];
-  google.protobuf.Struct robot_config = 5 [(tagger.v1.tags) = "bson:\"config\" json:\"robot_config\""];
-  google.protobuf.Timestamp last_access = 6 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
-  google.protobuf.Struct user_supplied_info = 7 [(tagger.v1.tags) = "bson:\"user_supplied_info\" json:\"user_supplied_info\""];
-  bool main_part = 8 [(tagger.v1.tags) = "bson:\"main_part\" json:\"main_part\""];
-  string fqdn = 9;
-  string local_fqdn = 11;
-  google.protobuf.Timestamp created_on = 13 [(tagger.v1.tags) = "bson:\"created_on\""];
-
-  // List of secrets allowed for authentication.
-  repeated SharedSecret secrets = 14 [(tagger.v1.tags) = "bson:\"secrets\""];
-}
-
-message RobotPartHistoryEntry {
-  string part = 1 [(tagger.v1.tags) = "bson:\"part\" json:\"part\""];
-  string robot = 2 [(tagger.v1.tags) = "bson:\"robot\" json:\"robot\""];
-  google.protobuf.Timestamp when = 3 [(tagger.v1.tags) = "bson:\"when\" json:\"when\""];
-  RobotPart old = 4 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
-}
-
-message ListOrganizationsRequest {}
 
 message Organization {
   string id = 1;
@@ -116,19 +154,138 @@ message Organization {
   google.protobuf.Timestamp created_on = 3;
 }
 
+message OrganizationInvite {
+  string organization_id = 2;
+  string email = 3;
+  google.protobuf.Timestamp created_on = 4;
+}
+
+message CreateOrganizationRequest {
+  Organization organization = 1;
+}
+
+message CreateOrganizationResponse {
+  Organization organization = 1;
+}
+
+message ListOrganizationsRequest {}
+
 message ListOrganizationsResponse {
   repeated Organization organizations = 1;
+}
+
+message GetOrganizationRequest {
+  string organization_id = 1;
+}
+
+message GetOrganizationResponse {
+  Organization organization = 1;
+}
+
+message UpdateOrganizationRequest {
+  string organization_id = 1;
+  string name = 2;
+}
+
+message UpdateOrganizationResponse {
+  Organization organization = 1;
+}
+
+message DeleteOrganizationRequest {
+  string organization_id = 1;
+}
+
+message DeleteOrganizationResponse {}
+
+message ListOrganizationMembersRequest {
+  string organization_id = 1;
+}
+
+message ListOrganizationMembersResponse {
+  string organization_id = 1;
+  repeated OrganizationMember members = 2;
+  repeated OrganizationInvite invites = 3;
+}
+
+message CreateOrganizationInviteRequest {
+  string organization_id = 1;
+  string email = 2;
+}
+
+message CreateOrganizationInviteResponse {
+  OrganizationInvite invite = 1;
+}
+
+message DeleteOrganizationMemberRequest {
+  string organization_id = 1;
+  string user_id = 2;
+}
+
+message DeleteOrganizationMemberResponse {}
+
+message DeleteOrganizationInviteRequest {
+  string organization_id = 1;
+  string email = 2;
+}
+
+message DeleteOrganizationInviteResponse {}
+
+// Location
+//
+
+message LocationOrganization {
+  string organization_id = 1;
+  bool primary = 2;
+}
+
+// SharedSecret is a secret used for LocationAuth and RobotParts.
+message SharedSecret {
+  enum State {
+    STATE_UNSPECIFIED = 0;
+    // Secret is enabled and can be used in authentication.
+    STATE_ENABLED = 1;
+    // Secret is disabled and must not be used to authenticate to rpc.
+    STATE_DISABLED = 2;
+  }
+
+  string id = 1;
+
+  // The payload of the secret. Used during authentication to the rpc framework.
+  string secret = 2;
+
+  // Date/time the secret was first created.
+  google.protobuf.Timestamp created_on = 3;
+
+  // State of the shared secret. In most cases it should be enabled. We may support
+  // disabling a specific secret while keeping it in the database.
+  State state = 4;
+}
+
+message LocationAuth {
+  // Deprecated: use secrets field.
+  string secret = 1 [deprecated = true];
+
+  // Location ID containing this LocationAuth.
+  string location_id = 2;
+
+  // List of secrets used to authenticate to the Location.
+  repeated SharedSecret secrets = 3;
 }
 
 message Location {
   string id = 1;
   string name = 2;
-  google.protobuf.Timestamp created_on = 3;
+  string parent_location_id = 3;
+  LocationAuth auth = 4;
+  bool assigned = 5;
+  repeated LocationOrganization organizations = 6;
+  google.protobuf.Timestamp created_on = 7;
 }
 
 message CreateLocationRequest {
   string organization_id = 1;
   string name = 2;
+  optional string parent_location_id = 3;
 }
 
 message CreateLocationResponse {
@@ -142,6 +299,44 @@ message ListLocationsRequest {
 message ListLocationsResponse {
   repeated Location locations = 1;
 }
+
+message GetLocationRequest {
+  string location_id = 1;
+}
+
+message GetLocationResponse {
+  Location location = 1;
+}
+
+message UpdateLocationRequest {
+  string location_id = 1;
+  string name = 2;
+  optional string parent_location_id = 3;
+}
+
+message UpdateLocationResponse {
+  Location location = 1;
+}
+
+message DeleteLocationRequest {
+  string location_id = 1;
+}
+
+message DeleteLocationResponse {}
+
+message ShareLocationRequest {
+  string location_id = 1;
+  string organization_id = 2;
+}
+
+message ShareLocationResponse {}
+
+message UnshareLocationRequest {
+  string location_id = 1;
+  string organization_id = 2;
+}
+
+message UnshareLocationResponse {}
 
 message CreateLocationSecretRequest {
   // Location ID to create the secret in.
@@ -159,46 +354,104 @@ message DeleteLocationSecretRequest {
 }
 message DeleteLocationSecretResponse {}
 
-message LocationAuth {
-  // Deprecated: use secrets field.
-  string secret = 1 [deprecated = true];
-
-  // Location ID containing this LocationAuth.
-  string location_id = 2;
-
-  // List of secrets used to authenticate to the Location.
-  repeated SharedSecret secrets = 3;
-}
-
-// SharedSecret is a secret used for LocationAuth and RobotParts.
-message SharedSecret {
-  enum State {
-    STATE_UNSPECIFIED = 0;
-    // Secret is enabled and can be used in authentication.
-    STATE_ENABLED = 1;
-    // Secret is disabled and must not be used to authenticate to rpc.
-    STATE_DISABLED = 2;
-  }
-
-  string id = 1 [(tagger.v1.tags) = "bson:\"id\""];
-
-  // The payload of the secret. Used during authentication to the rpc framework.
-  string secret = 2 [(tagger.v1.tags) = "bson:\"secret\""];
-
-  // Date/time the secret was first created.
-  google.protobuf.Timestamp created_on = 3 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
-
-  // State of the shared secret. In most cases it should be enabled. We may support
-  // disabling a specific secret while keeping it in the database.
-  State state = 4 [(tagger.v1.tags) = "bson:\"state\""];
-}
-
 message LocationAuthRequest {
   string location_id = 1;
 }
 
 message LocationAuthResponse {
   LocationAuth auth = 1;
+}
+
+// Fragment
+//
+
+message Fragment {
+  string id = 1;
+  string organization_id = 4;
+  string name = 2;
+  google.protobuf.Struct config = 3;
+  bool public = 5;
+  google.protobuf.Timestamp created_on = 6;
+}
+
+message CreateFragmentRequest {
+  Fragment fragment = 1;
+}
+
+message CreateFragmentResponse {
+  Fragment fragment = 1;
+}
+
+message ListFragmentsRequest {
+  string organization_id = 1;
+  bool include_public = 2;
+}
+
+message ListFragmentsResponse {
+  repeated Fragment fragments = 1;
+}
+
+message GetFragmentRequest {
+  string fragment_id = 1;
+}
+
+message GetFragmentResponse {
+  Fragment fragment = 1;
+}
+
+message UpdateFragmentRequest {
+  string name = 2;
+  google.protobuf.Struct config = 3;
+}
+
+message UpdateFragmentResponse {
+  Fragment fragment = 1;
+}
+
+message DeleteFragmentRequest {
+  string fragment_id = 1;
+}
+
+message DeleteFragmentResponse {}
+
+// Robot
+//
+
+message Robot {
+  string id = 1;
+  string name = 2;
+  string location = 3;
+  google.protobuf.Timestamp last_access = 4;
+  google.protobuf.Timestamp created_on = 5;
+}
+
+message RobotPart {
+  string id = 1;
+  string name = 2;
+  // dns_name part name used for fqdn and local fqdn. Anytime the Name is updated this should be sanitized and updated as well.
+  string dns_name = 10;
+  string secret = 3;
+  string robot = 4;
+  // Store the location_id to allow for unique indexes across parts and locations. This filed MUST be updated each time the robots location
+  // changes.
+  string location_id = 12;
+  google.protobuf.Struct robot_config = 5;
+  google.protobuf.Timestamp last_access = 6;
+  google.protobuf.Struct user_supplied_info = 7;
+  bool main_part = 8;
+  string fqdn = 9;
+  string local_fqdn = 11;
+  google.protobuf.Timestamp created_on = 13;
+
+  // List of secrets allowed for authentication.
+  repeated SharedSecret secrets = 14;
+}
+
+message RobotPartHistoryEntry {
+  string part_id = 1;
+  string robot_id = 2;
+  google.protobuf.Timestamp when = 3;
+  RobotPart old = 4;
 }
 
 message GetRobotRequest {
@@ -209,11 +462,11 @@ message GetRobotResponse {
   Robot robot = 1;
 }
 
-message GetRobotPartsRequest {
+message ListRobotPartsRequest {
   string robot_id = 1;
 }
 
-message GetRobotPartsResponse {
+message ListRobotPartsResponse {
   repeated RobotPart parts = 1;
 }
 
@@ -223,11 +476,10 @@ message GetRobotPartRequest {
 
 message GetRobotPartResponse {
   RobotPart part = 1;
-  string config_json = 2;
 }
 
-message GetRobotPartLogsRequest {
-  string id = 1;
+message ListRobotPartLogsRequest {
+  string part_id = 1;
   bool errors_only = 2;
 }
 
@@ -242,12 +494,12 @@ message LogEntry {
   repeated google.protobuf.Struct fields = 8;
 }
 
-message GetRobotPartLogsResponse {
+message ListRobotPartLogsResponse {
   repeated LogEntry logs = 1;
 }
 
 message TailRobotPartLogsRequest {
-  string id = 1;
+  string part_id = 1;
   bool errors_only = 2;
 }
 
@@ -256,7 +508,7 @@ message TailRobotPartLogsResponse {
 }
 
 message GetRobotPartHistoryRequest {
-  string id = 1;
+  string part_id = 1;
 }
 
 message GetRobotPartHistoryResponse {
@@ -264,7 +516,7 @@ message GetRobotPartHistoryResponse {
 }
 
 message UpdateRobotPartRequest {
-  string id = 1;
+  string part_id = 1;
   string name = 2;
   google.protobuf.Struct robot_config = 3;
 }
@@ -273,13 +525,13 @@ message UpdateRobotPartResponse {
   RobotPart part = 1;
 }
 
-message NewRobotPartRequest {
+message CreateRobotPartRequest {
   string robot_id = 1;
   string part_name = 2;
 }
 
-message NewRobotPartResponse {
-  string part_id = 1;
+message CreateRobotPartResponse {
+  RobotPart part = 1;
 }
 
 message DeleteRobotPartRequest {
@@ -288,36 +540,28 @@ message DeleteRobotPartRequest {
 
 message DeleteRobotPartResponse {}
 
-message Fragment {
-  string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
-  string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
-  google.protobuf.Struct fragment = 3 [(tagger.v1.tags) = "bson:\"fragment\" json:\"fragment\""];
-  string organization_owner = 4 [(tagger.v1.tags) = "bson:\"organization_owner\" json:\"owner\""];
-  bool public = 5 [(tagger.v1.tags) = "bson:\"public\" json:\"public\""];
-  google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
-}
 
-message FindRobotsRequest {
+message ListRobotsRequest {
   string location_id = 1;
 }
 
-message FindRobotsResponse {
+message ListRobotsResponse {
   repeated Robot robots = 1;
 }
 
-message NewRobotRequest {
+message CreateRobotRequest {
   string name = 1;
-  string location = 2;
+  string location_id = 2;
 }
 
-message NewRobotResponse {
-  string id = 1;
+message CreateRobotResponse {
+  Robot robot = 1;
 }
 
 message UpdateRobotRequest {
   string id = 1;
   string name = 2;
-  string location = 3;
+  string location_id = 3;
 }
 
 message UpdateRobotResponse {
@@ -325,7 +569,7 @@ message UpdateRobotResponse {
 }
 
 message DeleteRobotRequest {
-  string id = 1;
+  string robot_id = 1;
 }
 
 message DeleteRobotResponse {}
@@ -342,7 +586,6 @@ message CreateRobotPartSecretRequest {
 }
 
 message CreateRobotPartSecretResponse {
-  // Location's auth after updates.
   RobotPart part = 1;
 }
 
