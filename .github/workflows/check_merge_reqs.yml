@@ -1,0 +1,27 @@
+name: Check Requirements for Merge
+
+on:
+  pull_request_target:
+    branches:
+      - main
+    types:
+      - labeled
+      - unlabeled
+
+jobs:
+  check_requirements:
+    name: Check Merge Requirements
+    runs-on: [self-hosted, x64]
+    if: github.repository_owner == 'viamrobotics'
+    steps:
+      - name: Check Labels
+        if: >
+          contains(github.event.pull_request.labels.*.name, 'protos-compiled')
+        run: echo "label-checks-pass=true" >> $GITHUB_ENV
+
+      - name: Final Checks
+        if: >
+          env.label-checks-pass == false
+        uses: actions/github-script@v6
+        with:
+          script: core.setFailed('Merge requirements not met.\n\tLabel checks - ${{ env.label-checks-pass }}')
