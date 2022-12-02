@@ -10,10 +10,10 @@ export class GetEndPositionRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  hasExtra(): boolean;
-  clearExtra(): void;
-  getExtra(): google_protobuf_struct_pb.Struct | undefined;
-  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+  hasExtraParams(): boolean;
+  clearExtraParams(): void;
+  getExtraParams(): google_protobuf_struct_pb.Struct | undefined;
+  setExtraParams(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetEndPositionRequest.AsObject;
@@ -28,7 +28,7 @@ export class GetEndPositionRequest extends jspb.Message {
 export namespace GetEndPositionRequest {
   export type AsObject = {
     name: string,
-    extra?: google_protobuf_struct_pb.Struct.AsObject,
+    extraParams?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 

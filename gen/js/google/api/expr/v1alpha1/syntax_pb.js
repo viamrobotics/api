@@ -1319,7 +1319,7 @@ proto.google.api.expr.v1alpha1.Expr.Call.prototype.clearArgsList = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.google.api.expr.v1alpha1.Expr.CreateList.repeatedFields_ = [1];
+proto.google.api.expr.v1alpha1.Expr.CreateList.repeatedFields_ = [1,2];
 
 
 
@@ -1353,7 +1353,8 @@ proto.google.api.expr.v1alpha1.Expr.CreateList.prototype.toObject = function(opt
 proto.google.api.expr.v1alpha1.Expr.CreateList.toObject = function(includeInstance, msg) {
   var f, obj = {
     elementsList: jspb.Message.toObjectList(msg.getElementsList(),
-    proto.google.api.expr.v1alpha1.Expr.toObject, includeInstance)
+    proto.google.api.expr.v1alpha1.Expr.toObject, includeInstance),
+    optionalIndicesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1395,6 +1396,12 @@ proto.google.api.expr.v1alpha1.Expr.CreateList.deserializeBinaryFromReader = fun
       reader.readMessage(value,proto.google.api.expr.v1alpha1.Expr.deserializeBinaryFromReader);
       msg.addElements(value);
       break;
+    case 2:
+      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedInt32() : [reader.readInt32()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addOptionalIndices(values[i]);
+      }
+      break;
     default:
       reader.skipField();
       break;
@@ -1430,6 +1437,13 @@ proto.google.api.expr.v1alpha1.Expr.CreateList.serializeBinaryToWriter = functio
       1,
       f,
       proto.google.api.expr.v1alpha1.Expr.serializeBinaryToWriter
+    );
+  }
+  f = message.getOptionalIndicesList();
+  if (f.length > 0) {
+    writer.writePackedInt32(
+      2,
+      f
     );
   }
 };
@@ -1470,6 +1484,43 @@ proto.google.api.expr.v1alpha1.Expr.CreateList.prototype.addElements = function(
  */
 proto.google.api.expr.v1alpha1.Expr.CreateList.prototype.clearElementsList = function() {
   return this.setElementsList([]);
+};
+
+
+/**
+ * repeated int32 optional_indices = 2;
+ * @return {!Array<number>}
+ */
+proto.google.api.expr.v1alpha1.Expr.CreateList.prototype.getOptionalIndicesList = function() {
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * @param {!Array<number>} value
+ * @return {!proto.google.api.expr.v1alpha1.Expr.CreateList} returns this
+ */
+proto.google.api.expr.v1alpha1.Expr.CreateList.prototype.setOptionalIndicesList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {number} value
+ * @param {number=} opt_index
+ * @return {!proto.google.api.expr.v1alpha1.Expr.CreateList} returns this
+ */
+proto.google.api.expr.v1alpha1.Expr.CreateList.prototype.addOptionalIndices = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.google.api.expr.v1alpha1.Expr.CreateList} returns this
+ */
+proto.google.api.expr.v1alpha1.Expr.CreateList.prototype.clearOptionalIndicesList = function() {
+  return this.setOptionalIndicesList([]);
 };
 
 
