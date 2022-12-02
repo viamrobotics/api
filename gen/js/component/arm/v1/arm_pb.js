@@ -318,7 +318,7 @@ proto.viam.component.arm.v1.GetEndPositionRequest.prototype.toObject = function(
 proto.viam.component.arm.v1.GetEndPositionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extraParams: (f = msg.getExtraParams()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -362,7 +362,7 @@ proto.viam.component.arm.v1.GetEndPositionRequest.deserializeBinaryFromReader = 
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setExtraParams(value);
+      msg.setExtra(value);
       break;
     default:
       reader.skipField();
@@ -400,7 +400,7 @@ proto.viam.component.arm.v1.GetEndPositionRequest.serializeBinaryToWriter = func
       f
     );
   }
-  f = message.getExtraParams();
+  f = message.getExtra();
   if (f != null) {
     writer.writeMessage(
       99,
@@ -430,10 +430,10 @@ proto.viam.component.arm.v1.GetEndPositionRequest.prototype.setName = function(v
 
 
 /**
- * optional google.protobuf.Struct extra_params = 99;
+ * optional google.protobuf.Struct extra = 99;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.component.arm.v1.GetEndPositionRequest.prototype.getExtraParams = function() {
+proto.viam.component.arm.v1.GetEndPositionRequest.prototype.getExtra = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
 };
@@ -443,7 +443,7 @@ proto.viam.component.arm.v1.GetEndPositionRequest.prototype.getExtraParams = fun
  * @param {?proto.google.protobuf.Struct|undefined} value
  * @return {!proto.viam.component.arm.v1.GetEndPositionRequest} returns this
 */
-proto.viam.component.arm.v1.GetEndPositionRequest.prototype.setExtraParams = function(value) {
+proto.viam.component.arm.v1.GetEndPositionRequest.prototype.setExtra = function(value) {
   return jspb.Message.setWrapperField(this, 99, value);
 };
 
@@ -452,8 +452,8 @@ proto.viam.component.arm.v1.GetEndPositionRequest.prototype.setExtraParams = fun
  * Clears the message field making it undefined.
  * @return {!proto.viam.component.arm.v1.GetEndPositionRequest} returns this
  */
-proto.viam.component.arm.v1.GetEndPositionRequest.prototype.clearExtraParams = function() {
-  return this.setExtraParams(undefined);
+proto.viam.component.arm.v1.GetEndPositionRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
 };
 
 
@@ -461,7 +461,7 @@ proto.viam.component.arm.v1.GetEndPositionRequest.prototype.clearExtraParams = f
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.component.arm.v1.GetEndPositionRequest.prototype.hasExtraParams = function() {
+proto.viam.component.arm.v1.GetEndPositionRequest.prototype.hasExtra = function() {
   return jspb.Message.getField(this, 99) != null;
 };
 
