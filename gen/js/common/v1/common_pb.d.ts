@@ -174,6 +174,38 @@ export namespace Orientation {
   }
 }
 
+export class StaticFrame extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasPoseInParentFrame(): boolean;
+  clearPoseInParentFrame(): void;
+  getPoseInParentFrame(): PoseInFrame | undefined;
+  setPoseInParentFrame(value?: PoseInFrame): void;
+
+  clearGeometriesList(): void;
+  getGeometriesList(): Array<Geometry>;
+  setGeometriesList(value: Array<Geometry>): void;
+  addGeometries(value?: Geometry, index?: number): Geometry;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StaticFrame.AsObject;
+  static toObject(includeInstance: boolean, msg: StaticFrame): StaticFrame.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StaticFrame, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StaticFrame;
+  static deserializeBinaryFromReader(message: StaticFrame, reader: jspb.BinaryReader): StaticFrame;
+}
+
+export namespace StaticFrame {
+  export type AsObject = {
+    name: string,
+    poseInParentFrame?: PoseInFrame.AsObject,
+    geometriesList: Array<Geometry.AsObject>,
+  }
+}
+
 export class PoseInFrame extends jspb.Message {
   getReferenceFrame(): string;
   setReferenceFrame(value: string): void;

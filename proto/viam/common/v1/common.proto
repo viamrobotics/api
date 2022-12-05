@@ -65,6 +65,12 @@ message Orientation {
   double theta = 4;
 }
 
+message StaticFrame {
+  string name = 1;
+  common.v1.PoseInFrame pose_in_parent_frame = 2;
+  repeated Geometry geometries = 3;
+}
+
 // PoseInFrame contains a pose and the and the reference frame in which it was observed
 message PoseInFrame {
   string reference_frame = 1;
@@ -91,7 +97,7 @@ message RectangularPrism {
 message Geometry {
   // Pose of a gemetries center point
   common.v1.Pose center = 1;
-  // Deminsions of a give geometry. This can be a sphere or box
+  // Dimensions of a given geometry. This can be a sphere or box
   oneof geometry_type {
     Sphere sphere = 2;
     RectangularPrism box = 3;

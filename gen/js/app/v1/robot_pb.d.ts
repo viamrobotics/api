@@ -417,6 +417,11 @@ export class Frame extends jspb.Message {
   getOrientation(): Orientation | undefined;
   setOrientation(value?: Orientation): void;
 
+  hasGeometry(): boolean;
+  clearGeometry(): void;
+  getGeometry(): Geometry | undefined;
+  setGeometry(value?: Geometry): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Frame.AsObject;
   static toObject(includeInstance: boolean, msg: Frame): Frame.AsObject;
@@ -432,6 +437,7 @@ export namespace Frame {
     parent: string,
     translation?: Translation.AsObject,
     orientation?: Orientation.AsObject,
+    geometry?: Geometry.AsObject,
   }
 }
 
@@ -695,6 +701,58 @@ export namespace Orientation {
     EULER_ANGLES = 4,
     AXIS_ANGLES = 5,
     QUATERNION = 6,
+  }
+}
+
+export class Geometry extends jspb.Message {
+  getType(): string;
+  setType(value: string): void;
+
+  getX(): number;
+  setX(value: number): void;
+
+  getY(): number;
+  setY(value: number): void;
+
+  getZ(): number;
+  setZ(value: number): void;
+
+  getR(): number;
+  setR(value: number): void;
+
+  hasTranslation(): boolean;
+  clearTranslation(): void;
+  getTranslation(): Translation | undefined;
+  setTranslation(value?: Translation): void;
+
+  hasOrientation(): boolean;
+  clearOrientation(): void;
+  getOrientation(): Orientation | undefined;
+  setOrientation(value?: Orientation): void;
+
+  getLabel(): string;
+  setLabel(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Geometry.AsObject;
+  static toObject(includeInstance: boolean, msg: Geometry): Geometry.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Geometry, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Geometry;
+  static deserializeBinaryFromReader(message: Geometry, reader: jspb.BinaryReader): Geometry;
+}
+
+export namespace Geometry {
+  export type AsObject = {
+    type: string,
+    x: number,
+    y: number,
+    z: number,
+    r: number,
+    translation?: Translation.AsObject,
+    orientation?: Orientation.AsObject,
+    label: string,
   }
 }
 

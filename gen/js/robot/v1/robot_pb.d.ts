@@ -9,18 +9,15 @@ import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/stru
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class FrameSystemConfig extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
+  hasFrame(): boolean;
+  clearFrame(): void;
+  getFrame(): common_v1_common_pb.StaticFrame | undefined;
+  setFrame(value?: common_v1_common_pb.StaticFrame): void;
 
-  hasPoseInParentFrame(): boolean;
-  clearPoseInParentFrame(): void;
-  getPoseInParentFrame(): common_v1_common_pb.PoseInFrame | undefined;
-  setPoseInParentFrame(value?: common_v1_common_pb.PoseInFrame): void;
-
-  getModelJson(): Uint8Array | string;
-  getModelJson_asU8(): Uint8Array;
-  getModelJson_asB64(): string;
-  setModelJson(value: Uint8Array | string): void;
+  hasKinematics(): boolean;
+  clearKinematics(): void;
+  getKinematics(): google_protobuf_struct_pb.Struct | undefined;
+  setKinematics(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FrameSystemConfig.AsObject;
@@ -34,9 +31,8 @@ export class FrameSystemConfig extends jspb.Message {
 
 export namespace FrameSystemConfig {
   export type AsObject = {
-    name: string,
-    poseInParentFrame?: common_v1_common_pb.PoseInFrame.AsObject,
-    modelJson: Uint8Array | string,
+    frame?: common_v1_common_pb.StaticFrame.AsObject,
+    kinematics?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
