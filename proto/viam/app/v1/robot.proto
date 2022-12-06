@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.app.v1;
 
 import "app/v1/app.proto";
+import "common/v1/common.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "tagger/v1/tagger.proto";
@@ -117,7 +118,7 @@ message Frame {
   string parent = 1;
   Translation translation = 2;
   Orientation orientation = 3;
-  Geometry geometry = 4;
+  common.v1.Geometry geometry = 4;
 }
 
 message Translation {
@@ -192,19 +193,6 @@ message Orientation {
     AxisAngles axis_angles = 5;
     Quaternion quaternion = 6;
   }
-}
-
-// Geometry contains the dimensions of a given geometry and the pose of its center.
-message Geometry {
-  // Type of geometry. This can be a sphere, box, or point
-  string type = 1;
-  double x = 2;
-  double y = 3;
-  double z = 4;
-  double r = 5;
-  Translation translation = 6;
-  Orientation orientation = 7;
-  string label = 8;
 }
 
 // A RemoteConfig describes a remote robot that should be integrated.
