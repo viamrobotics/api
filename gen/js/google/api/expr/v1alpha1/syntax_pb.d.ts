@@ -184,6 +184,11 @@ export namespace Expr {
     setElementsList(value: Array<Expr>): void;
     addElements(value?: Expr, index?: number): Expr;
 
+    clearOptionalIndicesList(): void;
+    getOptionalIndicesList(): Array<number>;
+    setOptionalIndicesList(value: Array<number>): void;
+    addOptionalIndices(value: number, index?: number): number;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CreateList.AsObject;
     static toObject(includeInstance: boolean, msg: CreateList): CreateList.AsObject;
@@ -197,6 +202,7 @@ export namespace Expr {
   export namespace CreateList {
     export type AsObject = {
       elementsList: Array<Expr.AsObject>,
+      optionalIndicesList: Array<number>,
     }
   }
 
