@@ -125,7 +125,8 @@ message AuthHandlerConfig {
   CredentialsType type = 1;
   google.protobuf.Struct config = 5;
 
-  // Structured config for CREDENTIALS_TYPE_WEB_OAUTH type. Note: When this is set the config field will be empty.
+  // Structured config for CREDENTIALS_TYPE_WEB_OAUTH type.
+  // Note: When this is set the config field will be empty.
   optional AuthHandlerWebOauthConfig web_oauth_config = 6;
 }
 
