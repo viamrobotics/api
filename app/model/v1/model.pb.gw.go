@@ -75,15 +75,18 @@ func request_ModelService_Upload_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
+var (
+	filter_ModelService_Delete_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_ModelService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeleteRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelService_Delete_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -96,11 +99,10 @@ func local_request_ModelService_Delete_0(ctx context.Context, marshaler runtime.
 	var protoReq DeleteRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelService_Delete_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -109,15 +111,18 @@ func local_request_ModelService_Delete_0(ctx context.Context, marshaler runtime.
 
 }
 
+var (
+	filter_ModelService_Deploy_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_ModelService_Deploy_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeployRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelService_Deploy_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -130,11 +135,10 @@ func local_request_ModelService_Deploy_0(ctx context.Context, marshaler runtime.
 	var protoReq DeployRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelService_Deploy_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -143,15 +147,18 @@ func local_request_ModelService_Deploy_0(ctx context.Context, marshaler runtime.
 
 }
 
+var (
+	filter_ModelService_Info_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_ModelService_Info_0(ctx context.Context, marshaler runtime.Marshaler, client ModelServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq InfoRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelService_Info_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -164,11 +171,10 @@ func local_request_ModelService_Info_0(ctx context.Context, marshaler runtime.Ma
 	var protoReq InfoRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ModelService_Info_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -190,14 +196,14 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		return
 	})
 
-	mux.Handle("POST", pattern_ModelService_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_ModelService_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Delete", runtime.WithHTTPPathPattern("/viam.app.model.v1.ModelService/Delete"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Delete", runtime.WithHTTPPathPattern("/model/v1/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -221,7 +227,7 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Deploy", runtime.WithHTTPPathPattern("/viam.app.model.v1.ModelService/Deploy"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Deploy", runtime.WithHTTPPathPattern("/model/v1/deploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -238,14 +244,14 @@ func RegisterModelServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 
 	})
 
-	mux.Handle("POST", pattern_ModelService_Info_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelService_Info_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Info", runtime.WithHTTPPathPattern("/viam.app.model.v1.ModelService/Info"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Info", runtime.WithHTTPPathPattern("/model/v1/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -308,7 +314,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Upload", runtime.WithHTTPPathPattern("/viam.app.model.v1.ModelService/Upload"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Upload", runtime.WithHTTPPathPattern("/model/v1/upload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -324,12 +330,12 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 
 	})
 
-	mux.Handle("POST", pattern_ModelService_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_ModelService_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Delete", runtime.WithHTTPPathPattern("/viam.app.model.v1.ModelService/Delete"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Delete", runtime.WithHTTPPathPattern("/model/v1/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -350,7 +356,7 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Deploy", runtime.WithHTTPPathPattern("/viam.app.model.v1.ModelService/Deploy"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Deploy", runtime.WithHTTPPathPattern("/model/v1/deploy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -366,12 +372,12 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 
 	})
 
-	mux.Handle("POST", pattern_ModelService_Info_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ModelService_Info_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Info", runtime.WithHTTPPathPattern("/viam.app.model.v1.ModelService/Info"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.model.v1.ModelService/Info", runtime.WithHTTPPathPattern("/model/v1/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -391,13 +397,13 @@ func RegisterModelServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_ModelService_Upload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.model.v1.ModelService", "Upload"}, ""))
+	pattern_ModelService_Upload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"model", "v1", "upload"}, ""))
 
-	pattern_ModelService_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.model.v1.ModelService", "Delete"}, ""))
+	pattern_ModelService_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"model", "v1", "delete"}, ""))
 
-	pattern_ModelService_Deploy_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.model.v1.ModelService", "Deploy"}, ""))
+	pattern_ModelService_Deploy_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"model", "v1", "deploy"}, ""))
 
-	pattern_ModelService_Info_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.model.v1.ModelService", "Info"}, ""))
+	pattern_ModelService_Info_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"model", "v1", "info"}, ""))
 )
 
 var (

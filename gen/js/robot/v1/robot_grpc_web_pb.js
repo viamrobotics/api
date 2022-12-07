@@ -150,6 +150,67 @@ proto.viam.robot.v1.RobotServicePromiseClient.prototype.getOperations =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.GetSessionsRequest,
+ *   !proto.viam.robot.v1.GetSessionsResponse>}
+ */
+const methodDescriptor_RobotService_GetSessions = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/GetSessions',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.GetSessionsRequest,
+  proto.viam.robot.v1.GetSessionsResponse,
+  /**
+   * @param {!proto.viam.robot.v1.GetSessionsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.GetSessionsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.GetSessionsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.GetSessionsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.GetSessionsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.getSessions =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/GetSessions',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_GetSessions,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.GetSessionsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.GetSessionsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.getSessions =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/GetSessions',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_GetSessions);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.robot.v1.ResourceNamesRequest,
  *   !proto.viam.robot.v1.ResourceNamesResponse>}
  */
@@ -749,6 +810,128 @@ proto.viam.robot.v1.RobotServicePromiseClient.prototype.stopAll =
       request,
       metadata || {},
       methodDescriptor_RobotService_StopAll);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.StartSessionRequest,
+ *   !proto.viam.robot.v1.StartSessionResponse>}
+ */
+const methodDescriptor_RobotService_StartSession = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/StartSession',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.StartSessionRequest,
+  proto.viam.robot.v1.StartSessionResponse,
+  /**
+   * @param {!proto.viam.robot.v1.StartSessionRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.StartSessionResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.StartSessionRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.StartSessionResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.StartSessionResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.startSession =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/StartSession',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_StartSession,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.StartSessionRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.StartSessionResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.startSession =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/StartSession',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_StartSession);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.SendSessionHeartbeatRequest,
+ *   !proto.viam.robot.v1.SendSessionHeartbeatResponse>}
+ */
+const methodDescriptor_RobotService_SendSessionHeartbeat = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/SendSessionHeartbeat',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.SendSessionHeartbeatRequest,
+  proto.viam.robot.v1.SendSessionHeartbeatResponse,
+  /**
+   * @param {!proto.viam.robot.v1.SendSessionHeartbeatRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.SendSessionHeartbeatResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.SendSessionHeartbeatRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.SendSessionHeartbeatResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.SendSessionHeartbeatResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.sendSessionHeartbeat =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/SendSessionHeartbeat',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_SendSessionHeartbeat,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.SendSessionHeartbeatRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.SendSessionHeartbeatResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.sendSessionHeartbeat =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/SendSessionHeartbeat',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_SendSessionHeartbeat);
 };
 
 

@@ -28,23 +28,35 @@ service DataService {
   // DeleteBinaryDataByIDs deletes binary data based on given IDs.
   rpc DeleteBinaryDataByIDs(DeleteBinaryDataByIDsRequest) returns (DeleteBinaryDataByIDsResponse);
 
-  // AddAnnotationsToBinaryDataByFileIDs adds annotations to binary data based on given IDs.
-  rpc AddAnnotationsToBinaryDataByFileIDs(AddAnnotationsToBinaryDataByFileIDsRequest) returns (AddAnnotationsToBinaryDataByFileIDsResponse);
+  // AddTagsToBinaryDataByFileIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
+  rpc AddTagsToBinaryDataByFileIDs(AddTagsToBinaryDataByFileIDsRequest) returns (AddTagsToBinaryDataByFileIDsResponse);
 
-  // AddAnnotationsToBinaryDataByFilter adds annotations to binary data based on the given filter.
-  rpc AddAnnotationsToBinaryDataByFilter(AddAnnotationsToBinaryDataByFilterRequest) returns (AddAnnotationsToBinaryDataByFilterResponse);
+  // AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
+  rpc AddTagsToBinaryDataByFilter(AddTagsToBinaryDataByFilterRequest) returns (AddTagsToBinaryDataByFilterResponse);
 
-  // RemoveAnnotationsToBinaryDataByFileIDs removes annotations from binary data based on given IDs.
-  rpc RemoveAnnotationsFromBinaryDataByFileIDs(RemoveAnnotationsFromBinaryDataByFileIDsRequest) returns (RemoveAnnotationsFromBinaryDataByFileIDsResponse);
+  // RemoveTagsToBinaryDataByFileIDs removes string tags from binary data based on given IDs.
+  rpc RemoveTagsFromBinaryDataByFileIDs(RemoveTagsFromBinaryDataByFileIDsRequest) returns (RemoveTagsFromBinaryDataByFileIDsResponse);
 
-  // RemoveAnnotationsToBinaryDataByFilter removes annotations from binary data based on the given filter.
-  rpc RemoveAnnotationsFromBinaryDataByFilter(RemoveAnnotationsFromBinaryDataByFilterRequest) returns (RemoveAnnotationsFromBinaryDataByFilterResponse);
+  // RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
+  rpc RemoveTagsFromBinaryDataByFilter(RemoveTagsFromBinaryDataByFilterRequest) returns (RemoveTagsFromBinaryDataByFilterResponse);
 }
 
 enum Order {
   ORDER_UNSPECIFIED = 0;
   ORDER_DESCENDING = 1;
   ORDER_ASCENDING = 2;
+}
+
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  STATUS_PARTIAL_SUCCESS = 1;
+  STATUS_SUCCESS = 2;
+}
+
+message Result {
+  Status status = 1;
+  // message is an aggregated error message string
+  string message = 2;
 }
 
 message DataRequest {
@@ -59,15 +71,33 @@ message Filter {
   string component_type = 2;
   string component_model = 3;
   string method = 4;
-  repeated string tags = 5;
   string robot_name = 6;
   string robot_id = 7;
   string part_name = 8;
   string part_id = 9;
-  string location_id = 10;
+  repeated string location_ids = 10;
   repeated string org_ids = 11;
   repeated string mime_type = 12;
   CaptureInterval interval = 13;
+  TagsFilter tags_filter = 14;
+  repeated string tags = 5 [deprecated = true];
+}
+
+message TagsFilter {
+  TagsFilterType type = 1;
+  // Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_ORG
+  repeated string tags = 2;
+}
+
+// TagsFilterType specifies how data can be filtered based on tags
+enum TagsFilterType {
+  TAGS_FILTER_TYPE_UNSPECIFIED = 0;
+  // TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter
+  TAGS_FILTER_TYPE_MATCH_BY_OR = 1;
+  // TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned
+  TAGS_FILTER_TYPE_TAGGED = 2;
+  // TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned
+  TAGS_FILTER_TYPE_UNTAGGED = 3;
 }
 
 // CaptureMetadata contains information on the settings used for the data capture
@@ -164,6 +194,7 @@ message DeleteTabularDataByFilterRequest {
 // DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided
 message DeleteTabularDataByFilterResponse {
   uint64 deleted_count = 1;
+  Result result = 2;
 }
 
 // DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
@@ -174,6 +205,7 @@ message DeleteBinaryDataByFilterRequest {
 // DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided
 message DeleteBinaryDataByFilterResponse {
   uint64 deleted_count = 1;
+  Result result = 2;
 }
 
 // DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when file ids are provided
@@ -184,53 +216,43 @@ message DeleteBinaryDataByIDsRequest {
 // DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided
 message DeleteBinaryDataByIDsResponse {
   uint64 deleted_count = 1;
+  Result result = 2;
 }
 
-// Annotation specifies the ways in which we can associate annotations with data, e.g. with a text tag or image bounding box
-message Annotation {
-  string tag = 1;
-}
-
-// AddAnnotationsToBinaryDataByFileIDsRequest requests adding all specified annotations to each of the files when file IDs are provided
-message AddAnnotationsToBinaryDataByFileIDsRequest {
+// AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when file IDs are provided
+message AddTagsToBinaryDataByFileIDsRequest {
   repeated string file_ids = 1;
-  repeated Annotation annotations = 2;
+  repeated string tags = 2;
 }
 
-// AddAnnotationsToBinaryDataByFileIDsResponse returns IDs of added annotations which can be passed to RemoveAnnotationsFromBinaryDataByFileIDs
-message AddAnnotationsToBinaryDataByFileIDsResponse {
-  repeated string annotation_ids = 1;
-}
+message AddTagsToBinaryDataByFileIDsResponse {}
 
-// AddAnnotationsToBinaryDataByFilterRequest requests adding all specified annotations to each of the files when a filter is provided
-message AddAnnotationsToBinaryDataByFilterRequest {
+// AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided
+message AddTagsToBinaryDataByFilterRequest {
   Filter filter = 1;
-  repeated Annotation annotations = 2;
+  repeated string tags = 2;
 }
 
-// AddAnnotationsToBinaryDataByFilterResponse returns IDs of added annotations which can be passed to RemoveAnnotationsFromBinaryDataByFileIDs
-message AddAnnotationsToBinaryDataByFilterResponse {
-  repeated string annotation_ids = 1;
-}
+message AddTagsToBinaryDataByFilterResponse {}
 
-// RemoveAnnotationsFromBinaryDataByFileIDsRequest requests removing the given annotations from each file when file IDs are provided
-message RemoveAnnotationsFromBinaryDataByFileIDsRequest {
+// RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when file IDs are provided
+message RemoveTagsFromBinaryDataByFileIDsRequest {
   repeated string file_ids = 1;
-  repeated string annotation_ids = 2;
+  repeated string tags = 2;
 }
 
-// RemoveAnnotationsFromBinaryDataByFileIDsResponse returns the number of binary files which had annotations removed
-message RemoveAnnotationsFromBinaryDataByFileIDsResponse {
+// RemoveTagsFromBinaryDataByFileIDsResponse returns the number of binary files which had tags removed
+message RemoveTagsFromBinaryDataByFileIDsResponse {
   uint64 deleted_count = 1;
 }
 
-// RemoveAnnotationsFromBinaryDataByFilterRequest requests removing the given annotations from each file when a filter is provided
-message RemoveAnnotationsFromBinaryDataByFilterRequest {
+// RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided
+message RemoveTagsFromBinaryDataByFilterRequest {
   Filter filter = 1;
-  repeated string annotation_ids = 2;
+  repeated string tags = 2;
 }
 
-// RemoveAnnotationsFromBinaryDataByFilterResponse returns the number of binary files which had annotations removed
-message RemoveAnnotationsFromBinaryDataByFilterResponse {
+// RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed
+message RemoveTagsFromBinaryDataByFilterResponse {
   uint64 deleted_count = 1;
 }
