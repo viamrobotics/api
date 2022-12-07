@@ -876,7 +876,7 @@ type AuthHandlerWebOauthConfig struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The allowed aud claimms by the web oauth handler.
+	// The allowed aud claims by the web oauth handler.
 	AllowedAudiences []string  `protobuf:"bytes,1,rep,name=allowed_audiences,json=allowedAudiences,proto3" json:"allowed_audiences,omitempty"`
 	Jwks             *JWKSFile `protobuf:"bytes,2,opt,name=jwks,proto3" json:"jwks,omitempty"`
 }
@@ -934,10 +934,7 @@ type AuthHandlerConfig struct {
 
 	Type   CredentialsType  `protobuf:"varint,1,opt,name=type,proto3,enum=viam.app.v1.CredentialsType" json:"type,omitempty"`
 	Config *structpb.Struct `protobuf:"bytes,5,opt,name=config,proto3" json:"config,omitempty"`
-	// Config for type CREDENTIALS_TYPE_WEB_OAUTH this config type is known
-	// to the app and should be converted to a known structure when sending to the robot.
-	//
-	// Note: When this is set the config field will be empty.
+	// Structured config for CREDENTIALS_TYPE_WEB_OAUTH type. Note: When this is set the config field will be empty.
 	WebOauthConfig *AuthHandlerWebOauthConfig `protobuf:"bytes,6,opt,name=web_oauth_config,json=webOauthConfig,proto3,oneof" json:"web_oauth_config,omitempty"`
 }
 
