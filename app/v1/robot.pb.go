@@ -934,7 +934,8 @@ type AuthHandlerConfig struct {
 
 	Type   CredentialsType  `protobuf:"varint,1,opt,name=type,proto3,enum=viam.app.v1.CredentialsType" json:"type,omitempty"`
 	Config *structpb.Struct `protobuf:"bytes,5,opt,name=config,proto3" json:"config,omitempty"`
-	// Structured config for CREDENTIALS_TYPE_WEB_OAUTH type. Note: When this is set the config field will be empty.
+	// Structured config for CREDENTIALS_TYPE_WEB_OAUTH type.
+	// Note: When this is set the config field will be empty.
 	WebOauthConfig *AuthHandlerWebOauthConfig `protobuf:"bytes,6,opt,name=web_oauth_config,json=webOauthConfig,proto3,oneof" json:"web_oauth_config,omitempty"`
 }
 
