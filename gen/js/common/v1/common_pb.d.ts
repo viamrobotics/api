@@ -175,18 +175,15 @@ export namespace Orientation {
 }
 
 export class StaticFrame extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
+  hasTransform(): boolean;
+  clearTransform(): void;
+  getTransform(): Transform | undefined;
+  setTransform(value?: Transform): void;
 
-  hasPoseInParentFrame(): boolean;
-  clearPoseInParentFrame(): void;
-  getPoseInParentFrame(): PoseInFrame | undefined;
-  setPoseInParentFrame(value?: PoseInFrame): void;
-
-  clearGeometriesList(): void;
-  getGeometriesList(): Array<Geometry>;
-  setGeometriesList(value: Array<Geometry>): void;
-  addGeometries(value?: Geometry, index?: number): Geometry;
+  hasGeometry(): boolean;
+  clearGeometry(): void;
+  getGeometry(): Geometry | undefined;
+  setGeometry(value?: Geometry): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StaticFrame.AsObject;
@@ -200,9 +197,8 @@ export class StaticFrame extends jspb.Message {
 
 export namespace StaticFrame {
   export type AsObject = {
-    name: string,
-    poseInParentFrame?: PoseInFrame.AsObject,
-    geometriesList: Array<Geometry.AsObject>,
+    transform?: Transform.AsObject,
+    geometry?: Geometry.AsObject,
   }
 }
 
@@ -463,9 +459,9 @@ export class WorldState extends jspb.Message {
   addInteractionSpaces(value?: GeometriesInFrame, index?: number): GeometriesInFrame;
 
   clearTransformsList(): void;
-  getTransformsList(): Array<Transform>;
-  setTransformsList(value: Array<Transform>): void;
-  addTransforms(value?: Transform, index?: number): Transform;
+  getTransformsList(): Array<StaticFrame>;
+  setTransformsList(value: Array<StaticFrame>): void;
+  addTransforms(value?: StaticFrame, index?: number): StaticFrame;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WorldState.AsObject;
@@ -481,7 +477,7 @@ export namespace WorldState {
   export type AsObject = {
     obstaclesList: Array<GeometriesInFrame.AsObject>,
     interactionSpacesList: Array<GeometriesInFrame.AsObject>,
-    transformsList: Array<Transform.AsObject>,
+    transformsList: Array<StaticFrame.AsObject>,
   }
 }
 

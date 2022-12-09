@@ -174,7 +174,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.common.v1.StaticFrame = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.common.v1.StaticFrame.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.viam.common.v1.StaticFrame, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1592,13 +1592,6 @@ proto.viam.common.v1.Orientation.prototype.setTheta = function(value) {
 
 
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.viam.common.v1.StaticFrame.repeatedFields_ = [3];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1630,10 +1623,8 @@ proto.viam.common.v1.StaticFrame.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.common.v1.StaticFrame.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    poseInParentFrame: (f = msg.getPoseInParentFrame()) && proto.viam.common.v1.PoseInFrame.toObject(includeInstance, f),
-    geometriesList: jspb.Message.toObjectList(msg.getGeometriesList(),
-    proto.viam.common.v1.Geometry.toObject, includeInstance)
+    transform: (f = msg.getTransform()) && proto.viam.common.v1.Transform.toObject(includeInstance, f),
+    geometry: (f = msg.getGeometry()) && proto.viam.common.v1.Geometry.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1671,18 +1662,14 @@ proto.viam.common.v1.StaticFrame.deserializeBinaryFromReader = function(msg, rea
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
+      var value = new proto.viam.common.v1.Transform;
+      reader.readMessage(value,proto.viam.common.v1.Transform.deserializeBinaryFromReader);
+      msg.setTransform(value);
       break;
     case 2:
-      var value = new proto.viam.common.v1.PoseInFrame;
-      reader.readMessage(value,proto.viam.common.v1.PoseInFrame.deserializeBinaryFromReader);
-      msg.setPoseInParentFrame(value);
-      break;
-    case 3:
       var value = new proto.viam.common.v1.Geometry;
       reader.readMessage(value,proto.viam.common.v1.Geometry.deserializeBinaryFromReader);
-      msg.addGeometries(value);
+      msg.setGeometry(value);
       break;
     default:
       reader.skipField();
@@ -1713,25 +1700,18 @@ proto.viam.common.v1.StaticFrame.prototype.serializeBinary = function() {
  */
 proto.viam.common.v1.StaticFrame.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getName();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getTransform();
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      proto.viam.common.v1.Transform.serializeBinaryToWriter
     );
   }
-  f = message.getPoseInParentFrame();
+  f = message.getGeometry();
   if (f != null) {
     writer.writeMessage(
       2,
-      f,
-      proto.viam.common.v1.PoseInFrame.serializeBinaryToWriter
-    );
-  }
-  f = message.getGeometriesList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      3,
       f,
       proto.viam.common.v1.Geometry.serializeBinaryToWriter
     );
@@ -1740,38 +1720,57 @@ proto.viam.common.v1.StaticFrame.serializeBinaryToWriter = function(message, wri
 
 
 /**
- * optional string name = 1;
- * @return {string}
+ * optional Transform transform = 1;
+ * @return {?proto.viam.common.v1.Transform}
  */
-proto.viam.common.v1.StaticFrame.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.viam.common.v1.StaticFrame.prototype.getTransform = function() {
+  return /** @type{?proto.viam.common.v1.Transform} */ (
+    jspb.Message.getWrapperField(this, proto.viam.common.v1.Transform, 1));
 };
 
 
 /**
- * @param {string} value
- * @return {!proto.viam.common.v1.StaticFrame} returns this
- */
-proto.viam.common.v1.StaticFrame.prototype.setName = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional PoseInFrame pose_in_parent_frame = 2;
- * @return {?proto.viam.common.v1.PoseInFrame}
- */
-proto.viam.common.v1.StaticFrame.prototype.getPoseInParentFrame = function() {
-  return /** @type{?proto.viam.common.v1.PoseInFrame} */ (
-    jspb.Message.getWrapperField(this, proto.viam.common.v1.PoseInFrame, 2));
-};
-
-
-/**
- * @param {?proto.viam.common.v1.PoseInFrame|undefined} value
+ * @param {?proto.viam.common.v1.Transform|undefined} value
  * @return {!proto.viam.common.v1.StaticFrame} returns this
 */
-proto.viam.common.v1.StaticFrame.prototype.setPoseInParentFrame = function(value) {
+proto.viam.common.v1.StaticFrame.prototype.setTransform = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.common.v1.StaticFrame} returns this
+ */
+proto.viam.common.v1.StaticFrame.prototype.clearTransform = function() {
+  return this.setTransform(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.common.v1.StaticFrame.prototype.hasTransform = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional Geometry geometry = 2;
+ * @return {?proto.viam.common.v1.Geometry}
+ */
+proto.viam.common.v1.StaticFrame.prototype.getGeometry = function() {
+  return /** @type{?proto.viam.common.v1.Geometry} */ (
+    jspb.Message.getWrapperField(this, proto.viam.common.v1.Geometry, 2));
+};
+
+
+/**
+ * @param {?proto.viam.common.v1.Geometry|undefined} value
+ * @return {!proto.viam.common.v1.StaticFrame} returns this
+*/
+proto.viam.common.v1.StaticFrame.prototype.setGeometry = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -1780,8 +1779,8 @@ proto.viam.common.v1.StaticFrame.prototype.setPoseInParentFrame = function(value
  * Clears the message field making it undefined.
  * @return {!proto.viam.common.v1.StaticFrame} returns this
  */
-proto.viam.common.v1.StaticFrame.prototype.clearPoseInParentFrame = function() {
-  return this.setPoseInParentFrame(undefined);
+proto.viam.common.v1.StaticFrame.prototype.clearGeometry = function() {
+  return this.setGeometry(undefined);
 };
 
 
@@ -1789,46 +1788,8 @@ proto.viam.common.v1.StaticFrame.prototype.clearPoseInParentFrame = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.common.v1.StaticFrame.prototype.hasPoseInParentFrame = function() {
+proto.viam.common.v1.StaticFrame.prototype.hasGeometry = function() {
   return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * repeated Geometry geometries = 3;
- * @return {!Array<!proto.viam.common.v1.Geometry>}
- */
-proto.viam.common.v1.StaticFrame.prototype.getGeometriesList = function() {
-  return /** @type{!Array<!proto.viam.common.v1.Geometry>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.common.v1.Geometry, 3));
-};
-
-
-/**
- * @param {!Array<!proto.viam.common.v1.Geometry>} value
- * @return {!proto.viam.common.v1.StaticFrame} returns this
-*/
-proto.viam.common.v1.StaticFrame.prototype.setGeometriesList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 3, value);
-};
-
-
-/**
- * @param {!proto.viam.common.v1.Geometry=} opt_value
- * @param {number=} opt_index
- * @return {!proto.viam.common.v1.Geometry}
- */
-proto.viam.common.v1.StaticFrame.prototype.addGeometries = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.viam.common.v1.Geometry, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.viam.common.v1.StaticFrame} returns this
- */
-proto.viam.common.v1.StaticFrame.prototype.clearGeometriesList = function() {
-  return this.setGeometriesList([]);
 };
 
 
@@ -3573,7 +3534,7 @@ proto.viam.common.v1.WorldState.toObject = function(includeInstance, msg) {
     interactionSpacesList: jspb.Message.toObjectList(msg.getInteractionSpacesList(),
     proto.viam.common.v1.GeometriesInFrame.toObject, includeInstance),
     transformsList: jspb.Message.toObjectList(msg.getTransformsList(),
-    proto.viam.common.v1.Transform.toObject, includeInstance)
+    proto.viam.common.v1.StaticFrame.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -3621,8 +3582,8 @@ proto.viam.common.v1.WorldState.deserializeBinaryFromReader = function(msg, read
       msg.addInteractionSpaces(value);
       break;
     case 3:
-      var value = new proto.viam.common.v1.Transform;
-      reader.readMessage(value,proto.viam.common.v1.Transform.deserializeBinaryFromReader);
+      var value = new proto.viam.common.v1.StaticFrame;
+      reader.readMessage(value,proto.viam.common.v1.StaticFrame.deserializeBinaryFromReader);
       msg.addTransforms(value);
       break;
     default:
@@ -3675,7 +3636,7 @@ proto.viam.common.v1.WorldState.serializeBinaryToWriter = function(message, writ
     writer.writeRepeatedMessage(
       3,
       f,
-      proto.viam.common.v1.Transform.serializeBinaryToWriter
+      proto.viam.common.v1.StaticFrame.serializeBinaryToWriter
     );
   }
 };
@@ -3758,17 +3719,17 @@ proto.viam.common.v1.WorldState.prototype.clearInteractionSpacesList = function(
 
 
 /**
- * repeated Transform transforms = 3;
- * @return {!Array<!proto.viam.common.v1.Transform>}
+ * repeated StaticFrame transforms = 3;
+ * @return {!Array<!proto.viam.common.v1.StaticFrame>}
  */
 proto.viam.common.v1.WorldState.prototype.getTransformsList = function() {
-  return /** @type{!Array<!proto.viam.common.v1.Transform>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.common.v1.Transform, 3));
+  return /** @type{!Array<!proto.viam.common.v1.StaticFrame>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.common.v1.StaticFrame, 3));
 };
 
 
 /**
- * @param {!Array<!proto.viam.common.v1.Transform>} value
+ * @param {!Array<!proto.viam.common.v1.StaticFrame>} value
  * @return {!proto.viam.common.v1.WorldState} returns this
 */
 proto.viam.common.v1.WorldState.prototype.setTransformsList = function(value) {
@@ -3777,12 +3738,12 @@ proto.viam.common.v1.WorldState.prototype.setTransformsList = function(value) {
 
 
 /**
- * @param {!proto.viam.common.v1.Transform=} opt_value
+ * @param {!proto.viam.common.v1.StaticFrame=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.common.v1.Transform}
+ * @return {!proto.viam.common.v1.StaticFrame}
  */
 proto.viam.common.v1.WorldState.prototype.addTransforms = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.viam.common.v1.Transform, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.viam.common.v1.StaticFrame, opt_index);
 };
 
 

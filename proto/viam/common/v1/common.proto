@@ -66,9 +66,8 @@ message Orientation {
 }
 
 message StaticFrame {
-  string name = 1;
-  common.v1.PoseInFrame pose_in_parent_frame = 2;
-  repeated Geometry geometries = 3;
+  Transform transform = 1;
+  Geometry geometry = 2;
 }
 
 // PoseInFrame contains a pose and the and the reference frame in which it was observed
@@ -145,11 +144,11 @@ message Transform {
 message WorldState {
   // a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
   repeated GeometriesInFrame obstacles = 1;
-  // a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured fom;
+  // a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
   // this field is optional
   repeated GeometriesInFrame interaction_spaces = 2;
-  // a list of Transforms needed to transform a pose from one reference frame to another; this field is optional
-  repeated Transform transforms = 3;
+  // a list of StaticFrames, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional
+  repeated StaticFrame transforms = 3;
 }
 
 // ActuatorStatus is a generic status for resources that only need to return actuator status.
