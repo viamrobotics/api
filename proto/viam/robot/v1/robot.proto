@@ -112,7 +112,7 @@ service RobotService {
 message FrameSystemConfig {
   // this is an experimental API message
 
-  common.v1.StaticFrame frame = 1;
+  common.v1.Transform frame = 1;
   google.protobuf.Struct kinematics = 2;
 }
 

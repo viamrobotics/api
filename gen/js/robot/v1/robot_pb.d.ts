@@ -11,8 +11,8 @@ import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/t
 export class FrameSystemConfig extends jspb.Message {
   hasFrame(): boolean;
   clearFrame(): void;
-  getFrame(): common_v1_common_pb.StaticFrame | undefined;
-  setFrame(value?: common_v1_common_pb.StaticFrame): void;
+  getFrame(): common_v1_common_pb.Transform | undefined;
+  setFrame(value?: common_v1_common_pb.Transform): void;
 
   hasKinematics(): boolean;
   clearKinematics(): void;
@@ -31,7 +31,7 @@ export class FrameSystemConfig extends jspb.Message {
 
 export namespace FrameSystemConfig {
   export type AsObject = {
-    frame?: common_v1_common_pb.StaticFrame.AsObject,
+    frame?: common_v1_common_pb.Transform.AsObject,
     kinematics?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }

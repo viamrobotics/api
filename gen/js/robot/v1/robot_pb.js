@@ -872,7 +872,7 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.toObject = function(opt_includeI
  */
 proto.viam.robot.v1.FrameSystemConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    frame: (f = msg.getFrame()) && common_v1_common_pb.StaticFrame.toObject(includeInstance, f),
+    frame: (f = msg.getFrame()) && common_v1_common_pb.Transform.toObject(includeInstance, f),
     kinematics: (f = msg.getKinematics()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -911,8 +911,8 @@ proto.viam.robot.v1.FrameSystemConfig.deserializeBinaryFromReader = function(msg
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new common_v1_common_pb.StaticFrame;
-      reader.readMessage(value,common_v1_common_pb.StaticFrame.deserializeBinaryFromReader);
+      var value = new common_v1_common_pb.Transform;
+      reader.readMessage(value,common_v1_common_pb.Transform.deserializeBinaryFromReader);
       msg.setFrame(value);
       break;
     case 2:
@@ -954,7 +954,7 @@ proto.viam.robot.v1.FrameSystemConfig.serializeBinaryToWriter = function(message
     writer.writeMessage(
       1,
       f,
-      common_v1_common_pb.StaticFrame.serializeBinaryToWriter
+      common_v1_common_pb.Transform.serializeBinaryToWriter
     );
   }
   f = message.getKinematics();
@@ -969,17 +969,17 @@ proto.viam.robot.v1.FrameSystemConfig.serializeBinaryToWriter = function(message
 
 
 /**
- * optional viam.common.v1.StaticFrame frame = 1;
- * @return {?proto.viam.common.v1.StaticFrame}
+ * optional viam.common.v1.Transform frame = 1;
+ * @return {?proto.viam.common.v1.Transform}
  */
 proto.viam.robot.v1.FrameSystemConfig.prototype.getFrame = function() {
-  return /** @type{?proto.viam.common.v1.StaticFrame} */ (
-    jspb.Message.getWrapperField(this, common_v1_common_pb.StaticFrame, 1));
+  return /** @type{?proto.viam.common.v1.Transform} */ (
+    jspb.Message.getWrapperField(this, common_v1_common_pb.Transform, 1));
 };
 
 
 /**
- * @param {?proto.viam.common.v1.StaticFrame|undefined} value
+ * @param {?proto.viam.common.v1.Transform|undefined} value
  * @return {!proto.viam.robot.v1.FrameSystemConfig} returns this
 */
 proto.viam.robot.v1.FrameSystemConfig.prototype.setFrame = function(value) {

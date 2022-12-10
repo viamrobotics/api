@@ -174,34 +174,6 @@ export namespace Orientation {
   }
 }
 
-export class StaticFrame extends jspb.Message {
-  hasTransform(): boolean;
-  clearTransform(): void;
-  getTransform(): Transform | undefined;
-  setTransform(value?: Transform): void;
-
-  hasGeometry(): boolean;
-  clearGeometry(): void;
-  getGeometry(): Geometry | undefined;
-  setGeometry(value?: Geometry): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): StaticFrame.AsObject;
-  static toObject(includeInstance: boolean, msg: StaticFrame): StaticFrame.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: StaticFrame, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): StaticFrame;
-  static deserializeBinaryFromReader(message: StaticFrame, reader: jspb.BinaryReader): StaticFrame;
-}
-
-export namespace StaticFrame {
-  export type AsObject = {
-    transform?: Transform.AsObject,
-    geometry?: Geometry.AsObject,
-  }
-}
-
 export class PoseInFrame extends jspb.Message {
   getReferenceFrame(): string;
   setReferenceFrame(value: string): void;
@@ -430,6 +402,11 @@ export class Transform extends jspb.Message {
   getPoseInObserverFrame(): PoseInFrame | undefined;
   setPoseInObserverFrame(value?: PoseInFrame): void;
 
+  hasGeometry(): boolean;
+  clearGeometry(): void;
+  getGeometry(): Geometry | undefined;
+  setGeometry(value?: Geometry): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Transform.AsObject;
   static toObject(includeInstance: boolean, msg: Transform): Transform.AsObject;
@@ -444,6 +421,7 @@ export namespace Transform {
   export type AsObject = {
     referenceFrame: string,
     poseInObserverFrame?: PoseInFrame.AsObject,
+    geometry?: Geometry.AsObject,
   }
 }
 
@@ -459,9 +437,9 @@ export class WorldState extends jspb.Message {
   addInteractionSpaces(value?: GeometriesInFrame, index?: number): GeometriesInFrame;
 
   clearTransformsList(): void;
-  getTransformsList(): Array<StaticFrame>;
-  setTransformsList(value: Array<StaticFrame>): void;
-  addTransforms(value?: StaticFrame, index?: number): StaticFrame;
+  getTransformsList(): Array<Transform>;
+  setTransformsList(value: Array<Transform>): void;
+  addTransforms(value?: Transform, index?: number): Transform;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WorldState.AsObject;
@@ -477,7 +455,7 @@ export namespace WorldState {
   export type AsObject = {
     obstaclesList: Array<GeometriesInFrame.AsObject>,
     interactionSpacesList: Array<GeometriesInFrame.AsObject>,
-    transformsList: Array<StaticFrame.AsObject>,
+    transformsList: Array<Transform.AsObject>,
   }
 }
 

@@ -65,11 +65,6 @@ message Orientation {
   double theta = 4;
 }
 
-message StaticFrame {
-  Transform transform = 1;
-  Geometry geometry = 2;
-}
-
 // PoseInFrame contains a pose and the and the reference frame in which it was observed
 message PoseInFrame {
   string reference_frame = 1;
@@ -136,6 +131,7 @@ message Transform {
   string reference_frame = 1;
   // the pose of the above reference frame with respect to a different observer reference frame
   PoseInFrame pose_in_observer_frame = 2;
+  Geometry geometry = 3;
 }
 
 // WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,
@@ -147,8 +143,8 @@ message WorldState {
   // a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
   // this field is optional
   repeated GeometriesInFrame interaction_spaces = 2;
-  // a list of StaticFrames, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional
-  repeated StaticFrame transforms = 3;
+  // a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional
+  repeated Transform transforms = 3;
 }
 
 // ActuatorStatus is a generic status for resources that only need to return actuator status.
