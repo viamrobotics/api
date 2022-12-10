@@ -15,6 +15,8 @@ service TestEchoService {
   }
 
   rpc EchoBiDi(stream EchoBiDiRequest) returns (stream EchoBiDiResponse) {}
+
+  rpc Stop(StopRequest) returns (StopResponse) {}
 }
 
 message EchoRequest {
@@ -43,3 +45,9 @@ message EchoBiDiRequest {
 message EchoBiDiResponse {
   string message = 1;
 }
+
+message StopRequest {
+  string name = 1;
+}
+
+message StopResponse {}

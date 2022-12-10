@@ -196,5 +196,66 @@ proto.viam.component.testecho.v1.TestEchoServicePromiseClient.prototype.echoMult
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.testecho.v1.StopRequest,
+ *   !proto.viam.component.testecho.v1.StopResponse>}
+ */
+const methodDescriptor_TestEchoService_Stop = new grpc.web.MethodDescriptor(
+  '/viam.component.testecho.v1.TestEchoService/Stop',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.testecho.v1.StopRequest,
+  proto.viam.component.testecho.v1.StopResponse,
+  /**
+   * @param {!proto.viam.component.testecho.v1.StopRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.testecho.v1.StopResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.testecho.v1.StopRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.testecho.v1.StopResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.testecho.v1.StopResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.testecho.v1.TestEchoServiceClient.prototype.stop =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.testecho.v1.TestEchoService/Stop',
+      request,
+      metadata || {},
+      methodDescriptor_TestEchoService_Stop,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.testecho.v1.StopRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.testecho.v1.StopResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.testecho.v1.TestEchoServicePromiseClient.prototype.stop =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.testecho.v1.TestEchoService/Stop',
+      request,
+      metadata || {},
+      methodDescriptor_TestEchoService_Stop);
+};
+
+
 module.exports = proto.viam.component.testecho.v1;
 

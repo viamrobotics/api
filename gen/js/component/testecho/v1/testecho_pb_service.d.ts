@@ -31,11 +31,21 @@ type TestEchoServiceEchoBiDi = {
   readonly responseType: typeof component_testecho_v1_testecho_pb.EchoBiDiResponse;
 };
 
+type TestEchoServiceStop = {
+  readonly methodName: string;
+  readonly service: typeof TestEchoService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_testecho_v1_testecho_pb.StopRequest;
+  readonly responseType: typeof component_testecho_v1_testecho_pb.StopResponse;
+};
+
 export class TestEchoService {
   static readonly serviceName: string;
   static readonly Echo: TestEchoServiceEcho;
   static readonly EchoMultiple: TestEchoServiceEchoMultiple;
   static readonly EchoBiDi: TestEchoServiceEchoBiDi;
+  static readonly Stop: TestEchoServiceStop;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -81,5 +91,14 @@ export class TestEchoServiceClient {
   ): UnaryResponse;
   echoMultiple(requestMessage: component_testecho_v1_testecho_pb.EchoMultipleRequest, metadata?: grpc.Metadata): ResponseStream<component_testecho_v1_testecho_pb.EchoMultipleResponse>;
   echoBiDi(metadata?: grpc.Metadata): BidirectionalStream<component_testecho_v1_testecho_pb.EchoBiDiRequest, component_testecho_v1_testecho_pb.EchoBiDiResponse>;
+  stop(
+    requestMessage: component_testecho_v1_testecho_pb.StopRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_testecho_v1_testecho_pb.StopResponse|null) => void
+  ): UnaryResponse;
+  stop(
+    requestMessage: component_testecho_v1_testecho_pb.StopRequest,
+    callback: (error: ServiceError|null, responseMessage: component_testecho_v1_testecho_pb.StopResponse|null) => void
+  ): UnaryResponse;
 }
 
