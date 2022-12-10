@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package viam.component.testecho.v1;
+
+import "common/v1/common.proto";
+
+option go_package = "go.viam.com/api/component/testecho/v1";
+option java_package = "com.viam.component.testecho.v1";
+
+service TestEchoService {
+  rpc Echo(EchoRequest) returns (EchoResponse) {}
+
+  rpc EchoMultiple(EchoMultipleRequest) returns (stream EchoMultipleResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
+  }
+
+  rpc EchoBiDi(stream EchoBiDiRequest) returns (stream EchoBiDiResponse) {}
+}
+
+message EchoRequest {
+  string name = 1;
+  string message = 2;
+}
+
+message EchoResponse {
+  string message = 1;
+}
+
+message EchoMultipleRequest {
+  string name = 1;
+  string message = 2;
+}
+
+message EchoMultipleResponse {
+  string message = 1;
+}
+
+message EchoBiDiRequest {
+  string name = 1;
+  string message = 2;
+}
+
+message EchoBiDiResponse {
+  string message = 1;
+}
