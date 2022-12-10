@@ -21,6 +21,7 @@ type TestEchoServiceClient interface {
 	Echo(ctx context.Context, in *EchoRequest, opts ...grpc.CallOption) (*EchoResponse, error)
 	EchoMultiple(ctx context.Context, in *EchoMultipleRequest, opts ...grpc.CallOption) (TestEchoService_EchoMultipleClient, error)
 	EchoBiDi(ctx context.Context, opts ...grpc.CallOption) (TestEchoService_EchoBiDiClient, error)
+	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 }
 
 type testEchoServiceClient struct {
@@ -103,6 +104,15 @@ func (x *testEchoServiceEchoBiDiClient) Recv() (*EchoBiDiResponse, error) {
 	return m, nil
 }
 
+func (c *testEchoServiceClient) Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error) {
+	out := new(StopResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.testecho.v1.TestEchoService/Stop", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TestEchoServiceServer is the server API for TestEchoService service.
 // All implementations must embed UnimplementedTestEchoServiceServer
 // for forward compatibility
@@ -110,6 +120,7 @@ type TestEchoServiceServer interface {
 	Echo(context.Context, *EchoRequest) (*EchoResponse, error)
 	EchoMultiple(*EchoMultipleRequest, TestEchoService_EchoMultipleServer) error
 	EchoBiDi(TestEchoService_EchoBiDiServer) error
+	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	mustEmbedUnimplementedTestEchoServiceServer()
 }
 
@@ -125,6 +136,9 @@ func (UnimplementedTestEchoServiceServer) EchoMultiple(*EchoMultipleRequest, Tes
 }
 func (UnimplementedTestEchoServiceServer) EchoBiDi(TestEchoService_EchoBiDiServer) error {
 	return status.Errorf(codes.Unimplemented, "method EchoBiDi not implemented")
+}
+func (UnimplementedTestEchoServiceServer) Stop(context.Context, *StopRequest) (*StopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Stop not implemented")
 }
 func (UnimplementedTestEchoServiceServer) mustEmbedUnimplementedTestEchoServiceServer() {}
 
@@ -204,6 +218,24 @@ func (x *testEchoServiceEchoBiDiServer) Recv() (*EchoBiDiRequest, error) {
 	return m, nil
 }
 
+func _TestEchoService_Stop_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StopRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestEchoServiceServer).Stop(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.testecho.v1.TestEchoService/Stop",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestEchoServiceServer).Stop(ctx, req.(*StopRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TestEchoService_ServiceDesc is the grpc.ServiceDesc for TestEchoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -214,6 +246,10 @@ var TestEchoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Echo",
 			Handler:    _TestEchoService_Echo_Handler,
+		},
+		{
+			MethodName: "Stop",
+			Handler:    _TestEchoService_Stop_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
