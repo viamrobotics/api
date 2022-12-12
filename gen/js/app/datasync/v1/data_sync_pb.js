@@ -533,8 +533,7 @@ proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.toObject = functi
  */
 proto.viam.app.datasync.v1.DataCaptureUploadResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    message: jspb.Message.getFieldWithDefault(msg, 2, "")
+
   };
 
   if (includeInstance) {
@@ -571,14 +570,6 @@ proto.viam.app.datasync.v1.DataCaptureUploadResponse.deserializeBinaryFromReader
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setCode(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setMessage(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -608,56 +599,6 @@ proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.serializeBinary =
  */
 proto.viam.app.datasync.v1.DataCaptureUploadResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getCode();
-  if (f !== 0) {
-    writer.writeInt32(
-      1,
-      f
-    );
-  }
-  f = message.getMessage();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
-};
-
-
-/**
- * optional int32 code = 1;
- * @return {number}
- */
-proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.getCode = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.viam.app.datasync.v1.DataCaptureUploadResponse} returns this
- */
-proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.setCode = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional string message = 2;
- * @return {string}
- */
-proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.getMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.datasync.v1.DataCaptureUploadResponse} returns this
- */
-proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.setMessage = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -921,8 +862,7 @@ proto.viam.app.datasync.v1.FileUploadResponse.prototype.toObject = function(opt_
  */
 proto.viam.app.datasync.v1.FileUploadResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    message: jspb.Message.getFieldWithDefault(msg, 2, "")
+
   };
 
   if (includeInstance) {
@@ -959,14 +899,6 @@ proto.viam.app.datasync.v1.FileUploadResponse.deserializeBinaryFromReader = func
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setCode(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setMessage(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -996,56 +928,6 @@ proto.viam.app.datasync.v1.FileUploadResponse.prototype.serializeBinary = functi
  */
 proto.viam.app.datasync.v1.FileUploadResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getCode();
-  if (f !== 0) {
-    writer.writeInt32(
-      1,
-      f
-    );
-  }
-  f = message.getMessage();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
-};
-
-
-/**
- * optional int32 code = 1;
- * @return {number}
- */
-proto.viam.app.datasync.v1.FileUploadResponse.prototype.getCode = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.viam.app.datasync.v1.FileUploadResponse} returns this
- */
-proto.viam.app.datasync.v1.FileUploadResponse.prototype.setCode = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional string message = 2;
- * @return {string}
- */
-proto.viam.app.datasync.v1.FileUploadResponse.prototype.getMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.datasync.v1.FileUploadResponse} returns this
- */
-proto.viam.app.datasync.v1.FileUploadResponse.prototype.setMessage = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

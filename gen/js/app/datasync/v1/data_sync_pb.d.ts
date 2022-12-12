@@ -36,12 +36,6 @@ export namespace DataCaptureUploadRequest {
 }
 
 export class DataCaptureUploadResponse extends jspb.Message {
-  getCode(): number;
-  setCode(value: number): void;
-
-  getMessage(): string;
-  setMessage(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataCaptureUploadResponse.AsObject;
   static toObject(includeInstance: boolean, msg: DataCaptureUploadResponse): DataCaptureUploadResponse.AsObject;
@@ -54,8 +48,6 @@ export class DataCaptureUploadResponse extends jspb.Message {
 
 export namespace DataCaptureUploadResponse {
   export type AsObject = {
-    code: number,
-    message: string,
   }
 }
 
@@ -95,12 +87,6 @@ export namespace FileUploadRequest {
 }
 
 export class FileUploadResponse extends jspb.Message {
-  getCode(): number;
-  setCode(value: number): void;
-
-  getMessage(): string;
-  setMessage(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FileUploadResponse.AsObject;
   static toObject(includeInstance: boolean, msg: FileUploadResponse): FileUploadResponse.AsObject;
@@ -113,8 +99,6 @@ export class FileUploadResponse extends jspb.Message {
 
 export namespace FileUploadResponse {
   export type AsObject = {
-    code: number,
-    message: string,
   }
 }
 

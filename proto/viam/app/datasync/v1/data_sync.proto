@@ -19,11 +19,7 @@ message DataCaptureUploadRequest {
   repeated SensorData sensor_contents = 2;
 }
 
-// TODO: make this response type use real types for these
-message DataCaptureUploadResponse {
-  int32 code = 1;
-  string message = 2;
-}
+message DataCaptureUploadResponse {}
 
 message FileUploadRequest {
   oneof upload_packet {
@@ -32,11 +28,7 @@ message FileUploadRequest {
   }
 }
 
-// TODO: make this response type use real types for these
-message FileUploadResponse {
-  int32 code = 1;
-  string message = 2;
-}
+message FileUploadResponse {}
 
 message SensorMetadata {
   google.protobuf.Timestamp time_requested = 1;
