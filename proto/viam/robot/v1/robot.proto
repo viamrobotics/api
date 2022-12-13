@@ -110,9 +110,10 @@ service RobotService {
 }
 
 message FrameSystemConfig {
-  string name = 1;
-  common.v1.PoseInFrame pose_in_parent_frame = 2;
-  bytes model_json = 3;
+  // this is an experimental API message
+
+  common.v1.Transform frame = 1;
+  google.protobuf.Struct kinematics = 2;
 }
 
 message FrameSystemConfigRequest {
