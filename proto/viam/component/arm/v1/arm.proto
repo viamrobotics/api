@@ -21,6 +21,7 @@ service ArmService {
   // MoveToPosition moves the mount point of the robot's end effector to the requested position.
   // This will block until done or a new operation cancels this one
   rpc MoveToPosition(MoveToPositionRequest) returns (MoveToPositionResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
       put: "/viam/api/v1/component/arm/{name}/position"
     };
@@ -36,6 +37,7 @@ service ArmService {
   // MoveToJointPositions moves every joint on a robot's arm to specified angles which are expressed in degrees
   // This will block until done or a new operation cancels this one
   rpc MoveToJointPositions(MoveToJointPositionsRequest) returns (MoveToJointPositionsResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
       put: "/viam/api/v1/component/arm/{name}/joint_positions"
     };

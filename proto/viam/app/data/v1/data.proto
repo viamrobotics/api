@@ -28,10 +28,10 @@ service DataService {
   // DeleteBinaryDataByIDs deletes binary data based on given IDs.
   rpc DeleteBinaryDataByIDs(DeleteBinaryDataByIDsRequest) returns (DeleteBinaryDataByIDsResponse);
 
-  // AddTagsToBinaryDataByFileIDs adds string tags to binary data based on given IDs.
+  // AddTagsToBinaryDataByFileIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
   rpc AddTagsToBinaryDataByFileIDs(AddTagsToBinaryDataByFileIDsRequest) returns (AddTagsToBinaryDataByFileIDsResponse);
 
-  // AddTagsToBinaryDataByFilter adds string tags to binary data based on the given filter.
+  // AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
   rpc AddTagsToBinaryDataByFilter(AddTagsToBinaryDataByFilterRequest) returns (AddTagsToBinaryDataByFilterResponse);
 
   // RemoveTagsToBinaryDataByFileIDs removes string tags from binary data based on given IDs.
@@ -71,7 +71,6 @@ message Filter {
   string component_type = 2;
   string component_model = 3;
   string method = 4;
-  repeated string tags = 5;
   string robot_name = 6;
   string robot_id = 7;
   string part_name = 8;
@@ -80,14 +79,25 @@ message Filter {
   repeated string org_ids = 11;
   repeated string mime_type = 12;
   CaptureInterval interval = 13;
-  TagsOption tags_option = 14;
+  TagsFilter tags_filter = 14;
+  repeated string tags = 5 [deprecated = true];
 }
 
-enum TagsOption {
-  TAGS_OPTION_UNSPECIFIED = 0;
-  TAGS_OPTION_MATCHING = 1;
-  TAGS_OPTION_ALL = 2;
-  TAGS_OPTION_NONE = 3;
+message TagsFilter {
+  TagsFilterType type = 1;
+  // Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_ORG
+  repeated string tags = 2;
+}
+
+// TagsFilterType specifies how data can be filtered based on tags
+enum TagsFilterType {
+  TAGS_FILTER_TYPE_UNSPECIFIED = 0;
+  // TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter
+  TAGS_FILTER_TYPE_MATCH_BY_OR = 1;
+  // TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned
+  TAGS_FILTER_TYPE_TAGGED = 2;
+  // TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned
+  TAGS_FILTER_TYPE_UNTAGGED = 3;
 }
 
 // CaptureMetadata contains information on the settings used for the data capture

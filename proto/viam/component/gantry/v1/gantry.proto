@@ -20,6 +20,7 @@ service GantryService {
 
   // MoveToPosition moves a gantry of the underlying robot to the requested position.
   rpc MoveToPosition(MoveToPositionRequest) returns (MoveToPositionResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
       put: "/viam/api/v1/component/gantry/{name}/position"
     };

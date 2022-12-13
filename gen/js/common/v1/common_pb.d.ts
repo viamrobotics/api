@@ -2,6 +2,7 @@
 // file: common/v1/common.proto
 
 import * as jspb from "google-protobuf";
+import * as google_protobuf_descriptor_pb from "google-protobuf/google/protobuf/descriptor_pb";
 
 export class ResourceName extends jspb.Message {
   getNamespace(): string;
@@ -471,4 +472,6 @@ export namespace ActuatorStatus {
     isMoving: boolean,
   }
 }
+
+  export const safetyHeartbeatMonitored: jspb.ExtensionFieldInfo<boolean>;
 

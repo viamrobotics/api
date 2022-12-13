@@ -77,11 +77,6 @@ export class Filter extends jspb.Message {
   getMethod(): string;
   setMethod(value: string): void;
 
-  clearTagsList(): void;
-  getTagsList(): Array<string>;
-  setTagsList(value: Array<string>): void;
-  addTags(value: string, index?: number): string;
-
   getRobotName(): string;
   setRobotName(value: string): void;
 
@@ -114,8 +109,15 @@ export class Filter extends jspb.Message {
   getInterval(): CaptureInterval | undefined;
   setInterval(value?: CaptureInterval): void;
 
-  getTagsOption(): TagsOptionMap[keyof TagsOptionMap];
-  setTagsOption(value: TagsOptionMap[keyof TagsOptionMap]): void;
+  hasTagsFilter(): boolean;
+  clearTagsFilter(): void;
+  getTagsFilter(): TagsFilter | undefined;
+  setTagsFilter(value?: TagsFilter): void;
+
+  clearTagsList(): void;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): void;
+  addTags(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Filter.AsObject;
@@ -133,7 +135,6 @@ export namespace Filter {
     componentType: string,
     componentModel: string,
     method: string,
-    tagsList: Array<string>,
     robotName: string,
     robotId: string,
     partName: string,
@@ -142,7 +143,34 @@ export namespace Filter {
     orgIdsList: Array<string>,
     mimeTypeList: Array<string>,
     interval?: CaptureInterval.AsObject,
-    tagsOption: TagsOptionMap[keyof TagsOptionMap],
+    tagsFilter?: TagsFilter.AsObject,
+    tagsList: Array<string>,
+  }
+}
+
+export class TagsFilter extends jspb.Message {
+  getType(): TagsFilterTypeMap[keyof TagsFilterTypeMap];
+  setType(value: TagsFilterTypeMap[keyof TagsFilterTypeMap]): void;
+
+  clearTagsList(): void;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): void;
+  addTags(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TagsFilter.AsObject;
+  static toObject(includeInstance: boolean, msg: TagsFilter): TagsFilter.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TagsFilter, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TagsFilter;
+  static deserializeBinaryFromReader(message: TagsFilter, reader: jspb.BinaryReader): TagsFilter;
+}
+
+export namespace TagsFilter {
+  export type AsObject = {
+    type: TagsFilterTypeMap[keyof TagsFilterTypeMap],
+    tagsList: Array<string>,
   }
 }
 
@@ -881,12 +909,12 @@ export interface StatusMap {
 
 export const Status: StatusMap;
 
-export interface TagsOptionMap {
-  TAGS_OPTION_UNSPECIFIED: 0;
-  TAGS_OPTION_MATCHING: 1;
-  TAGS_OPTION_ALL: 2;
-  TAGS_OPTION_NONE: 3;
+export interface TagsFilterTypeMap {
+  TAGS_FILTER_TYPE_UNSPECIFIED: 0;
+  TAGS_FILTER_TYPE_MATCH_BY_OR: 1;
+  TAGS_FILTER_TYPE_TAGGED: 2;
+  TAGS_FILTER_TYPE_UNTAGGED: 3;
 }
 
-export const TagsOption: TagsOptionMap;
+export const TagsFilterType: TagsFilterTypeMap;
 

@@ -19,6 +19,12 @@ service RobotService {
     };
   }
 
+  rpc GetSessions(GetSessionsRequest) returns (GetSessionsResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/sessions/list"
+    };
+  }
+
   // ResourceNames returns the list of all resources.
   rpc ResourceNames(ResourceNamesRequest) returns (ResourceNamesResponse) {
     option (google.api.http) = {
@@ -84,6 +90,23 @@ service RobotService {
       get: "/viam/api/v1/stop_all"
     };
   }
+
+  // StartSession creates a new session that expects at least one heartbeat within the returned window.
+  // If the window lapses, any resources that have safety heart monitored methods, where this session was
+  // the last caller on the resource, will be stopped.
+  rpc StartSession(StartSessionRequest) returns (StartSessionResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/sessions"
+    };
+  }
+
+  // SendSessionHeartbeat sends a heartbeat to the given session. If the session has expired, a
+  // SESSION_EXPIRED error will be returned.
+  rpc SendSessionHeartbeat(SendSessionHeartbeatRequest) returns (SendSessionHeartbeatResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/sessions/{id}/heartbeat"
+    };
+  }
 }
 
 message FrameSystemConfig {
@@ -140,6 +163,7 @@ message Operation {
   string method = 2;
   google.protobuf.Struct arguments = 3;
   google.protobuf.Timestamp started = 4;
+  optional string session_id = 5;
 }
 
 message GetOperationsRequest {}
@@ -159,6 +183,29 @@ message BlockForOperationRequest {
 }
 
 message BlockForOperationResponse {}
+
+enum PeerConnectionType {
+  PEER_CONNECTION_TYPE_UNSPECIFIED = 0;
+  PEER_CONNECTION_TYPE_GRPC = 1;
+  PEER_CONNECTION_TYPE_WEBRTC = 2;
+}
+
+message PeerConnectionInfo {
+  PeerConnectionType type = 1;
+  optional string remote_address = 2;
+  optional string local_address = 3;
+}
+
+message Session {
+  string id = 1;
+  optional PeerConnectionInfo peer_connection_info = 2;
+}
+
+message GetSessionsRequest {}
+
+message GetSessionsResponse {
+  repeated Session sessions = 1;
+}
 
 // Discovery
 
@@ -212,3 +259,20 @@ message StopAllRequest {
 }
 
 message StopAllResponse {}
+
+message StartSessionRequest {
+  // resume can be used to attempt to continue a stream after a disconnection event. If
+  // a session is not found, a new one will be created and returned.
+  string resume = 1;
+}
+
+message StartSessionResponse {
+  string id = 1;
+  google.protobuf.Duration heartbeat_window = 2;
+}
+
+message SendSessionHeartbeatRequest {
+  string id = 1;
+}
+
+message SendSessionHeartbeatResponse {}
