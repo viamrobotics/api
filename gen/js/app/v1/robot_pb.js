@@ -17,6 +17,8 @@ var global = (function() { return this || window || global || self || Function('
 
 var app_v1_app_pb = require('../../app/v1/app_pb.js');
 goog.object.extend(proto, app_v1_app_pb);
+var common_v1_common_pb = require('../../common/v1/common_pb.js');
+goog.object.extend(proto, common_v1_common_pb);
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js');
 goog.object.extend(proto, google_protobuf_duration_pb);
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
@@ -4129,7 +4131,8 @@ proto.viam.app.v1.Frame.toObject = function(includeInstance, msg) {
   var f, obj = {
     parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
     translation: (f = msg.getTranslation()) && proto.viam.app.v1.Translation.toObject(includeInstance, f),
-    orientation: (f = msg.getOrientation()) && proto.viam.app.v1.Orientation.toObject(includeInstance, f)
+    orientation: (f = msg.getOrientation()) && proto.viam.app.v1.Orientation.toObject(includeInstance, f),
+    geometry: (f = msg.getGeometry()) && common_v1_common_pb.Geometry.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4179,6 +4182,11 @@ proto.viam.app.v1.Frame.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.viam.app.v1.Orientation;
       reader.readMessage(value,proto.viam.app.v1.Orientation.deserializeBinaryFromReader);
       msg.setOrientation(value);
+      break;
+    case 4:
+      var value = new common_v1_common_pb.Geometry;
+      reader.readMessage(value,common_v1_common_pb.Geometry.deserializeBinaryFromReader);
+      msg.setGeometry(value);
       break;
     default:
       reader.skipField();
@@ -4230,6 +4238,14 @@ proto.viam.app.v1.Frame.serializeBinaryToWriter = function(message, writer) {
       3,
       f,
       proto.viam.app.v1.Orientation.serializeBinaryToWriter
+    );
+  }
+  f = message.getGeometry();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      common_v1_common_pb.Geometry.serializeBinaryToWriter
     );
   }
 };
@@ -4324,6 +4340,43 @@ proto.viam.app.v1.Frame.prototype.clearOrientation = function() {
  */
 proto.viam.app.v1.Frame.prototype.hasOrientation = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional viam.common.v1.Geometry geometry = 4;
+ * @return {?proto.viam.common.v1.Geometry}
+ */
+proto.viam.app.v1.Frame.prototype.getGeometry = function() {
+  return /** @type{?proto.viam.common.v1.Geometry} */ (
+    jspb.Message.getWrapperField(this, common_v1_common_pb.Geometry, 4));
+};
+
+
+/**
+ * @param {?proto.viam.common.v1.Geometry|undefined} value
+ * @return {!proto.viam.app.v1.Frame} returns this
+*/
+proto.viam.app.v1.Frame.prototype.setGeometry = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.Frame} returns this
+ */
+proto.viam.app.v1.Frame.prototype.clearGeometry = function() {
+  return this.setGeometry(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Frame.prototype.hasGeometry = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
