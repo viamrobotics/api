@@ -94,6 +94,15 @@ type DataServiceRemoveTagsFromBinaryDataByFilter = {
   readonly responseType: typeof app_data_v1_data_pb.RemoveTagsFromBinaryDataByFilterResponse;
 };
 
+type DataServiceGetTagsByFilter = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.GetTagsByFilterRequest;
+  readonly responseType: typeof app_data_v1_data_pb.GetTagsByFilterResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
@@ -106,6 +115,7 @@ export class DataService {
   static readonly AddTagsToBinaryDataByFilter: DataServiceAddTagsToBinaryDataByFilter;
   static readonly RemoveTagsFromBinaryDataByFileIDs: DataServiceRemoveTagsFromBinaryDataByFileIDs;
   static readonly RemoveTagsFromBinaryDataByFilter: DataServiceRemoveTagsFromBinaryDataByFilter;
+  static readonly GetTagsByFilter: DataServiceGetTagsByFilter;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -229,6 +239,15 @@ export class DataServiceClient {
   removeTagsFromBinaryDataByFilter(
     requestMessage: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFilterRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  getTagsByFilter(
+    requestMessage: app_data_v1_data_pb.GetTagsByFilterRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetTagsByFilterResponse|null) => void
+  ): UnaryResponse;
+  getTagsByFilter(
+    requestMessage: app_data_v1_data_pb.GetTagsByFilterRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetTagsByFilterResponse|null) => void
   ): UnaryResponse;
 }
 

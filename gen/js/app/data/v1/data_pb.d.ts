@@ -893,6 +893,50 @@ export namespace RemoveTagsFromBinaryDataByFilterResponse {
   }
 }
 
+export class GetTagsByFilterRequest extends jspb.Message {
+  hasFilter(): boolean;
+  clearFilter(): void;
+  getFilter(): Filter | undefined;
+  setFilter(value?: Filter): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetTagsByFilterRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetTagsByFilterRequest): GetTagsByFilterRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetTagsByFilterRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetTagsByFilterRequest;
+  static deserializeBinaryFromReader(message: GetTagsByFilterRequest, reader: jspb.BinaryReader): GetTagsByFilterRequest;
+}
+
+export namespace GetTagsByFilterRequest {
+  export type AsObject = {
+    filter?: Filter.AsObject,
+  }
+}
+
+export class GetTagsByFilterResponse extends jspb.Message {
+  clearTagsList(): void;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): void;
+  addTags(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetTagsByFilterResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetTagsByFilterResponse): GetTagsByFilterResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetTagsByFilterResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetTagsByFilterResponse;
+  static deserializeBinaryFromReader(message: GetTagsByFilterResponse, reader: jspb.BinaryReader): GetTagsByFilterResponse;
+}
+
+export namespace GetTagsByFilterResponse {
+  export type AsObject = {
+    tagsList: Array<string>,
+  }
+}
+
 export interface OrderMap {
   ORDER_UNSPECIFIED: 0;
   ORDER_DESCENDING: 1;

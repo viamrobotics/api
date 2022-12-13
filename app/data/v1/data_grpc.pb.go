@@ -38,6 +38,8 @@ type DataServiceClient interface {
 	RemoveTagsFromBinaryDataByFileIDs(ctx context.Context, in *RemoveTagsFromBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFileIDsResponse, error)
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(ctx context.Context, in *RemoveTagsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFilterResponse, error)
+	// GetTagsByFilter gets all tags that match the given filter.
+	GetTagsByFilter(ctx context.Context, in *GetTagsByFilterRequest, opts ...grpc.CallOption) (*GetTagsByFilterResponse, error)
 }
 
 type dataServiceClient struct {
@@ -138,6 +140,15 @@ func (c *dataServiceClient) RemoveTagsFromBinaryDataByFilter(ctx context.Context
 	return out, nil
 }
 
+func (c *dataServiceClient) GetTagsByFilter(ctx context.Context, in *GetTagsByFilterRequest, opts ...grpc.CallOption) (*GetTagsByFilterResponse, error) {
+	out := new(GetTagsByFilterResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/GetTagsByFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -162,6 +173,8 @@ type DataServiceServer interface {
 	RemoveTagsFromBinaryDataByFileIDs(context.Context, *RemoveTagsFromBinaryDataByFileIDsRequest) (*RemoveTagsFromBinaryDataByFileIDsResponse, error)
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(context.Context, *RemoveTagsFromBinaryDataByFilterRequest) (*RemoveTagsFromBinaryDataByFilterResponse, error)
+	// GetTagsByFilter gets all tags that match the given filter.
+	GetTagsByFilter(context.Context, *GetTagsByFilterRequest) (*GetTagsByFilterResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -198,6 +211,9 @@ func (UnimplementedDataServiceServer) RemoveTagsFromBinaryDataByFileIDs(context.
 }
 func (UnimplementedDataServiceServer) RemoveTagsFromBinaryDataByFilter(context.Context, *RemoveTagsFromBinaryDataByFilterRequest) (*RemoveTagsFromBinaryDataByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveTagsFromBinaryDataByFilter not implemented")
+}
+func (UnimplementedDataServiceServer) GetTagsByFilter(context.Context, *GetTagsByFilterRequest) (*GetTagsByFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTagsByFilter not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -392,6 +408,24 @@ func _DataService_RemoveTagsFromBinaryDataByFilter_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_GetTagsByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTagsByFilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).GetTagsByFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/GetTagsByFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).GetTagsByFilter(ctx, req.(*GetTagsByFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -438,6 +472,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveTagsFromBinaryDataByFilter",
 			Handler:    _DataService_RemoveTagsFromBinaryDataByFilter_Handler,
+		},
+		{
+			MethodName: "GetTagsByFilter",
+			Handler:    _DataService_GetTagsByFilter_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
