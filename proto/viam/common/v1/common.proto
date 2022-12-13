@@ -131,7 +131,7 @@ message Transform {
   string reference_frame = 1;
   // the pose of the above reference frame with respect to a different observer reference frame
   PoseInFrame pose_in_observer_frame = 2;
-  optional Geometry geometry = 3;
+  optional Geometry physical_objects = 3;
 }
 
 // WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,

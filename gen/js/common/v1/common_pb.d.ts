@@ -402,10 +402,10 @@ export class Transform extends jspb.Message {
   getPoseInObserverFrame(): PoseInFrame | undefined;
   setPoseInObserverFrame(value?: PoseInFrame): void;
 
-  hasGeometry(): boolean;
-  clearGeometry(): void;
-  getGeometry(): Geometry | undefined;
-  setGeometry(value?: Geometry): void;
+  hasPhysicalObjects(): boolean;
+  clearPhysicalObjects(): void;
+  getPhysicalObjects(): Geometry | undefined;
+  setPhysicalObjects(value?: Geometry): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Transform.AsObject;
@@ -421,7 +421,7 @@ export namespace Transform {
   export type AsObject = {
     referenceFrame: string,
     poseInObserverFrame?: PoseInFrame.AsObject,
-    geometry?: Geometry.AsObject,
+    physicalObjects?: Geometry.AsObject,
   }
 }
 
