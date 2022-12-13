@@ -100,13 +100,13 @@ DataService.RemoveTagsFromBinaryDataByFilter = {
   responseType: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFilterResponse
 };
 
-DataService.GetTagsByFilter = {
-  methodName: "GetTagsByFilter",
+DataService.TagsByFilter = {
+  methodName: "TagsByFilter",
   service: DataService,
   requestStream: false,
   responseStream: false,
-  requestType: app_data_v1_data_pb.GetTagsByFilterRequest,
-  responseType: app_data_v1_data_pb.GetTagsByFilterResponse
+  requestType: app_data_v1_data_pb.TagsByFilterRequest,
+  responseType: app_data_v1_data_pb.TagsByFilterResponse
 };
 
 exports.DataService = DataService;
@@ -426,11 +426,11 @@ DataServiceClient.prototype.removeTagsFromBinaryDataByFilter = function removeTa
   };
 };
 
-DataServiceClient.prototype.getTagsByFilter = function getTagsByFilter(requestMessage, metadata, callback) {
+DataServiceClient.prototype.tagsByFilter = function tagsByFilter(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataService.GetTagsByFilter, {
+  var client = grpc.unary(DataService.TagsByFilter, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

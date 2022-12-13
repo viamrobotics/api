@@ -893,45 +893,45 @@ export namespace RemoveTagsFromBinaryDataByFilterResponse {
   }
 }
 
-export class GetTagsByFilterRequest extends jspb.Message {
+export class TagsByFilterRequest extends jspb.Message {
   hasFilter(): boolean;
   clearFilter(): void;
   getFilter(): Filter | undefined;
   setFilter(value?: Filter): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetTagsByFilterRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetTagsByFilterRequest): GetTagsByFilterRequest.AsObject;
+  toObject(includeInstance?: boolean): TagsByFilterRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TagsByFilterRequest): TagsByFilterRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetTagsByFilterRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetTagsByFilterRequest;
-  static deserializeBinaryFromReader(message: GetTagsByFilterRequest, reader: jspb.BinaryReader): GetTagsByFilterRequest;
+  static serializeBinaryToWriter(message: TagsByFilterRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TagsByFilterRequest;
+  static deserializeBinaryFromReader(message: TagsByFilterRequest, reader: jspb.BinaryReader): TagsByFilterRequest;
 }
 
-export namespace GetTagsByFilterRequest {
+export namespace TagsByFilterRequest {
   export type AsObject = {
     filter?: Filter.AsObject,
   }
 }
 
-export class GetTagsByFilterResponse extends jspb.Message {
+export class TagsByFilterResponse extends jspb.Message {
   clearTagsList(): void;
   getTagsList(): Array<string>;
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetTagsByFilterResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetTagsByFilterResponse): GetTagsByFilterResponse.AsObject;
+  toObject(includeInstance?: boolean): TagsByFilterResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TagsByFilterResponse): TagsByFilterResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetTagsByFilterResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetTagsByFilterResponse;
-  static deserializeBinaryFromReader(message: GetTagsByFilterResponse, reader: jspb.BinaryReader): GetTagsByFilterResponse;
+  static serializeBinaryToWriter(message: TagsByFilterResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TagsByFilterResponse;
+  static deserializeBinaryFromReader(message: TagsByFilterResponse, reader: jspb.BinaryReader): TagsByFilterResponse;
 }
 
-export namespace GetTagsByFilterResponse {
+export namespace TagsByFilterResponse {
   export type AsObject = {
     tagsList: Array<string>,
   }

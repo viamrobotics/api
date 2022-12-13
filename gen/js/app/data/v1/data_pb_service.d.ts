@@ -94,13 +94,13 @@ type DataServiceRemoveTagsFromBinaryDataByFilter = {
   readonly responseType: typeof app_data_v1_data_pb.RemoveTagsFromBinaryDataByFilterResponse;
 };
 
-type DataServiceGetTagsByFilter = {
+type DataServiceTagsByFilter = {
   readonly methodName: string;
   readonly service: typeof DataService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_data_v1_data_pb.GetTagsByFilterRequest;
-  readonly responseType: typeof app_data_v1_data_pb.GetTagsByFilterResponse;
+  readonly requestType: typeof app_data_v1_data_pb.TagsByFilterRequest;
+  readonly responseType: typeof app_data_v1_data_pb.TagsByFilterResponse;
 };
 
 export class DataService {
@@ -115,7 +115,7 @@ export class DataService {
   static readonly AddTagsToBinaryDataByFilter: DataServiceAddTagsToBinaryDataByFilter;
   static readonly RemoveTagsFromBinaryDataByFileIDs: DataServiceRemoveTagsFromBinaryDataByFileIDs;
   static readonly RemoveTagsFromBinaryDataByFilter: DataServiceRemoveTagsFromBinaryDataByFilter;
-  static readonly GetTagsByFilter: DataServiceGetTagsByFilter;
+  static readonly TagsByFilter: DataServiceTagsByFilter;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -240,14 +240,14 @@ export class DataServiceClient {
     requestMessage: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFilterRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFilterResponse|null) => void
   ): UnaryResponse;
-  getTagsByFilter(
-    requestMessage: app_data_v1_data_pb.GetTagsByFilterRequest,
+  tagsByFilter(
+    requestMessage: app_data_v1_data_pb.TagsByFilterRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetTagsByFilterResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.TagsByFilterResponse|null) => void
   ): UnaryResponse;
-  getTagsByFilter(
-    requestMessage: app_data_v1_data_pb.GetTagsByFilterRequest,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetTagsByFilterResponse|null) => void
+  tagsByFilter(
+    requestMessage: app_data_v1_data_pb.TagsByFilterRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.TagsByFilterResponse|null) => void
   ): UnaryResponse;
 }
 

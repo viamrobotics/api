@@ -40,8 +40,8 @@ service DataService {
   // RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
   rpc RemoveTagsFromBinaryDataByFilter(RemoveTagsFromBinaryDataByFilterRequest) returns (RemoveTagsFromBinaryDataByFilterResponse);
 
-  // GetTagsByFilter gets all tags that match the given filter.
-  rpc GetTagsByFilter(GetTagsByFilterRequest) returns (GetTagsByFilterResponse);
+  // TagsByFilter gets all tags that match the given filter.
+  rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse);
 }
 
 enum Order {
@@ -260,12 +260,12 @@ message RemoveTagsFromBinaryDataByFilterResponse {
   uint64 deleted_count = 1;
 }
 
-// GetTagsByFilterRequest requests the tags that exist for the given filter
-message GetTagsByFilterRequest {
+// TagsByFilterRequest requests the tags that exist for the given filter
+message TagsByFilterRequest {
   Filter filter = 1;
 }
 
-// GetTagsByFilterResponse returns the tags that exist for the given filter
-message GetTagsByFilterResponse {
+// TagsByFilterResponse returns the tags that exist for the given filter
+message TagsByFilterResponse {
   repeated string tags = 1;
 }
