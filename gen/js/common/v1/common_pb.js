@@ -3119,7 +3119,7 @@ proto.viam.common.v1.Transform.toObject = function(includeInstance, msg) {
   var f, obj = {
     referenceFrame: jspb.Message.getFieldWithDefault(msg, 1, ""),
     poseInObserverFrame: (f = msg.getPoseInObserverFrame()) && proto.viam.common.v1.PoseInFrame.toObject(includeInstance, f),
-    physicalObjects: (f = msg.getPhysicalObjects()) && proto.viam.common.v1.Geometry.toObject(includeInstance, f)
+    physicalObject: (f = msg.getPhysicalObject()) && proto.viam.common.v1.Geometry.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3168,7 +3168,7 @@ proto.viam.common.v1.Transform.deserializeBinaryFromReader = function(msg, reade
     case 3:
       var value = new proto.viam.common.v1.Geometry;
       reader.readMessage(value,proto.viam.common.v1.Geometry.deserializeBinaryFromReader);
-      msg.setPhysicalObjects(value);
+      msg.setPhysicalObject(value);
       break;
     default:
       reader.skipField();
@@ -3214,7 +3214,7 @@ proto.viam.common.v1.Transform.serializeBinaryToWriter = function(message, write
       proto.viam.common.v1.PoseInFrame.serializeBinaryToWriter
     );
   }
-  f = message.getPhysicalObjects();
+  f = message.getPhysicalObject();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -3281,10 +3281,10 @@ proto.viam.common.v1.Transform.prototype.hasPoseInObserverFrame = function() {
 
 
 /**
- * optional Geometry physical_objects = 3;
+ * optional Geometry physical_object = 3;
  * @return {?proto.viam.common.v1.Geometry}
  */
-proto.viam.common.v1.Transform.prototype.getPhysicalObjects = function() {
+proto.viam.common.v1.Transform.prototype.getPhysicalObject = function() {
   return /** @type{?proto.viam.common.v1.Geometry} */ (
     jspb.Message.getWrapperField(this, proto.viam.common.v1.Geometry, 3));
 };
@@ -3294,7 +3294,7 @@ proto.viam.common.v1.Transform.prototype.getPhysicalObjects = function() {
  * @param {?proto.viam.common.v1.Geometry|undefined} value
  * @return {!proto.viam.common.v1.Transform} returns this
 */
-proto.viam.common.v1.Transform.prototype.setPhysicalObjects = function(value) {
+proto.viam.common.v1.Transform.prototype.setPhysicalObject = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
@@ -3303,8 +3303,8 @@ proto.viam.common.v1.Transform.prototype.setPhysicalObjects = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.viam.common.v1.Transform} returns this
  */
-proto.viam.common.v1.Transform.prototype.clearPhysicalObjects = function() {
-  return this.setPhysicalObjects(undefined);
+proto.viam.common.v1.Transform.prototype.clearPhysicalObject = function() {
+  return this.setPhysicalObject(undefined);
 };
 
 
@@ -3312,7 +3312,7 @@ proto.viam.common.v1.Transform.prototype.clearPhysicalObjects = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.common.v1.Transform.prototype.hasPhysicalObjects = function() {
+proto.viam.common.v1.Transform.prototype.hasPhysicalObject = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
