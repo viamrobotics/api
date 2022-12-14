@@ -8,34 +8,31 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/app/package/v1";
 
 service PackageService {
-  // Note: include HTTP annotations to these RPC definitions to utilize HTTP reverse
-  // proxies.
-
   // CreatePackage uploads a package's contents and information to the cloud
   rpc CreatePackage(stream viam.app.package.v1.CreatePackageRequest) returns (viam.app.package.v1.CreatePackageResponse) {
     option (google.api.http) = {
-      post: "/package/v1/create_package"
+      post: "/package/v1/create"
     };
   }
 
   // DeletePackage receives an authenticated request with the package name and array of versions and removes the associated packages
   rpc DeletePackage(viam.app.package.v1.DeletePackageRequest) returns (viam.app.package.v1.DeletePackageResponse) {
     option (google.api.http) = {
-      delete: "/package/v1/delete_package"
+      delete: "/package/v1/delete"
     };
   }
 
   // GetPackages receives an authenticated request with the package name and version and, if present, generates returns the URL and metadata
   rpc GetPackage(viam.app.package.v1.GetPackageRequest) returns (viam.app.package.v1.GetPackageResponse) {
     option (google.api.http) = {
-      get: "/package/v1/get_package"
+      get: "/package/v1/get"
     };
   }
 
   // ListPackages receives an authenticated request with the organization ID and other optional fields and, if present, generates returns the URL and metadata of all associated packages
   rpc ListPackages(viam.app.package.v1.ListPackagesRequest) returns (viam.app.package.v1.ListPackagesResponse) {
     option (google.api.http) = {
-      get: "/package/v1/list_packages"
+      get: "/package/v1/list"
     };
   }
 }
