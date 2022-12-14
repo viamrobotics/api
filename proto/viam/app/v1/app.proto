@@ -146,14 +146,18 @@ message ListLocationsRequest {
 }
 
 message ShareLocationRequest {
+  // Location ID to be shared.
   string location_id = 1;
+  // Organization ID to share the location with.
   string organization_id = 2;
 }
 
 message ShareLocationResponse {}
 
 message UnshareLocationRequest {
+  // Location ID to be unshared.
   string location_id = 1;
+  // Organization ID to unshare the location with.
   string organization_id = 2;
 }
 
