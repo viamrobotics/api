@@ -4,13 +4,13 @@
 import * as app_package_v1_package_pb from "../../../app/package/v1/package_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type PackageServiceAddPackage = {
+type PackageServiceCreatePackage = {
   readonly methodName: string;
   readonly service: typeof PackageService;
   readonly requestStream: true;
   readonly responseStream: false;
-  readonly requestType: typeof app_package_v1_package_pb.AddPackageRequest;
-  readonly responseType: typeof app_package_v1_package_pb.AddPackageResponse;
+  readonly requestType: typeof app_package_v1_package_pb.CreatePackageRequest;
+  readonly responseType: typeof app_package_v1_package_pb.CreatePackageResponse;
 };
 
 type PackageServiceDeletePackage = {
@@ -22,20 +22,30 @@ type PackageServiceDeletePackage = {
   readonly responseType: typeof app_package_v1_package_pb.DeletePackageResponse;
 };
 
-type PackageServiceGetPackages = {
+type PackageServiceGetPackage = {
   readonly methodName: string;
   readonly service: typeof PackageService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_package_v1_package_pb.GetPackagesRequest;
-  readonly responseType: typeof app_package_v1_package_pb.GetPackagesResponse;
+  readonly requestType: typeof app_package_v1_package_pb.GetPackageRequest;
+  readonly responseType: typeof app_package_v1_package_pb.GetPackageResponse;
+};
+
+type PackageServiceListPackages = {
+  readonly methodName: string;
+  readonly service: typeof PackageService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_package_v1_package_pb.ListPackagesRequest;
+  readonly responseType: typeof app_package_v1_package_pb.ListPackagesResponse;
 };
 
 export class PackageService {
   static readonly serviceName: string;
-  static readonly AddPackage: PackageServiceAddPackage;
+  static readonly CreatePackage: PackageServiceCreatePackage;
   static readonly DeletePackage: PackageServiceDeletePackage;
-  static readonly GetPackages: PackageServiceGetPackages;
+  static readonly GetPackage: PackageServiceGetPackage;
+  static readonly ListPackages: PackageServiceListPackages;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -70,7 +80,7 @@ export class PackageServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  addPackage(metadata?: grpc.Metadata): RequestStream<app_package_v1_package_pb.AddPackageRequest>;
+  createPackage(metadata?: grpc.Metadata): RequestStream<app_package_v1_package_pb.CreatePackageRequest>;
   deletePackage(
     requestMessage: app_package_v1_package_pb.DeletePackageRequest,
     metadata: grpc.Metadata,
@@ -80,14 +90,23 @@ export class PackageServiceClient {
     requestMessage: app_package_v1_package_pb.DeletePackageRequest,
     callback: (error: ServiceError|null, responseMessage: app_package_v1_package_pb.DeletePackageResponse|null) => void
   ): UnaryResponse;
-  getPackages(
-    requestMessage: app_package_v1_package_pb.GetPackagesRequest,
+  getPackage(
+    requestMessage: app_package_v1_package_pb.GetPackageRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_package_v1_package_pb.GetPackagesResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_package_v1_package_pb.GetPackageResponse|null) => void
   ): UnaryResponse;
-  getPackages(
-    requestMessage: app_package_v1_package_pb.GetPackagesRequest,
-    callback: (error: ServiceError|null, responseMessage: app_package_v1_package_pb.GetPackagesResponse|null) => void
+  getPackage(
+    requestMessage: app_package_v1_package_pb.GetPackageRequest,
+    callback: (error: ServiceError|null, responseMessage: app_package_v1_package_pb.GetPackageResponse|null) => void
+  ): UnaryResponse;
+  listPackages(
+    requestMessage: app_package_v1_package_pb.ListPackagesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_package_v1_package_pb.ListPackagesResponse|null) => void
+  ): UnaryResponse;
+  listPackages(
+    requestMessage: app_package_v1_package_pb.ListPackagesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_package_v1_package_pb.ListPackagesResponse|null) => void
   ): UnaryResponse;
 }
 

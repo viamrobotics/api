@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.app.package.v1;
 
+import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/app/package/v1";
@@ -10,12 +11,33 @@ service PackageService {
   // Note: include HTTP annotations to these RPC definitions to utilize HTTP reverse
   // proxies.
 
-  // AddPackage uploads a package's contents and information to the cloud
-  rpc AddPackage(stream AddPackageRequest) returns (AddPackageResponse);
+  // CreatePackage uploads a package's contents and information to the cloud
+  rpc CreatePackage(stream viam.app.package.v1.CreatePackageRequest) returns (viam.app.package.v1.CreatePackageResponse) {
+    option (google.api.http) = {
+      post: "/package/v1/create"
+    };
+  }
+
   // DeletePackage receives an authenticated request with the package name and array of versions and removes the associated packages
-  rpc DeletePackage(DeletePackageRequest) returns (DeletePackageResponse);
-  // GetPackages receives an authenticated request with the package name and version and, if present, generates returns the URL
-  rpc GetPackages(GetPackagesRequest) returns (GetPackagesResponse);
+  rpc DeletePackage(viam.app.package.v1.DeletePackageRequest) returns (viam.app.package.v1.DeletePackageResponse) {
+    option (google.api.http) = {
+      post: "/package/v1/delete"
+    };
+  }
+
+  // GetPackages receives an authenticated request with the package name and version and, if present, generates returns the URL and metadata
+  rpc GetPackage(viam.app.package.v1.GetPackageRequest) returns (viam.app.package.v1.GetPackageResponse) {
+    option (google.api.http) = {
+      post: "/package/v1/get"
+    };
+  }
+
+  // ListPackages receives an authenticated request with the organization ID and other optional fields and, if present, generates returns the URL and metadata of all associated packages
+  rpc ListPackages(viam.app.package.v1.ListPackagesRequest) returns (viam.app.package.v1.ListPackagesResponse) {
+    option (google.api.http) = {
+      post: "/package/v1/list"
+    };
+  }
 }
 
 enum PackageType {
@@ -29,40 +51,32 @@ message FileInfo {
   uint64 size = 2;
 }
 
-message AddPackageRequest {
-  string org_id = 1;
+message PackageInfo {
+  string organization_id = 1;
   string name = 2;
   string version = 3;
-  bytes file_contents = 4; // .tar.gz file with a limit of 50GB
-  PackageType type = 5;
-  repeated FileInfo files = 6;
-  google.protobuf.Struct metadata = 7;
+  PackageType type = 4;
+  repeated FileInfo files = 5;
+  google.protobuf.Struct metadata = 6;
 }
 
-message AddPackageResponse {}
+message CreatePackageRequest {
+  oneof package {
+    PackageInfo info = 1;
+    bytes contents = 2; // .tar.gz file with a limit of 50GB
+  }
+}
+
+message CreatePackageResponse {}
 
 message DeletePackageRequest {
   string org_id = 1;
   string name = 2;
-  repeated string versions = 3; // If empty, delete all versions of the model
+  repeated string versions = 3;
 }
 
 message DeletePackageResponse {
   int64 deleted_count = 1; // Number of versions deleted
-}
-
-message GetPackagesRequest {
-  string org_id = 1; // If only org_id is specified, get all packages for an organization. Used in app.
-  optional PackageType type = 2; // e.g. can specify only getting packages of type ML_MODEL
-  optional string name = 3;
-  optional string version = 4;
-}
-
-message PackageInfo {
-  string name = 1;
-  string version = 2;
-  repeated FileInfo files = 3;
-  repeated google.protobuf.Struct metadata = 4;
 }
 
 message Package {
@@ -70,6 +84,23 @@ message Package {
   string url = 2;
 }
 
-message GetPackagesResponse {
+message GetPackageRequest {
+  string org_id = 1;
+  optional string name = 2;
+  optional string version = 3;
+}
+
+message GetPackageResponse {
+  repeated Package packages = 1;
+}
+
+message ListPackagesRequest {
+  string org_id = 1; // If only org_id is specified, get all packages for an organization. Used in app.
+  optional string name = 2;
+  optional string version = 3;
+  optional PackageType type = 4; // Can specify only getting ML_MODEL packages. Defaults to all types if undefined.
+}
+
+message ListPackagesResponse {
   repeated Package packages = 1;
 }

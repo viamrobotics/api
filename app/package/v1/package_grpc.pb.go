@@ -18,12 +18,14 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PackageServiceClient interface {
-	// AddPackage uploads a package's contents and information to the cloud
-	AddPackage(ctx context.Context, opts ...grpc.CallOption) (PackageService_AddPackageClient, error)
+	// CreatePackage uploads a package's contents and information to the cloud
+	CreatePackage(ctx context.Context, opts ...grpc.CallOption) (PackageService_CreatePackageClient, error)
 	// DeletePackage receives an authenticated request with the package name and array of versions and removes the associated packages
 	DeletePackage(ctx context.Context, in *DeletePackageRequest, opts ...grpc.CallOption) (*DeletePackageResponse, error)
-	// GetPackages receives an authenticated request with the package name and version and, if present, generates returns the URL
-	GetPackages(ctx context.Context, in *GetPackagesRequest, opts ...grpc.CallOption) (*GetPackagesResponse, error)
+	// GetPackages receives an authenticated request with the package name and version and, if present, generates returns the URL and metadata
+	GetPackage(ctx context.Context, in *GetPackageRequest, opts ...grpc.CallOption) (*GetPackageResponse, error)
+	// ListPackages receives an authenticated request with the organization ID and other optional fields and, if present, generates returns the URL and metadata of all associated packages
+	ListPackages(ctx context.Context, in *ListPackagesRequest, opts ...grpc.CallOption) (*ListPackagesResponse, error)
 }
 
 type packageServiceClient struct {
@@ -34,34 +36,34 @@ func NewPackageServiceClient(cc grpc.ClientConnInterface) PackageServiceClient {
 	return &packageServiceClient{cc}
 }
 
-func (c *packageServiceClient) AddPackage(ctx context.Context, opts ...grpc.CallOption) (PackageService_AddPackageClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PackageService_ServiceDesc.Streams[0], "/viam.app.package.v1.PackageService/AddPackage", opts...)
+func (c *packageServiceClient) CreatePackage(ctx context.Context, opts ...grpc.CallOption) (PackageService_CreatePackageClient, error) {
+	stream, err := c.cc.NewStream(ctx, &PackageService_ServiceDesc.Streams[0], "/viam.app.package.v1.PackageService/CreatePackage", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &packageServiceAddPackageClient{stream}
+	x := &packageServiceCreatePackageClient{stream}
 	return x, nil
 }
 
-type PackageService_AddPackageClient interface {
-	Send(*AddPackageRequest) error
-	CloseAndRecv() (*AddPackageResponse, error)
+type PackageService_CreatePackageClient interface {
+	Send(*CreatePackageRequest) error
+	CloseAndRecv() (*CreatePackageResponse, error)
 	grpc.ClientStream
 }
 
-type packageServiceAddPackageClient struct {
+type packageServiceCreatePackageClient struct {
 	grpc.ClientStream
 }
 
-func (x *packageServiceAddPackageClient) Send(m *AddPackageRequest) error {
+func (x *packageServiceCreatePackageClient) Send(m *CreatePackageRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *packageServiceAddPackageClient) CloseAndRecv() (*AddPackageResponse, error) {
+func (x *packageServiceCreatePackageClient) CloseAndRecv() (*CreatePackageResponse, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(AddPackageResponse)
+	m := new(CreatePackageResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -77,9 +79,18 @@ func (c *packageServiceClient) DeletePackage(ctx context.Context, in *DeletePack
 	return out, nil
 }
 
-func (c *packageServiceClient) GetPackages(ctx context.Context, in *GetPackagesRequest, opts ...grpc.CallOption) (*GetPackagesResponse, error) {
-	out := new(GetPackagesResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.package.v1.PackageService/GetPackages", in, out, opts...)
+func (c *packageServiceClient) GetPackage(ctx context.Context, in *GetPackageRequest, opts ...grpc.CallOption) (*GetPackageResponse, error) {
+	out := new(GetPackageResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.package.v1.PackageService/GetPackage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *packageServiceClient) ListPackages(ctx context.Context, in *ListPackagesRequest, opts ...grpc.CallOption) (*ListPackagesResponse, error) {
+	out := new(ListPackagesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.package.v1.PackageService/ListPackages", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,12 +101,14 @@ func (c *packageServiceClient) GetPackages(ctx context.Context, in *GetPackagesR
 // All implementations must embed UnimplementedPackageServiceServer
 // for forward compatibility
 type PackageServiceServer interface {
-	// AddPackage uploads a package's contents and information to the cloud
-	AddPackage(PackageService_AddPackageServer) error
+	// CreatePackage uploads a package's contents and information to the cloud
+	CreatePackage(PackageService_CreatePackageServer) error
 	// DeletePackage receives an authenticated request with the package name and array of versions and removes the associated packages
 	DeletePackage(context.Context, *DeletePackageRequest) (*DeletePackageResponse, error)
-	// GetPackages receives an authenticated request with the package name and version and, if present, generates returns the URL
-	GetPackages(context.Context, *GetPackagesRequest) (*GetPackagesResponse, error)
+	// GetPackages receives an authenticated request with the package name and version and, if present, generates returns the URL and metadata
+	GetPackage(context.Context, *GetPackageRequest) (*GetPackageResponse, error)
+	// ListPackages receives an authenticated request with the organization ID and other optional fields and, if present, generates returns the URL and metadata of all associated packages
+	ListPackages(context.Context, *ListPackagesRequest) (*ListPackagesResponse, error)
 	mustEmbedUnimplementedPackageServiceServer()
 }
 
@@ -103,14 +116,17 @@ type PackageServiceServer interface {
 type UnimplementedPackageServiceServer struct {
 }
 
-func (UnimplementedPackageServiceServer) AddPackage(PackageService_AddPackageServer) error {
-	return status.Errorf(codes.Unimplemented, "method AddPackage not implemented")
+func (UnimplementedPackageServiceServer) CreatePackage(PackageService_CreatePackageServer) error {
+	return status.Errorf(codes.Unimplemented, "method CreatePackage not implemented")
 }
 func (UnimplementedPackageServiceServer) DeletePackage(context.Context, *DeletePackageRequest) (*DeletePackageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePackage not implemented")
 }
-func (UnimplementedPackageServiceServer) GetPackages(context.Context, *GetPackagesRequest) (*GetPackagesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPackages not implemented")
+func (UnimplementedPackageServiceServer) GetPackage(context.Context, *GetPackageRequest) (*GetPackageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPackage not implemented")
+}
+func (UnimplementedPackageServiceServer) ListPackages(context.Context, *ListPackagesRequest) (*ListPackagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPackages not implemented")
 }
 func (UnimplementedPackageServiceServer) mustEmbedUnimplementedPackageServiceServer() {}
 
@@ -125,26 +141,26 @@ func RegisterPackageServiceServer(s grpc.ServiceRegistrar, srv PackageServiceSer
 	s.RegisterService(&PackageService_ServiceDesc, srv)
 }
 
-func _PackageService_AddPackage_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(PackageServiceServer).AddPackage(&packageServiceAddPackageServer{stream})
+func _PackageService_CreatePackage_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(PackageServiceServer).CreatePackage(&packageServiceCreatePackageServer{stream})
 }
 
-type PackageService_AddPackageServer interface {
-	SendAndClose(*AddPackageResponse) error
-	Recv() (*AddPackageRequest, error)
+type PackageService_CreatePackageServer interface {
+	SendAndClose(*CreatePackageResponse) error
+	Recv() (*CreatePackageRequest, error)
 	grpc.ServerStream
 }
 
-type packageServiceAddPackageServer struct {
+type packageServiceCreatePackageServer struct {
 	grpc.ServerStream
 }
 
-func (x *packageServiceAddPackageServer) SendAndClose(m *AddPackageResponse) error {
+func (x *packageServiceCreatePackageServer) SendAndClose(m *CreatePackageResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *packageServiceAddPackageServer) Recv() (*AddPackageRequest, error) {
-	m := new(AddPackageRequest)
+func (x *packageServiceCreatePackageServer) Recv() (*CreatePackageRequest, error) {
+	m := new(CreatePackageRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -169,20 +185,38 @@ func _PackageService_DeletePackage_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PackageService_GetPackages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPackagesRequest)
+func _PackageService_GetPackage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPackageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PackageServiceServer).GetPackages(ctx, in)
+		return srv.(PackageServiceServer).GetPackage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.package.v1.PackageService/GetPackages",
+		FullMethod: "/viam.app.package.v1.PackageService/GetPackage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PackageServiceServer).GetPackages(ctx, req.(*GetPackagesRequest))
+		return srv.(PackageServiceServer).GetPackage(ctx, req.(*GetPackageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PackageService_ListPackages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPackagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageServiceServer).ListPackages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.package.v1.PackageService/ListPackages",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageServiceServer).ListPackages(ctx, req.(*ListPackagesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -199,14 +233,18 @@ var PackageService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PackageService_DeletePackage_Handler,
 		},
 		{
-			MethodName: "GetPackages",
-			Handler:    _PackageService_GetPackages_Handler,
+			MethodName: "GetPackage",
+			Handler:    _PackageService_GetPackage_Handler,
+		},
+		{
+			MethodName: "ListPackages",
+			Handler:    _PackageService_ListPackages_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "AddPackage",
-			Handler:       _PackageService_AddPackage_Handler,
+			StreamName:    "CreatePackage",
+			Handler:       _PackageService_CreatePackage_Handler,
 			ClientStreams: true,
 		},
 	},
