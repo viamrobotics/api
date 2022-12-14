@@ -196,14 +196,14 @@ func RegisterPackageServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		return
 	})
 
-	mux.Handle("POST", pattern_PackageService_DeletePackage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_PackageService_DeletePackage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.package.v1.PackageService/DeletePackage", runtime.WithHTTPPathPattern("/package/v1/delete"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.package.v1.PackageService/DeletePackage", runtime.WithHTTPPathPattern("/package/v1/delete_package"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -220,14 +220,14 @@ func RegisterPackageServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_PackageService_GetPackage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_PackageService_GetPackage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.package.v1.PackageService/GetPackage", runtime.WithHTTPPathPattern("/package/v1/get"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.package.v1.PackageService/GetPackage", runtime.WithHTTPPathPattern("/package/v1/get_package"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -244,14 +244,14 @@ func RegisterPackageServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_PackageService_ListPackages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_PackageService_ListPackages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.package.v1.PackageService/ListPackages", runtime.WithHTTPPathPattern("/package/v1/list"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.package.v1.PackageService/ListPackages", runtime.WithHTTPPathPattern("/package/v1/list_packages"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -314,7 +314,7 @@ func RegisterPackageServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.package.v1.PackageService/CreatePackage", runtime.WithHTTPPathPattern("/package/v1/create"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.package.v1.PackageService/CreatePackage", runtime.WithHTTPPathPattern("/package/v1/create_package"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -330,12 +330,12 @@ func RegisterPackageServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_PackageService_DeletePackage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_PackageService_DeletePackage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.package.v1.PackageService/DeletePackage", runtime.WithHTTPPathPattern("/package/v1/delete"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.package.v1.PackageService/DeletePackage", runtime.WithHTTPPathPattern("/package/v1/delete_package"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -351,12 +351,12 @@ func RegisterPackageServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_PackageService_GetPackage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_PackageService_GetPackage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.package.v1.PackageService/GetPackage", runtime.WithHTTPPathPattern("/package/v1/get"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.package.v1.PackageService/GetPackage", runtime.WithHTTPPathPattern("/package/v1/get_package"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -372,12 +372,12 @@ func RegisterPackageServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_PackageService_ListPackages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_PackageService_ListPackages_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.package.v1.PackageService/ListPackages", runtime.WithHTTPPathPattern("/package/v1/list"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.package.v1.PackageService/ListPackages", runtime.WithHTTPPathPattern("/package/v1/list_packages"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -397,13 +397,13 @@ func RegisterPackageServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_PackageService_CreatePackage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"package", "v1", "create"}, ""))
+	pattern_PackageService_CreatePackage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"package", "v1", "create_package"}, ""))
 
-	pattern_PackageService_DeletePackage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"package", "v1", "delete"}, ""))
+	pattern_PackageService_DeletePackage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"package", "v1", "delete_package"}, ""))
 
-	pattern_PackageService_GetPackage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"package", "v1", "get"}, ""))
+	pattern_PackageService_GetPackage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"package", "v1", "get_package"}, ""))
 
-	pattern_PackageService_ListPackages_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"package", "v1", "list"}, ""))
+	pattern_PackageService_ListPackages_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"package", "v1", "list_packages"}, ""))
 )
 
 var (

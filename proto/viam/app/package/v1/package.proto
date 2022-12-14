@@ -14,28 +14,28 @@ service PackageService {
   // CreatePackage uploads a package's contents and information to the cloud
   rpc CreatePackage(stream viam.app.package.v1.CreatePackageRequest) returns (viam.app.package.v1.CreatePackageResponse) {
     option (google.api.http) = {
-      post: "/package/v1/create"
+      post: "/package/v1/create_package"
     };
   }
 
   // DeletePackage receives an authenticated request with the package name and array of versions and removes the associated packages
   rpc DeletePackage(viam.app.package.v1.DeletePackageRequest) returns (viam.app.package.v1.DeletePackageResponse) {
     option (google.api.http) = {
-      post: "/package/v1/delete"
+      delete: "/package/v1/delete_package"
     };
   }
 
   // GetPackages receives an authenticated request with the package name and version and, if present, generates returns the URL and metadata
   rpc GetPackage(viam.app.package.v1.GetPackageRequest) returns (viam.app.package.v1.GetPackageResponse) {
     option (google.api.http) = {
-      post: "/package/v1/get"
+      get: "/package/v1/get_package"
     };
   }
 
   // ListPackages receives an authenticated request with the organization ID and other optional fields and, if present, generates returns the URL and metadata of all associated packages
   rpc ListPackages(viam.app.package.v1.ListPackagesRequest) returns (viam.app.package.v1.ListPackagesResponse) {
     option (google.api.http) = {
-      post: "/package/v1/list"
+      get: "/package/v1/list_packages"
     };
   }
 }
