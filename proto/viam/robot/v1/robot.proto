@@ -70,6 +70,12 @@ service RobotService {
     };
   }
 
+  rpc TransformPCD(TransformPCD) returns (TransformPCD) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/frame_system/transform_pcd"
+    };
+  }
+
   // GetStatus returns the list of all statuses requested. An empty request signifies all resources.
   rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {
     option (google.api.http) = {
@@ -140,6 +146,22 @@ message TransformPoseRequest {
 
 message TransformPoseResponse {
   common.v1.PoseInFrame pose = 1;
+}
+
+message TransformPCDRequest {
+  // the point clouds to transform. This should be in the PCD format
+  // encoded into bytes: https://pointclouds.org/documentation/tutorials/pcd_file_format.html
+  bytes point_cloud_pcd = 1;
+  // the reference frame of the point cloud.
+  string source = 2;
+  // the reference frame into which the source data should be transformed, if unset this defaults to the "world" reference frame.
+  // Do not move the robot between the generation of the initial pointcloud and the receipt    
+  //of the transformed pointcloud because that will make the transformations inaccurate
+  string destination = 3;
+}
+
+message TransformPCDResponse {
+  bytes point_cloud_PCD = 1;
 }
 
 message ResourceNamesRequest {}
