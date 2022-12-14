@@ -127,8 +127,8 @@ export namespace CreatePackageResponse {
 }
 
 export class DeletePackageRequest extends jspb.Message {
-  getOrgId(): string;
-  setOrgId(value: string): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
 
   getName(): string;
   setName(value: string): void;
@@ -150,7 +150,7 @@ export class DeletePackageRequest extends jspb.Message {
 
 export namespace DeletePackageRequest {
   export type AsObject = {
-    orgId: string,
+    organizationId: string,
     name: string,
     versionsList: Array<string>,
   }
@@ -203,8 +203,8 @@ export namespace Package {
 }
 
 export class GetPackageRequest extends jspb.Message {
-  getOrgId(): string;
-  setOrgId(value: string): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
 
   hasName(): boolean;
   clearName(): void;
@@ -228,7 +228,7 @@ export class GetPackageRequest extends jspb.Message {
 
 export namespace GetPackageRequest {
   export type AsObject = {
-    orgId: string,
+    organizationId: string,
     name: string,
     version: string,
   }
@@ -257,8 +257,8 @@ export namespace GetPackageResponse {
 }
 
 export class ListPackagesRequest extends jspb.Message {
-  getOrgId(): string;
-  setOrgId(value: string): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
 
   hasName(): boolean;
   clearName(): void;
@@ -287,7 +287,7 @@ export class ListPackagesRequest extends jspb.Message {
 
 export namespace ListPackagesRequest {
   export type AsObject = {
-    orgId: string,
+    organizationId: string,
     name: string,
     version: string,
     type: PackageTypeMap[keyof PackageTypeMap],

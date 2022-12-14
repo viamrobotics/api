@@ -9,30 +9,30 @@ option go_package = "go.viam.com/api/app/package/v1";
 
 service PackageService {
   // CreatePackage uploads a package's contents and information to the cloud
-  rpc CreatePackage(stream viam.app.package.v1.CreatePackageRequest) returns (viam.app.package.v1.CreatePackageResponse) {
+  rpc CreatePackage(stream CreatePackageRequest) returns (CreatePackageResponse) {
     option (google.api.http) = {
-      post: "/package/v1/create"
+      post: "/viam/api/v1/service/datamanagement/create"
     };
   }
 
   // DeletePackage receives an authenticated request with the package name and array of versions and removes the associated packages
-  rpc DeletePackage(viam.app.package.v1.DeletePackageRequest) returns (viam.app.package.v1.DeletePackageResponse) {
+  rpc DeletePackage(DeletePackageRequest) returns (DeletePackageResponse) {
     option (google.api.http) = {
-      delete: "/package/v1/delete"
+      delete: "/viam/api/v1/service/datamanagement/{organization_id}/delete"
     };
   }
 
   // GetPackages receives an authenticated request with the package name and version and, if present, generates returns the URL and metadata
-  rpc GetPackage(viam.app.package.v1.GetPackageRequest) returns (viam.app.package.v1.GetPackageResponse) {
+  rpc GetPackage(GetPackageRequest) returns (GetPackageResponse) {
     option (google.api.http) = {
-      get: "/package/v1/get"
+      get: "/viam/api/v1/service/datamanagement/{organization_id}/package"
     };
   }
 
   // ListPackages receives an authenticated request with the organization ID and other optional fields and, if present, generates returns the URL and metadata of all associated packages
-  rpc ListPackages(viam.app.package.v1.ListPackagesRequest) returns (viam.app.package.v1.ListPackagesResponse) {
+  rpc ListPackages(ListPackagesRequest) returns (ListPackagesResponse) {
     option (google.api.http) = {
-      get: "/package/v1/list"
+      get: "/viam/api/v1/service/datamanagement/{organization_id}/list"
     };
   }
 }
@@ -67,7 +67,7 @@ message CreatePackageRequest {
 message CreatePackageResponse {}
 
 message DeletePackageRequest {
-  string org_id = 1;
+  string organization_id = 1;
   string name = 2;
   repeated string versions = 3;
 }
@@ -82,7 +82,7 @@ message Package {
 }
 
 message GetPackageRequest {
-  string org_id = 1;
+  string organization_id = 1;
   optional string name = 2;
   optional string version = 3;
 }
@@ -92,7 +92,7 @@ message GetPackageResponse {
 }
 
 message ListPackagesRequest {
-  string org_id = 1; // If only org_id is specified, get all packages for an organization. Used in app.
+  string organization_id = 1; // If only organization_id is specified, get all packages for an organization. Used in app.
   optional string name = 2;
   optional string version = 3;
   optional PackageType type = 4; // Can specify only getting ML_MODEL packages. Defaults to all types if undefined.

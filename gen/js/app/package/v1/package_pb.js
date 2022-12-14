@@ -1143,7 +1143,7 @@ proto.viam.app.package.v1.DeletePackageRequest.prototype.toObject = function(opt
  */
 proto.viam.app.package.v1.DeletePackageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     versionsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
@@ -1184,7 +1184,7 @@ proto.viam.app.package.v1.DeletePackageRequest.deserializeBinaryFromReader = fun
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setOrgId(value);
+      msg.setOrganizationId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -1223,7 +1223,7 @@ proto.viam.app.package.v1.DeletePackageRequest.prototype.serializeBinary = funct
  */
 proto.viam.app.package.v1.DeletePackageRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getOrgId();
+  f = message.getOrganizationId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1248,10 +1248,10 @@ proto.viam.app.package.v1.DeletePackageRequest.serializeBinaryToWriter = functio
 
 
 /**
- * optional string org_id = 1;
+ * optional string organization_id = 1;
  * @return {string}
  */
-proto.viam.app.package.v1.DeletePackageRequest.prototype.getOrgId = function() {
+proto.viam.app.package.v1.DeletePackageRequest.prototype.getOrganizationId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -1260,7 +1260,7 @@ proto.viam.app.package.v1.DeletePackageRequest.prototype.getOrgId = function() {
  * @param {string} value
  * @return {!proto.viam.app.package.v1.DeletePackageRequest} returns this
  */
-proto.viam.app.package.v1.DeletePackageRequest.prototype.setOrgId = function(value) {
+proto.viam.app.package.v1.DeletePackageRequest.prototype.setOrganizationId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -1663,7 +1663,7 @@ proto.viam.app.package.v1.GetPackageRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.package.v1.GetPackageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     version: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -1704,7 +1704,7 @@ proto.viam.app.package.v1.GetPackageRequest.deserializeBinaryFromReader = functi
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setOrgId(value);
+      msg.setOrganizationId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -1743,7 +1743,7 @@ proto.viam.app.package.v1.GetPackageRequest.prototype.serializeBinary = function
  */
 proto.viam.app.package.v1.GetPackageRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getOrgId();
+  f = message.getOrganizationId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1768,10 +1768,10 @@ proto.viam.app.package.v1.GetPackageRequest.serializeBinaryToWriter = function(m
 
 
 /**
- * optional string org_id = 1;
+ * optional string organization_id = 1;
  * @return {string}
  */
-proto.viam.app.package.v1.GetPackageRequest.prototype.getOrgId = function() {
+proto.viam.app.package.v1.GetPackageRequest.prototype.getOrganizationId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -1780,7 +1780,7 @@ proto.viam.app.package.v1.GetPackageRequest.prototype.getOrgId = function() {
  * @param {string} value
  * @return {!proto.viam.app.package.v1.GetPackageRequest} returns this
  */
-proto.viam.app.package.v1.GetPackageRequest.prototype.setOrgId = function(value) {
+proto.viam.app.package.v1.GetPackageRequest.prototype.setOrganizationId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -2049,7 +2049,7 @@ proto.viam.app.package.v1.ListPackagesRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.package.v1.ListPackagesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     version: jspb.Message.getFieldWithDefault(msg, 3, ""),
     type: jspb.Message.getFieldWithDefault(msg, 4, 0)
@@ -2091,7 +2091,7 @@ proto.viam.app.package.v1.ListPackagesRequest.deserializeBinaryFromReader = func
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setOrgId(value);
+      msg.setOrganizationId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -2134,7 +2134,7 @@ proto.viam.app.package.v1.ListPackagesRequest.prototype.serializeBinary = functi
  */
 proto.viam.app.package.v1.ListPackagesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getOrgId();
+  f = message.getOrganizationId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -2166,10 +2166,10 @@ proto.viam.app.package.v1.ListPackagesRequest.serializeBinaryToWriter = function
 
 
 /**
- * optional string org_id = 1;
+ * optional string organization_id = 1;
  * @return {string}
  */
-proto.viam.app.package.v1.ListPackagesRequest.prototype.getOrgId = function() {
+proto.viam.app.package.v1.ListPackagesRequest.prototype.getOrganizationId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -2178,7 +2178,7 @@ proto.viam.app.package.v1.ListPackagesRequest.prototype.getOrgId = function() {
  * @param {string} value
  * @return {!proto.viam.app.package.v1.ListPackagesRequest} returns this
  */
-proto.viam.app.package.v1.ListPackagesRequest.prototype.setOrgId = function(value) {
+proto.viam.app.package.v1.ListPackagesRequest.prototype.setOrganizationId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
