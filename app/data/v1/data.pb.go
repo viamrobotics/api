@@ -2018,7 +2018,7 @@ func (x *RemoveTagsFromBinaryDataByFilterResponse) GetDeletedCount() uint64 {
 	return 0
 }
 
-// TagsByFilterRequest requests the tags that exist for the given filter
+// TagsByFilterRequest requests the unique tags from data based on given filter
 type TagsByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2066,7 +2066,7 @@ func (x *TagsByFilterRequest) GetFilter() *Filter {
 	return nil
 }
 
-// TagsByFilterResponse returns the tags that exist for the given filter
+// TagsByFilterResponse returns the unique tags from data based on given filter
 type TagsByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

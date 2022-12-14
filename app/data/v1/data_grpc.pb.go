@@ -38,7 +38,7 @@ type DataServiceClient interface {
 	RemoveTagsFromBinaryDataByFileIDs(ctx context.Context, in *RemoveTagsFromBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFileIDsResponse, error)
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(ctx context.Context, in *RemoveTagsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFilterResponse, error)
-	// TagsByFilter gets all tags that match the given filter.
+	// TagsByFilter gets all unique tags from data based on given filter.
 	TagsByFilter(ctx context.Context, in *TagsByFilterRequest, opts ...grpc.CallOption) (*TagsByFilterResponse, error)
 }
 
@@ -173,7 +173,7 @@ type DataServiceServer interface {
 	RemoveTagsFromBinaryDataByFileIDs(context.Context, *RemoveTagsFromBinaryDataByFileIDsRequest) (*RemoveTagsFromBinaryDataByFileIDsResponse, error)
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(context.Context, *RemoveTagsFromBinaryDataByFilterRequest) (*RemoveTagsFromBinaryDataByFilterResponse, error)
-	// TagsByFilter gets all tags that match the given filter.
+	// TagsByFilter gets all unique tags from data based on given filter.
 	TagsByFilter(context.Context, *TagsByFilterRequest) (*TagsByFilterResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }

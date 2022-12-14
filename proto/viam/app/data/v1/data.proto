@@ -40,7 +40,7 @@ service DataService {
   // RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
   rpc RemoveTagsFromBinaryDataByFilter(RemoveTagsFromBinaryDataByFilterRequest) returns (RemoveTagsFromBinaryDataByFilterResponse);
 
-  // TagsByFilter gets all tags that match the given filter.
+  // TagsByFilter gets all unique tags from data based on given filter.
   rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse);
 }
 
@@ -260,12 +260,12 @@ message RemoveTagsFromBinaryDataByFilterResponse {
   uint64 deleted_count = 1;
 }
 
-// TagsByFilterRequest requests the tags that exist for the given filter
+// TagsByFilterRequest requests the unique tags from data based on given filter
 message TagsByFilterRequest {
   Filter filter = 1;
 }
 
-// TagsByFilterResponse returns the tags that exist for the given filter
+// TagsByFilterResponse returns the unique tags from data based on given filter
 message TagsByFilterResponse {
   repeated string tags = 1;
 }
