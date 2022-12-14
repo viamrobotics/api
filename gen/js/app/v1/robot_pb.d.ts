@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as app_v1_app_pb from "../../app/v1/app_pb";
+import * as common_v1_common_pb from "../../common/v1/common_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as tagger_v1_tagger_pb from "../../tagger/v1/tagger_pb";
@@ -473,6 +474,11 @@ export class Frame extends jspb.Message {
   getOrientation(): Orientation | undefined;
   setOrientation(value?: Orientation): void;
 
+  hasGeometry(): boolean;
+  clearGeometry(): void;
+  getGeometry(): common_v1_common_pb.Geometry | undefined;
+  setGeometry(value?: common_v1_common_pb.Geometry): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Frame.AsObject;
   static toObject(includeInstance: boolean, msg: Frame): Frame.AsObject;
@@ -488,6 +494,7 @@ export namespace Frame {
     parent: string,
     translation?: Translation.AsObject,
     orientation?: Orientation.AsObject,
+    geometry?: common_v1_common_pb.Geometry.AsObject,
   }
 }
 

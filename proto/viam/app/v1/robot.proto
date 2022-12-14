@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.app.v1;
 
 import "app/v1/app.proto";
+import "common/v1/common.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "tagger/v1/tagger.proto";
@@ -134,6 +135,7 @@ message Frame {
   string parent = 1;
   Translation translation = 2;
   Orientation orientation = 3;
+  common.v1.Geometry geometry = 4;
 }
 
 message Translation {
