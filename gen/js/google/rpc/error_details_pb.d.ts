@@ -4,6 +4,33 @@
 import * as jspb from "google-protobuf";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 
+export class ErrorInfo extends jspb.Message {
+  getReason(): string;
+  setReason(value: string): void;
+
+  getDomain(): string;
+  setDomain(value: string): void;
+
+  getMetadataMap(): jspb.Map<string, string>;
+  clearMetadataMap(): void;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ErrorInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: ErrorInfo): ErrorInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ErrorInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ErrorInfo;
+  static deserializeBinaryFromReader(message: ErrorInfo, reader: jspb.BinaryReader): ErrorInfo;
+}
+
+export namespace ErrorInfo {
+  export type AsObject = {
+    reason: string,
+    domain: string,
+    metadataMap: Array<[string, string]>,
+  }
+}
+
 export class RetryInfo extends jspb.Message {
   hasRetryDelay(): boolean;
   clearRetryDelay(): void;
@@ -95,33 +122,6 @@ export namespace QuotaFailure {
       subject: string,
       description: string,
     }
-  }
-}
-
-export class ErrorInfo extends jspb.Message {
-  getReason(): string;
-  setReason(value: string): void;
-
-  getDomain(): string;
-  setDomain(value: string): void;
-
-  getMetadataMap(): jspb.Map<string, string>;
-  clearMetadataMap(): void;
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ErrorInfo.AsObject;
-  static toObject(includeInstance: boolean, msg: ErrorInfo): ErrorInfo.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ErrorInfo, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ErrorInfo;
-  static deserializeBinaryFromReader(message: ErrorInfo, reader: jspb.BinaryReader): ErrorInfo;
-}
-
-export namespace ErrorInfo {
-  export type AsObject = {
-    reason: string,
-    domain: string,
-    metadataMap: Array<[string, string]>,
   }
 }
 
