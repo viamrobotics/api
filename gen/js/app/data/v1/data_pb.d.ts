@@ -893,6 +893,50 @@ export namespace RemoveTagsFromBinaryDataByFilterResponse {
   }
 }
 
+export class TagsByFilterRequest extends jspb.Message {
+  hasFilter(): boolean;
+  clearFilter(): void;
+  getFilter(): Filter | undefined;
+  setFilter(value?: Filter): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TagsByFilterRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TagsByFilterRequest): TagsByFilterRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TagsByFilterRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TagsByFilterRequest;
+  static deserializeBinaryFromReader(message: TagsByFilterRequest, reader: jspb.BinaryReader): TagsByFilterRequest;
+}
+
+export namespace TagsByFilterRequest {
+  export type AsObject = {
+    filter?: Filter.AsObject,
+  }
+}
+
+export class TagsByFilterResponse extends jspb.Message {
+  clearTagsList(): void;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): void;
+  addTags(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TagsByFilterResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TagsByFilterResponse): TagsByFilterResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TagsByFilterResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TagsByFilterResponse;
+  static deserializeBinaryFromReader(message: TagsByFilterResponse, reader: jspb.BinaryReader): TagsByFilterResponse;
+}
+
+export namespace TagsByFilterResponse {
+  export type AsObject = {
+    tagsList: Array<string>,
+  }
+}
+
 export interface OrderMap {
   ORDER_UNSPECIFIED: 0;
   ORDER_DESCENDING: 1;
