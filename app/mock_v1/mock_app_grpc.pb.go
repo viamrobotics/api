@@ -417,6 +417,26 @@ func (mr *MockAppServiceClientMockRecorder) NewRobotPart(ctx, in interface{}, op
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewRobotPart", reflect.TypeOf((*MockAppServiceClient)(nil).NewRobotPart), varargs...)
 }
 
+// ShareLocation mocks base method.
+func (m *MockAppServiceClient) ShareLocation(ctx context.Context, in *v1.ShareLocationRequest, opts ...grpc.CallOption) (*v1.ShareLocationResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "ShareLocation", varargs...)
+	ret0, _ := ret[0].(*v1.ShareLocationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ShareLocation indicates an expected call of ShareLocation.
+func (mr *MockAppServiceClientMockRecorder) ShareLocation(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ShareLocation", reflect.TypeOf((*MockAppServiceClient)(nil).ShareLocation), varargs...)
+}
+
 // TailRobotPartLogs mocks base method.
 func (m *MockAppServiceClient) TailRobotPartLogs(ctx context.Context, in *v1.TailRobotPartLogsRequest, opts ...grpc.CallOption) (v1.AppService_TailRobotPartLogsClient, error) {
 	m.ctrl.T.Helper()
@@ -435,6 +455,26 @@ func (mr *MockAppServiceClientMockRecorder) TailRobotPartLogs(ctx, in interface{
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TailRobotPartLogs", reflect.TypeOf((*MockAppServiceClient)(nil).TailRobotPartLogs), varargs...)
+}
+
+// UnshareLocation mocks base method.
+func (m *MockAppServiceClient) UnshareLocation(ctx context.Context, in *v1.UnshareLocationRequest, opts ...grpc.CallOption) (*v1.UnshareLocationResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "UnshareLocation", varargs...)
+	ret0, _ := ret[0].(*v1.UnshareLocationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UnshareLocation indicates an expected call of UnshareLocation.
+func (mr *MockAppServiceClientMockRecorder) UnshareLocation(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UnshareLocation", reflect.TypeOf((*MockAppServiceClient)(nil).UnshareLocation), varargs...)
 }
 
 // UpdateRobot mocks base method.
@@ -908,6 +948,21 @@ func (mr *MockAppServiceServerMockRecorder) NewRobotPart(arg0, arg1 interface{})
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewRobotPart", reflect.TypeOf((*MockAppServiceServer)(nil).NewRobotPart), arg0, arg1)
 }
 
+// ShareLocation mocks base method.
+func (m *MockAppServiceServer) ShareLocation(arg0 context.Context, arg1 *v1.ShareLocationRequest) (*v1.ShareLocationResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ShareLocation", arg0, arg1)
+	ret0, _ := ret[0].(*v1.ShareLocationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ShareLocation indicates an expected call of ShareLocation.
+func (mr *MockAppServiceServerMockRecorder) ShareLocation(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ShareLocation", reflect.TypeOf((*MockAppServiceServer)(nil).ShareLocation), arg0, arg1)
+}
+
 // TailRobotPartLogs mocks base method.
 func (m *MockAppServiceServer) TailRobotPartLogs(arg0 *v1.TailRobotPartLogsRequest, arg1 v1.AppService_TailRobotPartLogsServer) error {
 	m.ctrl.T.Helper()
@@ -920,6 +975,21 @@ func (m *MockAppServiceServer) TailRobotPartLogs(arg0 *v1.TailRobotPartLogsReque
 func (mr *MockAppServiceServerMockRecorder) TailRobotPartLogs(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TailRobotPartLogs", reflect.TypeOf((*MockAppServiceServer)(nil).TailRobotPartLogs), arg0, arg1)
+}
+
+// UnshareLocation mocks base method.
+func (m *MockAppServiceServer) UnshareLocation(arg0 context.Context, arg1 *v1.UnshareLocationRequest) (*v1.UnshareLocationResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UnshareLocation", arg0, arg1)
+	ret0, _ := ret[0].(*v1.UnshareLocationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UnshareLocation indicates an expected call of UnshareLocation.
+func (mr *MockAppServiceServerMockRecorder) UnshareLocation(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UnshareLocation", reflect.TypeOf((*MockAppServiceServer)(nil).UnshareLocation), arg0, arg1)
 }
 
 // UpdateRobot mocks base method.
