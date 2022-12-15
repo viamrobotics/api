@@ -31,6 +31,24 @@ type AppServiceListLocations = {
   readonly responseType: typeof app_v1_app_pb.ListLocationsResponse;
 };
 
+type AppServiceShareLocation = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ShareLocationRequest;
+  readonly responseType: typeof app_v1_app_pb.ShareLocationResponse;
+};
+
+type AppServiceUnshareLocation = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UnshareLocationRequest;
+  readonly responseType: typeof app_v1_app_pb.UnshareLocationResponse;
+};
+
 type AppServiceLocationAuth = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -207,6 +225,8 @@ export class AppService {
   static readonly CreateLocation: AppServiceCreateLocation;
   static readonly ListOrganizations: AppServiceListOrganizations;
   static readonly ListLocations: AppServiceListLocations;
+  static readonly ShareLocation: AppServiceShareLocation;
+  static readonly UnshareLocation: AppServiceUnshareLocation;
   static readonly LocationAuth: AppServiceLocationAuth;
   static readonly CreateLocationSecret: AppServiceCreateLocationSecret;
   static readonly DeleteLocationSecret: AppServiceDeleteLocationSecret;
@@ -286,6 +306,24 @@ export class AppServiceClient {
   listLocations(
     requestMessage: app_v1_app_pb.ListLocationsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListLocationsResponse|null) => void
+  ): UnaryResponse;
+  shareLocation(
+    requestMessage: app_v1_app_pb.ShareLocationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ShareLocationResponse|null) => void
+  ): UnaryResponse;
+  shareLocation(
+    requestMessage: app_v1_app_pb.ShareLocationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ShareLocationResponse|null) => void
+  ): UnaryResponse;
+  unshareLocation(
+    requestMessage: app_v1_app_pb.UnshareLocationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UnshareLocationResponse|null) => void
+  ): UnaryResponse;
+  unshareLocation(
+    requestMessage: app_v1_app_pb.UnshareLocationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UnshareLocationResponse|null) => void
   ): UnaryResponse;
   locationAuth(
     requestMessage: app_v1_app_pb.LocationAuthRequest,
