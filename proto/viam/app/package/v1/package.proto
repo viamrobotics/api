@@ -25,14 +25,14 @@ service PackageService {
   // // GetPackage returns the URL and metadata for a requested package version
   rpc GetPackage(GetPackageRequest) returns (GetPackageResponse) {
     option (google.api.http) = {
-      get: "/viam/app/package/v1/package"
+      get: "/viam/app/package/v1/get"
     };
   }
 
   // ListPackages get the URLs and metadata for requested packages. Include package name, version, and/or type to filter beyond the required organization_id.
   rpc ListPackages(ListPackagesRequest) returns (ListPackagesResponse) {
     option (google.api.http) = {
-      get: "/viam/app/package/v1/packages"
+      get: "/viam/app/package/v1/list"
     };
   }
 }
