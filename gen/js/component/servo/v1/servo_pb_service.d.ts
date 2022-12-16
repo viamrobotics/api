@@ -31,11 +31,21 @@ type ServoServiceStop = {
   readonly responseType: typeof component_servo_v1_servo_pb.StopResponse;
 };
 
+type ServoServiceIsMoving = {
+  readonly methodName: string;
+  readonly service: typeof ServoService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_servo_v1_servo_pb.IsMovingRequest;
+  readonly responseType: typeof component_servo_v1_servo_pb.IsMovingResponse;
+};
+
 export class ServoService {
   static readonly serviceName: string;
   static readonly Move: ServoServiceMove;
   static readonly GetPosition: ServoServiceGetPosition;
   static readonly Stop: ServoServiceStop;
+  static readonly IsMoving: ServoServiceIsMoving;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -96,6 +106,15 @@ export class ServoServiceClient {
   stop(
     requestMessage: component_servo_v1_servo_pb.StopRequest,
     callback: (error: ServiceError|null, responseMessage: component_servo_v1_servo_pb.StopResponse|null) => void
+  ): UnaryResponse;
+  isMoving(
+    requestMessage: component_servo_v1_servo_pb.IsMovingRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_servo_v1_servo_pb.IsMovingResponse|null) => void
+  ): UnaryResponse;
+  isMoving(
+    requestMessage: component_servo_v1_servo_pb.IsMovingRequest,
+    callback: (error: ServiceError|null, responseMessage: component_servo_v1_servo_pb.IsMovingResponse|null) => void
   ): UnaryResponse;
 }
 
