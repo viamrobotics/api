@@ -49,6 +49,13 @@ service ArmService {
       post: "/viam/api/v1/component/arm/{name}/stop"
     };
   }
+
+  // IsMoving reports if a component is in motion
+  rpc IsMoving(IsMovingRequest) returns (IsMovingResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/arm/{name}/is_moving"
+    };
+  }
 }
 
 message GetEndPositionRequest {
@@ -119,4 +126,12 @@ message Status {
   common.v1.Pose end_position = 1;
   JointPositions joint_positions = 2;
   bool is_moving = 3;
+}
+
+message IsMovingRequest {
+  string name = 1;
+}
+
+message IsMovingResponse {
+  bool is_moving = 1;
 }

@@ -49,6 +49,15 @@ type BaseServiceStop = {
   readonly responseType: typeof component_base_v1_base_pb.StopResponse;
 };
 
+type BaseServiceIsMoving = {
+  readonly methodName: string;
+  readonly service: typeof BaseService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_base_v1_base_pb.IsMovingRequest;
+  readonly responseType: typeof component_base_v1_base_pb.IsMovingResponse;
+};
+
 export class BaseService {
   static readonly serviceName: string;
   static readonly MoveStraight: BaseServiceMoveStraight;
@@ -56,6 +65,7 @@ export class BaseService {
   static readonly SetPower: BaseServiceSetPower;
   static readonly SetVelocity: BaseServiceSetVelocity;
   static readonly Stop: BaseServiceStop;
+  static readonly IsMoving: BaseServiceIsMoving;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -134,6 +144,15 @@ export class BaseServiceClient {
   stop(
     requestMessage: component_base_v1_base_pb.StopRequest,
     callback: (error: ServiceError|null, responseMessage: component_base_v1_base_pb.StopResponse|null) => void
+  ): UnaryResponse;
+  isMoving(
+    requestMessage: component_base_v1_base_pb.IsMovingRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_base_v1_base_pb.IsMovingResponse|null) => void
+  ): UnaryResponse;
+  isMoving(
+    requestMessage: component_base_v1_base_pb.IsMovingRequest,
+    callback: (error: ServiceError|null, responseMessage: component_base_v1_base_pb.IsMovingResponse|null) => void
   ): UnaryResponse;
 }
 

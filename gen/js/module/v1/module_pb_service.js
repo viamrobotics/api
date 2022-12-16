@@ -1,63 +1,63 @@
-// package: viam.component.servo.v1
-// file: component/servo/v1/servo.proto
+// package: viam.module.v1
+// file: module/v1/module.proto
 
-var component_servo_v1_servo_pb = require("../../../component/servo/v1/servo_pb");
+var module_v1_module_pb = require("../../module/v1/module_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
-var ServoService = (function () {
-  function ServoService() {}
-  ServoService.serviceName = "viam.component.servo.v1.ServoService";
-  return ServoService;
+var ModuleService = (function () {
+  function ModuleService() {}
+  ModuleService.serviceName = "viam.module.v1.ModuleService";
+  return ModuleService;
 }());
 
-ServoService.Move = {
-  methodName: "Move",
-  service: ServoService,
+ModuleService.AddResource = {
+  methodName: "AddResource",
+  service: ModuleService,
   requestStream: false,
   responseStream: false,
-  requestType: component_servo_v1_servo_pb.MoveRequest,
-  responseType: component_servo_v1_servo_pb.MoveResponse
+  requestType: module_v1_module_pb.AddResourceRequest,
+  responseType: module_v1_module_pb.AddResourceResponse
 };
 
-ServoService.GetPosition = {
-  methodName: "GetPosition",
-  service: ServoService,
+ModuleService.ReconfigureResource = {
+  methodName: "ReconfigureResource",
+  service: ModuleService,
   requestStream: false,
   responseStream: false,
-  requestType: component_servo_v1_servo_pb.GetPositionRequest,
-  responseType: component_servo_v1_servo_pb.GetPositionResponse
+  requestType: module_v1_module_pb.ReconfigureResourceRequest,
+  responseType: module_v1_module_pb.ReconfigureResourceResponse
 };
 
-ServoService.Stop = {
-  methodName: "Stop",
-  service: ServoService,
+ModuleService.RemoveResource = {
+  methodName: "RemoveResource",
+  service: ModuleService,
   requestStream: false,
   responseStream: false,
-  requestType: component_servo_v1_servo_pb.StopRequest,
-  responseType: component_servo_v1_servo_pb.StopResponse
+  requestType: module_v1_module_pb.RemoveResourceRequest,
+  responseType: module_v1_module_pb.RemoveResourceResponse
 };
 
-ServoService.IsMoving = {
-  methodName: "IsMoving",
-  service: ServoService,
+ModuleService.Ready = {
+  methodName: "Ready",
+  service: ModuleService,
   requestStream: false,
   responseStream: false,
-  requestType: component_servo_v1_servo_pb.IsMovingRequest,
-  responseType: component_servo_v1_servo_pb.IsMovingResponse
+  requestType: module_v1_module_pb.ReadyRequest,
+  responseType: module_v1_module_pb.ReadyResponse
 };
 
-exports.ServoService = ServoService;
+exports.ModuleService = ModuleService;
 
-function ServoServiceClient(serviceHost, options) {
+function ModuleServiceClient(serviceHost, options) {
   this.serviceHost = serviceHost;
   this.options = options || {};
 }
 
-ServoServiceClient.prototype.move = function move(requestMessage, metadata, callback) {
+ModuleServiceClient.prototype.addResource = function addResource(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ServoService.Move, {
+  var client = grpc.unary(ModuleService.AddResource, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -84,11 +84,11 @@ ServoServiceClient.prototype.move = function move(requestMessage, metadata, call
   };
 };
 
-ServoServiceClient.prototype.getPosition = function getPosition(requestMessage, metadata, callback) {
+ModuleServiceClient.prototype.reconfigureResource = function reconfigureResource(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ServoService.GetPosition, {
+  var client = grpc.unary(ModuleService.ReconfigureResource, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -115,11 +115,11 @@ ServoServiceClient.prototype.getPosition = function getPosition(requestMessage, 
   };
 };
 
-ServoServiceClient.prototype.stop = function stop(requestMessage, metadata, callback) {
+ModuleServiceClient.prototype.removeResource = function removeResource(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ServoService.Stop, {
+  var client = grpc.unary(ModuleService.RemoveResource, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -146,11 +146,11 @@ ServoServiceClient.prototype.stop = function stop(requestMessage, metadata, call
   };
 };
 
-ServoServiceClient.prototype.isMoving = function isMoving(requestMessage, metadata, callback) {
+ModuleServiceClient.prototype.ready = function ready(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ServoService.IsMoving, {
+  var client = grpc.unary(ModuleService.Ready, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -177,5 +177,5 @@ ServoServiceClient.prototype.isMoving = function isMoving(requestMessage, metada
   };
 };
 
-exports.ServoServiceClient = ServoServiceClient;
+exports.ModuleServiceClient = ModuleServiceClient;
 

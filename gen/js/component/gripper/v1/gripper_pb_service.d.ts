@@ -31,11 +31,21 @@ type GripperServiceStop = {
   readonly responseType: typeof component_gripper_v1_gripper_pb.StopResponse;
 };
 
+type GripperServiceIsMoving = {
+  readonly methodName: string;
+  readonly service: typeof GripperService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_gripper_v1_gripper_pb.IsMovingRequest;
+  readonly responseType: typeof component_gripper_v1_gripper_pb.IsMovingResponse;
+};
+
 export class GripperService {
   static readonly serviceName: string;
   static readonly Open: GripperServiceOpen;
   static readonly Grab: GripperServiceGrab;
   static readonly Stop: GripperServiceStop;
+  static readonly IsMoving: GripperServiceIsMoving;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -96,6 +106,15 @@ export class GripperServiceClient {
   stop(
     requestMessage: component_gripper_v1_gripper_pb.StopRequest,
     callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.StopResponse|null) => void
+  ): UnaryResponse;
+  isMoving(
+    requestMessage: component_gripper_v1_gripper_pb.IsMovingRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.IsMovingResponse|null) => void
+  ): UnaryResponse;
+  isMoving(
+    requestMessage: component_gripper_v1_gripper_pb.IsMovingRequest,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.IsMovingResponse|null) => void
   ): UnaryResponse;
 }
 
