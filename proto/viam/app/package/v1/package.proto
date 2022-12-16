@@ -32,7 +32,7 @@ service PackageService {
   // ListPackages get the URLs and metadata for requested packages. Include package name, version, and/or type to filter beyond the required organization_id.
   rpc ListPackages(ListPackagesRequest) returns (ListPackagesResponse) {
     option (google.api.http) = {
-      get: "/viam/app/package/v1/list"
+      get: "/viam/app/package/v1/packages"
     };
   }
 }
@@ -60,7 +60,8 @@ message PackageInfo {
 message CreatePackageRequest {
   oneof package {
     PackageInfo info = 1;
-    bytes contents = 2; // .tar.gz file
+    // .tar.gz file
+    bytes contents = 2;
   }
 }
 
@@ -73,22 +74,23 @@ message DeletePackageRequest {
 }
 
 message DeletePackageResponse {
-  int64 deleted_count = 1; // Number of versions deleted
+  // Number of versions deleted
+  int64 deleted_count = 1;
 }
 
 message Package {
   PackageInfo info = 1;
-  string url = 2;
+  string uri = 2;
 }
 
 message GetPackageRequest {
   string organization_id = 1;
-  optional string name = 2;
-  optional string version = 3;
+  string name = 2;
+  string version = 3;
 }
 
 message GetPackageResponse {
-  repeated Package packages = 1;
+  Package package = 1;
 }
 
 message ListPackagesRequest {

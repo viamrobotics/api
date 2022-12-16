@@ -251,7 +251,7 @@ func RegisterPackageServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.package.v1.PackageService/ListPackages", runtime.WithHTTPPathPattern("/viam/app/package/v1/list"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.package.v1.PackageService/ListPackages", runtime.WithHTTPPathPattern("/viam/app/package/v1/packages"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -377,7 +377,7 @@ func RegisterPackageServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.package.v1.PackageService/ListPackages", runtime.WithHTTPPathPattern("/viam/app/package/v1/list"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.package.v1.PackageService/ListPackages", runtime.WithHTTPPathPattern("/viam/app/package/v1/packages"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -403,7 +403,7 @@ var (
 
 	pattern_PackageService_GetPackage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 2}, []string{"viam", "app", "package", "v1"}, ""))
 
-	pattern_PackageService_ListPackages_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"viam", "app", "package", "v1", "list"}, ""))
+	pattern_PackageService_ListPackages_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"viam", "app", "package", "v1", "packages"}, ""))
 )
 
 var (

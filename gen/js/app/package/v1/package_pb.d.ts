@@ -182,8 +182,8 @@ export class Package extends jspb.Message {
   getInfo(): PackageInfo | undefined;
   setInfo(value?: PackageInfo): void;
 
-  getUrl(): string;
-  setUrl(value: string): void;
+  getUri(): string;
+  setUri(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Package.AsObject;
@@ -198,7 +198,7 @@ export class Package extends jspb.Message {
 export namespace Package {
   export type AsObject = {
     info?: PackageInfo.AsObject,
-    url: string,
+    uri: string,
   }
 }
 
@@ -206,13 +206,9 @@ export class GetPackageRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
-  hasName(): boolean;
-  clearName(): void;
   getName(): string;
   setName(value: string): void;
 
-  hasVersion(): boolean;
-  clearVersion(): void;
   getVersion(): string;
   setVersion(value: string): void;
 
@@ -235,10 +231,10 @@ export namespace GetPackageRequest {
 }
 
 export class GetPackageResponse extends jspb.Message {
-  clearPackagesList(): void;
-  getPackagesList(): Array<Package>;
-  setPackagesList(value: Array<Package>): void;
-  addPackages(value?: Package, index?: number): Package;
+  hasPackage(): boolean;
+  clearPackage(): void;
+  getPackage(): Package | undefined;
+  setPackage(value?: Package): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPackageResponse.AsObject;
@@ -252,7 +248,7 @@ export class GetPackageResponse extends jspb.Message {
 
 export namespace GetPackageResponse {
   export type AsObject = {
-    packagesList: Array<Package.AsObject>,
+    pb_package?: Package.AsObject,
   }
 }
 

@@ -211,7 +211,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.package.v1.GetPackageResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.package.v1.GetPackageResponse.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.viam.app.package.v1.GetPackageResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1483,7 +1483,7 @@ proto.viam.app.package.v1.Package.prototype.toObject = function(opt_includeInsta
 proto.viam.app.package.v1.Package.toObject = function(includeInstance, msg) {
   var f, obj = {
     info: (f = msg.getInfo()) && proto.viam.app.package.v1.PackageInfo.toObject(includeInstance, f),
-    url: jspb.Message.getFieldWithDefault(msg, 2, "")
+    uri: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1527,7 +1527,7 @@ proto.viam.app.package.v1.Package.deserializeBinaryFromReader = function(msg, re
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUrl(value);
+      msg.setUri(value);
       break;
     default:
       reader.skipField();
@@ -1566,7 +1566,7 @@ proto.viam.app.package.v1.Package.serializeBinaryToWriter = function(message, wr
       proto.viam.app.package.v1.PackageInfo.serializeBinaryToWriter
     );
   }
-  f = message.getUrl();
+  f = message.getUri();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -1614,10 +1614,10 @@ proto.viam.app.package.v1.Package.prototype.hasInfo = function() {
 
 
 /**
- * optional string url = 2;
+ * optional string uri = 2;
  * @return {string}
  */
-proto.viam.app.package.v1.Package.prototype.getUrl = function() {
+proto.viam.app.package.v1.Package.prototype.getUri = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -1626,7 +1626,7 @@ proto.viam.app.package.v1.Package.prototype.getUrl = function() {
  * @param {string} value
  * @return {!proto.viam.app.package.v1.Package} returns this
  */
-proto.viam.app.package.v1.Package.prototype.setUrl = function(value) {
+proto.viam.app.package.v1.Package.prototype.setUri = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -1750,15 +1750,15 @@ proto.viam.app.package.v1.GetPackageRequest.serializeBinaryToWriter = function(m
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 2));
-  if (f != null) {
+  f = message.getName();
+  if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 3));
-  if (f != null) {
+  f = message.getVersion();
+  if (f.length > 0) {
     writer.writeString(
       3,
       f
@@ -1799,25 +1799,7 @@ proto.viam.app.package.v1.GetPackageRequest.prototype.getName = function() {
  * @return {!proto.viam.app.package.v1.GetPackageRequest} returns this
  */
 proto.viam.app.package.v1.GetPackageRequest.prototype.setName = function(value) {
-  return jspb.Message.setField(this, 2, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.viam.app.package.v1.GetPackageRequest} returns this
- */
-proto.viam.app.package.v1.GetPackageRequest.prototype.clearName = function() {
-  return jspb.Message.setField(this, 2, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.package.v1.GetPackageRequest.prototype.hasName = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1835,35 +1817,10 @@ proto.viam.app.package.v1.GetPackageRequest.prototype.getVersion = function() {
  * @return {!proto.viam.app.package.v1.GetPackageRequest} returns this
  */
 proto.viam.app.package.v1.GetPackageRequest.prototype.setVersion = function(value) {
-  return jspb.Message.setField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
-/**
- * Clears the field making it undefined.
- * @return {!proto.viam.app.package.v1.GetPackageRequest} returns this
- */
-proto.viam.app.package.v1.GetPackageRequest.prototype.clearVersion = function() {
-  return jspb.Message.setField(this, 3, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.package.v1.GetPackageRequest.prototype.hasVersion = function() {
-  return jspb.Message.getField(this, 3) != null;
-};
-
-
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.viam.app.package.v1.GetPackageResponse.repeatedFields_ = [1];
 
 
 
@@ -1896,8 +1853,7 @@ proto.viam.app.package.v1.GetPackageResponse.prototype.toObject = function(opt_i
  */
 proto.viam.app.package.v1.GetPackageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    packagesList: jspb.Message.toObjectList(msg.getPackagesList(),
-    proto.viam.app.package.v1.Package.toObject, includeInstance)
+    pb_package: (f = msg.getPackage()) && proto.viam.app.package.v1.Package.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1937,7 +1893,7 @@ proto.viam.app.package.v1.GetPackageResponse.deserializeBinaryFromReader = funct
     case 1:
       var value = new proto.viam.app.package.v1.Package;
       reader.readMessage(value,proto.viam.app.package.v1.Package.deserializeBinaryFromReader);
-      msg.addPackages(value);
+      msg.setPackage(value);
       break;
     default:
       reader.skipField();
@@ -1968,9 +1924,9 @@ proto.viam.app.package.v1.GetPackageResponse.prototype.serializeBinary = functio
  */
 proto.viam.app.package.v1.GetPackageResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getPackagesList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
+  f = message.getPackage();
+  if (f != null) {
+    writer.writeMessage(
       1,
       f,
       proto.viam.app.package.v1.Package.serializeBinaryToWriter
@@ -1980,40 +1936,39 @@ proto.viam.app.package.v1.GetPackageResponse.serializeBinaryToWriter = function(
 
 
 /**
- * repeated Package packages = 1;
- * @return {!Array<!proto.viam.app.package.v1.Package>}
+ * optional Package package = 1;
+ * @return {?proto.viam.app.package.v1.Package}
  */
-proto.viam.app.package.v1.GetPackageResponse.prototype.getPackagesList = function() {
-  return /** @type{!Array<!proto.viam.app.package.v1.Package>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.package.v1.Package, 1));
+proto.viam.app.package.v1.GetPackageResponse.prototype.getPackage = function() {
+  return /** @type{?proto.viam.app.package.v1.Package} */ (
+    jspb.Message.getWrapperField(this, proto.viam.app.package.v1.Package, 1));
 };
 
 
 /**
- * @param {!Array<!proto.viam.app.package.v1.Package>} value
+ * @param {?proto.viam.app.package.v1.Package|undefined} value
  * @return {!proto.viam.app.package.v1.GetPackageResponse} returns this
 */
-proto.viam.app.package.v1.GetPackageResponse.prototype.setPackagesList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+proto.viam.app.package.v1.GetPackageResponse.prototype.setPackage = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.viam.app.package.v1.Package=} opt_value
- * @param {number=} opt_index
- * @return {!proto.viam.app.package.v1.Package}
- */
-proto.viam.app.package.v1.GetPackageResponse.prototype.addPackages = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.app.package.v1.Package, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
+ * Clears the message field making it undefined.
  * @return {!proto.viam.app.package.v1.GetPackageResponse} returns this
  */
-proto.viam.app.package.v1.GetPackageResponse.prototype.clearPackagesList = function() {
-  return this.setPackagesList([]);
+proto.viam.app.package.v1.GetPackageResponse.prototype.clearPackage = function() {
+  return this.setPackage(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.package.v1.GetPackageResponse.prototype.hasPackage = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
