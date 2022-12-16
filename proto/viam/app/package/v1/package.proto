@@ -11,28 +11,28 @@ service PackageService {
   // CreatePackage uploads a package to the cloud
   rpc CreatePackage(stream CreatePackageRequest) returns (CreatePackageResponse) {
     option (google.api.http) = {
-      post: "/viam/app/package/v1/create"
+      post: "/package/v1/create"
     };
   }
 
   // DeletePackage removes the given package versions
   rpc DeletePackage(DeletePackageRequest) returns (DeletePackageResponse) {
     option (google.api.http) = {
-      delete: "/viam/app/package/v1/delete"
+      delete: "/package/v1/delete"
     };
   }
 
   // // GetPackage returns the URL and metadata for a requested package version
   rpc GetPackage(GetPackageRequest) returns (GetPackageResponse) {
     option (google.api.http) = {
-      get: "/viam/app/package/v1/get"
+      get: "/package/v1/get"
     };
   }
 
   // ListPackages get the URLs and metadata for requested packages. Include package name, version, and/or type to filter beyond the required organization_id.
   rpc ListPackages(ListPackagesRequest) returns (ListPackagesResponse) {
     option (google.api.http) = {
-      get: "/viam/app/package/v1/list"
+      get: "/package/v1/list"
     };
   }
 }
