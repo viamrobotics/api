@@ -38,6 +38,8 @@ type DataServiceClient interface {
 	RemoveTagsFromBinaryDataByFileIDs(ctx context.Context, in *RemoveTagsFromBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFileIDsResponse, error)
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(ctx context.Context, in *RemoveTagsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFilterResponse, error)
+	// TagsByFilter gets all unique tags from data based on given filter.
+	TagsByFilter(ctx context.Context, in *TagsByFilterRequest, opts ...grpc.CallOption) (*TagsByFilterResponse, error)
 }
 
 type dataServiceClient struct {
@@ -138,6 +140,15 @@ func (c *dataServiceClient) RemoveTagsFromBinaryDataByFilter(ctx context.Context
 	return out, nil
 }
 
+func (c *dataServiceClient) TagsByFilter(ctx context.Context, in *TagsByFilterRequest, opts ...grpc.CallOption) (*TagsByFilterResponse, error) {
+	out := new(TagsByFilterResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/TagsByFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -162,6 +173,8 @@ type DataServiceServer interface {
 	RemoveTagsFromBinaryDataByFileIDs(context.Context, *RemoveTagsFromBinaryDataByFileIDsRequest) (*RemoveTagsFromBinaryDataByFileIDsResponse, error)
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(context.Context, *RemoveTagsFromBinaryDataByFilterRequest) (*RemoveTagsFromBinaryDataByFilterResponse, error)
+	// TagsByFilter gets all unique tags from data based on given filter.
+	TagsByFilter(context.Context, *TagsByFilterRequest) (*TagsByFilterResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -198,6 +211,9 @@ func (UnimplementedDataServiceServer) RemoveTagsFromBinaryDataByFileIDs(context.
 }
 func (UnimplementedDataServiceServer) RemoveTagsFromBinaryDataByFilter(context.Context, *RemoveTagsFromBinaryDataByFilterRequest) (*RemoveTagsFromBinaryDataByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveTagsFromBinaryDataByFilter not implemented")
+}
+func (UnimplementedDataServiceServer) TagsByFilter(context.Context, *TagsByFilterRequest) (*TagsByFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TagsByFilter not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -392,6 +408,24 @@ func _DataService_RemoveTagsFromBinaryDataByFilter_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_TagsByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TagsByFilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).TagsByFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/TagsByFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).TagsByFilter(ctx, req.(*TagsByFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -438,6 +472,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveTagsFromBinaryDataByFilter",
 			Handler:    _DataService_RemoveTagsFromBinaryDataByFilter_Handler,
+		},
+		{
+			MethodName: "TagsByFilter",
+			Handler:    _DataService_TagsByFilter_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

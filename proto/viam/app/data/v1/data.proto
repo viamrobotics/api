@@ -39,6 +39,9 @@ service DataService {
 
   // RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
   rpc RemoveTagsFromBinaryDataByFilter(RemoveTagsFromBinaryDataByFilterRequest) returns (RemoveTagsFromBinaryDataByFilterResponse);
+
+  // TagsByFilter gets all unique tags from data based on given filter.
+  rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse);
 }
 
 enum Order {
@@ -255,4 +258,14 @@ message RemoveTagsFromBinaryDataByFilterRequest {
 // RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed
 message RemoveTagsFromBinaryDataByFilterResponse {
   uint64 deleted_count = 1;
+}
+
+// TagsByFilterRequest requests the unique tags from data based on given filter
+message TagsByFilterRequest {
+  Filter filter = 1;
+}
+
+// TagsByFilterResponse returns the unique tags from data based on given filter
+message TagsByFilterResponse {
+  repeated string tags = 1;
 }
