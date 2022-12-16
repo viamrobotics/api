@@ -18,13 +18,13 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PackageServiceClient interface {
-	// CreatePackage uploads a package's contents and information to the cloud
+	// CreatePackage uploads a package to the cloud
 	CreatePackage(ctx context.Context, opts ...grpc.CallOption) (PackageService_CreatePackageClient, error)
-	// DeletePackage receives an authenticated request with the package name and array of versions and removes the associated packages
+	// DeletePackage removes the given package versions
 	DeletePackage(ctx context.Context, in *DeletePackageRequest, opts ...grpc.CallOption) (*DeletePackageResponse, error)
-	// GetPackages receives an authenticated request with the package name and version and, if present, generates returns the URL and metadata
+	// // GetPackage returns the URL and metadata for a requested package version
 	GetPackage(ctx context.Context, in *GetPackageRequest, opts ...grpc.CallOption) (*GetPackageResponse, error)
-	// ListPackages receives an authenticated request with the organization ID and other optional fields and, if present, generates returns the URL and metadata of all associated packages
+	// ListPackages get the URLs and metadata for requested packages. Include package name, version, and/or type to filter beyond the required organization_id.
 	ListPackages(ctx context.Context, in *ListPackagesRequest, opts ...grpc.CallOption) (*ListPackagesResponse, error)
 }
 
@@ -101,13 +101,13 @@ func (c *packageServiceClient) ListPackages(ctx context.Context, in *ListPackage
 // All implementations must embed UnimplementedPackageServiceServer
 // for forward compatibility
 type PackageServiceServer interface {
-	// CreatePackage uploads a package's contents and information to the cloud
+	// CreatePackage uploads a package to the cloud
 	CreatePackage(PackageService_CreatePackageServer) error
-	// DeletePackage receives an authenticated request with the package name and array of versions and removes the associated packages
+	// DeletePackage removes the given package versions
 	DeletePackage(context.Context, *DeletePackageRequest) (*DeletePackageResponse, error)
-	// GetPackages receives an authenticated request with the package name and version and, if present, generates returns the URL and metadata
+	// // GetPackage returns the URL and metadata for a requested package version
 	GetPackage(context.Context, *GetPackageRequest) (*GetPackageResponse, error)
-	// ListPackages receives an authenticated request with the organization ID and other optional fields and, if present, generates returns the URL and metadata of all associated packages
+	// ListPackages get the URLs and metadata for requested packages. Include package name, version, and/or type to filter beyond the required organization_id.
 	ListPackages(context.Context, *ListPackagesRequest) (*ListPackagesResponse, error)
 	mustEmbedUnimplementedPackageServiceServer()
 }

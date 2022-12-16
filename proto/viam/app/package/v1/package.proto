@@ -8,38 +8,38 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/app/package/v1";
 
 service PackageService {
-  // CreatePackage uploads a package's contents and information to the cloud
+  // CreatePackage uploads a package to the cloud
   rpc CreatePackage(stream CreatePackageRequest) returns (CreatePackageResponse) {
     option (google.api.http) = {
-      post: "/viam/api/v1/service/datamanagement/create"
+      post: "/viam/app/package/v1/create"
     };
   }
 
-  // DeletePackage receives an authenticated request with the package name and array of versions and removes the associated packages
+  // DeletePackage removes the given package versions
   rpc DeletePackage(DeletePackageRequest) returns (DeletePackageResponse) {
     option (google.api.http) = {
-      delete: "/viam/api/v1/service/datamanagement/{organization_id}/delete"
+      delete: "/viam/app/package/v1/delete"
     };
   }
 
-  // GetPackages receives an authenticated request with the package name and version and, if present, generates returns the URL and metadata
+  // // GetPackage returns the URL and metadata for a requested package version
   rpc GetPackage(GetPackageRequest) returns (GetPackageResponse) {
     option (google.api.http) = {
-      get: "/viam/api/v1/service/datamanagement/{organization_id}/package"
+      get: "/viam/app/package/v1/package"
     };
   }
 
-  // ListPackages receives an authenticated request with the organization ID and other optional fields and, if present, generates returns the URL and metadata of all associated packages
+  // ListPackages get the URLs and metadata for requested packages. Include package name, version, and/or type to filter beyond the required organization_id.
   rpc ListPackages(ListPackagesRequest) returns (ListPackagesResponse) {
     option (google.api.http) = {
-      get: "/viam/api/v1/service/datamanagement/{organization_id}/list"
+      get: "/viam/app/package/v1/list"
     };
   }
 }
 
 enum PackageType {
   PACKAGE_TYPE_UNSPECIFIED = 0;
-  PACKAGE_TYPE_FILE = 1;
+  PACKAGE_TYPE_ARCHIVE = 1;
   PACKAGE_TYPE_ML_MODEL = 2;
 }
 
@@ -60,7 +60,7 @@ message PackageInfo {
 message CreatePackageRequest {
   oneof package {
     PackageInfo info = 1;
-    bytes contents = 2; // .tar.gz file with a limit of 50GB
+    bytes contents = 2; // .tar.gz file
   }
 }
 
@@ -92,10 +92,10 @@ message GetPackageResponse {
 }
 
 message ListPackagesRequest {
-  string organization_id = 1; // If only organization_id is specified, get all packages for an organization. Used in app.
+  string organization_id = 1;
   optional string name = 2;
   optional string version = 3;
-  optional PackageType type = 4; // Can specify only getting ML_MODEL packages. Defaults to all types if undefined.
+  optional PackageType type = 4;
 }
 
 message ListPackagesResponse {

@@ -318,7 +318,7 @@ export namespace ListPackagesResponse {
 
 export interface PackageTypeMap {
   PACKAGE_TYPE_UNSPECIFIED: 0;
-  PACKAGE_TYPE_FILE: 1;
+  PACKAGE_TYPE_ARCHIVE: 1;
   PACKAGE_TYPE_ML_MODEL: 2;
 }
 

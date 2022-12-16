@@ -2456,7 +2456,7 @@ proto.viam.app.package.v1.ListPackagesResponse.prototype.clearPackagesList = fun
  */
 proto.viam.app.package.v1.PackageType = {
   PACKAGE_TYPE_UNSPECIFIED: 0,
-  PACKAGE_TYPE_FILE: 1,
+  PACKAGE_TYPE_ARCHIVE: 1,
   PACKAGE_TYPE_ML_MODEL: 2
 };
 
