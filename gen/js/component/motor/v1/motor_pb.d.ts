@@ -386,9 +386,6 @@ export class Status extends jspb.Message {
   getIsPowered(): boolean;
   setIsPowered(value: boolean): void;
 
-  getPositionReporting(): boolean;
-  setPositionReporting(value: boolean): void;
-
   getPosition(): number;
   setPosition(value: number): void;
 
@@ -408,7 +405,6 @@ export class Status extends jspb.Message {
 export namespace Status {
   export type AsObject = {
     isPowered: boolean,
-    positionReporting: boolean,
     position: number,
     isMoving: boolean,
   }
