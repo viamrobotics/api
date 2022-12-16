@@ -1120,14 +1120,6 @@ export class ModuleConfig extends jspb.Message {
   getPath(): string;
   setPath(value: string): void;
 
-  getType(): string;
-  setType(value: string): void;
-
-  clearModelsList(): void;
-  getModelsList(): Array<string>;
-  setModelsList(value: Array<string>): void;
-  addModels(value: string, index?: number): string;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
@@ -1142,8 +1134,6 @@ export namespace ModuleConfig {
   export type AsObject = {
     name: string,
     path: string,
-    type: string,
-    modelsList: Array<string>,
   }
 }
 

@@ -311,9 +311,9 @@ message NeedsRestartResponse {
   google.protobuf.Duration restart_check_interval = 3;
 }
 
+// ModuleConfig is the configuration for a module.
 message ModuleConfig {
   string name = 1;
+  // path to the executable
   string path = 2;
-  string type = 3;
-  repeated string models = 4;
 }

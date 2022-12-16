@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ModuleServiceClient interface {
-	// AddResource tells a module about a new component to handle
+	// AddResource tells a module about a new resource to handle
 	AddResource(ctx context.Context, in *AddResourceRequest, opts ...grpc.CallOption) (*AddResourceResponse, error)
 	// ReconfigureResource tells a module to reconfigure an existing resource
 	ReconfigureResource(ctx context.Context, in *ReconfigureResourceRequest, opts ...grpc.CallOption) (*ReconfigureResourceResponse, error)
@@ -76,7 +76,7 @@ func (c *moduleServiceClient) Ready(ctx context.Context, in *ReadyRequest, opts 
 // All implementations must embed UnimplementedModuleServiceServer
 // for forward compatibility
 type ModuleServiceServer interface {
-	// AddResource tells a module about a new component to handle
+	// AddResource tells a module about a new resource to handle
 	AddResource(context.Context, *AddResourceRequest) (*AddResourceResponse, error)
 	// ReconfigureResource tells a module to reconfigure an existing resource
 	ReconfigureResource(context.Context, *ReconfigureResourceRequest) (*ReconfigureResourceResponse, error)

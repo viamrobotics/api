@@ -9,7 +9,7 @@ option go_package = "go.viam.com/api/module/v1";
 
 // ModuleService deals with modular resource registration
 service ModuleService {
-  // AddResource tells a module about a new component to handle
+  // AddResource tells a module about a new resource to handle
   rpc AddResource(AddResourceRequest) returns (AddResourceResponse);
 
   // ReconfigureResource tells a module to reconfigure an existing resource

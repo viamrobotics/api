@@ -765,7 +765,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.ModuleConfig = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.ModuleConfig.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.viam.app.v1.ModuleConfig, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -8698,13 +8698,6 @@ proto.viam.app.v1.NeedsRestartResponse.prototype.hasRestartCheckInterval = funct
 
 
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.viam.app.v1.ModuleConfig.repeatedFields_ = [4];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -8737,9 +8730,7 @@ proto.viam.app.v1.ModuleConfig.prototype.toObject = function(opt_includeInstance
 proto.viam.app.v1.ModuleConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    path: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    modelsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+    path: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -8784,14 +8775,6 @@ proto.viam.app.v1.ModuleConfig.deserializeBinaryFromReader = function(msg, reade
       var value = /** @type {string} */ (reader.readString());
       msg.setPath(value);
       break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setType(value);
-      break;
-    case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addModels(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -8835,20 +8818,6 @@ proto.viam.app.v1.ModuleConfig.serializeBinaryToWriter = function(message, write
       f
     );
   }
-  f = message.getType();
-  if (f.length > 0) {
-    writer.writeString(
-      3,
-      f
-    );
-  }
-  f = message.getModelsList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
-      4,
-      f
-    );
-  }
 };
 
 
@@ -8885,61 +8854,6 @@ proto.viam.app.v1.ModuleConfig.prototype.getPath = function() {
  */
 proto.viam.app.v1.ModuleConfig.prototype.setPath = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional string type = 3;
- * @return {string}
- */
-proto.viam.app.v1.ModuleConfig.prototype.getType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.v1.ModuleConfig} returns this
- */
-proto.viam.app.v1.ModuleConfig.prototype.setType = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
-};
-
-
-/**
- * repeated string models = 4;
- * @return {!Array<string>}
- */
-proto.viam.app.v1.ModuleConfig.prototype.getModelsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.viam.app.v1.ModuleConfig} returns this
- */
-proto.viam.app.v1.ModuleConfig.prototype.setModelsList = function(value) {
-  return jspb.Message.setField(this, 4, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.viam.app.v1.ModuleConfig} returns this
- */
-proto.viam.app.v1.ModuleConfig.prototype.addModels = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.viam.app.v1.ModuleConfig} returns this
- */
-proto.viam.app.v1.ModuleConfig.prototype.clearModelsList = function() {
-  return this.setModelsList([]);
 };
 
 
