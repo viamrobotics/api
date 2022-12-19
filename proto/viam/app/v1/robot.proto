@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.app.v1;
 
 import "app/v1/app.proto";
+import "common/v1/common.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "tagger/v1/tagger.proto";
@@ -34,6 +35,7 @@ message RobotConfig {
   optional AuthConfig auth = 7;
   // Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart
   optional bool debug = 8;
+  repeated ModuleConfig modules = 9;
 }
 
 // Valid location secret that can be used for authentication to the robot.
@@ -68,6 +70,7 @@ message ComponentConfig {
   repeated string depends_on = 6;
   repeated ResourceLevelServiceConfig service_configs = 7 [(tagger.v1.tags) = "json:\"service_config\""];
   google.protobuf.Struct attributes = 8;
+  string api = 9;
 }
 
 // A ResourceLevelServiceConfig describes component or remote configuration for a service.
@@ -108,15 +111,33 @@ message AuthConfig {
   repeated string tls_auth_entities = 2;
 }
 
+message JWKSFile {
+  // JSON Web Keys (JWKS) file as arbitary json.
+  // See https://www.rfc-editor.org/rfc/rfc7517
+  google.protobuf.Struct json = 1;
+}
+
+// Structured config for the credential type CREDENTIALS_TYPE_WEB_OAUTH
+message AuthHandlerWebOauthConfig {
+  // The allowed aud claims by the web oauth handler.
+  repeated string allowed_audiences = 1;
+  JWKSFile jwks = 2;
+}
+
 message AuthHandlerConfig {
   CredentialsType type = 1;
   google.protobuf.Struct config = 5;
+
+  // Structured config for CREDENTIALS_TYPE_WEB_OAUTH type.
+  // Note: When this is set the config field will be empty.
+  optional AuthHandlerWebOauthConfig web_oauth_config = 6;
 }
 
 message Frame {
   string parent = 1;
   Translation translation = 2;
   Orientation orientation = 3;
+  common.v1.Geometry geometry = 4;
 }
 
 message Translation {
@@ -243,6 +264,7 @@ enum CredentialsType {
   CREDENTIALS_TYPE_API_KEY = 2;
   CREDENTIALS_TYPE_ROBOT_SECRET = 3;
   CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET = 4;
+  CREDENTIALS_TYPE_WEB_OAUTH = 5;
 }
 
 message ConfigRequest {
@@ -287,4 +309,11 @@ message NeedsRestartResponse {
   string id = 1;
   bool must_restart = 2;
   google.protobuf.Duration restart_check_interval = 3;
+}
+
+// ModuleConfig is the configuration for a module.
+message ModuleConfig {
+  string name = 1;
+  // path to the executable
+  string path = 2;
 }

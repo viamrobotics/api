@@ -82,6 +82,15 @@ MotorService.IsPowered = {
   responseType: component_motor_v1_motor_pb.IsPoweredResponse
 };
 
+MotorService.IsMoving = {
+  methodName: "IsMoving",
+  service: MotorService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_motor_v1_motor_pb.IsMovingRequest,
+  responseType: component_motor_v1_motor_pb.IsMovingResponse
+};
+
 exports.MotorService = MotorService;
 
 function MotorServiceClient(serviceHost, options) {
@@ -311,6 +320,37 @@ MotorServiceClient.prototype.isPowered = function isPowered(requestMessage, meta
     callback = arguments[1];
   }
   var client = grpc.unary(MotorService.IsPowered, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MotorServiceClient.prototype.isMoving = function isMoving(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MotorService.IsMoving, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

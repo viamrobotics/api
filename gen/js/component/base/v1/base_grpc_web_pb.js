@@ -388,5 +388,66 @@ proto.viam.component.base.v1.BaseServicePromiseClient.prototype.stop =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.base.v1.IsMovingRequest,
+ *   !proto.viam.component.base.v1.IsMovingResponse>}
+ */
+const methodDescriptor_BaseService_IsMoving = new grpc.web.MethodDescriptor(
+  '/viam.component.base.v1.BaseService/IsMoving',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.base.v1.IsMovingRequest,
+  proto.viam.component.base.v1.IsMovingResponse,
+  /**
+   * @param {!proto.viam.component.base.v1.IsMovingRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.base.v1.IsMovingResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.base.v1.IsMovingRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.base.v1.IsMovingResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.base.v1.IsMovingResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.base.v1.BaseServiceClient.prototype.isMoving =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.base.v1.BaseService/IsMoving',
+      request,
+      metadata || {},
+      methodDescriptor_BaseService_IsMoving,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.base.v1.IsMovingRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.base.v1.IsMovingResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.base.v1.BaseServicePromiseClient.prototype.isMoving =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.base.v1.BaseService/IsMoving',
+      request,
+      metadata || {},
+      methodDescriptor_BaseService_IsMoving);
+};
+
+
 module.exports = proto.viam.component.base.v1;
 
