@@ -37,6 +37,15 @@ GripperService.Stop = {
   responseType: component_gripper_v1_gripper_pb.StopResponse
 };
 
+GripperService.IsMoving = {
+  methodName: "IsMoving",
+  service: GripperService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_gripper_v1_gripper_pb.IsMovingRequest,
+  responseType: component_gripper_v1_gripper_pb.IsMovingResponse
+};
+
 exports.GripperService = GripperService;
 
 function GripperServiceClient(serviceHost, options) {
@@ -111,6 +120,37 @@ GripperServiceClient.prototype.stop = function stop(requestMessage, metadata, ca
     callback = arguments[1];
   }
   var client = grpc.unary(GripperService.Stop, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+GripperServiceClient.prototype.isMoving = function isMoving(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(GripperService.IsMoving, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

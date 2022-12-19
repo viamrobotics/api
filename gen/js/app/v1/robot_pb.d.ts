@@ -49,6 +49,11 @@ export class RobotConfig extends jspb.Message {
   getDebug(): boolean;
   setDebug(value: boolean): void;
 
+  clearModulesList(): void;
+  getModulesList(): Array<ModuleConfig>;
+  setModulesList(value: Array<ModuleConfig>): void;
+  addModules(value?: ModuleConfig, index?: number): ModuleConfig;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -69,6 +74,7 @@ export namespace RobotConfig {
     network?: NetworkConfig.AsObject,
     auth?: AuthConfig.AsObject,
     debug: boolean,
+    modulesList: Array<ModuleConfig.AsObject>,
   }
 }
 
@@ -183,6 +189,9 @@ export class ComponentConfig extends jspb.Message {
   getAttributes(): google_protobuf_struct_pb.Struct | undefined;
   setAttributes(value?: google_protobuf_struct_pb.Struct): void;
 
+  getApi(): string;
+  setApi(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ComponentConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ComponentConfig): ComponentConfig.AsObject;
@@ -203,6 +212,7 @@ export namespace ComponentConfig {
     dependsOnList: Array<string>,
     serviceConfigsList: Array<ResourceLevelServiceConfig.AsObject>,
     attributes?: google_protobuf_struct_pb.Struct.AsObject,
+    api: string,
   }
 }
 
@@ -1100,6 +1110,30 @@ export namespace NeedsRestartResponse {
     id: string,
     mustRestart: boolean,
     restartCheckInterval?: google_protobuf_duration_pb.Duration.AsObject,
+  }
+}
+
+export class ModuleConfig extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getPath(): string;
+  setPath(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleConfig;
+  static deserializeBinaryFromReader(message: ModuleConfig, reader: jspb.BinaryReader): ModuleConfig;
+}
+
+export namespace ModuleConfig {
+  export type AsObject = {
+    name: string,
+    path: string,
   }
 }
 
