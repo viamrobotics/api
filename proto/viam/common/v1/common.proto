@@ -91,7 +91,7 @@ message RectangularPrism {
 message Geometry {
   // Pose of a gemetries center point
   common.v1.Pose center = 1;
-  // Deminsions of a give geometry. This can be a sphere or box
+  // Dimensions of a given geometry. This can be a sphere or box
   oneof geometry_type {
     Sphere sphere = 2;
     RectangularPrism box = 3;
@@ -131,6 +131,7 @@ message Transform {
   string reference_frame = 1;
   // the pose of the above reference frame with respect to a different observer reference frame
   PoseInFrame pose_in_observer_frame = 2;
+  optional Geometry physical_object = 3;
 }
 
 // WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,
@@ -139,10 +140,10 @@ message Transform {
 message WorldState {
   // a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
   repeated GeometriesInFrame obstacles = 1;
-  // a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured fom;
+  // a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
   // this field is optional
   repeated GeometriesInFrame interaction_spaces = 2;
-  // a list of Transforms needed to transform a pose from one reference frame to another; this field is optional
+  // a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional
   repeated Transform transforms = 3;
 }
 

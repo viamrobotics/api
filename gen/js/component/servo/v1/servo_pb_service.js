@@ -37,6 +37,15 @@ ServoService.Stop = {
   responseType: component_servo_v1_servo_pb.StopResponse
 };
 
+ServoService.IsMoving = {
+  methodName: "IsMoving",
+  service: ServoService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_servo_v1_servo_pb.IsMovingRequest,
+  responseType: component_servo_v1_servo_pb.IsMovingResponse
+};
+
 exports.ServoService = ServoService;
 
 function ServoServiceClient(serviceHost, options) {
@@ -111,6 +120,37 @@ ServoServiceClient.prototype.stop = function stop(requestMessage, metadata, call
     callback = arguments[1];
   }
   var client = grpc.unary(ServoService.Stop, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ServoServiceClient.prototype.isMoving = function isMoving(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ServoService.IsMoving, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

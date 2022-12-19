@@ -266,5 +266,66 @@ proto.viam.component.servo.v1.ServoServicePromiseClient.prototype.stop =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.servo.v1.IsMovingRequest,
+ *   !proto.viam.component.servo.v1.IsMovingResponse>}
+ */
+const methodDescriptor_ServoService_IsMoving = new grpc.web.MethodDescriptor(
+  '/viam.component.servo.v1.ServoService/IsMoving',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.servo.v1.IsMovingRequest,
+  proto.viam.component.servo.v1.IsMovingResponse,
+  /**
+   * @param {!proto.viam.component.servo.v1.IsMovingRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.servo.v1.IsMovingResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.servo.v1.IsMovingRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.servo.v1.IsMovingResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.servo.v1.IsMovingResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.servo.v1.ServoServiceClient.prototype.isMoving =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.servo.v1.ServoService/IsMoving',
+      request,
+      metadata || {},
+      methodDescriptor_ServoService_IsMoving,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.servo.v1.IsMovingRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.servo.v1.IsMovingResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.servo.v1.ServoServicePromiseClient.prototype.isMoving =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.servo.v1.ServoService/IsMoving',
+      request,
+      metadata || {},
+      methodDescriptor_ServoService_IsMoving);
+};
+
+
 module.exports = proto.viam.component.servo.v1;
 

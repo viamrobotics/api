@@ -49,6 +49,15 @@ type ArmServiceStop = {
   readonly responseType: typeof component_arm_v1_arm_pb.StopResponse;
 };
 
+type ArmServiceIsMoving = {
+  readonly methodName: string;
+  readonly service: typeof ArmService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_arm_v1_arm_pb.IsMovingRequest;
+  readonly responseType: typeof component_arm_v1_arm_pb.IsMovingResponse;
+};
+
 export class ArmService {
   static readonly serviceName: string;
   static readonly GetEndPosition: ArmServiceGetEndPosition;
@@ -56,6 +65,7 @@ export class ArmService {
   static readonly GetJointPositions: ArmServiceGetJointPositions;
   static readonly MoveToJointPositions: ArmServiceMoveToJointPositions;
   static readonly Stop: ArmServiceStop;
+  static readonly IsMoving: ArmServiceIsMoving;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -134,6 +144,15 @@ export class ArmServiceClient {
   stop(
     requestMessage: component_arm_v1_arm_pb.StopRequest,
     callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.StopResponse|null) => void
+  ): UnaryResponse;
+  isMoving(
+    requestMessage: component_arm_v1_arm_pb.IsMovingRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.IsMovingResponse|null) => void
+  ): UnaryResponse;
+  isMoving(
+    requestMessage: component_arm_v1_arm_pb.IsMovingRequest,
+    callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.IsMovingResponse|null) => void
   ): UnaryResponse;
 }
 

@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as app_v1_app_pb from "../../app/v1/app_pb";
+import * as common_v1_common_pb from "../../common/v1/common_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as tagger_v1_tagger_pb from "../../tagger/v1/tagger_pb";
@@ -48,6 +49,11 @@ export class RobotConfig extends jspb.Message {
   getDebug(): boolean;
   setDebug(value: boolean): void;
 
+  clearModulesList(): void;
+  getModulesList(): Array<ModuleConfig>;
+  setModulesList(value: Array<ModuleConfig>): void;
+  addModules(value?: ModuleConfig, index?: number): ModuleConfig;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -68,6 +74,7 @@ export namespace RobotConfig {
     network?: NetworkConfig.AsObject,
     auth?: AuthConfig.AsObject,
     debug: boolean,
+    modulesList: Array<ModuleConfig.AsObject>,
   }
 }
 
@@ -182,6 +189,9 @@ export class ComponentConfig extends jspb.Message {
   getAttributes(): google_protobuf_struct_pb.Struct | undefined;
   setAttributes(value?: google_protobuf_struct_pb.Struct): void;
 
+  getApi(): string;
+  setApi(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ComponentConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ComponentConfig): ComponentConfig.AsObject;
@@ -202,6 +212,7 @@ export namespace ComponentConfig {
     dependsOnList: Array<string>,
     serviceConfigsList: Array<ResourceLevelServiceConfig.AsObject>,
     attributes?: google_protobuf_struct_pb.Struct.AsObject,
+    api: string,
   }
 }
 
@@ -377,6 +388,56 @@ export namespace AuthConfig {
   }
 }
 
+export class JWKSFile extends jspb.Message {
+  hasJson(): boolean;
+  clearJson(): void;
+  getJson(): google_protobuf_struct_pb.Struct | undefined;
+  setJson(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): JWKSFile.AsObject;
+  static toObject(includeInstance: boolean, msg: JWKSFile): JWKSFile.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: JWKSFile, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): JWKSFile;
+  static deserializeBinaryFromReader(message: JWKSFile, reader: jspb.BinaryReader): JWKSFile;
+}
+
+export namespace JWKSFile {
+  export type AsObject = {
+    json?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class AuthHandlerWebOauthConfig extends jspb.Message {
+  clearAllowedAudiencesList(): void;
+  getAllowedAudiencesList(): Array<string>;
+  setAllowedAudiencesList(value: Array<string>): void;
+  addAllowedAudiences(value: string, index?: number): string;
+
+  hasJwks(): boolean;
+  clearJwks(): void;
+  getJwks(): JWKSFile | undefined;
+  setJwks(value?: JWKSFile): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AuthHandlerWebOauthConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: AuthHandlerWebOauthConfig): AuthHandlerWebOauthConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AuthHandlerWebOauthConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AuthHandlerWebOauthConfig;
+  static deserializeBinaryFromReader(message: AuthHandlerWebOauthConfig, reader: jspb.BinaryReader): AuthHandlerWebOauthConfig;
+}
+
+export namespace AuthHandlerWebOauthConfig {
+  export type AsObject = {
+    allowedAudiencesList: Array<string>,
+    jwks?: JWKSFile.AsObject,
+  }
+}
+
 export class AuthHandlerConfig extends jspb.Message {
   getType(): CredentialsTypeMap[keyof CredentialsTypeMap];
   setType(value: CredentialsTypeMap[keyof CredentialsTypeMap]): void;
@@ -385,6 +446,11 @@ export class AuthHandlerConfig extends jspb.Message {
   clearConfig(): void;
   getConfig(): google_protobuf_struct_pb.Struct | undefined;
   setConfig(value?: google_protobuf_struct_pb.Struct): void;
+
+  hasWebOauthConfig(): boolean;
+  clearWebOauthConfig(): void;
+  getWebOauthConfig(): AuthHandlerWebOauthConfig | undefined;
+  setWebOauthConfig(value?: AuthHandlerWebOauthConfig): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AuthHandlerConfig.AsObject;
@@ -400,6 +466,7 @@ export namespace AuthHandlerConfig {
   export type AsObject = {
     type: CredentialsTypeMap[keyof CredentialsTypeMap],
     config?: google_protobuf_struct_pb.Struct.AsObject,
+    webOauthConfig?: AuthHandlerWebOauthConfig.AsObject,
   }
 }
 
@@ -417,6 +484,11 @@ export class Frame extends jspb.Message {
   getOrientation(): Orientation | undefined;
   setOrientation(value?: Orientation): void;
 
+  hasGeometry(): boolean;
+  clearGeometry(): void;
+  getGeometry(): common_v1_common_pb.Geometry | undefined;
+  setGeometry(value?: common_v1_common_pb.Geometry): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Frame.AsObject;
   static toObject(includeInstance: boolean, msg: Frame): Frame.AsObject;
@@ -432,6 +504,7 @@ export namespace Frame {
     parent: string,
     translation?: Translation.AsObject,
     orientation?: Orientation.AsObject,
+    geometry?: common_v1_common_pb.Geometry.AsObject,
   }
 }
 
@@ -1040,12 +1113,37 @@ export namespace NeedsRestartResponse {
   }
 }
 
+export class ModuleConfig extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getPath(): string;
+  setPath(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleConfig;
+  static deserializeBinaryFromReader(message: ModuleConfig, reader: jspb.BinaryReader): ModuleConfig;
+}
+
+export namespace ModuleConfig {
+  export type AsObject = {
+    name: string,
+    path: string,
+  }
+}
+
 export interface CredentialsTypeMap {
   CREDENTIALS_TYPE_UNSPECIFIED: 0;
   CREDENTIALS_TYPE_INTERNAL: 1;
   CREDENTIALS_TYPE_API_KEY: 2;
   CREDENTIALS_TYPE_ROBOT_SECRET: 3;
   CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET: 4;
+  CREDENTIALS_TYPE_WEB_OAUTH: 5;
 }
 
 export const CredentialsType: CredentialsTypeMap;

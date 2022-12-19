@@ -40,12 +40,22 @@ type GantryServiceStop = {
   readonly responseType: typeof component_gantry_v1_gantry_pb.StopResponse;
 };
 
+type GantryServiceIsMoving = {
+  readonly methodName: string;
+  readonly service: typeof GantryService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_gantry_v1_gantry_pb.IsMovingRequest;
+  readonly responseType: typeof component_gantry_v1_gantry_pb.IsMovingResponse;
+};
+
 export class GantryService {
   static readonly serviceName: string;
   static readonly GetPosition: GantryServiceGetPosition;
   static readonly MoveToPosition: GantryServiceMoveToPosition;
   static readonly GetLengths: GantryServiceGetLengths;
   static readonly Stop: GantryServiceStop;
+  static readonly IsMoving: GantryServiceIsMoving;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -115,6 +125,15 @@ export class GantryServiceClient {
   stop(
     requestMessage: component_gantry_v1_gantry_pb.StopRequest,
     callback: (error: ServiceError|null, responseMessage: component_gantry_v1_gantry_pb.StopResponse|null) => void
+  ): UnaryResponse;
+  isMoving(
+    requestMessage: component_gantry_v1_gantry_pb.IsMovingRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_gantry_v1_gantry_pb.IsMovingResponse|null) => void
+  ): UnaryResponse;
+  isMoving(
+    requestMessage: component_gantry_v1_gantry_pb.IsMovingRequest,
+    callback: (error: ServiceError|null, responseMessage: component_gantry_v1_gantry_pb.IsMovingResponse|null) => void
   ): UnaryResponse;
 }
 

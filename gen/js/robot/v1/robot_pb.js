@@ -872,9 +872,8 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.toObject = function(opt_includeI
  */
 proto.viam.robot.v1.FrameSystemConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    poseInParentFrame: (f = msg.getPoseInParentFrame()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f),
-    modelJson: msg.getModelJson_asB64()
+    frame: (f = msg.getFrame()) && common_v1_common_pb.Transform.toObject(includeInstance, f),
+    kinematics: (f = msg.getKinematics()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -912,17 +911,14 @@ proto.viam.robot.v1.FrameSystemConfig.deserializeBinaryFromReader = function(msg
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
+      var value = new common_v1_common_pb.Transform;
+      reader.readMessage(value,common_v1_common_pb.Transform.deserializeBinaryFromReader);
+      msg.setFrame(value);
       break;
     case 2:
-      var value = new common_v1_common_pb.PoseInFrame;
-      reader.readMessage(value,common_v1_common_pb.PoseInFrame.deserializeBinaryFromReader);
-      msg.setPoseInParentFrame(value);
-      break;
-    case 3:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setModelJson(value);
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setKinematics(value);
       break;
     default:
       reader.skipField();
@@ -953,64 +949,77 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.serializeBinary = function() {
  */
 proto.viam.robot.v1.FrameSystemConfig.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getName();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getFrame();
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      common_v1_common_pb.Transform.serializeBinaryToWriter
     );
   }
-  f = message.getPoseInParentFrame();
+  f = message.getKinematics();
   if (f != null) {
     writer.writeMessage(
       2,
       f,
-      common_v1_common_pb.PoseInFrame.serializeBinaryToWriter
-    );
-  }
-  f = message.getModelJson_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      3,
-      f
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional string name = 1;
- * @return {string}
+ * optional viam.common.v1.Transform frame = 1;
+ * @return {?proto.viam.common.v1.Transform}
  */
-proto.viam.robot.v1.FrameSystemConfig.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.viam.robot.v1.FrameSystemConfig.prototype.getFrame = function() {
+  return /** @type{?proto.viam.common.v1.Transform} */ (
+    jspb.Message.getWrapperField(this, common_v1_common_pb.Transform, 1));
 };
 
 
 /**
- * @param {string} value
- * @return {!proto.viam.robot.v1.FrameSystemConfig} returns this
- */
-proto.viam.robot.v1.FrameSystemConfig.prototype.setName = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional viam.common.v1.PoseInFrame pose_in_parent_frame = 2;
- * @return {?proto.viam.common.v1.PoseInFrame}
- */
-proto.viam.robot.v1.FrameSystemConfig.prototype.getPoseInParentFrame = function() {
-  return /** @type{?proto.viam.common.v1.PoseInFrame} */ (
-    jspb.Message.getWrapperField(this, common_v1_common_pb.PoseInFrame, 2));
-};
-
-
-/**
- * @param {?proto.viam.common.v1.PoseInFrame|undefined} value
+ * @param {?proto.viam.common.v1.Transform|undefined} value
  * @return {!proto.viam.robot.v1.FrameSystemConfig} returns this
 */
-proto.viam.robot.v1.FrameSystemConfig.prototype.setPoseInParentFrame = function(value) {
+proto.viam.robot.v1.FrameSystemConfig.prototype.setFrame = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.robot.v1.FrameSystemConfig} returns this
+ */
+proto.viam.robot.v1.FrameSystemConfig.prototype.clearFrame = function() {
+  return this.setFrame(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.robot.v1.FrameSystemConfig.prototype.hasFrame = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional google.protobuf.Struct kinematics = 2;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.robot.v1.FrameSystemConfig.prototype.getKinematics = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.robot.v1.FrameSystemConfig} returns this
+*/
+proto.viam.robot.v1.FrameSystemConfig.prototype.setKinematics = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -1019,8 +1028,8 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.setPoseInParentFrame = function(
  * Clears the message field making it undefined.
  * @return {!proto.viam.robot.v1.FrameSystemConfig} returns this
  */
-proto.viam.robot.v1.FrameSystemConfig.prototype.clearPoseInParentFrame = function() {
-  return this.setPoseInParentFrame(undefined);
+proto.viam.robot.v1.FrameSystemConfig.prototype.clearKinematics = function() {
+  return this.setKinematics(undefined);
 };
 
 
@@ -1028,50 +1037,8 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.clearPoseInParentFrame = functio
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.FrameSystemConfig.prototype.hasPoseInParentFrame = function() {
+proto.viam.robot.v1.FrameSystemConfig.prototype.hasKinematics = function() {
   return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional bytes model_json = 3;
- * @return {string}
- */
-proto.viam.robot.v1.FrameSystemConfig.prototype.getModelJson = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * optional bytes model_json = 3;
- * This is a type-conversion wrapper around `getModelJson()`
- * @return {string}
- */
-proto.viam.robot.v1.FrameSystemConfig.prototype.getModelJson_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getModelJson()));
-};
-
-
-/**
- * optional bytes model_json = 3;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getModelJson()`
- * @return {!Uint8Array}
- */
-proto.viam.robot.v1.FrameSystemConfig.prototype.getModelJson_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getModelJson()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.viam.robot.v1.FrameSystemConfig} returns this
- */
-proto.viam.robot.v1.FrameSystemConfig.prototype.setModelJson = function(value) {
-  return jspb.Message.setProto3BytesField(this, 3, value);
 };
 
 

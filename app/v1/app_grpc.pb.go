@@ -21,6 +21,10 @@ type AppServiceClient interface {
 	CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error)
 	ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error)
 	ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error)
+	// Share a location with an organization
+	ShareLocation(ctx context.Context, in *ShareLocationRequest, opts ...grpc.CallOption) (*ShareLocationResponse, error)
+	// Stop sharing a location with an organization
+	UnshareLocation(ctx context.Context, in *UnshareLocationRequest, opts ...grpc.CallOption) (*UnshareLocationResponse, error)
 	LocationAuth(ctx context.Context, in *LocationAuthRequest, opts ...grpc.CallOption) (*LocationAuthResponse, error)
 	// Create a new generated Secret in the Location.
 	//   - Succeeds if there are no more than 2 active secrets after creation.
@@ -88,6 +92,24 @@ func (c *appServiceClient) ListOrganizations(ctx context.Context, in *ListOrgani
 func (c *appServiceClient) ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error) {
 	out := new(ListLocationsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListLocations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ShareLocation(ctx context.Context, in *ShareLocationRequest, opts ...grpc.CallOption) (*ShareLocationResponse, error) {
+	out := new(ShareLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ShareLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UnshareLocation(ctx context.Context, in *UnshareLocationRequest, opts ...grpc.CallOption) (*UnshareLocationResponse, error) {
+	out := new(UnshareLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UnshareLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -295,6 +317,10 @@ type AppServiceServer interface {
 	CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error)
 	ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error)
 	ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error)
+	// Share a location with an organization
+	ShareLocation(context.Context, *ShareLocationRequest) (*ShareLocationResponse, error)
+	// Stop sharing a location with an organization
+	UnshareLocation(context.Context, *UnshareLocationRequest) (*UnshareLocationResponse, error)
 	LocationAuth(context.Context, *LocationAuthRequest) (*LocationAuthResponse, error)
 	// Create a new generated Secret in the Location.
 	//   - Succeeds if there are no more than 2 active secrets after creation.
@@ -346,6 +372,12 @@ func (UnimplementedAppServiceServer) ListOrganizations(context.Context, *ListOrg
 }
 func (UnimplementedAppServiceServer) ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListLocations not implemented")
+}
+func (UnimplementedAppServiceServer) ShareLocation(context.Context, *ShareLocationRequest) (*ShareLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ShareLocation not implemented")
+}
+func (UnimplementedAppServiceServer) UnshareLocation(context.Context, *UnshareLocationRequest) (*UnshareLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnshareLocation not implemented")
 }
 func (UnimplementedAppServiceServer) LocationAuth(context.Context, *LocationAuthRequest) (*LocationAuthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LocationAuth not implemented")
@@ -467,6 +499,42 @@ func _AppService_ListLocations_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).ListLocations(ctx, req.(*ListLocationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ShareLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShareLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ShareLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ShareLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ShareLocation(ctx, req.(*ShareLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UnshareLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnshareLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UnshareLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UnshareLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UnshareLocation(ctx, req.(*UnshareLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -834,6 +902,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListLocations",
 			Handler:    _AppService_ListLocations_Handler,
+		},
+		{
+			MethodName: "ShareLocation",
+			Handler:    _AppService_ShareLocation_Handler,
+		},
+		{
+			MethodName: "UnshareLocation",
+			Handler:    _AppService_UnshareLocation_Handler,
 		},
 		{
 			MethodName: "LocationAuth",

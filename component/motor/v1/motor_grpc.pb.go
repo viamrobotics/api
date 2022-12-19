@@ -40,9 +40,12 @@ type MotorServiceClient interface {
 	GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error)
 	// GetProperties returns a message of booleans indicating which optional features the robot's motor supports
 	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
+	// Stop turns the robot's motor off
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsPowered returns true if the robot's motor off
 	IsPowered(ctx context.Context, in *IsPoweredRequest, opts ...grpc.CallOption) (*IsPoweredResponse, error)
+	// IsMoving reports if a component is in motion
+	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
 }
 
 type motorServiceClient struct {
@@ -125,6 +128,15 @@ func (c *motorServiceClient) IsPowered(ctx context.Context, in *IsPoweredRequest
 	return out, nil
 }
 
+func (c *motorServiceClient) IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error) {
+	out := new(IsMovingResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.motor.v1.MotorService/IsMoving", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MotorServiceServer is the server API for MotorService service.
 // All implementations must embed UnimplementedMotorServiceServer
 // for forward compatibility
@@ -151,9 +163,12 @@ type MotorServiceServer interface {
 	GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error)
 	// GetProperties returns a message of booleans indicating which optional features the robot's motor supports
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
+	// Stop turns the robot's motor off
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsPowered returns true if the robot's motor off
 	IsPowered(context.Context, *IsPoweredRequest) (*IsPoweredResponse, error)
+	// IsMoving reports if a component is in motion
+	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
 	mustEmbedUnimplementedMotorServiceServer()
 }
 
@@ -184,6 +199,9 @@ func (UnimplementedMotorServiceServer) Stop(context.Context, *StopRequest) (*Sto
 }
 func (UnimplementedMotorServiceServer) IsPowered(context.Context, *IsPoweredRequest) (*IsPoweredResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsPowered not implemented")
+}
+func (UnimplementedMotorServiceServer) IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsMoving not implemented")
 }
 func (UnimplementedMotorServiceServer) mustEmbedUnimplementedMotorServiceServer() {}
 
@@ -342,6 +360,24 @@ func _MotorService_IsPowered_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MotorService_IsMoving_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsMovingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MotorServiceServer).IsMoving(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.motor.v1.MotorService/IsMoving",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MotorServiceServer).IsMoving(ctx, req.(*IsMovingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MotorService_ServiceDesc is the grpc.ServiceDesc for MotorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -380,6 +416,10 @@ var MotorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsPowered",
 			Handler:    _MotorService_IsPowered_Handler,
+		},
+		{
+			MethodName: "IsMoving",
+			Handler:    _MotorService_IsMoving_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

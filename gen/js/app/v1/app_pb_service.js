@@ -37,6 +37,24 @@ AppService.ListLocations = {
   responseType: app_v1_app_pb.ListLocationsResponse
 };
 
+AppService.ShareLocation = {
+  methodName: "ShareLocation",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ShareLocationRequest,
+  responseType: app_v1_app_pb.ShareLocationResponse
+};
+
+AppService.UnshareLocation = {
+  methodName: "UnshareLocation",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UnshareLocationRequest,
+  responseType: app_v1_app_pb.UnshareLocationResponse
+};
+
 AppService.LocationAuth = {
   methodName: "LocationAuth",
   service: AppService,
@@ -282,6 +300,68 @@ AppServiceClient.prototype.listLocations = function listLocations(requestMessage
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListLocations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.shareLocation = function shareLocation(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ShareLocation, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.unshareLocation = function unshareLocation(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UnshareLocation, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

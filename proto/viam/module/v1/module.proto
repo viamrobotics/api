@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package viam.module.v1;
+
+import "app/v1/robot.proto";
+import "robot/v1/robot.proto";
+
+option go_package = "go.viam.com/api/module/v1";
+
+// ModuleService deals with modular resource registration
+service ModuleService {
+  // AddResource tells a module about a new resource to handle
+  rpc AddResource(AddResourceRequest) returns (AddResourceResponse);
+
+  // ReconfigureResource tells a module to reconfigure an existing resource
+  rpc ReconfigureResource(ReconfigureResourceRequest) returns (ReconfigureResourceResponse);
+
+  // RemoveResource tells a module to close/stop a component/service and remove it
+  rpc RemoveResource(RemoveResourceRequest) returns (RemoveResourceResponse);
+
+  // Ready determines if the server is started and ready to recieve resource configurations.
+  rpc Ready(ReadyRequest) returns (ReadyResponse);
+}
+
+message AddResourceRequest {
+  viam.app.v1.ComponentConfig config = 1;
+  repeated string dependencies = 2;
+}
+message AddResourceResponse {}
+
+message ReconfigureResourceRequest {
+  viam.app.v1.ComponentConfig config = 1;
+  repeated string dependencies = 2;
+}
+message ReconfigureResourceResponse {}
+
+message RemoveResourceRequest {
+  string name = 1;
+}
+message RemoveResourceResponse {}
+
+message HandlerDefinition {
+  viam.robot.v1.ResourceRPCSubtype subtype = 1;
+  repeated string models = 2;
+}
+message HandlerMap {
+  repeated HandlerDefinition handlers = 1;
+}
+
+message ReadyRequest {
+  string parent_address = 1;
+}
+message ReadyResponse {
+  bool ready = 1;
+  HandlerMap handlermap = 2;
+}

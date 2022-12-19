@@ -33,6 +33,8 @@ type BaseServiceClient interface {
 	SetVelocity(ctx context.Context, in *SetVelocityRequest, opts ...grpc.CallOption) (*SetVelocityResponse, error)
 	// Stop stops a robot's base
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
+	// IsMoving reports if a component is in motion
+	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
 }
 
 type baseServiceClient struct {
@@ -88,6 +90,15 @@ func (c *baseServiceClient) Stop(ctx context.Context, in *StopRequest, opts ...g
 	return out, nil
 }
 
+func (c *baseServiceClient) IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error) {
+	out := new(IsMovingResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.base.v1.BaseService/IsMoving", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BaseServiceServer is the server API for BaseService service.
 // All implementations must embed UnimplementedBaseServiceServer
 // for forward compatibility
@@ -107,6 +118,8 @@ type BaseServiceServer interface {
 	SetVelocity(context.Context, *SetVelocityRequest) (*SetVelocityResponse, error)
 	// Stop stops a robot's base
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
+	// IsMoving reports if a component is in motion
+	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
 	mustEmbedUnimplementedBaseServiceServer()
 }
 
@@ -128,6 +141,9 @@ func (UnimplementedBaseServiceServer) SetVelocity(context.Context, *SetVelocityR
 }
 func (UnimplementedBaseServiceServer) Stop(context.Context, *StopRequest) (*StopResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stop not implemented")
+}
+func (UnimplementedBaseServiceServer) IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsMoving not implemented")
 }
 func (UnimplementedBaseServiceServer) mustEmbedUnimplementedBaseServiceServer() {}
 
@@ -232,6 +248,24 @@ func _BaseService_Stop_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BaseService_IsMoving_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsMovingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BaseServiceServer).IsMoving(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.base.v1.BaseService/IsMoving",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BaseServiceServer).IsMoving(ctx, req.(*IsMovingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BaseService_ServiceDesc is the grpc.ServiceDesc for BaseService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -258,6 +292,10 @@ var BaseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Stop",
 			Handler:    _BaseService_Stop_Handler,
+		},
+		{
+			MethodName: "IsMoving",
+			Handler:    _BaseService_IsMoving_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
