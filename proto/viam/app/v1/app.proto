@@ -9,10 +9,24 @@ import "tagger/v1/tagger.proto";
 option go_package = "go.viam.com/api/app/v1";
 
 service AppService {
-  rpc CreateLocation(CreateLocationRequest) returns (CreateLocationResponse);
-
   rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
 
+  // Location
+  //
+
+  // Create a location
+  rpc CreateLocation(CreateLocationRequest) returns (CreateLocationResponse);
+
+  // Get a location
+  rpc GetLocation(GetLocationRequest) returns (GetLocationResponse);
+
+  // Update a location
+  rpc UpdateLocation(UpdateLocationRequest) returns (UpdateLocationResponse);
+
+  // Delete a location
+  rpc DeleteLocation(DeleteLocationRequest) returns (DeleteLocationResponse);
+
+  // Get a list of locations
   rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
 
   // Share a location with an organization
@@ -21,6 +35,7 @@ service AppService {
   // Stop sharing a location with an organization
   rpc UnshareLocation(UnshareLocationRequest) returns (UnshareLocationResponse);
 
+  // Get a location's authorization secrets
   rpc LocationAuth(LocationAuthRequest) returns (LocationAuthResponse);
 
   // Create a new generated Secret in the Location.
@@ -64,7 +79,10 @@ service AppService {
   // Delete a Secret from the RobotPart.
   rpc DeleteRobotPartSecret(DeleteRobotPartSecretRequest) returns (DeleteRobotPartSecretResponse);
 
-  // Finds robots given a query
+  // Get a list of robots
+  rpc ListRobots(ListRobotsRequest) returns (ListRobotsResponse);
+
+  // Finds robots given a query. Deprecated, use ListRobots instead
   rpc FindRobots(FindRobotsRequest) returns (FindRobotsResponse);
 
   // NewRobot creates a new robot
@@ -140,6 +158,30 @@ message CreateLocationRequest {
 message CreateLocationResponse {
   Location location = 1;
 }
+
+message GetLocationRequest {
+  string location_id = 1;
+}
+
+message GetLocationResponse {
+  Location location = 1;
+}
+
+message UpdateLocationRequest {
+  string location_id = 1;
+  string name = 2;
+  optional string parent_location_id = 3;
+}
+
+message UpdateLocationResponse {
+  Location location = 1;
+}
+
+message DeleteLocationRequest {
+  string location_id = 1;
+}
+
+message DeleteLocationResponse {}
 
 message ListLocationsRequest {
   string organization_id = 1;
@@ -319,6 +361,14 @@ message Fragment {
   string organization_owner = 4 [(tagger.v1.tags) = "bson:\"organization_owner\" json:\"owner\""];
   bool public = 5 [(tagger.v1.tags) = "bson:\"public\" json:\"public\""];
   google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
+}
+
+message ListRobotsRequest {
+  string location_id = 1;
+}
+
+message ListRobotsResponse {
+  repeated Robot robots = 1;
 }
 
 message FindRobotsRequest {
