@@ -11,7 +11,37 @@ option go_package = "go.viam.com/api/app/v1";
 service AppService {
   rpc CreateLocation(CreateLocationRequest) returns (CreateLocationResponse);
 
+  // Organizations
+
+  // Create a new organization
+  rpc CreateOrganization(CreateOrganizationRequest) returns (CreateOrganizationResponse);
+
+  // List organizations
   rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
+
+  // Get an organization
+  rpc GetOrganization(GetOrganizationRequest) returns (GetOrganizationResponse);
+
+  // Update an organization
+  rpc UpdateOrganization(UpdateOrganizationRequest) returns (UpdateOrganizationResponse);
+
+  // Delete an organization
+  rpc DeleteOrganization(DeleteOrganizationRequest) returns (DeleteOrganizationResponse);
+
+  // List all members of an organization and all invited members to the organization.
+  rpc ListOrganizationMembers(ListOrganizationMembersRequest) returns (ListOrganizationMembersResponse);
+
+  // Create an organization invite to an organization
+  rpc CreateOrganizationInvite(CreateOrganizationInviteRequest) returns (CreateOrganizationInviteResponse);
+
+  // Delete an organization member from an organization
+  rpc DeleteOrganizationMember(DeleteOrganizationMemberRequest) returns (DeleteOrganizationMemberResponse);
+
+  // Delete an organization invite
+  rpc DeleteOrganizationInvite(DeleteOrganizationInviteRequest) returns (DeleteOrganizationInviteResponse);
+
+  // Resend an organization invite
+  rpc ResendOrganizationInvite(ResendOrganizationInviteRequest) returns (ResendOrganizationInviteResponse);
 
   rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
 
@@ -114,6 +144,7 @@ message RobotPartHistoryEntry {
   RobotPart old = 4 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
 }
 
+// Organizations
 message ListOrganizationsRequest {}
 
 message Organization {
@@ -122,9 +153,94 @@ message Organization {
   google.protobuf.Timestamp created_on = 3;
 }
 
+message OrganizationMember {
+  string user_id = 1;
+  repeated string emails = 2;
+  google.protobuf.Timestamp date_added = 3;
+}
+
 message ListOrganizationsResponse {
   repeated Organization organizations = 1;
 }
+
+message OrganizationInvite {
+  string organization_id = 1;
+  string email = 2;
+  google.protobuf.Timestamp created_on = 3;
+}
+
+message CreateOrganizationRequest {
+  string name = 1;
+}
+
+message CreateOrganizationResponse {
+  Organization organization = 1;
+}
+
+message GetOrganizationRequest {
+  string organization_id = 1;
+}
+
+message GetOrganizationResponse {
+  Organization organization = 1;
+}
+
+message UpdateOrganizationRequest {
+  string organization_id = 1;
+  string name = 2;
+}
+
+message UpdateOrganizationResponse {
+  Organization organization = 1;
+}
+
+message DeleteOrganizationRequest {
+  string organization_id = 1;
+}
+
+message DeleteOrganizationResponse {}
+
+message ListOrganizationMembersRequest {
+  string organization_id = 1;
+}
+
+message ListOrganizationMembersResponse {
+  string organization_id = 1;
+  repeated OrganizationMember members = 2;
+  repeated OrganizationInvite invites = 3;
+}
+
+message CreateOrganizationInviteRequest {
+  string organization_id = 1;
+  string email = 2;
+}
+
+message CreateOrganizationInviteResponse {
+  OrganizationInvite invite = 1;
+}
+
+message DeleteOrganizationInviteRequest {
+  string organization_id = 1;
+  string email = 2;
+}
+
+message DeleteOrganizationInviteResponse {}
+
+message ResendOrganizationInviteRequest {
+  string organization_id = 1;
+  string email = 2;
+}
+
+message ResendOrganizationInviteResponse {
+  OrganizationInvite invite = 1;
+}
+
+message DeleteOrganizationMemberRequest {
+  string organization_id = 1;
+  string user_id = 2;
+}
+
+message DeleteOrganizationMemberResponse {}
 
 message Location {
   string id = 1;
