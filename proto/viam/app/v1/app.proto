@@ -145,45 +145,59 @@ message ListOrganizationsResponse {
 }
 
 message Location {
+  // Location ID.
   string id = 1;
+  // Location name.
   string name = 2;
+  // Location creation timestamp.
   google.protobuf.Timestamp created_on = 3;
 }
 
 message CreateLocationRequest {
+  // Organization ID to create the location under.
   string organization_id = 1;
+  // Name of the location.
   string name = 2;
 }
 
 message CreateLocationResponse {
+  // Location object is returned.
   Location location = 1;
 }
 
 message GetLocationRequest {
+  // Location ID of location to get.
   string location_id = 1;
 }
 
 message GetLocationResponse {
+  // Location object is returned.
   Location location = 1;
 }
 
 message UpdateLocationRequest {
+  // Location ID of location to update.
   string location_id = 1;
-  string name = 2;
+  // The new to be updated on location.
+  optional string name = 2;
+  // The new parent location to move the location under.
   optional string parent_location_id = 3;
 }
 
 message UpdateLocationResponse {
+  // Location object is returned.
   Location location = 1;
 }
 
 message DeleteLocationRequest {
+  // Location ID of location to delete.
   string location_id = 1;
 }
 
 message DeleteLocationResponse {}
 
 message ListLocationsRequest {
+  // Organization ID under which to list all locations.
   string organization_id = 1;
 }
 
