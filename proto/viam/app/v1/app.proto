@@ -144,13 +144,63 @@ message ListOrganizationsResponse {
   repeated Organization organizations = 1;
 }
 
+// Location
+//
+
+message LocationOrganization {
+  // Organization ID the location is shared with.
+  string organization_id = 1;
+  // Whether the organization is the primary owner or not.
+  bool primary = 2;
+}
+
+message LocationAuth {
+  // Deprecated: use secrets field.
+  string secret = 1 [deprecated = true];
+
+  // Location ID containing this LocationAuth.
+  string location_id = 2;
+
+  // List of secrets used to authenticate to the Location.
+  repeated SharedSecret secrets = 3;
+}
+
 message Location {
   // Location ID.
   string id = 1;
   // Location name.
   string name = 2;
+  // Location ID of the parent location.
+  string parent_location_id = 3;
+  // Location authentication secrets.
+  LocationAuth auth = 4;
+  // Organizations that the location is shared with.
+  repeated LocationOrganization organizations = 6;
   // Location creation timestamp.
-  google.protobuf.Timestamp created_on = 3;
+  google.protobuf.Timestamp created_on = 7;
+}
+
+// SharedSecret is a secret used for LocationAuth and RobotParts.
+message SharedSecret {
+  enum State {
+    STATE_UNSPECIFIED = 0;
+    // Secret is enabled and can be used in authentication.
+    STATE_ENABLED = 1;
+    // Secret is disabled and must not be used to authenticate to rpc.
+    STATE_DISABLED = 2;
+  }
+
+  string id = 1 [(tagger.v1.tags) = "bson:\"id\""];
+
+  // The payload of the secret. Used during authentication to the rpc framework.
+  string secret = 2 [(tagger.v1.tags) = "bson:\"secret\""];
+
+  // Date/time the secret was first created.
+  google.protobuf.Timestamp created_on = 3 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
+
+  // State of the shared secret. In most cases it should be enabled. We may support
+  // disabling a specific secret while keeping it in the database.
+  State state = 4 [(tagger.v1.tags) = "bson:\"state\""];
 }
 
 message CreateLocationRequest {
@@ -158,6 +208,8 @@ message CreateLocationRequest {
   string organization_id = 1;
   // Name of the location.
   string name = 2;
+  // The new parent location to move the location under.
+  optional string parent_location_id = 3;
 }
 
 message CreateLocationResponse {
@@ -238,40 +290,6 @@ message DeleteLocationSecretRequest {
   string secret_id = 2;
 }
 message DeleteLocationSecretResponse {}
-
-message LocationAuth {
-  // Deprecated: use secrets field.
-  string secret = 1 [deprecated = true];
-
-  // Location ID containing this LocationAuth.
-  string location_id = 2;
-
-  // List of secrets used to authenticate to the Location.
-  repeated SharedSecret secrets = 3;
-}
-
-// SharedSecret is a secret used for LocationAuth and RobotParts.
-message SharedSecret {
-  enum State {
-    STATE_UNSPECIFIED = 0;
-    // Secret is enabled and can be used in authentication.
-    STATE_ENABLED = 1;
-    // Secret is disabled and must not be used to authenticate to rpc.
-    STATE_DISABLED = 2;
-  }
-
-  string id = 1 [(tagger.v1.tags) = "bson:\"id\""];
-
-  // The payload of the secret. Used during authentication to the rpc framework.
-  string secret = 2 [(tagger.v1.tags) = "bson:\"secret\""];
-
-  // Date/time the secret was first created.
-  google.protobuf.Timestamp created_on = 3 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
-
-  // State of the shared secret. In most cases it should be enabled. We may support
-  // disabling a specific secret while keeping it in the database.
-  State state = 4 [(tagger.v1.tags) = "bson:\"state\""];
-}
 
 message LocationAuthRequest {
   string location_id = 1;
