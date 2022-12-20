@@ -155,9 +155,8 @@ message LocationOrganization {
 }
 
 message LocationAuth {
-  // Deprecated: secret was moved to secrets
-  reserved 1;
-  reserved "secret";
+  // Deprecated: use secrets field.
+  string secret = 1 [deprecated = true];
 
   // Location ID containing this LocationAuth.
   string location_id = 2;
