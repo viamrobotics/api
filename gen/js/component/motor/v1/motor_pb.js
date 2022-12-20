@@ -3025,7 +3025,6 @@ proto.viam.component.motor.v1.Status.prototype.toObject = function(opt_includeIn
 proto.viam.component.motor.v1.Status.toObject = function(includeInstance, msg) {
   var f, obj = {
     isPowered: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    positionReporting: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
     position: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
@@ -3067,10 +3066,6 @@ proto.viam.component.motor.v1.Status.deserializeBinaryFromReader = function(msg,
     case 1:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsPowered(value);
-      break;
-    case 2:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setPositionReporting(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readDouble());
@@ -3116,13 +3111,6 @@ proto.viam.component.motor.v1.Status.serializeBinaryToWriter = function(message,
       f
     );
   }
-  f = message.getPositionReporting();
-  if (f) {
-    writer.writeBool(
-      2,
-      f
-    );
-  }
   f = message.getPosition();
   if (f !== 0.0) {
     writer.writeDouble(
@@ -3155,24 +3143,6 @@ proto.viam.component.motor.v1.Status.prototype.getIsPowered = function() {
  */
 proto.viam.component.motor.v1.Status.prototype.setIsPowered = function(value) {
   return jspb.Message.setProto3BooleanField(this, 1, value);
-};
-
-
-/**
- * optional bool position_reporting = 2;
- * @return {boolean}
- */
-proto.viam.component.motor.v1.Status.prototype.getPositionReporting = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.viam.component.motor.v1.Status} returns this
- */
-proto.viam.component.motor.v1.Status.prototype.setPositionReporting = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
