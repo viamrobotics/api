@@ -168,13 +168,13 @@ message Location {
   // Location name.
   string name = 2;
   // Location ID of the parent location.
-  string parent_location_id = 3;
+  string parent_location_id = 4;
   // Location authentication secrets.
-  LocationAuth auth = 4;
+  LocationAuth auth = 5;
   // Organizations that the location is shared with.
-  repeated LocationOrganization organizations = 5;
+  repeated LocationOrganization organizations = 6;
   // Location creation timestamp.
-  google.protobuf.Timestamp created_on = 6;
+  google.protobuf.Timestamp created_on = 7;
 }
 
 // SharedSecret is a secret used for LocationAuth and RobotParts.
