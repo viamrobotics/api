@@ -2596,7 +2596,7 @@ proto.viam.app.v1.ProcessConfig.toObject = function(includeInstance, msg) {
     oneShot: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     log: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     stopSignal: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    stopTimeout: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    stopTimeout: (f = msg.getStopTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2662,7 +2662,8 @@ proto.viam.app.v1.ProcessConfig.deserializeBinaryFromReader = function(msg, read
       msg.setStopSignal(value);
       break;
     case 8:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = new google_protobuf_duration_pb.Duration;
+      reader.readMessage(value,google_protobuf_duration_pb.Duration.deserializeBinaryFromReader);
       msg.setStopTimeout(value);
       break;
     default:
@@ -2744,10 +2745,11 @@ proto.viam.app.v1.ProcessConfig.serializeBinaryToWriter = function(message, writ
     );
   }
   f = message.getStopTimeout();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f != null) {
+    writer.writeMessage(
       8,
-      f
+      f,
+      google_protobuf_duration_pb.Duration.serializeBinaryToWriter
     );
   }
 };
@@ -2899,20 +2901,39 @@ proto.viam.app.v1.ProcessConfig.prototype.setStopSignal = function(value) {
 
 
 /**
- * optional int64 stop_timeout = 8;
- * @return {number}
+ * optional google.protobuf.Duration stop_timeout = 8;
+ * @return {?proto.google.protobuf.Duration}
  */
 proto.viam.app.v1.ProcessConfig.prototype.getStopTimeout = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+  return /** @type{?proto.google.protobuf.Duration} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_duration_pb.Duration, 8));
 };
 
 
 /**
- * @param {number} value
+ * @param {?proto.google.protobuf.Duration|undefined} value
+ * @return {!proto.viam.app.v1.ProcessConfig} returns this
+*/
+proto.viam.app.v1.ProcessConfig.prototype.setStopTimeout = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.viam.app.v1.ProcessConfig} returns this
  */
-proto.viam.app.v1.ProcessConfig.prototype.setStopTimeout = function(value) {
-  return jspb.Message.setProto3IntField(this, 8, value);
+proto.viam.app.v1.ProcessConfig.prototype.clearStopTimeout = function() {
+  return this.setStopTimeout(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ProcessConfig.prototype.hasStopTimeout = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 

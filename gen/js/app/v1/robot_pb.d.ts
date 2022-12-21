@@ -266,8 +266,10 @@ export class ProcessConfig extends jspb.Message {
   getStopSignal(): number;
   setStopSignal(value: number): void;
 
-  getStopTimeout(): number;
-  setStopTimeout(value: number): void;
+  hasStopTimeout(): boolean;
+  clearStopTimeout(): void;
+  getStopTimeout(): google_protobuf_duration_pb.Duration | undefined;
+  setStopTimeout(value?: google_protobuf_duration_pb.Duration): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ProcessConfig.AsObject;
@@ -288,7 +290,7 @@ export namespace ProcessConfig {
     oneShot: boolean,
     log: boolean,
     stopSignal: number,
-    stopTimeout: number,
+    stopTimeout?: google_protobuf_duration_pb.Duration.AsObject,
   }
 }
 
