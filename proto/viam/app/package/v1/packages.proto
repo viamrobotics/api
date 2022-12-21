@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package viam.app.package.v1;
+package viam.app.packages.v1;
 
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
-option go_package = "go.viam.com/api/app/package/v1";
+option go_package = "go.viam.com/api/app/packages/v1";
 
 service PackageService {
   // CreatePackage uploads a package to the cloud
