@@ -263,6 +263,12 @@ export class ProcessConfig extends jspb.Message {
   getLog(): boolean;
   setLog(value: boolean): void;
 
+  getStopSignal(): number;
+  setStopSignal(value: number): void;
+
+  getStopTimeout(): number;
+  setStopTimeout(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ProcessConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ProcessConfig): ProcessConfig.AsObject;
@@ -281,6 +287,8 @@ export namespace ProcessConfig {
     cwd: string,
     oneShot: boolean,
     log: boolean,
+    stopSignal: number,
+    stopTimeout: number,
   }
 }
 

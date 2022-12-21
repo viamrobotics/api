@@ -88,6 +88,8 @@ message ProcessConfig {
   string cwd = 4;
   bool one_shot = 5;
   bool log = 6;
+  int32 stop_signal = 7;
+  int64 stop_timeout = 8;
 }
 
 message ServiceConfig {
