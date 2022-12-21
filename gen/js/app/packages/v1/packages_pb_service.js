@@ -1,12 +1,12 @@
-// package: viam.app.package.v1
-// file: app/package/v1/package.proto
+// package: viam.app.packages.v1
+// file: app/packages/v1/packages.proto
 
-var app_package_v1_package_pb = require("../../../app/package/v1/package_pb");
+var app_packages_v1_packages_pb = require("../../../app/packages/v1/packages_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var PackageService = (function () {
   function PackageService() {}
-  PackageService.serviceName = "viam.app.package.v1.PackageService";
+  PackageService.serviceName = "viam.app.packages.v1.PackageService";
   return PackageService;
 }());
 
@@ -15,8 +15,8 @@ PackageService.CreatePackage = {
   service: PackageService,
   requestStream: true,
   responseStream: false,
-  requestType: app_package_v1_package_pb.CreatePackageRequest,
-  responseType: app_package_v1_package_pb.CreatePackageResponse
+  requestType: app_packages_v1_packages_pb.CreatePackageRequest,
+  responseType: app_packages_v1_packages_pb.CreatePackageResponse
 };
 
 PackageService.DeletePackage = {
@@ -24,8 +24,8 @@ PackageService.DeletePackage = {
   service: PackageService,
   requestStream: false,
   responseStream: false,
-  requestType: app_package_v1_package_pb.DeletePackageRequest,
-  responseType: app_package_v1_package_pb.DeletePackageResponse
+  requestType: app_packages_v1_packages_pb.DeletePackageRequest,
+  responseType: app_packages_v1_packages_pb.DeletePackageResponse
 };
 
 PackageService.GetPackage = {
@@ -33,8 +33,8 @@ PackageService.GetPackage = {
   service: PackageService,
   requestStream: false,
   responseStream: false,
-  requestType: app_package_v1_package_pb.GetPackageRequest,
-  responseType: app_package_v1_package_pb.GetPackageResponse
+  requestType: app_packages_v1_packages_pb.GetPackageRequest,
+  responseType: app_packages_v1_packages_pb.GetPackageResponse
 };
 
 PackageService.ListPackages = {
@@ -42,8 +42,8 @@ PackageService.ListPackages = {
   service: PackageService,
   requestStream: false,
   responseStream: false,
-  requestType: app_package_v1_package_pb.ListPackagesRequest,
-  responseType: app_package_v1_package_pb.ListPackagesResponse
+  requestType: app_packages_v1_packages_pb.ListPackagesRequest,
+  responseType: app_packages_v1_packages_pb.ListPackagesResponse
 };
 
 exports.PackageService = PackageService;
