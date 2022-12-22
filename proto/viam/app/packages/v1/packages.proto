@@ -54,9 +54,9 @@ message PackageInfo {
   string name = 2;
   string version = 3;
   PackageType type = 4;
-  google.protobuf.Timestamp created_on = 5;
-  repeated FileInfo files = 6;
-  google.protobuf.Struct metadata = 7;
+  repeated FileInfo files = 5;
+  google.protobuf.Struct metadata = 6;
+  google.protobuf.Timestamp created_on = 7;
 }
 
 message CreatePackageRequest {

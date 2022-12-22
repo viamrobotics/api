@@ -43,11 +43,6 @@ export class PackageInfo extends jspb.Message {
   getType(): PackageTypeMap[keyof PackageTypeMap];
   setType(value: PackageTypeMap[keyof PackageTypeMap]): void;
 
-  hasCreatedOn(): boolean;
-  clearCreatedOn(): void;
-  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
   clearFilesList(): void;
   getFilesList(): Array<FileInfo>;
   setFilesList(value: Array<FileInfo>): void;
@@ -57,6 +52,11 @@ export class PackageInfo extends jspb.Message {
   clearMetadata(): void;
   getMetadata(): google_protobuf_struct_pb.Struct | undefined;
   setMetadata(value?: google_protobuf_struct_pb.Struct): void;
+
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PackageInfo.AsObject;
@@ -74,9 +74,9 @@ export namespace PackageInfo {
     name: string,
     version: string,
     type: PackageTypeMap[keyof PackageTypeMap],
-    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     filesList: Array<FileInfo.AsObject>,
     metadata?: google_protobuf_struct_pb.Struct.AsObject,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
