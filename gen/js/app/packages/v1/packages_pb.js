@@ -19,6 +19,8 @@ var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
 goog.object.extend(proto, google_api_annotations_pb);
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
 goog.object.extend(proto, google_protobuf_struct_pb);
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
+goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.viam.app.packages.v1.CreatePackageRequest', null, global);
 goog.exportSymbol('proto.viam.app.packages.v1.CreatePackageRequest.PackageCase', null, global);
 goog.exportSymbol('proto.viam.app.packages.v1.CreatePackageResponse', null, global);
@@ -429,7 +431,7 @@ proto.viam.app.packages.v1.FileInfo.prototype.setSize = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.packages.v1.PackageInfo.repeatedFields_ = [5];
+proto.viam.app.packages.v1.PackageInfo.repeatedFields_ = [6];
 
 
 
@@ -466,6 +468,7 @@ proto.viam.app.packages.v1.PackageInfo.toObject = function(includeInstance, msg)
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     version: jspb.Message.getFieldWithDefault(msg, 3, ""),
     type: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     filesList: jspb.Message.toObjectList(msg.getFilesList(),
     proto.viam.app.packages.v1.FileInfo.toObject, includeInstance),
     metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
@@ -522,11 +525,16 @@ proto.viam.app.packages.v1.PackageInfo.deserializeBinaryFromReader = function(ms
       msg.setType(value);
       break;
     case 5:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedOn(value);
+      break;
+    case 6:
       var value = new proto.viam.app.packages.v1.FileInfo;
       reader.readMessage(value,proto.viam.app.packages.v1.FileInfo.deserializeBinaryFromReader);
       msg.addFiles(value);
       break;
-    case 6:
+    case 7:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setMetadata(value);
@@ -588,10 +596,18 @@ proto.viam.app.packages.v1.PackageInfo.serializeBinaryToWriter = function(messag
       f
     );
   }
+  f = message.getCreatedOn();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
   f = message.getFilesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      5,
+      6,
       f,
       proto.viam.app.packages.v1.FileInfo.serializeBinaryToWriter
     );
@@ -599,7 +615,7 @@ proto.viam.app.packages.v1.PackageInfo.serializeBinaryToWriter = function(messag
   f = message.getMetadata();
   if (f != null) {
     writer.writeMessage(
-      6,
+      7,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
@@ -680,12 +696,49 @@ proto.viam.app.packages.v1.PackageInfo.prototype.setType = function(value) {
 
 
 /**
- * repeated FileInfo files = 5;
+ * optional google.protobuf.Timestamp created_on = 5;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.packages.v1.PackageInfo.prototype.getCreatedOn = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.packages.v1.PackageInfo} returns this
+*/
+proto.viam.app.packages.v1.PackageInfo.prototype.setCreatedOn = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.packages.v1.PackageInfo} returns this
+ */
+proto.viam.app.packages.v1.PackageInfo.prototype.clearCreatedOn = function() {
+  return this.setCreatedOn(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.packages.v1.PackageInfo.prototype.hasCreatedOn = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * repeated FileInfo files = 6;
  * @return {!Array<!proto.viam.app.packages.v1.FileInfo>}
  */
 proto.viam.app.packages.v1.PackageInfo.prototype.getFilesList = function() {
   return /** @type{!Array<!proto.viam.app.packages.v1.FileInfo>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.packages.v1.FileInfo, 5));
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.packages.v1.FileInfo, 6));
 };
 
 
@@ -694,7 +747,7 @@ proto.viam.app.packages.v1.PackageInfo.prototype.getFilesList = function() {
  * @return {!proto.viam.app.packages.v1.PackageInfo} returns this
 */
 proto.viam.app.packages.v1.PackageInfo.prototype.setFilesList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 5, value);
+  return jspb.Message.setRepeatedWrapperField(this, 6, value);
 };
 
 
@@ -704,7 +757,7 @@ proto.viam.app.packages.v1.PackageInfo.prototype.setFilesList = function(value) 
  * @return {!proto.viam.app.packages.v1.FileInfo}
  */
 proto.viam.app.packages.v1.PackageInfo.prototype.addFiles = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.viam.app.packages.v1.FileInfo, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.viam.app.packages.v1.FileInfo, opt_index);
 };
 
 
@@ -718,12 +771,12 @@ proto.viam.app.packages.v1.PackageInfo.prototype.clearFilesList = function() {
 
 
 /**
- * optional google.protobuf.Struct metadata = 6;
+ * optional google.protobuf.Struct metadata = 7;
  * @return {?proto.google.protobuf.Struct}
  */
 proto.viam.app.packages.v1.PackageInfo.prototype.getMetadata = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 6));
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 7));
 };
 
 
@@ -732,7 +785,7 @@ proto.viam.app.packages.v1.PackageInfo.prototype.getMetadata = function() {
  * @return {!proto.viam.app.packages.v1.PackageInfo} returns this
 */
 proto.viam.app.packages.v1.PackageInfo.prototype.setMetadata = function(value) {
-  return jspb.Message.setWrapperField(this, 6, value);
+  return jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -750,7 +803,7 @@ proto.viam.app.packages.v1.PackageInfo.prototype.clearMetadata = function() {
  * @return {boolean}
  */
 proto.viam.app.packages.v1.PackageInfo.prototype.hasMetadata = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 7) != null;
 };
 
 

@@ -4,6 +4,7 @@
 import * as jspb from "google-protobuf";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
+import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class FileInfo extends jspb.Message {
   getName(): string;
@@ -42,6 +43,11 @@ export class PackageInfo extends jspb.Message {
   getType(): PackageTypeMap[keyof PackageTypeMap];
   setType(value: PackageTypeMap[keyof PackageTypeMap]): void;
 
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   clearFilesList(): void;
   getFilesList(): Array<FileInfo>;
   setFilesList(value: Array<FileInfo>): void;
@@ -68,6 +74,7 @@ export namespace PackageInfo {
     name: string,
     version: string,
     type: PackageTypeMap[keyof PackageTypeMap],
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     filesList: Array<FileInfo.AsObject>,
     metadata?: google_protobuf_struct_pb.Struct.AsObject,
   }

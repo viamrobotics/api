@@ -4,6 +4,7 @@ package viam.app.packages.v1;
 
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/app/packages/v1";
 
@@ -53,8 +54,9 @@ message PackageInfo {
   string name = 2;
   string version = 3;
   PackageType type = 4;
-  repeated FileInfo files = 5;
-  google.protobuf.Struct metadata = 6;
+  google.protobuf.Timestamp created_on = 5;
+  repeated FileInfo files = 6;
+  google.protobuf.Struct metadata = 7;
 }
 
 message CreatePackageRequest {
