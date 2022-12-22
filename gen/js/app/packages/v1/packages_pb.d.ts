@@ -1,5 +1,5 @@
-// package: viam.app.package.v1
-// file: app/package/v1/package.proto
+// package: viam.app.packages.v1
+// file: app/packages/v1/packages.proto
 
 import * as jspb from "google-protobuf";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
