@@ -827,7 +827,8 @@ proto.viam.app.v1.RobotConfig.toObject = function(includeInstance, msg) {
     auth: (f = msg.getAuth()) && proto.viam.app.v1.AuthConfig.toObject(includeInstance, f),
     debug: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
     modulesList: jspb.Message.toObjectList(msg.getModulesList(),
-    proto.viam.app.v1.ModuleConfig.toObject, includeInstance)
+    proto.viam.app.v1.ModuleConfig.toObject, includeInstance),
+    disablePartialStart: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
   };
 
   if (includeInstance) {
@@ -907,6 +908,10 @@ proto.viam.app.v1.RobotConfig.deserializeBinaryFromReader = function(msg, reader
       var value = new proto.viam.app.v1.ModuleConfig;
       reader.readMessage(value,proto.viam.app.v1.ModuleConfig.deserializeBinaryFromReader);
       msg.addModules(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDisablePartialStart(value);
       break;
     default:
       reader.skipField();
@@ -1006,6 +1011,13 @@ proto.viam.app.v1.RobotConfig.serializeBinaryToWriter = function(message, writer
       9,
       f,
       proto.viam.app.v1.ModuleConfig.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeBool(
+      10,
+      f
     );
   }
 };
@@ -1345,6 +1357,42 @@ proto.viam.app.v1.RobotConfig.prototype.addModules = function(opt_value, opt_ind
  */
 proto.viam.app.v1.RobotConfig.prototype.clearModulesList = function() {
   return this.setModulesList([]);
+};
+
+
+/**
+ * optional bool disable_partial_start = 10;
+ * @return {boolean}
+ */
+proto.viam.app.v1.RobotConfig.prototype.getDisablePartialStart = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.RobotConfig} returns this
+ */
+proto.viam.app.v1.RobotConfig.prototype.setDisablePartialStart = function(value) {
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.RobotConfig} returns this
+ */
+proto.viam.app.v1.RobotConfig.prototype.clearDisablePartialStart = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.RobotConfig.prototype.hasDisablePartialStart = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
@@ -2594,7 +2642,9 @@ proto.viam.app.v1.ProcessConfig.toObject = function(includeInstance, msg) {
     argsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
     cwd: jspb.Message.getFieldWithDefault(msg, 4, ""),
     oneShot: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    log: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
+    log: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    stopSignal: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    stopTimeout: (f = msg.getStopTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2654,6 +2704,15 @@ proto.viam.app.v1.ProcessConfig.deserializeBinaryFromReader = function(msg, read
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setLog(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setStopSignal(value);
+      break;
+    case 8:
+      var value = new google_protobuf_duration_pb.Duration;
+      reader.readMessage(value,google_protobuf_duration_pb.Duration.deserializeBinaryFromReader);
+      msg.setStopTimeout(value);
       break;
     default:
       reader.skipField();
@@ -2724,6 +2783,21 @@ proto.viam.app.v1.ProcessConfig.serializeBinaryToWriter = function(message, writ
     writer.writeBool(
       6,
       f
+    );
+  }
+  f = message.getStopSignal();
+  if (f !== 0) {
+    writer.writeInt32(
+      7,
+      f
+    );
+  }
+  f = message.getStopTimeout();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      google_protobuf_duration_pb.Duration.serializeBinaryToWriter
     );
   }
 };
@@ -2853,6 +2927,61 @@ proto.viam.app.v1.ProcessConfig.prototype.getLog = function() {
  */
 proto.viam.app.v1.ProcessConfig.prototype.setLog = function(value) {
   return jspb.Message.setProto3BooleanField(this, 6, value);
+};
+
+
+/**
+ * optional int32 stop_signal = 7;
+ * @return {number}
+ */
+proto.viam.app.v1.ProcessConfig.prototype.getStopSignal = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.ProcessConfig} returns this
+ */
+proto.viam.app.v1.ProcessConfig.prototype.setStopSignal = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional google.protobuf.Duration stop_timeout = 8;
+ * @return {?proto.google.protobuf.Duration}
+ */
+proto.viam.app.v1.ProcessConfig.prototype.getStopTimeout = function() {
+  return /** @type{?proto.google.protobuf.Duration} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_duration_pb.Duration, 8));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Duration|undefined} value
+ * @return {!proto.viam.app.v1.ProcessConfig} returns this
+*/
+proto.viam.app.v1.ProcessConfig.prototype.setStopTimeout = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.ProcessConfig} returns this
+ */
+proto.viam.app.v1.ProcessConfig.prototype.clearStopTimeout = function() {
+  return this.setStopTimeout(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ProcessConfig.prototype.hasStopTimeout = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 

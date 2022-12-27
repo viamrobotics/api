@@ -37,7 +37,7 @@ func NewPackageServiceClient(cc grpc.ClientConnInterface) PackageServiceClient {
 }
 
 func (c *packageServiceClient) CreatePackage(ctx context.Context, opts ...grpc.CallOption) (PackageService_CreatePackageClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PackageService_ServiceDesc.Streams[0], "/viam.app.package.v1.PackageService/CreatePackage", opts...)
+	stream, err := c.cc.NewStream(ctx, &PackageService_ServiceDesc.Streams[0], "/viam.app.packages.v1.PackageService/CreatePackage", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -72,7 +72,7 @@ func (x *packageServiceCreatePackageClient) CloseAndRecv() (*CreatePackageRespon
 
 func (c *packageServiceClient) DeletePackage(ctx context.Context, in *DeletePackageRequest, opts ...grpc.CallOption) (*DeletePackageResponse, error) {
 	out := new(DeletePackageResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.package.v1.PackageService/DeletePackage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/viam.app.packages.v1.PackageService/DeletePackage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (c *packageServiceClient) DeletePackage(ctx context.Context, in *DeletePack
 
 func (c *packageServiceClient) GetPackage(ctx context.Context, in *GetPackageRequest, opts ...grpc.CallOption) (*GetPackageResponse, error) {
 	out := new(GetPackageResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.package.v1.PackageService/GetPackage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/viam.app.packages.v1.PackageService/GetPackage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +90,7 @@ func (c *packageServiceClient) GetPackage(ctx context.Context, in *GetPackageReq
 
 func (c *packageServiceClient) ListPackages(ctx context.Context, in *ListPackagesRequest, opts ...grpc.CallOption) (*ListPackagesResponse, error) {
 	out := new(ListPackagesResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.package.v1.PackageService/ListPackages", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/viam.app.packages.v1.PackageService/ListPackages", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -177,7 +177,7 @@ func _PackageService_DeletePackage_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.package.v1.PackageService/DeletePackage",
+		FullMethod: "/viam.app.packages.v1.PackageService/DeletePackage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PackageServiceServer).DeletePackage(ctx, req.(*DeletePackageRequest))
@@ -195,7 +195,7 @@ func _PackageService_GetPackage_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.package.v1.PackageService/GetPackage",
+		FullMethod: "/viam.app.packages.v1.PackageService/GetPackage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PackageServiceServer).GetPackage(ctx, req.(*GetPackageRequest))
@@ -213,7 +213,7 @@ func _PackageService_ListPackages_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.package.v1.PackageService/ListPackages",
+		FullMethod: "/viam.app.packages.v1.PackageService/ListPackages",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PackageServiceServer).ListPackages(ctx, req.(*ListPackagesRequest))
@@ -225,7 +225,7 @@ func _PackageService_ListPackages_Handler(srv interface{}, ctx context.Context, 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PackageService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "viam.app.package.v1.PackageService",
+	ServiceName: "viam.app.packages.v1.PackageService",
 	HandlerType: (*PackageServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -248,5 +248,5 @@ var PackageService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "app/package/v1/package.proto",
+	Metadata: "app/packages/v1/packages.proto",
 }
