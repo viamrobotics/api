@@ -4,18 +4,28 @@
 import * as app_datasync_v1_data_sync_pb from "../../../app/datasync/v1/data_sync_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type DataSyncServiceUpload = {
+type DataSyncServiceDataCaptureUpload = {
+  readonly methodName: string;
+  readonly service: typeof DataSyncService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_datasync_v1_data_sync_pb.DataCaptureUploadRequest;
+  readonly responseType: typeof app_datasync_v1_data_sync_pb.DataCaptureUploadResponse;
+};
+
+type DataSyncServiceFileUpload = {
   readonly methodName: string;
   readonly service: typeof DataSyncService;
   readonly requestStream: true;
-  readonly responseStream: true;
-  readonly requestType: typeof app_datasync_v1_data_sync_pb.UploadRequest;
-  readonly responseType: typeof app_datasync_v1_data_sync_pb.UploadResponse;
+  readonly responseStream: false;
+  readonly requestType: typeof app_datasync_v1_data_sync_pb.FileUploadRequest;
+  readonly responseType: typeof app_datasync_v1_data_sync_pb.FileUploadResponse;
 };
 
 export class DataSyncService {
   static readonly serviceName: string;
-  static readonly Upload: DataSyncServiceUpload;
+  static readonly DataCaptureUpload: DataSyncServiceDataCaptureUpload;
+  static readonly FileUpload: DataSyncServiceFileUpload;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -50,6 +60,15 @@ export class DataSyncServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  upload(metadata?: grpc.Metadata): BidirectionalStream<app_datasync_v1_data_sync_pb.UploadRequest, app_datasync_v1_data_sync_pb.UploadResponse>;
+  dataCaptureUpload(
+    requestMessage: app_datasync_v1_data_sync_pb.DataCaptureUploadRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_datasync_v1_data_sync_pb.DataCaptureUploadResponse|null) => void
+  ): UnaryResponse;
+  dataCaptureUpload(
+    requestMessage: app_datasync_v1_data_sync_pb.DataCaptureUploadRequest,
+    callback: (error: ServiceError|null, responseMessage: app_datasync_v1_data_sync_pb.DataCaptureUploadResponse|null) => void
+  ): UnaryResponse;
+  fileUpload(metadata?: grpc.Metadata): RequestStream<app_datasync_v1_data_sync_pb.FileUploadRequest>;
 }
 

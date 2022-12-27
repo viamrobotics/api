@@ -10,8 +10,25 @@ import "tagger/v1/tagger.proto";
 option go_package = "go.viam.com/api/app/datasync/v1";
 
 service DataSyncService {
-  rpc Upload(stream viam.app.datasync.v1.UploadRequest) returns (stream viam.app.datasync.v1.UploadResponse);
+  rpc DataCaptureUpload(viam.app.datasync.v1.DataCaptureUploadRequest) returns (viam.app.datasync.v1.DataCaptureUploadResponse);
+  rpc FileUpload(stream viam.app.datasync.v1.FileUploadRequest) returns (viam.app.datasync.v1.FileUploadResponse);
 }
+
+message DataCaptureUploadRequest {
+  UploadMetadata metadata = 1;
+  repeated SensorData sensor_contents = 2;
+}
+
+message DataCaptureUploadResponse {}
+
+message FileUploadRequest {
+  oneof upload_packet {
+    UploadMetadata metadata = 1;
+    FileData file_contents = 2;
+  }
+}
+
+message FileUploadResponse {}
 
 message SensorMetadata {
   google.protobuf.Timestamp time_requested = 1;
@@ -42,18 +59,6 @@ message UploadMetadata {
   string file_extension = 9;
   repeated string tags = 10;
   string session_id = 11;
-}
-
-message UploadRequest {
-  oneof upload_packet {
-    UploadMetadata metadata = 1;
-    SensorData sensor_contents = 2;
-    FileData file_contents = 3;
-  }
-}
-
-message UploadResponse {
-  int32 requests_written = 1;
 }
 
 enum DataType {
