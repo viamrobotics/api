@@ -54,6 +54,11 @@ export class RobotConfig extends jspb.Message {
   setModulesList(value: Array<ModuleConfig>): void;
   addModules(value?: ModuleConfig, index?: number): ModuleConfig;
 
+  hasDisablePartialStart(): boolean;
+  clearDisablePartialStart(): void;
+  getDisablePartialStart(): boolean;
+  setDisablePartialStart(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -75,6 +80,7 @@ export namespace RobotConfig {
     auth?: AuthConfig.AsObject,
     debug: boolean,
     modulesList: Array<ModuleConfig.AsObject>,
+    disablePartialStart: boolean,
   }
 }
 
