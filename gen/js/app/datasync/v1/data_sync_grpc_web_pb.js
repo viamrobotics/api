@@ -85,5 +85,66 @@ proto.viam.app.datasync.v1.DataSyncServicePromiseClient =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.datasync.v1.DataCaptureUploadRequest,
+ *   !proto.viam.app.datasync.v1.DataCaptureUploadResponse>}
+ */
+const methodDescriptor_DataSyncService_DataCaptureUpload = new grpc.web.MethodDescriptor(
+  '/viam.app.datasync.v1.DataSyncService/DataCaptureUpload',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.datasync.v1.DataCaptureUploadRequest,
+  proto.viam.app.datasync.v1.DataCaptureUploadResponse,
+  /**
+   * @param {!proto.viam.app.datasync.v1.DataCaptureUploadRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.datasync.v1.DataCaptureUploadResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.datasync.v1.DataCaptureUploadRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.datasync.v1.DataCaptureUploadResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.datasync.v1.DataCaptureUploadResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.datasync.v1.DataSyncServiceClient.prototype.dataCaptureUpload =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.datasync.v1.DataSyncService/DataCaptureUpload',
+      request,
+      metadata || {},
+      methodDescriptor_DataSyncService_DataCaptureUpload,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.datasync.v1.DataCaptureUploadRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.datasync.v1.DataCaptureUploadResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.datasync.v1.DataSyncServicePromiseClient.prototype.dataCaptureUpload =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.datasync.v1.DataSyncService/DataCaptureUpload',
+      request,
+      metadata || {},
+      methodDescriptor_DataSyncService_DataCaptureUpload);
+};
+
+
 module.exports = proto.viam.app.datasync.v1;
 
