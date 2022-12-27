@@ -827,7 +827,8 @@ proto.viam.app.v1.RobotConfig.toObject = function(includeInstance, msg) {
     auth: (f = msg.getAuth()) && proto.viam.app.v1.AuthConfig.toObject(includeInstance, f),
     debug: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
     modulesList: jspb.Message.toObjectList(msg.getModulesList(),
-    proto.viam.app.v1.ModuleConfig.toObject, includeInstance)
+    proto.viam.app.v1.ModuleConfig.toObject, includeInstance),
+    disablePartialStart: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
   };
 
   if (includeInstance) {
@@ -907,6 +908,10 @@ proto.viam.app.v1.RobotConfig.deserializeBinaryFromReader = function(msg, reader
       var value = new proto.viam.app.v1.ModuleConfig;
       reader.readMessage(value,proto.viam.app.v1.ModuleConfig.deserializeBinaryFromReader);
       msg.addModules(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDisablePartialStart(value);
       break;
     default:
       reader.skipField();
@@ -1006,6 +1011,13 @@ proto.viam.app.v1.RobotConfig.serializeBinaryToWriter = function(message, writer
       9,
       f,
       proto.viam.app.v1.ModuleConfig.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeBool(
+      10,
+      f
     );
   }
 };
@@ -1345,6 +1357,42 @@ proto.viam.app.v1.RobotConfig.prototype.addModules = function(opt_value, opt_ind
  */
 proto.viam.app.v1.RobotConfig.prototype.clearModulesList = function() {
   return this.setModulesList([]);
+};
+
+
+/**
+ * optional bool disable_partial_start = 10;
+ * @return {boolean}
+ */
+proto.viam.app.v1.RobotConfig.prototype.getDisablePartialStart = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.RobotConfig} returns this
+ */
+proto.viam.app.v1.RobotConfig.prototype.setDisablePartialStart = function(value) {
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.RobotConfig} returns this
+ */
+proto.viam.app.v1.RobotConfig.prototype.clearDisablePartialStart = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.RobotConfig.prototype.hasDisablePartialStart = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
