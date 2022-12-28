@@ -132,6 +132,7 @@ message GetPropertiesResponse {
   bool orientation_supported = 3;
   bool position_supported = 4;
   bool compass_heading_supported = 5;
+  bool linear_acceleration_supported = 6;
 }
 
 message GetAccuracyRequest {
