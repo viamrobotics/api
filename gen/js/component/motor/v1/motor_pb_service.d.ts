@@ -76,6 +76,15 @@ type MotorServiceIsPowered = {
   readonly responseType: typeof component_motor_v1_motor_pb.IsPoweredResponse;
 };
 
+type MotorServiceIsMoving = {
+  readonly methodName: string;
+  readonly service: typeof MotorService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_motor_v1_motor_pb.IsMovingRequest;
+  readonly responseType: typeof component_motor_v1_motor_pb.IsMovingResponse;
+};
+
 export class MotorService {
   static readonly serviceName: string;
   static readonly SetPower: MotorServiceSetPower;
@@ -86,6 +95,7 @@ export class MotorService {
   static readonly GetProperties: MotorServiceGetProperties;
   static readonly Stop: MotorServiceStop;
   static readonly IsPowered: MotorServiceIsPowered;
+  static readonly IsMoving: MotorServiceIsMoving;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -191,6 +201,15 @@ export class MotorServiceClient {
   isPowered(
     requestMessage: component_motor_v1_motor_pb.IsPoweredRequest,
     callback: (error: ServiceError|null, responseMessage: component_motor_v1_motor_pb.IsPoweredResponse|null) => void
+  ): UnaryResponse;
+  isMoving(
+    requestMessage: component_motor_v1_motor_pb.IsMovingRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_motor_v1_motor_pb.IsMovingResponse|null) => void
+  ): UnaryResponse;
+  isMoving(
+    requestMessage: component_motor_v1_motor_pb.IsMovingRequest,
+    callback: (error: ServiceError|null, responseMessage: component_motor_v1_motor_pb.IsMovingResponse|null) => void
   ): UnaryResponse;
 }
 

@@ -386,9 +386,6 @@ export class Status extends jspb.Message {
   getIsPowered(): boolean;
   setIsPowered(value: boolean): void;
 
-  getPositionReporting(): boolean;
-  setPositionReporting(value: boolean): void;
-
   getPosition(): number;
   setPosition(value: number): void;
 
@@ -408,8 +405,47 @@ export class Status extends jspb.Message {
 export namespace Status {
   export type AsObject = {
     isPowered: boolean,
-    positionReporting: boolean,
     position: number,
+    isMoving: boolean,
+  }
+}
+
+export class IsMovingRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): IsMovingRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: IsMovingRequest): IsMovingRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: IsMovingRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): IsMovingRequest;
+  static deserializeBinaryFromReader(message: IsMovingRequest, reader: jspb.BinaryReader): IsMovingRequest;
+}
+
+export namespace IsMovingRequest {
+  export type AsObject = {
+    name: string,
+  }
+}
+
+export class IsMovingResponse extends jspb.Message {
+  getIsMoving(): boolean;
+  setIsMoving(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): IsMovingResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: IsMovingResponse): IsMovingResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: IsMovingResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): IsMovingResponse;
+  static deserializeBinaryFromReader(message: IsMovingResponse, reader: jspb.BinaryReader): IsMovingResponse;
+}
+
+export namespace IsMovingResponse {
+  export type AsObject = {
     isMoving: boolean,
   }
 }

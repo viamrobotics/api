@@ -35,6 +35,8 @@ message RobotConfig {
   optional AuthConfig auth = 7;
   // Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart
   optional bool debug = 8;
+  repeated ModuleConfig modules = 9;
+  optional bool disable_partial_start = 10;
 }
 
 // Valid location secret that can be used for authentication to the robot.
@@ -69,6 +71,7 @@ message ComponentConfig {
   repeated string depends_on = 6;
   repeated ResourceLevelServiceConfig service_configs = 7 [(tagger.v1.tags) = "json:\"service_config\""];
   google.protobuf.Struct attributes = 8;
+  string api = 9;
 }
 
 // A ResourceLevelServiceConfig describes component or remote configuration for a service.
@@ -86,6 +89,8 @@ message ProcessConfig {
   string cwd = 4;
   bool one_shot = 5;
   bool log = 6;
+  int32 stop_signal = 7;
+  google.protobuf.Duration stop_timeout = 8;
 }
 
 message ServiceConfig {
@@ -307,4 +312,11 @@ message NeedsRestartResponse {
   string id = 1;
   bool must_restart = 2;
   google.protobuf.Duration restart_check_interval = 3;
+}
+
+// ModuleConfig is the configuration for a module.
+message ModuleConfig {
+  string name = 1;
+  // path to the executable
+  string path = 2;
 }

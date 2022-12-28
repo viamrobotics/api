@@ -24,6 +24,8 @@ type GripperServiceClient interface {
 	Grab(ctx context.Context, in *GrabRequest, opts ...grpc.CallOption) (*GrabResponse, error)
 	// Stop stops a robot's gripper
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
+	// IsMoving reports if a component is in motion
+	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
 }
 
 type gripperServiceClient struct {
@@ -61,6 +63,15 @@ func (c *gripperServiceClient) Stop(ctx context.Context, in *StopRequest, opts .
 	return out, nil
 }
 
+func (c *gripperServiceClient) IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error) {
+	out := new(IsMovingResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.gripper.v1.GripperService/IsMoving", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GripperServiceServer is the server API for GripperService service.
 // All implementations must embed UnimplementedGripperServiceServer
 // for forward compatibility
@@ -71,6 +82,8 @@ type GripperServiceServer interface {
 	Grab(context.Context, *GrabRequest) (*GrabResponse, error)
 	// Stop stops a robot's gripper
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
+	// IsMoving reports if a component is in motion
+	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
 	mustEmbedUnimplementedGripperServiceServer()
 }
 
@@ -86,6 +99,9 @@ func (UnimplementedGripperServiceServer) Grab(context.Context, *GrabRequest) (*G
 }
 func (UnimplementedGripperServiceServer) Stop(context.Context, *StopRequest) (*StopResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stop not implemented")
+}
+func (UnimplementedGripperServiceServer) IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsMoving not implemented")
 }
 func (UnimplementedGripperServiceServer) mustEmbedUnimplementedGripperServiceServer() {}
 
@@ -154,6 +170,24 @@ func _GripperService_Stop_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GripperService_IsMoving_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsMovingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GripperServiceServer).IsMoving(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.gripper.v1.GripperService/IsMoving",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GripperServiceServer).IsMoving(ctx, req.(*IsMovingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GripperService_ServiceDesc is the grpc.ServiceDesc for GripperService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -172,6 +206,10 @@ var GripperService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Stop",
 			Handler:    _GripperService_Stop_Handler,
+		},
+		{
+			MethodName: "IsMoving",
+			Handler:    _GripperService_IsMoving_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

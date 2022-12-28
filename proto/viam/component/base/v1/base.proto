@@ -53,6 +53,13 @@ service BaseService {
       post: "/viam/api/v1/component/base/{name}/stop"
     };
   }
+
+  // IsMoving reports if a component is in motion
+  rpc IsMoving(IsMovingRequest) returns (IsMovingResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/base/{name}/is_moving"
+    };
+  }
 }
 
 message MoveStraightRequest {
@@ -115,3 +122,11 @@ message SetVelocityRequest {
 }
 
 message SetVelocityResponse {}
+
+message IsMovingRequest {
+  string name = 1;
+}
+
+message IsMovingResponse {
+  bool is_moving = 1;
+}

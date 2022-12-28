@@ -39,6 +39,12 @@ service GantryService {
       post: "/viam/api/v1/component/gantry/{name}/stop"
     };
   }
+  // IsMoving reports if a component is in motion
+  rpc IsMoving(IsMovingRequest) returns (IsMovingResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/gantry/{name}/is_moving"
+    };
+  }
 }
 
 message GetPositionRequest {
@@ -84,4 +90,12 @@ message Status {
   repeated double positions_mm = 1;
   repeated double lengths_mm = 2;
   bool is_moving = 3;
+}
+
+message IsMovingRequest {
+  string name = 1;
+}
+
+message IsMovingResponse {
+  bool is_moving = 1;
 }
