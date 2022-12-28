@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package viam.app.packages.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/app/packages/v1";
+
+service PackageService {
+  // CreatePackage uploads a package to the cloud
+  rpc CreatePackage(stream CreatePackageRequest) returns (CreatePackageResponse) {
+    option (google.api.http) = {
+      post: "/packages/v1/create"
+    };
+  }
+
+  // DeletePackage removes the given package versions
+  rpc DeletePackage(DeletePackageRequest) returns (DeletePackageResponse) {
+    option (google.api.http) = {
+      delete: "/packages/v1/delete"
+    };
+  }
+
+  // // GetPackage returns the URL and metadata for a requested package version
+  rpc GetPackage(GetPackageRequest) returns (GetPackageResponse) {
+    option (google.api.http) = {
+      get: "/packages/v1/get"
+    };
+  }
+
+  // ListPackages get the URLs and metadata for requested packages. Include package name, version, and/or type to filter beyond the required organization_id.
+  rpc ListPackages(ListPackagesRequest) returns (ListPackagesResponse) {
+    option (google.api.http) = {
+      get: "/packages/v1/list"
+    };
+  }
+}
+
+enum PackageType {
+  PACKAGE_TYPE_UNSPECIFIED = 0;
+  PACKAGE_TYPE_ARCHIVE = 1;
+  PACKAGE_TYPE_ML_MODEL = 2;
+}
+
+message FileInfo {
+  string name = 1;
+  uint64 size = 2;
+}
+
+message PackageInfo {
+  string organization_id = 1;
+  string name = 2;
+  string version = 3;
+  PackageType type = 4;
+  repeated FileInfo files = 5;
+  google.protobuf.Struct metadata = 6;
+  google.protobuf.Timestamp created_on = 7;
+}
+
+message CreatePackageRequest {
+  oneof package {
+    PackageInfo info = 1;
+    // .tar.gz file
+    bytes contents = 2;
+  }
+}
+
+message CreatePackageResponse {}
+
+message DeletePackageRequest {
+  string organization_id = 1;
+  string name = 2;
+  repeated string versions = 3;
+}
+
+message DeletePackageResponse {
+  // Number of versions deleted
+  int64 deleted_count = 1;
+}
+
+message Package {
+  PackageInfo info = 1;
+  string uri = 2;
+}
+
+message GetPackageRequest {
+  string organization_id = 1;
+  string name = 2;
+  string version = 3;
+}
+
+message GetPackageResponse {
+  Package package = 1;
+}
+
+message ListPackagesRequest {
+  string organization_id = 1;
+  optional string name = 2;
+  optional string version = 3;
+  optional PackageType type = 4;
+}
+
+message ListPackagesResponse {
+  repeated Package packages = 1;
+}

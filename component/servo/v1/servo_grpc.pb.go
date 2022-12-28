@@ -25,6 +25,8 @@ type ServoServiceClient interface {
 	GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error)
 	// Stop stops a robot's servo
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
+	// IsMoving reports if a component is in motion
+	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
 }
 
 type servoServiceClient struct {
@@ -62,6 +64,15 @@ func (c *servoServiceClient) Stop(ctx context.Context, in *StopRequest, opts ...
 	return out, nil
 }
 
+func (c *servoServiceClient) IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error) {
+	out := new(IsMovingResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.servo.v1.ServoService/IsMoving", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServoServiceServer is the server API for ServoService service.
 // All implementations must embed UnimplementedServoServiceServer
 // for forward compatibility
@@ -73,6 +84,8 @@ type ServoServiceServer interface {
 	GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error)
 	// Stop stops a robot's servo
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
+	// IsMoving reports if a component is in motion
+	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
 	mustEmbedUnimplementedServoServiceServer()
 }
 
@@ -88,6 +101,9 @@ func (UnimplementedServoServiceServer) GetPosition(context.Context, *GetPosition
 }
 func (UnimplementedServoServiceServer) Stop(context.Context, *StopRequest) (*StopResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stop not implemented")
+}
+func (UnimplementedServoServiceServer) IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsMoving not implemented")
 }
 func (UnimplementedServoServiceServer) mustEmbedUnimplementedServoServiceServer() {}
 
@@ -156,6 +172,24 @@ func _ServoService_Stop_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServoService_IsMoving_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsMovingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServoServiceServer).IsMoving(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.servo.v1.ServoService/IsMoving",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServoServiceServer).IsMoving(ctx, req.(*IsMovingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ServoService_ServiceDesc is the grpc.ServiceDesc for ServoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -174,6 +208,10 @@ var ServoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Stop",
 			Handler:    _ServoService_Stop_Handler,
+		},
+		{
+			MethodName: "IsMoving",
+			Handler:    _ServoService_IsMoving_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

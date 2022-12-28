@@ -33,6 +33,13 @@ service ServoService {
       post: "/viam/api/v1/component/servo/{name}/stop"
     };
   }
+
+  // IsMoving reports if a component is in motion
+  rpc IsMoving(IsMovingRequest) returns (IsMovingResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/servo/{name}/is_moving"
+    };
+  }
 }
 
 message MoveRequest {
@@ -70,4 +77,12 @@ message StopResponse {}
 message Status {
   uint32 position_deg = 1;
   bool is_moving = 2;
+}
+
+message IsMovingRequest {
+  string name = 1;
+}
+
+message IsMovingResponse {
+  bool is_moving = 1;
 }

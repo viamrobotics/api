@@ -15,6 +15,12 @@ service AppService {
 
   rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
 
+  // Share a location with an organization
+  rpc ShareLocation(ShareLocationRequest) returns (ShareLocationResponse);
+
+  // Stop sharing a location with an organization
+  rpc UnshareLocation(UnshareLocationRequest) returns (UnshareLocationResponse);
+
   rpc LocationAuth(LocationAuthRequest) returns (LocationAuthResponse);
 
   // Create a new generated Secret in the Location.
@@ -138,6 +144,24 @@ message CreateLocationResponse {
 message ListLocationsRequest {
   string organization_id = 1;
 }
+
+message ShareLocationRequest {
+  // Location ID to be shared.
+  string location_id = 1;
+  // Organization ID to share the location with.
+  string organization_id = 2;
+}
+
+message ShareLocationResponse {}
+
+message UnshareLocationRequest {
+  // Location ID to be unshared.
+  string location_id = 1;
+  // Organization ID to unshare the location with.
+  string organization_id = 2;
+}
+
+message UnshareLocationResponse {}
 
 message ListLocationsResponse {
   repeated Location locations = 1;
