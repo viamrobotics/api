@@ -18,7 +18,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataSyncServiceClient interface {
-	Upload(ctx context.Context, opts ...grpc.CallOption) (DataSyncService_UploadClient, error)
+	DataCaptureUpload(ctx context.Context, in *DataCaptureUploadRequest, opts ...grpc.CallOption) (*DataCaptureUploadResponse, error)
+	FileUpload(ctx context.Context, opts ...grpc.CallOption) (DataSyncService_FileUploadClient, error)
 }
 
 type dataSyncServiceClient struct {
@@ -29,31 +30,43 @@ func NewDataSyncServiceClient(cc grpc.ClientConnInterface) DataSyncServiceClient
 	return &dataSyncServiceClient{cc}
 }
 
-func (c *dataSyncServiceClient) Upload(ctx context.Context, opts ...grpc.CallOption) (DataSyncService_UploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &DataSyncService_ServiceDesc.Streams[0], "/viam.app.datasync.v1.DataSyncService/Upload", opts...)
+func (c *dataSyncServiceClient) DataCaptureUpload(ctx context.Context, in *DataCaptureUploadRequest, opts ...grpc.CallOption) (*DataCaptureUploadResponse, error) {
+	out := new(DataCaptureUploadResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.datasync.v1.DataSyncService/DataCaptureUpload", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &dataSyncServiceUploadClient{stream}
+	return out, nil
+}
+
+func (c *dataSyncServiceClient) FileUpload(ctx context.Context, opts ...grpc.CallOption) (DataSyncService_FileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &DataSyncService_ServiceDesc.Streams[0], "/viam.app.datasync.v1.DataSyncService/FileUpload", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &dataSyncServiceFileUploadClient{stream}
 	return x, nil
 }
 
-type DataSyncService_UploadClient interface {
-	Send(*UploadRequest) error
-	Recv() (*UploadResponse, error)
+type DataSyncService_FileUploadClient interface {
+	Send(*FileUploadRequest) error
+	CloseAndRecv() (*FileUploadResponse, error)
 	grpc.ClientStream
 }
 
-type dataSyncServiceUploadClient struct {
+type dataSyncServiceFileUploadClient struct {
 	grpc.ClientStream
 }
 
-func (x *dataSyncServiceUploadClient) Send(m *UploadRequest) error {
+func (x *dataSyncServiceFileUploadClient) Send(m *FileUploadRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *dataSyncServiceUploadClient) Recv() (*UploadResponse, error) {
-	m := new(UploadResponse)
+func (x *dataSyncServiceFileUploadClient) CloseAndRecv() (*FileUploadResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(FileUploadResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -64,7 +77,8 @@ func (x *dataSyncServiceUploadClient) Recv() (*UploadResponse, error) {
 // All implementations must embed UnimplementedDataSyncServiceServer
 // for forward compatibility
 type DataSyncServiceServer interface {
-	Upload(DataSyncService_UploadServer) error
+	DataCaptureUpload(context.Context, *DataCaptureUploadRequest) (*DataCaptureUploadResponse, error)
+	FileUpload(DataSyncService_FileUploadServer) error
 	mustEmbedUnimplementedDataSyncServiceServer()
 }
 
@@ -72,8 +86,11 @@ type DataSyncServiceServer interface {
 type UnimplementedDataSyncServiceServer struct {
 }
 
-func (UnimplementedDataSyncServiceServer) Upload(DataSyncService_UploadServer) error {
-	return status.Errorf(codes.Unimplemented, "method Upload not implemented")
+func (UnimplementedDataSyncServiceServer) DataCaptureUpload(context.Context, *DataCaptureUploadRequest) (*DataCaptureUploadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DataCaptureUpload not implemented")
+}
+func (UnimplementedDataSyncServiceServer) FileUpload(DataSyncService_FileUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method FileUpload not implemented")
 }
 func (UnimplementedDataSyncServiceServer) mustEmbedUnimplementedDataSyncServiceServer() {}
 
@@ -88,26 +105,44 @@ func RegisterDataSyncServiceServer(s grpc.ServiceRegistrar, srv DataSyncServiceS
 	s.RegisterService(&DataSyncService_ServiceDesc, srv)
 }
 
-func _DataSyncService_Upload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(DataSyncServiceServer).Upload(&dataSyncServiceUploadServer{stream})
+func _DataSyncService_DataCaptureUpload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DataCaptureUploadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSyncServiceServer).DataCaptureUpload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.datasync.v1.DataSyncService/DataCaptureUpload",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSyncServiceServer).DataCaptureUpload(ctx, req.(*DataCaptureUploadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
-type DataSyncService_UploadServer interface {
-	Send(*UploadResponse) error
-	Recv() (*UploadRequest, error)
+func _DataSyncService_FileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(DataSyncServiceServer).FileUpload(&dataSyncServiceFileUploadServer{stream})
+}
+
+type DataSyncService_FileUploadServer interface {
+	SendAndClose(*FileUploadResponse) error
+	Recv() (*FileUploadRequest, error)
 	grpc.ServerStream
 }
 
-type dataSyncServiceUploadServer struct {
+type dataSyncServiceFileUploadServer struct {
 	grpc.ServerStream
 }
 
-func (x *dataSyncServiceUploadServer) Send(m *UploadResponse) error {
+func (x *dataSyncServiceFileUploadServer) SendAndClose(m *FileUploadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *dataSyncServiceUploadServer) Recv() (*UploadRequest, error) {
-	m := new(UploadRequest)
+func (x *dataSyncServiceFileUploadServer) Recv() (*FileUploadRequest, error) {
+	m := new(FileUploadRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -120,12 +155,16 @@ func (x *dataSyncServiceUploadServer) Recv() (*UploadRequest, error) {
 var DataSyncService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "viam.app.datasync.v1.DataSyncService",
 	HandlerType: (*DataSyncServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "DataCaptureUpload",
+			Handler:    _DataSyncService_DataCaptureUpload_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "Upload",
-			Handler:       _DataSyncService_Upload_Handler,
-			ServerStreams: true,
+			StreamName:    "FileUpload",
+			Handler:       _DataSyncService_FileUpload_Handler,
 			ClientStreams: true,
 		},
 	},

@@ -36,6 +36,7 @@ message RobotConfig {
   // Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart
   optional bool debug = 8;
   repeated ModuleConfig modules = 9;
+  optional bool disable_partial_start = 10;
 }
 
 // Valid location secret that can be used for authentication to the robot.
@@ -88,6 +89,8 @@ message ProcessConfig {
   string cwd = 4;
   bool one_shot = 5;
   bool log = 6;
+  int32 stop_signal = 7;
+  google.protobuf.Duration stop_timeout = 8;
 }
 
 message ServiceConfig {

@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for viam.app.package.v1
+ * @fileoverview gRPC-Web generated client stub for viam.app.packages.v1
  * @enhanceable
  * @public
  */
@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.4.2
 // 	protoc              v0.0.0
-// source: app/package/v1/package.proto
+// source: app/packages/v1/packages.proto
 
 
 /* eslint-disable */
@@ -23,11 +23,13 @@ grpc.web = require('grpc-web');
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
 
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
+
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 const proto = {};
 proto.viam = {};
 proto.viam.app = {};
-proto.viam.app.package = {};
-proto.viam.app.package.v1 = require('./package_pb.js');
+proto.viam.app.packages = {};
+proto.viam.app.packages.v1 = require('./packages_pb.js');
 
 /**
  * @param {string} hostname
@@ -37,7 +39,7 @@ proto.viam.app.package.v1 = require('./package_pb.js');
  * @struct
  * @final
  */
-proto.viam.app.package.v1.PackageServiceClient =
+proto.viam.app.packages.v1.PackageServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -63,7 +65,7 @@ proto.viam.app.package.v1.PackageServiceClient =
  * @struct
  * @final
  */
-proto.viam.app.package.v1.PackageServicePromiseClient =
+proto.viam.app.packages.v1.PackageServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -84,39 +86,39 @@ proto.viam.app.package.v1.PackageServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.package.v1.DeletePackageRequest,
- *   !proto.viam.app.package.v1.DeletePackageResponse>}
+ *   !proto.viam.app.packages.v1.DeletePackageRequest,
+ *   !proto.viam.app.packages.v1.DeletePackageResponse>}
  */
 const methodDescriptor_PackageService_DeletePackage = new grpc.web.MethodDescriptor(
-  '/viam.app.package.v1.PackageService/DeletePackage',
+  '/viam.app.packages.v1.PackageService/DeletePackage',
   grpc.web.MethodType.UNARY,
-  proto.viam.app.package.v1.DeletePackageRequest,
-  proto.viam.app.package.v1.DeletePackageResponse,
+  proto.viam.app.packages.v1.DeletePackageRequest,
+  proto.viam.app.packages.v1.DeletePackageResponse,
   /**
-   * @param {!proto.viam.app.package.v1.DeletePackageRequest} request
+   * @param {!proto.viam.app.packages.v1.DeletePackageRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.app.package.v1.DeletePackageResponse.deserializeBinary
+  proto.viam.app.packages.v1.DeletePackageResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.app.package.v1.DeletePackageRequest} request The
+ * @param {!proto.viam.app.packages.v1.DeletePackageRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.package.v1.DeletePackageResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.packages.v1.DeletePackageResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.package.v1.DeletePackageResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.packages.v1.DeletePackageResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.package.v1.PackageServiceClient.prototype.deletePackage =
+proto.viam.app.packages.v1.PackageServiceClient.prototype.deletePackage =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.package.v1.PackageService/DeletePackage',
+      '/viam.app.packages.v1.PackageService/DeletePackage',
       request,
       metadata || {},
       methodDescriptor_PackageService_DeletePackage,
@@ -125,17 +127,17 @@ proto.viam.app.package.v1.PackageServiceClient.prototype.deletePackage =
 
 
 /**
- * @param {!proto.viam.app.package.v1.DeletePackageRequest} request The
+ * @param {!proto.viam.app.packages.v1.DeletePackageRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.app.package.v1.DeletePackageResponse>}
+ * @return {!Promise<!proto.viam.app.packages.v1.DeletePackageResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.package.v1.PackageServicePromiseClient.prototype.deletePackage =
+proto.viam.app.packages.v1.PackageServicePromiseClient.prototype.deletePackage =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.package.v1.PackageService/DeletePackage',
+      '/viam.app.packages.v1.PackageService/DeletePackage',
       request,
       metadata || {},
       methodDescriptor_PackageService_DeletePackage);
@@ -145,39 +147,39 @@ proto.viam.app.package.v1.PackageServicePromiseClient.prototype.deletePackage =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.package.v1.GetPackageRequest,
- *   !proto.viam.app.package.v1.GetPackageResponse>}
+ *   !proto.viam.app.packages.v1.GetPackageRequest,
+ *   !proto.viam.app.packages.v1.GetPackageResponse>}
  */
 const methodDescriptor_PackageService_GetPackage = new grpc.web.MethodDescriptor(
-  '/viam.app.package.v1.PackageService/GetPackage',
+  '/viam.app.packages.v1.PackageService/GetPackage',
   grpc.web.MethodType.UNARY,
-  proto.viam.app.package.v1.GetPackageRequest,
-  proto.viam.app.package.v1.GetPackageResponse,
+  proto.viam.app.packages.v1.GetPackageRequest,
+  proto.viam.app.packages.v1.GetPackageResponse,
   /**
-   * @param {!proto.viam.app.package.v1.GetPackageRequest} request
+   * @param {!proto.viam.app.packages.v1.GetPackageRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.app.package.v1.GetPackageResponse.deserializeBinary
+  proto.viam.app.packages.v1.GetPackageResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.app.package.v1.GetPackageRequest} request The
+ * @param {!proto.viam.app.packages.v1.GetPackageRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.package.v1.GetPackageResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.packages.v1.GetPackageResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.package.v1.GetPackageResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.packages.v1.GetPackageResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.package.v1.PackageServiceClient.prototype.getPackage =
+proto.viam.app.packages.v1.PackageServiceClient.prototype.getPackage =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.package.v1.PackageService/GetPackage',
+      '/viam.app.packages.v1.PackageService/GetPackage',
       request,
       metadata || {},
       methodDescriptor_PackageService_GetPackage,
@@ -186,17 +188,17 @@ proto.viam.app.package.v1.PackageServiceClient.prototype.getPackage =
 
 
 /**
- * @param {!proto.viam.app.package.v1.GetPackageRequest} request The
+ * @param {!proto.viam.app.packages.v1.GetPackageRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.app.package.v1.GetPackageResponse>}
+ * @return {!Promise<!proto.viam.app.packages.v1.GetPackageResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.package.v1.PackageServicePromiseClient.prototype.getPackage =
+proto.viam.app.packages.v1.PackageServicePromiseClient.prototype.getPackage =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.package.v1.PackageService/GetPackage',
+      '/viam.app.packages.v1.PackageService/GetPackage',
       request,
       metadata || {},
       methodDescriptor_PackageService_GetPackage);
@@ -206,39 +208,39 @@ proto.viam.app.package.v1.PackageServicePromiseClient.prototype.getPackage =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.package.v1.ListPackagesRequest,
- *   !proto.viam.app.package.v1.ListPackagesResponse>}
+ *   !proto.viam.app.packages.v1.ListPackagesRequest,
+ *   !proto.viam.app.packages.v1.ListPackagesResponse>}
  */
 const methodDescriptor_PackageService_ListPackages = new grpc.web.MethodDescriptor(
-  '/viam.app.package.v1.PackageService/ListPackages',
+  '/viam.app.packages.v1.PackageService/ListPackages',
   grpc.web.MethodType.UNARY,
-  proto.viam.app.package.v1.ListPackagesRequest,
-  proto.viam.app.package.v1.ListPackagesResponse,
+  proto.viam.app.packages.v1.ListPackagesRequest,
+  proto.viam.app.packages.v1.ListPackagesResponse,
   /**
-   * @param {!proto.viam.app.package.v1.ListPackagesRequest} request
+   * @param {!proto.viam.app.packages.v1.ListPackagesRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.app.package.v1.ListPackagesResponse.deserializeBinary
+  proto.viam.app.packages.v1.ListPackagesResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.app.package.v1.ListPackagesRequest} request The
+ * @param {!proto.viam.app.packages.v1.ListPackagesRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.package.v1.ListPackagesResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.packages.v1.ListPackagesResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.package.v1.ListPackagesResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.packages.v1.ListPackagesResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.package.v1.PackageServiceClient.prototype.listPackages =
+proto.viam.app.packages.v1.PackageServiceClient.prototype.listPackages =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.package.v1.PackageService/ListPackages',
+      '/viam.app.packages.v1.PackageService/ListPackages',
       request,
       metadata || {},
       methodDescriptor_PackageService_ListPackages,
@@ -247,22 +249,22 @@ proto.viam.app.package.v1.PackageServiceClient.prototype.listPackages =
 
 
 /**
- * @param {!proto.viam.app.package.v1.ListPackagesRequest} request The
+ * @param {!proto.viam.app.packages.v1.ListPackagesRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.app.package.v1.ListPackagesResponse>}
+ * @return {!Promise<!proto.viam.app.packages.v1.ListPackagesResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.package.v1.PackageServicePromiseClient.prototype.listPackages =
+proto.viam.app.packages.v1.PackageServicePromiseClient.prototype.listPackages =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.package.v1.PackageService/ListPackages',
+      '/viam.app.packages.v1.PackageService/ListPackages',
       request,
       metadata || {},
       methodDescriptor_PackageService_ListPackages);
 };
 
 
-module.exports = proto.viam.app.package.v1;
+module.exports = proto.viam.app.packages.v1;
 
