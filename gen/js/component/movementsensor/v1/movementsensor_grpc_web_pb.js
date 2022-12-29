@@ -510,5 +510,66 @@ proto.viam.component.movementsensor.v1.MovementSensorServicePromiseClient.protot
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.movementsensor.v1.GetLinearAccelerationRequest,
+ *   !proto.viam.component.movementsensor.v1.GetLinearAccelerationResponse>}
+ */
+const methodDescriptor_MovementSensorService_GetLinearAcceleration = new grpc.web.MethodDescriptor(
+  '/viam.component.movementsensor.v1.MovementSensorService/GetLinearAcceleration',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.movementsensor.v1.GetLinearAccelerationRequest,
+  proto.viam.component.movementsensor.v1.GetLinearAccelerationResponse,
+  /**
+   * @param {!proto.viam.component.movementsensor.v1.GetLinearAccelerationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.movementsensor.v1.GetLinearAccelerationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.movementsensor.v1.GetLinearAccelerationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.movementsensor.v1.GetLinearAccelerationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.movementsensor.v1.GetLinearAccelerationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.movementsensor.v1.MovementSensorServiceClient.prototype.getLinearAcceleration =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.movementsensor.v1.MovementSensorService/GetLinearAcceleration',
+      request,
+      metadata || {},
+      methodDescriptor_MovementSensorService_GetLinearAcceleration,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.movementsensor.v1.GetLinearAccelerationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.movementsensor.v1.GetLinearAccelerationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.movementsensor.v1.MovementSensorServicePromiseClient.prototype.getLinearAcceleration =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.movementsensor.v1.MovementSensorService/GetLinearAcceleration',
+      request,
+      metadata || {},
+      methodDescriptor_MovementSensorService_GetLinearAcceleration);
+};
+
+
 module.exports = proto.viam.component.movementsensor.v1;
 
