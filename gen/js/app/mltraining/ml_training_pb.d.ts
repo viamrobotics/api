@@ -51,6 +51,9 @@ export namespace SubmitTrainingJobRequest {
 }
 
 export class SubmitTrainingJobResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SubmitTrainingJobResponse.AsObject;
   static toObject(includeInstance: boolean, msg: SubmitTrainingJobResponse): SubmitTrainingJobResponse.AsObject;
@@ -63,6 +66,7 @@ export class SubmitTrainingJobResponse extends jspb.Message {
 
 export namespace SubmitTrainingJobResponse {
   export type AsObject = {
+    id: string,
   }
 }
 

@@ -28,7 +28,9 @@ message SubmitTrainingJobRequest {
   repeated string training_labels = 6;
 }
 
-message SubmitTrainingJobResponse {}
+message SubmitTrainingJobResponse {
+  string id = 1;
+}
 
 message GetTrainingJobRequest {
   string id = 1;
