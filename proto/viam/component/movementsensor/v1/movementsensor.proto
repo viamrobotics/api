@@ -51,6 +51,12 @@ service MovementSensorService {
       get: "/viam/api/v1/component/movementsensor/{name}/accuracy"
     };
   }
+
+  rpc GetLinearAcceleration(GetLinearAccelerationRequest) returns (GetLinearAccelerationResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/movementsensor/{name}/linear_acceleration"
+    };
+  }
 }
 
 message GetLinearVelocityRequest {
@@ -126,6 +132,7 @@ message GetPropertiesResponse {
   bool orientation_supported = 3;
   bool position_supported = 4;
   bool compass_heading_supported = 5;
+  bool linear_acceleration_supported = 6;
 }
 
 message GetAccuracyRequest {
@@ -137,4 +144,15 @@ message GetAccuracyRequest {
 
 message GetAccuracyResponse {
   map<string, float> accuracy_mm = 1;
+}
+
+message GetLinearAccelerationRequest {
+  // Name of a movement sensor
+  string name = 1;
+  // Addition arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetLinearAccelerationResponse {
+  common.v1.Vector3 linear_acceleration = 1;
 }
