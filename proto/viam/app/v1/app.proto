@@ -132,7 +132,10 @@ message RobotPartHistoryEntry {
   RobotPart old = 4 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
 }
 
-message ListOrganizationsRequest {}
+message ListOrganizationsRequest {
+  // Returns only organizations that are shared with a specific Location ID.
+  optional string shared_with_location_id = 3;
+}
 
 message Organization {
   string id = 1;
