@@ -6,7 +6,7 @@ import "app/data/v1/data.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "go.viam.com/api/app/mltrainining/v1";
+option go_package = "go.viam.com/api/app/mltraining/v1";
 
 service MLTrainingService {
   rpc SubmitTrainingJob(SubmitTrainingJobRequest) returns (SubmitTrainingJobResponse);
