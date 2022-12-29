@@ -57,6 +57,7 @@ message PackageInfo {
   PackageType type = 4;
   repeated FileInfo files = 5;
   google.protobuf.Struct metadata = 6;
+  google.protobuf.Timestamp created_on = 7;
 }
 
 message CreatePackageRequest {
@@ -86,6 +87,7 @@ message Package {
   google.protobuf.Timestamp created_on = 3;
 }
 
+// UploadedPackage is stored in the packages database
 message UploadedPackage {
   string organization_id = 1 [(tagger.v1.tags) = "bson:\"org_id\" json:\"org_id\""];
   string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
