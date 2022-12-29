@@ -5,6 +5,7 @@ package viam.app.packages.v1;
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
+import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/app/packages/v1";
 
@@ -83,6 +84,19 @@ message DeletePackageResponse {
 message Package {
   PackageInfo info = 1;
   string uri = 2;
+  google.protobuf.Timestamp created_on = 3;
+}
+
+// InternalPackage is stored in the packages database and represents our interval view of the uploaded package
+message InternalPackage {
+  string organization_id = 1 [(tagger.v1.tags) = "bson:\"org_id\" json:\"org_id\""];
+  string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
+  string version = 3 [(tagger.v1.tags) = "bson:\"version\" json:\"version\""];
+  PackageType type = 4 [(tagger.v1.tags) = "bson:\"type\" json:\"type\""];
+  repeated FileInfo files = 5 [(tagger.v1.tags) = "bson:\"files\" json:\"files\""];
+  google.protobuf.Struct metadata = 6 [(tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
+  string blob_path = 7 [(tagger.v1.tags) = "bson:\"blob_path\" json:\"blob_path\""];
+  google.protobuf.Timestamp created_on = 8 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
 }
 
 message GetPackageRequest {
