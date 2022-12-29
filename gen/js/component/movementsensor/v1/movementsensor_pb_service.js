@@ -73,6 +73,15 @@ MovementSensorService.GetAccuracy = {
   responseType: component_movementsensor_v1_movementsensor_pb.GetAccuracyResponse
 };
 
+MovementSensorService.GetLinearAcceleration = {
+  methodName: "GetLinearAcceleration",
+  service: MovementSensorService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_movementsensor_v1_movementsensor_pb.GetLinearAccelerationRequest,
+  responseType: component_movementsensor_v1_movementsensor_pb.GetLinearAccelerationResponse
+};
+
 exports.MovementSensorService = MovementSensorService;
 
 function MovementSensorServiceClient(serviceHost, options) {
@@ -271,6 +280,37 @@ MovementSensorServiceClient.prototype.getAccuracy = function getAccuracy(request
     callback = arguments[1];
   }
   var client = grpc.unary(MovementSensorService.GetAccuracy, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MovementSensorServiceClient.prototype.getLinearAcceleration = function getLinearAcceleration(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MovementSensorService.GetLinearAcceleration, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
