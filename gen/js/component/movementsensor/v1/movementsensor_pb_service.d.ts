@@ -67,6 +67,15 @@ type MovementSensorServiceGetAccuracy = {
   readonly responseType: typeof component_movementsensor_v1_movementsensor_pb.GetAccuracyResponse;
 };
 
+type MovementSensorServiceGetLinearAcceleration = {
+  readonly methodName: string;
+  readonly service: typeof MovementSensorService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_movementsensor_v1_movementsensor_pb.GetLinearAccelerationRequest;
+  readonly responseType: typeof component_movementsensor_v1_movementsensor_pb.GetLinearAccelerationResponse;
+};
+
 export class MovementSensorService {
   static readonly serviceName: string;
   static readonly GetLinearVelocity: MovementSensorServiceGetLinearVelocity;
@@ -76,6 +85,7 @@ export class MovementSensorService {
   static readonly GetPosition: MovementSensorServiceGetPosition;
   static readonly GetProperties: MovementSensorServiceGetProperties;
   static readonly GetAccuracy: MovementSensorServiceGetAccuracy;
+  static readonly GetLinearAcceleration: MovementSensorServiceGetLinearAcceleration;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -172,6 +182,15 @@ export class MovementSensorServiceClient {
   getAccuracy(
     requestMessage: component_movementsensor_v1_movementsensor_pb.GetAccuracyRequest,
     callback: (error: ServiceError|null, responseMessage: component_movementsensor_v1_movementsensor_pb.GetAccuracyResponse|null) => void
+  ): UnaryResponse;
+  getLinearAcceleration(
+    requestMessage: component_movementsensor_v1_movementsensor_pb.GetLinearAccelerationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_movementsensor_v1_movementsensor_pb.GetLinearAccelerationResponse|null) => void
+  ): UnaryResponse;
+  getLinearAcceleration(
+    requestMessage: component_movementsensor_v1_movementsensor_pb.GetLinearAccelerationRequest,
+    callback: (error: ServiceError|null, responseMessage: component_movementsensor_v1_movementsensor_pb.GetLinearAccelerationResponse|null) => void
   ): UnaryResponse;
 }
 

@@ -52,7 +52,7 @@ service MovementSensorService {
     };
   }
 
-  rpc GetLinearAcceleration(GetLinearAccelerationRequest) returns (GetLinearAccelerationResponse){
+  rpc GetLinearAcceleration(GetLinearAccelerationRequest) returns (GetLinearAccelerationResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/movementsensor/{name}/linear_acceleration"
     };
