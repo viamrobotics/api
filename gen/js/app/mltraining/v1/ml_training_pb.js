@@ -195,7 +195,7 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.toObject = funct
 proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     filter: (f = msg.getFilter()) && app_data_v1_data_pb.Filter.toObject(includeInstance, f),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    orgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     modelName: jspb.Message.getFieldWithDefault(msg, 3, ""),
     modelVersion: jspb.Message.getFieldWithDefault(msg, 4, ""),
     modelType: jspb.Message.getFieldWithDefault(msg, 5, 0),
@@ -243,7 +243,7 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.deserializeBinaryFromReade
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setOrganizationId(value);
+      msg.setOrgId(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -298,7 +298,7 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.serializeBinaryToWriter = 
       app_data_v1_data_pb.Filter.serializeBinaryToWriter
     );
   }
-  f = message.getOrganizationId();
+  f = message.getOrgId();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -374,10 +374,10 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.hasFilter = func
 
 
 /**
- * optional string organization_id = 2;
+ * optional string org_id = 2;
  * @return {string}
  */
-proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.getOrganizationId = function() {
+proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.getOrgId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -386,7 +386,7 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.getOrganizationI
  * @param {string} value
  * @return {!proto.viam.app.mltraining.v1.SubmitTrainingJobRequest} returns this
  */
-proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.setOrganizationId = function(value) {
+proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.setOrgId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 

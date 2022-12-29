@@ -12,8 +12,8 @@ export class SubmitTrainingJobRequest extends jspb.Message {
   getFilter(): app_data_v1_data_pb.Filter | undefined;
   setFilter(value?: app_data_v1_data_pb.Filter): void;
 
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
+  getOrgId(): string;
+  setOrgId(value: string): void;
 
   getModelName(): string;
   setModelName(value: string): void;
@@ -42,7 +42,7 @@ export class SubmitTrainingJobRequest extends jspb.Message {
 export namespace SubmitTrainingJobRequest {
   export type AsObject = {
     filter?: app_data_v1_data_pb.Filter.AsObject,
-    organizationId: string,
+    orgId: string,
     modelName: string,
     modelVersion: string,
     modelType: ModelTypeMap[keyof ModelTypeMap],

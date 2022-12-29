@@ -21,7 +21,7 @@ enum ModelType {
 
 message SubmitTrainingJobRequest {
   viam.app.data.v1.Filter filter = 1;
-  string organization_id = 2;
+  string org_id = 2;
   string model_name = 3;
   string model_version = 4;
   ModelType model_type = 5;
