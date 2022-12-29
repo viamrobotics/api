@@ -87,8 +87,8 @@ message Package {
   google.protobuf.Timestamp created_on = 3;
 }
 
-// UploadedPackage is stored in the packages database
-message UploadedPackage {
+// InternalPackage is stored in the packages database and represents our interval view of the uploaded package
+message InternalPackage {
   string organization_id = 1 [(tagger.v1.tags) = "bson:\"org_id\" json:\"org_id\""];
   string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
   string version = 3 [(tagger.v1.tags) = "bson:\"version\" json:\"version\""];

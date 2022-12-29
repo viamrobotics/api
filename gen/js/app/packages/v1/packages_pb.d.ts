@@ -216,7 +216,7 @@ export namespace Package {
   }
 }
 
-export class UploadedPackage extends jspb.Message {
+export class InternalPackage extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
@@ -248,16 +248,16 @@ export class UploadedPackage extends jspb.Message {
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UploadedPackage.AsObject;
-  static toObject(includeInstance: boolean, msg: UploadedPackage): UploadedPackage.AsObject;
+  toObject(includeInstance?: boolean): InternalPackage.AsObject;
+  static toObject(includeInstance: boolean, msg: InternalPackage): InternalPackage.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UploadedPackage, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UploadedPackage;
-  static deserializeBinaryFromReader(message: UploadedPackage, reader: jspb.BinaryReader): UploadedPackage;
+  static serializeBinaryToWriter(message: InternalPackage, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InternalPackage;
+  static deserializeBinaryFromReader(message: InternalPackage, reader: jspb.BinaryReader): InternalPackage;
 }
 
-export namespace UploadedPackage {
+export namespace InternalPackage {
   export type AsObject = {
     organizationId: string,
     name: string,

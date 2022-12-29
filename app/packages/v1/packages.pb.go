@@ -517,8 +517,8 @@ func (x *Package) GetCreatedOn() *timestamppb.Timestamp {
 	return nil
 }
 
-// UploadedPackage is stored in the packages database
-type UploadedPackage struct {
+// InternalPackage is stored in the packages database and represents our interval view of the uploaded package
+type InternalPackage struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -533,8 +533,8 @@ type UploadedPackage struct {
 	CreatedOn      *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_on,json=createdOn,proto3" json:"created_on" bson:"created_on"`
 }
 
-func (x *UploadedPackage) Reset() {
-	*x = UploadedPackage{}
+func (x *InternalPackage) Reset() {
+	*x = InternalPackage{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_packages_v1_packages_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -542,13 +542,13 @@ func (x *UploadedPackage) Reset() {
 	}
 }
 
-func (x *UploadedPackage) String() string {
+func (x *InternalPackage) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UploadedPackage) ProtoMessage() {}
+func (*InternalPackage) ProtoMessage() {}
 
-func (x *UploadedPackage) ProtoReflect() protoreflect.Message {
+func (x *InternalPackage) ProtoReflect() protoreflect.Message {
 	mi := &file_app_packages_v1_packages_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -560,61 +560,61 @@ func (x *UploadedPackage) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UploadedPackage.ProtoReflect.Descriptor instead.
-func (*UploadedPackage) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalPackage.ProtoReflect.Descriptor instead.
+func (*InternalPackage) Descriptor() ([]byte, []int) {
 	return file_app_packages_v1_packages_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *UploadedPackage) GetOrganizationId() string {
+func (x *InternalPackage) GetOrganizationId() string {
 	if x != nil {
 		return x.OrganizationId
 	}
 	return ""
 }
 
-func (x *UploadedPackage) GetName() string {
+func (x *InternalPackage) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *UploadedPackage) GetVersion() string {
+func (x *InternalPackage) GetVersion() string {
 	if x != nil {
 		return x.Version
 	}
 	return ""
 }
 
-func (x *UploadedPackage) GetType() PackageType {
+func (x *InternalPackage) GetType() PackageType {
 	if x != nil {
 		return x.Type
 	}
 	return PackageType_PACKAGE_TYPE_UNSPECIFIED
 }
 
-func (x *UploadedPackage) GetFiles() []*FileInfo {
+func (x *InternalPackage) GetFiles() []*FileInfo {
 	if x != nil {
 		return x.Files
 	}
 	return nil
 }
 
-func (x *UploadedPackage) GetMetadata() *structpb.Struct {
+func (x *InternalPackage) GetMetadata() *structpb.Struct {
 	if x != nil {
 		return x.Metadata
 	}
 	return nil
 }
 
-func (x *UploadedPackage) GetBlobPath() string {
+func (x *InternalPackage) GetBlobPath() string {
 	if x != nil {
 		return x.BlobPath
 	}
 	return ""
 }
 
-func (x *UploadedPackage) GetCreatedOn() *timestamppb.Timestamp {
+func (x *InternalPackage) GetCreatedOn() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedOn
 	}
@@ -915,8 +915,8 @@ var file_app_packages_v1_packages_proto_rawDesc = []byte{
 	0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a,
 	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
 	0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61,
-	0x74, 0x65, 0x64, 0x4f, 0x6e, 0x22, 0xfc, 0x04, 0x0a, 0x0f, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64,
-	0x65, 0x64, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x12, 0x49, 0x0a, 0x0f, 0x6f, 0x72, 0x67,
+	0x74, 0x65, 0x64, 0x4f, 0x6e, 0x22, 0xfc, 0x04, 0x0a, 0x0f, 0x49, 0x6e, 0x74, 0x65, 0x72, 0x6e,
+	0x61, 0x6c, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x12, 0x49, 0x0a, 0x0f, 0x6f, 0x72, 0x67,
 	0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x09, 0x42, 0x20, 0x9a, 0x84, 0x9e, 0x03, 0x1b, 0x62, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x6f,
 	0x72, 0x67, 0x5f, 0x69, 0x64, 0x22, 0x20, 0x6a, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x6f, 0x72, 0x67,
@@ -1054,7 +1054,7 @@ var file_app_packages_v1_packages_proto_goTypes = []interface{}{
 	(*DeletePackageRequest)(nil),  // 5: viam.app.packages.v1.DeletePackageRequest
 	(*DeletePackageResponse)(nil), // 6: viam.app.packages.v1.DeletePackageResponse
 	(*Package)(nil),               // 7: viam.app.packages.v1.Package
-	(*UploadedPackage)(nil),       // 8: viam.app.packages.v1.UploadedPackage
+	(*InternalPackage)(nil),       // 8: viam.app.packages.v1.InternalPackage
 	(*GetPackageRequest)(nil),     // 9: viam.app.packages.v1.GetPackageRequest
 	(*GetPackageResponse)(nil),    // 10: viam.app.packages.v1.GetPackageResponse
 	(*ListPackagesRequest)(nil),   // 11: viam.app.packages.v1.ListPackagesRequest
@@ -1070,10 +1070,10 @@ var file_app_packages_v1_packages_proto_depIdxs = []int32{
 	2,  // 4: viam.app.packages.v1.CreatePackageRequest.info:type_name -> viam.app.packages.v1.PackageInfo
 	2,  // 5: viam.app.packages.v1.Package.info:type_name -> viam.app.packages.v1.PackageInfo
 	14, // 6: viam.app.packages.v1.Package.created_on:type_name -> google.protobuf.Timestamp
-	0,  // 7: viam.app.packages.v1.UploadedPackage.type:type_name -> viam.app.packages.v1.PackageType
-	1,  // 8: viam.app.packages.v1.UploadedPackage.files:type_name -> viam.app.packages.v1.FileInfo
-	13, // 9: viam.app.packages.v1.UploadedPackage.metadata:type_name -> google.protobuf.Struct
-	14, // 10: viam.app.packages.v1.UploadedPackage.created_on:type_name -> google.protobuf.Timestamp
+	0,  // 7: viam.app.packages.v1.InternalPackage.type:type_name -> viam.app.packages.v1.PackageType
+	1,  // 8: viam.app.packages.v1.InternalPackage.files:type_name -> viam.app.packages.v1.FileInfo
+	13, // 9: viam.app.packages.v1.InternalPackage.metadata:type_name -> google.protobuf.Struct
+	14, // 10: viam.app.packages.v1.InternalPackage.created_on:type_name -> google.protobuf.Timestamp
 	7,  // 11: viam.app.packages.v1.GetPackageResponse.package:type_name -> viam.app.packages.v1.Package
 	0,  // 12: viam.app.packages.v1.ListPackagesRequest.type:type_name -> viam.app.packages.v1.PackageType
 	7,  // 13: viam.app.packages.v1.ListPackagesResponse.packages:type_name -> viam.app.packages.v1.Package
@@ -1183,7 +1183,7 @@ func file_app_packages_v1_packages_proto_init() {
 			}
 		}
 		file_app_packages_v1_packages_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UploadedPackage); i {
+			switch v := v.(*InternalPackage); i {
 			case 0:
 				return &v.state
 			case 1:
