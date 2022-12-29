@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package viam.app.mltraining.v1;
+
+import "proto/viam/app/data/v1/data.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+
+option go_package = "go.viam.com/api/app/mltrainining/v1";
+
+
+service MLTrainingService {
+    rpc SubmitTrainingJob(SubmitTrainingJobRequest) returns (SubmitTrainingJobRequest);
+    rpc GetTrainingJob(GetTrainingJobRequest) returns (GetTrainingJobResponse);
+}
+
+enum ModelType {
+    MODEL_TYPE_UNSPECIFIED = 0;
+    MODEL_TYPE_MULTI_CLASS_CLASSIFICATION = 1;
+    MODEL_TYPE_MULTI_LABEL_CLASSIFICATION = 2;
+   }
+    
+message SubmitTrainingJobRequest {
+    viam.app.data.v1.Filter filter = 1;
+    string organization_id = 2;
+    string model_name = 3;
+    string model_version = 4;
+    ModelType model_type = 5;
+    repeated string training_labels = 6;
+}
+    
+message SubmitTrainingJobResponse {}
+
+message GetTrainingJobRequest {
+    string id = 1;
+}
+    
+message GetTrainingJobResponse {
+    string id = 1;
+    TrainingJobMetadata metadata = 2;
+}
+
+enum TrainingStatus {
+    STATUS_UNSPECIFIED = 0;
+    STATUS_PENDING = 1;
+    STATUS_IN_PROGRESS = 2;
+    STATUS_COMPLETED = 3;
+    STATUS_FAILED = 4;
+}
+    
+message TrainingJobMetadata {
+    SubmitTrainingJobRequest request = 1;
+    TrainingStatus status = 2;
+    google.protobuf.Timestamp created_on = 3;
+    google.protobuf.Timestamp last_modified = 4;
+    string synced_model_id = 5;
+}
+    
+message TrainingJob {
+    string id = 1;
+    TrainingJobMetadata metadata = 2;
+    string output_path = 3;
+    // The vertex_job_id is the id of the Vertex AI custom training job
+    // backing our concept of a TrainingJob.
+    string vertex_job_id = 4;
+    google.protobuf.Struct model_metadata = 5;
+}
+   
