@@ -195,11 +195,11 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.toObject = funct
 proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     filter: (f = msg.getFilter()) && app_data_v1_data_pb.Filter.toObject(includeInstance, f),
-    orgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     modelName: jspb.Message.getFieldWithDefault(msg, 3, ""),
     modelVersion: jspb.Message.getFieldWithDefault(msg, 4, ""),
     modelType: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    trainingLabelsList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
+    tagsList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -243,7 +243,7 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.deserializeBinaryFromReade
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setOrgId(value);
+      msg.setOrganizationId(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -259,7 +259,7 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.deserializeBinaryFromReade
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.addTrainingLabels(value);
+      msg.addTags(value);
       break;
     default:
       reader.skipField();
@@ -298,7 +298,7 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.serializeBinaryToWriter = 
       app_data_v1_data_pb.Filter.serializeBinaryToWriter
     );
   }
-  f = message.getOrgId();
+  f = message.getOrganizationId();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -326,7 +326,7 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.serializeBinaryToWriter = 
       f
     );
   }
-  f = message.getTrainingLabelsList();
+  f = message.getTagsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
       6,
@@ -374,10 +374,10 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.hasFilter = func
 
 
 /**
- * optional string org_id = 2;
+ * optional string organization_id = 2;
  * @return {string}
  */
-proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.getOrgId = function() {
+proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.getOrganizationId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -386,7 +386,7 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.getOrgId = funct
  * @param {string} value
  * @return {!proto.viam.app.mltraining.v1.SubmitTrainingJobRequest} returns this
  */
-proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.setOrgId = function(value) {
+proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.setOrganizationId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -446,10 +446,10 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.setModelType = f
 
 
 /**
- * repeated string training_labels = 6;
+ * repeated string tags = 6;
  * @return {!Array<string>}
  */
-proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.getTrainingLabelsList = function() {
+proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.getTagsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 6));
 };
 
@@ -458,7 +458,7 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.getTrainingLabel
  * @param {!Array<string>} value
  * @return {!proto.viam.app.mltraining.v1.SubmitTrainingJobRequest} returns this
  */
-proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.setTrainingLabelsList = function(value) {
+proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.setTagsList = function(value) {
   return jspb.Message.setField(this, 6, value || []);
 };
 
@@ -468,7 +468,7 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.setTrainingLabel
  * @param {number=} opt_index
  * @return {!proto.viam.app.mltraining.v1.SubmitTrainingJobRequest} returns this
  */
-proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.addTrainingLabels = function(value, opt_index) {
+proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.addTags = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 6, value, opt_index);
 };
 
@@ -477,8 +477,8 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.addTrainingLabel
  * Clears the list making it empty but non-null.
  * @return {!proto.viam.app.mltraining.v1.SubmitTrainingJobRequest} returns this
  */
-proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.clearTrainingLabelsList = function() {
-  return this.setTrainingLabelsList([]);
+proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.clearTagsList = function() {
+  return this.setTagsList([]);
 };
 
 
@@ -1533,7 +1533,7 @@ proto.viam.app.mltraining.v1.TrainingJob.prototype.hasModelMetadata = function()
  */
 proto.viam.app.mltraining.v1.ModelType = {
   MODEL_TYPE_UNSPECIFIED: 0,
-  MODEL_TYPE_MULTI_CLASS_CLASSIFICATION: 1,
+  MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION: 1,
   MODEL_TYPE_MULTI_LABEL_CLASSIFICATION: 2
 };
 

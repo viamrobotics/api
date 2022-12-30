@@ -15,17 +15,17 @@ service MLTrainingService {
 
 enum ModelType {
   MODEL_TYPE_UNSPECIFIED = 0;
-  MODEL_TYPE_MULTI_CLASS_CLASSIFICATION = 1;
+  MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION = 1;
   MODEL_TYPE_MULTI_LABEL_CLASSIFICATION = 2;
 }
 
 message SubmitTrainingJobRequest {
   viam.app.data.v1.Filter filter = 1;
-  string org_id = 2;
+  string organization_id = 2;
   string model_name = 3;
   string model_version = 4;
   ModelType model_type = 5;
-  repeated string training_labels = 6;
+  repeated string tags = 6;
 }
 
 message SubmitTrainingJobResponse {

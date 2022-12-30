@@ -12,8 +12,8 @@ export class SubmitTrainingJobRequest extends jspb.Message {
   getFilter(): app_data_v1_data_pb.Filter | undefined;
   setFilter(value?: app_data_v1_data_pb.Filter): void;
 
-  getOrgId(): string;
-  setOrgId(value: string): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
 
   getModelName(): string;
   setModelName(value: string): void;
@@ -24,10 +24,10 @@ export class SubmitTrainingJobRequest extends jspb.Message {
   getModelType(): ModelTypeMap[keyof ModelTypeMap];
   setModelType(value: ModelTypeMap[keyof ModelTypeMap]): void;
 
-  clearTrainingLabelsList(): void;
-  getTrainingLabelsList(): Array<string>;
-  setTrainingLabelsList(value: Array<string>): void;
-  addTrainingLabels(value: string, index?: number): string;
+  clearTagsList(): void;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): void;
+  addTags(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SubmitTrainingJobRequest.AsObject;
@@ -42,11 +42,11 @@ export class SubmitTrainingJobRequest extends jspb.Message {
 export namespace SubmitTrainingJobRequest {
   export type AsObject = {
     filter?: app_data_v1_data_pb.Filter.AsObject,
-    orgId: string,
+    organizationId: string,
     modelName: string,
     modelVersion: string,
     modelType: ModelTypeMap[keyof ModelTypeMap],
-    trainingLabelsList: Array<string>,
+    tagsList: Array<string>,
   }
 }
 
@@ -200,7 +200,7 @@ export namespace TrainingJob {
 
 export interface ModelTypeMap {
   MODEL_TYPE_UNSPECIFIED: 0;
-  MODEL_TYPE_MULTI_CLASS_CLASSIFICATION: 1;
+  MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION: 1;
   MODEL_TYPE_MULTI_LABEL_CLASSIFICATION: 2;
 }
 
