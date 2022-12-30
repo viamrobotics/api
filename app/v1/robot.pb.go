@@ -1181,6 +1181,7 @@ type Orientation struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Type:
+	//
 	//	*Orientation_NoOrientation_
 	//	*Orientation_VectorRadians
 	//	*Orientation_VectorDegrees

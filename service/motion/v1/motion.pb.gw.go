@@ -362,7 +362,7 @@ func RegisterMotionServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/ExportPointCloud", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/export_pointcloud"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/ExportPointCloud", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/export_point_cloud"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -488,7 +488,7 @@ func RegisterMotionServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/ExportPointCloud", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/export_pointcloud"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/ExportPointCloud", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/export_point_cloud"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -514,7 +514,7 @@ var (
 
 	pattern_MotionService_GetPose_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"viam", "api", "v1", "service", "motion", "name", "pose"}, ""))
 
-	pattern_MotionService_ExportPointCloud_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5}, []string{"viam", "api", "v1", "service", "motion", "export_pointcloud"}, ""))
+	pattern_MotionService_ExportPointCloud_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5}, []string{"viam", "api", "v1", "service", "motion", "export_point_cloud"}, ""))
 )
 
 var (

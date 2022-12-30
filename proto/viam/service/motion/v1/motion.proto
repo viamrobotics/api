@@ -30,7 +30,7 @@ service MotionService {
   }
   rpc ExportPointCloud(ExportPointCloudRequest) returns (ExportPointCloudResponse) {
     option (google.api.http) = {
-      post: "/viam/api/v1/service/motion/export_pointcloud"
+      post: "/viam/api/v1/service/motion/export_point_cloud"
     };
   }
 }
