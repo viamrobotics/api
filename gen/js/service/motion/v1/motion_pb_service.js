@@ -37,6 +37,15 @@ MotionService.GetPose = {
   responseType: service_motion_v1_motion_pb.GetPoseResponse
 };
 
+MotionService.ExportPointCloud = {
+  methodName: "ExportPointCloud",
+  service: MotionService,
+  requestStream: false,
+  responseStream: false,
+  requestType: service_motion_v1_motion_pb.ExportPointCloudRequest,
+  responseType: service_motion_v1_motion_pb.ExportPointCloudResponse
+};
+
 exports.MotionService = MotionService;
 
 function MotionServiceClient(serviceHost, options) {
@@ -111,6 +120,37 @@ MotionServiceClient.prototype.getPose = function getPose(requestMessage, metadat
     callback = arguments[1];
   }
   var client = grpc.unary(MotionService.GetPose, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MotionServiceClient.prototype.exportPointCloud = function exportPointCloud(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MotionService.ExportPointCloud, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

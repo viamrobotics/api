@@ -27,7 +27,7 @@ type AppServiceClient interface {
 	UnshareLocation(ctx context.Context, in *UnshareLocationRequest, opts ...grpc.CallOption) (*UnshareLocationResponse, error)
 	LocationAuth(ctx context.Context, in *LocationAuthRequest, opts ...grpc.CallOption) (*LocationAuthResponse, error)
 	// Create a new generated Secret in the Location.
-	//   - Succeeds if there are no more than 2 active secrets after creation.
+	//  - Succeeds if there are no more than 2 active secrets after creation.
 	CreateLocationSecret(ctx context.Context, in *CreateLocationSecretRequest, opts ...grpc.CallOption) (*CreateLocationSecretResponse, error)
 	// Delete a Secret from the Location.
 	DeleteLocationSecret(ctx context.Context, in *DeleteLocationSecretRequest, opts ...grpc.CallOption) (*DeleteLocationSecretResponse, error)
@@ -49,7 +49,7 @@ type AppServiceClient interface {
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(ctx context.Context, in *MarkPartAsMainRequest, opts ...grpc.CallOption) (*MarkPartAsMainResponse, error)
 	// Create a new generated Secret in the Robot Part.
-	//   - Succeeds if there are no more than 2 active secrets after creation.
+	//  - Succeeds if there are no more than 2 active secrets after creation.
 	CreateRobotPartSecret(ctx context.Context, in *CreateRobotPartSecretRequest, opts ...grpc.CallOption) (*CreateRobotPartSecretResponse, error)
 	// Delete a Secret from the RobotPart.
 	DeleteRobotPartSecret(ctx context.Context, in *DeleteRobotPartSecretRequest, opts ...grpc.CallOption) (*DeleteRobotPartSecretResponse, error)
@@ -323,7 +323,7 @@ type AppServiceServer interface {
 	UnshareLocation(context.Context, *UnshareLocationRequest) (*UnshareLocationResponse, error)
 	LocationAuth(context.Context, *LocationAuthRequest) (*LocationAuthResponse, error)
 	// Create a new generated Secret in the Location.
-	//   - Succeeds if there are no more than 2 active secrets after creation.
+	//  - Succeeds if there are no more than 2 active secrets after creation.
 	CreateLocationSecret(context.Context, *CreateLocationSecretRequest) (*CreateLocationSecretResponse, error)
 	// Delete a Secret from the Location.
 	DeleteLocationSecret(context.Context, *DeleteLocationSecretRequest) (*DeleteLocationSecretResponse, error)
@@ -345,7 +345,7 @@ type AppServiceServer interface {
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(context.Context, *MarkPartAsMainRequest) (*MarkPartAsMainResponse, error)
 	// Create a new generated Secret in the Robot Part.
-	//   - Succeeds if there are no more than 2 active secrets after creation.
+	//  - Succeeds if there are no more than 2 active secrets after creation.
 	CreateRobotPartSecret(context.Context, *CreateRobotPartSecretRequest) (*CreateRobotPartSecretResponse, error)
 	// Delete a Secret from the RobotPart.
 	DeleteRobotPartSecret(context.Context, *DeleteRobotPartSecretRequest) (*DeleteRobotPartSecretResponse, error)

@@ -229,7 +229,6 @@ type CreatePackageRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Package:
-	//
 	//	*CreatePackageRequest_Info
 	//	*CreatePackageRequest_Contents
 	Package isCreatePackageRequest_Package `protobuf_oneof:"package"`
