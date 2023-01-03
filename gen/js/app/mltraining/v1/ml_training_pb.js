@@ -21,6 +21,8 @@ var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_
 goog.object.extend(proto, google_protobuf_struct_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
+var tagger_v1_tagger_pb = require('../../../tagger/v1/tagger_pb.js');
+goog.object.extend(proto, tagger_v1_tagger_pb);
 goog.exportSymbol('proto.viam.app.mltraining.v1.GetTrainingJobRequest', null, global);
 goog.exportSymbol('proto.viam.app.mltraining.v1.GetTrainingJobResponse', null, global);
 goog.exportSymbol('proto.viam.app.mltraining.v1.ModelType', null, global);
