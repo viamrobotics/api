@@ -5,6 +5,7 @@ package viam.app.mltraining.v1;
 import "app/data/v1/data.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
+import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/app/mltraining/v1";
 
@@ -59,11 +60,11 @@ message TrainingJobMetadata {
 }
 
 message TrainingJob {
-  string id = 1;
-  TrainingJobMetadata metadata = 2;
-  string output_path = 3;
+  string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+  TrainingJobMetadata metadata = 2 [(tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
+  string output_path = 3 [(tagger.v1.tags) = "bson:\"output_path\" json:\"output_path\""];
   // The vertex_job_id is the id of the Vertex AI custom training job
   // backing our concept of a TrainingJob.
-  string vertex_job_id = 4;
-  google.protobuf.Struct model_metadata = 5;
+  string vertex_job_id = 4 [(tagger.v1.tags) = "bson:\"vertex_job_id\" json:\"vertex_job_id\""];
+  google.protobuf.Struct model_metadata = 5 [(tagger.v1.tags) = "bson:\"model_metadata\" json:\"model_metadata\""];
 }
