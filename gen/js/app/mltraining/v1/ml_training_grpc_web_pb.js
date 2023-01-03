@@ -25,6 +25,8 @@ var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js')
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
+
+var tagger_v1_tagger_pb = require('../../../tagger/v1/tagger_pb.js')
 const proto = {};
 proto.viam = {};
 proto.viam.app = {};
