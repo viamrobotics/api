@@ -184,8 +184,8 @@ export class Package extends jspb.Message {
   getInfo(): PackageInfo | undefined;
   setInfo(value?: PackageInfo): void;
 
-  getUri(): string;
-  setUri(value: string): void;
+  getUrl(): string;
+  setUrl(value: string): void;
 
   hasCreatedOn(): boolean;
   clearCreatedOn(): void;
@@ -205,7 +205,7 @@ export class Package extends jspb.Message {
 export namespace Package {
   export type AsObject = {
     info?: PackageInfo.AsObject,
-    uri: string,
+    url: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }

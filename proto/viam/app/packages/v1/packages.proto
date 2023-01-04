@@ -82,7 +82,7 @@ message DeletePackageResponse {
 
 message Package {
   PackageInfo info = 1;
-  string uri = 2;
+  string url = 2;
   google.protobuf.Timestamp created_on = 3;
 }
 

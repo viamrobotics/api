@@ -1509,7 +1509,7 @@ proto.viam.app.packages.v1.Package.prototype.toObject = function(opt_includeInst
 proto.viam.app.packages.v1.Package.toObject = function(includeInstance, msg) {
   var f, obj = {
     info: (f = msg.getInfo()) && proto.viam.app.packages.v1.PackageInfo.toObject(includeInstance, f),
-    uri: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    url: jspb.Message.getFieldWithDefault(msg, 2, ""),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
@@ -1554,7 +1554,7 @@ proto.viam.app.packages.v1.Package.deserializeBinaryFromReader = function(msg, r
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUri(value);
+      msg.setUrl(value);
       break;
     case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
@@ -1598,7 +1598,7 @@ proto.viam.app.packages.v1.Package.serializeBinaryToWriter = function(message, w
       proto.viam.app.packages.v1.PackageInfo.serializeBinaryToWriter
     );
   }
-  f = message.getUri();
+  f = message.getUrl();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -1654,10 +1654,10 @@ proto.viam.app.packages.v1.Package.prototype.hasInfo = function() {
 
 
 /**
- * optional string uri = 2;
+ * optional string url = 2;
  * @return {string}
  */
-proto.viam.app.packages.v1.Package.prototype.getUri = function() {
+proto.viam.app.packages.v1.Package.prototype.getUrl = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -1666,7 +1666,7 @@ proto.viam.app.packages.v1.Package.prototype.getUri = function() {
  * @param {string} value
  * @return {!proto.viam.app.packages.v1.Package} returns this
  */
-proto.viam.app.packages.v1.Package.prototype.setUri = function(value) {
+proto.viam.app.packages.v1.Package.prototype.setUrl = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
