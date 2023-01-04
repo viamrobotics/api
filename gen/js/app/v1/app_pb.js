@@ -6571,8 +6571,8 @@ proto.viam.app.v1.GetRobotPartLogsRequest.serializeBinaryToWriter = function(mes
       f
     );
   }
-  f = message.getFilter();
-  if (f.length > 0) {
+  f = /** @type {string} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
     writer.writeString(
       3,
       f
@@ -6631,7 +6631,25 @@ proto.viam.app.v1.GetRobotPartLogsRequest.prototype.getFilter = function() {
  * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
  */
 proto.viam.app.v1.GetRobotPartLogsRequest.prototype.setFilter = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearFilter = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasFilter = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
