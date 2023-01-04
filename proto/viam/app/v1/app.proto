@@ -253,7 +253,7 @@ message GetRobotPartResponse {
 message GetRobotPartLogsRequest {
   string id = 1;
   bool errors_only = 2;
-  string filter = 3;
+  optional string filter = 3;
 }
 
 message LogEntry {

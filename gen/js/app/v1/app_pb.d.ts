@@ -763,6 +763,8 @@ export class GetRobotPartLogsRequest extends jspb.Message {
   getErrorsOnly(): boolean;
   setErrorsOnly(value: boolean): void;
 
+  hasFilter(): boolean;
+  clearFilter(): void;
   getFilter(): string;
   setFilter(value: string): void;
 
