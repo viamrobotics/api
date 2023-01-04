@@ -810,7 +810,7 @@ type GetLinearAccelerationRequest struct {
 
 	// Name of a movement sensor
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Addition arguments to the method
+	// Additional arguments to the method
 	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
 }
 
