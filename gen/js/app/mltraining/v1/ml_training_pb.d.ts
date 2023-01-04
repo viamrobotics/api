@@ -5,6 +5,7 @@ import * as jspb from "google-protobuf";
 import * as app_data_v1_data_pb from "../../../app/data/v1/data_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
+import * as tagger_v1_tagger_pb from "../../../tagger/v1/tagger_pb";
 
 export class SubmitTrainingJobRequest extends jspb.Message {
   hasFilter(): boolean;
