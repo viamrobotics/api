@@ -54,11 +54,6 @@ export class PackageInfo extends jspb.Message {
   getMetadata(): google_protobuf_struct_pb.Struct | undefined;
   setMetadata(value?: google_protobuf_struct_pb.Struct): void;
 
-  hasCreatedOn(): boolean;
-  clearCreatedOn(): void;
-  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PackageInfo.AsObject;
   static toObject(includeInstance: boolean, msg: PackageInfo): PackageInfo.AsObject;
@@ -77,7 +72,6 @@ export namespace PackageInfo {
     type: PackageTypeMap[keyof PackageTypeMap],
     filesList: Array<FileInfo.AsObject>,
     metadata?: google_protobuf_struct_pb.Struct.AsObject,
-    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
