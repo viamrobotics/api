@@ -18,13 +18,22 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AppServiceClient interface {
-	CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error)
 	ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error)
+	// Create a location
+	CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error)
+	// Get a location
+	GetLocation(ctx context.Context, in *GetLocationRequest, opts ...grpc.CallOption) (*GetLocationResponse, error)
+	// Update a location
+	UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error)
+	// Delete a location
+	DeleteLocation(ctx context.Context, in *DeleteLocationRequest, opts ...grpc.CallOption) (*DeleteLocationResponse, error)
+	// Get a list of locations
 	ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error)
 	// Share a location with an organization
 	ShareLocation(ctx context.Context, in *ShareLocationRequest, opts ...grpc.CallOption) (*ShareLocationResponse, error)
 	// Stop sharing a location with an organization
 	UnshareLocation(ctx context.Context, in *UnshareLocationRequest, opts ...grpc.CallOption) (*UnshareLocationResponse, error)
+	// Get a location's authorization secrets
 	LocationAuth(ctx context.Context, in *LocationAuthRequest, opts ...grpc.CallOption) (*LocationAuthResponse, error)
 	// Create a new generated Secret in the Location.
 	//   - Succeeds if there are no more than 2 active secrets after creation.
@@ -53,7 +62,9 @@ type AppServiceClient interface {
 	CreateRobotPartSecret(ctx context.Context, in *CreateRobotPartSecretRequest, opts ...grpc.CallOption) (*CreateRobotPartSecretResponse, error)
 	// Delete a Secret from the RobotPart.
 	DeleteRobotPartSecret(ctx context.Context, in *DeleteRobotPartSecretRequest, opts ...grpc.CallOption) (*DeleteRobotPartSecretResponse, error)
-	// Finds robots given a query
+	// Get a list of robots
+	ListRobots(ctx context.Context, in *ListRobotsRequest, opts ...grpc.CallOption) (*ListRobotsResponse, error)
+	// Finds robots given a query. Deprecated, use ListRobots instead
 	FindRobots(ctx context.Context, in *FindRobotsRequest, opts ...grpc.CallOption) (*FindRobotsResponse, error)
 	// NewRobot creates a new robot
 	NewRobot(ctx context.Context, in *NewRobotRequest, opts ...grpc.CallOption) (*NewRobotResponse, error)
@@ -71,6 +82,15 @@ func NewAppServiceClient(cc grpc.ClientConnInterface) AppServiceClient {
 	return &appServiceClient{cc}
 }
 
+func (c *appServiceClient) ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error) {
+	out := new(ListOrganizationsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListOrganizations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error) {
 	out := new(CreateLocationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateLocation", in, out, opts...)
@@ -80,9 +100,27 @@ func (c *appServiceClient) CreateLocation(ctx context.Context, in *CreateLocatio
 	return out, nil
 }
 
-func (c *appServiceClient) ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error) {
-	out := new(ListOrganizationsResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListOrganizations", in, out, opts...)
+func (c *appServiceClient) GetLocation(ctx context.Context, in *GetLocationRequest, opts ...grpc.CallOption) (*GetLocationResponse, error) {
+	out := new(GetLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error) {
+	out := new(UpdateLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteLocation(ctx context.Context, in *DeleteLocationRequest, opts ...grpc.CallOption) (*DeleteLocationResponse, error) {
+	out := new(DeleteLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -274,6 +312,15 @@ func (c *appServiceClient) DeleteRobotPartSecret(ctx context.Context, in *Delete
 	return out, nil
 }
 
+func (c *appServiceClient) ListRobots(ctx context.Context, in *ListRobotsRequest, opts ...grpc.CallOption) (*ListRobotsResponse, error) {
+	out := new(ListRobotsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListRobots", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) FindRobots(ctx context.Context, in *FindRobotsRequest, opts ...grpc.CallOption) (*FindRobotsResponse, error) {
 	out := new(FindRobotsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/FindRobots", in, out, opts...)
@@ -314,13 +361,22 @@ func (c *appServiceClient) DeleteRobot(ctx context.Context, in *DeleteRobotReque
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
 type AppServiceServer interface {
-	CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error)
 	ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error)
+	// Create a location
+	CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error)
+	// Get a location
+	GetLocation(context.Context, *GetLocationRequest) (*GetLocationResponse, error)
+	// Update a location
+	UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error)
+	// Delete a location
+	DeleteLocation(context.Context, *DeleteLocationRequest) (*DeleteLocationResponse, error)
+	// Get a list of locations
 	ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error)
 	// Share a location with an organization
 	ShareLocation(context.Context, *ShareLocationRequest) (*ShareLocationResponse, error)
 	// Stop sharing a location with an organization
 	UnshareLocation(context.Context, *UnshareLocationRequest) (*UnshareLocationResponse, error)
+	// Get a location's authorization secrets
 	LocationAuth(context.Context, *LocationAuthRequest) (*LocationAuthResponse, error)
 	// Create a new generated Secret in the Location.
 	//   - Succeeds if there are no more than 2 active secrets after creation.
@@ -349,7 +405,9 @@ type AppServiceServer interface {
 	CreateRobotPartSecret(context.Context, *CreateRobotPartSecretRequest) (*CreateRobotPartSecretResponse, error)
 	// Delete a Secret from the RobotPart.
 	DeleteRobotPartSecret(context.Context, *DeleteRobotPartSecretRequest) (*DeleteRobotPartSecretResponse, error)
-	// Finds robots given a query
+	// Get a list of robots
+	ListRobots(context.Context, *ListRobotsRequest) (*ListRobotsResponse, error)
+	// Finds robots given a query. Deprecated, use ListRobots instead
 	FindRobots(context.Context, *FindRobotsRequest) (*FindRobotsResponse, error)
 	// NewRobot creates a new robot
 	NewRobot(context.Context, *NewRobotRequest) (*NewRobotResponse, error)
@@ -364,11 +422,20 @@ type AppServiceServer interface {
 type UnimplementedAppServiceServer struct {
 }
 
+func (UnimplementedAppServiceServer) ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizations not implemented")
+}
 func (UnimplementedAppServiceServer) CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateLocation not implemented")
 }
-func (UnimplementedAppServiceServer) ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizations not implemented")
+func (UnimplementedAppServiceServer) GetLocation(context.Context, *GetLocationRequest) (*GetLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLocation not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateLocation not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteLocation(context.Context, *DeleteLocationRequest) (*DeleteLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteLocation not implemented")
 }
 func (UnimplementedAppServiceServer) ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListLocations not implemented")
@@ -424,6 +491,9 @@ func (UnimplementedAppServiceServer) CreateRobotPartSecret(context.Context, *Cre
 func (UnimplementedAppServiceServer) DeleteRobotPartSecret(context.Context, *DeleteRobotPartSecretRequest) (*DeleteRobotPartSecretResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRobotPartSecret not implemented")
 }
+func (UnimplementedAppServiceServer) ListRobots(context.Context, *ListRobotsRequest) (*ListRobotsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRobots not implemented")
+}
 func (UnimplementedAppServiceServer) FindRobots(context.Context, *FindRobotsRequest) (*FindRobotsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindRobots not implemented")
 }
@@ -449,6 +519,24 @@ func RegisterAppServiceServer(s grpc.ServiceRegistrar, srv AppServiceServer) {
 	s.RegisterService(&AppService_ServiceDesc, srv)
 }
 
+func _AppService_ListOrganizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOrganizationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListOrganizations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListOrganizations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListOrganizations(ctx, req.(*ListOrganizationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_CreateLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateLocationRequest)
 	if err := dec(in); err != nil {
@@ -467,20 +555,56 @@ func _AppService_CreateLocation_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_ListOrganizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListOrganizationsRequest)
+func _AppService_GetLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLocationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).ListOrganizations(ctx, in)
+		return srv.(AppServiceServer).GetLocation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/ListOrganizations",
+		FullMethod: "/viam.app.v1.AppService/GetLocation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).ListOrganizations(ctx, req.(*ListOrganizationsRequest))
+		return srv.(AppServiceServer).GetLocation(ctx, req.(*GetLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateLocation(ctx, req.(*UpdateLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteLocation(ctx, req.(*DeleteLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -812,6 +936,24 @@ func _AppService_DeleteRobotPartSecret_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_ListRobots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRobotsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListRobots(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListRobots",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListRobots(ctx, req.(*ListRobotsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_FindRobots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FindRobotsRequest)
 	if err := dec(in); err != nil {
@@ -892,12 +1034,24 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AppServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "ListOrganizations",
+			Handler:    _AppService_ListOrganizations_Handler,
+		},
+		{
 			MethodName: "CreateLocation",
 			Handler:    _AppService_CreateLocation_Handler,
 		},
 		{
-			MethodName: "ListOrganizations",
-			Handler:    _AppService_ListOrganizations_Handler,
+			MethodName: "GetLocation",
+			Handler:    _AppService_GetLocation_Handler,
+		},
+		{
+			MethodName: "UpdateLocation",
+			Handler:    _AppService_UpdateLocation_Handler,
+		},
+		{
+			MethodName: "DeleteLocation",
+			Handler:    _AppService_DeleteLocation_Handler,
 		},
 		{
 			MethodName: "ListLocations",
@@ -966,6 +1120,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteRobotPartSecret",
 			Handler:    _AppService_DeleteRobotPartSecret_Handler,
+		},
+		{
+			MethodName: "ListRobots",
+			Handler:    _AppService_ListRobots_Handler,
 		},
 		{
 			MethodName: "FindRobots",
