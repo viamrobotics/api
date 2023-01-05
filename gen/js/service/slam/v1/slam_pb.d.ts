@@ -145,11 +145,6 @@ export class GetPositionNewRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  hasExtra(): boolean;
-  clearExtra(): void;
-  getExtra(): google_protobuf_struct_pb.Struct | undefined;
-  setExtra(value?: google_protobuf_struct_pb.Struct): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPositionNewRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPositionNewRequest): GetPositionNewRequest.AsObject;
@@ -163,7 +158,6 @@ export class GetPositionNewRequest extends jspb.Message {
 export namespace GetPositionNewRequest {
   export type AsObject = {
     name: string,
-    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -203,11 +197,6 @@ export class GetPointCloudMapRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  hasExtra(): boolean;
-  clearExtra(): void;
-  getExtra(): google_protobuf_struct_pb.Struct | undefined;
-  setExtra(value?: google_protobuf_struct_pb.Struct): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPointCloudMapRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPointCloudMapRequest): GetPointCloudMapRequest.AsObject;
@@ -221,7 +210,6 @@ export class GetPointCloudMapRequest extends jspb.Message {
 export namespace GetPointCloudMapRequest {
   export type AsObject = {
     name: string,
-    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 

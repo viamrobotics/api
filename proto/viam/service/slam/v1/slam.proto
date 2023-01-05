@@ -28,7 +28,8 @@ service SLAMService {
   }
 
   // GetPositionNew returns the current estimated position of the robot with
-  // respect to a returned component reference
+  // respect to a returned component reference. Note: this function will be
+  // renamed to GetPosition and replace the existing one in the near future
   rpc GetPositionNew(GetPositionNewRequest) returns (GetPositionNewResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/slam/{name}/position_new"
@@ -43,7 +44,8 @@ service SLAMService {
     };
   }
   // GetInternalState returns the internal map as defined by the specified slam
-  // algorithm required to continue mapping/localizing
+  // algorithm required to continue mapping/localizing. This endpoint is not
+  // intended for end user usage
   rpc GetInternalState(GetInternalStateRequest) returns (GetInternalStateResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/slam/{name}/internal_state"
@@ -93,8 +95,6 @@ message GetMapResponse {
 message GetPositionNewRequest {
   // Name of slam service
   string name = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
 }
 
 message GetPositionNewResponse {
@@ -109,8 +109,6 @@ message GetPositionNewResponse {
 message GetPointCloudMapRequest {
   // Name of slam service
   string name = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
 }
 
 message GetPointCloudMapResponse {

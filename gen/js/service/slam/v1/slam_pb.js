@@ -1228,8 +1228,7 @@ proto.viam.service.slam.v1.GetPositionNewRequest.prototype.toObject = function(o
  */
 proto.viam.service.slam.v1.GetPositionNewRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1270,11 +1269,6 @@ proto.viam.service.slam.v1.GetPositionNewRequest.deserializeBinaryFromReader = f
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
-    case 99:
-      var value = new google_protobuf_struct_pb.Struct;
-      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setExtra(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -1311,14 +1305,6 @@ proto.viam.service.slam.v1.GetPositionNewRequest.serializeBinaryToWriter = funct
       f
     );
   }
-  f = message.getExtra();
-  if (f != null) {
-    writer.writeMessage(
-      99,
-      f,
-      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
-    );
-  }
 };
 
 
@@ -1337,43 +1323,6 @@ proto.viam.service.slam.v1.GetPositionNewRequest.prototype.getName = function() 
  */
 proto.viam.service.slam.v1.GetPositionNewRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional google.protobuf.Struct extra = 99;
- * @return {?proto.google.protobuf.Struct}
- */
-proto.viam.service.slam.v1.GetPositionNewRequest.prototype.getExtra = function() {
-  return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.viam.service.slam.v1.GetPositionNewRequest} returns this
-*/
-proto.viam.service.slam.v1.GetPositionNewRequest.prototype.setExtra = function(value) {
-  return jspb.Message.setWrapperField(this, 99, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.service.slam.v1.GetPositionNewRequest} returns this
- */
-proto.viam.service.slam.v1.GetPositionNewRequest.prototype.clearExtra = function() {
-  return this.setExtra(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.service.slam.v1.GetPositionNewRequest.prototype.hasExtra = function() {
-  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1641,8 +1590,7 @@ proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.toObject = function
  */
 proto.viam.service.slam.v1.GetPointCloudMapRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1683,11 +1631,6 @@ proto.viam.service.slam.v1.GetPointCloudMapRequest.deserializeBinaryFromReader =
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
-    case 99:
-      var value = new google_protobuf_struct_pb.Struct;
-      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setExtra(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -1724,14 +1667,6 @@ proto.viam.service.slam.v1.GetPointCloudMapRequest.serializeBinaryToWriter = fun
       f
     );
   }
-  f = message.getExtra();
-  if (f != null) {
-    writer.writeMessage(
-      99,
-      f,
-      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
-    );
-  }
 };
 
 
@@ -1750,43 +1685,6 @@ proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.getName = function(
  */
 proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional google.protobuf.Struct extra = 99;
- * @return {?proto.google.protobuf.Struct}
- */
-proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.getExtra = function() {
-  return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.viam.service.slam.v1.GetPointCloudMapRequest} returns this
-*/
-proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.setExtra = function(value) {
-  return jspb.Message.setWrapperField(this, 99, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.service.slam.v1.GetPointCloudMapRequest} returns this
- */
-proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.clearExtra = function() {
-  return this.setExtra(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.hasExtra = function() {
-  return jspb.Message.getField(this, 99) != null;
 };
 
 
