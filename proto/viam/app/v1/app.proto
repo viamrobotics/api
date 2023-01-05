@@ -9,10 +9,24 @@ import "tagger/v1/tagger.proto";
 option go_package = "go.viam.com/api/app/v1";
 
 service AppService {
-  rpc CreateLocation(CreateLocationRequest) returns (CreateLocationResponse);
-
   rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
 
+  // Location
+  //
+
+  // Create a location
+  rpc CreateLocation(CreateLocationRequest) returns (CreateLocationResponse);
+
+  // Get a location
+  rpc GetLocation(GetLocationRequest) returns (GetLocationResponse);
+
+  // Update a location
+  rpc UpdateLocation(UpdateLocationRequest) returns (UpdateLocationResponse);
+
+  // Delete a location
+  rpc DeleteLocation(DeleteLocationRequest) returns (DeleteLocationResponse);
+
+  // Get a list of locations
   rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
 
   // Share a location with an organization
@@ -21,6 +35,7 @@ service AppService {
   // Stop sharing a location with an organization
   rpc UnshareLocation(UnshareLocationRequest) returns (UnshareLocationResponse);
 
+  // Get a location's authorization secrets
   rpc LocationAuth(LocationAuthRequest) returns (LocationAuthResponse);
 
   // Create a new generated Secret in the Location.
@@ -64,7 +79,10 @@ service AppService {
   // Delete a Secret from the RobotPart.
   rpc DeleteRobotPartSecret(DeleteRobotPartSecretRequest) returns (DeleteRobotPartSecretResponse);
 
-  // Finds robots given a query
+  // Get a list of robots
+  rpc ListRobots(ListRobotsRequest) returns (ListRobotsResponse);
+
+  // Finds robots given a query. Deprecated, use ListRobots instead
   rpc FindRobots(FindRobotsRequest) returns (FindRobotsResponse);
 
   // NewRobot creates a new robot
@@ -126,22 +144,112 @@ message ListOrganizationsResponse {
   repeated Organization organizations = 1;
 }
 
+// Location
+//
+
+message LocationOrganization {
+  // Organization ID the location is shared with.
+  string organization_id = 1;
+  // Whether the organization is the primary owner or not.
+  bool primary = 2;
+}
+
+message LocationAuth {
+  // Deprecated: use secrets field.
+  string secret = 1 [deprecated = true];
+
+  // Location ID containing this LocationAuth.
+  string location_id = 2;
+
+  // List of secrets used to authenticate to the Location.
+  repeated SharedSecret secrets = 3;
+}
+
 message Location {
+  // Location ID.
   string id = 1;
+  // Location name.
   string name = 2;
+  // Location ID of the parent location.
+  string parent_location_id = 4;
+  // Location authentication secrets.
+  LocationAuth auth = 5;
+  // Organizations that the location is shared with.
+  repeated LocationOrganization organizations = 6;
+  // Location creation timestamp.
   google.protobuf.Timestamp created_on = 3;
 }
 
+// SharedSecret is a secret used for LocationAuth and RobotParts.
+message SharedSecret {
+  enum State {
+    STATE_UNSPECIFIED = 0;
+    // Secret is enabled and can be used in authentication.
+    STATE_ENABLED = 1;
+    // Secret is disabled and must not be used to authenticate to rpc.
+    STATE_DISABLED = 2;
+  }
+
+  string id = 1 [(tagger.v1.tags) = "bson:\"id\""];
+
+  // The payload of the secret. Used during authentication to the rpc framework.
+  string secret = 2 [(tagger.v1.tags) = "bson:\"secret\""];
+
+  // Date/time the secret was first created.
+  google.protobuf.Timestamp created_on = 3 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
+
+  // State of the shared secret. In most cases it should be enabled. We may support
+  // disabling a specific secret while keeping it in the database.
+  State state = 4 [(tagger.v1.tags) = "bson:\"state\""];
+}
+
 message CreateLocationRequest {
+  // Organization ID to create the location under.
   string organization_id = 1;
+  // Name of the location.
   string name = 2;
+  // The new parent location to move the location under.
+  optional string parent_location_id = 3;
 }
 
 message CreateLocationResponse {
+  // Location object is returned.
   Location location = 1;
 }
 
+message GetLocationRequest {
+  // Location ID of location to get.
+  string location_id = 1;
+}
+
+message GetLocationResponse {
+  // Location object is returned.
+  Location location = 1;
+}
+
+message UpdateLocationRequest {
+  // Location ID of location to update.
+  string location_id = 1;
+  // The new to be updated on location.
+  optional string name = 2;
+  // The new parent location to move the location under.
+  optional string parent_location_id = 3;
+}
+
+message UpdateLocationResponse {
+  // Location object is returned.
+  Location location = 1;
+}
+
+message DeleteLocationRequest {
+  // Location ID of location to delete.
+  string location_id = 1;
+}
+
+message DeleteLocationResponse {}
+
 message ListLocationsRequest {
+  // Organization ID under which to list all locations.
   string organization_id = 1;
 }
 
@@ -182,40 +290,6 @@ message DeleteLocationSecretRequest {
   string secret_id = 2;
 }
 message DeleteLocationSecretResponse {}
-
-message LocationAuth {
-  // Deprecated: use secrets field.
-  string secret = 1 [deprecated = true];
-
-  // Location ID containing this LocationAuth.
-  string location_id = 2;
-
-  // List of secrets used to authenticate to the Location.
-  repeated SharedSecret secrets = 3;
-}
-
-// SharedSecret is a secret used for LocationAuth and RobotParts.
-message SharedSecret {
-  enum State {
-    STATE_UNSPECIFIED = 0;
-    // Secret is enabled and can be used in authentication.
-    STATE_ENABLED = 1;
-    // Secret is disabled and must not be used to authenticate to rpc.
-    STATE_DISABLED = 2;
-  }
-
-  string id = 1 [(tagger.v1.tags) = "bson:\"id\""];
-
-  // The payload of the secret. Used during authentication to the rpc framework.
-  string secret = 2 [(tagger.v1.tags) = "bson:\"secret\""];
-
-  // Date/time the secret was first created.
-  google.protobuf.Timestamp created_on = 3 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
-
-  // State of the shared secret. In most cases it should be enabled. We may support
-  // disabling a specific secret while keeping it in the database.
-  State state = 4 [(tagger.v1.tags) = "bson:\"state\""];
-}
 
 message LocationAuthRequest {
   string location_id = 1;
@@ -320,6 +394,14 @@ message Fragment {
   string organization_owner = 4 [(tagger.v1.tags) = "bson:\"organization_owner\" json:\"owner\""];
   bool public = 5 [(tagger.v1.tags) = "bson:\"public\" json:\"public\""];
   google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
+}
+
+message ListRobotsRequest {
+  string location_id = 1;
+}
+
+message ListRobotsResponse {
+  repeated Robot robots = 1;
 }
 
 message FindRobotsRequest {
