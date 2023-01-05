@@ -284,12 +284,12 @@ enum ModelType {
 }
 
 message SubmitTrainingJobRequest {
-  Filter filter = 1;
-  string organization_id = 2;
-  string model_name = 3;
-  string model_version = 4;
-  ModelType model_type = 5;
-  repeated string tags = 6;
+  Filter filter = 1 [(tagger.v1.tags) = "bson:\"filter\" json:\"filter\""];
+  string organization_id = 2 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
+  string model_name = 3 [(tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
+  string model_version = 4 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
+  ModelType model_type = 5 [(tagger.v1.tags) = "bson:\"model_type\" json:\"model_type\""];
+  repeated string tags = 6 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
 }
 
 message SubmitTrainingJobResponse {
@@ -315,11 +315,11 @@ enum TrainingStatus {
 }
 
 message TrainingJobMetadata {
-  SubmitTrainingJobRequest request = 1;
-  TrainingStatus status = 2;
-  google.protobuf.Timestamp created_on = 3;
-  google.protobuf.Timestamp last_modified = 4;
-  string synced_model_id = 5;
+  SubmitTrainingJobRequest request = 1 [(tagger.v1.tags) = "bson:\"request\" json:\"request\""];
+  TrainingStatus status = 2 [(tagger.v1.tags) = "bson:\"status\" json:\"status\""];
+  google.protobuf.Timestamp created_on = 3 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
+  google.protobuf.Timestamp last_modified = 4 [(tagger.v1.tags) = "bson:\"last_modified\" json:\"last_modified\""];
+  string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
 }
 
 message TrainingJob {
