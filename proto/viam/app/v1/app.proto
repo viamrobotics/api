@@ -9,8 +9,6 @@ import "tagger/v1/tagger.proto";
 option go_package = "go.viam.com/api/app/v1";
 
 service AppService {
-  rpc CreateLocation(CreateLocationRequest) returns (CreateLocationResponse);
-  
   // Organizations
 
   // Create a new organization
@@ -42,11 +40,8 @@ service AppService {
 
   // Resend an organization invite
   rpc ResendOrganizationInvite(ResendOrganizationInviteRequest) returns (ResendOrganizationInviteResponse);
-  
-  rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
 
   // Location
-  //
 
   // Create a location
   rpc CreateLocation(CreateLocationRequest) returns (CreateLocationResponse);
