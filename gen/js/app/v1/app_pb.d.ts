@@ -1215,6 +1215,11 @@ export class GetRobotPartLogsRequest extends jspb.Message {
   getErrorsOnly(): boolean;
   setErrorsOnly(value: boolean): void;
 
+  hasFilter(): boolean;
+  clearFilter(): void;
+  getFilter(): string;
+  setFilter(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartLogsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartLogsRequest): GetRobotPartLogsRequest.AsObject;
@@ -1229,6 +1234,7 @@ export namespace GetRobotPartLogsRequest {
   export type AsObject = {
     id: string,
     errorsOnly: boolean,
+    filter: string,
   }
 }
 
