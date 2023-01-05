@@ -28,7 +28,7 @@ service SLAMService {
   }
 
   // GetPositionNew returns the current estimated position of the robot with
-  // respect to a returned reference frame
+  // respect to a returned component reference
   rpc GetPositionNew(GetPositionNewRequest) returns (GetPositionNewResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/slam/{name}/position_new"
@@ -42,8 +42,8 @@ service SLAMService {
       get: "/viam/api/v1/service/slam/{name}/point_cloud_map"
     };
   }
-  // GetInternalState returns the current map state as defined by the specified
-  // slam algorithm
+  // GetInternalState returns the internal map as defined by the specified slam
+  // algorithm required to continue mapping/localizing
   rpc GetInternalState(GetInternalStateRequest) returns (GetInternalStateResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/slam/{name}/internal_state"
