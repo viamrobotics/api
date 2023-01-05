@@ -4,6 +4,15 @@
 import * as app_v1_app_pb from "../../app/v1/app_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
+type AppServiceListOrganizations = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListOrganizationsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListOrganizationsResponse;
+};
+
 type AppServiceCreateLocation = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -13,13 +22,31 @@ type AppServiceCreateLocation = {
   readonly responseType: typeof app_v1_app_pb.CreateLocationResponse;
 };
 
-type AppServiceListOrganizations = {
+type AppServiceGetLocation = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.ListOrganizationsRequest;
-  readonly responseType: typeof app_v1_app_pb.ListOrganizationsResponse;
+  readonly requestType: typeof app_v1_app_pb.GetLocationRequest;
+  readonly responseType: typeof app_v1_app_pb.GetLocationResponse;
+};
+
+type AppServiceUpdateLocation = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateLocationRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateLocationResponse;
+};
+
+type AppServiceDeleteLocation = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteLocationRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteLocationResponse;
 };
 
 type AppServiceListLocations = {
@@ -184,6 +211,15 @@ type AppServiceDeleteRobotPartSecret = {
   readonly responseType: typeof app_v1_app_pb.DeleteRobotPartSecretResponse;
 };
 
+type AppServiceListRobots = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListRobotsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListRobotsResponse;
+};
+
 type AppServiceFindRobots = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -222,8 +258,11 @@ type AppServiceDeleteRobot = {
 
 export class AppService {
   static readonly serviceName: string;
-  static readonly CreateLocation: AppServiceCreateLocation;
   static readonly ListOrganizations: AppServiceListOrganizations;
+  static readonly CreateLocation: AppServiceCreateLocation;
+  static readonly GetLocation: AppServiceGetLocation;
+  static readonly UpdateLocation: AppServiceUpdateLocation;
+  static readonly DeleteLocation: AppServiceDeleteLocation;
   static readonly ListLocations: AppServiceListLocations;
   static readonly ShareLocation: AppServiceShareLocation;
   static readonly UnshareLocation: AppServiceUnshareLocation;
@@ -242,6 +281,7 @@ export class AppService {
   static readonly MarkPartAsMain: AppServiceMarkPartAsMain;
   static readonly CreateRobotPartSecret: AppServiceCreateRobotPartSecret;
   static readonly DeleteRobotPartSecret: AppServiceDeleteRobotPartSecret;
+  static readonly ListRobots: AppServiceListRobots;
   static readonly FindRobots: AppServiceFindRobots;
   static readonly NewRobot: AppServiceNewRobot;
   static readonly UpdateRobot: AppServiceUpdateRobot;
@@ -280,6 +320,15 @@ export class AppServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
+  listOrganizations(
+    requestMessage: app_v1_app_pb.ListOrganizationsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsResponse|null) => void
+  ): UnaryResponse;
+  listOrganizations(
+    requestMessage: app_v1_app_pb.ListOrganizationsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsResponse|null) => void
+  ): UnaryResponse;
   createLocation(
     requestMessage: app_v1_app_pb.CreateLocationRequest,
     metadata: grpc.Metadata,
@@ -289,14 +338,32 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.CreateLocationRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateLocationResponse|null) => void
   ): UnaryResponse;
-  listOrganizations(
-    requestMessage: app_v1_app_pb.ListOrganizationsRequest,
+  getLocation(
+    requestMessage: app_v1_app_pb.GetLocationRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetLocationResponse|null) => void
   ): UnaryResponse;
-  listOrganizations(
-    requestMessage: app_v1_app_pb.ListOrganizationsRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsResponse|null) => void
+  getLocation(
+    requestMessage: app_v1_app_pb.GetLocationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetLocationResponse|null) => void
+  ): UnaryResponse;
+  updateLocation(
+    requestMessage: app_v1_app_pb.UpdateLocationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateLocationResponse|null) => void
+  ): UnaryResponse;
+  updateLocation(
+    requestMessage: app_v1_app_pb.UpdateLocationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateLocationResponse|null) => void
+  ): UnaryResponse;
+  deleteLocation(
+    requestMessage: app_v1_app_pb.DeleteLocationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteLocationResponse|null) => void
+  ): UnaryResponse;
+  deleteLocation(
+    requestMessage: app_v1_app_pb.DeleteLocationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteLocationResponse|null) => void
   ): UnaryResponse;
   listLocations(
     requestMessage: app_v1_app_pb.ListLocationsRequest,
@@ -451,6 +518,15 @@ export class AppServiceClient {
   deleteRobotPartSecret(
     requestMessage: app_v1_app_pb.DeleteRobotPartSecretRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotPartSecretResponse|null) => void
+  ): UnaryResponse;
+  listRobots(
+    requestMessage: app_v1_app_pb.ListRobotsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsResponse|null) => void
+  ): UnaryResponse;
+  listRobots(
+    requestMessage: app_v1_app_pb.ListRobotsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsResponse|null) => void
   ): UnaryResponse;
   findRobots(
     requestMessage: app_v1_app_pb.FindRobotsRequest,
