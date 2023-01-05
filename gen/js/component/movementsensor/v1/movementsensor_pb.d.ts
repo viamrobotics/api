@@ -290,6 +290,9 @@ export class GetPropertiesResponse extends jspb.Message {
   getCompassHeadingSupported(): boolean;
   setCompassHeadingSupported(value: boolean): void;
 
+  getLinearAccelerationSupported(): boolean;
+  setLinearAccelerationSupported(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
@@ -307,6 +310,7 @@ export namespace GetPropertiesResponse {
     orientationSupported: boolean,
     positionSupported: boolean,
     compassHeadingSupported: boolean,
+    linearAccelerationSupported: boolean,
   }
 }
 
@@ -352,6 +356,54 @@ export class GetAccuracyResponse extends jspb.Message {
 export namespace GetAccuracyResponse {
   export type AsObject = {
     accuracyMmMap: Array<[string, number]>,
+  }
+}
+
+export class GetLinearAccelerationRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetLinearAccelerationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLinearAccelerationRequest): GetLinearAccelerationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetLinearAccelerationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLinearAccelerationRequest;
+  static deserializeBinaryFromReader(message: GetLinearAccelerationRequest, reader: jspb.BinaryReader): GetLinearAccelerationRequest;
+}
+
+export namespace GetLinearAccelerationRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetLinearAccelerationResponse extends jspb.Message {
+  hasLinearAcceleration(): boolean;
+  clearLinearAcceleration(): void;
+  getLinearAcceleration(): common_v1_common_pb.Vector3 | undefined;
+  setLinearAcceleration(value?: common_v1_common_pb.Vector3): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetLinearAccelerationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLinearAccelerationResponse): GetLinearAccelerationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetLinearAccelerationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLinearAccelerationResponse;
+  static deserializeBinaryFromReader(message: GetLinearAccelerationResponse, reader: jspb.BinaryReader): GetLinearAccelerationResponse;
+}
+
+export namespace GetLinearAccelerationResponse {
+  export type AsObject = {
+    linearAcceleration?: common_v1_common_pb.Vector3.AsObject,
   }
 }
 

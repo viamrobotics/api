@@ -6478,7 +6478,8 @@ proto.viam.app.v1.GetRobotPartLogsRequest.prototype.toObject = function(opt_incl
 proto.viam.app.v1.GetRobotPartLogsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    errorsOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+    errorsOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    filter: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -6523,6 +6524,10 @@ proto.viam.app.v1.GetRobotPartLogsRequest.deserializeBinaryFromReader = function
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setErrorsOnly(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFilter(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -6566,6 +6571,13 @@ proto.viam.app.v1.GetRobotPartLogsRequest.serializeBinaryToWriter = function(mes
       f
     );
   }
+  f = /** @type {string} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -6602,6 +6614,42 @@ proto.viam.app.v1.GetRobotPartLogsRequest.prototype.getErrorsOnly = function() {
  */
 proto.viam.app.v1.GetRobotPartLogsRequest.prototype.setErrorsOnly = function(value) {
   return jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
+
+/**
+ * optional string filter = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.getFilter = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.setFilter = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearFilter = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasFilter = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 

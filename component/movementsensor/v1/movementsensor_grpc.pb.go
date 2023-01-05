@@ -25,6 +25,7 @@ type MovementSensorServiceClient interface {
 	GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error)
 	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 	GetAccuracy(ctx context.Context, in *GetAccuracyRequest, opts ...grpc.CallOption) (*GetAccuracyResponse, error)
+	GetLinearAcceleration(ctx context.Context, in *GetLinearAccelerationRequest, opts ...grpc.CallOption) (*GetLinearAccelerationResponse, error)
 }
 
 type movementSensorServiceClient struct {
@@ -98,6 +99,15 @@ func (c *movementSensorServiceClient) GetAccuracy(ctx context.Context, in *GetAc
 	return out, nil
 }
 
+func (c *movementSensorServiceClient) GetLinearAcceleration(ctx context.Context, in *GetLinearAccelerationRequest, opts ...grpc.CallOption) (*GetLinearAccelerationResponse, error) {
+	out := new(GetLinearAccelerationResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.movementsensor.v1.MovementSensorService/GetLinearAcceleration", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MovementSensorServiceServer is the server API for MovementSensorService service.
 // All implementations must embed UnimplementedMovementSensorServiceServer
 // for forward compatibility
@@ -109,6 +119,7 @@ type MovementSensorServiceServer interface {
 	GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error)
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	GetAccuracy(context.Context, *GetAccuracyRequest) (*GetAccuracyResponse, error)
+	GetLinearAcceleration(context.Context, *GetLinearAccelerationRequest) (*GetLinearAccelerationResponse, error)
 	mustEmbedUnimplementedMovementSensorServiceServer()
 }
 
@@ -136,6 +147,9 @@ func (UnimplementedMovementSensorServiceServer) GetProperties(context.Context, *
 }
 func (UnimplementedMovementSensorServiceServer) GetAccuracy(context.Context, *GetAccuracyRequest) (*GetAccuracyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAccuracy not implemented")
+}
+func (UnimplementedMovementSensorServiceServer) GetLinearAcceleration(context.Context, *GetLinearAccelerationRequest) (*GetLinearAccelerationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLinearAcceleration not implemented")
 }
 func (UnimplementedMovementSensorServiceServer) mustEmbedUnimplementedMovementSensorServiceServer() {}
 
@@ -276,6 +290,24 @@ func _MovementSensorService_GetAccuracy_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MovementSensorService_GetLinearAcceleration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLinearAccelerationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MovementSensorServiceServer).GetLinearAcceleration(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.movementsensor.v1.MovementSensorService/GetLinearAcceleration",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MovementSensorServiceServer).GetLinearAcceleration(ctx, req.(*GetLinearAccelerationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MovementSensorService_ServiceDesc is the grpc.ServiceDesc for MovementSensorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -310,6 +342,10 @@ var MovementSensorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAccuracy",
 			Handler:    _MovementSensorService_GetAccuracy_Handler,
+		},
+		{
+			MethodName: "GetLinearAcceleration",
+			Handler:    _MovementSensorService_GetLinearAcceleration_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
