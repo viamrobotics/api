@@ -81,6 +81,11 @@ message Sphere {
   double radius_mm = 1;
 }
 
+message Capsule {
+  double radius_mm = 1;
+  double length_mm = 2;
+}
+
 // RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
 // These dimensions are with respect to the referenceframe in which the RectangularPrism is defined
 message RectangularPrism {
@@ -95,6 +100,7 @@ message Geometry {
   oneof geometry_type {
     Sphere sphere = 2;
     RectangularPrism box = 3;
+    Capsule capsule = 5;
   }
   // Label of the geometry. If none supplied, will be an empty string.
   string label = 4;
