@@ -102,7 +102,7 @@ message GetPositionNewResponse {
   common.v1.Pose pose = 1;
   // This is usually the name of the camera that is in the SLAM config
   string component_reference = 2;
-  // Additional arguments to the method
+  // Additional information in the response
   google.protobuf.Struct extra = 99;
 }
 

@@ -372,7 +372,7 @@ type GetPositionNewResponse struct {
 	Pose *v1.Pose `protobuf:"bytes,1,opt,name=pose,proto3" json:"pose,omitempty"`
 	// This is usually the name of the camera that is in the SLAM config
 	ComponentReference string `protobuf:"bytes,2,opt,name=component_reference,json=componentReference,proto3" json:"component_reference,omitempty"`
-	// Additional arguments to the method
+	// Additional information in the response
 	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
 }
 
