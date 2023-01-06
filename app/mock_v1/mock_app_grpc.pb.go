@@ -77,6 +77,46 @@ func (mr *MockAppServiceClientMockRecorder) CreateLocationSecret(ctx, in interfa
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateLocationSecret", reflect.TypeOf((*MockAppServiceClient)(nil).CreateLocationSecret), varargs...)
 }
 
+// CreateOrganization mocks base method.
+func (m *MockAppServiceClient) CreateOrganization(ctx context.Context, in *v1.CreateOrganizationRequest, opts ...grpc.CallOption) (*v1.CreateOrganizationResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "CreateOrganization", varargs...)
+	ret0, _ := ret[0].(*v1.CreateOrganizationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateOrganization indicates an expected call of CreateOrganization.
+func (mr *MockAppServiceClientMockRecorder) CreateOrganization(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateOrganization", reflect.TypeOf((*MockAppServiceClient)(nil).CreateOrganization), varargs...)
+}
+
+// CreateOrganizationInvite mocks base method.
+func (m *MockAppServiceClient) CreateOrganizationInvite(ctx context.Context, in *v1.CreateOrganizationInviteRequest, opts ...grpc.CallOption) (*v1.CreateOrganizationInviteResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "CreateOrganizationInvite", varargs...)
+	ret0, _ := ret[0].(*v1.CreateOrganizationInviteResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateOrganizationInvite indicates an expected call of CreateOrganizationInvite.
+func (mr *MockAppServiceClientMockRecorder) CreateOrganizationInvite(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateOrganizationInvite", reflect.TypeOf((*MockAppServiceClient)(nil).CreateOrganizationInvite), varargs...)
+}
+
 // CreateRobotPartSecret mocks base method.
 func (m *MockAppServiceClient) CreateRobotPartSecret(ctx context.Context, in *v1.CreateRobotPartSecretRequest, opts ...grpc.CallOption) (*v1.CreateRobotPartSecretResponse, error) {
 	m.ctrl.T.Helper()
@@ -135,6 +175,66 @@ func (mr *MockAppServiceClientMockRecorder) DeleteLocationSecret(ctx, in interfa
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteLocationSecret", reflect.TypeOf((*MockAppServiceClient)(nil).DeleteLocationSecret), varargs...)
+}
+
+// DeleteOrganization mocks base method.
+func (m *MockAppServiceClient) DeleteOrganization(ctx context.Context, in *v1.DeleteOrganizationRequest, opts ...grpc.CallOption) (*v1.DeleteOrganizationResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "DeleteOrganization", varargs...)
+	ret0, _ := ret[0].(*v1.DeleteOrganizationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteOrganization indicates an expected call of DeleteOrganization.
+func (mr *MockAppServiceClientMockRecorder) DeleteOrganization(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteOrganization", reflect.TypeOf((*MockAppServiceClient)(nil).DeleteOrganization), varargs...)
+}
+
+// DeleteOrganizationInvite mocks base method.
+func (m *MockAppServiceClient) DeleteOrganizationInvite(ctx context.Context, in *v1.DeleteOrganizationInviteRequest, opts ...grpc.CallOption) (*v1.DeleteOrganizationInviteResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "DeleteOrganizationInvite", varargs...)
+	ret0, _ := ret[0].(*v1.DeleteOrganizationInviteResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteOrganizationInvite indicates an expected call of DeleteOrganizationInvite.
+func (mr *MockAppServiceClientMockRecorder) DeleteOrganizationInvite(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteOrganizationInvite", reflect.TypeOf((*MockAppServiceClient)(nil).DeleteOrganizationInvite), varargs...)
+}
+
+// DeleteOrganizationMember mocks base method.
+func (m *MockAppServiceClient) DeleteOrganizationMember(ctx context.Context, in *v1.DeleteOrganizationMemberRequest, opts ...grpc.CallOption) (*v1.DeleteOrganizationMemberResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "DeleteOrganizationMember", varargs...)
+	ret0, _ := ret[0].(*v1.DeleteOrganizationMemberResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteOrganizationMember indicates an expected call of DeleteOrganizationMember.
+func (mr *MockAppServiceClientMockRecorder) DeleteOrganizationMember(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteOrganizationMember", reflect.TypeOf((*MockAppServiceClient)(nil).DeleteOrganizationMember), varargs...)
 }
 
 // DeleteRobot mocks base method.
@@ -235,6 +335,26 @@ func (mr *MockAppServiceClientMockRecorder) GetLocation(ctx, in interface{}, opt
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetLocation", reflect.TypeOf((*MockAppServiceClient)(nil).GetLocation), varargs...)
+}
+
+// GetOrganization mocks base method.
+func (m *MockAppServiceClient) GetOrganization(ctx context.Context, in *v1.GetOrganizationRequest, opts ...grpc.CallOption) (*v1.GetOrganizationResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetOrganization", varargs...)
+	ret0, _ := ret[0].(*v1.GetOrganizationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetOrganization indicates an expected call of GetOrganization.
+func (mr *MockAppServiceClientMockRecorder) GetOrganization(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetOrganization", reflect.TypeOf((*MockAppServiceClient)(nil).GetOrganization), varargs...)
 }
 
 // GetRobot mocks base method.
@@ -357,6 +477,26 @@ func (mr *MockAppServiceClientMockRecorder) ListLocations(ctx, in interface{}, o
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListLocations", reflect.TypeOf((*MockAppServiceClient)(nil).ListLocations), varargs...)
 }
 
+// ListOrganizationMembers mocks base method.
+func (m *MockAppServiceClient) ListOrganizationMembers(ctx context.Context, in *v1.ListOrganizationMembersRequest, opts ...grpc.CallOption) (*v1.ListOrganizationMembersResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "ListOrganizationMembers", varargs...)
+	ret0, _ := ret[0].(*v1.ListOrganizationMembersResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListOrganizationMembers indicates an expected call of ListOrganizationMembers.
+func (mr *MockAppServiceClientMockRecorder) ListOrganizationMembers(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListOrganizationMembers", reflect.TypeOf((*MockAppServiceClient)(nil).ListOrganizationMembers), varargs...)
+}
+
 // ListOrganizations mocks base method.
 func (m *MockAppServiceClient) ListOrganizations(ctx context.Context, in *v1.ListOrganizationsRequest, opts ...grpc.CallOption) (*v1.ListOrganizationsResponse, error) {
 	m.ctrl.T.Helper()
@@ -477,6 +617,26 @@ func (mr *MockAppServiceClientMockRecorder) NewRobotPart(ctx, in interface{}, op
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewRobotPart", reflect.TypeOf((*MockAppServiceClient)(nil).NewRobotPart), varargs...)
 }
 
+// ResendOrganizationInvite mocks base method.
+func (m *MockAppServiceClient) ResendOrganizationInvite(ctx context.Context, in *v1.ResendOrganizationInviteRequest, opts ...grpc.CallOption) (*v1.ResendOrganizationInviteResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "ResendOrganizationInvite", varargs...)
+	ret0, _ := ret[0].(*v1.ResendOrganizationInviteResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ResendOrganizationInvite indicates an expected call of ResendOrganizationInvite.
+func (mr *MockAppServiceClientMockRecorder) ResendOrganizationInvite(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ResendOrganizationInvite", reflect.TypeOf((*MockAppServiceClient)(nil).ResendOrganizationInvite), varargs...)
+}
+
 // ShareLocation mocks base method.
 func (m *MockAppServiceClient) ShareLocation(ctx context.Context, in *v1.ShareLocationRequest, opts ...grpc.CallOption) (*v1.ShareLocationResponse, error) {
 	m.ctrl.T.Helper()
@@ -555,6 +715,26 @@ func (mr *MockAppServiceClientMockRecorder) UpdateLocation(ctx, in interface{}, 
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateLocation", reflect.TypeOf((*MockAppServiceClient)(nil).UpdateLocation), varargs...)
+}
+
+// UpdateOrganization mocks base method.
+func (m *MockAppServiceClient) UpdateOrganization(ctx context.Context, in *v1.UpdateOrganizationRequest, opts ...grpc.CallOption) (*v1.UpdateOrganizationResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "UpdateOrganization", varargs...)
+	ret0, _ := ret[0].(*v1.UpdateOrganizationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateOrganization indicates an expected call of UpdateOrganization.
+func (mr *MockAppServiceClientMockRecorder) UpdateOrganization(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateOrganization", reflect.TypeOf((*MockAppServiceClient)(nil).UpdateOrganization), varargs...)
 }
 
 // UpdateRobot mocks base method.
@@ -773,6 +953,36 @@ func (mr *MockAppServiceServerMockRecorder) CreateLocationSecret(arg0, arg1 inte
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateLocationSecret", reflect.TypeOf((*MockAppServiceServer)(nil).CreateLocationSecret), arg0, arg1)
 }
 
+// CreateOrganization mocks base method.
+func (m *MockAppServiceServer) CreateOrganization(arg0 context.Context, arg1 *v1.CreateOrganizationRequest) (*v1.CreateOrganizationResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateOrganization", arg0, arg1)
+	ret0, _ := ret[0].(*v1.CreateOrganizationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateOrganization indicates an expected call of CreateOrganization.
+func (mr *MockAppServiceServerMockRecorder) CreateOrganization(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateOrganization", reflect.TypeOf((*MockAppServiceServer)(nil).CreateOrganization), arg0, arg1)
+}
+
+// CreateOrganizationInvite mocks base method.
+func (m *MockAppServiceServer) CreateOrganizationInvite(arg0 context.Context, arg1 *v1.CreateOrganizationInviteRequest) (*v1.CreateOrganizationInviteResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateOrganizationInvite", arg0, arg1)
+	ret0, _ := ret[0].(*v1.CreateOrganizationInviteResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateOrganizationInvite indicates an expected call of CreateOrganizationInvite.
+func (mr *MockAppServiceServerMockRecorder) CreateOrganizationInvite(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateOrganizationInvite", reflect.TypeOf((*MockAppServiceServer)(nil).CreateOrganizationInvite), arg0, arg1)
+}
+
 // CreateRobotPartSecret mocks base method.
 func (m *MockAppServiceServer) CreateRobotPartSecret(arg0 context.Context, arg1 *v1.CreateRobotPartSecretRequest) (*v1.CreateRobotPartSecretResponse, error) {
 	m.ctrl.T.Helper()
@@ -816,6 +1026,51 @@ func (m *MockAppServiceServer) DeleteLocationSecret(arg0 context.Context, arg1 *
 func (mr *MockAppServiceServerMockRecorder) DeleteLocationSecret(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteLocationSecret", reflect.TypeOf((*MockAppServiceServer)(nil).DeleteLocationSecret), arg0, arg1)
+}
+
+// DeleteOrganization mocks base method.
+func (m *MockAppServiceServer) DeleteOrganization(arg0 context.Context, arg1 *v1.DeleteOrganizationRequest) (*v1.DeleteOrganizationResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteOrganization", arg0, arg1)
+	ret0, _ := ret[0].(*v1.DeleteOrganizationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteOrganization indicates an expected call of DeleteOrganization.
+func (mr *MockAppServiceServerMockRecorder) DeleteOrganization(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteOrganization", reflect.TypeOf((*MockAppServiceServer)(nil).DeleteOrganization), arg0, arg1)
+}
+
+// DeleteOrganizationInvite mocks base method.
+func (m *MockAppServiceServer) DeleteOrganizationInvite(arg0 context.Context, arg1 *v1.DeleteOrganizationInviteRequest) (*v1.DeleteOrganizationInviteResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteOrganizationInvite", arg0, arg1)
+	ret0, _ := ret[0].(*v1.DeleteOrganizationInviteResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteOrganizationInvite indicates an expected call of DeleteOrganizationInvite.
+func (mr *MockAppServiceServerMockRecorder) DeleteOrganizationInvite(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteOrganizationInvite", reflect.TypeOf((*MockAppServiceServer)(nil).DeleteOrganizationInvite), arg0, arg1)
+}
+
+// DeleteOrganizationMember mocks base method.
+func (m *MockAppServiceServer) DeleteOrganizationMember(arg0 context.Context, arg1 *v1.DeleteOrganizationMemberRequest) (*v1.DeleteOrganizationMemberResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteOrganizationMember", arg0, arg1)
+	ret0, _ := ret[0].(*v1.DeleteOrganizationMemberResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteOrganizationMember indicates an expected call of DeleteOrganizationMember.
+func (mr *MockAppServiceServerMockRecorder) DeleteOrganizationMember(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteOrganizationMember", reflect.TypeOf((*MockAppServiceServer)(nil).DeleteOrganizationMember), arg0, arg1)
 }
 
 // DeleteRobot mocks base method.
@@ -891,6 +1146,21 @@ func (m *MockAppServiceServer) GetLocation(arg0 context.Context, arg1 *v1.GetLoc
 func (mr *MockAppServiceServerMockRecorder) GetLocation(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetLocation", reflect.TypeOf((*MockAppServiceServer)(nil).GetLocation), arg0, arg1)
+}
+
+// GetOrganization mocks base method.
+func (m *MockAppServiceServer) GetOrganization(arg0 context.Context, arg1 *v1.GetOrganizationRequest) (*v1.GetOrganizationResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetOrganization", arg0, arg1)
+	ret0, _ := ret[0].(*v1.GetOrganizationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetOrganization indicates an expected call of GetOrganization.
+func (mr *MockAppServiceServerMockRecorder) GetOrganization(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetOrganization", reflect.TypeOf((*MockAppServiceServer)(nil).GetOrganization), arg0, arg1)
 }
 
 // GetRobot mocks base method.
@@ -983,6 +1253,21 @@ func (mr *MockAppServiceServerMockRecorder) ListLocations(arg0, arg1 interface{}
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListLocations", reflect.TypeOf((*MockAppServiceServer)(nil).ListLocations), arg0, arg1)
 }
 
+// ListOrganizationMembers mocks base method.
+func (m *MockAppServiceServer) ListOrganizationMembers(arg0 context.Context, arg1 *v1.ListOrganizationMembersRequest) (*v1.ListOrganizationMembersResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListOrganizationMembers", arg0, arg1)
+	ret0, _ := ret[0].(*v1.ListOrganizationMembersResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListOrganizationMembers indicates an expected call of ListOrganizationMembers.
+func (mr *MockAppServiceServerMockRecorder) ListOrganizationMembers(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListOrganizationMembers", reflect.TypeOf((*MockAppServiceServer)(nil).ListOrganizationMembers), arg0, arg1)
+}
+
 // ListOrganizations mocks base method.
 func (m *MockAppServiceServer) ListOrganizations(arg0 context.Context, arg1 *v1.ListOrganizationsRequest) (*v1.ListOrganizationsResponse, error) {
 	m.ctrl.T.Helper()
@@ -1073,6 +1358,21 @@ func (mr *MockAppServiceServerMockRecorder) NewRobotPart(arg0, arg1 interface{})
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewRobotPart", reflect.TypeOf((*MockAppServiceServer)(nil).NewRobotPart), arg0, arg1)
 }
 
+// ResendOrganizationInvite mocks base method.
+func (m *MockAppServiceServer) ResendOrganizationInvite(arg0 context.Context, arg1 *v1.ResendOrganizationInviteRequest) (*v1.ResendOrganizationInviteResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ResendOrganizationInvite", arg0, arg1)
+	ret0, _ := ret[0].(*v1.ResendOrganizationInviteResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ResendOrganizationInvite indicates an expected call of ResendOrganizationInvite.
+func (mr *MockAppServiceServerMockRecorder) ResendOrganizationInvite(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ResendOrganizationInvite", reflect.TypeOf((*MockAppServiceServer)(nil).ResendOrganizationInvite), arg0, arg1)
+}
+
 // ShareLocation mocks base method.
 func (m *MockAppServiceServer) ShareLocation(arg0 context.Context, arg1 *v1.ShareLocationRequest) (*v1.ShareLocationResponse, error) {
 	m.ctrl.T.Helper()
@@ -1130,6 +1430,21 @@ func (m *MockAppServiceServer) UpdateLocation(arg0 context.Context, arg1 *v1.Upd
 func (mr *MockAppServiceServerMockRecorder) UpdateLocation(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateLocation", reflect.TypeOf((*MockAppServiceServer)(nil).UpdateLocation), arg0, arg1)
+}
+
+// UpdateOrganization mocks base method.
+func (m *MockAppServiceServer) UpdateOrganization(arg0 context.Context, arg1 *v1.UpdateOrganizationRequest) (*v1.UpdateOrganizationResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateOrganization", arg0, arg1)
+	ret0, _ := ret[0].(*v1.UpdateOrganizationResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateOrganization indicates an expected call of UpdateOrganization.
+func (mr *MockAppServiceServerMockRecorder) UpdateOrganization(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateOrganization", reflect.TypeOf((*MockAppServiceServer)(nil).UpdateOrganization), arg0, arg1)
 }
 
 // UpdateRobot mocks base method.
