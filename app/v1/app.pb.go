@@ -379,7 +379,6 @@ func (x *RobotPartHistoryEntry) GetOld() *RobotPart {
 	return nil
 }
 
-// Organizations
 type ListOrganizationsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
