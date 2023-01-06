@@ -94,7 +94,7 @@ message RectangularPrism {
 
 // Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
 message Geometry {
-  // Pose of a gemetries center point
+  // Pose of a geometries center point
   common.v1.Pose center = 1;
   // Dimensions of a given geometry. This can be a sphere or box
   oneof geometry_type {

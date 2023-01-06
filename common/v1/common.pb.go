@@ -706,7 +706,7 @@ type Geometry struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Pose of a gemetries center point
+	// Pose of a geometries center point
 	Center *Pose `protobuf:"bytes,1,opt,name=center,proto3" json:"center,omitempty"`
 	// Dimensions of a given geometry. This can be a sphere or box
 	//
