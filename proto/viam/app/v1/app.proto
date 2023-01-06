@@ -327,7 +327,7 @@ message GetRobotPartResponse {
 message GetRobotPartLogsRequest {
   string id = 1;
   bool errors_only = 2;
-  optional string filter = 3;
+  optional google.protobuf.Struct filter = 3;
 }
 
 message LogEntry {
