@@ -4,6 +4,15 @@
 import * as app_v1_app_pb from "../../app/v1/app_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
+type AppServiceCreateOrganization = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateOrganizationRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateOrganizationResponse;
+};
+
 type AppServiceListOrganizations = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -11,6 +20,78 @@ type AppServiceListOrganizations = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.ListOrganizationsRequest;
   readonly responseType: typeof app_v1_app_pb.ListOrganizationsResponse;
+};
+
+type AppServiceGetOrganization = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetOrganizationRequest;
+  readonly responseType: typeof app_v1_app_pb.GetOrganizationResponse;
+};
+
+type AppServiceUpdateOrganization = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateOrganizationRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateOrganizationResponse;
+};
+
+type AppServiceDeleteOrganization = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteOrganizationRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteOrganizationResponse;
+};
+
+type AppServiceListOrganizationMembers = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListOrganizationMembersRequest;
+  readonly responseType: typeof app_v1_app_pb.ListOrganizationMembersResponse;
+};
+
+type AppServiceCreateOrganizationInvite = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateOrganizationInviteRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateOrganizationInviteResponse;
+};
+
+type AppServiceDeleteOrganizationMember = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteOrganizationMemberRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteOrganizationMemberResponse;
+};
+
+type AppServiceDeleteOrganizationInvite = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteOrganizationInviteRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteOrganizationInviteResponse;
+};
+
+type AppServiceResendOrganizationInvite = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ResendOrganizationInviteRequest;
+  readonly responseType: typeof app_v1_app_pb.ResendOrganizationInviteResponse;
 };
 
 type AppServiceCreateLocation = {
@@ -258,7 +339,16 @@ type AppServiceDeleteRobot = {
 
 export class AppService {
   static readonly serviceName: string;
+  static readonly CreateOrganization: AppServiceCreateOrganization;
   static readonly ListOrganizations: AppServiceListOrganizations;
+  static readonly GetOrganization: AppServiceGetOrganization;
+  static readonly UpdateOrganization: AppServiceUpdateOrganization;
+  static readonly DeleteOrganization: AppServiceDeleteOrganization;
+  static readonly ListOrganizationMembers: AppServiceListOrganizationMembers;
+  static readonly CreateOrganizationInvite: AppServiceCreateOrganizationInvite;
+  static readonly DeleteOrganizationMember: AppServiceDeleteOrganizationMember;
+  static readonly DeleteOrganizationInvite: AppServiceDeleteOrganizationInvite;
+  static readonly ResendOrganizationInvite: AppServiceResendOrganizationInvite;
   static readonly CreateLocation: AppServiceCreateLocation;
   static readonly GetLocation: AppServiceGetLocation;
   static readonly UpdateLocation: AppServiceUpdateLocation;
@@ -320,6 +410,15 @@ export class AppServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
+  createOrganization(
+    requestMessage: app_v1_app_pb.CreateOrganizationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOrganizationResponse|null) => void
+  ): UnaryResponse;
+  createOrganization(
+    requestMessage: app_v1_app_pb.CreateOrganizationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOrganizationResponse|null) => void
+  ): UnaryResponse;
   listOrganizations(
     requestMessage: app_v1_app_pb.ListOrganizationsRequest,
     metadata: grpc.Metadata,
@@ -328,6 +427,78 @@ export class AppServiceClient {
   listOrganizations(
     requestMessage: app_v1_app_pb.ListOrganizationsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsResponse|null) => void
+  ): UnaryResponse;
+  getOrganization(
+    requestMessage: app_v1_app_pb.GetOrganizationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationResponse|null) => void
+  ): UnaryResponse;
+  getOrganization(
+    requestMessage: app_v1_app_pb.GetOrganizationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationResponse|null) => void
+  ): UnaryResponse;
+  updateOrganization(
+    requestMessage: app_v1_app_pb.UpdateOrganizationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationResponse|null) => void
+  ): UnaryResponse;
+  updateOrganization(
+    requestMessage: app_v1_app_pb.UpdateOrganizationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationResponse|null) => void
+  ): UnaryResponse;
+  deleteOrganization(
+    requestMessage: app_v1_app_pb.DeleteOrganizationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteOrganizationResponse|null) => void
+  ): UnaryResponse;
+  deleteOrganization(
+    requestMessage: app_v1_app_pb.DeleteOrganizationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteOrganizationResponse|null) => void
+  ): UnaryResponse;
+  listOrganizationMembers(
+    requestMessage: app_v1_app_pb.ListOrganizationMembersRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationMembersResponse|null) => void
+  ): UnaryResponse;
+  listOrganizationMembers(
+    requestMessage: app_v1_app_pb.ListOrganizationMembersRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationMembersResponse|null) => void
+  ): UnaryResponse;
+  createOrganizationInvite(
+    requestMessage: app_v1_app_pb.CreateOrganizationInviteRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOrganizationInviteResponse|null) => void
+  ): UnaryResponse;
+  createOrganizationInvite(
+    requestMessage: app_v1_app_pb.CreateOrganizationInviteRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOrganizationInviteResponse|null) => void
+  ): UnaryResponse;
+  deleteOrganizationMember(
+    requestMessage: app_v1_app_pb.DeleteOrganizationMemberRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteOrganizationMemberResponse|null) => void
+  ): UnaryResponse;
+  deleteOrganizationMember(
+    requestMessage: app_v1_app_pb.DeleteOrganizationMemberRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteOrganizationMemberResponse|null) => void
+  ): UnaryResponse;
+  deleteOrganizationInvite(
+    requestMessage: app_v1_app_pb.DeleteOrganizationInviteRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteOrganizationInviteResponse|null) => void
+  ): UnaryResponse;
+  deleteOrganizationInvite(
+    requestMessage: app_v1_app_pb.DeleteOrganizationInviteRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteOrganizationInviteResponse|null) => void
+  ): UnaryResponse;
+  resendOrganizationInvite(
+    requestMessage: app_v1_app_pb.ResendOrganizationInviteRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ResendOrganizationInviteResponse|null) => void
+  ): UnaryResponse;
+  resendOrganizationInvite(
+    requestMessage: app_v1_app_pb.ResendOrganizationInviteRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ResendOrganizationInviteResponse|null) => void
   ): UnaryResponse;
   createLocation(
     requestMessage: app_v1_app_pb.CreateLocationRequest,

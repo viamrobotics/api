@@ -85,6 +85,67 @@ proto.viam.app.v1.AppServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.CreateOrganizationRequest,
+ *   !proto.viam.app.v1.CreateOrganizationResponse>}
+ */
+const methodDescriptor_AppService_CreateOrganization = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/CreateOrganization',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.CreateOrganizationRequest,
+  proto.viam.app.v1.CreateOrganizationResponse,
+  /**
+   * @param {!proto.viam.app.v1.CreateOrganizationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.CreateOrganizationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.CreateOrganizationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.CreateOrganizationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.createOrganization =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateOrganization,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.CreateOrganizationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.createOrganization =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateOrganization);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.ListOrganizationsRequest,
  *   !proto.viam.app.v1.ListOrganizationsResponse>}
  */
@@ -140,6 +201,494 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listOrganizations =
       request,
       metadata || {},
       methodDescriptor_AppService_ListOrganizations);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetOrganizationRequest,
+ *   !proto.viam.app.v1.GetOrganizationResponse>}
+ */
+const methodDescriptor_AppService_GetOrganization = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetOrganization',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetOrganizationRequest,
+  proto.viam.app.v1.GetOrganizationResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetOrganizationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetOrganizationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetOrganizationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetOrganizationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getOrganization =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetOrganization,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetOrganizationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getOrganization =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetOrganization);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.UpdateOrganizationRequest,
+ *   !proto.viam.app.v1.UpdateOrganizationResponse>}
+ */
+const methodDescriptor_AppService_UpdateOrganization = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/UpdateOrganization',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.UpdateOrganizationRequest,
+  proto.viam.app.v1.UpdateOrganizationResponse,
+  /**
+   * @param {!proto.viam.app.v1.UpdateOrganizationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.UpdateOrganizationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.UpdateOrganizationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.UpdateOrganizationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.updateOrganization =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateOrganization,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.UpdateOrganizationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.updateOrganization =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateOrganization);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeleteOrganizationRequest,
+ *   !proto.viam.app.v1.DeleteOrganizationResponse>}
+ */
+const methodDescriptor_AppService_DeleteOrganization = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeleteOrganization',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeleteOrganizationRequest,
+  proto.viam.app.v1.DeleteOrganizationResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeleteOrganizationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeleteOrganizationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeleteOrganizationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeleteOrganizationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deleteOrganization =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteOrganization,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeleteOrganizationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deleteOrganization =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteOrganization);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.ListOrganizationMembersRequest,
+ *   !proto.viam.app.v1.ListOrganizationMembersResponse>}
+ */
+const methodDescriptor_AppService_ListOrganizationMembers = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/ListOrganizationMembers',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.ListOrganizationMembersRequest,
+  proto.viam.app.v1.ListOrganizationMembersResponse,
+  /**
+   * @param {!proto.viam.app.v1.ListOrganizationMembersRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.ListOrganizationMembersResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.ListOrganizationMembersRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ListOrganizationMembersResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ListOrganizationMembersResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.listOrganizationMembers =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListOrganizationMembers',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListOrganizationMembers,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ListOrganizationMembersRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.ListOrganizationMembersResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.listOrganizationMembers =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListOrganizationMembers',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListOrganizationMembers);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.CreateOrganizationInviteRequest,
+ *   !proto.viam.app.v1.CreateOrganizationInviteResponse>}
+ */
+const methodDescriptor_AppService_CreateOrganizationInvite = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/CreateOrganizationInvite',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.CreateOrganizationInviteRequest,
+  proto.viam.app.v1.CreateOrganizationInviteResponse,
+  /**
+   * @param {!proto.viam.app.v1.CreateOrganizationInviteRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.CreateOrganizationInviteResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateOrganizationInviteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.CreateOrganizationInviteResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.CreateOrganizationInviteResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.createOrganizationInvite =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateOrganizationInvite',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateOrganizationInvite,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateOrganizationInviteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.CreateOrganizationInviteResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.createOrganizationInvite =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateOrganizationInvite',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateOrganizationInvite);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeleteOrganizationMemberRequest,
+ *   !proto.viam.app.v1.DeleteOrganizationMemberResponse>}
+ */
+const methodDescriptor_AppService_DeleteOrganizationMember = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeleteOrganizationMember',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeleteOrganizationMemberRequest,
+  proto.viam.app.v1.DeleteOrganizationMemberResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeleteOrganizationMemberRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeleteOrganizationMemberResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteOrganizationMemberRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeleteOrganizationMemberResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeleteOrganizationMemberResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deleteOrganizationMember =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteOrganizationMember',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteOrganizationMember,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteOrganizationMemberRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeleteOrganizationMemberResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deleteOrganizationMember =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteOrganizationMember',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteOrganizationMember);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeleteOrganizationInviteRequest,
+ *   !proto.viam.app.v1.DeleteOrganizationInviteResponse>}
+ */
+const methodDescriptor_AppService_DeleteOrganizationInvite = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeleteOrganizationInvite',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeleteOrganizationInviteRequest,
+  proto.viam.app.v1.DeleteOrganizationInviteResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeleteOrganizationInviteRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeleteOrganizationInviteResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteOrganizationInviteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeleteOrganizationInviteResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeleteOrganizationInviteResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deleteOrganizationInvite =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteOrganizationInvite',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteOrganizationInvite,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteOrganizationInviteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeleteOrganizationInviteResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deleteOrganizationInvite =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteOrganizationInvite',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteOrganizationInvite);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.ResendOrganizationInviteRequest,
+ *   !proto.viam.app.v1.ResendOrganizationInviteResponse>}
+ */
+const methodDescriptor_AppService_ResendOrganizationInvite = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/ResendOrganizationInvite',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.ResendOrganizationInviteRequest,
+  proto.viam.app.v1.ResendOrganizationInviteResponse,
+  /**
+   * @param {!proto.viam.app.v1.ResendOrganizationInviteRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.ResendOrganizationInviteResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.ResendOrganizationInviteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ResendOrganizationInviteResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ResendOrganizationInviteResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.resendOrganizationInvite =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/ResendOrganizationInvite',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ResendOrganizationInvite,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ResendOrganizationInviteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.ResendOrganizationInviteResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.resendOrganizationInvite =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/ResendOrganizationInvite',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ResendOrganizationInvite);
 };
 
 
