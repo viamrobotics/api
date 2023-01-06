@@ -161,7 +161,6 @@ message RobotPartHistoryEntry {
   RobotPart old = 4 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
 }
 
-// Organizations
 message ListOrganizationsRequest {}
 
 message Organization {
