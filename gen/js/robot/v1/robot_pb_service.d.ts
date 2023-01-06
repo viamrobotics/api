@@ -85,6 +85,15 @@ type RobotServiceTransformPose = {
   readonly responseType: typeof robot_v1_robot_pb.TransformPoseResponse;
 };
 
+type RobotServiceTransformPCD = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.TransformPCDRequest;
+  readonly responseType: typeof robot_v1_robot_pb.TransformPCDResponse;
+};
+
 type RobotServiceGetStatus = {
   readonly methodName: string;
   readonly service: typeof RobotService;
@@ -141,6 +150,7 @@ export class RobotService {
   static readonly DiscoverComponents: RobotServiceDiscoverComponents;
   static readonly FrameSystemConfig: RobotServiceFrameSystemConfig;
   static readonly TransformPose: RobotServiceTransformPose;
+  static readonly TransformPCD: RobotServiceTransformPCD;
   static readonly GetStatus: RobotServiceGetStatus;
   static readonly StreamStatus: RobotServiceStreamStatus;
   static readonly StopAll: RobotServiceStopAll;
@@ -260,6 +270,15 @@ export class RobotServiceClient {
   transformPose(
     requestMessage: robot_v1_robot_pb.TransformPoseRequest,
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.TransformPoseResponse|null) => void
+  ): UnaryResponse;
+  transformPCD(
+    requestMessage: robot_v1_robot_pb.TransformPCDRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.TransformPCDResponse|null) => void
+  ): UnaryResponse;
+  transformPCD(
+    requestMessage: robot_v1_robot_pb.TransformPCDRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.TransformPCDResponse|null) => void
   ): UnaryResponse;
   getStatus(
     requestMessage: robot_v1_robot_pb.GetStatusRequest,

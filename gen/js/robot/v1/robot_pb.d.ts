@@ -134,6 +134,58 @@ export namespace TransformPoseResponse {
   }
 }
 
+export class TransformPCDRequest extends jspb.Message {
+  getPointCloudPcd(): Uint8Array | string;
+  getPointCloudPcd_asU8(): Uint8Array;
+  getPointCloudPcd_asB64(): string;
+  setPointCloudPcd(value: Uint8Array | string): void;
+
+  getSource(): string;
+  setSource(value: string): void;
+
+  getDestination(): string;
+  setDestination(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformPCDRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformPCDRequest): TransformPCDRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformPCDRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformPCDRequest;
+  static deserializeBinaryFromReader(message: TransformPCDRequest, reader: jspb.BinaryReader): TransformPCDRequest;
+}
+
+export namespace TransformPCDRequest {
+  export type AsObject = {
+    pointCloudPcd: Uint8Array | string,
+    source: string,
+    destination: string,
+  }
+}
+
+export class TransformPCDResponse extends jspb.Message {
+  getPointCloudPcd(): Uint8Array | string;
+  getPointCloudPcd_asU8(): Uint8Array;
+  getPointCloudPcd_asB64(): string;
+  setPointCloudPcd(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransformPCDResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TransformPCDResponse): TransformPCDResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransformPCDResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransformPCDResponse;
+  static deserializeBinaryFromReader(message: TransformPCDResponse, reader: jspb.BinaryReader): TransformPCDResponse;
+}
+
+export namespace TransformPCDResponse {
+  export type AsObject = {
+    pointCloudPcd: Uint8Array | string,
+  }
+}
+
 export class ResourceNamesRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResourceNamesRequest.AsObject;
