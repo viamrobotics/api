@@ -324,10 +324,14 @@ message GetRobotPartResponse {
   string config_json = 2;
 }
 
+message Filter {
+  string value = 1; 
+}
+
 message GetRobotPartLogsRequest {
   string id = 1;
   bool errors_only = 2;
-  optional google.protobuf.Struct filter = 3;
+  optional Filter filter = 3;
 }
 
 message LogEntry {
