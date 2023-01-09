@@ -111,9 +111,6 @@ service AppService {
   // Get a list of robots
   rpc ListRobots(ListRobotsRequest) returns (ListRobotsResponse);
 
-  // Finds robots given a query. Deprecated, use ListRobots instead
-  rpc FindRobots(FindRobotsRequest) returns (FindRobotsResponse);
-
   // NewRobot creates a new robot
   rpc NewRobot(NewRobotRequest) returns (NewRobotResponse);
 
@@ -515,14 +512,6 @@ message ListRobotsRequest {
 }
 
 message ListRobotsResponse {
-  repeated Robot robots = 1;
-}
-
-message FindRobotsRequest {
-  string location_id = 1;
-}
-
-message FindRobotsResponse {
   repeated Robot robots = 1;
 }
 
