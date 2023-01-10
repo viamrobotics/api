@@ -73,13 +73,10 @@ message CreatePackageResponse {}
 message DeletePackageRequest {
   string organization_id = 1;
   string name = 2;
-  repeated string versions = 3;
+  string version = 3;
 }
 
-message DeletePackageResponse {
-  // Number of versions deleted
-  int64 deleted_count = 1;
-}
+message DeletePackageResponse {}
 
 message Package {
   PackageInfo info = 1;
