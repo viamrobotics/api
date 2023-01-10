@@ -12222,7 +12222,7 @@ proto.viam.app.v1.GetRobotPartLogsRequest.toObject = function(includeInstance, m
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     errorsOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
     filter: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, "")
+    pageToken: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -12271,7 +12271,7 @@ proto.viam.app.v1.GetRobotPartLogsRequest.deserializeBinaryFromReader = function
       var value = /** @type {string} */ (reader.readString());
       msg.setFilter(value);
       break;
-    case 4:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
@@ -12325,10 +12325,10 @@ proto.viam.app.v1.GetRobotPartLogsRequest.serializeBinaryToWriter = function(mes
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 4));
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
   if (f != null) {
     writer.writeString(
-      4,
+      5,
       f
     );
   }
@@ -12408,11 +12408,11 @@ proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasFilter = function() {
 
 
 /**
- * optional string page_token = 4;
+ * optional string page_token = 5;
  * @return {string}
  */
 proto.viam.app.v1.GetRobotPartLogsRequest.prototype.getPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
@@ -12421,7 +12421,7 @@ proto.viam.app.v1.GetRobotPartLogsRequest.prototype.getPageToken = function() {
  * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
  */
 proto.viam.app.v1.GetRobotPartLogsRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setField(this, 4, value);
+  return jspb.Message.setField(this, 5, value);
 };
 
 
@@ -12430,7 +12430,7 @@ proto.viam.app.v1.GetRobotPartLogsRequest.prototype.setPageToken = function(valu
  * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
  */
 proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearPageToken = function() {
-  return jspb.Message.setField(this, 4, undefined);
+  return jspb.Message.setField(this, 5, undefined);
 };
 
 
@@ -12439,7 +12439,7 @@ proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearPageToken = function() 
  * @return {boolean}
  */
 proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasPageToken = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -12896,7 +12896,7 @@ proto.viam.app.v1.GetRobotPartLogsResponse.toObject = function(includeInstance, 
   var f, obj = {
     logsList: jspb.Message.toObjectList(msg.getLogsList(),
     proto.viam.app.v1.LogEntry.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -12938,7 +12938,7 @@ proto.viam.app.v1.GetRobotPartLogsResponse.deserializeBinaryFromReader = functio
       reader.readMessage(value,proto.viam.app.v1.LogEntry.deserializeBinaryFromReader);
       msg.addLogs(value);
       break;
-    case 2:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setNextPageToken(value);
       break;
@@ -12982,7 +12982,7 @@ proto.viam.app.v1.GetRobotPartLogsResponse.serializeBinaryToWriter = function(me
   f = message.getNextPageToken();
   if (f.length > 0) {
     writer.writeString(
-      2,
+      5,
       f
     );
   }
@@ -13028,11 +13028,11 @@ proto.viam.app.v1.GetRobotPartLogsResponse.prototype.clearLogsList = function() 
 
 
 /**
- * optional string next_page_token = 2;
+ * optional string next_page_token = 5;
  * @return {string}
  */
 proto.viam.app.v1.GetRobotPartLogsResponse.prototype.getNextPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
@@ -13041,7 +13041,7 @@ proto.viam.app.v1.GetRobotPartLogsResponse.prototype.getNextPageToken = function
  * @return {!proto.viam.app.v1.GetRobotPartLogsResponse} returns this
  */
 proto.viam.app.v1.GetRobotPartLogsResponse.prototype.setNextPageToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -13078,6 +13078,8 @@ proto.viam.app.v1.TailRobotPartLogsRequest.prototype.toObject = function(opt_inc
 proto.viam.app.v1.TailRobotPartLogsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    errorsOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    filter: jspb.Message.getFieldWithDefault(msg, 3, "")
     errorsOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
     filter: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -13123,6 +13125,10 @@ proto.viam.app.v1.TailRobotPartLogsRequest.deserializeBinaryFromReader = functio
     case 2:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setErrorsOnly(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFilter(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -13178,6 +13184,13 @@ proto.viam.app.v1.TailRobotPartLogsRequest.serializeBinaryToWriter = function(me
       f
     );
   }
+  f = /** @type {string} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -13214,6 +13227,42 @@ proto.viam.app.v1.TailRobotPartLogsRequest.prototype.getErrorsOnly = function() 
  */
 proto.viam.app.v1.TailRobotPartLogsRequest.prototype.setErrorsOnly = function(value) {
   return jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
+
+/**
+ * optional string filter = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.TailRobotPartLogsRequest.prototype.getFilter = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.TailRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.TailRobotPartLogsRequest.prototype.setFilter = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.TailRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.TailRobotPartLogsRequest.prototype.clearFilter = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.TailRobotPartLogsRequest.prototype.hasFilter = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 

@@ -78,8 +78,9 @@ message CreatePackageResponse {
 }
 
 message DeletePackageRequest {
-  string id = 1;
-  string version = 2;
+  string organization_id = 1;
+  string name = 2;
+  string versions = 3;
 }
 
 message DeletePackageResponse {}

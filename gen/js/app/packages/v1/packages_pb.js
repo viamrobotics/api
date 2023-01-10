@@ -1162,34 +1162,6 @@ proto.viam.app.packages.v1.CreatePackageResponse.prototype.getId = function() {
 };
 
 
-/**
- * @param {string} value
- * @return {!proto.viam.app.packages.v1.CreatePackageResponse} returns this
- */
-proto.viam.app.packages.v1.CreatePackageResponse.prototype.setId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string version = 2;
- * @return {string}
- */
-proto.viam.app.packages.v1.CreatePackageResponse.prototype.getVersion = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.packages.v1.CreatePackageResponse} returns this
- */
-proto.viam.app.packages.v1.CreatePackageResponse.prototype.setVersion = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1221,8 +1193,9 @@ proto.viam.app.packages.v1.DeletePackageRequest.prototype.toObject = function(op
  */
 proto.viam.app.packages.v1.DeletePackageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 2, "")
+    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    versions: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1267,6 +1240,10 @@ proto.viam.app.packages.v1.DeletePackageRequest.deserializeBinaryFromReader = fu
       var value = /** @type {string} */ (reader.readString());
       msg.setVersion(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVersions(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1310,6 +1287,13 @@ proto.viam.app.packages.v1.DeletePackageRequest.serializeBinaryToWriter = functi
       f
     );
   }
+  f = message.getVersions();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -1349,6 +1333,24 @@ proto.viam.app.packages.v1.DeletePackageRequest.prototype.setVersion = function(
 };
 
 
+/**
+ * optional string versions = 3;
+ * @return {string}
+ */
+proto.viam.app.packages.v1.DeletePackageRequest.prototype.getVersions = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.packages.v1.DeletePackageRequest} returns this
+ */
+proto.viam.app.packages.v1.DeletePackageRequest.prototype.setVersions = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
 
 
 
@@ -1381,6 +1383,7 @@ proto.viam.app.packages.v1.DeletePackageResponse.prototype.toObject = function(o
  */
 proto.viam.app.packages.v1.DeletePackageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
+
 
   };
 
