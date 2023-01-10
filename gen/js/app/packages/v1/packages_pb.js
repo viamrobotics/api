@@ -1215,7 +1215,7 @@ proto.viam.app.packages.v1.DeletePackageRequest.toObject = function(includeInsta
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    versions: jspb.Message.getFieldWithDefault(msg, 3, "")
+    version: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1262,7 +1262,7 @@ proto.viam.app.packages.v1.DeletePackageRequest.deserializeBinaryFromReader = fu
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setVersions(value);
+      msg.setVersion(value);
       break;
     default:
       reader.skipField();
@@ -1307,7 +1307,7 @@ proto.viam.app.packages.v1.DeletePackageRequest.serializeBinaryToWriter = functi
       f
     );
   }
-  f = message.getVersions();
+  f = message.getVersion();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -1354,10 +1354,10 @@ proto.viam.app.packages.v1.DeletePackageRequest.prototype.setName = function(val
 
 
 /**
- * optional string versions = 3;
+ * optional string version = 3;
  * @return {string}
  */
-proto.viam.app.packages.v1.DeletePackageRequest.prototype.getVersions = function() {
+proto.viam.app.packages.v1.DeletePackageRequest.prototype.getVersion = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -1366,7 +1366,7 @@ proto.viam.app.packages.v1.DeletePackageRequest.prototype.getVersions = function
  * @param {string} value
  * @return {!proto.viam.app.packages.v1.DeletePackageRequest} returns this
  */
-proto.viam.app.packages.v1.DeletePackageRequest.prototype.setVersions = function(value) {
+proto.viam.app.packages.v1.DeletePackageRequest.prototype.setVersion = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
