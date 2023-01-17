@@ -248,6 +248,30 @@ export namespace Sphere {
   }
 }
 
+export class Capsule extends jspb.Message {
+  getRadiusMm(): number;
+  setRadiusMm(value: number): void;
+
+  getLengthMm(): number;
+  setLengthMm(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Capsule.AsObject;
+  static toObject(includeInstance: boolean, msg: Capsule): Capsule.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Capsule, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Capsule;
+  static deserializeBinaryFromReader(message: Capsule, reader: jspb.BinaryReader): Capsule;
+}
+
+export namespace Capsule {
+  export type AsObject = {
+    radiusMm: number,
+    lengthMm: number,
+  }
+}
+
 export class RectangularPrism extends jspb.Message {
   hasDimsMm(): boolean;
   clearDimsMm(): void;
@@ -286,6 +310,11 @@ export class Geometry extends jspb.Message {
   getBox(): RectangularPrism | undefined;
   setBox(value?: RectangularPrism): void;
 
+  hasCapsule(): boolean;
+  clearCapsule(): void;
+  getCapsule(): Capsule | undefined;
+  setCapsule(value?: Capsule): void;
+
   getLabel(): string;
   setLabel(value: string): void;
 
@@ -305,6 +334,7 @@ export namespace Geometry {
     center?: Pose.AsObject,
     sphere?: Sphere.AsObject,
     box?: RectangularPrism.AsObject,
+    capsule?: Capsule.AsObject,
     label: string,
   }
 
@@ -312,6 +342,7 @@ export namespace Geometry {
     GEOMETRY_TYPE_NOT_SET = 0,
     SPHERE = 2,
     BOX = 3,
+    CAPSULE = 5,
   }
 }
 

@@ -1398,6 +1398,11 @@ export class GetRobotPartLogsRequest extends jspb.Message {
   getFilter(): string;
   setFilter(value: string): void;
 
+  hasPageToken(): boolean;
+  clearPageToken(): void;
+  getPageToken(): string;
+  setPageToken(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartLogsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartLogsRequest): GetRobotPartLogsRequest.AsObject;
@@ -1413,6 +1418,7 @@ export namespace GetRobotPartLogsRequest {
     id: string,
     errorsOnly: boolean,
     filter: string,
+    pageToken: string,
   }
 }
 
@@ -1476,6 +1482,9 @@ export class GetRobotPartLogsResponse extends jspb.Message {
   setLogsList(value: Array<LogEntry>): void;
   addLogs(value?: LogEntry, index?: number): LogEntry;
 
+  getNextPageToken(): string;
+  setNextPageToken(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartLogsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartLogsResponse): GetRobotPartLogsResponse.AsObject;
@@ -1489,6 +1498,7 @@ export class GetRobotPartLogsResponse extends jspb.Message {
 export namespace GetRobotPartLogsResponse {
   export type AsObject = {
     logsList: Array<LogEntry.AsObject>,
+    nextPageToken: string,
   }
 }
 
@@ -1498,6 +1508,11 @@ export class TailRobotPartLogsRequest extends jspb.Message {
 
   getErrorsOnly(): boolean;
   setErrorsOnly(value: boolean): void;
+
+  hasFilter(): boolean;
+  clearFilter(): void;
+  getFilter(): string;
+  setFilter(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TailRobotPartLogsRequest.AsObject;
@@ -1513,6 +1528,7 @@ export namespace TailRobotPartLogsRequest {
   export type AsObject = {
     id: string,
     errorsOnly: boolean,
+    filter: string,
   }
 }
 

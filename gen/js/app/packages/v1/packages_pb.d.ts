@@ -141,10 +141,8 @@ export class DeletePackageRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  clearVersionsList(): void;
-  getVersionsList(): Array<string>;
-  setVersionsList(value: Array<string>): void;
-  addVersions(value: string, index?: number): string;
+  getVersion(): string;
+  setVersion(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeletePackageRequest.AsObject;
@@ -160,14 +158,11 @@ export namespace DeletePackageRequest {
   export type AsObject = {
     organizationId: string,
     name: string,
-    versionsList: Array<string>,
+    version: string,
   }
 }
 
 export class DeletePackageResponse extends jspb.Message {
-  getDeletedCount(): number;
-  setDeletedCount(value: number): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeletePackageResponse.AsObject;
   static toObject(includeInstance: boolean, msg: DeletePackageResponse): DeletePackageResponse.AsObject;
@@ -180,7 +175,6 @@ export class DeletePackageResponse extends jspb.Message {
 
 export namespace DeletePackageResponse {
   export type AsObject = {
-    deletedCount: number,
   }
 }
 
