@@ -638,6 +638,67 @@ proto.viam.robot.v1.RobotServicePromiseClient.prototype.transformPose =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.TransformPCDRequest,
+ *   !proto.viam.robot.v1.TransformPCDResponse>}
+ */
+const methodDescriptor_RobotService_TransformPCD = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/TransformPCD',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.TransformPCDRequest,
+  proto.viam.robot.v1.TransformPCDResponse,
+  /**
+   * @param {!proto.viam.robot.v1.TransformPCDRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.TransformPCDResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.TransformPCDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.TransformPCDResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.TransformPCDResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.transformPCD =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/TransformPCD',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_TransformPCD,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.TransformPCDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.TransformPCDResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.transformPCD =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/TransformPCD',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_TransformPCD);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.robot.v1.GetStatusRequest,
  *   !proto.viam.robot.v1.GetStatusResponse>}
  */

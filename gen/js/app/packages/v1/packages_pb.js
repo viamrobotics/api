@@ -132,7 +132,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.packages.v1.DeletePackageRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.packages.v1.DeletePackageRequest.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.viam.app.packages.v1.DeletePackageRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1131,13 +1131,6 @@ proto.viam.app.packages.v1.CreatePackageResponse.serializeBinaryToWriter = funct
 
 
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.viam.app.packages.v1.DeletePackageRequest.repeatedFields_ = [3];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1171,7 +1164,7 @@ proto.viam.app.packages.v1.DeletePackageRequest.toObject = function(includeInsta
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    versionsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+    version: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1218,7 +1211,7 @@ proto.viam.app.packages.v1.DeletePackageRequest.deserializeBinaryFromReader = fu
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.addVersions(value);
+      msg.setVersion(value);
       break;
     default:
       reader.skipField();
@@ -1263,9 +1256,9 @@ proto.viam.app.packages.v1.DeletePackageRequest.serializeBinaryToWriter = functi
       f
     );
   }
-  f = message.getVersionsList();
+  f = message.getVersion();
   if (f.length > 0) {
-    writer.writeRepeatedString(
+    writer.writeString(
       3,
       f
     );
@@ -1310,39 +1303,20 @@ proto.viam.app.packages.v1.DeletePackageRequest.prototype.setName = function(val
 
 
 /**
- * repeated string versions = 3;
- * @return {!Array<string>}
+ * optional string version = 3;
+ * @return {string}
  */
-proto.viam.app.packages.v1.DeletePackageRequest.prototype.getVersionsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.viam.app.packages.v1.DeletePackageRequest} returns this
- */
-proto.viam.app.packages.v1.DeletePackageRequest.prototype.setVersionsList = function(value) {
-  return jspb.Message.setField(this, 3, value || []);
+proto.viam.app.packages.v1.DeletePackageRequest.prototype.getVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @param {number=} opt_index
  * @return {!proto.viam.app.packages.v1.DeletePackageRequest} returns this
  */
-proto.viam.app.packages.v1.DeletePackageRequest.prototype.addVersions = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.viam.app.packages.v1.DeletePackageRequest} returns this
- */
-proto.viam.app.packages.v1.DeletePackageRequest.prototype.clearVersionsList = function() {
-  return this.setVersionsList([]);
+proto.viam.app.packages.v1.DeletePackageRequest.prototype.setVersion = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -1378,7 +1352,7 @@ proto.viam.app.packages.v1.DeletePackageResponse.prototype.toObject = function(o
  */
 proto.viam.app.packages.v1.DeletePackageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0)
+
   };
 
   if (includeInstance) {
@@ -1415,10 +1389,6 @@ proto.viam.app.packages.v1.DeletePackageResponse.deserializeBinaryFromReader = f
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setDeletedCount(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -1448,31 +1418,6 @@ proto.viam.app.packages.v1.DeletePackageResponse.prototype.serializeBinary = fun
  */
 proto.viam.app.packages.v1.DeletePackageResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getDeletedCount();
-  if (f !== 0) {
-    writer.writeInt64(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional int64 deleted_count = 1;
- * @return {number}
- */
-proto.viam.app.packages.v1.DeletePackageResponse.prototype.getDeletedCount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.viam.app.packages.v1.DeletePackageResponse} returns this
- */
-proto.viam.app.packages.v1.DeletePackageResponse.prototype.setDeletedCount = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 

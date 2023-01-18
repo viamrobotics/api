@@ -72,13 +72,10 @@ message CreatePackageResponse {}
 message DeletePackageRequest {
   string organization_id = 1;
   string name = 2;
-  repeated string versions = 3;
+  string version = 3;
 }
 
-message DeletePackageResponse {
-  // Number of versions deleted
-  int64 deleted_count = 1;
-}
+message DeletePackageResponse {}
 
 message Package {
   PackageInfo info = 1;
@@ -88,7 +85,7 @@ message Package {
 
 // InternalPackage is stored in the packages database and represents our interval view of the uploaded package
 message InternalPackage {
-  string organization_id = 1 [(tagger.v1.tags) = "bson:\"org_id\" json:\"org_id\""];
+  string organization_id = 1 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
   string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
   string version = 3 [(tagger.v1.tags) = "bson:\"version\" json:\"version\""];
   PackageType type = 4 [(tagger.v1.tags) = "bson:\"type\" json:\"type\""];

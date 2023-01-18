@@ -30,6 +30,7 @@ type RobotServiceClient interface {
 	DiscoverComponents(ctx context.Context, in *DiscoverComponentsRequest, opts ...grpc.CallOption) (*DiscoverComponentsResponse, error)
 	FrameSystemConfig(ctx context.Context, in *FrameSystemConfigRequest, opts ...grpc.CallOption) (*FrameSystemConfigResponse, error)
 	TransformPose(ctx context.Context, in *TransformPoseRequest, opts ...grpc.CallOption) (*TransformPoseResponse, error)
+	TransformPCD(ctx context.Context, in *TransformPCDRequest, opts ...grpc.CallOption) (*TransformPCDResponse, error)
 	// GetStatus returns the list of all statuses requested. An empty request signifies all resources.
 	GetStatus(ctx context.Context, in *GetStatusRequest, opts ...grpc.CallOption) (*GetStatusResponse, error)
 	// StreamStatus periodically sends the status of all statuses requested. An empty request signifies all resources.
@@ -134,6 +135,15 @@ func (c *robotServiceClient) TransformPose(ctx context.Context, in *TransformPos
 	return out, nil
 }
 
+func (c *robotServiceClient) TransformPCD(ctx context.Context, in *TransformPCDRequest, opts ...grpc.CallOption) (*TransformPCDResponse, error) {
+	out := new(TransformPCDResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/TransformPCD", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *robotServiceClient) GetStatus(ctx context.Context, in *GetStatusRequest, opts ...grpc.CallOption) (*GetStatusResponse, error) {
 	out := new(GetStatusResponse)
 	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetStatus", in, out, opts...)
@@ -218,6 +228,7 @@ type RobotServiceServer interface {
 	DiscoverComponents(context.Context, *DiscoverComponentsRequest) (*DiscoverComponentsResponse, error)
 	FrameSystemConfig(context.Context, *FrameSystemConfigRequest) (*FrameSystemConfigResponse, error)
 	TransformPose(context.Context, *TransformPoseRequest) (*TransformPoseResponse, error)
+	TransformPCD(context.Context, *TransformPCDRequest) (*TransformPCDResponse, error)
 	// GetStatus returns the list of all statuses requested. An empty request signifies all resources.
 	GetStatus(context.Context, *GetStatusRequest) (*GetStatusResponse, error)
 	// StreamStatus periodically sends the status of all statuses requested. An empty request signifies all resources.
@@ -264,6 +275,9 @@ func (UnimplementedRobotServiceServer) FrameSystemConfig(context.Context, *Frame
 }
 func (UnimplementedRobotServiceServer) TransformPose(context.Context, *TransformPoseRequest) (*TransformPoseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TransformPose not implemented")
+}
+func (UnimplementedRobotServiceServer) TransformPCD(context.Context, *TransformPCDRequest) (*TransformPCDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TransformPCD not implemented")
 }
 func (UnimplementedRobotServiceServer) GetStatus(context.Context, *GetStatusRequest) (*GetStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
@@ -455,6 +469,24 @@ func _RobotService_TransformPose_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_TransformPCD_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransformPCDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).TransformPCD(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/TransformPCD",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).TransformPCD(ctx, req.(*TransformPCDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _RobotService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetStatusRequest)
 	if err := dec(in); err != nil {
@@ -590,6 +622,10 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TransformPose",
 			Handler:    _RobotService_TransformPose_Handler,
+		},
+		{
+			MethodName: "TransformPCD",
+			Handler:    _RobotService_TransformPCD_Handler,
 		},
 		{
 			MethodName: "GetStatus",

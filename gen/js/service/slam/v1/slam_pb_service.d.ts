@@ -22,10 +22,40 @@ type SLAMServiceGetMap = {
   readonly responseType: typeof service_slam_v1_slam_pb.GetMapResponse;
 };
 
+type SLAMServiceGetPositionNew = {
+  readonly methodName: string;
+  readonly service: typeof SLAMService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_slam_v1_slam_pb.GetPositionNewRequest;
+  readonly responseType: typeof service_slam_v1_slam_pb.GetPositionNewResponse;
+};
+
+type SLAMServiceGetPointCloudMap = {
+  readonly methodName: string;
+  readonly service: typeof SLAMService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_slam_v1_slam_pb.GetPointCloudMapRequest;
+  readonly responseType: typeof service_slam_v1_slam_pb.GetPointCloudMapResponse;
+};
+
+type SLAMServiceGetInternalState = {
+  readonly methodName: string;
+  readonly service: typeof SLAMService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_slam_v1_slam_pb.GetInternalStateRequest;
+  readonly responseType: typeof service_slam_v1_slam_pb.GetInternalStateResponse;
+};
+
 export class SLAMService {
   static readonly serviceName: string;
   static readonly GetPosition: SLAMServiceGetPosition;
   static readonly GetMap: SLAMServiceGetMap;
+  static readonly GetPositionNew: SLAMServiceGetPositionNew;
+  static readonly GetPointCloudMap: SLAMServiceGetPointCloudMap;
+  static readonly GetInternalState: SLAMServiceGetInternalState;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -77,6 +107,33 @@ export class SLAMServiceClient {
   getMap(
     requestMessage: service_slam_v1_slam_pb.GetMapRequest,
     callback: (error: ServiceError|null, responseMessage: service_slam_v1_slam_pb.GetMapResponse|null) => void
+  ): UnaryResponse;
+  getPositionNew(
+    requestMessage: service_slam_v1_slam_pb.GetPositionNewRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_slam_v1_slam_pb.GetPositionNewResponse|null) => void
+  ): UnaryResponse;
+  getPositionNew(
+    requestMessage: service_slam_v1_slam_pb.GetPositionNewRequest,
+    callback: (error: ServiceError|null, responseMessage: service_slam_v1_slam_pb.GetPositionNewResponse|null) => void
+  ): UnaryResponse;
+  getPointCloudMap(
+    requestMessage: service_slam_v1_slam_pb.GetPointCloudMapRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_slam_v1_slam_pb.GetPointCloudMapResponse|null) => void
+  ): UnaryResponse;
+  getPointCloudMap(
+    requestMessage: service_slam_v1_slam_pb.GetPointCloudMapRequest,
+    callback: (error: ServiceError|null, responseMessage: service_slam_v1_slam_pb.GetPointCloudMapResponse|null) => void
+  ): UnaryResponse;
+  getInternalState(
+    requestMessage: service_slam_v1_slam_pb.GetInternalStateRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_slam_v1_slam_pb.GetInternalStateResponse|null) => void
+  ): UnaryResponse;
+  getInternalState(
+    requestMessage: service_slam_v1_slam_pb.GetInternalStateRequest,
+    callback: (error: ServiceError|null, responseMessage: service_slam_v1_slam_pb.GetInternalStateResponse|null) => void
   ): UnaryResponse;
 }
 
