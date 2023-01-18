@@ -57,7 +57,6 @@ message PackageInfo {
   PackageType type = 4;
   repeated FileInfo files = 5;
   google.protobuf.Struct metadata = 6;
-  google.protobuf.Timestamp created_on = 7;
 }
 
 message CreatePackageRequest {
@@ -80,7 +79,7 @@ message DeletePackageResponse {}
 
 message Package {
   PackageInfo info = 1;
-  string uri = 2;
+  string url = 2;
   google.protobuf.Timestamp created_on = 3;
 }
 
