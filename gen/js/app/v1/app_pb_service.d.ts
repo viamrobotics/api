@@ -301,15 +301,6 @@ type AppServiceListRobots = {
   readonly responseType: typeof app_v1_app_pb.ListRobotsResponse;
 };
 
-type AppServiceFindRobots = {
-  readonly methodName: string;
-  readonly service: typeof AppService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.FindRobotsRequest;
-  readonly responseType: typeof app_v1_app_pb.FindRobotsResponse;
-};
-
 type AppServiceNewRobot = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -372,7 +363,6 @@ export class AppService {
   static readonly CreateRobotPartSecret: AppServiceCreateRobotPartSecret;
   static readonly DeleteRobotPartSecret: AppServiceDeleteRobotPartSecret;
   static readonly ListRobots: AppServiceListRobots;
-  static readonly FindRobots: AppServiceFindRobots;
   static readonly NewRobot: AppServiceNewRobot;
   static readonly UpdateRobot: AppServiceUpdateRobot;
   static readonly DeleteRobot: AppServiceDeleteRobot;
@@ -698,15 +688,6 @@ export class AppServiceClient {
   listRobots(
     requestMessage: app_v1_app_pb.ListRobotsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsResponse|null) => void
-  ): UnaryResponse;
-  findRobots(
-    requestMessage: app_v1_app_pb.FindRobotsRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.FindRobotsResponse|null) => void
-  ): UnaryResponse;
-  findRobots(
-    requestMessage: app_v1_app_pb.FindRobotsRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.FindRobotsResponse|null) => void
   ): UnaryResponse;
   newRobot(
     requestMessage: app_v1_app_pb.NewRobotRequest,

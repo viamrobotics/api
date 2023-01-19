@@ -1814,48 +1814,6 @@ export namespace ListRobotsResponse {
   }
 }
 
-export class FindRobotsRequest extends jspb.Message {
-  getLocationId(): string;
-  setLocationId(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FindRobotsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: FindRobotsRequest): FindRobotsRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FindRobotsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FindRobotsRequest;
-  static deserializeBinaryFromReader(message: FindRobotsRequest, reader: jspb.BinaryReader): FindRobotsRequest;
-}
-
-export namespace FindRobotsRequest {
-  export type AsObject = {
-    locationId: string,
-  }
-}
-
-export class FindRobotsResponse extends jspb.Message {
-  clearRobotsList(): void;
-  getRobotsList(): Array<Robot>;
-  setRobotsList(value: Array<Robot>): void;
-  addRobots(value?: Robot, index?: number): Robot;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FindRobotsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: FindRobotsResponse): FindRobotsResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FindRobotsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FindRobotsResponse;
-  static deserializeBinaryFromReader(message: FindRobotsResponse, reader: jspb.BinaryReader): FindRobotsResponse;
-}
-
-export namespace FindRobotsResponse {
-  export type AsObject = {
-    robotsList: Array<Robot.AsObject>,
-  }
-}
-
 export class NewRobotRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;

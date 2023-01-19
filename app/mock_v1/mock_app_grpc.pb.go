@@ -297,26 +297,6 @@ func (mr *MockAppServiceClientMockRecorder) DeleteRobotPartSecret(ctx, in interf
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteRobotPartSecret", reflect.TypeOf((*MockAppServiceClient)(nil).DeleteRobotPartSecret), varargs...)
 }
 
-// FindRobots mocks base method.
-func (m *MockAppServiceClient) FindRobots(ctx context.Context, in *v1.FindRobotsRequest, opts ...grpc.CallOption) (*v1.FindRobotsResponse, error) {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{ctx, in}
-	for _, a := range opts {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "FindRobots", varargs...)
-	ret0, _ := ret[0].(*v1.FindRobotsResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// FindRobots indicates an expected call of FindRobots.
-func (mr *MockAppServiceClientMockRecorder) FindRobots(ctx, in interface{}, opts ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindRobots", reflect.TypeOf((*MockAppServiceClient)(nil).FindRobots), varargs...)
-}
-
 // GetLocation mocks base method.
 func (m *MockAppServiceClient) GetLocation(ctx context.Context, in *v1.GetLocationRequest, opts ...grpc.CallOption) (*v1.GetLocationResponse, error) {
 	m.ctrl.T.Helper()
@@ -1116,21 +1096,6 @@ func (m *MockAppServiceServer) DeleteRobotPartSecret(arg0 context.Context, arg1 
 func (mr *MockAppServiceServerMockRecorder) DeleteRobotPartSecret(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteRobotPartSecret", reflect.TypeOf((*MockAppServiceServer)(nil).DeleteRobotPartSecret), arg0, arg1)
-}
-
-// FindRobots mocks base method.
-func (m *MockAppServiceServer) FindRobots(arg0 context.Context, arg1 *v1.FindRobotsRequest) (*v1.FindRobotsResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "FindRobots", arg0, arg1)
-	ret0, _ := ret[0].(*v1.FindRobotsResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// FindRobots indicates an expected call of FindRobots.
-func (mr *MockAppServiceServerMockRecorder) FindRobots(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindRobots", reflect.TypeOf((*MockAppServiceServer)(nil).FindRobots), arg0, arg1)
 }
 
 // GetLocation mocks base method.
