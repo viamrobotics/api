@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package viam.app.package.v1;
+
+import "google/protobuf/struct.proto";
+
+option go_package = "go.viam.com/api/app/package/v1";
+
+service PackageService {
+  // Note: include HTTP annotations to these RPC definitions to utilize HTTP reverse
+  // proxies.
+
+  // AddPackage uploads a package's contents and information to the cloud
+  rpc AddPackage(stream AddPackageRequest) returns (AddPackageResponse);
+  // DeletePackage receives an authenticated request with the package name and array of versions and removes the associated packages
+  rpc DeletePackage(DeletePackageRequest) returns (DeletePackageResponse);
+  // GetPackages receives an authenticated request with the package name and version and, if present, generates returns the URL
+  rpc GetPackages(GetPackagesRequest) returns (GetPackagesResponse);
+}
+
+enum PackageType {
+  PACKAGE_TYPE_UNSPECIFIED = 0;
+  PACKAGE_TYPE_FILE = 1;
+  PACKAGE_TYPE_ML_MODEL = 2;
+}
+
+message FileInfo {
+  string name = 1;
+  uint64 size = 2;
+}
+
+message AddPackageRequest {
+  string org_id = 1;
+  string name = 2;
+  string version = 3;
+  bytes file_contents = 4; // .tar.gz file with a limit of 50GB
+  PackageType type = 5;
+  repeated FileInfo files = 6;
+  google.protobuf.Struct metadata = 7;
+}
+
+message AddPackageResponse {}
+
+message DeletePackageRequest {
+  string org_id = 1;
+  string name = 2;
+  repeated string versions = 3; // If empty, delete all versions of the model
+}
+
+message DeletePackageResponse {
+  int64 deleted_count = 1; // Number of versions deleted
+}
+
+message GetPackagesRequest {
+  string org_id = 1; // If only org_id is specified, get all packages for an organization. Used in app.
+  optional PackageType type = 2; // e.g. can specify only getting packages of type ML_MODEL
+  optional string name = 3;
+  optional string version = 4;
+}
+
+message PackageInfo {
+  string name = 1;
+  string version = 2;
+  repeated FileInfo files = 3;
+  repeated google.protobuf.Struct metadata = 4;
+}
+
+message Package {
+  PackageInfo info = 1;
+  string url = 2;
+}
+
+message GetPackagesResponse {
+  repeated Package packages = 1;
+}
