@@ -2093,67 +2093,6 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listRobots =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.v1.FindRobotsRequest,
- *   !proto.viam.app.v1.FindRobotsResponse>}
- */
-const methodDescriptor_AppService_FindRobots = new grpc.web.MethodDescriptor(
-  '/viam.app.v1.AppService/FindRobots',
-  grpc.web.MethodType.UNARY,
-  proto.viam.app.v1.FindRobotsRequest,
-  proto.viam.app.v1.FindRobotsResponse,
-  /**
-   * @param {!proto.viam.app.v1.FindRobotsRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.app.v1.FindRobotsResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.app.v1.FindRobotsRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.FindRobotsResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.FindRobotsResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.app.v1.AppServiceClient.prototype.findRobots =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.v1.AppService/FindRobots',
-      request,
-      metadata || {},
-      methodDescriptor_AppService_FindRobots,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.app.v1.FindRobotsRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.app.v1.FindRobotsResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.app.v1.AppServicePromiseClient.prototype.findRobots =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.v1.AppService/FindRobots',
-      request,
-      metadata || {},
-      methodDescriptor_AppService_FindRobots);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.NewRobotRequest,
  *   !proto.viam.app.v1.NewRobotResponse>}
  */
