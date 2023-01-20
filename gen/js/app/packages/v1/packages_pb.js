@@ -494,8 +494,7 @@ proto.viam.app.packages.v1.PackageInfo.toObject = function(includeInstance, msg)
     type: jspb.Message.getFieldWithDefault(msg, 4, 0),
     filesList: jspb.Message.toObjectList(msg.getFilesList(),
     proto.viam.app.packages.v1.FileInfo.toObject, includeInstance),
-    metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -557,11 +556,6 @@ proto.viam.app.packages.v1.PackageInfo.deserializeBinaryFromReader = function(ms
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setMetadata(value);
-      break;
-    case 7:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setCreatedOn(value);
       break;
     default:
       reader.skipField();
@@ -634,14 +628,6 @@ proto.viam.app.packages.v1.PackageInfo.serializeBinaryToWriter = function(messag
       6,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
-    );
-  }
-  f = message.getCreatedOn();
-  if (f != null) {
-    writer.writeMessage(
-      7,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -791,43 +777,6 @@ proto.viam.app.packages.v1.PackageInfo.prototype.clearMetadata = function() {
  */
 proto.viam.app.packages.v1.PackageInfo.prototype.hasMetadata = function() {
   return jspb.Message.getField(this, 6) != null;
-};
-
-
-/**
- * optional google.protobuf.Timestamp created_on = 7;
- * @return {?proto.google.protobuf.Timestamp}
- */
-proto.viam.app.packages.v1.PackageInfo.prototype.getCreatedOn = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.viam.app.packages.v1.PackageInfo} returns this
-*/
-proto.viam.app.packages.v1.PackageInfo.prototype.setCreatedOn = function(value) {
-  return jspb.Message.setWrapperField(this, 7, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.app.packages.v1.PackageInfo} returns this
- */
-proto.viam.app.packages.v1.PackageInfo.prototype.clearCreatedOn = function() {
-  return this.setCreatedOn(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.packages.v1.PackageInfo.prototype.hasCreatedOn = function() {
-  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -1505,7 +1454,7 @@ proto.viam.app.packages.v1.Package.prototype.toObject = function(opt_includeInst
 proto.viam.app.packages.v1.Package.toObject = function(includeInstance, msg) {
   var f, obj = {
     info: (f = msg.getInfo()) && proto.viam.app.packages.v1.PackageInfo.toObject(includeInstance, f),
-    uri: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    url: jspb.Message.getFieldWithDefault(msg, 2, ""),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
@@ -1550,7 +1499,7 @@ proto.viam.app.packages.v1.Package.deserializeBinaryFromReader = function(msg, r
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUri(value);
+      msg.setUrl(value);
       break;
     case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
@@ -1594,7 +1543,7 @@ proto.viam.app.packages.v1.Package.serializeBinaryToWriter = function(message, w
       proto.viam.app.packages.v1.PackageInfo.serializeBinaryToWriter
     );
   }
-  f = message.getUri();
+  f = message.getUrl();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -1650,10 +1599,10 @@ proto.viam.app.packages.v1.Package.prototype.hasInfo = function() {
 
 
 /**
- * optional string uri = 2;
+ * optional string url = 2;
  * @return {string}
  */
-proto.viam.app.packages.v1.Package.prototype.getUri = function() {
+proto.viam.app.packages.v1.Package.prototype.getUrl = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -1662,7 +1611,7 @@ proto.viam.app.packages.v1.Package.prototype.getUri = function() {
  * @param {string} value
  * @return {!proto.viam.app.packages.v1.Package} returns this
  */
-proto.viam.app.packages.v1.Package.prototype.setUri = function(value) {
+proto.viam.app.packages.v1.Package.prototype.setUrl = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
