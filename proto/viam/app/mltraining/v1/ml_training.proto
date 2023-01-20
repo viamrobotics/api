@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package viam.app.mltraining.v1;
+
+import "app/data/v1/data.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "tagger/v1/tagger.proto";
+
+option go_package = "go.viam.com/api/app/mltraining/v1";
+
+service MLTrainingService {
+  rpc SubmitTrainingJob(SubmitTrainingJobRequest) returns (SubmitTrainingJobResponse);
+  rpc GetTrainingJob(GetTrainingJobRequest) returns (GetTrainingJobResponse);
+}
+
+enum ModelType {
+  MODEL_TYPE_UNSPECIFIED = 0;
+  MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION = 1;
+  MODEL_TYPE_MULTI_LABEL_CLASSIFICATION = 2;
+}
+
+message SubmitTrainingJobRequest {
+  viam.app.data.v1.Filter filter = 1;
+  string organization_id = 2;
+  string model_name = 3;
+  string model_version = 4;
+  ModelType model_type = 5;
+  repeated string tags = 6;
+}
+
+message SubmitTrainingJobResponse {
+  string id = 1;
+}
+
+message GetTrainingJobRequest {
+  string id = 1;
+}
+
+message GetTrainingJobResponse {
+  string id = 1;
+  TrainingJobMetadata metadata = 2;
+}
+
+enum TrainingStatus {
+  TRAINING_STATUS_UNSPECIFIED = 0;
+  TRAINING_STATUS_PENDING = 1;
+  TRAINING_STATUS_IN_PROGRESS = 2;
+  TRAINING_STATUS_COMPLETED = 3;
+  TRAINING_STATUS_FAILED = 4;
+  TRAINING_STATUS_SUBMITTING = 5;
+}
+
+message TrainingJobMetadata {
+  SubmitTrainingJobRequest request = 1;
+  TrainingStatus status = 2;
+  google.protobuf.Timestamp created_on = 3;
+  google.protobuf.Timestamp last_modified = 4;
+  string synced_model_id = 5;
+}
+
+message TrainingJob {
+  string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+  TrainingJobMetadata metadata = 2 [(tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
+  string output_path = 3 [(tagger.v1.tags) = "bson:\"output_path\" json:\"output_path\""];
+  // The vertex_job_id is the id of the Vertex AI custom training job
+  // backing our concept of a TrainingJob.
+  string vertex_job_id = 4 [(tagger.v1.tags) = "bson:\"vertex_job_id\" json:\"vertex_job_id\""];
+  google.protobuf.Struct model_metadata = 5 [(tagger.v1.tags) = "bson:\"model_metadata\" json:\"model_metadata\""];
+}
