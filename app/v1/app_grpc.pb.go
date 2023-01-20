@@ -18,13 +18,41 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AppServiceClient interface {
-	CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error)
+	// Create a new organization
+	CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error)
+	// List organizations
 	ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error)
+	// Get an organization
+	GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error)
+	// Update an organization
+	UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error)
+	// Delete an organization
+	DeleteOrganization(ctx context.Context, in *DeleteOrganizationRequest, opts ...grpc.CallOption) (*DeleteOrganizationResponse, error)
+	// List all members of an organization and all invited members to the organization.
+	ListOrganizationMembers(ctx context.Context, in *ListOrganizationMembersRequest, opts ...grpc.CallOption) (*ListOrganizationMembersResponse, error)
+	// Create an organization invite to an organization
+	CreateOrganizationInvite(ctx context.Context, in *CreateOrganizationInviteRequest, opts ...grpc.CallOption) (*CreateOrganizationInviteResponse, error)
+	// Delete an organization member from an organization
+	DeleteOrganizationMember(ctx context.Context, in *DeleteOrganizationMemberRequest, opts ...grpc.CallOption) (*DeleteOrganizationMemberResponse, error)
+	// Delete an organization invite
+	DeleteOrganizationInvite(ctx context.Context, in *DeleteOrganizationInviteRequest, opts ...grpc.CallOption) (*DeleteOrganizationInviteResponse, error)
+	// Resend an organization invite
+	ResendOrganizationInvite(ctx context.Context, in *ResendOrganizationInviteRequest, opts ...grpc.CallOption) (*ResendOrganizationInviteResponse, error)
+	// Create a location
+	CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error)
+	// Get a location
+	GetLocation(ctx context.Context, in *GetLocationRequest, opts ...grpc.CallOption) (*GetLocationResponse, error)
+	// Update a location
+	UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error)
+	// Delete a location
+	DeleteLocation(ctx context.Context, in *DeleteLocationRequest, opts ...grpc.CallOption) (*DeleteLocationResponse, error)
+	// Get a list of locations
 	ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error)
 	// Share a location with an organization
 	ShareLocation(ctx context.Context, in *ShareLocationRequest, opts ...grpc.CallOption) (*ShareLocationResponse, error)
 	// Stop sharing a location with an organization
 	UnshareLocation(ctx context.Context, in *UnshareLocationRequest, opts ...grpc.CallOption) (*UnshareLocationResponse, error)
+	// Get a location's authorization secrets
 	LocationAuth(ctx context.Context, in *LocationAuthRequest, opts ...grpc.CallOption) (*LocationAuthResponse, error)
 	// Create a new generated Secret in the Location.
 	//   - Succeeds if there are no more than 2 active secrets after creation.
@@ -53,8 +81,8 @@ type AppServiceClient interface {
 	CreateRobotPartSecret(ctx context.Context, in *CreateRobotPartSecretRequest, opts ...grpc.CallOption) (*CreateRobotPartSecretResponse, error)
 	// Delete a Secret from the RobotPart.
 	DeleteRobotPartSecret(ctx context.Context, in *DeleteRobotPartSecretRequest, opts ...grpc.CallOption) (*DeleteRobotPartSecretResponse, error)
-	// Finds robots given a query
-	FindRobots(ctx context.Context, in *FindRobotsRequest, opts ...grpc.CallOption) (*FindRobotsResponse, error)
+	// Get a list of robots
+	ListRobots(ctx context.Context, in *ListRobotsRequest, opts ...grpc.CallOption) (*ListRobotsResponse, error)
 	// NewRobot creates a new robot
 	NewRobot(ctx context.Context, in *NewRobotRequest, opts ...grpc.CallOption) (*NewRobotResponse, error)
 	// UpdateRobot updates a robot
@@ -71,9 +99,9 @@ func NewAppServiceClient(cc grpc.ClientConnInterface) AppServiceClient {
 	return &appServiceClient{cc}
 }
 
-func (c *appServiceClient) CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error) {
-	out := new(CreateLocationResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateLocation", in, out, opts...)
+func (c *appServiceClient) CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error) {
+	out := new(CreateOrganizationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateOrganization", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,6 +111,114 @@ func (c *appServiceClient) CreateLocation(ctx context.Context, in *CreateLocatio
 func (c *appServiceClient) ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error) {
 	out := new(ListOrganizationsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListOrganizations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error) {
+	out := new(GetOrganizationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganization", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error) {
+	out := new(UpdateOrganizationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateOrganization", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteOrganization(ctx context.Context, in *DeleteOrganizationRequest, opts ...grpc.CallOption) (*DeleteOrganizationResponse, error) {
+	out := new(DeleteOrganizationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteOrganization", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListOrganizationMembers(ctx context.Context, in *ListOrganizationMembersRequest, opts ...grpc.CallOption) (*ListOrganizationMembersResponse, error) {
+	out := new(ListOrganizationMembersResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListOrganizationMembers", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) CreateOrganizationInvite(ctx context.Context, in *CreateOrganizationInviteRequest, opts ...grpc.CallOption) (*CreateOrganizationInviteResponse, error) {
+	out := new(CreateOrganizationInviteResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateOrganizationInvite", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteOrganizationMember(ctx context.Context, in *DeleteOrganizationMemberRequest, opts ...grpc.CallOption) (*DeleteOrganizationMemberResponse, error) {
+	out := new(DeleteOrganizationMemberResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteOrganizationMember", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteOrganizationInvite(ctx context.Context, in *DeleteOrganizationInviteRequest, opts ...grpc.CallOption) (*DeleteOrganizationInviteResponse, error) {
+	out := new(DeleteOrganizationInviteResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteOrganizationInvite", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ResendOrganizationInvite(ctx context.Context, in *ResendOrganizationInviteRequest, opts ...grpc.CallOption) (*ResendOrganizationInviteResponse, error) {
+	out := new(ResendOrganizationInviteResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ResendOrganizationInvite", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error) {
+	out := new(CreateLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetLocation(ctx context.Context, in *GetLocationRequest, opts ...grpc.CallOption) (*GetLocationResponse, error) {
+	out := new(GetLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error) {
+	out := new(UpdateLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteLocation(ctx context.Context, in *DeleteLocationRequest, opts ...grpc.CallOption) (*DeleteLocationResponse, error) {
+	out := new(DeleteLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -274,9 +410,9 @@ func (c *appServiceClient) DeleteRobotPartSecret(ctx context.Context, in *Delete
 	return out, nil
 }
 
-func (c *appServiceClient) FindRobots(ctx context.Context, in *FindRobotsRequest, opts ...grpc.CallOption) (*FindRobotsResponse, error) {
-	out := new(FindRobotsResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/FindRobots", in, out, opts...)
+func (c *appServiceClient) ListRobots(ctx context.Context, in *ListRobotsRequest, opts ...grpc.CallOption) (*ListRobotsResponse, error) {
+	out := new(ListRobotsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListRobots", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -314,13 +450,41 @@ func (c *appServiceClient) DeleteRobot(ctx context.Context, in *DeleteRobotReque
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
 type AppServiceServer interface {
-	CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error)
+	// Create a new organization
+	CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error)
+	// List organizations
 	ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error)
+	// Get an organization
+	GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error)
+	// Update an organization
+	UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error)
+	// Delete an organization
+	DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error)
+	// List all members of an organization and all invited members to the organization.
+	ListOrganizationMembers(context.Context, *ListOrganizationMembersRequest) (*ListOrganizationMembersResponse, error)
+	// Create an organization invite to an organization
+	CreateOrganizationInvite(context.Context, *CreateOrganizationInviteRequest) (*CreateOrganizationInviteResponse, error)
+	// Delete an organization member from an organization
+	DeleteOrganizationMember(context.Context, *DeleteOrganizationMemberRequest) (*DeleteOrganizationMemberResponse, error)
+	// Delete an organization invite
+	DeleteOrganizationInvite(context.Context, *DeleteOrganizationInviteRequest) (*DeleteOrganizationInviteResponse, error)
+	// Resend an organization invite
+	ResendOrganizationInvite(context.Context, *ResendOrganizationInviteRequest) (*ResendOrganizationInviteResponse, error)
+	// Create a location
+	CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error)
+	// Get a location
+	GetLocation(context.Context, *GetLocationRequest) (*GetLocationResponse, error)
+	// Update a location
+	UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error)
+	// Delete a location
+	DeleteLocation(context.Context, *DeleteLocationRequest) (*DeleteLocationResponse, error)
+	// Get a list of locations
 	ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error)
 	// Share a location with an organization
 	ShareLocation(context.Context, *ShareLocationRequest) (*ShareLocationResponse, error)
 	// Stop sharing a location with an organization
 	UnshareLocation(context.Context, *UnshareLocationRequest) (*UnshareLocationResponse, error)
+	// Get a location's authorization secrets
 	LocationAuth(context.Context, *LocationAuthRequest) (*LocationAuthResponse, error)
 	// Create a new generated Secret in the Location.
 	//   - Succeeds if there are no more than 2 active secrets after creation.
@@ -349,8 +513,8 @@ type AppServiceServer interface {
 	CreateRobotPartSecret(context.Context, *CreateRobotPartSecretRequest) (*CreateRobotPartSecretResponse, error)
 	// Delete a Secret from the RobotPart.
 	DeleteRobotPartSecret(context.Context, *DeleteRobotPartSecretRequest) (*DeleteRobotPartSecretResponse, error)
-	// Finds robots given a query
-	FindRobots(context.Context, *FindRobotsRequest) (*FindRobotsResponse, error)
+	// Get a list of robots
+	ListRobots(context.Context, *ListRobotsRequest) (*ListRobotsResponse, error)
 	// NewRobot creates a new robot
 	NewRobot(context.Context, *NewRobotRequest) (*NewRobotResponse, error)
 	// UpdateRobot updates a robot
@@ -364,11 +528,47 @@ type AppServiceServer interface {
 type UnimplementedAppServiceServer struct {
 }
 
-func (UnimplementedAppServiceServer) CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateLocation not implemented")
+func (UnimplementedAppServiceServer) CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganization not implemented")
 }
 func (UnimplementedAppServiceServer) ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizations not implemented")
+}
+func (UnimplementedAppServiceServer) GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganization not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganization not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganization not implemented")
+}
+func (UnimplementedAppServiceServer) ListOrganizationMembers(context.Context, *ListOrganizationMembersRequest) (*ListOrganizationMembersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationMembers not implemented")
+}
+func (UnimplementedAppServiceServer) CreateOrganizationInvite(context.Context, *CreateOrganizationInviteRequest) (*CreateOrganizationInviteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganizationInvite not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteOrganizationMember(context.Context, *DeleteOrganizationMemberRequest) (*DeleteOrganizationMemberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationMember not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteOrganizationInvite(context.Context, *DeleteOrganizationInviteRequest) (*DeleteOrganizationInviteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationInvite not implemented")
+}
+func (UnimplementedAppServiceServer) ResendOrganizationInvite(context.Context, *ResendOrganizationInviteRequest) (*ResendOrganizationInviteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResendOrganizationInvite not implemented")
+}
+func (UnimplementedAppServiceServer) CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateLocation not implemented")
+}
+func (UnimplementedAppServiceServer) GetLocation(context.Context, *GetLocationRequest) (*GetLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLocation not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateLocation not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteLocation(context.Context, *DeleteLocationRequest) (*DeleteLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteLocation not implemented")
 }
 func (UnimplementedAppServiceServer) ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListLocations not implemented")
@@ -424,8 +624,8 @@ func (UnimplementedAppServiceServer) CreateRobotPartSecret(context.Context, *Cre
 func (UnimplementedAppServiceServer) DeleteRobotPartSecret(context.Context, *DeleteRobotPartSecretRequest) (*DeleteRobotPartSecretResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRobotPartSecret not implemented")
 }
-func (UnimplementedAppServiceServer) FindRobots(context.Context, *FindRobotsRequest) (*FindRobotsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindRobots not implemented")
+func (UnimplementedAppServiceServer) ListRobots(context.Context, *ListRobotsRequest) (*ListRobotsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRobots not implemented")
 }
 func (UnimplementedAppServiceServer) NewRobot(context.Context, *NewRobotRequest) (*NewRobotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NewRobot not implemented")
@@ -449,20 +649,20 @@ func RegisterAppServiceServer(s grpc.ServiceRegistrar, srv AppServiceServer) {
 	s.RegisterService(&AppService_ServiceDesc, srv)
 }
 
-func _AppService_CreateLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateLocationRequest)
+func _AppService_CreateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOrganizationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).CreateLocation(ctx, in)
+		return srv.(AppServiceServer).CreateOrganization(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/CreateLocation",
+		FullMethod: "/viam.app.v1.AppService/CreateOrganization",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).CreateLocation(ctx, req.(*CreateLocationRequest))
+		return srv.(AppServiceServer).CreateOrganization(ctx, req.(*CreateOrganizationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -481,6 +681,222 @@ func _AppService_ListOrganizations_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).ListOrganizations(ctx, req.(*ListOrganizationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetOrganization(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetOrganization",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetOrganization(ctx, req.(*GetOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateOrganization(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateOrganization",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateOrganization(ctx, req.(*UpdateOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteOrganization(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteOrganization",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteOrganization(ctx, req.(*DeleteOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListOrganizationMembers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOrganizationMembersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListOrganizationMembers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListOrganizationMembers",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListOrganizationMembers(ctx, req.(*ListOrganizationMembersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_CreateOrganizationInvite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOrganizationInviteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CreateOrganizationInvite(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CreateOrganizationInvite",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CreateOrganizationInvite(ctx, req.(*CreateOrganizationInviteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteOrganizationMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationMemberRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteOrganizationMember(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteOrganizationMember",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteOrganizationMember(ctx, req.(*DeleteOrganizationMemberRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteOrganizationInvite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationInviteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteOrganizationInvite(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteOrganizationInvite",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteOrganizationInvite(ctx, req.(*DeleteOrganizationInviteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ResendOrganizationInvite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResendOrganizationInviteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ResendOrganizationInvite(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ResendOrganizationInvite",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ResendOrganizationInvite(ctx, req.(*ResendOrganizationInviteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_CreateLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CreateLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CreateLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CreateLocation(ctx, req.(*CreateLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetLocation(ctx, req.(*GetLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateLocation(ctx, req.(*UpdateLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteLocation(ctx, req.(*DeleteLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -812,20 +1228,20 @@ func _AppService_DeleteRobotPartSecret_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_FindRobots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindRobotsRequest)
+func _AppService_ListRobots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRobotsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).FindRobots(ctx, in)
+		return srv.(AppServiceServer).ListRobots(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/FindRobots",
+		FullMethod: "/viam.app.v1.AppService/ListRobots",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).FindRobots(ctx, req.(*FindRobotsRequest))
+		return srv.(AppServiceServer).ListRobots(ctx, req.(*ListRobotsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -892,12 +1308,60 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AppServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateLocation",
-			Handler:    _AppService_CreateLocation_Handler,
+			MethodName: "CreateOrganization",
+			Handler:    _AppService_CreateOrganization_Handler,
 		},
 		{
 			MethodName: "ListOrganizations",
 			Handler:    _AppService_ListOrganizations_Handler,
+		},
+		{
+			MethodName: "GetOrganization",
+			Handler:    _AppService_GetOrganization_Handler,
+		},
+		{
+			MethodName: "UpdateOrganization",
+			Handler:    _AppService_UpdateOrganization_Handler,
+		},
+		{
+			MethodName: "DeleteOrganization",
+			Handler:    _AppService_DeleteOrganization_Handler,
+		},
+		{
+			MethodName: "ListOrganizationMembers",
+			Handler:    _AppService_ListOrganizationMembers_Handler,
+		},
+		{
+			MethodName: "CreateOrganizationInvite",
+			Handler:    _AppService_CreateOrganizationInvite_Handler,
+		},
+		{
+			MethodName: "DeleteOrganizationMember",
+			Handler:    _AppService_DeleteOrganizationMember_Handler,
+		},
+		{
+			MethodName: "DeleteOrganizationInvite",
+			Handler:    _AppService_DeleteOrganizationInvite_Handler,
+		},
+		{
+			MethodName: "ResendOrganizationInvite",
+			Handler:    _AppService_ResendOrganizationInvite_Handler,
+		},
+		{
+			MethodName: "CreateLocation",
+			Handler:    _AppService_CreateLocation_Handler,
+		},
+		{
+			MethodName: "GetLocation",
+			Handler:    _AppService_GetLocation_Handler,
+		},
+		{
+			MethodName: "UpdateLocation",
+			Handler:    _AppService_UpdateLocation_Handler,
+		},
+		{
+			MethodName: "DeleteLocation",
+			Handler:    _AppService_DeleteLocation_Handler,
 		},
 		{
 			MethodName: "ListLocations",
@@ -968,8 +1432,8 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_DeleteRobotPartSecret_Handler,
 		},
 		{
-			MethodName: "FindRobots",
-			Handler:    _AppService_FindRobots_Handler,
+			MethodName: "ListRobots",
+			Handler:    _AppService_ListRobots_Handler,
 		},
 		{
 			MethodName: "NewRobot",

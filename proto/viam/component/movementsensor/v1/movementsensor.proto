@@ -149,7 +149,7 @@ message GetAccuracyResponse {
 message GetLinearAccelerationRequest {
   // Name of a movement sensor
   string name = 1;
-  // Addition arguments to the method
+  // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
 

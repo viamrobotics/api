@@ -54,11 +54,6 @@ export class PackageInfo extends jspb.Message {
   getMetadata(): google_protobuf_struct_pb.Struct | undefined;
   setMetadata(value?: google_protobuf_struct_pb.Struct): void;
 
-  hasCreatedOn(): boolean;
-  clearCreatedOn(): void;
-  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PackageInfo.AsObject;
   static toObject(includeInstance: boolean, msg: PackageInfo): PackageInfo.AsObject;
@@ -77,7 +72,6 @@ export namespace PackageInfo {
     type: PackageTypeMap[keyof PackageTypeMap],
     filesList: Array<FileInfo.AsObject>,
     metadata?: google_protobuf_struct_pb.Struct.AsObject,
-    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -141,10 +135,8 @@ export class DeletePackageRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  clearVersionsList(): void;
-  getVersionsList(): Array<string>;
-  setVersionsList(value: Array<string>): void;
-  addVersions(value: string, index?: number): string;
+  getVersion(): string;
+  setVersion(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeletePackageRequest.AsObject;
@@ -160,14 +152,11 @@ export namespace DeletePackageRequest {
   export type AsObject = {
     organizationId: string,
     name: string,
-    versionsList: Array<string>,
+    version: string,
   }
 }
 
 export class DeletePackageResponse extends jspb.Message {
-  getDeletedCount(): number;
-  setDeletedCount(value: number): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeletePackageResponse.AsObject;
   static toObject(includeInstance: boolean, msg: DeletePackageResponse): DeletePackageResponse.AsObject;
@@ -180,7 +169,6 @@ export class DeletePackageResponse extends jspb.Message {
 
 export namespace DeletePackageResponse {
   export type AsObject = {
-    deletedCount: number,
   }
 }
 
@@ -190,8 +178,8 @@ export class Package extends jspb.Message {
   getInfo(): PackageInfo | undefined;
   setInfo(value?: PackageInfo): void;
 
-  getUri(): string;
-  setUri(value: string): void;
+  getUrl(): string;
+  setUrl(value: string): void;
 
   hasCreatedOn(): boolean;
   clearCreatedOn(): void;
@@ -211,7 +199,7 @@ export class Package extends jspb.Message {
 export namespace Package {
   export type AsObject = {
     info?: PackageInfo.AsObject,
-    uri: string,
+    url: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }

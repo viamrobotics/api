@@ -10,13 +10,13 @@ var AppService = (function () {
   return AppService;
 }());
 
-AppService.CreateLocation = {
-  methodName: "CreateLocation",
+AppService.CreateOrganization = {
+  methodName: "CreateOrganization",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.CreateLocationRequest,
-  responseType: app_v1_app_pb.CreateLocationResponse
+  requestType: app_v1_app_pb.CreateOrganizationRequest,
+  responseType: app_v1_app_pb.CreateOrganizationResponse
 };
 
 AppService.ListOrganizations = {
@@ -26,6 +26,114 @@ AppService.ListOrganizations = {
   responseStream: false,
   requestType: app_v1_app_pb.ListOrganizationsRequest,
   responseType: app_v1_app_pb.ListOrganizationsResponse
+};
+
+AppService.GetOrganization = {
+  methodName: "GetOrganization",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetOrganizationRequest,
+  responseType: app_v1_app_pb.GetOrganizationResponse
+};
+
+AppService.UpdateOrganization = {
+  methodName: "UpdateOrganization",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateOrganizationRequest,
+  responseType: app_v1_app_pb.UpdateOrganizationResponse
+};
+
+AppService.DeleteOrganization = {
+  methodName: "DeleteOrganization",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteOrganizationRequest,
+  responseType: app_v1_app_pb.DeleteOrganizationResponse
+};
+
+AppService.ListOrganizationMembers = {
+  methodName: "ListOrganizationMembers",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListOrganizationMembersRequest,
+  responseType: app_v1_app_pb.ListOrganizationMembersResponse
+};
+
+AppService.CreateOrganizationInvite = {
+  methodName: "CreateOrganizationInvite",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.CreateOrganizationInviteRequest,
+  responseType: app_v1_app_pb.CreateOrganizationInviteResponse
+};
+
+AppService.DeleteOrganizationMember = {
+  methodName: "DeleteOrganizationMember",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteOrganizationMemberRequest,
+  responseType: app_v1_app_pb.DeleteOrganizationMemberResponse
+};
+
+AppService.DeleteOrganizationInvite = {
+  methodName: "DeleteOrganizationInvite",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteOrganizationInviteRequest,
+  responseType: app_v1_app_pb.DeleteOrganizationInviteResponse
+};
+
+AppService.ResendOrganizationInvite = {
+  methodName: "ResendOrganizationInvite",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ResendOrganizationInviteRequest,
+  responseType: app_v1_app_pb.ResendOrganizationInviteResponse
+};
+
+AppService.CreateLocation = {
+  methodName: "CreateLocation",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.CreateLocationRequest,
+  responseType: app_v1_app_pb.CreateLocationResponse
+};
+
+AppService.GetLocation = {
+  methodName: "GetLocation",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetLocationRequest,
+  responseType: app_v1_app_pb.GetLocationResponse
+};
+
+AppService.UpdateLocation = {
+  methodName: "UpdateLocation",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateLocationRequest,
+  responseType: app_v1_app_pb.UpdateLocationResponse
+};
+
+AppService.DeleteLocation = {
+  methodName: "DeleteLocation",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteLocationRequest,
+  responseType: app_v1_app_pb.DeleteLocationResponse
 };
 
 AppService.ListLocations = {
@@ -190,13 +298,13 @@ AppService.DeleteRobotPartSecret = {
   responseType: app_v1_app_pb.DeleteRobotPartSecretResponse
 };
 
-AppService.FindRobots = {
-  methodName: "FindRobots",
+AppService.ListRobots = {
+  methodName: "ListRobots",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.FindRobotsRequest,
-  responseType: app_v1_app_pb.FindRobotsResponse
+  requestType: app_v1_app_pb.ListRobotsRequest,
+  responseType: app_v1_app_pb.ListRobotsResponse
 };
 
 AppService.NewRobot = {
@@ -233,11 +341,11 @@ function AppServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
-AppServiceClient.prototype.createLocation = function createLocation(requestMessage, metadata, callback) {
+AppServiceClient.prototype.createOrganization = function createOrganization(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.CreateLocation, {
+  var client = grpc.unary(AppService.CreateOrganization, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -269,6 +377,378 @@ AppServiceClient.prototype.listOrganizations = function listOrganizations(reques
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListOrganizations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getOrganization = function getOrganization(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetOrganization, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateOrganization = function updateOrganization(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateOrganization, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteOrganization = function deleteOrganization(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteOrganization, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listOrganizationMembers = function listOrganizationMembers(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListOrganizationMembers, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.createOrganizationInvite = function createOrganizationInvite(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.CreateOrganizationInvite, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteOrganizationMember = function deleteOrganizationMember(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteOrganizationMember, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteOrganizationInvite = function deleteOrganizationInvite(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteOrganizationInvite, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.resendOrganizationInvite = function resendOrganizationInvite(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ResendOrganizationInvite, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.createLocation = function createLocation(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.CreateLocation, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getLocation = function getLocation(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetLocation, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateLocation = function updateLocation(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateLocation, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteLocation = function deleteLocation(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteLocation, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -861,11 +1341,11 @@ AppServiceClient.prototype.deleteRobotPartSecret = function deleteRobotPartSecre
   };
 };
 
-AppServiceClient.prototype.findRobots = function findRobots(requestMessage, metadata, callback) {
+AppServiceClient.prototype.listRobots = function listRobots(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.FindRobots, {
+  var client = grpc.unary(AppService.ListRobots, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
