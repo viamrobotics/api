@@ -495,9 +495,6 @@ export class BinaryDataByIDsResponse extends jspb.Message {
   getCount(): number;
   setCount(value: number): void;
 
-  getLast(): string;
-  setLast(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataByIDsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryDataByIDsResponse): BinaryDataByIDsResponse.AsObject;
@@ -512,7 +509,6 @@ export namespace BinaryDataByIDsResponse {
   export type AsObject = {
     dataList: Array<BinaryData.AsObject>,
     count: number,
-    last: string,
   }
 }
 
