@@ -3020,7 +3020,8 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.toObject = function(includeIn
     dataList: jspb.Message.toObjectList(msg.getDataList(),
     proto.viam.app.data.v1.TabularData.toObject, includeInstance),
     count: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    last: jspb.Message.getFieldWithDefault(msg, 4, "")
+    last: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    totalSize: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -3074,6 +3075,10 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.deserializeBinaryFromReader =
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setLast(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTotalSize(value);
       break;
     default:
       reader.skipField();
@@ -3131,6 +3136,13 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.serializeBinaryToWriter = fun
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getTotalSize();
+  if (f !== 0) {
+    writer.writeInt64(
+      5,
       f
     );
   }
@@ -3246,6 +3258,24 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.getLast = function(
  */
 proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.setLast = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional int64 total_size = 5;
+ * @return {number}
+ */
+proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.getTotalSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.data.v1.TabularDataByFilterResponse} returns this
+ */
+proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.setTotalSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
