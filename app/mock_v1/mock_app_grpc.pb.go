@@ -37,6 +37,26 @@ func (m *MockAppServiceClient) EXPECT() *MockAppServiceClientMockRecorder {
 	return m.recorder
 }
 
+// CreateFragment mocks base method.
+func (m *MockAppServiceClient) CreateFragment(ctx context.Context, in *v1.CreateFragmentRequest, opts ...grpc.CallOption) (*v1.CreateFragmentResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "CreateFragment", varargs...)
+	ret0, _ := ret[0].(*v1.CreateFragmentResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateFragment indicates an expected call of CreateFragment.
+func (mr *MockAppServiceClientMockRecorder) CreateFragment(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateFragment", reflect.TypeOf((*MockAppServiceClient)(nil).CreateFragment), varargs...)
+}
+
 // CreateLocation mocks base method.
 func (m *MockAppServiceClient) CreateLocation(ctx context.Context, in *v1.CreateLocationRequest, opts ...grpc.CallOption) (*v1.CreateLocationResponse, error) {
 	m.ctrl.T.Helper()
@@ -135,6 +155,26 @@ func (mr *MockAppServiceClientMockRecorder) CreateRobotPartSecret(ctx, in interf
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateRobotPartSecret", reflect.TypeOf((*MockAppServiceClient)(nil).CreateRobotPartSecret), varargs...)
+}
+
+// DeleteFragment mocks base method.
+func (m *MockAppServiceClient) DeleteFragment(ctx context.Context, in *v1.DeleteFragmentRequest, opts ...grpc.CallOption) (*v1.DeleteFragmentResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "DeleteFragment", varargs...)
+	ret0, _ := ret[0].(*v1.DeleteFragmentResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteFragment indicates an expected call of DeleteFragment.
+func (mr *MockAppServiceClientMockRecorder) DeleteFragment(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteFragment", reflect.TypeOf((*MockAppServiceClient)(nil).DeleteFragment), varargs...)
 }
 
 // DeleteLocation mocks base method.
@@ -297,6 +337,26 @@ func (mr *MockAppServiceClientMockRecorder) DeleteRobotPartSecret(ctx, in interf
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteRobotPartSecret", reflect.TypeOf((*MockAppServiceClient)(nil).DeleteRobotPartSecret), varargs...)
 }
 
+// GetFragment mocks base method.
+func (m *MockAppServiceClient) GetFragment(ctx context.Context, in *v1.GetFragmentRequest, opts ...grpc.CallOption) (*v1.GetFragmentResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetFragment", varargs...)
+	ret0, _ := ret[0].(*v1.GetFragmentResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetFragment indicates an expected call of GetFragment.
+func (mr *MockAppServiceClientMockRecorder) GetFragment(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFragment", reflect.TypeOf((*MockAppServiceClient)(nil).GetFragment), varargs...)
+}
+
 // GetLocation mocks base method.
 func (m *MockAppServiceClient) GetLocation(ctx context.Context, in *v1.GetLocationRequest, opts ...grpc.CallOption) (*v1.GetLocationResponse, error) {
 	m.ctrl.T.Helper()
@@ -435,6 +495,26 @@ func (mr *MockAppServiceClientMockRecorder) GetRobotParts(ctx, in interface{}, o
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRobotParts", reflect.TypeOf((*MockAppServiceClient)(nil).GetRobotParts), varargs...)
+}
+
+// ListFragments mocks base method.
+func (m *MockAppServiceClient) ListFragments(ctx context.Context, in *v1.ListFragmentsRequest, opts ...grpc.CallOption) (*v1.ListFragmentsResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "ListFragments", varargs...)
+	ret0, _ := ret[0].(*v1.ListFragmentsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListFragments indicates an expected call of ListFragments.
+func (mr *MockAppServiceClientMockRecorder) ListFragments(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListFragments", reflect.TypeOf((*MockAppServiceClient)(nil).ListFragments), varargs...)
 }
 
 // ListLocations mocks base method.
@@ -677,6 +757,26 @@ func (mr *MockAppServiceClientMockRecorder) UnshareLocation(ctx, in interface{},
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UnshareLocation", reflect.TypeOf((*MockAppServiceClient)(nil).UnshareLocation), varargs...)
 }
 
+// UpdateFragment mocks base method.
+func (m *MockAppServiceClient) UpdateFragment(ctx context.Context, in *v1.UpdateFragmentRequest, opts ...grpc.CallOption) (*v1.UpdateFragmentResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "UpdateFragment", varargs...)
+	ret0, _ := ret[0].(*v1.UpdateFragmentResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateFragment indicates an expected call of UpdateFragment.
+func (mr *MockAppServiceClientMockRecorder) UpdateFragment(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateFragment", reflect.TypeOf((*MockAppServiceClient)(nil).UpdateFragment), varargs...)
+}
+
 // UpdateLocation mocks base method.
 func (m *MockAppServiceClient) UpdateLocation(ctx context.Context, in *v1.UpdateLocationRequest, opts ...grpc.CallOption) (*v1.UpdateLocationResponse, error) {
 	m.ctrl.T.Helper()
@@ -903,6 +1003,21 @@ func (m *MockAppServiceServer) EXPECT() *MockAppServiceServerMockRecorder {
 	return m.recorder
 }
 
+// CreateFragment mocks base method.
+func (m *MockAppServiceServer) CreateFragment(arg0 context.Context, arg1 *v1.CreateFragmentRequest) (*v1.CreateFragmentResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateFragment", arg0, arg1)
+	ret0, _ := ret[0].(*v1.CreateFragmentResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateFragment indicates an expected call of CreateFragment.
+func (mr *MockAppServiceServerMockRecorder) CreateFragment(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateFragment", reflect.TypeOf((*MockAppServiceServer)(nil).CreateFragment), arg0, arg1)
+}
+
 // CreateLocation mocks base method.
 func (m *MockAppServiceServer) CreateLocation(arg0 context.Context, arg1 *v1.CreateLocationRequest) (*v1.CreateLocationResponse, error) {
 	m.ctrl.T.Helper()
@@ -976,6 +1091,21 @@ func (m *MockAppServiceServer) CreateRobotPartSecret(arg0 context.Context, arg1 
 func (mr *MockAppServiceServerMockRecorder) CreateRobotPartSecret(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateRobotPartSecret", reflect.TypeOf((*MockAppServiceServer)(nil).CreateRobotPartSecret), arg0, arg1)
+}
+
+// DeleteFragment mocks base method.
+func (m *MockAppServiceServer) DeleteFragment(arg0 context.Context, arg1 *v1.DeleteFragmentRequest) (*v1.DeleteFragmentResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteFragment", arg0, arg1)
+	ret0, _ := ret[0].(*v1.DeleteFragmentResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteFragment indicates an expected call of DeleteFragment.
+func (mr *MockAppServiceServerMockRecorder) DeleteFragment(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteFragment", reflect.TypeOf((*MockAppServiceServer)(nil).DeleteFragment), arg0, arg1)
 }
 
 // DeleteLocation mocks base method.
@@ -1098,6 +1228,21 @@ func (mr *MockAppServiceServerMockRecorder) DeleteRobotPartSecret(arg0, arg1 int
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteRobotPartSecret", reflect.TypeOf((*MockAppServiceServer)(nil).DeleteRobotPartSecret), arg0, arg1)
 }
 
+// GetFragment mocks base method.
+func (m *MockAppServiceServer) GetFragment(arg0 context.Context, arg1 *v1.GetFragmentRequest) (*v1.GetFragmentResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetFragment", arg0, arg1)
+	ret0, _ := ret[0].(*v1.GetFragmentResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetFragment indicates an expected call of GetFragment.
+func (mr *MockAppServiceServerMockRecorder) GetFragment(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFragment", reflect.TypeOf((*MockAppServiceServer)(nil).GetFragment), arg0, arg1)
+}
+
 // GetLocation mocks base method.
 func (m *MockAppServiceServer) GetLocation(arg0 context.Context, arg1 *v1.GetLocationRequest) (*v1.GetLocationResponse, error) {
 	m.ctrl.T.Helper()
@@ -1201,6 +1346,21 @@ func (m *MockAppServiceServer) GetRobotParts(arg0 context.Context, arg1 *v1.GetR
 func (mr *MockAppServiceServerMockRecorder) GetRobotParts(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRobotParts", reflect.TypeOf((*MockAppServiceServer)(nil).GetRobotParts), arg0, arg1)
+}
+
+// ListFragments mocks base method.
+func (m *MockAppServiceServer) ListFragments(arg0 context.Context, arg1 *v1.ListFragmentsRequest) (*v1.ListFragmentsResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListFragments", arg0, arg1)
+	ret0, _ := ret[0].(*v1.ListFragmentsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListFragments indicates an expected call of ListFragments.
+func (mr *MockAppServiceServerMockRecorder) ListFragments(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListFragments", reflect.TypeOf((*MockAppServiceServer)(nil).ListFragments), arg0, arg1)
 }
 
 // ListLocations mocks base method.
@@ -1380,6 +1540,21 @@ func (m *MockAppServiceServer) UnshareLocation(arg0 context.Context, arg1 *v1.Un
 func (mr *MockAppServiceServerMockRecorder) UnshareLocation(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UnshareLocation", reflect.TypeOf((*MockAppServiceServer)(nil).UnshareLocation), arg0, arg1)
+}
+
+// UpdateFragment mocks base method.
+func (m *MockAppServiceServer) UpdateFragment(arg0 context.Context, arg1 *v1.UpdateFragmentRequest) (*v1.UpdateFragmentResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateFragment", arg0, arg1)
+	ret0, _ := ret[0].(*v1.UpdateFragmentResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateFragment indicates an expected call of UpdateFragment.
+func (mr *MockAppServiceServerMockRecorder) UpdateFragment(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateFragment", reflect.TypeOf((*MockAppServiceServer)(nil).UpdateFragment), arg0, arg1)
 }
 
 // UpdateLocation mocks base method.
