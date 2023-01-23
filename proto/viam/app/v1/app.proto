@@ -119,6 +119,23 @@ service AppService {
 
   // DeleteRobot deletes a robot
   rpc DeleteRobot(DeleteRobotRequest) returns (DeleteRobotResponse);
+
+  // Fragments
+
+  // Gets a list of fragments
+  rpc ListFragments(ListFragmentsRequest) returns (ListFragmentsResponse);
+
+  // Gets a single fragment
+  rpc GetFragment(GetFragmentRequest) returns (GetFragmentResponse);
+
+  // Creates a fragment
+  rpc CreateFragment(CreateFragmentRequest) returns (CreateFragmentResponse);
+
+  // Updates a fragment
+  rpc UpdateFragment(UpdateFragmentRequest) returns (UpdateFragmentResponse);
+
+  // Deletes a fragment
+  rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
 }
 
 message Robot {
@@ -508,7 +525,51 @@ message Fragment {
   string organization_owner = 4 [(tagger.v1.tags) = "bson:\"organization_owner\" json:\"owner\""];
   bool public = 5 [(tagger.v1.tags) = "bson:\"public\" json:\"public\""];
   google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
+  string organization_name = 7;
+  bool readonly = 8;
 }
+
+message ListFragmentsRequest {
+  string organization_id = 1; 
+  bool show_public = 2;
+}
+
+message ListFragmentsResponse {
+  repeated Fragment fragments = 1;
+}
+
+message GetFragmentRequest {
+  string id = 1;
+}
+
+message GetFragmentResponse {
+  Fragment fragment = 1;
+}
+
+message CreateFragmentRequest {
+  string name = 1;
+  google.protobuf.Struct config = 2;
+}
+
+message CreateFragmentResponse {
+  Fragment fragment = 1;
+}
+
+message UpdateFragmentRequest {
+  string id = 1;
+  string name = 2;
+  google.protobuf.Struct config = 3;
+}
+
+message UpdateFragmentResponse {
+  Fragment fragment = 1;
+}
+
+message DeleteFragmentRequest {
+  string id = 1;
+}
+
+message DeleteFragmentResponse {}
 
 message ListRobotsRequest {
   string location_id = 1;
