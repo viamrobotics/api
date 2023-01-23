@@ -37,6 +37,7 @@ message RobotConfig {
   optional bool debug = 8;
   repeated ModuleConfig modules = 9;
   optional bool disable_partial_start = 10;
+  repeated PackageConfig packages = 11;
 }
 
 // Valid location secret that can be used for authentication to the robot.
@@ -319,4 +320,14 @@ message ModuleConfig {
   string name = 1;
   // path to the executable
   string path = 2;
+}
+
+// PackageConfig is the configration for deployed Packages.
+message PackageConfig {
+  // Name is the local name of the package on the RDK. Must be unique across Packages. Must not be empty.
+  string name = 1;
+  // Package is the unqiue package name hosted by Viam. Must not be empty.
+  string package = 2;
+  // version of the package ID hosted by Viam. If not specified "latest" is assumed.
+  string version = 3;
 }
