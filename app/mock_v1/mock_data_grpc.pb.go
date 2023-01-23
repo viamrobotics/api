@@ -300,6 +300,7 @@ func (mr *MockDataServiceClientMockRecorder) TagsByFilter(ctx, in interface{}, o
 type MockDataServiceServer struct {
 	ctrl     *gomock.Controller
 	recorder *MockDataServiceServerMockRecorder
+	v1.UnimplementedDataServiceServer
 }
 
 // MockDataServiceServerMockRecorder is the mock recorder for MockDataServiceServer.
