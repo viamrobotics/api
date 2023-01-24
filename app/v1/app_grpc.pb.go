@@ -83,8 +83,6 @@ type AppServiceClient interface {
 	DeleteRobotPartSecret(ctx context.Context, in *DeleteRobotPartSecretRequest, opts ...grpc.CallOption) (*DeleteRobotPartSecretResponse, error)
 	// Get a list of robots
 	ListRobots(ctx context.Context, in *ListRobotsRequest, opts ...grpc.CallOption) (*ListRobotsResponse, error)
-	// Finds robots given a query. Deprecated, use ListRobots instead
-	FindRobots(ctx context.Context, in *FindRobotsRequest, opts ...grpc.CallOption) (*FindRobotsResponse, error)
 	// NewRobot creates a new robot
 	NewRobot(ctx context.Context, in *NewRobotRequest, opts ...grpc.CallOption) (*NewRobotResponse, error)
 	// UpdateRobot updates a robot
@@ -421,15 +419,6 @@ func (c *appServiceClient) ListRobots(ctx context.Context, in *ListRobotsRequest
 	return out, nil
 }
 
-func (c *appServiceClient) FindRobots(ctx context.Context, in *FindRobotsRequest, opts ...grpc.CallOption) (*FindRobotsResponse, error) {
-	out := new(FindRobotsResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/FindRobots", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *appServiceClient) NewRobot(ctx context.Context, in *NewRobotRequest, opts ...grpc.CallOption) (*NewRobotResponse, error) {
 	out := new(NewRobotResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/NewRobot", in, out, opts...)
@@ -526,8 +515,6 @@ type AppServiceServer interface {
 	DeleteRobotPartSecret(context.Context, *DeleteRobotPartSecretRequest) (*DeleteRobotPartSecretResponse, error)
 	// Get a list of robots
 	ListRobots(context.Context, *ListRobotsRequest) (*ListRobotsResponse, error)
-	// Finds robots given a query. Deprecated, use ListRobots instead
-	FindRobots(context.Context, *FindRobotsRequest) (*FindRobotsResponse, error)
 	// NewRobot creates a new robot
 	NewRobot(context.Context, *NewRobotRequest) (*NewRobotResponse, error)
 	// UpdateRobot updates a robot
@@ -639,9 +626,6 @@ func (UnimplementedAppServiceServer) DeleteRobotPartSecret(context.Context, *Del
 }
 func (UnimplementedAppServiceServer) ListRobots(context.Context, *ListRobotsRequest) (*ListRobotsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListRobots not implemented")
-}
-func (UnimplementedAppServiceServer) FindRobots(context.Context, *FindRobotsRequest) (*FindRobotsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindRobots not implemented")
 }
 func (UnimplementedAppServiceServer) NewRobot(context.Context, *NewRobotRequest) (*NewRobotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NewRobot not implemented")
@@ -1262,24 +1246,6 @@ func _AppService_ListRobots_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_FindRobots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindRobotsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppServiceServer).FindRobots(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/FindRobots",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).FindRobots(ctx, req.(*FindRobotsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _AppService_NewRobot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(NewRobotRequest)
 	if err := dec(in); err != nil {
@@ -1468,10 +1434,6 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListRobots",
 			Handler:    _AppService_ListRobots_Handler,
-		},
-		{
-			MethodName: "FindRobots",
-			Handler:    _AppService_FindRobots_Handler,
 		},
 		{
 			MethodName: "NewRobot",
