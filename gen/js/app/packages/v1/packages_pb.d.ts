@@ -300,9 +300,6 @@ export class GetPackageResponse extends jspb.Message {
   getPackage(): Package | undefined;
   setPackage(value?: Package): void;
 
-  getVersion(): string;
-  setVersion(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPackageResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPackageResponse): GetPackageResponse.AsObject;
@@ -316,7 +313,6 @@ export class GetPackageResponse extends jspb.Message {
 export namespace GetPackageResponse {
   export type AsObject = {
     pb_package?: Package.AsObject,
-    version: string,
   }
 }
 
