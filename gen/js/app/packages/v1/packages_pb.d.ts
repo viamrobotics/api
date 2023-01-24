@@ -186,6 +186,9 @@ export class Package extends jspb.Message {
   getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getChecksum(): string;
+  setChecksum(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Package.AsObject;
   static toObject(includeInstance: boolean, msg: Package): Package.AsObject;
@@ -201,6 +204,7 @@ export namespace Package {
     info?: PackageInfo.AsObject,
     url: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    checksum: string,
   }
 }
 
@@ -235,6 +239,9 @@ export class InternalPackage extends jspb.Message {
   getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getChecksum(): string;
+  setChecksum(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): InternalPackage.AsObject;
   static toObject(includeInstance: boolean, msg: InternalPackage): InternalPackage.AsObject;
@@ -255,6 +262,7 @@ export namespace InternalPackage {
     metadata?: google_protobuf_struct_pb.Struct.AsObject,
     blobPath: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    checksum: string,
   }
 }
 
@@ -292,6 +300,9 @@ export class GetPackageResponse extends jspb.Message {
   getPackage(): Package | undefined;
   setPackage(value?: Package): void;
 
+  getVersion(): string;
+  setVersion(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPackageResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPackageResponse): GetPackageResponse.AsObject;
@@ -305,6 +316,7 @@ export class GetPackageResponse extends jspb.Message {
 export namespace GetPackageResponse {
   export type AsObject = {
     pb_package?: Package.AsObject,
+    version: string,
   }
 }
 

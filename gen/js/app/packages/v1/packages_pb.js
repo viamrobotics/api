@@ -1455,7 +1455,8 @@ proto.viam.app.packages.v1.Package.toObject = function(includeInstance, msg) {
   var f, obj = {
     info: (f = msg.getInfo()) && proto.viam.app.packages.v1.PackageInfo.toObject(includeInstance, f),
     url: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    checksum: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -1505,6 +1506,10 @@ proto.viam.app.packages.v1.Package.deserializeBinaryFromReader = function(msg, r
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setCreatedOn(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setChecksum(value);
       break;
     default:
       reader.skipField();
@@ -1556,6 +1561,13 @@ proto.viam.app.packages.v1.Package.serializeBinaryToWriter = function(message, w
       3,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getChecksum();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -1653,6 +1665,24 @@ proto.viam.app.packages.v1.Package.prototype.hasCreatedOn = function() {
 };
 
 
+/**
+ * optional string checksum = 4;
+ * @return {string}
+ */
+proto.viam.app.packages.v1.Package.prototype.getChecksum = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.packages.v1.Package} returns this
+ */
+proto.viam.app.packages.v1.Package.prototype.setChecksum = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -1700,7 +1730,8 @@ proto.viam.app.packages.v1.InternalPackage.toObject = function(includeInstance, 
     proto.viam.app.packages.v1.FileInfo.toObject, includeInstance),
     metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     blobPath: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    checksum: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -1771,6 +1802,10 @@ proto.viam.app.packages.v1.InternalPackage.deserializeBinaryFromReader = functio
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setCreatedOn(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setChecksum(value);
       break;
     default:
       reader.skipField();
@@ -1858,6 +1893,13 @@ proto.viam.app.packages.v1.InternalPackage.serializeBinaryToWriter = function(me
       8,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getChecksum();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
     );
   }
 };
@@ -2062,6 +2104,24 @@ proto.viam.app.packages.v1.InternalPackage.prototype.clearCreatedOn = function()
  */
 proto.viam.app.packages.v1.InternalPackage.prototype.hasCreatedOn = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional string checksum = 9;
+ * @return {string}
+ */
+proto.viam.app.packages.v1.InternalPackage.prototype.getChecksum = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.packages.v1.InternalPackage} returns this
+ */
+proto.viam.app.packages.v1.InternalPackage.prototype.setChecksum = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -2287,7 +2347,8 @@ proto.viam.app.packages.v1.GetPackageResponse.prototype.toObject = function(opt_
  */
 proto.viam.app.packages.v1.GetPackageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pb_package: (f = msg.getPackage()) && proto.viam.app.packages.v1.Package.toObject(includeInstance, f)
+    pb_package: (f = msg.getPackage()) && proto.viam.app.packages.v1.Package.toObject(includeInstance, f),
+    version: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2329,6 +2390,10 @@ proto.viam.app.packages.v1.GetPackageResponse.deserializeBinaryFromReader = func
       reader.readMessage(value,proto.viam.app.packages.v1.Package.deserializeBinaryFromReader);
       msg.setPackage(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVersion(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2364,6 +2429,13 @@ proto.viam.app.packages.v1.GetPackageResponse.serializeBinaryToWriter = function
       1,
       f,
       proto.viam.app.packages.v1.Package.serializeBinaryToWriter
+    );
+  }
+  f = message.getVersion();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
     );
   }
 };
@@ -2403,6 +2475,24 @@ proto.viam.app.packages.v1.GetPackageResponse.prototype.clearPackage = function(
  */
 proto.viam.app.packages.v1.GetPackageResponse.prototype.hasPackage = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional string version = 2;
+ * @return {string}
+ */
+proto.viam.app.packages.v1.GetPackageResponse.prototype.getVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.packages.v1.GetPackageResponse} returns this
+ */
+proto.viam.app.packages.v1.GetPackageResponse.prototype.setVersion = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
