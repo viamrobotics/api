@@ -81,6 +81,7 @@ message Package {
   PackageInfo info = 1;
   string url = 2;
   google.protobuf.Timestamp created_on = 3;
+  string checksum = 4;
 }
 
 // InternalPackage is stored in the packages database and represents our interval view of the uploaded package
@@ -93,6 +94,7 @@ message InternalPackage {
   google.protobuf.Struct metadata = 6 [(tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
   string blob_path = 7 [(tagger.v1.tags) = "bson:\"blob_path\" json:\"blob_path\""];
   google.protobuf.Timestamp created_on = 8 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
+  string checksum = 9 [(tagger.v1.tags) = "bson:\"checksum\" json:\"checksum\""];
 }
 
 message GetPackageRequest {
