@@ -326,7 +326,7 @@ message ModuleConfig {
 message PackageConfig {
   // Name is the local name of the package on the RDK. Must be unique across Packages. Must not be empty.
   string name = 1;
-  // Package is the unqiue package name hosted by Viam. Must not be empty.
+  // Package is the unique package name hosted by Viam. Must not be empty.
   string package = 2;
   // version of the package ID hosted by Viam. If not specified "latest" is assumed.
   string version = 3;
