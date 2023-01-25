@@ -21,6 +21,7 @@ type MotionServiceClient interface {
 	Move(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveResponse, error)
 	MoveSingleComponent(ctx context.Context, in *MoveSingleComponentRequest, opts ...grpc.CallOption) (*MoveSingleComponentResponse, error)
 	GetPose(ctx context.Context, in *GetPoseRequest, opts ...grpc.CallOption) (*GetPoseResponse, error)
+	ExportPointCloud(ctx context.Context, in *ExportPointCloudRequest, opts ...grpc.CallOption) (*ExportPointCloudResponse, error)
 }
 
 type motionServiceClient struct {
@@ -58,6 +59,15 @@ func (c *motionServiceClient) GetPose(ctx context.Context, in *GetPoseRequest, o
 	return out, nil
 }
 
+func (c *motionServiceClient) ExportPointCloud(ctx context.Context, in *ExportPointCloudRequest, opts ...grpc.CallOption) (*ExportPointCloudResponse, error) {
+	out := new(ExportPointCloudResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/ExportPointCloud", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MotionServiceServer is the server API for MotionService service.
 // All implementations must embed UnimplementedMotionServiceServer
 // for forward compatibility
@@ -65,6 +75,7 @@ type MotionServiceServer interface {
 	Move(context.Context, *MoveRequest) (*MoveResponse, error)
 	MoveSingleComponent(context.Context, *MoveSingleComponentRequest) (*MoveSingleComponentResponse, error)
 	GetPose(context.Context, *GetPoseRequest) (*GetPoseResponse, error)
+	ExportPointCloud(context.Context, *ExportPointCloudRequest) (*ExportPointCloudResponse, error)
 	mustEmbedUnimplementedMotionServiceServer()
 }
 
@@ -80,6 +91,9 @@ func (UnimplementedMotionServiceServer) MoveSingleComponent(context.Context, *Mo
 }
 func (UnimplementedMotionServiceServer) GetPose(context.Context, *GetPoseRequest) (*GetPoseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPose not implemented")
+}
+func (UnimplementedMotionServiceServer) ExportPointCloud(context.Context, *ExportPointCloudRequest) (*ExportPointCloudResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExportPointCloud not implemented")
 }
 func (UnimplementedMotionServiceServer) mustEmbedUnimplementedMotionServiceServer() {}
 
@@ -148,6 +162,24 @@ func _MotionService_GetPose_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MotionService_ExportPointCloud_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExportPointCloudRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MotionServiceServer).ExportPointCloud(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.motion.v1.MotionService/ExportPointCloud",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MotionServiceServer).ExportPointCloud(ctx, req.(*ExportPointCloudRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MotionService_ServiceDesc is the grpc.ServiceDesc for MotionService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -166,6 +198,10 @@ var MotionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPose",
 			Handler:    _MotionService_GetPose_Handler,
+		},
+		{
+			MethodName: "ExportPointCloud",
+			Handler:    _MotionService_ExportPointCloud_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
