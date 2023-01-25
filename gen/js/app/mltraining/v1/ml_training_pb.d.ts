@@ -179,6 +179,9 @@ export class TrainingJob extends jspb.Message {
   getModelMetadata(): google_protobuf_struct_pb.Struct | undefined;
   setModelMetadata(value?: google_protobuf_struct_pb.Struct): void;
 
+  getProcessing(): boolean;
+  setProcessing(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJob.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJob): TrainingJob.AsObject;
@@ -196,6 +199,7 @@ export namespace TrainingJob {
     outputPath: string,
     vertexJobId: string,
     modelMetadata?: google_protobuf_struct_pb.Struct.AsObject,
+    processing: boolean,
   }
 }
 

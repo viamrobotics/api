@@ -1274,7 +1274,8 @@ proto.viam.app.mltraining.v1.TrainingJob.toObject = function(includeInstance, ms
     metadata: (f = msg.getMetadata()) && proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject(includeInstance, f),
     outputPath: jspb.Message.getFieldWithDefault(msg, 3, ""),
     vertexJobId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    modelMetadata: (f = msg.getModelMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    modelMetadata: (f = msg.getModelMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    processing: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -1332,6 +1333,10 @@ proto.viam.app.mltraining.v1.TrainingJob.deserializeBinaryFromReader = function(
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setModelMetadata(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setProcessing(value);
       break;
     default:
       reader.skipField();
@@ -1397,6 +1402,13 @@ proto.viam.app.mltraining.v1.TrainingJob.serializeBinaryToWriter = function(mess
       5,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getProcessing();
+  if (f) {
+    writer.writeBool(
+      6,
+      f
     );
   }
 };
@@ -1527,6 +1539,24 @@ proto.viam.app.mltraining.v1.TrainingJob.prototype.clearModelMetadata = function
  */
 proto.viam.app.mltraining.v1.TrainingJob.prototype.hasModelMetadata = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional bool processing = 6;
+ * @return {boolean}
+ */
+proto.viam.app.mltraining.v1.TrainingJob.prototype.getProcessing = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJob} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJob.prototype.setProcessing = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
