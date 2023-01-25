@@ -3021,7 +3021,7 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.toObject = function(includeIn
     proto.viam.app.data.v1.TabularData.toObject, includeInstance),
     count: jspb.Message.getFieldWithDefault(msg, 3, 0),
     last: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    totalSize: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    totalSizeBytes: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -3077,8 +3077,8 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.deserializeBinaryFromReader =
       msg.setLast(value);
       break;
     case 5:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setTotalSize(value);
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotalSizeBytes(value);
       break;
     default:
       reader.skipField();
@@ -3139,9 +3139,9 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.serializeBinaryToWriter = fun
       f
     );
   }
-  f = message.getTotalSize();
+  f = message.getTotalSizeBytes();
   if (f !== 0) {
-    writer.writeInt64(
+    writer.writeUint64(
       5,
       f
     );
@@ -3262,10 +3262,10 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.setLast = function(
 
 
 /**
- * optional int64 total_size = 5;
+ * optional uint64 total_size_bytes = 5;
  * @return {number}
  */
-proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.getTotalSize = function() {
+proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.getTotalSizeBytes = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
@@ -3274,7 +3274,7 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.getTotalSize = func
  * @param {number} value
  * @return {!proto.viam.app.data.v1.TabularDataByFilterResponse} returns this
  */
-proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.setTotalSize = function(value) {
+proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.setTotalSizeBytes = function(value) {
   return jspb.Message.setProto3IntField(this, 5, value);
 };
 

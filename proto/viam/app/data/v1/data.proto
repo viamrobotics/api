@@ -145,7 +145,7 @@ message TabularDataByFilterResponse {
   repeated TabularData data = 2;
   int64 count = 3;
   string last = 4;
-  int64 total_size = 5;
+  uint64 total_size_bytes = 5;
 }
 
 message TabularData {

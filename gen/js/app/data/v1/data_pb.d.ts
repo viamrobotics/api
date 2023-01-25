@@ -315,8 +315,8 @@ export class TabularDataByFilterResponse extends jspb.Message {
   getLast(): string;
   setLast(value: string): void;
 
-  getTotalSize(): number;
-  setTotalSize(value: number): void;
+  getTotalSizeBytes(): number;
+  setTotalSizeBytes(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataByFilterResponse.AsObject;
@@ -334,7 +334,7 @@ export namespace TabularDataByFilterResponse {
     dataList: Array<TabularData.AsObject>,
     count: number,
     last: string,
-    totalSize: number,
+    totalSizeBytes: number,
   }
 }
 
