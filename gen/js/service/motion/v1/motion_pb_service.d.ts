@@ -31,11 +31,21 @@ type MotionServiceGetPose = {
   readonly responseType: typeof service_motion_v1_motion_pb.GetPoseResponse;
 };
 
+type MotionServiceExportPointCloud = {
+  readonly methodName: string;
+  readonly service: typeof MotionService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_motion_v1_motion_pb.ExportPointCloudRequest;
+  readonly responseType: typeof service_motion_v1_motion_pb.ExportPointCloudResponse;
+};
+
 export class MotionService {
   static readonly serviceName: string;
   static readonly Move: MotionServiceMove;
   static readonly MoveSingleComponent: MotionServiceMoveSingleComponent;
   static readonly GetPose: MotionServiceGetPose;
+  static readonly ExportPointCloud: MotionServiceExportPointCloud;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -96,6 +106,15 @@ export class MotionServiceClient {
   getPose(
     requestMessage: service_motion_v1_motion_pb.GetPoseRequest,
     callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.GetPoseResponse|null) => void
+  ): UnaryResponse;
+  exportPointCloud(
+    requestMessage: service_motion_v1_motion_pb.ExportPointCloudRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.ExportPointCloudResponse|null) => void
+  ): UnaryResponse;
+  exportPointCloud(
+    requestMessage: service_motion_v1_motion_pb.ExportPointCloudRequest,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.ExportPointCloudResponse|null) => void
   ): UnaryResponse;
 }
 

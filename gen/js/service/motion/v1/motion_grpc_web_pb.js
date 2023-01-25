@@ -266,5 +266,66 @@ proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.getPose =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.motion.v1.ExportPointCloudRequest,
+ *   !proto.viam.service.motion.v1.ExportPointCloudResponse>}
+ */
+const methodDescriptor_MotionService_ExportPointCloud = new grpc.web.MethodDescriptor(
+  '/viam.service.motion.v1.MotionService/ExportPointCloud',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.motion.v1.ExportPointCloudRequest,
+  proto.viam.service.motion.v1.ExportPointCloudResponse,
+  /**
+   * @param {!proto.viam.service.motion.v1.ExportPointCloudRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.motion.v1.ExportPointCloudResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.ExportPointCloudRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.motion.v1.ExportPointCloudResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.motion.v1.ExportPointCloudResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.motion.v1.MotionServiceClient.prototype.exportPointCloud =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/ExportPointCloud',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_ExportPointCloud,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.ExportPointCloudRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.motion.v1.ExportPointCloudResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.exportPointCloud =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/ExportPointCloud',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_ExportPointCloud);
+};
+
+
 module.exports = proto.viam.service.motion.v1;
 
