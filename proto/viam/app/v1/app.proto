@@ -456,7 +456,7 @@ message GetRobotPartLogsRequest {
   string id = 1;
   bool errors_only = 2;
   optional string filter = 3;
-  optional string page_token = 5;
+  optional string page_token = 4;
 }
 
 message LogEntry {
@@ -472,7 +472,7 @@ message LogEntry {
 
 message GetRobotPartLogsResponse {
   repeated LogEntry logs = 1;
-  string next_page_token = 5;
+  string next_page_token = 2;
 }
 
 message TailRobotPartLogsRequest {
