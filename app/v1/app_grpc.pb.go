@@ -89,6 +89,16 @@ type AppServiceClient interface {
 	UpdateRobot(ctx context.Context, in *UpdateRobotRequest, opts ...grpc.CallOption) (*UpdateRobotResponse, error)
 	// DeleteRobot deletes a robot
 	DeleteRobot(ctx context.Context, in *DeleteRobotRequest, opts ...grpc.CallOption) (*DeleteRobotResponse, error)
+	// Gets a list of fragments
+	ListFragments(ctx context.Context, in *ListFragmentsRequest, opts ...grpc.CallOption) (*ListFragmentsResponse, error)
+	// Gets a single fragment
+	GetFragment(ctx context.Context, in *GetFragmentRequest, opts ...grpc.CallOption) (*GetFragmentResponse, error)
+	// Creates a fragment
+	CreateFragment(ctx context.Context, in *CreateFragmentRequest, opts ...grpc.CallOption) (*CreateFragmentResponse, error)
+	// Updates a fragment
+	UpdateFragment(ctx context.Context, in *UpdateFragmentRequest, opts ...grpc.CallOption) (*UpdateFragmentResponse, error)
+	// Deletes a fragment
+	DeleteFragment(ctx context.Context, in *DeleteFragmentRequest, opts ...grpc.CallOption) (*DeleteFragmentResponse, error)
 }
 
 type appServiceClient struct {
@@ -446,6 +456,51 @@ func (c *appServiceClient) DeleteRobot(ctx context.Context, in *DeleteRobotReque
 	return out, nil
 }
 
+func (c *appServiceClient) ListFragments(ctx context.Context, in *ListFragmentsRequest, opts ...grpc.CallOption) (*ListFragmentsResponse, error) {
+	out := new(ListFragmentsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListFragments", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetFragment(ctx context.Context, in *GetFragmentRequest, opts ...grpc.CallOption) (*GetFragmentResponse, error) {
+	out := new(GetFragmentResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetFragment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) CreateFragment(ctx context.Context, in *CreateFragmentRequest, opts ...grpc.CallOption) (*CreateFragmentResponse, error) {
+	out := new(CreateFragmentResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateFragment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateFragment(ctx context.Context, in *UpdateFragmentRequest, opts ...grpc.CallOption) (*UpdateFragmentResponse, error) {
+	out := new(UpdateFragmentResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateFragment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteFragment(ctx context.Context, in *DeleteFragmentRequest, opts ...grpc.CallOption) (*DeleteFragmentResponse, error) {
+	out := new(DeleteFragmentResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteFragment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppServiceServer is the server API for AppService service.
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
@@ -521,6 +576,16 @@ type AppServiceServer interface {
 	UpdateRobot(context.Context, *UpdateRobotRequest) (*UpdateRobotResponse, error)
 	// DeleteRobot deletes a robot
 	DeleteRobot(context.Context, *DeleteRobotRequest) (*DeleteRobotResponse, error)
+	// Gets a list of fragments
+	ListFragments(context.Context, *ListFragmentsRequest) (*ListFragmentsResponse, error)
+	// Gets a single fragment
+	GetFragment(context.Context, *GetFragmentRequest) (*GetFragmentResponse, error)
+	// Creates a fragment
+	CreateFragment(context.Context, *CreateFragmentRequest) (*CreateFragmentResponse, error)
+	// Updates a fragment
+	UpdateFragment(context.Context, *UpdateFragmentRequest) (*UpdateFragmentResponse, error)
+	// Deletes a fragment
+	DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -635,6 +700,21 @@ func (UnimplementedAppServiceServer) UpdateRobot(context.Context, *UpdateRobotRe
 }
 func (UnimplementedAppServiceServer) DeleteRobot(context.Context, *DeleteRobotRequest) (*DeleteRobotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRobot not implemented")
+}
+func (UnimplementedAppServiceServer) ListFragments(context.Context, *ListFragmentsRequest) (*ListFragmentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFragments not implemented")
+}
+func (UnimplementedAppServiceServer) GetFragment(context.Context, *GetFragmentRequest) (*GetFragmentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFragment not implemented")
+}
+func (UnimplementedAppServiceServer) CreateFragment(context.Context, *CreateFragmentRequest) (*CreateFragmentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFragment not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateFragment(context.Context, *UpdateFragmentRequest) (*UpdateFragmentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFragment not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFragment not implemented")
 }
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
@@ -1300,6 +1380,96 @@ func _AppService_DeleteRobot_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_ListFragments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFragmentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListFragments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListFragments",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListFragments(ctx, req.(*ListFragmentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetFragment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFragmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetFragment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetFragment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetFragment(ctx, req.(*GetFragmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_CreateFragment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateFragmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CreateFragment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CreateFragment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CreateFragment(ctx, req.(*CreateFragmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateFragment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateFragmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateFragment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateFragment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateFragment(ctx, req.(*UpdateFragmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteFragment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteFragmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteFragment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteFragment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteFragment(ctx, req.(*DeleteFragmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1446,6 +1616,26 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteRobot",
 			Handler:    _AppService_DeleteRobot_Handler,
+		},
+		{
+			MethodName: "ListFragments",
+			Handler:    _AppService_ListFragments_Handler,
+		},
+		{
+			MethodName: "GetFragment",
+			Handler:    _AppService_GetFragment_Handler,
+		},
+		{
+			MethodName: "CreateFragment",
+			Handler:    _AppService_CreateFragment_Handler,
+		},
+		{
+			MethodName: "UpdateFragment",
+			Handler:    _AppService_UpdateFragment_Handler,
+		},
+		{
+			MethodName: "DeleteFragment",
+			Handler:    _AppService_DeleteFragment_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
