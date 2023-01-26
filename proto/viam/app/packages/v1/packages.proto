@@ -93,6 +93,7 @@ message InternalPackage {
   google.protobuf.Struct metadata = 6 [(tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
   string blob_path = 7 [(tagger.v1.tags) = "bson:\"blob_path\" json:\"blob_path\""];
   google.protobuf.Timestamp created_on = 8 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
+  bool latest = 10 [(tagger.v1.tags) = "bson:\"latest\" json:\"latest\""];
 }
 
 message GetPackageRequest {

@@ -1700,7 +1700,8 @@ proto.viam.app.packages.v1.InternalPackage.toObject = function(includeInstance, 
     proto.viam.app.packages.v1.FileInfo.toObject, includeInstance),
     metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     blobPath: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    latest: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
   };
 
   if (includeInstance) {
@@ -1771,6 +1772,10 @@ proto.viam.app.packages.v1.InternalPackage.deserializeBinaryFromReader = functio
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setCreatedOn(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setLatest(value);
       break;
     default:
       reader.skipField();
@@ -1858,6 +1863,13 @@ proto.viam.app.packages.v1.InternalPackage.serializeBinaryToWriter = function(me
       8,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getLatest();
+  if (f) {
+    writer.writeBool(
+      10,
+      f
     );
   }
 };
@@ -2062,6 +2074,24 @@ proto.viam.app.packages.v1.InternalPackage.prototype.clearCreatedOn = function()
  */
 proto.viam.app.packages.v1.InternalPackage.prototype.hasCreatedOn = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional bool latest = 10;
+ * @return {boolean}
+ */
+proto.viam.app.packages.v1.InternalPackage.prototype.getLatest = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.packages.v1.InternalPackage} returns this
+ */
+proto.viam.app.packages.v1.InternalPackage.prototype.setLatest = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 10, value);
 };
 
 

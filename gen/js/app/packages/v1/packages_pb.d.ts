@@ -235,6 +235,9 @@ export class InternalPackage extends jspb.Message {
   getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getLatest(): boolean;
+  setLatest(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): InternalPackage.AsObject;
   static toObject(includeInstance: boolean, msg: InternalPackage): InternalPackage.AsObject;
@@ -255,6 +258,7 @@ export namespace InternalPackage {
     metadata?: google_protobuf_struct_pb.Struct.AsObject,
     blobPath: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    latest: boolean,
   }
 }
 
