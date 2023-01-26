@@ -328,6 +328,51 @@ type AppServiceDeleteRobot = {
   readonly responseType: typeof app_v1_app_pb.DeleteRobotResponse;
 };
 
+type AppServiceListFragments = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListFragmentsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListFragmentsResponse;
+};
+
+type AppServiceGetFragment = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetFragmentRequest;
+  readonly responseType: typeof app_v1_app_pb.GetFragmentResponse;
+};
+
+type AppServiceCreateFragment = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateFragmentRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateFragmentResponse;
+};
+
+type AppServiceUpdateFragment = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateFragmentRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateFragmentResponse;
+};
+
+type AppServiceDeleteFragment = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteFragmentRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteFragmentResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly CreateOrganization: AppServiceCreateOrganization;
@@ -366,6 +411,11 @@ export class AppService {
   static readonly NewRobot: AppServiceNewRobot;
   static readonly UpdateRobot: AppServiceUpdateRobot;
   static readonly DeleteRobot: AppServiceDeleteRobot;
+  static readonly ListFragments: AppServiceListFragments;
+  static readonly GetFragment: AppServiceGetFragment;
+  static readonly CreateFragment: AppServiceCreateFragment;
+  static readonly UpdateFragment: AppServiceUpdateFragment;
+  static readonly DeleteFragment: AppServiceDeleteFragment;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -715,6 +765,51 @@ export class AppServiceClient {
   deleteRobot(
     requestMessage: app_v1_app_pb.DeleteRobotRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotResponse|null) => void
+  ): UnaryResponse;
+  listFragments(
+    requestMessage: app_v1_app_pb.ListFragmentsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListFragmentsResponse|null) => void
+  ): UnaryResponse;
+  listFragments(
+    requestMessage: app_v1_app_pb.ListFragmentsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListFragmentsResponse|null) => void
+  ): UnaryResponse;
+  getFragment(
+    requestMessage: app_v1_app_pb.GetFragmentRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFragmentResponse|null) => void
+  ): UnaryResponse;
+  getFragment(
+    requestMessage: app_v1_app_pb.GetFragmentRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFragmentResponse|null) => void
+  ): UnaryResponse;
+  createFragment(
+    requestMessage: app_v1_app_pb.CreateFragmentRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateFragmentResponse|null) => void
+  ): UnaryResponse;
+  createFragment(
+    requestMessage: app_v1_app_pb.CreateFragmentRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateFragmentResponse|null) => void
+  ): UnaryResponse;
+  updateFragment(
+    requestMessage: app_v1_app_pb.UpdateFragmentRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateFragmentResponse|null) => void
+  ): UnaryResponse;
+  updateFragment(
+    requestMessage: app_v1_app_pb.UpdateFragmentRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateFragmentResponse|null) => void
+  ): UnaryResponse;
+  deleteFragment(
+    requestMessage: app_v1_app_pb.DeleteFragmentRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteFragmentResponse|null) => void
+  ): UnaryResponse;
+  deleteFragment(
+    requestMessage: app_v1_app_pb.DeleteFragmentRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteFragmentResponse|null) => void
   ): UnaryResponse;
 }
 
