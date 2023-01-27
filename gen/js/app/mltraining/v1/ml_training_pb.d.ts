@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as app_data_v1_data_pb from "../../../app/data/v1/data_pb";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as tagger_v1_tagger_pb from "../../../tagger/v1/tagger_pb";
 
@@ -173,6 +174,11 @@ export class TrainingJob extends jspb.Message {
   getVertexJobId(): string;
   setVertexJobId(value: string): void;
 
+  hasModelMetadata(): boolean;
+  clearModelMetadata(): void;
+  getModelMetadata(): google_protobuf_struct_pb.Struct | undefined;
+  setModelMetadata(value?: google_protobuf_struct_pb.Struct): void;
+
   getProcessing(): boolean;
   setProcessing(value: boolean): void;
 
@@ -192,6 +198,7 @@ export namespace TrainingJob {
     metadata?: TrainingJobMetadata.AsObject,
     outputPath: string,
     vertexJobId: string,
+    modelMetadata?: google_protobuf_struct_pb.Struct.AsObject,
     processing: boolean,
   }
 }

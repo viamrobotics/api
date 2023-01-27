@@ -17,6 +17,8 @@ var global = (function() { return this || window || global || self || Function('
 
 var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js');
 goog.object.extend(proto, app_data_v1_data_pb);
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
+goog.object.extend(proto, google_protobuf_struct_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
 var tagger_v1_tagger_pb = require('../../../tagger/v1/tagger_pb.js');
@@ -1272,7 +1274,8 @@ proto.viam.app.mltraining.v1.TrainingJob.toObject = function(includeInstance, ms
     metadata: (f = msg.getMetadata()) && proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject(includeInstance, f),
     outputPath: jspb.Message.getFieldWithDefault(msg, 3, ""),
     vertexJobId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    processing: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+    modelMetadata: (f = msg.getModelMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    processing: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -1327,6 +1330,11 @@ proto.viam.app.mltraining.v1.TrainingJob.deserializeBinaryFromReader = function(
       msg.setVertexJobId(value);
       break;
     case 5:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setModelMetadata(value);
+      break;
+    case 6:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setProcessing(value);
       break;
@@ -1388,10 +1396,18 @@ proto.viam.app.mltraining.v1.TrainingJob.serializeBinaryToWriter = function(mess
       f
     );
   }
+  f = message.getModelMetadata();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
   f = message.getProcessing();
   if (f) {
     writer.writeBool(
-      5,
+      6,
       f
     );
   }
@@ -1490,11 +1506,48 @@ proto.viam.app.mltraining.v1.TrainingJob.prototype.setVertexJobId = function(val
 
 
 /**
- * optional bool processing = 5;
+ * optional google.protobuf.Struct model_metadata = 5;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.app.mltraining.v1.TrainingJob.prototype.getModelMetadata = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJob} returns this
+*/
+proto.viam.app.mltraining.v1.TrainingJob.prototype.setModelMetadata = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.mltraining.v1.TrainingJob} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJob.prototype.clearModelMetadata = function() {
+  return this.setModelMetadata(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.mltraining.v1.TrainingJob.prototype.hasModelMetadata = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional bool processing = 6;
  * @return {boolean}
  */
 proto.viam.app.mltraining.v1.TrainingJob.prototype.getProcessing = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
 };
 
 
@@ -1503,7 +1556,7 @@ proto.viam.app.mltraining.v1.TrainingJob.prototype.getProcessing = function() {
  * @return {!proto.viam.app.mltraining.v1.TrainingJob} returns this
  */
 proto.viam.app.mltraining.v1.TrainingJob.prototype.setProcessing = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 5, value);
+  return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
