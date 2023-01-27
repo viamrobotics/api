@@ -1731,7 +1731,8 @@ proto.viam.app.packages.v1.InternalPackage.toObject = function(includeInstance, 
     metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     blobPath: jspb.Message.getFieldWithDefault(msg, 7, ""),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    checksum: jspb.Message.getFieldWithDefault(msg, 9, "")
+    checksum: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    latest: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
   };
 
   if (includeInstance) {
@@ -1806,6 +1807,10 @@ proto.viam.app.packages.v1.InternalPackage.deserializeBinaryFromReader = functio
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setChecksum(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setLatest(value);
       break;
     default:
       reader.skipField();
@@ -1899,6 +1904,13 @@ proto.viam.app.packages.v1.InternalPackage.serializeBinaryToWriter = function(me
   if (f.length > 0) {
     writer.writeString(
       9,
+      f
+    );
+  }
+  f = message.getLatest();
+  if (f) {
+    writer.writeBool(
+      10,
       f
     );
   }
@@ -2122,6 +2134,24 @@ proto.viam.app.packages.v1.InternalPackage.prototype.getChecksum = function() {
  */
 proto.viam.app.packages.v1.InternalPackage.prototype.setChecksum = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional bool latest = 10;
+ * @return {boolean}
+ */
+proto.viam.app.packages.v1.InternalPackage.prototype.getLatest = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.packages.v1.InternalPackage} returns this
+ */
+proto.viam.app.packages.v1.InternalPackage.prototype.setLatest = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 10, value);
 };
 
 

@@ -242,6 +242,9 @@ export class InternalPackage extends jspb.Message {
   getChecksum(): string;
   setChecksum(value: string): void;
 
+  getLatest(): boolean;
+  setLatest(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): InternalPackage.AsObject;
   static toObject(includeInstance: boolean, msg: InternalPackage): InternalPackage.AsObject;
@@ -263,6 +266,7 @@ export namespace InternalPackage {
     blobPath: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     checksum: string,
+    latest: boolean,
   }
 }
 
