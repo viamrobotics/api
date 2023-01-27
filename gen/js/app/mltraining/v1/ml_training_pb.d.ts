@@ -217,7 +217,6 @@ export interface TrainingStatusMap {
   TRAINING_STATUS_IN_PROGRESS: 2;
   TRAINING_STATUS_COMPLETED: 3;
   TRAINING_STATUS_FAILED: 4;
-  TRAINING_STATUS_SUBMITTING: 5;
 }
 
 export const TrainingStatus: TrainingStatusMap;
