@@ -527,6 +527,7 @@ message Fragment {
   google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
   string organization_name = 7;
   bool readonly = 8;
+  int32 use_count = 9;
 }
 
 message ListFragmentsRequest {
