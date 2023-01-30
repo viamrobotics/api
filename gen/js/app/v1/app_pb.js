@@ -14004,7 +14004,8 @@ proto.viam.app.v1.Fragment.toObject = function(includeInstance, msg) {
     pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     organizationName: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    readonly: jspb.Message.getBooleanFieldWithDefault(msg, 8, false)
+    readonly: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    useCount: jspb.Message.getFieldWithDefault(msg, 9, 0)
   };
 
   if (includeInstance) {
@@ -14074,6 +14075,10 @@ proto.viam.app.v1.Fragment.deserializeBinaryFromReader = function(msg, reader) {
     case 8:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setReadonly(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setUseCount(value);
       break;
     default:
       reader.skipField();
@@ -14159,6 +14164,13 @@ proto.viam.app.v1.Fragment.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       8,
+      f
+    );
+  }
+  f = message.getUseCount();
+  if (f !== 0) {
+    writer.writeInt32(
+      9,
       f
     );
   }
@@ -14344,6 +14356,24 @@ proto.viam.app.v1.Fragment.prototype.getReadonly = function() {
  */
 proto.viam.app.v1.Fragment.prototype.setReadonly = function(value) {
   return jspb.Message.setProto3BooleanField(this, 8, value);
+};
+
+
+/**
+ * optional int32 use_count = 9;
+ * @return {number}
+ */
+proto.viam.app.v1.Fragment.prototype.getUseCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.Fragment} returns this
+ */
+proto.viam.app.v1.Fragment.prototype.setUseCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 9, value);
 };
 
 
