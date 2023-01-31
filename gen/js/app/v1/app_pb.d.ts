@@ -1757,8 +1757,11 @@ export class Fragment extends jspb.Message {
   getReadonly(): boolean;
   setReadonly(value: boolean): void;
 
-  getUseCount(): number;
-  setUseCount(value: number): void;
+  getRobotPartCount(): number;
+  setRobotPartCount(value: number): void;
+
+  getOrganizationCount(): number;
+  setOrganizationCount(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Fragment.AsObject;
@@ -1780,7 +1783,8 @@ export namespace Fragment {
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     organizationName: string,
     readonly: boolean,
-    useCount: number,
+    robotPartCount: number,
+    organizationCount: number,
   }
 }
 
