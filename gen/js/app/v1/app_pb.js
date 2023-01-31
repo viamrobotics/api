@@ -14005,7 +14005,8 @@ proto.viam.app.v1.Fragment.toObject = function(includeInstance, msg) {
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     organizationName: jspb.Message.getFieldWithDefault(msg, 7, ""),
     readonly: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
-    useCount: jspb.Message.getFieldWithDefault(msg, 9, 0)
+    robotPartCount: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    organizationCount: jspb.Message.getFieldWithDefault(msg, 10, 0)
   };
 
   if (includeInstance) {
@@ -14078,7 +14079,11 @@ proto.viam.app.v1.Fragment.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 9:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setUseCount(value);
+      msg.setRobotPartCount(value);
+      break;
+    case 10:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setOrganizationCount(value);
       break;
     default:
       reader.skipField();
@@ -14167,10 +14172,17 @@ proto.viam.app.v1.Fragment.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getUseCount();
+  f = message.getRobotPartCount();
   if (f !== 0) {
     writer.writeInt32(
       9,
+      f
+    );
+  }
+  f = message.getOrganizationCount();
+  if (f !== 0) {
+    writer.writeInt32(
+      10,
       f
     );
   }
@@ -14360,10 +14372,10 @@ proto.viam.app.v1.Fragment.prototype.setReadonly = function(value) {
 
 
 /**
- * optional int32 use_count = 9;
+ * optional int32 robot_part_count = 9;
  * @return {number}
  */
-proto.viam.app.v1.Fragment.prototype.getUseCount = function() {
+proto.viam.app.v1.Fragment.prototype.getRobotPartCount = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
 };
 
@@ -14372,8 +14384,26 @@ proto.viam.app.v1.Fragment.prototype.getUseCount = function() {
  * @param {number} value
  * @return {!proto.viam.app.v1.Fragment} returns this
  */
-proto.viam.app.v1.Fragment.prototype.setUseCount = function(value) {
+proto.viam.app.v1.Fragment.prototype.setRobotPartCount = function(value) {
   return jspb.Message.setProto3IntField(this, 9, value);
+};
+
+
+/**
+ * optional int32 organization_count = 10;
+ * @return {number}
+ */
+proto.viam.app.v1.Fragment.prototype.getOrganizationCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.Fragment} returns this
+ */
+proto.viam.app.v1.Fragment.prototype.setOrganizationCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 10, value);
 };
 
 
