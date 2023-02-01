@@ -75,6 +75,8 @@ message DeletePackageRequest {
   string organization_id = 1;
   string name = 2;
   string version = 3;
+  //
+  string id = 4;
 }
 
 message DeletePackageResponse {}

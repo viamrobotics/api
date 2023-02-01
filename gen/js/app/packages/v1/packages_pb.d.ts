@@ -142,6 +142,9 @@ export class DeletePackageRequest extends jspb.Message {
   getVersion(): string;
   setVersion(value: string): void;
 
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeletePackageRequest.AsObject;
   static toObject(includeInstance: boolean, msg: DeletePackageRequest): DeletePackageRequest.AsObject;
@@ -157,6 +160,7 @@ export namespace DeletePackageRequest {
     organizationId: string,
     name: string,
     version: string,
+    id: string,
   }
 }
 
