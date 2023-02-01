@@ -637,6 +637,26 @@ func (mr *MockAppServiceClientMockRecorder) MarkPartAsMain(ctx, in interface{}, 
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "MarkPartAsMain", reflect.TypeOf((*MockAppServiceClient)(nil).MarkPartAsMain), varargs...)
 }
 
+// MarkPartForRestart mocks base method.
+func (m *MockAppServiceClient) MarkPartForRestart(ctx context.Context, in *v1.MarkPartForRestartRequest, opts ...grpc.CallOption) (*v1.MarkPartForRestartResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "MarkPartForRestart", varargs...)
+	ret0, _ := ret[0].(*v1.MarkPartForRestartResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// MarkPartForRestart indicates an expected call of MarkPartForRestart.
+func (mr *MockAppServiceClientMockRecorder) MarkPartForRestart(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "MarkPartForRestart", reflect.TypeOf((*MockAppServiceClient)(nil).MarkPartForRestart), varargs...)
+}
+
 // NewRobot mocks base method.
 func (m *MockAppServiceClient) NewRobot(ctx context.Context, in *v1.NewRobotRequest, opts ...grpc.CallOption) (*v1.NewRobotResponse, error) {
 	m.ctrl.T.Helper()
@@ -1451,6 +1471,21 @@ func (m *MockAppServiceServer) MarkPartAsMain(arg0 context.Context, arg1 *v1.Mar
 func (mr *MockAppServiceServerMockRecorder) MarkPartAsMain(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "MarkPartAsMain", reflect.TypeOf((*MockAppServiceServer)(nil).MarkPartAsMain), arg0, arg1)
+}
+
+// MarkPartForRestart mocks base method.
+func (m *MockAppServiceServer) MarkPartForRestart(arg0 context.Context, arg1 *v1.MarkPartForRestartRequest) (*v1.MarkPartForRestartResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "MarkPartForRestart", arg0, arg1)
+	ret0, _ := ret[0].(*v1.MarkPartForRestartResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// MarkPartForRestart indicates an expected call of MarkPartForRestart.
+func (mr *MockAppServiceServerMockRecorder) MarkPartForRestart(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "MarkPartForRestart", reflect.TypeOf((*MockAppServiceServer)(nil).MarkPartForRestart), arg0, arg1)
 }
 
 // NewRobot mocks base method.

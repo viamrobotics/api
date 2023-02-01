@@ -76,6 +76,12 @@ type AppServiceClient interface {
 	DeleteRobotPart(ctx context.Context, in *DeleteRobotPartRequest, opts ...grpc.CallOption) (*DeleteRobotPartResponse, error)
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(ctx context.Context, in *MarkPartAsMainRequest, opts ...grpc.CallOption) (*MarkPartAsMainResponse, error)
+	// Marks part for restart. Once the robot part checks-in with the app the flag
+	// is reset on the robot part. Calling this multiple times before a robot part
+	// checks-in has no affect.
+	// Note: This API may be removed in the near future.
+	// TODO(APP-388): Remove
+	MarkPartForRestart(ctx context.Context, in *MarkPartForRestartRequest, opts ...grpc.CallOption) (*MarkPartForRestartResponse, error)
 	// Create a new generated Secret in the Robot Part.
 	//   - Succeeds if there are no more than 2 active secrets after creation.
 	CreateRobotPartSecret(ctx context.Context, in *CreateRobotPartSecretRequest, opts ...grpc.CallOption) (*CreateRobotPartSecretResponse, error)
@@ -402,6 +408,15 @@ func (c *appServiceClient) MarkPartAsMain(ctx context.Context, in *MarkPartAsMai
 	return out, nil
 }
 
+func (c *appServiceClient) MarkPartForRestart(ctx context.Context, in *MarkPartForRestartRequest, opts ...grpc.CallOption) (*MarkPartForRestartResponse, error) {
+	out := new(MarkPartForRestartResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/MarkPartForRestart", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) CreateRobotPartSecret(ctx context.Context, in *CreateRobotPartSecretRequest, opts ...grpc.CallOption) (*CreateRobotPartSecretResponse, error) {
 	out := new(CreateRobotPartSecretResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateRobotPartSecret", in, out, opts...)
@@ -563,6 +578,12 @@ type AppServiceServer interface {
 	DeleteRobotPart(context.Context, *DeleteRobotPartRequest) (*DeleteRobotPartResponse, error)
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(context.Context, *MarkPartAsMainRequest) (*MarkPartAsMainResponse, error)
+	// Marks part for restart. Once the robot part checks-in with the app the flag
+	// is reset on the robot part. Calling this multiple times before a robot part
+	// checks-in has no affect.
+	// Note: This API may be removed in the near future.
+	// TODO(APP-388): Remove
+	MarkPartForRestart(context.Context, *MarkPartForRestartRequest) (*MarkPartForRestartResponse, error)
 	// Create a new generated Secret in the Robot Part.
 	//   - Succeeds if there are no more than 2 active secrets after creation.
 	CreateRobotPartSecret(context.Context, *CreateRobotPartSecretRequest) (*CreateRobotPartSecretResponse, error)
@@ -682,6 +703,9 @@ func (UnimplementedAppServiceServer) DeleteRobotPart(context.Context, *DeleteRob
 }
 func (UnimplementedAppServiceServer) MarkPartAsMain(context.Context, *MarkPartAsMainRequest) (*MarkPartAsMainResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MarkPartAsMain not implemented")
+}
+func (UnimplementedAppServiceServer) MarkPartForRestart(context.Context, *MarkPartForRestartRequest) (*MarkPartForRestartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MarkPartForRestart not implemented")
 }
 func (UnimplementedAppServiceServer) CreateRobotPartSecret(context.Context, *CreateRobotPartSecretRequest) (*CreateRobotPartSecretResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateRobotPartSecret not implemented")
@@ -1272,6 +1296,24 @@ func _AppService_MarkPartAsMain_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_MarkPartForRestart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MarkPartForRestartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).MarkPartForRestart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/MarkPartForRestart",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).MarkPartForRestart(ctx, req.(*MarkPartForRestartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_CreateRobotPartSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateRobotPartSecretRequest)
 	if err := dec(in); err != nil {
@@ -1592,6 +1634,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MarkPartAsMain",
 			Handler:    _AppService_MarkPartAsMain_Handler,
+		},
+		{
+			MethodName: "MarkPartForRestart",
+			Handler:    _AppService_MarkPartForRestart_Handler,
 		},
 		{
 			MethodName: "CreateRobotPartSecret",
