@@ -570,6 +570,7 @@ message UpdateFragmentRequest {
   string id = 1;
   string name = 2;
   google.protobuf.Struct config = 3;
+  optional bool public = 4;
 }
 
 message UpdateFragmentResponse {
