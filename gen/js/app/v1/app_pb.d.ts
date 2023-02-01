@@ -2220,6 +2220,42 @@ export namespace MarkPartAsMainResponse {
   }
 }
 
+export class MarkPartForRestartRequest extends jspb.Message {
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MarkPartForRestartRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: MarkPartForRestartRequest): MarkPartForRestartRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MarkPartForRestartRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MarkPartForRestartRequest;
+  static deserializeBinaryFromReader(message: MarkPartForRestartRequest, reader: jspb.BinaryReader): MarkPartForRestartRequest;
+}
+
+export namespace MarkPartForRestartRequest {
+  export type AsObject = {
+    partId: string,
+  }
+}
+
+export class MarkPartForRestartResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MarkPartForRestartResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: MarkPartForRestartResponse): MarkPartForRestartResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MarkPartForRestartResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MarkPartForRestartResponse;
+  static deserializeBinaryFromReader(message: MarkPartForRestartResponse, reader: jspb.BinaryReader): MarkPartForRestartResponse;
+}
+
+export namespace MarkPartForRestartResponse {
+  export type AsObject = {
+  }
+}
+
 export class CreateRobotPartSecretRequest extends jspb.Message {
   getPartId(): string;
   setPartId(value: string): void;
