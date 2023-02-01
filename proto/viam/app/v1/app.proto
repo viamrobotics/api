@@ -642,4 +642,5 @@ message DeleteRobotPartSecretRequest {
   string part_id = 1;
   string secret_id = 2;
 }
+
 message DeleteRobotPartSecretResponse {}
