@@ -113,6 +113,12 @@ export namespace CreatePackageRequest {
 }
 
 export class CreatePackageResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreatePackageResponse.AsObject;
   static toObject(includeInstance: boolean, msg: CreatePackageResponse): CreatePackageResponse.AsObject;
@@ -125,6 +131,8 @@ export class CreatePackageResponse extends jspb.Message {
 
 export namespace CreatePackageResponse {
   export type AsObject = {
+    id: string,
+    version: string,
   }
 }
 
@@ -137,6 +145,9 @@ export class DeletePackageRequest extends jspb.Message {
 
   getVersion(): string;
   setVersion(value: string): void;
+
+  getId(): string;
+  setId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeletePackageRequest.AsObject;
@@ -153,6 +164,7 @@ export namespace DeletePackageRequest {
     organizationId: string,
     name: string,
     version: string,
+    id: string,
   }
 }
 
@@ -189,6 +201,9 @@ export class Package extends jspb.Message {
   getChecksum(): string;
   setChecksum(value: string): void;
 
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Package.AsObject;
   static toObject(includeInstance: boolean, msg: Package): Package.AsObject;
@@ -205,6 +220,7 @@ export namespace Package {
     url: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     checksum: string,
+    id: string,
   }
 }
 
@@ -280,6 +296,9 @@ export class GetPackageRequest extends jspb.Message {
   getVersion(): string;
   setVersion(value: string): void;
 
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPackageRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPackageRequest): GetPackageRequest.AsObject;
@@ -295,6 +314,7 @@ export namespace GetPackageRequest {
     organizationId: string,
     name: string,
     version: string,
+    id: string,
   }
 }
 
