@@ -54,9 +54,6 @@ export class PackageInfo extends jspb.Message {
   getMetadata(): google_protobuf_struct_pb.Struct | undefined;
   setMetadata(value?: google_protobuf_struct_pb.Struct): void;
 
-  getId(): string;
-  setId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PackageInfo.AsObject;
   static toObject(includeInstance: boolean, msg: PackageInfo): PackageInfo.AsObject;
@@ -75,7 +72,6 @@ export namespace PackageInfo {
     type: PackageTypeMap[keyof PackageTypeMap],
     filesList: Array<FileInfo.AsObject>,
     metadata?: google_protobuf_struct_pb.Struct.AsObject,
-    id: string,
   }
 }
 

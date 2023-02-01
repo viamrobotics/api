@@ -57,7 +57,6 @@ message PackageInfo {
   PackageType type = 4;
   repeated FileInfo files = 5;
   google.protobuf.Struct metadata = 6;
-  string id = 7;
 }
 
 message CreatePackageRequest {

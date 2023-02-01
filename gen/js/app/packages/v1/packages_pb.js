@@ -494,8 +494,7 @@ proto.viam.app.packages.v1.PackageInfo.toObject = function(includeInstance, msg)
     type: jspb.Message.getFieldWithDefault(msg, 4, 0),
     filesList: jspb.Message.toObjectList(msg.getFilesList(),
     proto.viam.app.packages.v1.FileInfo.toObject, includeInstance),
-    metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    id: jspb.Message.getFieldWithDefault(msg, 7, "")
+    metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -557,10 +556,6 @@ proto.viam.app.packages.v1.PackageInfo.deserializeBinaryFromReader = function(ms
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setMetadata(value);
-      break;
-    case 7:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -633,13 +628,6 @@ proto.viam.app.packages.v1.PackageInfo.serializeBinaryToWriter = function(messag
       6,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
-    );
-  }
-  f = message.getId();
-  if (f.length > 0) {
-    writer.writeString(
-      7,
-      f
     );
   }
 };
@@ -789,24 +777,6 @@ proto.viam.app.packages.v1.PackageInfo.prototype.clearMetadata = function() {
  */
 proto.viam.app.packages.v1.PackageInfo.prototype.hasMetadata = function() {
   return jspb.Message.getField(this, 6) != null;
-};
-
-
-/**
- * optional string id = 7;
- * @return {string}
- */
-proto.viam.app.packages.v1.PackageInfo.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.packages.v1.PackageInfo} returns this
- */
-proto.viam.app.packages.v1.PackageInfo.prototype.setId = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
