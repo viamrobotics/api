@@ -1061,7 +1061,8 @@ proto.viam.app.packages.v1.CreatePackageResponse.prototype.toObject = function(o
  */
 proto.viam.app.packages.v1.CreatePackageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    version: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1102,6 +1103,10 @@ proto.viam.app.packages.v1.CreatePackageResponse.deserializeBinaryFromReader = f
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVersion(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1138,6 +1143,13 @@ proto.viam.app.packages.v1.CreatePackageResponse.serializeBinaryToWriter = funct
       f
     );
   }
+  f = message.getVersion();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -1156,6 +1168,24 @@ proto.viam.app.packages.v1.CreatePackageResponse.prototype.getId = function() {
  */
 proto.viam.app.packages.v1.CreatePackageResponse.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string version = 2;
+ * @return {string}
+ */
+proto.viam.app.packages.v1.CreatePackageResponse.prototype.getVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.packages.v1.CreatePackageResponse} returns this
+ */
+proto.viam.app.packages.v1.CreatePackageResponse.prototype.setVersion = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

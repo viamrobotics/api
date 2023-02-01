@@ -116,6 +116,9 @@ export class CreatePackageResponse extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
+  getVersion(): string;
+  setVersion(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreatePackageResponse.AsObject;
   static toObject(includeInstance: boolean, msg: CreatePackageResponse): CreatePackageResponse.AsObject;
@@ -129,6 +132,7 @@ export class CreatePackageResponse extends jspb.Message {
 export namespace CreatePackageResponse {
   export type AsObject = {
     id: string,
+    version: string,
   }
 }
 

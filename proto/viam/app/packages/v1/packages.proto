@@ -67,8 +67,11 @@ message CreatePackageRequest {
   }
 }
 
+// Returns the package ID and version which are populated in GetPackageRequest and DeletePackageRequest to
+// retrieve or delete this package.
 message CreatePackageResponse {
   string id = 1;
+  string version = 2;
 }
 
 message DeletePackageRequest {
