@@ -280,6 +280,15 @@ AppService.MarkPartAsMain = {
   responseType: app_v1_app_pb.MarkPartAsMainResponse
 };
 
+AppService.MarkPartForRestart = {
+  methodName: "MarkPartForRestart",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.MarkPartForRestartRequest,
+  responseType: app_v1_app_pb.MarkPartForRestartResponse
+};
+
 AppService.CreateRobotPartSecret = {
   methodName: "CreateRobotPartSecret",
   service: AppService,
@@ -1298,6 +1307,37 @@ AppServiceClient.prototype.markPartAsMain = function markPartAsMain(requestMessa
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.MarkPartAsMain, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.markPartForRestart = function markPartForRestart(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.MarkPartForRestart, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -274,6 +274,15 @@ type AppServiceMarkPartAsMain = {
   readonly responseType: typeof app_v1_app_pb.MarkPartAsMainResponse;
 };
 
+type AppServiceMarkPartForRestart = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.MarkPartForRestartRequest;
+  readonly responseType: typeof app_v1_app_pb.MarkPartForRestartResponse;
+};
+
 type AppServiceCreateRobotPartSecret = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -405,6 +414,7 @@ export class AppService {
   static readonly NewRobotPart: AppServiceNewRobotPart;
   static readonly DeleteRobotPart: AppServiceDeleteRobotPart;
   static readonly MarkPartAsMain: AppServiceMarkPartAsMain;
+  static readonly MarkPartForRestart: AppServiceMarkPartForRestart;
   static readonly CreateRobotPartSecret: AppServiceCreateRobotPartSecret;
   static readonly DeleteRobotPartSecret: AppServiceDeleteRobotPartSecret;
   static readonly ListRobots: AppServiceListRobots;
@@ -711,6 +721,15 @@ export class AppServiceClient {
   markPartAsMain(
     requestMessage: app_v1_app_pb.MarkPartAsMainRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.MarkPartAsMainResponse|null) => void
+  ): UnaryResponse;
+  markPartForRestart(
+    requestMessage: app_v1_app_pb.MarkPartForRestartRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.MarkPartForRestartResponse|null) => void
+  ): UnaryResponse;
+  markPartForRestart(
+    requestMessage: app_v1_app_pb.MarkPartForRestartRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.MarkPartForRestartResponse|null) => void
   ): UnaryResponse;
   createRobotPartSecret(
     requestMessage: app_v1_app_pb.CreateRobotPartSecretRequest,
