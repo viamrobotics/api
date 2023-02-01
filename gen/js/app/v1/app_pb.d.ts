@@ -1936,6 +1936,11 @@ export class UpdateFragmentRequest extends jspb.Message {
   getConfig(): google_protobuf_struct_pb.Struct | undefined;
   setConfig(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasPublic(): boolean;
+  clearPublic(): void;
+  getPublic(): boolean;
+  setPublic(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateFragmentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateFragmentRequest): UpdateFragmentRequest.AsObject;
@@ -1951,6 +1956,7 @@ export namespace UpdateFragmentRequest {
     id: string,
     name: string,
     config?: google_protobuf_struct_pb.Struct.AsObject,
+    pb_public: boolean,
   }
 }
 
