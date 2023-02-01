@@ -276,6 +276,9 @@ export class OrganizationInvite extends jspb.Message {
   getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getRobotCount(): number;
+  setRobotCount(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OrganizationInvite.AsObject;
   static toObject(includeInstance: boolean, msg: OrganizationInvite): OrganizationInvite.AsObject;
@@ -291,6 +294,7 @@ export namespace OrganizationInvite {
     organizationId: string,
     email: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    robotCount: number,
   }
 }
 
