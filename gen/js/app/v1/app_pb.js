@@ -15418,7 +15418,8 @@ proto.viam.app.v1.UpdateFragmentRequest.toObject = function(includeInstance, msg
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -15467,6 +15468,10 @@ proto.viam.app.v1.UpdateFragmentRequest.deserializeBinaryFromReader = function(m
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setConfig(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setPublic(value);
       break;
     default:
       reader.skipField();
@@ -15517,6 +15522,13 @@ proto.viam.app.v1.UpdateFragmentRequest.serializeBinaryToWriter = function(messa
       3,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeBool(
+      4,
+      f
     );
   }
 };
@@ -15592,6 +15604,42 @@ proto.viam.app.v1.UpdateFragmentRequest.prototype.clearConfig = function() {
  */
 proto.viam.app.v1.UpdateFragmentRequest.prototype.hasConfig = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional bool public = 4;
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateFragmentRequest.prototype.getPublic = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.UpdateFragmentRequest} returns this
+ */
+proto.viam.app.v1.UpdateFragmentRequest.prototype.setPublic = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateFragmentRequest} returns this
+ */
+proto.viam.app.v1.UpdateFragmentRequest.prototype.clearPublic = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateFragmentRequest.prototype.hasPublic = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
