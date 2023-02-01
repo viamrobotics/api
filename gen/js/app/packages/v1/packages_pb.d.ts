@@ -193,6 +193,9 @@ export class Package extends jspb.Message {
   getChecksum(): string;
   setChecksum(value: string): void;
 
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Package.AsObject;
   static toObject(includeInstance: boolean, msg: Package): Package.AsObject;
@@ -209,6 +212,7 @@ export namespace Package {
     url: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     checksum: string,
+    id: string,
   }
 }
 

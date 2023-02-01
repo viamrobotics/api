@@ -84,6 +84,7 @@ message Package {
   string url = 2;
   google.protobuf.Timestamp created_on = 3;
   string checksum = 4;
+  string id = 5;
 }
 
 // InternalPackage is stored in the packages database and represents our interval view of the uploaded package
