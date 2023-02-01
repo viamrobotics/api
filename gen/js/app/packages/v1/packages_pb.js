@@ -494,7 +494,8 @@ proto.viam.app.packages.v1.PackageInfo.toObject = function(includeInstance, msg)
     type: jspb.Message.getFieldWithDefault(msg, 4, 0),
     filesList: jspb.Message.toObjectList(msg.getFilesList(),
     proto.viam.app.packages.v1.FileInfo.toObject, includeInstance),
-    metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    id: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -556,6 +557,10 @@ proto.viam.app.packages.v1.PackageInfo.deserializeBinaryFromReader = function(ms
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setMetadata(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -628,6 +633,13 @@ proto.viam.app.packages.v1.PackageInfo.serializeBinaryToWriter = function(messag
       6,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
     );
   }
 };
@@ -777,6 +789,24 @@ proto.viam.app.packages.v1.PackageInfo.prototype.clearMetadata = function() {
  */
 proto.viam.app.packages.v1.PackageInfo.prototype.hasMetadata = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional string id = 7;
+ * @return {string}
+ */
+proto.viam.app.packages.v1.PackageInfo.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.packages.v1.PackageInfo} returns this
+ */
+proto.viam.app.packages.v1.PackageInfo.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -1061,7 +1091,7 @@ proto.viam.app.packages.v1.CreatePackageResponse.prototype.toObject = function(o
  */
 proto.viam.app.packages.v1.CreatePackageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1098,6 +1128,10 @@ proto.viam.app.packages.v1.CreatePackageResponse.deserializeBinaryFromReader = f
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1127,6 +1161,31 @@ proto.viam.app.packages.v1.CreatePackageResponse.prototype.serializeBinary = fun
  */
 proto.viam.app.packages.v1.CreatePackageResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.viam.app.packages.v1.CreatePackageResponse.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.packages.v1.CreatePackageResponse} returns this
+ */
+proto.viam.app.packages.v1.CreatePackageResponse.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2189,7 +2248,8 @@ proto.viam.app.packages.v1.GetPackageRequest.toObject = function(includeInstance
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 3, "")
+    version: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -2238,6 +2298,10 @@ proto.viam.app.packages.v1.GetPackageRequest.deserializeBinaryFromReader = funct
       var value = /** @type {string} */ (reader.readString());
       msg.setVersion(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2285,6 +2349,13 @@ proto.viam.app.packages.v1.GetPackageRequest.serializeBinaryToWriter = function(
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -2342,6 +2413,24 @@ proto.viam.app.packages.v1.GetPackageRequest.prototype.getVersion = function() {
  */
 proto.viam.app.packages.v1.GetPackageRequest.prototype.setVersion = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string id = 4;
+ * @return {string}
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.packages.v1.GetPackageRequest} returns this
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 

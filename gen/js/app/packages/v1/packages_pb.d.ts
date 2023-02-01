@@ -54,6 +54,9 @@ export class PackageInfo extends jspb.Message {
   getMetadata(): google_protobuf_struct_pb.Struct | undefined;
   setMetadata(value?: google_protobuf_struct_pb.Struct): void;
 
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PackageInfo.AsObject;
   static toObject(includeInstance: boolean, msg: PackageInfo): PackageInfo.AsObject;
@@ -72,6 +75,7 @@ export namespace PackageInfo {
     type: PackageTypeMap[keyof PackageTypeMap],
     filesList: Array<FileInfo.AsObject>,
     metadata?: google_protobuf_struct_pb.Struct.AsObject,
+    id: string,
   }
 }
 
@@ -113,6 +117,9 @@ export namespace CreatePackageRequest {
 }
 
 export class CreatePackageResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreatePackageResponse.AsObject;
   static toObject(includeInstance: boolean, msg: CreatePackageResponse): CreatePackageResponse.AsObject;
@@ -125,6 +132,7 @@ export class CreatePackageResponse extends jspb.Message {
 
 export namespace CreatePackageResponse {
   export type AsObject = {
+    id: string,
   }
 }
 
@@ -280,6 +288,9 @@ export class GetPackageRequest extends jspb.Message {
   getVersion(): string;
   setVersion(value: string): void;
 
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPackageRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPackageRequest): GetPackageRequest.AsObject;
@@ -295,6 +306,7 @@ export namespace GetPackageRequest {
     organizationId: string,
     name: string,
     version: string,
+    id: string,
   }
 }
 

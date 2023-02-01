@@ -57,6 +57,7 @@ message PackageInfo {
   PackageType type = 4;
   repeated FileInfo files = 5;
   google.protobuf.Struct metadata = 6;
+  string id = 7;
 }
 
 message CreatePackageRequest {
@@ -67,7 +68,9 @@ message CreatePackageRequest {
   }
 }
 
-message CreatePackageResponse {}
+message CreatePackageResponse {
+  string id = 1;
+}
 
 message DeletePackageRequest {
   string organization_id = 1;
@@ -102,6 +105,7 @@ message GetPackageRequest {
   string organization_id = 1;
   string name = 2;
   string version = 3;
+  string id = 4;
 }
 
 message GetPackageResponse {
