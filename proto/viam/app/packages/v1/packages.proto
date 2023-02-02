@@ -67,12 +67,18 @@ message CreatePackageRequest {
   }
 }
 
-message CreatePackageResponse {}
+// Returns the package ID and version which are populated in GetPackageRequest and DeletePackageRequest to
+// retrieve or delete this package.
+message CreatePackageResponse {
+  string id = 1;
+  string version = 2;
+}
 
 message DeletePackageRequest {
   string organization_id = 1;
   string name = 2;
   string version = 3;
+  string id = 4;
 }
 
 message DeletePackageResponse {}
@@ -82,6 +88,7 @@ message Package {
   string url = 2;
   google.protobuf.Timestamp created_on = 3;
   string checksum = 4;
+  string id = 5;
 }
 
 // InternalPackage is stored in the packages database and represents our interval view of the uploaded package
@@ -102,7 +109,8 @@ message GetPackageRequest {
   string organization_id = 1;
   string name = 2;
   string version = 3;
-  optional bool include_url = 4;
+  string id = 4;
+  optional bool include_url = 5;
 }
 
 message GetPackageResponse {

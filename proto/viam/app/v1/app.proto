@@ -101,6 +101,13 @@ service AppService {
   // Marks the given part as the main part, and all the others as not
   rpc MarkPartAsMain(MarkPartAsMainRequest) returns (MarkPartAsMainResponse);
 
+  // Marks part for restart. Once the robot part checks-in with the app the flag
+  // is reset on the robot part. Calling this multiple times before a robot part
+  // checks-in has no affect.
+  // Note: This API may be removed in the near future.
+  // TODO(APP-388): Remove
+  rpc MarkPartForRestart(MarkPartForRestartRequest) returns (MarkPartForRestartResponse);
+
   // Create a new generated Secret in the Robot Part.
   //  - Succeeds if there are no more than 2 active secrets after creation.
   rpc CreateRobotPartSecret(CreateRobotPartSecretRequest) returns (CreateRobotPartSecretResponse);
@@ -527,7 +534,10 @@ message Fragment {
   google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
   string organization_name = 7;
   bool readonly = 8;
-  int32 use_count = 9;
+  // number of robot parts using this fragment
+  int32 robot_part_count = 9;
+  // number of organizations using this fragment
+  int32 organization_count = 10;
 }
 
 message ListFragmentsRequest {
@@ -560,6 +570,7 @@ message UpdateFragmentRequest {
   string id = 1;
   string name = 2;
   google.protobuf.Struct config = 3;
+  optional bool public = 4;
 }
 
 message UpdateFragmentResponse {
@@ -610,6 +621,11 @@ message MarkPartAsMainRequest {
 }
 
 message MarkPartAsMainResponse {}
+
+message MarkPartForRestartRequest {
+  string part_id = 1;
+}
+message MarkPartForRestartResponse {}
 
 message CreateRobotPartSecretRequest {
   // Robot Part ID to create the secret in.

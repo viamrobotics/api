@@ -1757,8 +1757,11 @@ export class Fragment extends jspb.Message {
   getReadonly(): boolean;
   setReadonly(value: boolean): void;
 
-  getUseCount(): number;
-  setUseCount(value: number): void;
+  getRobotPartCount(): number;
+  setRobotPartCount(value: number): void;
+
+  getOrganizationCount(): number;
+  setOrganizationCount(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Fragment.AsObject;
@@ -1780,7 +1783,8 @@ export namespace Fragment {
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     organizationName: string,
     readonly: boolean,
-    useCount: number,
+    robotPartCount: number,
+    organizationCount: number,
   }
 }
 
@@ -1932,6 +1936,11 @@ export class UpdateFragmentRequest extends jspb.Message {
   getConfig(): google_protobuf_struct_pb.Struct | undefined;
   setConfig(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasPublic(): boolean;
+  clearPublic(): void;
+  getPublic(): boolean;
+  setPublic(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateFragmentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateFragmentRequest): UpdateFragmentRequest.AsObject;
@@ -1947,6 +1956,7 @@ export namespace UpdateFragmentRequest {
     id: string,
     name: string,
     config?: google_protobuf_struct_pb.Struct.AsObject,
+    pb_public: boolean,
   }
 }
 
@@ -2212,6 +2222,42 @@ export class MarkPartAsMainResponse extends jspb.Message {
 }
 
 export namespace MarkPartAsMainResponse {
+  export type AsObject = {
+  }
+}
+
+export class MarkPartForRestartRequest extends jspb.Message {
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MarkPartForRestartRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: MarkPartForRestartRequest): MarkPartForRestartRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MarkPartForRestartRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MarkPartForRestartRequest;
+  static deserializeBinaryFromReader(message: MarkPartForRestartRequest, reader: jspb.BinaryReader): MarkPartForRestartRequest;
+}
+
+export namespace MarkPartForRestartRequest {
+  export type AsObject = {
+    partId: string,
+  }
+}
+
+export class MarkPartForRestartResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MarkPartForRestartResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: MarkPartForRestartResponse): MarkPartForRestartResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MarkPartForRestartResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MarkPartForRestartResponse;
+  static deserializeBinaryFromReader(message: MarkPartForRestartResponse, reader: jspb.BinaryReader): MarkPartForRestartResponse;
+}
+
+export namespace MarkPartForRestartResponse {
   export type AsObject = {
   }
 }

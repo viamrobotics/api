@@ -1910,6 +1910,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.markPartAsMain =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.MarkPartForRestartRequest,
+ *   !proto.viam.app.v1.MarkPartForRestartResponse>}
+ */
+const methodDescriptor_AppService_MarkPartForRestart = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/MarkPartForRestart',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.MarkPartForRestartRequest,
+  proto.viam.app.v1.MarkPartForRestartResponse,
+  /**
+   * @param {!proto.viam.app.v1.MarkPartForRestartRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.MarkPartForRestartResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.MarkPartForRestartRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.MarkPartForRestartResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.MarkPartForRestartResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.markPartForRestart =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/MarkPartForRestart',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_MarkPartForRestart,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.MarkPartForRestartRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.MarkPartForRestartResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.markPartForRestart =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/MarkPartForRestart',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_MarkPartForRestart);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.CreateRobotPartSecretRequest,
  *   !proto.viam.app.v1.CreateRobotPartSecretResponse>}
  */
