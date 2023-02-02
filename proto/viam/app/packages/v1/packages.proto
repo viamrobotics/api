@@ -24,14 +24,17 @@ service PackageService {
     };
   }
 
-  // // GetPackage returns the URL and metadata for a requested package version
+  // GetPackage returns the metadata for a requested package version. It also returns a URL
+  // for downloading the package if one is requested.
   rpc GetPackage(GetPackageRequest) returns (GetPackageResponse) {
     option (google.api.http) = {
       get: "/packages/v1/get"
     };
   }
 
-  // ListPackages get the URLs and metadata for requested packages. Include package name, version, and/or type to filter beyond the required organization_id.
+  // ListPackages gets the metadata for the requested packages. Include package name, version, and/or
+  // type to filter beyond the required organization_id. ListPackages also returns URLs for
+  // downloading each package if they are requested.
   rpc ListPackages(ListPackagesRequest) returns (ListPackagesResponse) {
     option (google.api.http) = {
       get: "/packages/v1/list"
@@ -110,6 +113,7 @@ message GetPackageRequest {
   string name = 2;
   string version = 3;
   string id = 4;
+  optional bool include_url = 5;
 }
 
 message GetPackageResponse {
@@ -121,6 +125,7 @@ message ListPackagesRequest {
   optional string name = 2;
   optional string version = 3;
   optional PackageType type = 4;
+  optional bool include_url = 5;
 }
 
 message ListPackagesResponse {
