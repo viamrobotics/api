@@ -314,6 +314,8 @@ message Location {
   repeated LocationOrganization organizations = 6;
   // Location creation timestamp.
   google.protobuf.Timestamp created_on = 3;
+  //
+  int32 robot_count = 7;
 }
 
 // SharedSecret is a secret used for LocationAuth and RobotParts.
