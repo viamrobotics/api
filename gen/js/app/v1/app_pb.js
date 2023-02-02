@@ -7318,7 +7318,8 @@ proto.viam.app.v1.Location.toObject = function(includeInstance, msg) {
     auth: (f = msg.getAuth()) && proto.viam.app.v1.LocationAuth.toObject(includeInstance, f),
     organizationsList: jspb.Message.toObjectList(msg.getOrganizationsList(),
     proto.viam.app.v1.LocationOrganization.toObject, includeInstance),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    robotCount: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -7381,6 +7382,10 @@ proto.viam.app.v1.Location.deserializeBinaryFromReader = function(msg, reader) {
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setCreatedOn(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRobotCount(value);
       break;
     default:
       reader.skipField();
@@ -7454,6 +7459,13 @@ proto.viam.app.v1.Location.serializeBinaryToWriter = function(message, writer) {
       3,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getRobotCount();
+  if (f !== 0) {
+    writer.writeInt32(
+      7,
+      f
     );
   }
 };
@@ -7622,6 +7634,24 @@ proto.viam.app.v1.Location.prototype.clearCreatedOn = function() {
  */
 proto.viam.app.v1.Location.prototype.hasCreatedOn = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional int32 robot_count = 7;
+ * @return {number}
+ */
+proto.viam.app.v1.Location.prototype.getRobotCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.Location} returns this
+ */
+proto.viam.app.v1.Location.prototype.setRobotCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
