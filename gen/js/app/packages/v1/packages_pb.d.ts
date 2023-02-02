@@ -280,6 +280,11 @@ export class GetPackageRequest extends jspb.Message {
   getVersion(): string;
   setVersion(value: string): void;
 
+  hasIncludeUrl(): boolean;
+  clearIncludeUrl(): void;
+  getIncludeUrl(): boolean;
+  setIncludeUrl(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPackageRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPackageRequest): GetPackageRequest.AsObject;
@@ -295,6 +300,7 @@ export namespace GetPackageRequest {
     organizationId: string,
     name: string,
     version: string,
+    includeUrl: boolean,
   }
 }
 
@@ -339,6 +345,11 @@ export class ListPackagesRequest extends jspb.Message {
   getType(): PackageTypeMap[keyof PackageTypeMap];
   setType(value: PackageTypeMap[keyof PackageTypeMap]): void;
 
+  hasIncludeUrl(): boolean;
+  clearIncludeUrl(): void;
+  getIncludeUrl(): boolean;
+  setIncludeUrl(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListPackagesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListPackagesRequest): ListPackagesRequest.AsObject;
@@ -355,6 +366,7 @@ export namespace ListPackagesRequest {
     name: string,
     version: string,
     type: PackageTypeMap[keyof PackageTypeMap],
+    includeUrl: boolean,
   }
 }
 
