@@ -4065,7 +4065,8 @@ proto.viam.app.v1.OrganizationInvite.toObject = function(includeInstance, msg) {
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     email: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    robotCount: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -4114,6 +4115,10 @@ proto.viam.app.v1.OrganizationInvite.deserializeBinaryFromReader = function(msg,
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setCreatedOn(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setRobotCount(value);
       break;
     default:
       reader.skipField();
@@ -4164,6 +4169,13 @@ proto.viam.app.v1.OrganizationInvite.serializeBinaryToWriter = function(message,
       3,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getRobotCount();
+  if (f !== 0) {
+    writer.writeInt64(
+      4,
+      f
     );
   }
 };
@@ -4239,6 +4251,24 @@ proto.viam.app.v1.OrganizationInvite.prototype.clearCreatedOn = function() {
  */
 proto.viam.app.v1.OrganizationInvite.prototype.hasCreatedOn = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional int64 robot_count = 4;
+ * @return {number}
+ */
+proto.viam.app.v1.OrganizationInvite.prototype.getRobotCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.OrganizationInvite} returns this
+ */
+proto.viam.app.v1.OrganizationInvite.prototype.setRobotCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
