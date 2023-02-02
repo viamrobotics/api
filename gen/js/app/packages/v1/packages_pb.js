@@ -2309,7 +2309,8 @@ proto.viam.app.packages.v1.GetPackageRequest.toObject = function(includeInstance
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     version: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 4, "")
+    id: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    includeUrl: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -2361,6 +2362,10 @@ proto.viam.app.packages.v1.GetPackageRequest.deserializeBinaryFromReader = funct
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeUrl(value);
       break;
     default:
       reader.skipField();
@@ -2416,6 +2421,13 @@ proto.viam.app.packages.v1.GetPackageRequest.serializeBinaryToWriter = function(
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -2491,6 +2503,42 @@ proto.viam.app.packages.v1.GetPackageRequest.prototype.getId = function() {
  */
 proto.viam.app.packages.v1.GetPackageRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional bool include_url = 5;
+ * @return {boolean}
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.getIncludeUrl = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.packages.v1.GetPackageRequest} returns this
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.setIncludeUrl = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.packages.v1.GetPackageRequest} returns this
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.clearIncludeUrl = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.hasIncludeUrl = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -2680,7 +2728,8 @@ proto.viam.app.packages.v1.ListPackagesRequest.toObject = function(includeInstan
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     version: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    type: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    includeUrl: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -2732,6 +2781,10 @@ proto.viam.app.packages.v1.ListPackagesRequest.deserializeBinaryFromReader = fun
     case 4:
       var value = /** @type {!proto.viam.app.packages.v1.PackageType} */ (reader.readEnum());
       msg.setType(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeUrl(value);
       break;
     default:
       reader.skipField();
@@ -2787,6 +2840,13 @@ proto.viam.app.packages.v1.ListPackagesRequest.serializeBinaryToWriter = functio
   if (f != null) {
     writer.writeEnum(
       4,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -2916,6 +2976,42 @@ proto.viam.app.packages.v1.ListPackagesRequest.prototype.clearType = function() 
  */
 proto.viam.app.packages.v1.ListPackagesRequest.prototype.hasType = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional bool include_url = 5;
+ * @return {boolean}
+ */
+proto.viam.app.packages.v1.ListPackagesRequest.prototype.getIncludeUrl = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.packages.v1.ListPackagesRequest} returns this
+ */
+proto.viam.app.packages.v1.ListPackagesRequest.prototype.setIncludeUrl = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.packages.v1.ListPackagesRequest} returns this
+ */
+proto.viam.app.packages.v1.ListPackagesRequest.prototype.clearIncludeUrl = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.packages.v1.ListPackagesRequest.prototype.hasIncludeUrl = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
