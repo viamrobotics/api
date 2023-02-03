@@ -78,10 +78,8 @@ message CreatePackageResponse {
 }
 
 message DeletePackageRequest {
-  string organization_id = 1;
-  string name = 2;
-  string version = 3;
-  string id = 4;
+  string id = 1;
+  string version = 2;
 }
 
 message DeletePackageResponse {}
@@ -109,11 +107,9 @@ message InternalPackage {
 }
 
 message GetPackageRequest {
-  string organization_id = 1;
-  string name = 2;
-  string version = 3;
-  string id = 4;
-  optional bool include_url = 5;
+  string id = 1;
+  string version = 2;
+  optional bool include_url = 3;
 }
 
 message GetPackageResponse {
