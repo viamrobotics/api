@@ -14110,7 +14110,8 @@ proto.viam.app.v1.Fragment.toObject = function(includeInstance, msg) {
     organizationName: jspb.Message.getFieldWithDefault(msg, 7, ""),
     readonly: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
     robotPartCount: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    organizationCount: jspb.Message.getFieldWithDefault(msg, 10, 0)
+    organizationCount: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    onlyUsedByOwner: jspb.Message.getBooleanFieldWithDefault(msg, 11, false)
   };
 
   if (includeInstance) {
@@ -14188,6 +14189,10 @@ proto.viam.app.v1.Fragment.deserializeBinaryFromReader = function(msg, reader) {
     case 10:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setOrganizationCount(value);
+      break;
+    case 11:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setOnlyUsedByOwner(value);
       break;
     default:
       reader.skipField();
@@ -14287,6 +14292,13 @@ proto.viam.app.v1.Fragment.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeInt32(
       10,
+      f
+    );
+  }
+  f = message.getOnlyUsedByOwner();
+  if (f) {
+    writer.writeBool(
+      11,
       f
     );
   }
@@ -14508,6 +14520,24 @@ proto.viam.app.v1.Fragment.prototype.getOrganizationCount = function() {
  */
 proto.viam.app.v1.Fragment.prototype.setOrganizationCount = function(value) {
   return jspb.Message.setProto3IntField(this, 10, value);
+};
+
+
+/**
+ * optional bool only_used_by_owner = 11;
+ * @return {boolean}
+ */
+proto.viam.app.v1.Fragment.prototype.getOnlyUsedByOwner = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.Fragment} returns this
+ */
+proto.viam.app.v1.Fragment.prototype.setOnlyUsedByOwner = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 11, value);
 };
 
 
