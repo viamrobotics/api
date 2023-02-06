@@ -541,6 +541,8 @@ message Fragment {
   int32 robot_part_count = 9;
   // number of organizations using this fragment
   int32 organization_count = 10;
+  // whether the organization(s) using this fragment is the same as the fragment org
+  bool only_used_by_owner = 11;
 }
 
 message ListFragmentsRequest {

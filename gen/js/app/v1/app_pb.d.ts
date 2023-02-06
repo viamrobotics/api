@@ -1771,6 +1771,9 @@ export class Fragment extends jspb.Message {
   getOrganizationCount(): number;
   setOrganizationCount(value: number): void;
 
+  getOnlyUsedByOwner(): boolean;
+  setOnlyUsedByOwner(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Fragment.AsObject;
   static toObject(includeInstance: boolean, msg: Fragment): Fragment.AsObject;
@@ -1793,6 +1796,7 @@ export namespace Fragment {
     readonly: boolean,
     robotPartCount: number,
     organizationCount: number,
+    onlyUsedByOwner: boolean,
   }
 }
 
