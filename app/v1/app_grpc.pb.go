@@ -61,6 +61,8 @@ type AppServiceClient interface {
 	DeleteLocationSecret(ctx context.Context, in *DeleteLocationSecretRequest, opts ...grpc.CallOption) (*DeleteLocationSecretResponse, error)
 	// Get a specific robot by ID
 	GetRobot(ctx context.Context, in *GetRobotRequest, opts ...grpc.CallOption) (*GetRobotResponse, error)
+	// Get Rover Rental Location Robots
+	GetRoverRentalRobots(ctx context.Context, in *GetRoverRentalRobotsRequest, opts ...grpc.CallOption) (*GetRoverRentalRobotsResponse, error)
 	GetRobotParts(ctx context.Context, in *GetRobotPartsRequest, opts ...grpc.CallOption) (*GetRobotPartsResponse, error)
 	// Get a specific robot part by ID
 	GetRobotPart(ctx context.Context, in *GetRobotPartRequest, opts ...grpc.CallOption) (*GetRobotPartResponse, error)
@@ -298,6 +300,15 @@ func (c *appServiceClient) DeleteLocationSecret(ctx context.Context, in *DeleteL
 func (c *appServiceClient) GetRobot(ctx context.Context, in *GetRobotRequest, opts ...grpc.CallOption) (*GetRobotResponse, error) {
 	out := new(GetRobotResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobot", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetRoverRentalRobots(ctx context.Context, in *GetRoverRentalRobotsRequest, opts ...grpc.CallOption) (*GetRoverRentalRobotsResponse, error) {
+	out := new(GetRoverRentalRobotsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRoverRentalRobots", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -563,6 +574,8 @@ type AppServiceServer interface {
 	DeleteLocationSecret(context.Context, *DeleteLocationSecretRequest) (*DeleteLocationSecretResponse, error)
 	// Get a specific robot by ID
 	GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error)
+	// Get Rover Rental Location Robots
+	GetRoverRentalRobots(context.Context, *GetRoverRentalRobotsRequest) (*GetRoverRentalRobotsResponse, error)
 	GetRobotParts(context.Context, *GetRobotPartsRequest) (*GetRobotPartsResponse, error)
 	// Get a specific robot part by ID
 	GetRobotPart(context.Context, *GetRobotPartRequest) (*GetRobotPartResponse, error)
@@ -676,6 +689,9 @@ func (UnimplementedAppServiceServer) DeleteLocationSecret(context.Context, *Dele
 }
 func (UnimplementedAppServiceServer) GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobot not implemented")
+}
+func (UnimplementedAppServiceServer) GetRoverRentalRobots(context.Context, *GetRoverRentalRobotsRequest) (*GetRoverRentalRobotsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRoverRentalRobots not implemented")
 }
 func (UnimplementedAppServiceServer) GetRobotParts(context.Context, *GetRobotPartsRequest) (*GetRobotPartsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobotParts not implemented")
@@ -1127,6 +1143,24 @@ func _AppService_GetRobot_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).GetRobot(ctx, req.(*GetRobotRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetRoverRentalRobots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRoverRentalRobotsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetRoverRentalRobots(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetRoverRentalRobots",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetRoverRentalRobots(ctx, req.(*GetRoverRentalRobotsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1602,6 +1636,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRobot",
 			Handler:    _AppService_GetRobot_Handler,
+		},
+		{
+			MethodName: "GetRoverRentalRobots",
+			Handler:    _AppService_GetRoverRentalRobots_Handler,
 		},
 		{
 			MethodName: "GetRobotParts",
