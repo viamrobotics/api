@@ -497,6 +497,26 @@ func (mr *MockAppServiceClientMockRecorder) GetRobotParts(ctx, in interface{}, o
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRobotParts", reflect.TypeOf((*MockAppServiceClient)(nil).GetRobotParts), varargs...)
 }
 
+// GetRoverRentalRobots mocks base method.
+func (m *MockAppServiceClient) GetRoverRentalRobots(ctx context.Context, in *v1.GetRoverRentalRobotsRequest, opts ...grpc.CallOption) (*v1.GetRoverRentalRobotsResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetRoverRentalRobots", varargs...)
+	ret0, _ := ret[0].(*v1.GetRoverRentalRobotsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetRoverRentalRobots indicates an expected call of GetRoverRentalRobots.
+func (mr *MockAppServiceClientMockRecorder) GetRoverRentalRobots(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRoverRentalRobots", reflect.TypeOf((*MockAppServiceClient)(nil).GetRoverRentalRobots), varargs...)
+}
+
 // ListFragments mocks base method.
 func (m *MockAppServiceClient) ListFragments(ctx context.Context, in *v1.ListFragmentsRequest, opts ...grpc.CallOption) (*v1.ListFragmentsResponse, error) {
 	m.ctrl.T.Helper()
@@ -1366,6 +1386,21 @@ func (m *MockAppServiceServer) GetRobotParts(arg0 context.Context, arg1 *v1.GetR
 func (mr *MockAppServiceServerMockRecorder) GetRobotParts(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRobotParts", reflect.TypeOf((*MockAppServiceServer)(nil).GetRobotParts), arg0, arg1)
+}
+
+// GetRoverRentalRobots mocks base method.
+func (m *MockAppServiceServer) GetRoverRentalRobots(arg0 context.Context, arg1 *v1.GetRoverRentalRobotsRequest) (*v1.GetRoverRentalRobotsResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetRoverRentalRobots", arg0, arg1)
+	ret0, _ := ret[0].(*v1.GetRoverRentalRobotsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetRoverRentalRobots indicates an expected call of GetRoverRentalRobots.
+func (mr *MockAppServiceServerMockRecorder) GetRoverRentalRobots(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRoverRentalRobots", reflect.TypeOf((*MockAppServiceServer)(nil).GetRoverRentalRobots), arg0, arg1)
 }
 
 // ListFragments mocks base method.

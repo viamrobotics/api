@@ -77,6 +77,9 @@ service AppService {
   // Get a specific robot by ID
   rpc GetRobot(GetRobotRequest) returns (GetRobotResponse);
 
+  // Get Rover Rental Location Robots
+  rpc GetRoverRentalRobots(GetRoverRentalRobotsRequest) returns (GetRoverRentalRobotsResponse);
+
   rpc GetRobotParts(GetRobotPartsRequest) returns (GetRobotPartsResponse);
 
   // Get a specific robot part by ID
@@ -439,6 +442,18 @@ message LocationAuthResponse {
 
 message GetRobotRequest {
   string id = 1;
+}
+
+message GetRoverRentalRobotsRequest {}
+
+message RoverRentalRobot {
+  string robot_id = 1;
+  string location_id = 2;
+  string robot_name = 3;
+}
+
+message GetRoverRentalRobotsResponse {
+  repeated RoverRentalRobot robots = 1;
 }
 
 message GetRobotResponse {

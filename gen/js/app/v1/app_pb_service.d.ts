@@ -193,6 +193,15 @@ type AppServiceGetRobot = {
   readonly responseType: typeof app_v1_app_pb.GetRobotResponse;
 };
 
+type AppServiceGetRoverRentalRobots = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetRoverRentalRobotsRequest;
+  readonly responseType: typeof app_v1_app_pb.GetRoverRentalRobotsResponse;
+};
+
 type AppServiceGetRobotParts = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -405,6 +414,7 @@ export class AppService {
   static readonly CreateLocationSecret: AppServiceCreateLocationSecret;
   static readonly DeleteLocationSecret: AppServiceDeleteLocationSecret;
   static readonly GetRobot: AppServiceGetRobot;
+  static readonly GetRoverRentalRobots: AppServiceGetRoverRentalRobots;
   static readonly GetRobotParts: AppServiceGetRobotParts;
   static readonly GetRobotPart: AppServiceGetRobotPart;
   static readonly GetRobotPartLogs: AppServiceGetRobotPartLogs;
@@ -648,6 +658,15 @@ export class AppServiceClient {
   getRobot(
     requestMessage: app_v1_app_pb.GetRobotRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotResponse|null) => void
+  ): UnaryResponse;
+  getRoverRentalRobots(
+    requestMessage: app_v1_app_pb.GetRoverRentalRobotsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRoverRentalRobotsResponse|null) => void
+  ): UnaryResponse;
+  getRoverRentalRobots(
+    requestMessage: app_v1_app_pb.GetRoverRentalRobotsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRoverRentalRobotsResponse|null) => void
   ): UnaryResponse;
   getRobotParts(
     requestMessage: app_v1_app_pb.GetRobotPartsRequest,
