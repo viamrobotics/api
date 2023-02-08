@@ -320,7 +320,6 @@ message TrainingJobMetadata {
   google.protobuf.Timestamp created_on = 3;
   google.protobuf.Timestamp last_modified = 4;
   string synced_model_id = 5;
-  string user_email = 6;
 }
 
 message TrainingJob {
