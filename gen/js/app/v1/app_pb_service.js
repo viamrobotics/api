@@ -199,6 +199,15 @@ AppService.GetRobot = {
   responseType: app_v1_app_pb.GetRobotResponse
 };
 
+AppService.GetRoverRentalRobots = {
+  methodName: "GetRoverRentalRobots",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetRoverRentalRobotsRequest,
+  responseType: app_v1_app_pb.GetRoverRentalRobotsResponse
+};
+
 AppService.GetRobotParts = {
   methodName: "GetRobotParts",
   service: AppService,
@@ -1020,6 +1029,37 @@ AppServiceClient.prototype.getRobot = function getRobot(requestMessage, metadata
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.GetRobot, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getRoverRentalRobots = function getRoverRentalRobots(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetRoverRentalRobots, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

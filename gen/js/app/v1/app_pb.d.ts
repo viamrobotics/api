@@ -1284,6 +1284,72 @@ export namespace GetRobotRequest {
   }
 }
 
+export class GetRoverRentalRobotsRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetRoverRentalRobotsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRoverRentalRobotsRequest): GetRoverRentalRobotsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetRoverRentalRobotsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRoverRentalRobotsRequest;
+  static deserializeBinaryFromReader(message: GetRoverRentalRobotsRequest, reader: jspb.BinaryReader): GetRoverRentalRobotsRequest;
+}
+
+export namespace GetRoverRentalRobotsRequest {
+  export type AsObject = {
+  }
+}
+
+export class RoverRentalRobot extends jspb.Message {
+  getRobotId(): string;
+  setRobotId(value: string): void;
+
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  getRobotName(): string;
+  setRobotName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RoverRentalRobot.AsObject;
+  static toObject(includeInstance: boolean, msg: RoverRentalRobot): RoverRentalRobot.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RoverRentalRobot, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RoverRentalRobot;
+  static deserializeBinaryFromReader(message: RoverRentalRobot, reader: jspb.BinaryReader): RoverRentalRobot;
+}
+
+export namespace RoverRentalRobot {
+  export type AsObject = {
+    robotId: string,
+    locationId: string,
+    robotName: string,
+  }
+}
+
+export class GetRoverRentalRobotsResponse extends jspb.Message {
+  clearRobotsList(): void;
+  getRobotsList(): Array<RoverRentalRobot>;
+  setRobotsList(value: Array<RoverRentalRobot>): void;
+  addRobots(value?: RoverRentalRobot, index?: number): RoverRentalRobot;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetRoverRentalRobotsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRoverRentalRobotsResponse): GetRoverRentalRobotsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetRoverRentalRobotsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRoverRentalRobotsResponse;
+  static deserializeBinaryFromReader(message: GetRoverRentalRobotsResponse, reader: jspb.BinaryReader): GetRoverRentalRobotsResponse;
+}
+
+export namespace GetRoverRentalRobotsResponse {
+  export type AsObject = {
+    robotsList: Array<RoverRentalRobot.AsObject>,
+  }
+}
+
 export class GetRobotResponse extends jspb.Message {
   hasRobot(): boolean;
   clearRobot(): void;
