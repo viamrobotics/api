@@ -8345,7 +8345,8 @@ proto.viam.app.data.v1.TrainingJobMetadata.toObject = function(includeInstance, 
     status: jspb.Message.getFieldWithDefault(msg, 2, 0),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     lastModified: (f = msg.getLastModified()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, "")
+    syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    userEmail: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -8404,6 +8405,10 @@ proto.viam.app.data.v1.TrainingJobMetadata.deserializeBinaryFromReader = functio
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setSyncedModelId(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUserEmail(value);
       break;
     default:
       reader.skipField();
@@ -8469,6 +8474,13 @@ proto.viam.app.data.v1.TrainingJobMetadata.serializeBinaryToWriter = function(me
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = message.getUserEmail();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -8619,6 +8631,24 @@ proto.viam.app.data.v1.TrainingJobMetadata.prototype.getSyncedModelId = function
  */
 proto.viam.app.data.v1.TrainingJobMetadata.prototype.setSyncedModelId = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string user_email = 6;
+ * @return {string}
+ */
+proto.viam.app.data.v1.TrainingJobMetadata.prototype.getUserEmail = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.data.v1.TrainingJobMetadata.prototype.setUserEmail = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
