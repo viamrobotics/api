@@ -139,6 +139,9 @@ export class TrainingJobMetadata extends jspb.Message {
   getSyncedModelId(): string;
   setSyncedModelId(value: string): void;
 
+  getUserEmail(): string;
+  setUserEmail(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJobMetadata): TrainingJobMetadata.AsObject;
@@ -156,6 +159,7 @@ export namespace TrainingJobMetadata {
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     lastModified?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     syncedModelId: string,
+    userEmail: string,
   }
 }
 
