@@ -961,7 +961,8 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInst
     status: jspb.Message.getFieldWithDefault(msg, 2, 0),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     lastModified: (f = msg.getLastModified()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, "")
+    syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    userEmail: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -1020,6 +1021,10 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setSyncedModelId(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUserEmail(value);
       break;
     default:
       reader.skipField();
@@ -1085,6 +1090,13 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = message.getUserEmail();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -1238,6 +1250,24 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setSyncedModelId = fu
 };
 
 
+/**
+ * optional string user_email = 6;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getUserEmail = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setUserEmail = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
 
 
 
@@ -1274,7 +1304,8 @@ proto.viam.app.mltraining.v1.TrainingJob.toObject = function(includeInstance, ms
     metadata: (f = msg.getMetadata()) && proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject(includeInstance, f),
     outputPath: jspb.Message.getFieldWithDefault(msg, 3, ""),
     vertexJobId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    modelMetadata: (f = msg.getModelMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    modelMetadata: (f = msg.getModelMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    processing: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -1332,6 +1363,10 @@ proto.viam.app.mltraining.v1.TrainingJob.deserializeBinaryFromReader = function(
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setModelMetadata(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setProcessing(value);
       break;
     default:
       reader.skipField();
@@ -1397,6 +1432,13 @@ proto.viam.app.mltraining.v1.TrainingJob.serializeBinaryToWriter = function(mess
       5,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getProcessing();
+  if (f) {
+    writer.writeBool(
+      6,
+      f
     );
   }
 };
@@ -1531,6 +1573,24 @@ proto.viam.app.mltraining.v1.TrainingJob.prototype.hasModelMetadata = function()
 
 
 /**
+ * optional bool processing = 6;
+ * @return {boolean}
+ */
+proto.viam.app.mltraining.v1.TrainingJob.prototype.getProcessing = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJob} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJob.prototype.setProcessing = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 6, value);
+};
+
+
+/**
  * @enum {number}
  */
 proto.viam.app.mltraining.v1.ModelType = {
@@ -1547,8 +1607,7 @@ proto.viam.app.mltraining.v1.TrainingStatus = {
   TRAINING_STATUS_PENDING: 1,
   TRAINING_STATUS_IN_PROGRESS: 2,
   TRAINING_STATUS_COMPLETED: 3,
-  TRAINING_STATUS_FAILED: 4,
-  TRAINING_STATUS_SUBMITTING: 5
+  TRAINING_STATUS_FAILED: 4
 };
 
 goog.object.extend(exports, proto.viam.app.mltraining.v1);

@@ -22,9 +22,12 @@ type PackageServiceClient interface {
 	CreatePackage(ctx context.Context, opts ...grpc.CallOption) (PackageService_CreatePackageClient, error)
 	// DeletePackage removes the given package versions
 	DeletePackage(ctx context.Context, in *DeletePackageRequest, opts ...grpc.CallOption) (*DeletePackageResponse, error)
-	// // GetPackage returns the URL and metadata for a requested package version
+	// GetPackage returns the metadata for a requested package version. It also returns a URL
+	// for downloading the package if one is requested.
 	GetPackage(ctx context.Context, in *GetPackageRequest, opts ...grpc.CallOption) (*GetPackageResponse, error)
-	// ListPackages get the URLs and metadata for requested packages. Include package name, version, and/or type to filter beyond the required organization_id.
+	// ListPackages gets the metadata for the requested packages. Include package name, version, and/or
+	// type to filter beyond the required organization_id. ListPackages also returns URLs for
+	// downloading each package if they are requested.
 	ListPackages(ctx context.Context, in *ListPackagesRequest, opts ...grpc.CallOption) (*ListPackagesResponse, error)
 }
 
@@ -105,9 +108,12 @@ type PackageServiceServer interface {
 	CreatePackage(PackageService_CreatePackageServer) error
 	// DeletePackage removes the given package versions
 	DeletePackage(context.Context, *DeletePackageRequest) (*DeletePackageResponse, error)
-	// // GetPackage returns the URL and metadata for a requested package version
+	// GetPackage returns the metadata for a requested package version. It also returns a URL
+	// for downloading the package if one is requested.
 	GetPackage(context.Context, *GetPackageRequest) (*GetPackageResponse, error)
-	// ListPackages get the URLs and metadata for requested packages. Include package name, version, and/or type to filter beyond the required organization_id.
+	// ListPackages gets the metadata for the requested packages. Include package name, version, and/or
+	// type to filter beyond the required organization_id. ListPackages also returns URLs for
+	// downloading each package if they are requested.
 	ListPackages(context.Context, *ListPackagesRequest) (*ListPackagesResponse, error)
 	mustEmbedUnimplementedPackageServiceServer()
 }

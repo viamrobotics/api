@@ -139,6 +139,9 @@ export class TrainingJobMetadata extends jspb.Message {
   getSyncedModelId(): string;
   setSyncedModelId(value: string): void;
 
+  getUserEmail(): string;
+  setUserEmail(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJobMetadata): TrainingJobMetadata.AsObject;
@@ -156,6 +159,7 @@ export namespace TrainingJobMetadata {
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     lastModified?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     syncedModelId: string,
+    userEmail: string,
   }
 }
 
@@ -179,6 +183,9 @@ export class TrainingJob extends jspb.Message {
   getModelMetadata(): google_protobuf_struct_pb.Struct | undefined;
   setModelMetadata(value?: google_protobuf_struct_pb.Struct): void;
 
+  getProcessing(): boolean;
+  setProcessing(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJob.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJob): TrainingJob.AsObject;
@@ -196,6 +203,7 @@ export namespace TrainingJob {
     outputPath: string,
     vertexJobId: string,
     modelMetadata?: google_protobuf_struct_pb.Struct.AsObject,
+    processing: boolean,
   }
 }
 
@@ -213,7 +221,6 @@ export interface TrainingStatusMap {
   TRAINING_STATUS_IN_PROGRESS: 2;
   TRAINING_STATUS_COMPLETED: 3;
   TRAINING_STATUS_FAILED: 4;
-  TRAINING_STATUS_SUBMITTING: 5;
 }
 
 export const TrainingStatus: TrainingStatusMap;

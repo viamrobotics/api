@@ -113,6 +113,12 @@ export namespace CreatePackageRequest {
 }
 
 export class CreatePackageResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreatePackageResponse.AsObject;
   static toObject(includeInstance: boolean, msg: CreatePackageResponse): CreatePackageResponse.AsObject;
@@ -125,15 +131,14 @@ export class CreatePackageResponse extends jspb.Message {
 
 export namespace CreatePackageResponse {
   export type AsObject = {
+    id: string,
+    version: string,
   }
 }
 
 export class DeletePackageRequest extends jspb.Message {
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
-
-  getName(): string;
-  setName(value: string): void;
+  getId(): string;
+  setId(value: string): void;
 
   getVersion(): string;
   setVersion(value: string): void;
@@ -150,8 +155,7 @@ export class DeletePackageRequest extends jspb.Message {
 
 export namespace DeletePackageRequest {
   export type AsObject = {
-    organizationId: string,
-    name: string,
+    id: string,
     version: string,
   }
 }
@@ -189,6 +193,9 @@ export class Package extends jspb.Message {
   getChecksum(): string;
   setChecksum(value: string): void;
 
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Package.AsObject;
   static toObject(includeInstance: boolean, msg: Package): Package.AsObject;
@@ -205,6 +212,7 @@ export namespace Package {
     url: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     checksum: string,
+    id: string,
   }
 }
 
@@ -242,6 +250,9 @@ export class InternalPackage extends jspb.Message {
   getChecksum(): string;
   setChecksum(value: string): void;
 
+  getLatest(): boolean;
+  setLatest(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): InternalPackage.AsObject;
   static toObject(includeInstance: boolean, msg: InternalPackage): InternalPackage.AsObject;
@@ -263,18 +274,21 @@ export namespace InternalPackage {
     blobPath: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     checksum: string,
+    latest: boolean,
   }
 }
 
 export class GetPackageRequest extends jspb.Message {
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
-
-  getName(): string;
-  setName(value: string): void;
+  getId(): string;
+  setId(value: string): void;
 
   getVersion(): string;
   setVersion(value: string): void;
+
+  hasIncludeUrl(): boolean;
+  clearIncludeUrl(): void;
+  getIncludeUrl(): boolean;
+  setIncludeUrl(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPackageRequest.AsObject;
@@ -288,9 +302,9 @@ export class GetPackageRequest extends jspb.Message {
 
 export namespace GetPackageRequest {
   export type AsObject = {
-    organizationId: string,
-    name: string,
+    id: string,
     version: string,
+    includeUrl: boolean,
   }
 }
 
@@ -335,6 +349,11 @@ export class ListPackagesRequest extends jspb.Message {
   getType(): PackageTypeMap[keyof PackageTypeMap];
   setType(value: PackageTypeMap[keyof PackageTypeMap]): void;
 
+  hasIncludeUrl(): boolean;
+  clearIncludeUrl(): void;
+  getIncludeUrl(): boolean;
+  setIncludeUrl(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListPackagesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListPackagesRequest): ListPackagesRequest.AsObject;
@@ -351,6 +370,7 @@ export namespace ListPackagesRequest {
     name: string,
     version: string,
     type: PackageTypeMap[keyof PackageTypeMap],
+    includeUrl: boolean,
   }
 }
 

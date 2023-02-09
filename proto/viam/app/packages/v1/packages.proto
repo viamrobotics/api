@@ -24,14 +24,17 @@ service PackageService {
     };
   }
 
-  // // GetPackage returns the URL and metadata for a requested package version
+  // GetPackage returns the metadata for a requested package version. It also returns a URL
+  // for downloading the package if one is requested.
   rpc GetPackage(GetPackageRequest) returns (GetPackageResponse) {
     option (google.api.http) = {
       get: "/packages/v1/get"
     };
   }
 
-  // ListPackages get the URLs and metadata for requested packages. Include package name, version, and/or type to filter beyond the required organization_id.
+  // ListPackages gets the metadata for the requested packages. Include package name, version, and/or
+  // type to filter beyond the required organization_id. ListPackages also returns URLs for
+  // downloading each package if they are requested.
   rpc ListPackages(ListPackagesRequest) returns (ListPackagesResponse) {
     option (google.api.http) = {
       get: "/packages/v1/list"
@@ -67,12 +70,16 @@ message CreatePackageRequest {
   }
 }
 
-message CreatePackageResponse {}
+// Returns the package ID and version which are populated in GetPackageRequest and DeletePackageRequest to
+// retrieve or delete this package.
+message CreatePackageResponse {
+  string id = 1;
+  string version = 2;
+}
 
 message DeletePackageRequest {
-  string organization_id = 1;
-  string name = 2;
-  string version = 3;
+  string id = 1;
+  string version = 2;
 }
 
 message DeletePackageResponse {}
@@ -82,6 +89,7 @@ message Package {
   string url = 2;
   google.protobuf.Timestamp created_on = 3;
   string checksum = 4;
+  string id = 5;
 }
 
 // InternalPackage is stored in the packages database and represents our interval view of the uploaded package
@@ -95,12 +103,13 @@ message InternalPackage {
   string blob_path = 7 [(tagger.v1.tags) = "bson:\"blob_path\" json:\"blob_path\""];
   google.protobuf.Timestamp created_on = 8 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
   string checksum = 9 [(tagger.v1.tags) = "bson:\"checksum\" json:\"checksum\""];
+  bool latest = 10 [(tagger.v1.tags) = "bson:\"latest\" json:\"latest\""];
 }
 
 message GetPackageRequest {
-  string organization_id = 1;
-  string name = 2;
-  string version = 3;
+  string id = 1;
+  string version = 2;
+  optional bool include_url = 3;
 }
 
 message GetPackageResponse {
@@ -112,6 +121,7 @@ message ListPackagesRequest {
   optional string name = 2;
   optional string version = 3;
   optional PackageType type = 4;
+  optional bool include_url = 5;
 }
 
 message ListPackagesResponse {

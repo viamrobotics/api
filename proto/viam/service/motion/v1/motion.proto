@@ -28,11 +28,6 @@ service MotionService {
       get: "/viam/api/v1/service/motion/{name}/pose"
     };
   }
-  rpc ExportPointCloud(ExportPointCloudRequest) returns (ExportPointCloudResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/motion/export_point_cloud"
-    };
-  }
 }
 
 message MoveRequest {
@@ -78,15 +73,4 @@ message GetPoseRequest {
 
 message GetPoseResponse {
   common.v1.PoseInFrame pose = 1;
-}
-
-// RenderPointCloudRequest requests a worldstate and extra struct to render as pointcloud
-message ExportPointCloudRequest {
-  optional common.v1.WorldState world_state = 1;
-  google.protobuf.Struct extra = 99;
-}
-
-// RenderPointCloudResponse returns a pointcloud representation of the worldstate in bytes
-message ExportPointCloudResponse {
-  bytes world_state_pcd = 1;
 }

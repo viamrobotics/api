@@ -48,7 +48,6 @@ enum TrainingStatus {
   TRAINING_STATUS_IN_PROGRESS = 2;
   TRAINING_STATUS_COMPLETED = 3;
   TRAINING_STATUS_FAILED = 4;
-  TRAINING_STATUS_SUBMITTING = 5;
 }
 
 message TrainingJobMetadata {
@@ -57,6 +56,7 @@ message TrainingJobMetadata {
   google.protobuf.Timestamp created_on = 3;
   google.protobuf.Timestamp last_modified = 4;
   string synced_model_id = 5;
+  string user_email = 6;
 }
 
 message TrainingJob {
@@ -67,4 +67,5 @@ message TrainingJob {
   // backing our concept of a TrainingJob.
   string vertex_job_id = 4 [(tagger.v1.tags) = "bson:\"vertex_job_id\" json:\"vertex_job_id\""];
   google.protobuf.Struct model_metadata = 5 [(tagger.v1.tags) = "bson:\"model_metadata\" json:\"model_metadata\""];
+  bool processing = 6 [(tagger.v1.tags) = "bson:\"processing\" json:\"processing\""];
 }

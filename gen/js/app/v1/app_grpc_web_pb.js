@@ -1366,6 +1366,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.getRobot =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetRoverRentalRobotsRequest,
+ *   !proto.viam.app.v1.GetRoverRentalRobotsResponse>}
+ */
+const methodDescriptor_AppService_GetRoverRentalRobots = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetRoverRentalRobots',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetRoverRentalRobotsRequest,
+  proto.viam.app.v1.GetRoverRentalRobotsResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetRoverRentalRobotsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetRoverRentalRobotsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetRoverRentalRobotsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetRoverRentalRobotsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetRoverRentalRobotsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getRoverRentalRobots =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetRoverRentalRobots',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetRoverRentalRobots,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetRoverRentalRobotsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetRoverRentalRobotsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getRoverRentalRobots =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetRoverRentalRobots',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetRoverRentalRobots);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.GetRobotPartsRequest,
  *   !proto.viam.app.v1.GetRobotPartsResponse>}
  */
@@ -1910,6 +1971,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.markPartAsMain =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.MarkPartForRestartRequest,
+ *   !proto.viam.app.v1.MarkPartForRestartResponse>}
+ */
+const methodDescriptor_AppService_MarkPartForRestart = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/MarkPartForRestart',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.MarkPartForRestartRequest,
+  proto.viam.app.v1.MarkPartForRestartResponse,
+  /**
+   * @param {!proto.viam.app.v1.MarkPartForRestartRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.MarkPartForRestartResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.MarkPartForRestartRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.MarkPartForRestartResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.MarkPartForRestartResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.markPartForRestart =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/MarkPartForRestart',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_MarkPartForRestart,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.MarkPartForRestartRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.MarkPartForRestartResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.markPartForRestart =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/MarkPartForRestart',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_MarkPartForRestart);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.CreateRobotPartSecretRequest,
  *   !proto.viam.app.v1.CreateRobotPartSecretResponse>}
  */
@@ -2270,6 +2392,311 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.deleteRobot =
       request,
       metadata || {},
       methodDescriptor_AppService_DeleteRobot);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.ListFragmentsRequest,
+ *   !proto.viam.app.v1.ListFragmentsResponse>}
+ */
+const methodDescriptor_AppService_ListFragments = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/ListFragments',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.ListFragmentsRequest,
+  proto.viam.app.v1.ListFragmentsResponse,
+  /**
+   * @param {!proto.viam.app.v1.ListFragmentsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.ListFragmentsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.ListFragmentsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ListFragmentsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ListFragmentsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.listFragments =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListFragments',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListFragments,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ListFragmentsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.ListFragmentsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.listFragments =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListFragments',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListFragments);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetFragmentRequest,
+ *   !proto.viam.app.v1.GetFragmentResponse>}
+ */
+const methodDescriptor_AppService_GetFragment = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetFragment',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetFragmentRequest,
+  proto.viam.app.v1.GetFragmentResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetFragmentRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetFragmentResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetFragmentRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetFragmentResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetFragmentResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getFragment =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetFragment',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetFragment,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetFragmentRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetFragmentResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getFragment =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetFragment',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetFragment);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.CreateFragmentRequest,
+ *   !proto.viam.app.v1.CreateFragmentResponse>}
+ */
+const methodDescriptor_AppService_CreateFragment = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/CreateFragment',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.CreateFragmentRequest,
+  proto.viam.app.v1.CreateFragmentResponse,
+  /**
+   * @param {!proto.viam.app.v1.CreateFragmentRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.CreateFragmentResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateFragmentRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.CreateFragmentResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.CreateFragmentResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.createFragment =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateFragment',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateFragment,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateFragmentRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.CreateFragmentResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.createFragment =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateFragment',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateFragment);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.UpdateFragmentRequest,
+ *   !proto.viam.app.v1.UpdateFragmentResponse>}
+ */
+const methodDescriptor_AppService_UpdateFragment = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/UpdateFragment',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.UpdateFragmentRequest,
+  proto.viam.app.v1.UpdateFragmentResponse,
+  /**
+   * @param {!proto.viam.app.v1.UpdateFragmentRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.UpdateFragmentResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateFragmentRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.UpdateFragmentResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.UpdateFragmentResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.updateFragment =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateFragment',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateFragment,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateFragmentRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.UpdateFragmentResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.updateFragment =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateFragment',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateFragment);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeleteFragmentRequest,
+ *   !proto.viam.app.v1.DeleteFragmentResponse>}
+ */
+const methodDescriptor_AppService_DeleteFragment = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeleteFragment',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeleteFragmentRequest,
+  proto.viam.app.v1.DeleteFragmentResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeleteFragmentRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeleteFragmentResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteFragmentRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeleteFragmentResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeleteFragmentResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deleteFragment =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteFragment',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteFragment,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteFragmentRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeleteFragmentResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deleteFragment =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteFragment',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteFragment);
 };
 
 
