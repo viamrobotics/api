@@ -462,11 +462,6 @@ export class WorldState extends jspb.Message {
   setObstaclesList(value: Array<GeometriesInFrame>): void;
   addObstacles(value?: GeometriesInFrame, index?: number): GeometriesInFrame;
 
-  clearInteractionSpacesList(): void;
-  getInteractionSpacesList(): Array<GeometriesInFrame>;
-  setInteractionSpacesList(value: Array<GeometriesInFrame>): void;
-  addInteractionSpaces(value?: GeometriesInFrame, index?: number): GeometriesInFrame;
-
   clearTransformsList(): void;
   getTransformsList(): Array<Transform>;
   setTransformsList(value: Array<Transform>): void;
@@ -485,7 +480,6 @@ export class WorldState extends jspb.Message {
 export namespace WorldState {
   export type AsObject = {
     obstaclesList: Array<GeometriesInFrame.AsObject>,
-    interactionSpacesList: Array<GeometriesInFrame.AsObject>,
     transformsList: Array<Transform.AsObject>,
   }
 }
