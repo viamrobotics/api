@@ -12,6 +12,7 @@ option go_package = "go.viam.com/api/app/mltraining/v1";
 service MLTrainingService {
   rpc SubmitTrainingJob(SubmitTrainingJobRequest) returns (SubmitTrainingJobResponse);
   rpc GetTrainingJob(GetTrainingJobRequest) returns (GetTrainingJobResponse);
+  rpc ListTrainingJobs(ListTrainingJobsRequest) returns (ListTrainingJobsResponse);
 }
 
 enum ModelType {
@@ -40,6 +41,15 @@ message GetTrainingJobRequest {
 message GetTrainingJobResponse {
   string id = 1;
   TrainingJobMetadata metadata = 2;
+}
+
+message ListTrainingJobsRequest {
+  string organization_id = 1;
+  TrainingStatus status = 2;
+}
+
+message ListTrainingJobsResponse {
+  repeated TrainingJobMetadata jobs = 1;
 }
 
 enum TrainingStatus {

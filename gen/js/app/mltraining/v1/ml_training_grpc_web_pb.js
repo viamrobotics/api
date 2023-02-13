@@ -207,5 +207,66 @@ proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.getTrainin
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.mltraining.v1.ListTrainingJobsRequest,
+ *   !proto.viam.app.mltraining.v1.ListTrainingJobsResponse>}
+ */
+const methodDescriptor_MLTrainingService_ListTrainingJobs = new grpc.web.MethodDescriptor(
+  '/viam.app.mltraining.v1.MLTrainingService/ListTrainingJobs',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.mltraining.v1.ListTrainingJobsRequest,
+  proto.viam.app.mltraining.v1.ListTrainingJobsResponse,
+  /**
+   * @param {!proto.viam.app.mltraining.v1.ListTrainingJobsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.mltraining.v1.ListTrainingJobsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.ListTrainingJobsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.mltraining.v1.ListTrainingJobsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.mltraining.v1.ListTrainingJobsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.mltraining.v1.MLTrainingServiceClient.prototype.listTrainingJobs =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/ListTrainingJobs',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_ListTrainingJobs,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.ListTrainingJobsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.mltraining.v1.ListTrainingJobsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.listTrainingJobs =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/ListTrainingJobs',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_ListTrainingJobs);
+};
+
+
 module.exports = proto.viam.app.mltraining.v1;
 

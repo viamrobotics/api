@@ -22,10 +22,20 @@ type MLTrainingServiceGetTrainingJob = {
   readonly responseType: typeof app_mltraining_v1_ml_training_pb.GetTrainingJobResponse;
 };
 
+type MLTrainingServiceListTrainingJobs = {
+  readonly methodName: string;
+  readonly service: typeof MLTrainingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_mltraining_v1_ml_training_pb.ListTrainingJobsRequest;
+  readonly responseType: typeof app_mltraining_v1_ml_training_pb.ListTrainingJobsResponse;
+};
+
 export class MLTrainingService {
   static readonly serviceName: string;
   static readonly SubmitTrainingJob: MLTrainingServiceSubmitTrainingJob;
   static readonly GetTrainingJob: MLTrainingServiceGetTrainingJob;
+  static readonly ListTrainingJobs: MLTrainingServiceListTrainingJobs;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -77,6 +87,15 @@ export class MLTrainingServiceClient {
   getTrainingJob(
     requestMessage: app_mltraining_v1_ml_training_pb.GetTrainingJobRequest,
     callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.GetTrainingJobResponse|null) => void
+  ): UnaryResponse;
+  listTrainingJobs(
+    requestMessage: app_mltraining_v1_ml_training_pb.ListTrainingJobsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.ListTrainingJobsResponse|null) => void
+  ): UnaryResponse;
+  listTrainingJobs(
+    requestMessage: app_mltraining_v1_ml_training_pb.ListTrainingJobsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.ListTrainingJobsResponse|null) => void
   ): UnaryResponse;
 }
 
