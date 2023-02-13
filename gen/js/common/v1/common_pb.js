@@ -3557,7 +3557,7 @@ proto.viam.common.v1.Transform.prototype.hasPhysicalObject = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.common.v1.WorldState.repeatedFields_ = [1,2,3];
+proto.viam.common.v1.WorldState.repeatedFields_ = [1,3];
 
 
 
@@ -3591,8 +3591,6 @@ proto.viam.common.v1.WorldState.prototype.toObject = function(opt_includeInstanc
 proto.viam.common.v1.WorldState.toObject = function(includeInstance, msg) {
   var f, obj = {
     obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
-    proto.viam.common.v1.GeometriesInFrame.toObject, includeInstance),
-    interactionSpacesList: jspb.Message.toObjectList(msg.getInteractionSpacesList(),
     proto.viam.common.v1.GeometriesInFrame.toObject, includeInstance),
     transformsList: jspb.Message.toObjectList(msg.getTransformsList(),
     proto.viam.common.v1.Transform.toObject, includeInstance)
@@ -3637,11 +3635,6 @@ proto.viam.common.v1.WorldState.deserializeBinaryFromReader = function(msg, read
       reader.readMessage(value,proto.viam.common.v1.GeometriesInFrame.deserializeBinaryFromReader);
       msg.addObstacles(value);
       break;
-    case 2:
-      var value = new proto.viam.common.v1.GeometriesInFrame;
-      reader.readMessage(value,proto.viam.common.v1.GeometriesInFrame.deserializeBinaryFromReader);
-      msg.addInteractionSpaces(value);
-      break;
     case 3:
       var value = new proto.viam.common.v1.Transform;
       reader.readMessage(value,proto.viam.common.v1.Transform.deserializeBinaryFromReader);
@@ -3680,14 +3673,6 @@ proto.viam.common.v1.WorldState.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
-      f,
-      proto.viam.common.v1.GeometriesInFrame.serializeBinaryToWriter
-    );
-  }
-  f = message.getInteractionSpacesList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      2,
       f,
       proto.viam.common.v1.GeometriesInFrame.serializeBinaryToWriter
     );
@@ -3738,44 +3723,6 @@ proto.viam.common.v1.WorldState.prototype.addObstacles = function(opt_value, opt
  */
 proto.viam.common.v1.WorldState.prototype.clearObstaclesList = function() {
   return this.setObstaclesList([]);
-};
-
-
-/**
- * repeated GeometriesInFrame interaction_spaces = 2;
- * @return {!Array<!proto.viam.common.v1.GeometriesInFrame>}
- */
-proto.viam.common.v1.WorldState.prototype.getInteractionSpacesList = function() {
-  return /** @type{!Array<!proto.viam.common.v1.GeometriesInFrame>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.common.v1.GeometriesInFrame, 2));
-};
-
-
-/**
- * @param {!Array<!proto.viam.common.v1.GeometriesInFrame>} value
- * @return {!proto.viam.common.v1.WorldState} returns this
-*/
-proto.viam.common.v1.WorldState.prototype.setInteractionSpacesList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 2, value);
-};
-
-
-/**
- * @param {!proto.viam.common.v1.GeometriesInFrame=} opt_value
- * @param {number=} opt_index
- * @return {!proto.viam.common.v1.GeometriesInFrame}
- */
-proto.viam.common.v1.WorldState.prototype.addInteractionSpaces = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.viam.common.v1.GeometriesInFrame, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.viam.common.v1.WorldState} returns this
- */
-proto.viam.common.v1.WorldState.prototype.clearInteractionSpacesList = function() {
-  return this.setInteractionSpacesList([]);
 };
 
 

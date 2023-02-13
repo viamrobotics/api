@@ -146,9 +146,6 @@ message Transform {
 message WorldState {
   // a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
   repeated GeometriesInFrame obstacles = 1;
-  // a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
-  // this field is optional
-  repeated GeometriesInFrame interaction_spaces = 2;
   // a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional
   repeated Transform transforms = 3;
 }
