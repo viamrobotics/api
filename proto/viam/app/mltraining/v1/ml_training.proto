@@ -39,8 +39,7 @@ message GetTrainingJobRequest {
 }
 
 message GetTrainingJobResponse {
-  string id = 1;
-  TrainingJobMetadata metadata = 2;
+  TrainingJobMetadata metadata = 1;
 }
 
 message ListTrainingJobsRequest {
@@ -61,12 +60,13 @@ enum TrainingStatus {
 }
 
 message TrainingJobMetadata {
-  SubmitTrainingJobRequest request = 1;
-  TrainingStatus status = 2;
-  google.protobuf.Timestamp created_on = 3;
-  google.protobuf.Timestamp last_modified = 4;
-  string synced_model_id = 5;
-  string user_email = 6;
+  SubmitTrainingJobRequest request = 1 [(tagger.v1.tags) = "bson:\"request\" json:\"request\""];
+  TrainingStatus status = 2 [(tagger.v1.tags) = "bson:\"status\" json:\"status\""];
+  google.protobuf.Timestamp created_on = 3 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
+  google.protobuf.Timestamp last_modified = 4 [(tagger.v1.tags) = "bson:\"last_modified\" json:\"last_modified\""];
+  string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
+  string user_email = 6 [(tagger.v1.tags) = "bson:\"user_email\" json:\"user_email\""];
+  string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
 }
 
 message TrainingJob {

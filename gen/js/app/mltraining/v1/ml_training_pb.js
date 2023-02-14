@@ -820,7 +820,6 @@ proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.toObject = functio
  */
 proto.viam.app.mltraining.v1.GetTrainingJobResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     metadata: (f = msg.getMetadata()) && proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject(includeInstance, f)
   };
 
@@ -859,10 +858,6 @@ proto.viam.app.mltraining.v1.GetTrainingJobResponse.deserializeBinaryFromReader 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
-      break;
-    case 2:
       var value = new proto.viam.app.mltraining.v1.TrainingJobMetadata;
       reader.readMessage(value,proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader);
       msg.setMetadata(value);
@@ -896,17 +891,10 @@ proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.serializeBinary = 
  */
 proto.viam.app.mltraining.v1.GetTrainingJobResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
   f = message.getMetadata();
   if (f != null) {
     writer.writeMessage(
-      2,
+      1,
       f,
       proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter
     );
@@ -915,30 +903,12 @@ proto.viam.app.mltraining.v1.GetTrainingJobResponse.serializeBinaryToWriter = fu
 
 
 /**
- * optional string id = 1;
- * @return {string}
- */
-proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.mltraining.v1.GetTrainingJobResponse} returns this
- */
-proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.setId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional TrainingJobMetadata metadata = 2;
+ * optional TrainingJobMetadata metadata = 1;
  * @return {?proto.viam.app.mltraining.v1.TrainingJobMetadata}
  */
 proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.getMetadata = function() {
   return /** @type{?proto.viam.app.mltraining.v1.TrainingJobMetadata} */ (
-    jspb.Message.getWrapperField(this, proto.viam.app.mltraining.v1.TrainingJobMetadata, 2));
+    jspb.Message.getWrapperField(this, proto.viam.app.mltraining.v1.TrainingJobMetadata, 1));
 };
 
 
@@ -947,7 +917,7 @@ proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.getMetadata = func
  * @return {!proto.viam.app.mltraining.v1.GetTrainingJobResponse} returns this
 */
 proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.setMetadata = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
+  return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
@@ -965,7 +935,7 @@ proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.clearMetadata = fu
  * @return {boolean}
  */
 proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.hasMetadata = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -1326,7 +1296,8 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInst
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     lastModified: (f = msg.getLastModified()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    userEmail: jspb.Message.getFieldWithDefault(msg, 6, "")
+    userEmail: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -1389,6 +1360,10 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setUserEmail(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -1461,6 +1436,13 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
   if (f.length > 0) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
       f
     );
   }
@@ -1629,6 +1611,24 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getUserEmail = functi
  */
 proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setUserEmail = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional string id = 7;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 

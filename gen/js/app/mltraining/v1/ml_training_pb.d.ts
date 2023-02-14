@@ -92,9 +92,6 @@ export namespace GetTrainingJobRequest {
 }
 
 export class GetTrainingJobResponse extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
   hasMetadata(): boolean;
   clearMetadata(): void;
   getMetadata(): TrainingJobMetadata | undefined;
@@ -112,7 +109,6 @@ export class GetTrainingJobResponse extends jspb.Message {
 
 export namespace GetTrainingJobResponse {
   export type AsObject = {
-    id: string,
     metadata?: TrainingJobMetadata.AsObject,
   }
 }
@@ -188,6 +184,9 @@ export class TrainingJobMetadata extends jspb.Message {
   getUserEmail(): string;
   setUserEmail(value: string): void;
 
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJobMetadata): TrainingJobMetadata.AsObject;
@@ -206,6 +205,7 @@ export namespace TrainingJobMetadata {
     lastModified?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     syncedModelId: string,
     userEmail: string,
+    id: string,
   }
 }
 
