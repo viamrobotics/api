@@ -12,6 +12,7 @@ option go_package = "go.viam.com/api/app/mltraining/v1";
 service MLTrainingService {
   rpc SubmitTrainingJob(SubmitTrainingJobRequest) returns (SubmitTrainingJobResponse);
   rpc GetTrainingJob(GetTrainingJobRequest) returns (GetTrainingJobResponse);
+  rpc ListTrainingJobs(ListTrainingJobsRequest) returns (ListTrainingJobsResponse);
 }
 
 enum ModelType {
@@ -42,6 +43,15 @@ message GetTrainingJobResponse {
   TrainingJobMetadata metadata = 2;
 }
 
+message ListTrainingJobsRequest {
+  string organization_id = 1;
+  TrainingStatus status = 2;
+}
+
+message ListTrainingJobsResponse {
+  repeated TrainingJobMetadata jobs = 1;
+}
+
 enum TrainingStatus {
   TRAINING_STATUS_UNSPECIFIED = 0;
   TRAINING_STATUS_PENDING = 1;
@@ -51,12 +61,13 @@ enum TrainingStatus {
 }
 
 message TrainingJobMetadata {
-  SubmitTrainingJobRequest request = 1;
-  TrainingStatus status = 2;
-  google.protobuf.Timestamp created_on = 3;
-  google.protobuf.Timestamp last_modified = 4;
-  string synced_model_id = 5;
-  string user_email = 6;
+  SubmitTrainingJobRequest request = 1 [(tagger.v1.tags) = "bson:\"request\" json:\"request\""];
+  TrainingStatus status = 2 [(tagger.v1.tags) = "bson:\"status\" json:\"status\""];
+  google.protobuf.Timestamp created_on = 3 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
+  google.protobuf.Timestamp last_modified = 4 [(tagger.v1.tags) = "bson:\"last_modified\" json:\"last_modified\""];
+  string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
+  string user_email = 6 [(tagger.v1.tags) = "bson:\"user_email\" json:\"user_email\""];
+  string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
 }
 
 message TrainingJob {

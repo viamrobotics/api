@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 type MLTrainingServiceClient interface {
 	SubmitTrainingJob(ctx context.Context, in *SubmitTrainingJobRequest, opts ...grpc.CallOption) (*SubmitTrainingJobResponse, error)
 	GetTrainingJob(ctx context.Context, in *GetTrainingJobRequest, opts ...grpc.CallOption) (*GetTrainingJobResponse, error)
+	ListTrainingJobs(ctx context.Context, in *ListTrainingJobsRequest, opts ...grpc.CallOption) (*ListTrainingJobsResponse, error)
 }
 
 type mLTrainingServiceClient struct {
@@ -48,12 +49,22 @@ func (c *mLTrainingServiceClient) GetTrainingJob(ctx context.Context, in *GetTra
 	return out, nil
 }
 
+func (c *mLTrainingServiceClient) ListTrainingJobs(ctx context.Context, in *ListTrainingJobsRequest, opts ...grpc.CallOption) (*ListTrainingJobsResponse, error) {
+	out := new(ListTrainingJobsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.mltraining.v1.MLTrainingService/ListTrainingJobs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MLTrainingServiceServer is the server API for MLTrainingService service.
 // All implementations must embed UnimplementedMLTrainingServiceServer
 // for forward compatibility
 type MLTrainingServiceServer interface {
 	SubmitTrainingJob(context.Context, *SubmitTrainingJobRequest) (*SubmitTrainingJobResponse, error)
 	GetTrainingJob(context.Context, *GetTrainingJobRequest) (*GetTrainingJobResponse, error)
+	ListTrainingJobs(context.Context, *ListTrainingJobsRequest) (*ListTrainingJobsResponse, error)
 	mustEmbedUnimplementedMLTrainingServiceServer()
 }
 
@@ -66,6 +77,9 @@ func (UnimplementedMLTrainingServiceServer) SubmitTrainingJob(context.Context, *
 }
 func (UnimplementedMLTrainingServiceServer) GetTrainingJob(context.Context, *GetTrainingJobRequest) (*GetTrainingJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTrainingJob not implemented")
+}
+func (UnimplementedMLTrainingServiceServer) ListTrainingJobs(context.Context, *ListTrainingJobsRequest) (*ListTrainingJobsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTrainingJobs not implemented")
 }
 func (UnimplementedMLTrainingServiceServer) mustEmbedUnimplementedMLTrainingServiceServer() {}
 
@@ -116,6 +130,24 @@ func _MLTrainingService_GetTrainingJob_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MLTrainingService_ListTrainingJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTrainingJobsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MLTrainingServiceServer).ListTrainingJobs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.mltraining.v1.MLTrainingService/ListTrainingJobs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MLTrainingServiceServer).ListTrainingJobs(ctx, req.(*ListTrainingJobsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MLTrainingService_ServiceDesc is the grpc.ServiceDesc for MLTrainingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -130,6 +162,10 @@ var MLTrainingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTrainingJob",
 			Handler:    _MLTrainingService_GetTrainingJob_Handler,
+		},
+		{
+			MethodName: "ListTrainingJobs",
+			Handler:    _MLTrainingService_ListTrainingJobs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
