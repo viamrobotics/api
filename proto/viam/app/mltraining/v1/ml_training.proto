@@ -39,7 +39,8 @@ message GetTrainingJobRequest {
 }
 
 message GetTrainingJobResponse {
-  TrainingJobMetadata metadata = 1;
+  string id = 1;
+  TrainingJobMetadata metadata = 2;
 }
 
 message ListTrainingJobsRequest {

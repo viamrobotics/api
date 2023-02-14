@@ -92,6 +92,9 @@ export namespace GetTrainingJobRequest {
 }
 
 export class GetTrainingJobResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
   hasMetadata(): boolean;
   clearMetadata(): void;
   getMetadata(): TrainingJobMetadata | undefined;
@@ -109,6 +112,7 @@ export class GetTrainingJobResponse extends jspb.Message {
 
 export namespace GetTrainingJobResponse {
   export type AsObject = {
+    id: string,
     metadata?: TrainingJobMetadata.AsObject,
   }
 }
