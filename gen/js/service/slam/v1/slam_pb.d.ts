@@ -277,3 +277,87 @@ export namespace GetInternalStateResponse {
   }
 }
 
+export class GetPointCloudMapStreamRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPointCloudMapStreamRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPointCloudMapStreamRequest): GetPointCloudMapStreamRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPointCloudMapStreamRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPointCloudMapStreamRequest;
+  static deserializeBinaryFromReader(message: GetPointCloudMapStreamRequest, reader: jspb.BinaryReader): GetPointCloudMapStreamRequest;
+}
+
+export namespace GetPointCloudMapStreamRequest {
+  export type AsObject = {
+    name: string,
+  }
+}
+
+export class GetPointCloudMapStreamResponse extends jspb.Message {
+  getPointCloudPcdChunk(): Uint8Array | string;
+  getPointCloudPcdChunk_asU8(): Uint8Array;
+  getPointCloudPcdChunk_asB64(): string;
+  setPointCloudPcdChunk(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPointCloudMapStreamResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPointCloudMapStreamResponse): GetPointCloudMapStreamResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPointCloudMapStreamResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPointCloudMapStreamResponse;
+  static deserializeBinaryFromReader(message: GetPointCloudMapStreamResponse, reader: jspb.BinaryReader): GetPointCloudMapStreamResponse;
+}
+
+export namespace GetPointCloudMapStreamResponse {
+  export type AsObject = {
+    pointCloudPcdChunk: Uint8Array | string,
+  }
+}
+
+export class GetInternalStateStreamRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetInternalStateStreamRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetInternalStateStreamRequest): GetInternalStateStreamRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetInternalStateStreamRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetInternalStateStreamRequest;
+  static deserializeBinaryFromReader(message: GetInternalStateStreamRequest, reader: jspb.BinaryReader): GetInternalStateStreamRequest;
+}
+
+export namespace GetInternalStateStreamRequest {
+  export type AsObject = {
+    name: string,
+  }
+}
+
+export class GetInternalStateStreamResponse extends jspb.Message {
+  getInternalStateChunk(): Uint8Array | string;
+  getInternalStateChunk_asU8(): Uint8Array;
+  getInternalStateChunk_asB64(): string;
+  setInternalStateChunk(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetInternalStateStreamResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetInternalStateStreamResponse): GetInternalStateStreamResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetInternalStateStreamResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetInternalStateStreamResponse;
+  static deserializeBinaryFromReader(message: GetInternalStateStreamResponse, reader: jspb.BinaryReader): GetInternalStateStreamResponse;
+}
+
+export namespace GetInternalStateStreamResponse {
+  export type AsObject = {
+    internalStateChunk: Uint8Array | string,
+  }
+}
+

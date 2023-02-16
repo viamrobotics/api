@@ -60,7 +60,7 @@ service SLAMService {
   // SLAM library
   rpc GetPointCloudMapStream(GetPointCloudMapStreamRequest) returns (stream GetPointCloudMapStreamResponse) {
     option (google.api.http) = {
-      get: "/viam/api/v1/service/slam/{name}/point_cloud_map"
+      get: "/viam/api/v1/service/slam/{name}/point_cloud_map_stream"
     };
   }
 
@@ -70,7 +70,7 @@ service SLAMService {
   // intended for end user usage
   rpc GetInternalStateStream(GetInternalStateStreamRequest) returns (stream GetInternalStateStreamResponse) {
     option (google.api.http) = {
-      get: "/viam/api/v1/service/slam/{name}/internal_state"
+      get: "/viam/api/v1/service/slam/{name}/internal_state_stream"
     };
   }
 }

@@ -49,6 +49,24 @@ type SLAMServiceGetInternalState = {
   readonly responseType: typeof service_slam_v1_slam_pb.GetInternalStateResponse;
 };
 
+type SLAMServiceGetPointCloudMapStream = {
+  readonly methodName: string;
+  readonly service: typeof SLAMService;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof service_slam_v1_slam_pb.GetPointCloudMapStreamRequest;
+  readonly responseType: typeof service_slam_v1_slam_pb.GetPointCloudMapStreamResponse;
+};
+
+type SLAMServiceGetInternalStateStream = {
+  readonly methodName: string;
+  readonly service: typeof SLAMService;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof service_slam_v1_slam_pb.GetInternalStateStreamRequest;
+  readonly responseType: typeof service_slam_v1_slam_pb.GetInternalStateStreamResponse;
+};
+
 export class SLAMService {
   static readonly serviceName: string;
   static readonly GetPosition: SLAMServiceGetPosition;
@@ -56,6 +74,8 @@ export class SLAMService {
   static readonly GetPositionNew: SLAMServiceGetPositionNew;
   static readonly GetPointCloudMap: SLAMServiceGetPointCloudMap;
   static readonly GetInternalState: SLAMServiceGetInternalState;
+  static readonly GetPointCloudMapStream: SLAMServiceGetPointCloudMapStream;
+  static readonly GetInternalStateStream: SLAMServiceGetInternalStateStream;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -135,5 +155,7 @@ export class SLAMServiceClient {
     requestMessage: service_slam_v1_slam_pb.GetInternalStateRequest,
     callback: (error: ServiceError|null, responseMessage: service_slam_v1_slam_pb.GetInternalStateResponse|null) => void
   ): UnaryResponse;
+  getPointCloudMapStream(requestMessage: service_slam_v1_slam_pb.GetPointCloudMapStreamRequest, metadata?: grpc.Metadata): ResponseStream<service_slam_v1_slam_pb.GetPointCloudMapStreamResponse>;
+  getInternalStateStream(requestMessage: service_slam_v1_slam_pb.GetInternalStateStreamRequest, metadata?: grpc.Metadata): ResponseStream<service_slam_v1_slam_pb.GetInternalStateStreamResponse>;
 }
 

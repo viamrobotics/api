@@ -388,5 +388,117 @@ proto.viam.service.slam.v1.SLAMServicePromiseClient.prototype.getInternalState =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.slam.v1.GetPointCloudMapStreamRequest,
+ *   !proto.viam.service.slam.v1.GetPointCloudMapStreamResponse>}
+ */
+const methodDescriptor_SLAMService_GetPointCloudMapStream = new grpc.web.MethodDescriptor(
+  '/viam.service.slam.v1.SLAMService/GetPointCloudMapStream',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.viam.service.slam.v1.GetPointCloudMapStreamRequest,
+  proto.viam.service.slam.v1.GetPointCloudMapStreamResponse,
+  /**
+   * @param {!proto.viam.service.slam.v1.GetPointCloudMapStreamRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.slam.v1.GetPointCloudMapStreamResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.slam.v1.GetPointCloudMapStreamRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.slam.v1.GetPointCloudMapStreamResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.slam.v1.SLAMServiceClient.prototype.getPointCloudMapStream =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.service.slam.v1.SLAMService/GetPointCloudMapStream',
+      request,
+      metadata || {},
+      methodDescriptor_SLAMService_GetPointCloudMapStream);
+};
+
+
+/**
+ * @param {!proto.viam.service.slam.v1.GetPointCloudMapStreamRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.slam.v1.GetPointCloudMapStreamResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.slam.v1.SLAMServicePromiseClient.prototype.getPointCloudMapStream =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.service.slam.v1.SLAMService/GetPointCloudMapStream',
+      request,
+      metadata || {},
+      methodDescriptor_SLAMService_GetPointCloudMapStream);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.slam.v1.GetInternalStateStreamRequest,
+ *   !proto.viam.service.slam.v1.GetInternalStateStreamResponse>}
+ */
+const methodDescriptor_SLAMService_GetInternalStateStream = new grpc.web.MethodDescriptor(
+  '/viam.service.slam.v1.SLAMService/GetInternalStateStream',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.viam.service.slam.v1.GetInternalStateStreamRequest,
+  proto.viam.service.slam.v1.GetInternalStateStreamResponse,
+  /**
+   * @param {!proto.viam.service.slam.v1.GetInternalStateStreamRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.slam.v1.GetInternalStateStreamResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.slam.v1.GetInternalStateStreamRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.slam.v1.GetInternalStateStreamResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.slam.v1.SLAMServiceClient.prototype.getInternalStateStream =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.service.slam.v1.SLAMService/GetInternalStateStream',
+      request,
+      metadata || {},
+      methodDescriptor_SLAMService_GetInternalStateStream);
+};
+
+
+/**
+ * @param {!proto.viam.service.slam.v1.GetInternalStateStreamRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.slam.v1.GetInternalStateStreamResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.slam.v1.SLAMServicePromiseClient.prototype.getInternalStateStream =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.service.slam.v1.SLAMService/GetInternalStateStream',
+      request,
+      metadata || {},
+      methodDescriptor_SLAMService_GetInternalStateStream);
+};
+
+
 module.exports = proto.viam.service.slam.v1;
 
