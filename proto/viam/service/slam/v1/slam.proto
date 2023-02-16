@@ -157,7 +157,7 @@ message GetPointCloudMapStreamRequest {
 
 message GetPointCloudMapStreamResponse {
   // Pointclouds are returned in chunks as a set of bytes which can be
-  // aggrigated into the standard PCD format
+  // aggregated into the standard PCD format
   // https://pointclouds.org/documentation/tutorials/pcd_file_format.html
   bytes point_cloud_pcd_chunk = 1;
 }
