@@ -4,6 +4,7 @@ syntax = "proto3";
 package viam.common.v1;
 
 import "google/protobuf/descriptor.proto";
+import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/common/v1";
 option java_package = "com.viam.common.v1";
@@ -160,4 +161,15 @@ extend google.protobuf.MethodOptions {
   // and the session was the last to call this method, the resource associated with the
   // method will be stopped.
   optional bool safety_heartbeat_monitored = 84260;
+}
+
+// DoCommandRequest represents a generic DoCommand input
+message DoCommandRequest {
+  string name = 1;
+  google.protobuf.Struct command = 2;
+}
+
+// DoCommandResponse represents a generic DoCommand output
+message DoCommandResponse {
+  google.protobuf.Struct result = 1;
 }
