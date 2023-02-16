@@ -55,6 +55,24 @@ SLAMService.GetInternalState = {
   responseType: service_slam_v1_slam_pb.GetInternalStateResponse
 };
 
+SLAMService.GetPointCloudMapStream = {
+  methodName: "GetPointCloudMapStream",
+  service: SLAMService,
+  requestStream: false,
+  responseStream: true,
+  requestType: service_slam_v1_slam_pb.GetPointCloudMapStreamRequest,
+  responseType: service_slam_v1_slam_pb.GetPointCloudMapStreamResponse
+};
+
+SLAMService.GetInternalStateStream = {
+  methodName: "GetInternalStateStream",
+  service: SLAMService,
+  requestStream: false,
+  responseStream: true,
+  requestType: service_slam_v1_slam_pb.GetInternalStateStreamRequest,
+  responseType: service_slam_v1_slam_pb.GetInternalStateStreamResponse
+};
+
 exports.SLAMService = SLAMService;
 
 function SLAMServiceClient(serviceHost, options) {
@@ -212,6 +230,84 @@ SLAMServiceClient.prototype.getInternalState = function getInternalState(request
   return {
     cancel: function () {
       callback = null;
+      client.close();
+    }
+  };
+};
+
+SLAMServiceClient.prototype.getPointCloudMapStream = function getPointCloudMapStream(requestMessage, metadata) {
+  var listeners = {
+    data: [],
+    end: [],
+    status: []
+  };
+  var client = grpc.invoke(SLAMService.GetPointCloudMapStream, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onMessage: function (responseMessage) {
+      listeners.data.forEach(function (handler) {
+        handler(responseMessage);
+      });
+    },
+    onEnd: function (status, statusMessage, trailers) {
+      listeners.status.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners.end.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners = null;
+    }
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    cancel: function () {
+      listeners = null;
+      client.close();
+    }
+  };
+};
+
+SLAMServiceClient.prototype.getInternalStateStream = function getInternalStateStream(requestMessage, metadata) {
+  var listeners = {
+    data: [],
+    end: [],
+    status: []
+  };
+  var client = grpc.invoke(SLAMService.GetInternalStateStream, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onMessage: function (responseMessage) {
+      listeners.data.forEach(function (handler) {
+        handler(responseMessage);
+      });
+    },
+    onEnd: function (status, statusMessage, trailers) {
+      listeners.status.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners.end.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners = null;
+    }
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    cancel: function () {
+      listeners = null;
       client.close();
     }
   };
