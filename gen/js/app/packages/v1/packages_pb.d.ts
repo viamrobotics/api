@@ -137,8 +137,8 @@ export namespace CreatePackageResponse {
 }
 
 export class DeletePackageRequest extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
 
   getName(): string;
   setName(value: string): void;
