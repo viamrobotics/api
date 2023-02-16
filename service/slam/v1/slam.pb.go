@@ -676,8 +676,8 @@ type GetPointCloudMapStreamResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// pointclouds are returned in chunks as a set of bytes which can be
-	// aggrigated into the standard PCD format
+	// Pointclouds are returned in chunks as a set of bytes which can be
+	// aggregated into the standard PCD format
 	// https://pointclouds.org/documentation/tutorials/pcd_file_format.html
 	PointCloudPcdChunk []byte `protobuf:"bytes,1,opt,name=point_cloud_pcd_chunk,json=pointCloudPcdChunk,proto3" json:"point_cloud_pcd_chunk,omitempty"`
 }
