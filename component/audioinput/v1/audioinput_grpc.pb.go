@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	httpbody "google.golang.org/genproto/googleapis/api/httpbody"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -27,6 +28,8 @@ type AudioInputServiceClient interface {
 	// to an HTTP response. A specific MIME type cannot be requested and may not necessarily
 	// be the same one returned each time.
 	Record(ctx context.Context, in *RecordRequest, opts ...grpc.CallOption) (*httpbody.HttpBody, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type audioInputServiceClient struct {
@@ -87,6 +90,15 @@ func (c *audioInputServiceClient) Record(ctx context.Context, in *RecordRequest,
 	return out, nil
 }
 
+func (c *audioInputServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.audioinput.v1.AudioInputService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AudioInputServiceServer is the server API for AudioInputService service.
 // All implementations must embed UnimplementedAudioInputServiceServer
 // for forward compatibility
@@ -99,6 +111,8 @@ type AudioInputServiceServer interface {
 	// to an HTTP response. A specific MIME type cannot be requested and may not necessarily
 	// be the same one returned each time.
 	Record(context.Context, *RecordRequest) (*httpbody.HttpBody, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedAudioInputServiceServer()
 }
 
@@ -114,6 +128,9 @@ func (UnimplementedAudioInputServiceServer) Properties(context.Context, *Propert
 }
 func (UnimplementedAudioInputServiceServer) Record(context.Context, *RecordRequest) (*httpbody.HttpBody, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Record not implemented")
+}
+func (UnimplementedAudioInputServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedAudioInputServiceServer) mustEmbedUnimplementedAudioInputServiceServer() {}
 
@@ -185,6 +202,24 @@ func _AudioInputService_Record_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AudioInputService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AudioInputServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.audioinput.v1.AudioInputService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AudioInputServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AudioInputService_ServiceDesc is the grpc.ServiceDesc for AudioInputService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -199,6 +234,10 @@ var AudioInputService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Record",
 			Handler:    _AudioInputService_Record_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _AudioInputService_DoCommand_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

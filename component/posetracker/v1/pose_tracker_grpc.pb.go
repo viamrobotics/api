@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,6 +21,8 @@ const _ = grpc.SupportPackageIsVersion7
 type PoseTrackerServiceClient interface {
 	// GetPoses returns the current pose of each body tracked by the pose tracker
 	GetPoses(ctx context.Context, in *GetPosesRequest, opts ...grpc.CallOption) (*GetPosesResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type poseTrackerServiceClient struct {
@@ -39,12 +42,23 @@ func (c *poseTrackerServiceClient) GetPoses(ctx context.Context, in *GetPosesReq
 	return out, nil
 }
 
+func (c *poseTrackerServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.posetracker.v1.PoseTrackerService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PoseTrackerServiceServer is the server API for PoseTrackerService service.
 // All implementations must embed UnimplementedPoseTrackerServiceServer
 // for forward compatibility
 type PoseTrackerServiceServer interface {
 	// GetPoses returns the current pose of each body tracked by the pose tracker
 	GetPoses(context.Context, *GetPosesRequest) (*GetPosesResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedPoseTrackerServiceServer()
 }
 
@@ -54,6 +68,9 @@ type UnimplementedPoseTrackerServiceServer struct {
 
 func (UnimplementedPoseTrackerServiceServer) GetPoses(context.Context, *GetPosesRequest) (*GetPosesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPoses not implemented")
+}
+func (UnimplementedPoseTrackerServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedPoseTrackerServiceServer) mustEmbedUnimplementedPoseTrackerServiceServer() {}
 
@@ -86,6 +103,24 @@ func _PoseTrackerService_GetPoses_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PoseTrackerService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PoseTrackerServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.posetracker.v1.PoseTrackerService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PoseTrackerServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PoseTrackerService_ServiceDesc is the grpc.ServiceDesc for PoseTrackerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -96,6 +131,10 @@ var PoseTrackerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPoses",
 			Handler:    _PoseTrackerService_GetPoses_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _PoseTrackerService_DoCommand_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

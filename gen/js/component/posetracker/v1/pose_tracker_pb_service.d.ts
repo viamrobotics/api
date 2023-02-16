@@ -2,6 +2,7 @@
 // file: component/posetracker/v1/pose_tracker.proto
 
 import * as component_posetracker_v1_pose_tracker_pb from "../../../component/posetracker/v1/pose_tracker_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type PoseTrackerServiceGetPoses = {
@@ -13,9 +14,19 @@ type PoseTrackerServiceGetPoses = {
   readonly responseType: typeof component_posetracker_v1_pose_tracker_pb.GetPosesResponse;
 };
 
+type PoseTrackerServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof PoseTrackerService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class PoseTrackerService {
   static readonly serviceName: string;
   static readonly GetPoses: PoseTrackerServiceGetPoses;
+  static readonly DoCommand: PoseTrackerServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -58,6 +69,15 @@ export class PoseTrackerServiceClient {
   getPoses(
     requestMessage: component_posetracker_v1_pose_tracker_pb.GetPosesRequest,
     callback: (error: ServiceError|null, responseMessage: component_posetracker_v1_pose_tracker_pb.GetPosesResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

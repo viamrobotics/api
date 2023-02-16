@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.component.sensor.v1;
 
+import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
@@ -14,6 +15,13 @@ service SensorService {
   rpc GetReadings(GetReadingsRequest) returns (GetReadingsResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/sensor/{name}/readings"
+    };
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/sensor/{name}/do_command"
     };
   }
 }

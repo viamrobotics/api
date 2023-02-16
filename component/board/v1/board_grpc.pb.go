@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,6 +31,8 @@ type BoardServiceClient interface {
 	PWMFrequency(ctx context.Context, in *PWMFrequencyRequest, opts ...grpc.CallOption) (*PWMFrequencyResponse, error)
 	// SetPWMFrequency sets the given pin of a board of the underlying robot to the given PWM frequency. 0 will use the board's default PWM frequency.
 	SetPWMFrequency(ctx context.Context, in *SetPWMFrequencyRequest, opts ...grpc.CallOption) (*SetPWMFrequencyResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// ReadAnalogReader reads off the current value of an analog reader of a board of the underlying robot.
 	ReadAnalogReader(ctx context.Context, in *ReadAnalogReaderRequest, opts ...grpc.CallOption) (*ReadAnalogReaderResponse, error)
 	// GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
@@ -107,6 +110,15 @@ func (c *boardServiceClient) SetPWMFrequency(ctx context.Context, in *SetPWMFreq
 	return out, nil
 }
 
+func (c *boardServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.board.v1.BoardService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *boardServiceClient) ReadAnalogReader(ctx context.Context, in *ReadAnalogReaderRequest, opts ...grpc.CallOption) (*ReadAnalogReaderResponse, error) {
 	out := new(ReadAnalogReaderResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.board.v1.BoardService/ReadAnalogReader", in, out, opts...)
@@ -141,6 +153,8 @@ type BoardServiceServer interface {
 	PWMFrequency(context.Context, *PWMFrequencyRequest) (*PWMFrequencyResponse, error)
 	// SetPWMFrequency sets the given pin of a board of the underlying robot to the given PWM frequency. 0 will use the board's default PWM frequency.
 	SetPWMFrequency(context.Context, *SetPWMFrequencyRequest) (*SetPWMFrequencyResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// ReadAnalogReader reads off the current value of an analog reader of a board of the underlying robot.
 	ReadAnalogReader(context.Context, *ReadAnalogReaderRequest) (*ReadAnalogReaderResponse, error)
 	// GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
@@ -172,6 +186,9 @@ func (UnimplementedBoardServiceServer) PWMFrequency(context.Context, *PWMFrequen
 }
 func (UnimplementedBoardServiceServer) SetPWMFrequency(context.Context, *SetPWMFrequencyRequest) (*SetPWMFrequencyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetPWMFrequency not implemented")
+}
+func (UnimplementedBoardServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedBoardServiceServer) ReadAnalogReader(context.Context, *ReadAnalogReaderRequest) (*ReadAnalogReaderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadAnalogReader not implemented")
@@ -318,6 +335,24 @@ func _BoardService_SetPWMFrequency_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BoardService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BoardServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.board.v1.BoardService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BoardServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _BoardService_ReadAnalogReader_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ReadAnalogReaderRequest)
 	if err := dec(in); err != nil {
@@ -388,6 +423,10 @@ var BoardService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetPWMFrequency",
 			Handler:    _BoardService_SetPWMFrequency_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _BoardService_DoCommand_Handler,
 		},
 		{
 			MethodName: "ReadAnalogReader",

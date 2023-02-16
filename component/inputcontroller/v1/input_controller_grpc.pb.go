@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -27,6 +28,8 @@ type InputControllerServiceClient interface {
 	// TriggerEvent, where supported, injects an InputControllerEvent into an input controller to (virtually) generate events
 	// like button presses or axis movements
 	TriggerEvent(ctx context.Context, in *TriggerEventRequest, opts ...grpc.CallOption) (*TriggerEventResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type inputControllerServiceClient struct {
@@ -96,6 +99,15 @@ func (c *inputControllerServiceClient) TriggerEvent(ctx context.Context, in *Tri
 	return out, nil
 }
 
+func (c *inputControllerServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.inputcontroller.v1.InputControllerService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InputControllerServiceServer is the server API for InputControllerService service.
 // All implementations must embed UnimplementedInputControllerServiceServer
 // for forward compatibility
@@ -109,6 +121,8 @@ type InputControllerServiceServer interface {
 	// TriggerEvent, where supported, injects an InputControllerEvent into an input controller to (virtually) generate events
 	// like button presses or axis movements
 	TriggerEvent(context.Context, *TriggerEventRequest) (*TriggerEventResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedInputControllerServiceServer()
 }
 
@@ -127,6 +141,9 @@ func (UnimplementedInputControllerServiceServer) StreamEvents(*StreamEventsReque
 }
 func (UnimplementedInputControllerServiceServer) TriggerEvent(context.Context, *TriggerEventRequest) (*TriggerEventResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerEvent not implemented")
+}
+func (UnimplementedInputControllerServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedInputControllerServiceServer) mustEmbedUnimplementedInputControllerServiceServer() {
 }
@@ -217,6 +234,24 @@ func _InputControllerService_TriggerEvent_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _InputControllerService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InputControllerServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.inputcontroller.v1.InputControllerService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InputControllerServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // InputControllerService_ServiceDesc is the grpc.ServiceDesc for InputControllerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -235,6 +270,10 @@ var InputControllerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TriggerEvent",
 			Handler:    _InputControllerService_TriggerEvent_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _InputControllerService_DoCommand_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

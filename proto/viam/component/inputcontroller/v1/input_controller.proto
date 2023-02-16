@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.component.inputcontroller.v1;
 
+import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
@@ -37,6 +38,13 @@ service InputControllerService {
   rpc TriggerEvent(TriggerEventRequest) returns (TriggerEventResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/component/input/{controller}/event"
+    };
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/input/{name}/do_command"
     };
   }
 }
