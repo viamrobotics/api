@@ -77,6 +77,9 @@ service AppService {
   // Get a specific robot by ID
   rpc GetRobot(GetRobotRequest) returns (GetRobotResponse);
 
+  // Get Rover Rental Location Robots
+  rpc GetRoverRentalRobots(GetRoverRentalRobotsRequest) returns (GetRoverRentalRobotsResponse);
+
   rpc GetRobotParts(GetRobotPartsRequest) returns (GetRobotPartsResponse);
 
   // Get a specific robot part by ID
@@ -101,6 +104,13 @@ service AppService {
   // Marks the given part as the main part, and all the others as not
   rpc MarkPartAsMain(MarkPartAsMainRequest) returns (MarkPartAsMainResponse);
 
+  // Marks part for restart. Once the robot part checks-in with the app the flag
+  // is reset on the robot part. Calling this multiple times before a robot part
+  // checks-in has no affect.
+  // Note: This API may be removed in the near future.
+  // TODO(APP-388): Remove
+  rpc MarkPartForRestart(MarkPartForRestartRequest) returns (MarkPartForRestartResponse);
+
   // Create a new generated Secret in the Robot Part.
   //  - Succeeds if there are no more than 2 active secrets after creation.
   rpc CreateRobotPartSecret(CreateRobotPartSecretRequest) returns (CreateRobotPartSecretResponse);
@@ -111,9 +121,6 @@ service AppService {
   // Get a list of robots
   rpc ListRobots(ListRobotsRequest) returns (ListRobotsResponse);
 
-  // Finds robots given a query. Deprecated, use ListRobots instead
-  rpc FindRobots(FindRobotsRequest) returns (FindRobotsResponse);
-
   // NewRobot creates a new robot
   rpc NewRobot(NewRobotRequest) returns (NewRobotResponse);
 
@@ -122,6 +129,23 @@ service AppService {
 
   // DeleteRobot deletes a robot
   rpc DeleteRobot(DeleteRobotRequest) returns (DeleteRobotResponse);
+
+  // Fragments
+
+  // Gets a list of fragments
+  rpc ListFragments(ListFragmentsRequest) returns (ListFragmentsResponse);
+
+  // Gets a single fragment
+  rpc GetFragment(GetFragmentRequest) returns (GetFragmentResponse);
+
+  // Creates a fragment
+  rpc CreateFragment(CreateFragmentRequest) returns (CreateFragmentResponse);
+
+  // Updates a fragment
+  rpc UpdateFragment(UpdateFragmentRequest) returns (UpdateFragmentResponse);
+
+  // Deletes a fragment
+  rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
 }
 
 message Robot {
@@ -183,6 +207,7 @@ message OrganizationInvite {
   string organization_id = 1;
   string email = 2;
   google.protobuf.Timestamp created_on = 3;
+  int64 robot_count = 4;
 }
 
 message CreateOrganizationRequest {
@@ -292,6 +317,8 @@ message Location {
   repeated LocationOrganization organizations = 6;
   // Location creation timestamp.
   google.protobuf.Timestamp created_on = 3;
+  //
+  int32 robot_count = 7;
 }
 
 // SharedSecret is a secret used for LocationAuth and RobotParts.
@@ -417,6 +444,18 @@ message GetRobotRequest {
   string id = 1;
 }
 
+message GetRoverRentalRobotsRequest {}
+
+message RoverRentalRobot {
+  string robot_id = 1;
+  string location_id = 2;
+  string robot_name = 3;
+}
+
+message GetRoverRentalRobotsResponse {
+  repeated RoverRentalRobot robots = 1;
+}
+
 message GetRobotResponse {
   Robot robot = 1;
 }
@@ -442,7 +481,7 @@ message GetRobotPartLogsRequest {
   string id = 1;
   bool errors_only = 2;
   optional string filter = 3;
-  optional string page_token = 5;
+  optional string page_token = 4;
 }
 
 message LogEntry {
@@ -458,7 +497,7 @@ message LogEntry {
 
 message GetRobotPartLogsResponse {
   repeated LogEntry logs = 1;
-  string next_page_token = 5;
+  string next_page_token = 2;
 }
 
 message TailRobotPartLogsRequest {
@@ -511,21 +550,64 @@ message Fragment {
   string organization_owner = 4 [(tagger.v1.tags) = "bson:\"organization_owner\" json:\"owner\""];
   bool public = 5 [(tagger.v1.tags) = "bson:\"public\" json:\"public\""];
   google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
+  string organization_name = 7;
+  bool readonly = 8;
+  // number of robot parts using this fragment
+  int32 robot_part_count = 9;
+  // number of organizations using this fragment
+  int32 organization_count = 10;
+  // whether the organization(s) using this fragment is the same as the fragment org
+  bool only_used_by_owner = 11;
 }
+
+message ListFragmentsRequest {
+  string organization_id = 1;
+  bool show_public = 2;
+}
+
+message ListFragmentsResponse {
+  repeated Fragment fragments = 1;
+}
+
+message GetFragmentRequest {
+  string id = 1;
+}
+
+message GetFragmentResponse {
+  Fragment fragment = 1;
+}
+
+message CreateFragmentRequest {
+  string name = 1;
+  google.protobuf.Struct config = 2;
+}
+
+message CreateFragmentResponse {
+  Fragment fragment = 1;
+}
+
+message UpdateFragmentRequest {
+  string id = 1;
+  string name = 2;
+  google.protobuf.Struct config = 3;
+  optional bool public = 4;
+}
+
+message UpdateFragmentResponse {
+  Fragment fragment = 1;
+}
+
+message DeleteFragmentRequest {
+  string id = 1;
+}
+
+message DeleteFragmentResponse {}
 
 message ListRobotsRequest {
   string location_id = 1;
 }
 
 message ListRobotsResponse {
-  repeated Robot robots = 1;
-}
-
-message FindRobotsRequest {
-  string location_id = 1;
-}
-
-message FindRobotsResponse {
   repeated Robot robots = 1;
 }
 
@@ -560,6 +642,11 @@ message MarkPartAsMainRequest {
 
 message MarkPartAsMainResponse {}
 
+message MarkPartForRestartRequest {
+  string part_id = 1;
+}
+message MarkPartForRestartResponse {}
+
 message CreateRobotPartSecretRequest {
   // Robot Part ID to create the secret in.
   string part_id = 1;
@@ -574,4 +661,5 @@ message DeleteRobotPartSecretRequest {
   string part_id = 1;
   string secret_id = 2;
 }
+
 message DeleteRobotPartSecretResponse {}

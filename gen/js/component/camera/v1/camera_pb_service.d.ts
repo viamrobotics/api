@@ -2,6 +2,7 @@
 // file: component/camera/v1/camera.proto
 
 import * as component_camera_v1_camera_pb from "../../../component/camera/v1/camera_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_httpbody_pb from "../../../google/api/httpbody_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
@@ -41,12 +42,22 @@ type CameraServiceGetProperties = {
   readonly responseType: typeof component_camera_v1_camera_pb.GetPropertiesResponse;
 };
 
+type CameraServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof CameraService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class CameraService {
   static readonly serviceName: string;
   static readonly GetImage: CameraServiceGetImage;
   static readonly RenderFrame: CameraServiceRenderFrame;
   static readonly GetPointCloud: CameraServiceGetPointCloud;
   static readonly GetProperties: CameraServiceGetProperties;
+  static readonly DoCommand: CameraServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -116,6 +127,15 @@ export class CameraServiceClient {
   getProperties(
     requestMessage: component_camera_v1_camera_pb.GetPropertiesRequest,
     callback: (error: ServiceError|null, responseMessage: component_camera_v1_camera_pb.GetPropertiesResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

@@ -54,11 +54,6 @@ export class PackageInfo extends jspb.Message {
   getMetadata(): google_protobuf_struct_pb.Struct | undefined;
   setMetadata(value?: google_protobuf_struct_pb.Struct): void;
 
-  hasCreatedOn(): boolean;
-  clearCreatedOn(): void;
-  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PackageInfo.AsObject;
   static toObject(includeInstance: boolean, msg: PackageInfo): PackageInfo.AsObject;
@@ -77,7 +72,6 @@ export namespace PackageInfo {
     type: PackageTypeMap[keyof PackageTypeMap],
     filesList: Array<FileInfo.AsObject>,
     metadata?: google_protobuf_struct_pb.Struct.AsObject,
-    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -119,6 +113,12 @@ export namespace CreatePackageRequest {
 }
 
 export class CreatePackageResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreatePackageResponse.AsObject;
   static toObject(includeInstance: boolean, msg: CreatePackageResponse): CreatePackageResponse.AsObject;
@@ -131,15 +131,14 @@ export class CreatePackageResponse extends jspb.Message {
 
 export namespace CreatePackageResponse {
   export type AsObject = {
+    id: string,
+    version: string,
   }
 }
 
 export class DeletePackageRequest extends jspb.Message {
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
-
-  getName(): string;
-  setName(value: string): void;
+  getId(): string;
+  setId(value: string): void;
 
   getVersion(): string;
   setVersion(value: string): void;
@@ -156,8 +155,7 @@ export class DeletePackageRequest extends jspb.Message {
 
 export namespace DeletePackageRequest {
   export type AsObject = {
-    organizationId: string,
-    name: string,
+    id: string,
     version: string,
   }
 }
@@ -184,13 +182,19 @@ export class Package extends jspb.Message {
   getInfo(): PackageInfo | undefined;
   setInfo(value?: PackageInfo): void;
 
-  getUri(): string;
-  setUri(value: string): void;
+  getUrl(): string;
+  setUrl(value: string): void;
 
   hasCreatedOn(): boolean;
   clearCreatedOn(): void;
   getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getChecksum(): string;
+  setChecksum(value: string): void;
+
+  getId(): string;
+  setId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Package.AsObject;
@@ -205,8 +209,10 @@ export class Package extends jspb.Message {
 export namespace Package {
   export type AsObject = {
     info?: PackageInfo.AsObject,
-    uri: string,
+    url: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    checksum: string,
+    id: string,
   }
 }
 
@@ -241,6 +247,12 @@ export class InternalPackage extends jspb.Message {
   getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getChecksum(): string;
+  setChecksum(value: string): void;
+
+  getLatest(): boolean;
+  setLatest(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): InternalPackage.AsObject;
   static toObject(includeInstance: boolean, msg: InternalPackage): InternalPackage.AsObject;
@@ -261,18 +273,22 @@ export namespace InternalPackage {
     metadata?: google_protobuf_struct_pb.Struct.AsObject,
     blobPath: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    checksum: string,
+    latest: boolean,
   }
 }
 
 export class GetPackageRequest extends jspb.Message {
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
-
-  getName(): string;
-  setName(value: string): void;
+  getId(): string;
+  setId(value: string): void;
 
   getVersion(): string;
   setVersion(value: string): void;
+
+  hasIncludeUrl(): boolean;
+  clearIncludeUrl(): void;
+  getIncludeUrl(): boolean;
+  setIncludeUrl(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPackageRequest.AsObject;
@@ -286,9 +302,9 @@ export class GetPackageRequest extends jspb.Message {
 
 export namespace GetPackageRequest {
   export type AsObject = {
-    organizationId: string,
-    name: string,
+    id: string,
     version: string,
+    includeUrl: boolean,
   }
 }
 
@@ -333,6 +349,11 @@ export class ListPackagesRequest extends jspb.Message {
   getType(): PackageTypeMap[keyof PackageTypeMap];
   setType(value: PackageTypeMap[keyof PackageTypeMap]): void;
 
+  hasIncludeUrl(): boolean;
+  clearIncludeUrl(): void;
+  getIncludeUrl(): boolean;
+  setIncludeUrl(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListPackagesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListPackagesRequest): ListPackagesRequest.AsObject;
@@ -349,6 +370,7 @@ export namespace ListPackagesRequest {
     name: string,
     version: string,
     type: PackageTypeMap[keyof PackageTypeMap],
+    includeUrl: boolean,
   }
 }
 

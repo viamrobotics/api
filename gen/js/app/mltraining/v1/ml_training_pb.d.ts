@@ -117,6 +117,52 @@ export namespace GetTrainingJobResponse {
   }
 }
 
+export class ListTrainingJobsRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getStatus(): TrainingStatusMap[keyof TrainingStatusMap];
+  setStatus(value: TrainingStatusMap[keyof TrainingStatusMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListTrainingJobsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListTrainingJobsRequest): ListTrainingJobsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListTrainingJobsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListTrainingJobsRequest;
+  static deserializeBinaryFromReader(message: ListTrainingJobsRequest, reader: jspb.BinaryReader): ListTrainingJobsRequest;
+}
+
+export namespace ListTrainingJobsRequest {
+  export type AsObject = {
+    organizationId: string,
+    status: TrainingStatusMap[keyof TrainingStatusMap],
+  }
+}
+
+export class ListTrainingJobsResponse extends jspb.Message {
+  clearJobsList(): void;
+  getJobsList(): Array<TrainingJobMetadata>;
+  setJobsList(value: Array<TrainingJobMetadata>): void;
+  addJobs(value?: TrainingJobMetadata, index?: number): TrainingJobMetadata;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListTrainingJobsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListTrainingJobsResponse): ListTrainingJobsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListTrainingJobsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListTrainingJobsResponse;
+  static deserializeBinaryFromReader(message: ListTrainingJobsResponse, reader: jspb.BinaryReader): ListTrainingJobsResponse;
+}
+
+export namespace ListTrainingJobsResponse {
+  export type AsObject = {
+    jobsList: Array<TrainingJobMetadata.AsObject>,
+  }
+}
+
 export class TrainingJobMetadata extends jspb.Message {
   hasRequest(): boolean;
   clearRequest(): void;
@@ -139,6 +185,12 @@ export class TrainingJobMetadata extends jspb.Message {
   getSyncedModelId(): string;
   setSyncedModelId(value: string): void;
 
+  getUserEmail(): string;
+  setUserEmail(value: string): void;
+
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJobMetadata): TrainingJobMetadata.AsObject;
@@ -156,6 +208,8 @@ export namespace TrainingJobMetadata {
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     lastModified?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     syncedModelId: string,
+    userEmail: string,
+    id: string,
   }
 }
 
@@ -179,6 +233,9 @@ export class TrainingJob extends jspb.Message {
   getModelMetadata(): google_protobuf_struct_pb.Struct | undefined;
   setModelMetadata(value?: google_protobuf_struct_pb.Struct): void;
 
+  getProcessing(): boolean;
+  setProcessing(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJob.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJob): TrainingJob.AsObject;
@@ -196,6 +253,7 @@ export namespace TrainingJob {
     outputPath: string,
     vertexJobId: string,
     modelMetadata?: google_protobuf_struct_pb.Struct.AsObject,
+    processing: boolean,
   }
 }
 
@@ -213,7 +271,6 @@ export interface TrainingStatusMap {
   TRAINING_STATUS_IN_PROGRESS: 2;
   TRAINING_STATUS_COMPLETED: 3;
   TRAINING_STATUS_FAILED: 4;
-  TRAINING_STATUS_SUBMITTING: 5;
 }
 
 export const TrainingStatus: TrainingStatusMap;

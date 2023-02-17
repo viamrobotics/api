@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -28,6 +29,8 @@ type GantryServiceClient interface {
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type gantryServiceClient struct {
@@ -83,6 +86,15 @@ func (c *gantryServiceClient) IsMoving(ctx context.Context, in *IsMovingRequest,
 	return out, nil
 }
 
+func (c *gantryServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.gantry.v1.GantryService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GantryServiceServer is the server API for GantryService service.
 // All implementations must embed UnimplementedGantryServiceServer
 // for forward compatibility
@@ -97,6 +109,8 @@ type GantryServiceServer interface {
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedGantryServiceServer()
 }
 
@@ -118,6 +132,9 @@ func (UnimplementedGantryServiceServer) Stop(context.Context, *StopRequest) (*St
 }
 func (UnimplementedGantryServiceServer) IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsMoving not implemented")
+}
+func (UnimplementedGantryServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedGantryServiceServer) mustEmbedUnimplementedGantryServiceServer() {}
 
@@ -222,6 +239,24 @@ func _GantryService_IsMoving_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GantryService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GantryServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.gantry.v1.GantryService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GantryServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GantryService_ServiceDesc is the grpc.ServiceDesc for GantryService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -248,6 +283,10 @@ var GantryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsMoving",
 			Handler:    _GantryService_IsMoving_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _GantryService_DoCommand_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

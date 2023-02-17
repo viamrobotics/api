@@ -2,6 +2,7 @@
 // file: component/base/v1/base.proto
 
 import * as component_base_v1_base_pb from "../../../component/base/v1/base_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type BaseServiceMoveStraight = {
@@ -58,6 +59,15 @@ type BaseServiceIsMoving = {
   readonly responseType: typeof component_base_v1_base_pb.IsMovingResponse;
 };
 
+type BaseServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof BaseService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class BaseService {
   static readonly serviceName: string;
   static readonly MoveStraight: BaseServiceMoveStraight;
@@ -66,6 +76,7 @@ export class BaseService {
   static readonly SetVelocity: BaseServiceSetVelocity;
   static readonly Stop: BaseServiceStop;
   static readonly IsMoving: BaseServiceIsMoving;
+  static readonly DoCommand: BaseServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -153,6 +164,15 @@ export class BaseServiceClient {
   isMoving(
     requestMessage: component_base_v1_base_pb.IsMovingRequest,
     callback: (error: ServiceError|null, responseMessage: component_base_v1_base_pb.IsMovingResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

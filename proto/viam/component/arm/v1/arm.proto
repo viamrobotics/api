@@ -56,6 +56,13 @@ service ArmService {
       get: "/viam/api/v1/component/arm/{name}/is_moving"
     };
   }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/arm/{name}/do_command"
+    };
+  }
 }
 
 message GetEndPositionRequest {

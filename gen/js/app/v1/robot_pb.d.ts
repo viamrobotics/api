@@ -59,6 +59,11 @@ export class RobotConfig extends jspb.Message {
   getDisablePartialStart(): boolean;
   setDisablePartialStart(value: boolean): void;
 
+  clearPackagesList(): void;
+  getPackagesList(): Array<PackageConfig>;
+  setPackagesList(value: Array<PackageConfig>): void;
+  addPackages(value?: PackageConfig, index?: number): PackageConfig;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -81,6 +86,7 @@ export namespace RobotConfig {
     debug: boolean,
     modulesList: Array<ModuleConfig.AsObject>,
     disablePartialStart: boolean,
+    packagesList: Array<PackageConfig.AsObject>,
   }
 }
 
@@ -1150,6 +1156,34 @@ export namespace ModuleConfig {
   export type AsObject = {
     name: string,
     path: string,
+  }
+}
+
+export class PackageConfig extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getPackage(): string;
+  setPackage(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PackageConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: PackageConfig): PackageConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PackageConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PackageConfig;
+  static deserializeBinaryFromReader(message: PackageConfig, reader: jspb.BinaryReader): PackageConfig;
+}
+
+export namespace PackageConfig {
+  export type AsObject = {
+    name: string,
+    pb_package: string,
+    version: string,
   }
 }
 

@@ -40,6 +40,13 @@ service GripperService {
       get: "/viam/api/v1/component/gripper/{name}/is_moving"
     };
   }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/gripper/{name}/do_command"
+    };
+  }
 }
 
 message OpenRequest {

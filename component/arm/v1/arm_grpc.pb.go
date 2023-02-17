@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -32,6 +33,8 @@ type ArmServiceClient interface {
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type armServiceClient struct {
@@ -96,6 +99,15 @@ func (c *armServiceClient) IsMoving(ctx context.Context, in *IsMovingRequest, op
 	return out, nil
 }
 
+func (c *armServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.arm.v1.ArmService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArmServiceServer is the server API for ArmService service.
 // All implementations must embed UnimplementedArmServiceServer
 // for forward compatibility
@@ -114,6 +126,8 @@ type ArmServiceServer interface {
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedArmServiceServer()
 }
 
@@ -138,6 +152,9 @@ func (UnimplementedArmServiceServer) Stop(context.Context, *StopRequest) (*StopR
 }
 func (UnimplementedArmServiceServer) IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsMoving not implemented")
+}
+func (UnimplementedArmServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedArmServiceServer) mustEmbedUnimplementedArmServiceServer() {}
 
@@ -260,6 +277,24 @@ func _ArmService_IsMoving_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArmService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArmServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.arm.v1.ArmService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArmServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArmService_ServiceDesc is the grpc.ServiceDesc for ArmService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -290,6 +325,10 @@ var ArmService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsMoving",
 			Handler:    _ArmService_IsMoving_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _ArmService_DoCommand_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

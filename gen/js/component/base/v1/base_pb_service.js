@@ -2,6 +2,7 @@
 // file: component/base/v1/base.proto
 
 var component_base_v1_base_pb = require("../../../component/base/v1/base_pb");
+var common_v1_common_pb = require("../../../common/v1/common_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var BaseService = (function () {
@@ -62,6 +63,15 @@ BaseService.IsMoving = {
   responseStream: false,
   requestType: component_base_v1_base_pb.IsMovingRequest,
   responseType: component_base_v1_base_pb.IsMovingResponse
+};
+
+BaseService.DoCommand = {
+  methodName: "DoCommand",
+  service: BaseService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.DoCommandRequest,
+  responseType: common_v1_common_pb.DoCommandResponse
 };
 
 exports.BaseService = BaseService;
@@ -231,6 +241,37 @@ BaseServiceClient.prototype.isMoving = function isMoving(requestMessage, metadat
     callback = arguments[1];
   }
   var client = grpc.unary(BaseService.IsMoving, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BaseServiceClient.prototype.doCommand = function doCommand(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BaseService.DoCommand, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

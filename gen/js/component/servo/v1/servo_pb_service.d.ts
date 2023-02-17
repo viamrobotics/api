@@ -2,6 +2,7 @@
 // file: component/servo/v1/servo.proto
 
 import * as component_servo_v1_servo_pb from "../../../component/servo/v1/servo_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type ServoServiceMove = {
@@ -40,12 +41,22 @@ type ServoServiceIsMoving = {
   readonly responseType: typeof component_servo_v1_servo_pb.IsMovingResponse;
 };
 
+type ServoServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof ServoService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class ServoService {
   static readonly serviceName: string;
   static readonly Move: ServoServiceMove;
   static readonly GetPosition: ServoServiceGetPosition;
   static readonly Stop: ServoServiceStop;
   static readonly IsMoving: ServoServiceIsMoving;
+  static readonly DoCommand: ServoServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -115,6 +126,15 @@ export class ServoServiceClient {
   isMoving(
     requestMessage: component_servo_v1_servo_pb.IsMovingRequest,
     callback: (error: ServiceError|null, responseMessage: component_servo_v1_servo_pb.IsMovingResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

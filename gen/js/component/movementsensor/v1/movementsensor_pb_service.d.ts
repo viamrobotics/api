@@ -2,6 +2,7 @@
 // file: component/movementsensor/v1/movementsensor.proto
 
 import * as component_movementsensor_v1_movementsensor_pb from "../../../component/movementsensor/v1/movementsensor_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type MovementSensorServiceGetLinearVelocity = {
@@ -76,6 +77,15 @@ type MovementSensorServiceGetLinearAcceleration = {
   readonly responseType: typeof component_movementsensor_v1_movementsensor_pb.GetLinearAccelerationResponse;
 };
 
+type MovementSensorServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof MovementSensorService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class MovementSensorService {
   static readonly serviceName: string;
   static readonly GetLinearVelocity: MovementSensorServiceGetLinearVelocity;
@@ -86,6 +96,7 @@ export class MovementSensorService {
   static readonly GetProperties: MovementSensorServiceGetProperties;
   static readonly GetAccuracy: MovementSensorServiceGetAccuracy;
   static readonly GetLinearAcceleration: MovementSensorServiceGetLinearAcceleration;
+  static readonly DoCommand: MovementSensorServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -191,6 +202,15 @@ export class MovementSensorServiceClient {
   getLinearAcceleration(
     requestMessage: component_movementsensor_v1_movementsensor_pb.GetLinearAccelerationRequest,
     callback: (error: ServiceError|null, responseMessage: component_movementsensor_v1_movementsensor_pb.GetLinearAccelerationResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

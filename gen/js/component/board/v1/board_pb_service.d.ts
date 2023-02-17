@@ -2,6 +2,7 @@
 // file: component/board/v1/board.proto
 
 import * as component_board_v1_board_pb from "../../../component/board/v1/board_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type BoardServiceStatus = {
@@ -67,6 +68,15 @@ type BoardServiceSetPWMFrequency = {
   readonly responseType: typeof component_board_v1_board_pb.SetPWMFrequencyResponse;
 };
 
+type BoardServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof BoardService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 type BoardServiceReadAnalogReader = {
   readonly methodName: string;
   readonly service: typeof BoardService;
@@ -94,6 +104,7 @@ export class BoardService {
   static readonly SetPWM: BoardServiceSetPWM;
   static readonly PWMFrequency: BoardServicePWMFrequency;
   static readonly SetPWMFrequency: BoardServiceSetPWMFrequency;
+  static readonly DoCommand: BoardServiceDoCommand;
   static readonly ReadAnalogReader: BoardServiceReadAnalogReader;
   static readonly GetDigitalInterruptValue: BoardServiceGetDigitalInterruptValue;
 }
@@ -192,6 +203,15 @@ export class BoardServiceClient {
   setPWMFrequency(
     requestMessage: component_board_v1_board_pb.SetPWMFrequencyRequest,
     callback: (error: ServiceError|null, responseMessage: component_board_v1_board_pb.SetPWMFrequencyResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
   readAnalogReader(
     requestMessage: component_board_v1_board_pb.ReadAnalogReaderRequest,
