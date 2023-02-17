@@ -18,6 +18,5 @@ lint:
       - component/camera/v1/camera.proto
       - component/audioinput/v1/audioinput.proto
     RPC_REQUEST_RESPONSE_UNIQUE:
-      - component/camera/v1/camera.proto
-      - component/audioinput/v1/audioinput.proto
+      - component
   allow_comment_ignores: true

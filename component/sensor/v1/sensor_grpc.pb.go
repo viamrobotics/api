@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,6 +21,8 @@ const _ = grpc.SupportPackageIsVersion7
 type SensorServiceClient interface {
 	// GetReadings returns the readings of a sensor of the underlying robot.
 	GetReadings(ctx context.Context, in *GetReadingsRequest, opts ...grpc.CallOption) (*GetReadingsResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type sensorServiceClient struct {
@@ -39,12 +42,23 @@ func (c *sensorServiceClient) GetReadings(ctx context.Context, in *GetReadingsRe
 	return out, nil
 }
 
+func (c *sensorServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.sensor.v1.SensorService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SensorServiceServer is the server API for SensorService service.
 // All implementations must embed UnimplementedSensorServiceServer
 // for forward compatibility
 type SensorServiceServer interface {
 	// GetReadings returns the readings of a sensor of the underlying robot.
 	GetReadings(context.Context, *GetReadingsRequest) (*GetReadingsResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedSensorServiceServer()
 }
 
@@ -54,6 +68,9 @@ type UnimplementedSensorServiceServer struct {
 
 func (UnimplementedSensorServiceServer) GetReadings(context.Context, *GetReadingsRequest) (*GetReadingsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetReadings not implemented")
+}
+func (UnimplementedSensorServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedSensorServiceServer) mustEmbedUnimplementedSensorServiceServer() {}
 
@@ -86,6 +103,24 @@ func _SensorService_GetReadings_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SensorService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SensorServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.sensor.v1.SensorService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SensorServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SensorService_ServiceDesc is the grpc.ServiceDesc for SensorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -96,6 +131,10 @@ var SensorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetReadings",
 			Handler:    _SensorService_GetReadings_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _SensorService_DoCommand_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

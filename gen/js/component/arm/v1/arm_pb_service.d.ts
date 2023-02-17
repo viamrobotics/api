@@ -2,6 +2,7 @@
 // file: component/arm/v1/arm.proto
 
 import * as component_arm_v1_arm_pb from "../../../component/arm/v1/arm_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type ArmServiceGetEndPosition = {
@@ -58,6 +59,15 @@ type ArmServiceIsMoving = {
   readonly responseType: typeof component_arm_v1_arm_pb.IsMovingResponse;
 };
 
+type ArmServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof ArmService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class ArmService {
   static readonly serviceName: string;
   static readonly GetEndPosition: ArmServiceGetEndPosition;
@@ -66,6 +76,7 @@ export class ArmService {
   static readonly MoveToJointPositions: ArmServiceMoveToJointPositions;
   static readonly Stop: ArmServiceStop;
   static readonly IsMoving: ArmServiceIsMoving;
+  static readonly DoCommand: ArmServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -153,6 +164,15 @@ export class ArmServiceClient {
   isMoving(
     requestMessage: component_arm_v1_arm_pb.IsMovingRequest,
     callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.IsMovingResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

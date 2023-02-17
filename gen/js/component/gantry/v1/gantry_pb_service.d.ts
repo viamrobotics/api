@@ -2,6 +2,7 @@
 // file: component/gantry/v1/gantry.proto
 
 import * as component_gantry_v1_gantry_pb from "../../../component/gantry/v1/gantry_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type GantryServiceGetPosition = {
@@ -49,6 +50,15 @@ type GantryServiceIsMoving = {
   readonly responseType: typeof component_gantry_v1_gantry_pb.IsMovingResponse;
 };
 
+type GantryServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof GantryService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class GantryService {
   static readonly serviceName: string;
   static readonly GetPosition: GantryServiceGetPosition;
@@ -56,6 +66,7 @@ export class GantryService {
   static readonly GetLengths: GantryServiceGetLengths;
   static readonly Stop: GantryServiceStop;
   static readonly IsMoving: GantryServiceIsMoving;
+  static readonly DoCommand: GantryServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -134,6 +145,15 @@ export class GantryServiceClient {
   isMoving(
     requestMessage: component_gantry_v1_gantry_pb.IsMovingRequest,
     callback: (error: ServiceError|null, responseMessage: component_gantry_v1_gantry_pb.IsMovingResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

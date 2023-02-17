@@ -632,5 +632,66 @@ proto.viam.component.motor.v1.MotorServicePromiseClient.prototype.isMoving =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.common.v1.DoCommandRequest,
+ *   !proto.viam.common.v1.DoCommandResponse>}
+ */
+const methodDescriptor_MotorService_DoCommand = new grpc.web.MethodDescriptor(
+  '/viam.component.motor.v1.MotorService/DoCommand',
+  grpc.web.MethodType.UNARY,
+  common_v1_common_pb.DoCommandRequest,
+  common_v1_common_pb.DoCommandResponse,
+  /**
+   * @param {!proto.viam.common.v1.DoCommandRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  common_v1_common_pb.DoCommandResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.common.v1.DoCommandRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.common.v1.DoCommandResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.common.v1.DoCommandResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.motor.v1.MotorServiceClient.prototype.doCommand =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.motor.v1.MotorService/DoCommand',
+      request,
+      metadata || {},
+      methodDescriptor_MotorService_DoCommand,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.common.v1.DoCommandRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.common.v1.DoCommandResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.motor.v1.MotorServicePromiseClient.prototype.doCommand =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.motor.v1.MotorService/DoCommand',
+      request,
+      metadata || {},
+      methodDescriptor_MotorService_DoCommand);
+};
+
+
 module.exports = proto.viam.component.motor.v1;
 

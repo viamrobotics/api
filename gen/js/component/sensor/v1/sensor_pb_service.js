@@ -2,6 +2,7 @@
 // file: component/sensor/v1/sensor.proto
 
 var component_sensor_v1_sensor_pb = require("../../../component/sensor/v1/sensor_pb");
+var common_v1_common_pb = require("../../../common/v1/common_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var SensorService = (function () {
@@ -19,6 +20,15 @@ SensorService.GetReadings = {
   responseType: component_sensor_v1_sensor_pb.GetReadingsResponse
 };
 
+SensorService.DoCommand = {
+  methodName: "DoCommand",
+  service: SensorService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.DoCommandRequest,
+  responseType: common_v1_common_pb.DoCommandResponse
+};
+
 exports.SensorService = SensorService;
 
 function SensorServiceClient(serviceHost, options) {
@@ -31,6 +41,37 @@ SensorServiceClient.prototype.getReadings = function getReadings(requestMessage,
     callback = arguments[1];
   }
   var client = grpc.unary(SensorService.GetReadings, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+SensorServiceClient.prototype.doCommand = function doCommand(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(SensorService.DoCommand, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

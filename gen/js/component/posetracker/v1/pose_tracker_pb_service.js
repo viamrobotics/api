@@ -2,6 +2,7 @@
 // file: component/posetracker/v1/pose_tracker.proto
 
 var component_posetracker_v1_pose_tracker_pb = require("../../../component/posetracker/v1/pose_tracker_pb");
+var common_v1_common_pb = require("../../../common/v1/common_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var PoseTrackerService = (function () {
@@ -19,6 +20,15 @@ PoseTrackerService.GetPoses = {
   responseType: component_posetracker_v1_pose_tracker_pb.GetPosesResponse
 };
 
+PoseTrackerService.DoCommand = {
+  methodName: "DoCommand",
+  service: PoseTrackerService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.DoCommandRequest,
+  responseType: common_v1_common_pb.DoCommandResponse
+};
+
 exports.PoseTrackerService = PoseTrackerService;
 
 function PoseTrackerServiceClient(serviceHost, options) {
@@ -31,6 +41,37 @@ PoseTrackerServiceClient.prototype.getPoses = function getPoses(requestMessage, 
     callback = arguments[1];
   }
   var client = grpc.unary(PoseTrackerService.GetPoses, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+PoseTrackerServiceClient.prototype.doCommand = function doCommand(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(PoseTrackerService.DoCommand, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

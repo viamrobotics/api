@@ -39,10 +39,18 @@ service GantryService {
       post: "/viam/api/v1/component/gantry/{name}/stop"
     };
   }
+
   // IsMoving reports if a component is in motion
   rpc IsMoving(IsMovingRequest) returns (IsMovingResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/gantry/{name}/is_moving"
+    };
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/gantry/{name}/do_command"
     };
   }
 }

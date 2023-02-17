@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.component.camera.v1;
 
+import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
 
@@ -38,6 +39,13 @@ service CameraService {
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/camera/{name}/properties"
+    };
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/camera/{name}/do_command"
     };
   }
 }
