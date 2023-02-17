@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -35,6 +36,8 @@ type BaseServiceClient interface {
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type baseServiceClient struct {
@@ -99,6 +102,15 @@ func (c *baseServiceClient) IsMoving(ctx context.Context, in *IsMovingRequest, o
 	return out, nil
 }
 
+func (c *baseServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.base.v1.BaseService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BaseServiceServer is the server API for BaseService service.
 // All implementations must embed UnimplementedBaseServiceServer
 // for forward compatibility
@@ -120,6 +132,8 @@ type BaseServiceServer interface {
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedBaseServiceServer()
 }
 
@@ -144,6 +158,9 @@ func (UnimplementedBaseServiceServer) Stop(context.Context, *StopRequest) (*Stop
 }
 func (UnimplementedBaseServiceServer) IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsMoving not implemented")
+}
+func (UnimplementedBaseServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedBaseServiceServer) mustEmbedUnimplementedBaseServiceServer() {}
 
@@ -266,6 +283,24 @@ func _BaseService_IsMoving_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BaseService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BaseServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.base.v1.BaseService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BaseServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BaseService_ServiceDesc is the grpc.ServiceDesc for BaseService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -296,6 +331,10 @@ var BaseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsMoving",
 			Handler:    _BaseService_IsMoving_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _BaseService_DoCommand_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

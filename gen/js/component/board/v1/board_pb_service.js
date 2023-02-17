@@ -2,6 +2,7 @@
 // file: component/board/v1/board.proto
 
 var component_board_v1_board_pb = require("../../../component/board/v1/board_pb");
+var common_v1_common_pb = require("../../../common/v1/common_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var BoardService = (function () {
@@ -71,6 +72,15 @@ BoardService.SetPWMFrequency = {
   responseStream: false,
   requestType: component_board_v1_board_pb.SetPWMFrequencyRequest,
   responseType: component_board_v1_board_pb.SetPWMFrequencyResponse
+};
+
+BoardService.DoCommand = {
+  methodName: "DoCommand",
+  service: BoardService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.DoCommandRequest,
+  responseType: common_v1_common_pb.DoCommandResponse
 };
 
 BoardService.ReadAnalogReader = {
@@ -289,6 +299,37 @@ BoardServiceClient.prototype.setPWMFrequency = function setPWMFrequency(requestM
     callback = arguments[1];
   }
   var client = grpc.unary(BoardService.SetPWMFrequency, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BoardServiceClient.prototype.doCommand = function doCommand(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BoardService.DoCommand, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

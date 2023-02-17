@@ -2,6 +2,7 @@
 // file: component/audioinput/v1/audioinput.proto
 
 import * as jspb from "google-protobuf";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_api_httpbody_pb from "../../../google/api/httpbody_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";

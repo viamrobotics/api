@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.component.audioinput.v1;
 
+import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
 import "google/protobuf/duration.proto";
@@ -27,6 +28,13 @@ service AudioInputService {
   rpc Record(RecordRequest) returns (google.api.HttpBody) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/audioinput/{name}/record"
+    };
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/audioinput/{name}/do_command"
     };
   }
 }

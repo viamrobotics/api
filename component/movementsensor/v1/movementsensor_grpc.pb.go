@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -26,6 +27,7 @@ type MovementSensorServiceClient interface {
 	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 	GetAccuracy(ctx context.Context, in *GetAccuracyRequest, opts ...grpc.CallOption) (*GetAccuracyResponse, error)
 	GetLinearAcceleration(ctx context.Context, in *GetLinearAccelerationRequest, opts ...grpc.CallOption) (*GetLinearAccelerationResponse, error)
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type movementSensorServiceClient struct {
@@ -108,6 +110,15 @@ func (c *movementSensorServiceClient) GetLinearAcceleration(ctx context.Context,
 	return out, nil
 }
 
+func (c *movementSensorServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.movementsensor.v1.MovementSensorService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MovementSensorServiceServer is the server API for MovementSensorService service.
 // All implementations must embed UnimplementedMovementSensorServiceServer
 // for forward compatibility
@@ -120,6 +131,7 @@ type MovementSensorServiceServer interface {
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	GetAccuracy(context.Context, *GetAccuracyRequest) (*GetAccuracyResponse, error)
 	GetLinearAcceleration(context.Context, *GetLinearAccelerationRequest) (*GetLinearAccelerationResponse, error)
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedMovementSensorServiceServer()
 }
 
@@ -150,6 +162,9 @@ func (UnimplementedMovementSensorServiceServer) GetAccuracy(context.Context, *Ge
 }
 func (UnimplementedMovementSensorServiceServer) GetLinearAcceleration(context.Context, *GetLinearAccelerationRequest) (*GetLinearAccelerationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLinearAcceleration not implemented")
+}
+func (UnimplementedMovementSensorServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedMovementSensorServiceServer) mustEmbedUnimplementedMovementSensorServiceServer() {}
 
@@ -308,6 +323,24 @@ func _MovementSensorService_GetLinearAcceleration_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MovementSensorService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MovementSensorServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.movementsensor.v1.MovementSensorService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MovementSensorServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MovementSensorService_ServiceDesc is the grpc.ServiceDesc for MovementSensorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -346,6 +379,10 @@ var MovementSensorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetLinearAcceleration",
 			Handler:    _MovementSensorService_GetLinearAcceleration_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _MovementSensorService_DoCommand_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

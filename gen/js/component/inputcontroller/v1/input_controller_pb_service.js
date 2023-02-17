@@ -2,6 +2,7 @@
 // file: component/inputcontroller/v1/input_controller.proto
 
 var component_inputcontroller_v1_input_controller_pb = require("../../../component/inputcontroller/v1/input_controller_pb");
+var common_v1_common_pb = require("../../../common/v1/common_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var InputControllerService = (function () {
@@ -44,6 +45,15 @@ InputControllerService.TriggerEvent = {
   responseStream: false,
   requestType: component_inputcontroller_v1_input_controller_pb.TriggerEventRequest,
   responseType: component_inputcontroller_v1_input_controller_pb.TriggerEventResponse
+};
+
+InputControllerService.DoCommand = {
+  methodName: "DoCommand",
+  service: InputControllerService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.DoCommandRequest,
+  responseType: common_v1_common_pb.DoCommandResponse
 };
 
 exports.InputControllerService = InputControllerService;
@@ -159,6 +169,37 @@ InputControllerServiceClient.prototype.triggerEvent = function triggerEvent(requ
     callback = arguments[1];
   }
   var client = grpc.unary(InputControllerService.TriggerEvent, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+InputControllerServiceClient.prototype.doCommand = function doCommand(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(InputControllerService.DoCommand, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

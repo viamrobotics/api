@@ -2,6 +2,7 @@
 // file: component/inputcontroller/v1/input_controller.proto
 
 import * as component_inputcontroller_v1_input_controller_pb from "../../../component/inputcontroller/v1/input_controller_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type InputControllerServiceGetControls = {
@@ -40,12 +41,22 @@ type InputControllerServiceTriggerEvent = {
   readonly responseType: typeof component_inputcontroller_v1_input_controller_pb.TriggerEventResponse;
 };
 
+type InputControllerServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof InputControllerService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class InputControllerService {
   static readonly serviceName: string;
   static readonly GetControls: InputControllerServiceGetControls;
   static readonly GetEvents: InputControllerServiceGetEvents;
   static readonly StreamEvents: InputControllerServiceStreamEvents;
   static readonly TriggerEvent: InputControllerServiceTriggerEvent;
+  static readonly DoCommand: InputControllerServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -107,6 +118,15 @@ export class InputControllerServiceClient {
   triggerEvent(
     requestMessage: component_inputcontroller_v1_input_controller_pb.TriggerEventRequest,
     callback: (error: ServiceError|null, responseMessage: component_inputcontroller_v1_input_controller_pb.TriggerEventResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

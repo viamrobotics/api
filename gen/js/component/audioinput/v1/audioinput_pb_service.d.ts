@@ -2,6 +2,7 @@
 // file: component/audioinput/v1/audioinput.proto
 
 import * as component_audioinput_v1_audioinput_pb from "../../../component/audioinput/v1/audioinput_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_httpbody_pb from "../../../google/api/httpbody_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
@@ -32,11 +33,21 @@ type AudioInputServiceRecord = {
   readonly responseType: typeof google_api_httpbody_pb.HttpBody;
 };
 
+type AudioInputServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof AudioInputService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class AudioInputService {
   static readonly serviceName: string;
   static readonly Chunks: AudioInputServiceChunks;
   static readonly Properties: AudioInputServiceProperties;
   static readonly Record: AudioInputServiceRecord;
+  static readonly DoCommand: AudioInputServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -89,6 +100,15 @@ export class AudioInputServiceClient {
   record(
     requestMessage: component_audioinput_v1_audioinput_pb.RecordRequest,
     callback: (error: ServiceError|null, responseMessage: google_api_httpbody_pb.HttpBody|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

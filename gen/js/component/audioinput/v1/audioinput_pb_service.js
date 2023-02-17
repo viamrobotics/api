@@ -2,6 +2,7 @@
 // file: component/audioinput/v1/audioinput.proto
 
 var component_audioinput_v1_audioinput_pb = require("../../../component/audioinput/v1/audioinput_pb");
+var common_v1_common_pb = require("../../../common/v1/common_pb");
 var google_api_httpbody_pb = require("../../../google/api/httpbody_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
@@ -36,6 +37,15 @@ AudioInputService.Record = {
   responseStream: false,
   requestType: component_audioinput_v1_audioinput_pb.RecordRequest,
   responseType: google_api_httpbody_pb.HttpBody
+};
+
+AudioInputService.DoCommand = {
+  methodName: "DoCommand",
+  service: AudioInputService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.DoCommandRequest,
+  responseType: common_v1_common_pb.DoCommandResponse
 };
 
 exports.AudioInputService = AudioInputService;
@@ -120,6 +130,37 @@ AudioInputServiceClient.prototype.record = function record(requestMessage, metad
     callback = arguments[1];
   }
   var client = grpc.unary(AudioInputService.Record, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AudioInputServiceClient.prototype.doCommand = function doCommand(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AudioInputService.DoCommand, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
