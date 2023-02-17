@@ -2,6 +2,7 @@
 // file: service/sensors/v1/sensors.proto
 
 import * as service_sensors_v1_sensors_pb from "../../../service/sensors/v1/sensors_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type SensorsServiceGetSensors = {
@@ -22,10 +23,20 @@ type SensorsServiceGetReadings = {
   readonly responseType: typeof service_sensors_v1_sensors_pb.GetReadingsResponse;
 };
 
+type SensorsServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof SensorsService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class SensorsService {
   static readonly serviceName: string;
   static readonly GetSensors: SensorsServiceGetSensors;
   static readonly GetReadings: SensorsServiceGetReadings;
+  static readonly DoCommand: SensorsServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -77,6 +88,15 @@ export class SensorsServiceClient {
   getReadings(
     requestMessage: service_sensors_v1_sensors_pb.GetReadingsRequest,
     callback: (error: ServiceError|null, responseMessage: service_sensors_v1_sensors_pb.GetReadingsResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

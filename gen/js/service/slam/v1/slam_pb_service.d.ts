@@ -2,6 +2,7 @@
 // file: service/slam/v1/slam.proto
 
 import * as service_slam_v1_slam_pb from "../../../service/slam/v1/slam_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type SLAMServiceGetPosition = {
@@ -67,6 +68,15 @@ type SLAMServiceGetInternalStateStream = {
   readonly responseType: typeof service_slam_v1_slam_pb.GetInternalStateStreamResponse;
 };
 
+type SLAMServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof SLAMService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class SLAMService {
   static readonly serviceName: string;
   static readonly GetPosition: SLAMServiceGetPosition;
@@ -76,6 +86,7 @@ export class SLAMService {
   static readonly GetInternalState: SLAMServiceGetInternalState;
   static readonly GetPointCloudMapStream: SLAMServiceGetPointCloudMapStream;
   static readonly GetInternalStateStream: SLAMServiceGetInternalStateStream;
+  static readonly DoCommand: SLAMServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -157,5 +168,14 @@ export class SLAMServiceClient {
   ): UnaryResponse;
   getPointCloudMapStream(requestMessage: service_slam_v1_slam_pb.GetPointCloudMapStreamRequest, metadata?: grpc.Metadata): ResponseStream<service_slam_v1_slam_pb.GetPointCloudMapStreamResponse>;
   getInternalStateStream(requestMessage: service_slam_v1_slam_pb.GetInternalStateStreamRequest, metadata?: grpc.Metadata): ResponseStream<service_slam_v1_slam_pb.GetInternalStateStreamResponse>;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
 }
 

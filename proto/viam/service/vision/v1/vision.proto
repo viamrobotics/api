@@ -122,6 +122,13 @@ service VisionService {
       post: "/viam/api/v1/service/vision/{name}/object_point_clouds"
     };
   }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/sensors/{name}/do_command"
+    };
+  }
 }
 
 message GetModelParameterSchemaRequest {

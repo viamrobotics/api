@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -24,6 +25,8 @@ type NavigationServiceClient interface {
 	GetWaypoints(ctx context.Context, in *GetWaypointsRequest, opts ...grpc.CallOption) (*GetWaypointsResponse, error)
 	AddWaypoint(ctx context.Context, in *AddWaypointRequest, opts ...grpc.CallOption) (*AddWaypointResponse, error)
 	RemoveWaypoint(ctx context.Context, in *RemoveWaypointRequest, opts ...grpc.CallOption) (*RemoveWaypointResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type navigationServiceClient struct {
@@ -88,6 +91,15 @@ func (c *navigationServiceClient) RemoveWaypoint(ctx context.Context, in *Remove
 	return out, nil
 }
 
+func (c *navigationServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NavigationServiceServer is the server API for NavigationService service.
 // All implementations must embed UnimplementedNavigationServiceServer
 // for forward compatibility
@@ -98,6 +110,8 @@ type NavigationServiceServer interface {
 	GetWaypoints(context.Context, *GetWaypointsRequest) (*GetWaypointsResponse, error)
 	AddWaypoint(context.Context, *AddWaypointRequest) (*AddWaypointResponse, error)
 	RemoveWaypoint(context.Context, *RemoveWaypointRequest) (*RemoveWaypointResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedNavigationServiceServer()
 }
 
@@ -122,6 +136,9 @@ func (UnimplementedNavigationServiceServer) AddWaypoint(context.Context, *AddWay
 }
 func (UnimplementedNavigationServiceServer) RemoveWaypoint(context.Context, *RemoveWaypointRequest) (*RemoveWaypointResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveWaypoint not implemented")
+}
+func (UnimplementedNavigationServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedNavigationServiceServer) mustEmbedUnimplementedNavigationServiceServer() {}
 
@@ -244,6 +261,24 @@ func _NavigationService_RemoveWaypoint_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NavigationService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NavigationService_ServiceDesc is the grpc.ServiceDesc for NavigationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -274,6 +309,10 @@ var NavigationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveWaypoint",
 			Handler:    _NavigationService_RemoveWaypoint_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _NavigationService_DoCommand_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
