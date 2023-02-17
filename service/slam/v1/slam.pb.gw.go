@@ -15,7 +15,7 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
-	"go.viam.com/api/common/v1"
+	v1_0 "go.viam.com/api/common/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -401,7 +401,7 @@ var (
 )
 
 func request_SLAMService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client SLAMServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.DoCommandRequest
+	var protoReq v1_0.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -434,7 +434,7 @@ func request_SLAMService_DoCommand_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func local_request_SLAMService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, server SLAMServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.DoCommandRequest
+	var protoReq v1_0.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -613,7 +613,7 @@ func RegisterSLAMServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.service.slam.v1.SLAMService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/service/sensors/{name}/do_command"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.service.slam.v1.SLAMService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/service/slam/{name}/do_command"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -823,7 +823,7 @@ func RegisterSLAMServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.service.slam.v1.SLAMService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/service/sensors/{name}/do_command"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.service.slam.v1.SLAMService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/service/slam/{name}/do_command"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -857,7 +857,7 @@ var (
 
 	pattern_SLAMService_GetInternalStateStream_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"viam", "api", "v1", "service", "slam", "name", "internal_state_stream"}, ""))
 
-	pattern_SLAMService_DoCommand_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"viam", "api", "v1", "service", "sensors", "name", "do_command"}, ""))
+	pattern_SLAMService_DoCommand_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"viam", "api", "v1", "service", "slam", "name", "do_command"}, ""))
 )
 
 var (
