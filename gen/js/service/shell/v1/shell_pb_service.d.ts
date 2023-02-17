@@ -2,6 +2,7 @@
 // file: service/shell/v1/shell.proto
 
 import * as service_shell_v1_shell_pb from "../../../service/shell/v1/shell_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type ShellServiceShell = {
@@ -13,9 +14,19 @@ type ShellServiceShell = {
   readonly responseType: typeof service_shell_v1_shell_pb.ShellResponse;
 };
 
+type ShellServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof ShellService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class ShellService {
   static readonly serviceName: string;
   static readonly Shell: ShellServiceShell;
+  static readonly DoCommand: ShellServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -51,5 +62,14 @@ export class ShellServiceClient {
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
   shell(metadata?: grpc.Metadata): BidirectionalStream<service_shell_v1_shell_pb.ShellRequest, service_shell_v1_shell_pb.ShellResponse>;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
 }
 
