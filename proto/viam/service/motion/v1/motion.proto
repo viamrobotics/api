@@ -35,6 +35,7 @@ message MoveRequest {
   common.v1.PoseInFrame destination = 2;
   common.v1.ResourceName component_name = 3;
   optional common.v1.WorldState world_state = 4;
+  optional Constraints constraints = 5;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -73,4 +74,34 @@ message GetPoseRequest {
 
 message GetPoseResponse {
   common.v1.PoseInFrame pose = 1;
+}
+
+// Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters
+message Constraints {
+  // Typed message for a specific constraint
+  repeated LinearConstraint linear_constraint = 1;
+  repeated OrientationConstraint orientation_constraint = 2;
+  repeated CollisionSpecification collision_specification = 3;
+  // Arc constraint, Time constraint, and others will be added here when they are supported
+}
+
+// LinearConstraint specifies that the component being moved should move linearly relative to its goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move
+message LinearConstraint {
+  optional float line_tolerance_mm = 1; // Max linear deviation from straight-line between start and goal, in mm.
+  optional float orientation_tolerance_degs = 2; // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
+}
+
+// OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative to the goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move
+message OrientationConstraint {
+  optional float orientation_tolerance_degs = 1; // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
+}
+
+// CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot
+message CollisionSpecification {
+  message AllowedFrameCollisions {
+    string frame1 = 1;
+    string frame2 = 2;
+  }
+  // Pairs of frame which should be allowed to collide with one another
+  repeated AllowedFrameCollisions allows = 1;
 }
