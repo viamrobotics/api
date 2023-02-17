@@ -15,6 +15,10 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
+var common_v1_common_pb = require('../../../common/v1/common_pb.js');
+goog.object.extend(proto, common_v1_common_pb);
+var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
+goog.object.extend(proto, google_api_annotations_pb);
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
 goog.object.extend(proto, google_protobuf_struct_pb);
 goog.exportSymbol('proto.viam.service.shell.v1.ShellRequest', null, global);

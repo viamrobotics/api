@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,6 +22,8 @@ type MotionServiceClient interface {
 	Move(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveResponse, error)
 	MoveSingleComponent(ctx context.Context, in *MoveSingleComponentRequest, opts ...grpc.CallOption) (*MoveSingleComponentResponse, error)
 	GetPose(ctx context.Context, in *GetPoseRequest, opts ...grpc.CallOption) (*GetPoseResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type motionServiceClient struct {
@@ -58,6 +61,15 @@ func (c *motionServiceClient) GetPose(ctx context.Context, in *GetPoseRequest, o
 	return out, nil
 }
 
+func (c *motionServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MotionServiceServer is the server API for MotionService service.
 // All implementations must embed UnimplementedMotionServiceServer
 // for forward compatibility
@@ -65,6 +77,8 @@ type MotionServiceServer interface {
 	Move(context.Context, *MoveRequest) (*MoveResponse, error)
 	MoveSingleComponent(context.Context, *MoveSingleComponentRequest) (*MoveSingleComponentResponse, error)
 	GetPose(context.Context, *GetPoseRequest) (*GetPoseResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedMotionServiceServer()
 }
 
@@ -80,6 +94,9 @@ func (UnimplementedMotionServiceServer) MoveSingleComponent(context.Context, *Mo
 }
 func (UnimplementedMotionServiceServer) GetPose(context.Context, *GetPoseRequest) (*GetPoseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPose not implemented")
+}
+func (UnimplementedMotionServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedMotionServiceServer) mustEmbedUnimplementedMotionServiceServer() {}
 
@@ -148,6 +165,24 @@ func _MotionService_GetPose_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MotionService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MotionServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.motion.v1.MotionService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MotionServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MotionService_ServiceDesc is the grpc.ServiceDesc for MotionService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -166,6 +201,10 @@ var MotionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPose",
 			Handler:    _MotionService_GetPose_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _MotionService_DoCommand_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

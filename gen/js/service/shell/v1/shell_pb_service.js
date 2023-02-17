@@ -2,6 +2,7 @@
 // file: service/shell/v1/shell.proto
 
 var service_shell_v1_shell_pb = require("../../../service/shell/v1/shell_pb");
+var common_v1_common_pb = require("../../../common/v1/common_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var ShellService = (function () {
@@ -17,6 +18,15 @@ ShellService.Shell = {
   responseStream: true,
   requestType: service_shell_v1_shell_pb.ShellRequest,
   responseType: service_shell_v1_shell_pb.ShellResponse
+};
+
+ShellService.DoCommand = {
+  methodName: "DoCommand",
+  service: ShellService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.DoCommandRequest,
+  responseType: common_v1_common_pb.DoCommandResponse
 };
 
 exports.ShellService = ShellService;
@@ -66,6 +76,37 @@ ShellServiceClient.prototype.shell = function shell(metadata) {
     },
     cancel: function () {
       listeners = null;
+      client.close();
+    }
+  };
+};
+
+ShellServiceClient.prototype.doCommand = function doCommand(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ShellService.DoCommand, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
       client.close();
     }
   };

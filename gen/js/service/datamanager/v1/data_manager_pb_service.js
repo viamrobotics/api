@@ -2,6 +2,7 @@
 // file: service/datamanager/v1/data_manager.proto
 
 var service_datamanager_v1_data_manager_pb = require("../../../service/datamanager/v1/data_manager_pb");
+var common_v1_common_pb = require("../../../common/v1/common_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var DataManagerService = (function () {
@@ -19,6 +20,15 @@ DataManagerService.Sync = {
   responseType: service_datamanager_v1_data_manager_pb.SyncResponse
 };
 
+DataManagerService.DoCommand = {
+  methodName: "DoCommand",
+  service: DataManagerService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.DoCommandRequest,
+  responseType: common_v1_common_pb.DoCommandResponse
+};
+
 exports.DataManagerService = DataManagerService;
 
 function DataManagerServiceClient(serviceHost, options) {
@@ -31,6 +41,37 @@ DataManagerServiceClient.prototype.sync = function sync(requestMessage, metadata
     callback = arguments[1];
   }
   var client = grpc.unary(DataManagerService.Sync, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataManagerServiceClient.prototype.doCommand = function doCommand(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataManagerService.DoCommand, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
