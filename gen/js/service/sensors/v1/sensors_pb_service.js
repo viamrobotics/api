@@ -2,6 +2,7 @@
 // file: service/sensors/v1/sensors.proto
 
 var service_sensors_v1_sensors_pb = require("../../../service/sensors/v1/sensors_pb");
+var common_v1_common_pb = require("../../../common/v1/common_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var SensorsService = (function () {
@@ -26,6 +27,15 @@ SensorsService.GetReadings = {
   responseStream: false,
   requestType: service_sensors_v1_sensors_pb.GetReadingsRequest,
   responseType: service_sensors_v1_sensors_pb.GetReadingsResponse
+};
+
+SensorsService.DoCommand = {
+  methodName: "DoCommand",
+  service: SensorsService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.DoCommandRequest,
+  responseType: common_v1_common_pb.DoCommandResponse
 };
 
 exports.SensorsService = SensorsService;
@@ -71,6 +81,37 @@ SensorsServiceClient.prototype.getReadings = function getReadings(requestMessage
     callback = arguments[1];
   }
   var client = grpc.unary(SensorsService.GetReadings, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+SensorsServiceClient.prototype.doCommand = function doCommand(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(SensorsService.DoCommand, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

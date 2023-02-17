@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,6 +21,8 @@ const _ = grpc.SupportPackageIsVersion7
 type DataManagerServiceClient interface {
 	// Sync performs a sync of the non-synced files for the specified service name,
 	Sync(ctx context.Context, in *SyncRequest, opts ...grpc.CallOption) (*SyncResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type dataManagerServiceClient struct {
@@ -39,12 +42,23 @@ func (c *dataManagerServiceClient) Sync(ctx context.Context, in *SyncRequest, op
 	return out, nil
 }
 
+func (c *dataManagerServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.datamanager.v1.DataManagerService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataManagerServiceServer is the server API for DataManagerService service.
 // All implementations must embed UnimplementedDataManagerServiceServer
 // for forward compatibility
 type DataManagerServiceServer interface {
 	// Sync performs a sync of the non-synced files for the specified service name,
 	Sync(context.Context, *SyncRequest) (*SyncResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedDataManagerServiceServer()
 }
 
@@ -54,6 +68,9 @@ type UnimplementedDataManagerServiceServer struct {
 
 func (UnimplementedDataManagerServiceServer) Sync(context.Context, *SyncRequest) (*SyncResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Sync not implemented")
+}
+func (UnimplementedDataManagerServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedDataManagerServiceServer) mustEmbedUnimplementedDataManagerServiceServer() {}
 
@@ -86,6 +103,24 @@ func _DataManagerService_Sync_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataManagerService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataManagerServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.datamanager.v1.DataManagerService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataManagerServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataManagerService_ServiceDesc is the grpc.ServiceDesc for DataManagerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -96,6 +131,10 @@ var DataManagerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Sync",
 			Handler:    _DataManagerService_Sync_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _DataManagerService_DoCommand_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

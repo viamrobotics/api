@@ -2,6 +2,7 @@
 // file: service/navigation/v1/navigation.proto
 
 import * as service_navigation_v1_navigation_pb from "../../../service/navigation/v1/navigation_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type NavigationServiceGetMode = {
@@ -58,6 +59,15 @@ type NavigationServiceRemoveWaypoint = {
   readonly responseType: typeof service_navigation_v1_navigation_pb.RemoveWaypointResponse;
 };
 
+type NavigationServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof NavigationService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class NavigationService {
   static readonly serviceName: string;
   static readonly GetMode: NavigationServiceGetMode;
@@ -66,6 +76,7 @@ export class NavigationService {
   static readonly GetWaypoints: NavigationServiceGetWaypoints;
   static readonly AddWaypoint: NavigationServiceAddWaypoint;
   static readonly RemoveWaypoint: NavigationServiceRemoveWaypoint;
+  static readonly DoCommand: NavigationServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -153,6 +164,15 @@ export class NavigationServiceClient {
   removeWaypoint(
     requestMessage: service_navigation_v1_navigation_pb.RemoveWaypointRequest,
     callback: (error: ServiceError|null, responseMessage: service_navigation_v1_navigation_pb.RemoveWaypointResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

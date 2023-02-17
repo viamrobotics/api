@@ -2,6 +2,7 @@
 // file: service/motion/v1/motion.proto
 
 import * as service_motion_v1_motion_pb from "../../../service/motion/v1/motion_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type MotionServiceMove = {
@@ -31,11 +32,21 @@ type MotionServiceGetPose = {
   readonly responseType: typeof service_motion_v1_motion_pb.GetPoseResponse;
 };
 
+type MotionServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof MotionService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class MotionService {
   static readonly serviceName: string;
   static readonly Move: MotionServiceMove;
   static readonly MoveSingleComponent: MotionServiceMoveSingleComponent;
   static readonly GetPose: MotionServiceGetPose;
+  static readonly DoCommand: MotionServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -96,6 +107,15 @@ export class MotionServiceClient {
   getPose(
     requestMessage: service_motion_v1_motion_pb.GetPoseRequest,
     callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.GetPoseResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

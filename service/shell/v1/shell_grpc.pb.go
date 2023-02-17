@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,6 +21,8 @@ const _ = grpc.SupportPackageIsVersion7
 type ShellServiceClient interface {
 	// Shell starts a shell with an input and output pipe.
 	Shell(ctx context.Context, opts ...grpc.CallOption) (ShellService_ShellClient, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type shellServiceClient struct {
@@ -61,12 +64,23 @@ func (x *shellServiceShellClient) Recv() (*ShellResponse, error) {
 	return m, nil
 }
 
+func (c *shellServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.shell.v1.ShellService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ShellServiceServer is the server API for ShellService service.
 // All implementations must embed UnimplementedShellServiceServer
 // for forward compatibility
 type ShellServiceServer interface {
 	// Shell starts a shell with an input and output pipe.
 	Shell(ShellService_ShellServer) error
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedShellServiceServer()
 }
 
@@ -76,6 +90,9 @@ type UnimplementedShellServiceServer struct {
 
 func (UnimplementedShellServiceServer) Shell(ShellService_ShellServer) error {
 	return status.Errorf(codes.Unimplemented, "method Shell not implemented")
+}
+func (UnimplementedShellServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedShellServiceServer) mustEmbedUnimplementedShellServiceServer() {}
 
@@ -116,13 +133,36 @@ func (x *shellServiceShellServer) Recv() (*ShellRequest, error) {
 	return m, nil
 }
 
+func _ShellService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShellServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.shell.v1.ShellService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShellServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ShellService_ServiceDesc is the grpc.ServiceDesc for ShellService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ShellService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "viam.service.shell.v1.ShellService",
 	HandlerType: (*ShellServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "DoCommand",
+			Handler:    _ShellService_DoCommand_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "Shell",

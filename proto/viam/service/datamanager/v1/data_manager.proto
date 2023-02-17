@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.service.datamanager.v1;
 
+import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
@@ -14,6 +15,13 @@ service DataManagerService {
   rpc Sync(SyncRequest) returns (SyncResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/service/datamanager/{name}/datasync"
+    };
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/datamanager/{name}/do_command"
     };
   }
 }

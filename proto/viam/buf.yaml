@@ -19,4 +19,5 @@ lint:
       - component/audioinput/v1/audioinput.proto
     RPC_REQUEST_RESPONSE_UNIQUE:
       - component
+      - service
   allow_comment_ignores: true
