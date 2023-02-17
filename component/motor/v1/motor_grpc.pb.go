@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -46,6 +47,8 @@ type MotorServiceClient interface {
 	IsPowered(ctx context.Context, in *IsPoweredRequest, opts ...grpc.CallOption) (*IsPoweredResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type motorServiceClient struct {
@@ -137,6 +140,15 @@ func (c *motorServiceClient) IsMoving(ctx context.Context, in *IsMovingRequest, 
 	return out, nil
 }
 
+func (c *motorServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.motor.v1.MotorService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MotorServiceServer is the server API for MotorService service.
 // All implementations must embed UnimplementedMotorServiceServer
 // for forward compatibility
@@ -169,6 +181,8 @@ type MotorServiceServer interface {
 	IsPowered(context.Context, *IsPoweredRequest) (*IsPoweredResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedMotorServiceServer()
 }
 
@@ -202,6 +216,9 @@ func (UnimplementedMotorServiceServer) IsPowered(context.Context, *IsPoweredRequ
 }
 func (UnimplementedMotorServiceServer) IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsMoving not implemented")
+}
+func (UnimplementedMotorServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedMotorServiceServer) mustEmbedUnimplementedMotorServiceServer() {}
 
@@ -378,6 +395,24 @@ func _MotorService_IsMoving_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MotorService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MotorServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.motor.v1.MotorService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MotorServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MotorService_ServiceDesc is the grpc.ServiceDesc for MotorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -420,6 +455,10 @@ var MotorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsMoving",
 			Handler:    _MotorService_IsMoving_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _MotorService_DoCommand_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -2,6 +2,7 @@
 // file: component/motor/v1/motor.proto
 
 import * as component_motor_v1_motor_pb from "../../../component/motor/v1/motor_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type MotorServiceSetPower = {
@@ -85,6 +86,15 @@ type MotorServiceIsMoving = {
   readonly responseType: typeof component_motor_v1_motor_pb.IsMovingResponse;
 };
 
+type MotorServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof MotorService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class MotorService {
   static readonly serviceName: string;
   static readonly SetPower: MotorServiceSetPower;
@@ -96,6 +106,7 @@ export class MotorService {
   static readonly Stop: MotorServiceStop;
   static readonly IsPowered: MotorServiceIsPowered;
   static readonly IsMoving: MotorServiceIsMoving;
+  static readonly DoCommand: MotorServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -210,6 +221,15 @@ export class MotorServiceClient {
   isMoving(
     requestMessage: component_motor_v1_motor_pb.IsMovingRequest,
     callback: (error: ServiceError|null, responseMessage: component_motor_v1_motor_pb.IsMovingResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

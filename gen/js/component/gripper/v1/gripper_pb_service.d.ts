@@ -2,6 +2,7 @@
 // file: component/gripper/v1/gripper.proto
 
 import * as component_gripper_v1_gripper_pb from "../../../component/gripper/v1/gripper_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type GripperServiceOpen = {
@@ -40,12 +41,22 @@ type GripperServiceIsMoving = {
   readonly responseType: typeof component_gripper_v1_gripper_pb.IsMovingResponse;
 };
 
+type GripperServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof GripperService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class GripperService {
   static readonly serviceName: string;
   static readonly Open: GripperServiceOpen;
   static readonly Grab: GripperServiceGrab;
   static readonly Stop: GripperServiceStop;
   static readonly IsMoving: GripperServiceIsMoving;
+  static readonly DoCommand: GripperServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -115,6 +126,15 @@ export class GripperServiceClient {
   isMoving(
     requestMessage: component_gripper_v1_gripper_pb.IsMovingRequest,
     callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.IsMovingResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

@@ -57,6 +57,12 @@ service MovementSensorService {
       get: "/viam/api/v1/component/movementsensor/{name}/linear_acceleration"
     };
   }
+
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/movementsensor/{name}/do_command"
+    };
+  }
 }
 
 message GetLinearVelocityRequest {
