@@ -1310,6 +1310,9 @@ export class RoverRentalRobot extends jspb.Message {
   getRobotName(): string;
   setRobotName(value: string): void;
 
+  getRobotMainPartId(): string;
+  setRobotMainPartId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RoverRentalRobot.AsObject;
   static toObject(includeInstance: boolean, msg: RoverRentalRobot): RoverRentalRobot.AsObject;
@@ -1325,6 +1328,7 @@ export namespace RoverRentalRobot {
     robotId: string,
     locationId: string,
     robotName: string,
+    robotMainPartId: string,
   }
 }
 
