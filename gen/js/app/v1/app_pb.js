@@ -11119,7 +11119,8 @@ proto.viam.app.v1.RoverRentalRobot.toObject = function(includeInstance, msg) {
   var f, obj = {
     robotId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     locationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    robotName: jspb.Message.getFieldWithDefault(msg, 3, "")
+    robotName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    robotMainPartId: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -11168,6 +11169,10 @@ proto.viam.app.v1.RoverRentalRobot.deserializeBinaryFromReader = function(msg, r
       var value = /** @type {string} */ (reader.readString());
       msg.setRobotName(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRobotMainPartId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -11215,6 +11220,13 @@ proto.viam.app.v1.RoverRentalRobot.serializeBinaryToWriter = function(message, w
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getRobotMainPartId();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -11272,6 +11284,24 @@ proto.viam.app.v1.RoverRentalRobot.prototype.getRobotName = function() {
  */
 proto.viam.app.v1.RoverRentalRobot.prototype.setRobotName = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string robot_main_part_id = 4;
+ * @return {string}
+ */
+proto.viam.app.v1.RoverRentalRobot.prototype.getRobotMainPartId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.RoverRentalRobot} returns this
+ */
+proto.viam.app.v1.RoverRentalRobot.prototype.setRobotMainPartId = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
