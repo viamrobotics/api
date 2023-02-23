@@ -64,5 +64,5 @@ message ValidateRequest {
 }
 
 message ValidateResponse {
-  repeated string dependencies = 2;
+  repeated string dependencies = 1;
 }

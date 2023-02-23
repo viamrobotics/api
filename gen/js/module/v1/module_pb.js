@@ -1965,7 +1965,7 @@ proto.viam.module.v1.ValidateRequest.prototype.hasConfig = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.module.v1.ValidateResponse.repeatedFields_ = [2];
+proto.viam.module.v1.ValidateResponse.repeatedFields_ = [1];
 
 
 
@@ -1998,7 +1998,7 @@ proto.viam.module.v1.ValidateResponse.prototype.toObject = function(opt_includeI
  */
 proto.viam.module.v1.ValidateResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dependenciesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+    dependenciesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2035,7 +2035,7 @@ proto.viam.module.v1.ValidateResponse.deserializeBinaryFromReader = function(msg
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 2:
+    case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.addDependencies(value);
       break;
@@ -2071,7 +2071,7 @@ proto.viam.module.v1.ValidateResponse.serializeBinaryToWriter = function(message
   f = message.getDependenciesList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      2,
+      1,
       f
     );
   }
@@ -2079,11 +2079,11 @@ proto.viam.module.v1.ValidateResponse.serializeBinaryToWriter = function(message
 
 
 /**
- * repeated string dependencies = 2;
+ * repeated string dependencies = 1;
  * @return {!Array<string>}
  */
 proto.viam.module.v1.ValidateResponse.prototype.getDependenciesList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
@@ -2092,7 +2092,7 @@ proto.viam.module.v1.ValidateResponse.prototype.getDependenciesList = function()
  * @return {!proto.viam.module.v1.ValidateResponse} returns this
  */
 proto.viam.module.v1.ValidateResponse.prototype.setDependenciesList = function(value) {
-  return jspb.Message.setField(this, 2, value || []);
+  return jspb.Message.setField(this, 1, value || []);
 };
 
 
@@ -2102,7 +2102,7 @@ proto.viam.module.v1.ValidateResponse.prototype.setDependenciesList = function(v
  * @return {!proto.viam.module.v1.ValidateResponse} returns this
  */
 proto.viam.module.v1.ValidateResponse.prototype.addDependencies = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
 
