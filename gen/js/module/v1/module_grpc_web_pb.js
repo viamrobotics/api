@@ -324,5 +324,66 @@ proto.viam.module.v1.ModuleServicePromiseClient.prototype.ready =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.module.v1.ValidateRequest,
+ *   !proto.viam.module.v1.ValidateResponse>}
+ */
+const methodDescriptor_ModuleService_Validate = new grpc.web.MethodDescriptor(
+  '/viam.module.v1.ModuleService/Validate',
+  grpc.web.MethodType.UNARY,
+  proto.viam.module.v1.ValidateRequest,
+  proto.viam.module.v1.ValidateResponse,
+  /**
+   * @param {!proto.viam.module.v1.ValidateRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.module.v1.ValidateResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.module.v1.ValidateRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.module.v1.ValidateResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.module.v1.ValidateResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.module.v1.ModuleServiceClient.prototype.validate =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.module.v1.ModuleService/Validate',
+      request,
+      metadata || {},
+      methodDescriptor_ModuleService_Validate,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.module.v1.ValidateRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.module.v1.ValidateResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.module.v1.ModuleServicePromiseClient.prototype.validate =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.module.v1.ModuleService/Validate',
+      request,
+      metadata || {},
+      methodDescriptor_ModuleService_Validate);
+};
+
+
 module.exports = proto.viam.module.v1;
 

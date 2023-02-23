@@ -40,12 +40,22 @@ type ModuleServiceReady = {
   readonly responseType: typeof module_v1_module_pb.ReadyResponse;
 };
 
+type ModuleServiceValidate = {
+  readonly methodName: string;
+  readonly service: typeof ModuleService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof module_v1_module_pb.ValidateRequest;
+  readonly responseType: typeof module_v1_module_pb.ValidateResponse;
+};
+
 export class ModuleService {
   static readonly serviceName: string;
   static readonly AddResource: ModuleServiceAddResource;
   static readonly ReconfigureResource: ModuleServiceReconfigureResource;
   static readonly RemoveResource: ModuleServiceRemoveResource;
   static readonly Ready: ModuleServiceReady;
+  static readonly Validate: ModuleServiceValidate;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -115,6 +125,15 @@ export class ModuleServiceClient {
   ready(
     requestMessage: module_v1_module_pb.ReadyRequest,
     callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ReadyResponse|null) => void
+  ): UnaryResponse;
+  validate(
+    requestMessage: module_v1_module_pb.ValidateRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ValidateResponse|null) => void
+  ): UnaryResponse;
+  validate(
+    requestMessage: module_v1_module_pb.ValidateRequest,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ValidateResponse|null) => void
   ): UnaryResponse;
 }
 

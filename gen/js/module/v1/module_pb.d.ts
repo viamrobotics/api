@@ -225,3 +225,47 @@ export namespace ReadyResponse {
   }
 }
 
+export class ValidateRequest extends jspb.Message {
+  hasConfig(): boolean;
+  clearConfig(): void;
+  getConfig(): app_v1_robot_pb.RobotConfig | undefined;
+  setConfig(value?: app_v1_robot_pb.RobotConfig): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ValidateRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ValidateRequest): ValidateRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ValidateRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ValidateRequest;
+  static deserializeBinaryFromReader(message: ValidateRequest, reader: jspb.BinaryReader): ValidateRequest;
+}
+
+export namespace ValidateRequest {
+  export type AsObject = {
+    config?: app_v1_robot_pb.RobotConfig.AsObject,
+  }
+}
+
+export class ValidateResponse extends jspb.Message {
+  clearDependenciesList(): void;
+  getDependenciesList(): Array<string>;
+  setDependenciesList(value: Array<string>): void;
+  addDependencies(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ValidateResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ValidateResponse): ValidateResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ValidateResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ValidateResponse;
+  static deserializeBinaryFromReader(message: ValidateResponse, reader: jspb.BinaryReader): ValidateResponse;
+}
+
+export namespace ValidateResponse {
+  export type AsObject = {
+    dependenciesList: Array<string>,
+  }
+}
+
