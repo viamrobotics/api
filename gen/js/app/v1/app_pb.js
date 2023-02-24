@@ -11016,7 +11016,7 @@ proto.viam.app.v1.GetRoverRentalRobotsRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.GetRoverRentalRobotsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -11053,6 +11053,10 @@ proto.viam.app.v1.GetRoverRentalRobotsRequest.deserializeBinaryFromReader = func
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrgId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -11082,6 +11086,31 @@ proto.viam.app.v1.GetRoverRentalRobotsRequest.prototype.serializeBinary = functi
  */
 proto.viam.app.v1.GetRoverRentalRobotsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getOrgId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string org_id = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.GetRoverRentalRobotsRequest.prototype.getOrgId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetRoverRentalRobotsRequest} returns this
+ */
+proto.viam.app.v1.GetRoverRentalRobotsRequest.prototype.setOrgId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
