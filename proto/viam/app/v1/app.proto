@@ -444,7 +444,9 @@ message GetRobotRequest {
   string id = 1;
 }
 
-message GetRoverRentalRobotsRequest {}
+message GetRoverRentalRobotsRequest {
+  string org_id = 1;
+}
 
 message RoverRentalRobot {
   string robot_id = 1;
