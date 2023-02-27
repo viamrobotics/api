@@ -1285,6 +1285,9 @@ export namespace GetRobotRequest {
 }
 
 export class GetRoverRentalRobotsRequest extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRoverRentalRobotsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRoverRentalRobotsRequest): GetRoverRentalRobotsRequest.AsObject;
@@ -1297,6 +1300,7 @@ export class GetRoverRentalRobotsRequest extends jspb.Message {
 
 export namespace GetRoverRentalRobotsRequest {
   export type AsObject = {
+    orgId: string,
   }
 }
 
@@ -1309,6 +1313,9 @@ export class RoverRentalRobot extends jspb.Message {
 
   getRobotName(): string;
   setRobotName(value: string): void;
+
+  getRobotMainPartId(): string;
+  setRobotMainPartId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RoverRentalRobot.AsObject;
@@ -1325,6 +1332,7 @@ export namespace RoverRentalRobot {
     robotId: string,
     locationId: string,
     robotName: string,
+    robotMainPartId: string,
   }
 }
 
