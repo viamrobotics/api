@@ -2,6 +2,7 @@
 // file: service/vision/v1/vision.proto
 
 import * as service_vision_v1_vision_pb from "../../../service/vision/v1/vision_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type VisionServiceGetModelParameterSchema = {
@@ -139,6 +140,15 @@ type VisionServiceGetObjectPointClouds = {
   readonly responseType: typeof service_vision_v1_vision_pb.GetObjectPointCloudsResponse;
 };
 
+type VisionServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof VisionService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class VisionService {
   static readonly serviceName: string;
   static readonly GetModelParameterSchema: VisionServiceGetModelParameterSchema;
@@ -156,6 +166,7 @@ export class VisionService {
   static readonly AddSegmenter: VisionServiceAddSegmenter;
   static readonly RemoveSegmenter: VisionServiceRemoveSegmenter;
   static readonly GetObjectPointClouds: VisionServiceGetObjectPointClouds;
+  static readonly DoCommand: VisionServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -324,6 +335,15 @@ export class VisionServiceClient {
   getObjectPointClouds(
     requestMessage: service_vision_v1_vision_pb.GetObjectPointCloudsRequest,
     callback: (error: ServiceError|null, responseMessage: service_vision_v1_vision_pb.GetObjectPointCloudsResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

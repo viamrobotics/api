@@ -2,6 +2,7 @@
 // file: service/datamanager/v1/data_manager.proto
 
 import * as jspb from "google-protobuf";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 

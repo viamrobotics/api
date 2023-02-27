@@ -444,12 +444,15 @@ message GetRobotRequest {
   string id = 1;
 }
 
-message GetRoverRentalRobotsRequest {}
+message GetRoverRentalRobotsRequest {
+  string org_id = 1;
+}
 
 message RoverRentalRobot {
   string robot_id = 1;
   string location_id = 2;
   string robot_name = 3;
+  string robot_main_part_id = 4;
 }
 
 message GetRoverRentalRobotsResponse {

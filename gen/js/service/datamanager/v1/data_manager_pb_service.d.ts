@@ -2,6 +2,7 @@
 // file: service/datamanager/v1/data_manager.proto
 
 import * as service_datamanager_v1_data_manager_pb from "../../../service/datamanager/v1/data_manager_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type DataManagerServiceSync = {
@@ -13,9 +14,19 @@ type DataManagerServiceSync = {
   readonly responseType: typeof service_datamanager_v1_data_manager_pb.SyncResponse;
 };
 
+type DataManagerServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof DataManagerService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class DataManagerService {
   static readonly serviceName: string;
   static readonly Sync: DataManagerServiceSync;
+  static readonly DoCommand: DataManagerServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -58,6 +69,15 @@ export class DataManagerServiceClient {
   sync(
     requestMessage: service_datamanager_v1_data_manager_pb.SyncRequest,
     callback: (error: ServiceError|null, responseMessage: service_datamanager_v1_data_manager_pb.SyncResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

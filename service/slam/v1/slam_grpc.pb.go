@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -44,6 +45,8 @@ type SLAMServiceClient interface {
 	// algorithm required to continue mapping/localizing.
 	// This endpoint is not intended for end users.
 	GetInternalStateStream(ctx context.Context, in *GetInternalStateStreamRequest, opts ...grpc.CallOption) (SLAMService_GetInternalStateStreamClient, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type sLAMServiceClient struct {
@@ -166,6 +169,15 @@ func (x *sLAMServiceGetInternalStateStreamClient) Recv() (*GetInternalStateStrea
 	return m, nil
 }
 
+func (c *sLAMServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.slam.v1.SLAMService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SLAMServiceServer is the server API for SLAMService service.
 // All implementations must embed UnimplementedSLAMServiceServer
 // for forward compatibility
@@ -196,6 +208,8 @@ type SLAMServiceServer interface {
 	// algorithm required to continue mapping/localizing.
 	// This endpoint is not intended for end users.
 	GetInternalStateStream(*GetInternalStateStreamRequest, SLAMService_GetInternalStateStreamServer) error
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedSLAMServiceServer()
 }
 
@@ -223,6 +237,9 @@ func (UnimplementedSLAMServiceServer) GetPointCloudMapStream(*GetPointCloudMapSt
 }
 func (UnimplementedSLAMServiceServer) GetInternalStateStream(*GetInternalStateStreamRequest, SLAMService_GetInternalStateStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetInternalStateStream not implemented")
+}
+func (UnimplementedSLAMServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedSLAMServiceServer) mustEmbedUnimplementedSLAMServiceServer() {}
 
@@ -369,6 +386,24 @@ func (x *sLAMServiceGetInternalStateStreamServer) Send(m *GetInternalStateStream
 	return x.ServerStream.SendMsg(m)
 }
 
+func _SLAMService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SLAMServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.slam.v1.SLAMService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SLAMServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SLAMService_ServiceDesc is the grpc.ServiceDesc for SLAMService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -395,6 +430,10 @@ var SLAMService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetInternalState",
 			Handler:    _SLAMService_GetInternalState_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _SLAMService_DoCommand_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
