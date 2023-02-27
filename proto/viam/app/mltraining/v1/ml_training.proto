@@ -3,7 +3,6 @@ syntax = "proto3";
 package viam.app.mltraining.v1;
 
 import "app/data/v1/data.proto";
-import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "tagger/v1/tagger.proto";
 
@@ -39,7 +38,6 @@ message GetTrainingJobRequest {
 }
 
 message GetTrainingJobResponse {
-  string id = 1;
   TrainingJobMetadata metadata = 2;
 }
 
@@ -68,15 +66,4 @@ message TrainingJobMetadata {
   string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
   string user_email = 6 [(tagger.v1.tags) = "bson:\"user_email\" json:\"user_email\""];
   string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
-}
-
-message TrainingJob {
-  string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
-  TrainingJobMetadata metadata = 2 [(tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
-  string output_path = 3 [(tagger.v1.tags) = "bson:\"output_path\" json:\"output_path\""];
-  // The vertex_job_id is the id of the Vertex AI custom training job
-  // backing our concept of a TrainingJob.
-  string vertex_job_id = 4 [(tagger.v1.tags) = "bson:\"vertex_job_id\" json:\"vertex_job_id\""];
-  google.protobuf.Struct model_metadata = 5 [(tagger.v1.tags) = "bson:\"model_metadata\" json:\"model_metadata\""];
-  bool processing = 6 [(tagger.v1.tags) = "bson:\"processing\" json:\"processing\""];
 }
