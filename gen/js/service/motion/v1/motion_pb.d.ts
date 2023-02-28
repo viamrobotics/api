@@ -25,6 +25,11 @@ export class MoveRequest extends jspb.Message {
   getWorldState(): common_v1_common_pb.WorldState | undefined;
   setWorldState(value?: common_v1_common_pb.WorldState): void;
 
+  hasConstraints(): boolean;
+  clearConstraints(): void;
+  getConstraints(): Constraints | undefined;
+  setConstraints(value?: Constraints): void;
+
   hasExtra(): boolean;
   clearExtra(): void;
   getExtra(): google_protobuf_struct_pb.Struct | undefined;
@@ -46,6 +51,7 @@ export namespace MoveRequest {
     destination?: common_v1_common_pb.PoseInFrame.AsObject,
     componentName?: common_v1_common_pb.ResourceName.AsObject,
     worldState?: common_v1_common_pb.WorldState.AsObject,
+    constraints?: Constraints.AsObject,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -195,6 +201,136 @@ export class GetPoseResponse extends jspb.Message {
 export namespace GetPoseResponse {
   export type AsObject = {
     pose?: common_v1_common_pb.PoseInFrame.AsObject,
+  }
+}
+
+export class Constraints extends jspb.Message {
+  clearLinearConstraintList(): void;
+  getLinearConstraintList(): Array<LinearConstraint>;
+  setLinearConstraintList(value: Array<LinearConstraint>): void;
+  addLinearConstraint(value?: LinearConstraint, index?: number): LinearConstraint;
+
+  clearOrientationConstraintList(): void;
+  getOrientationConstraintList(): Array<OrientationConstraint>;
+  setOrientationConstraintList(value: Array<OrientationConstraint>): void;
+  addOrientationConstraint(value?: OrientationConstraint, index?: number): OrientationConstraint;
+
+  clearCollisionSpecificationList(): void;
+  getCollisionSpecificationList(): Array<CollisionSpecification>;
+  setCollisionSpecificationList(value: Array<CollisionSpecification>): void;
+  addCollisionSpecification(value?: CollisionSpecification, index?: number): CollisionSpecification;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Constraints.AsObject;
+  static toObject(includeInstance: boolean, msg: Constraints): Constraints.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Constraints, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Constraints;
+  static deserializeBinaryFromReader(message: Constraints, reader: jspb.BinaryReader): Constraints;
+}
+
+export namespace Constraints {
+  export type AsObject = {
+    linearConstraintList: Array<LinearConstraint.AsObject>,
+    orientationConstraintList: Array<OrientationConstraint.AsObject>,
+    collisionSpecificationList: Array<CollisionSpecification.AsObject>,
+  }
+}
+
+export class LinearConstraint extends jspb.Message {
+  hasLineToleranceMm(): boolean;
+  clearLineToleranceMm(): void;
+  getLineToleranceMm(): number;
+  setLineToleranceMm(value: number): void;
+
+  hasOrientationToleranceDegs(): boolean;
+  clearOrientationToleranceDegs(): void;
+  getOrientationToleranceDegs(): number;
+  setOrientationToleranceDegs(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LinearConstraint.AsObject;
+  static toObject(includeInstance: boolean, msg: LinearConstraint): LinearConstraint.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: LinearConstraint, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LinearConstraint;
+  static deserializeBinaryFromReader(message: LinearConstraint, reader: jspb.BinaryReader): LinearConstraint;
+}
+
+export namespace LinearConstraint {
+  export type AsObject = {
+    lineToleranceMm: number,
+    orientationToleranceDegs: number,
+  }
+}
+
+export class OrientationConstraint extends jspb.Message {
+  hasOrientationToleranceDegs(): boolean;
+  clearOrientationToleranceDegs(): void;
+  getOrientationToleranceDegs(): number;
+  setOrientationToleranceDegs(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): OrientationConstraint.AsObject;
+  static toObject(includeInstance: boolean, msg: OrientationConstraint): OrientationConstraint.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: OrientationConstraint, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): OrientationConstraint;
+  static deserializeBinaryFromReader(message: OrientationConstraint, reader: jspb.BinaryReader): OrientationConstraint;
+}
+
+export namespace OrientationConstraint {
+  export type AsObject = {
+    orientationToleranceDegs: number,
+  }
+}
+
+export class CollisionSpecification extends jspb.Message {
+  clearAllowsList(): void;
+  getAllowsList(): Array<CollisionSpecification.AllowedFrameCollisions>;
+  setAllowsList(value: Array<CollisionSpecification.AllowedFrameCollisions>): void;
+  addAllows(value?: CollisionSpecification.AllowedFrameCollisions, index?: number): CollisionSpecification.AllowedFrameCollisions;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CollisionSpecification.AsObject;
+  static toObject(includeInstance: boolean, msg: CollisionSpecification): CollisionSpecification.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CollisionSpecification, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CollisionSpecification;
+  static deserializeBinaryFromReader(message: CollisionSpecification, reader: jspb.BinaryReader): CollisionSpecification;
+}
+
+export namespace CollisionSpecification {
+  export type AsObject = {
+    allowsList: Array<CollisionSpecification.AllowedFrameCollisions.AsObject>,
+  }
+
+  export class AllowedFrameCollisions extends jspb.Message {
+    getFrame1(): string;
+    setFrame1(value: string): void;
+
+    getFrame2(): string;
+    setFrame2(value: string): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AllowedFrameCollisions.AsObject;
+    static toObject(includeInstance: boolean, msg: AllowedFrameCollisions): AllowedFrameCollisions.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AllowedFrameCollisions, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AllowedFrameCollisions;
+    static deserializeBinaryFromReader(message: AllowedFrameCollisions, reader: jspb.BinaryReader): AllowedFrameCollisions;
+  }
+
+  export namespace AllowedFrameCollisions {
+    export type AsObject = {
+      frame1: string,
+      frame2: string,
+    }
   }
 }
 
