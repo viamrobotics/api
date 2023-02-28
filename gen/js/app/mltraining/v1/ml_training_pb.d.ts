@@ -257,6 +257,42 @@ export namespace TrainingJob {
   }
 }
 
+export class CancelTrainingJobRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CancelTrainingJobRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CancelTrainingJobRequest): CancelTrainingJobRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CancelTrainingJobRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CancelTrainingJobRequest;
+  static deserializeBinaryFromReader(message: CancelTrainingJobRequest, reader: jspb.BinaryReader): CancelTrainingJobRequest;
+}
+
+export namespace CancelTrainingJobRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class CancelTrainingJobResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CancelTrainingJobResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CancelTrainingJobResponse): CancelTrainingJobResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CancelTrainingJobResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CancelTrainingJobResponse;
+  static deserializeBinaryFromReader(message: CancelTrainingJobResponse, reader: jspb.BinaryReader): CancelTrainingJobResponse;
+}
+
+export namespace CancelTrainingJobResponse {
+  export type AsObject = {
+  }
+}
+
 export interface ModelTypeMap {
   MODEL_TYPE_UNSPECIFIED: 0;
   MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION: 1;
@@ -271,6 +307,7 @@ export interface TrainingStatusMap {
   TRAINING_STATUS_IN_PROGRESS: 2;
   TRAINING_STATUS_COMPLETED: 3;
   TRAINING_STATUS_FAILED: 4;
+  TRAINING_STATUS_CANCELED: 5;
 }
 
 export const TrainingStatus: TrainingStatusMap;

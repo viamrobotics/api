@@ -268,5 +268,66 @@ proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.listTraini
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.mltraining.v1.CancelTrainingJobRequest,
+ *   !proto.viam.app.mltraining.v1.CancelTrainingJobResponse>}
+ */
+const methodDescriptor_MLTrainingService_CancelTrainingJob = new grpc.web.MethodDescriptor(
+  '/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.mltraining.v1.CancelTrainingJobRequest,
+  proto.viam.app.mltraining.v1.CancelTrainingJobResponse,
+  /**
+   * @param {!proto.viam.app.mltraining.v1.CancelTrainingJobRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.mltraining.v1.CancelTrainingJobResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.CancelTrainingJobRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.mltraining.v1.CancelTrainingJobResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.mltraining.v1.CancelTrainingJobResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.mltraining.v1.MLTrainingServiceClient.prototype.cancelTrainingJob =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_CancelTrainingJob,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.CancelTrainingJobRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.mltraining.v1.CancelTrainingJobResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.cancelTrainingJob =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_CancelTrainingJob);
+};
+
+
 module.exports = proto.viam.app.mltraining.v1;
 
