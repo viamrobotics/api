@@ -833,7 +833,7 @@ proto.viam.app.mltraining.v1.GetTrainingJobResponse.deserializeBinaryFromReader 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 2:
+    case 1:
       var value = new proto.viam.app.mltraining.v1.TrainingJobMetadata;
       reader.readMessage(value,proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader);
       msg.setMetadata(value);
@@ -870,7 +870,7 @@ proto.viam.app.mltraining.v1.GetTrainingJobResponse.serializeBinaryToWriter = fu
   f = message.getMetadata();
   if (f != null) {
     writer.writeMessage(
-      2,
+      1,
       f,
       proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter
     );
@@ -879,12 +879,12 @@ proto.viam.app.mltraining.v1.GetTrainingJobResponse.serializeBinaryToWriter = fu
 
 
 /**
- * optional TrainingJobMetadata metadata = 2;
+ * optional TrainingJobMetadata metadata = 1;
  * @return {?proto.viam.app.mltraining.v1.TrainingJobMetadata}
  */
 proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.getMetadata = function() {
   return /** @type{?proto.viam.app.mltraining.v1.TrainingJobMetadata} */ (
-    jspb.Message.getWrapperField(this, proto.viam.app.mltraining.v1.TrainingJobMetadata, 2));
+    jspb.Message.getWrapperField(this, proto.viam.app.mltraining.v1.TrainingJobMetadata, 1));
 };
 
 
@@ -893,7 +893,7 @@ proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.getMetadata = func
  * @return {!proto.viam.app.mltraining.v1.GetTrainingJobResponse} returns this
 */
 proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.setMetadata = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
+  return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
@@ -911,7 +911,7 @@ proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.clearMetadata = fu
  * @return {boolean}
  */
 proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.hasMetadata = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
