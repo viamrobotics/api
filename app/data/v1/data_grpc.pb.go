@@ -40,10 +40,6 @@ type DataServiceClient interface {
 	RemoveTagsFromBinaryDataByFilter(ctx context.Context, in *RemoveTagsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFilterResponse, error)
 	// TagsByFilter gets all unique tags from data based on given filter.
 	TagsByFilter(ctx context.Context, in *TagsByFilterRequest, opts ...grpc.CallOption) (*TagsByFilterResponse, error)
-	// SubmitTrainingJob submits a request to train and save an ml model.
-	SubmitTrainingJob(ctx context.Context, in *SubmitTrainingJobRequest, opts ...grpc.CallOption) (*SubmitTrainingJobResponse, error)
-	// GetTrainingJob returns the metadata associated with the requested TrainingJob.
-	GetTrainingJob(ctx context.Context, in *GetTrainingJobRequest, opts ...grpc.CallOption) (*GetTrainingJobResponse, error)
 }
 
 type dataServiceClient struct {
@@ -153,24 +149,6 @@ func (c *dataServiceClient) TagsByFilter(ctx context.Context, in *TagsByFilterRe
 	return out, nil
 }
 
-func (c *dataServiceClient) SubmitTrainingJob(ctx context.Context, in *SubmitTrainingJobRequest, opts ...grpc.CallOption) (*SubmitTrainingJobResponse, error) {
-	out := new(SubmitTrainingJobResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/SubmitTrainingJob", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataServiceClient) GetTrainingJob(ctx context.Context, in *GetTrainingJobRequest, opts ...grpc.CallOption) (*GetTrainingJobResponse, error) {
-	out := new(GetTrainingJobResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/GetTrainingJob", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -197,10 +175,6 @@ type DataServiceServer interface {
 	RemoveTagsFromBinaryDataByFilter(context.Context, *RemoveTagsFromBinaryDataByFilterRequest) (*RemoveTagsFromBinaryDataByFilterResponse, error)
 	// TagsByFilter gets all unique tags from data based on given filter.
 	TagsByFilter(context.Context, *TagsByFilterRequest) (*TagsByFilterResponse, error)
-	// SubmitTrainingJob submits a request to train and save an ml model.
-	SubmitTrainingJob(context.Context, *SubmitTrainingJobRequest) (*SubmitTrainingJobResponse, error)
-	// GetTrainingJob returns the metadata associated with the requested TrainingJob.
-	GetTrainingJob(context.Context, *GetTrainingJobRequest) (*GetTrainingJobResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -240,12 +214,6 @@ func (UnimplementedDataServiceServer) RemoveTagsFromBinaryDataByFilter(context.C
 }
 func (UnimplementedDataServiceServer) TagsByFilter(context.Context, *TagsByFilterRequest) (*TagsByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TagsByFilter not implemented")
-}
-func (UnimplementedDataServiceServer) SubmitTrainingJob(context.Context, *SubmitTrainingJobRequest) (*SubmitTrainingJobResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SubmitTrainingJob not implemented")
-}
-func (UnimplementedDataServiceServer) GetTrainingJob(context.Context, *GetTrainingJobRequest) (*GetTrainingJobResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTrainingJob not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -458,42 +426,6 @@ func _DataService_TagsByFilter_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataService_SubmitTrainingJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SubmitTrainingJobRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataServiceServer).SubmitTrainingJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/SubmitTrainingJob",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).SubmitTrainingJob(ctx, req.(*SubmitTrainingJobRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DataService_GetTrainingJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTrainingJobRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataServiceServer).GetTrainingJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/GetTrainingJob",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).GetTrainingJob(ctx, req.(*GetTrainingJobRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -544,14 +476,6 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TagsByFilter",
 			Handler:    _DataService_TagsByFilter_Handler,
-		},
-		{
-			MethodName: "SubmitTrainingJob",
-			Handler:    _DataService_SubmitTrainingJob_Handler,
-		},
-		{
-			MethodName: "GetTrainingJob",
-			Handler:    _DataService_GetTrainingJob_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
