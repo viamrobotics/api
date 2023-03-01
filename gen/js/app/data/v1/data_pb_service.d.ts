@@ -103,24 +103,6 @@ type DataServiceTagsByFilter = {
   readonly responseType: typeof app_data_v1_data_pb.TagsByFilterResponse;
 };
 
-type DataServiceSubmitTrainingJob = {
-  readonly methodName: string;
-  readonly service: typeof DataService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof app_data_v1_data_pb.SubmitTrainingJobRequest;
-  readonly responseType: typeof app_data_v1_data_pb.SubmitTrainingJobResponse;
-};
-
-type DataServiceGetTrainingJob = {
-  readonly methodName: string;
-  readonly service: typeof DataService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof app_data_v1_data_pb.GetTrainingJobRequest;
-  readonly responseType: typeof app_data_v1_data_pb.GetTrainingJobResponse;
-};
-
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
@@ -134,8 +116,6 @@ export class DataService {
   static readonly RemoveTagsFromBinaryDataByFileIDs: DataServiceRemoveTagsFromBinaryDataByFileIDs;
   static readonly RemoveTagsFromBinaryDataByFilter: DataServiceRemoveTagsFromBinaryDataByFilter;
   static readonly TagsByFilter: DataServiceTagsByFilter;
-  static readonly SubmitTrainingJob: DataServiceSubmitTrainingJob;
-  static readonly GetTrainingJob: DataServiceGetTrainingJob;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -268,24 +248,6 @@ export class DataServiceClient {
   tagsByFilter(
     requestMessage: app_data_v1_data_pb.TagsByFilterRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.TagsByFilterResponse|null) => void
-  ): UnaryResponse;
-  submitTrainingJob(
-    requestMessage: app_data_v1_data_pb.SubmitTrainingJobRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.SubmitTrainingJobResponse|null) => void
-  ): UnaryResponse;
-  submitTrainingJob(
-    requestMessage: app_data_v1_data_pb.SubmitTrainingJobRequest,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.SubmitTrainingJobResponse|null) => void
-  ): UnaryResponse;
-  getTrainingJob(
-    requestMessage: app_data_v1_data_pb.GetTrainingJobRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetTrainingJobResponse|null) => void
-  ): UnaryResponse;
-  getTrainingJob(
-    requestMessage: app_data_v1_data_pb.GetTrainingJobRequest,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetTrainingJobResponse|null) => void
   ): UnaryResponse;
 }
 
