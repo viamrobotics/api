@@ -60,7 +60,7 @@ message ReadyResponse {
 }
 
 message ValidateRequest {
-  viam.app.v1.RobotConfig config = 1;
+  viam.app.v1.ComponentConfig config = 1;
 }
 
 message ValidateResponse {

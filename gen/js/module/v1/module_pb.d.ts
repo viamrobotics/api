@@ -228,8 +228,8 @@ export namespace ReadyResponse {
 export class ValidateRequest extends jspb.Message {
   hasConfig(): boolean;
   clearConfig(): void;
-  getConfig(): app_v1_robot_pb.RobotConfig | undefined;
-  setConfig(value?: app_v1_robot_pb.RobotConfig): void;
+  getConfig(): app_v1_robot_pb.ComponentConfig | undefined;
+  setConfig(value?: app_v1_robot_pb.ComponentConfig): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ValidateRequest.AsObject;
@@ -243,7 +243,7 @@ export class ValidateRequest extends jspb.Message {
 
 export namespace ValidateRequest {
   export type AsObject = {
-    config?: app_v1_robot_pb.RobotConfig.AsObject,
+    config?: app_v1_robot_pb.ComponentConfig.AsObject,
   }
 }
 

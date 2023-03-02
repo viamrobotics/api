@@ -1840,7 +1840,7 @@ proto.viam.module.v1.ValidateRequest.prototype.toObject = function(opt_includeIn
  */
 proto.viam.module.v1.ValidateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    config: (f = msg.getConfig()) && app_v1_robot_pb.RobotConfig.toObject(includeInstance, f)
+    config: (f = msg.getConfig()) && app_v1_robot_pb.ComponentConfig.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1878,8 +1878,8 @@ proto.viam.module.v1.ValidateRequest.deserializeBinaryFromReader = function(msg,
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new app_v1_robot_pb.RobotConfig;
-      reader.readMessage(value,app_v1_robot_pb.RobotConfig.deserializeBinaryFromReader);
+      var value = new app_v1_robot_pb.ComponentConfig;
+      reader.readMessage(value,app_v1_robot_pb.ComponentConfig.deserializeBinaryFromReader);
       msg.setConfig(value);
       break;
     default:
@@ -1916,24 +1916,24 @@ proto.viam.module.v1.ValidateRequest.serializeBinaryToWriter = function(message,
     writer.writeMessage(
       1,
       f,
-      app_v1_robot_pb.RobotConfig.serializeBinaryToWriter
+      app_v1_robot_pb.ComponentConfig.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional viam.app.v1.RobotConfig config = 1;
- * @return {?proto.viam.app.v1.RobotConfig}
+ * optional viam.app.v1.ComponentConfig config = 1;
+ * @return {?proto.viam.app.v1.ComponentConfig}
  */
 proto.viam.module.v1.ValidateRequest.prototype.getConfig = function() {
-  return /** @type{?proto.viam.app.v1.RobotConfig} */ (
-    jspb.Message.getWrapperField(this, app_v1_robot_pb.RobotConfig, 1));
+  return /** @type{?proto.viam.app.v1.ComponentConfig} */ (
+    jspb.Message.getWrapperField(this, app_v1_robot_pb.ComponentConfig, 1));
 };
 
 
 /**
- * @param {?proto.viam.app.v1.RobotConfig|undefined} value
+ * @param {?proto.viam.app.v1.ComponentConfig|undefined} value
  * @return {!proto.viam.module.v1.ValidateRequest} returns this
 */
 proto.viam.module.v1.ValidateRequest.prototype.setConfig = function(value) {
