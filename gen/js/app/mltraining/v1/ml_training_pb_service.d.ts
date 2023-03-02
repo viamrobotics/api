@@ -31,11 +31,21 @@ type MLTrainingServiceListTrainingJobs = {
   readonly responseType: typeof app_mltraining_v1_ml_training_pb.ListTrainingJobsResponse;
 };
 
+type MLTrainingServiceCancelTrainingJob = {
+  readonly methodName: string;
+  readonly service: typeof MLTrainingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_mltraining_v1_ml_training_pb.CancelTrainingJobRequest;
+  readonly responseType: typeof app_mltraining_v1_ml_training_pb.CancelTrainingJobResponse;
+};
+
 export class MLTrainingService {
   static readonly serviceName: string;
   static readonly SubmitTrainingJob: MLTrainingServiceSubmitTrainingJob;
   static readonly GetTrainingJob: MLTrainingServiceGetTrainingJob;
   static readonly ListTrainingJobs: MLTrainingServiceListTrainingJobs;
+  static readonly CancelTrainingJob: MLTrainingServiceCancelTrainingJob;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -96,6 +106,15 @@ export class MLTrainingServiceClient {
   listTrainingJobs(
     requestMessage: app_mltraining_v1_ml_training_pb.ListTrainingJobsRequest,
     callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.ListTrainingJobsResponse|null) => void
+  ): UnaryResponse;
+  cancelTrainingJob(
+    requestMessage: app_mltraining_v1_ml_training_pb.CancelTrainingJobRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.CancelTrainingJobResponse|null) => void
+  ): UnaryResponse;
+  cancelTrainingJob(
+    requestMessage: app_mltraining_v1_ml_training_pb.CancelTrainingJobRequest,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.CancelTrainingJobResponse|null) => void
   ): UnaryResponse;
 }
 
