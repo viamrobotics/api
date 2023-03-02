@@ -12,6 +12,7 @@ service MLTrainingService {
   rpc SubmitTrainingJob(SubmitTrainingJobRequest) returns (SubmitTrainingJobResponse);
   rpc GetTrainingJob(GetTrainingJobRequest) returns (GetTrainingJobResponse);
   rpc ListTrainingJobs(ListTrainingJobsRequest) returns (ListTrainingJobsResponse);
+  rpc CancelTrainingJob(CancelTrainingJobRequest) returns (CancelTrainingJobResponse);
 }
 
 enum ModelType {
@@ -56,6 +57,7 @@ enum TrainingStatus {
   TRAINING_STATUS_IN_PROGRESS = 2;
   TRAINING_STATUS_COMPLETED = 3;
   TRAINING_STATUS_FAILED = 4;
+  TRAINING_STATUS_CANCELED = 5;
 }
 
 message TrainingJobMetadata {
@@ -67,3 +69,9 @@ message TrainingJobMetadata {
   string user_email = 6 [(tagger.v1.tags) = "bson:\"user_email\" json:\"user_email\""];
   string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
 }
+
+message CancelTrainingJobRequest {
+  string id = 1;
+}
+
+message CancelTrainingJobResponse {}
