@@ -22,8 +22,6 @@ grpc.web = require('grpc-web');
 
 var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js')
 
-var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
-
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 
 var tagger_v1_tagger_pb = require('../../../tagger/v1/tagger_pb.js')
@@ -265,6 +263,67 @@ proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.listTraini
       request,
       metadata || {},
       methodDescriptor_MLTrainingService_ListTrainingJobs);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.mltraining.v1.CancelTrainingJobRequest,
+ *   !proto.viam.app.mltraining.v1.CancelTrainingJobResponse>}
+ */
+const methodDescriptor_MLTrainingService_CancelTrainingJob = new grpc.web.MethodDescriptor(
+  '/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.mltraining.v1.CancelTrainingJobRequest,
+  proto.viam.app.mltraining.v1.CancelTrainingJobResponse,
+  /**
+   * @param {!proto.viam.app.mltraining.v1.CancelTrainingJobRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.mltraining.v1.CancelTrainingJobResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.CancelTrainingJobRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.mltraining.v1.CancelTrainingJobResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.mltraining.v1.CancelTrainingJobResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.mltraining.v1.MLTrainingServiceClient.prototype.cancelTrainingJob =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_CancelTrainingJob,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.CancelTrainingJobRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.mltraining.v1.CancelTrainingJobResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.cancelTrainingJob =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_CancelTrainingJob);
 };
 
 
