@@ -46,13 +46,13 @@ ModuleService.Ready = {
   responseType: module_v1_module_pb.ReadyResponse
 };
 
-ModuleService.Validate = {
-  methodName: "Validate",
+ModuleService.ValidateConfig = {
+  methodName: "ValidateConfig",
   service: ModuleService,
   requestStream: false,
   responseStream: false,
-  requestType: module_v1_module_pb.ValidateRequest,
-  responseType: module_v1_module_pb.ValidateResponse
+  requestType: module_v1_module_pb.ValidateConfigRequest,
+  responseType: module_v1_module_pb.ValidateConfigResponse
 };
 
 exports.ModuleService = ModuleService;
@@ -186,11 +186,11 @@ ModuleServiceClient.prototype.ready = function ready(requestMessage, metadata, c
   };
 };
 
-ModuleServiceClient.prototype.validate = function validate(requestMessage, metadata, callback) {
+ModuleServiceClient.prototype.validateConfig = function validateConfig(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ModuleService.Validate, {
+  var client = grpc.unary(ModuleService.ValidateConfig, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

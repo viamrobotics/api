@@ -40,13 +40,13 @@ type ModuleServiceReady = {
   readonly responseType: typeof module_v1_module_pb.ReadyResponse;
 };
 
-type ModuleServiceValidate = {
+type ModuleServiceValidateConfig = {
   readonly methodName: string;
   readonly service: typeof ModuleService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof module_v1_module_pb.ValidateRequest;
-  readonly responseType: typeof module_v1_module_pb.ValidateResponse;
+  readonly requestType: typeof module_v1_module_pb.ValidateConfigRequest;
+  readonly responseType: typeof module_v1_module_pb.ValidateConfigResponse;
 };
 
 export class ModuleService {
@@ -55,7 +55,7 @@ export class ModuleService {
   static readonly ReconfigureResource: ModuleServiceReconfigureResource;
   static readonly RemoveResource: ModuleServiceRemoveResource;
   static readonly Ready: ModuleServiceReady;
-  static readonly Validate: ModuleServiceValidate;
+  static readonly ValidateConfig: ModuleServiceValidateConfig;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -126,14 +126,14 @@ export class ModuleServiceClient {
     requestMessage: module_v1_module_pb.ReadyRequest,
     callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ReadyResponse|null) => void
   ): UnaryResponse;
-  validate(
-    requestMessage: module_v1_module_pb.ValidateRequest,
+  validateConfig(
+    requestMessage: module_v1_module_pb.ValidateConfigRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ValidateResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ValidateConfigResponse|null) => void
   ): UnaryResponse;
-  validate(
-    requestMessage: module_v1_module_pb.ValidateRequest,
-    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ValidateResponse|null) => void
+  validateConfig(
+    requestMessage: module_v1_module_pb.ValidateConfigRequest,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ValidateConfigResponse|null) => void
   ): UnaryResponse;
 }
 

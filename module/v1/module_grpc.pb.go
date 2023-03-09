@@ -30,9 +30,9 @@ type ModuleServiceClient interface {
 	RemoveResource(ctx context.Context, in *RemoveResourceRequest, opts ...grpc.CallOption) (*RemoveResourceResponse, error)
 	// Ready determines if the server is started and ready to recieve resource configurations.
 	Ready(ctx context.Context, in *ReadyRequest, opts ...grpc.CallOption) (*ReadyResponse, error)
-	// Validate determines whether the given config is valid and registers/returns implicit
-	// dependenices.
-	Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
+	// ValidateConfig determines whether the given config is valid and registers/returns implicit
+	// dependencies.
+	ValidateConfig(ctx context.Context, in *ValidateConfigRequest, opts ...grpc.CallOption) (*ValidateConfigResponse, error)
 }
 
 type moduleServiceClient struct {
@@ -79,9 +79,9 @@ func (c *moduleServiceClient) Ready(ctx context.Context, in *ReadyRequest, opts 
 	return out, nil
 }
 
-func (c *moduleServiceClient) Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error) {
-	out := new(ValidateResponse)
-	err := c.cc.Invoke(ctx, "/viam.module.v1.ModuleService/Validate", in, out, opts...)
+func (c *moduleServiceClient) ValidateConfig(ctx context.Context, in *ValidateConfigRequest, opts ...grpc.CallOption) (*ValidateConfigResponse, error) {
+	out := new(ValidateConfigResponse)
+	err := c.cc.Invoke(ctx, "/viam.module.v1.ModuleService/ValidateConfig", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -100,9 +100,9 @@ type ModuleServiceServer interface {
 	RemoveResource(context.Context, *RemoveResourceRequest) (*RemoveResourceResponse, error)
 	// Ready determines if the server is started and ready to recieve resource configurations.
 	Ready(context.Context, *ReadyRequest) (*ReadyResponse, error)
-	// Validate determines whether the given config is valid and registers/returns implicit
-	// dependenices.
-	Validate(context.Context, *ValidateRequest) (*ValidateResponse, error)
+	// ValidateConfig determines whether the given config is valid and registers/returns implicit
+	// dependencies.
+	ValidateConfig(context.Context, *ValidateConfigRequest) (*ValidateConfigResponse, error)
 	mustEmbedUnimplementedModuleServiceServer()
 }
 
@@ -122,8 +122,8 @@ func (UnimplementedModuleServiceServer) RemoveResource(context.Context, *RemoveR
 func (UnimplementedModuleServiceServer) Ready(context.Context, *ReadyRequest) (*ReadyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Ready not implemented")
 }
-func (UnimplementedModuleServiceServer) Validate(context.Context, *ValidateRequest) (*ValidateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Validate not implemented")
+func (UnimplementedModuleServiceServer) ValidateConfig(context.Context, *ValidateConfigRequest) (*ValidateConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateConfig not implemented")
 }
 func (UnimplementedModuleServiceServer) mustEmbedUnimplementedModuleServiceServer() {}
 
@@ -210,20 +210,20 @@ func _ModuleService_Ready_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ModuleService_Validate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ValidateRequest)
+func _ModuleService_ValidateConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateConfigRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ModuleServiceServer).Validate(ctx, in)
+		return srv.(ModuleServiceServer).ValidateConfig(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.module.v1.ModuleService/Validate",
+		FullMethod: "/viam.module.v1.ModuleService/ValidateConfig",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ModuleServiceServer).Validate(ctx, req.(*ValidateRequest))
+		return srv.(ModuleServiceServer).ValidateConfig(ctx, req.(*ValidateConfigRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -252,8 +252,8 @@ var ModuleService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ModuleService_Ready_Handler,
 		},
 		{
-			MethodName: "Validate",
-			Handler:    _ModuleService_Validate_Handler,
+			MethodName: "ValidateConfig",
+			Handler:    _ModuleService_ValidateConfig_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

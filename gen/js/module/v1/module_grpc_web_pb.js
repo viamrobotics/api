@@ -327,61 +327,61 @@ proto.viam.module.v1.ModuleServicePromiseClient.prototype.ready =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.module.v1.ValidateRequest,
- *   !proto.viam.module.v1.ValidateResponse>}
+ *   !proto.viam.module.v1.ValidateConfigRequest,
+ *   !proto.viam.module.v1.ValidateConfigResponse>}
  */
-const methodDescriptor_ModuleService_Validate = new grpc.web.MethodDescriptor(
-  '/viam.module.v1.ModuleService/Validate',
+const methodDescriptor_ModuleService_ValidateConfig = new grpc.web.MethodDescriptor(
+  '/viam.module.v1.ModuleService/ValidateConfig',
   grpc.web.MethodType.UNARY,
-  proto.viam.module.v1.ValidateRequest,
-  proto.viam.module.v1.ValidateResponse,
+  proto.viam.module.v1.ValidateConfigRequest,
+  proto.viam.module.v1.ValidateConfigResponse,
   /**
-   * @param {!proto.viam.module.v1.ValidateRequest} request
+   * @param {!proto.viam.module.v1.ValidateConfigRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.module.v1.ValidateResponse.deserializeBinary
+  proto.viam.module.v1.ValidateConfigResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.module.v1.ValidateRequest} request The
+ * @param {!proto.viam.module.v1.ValidateConfigRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.module.v1.ValidateResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.module.v1.ValidateConfigResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.module.v1.ValidateResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.module.v1.ValidateConfigResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.module.v1.ModuleServiceClient.prototype.validate =
+proto.viam.module.v1.ModuleServiceClient.prototype.validateConfig =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.module.v1.ModuleService/Validate',
+      '/viam.module.v1.ModuleService/ValidateConfig',
       request,
       metadata || {},
-      methodDescriptor_ModuleService_Validate,
+      methodDescriptor_ModuleService_ValidateConfig,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.module.v1.ValidateRequest} request The
+ * @param {!proto.viam.module.v1.ValidateConfigRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.module.v1.ValidateResponse>}
+ * @return {!Promise<!proto.viam.module.v1.ValidateConfigResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.module.v1.ModuleServicePromiseClient.prototype.validate =
+proto.viam.module.v1.ModuleServicePromiseClient.prototype.validateConfig =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.module.v1.ModuleService/Validate',
+      '/viam.module.v1.ModuleService/ValidateConfig',
       request,
       metadata || {},
-      methodDescriptor_ModuleService_Validate);
+      methodDescriptor_ModuleService_ValidateConfig);
 };
 
 
