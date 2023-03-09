@@ -11,22 +11,6 @@ option java_package = "com.viam.service.slam.v1";
 
 // A SlamService declares the gRPC contract for a slam service
 service SLAMService {
-  // GetPosition returns the current estimated position of the robot with
-  // respect to the "origin" of the map.
-  rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/slam/{name}/position"
-    };
-  }
-
-  // GetMap returns the latest map image or point cloud
-  rpc GetMap(GetMapRequest) returns (GetMapResponse) {
-    option deprecated = true;
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/slam/{name}/map"
-    };
-  }
-
   // GetPositionNew returns the current estimated position of the robot with
   // respect to a returned component reference. Note: this function will be
   // renamed to GetPosition and replace the existing one in the near future
@@ -36,21 +20,11 @@ service SLAMService {
     };
   }
 
-  // GetPointCloudMap returns the latest point cloud map
-  rpc GetPointCloudMap(GetPointCloudMapRequest) returns (GetPointCloudMapResponse) {
-    option deprecated = true;
+  // GetPosition returns the current estimated position of the robot with
+  // respect to a returned component reference.
+  rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {
     option (google.api.http) = {
-      get: "/viam/api/v1/service/slam/{name}/point_cloud_map"
-    };
-  }
-
-  // GetInternalState returns the internal map as defined by the specified slam
-  // algorithm required to continue mapping/localizing. This endpoint is not
-  // intended for end user usage
-  rpc GetInternalState(GetInternalStateRequest) returns (GetInternalStateResponse) {
-    option deprecated = true;
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/slam/{name}/internal_state"
+      get: "/viam/api/v1/service/slam/{name}/position"
     };
   }
 
@@ -59,6 +33,13 @@ service SLAMService {
   rpc GetPointCloudMapStream(GetPointCloudMapStreamRequest) returns (stream GetPointCloudMapStreamResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/slam/{name}/point_cloud_map_stream"
+    };
+  }
+
+  // GetPointCloudMap returns the latest point cloud map in PCD format
+  rpc GetPointCloudMap(GetPointCloudMapRequest) returns (stream GetPointCloudMapResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/slam/{name}/point_cloud_map"
     };
   }
 
@@ -72,6 +53,15 @@ service SLAMService {
     };
   }
 
+  // GetInternalState returns the internal map as defined by the specified slam
+  // algorithm required to continue mapping/localizing.
+  // This endpoint is not intended for end users.
+  rpc GetInternalState(GetInternalStateRequest) returns (stream GetInternalStateResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/slam/{name}/internal_state"
+    };
+  }
+
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
@@ -81,54 +71,27 @@ service SLAMService {
 }
 
 message GetPositionRequest {
-  option deprecated = true;
   // Name of slam service
   string name = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
 }
 
 message GetPositionResponse {
-  option deprecated = true;
-  // Current position of the robot within the World frame.
-  common.v1.PoseInFrame pose = 1;
-  // Additional arguments to the method
+  // Current position of the specified component in the SLAM Map
+  common.v1.Pose pose = 1;
+  // This is usually the name of the camera that is in the SLAM config
+  string component_reference = 2;
+  // Additional information in the response
   google.protobuf.Struct extra = 99;
-}
-
-message GetMapRequest {
-  option deprecated = true;
-  // Name of slam service
-  string name = 1;
-  // Requested MIME type of response (image/jpeg or image/pcd)
-  string mime_type = 2;
-  // Optional parameter for image/jpeg mime_type, used to project point
-  // cloud into a 2D image.
-  optional common.v1.Pose camera_position = 3;
-  // Optional parameter for image/jpeg mime_type, defaults to false.
-  // Tells us whether to include the robot position on the 2D image.
-  bool include_robot_marker = 4;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message GetMapResponse {
-  option deprecated = true;
-  // Image or point cloud of mime_type.
-  oneof map {
-    common.v1.PointCloudObject point_cloud = 1;
-    bytes image = 2;
-  }
-  // Actual MIME type of response (image/jpeg or image/pcd)
-  string mime_type = 3;
 }
 
 message GetPositionNewRequest {
+  option deprecated = true;
   // Name of slam service
   string name = 1;
 }
 
 message GetPositionNewResponse {
+  option deprecated = true;
   // Current position of the specified component in the SLAM Map
   common.v1.Pose pose = 1;
   // This is usually the name of the camera that is in the SLAM config
@@ -138,53 +101,57 @@ message GetPositionNewResponse {
 }
 
 message GetPointCloudMapRequest {
-  option deprecated = true;
   // Name of slam service
   string name = 1;
 }
 
 message GetPointCloudMapResponse {
-  option deprecated = true;
-  // pointclouds are returned as a set of bytes in the standard PCD format
+  // One chunk of the PointCloud.
+  // For a given GetPointCloudMapStream request, concatinating all
+  // GetPointCloudMapStreamResponse.point_cloud_pcd_chunk values in the
+  // order received result in the complete pointcloud in standard PCD
+  // format.
   // https://pointclouds.org/documentation/tutorials/pcd_file_format.html
-  bytes point_cloud_pcd = 1;
+  bytes point_cloud_pcd_chunk = 1;
 }
 
 message GetInternalStateRequest {
-  option deprecated = true;
   // Name of slam service
   string name = 1;
 }
 
 message GetInternalStateResponse {
-  option deprecated = true;
-  // A chunk of the internal state of the SLAM algorithm required to continue
+  // Chunk of the internal state of the SLAM algorithm required to continue
   // mapping/localization
-  bytes internal_state = 1;
+  bytes internal_state_chunk = 1;
 }
 
 message GetPointCloudMapStreamRequest {
+  option deprecated = true;
   // Name of slam service
   string name = 1;
 }
 
 message GetPointCloudMapStreamResponse {
+  option deprecated = true;
   // One chunk of the PointCloud.
   // For a given GetPointCloudMapStream request,
   // concatinating all
   // GetPointCloudMapStreamResponse.point_cloud_pcd_chunk
-  // values in the order received result in
-  // the complete pointcloud in standard PCD format.
+  // values in the order received result in the
+  // complete pointcloud in standard PCD format.
   // https://pointclouds.org/documentation/tutorials/pcd_file_format.html
   bytes point_cloud_pcd_chunk = 1;
 }
 
 message GetInternalStateStreamRequest {
+  option deprecated = true;
   // Name of slam service
   string name = 1;
 }
 
 message GetInternalStateStreamResponse {
+  option deprecated = true;
   // Chunk of the internal state of the SLAM algorithm required to continue
   // mapping/localization
   bytes internal_state_chunk = 1;

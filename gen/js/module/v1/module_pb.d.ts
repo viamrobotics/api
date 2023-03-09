@@ -225,3 +225,47 @@ export namespace ReadyResponse {
   }
 }
 
+export class ValidateConfigRequest extends jspb.Message {
+  hasConfig(): boolean;
+  clearConfig(): void;
+  getConfig(): app_v1_robot_pb.ComponentConfig | undefined;
+  setConfig(value?: app_v1_robot_pb.ComponentConfig): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ValidateConfigRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ValidateConfigRequest): ValidateConfigRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ValidateConfigRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ValidateConfigRequest;
+  static deserializeBinaryFromReader(message: ValidateConfigRequest, reader: jspb.BinaryReader): ValidateConfigRequest;
+}
+
+export namespace ValidateConfigRequest {
+  export type AsObject = {
+    config?: app_v1_robot_pb.ComponentConfig.AsObject,
+  }
+}
+
+export class ValidateConfigResponse extends jspb.Message {
+  clearDependenciesList(): void;
+  getDependenciesList(): Array<string>;
+  setDependenciesList(value: Array<string>): void;
+  addDependencies(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ValidateConfigResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ValidateConfigResponse): ValidateConfigResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ValidateConfigResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ValidateConfigResponse;
+  static deserializeBinaryFromReader(message: ValidateConfigResponse, reader: jspb.BinaryReader): ValidateConfigResponse;
+}
+
+export namespace ValidateConfigResponse {
+  export type AsObject = {
+    dependenciesList: Array<string>,
+  }
+}
+
