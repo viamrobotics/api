@@ -46,6 +46,15 @@ ModuleService.Ready = {
   responseType: module_v1_module_pb.ReadyResponse
 };
 
+ModuleService.ValidateConfig = {
+  methodName: "ValidateConfig",
+  service: ModuleService,
+  requestStream: false,
+  responseStream: false,
+  requestType: module_v1_module_pb.ValidateConfigRequest,
+  responseType: module_v1_module_pb.ValidateConfigResponse
+};
+
 exports.ModuleService = ModuleService;
 
 function ModuleServiceClient(serviceHost, options) {
@@ -151,6 +160,37 @@ ModuleServiceClient.prototype.ready = function ready(requestMessage, metadata, c
     callback = arguments[1];
   }
   var client = grpc.unary(ModuleService.Ready, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ModuleServiceClient.prototype.validateConfig = function validateConfig(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ModuleService.ValidateConfig, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
