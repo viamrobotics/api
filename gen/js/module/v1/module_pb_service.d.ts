@@ -40,12 +40,22 @@ type ModuleServiceReady = {
   readonly responseType: typeof module_v1_module_pb.ReadyResponse;
 };
 
+type ModuleServiceValidateConfig = {
+  readonly methodName: string;
+  readonly service: typeof ModuleService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof module_v1_module_pb.ValidateConfigRequest;
+  readonly responseType: typeof module_v1_module_pb.ValidateConfigResponse;
+};
+
 export class ModuleService {
   static readonly serviceName: string;
   static readonly AddResource: ModuleServiceAddResource;
   static readonly ReconfigureResource: ModuleServiceReconfigureResource;
   static readonly RemoveResource: ModuleServiceRemoveResource;
   static readonly Ready: ModuleServiceReady;
+  static readonly ValidateConfig: ModuleServiceValidateConfig;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -115,6 +125,15 @@ export class ModuleServiceClient {
   ready(
     requestMessage: module_v1_module_pb.ReadyRequest,
     callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ReadyResponse|null) => void
+  ): UnaryResponse;
+  validateConfig(
+    requestMessage: module_v1_module_pb.ValidateConfigRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ValidateConfigResponse|null) => void
+  ): UnaryResponse;
+  validateConfig(
+    requestMessage: module_v1_module_pb.ValidateConfigRequest,
+    callback: (error: ServiceError|null, responseMessage: module_v1_module_pb.ValidateConfigResponse|null) => void
   ): UnaryResponse;
 }
 
