@@ -3,7 +3,6 @@ syntax = "proto3";
 package viam.app.mltraining.v1;
 
 import "app/data/v1/data.proto";
-import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "tagger/v1/tagger.proto";
 
@@ -13,6 +12,7 @@ service MLTrainingService {
   rpc SubmitTrainingJob(SubmitTrainingJobRequest) returns (SubmitTrainingJobResponse);
   rpc GetTrainingJob(GetTrainingJobRequest) returns (GetTrainingJobResponse);
   rpc ListTrainingJobs(ListTrainingJobsRequest) returns (ListTrainingJobsResponse);
+  rpc CancelTrainingJob(CancelTrainingJobRequest) returns (CancelTrainingJobResponse);
 }
 
 enum ModelType {
@@ -39,8 +39,7 @@ message GetTrainingJobRequest {
 }
 
 message GetTrainingJobResponse {
-  string id = 1;
-  TrainingJobMetadata metadata = 2;
+  TrainingJobMetadata metadata = 1;
 }
 
 message ListTrainingJobsRequest {
@@ -58,6 +57,7 @@ enum TrainingStatus {
   TRAINING_STATUS_IN_PROGRESS = 2;
   TRAINING_STATUS_COMPLETED = 3;
   TRAINING_STATUS_FAILED = 4;
+  TRAINING_STATUS_CANCELED = 5;
 }
 
 message TrainingJobMetadata {
@@ -70,13 +70,8 @@ message TrainingJobMetadata {
   string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
 }
 
-message TrainingJob {
-  string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
-  TrainingJobMetadata metadata = 2 [(tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
-  string output_path = 3 [(tagger.v1.tags) = "bson:\"output_path\" json:\"output_path\""];
-  // The vertex_job_id is the id of the Vertex AI custom training job
-  // backing our concept of a TrainingJob.
-  string vertex_job_id = 4 [(tagger.v1.tags) = "bson:\"vertex_job_id\" json:\"vertex_job_id\""];
-  google.protobuf.Struct model_metadata = 5 [(tagger.v1.tags) = "bson:\"model_metadata\" json:\"model_metadata\""];
-  bool processing = 6 [(tagger.v1.tags) = "bson:\"processing\" json:\"processing\""];
+message CancelTrainingJobRequest {
+  string id = 1;
 }
+
+message CancelTrainingJobResponse {}
