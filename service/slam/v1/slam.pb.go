@@ -510,8 +510,8 @@ type GetPointCloudMapStreamResponse struct {
 	// For a given GetPointCloudMapStream request,
 	// concatinating all
 	// GetPointCloudMapStreamResponse.point_cloud_pcd_chunk
-	// values in the order received result in
-	// the complete pointcloud in standard PCD format.
+	// values in the order received result in the
+	// complete pointcloud in standard PCD format.
 	// https://pointclouds.org/documentation/tutorials/pcd_file_format.html
 	PointCloudPcdChunk []byte `protobuf:"bytes,1,opt,name=point_cloud_pcd_chunk,json=pointCloudPcdChunk,proto3" json:"point_cloud_pcd_chunk,omitempty"`
 }
