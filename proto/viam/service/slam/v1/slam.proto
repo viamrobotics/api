@@ -11,7 +11,6 @@ option java_package = "com.viam.service.slam.v1";
 
 // A SlamService declares the gRPC contract for a slam service
 service SLAMService {
-
   // GetPositionNew returns the current estimated position of the robot with
   // respect to a returned component reference. Note: this function will be
   // renamed to GetPosition and replace the existing one in the near future
@@ -37,10 +36,10 @@ service SLAMService {
     };
   }
 
-    // GetPointCloudMap returns the latest point cloud map in PCD format
+  // GetPointCloudMap returns the latest point cloud map in PCD format
   rpc GetPointCloudMap(GetPointCloudMapRequest) returns (stream GetPointCloudMapResponse) {
     option (google.api.http) = {
-     get: "/viam/api/v1/service/slam/{name}/point_cloud_map"
+      get: "/viam/api/v1/service/slam/{name}/point_cloud_map"
     };
   }
 
@@ -57,7 +56,7 @@ service SLAMService {
   // GetInternalState returns the internal map as defined by the specified slam
   // algorithm required to continue mapping/localizing.
   // This endpoint is not intended for end users.
-  rpc GetInternalState(GetInternalStateStreamRequest) returns (stream GetInternalStateResponse) {
+  rpc GetInternalState(GetInternalStateRequest) returns (stream GetInternalStateResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/slam/{name}/internal_state"
     };
@@ -109,15 +108,14 @@ message GetPointCloudMapRequest {
 message GetPointCloudMapResponse {
   // One chunk of the PointCloud.
   // For a given GetPointCloudMapStream request, concatinating all
-  // GetPointCloudMapStreamResponse.point_cloud_pcd_chunk values in the 
-  // order received result in the complete pointcloud in standard PCD 
+  // GetPointCloudMapStreamResponse.point_cloud_pcd_chunk values in the
+  // order received result in the complete pointcloud in standard PCD
   // format.
   // https://pointclouds.org/documentation/tutorials/pcd_file_format.html
   bytes point_cloud_pcd_chunk = 1;
 }
 
 message GetInternalStateRequest {
-  option deprecated = true;
   // Name of slam service
   string name = 1;
 }
