@@ -377,21 +377,20 @@ func RegisterServoServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/Move", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/move"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/Move", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/move"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ServoService_Move_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ServoService_Move_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ServoService_Move_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ServoService_Move_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -402,21 +401,20 @@ func RegisterServoServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/GetPosition", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/position"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/GetPosition", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/position"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ServoService_GetPosition_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ServoService_GetPosition_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ServoService_GetPosition_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ServoService_GetPosition_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -427,21 +425,20 @@ func RegisterServoServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/Stop", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/stop"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/Stop", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/stop"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ServoService_Stop_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ServoService_Stop_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ServoService_Stop_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ServoService_Stop_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -452,21 +449,20 @@ func RegisterServoServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/IsMoving", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/is_moving"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/IsMoving", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/is_moving"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ServoService_IsMoving_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ServoService_IsMoving_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ServoService_IsMoving_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ServoService_IsMoving_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -477,21 +473,20 @@ func RegisterServoServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/do_command"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/do_command"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ServoService_DoCommand_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ServoService_DoCommand_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ServoService_DoCommand_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ServoService_DoCommand_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -541,20 +536,19 @@ func RegisterServoServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/Move", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/move"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/Move", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/move"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ServoService_Move_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_ServoService_Move_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ServoService_Move_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ServoService_Move_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -563,20 +557,19 @@ func RegisterServoServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/GetPosition", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/position"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/GetPosition", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/position"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ServoService_GetPosition_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_ServoService_GetPosition_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ServoService_GetPosition_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ServoService_GetPosition_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -585,20 +578,19 @@ func RegisterServoServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/Stop", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/stop"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/Stop", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/stop"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ServoService_Stop_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_ServoService_Stop_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ServoService_Stop_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ServoService_Stop_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -607,20 +599,19 @@ func RegisterServoServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/IsMoving", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/is_moving"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/IsMoving", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/is_moving"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ServoService_IsMoving_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_ServoService_IsMoving_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ServoService_IsMoving_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ServoService_IsMoving_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -629,20 +620,19 @@ func RegisterServoServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/do_command"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.servo.v1.ServoService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/servo/{name}/do_command"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ServoService_DoCommand_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_ServoService_DoCommand_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ServoService_DoCommand_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ServoService_DoCommand_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 

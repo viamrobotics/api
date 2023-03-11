@@ -269,21 +269,20 @@ func RegisterAudioInputServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/Properties", runtime.WithHTTPPathPattern("/viam/api/v1/component/audioinput/{name}/properties"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/Properties", runtime.WithHTTPPathPattern("/viam/api/v1/component/audioinput/{name}/properties"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AudioInputService_Properties_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AudioInputService_Properties_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AudioInputService_Properties_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AudioInputService_Properties_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -294,21 +293,20 @@ func RegisterAudioInputServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/Record", runtime.WithHTTPPathPattern("/viam/api/v1/component/audioinput/{name}/record"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/Record", runtime.WithHTTPPathPattern("/viam/api/v1/component/audioinput/{name}/record"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AudioInputService_Record_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AudioInputService_Record_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AudioInputService_Record_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AudioInputService_Record_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -319,21 +317,20 @@ func RegisterAudioInputServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/audioinput/{name}/do_command"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/audioinput/{name}/do_command"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AudioInputService_DoCommand_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AudioInputService_DoCommand_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AudioInputService_DoCommand_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AudioInputService_DoCommand_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -383,20 +380,19 @@ func RegisterAudioInputServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/Chunks", runtime.WithHTTPPathPattern("/viam.component.audioinput.v1.AudioInputService/Chunks"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/Chunks", runtime.WithHTTPPathPattern("/viam.component.audioinput.v1.AudioInputService/Chunks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AudioInputService_Chunks_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_AudioInputService_Chunks_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AudioInputService_Chunks_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_AudioInputService_Chunks_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -405,20 +401,19 @@ func RegisterAudioInputServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/Properties", runtime.WithHTTPPathPattern("/viam/api/v1/component/audioinput/{name}/properties"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/Properties", runtime.WithHTTPPathPattern("/viam/api/v1/component/audioinput/{name}/properties"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AudioInputService_Properties_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_AudioInputService_Properties_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AudioInputService_Properties_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AudioInputService_Properties_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -427,20 +422,19 @@ func RegisterAudioInputServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/Record", runtime.WithHTTPPathPattern("/viam/api/v1/component/audioinput/{name}/record"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/Record", runtime.WithHTTPPathPattern("/viam/api/v1/component/audioinput/{name}/record"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AudioInputService_Record_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_AudioInputService_Record_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AudioInputService_Record_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AudioInputService_Record_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -449,20 +443,19 @@ func RegisterAudioInputServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/audioinput/{name}/do_command"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.audioinput.v1.AudioInputService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/audioinput/{name}/do_command"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AudioInputService_DoCommand_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_AudioInputService_DoCommand_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AudioInputService_DoCommand_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AudioInputService_DoCommand_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 

@@ -325,21 +325,20 @@ func RegisterMotionServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/Move", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/move"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/Move", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/move"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MotionService_Move_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MotionService_Move_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MotionService_Move_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MotionService_Move_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -350,21 +349,20 @@ func RegisterMotionServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/MoveSingleComponent", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/move_single_component"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/MoveSingleComponent", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/move_single_component"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MotionService_MoveSingleComponent_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MotionService_MoveSingleComponent_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MotionService_MoveSingleComponent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MotionService_MoveSingleComponent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -375,21 +373,20 @@ func RegisterMotionServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/GetPose", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/pose"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/GetPose", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/pose"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MotionService_GetPose_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MotionService_GetPose_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MotionService_GetPose_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MotionService_GetPose_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -400,21 +397,20 @@ func RegisterMotionServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/do_command"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/do_command"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MotionService_DoCommand_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MotionService_DoCommand_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MotionService_DoCommand_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MotionService_DoCommand_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -464,20 +460,19 @@ func RegisterMotionServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/Move", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/move"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/Move", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/move"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MotionService_Move_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_MotionService_Move_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MotionService_Move_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MotionService_Move_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -486,20 +481,19 @@ func RegisterMotionServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/MoveSingleComponent", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/move_single_component"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/MoveSingleComponent", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/move_single_component"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MotionService_MoveSingleComponent_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_MotionService_MoveSingleComponent_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MotionService_MoveSingleComponent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MotionService_MoveSingleComponent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -508,20 +502,19 @@ func RegisterMotionServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/GetPose", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/pose"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/GetPose", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/pose"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MotionService_GetPose_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_MotionService_GetPose_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MotionService_GetPose_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MotionService_GetPose_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -530,20 +523,19 @@ func RegisterMotionServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/do_command"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.service.motion.v1.MotionService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/service/motion/{name}/do_command"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MotionService_DoCommand_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_MotionService_DoCommand_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MotionService_DoCommand_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MotionService_DoCommand_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 

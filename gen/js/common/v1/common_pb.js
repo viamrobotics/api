@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_protobuf_descriptor_pb = require('google-protobuf/google/protobuf/descriptor_pb.js');
 goog.object.extend(proto, google_protobuf_descriptor_pb);
@@ -822,7 +828,8 @@ proto.viam.common.v1.BoardStatus.prototype.getAnalogsMap = function(opt_noLazyCr
  */
 proto.viam.common.v1.BoardStatus.prototype.clearAnalogsMap = function() {
   this.getAnalogsMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -844,7 +851,8 @@ proto.viam.common.v1.BoardStatus.prototype.getDigitalInterruptsMap = function(op
  */
 proto.viam.common.v1.BoardStatus.prototype.clearDigitalInterruptsMap = function() {
   this.getDigitalInterruptsMap().clear();
-  return this;};
+  return this;
+};
 
 
 
