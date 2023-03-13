@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package viam.component.generic.v1;
 
+import "common/v1/common.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/component/generic/v1";
 option java_package = "com.viam.component.generic.v1";
@@ -11,18 +11,9 @@ option java_package = "com.viam.component.generic.v1";
 // GenericService services all generic commands associated with a robot
 service GenericService {
   // DoCommand sends/recieves arbitrary commands
-  rpc DoCommand(DoCommandRequest) returns (DoCommandResponse) {
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/component/generic/{name}/do_command"
     };
   }
-}
-
-message DoCommandRequest {
-  string name = 1;
-  google.protobuf.Struct command = 2;
-}
-
-message DoCommandResponse {
-  google.protobuf.Struct result = 1;
 }

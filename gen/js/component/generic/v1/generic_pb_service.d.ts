@@ -2,6 +2,7 @@
 // file: component/generic/v1/generic.proto
 
 import * as component_generic_v1_generic_pb from "../../../component/generic/v1/generic_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type GenericServiceDoCommand = {
@@ -9,8 +10,8 @@ type GenericServiceDoCommand = {
   readonly service: typeof GenericService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof component_generic_v1_generic_pb.DoCommandRequest;
-  readonly responseType: typeof component_generic_v1_generic_pb.DoCommandResponse;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
 export class GenericService {
@@ -51,13 +52,13 @@ export class GenericServiceClient {
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
   doCommand(
-    requestMessage: component_generic_v1_generic_pb.DoCommandRequest,
+    requestMessage: common_v1_common_pb.DoCommandRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: component_generic_v1_generic_pb.DoCommandResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
   doCommand(
-    requestMessage: component_generic_v1_generic_pb.DoCommandRequest,
-    callback: (error: ServiceError|null, responseMessage: component_generic_v1_generic_pb.DoCommandResponse|null) => void
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 
