@@ -2,6 +2,7 @@
 // file: component/generic/v1/generic.proto
 
 var component_generic_v1_generic_pb = require("../../../component/generic/v1/generic_pb");
+var common_v1_common_pb = require("../../../common/v1/common_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var GenericService = (function () {
@@ -15,8 +16,8 @@ GenericService.DoCommand = {
   service: GenericService,
   requestStream: false,
   responseStream: false,
-  requestType: component_generic_v1_generic_pb.DoCommandRequest,
-  responseType: component_generic_v1_generic_pb.DoCommandResponse
+  requestType: common_v1_common_pb.DoCommandRequest,
+  responseType: common_v1_common_pb.DoCommandResponse
 };
 
 exports.GenericService = GenericService;
