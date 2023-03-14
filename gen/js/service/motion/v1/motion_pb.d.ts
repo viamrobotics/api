@@ -30,6 +30,11 @@ export class MoveRequest extends jspb.Message {
   getConstraints(): Constraints | undefined;
   setConstraints(value?: Constraints): void;
 
+  hasSlamServiceName(): boolean;
+  clearSlamServiceName(): void;
+  getSlamServiceName(): common_v1_common_pb.ResourceName | undefined;
+  setSlamServiceName(value?: common_v1_common_pb.ResourceName): void;
+
   hasExtra(): boolean;
   clearExtra(): void;
   getExtra(): google_protobuf_struct_pb.Struct | undefined;
@@ -52,6 +57,7 @@ export namespace MoveRequest {
     componentName?: common_v1_common_pb.ResourceName.AsObject,
     worldState?: common_v1_common_pb.WorldState.AsObject,
     constraints?: Constraints.AsObject,
+    slamServiceName?: common_v1_common_pb.ResourceName.AsObject,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }

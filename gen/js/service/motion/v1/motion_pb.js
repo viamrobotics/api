@@ -300,6 +300,7 @@ proto.viam.service.motion.v1.MoveRequest.toObject = function(includeInstance, ms
     componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     worldState: (f = msg.getWorldState()) && common_v1_common_pb.WorldState.toObject(includeInstance, f),
     constraints: (f = msg.getConstraints()) && proto.viam.service.motion.v1.Constraints.toObject(includeInstance, f),
+    slamServiceName: (f = msg.getSlamServiceName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -360,6 +361,11 @@ proto.viam.service.motion.v1.MoveRequest.deserializeBinaryFromReader = function(
       var value = new proto.viam.service.motion.v1.Constraints;
       reader.readMessage(value,proto.viam.service.motion.v1.Constraints.deserializeBinaryFromReader);
       msg.setConstraints(value);
+      break;
+    case 6:
+      var value = new common_v1_common_pb.ResourceName;
+      reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
+      msg.setSlamServiceName(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -432,6 +438,14 @@ proto.viam.service.motion.v1.MoveRequest.serializeBinaryToWriter = function(mess
       5,
       f,
       proto.viam.service.motion.v1.Constraints.serializeBinaryToWriter
+    );
+  }
+  f = message.getSlamServiceName();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      common_v1_common_pb.ResourceName.serializeBinaryToWriter
     );
   }
   f = message.getExtra();
@@ -608,6 +622,43 @@ proto.viam.service.motion.v1.MoveRequest.prototype.clearConstraints = function()
  */
 proto.viam.service.motion.v1.MoveRequest.prototype.hasConstraints = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional viam.common.v1.ResourceName slam_service_name = 6;
+ * @return {?proto.viam.common.v1.ResourceName}
+ */
+proto.viam.service.motion.v1.MoveRequest.prototype.getSlamServiceName = function() {
+  return /** @type{?proto.viam.common.v1.ResourceName} */ (
+    jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 6));
+};
+
+
+/**
+ * @param {?proto.viam.common.v1.ResourceName|undefined} value
+ * @return {!proto.viam.service.motion.v1.MoveRequest} returns this
+*/
+proto.viam.service.motion.v1.MoveRequest.prototype.setSlamServiceName = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.motion.v1.MoveRequest} returns this
+ */
+proto.viam.service.motion.v1.MoveRequest.prototype.clearSlamServiceName = function() {
+  return this.setSlamServiceName(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.motion.v1.MoveRequest.prototype.hasSlamServiceName = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
