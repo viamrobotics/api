@@ -43,6 +43,7 @@ message MoveRequest {
   common.v1.ResourceName component_name = 3;
   optional common.v1.WorldState world_state = 4;
   optional Constraints constraints = 5;
+  optional common.v1.ResourceName slam_service_name = 6;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
