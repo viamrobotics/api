@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -438,8 +432,7 @@ proto.viam.component.posetracker.v1.GetPosesResponse.prototype.getBodyPosesMap =
  */
 proto.viam.component.posetracker.v1.GetPosesResponse.prototype.clearBodyPosesMap = function() {
   this.getBodyPosesMap().clear();
-  return this;
-};
+  return this;};
 
 
 goog.object.extend(exports, proto.viam.component.posetracker.v1);

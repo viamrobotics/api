@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
 goog.object.extend(proto, google_protobuf_any_pb);
@@ -1976,8 +1970,7 @@ proto.viam.app.datasync.v1.UploadMetadata.prototype.getMethodParametersMap = fun
  */
 proto.viam.app.datasync.v1.UploadMetadata.prototype.clearMethodParametersMap = function() {
   this.getMethodParametersMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -2578,8 +2571,7 @@ proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.getMethodParametersMap 
  */
 proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.clearMethodParametersMap = function() {
   this.getMethodParametersMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -3246,8 +3238,7 @@ proto.viam.app.datasync.v1.TabularCapture.prototype.getMethodParametersMap = fun
  */
 proto.viam.app.datasync.v1.TabularCapture.prototype.clearMethodParametersMap = function() {
   this.getMethodParametersMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -3949,8 +3940,7 @@ proto.viam.app.datasync.v1.BinaryCapture.prototype.getMethodParametersMap = func
  */
 proto.viam.app.datasync.v1.BinaryCapture.prototype.clearMethodParametersMap = function() {
   this.getMethodParametersMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**

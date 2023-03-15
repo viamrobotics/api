@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js');
 goog.object.extend(proto, google_protobuf_duration_pb);
@@ -3602,8 +3596,7 @@ proto.google.api.expr.v1alpha1.SourceInfo.prototype.getPositionsMap = function(o
  */
 proto.google.api.expr.v1alpha1.SourceInfo.prototype.clearPositionsMap = function() {
   this.getPositionsMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -3625,8 +3618,7 @@ proto.google.api.expr.v1alpha1.SourceInfo.prototype.getMacroCallsMap = function(
  */
 proto.google.api.expr.v1alpha1.SourceInfo.prototype.clearMacroCallsMap = function() {
   this.getMacroCallsMap().clear();
-  return this;
-};
+  return this;};
 
 
 

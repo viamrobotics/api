@@ -675,20 +675,21 @@ func RegisterMovementSensorServiceHandlerServer(ctx context.Context, mux *runtim
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetLinearVelocity", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/linear_velocity"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetLinearVelocity", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/linear_velocity"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MovementSensorService_GetLinearVelocity_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MovementSensorService_GetLinearVelocity_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetLinearVelocity_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetLinearVelocity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -699,20 +700,21 @@ func RegisterMovementSensorServiceHandlerServer(ctx context.Context, mux *runtim
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetAngularVelocity", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/angular_velocity"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetAngularVelocity", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/angular_velocity"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MovementSensorService_GetAngularVelocity_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MovementSensorService_GetAngularVelocity_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetAngularVelocity_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetAngularVelocity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -723,20 +725,21 @@ func RegisterMovementSensorServiceHandlerServer(ctx context.Context, mux *runtim
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetCompassHeading", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/compass_heading"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetCompassHeading", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/compass_heading"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MovementSensorService_GetCompassHeading_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MovementSensorService_GetCompassHeading_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetCompassHeading_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetCompassHeading_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -747,20 +750,21 @@ func RegisterMovementSensorServiceHandlerServer(ctx context.Context, mux *runtim
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetOrientation", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/orientation"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetOrientation", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/orientation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MovementSensorService_GetOrientation_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MovementSensorService_GetOrientation_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetOrientation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetOrientation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -771,20 +775,21 @@ func RegisterMovementSensorServiceHandlerServer(ctx context.Context, mux *runtim
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetPosition", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/position"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetPosition", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/position"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MovementSensorService_GetPosition_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MovementSensorService_GetPosition_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetPosition_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetPosition_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -795,20 +800,21 @@ func RegisterMovementSensorServiceHandlerServer(ctx context.Context, mux *runtim
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetProperties", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/properties"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetProperties", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/properties"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MovementSensorService_GetProperties_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MovementSensorService_GetProperties_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetProperties_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetProperties_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -819,20 +825,21 @@ func RegisterMovementSensorServiceHandlerServer(ctx context.Context, mux *runtim
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetAccuracy", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/accuracy"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetAccuracy", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/accuracy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MovementSensorService_GetAccuracy_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MovementSensorService_GetAccuracy_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetAccuracy_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetAccuracy_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -843,20 +850,21 @@ func RegisterMovementSensorServiceHandlerServer(ctx context.Context, mux *runtim
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetLinearAcceleration", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/linear_acceleration"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetLinearAcceleration", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/linear_acceleration"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MovementSensorService_GetLinearAcceleration_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MovementSensorService_GetLinearAcceleration_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetLinearAcceleration_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetLinearAcceleration_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -867,20 +875,21 @@ func RegisterMovementSensorServiceHandlerServer(ctx context.Context, mux *runtim
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/do_command"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/do_command"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MovementSensorService_DoCommand_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MovementSensorService_DoCommand_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_DoCommand_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_DoCommand_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -930,19 +939,20 @@ func RegisterMovementSensorServiceHandlerClient(ctx context.Context, mux *runtim
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetLinearVelocity", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/linear_velocity"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetLinearVelocity", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/linear_velocity"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MovementSensorService_GetLinearVelocity_0(ctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		resp, md, err := request_MovementSensorService_GetLinearVelocity_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetLinearVelocity_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetLinearVelocity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -951,19 +961,20 @@ func RegisterMovementSensorServiceHandlerClient(ctx context.Context, mux *runtim
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetAngularVelocity", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/angular_velocity"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetAngularVelocity", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/angular_velocity"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MovementSensorService_GetAngularVelocity_0(ctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		resp, md, err := request_MovementSensorService_GetAngularVelocity_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetAngularVelocity_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetAngularVelocity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -972,19 +983,20 @@ func RegisterMovementSensorServiceHandlerClient(ctx context.Context, mux *runtim
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetCompassHeading", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/compass_heading"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetCompassHeading", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/compass_heading"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MovementSensorService_GetCompassHeading_0(ctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		resp, md, err := request_MovementSensorService_GetCompassHeading_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetCompassHeading_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetCompassHeading_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -993,19 +1005,20 @@ func RegisterMovementSensorServiceHandlerClient(ctx context.Context, mux *runtim
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetOrientation", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/orientation"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetOrientation", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/orientation"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MovementSensorService_GetOrientation_0(ctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		resp, md, err := request_MovementSensorService_GetOrientation_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetOrientation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetOrientation_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1014,19 +1027,20 @@ func RegisterMovementSensorServiceHandlerClient(ctx context.Context, mux *runtim
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetPosition", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/position"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetPosition", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/position"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MovementSensorService_GetPosition_0(ctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		resp, md, err := request_MovementSensorService_GetPosition_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetPosition_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetPosition_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1035,19 +1049,20 @@ func RegisterMovementSensorServiceHandlerClient(ctx context.Context, mux *runtim
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetProperties", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/properties"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetProperties", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/properties"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MovementSensorService_GetProperties_0(ctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		resp, md, err := request_MovementSensorService_GetProperties_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetProperties_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetProperties_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1056,19 +1071,20 @@ func RegisterMovementSensorServiceHandlerClient(ctx context.Context, mux *runtim
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetAccuracy", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/accuracy"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetAccuracy", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/accuracy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MovementSensorService_GetAccuracy_0(ctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		resp, md, err := request_MovementSensorService_GetAccuracy_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetAccuracy_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetAccuracy_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1077,19 +1093,20 @@ func RegisterMovementSensorServiceHandlerClient(ctx context.Context, mux *runtim
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetLinearAcceleration", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/linear_acceleration"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/GetLinearAcceleration", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/linear_acceleration"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MovementSensorService_GetLinearAcceleration_0(ctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		resp, md, err := request_MovementSensorService_GetLinearAcceleration_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_GetLinearAcceleration_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_GetLinearAcceleration_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1098,19 +1115,20 @@ func RegisterMovementSensorServiceHandlerClient(ctx context.Context, mux *runtim
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/do_command"))
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.movementsensor.v1.MovementSensorService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/movementsensor/{name}/do_command"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MovementSensorService_DoCommand_0(ctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
+		resp, md, err := request_MovementSensorService_DoCommand_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MovementSensorService_DoCommand_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MovementSensorService_DoCommand_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 

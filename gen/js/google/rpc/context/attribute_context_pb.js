@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
 goog.object.extend(proto, google_protobuf_any_pb);
@@ -617,8 +611,7 @@ proto.google.rpc.context.AttributeContext.Peer.prototype.getLabelsMap = function
  */
 proto.google.rpc.context.AttributeContext.Peer.prototype.clearLabelsMap = function() {
   this.getLabelsMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -1495,8 +1488,7 @@ proto.google.rpc.context.AttributeContext.Request.prototype.getHeadersMap = func
  */
 proto.google.rpc.context.AttributeContext.Request.prototype.clearHeadersMap = function() {
   this.getHeadersMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -1917,8 +1909,7 @@ proto.google.rpc.context.AttributeContext.Response.prototype.getHeadersMap = fun
  */
 proto.google.rpc.context.AttributeContext.Response.prototype.clearHeadersMap = function() {
   this.getHeadersMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -2316,8 +2307,7 @@ proto.google.rpc.context.AttributeContext.Resource.prototype.getLabelsMap = func
  */
 proto.google.rpc.context.AttributeContext.Resource.prototype.clearLabelsMap = function() {
   this.getLabelsMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -2357,8 +2347,7 @@ proto.google.rpc.context.AttributeContext.Resource.prototype.getAnnotationsMap =
  */
 proto.google.rpc.context.AttributeContext.Resource.prototype.clearAnnotationsMap = function() {
   this.getAnnotationsMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**

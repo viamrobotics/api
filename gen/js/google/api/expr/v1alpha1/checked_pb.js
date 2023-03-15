@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_api_expr_v1alpha1_syntax_pb = require('../../../../google/api/expr/v1alpha1/syntax_pb.js');
 goog.object.extend(proto, google_api_expr_v1alpha1_syntax_pb);
@@ -454,8 +448,7 @@ proto.google.api.expr.v1alpha1.CheckedExpr.prototype.getReferenceMapMap = functi
  */
 proto.google.api.expr.v1alpha1.CheckedExpr.prototype.clearReferenceMapMap = function() {
   this.getReferenceMapMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -477,8 +470,7 @@ proto.google.api.expr.v1alpha1.CheckedExpr.prototype.getTypeMapMap = function(op
  */
 proto.google.api.expr.v1alpha1.CheckedExpr.prototype.clearTypeMapMap = function() {
   this.getTypeMapMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
