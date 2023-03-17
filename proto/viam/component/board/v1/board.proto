@@ -86,7 +86,7 @@ service BoardService {
 
   // Power Management
 
-  // `SetPowerMode` sets the power consumption mode of the board to the requested setting for a given duration.
+  // `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
   rpc SetPowerMode(SetPowerModeRequest) returns (SetPowerModeResponse) {
     option (google.api.http) = {
       put: "/viam/api/v1/component/board/{name}/power_mode"
