@@ -41,6 +41,8 @@ type BoardServiceClient interface {
 	ReadAnalogReader(ctx context.Context, in *ReadAnalogReaderRequest, opts ...grpc.CallOption) (*ReadAnalogReaderResponse, error)
 	// GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
 	GetDigitalInterruptValue(ctx context.Context, in *GetDigitalInterruptValueRequest, opts ...grpc.CallOption) (*GetDigitalInterruptValueResponse, error)
+	// `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
+	SetPowerMode(ctx context.Context, in *SetPowerModeRequest, opts ...grpc.CallOption) (*SetPowerModeResponse, error)
 }
 
 type boardServiceClient struct {
@@ -141,6 +143,15 @@ func (c *boardServiceClient) GetDigitalInterruptValue(ctx context.Context, in *G
 	return out, nil
 }
 
+func (c *boardServiceClient) SetPowerMode(ctx context.Context, in *SetPowerModeRequest, opts ...grpc.CallOption) (*SetPowerModeResponse, error) {
+	out := new(SetPowerModeResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.board.v1.BoardService/SetPowerMode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BoardServiceServer is the server API for BoardService service.
 // All implementations must embed UnimplementedBoardServiceServer
 // for forward compatibility
@@ -163,6 +174,8 @@ type BoardServiceServer interface {
 	ReadAnalogReader(context.Context, *ReadAnalogReaderRequest) (*ReadAnalogReaderResponse, error)
 	// GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
 	GetDigitalInterruptValue(context.Context, *GetDigitalInterruptValueRequest) (*GetDigitalInterruptValueResponse, error)
+	// `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
+	SetPowerMode(context.Context, *SetPowerModeRequest) (*SetPowerModeResponse, error)
 	mustEmbedUnimplementedBoardServiceServer()
 }
 
@@ -199,6 +212,9 @@ func (UnimplementedBoardServiceServer) ReadAnalogReader(context.Context, *ReadAn
 }
 func (UnimplementedBoardServiceServer) GetDigitalInterruptValue(context.Context, *GetDigitalInterruptValueRequest) (*GetDigitalInterruptValueResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDigitalInterruptValue not implemented")
+}
+func (UnimplementedBoardServiceServer) SetPowerMode(context.Context, *SetPowerModeRequest) (*SetPowerModeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetPowerMode not implemented")
 }
 func (UnimplementedBoardServiceServer) mustEmbedUnimplementedBoardServiceServer() {}
 
@@ -393,6 +409,24 @@ func _BoardService_GetDigitalInterruptValue_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BoardService_SetPowerMode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetPowerModeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BoardServiceServer).SetPowerMode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.board.v1.BoardService/SetPowerMode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BoardServiceServer).SetPowerMode(ctx, req.(*SetPowerModeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BoardService_ServiceDesc is the grpc.ServiceDesc for BoardService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -439,6 +473,10 @@ var BoardService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDigitalInterruptValue",
 			Handler:    _BoardService_GetDigitalInterruptValue_Handler,
+		},
+		{
+			MethodName: "SetPowerMode",
+			Handler:    _BoardService_SetPowerMode_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
