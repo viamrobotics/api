@@ -4,6 +4,7 @@
 import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
+import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
 export class StatusRequest extends jspb.Message {
@@ -453,4 +454,64 @@ export namespace GetDigitalInterruptValueResponse {
     value: number,
   }
 }
+
+export class SetPowerModeRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getPowerMode(): PowerModeMap[keyof PowerModeMap];
+  setPowerMode(value: PowerModeMap[keyof PowerModeMap]): void;
+
+  hasDuration(): boolean;
+  clearDuration(): void;
+  getDuration(): google_protobuf_duration_pb.Duration | undefined;
+  setDuration(value?: google_protobuf_duration_pb.Duration): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetPowerModeRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SetPowerModeRequest): SetPowerModeRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetPowerModeRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetPowerModeRequest;
+  static deserializeBinaryFromReader(message: SetPowerModeRequest, reader: jspb.BinaryReader): SetPowerModeRequest;
+}
+
+export namespace SetPowerModeRequest {
+  export type AsObject = {
+    name: string,
+    powerMode: PowerModeMap[keyof PowerModeMap],
+    duration?: google_protobuf_duration_pb.Duration.AsObject,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class SetPowerModeResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetPowerModeResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SetPowerModeResponse): SetPowerModeResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetPowerModeResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetPowerModeResponse;
+  static deserializeBinaryFromReader(message: SetPowerModeResponse, reader: jspb.BinaryReader): SetPowerModeResponse;
+}
+
+export namespace SetPowerModeResponse {
+  export type AsObject = {
+  }
+}
+
+export interface PowerModeMap {
+  POWER_MODE_UNSPECIFIED: 0;
+  POWER_MODE_NORMAL: 1;
+  POWER_MODE_OFFLINE_DEEP: 2;
+}
+
+export const PowerMode: PowerModeMap;
 
