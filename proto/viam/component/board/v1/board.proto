@@ -4,6 +4,7 @@ package viam.component.board.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/component/board/v1";
@@ -80,6 +81,15 @@ service BoardService {
   rpc GetDigitalInterruptValue(GetDigitalInterruptValueRequest) returns (GetDigitalInterruptValueResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/board/{board_name}/digital_interrupt/{digital_interrupt_name}/value"
+    };
+  }
+
+  // Power Management
+
+  // `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
+  rpc SetPowerMode(SetPowerModeRequest) returns (SetPowerModeResponse) {
+    option (google.api.http) = {
+      put: "/viam/api/v1/component/board/{name}/power_mode"
     };
   }
 }
@@ -182,3 +192,27 @@ message GetDigitalInterruptValueRequest {
 message GetDigitalInterruptValueResponse {
   int64 value = 1;
 }
+
+// Power Management API
+
+enum PowerMode {
+  POWER_MODE_UNSPECIFIED = 0;
+  POWER_MODE_NORMAL = 1;
+  POWER_MODE_OFFLINE_DEEP = 2;
+}
+
+message SetPowerModeRequest {
+  // name of board
+  string name = 1;
+
+  // Requested power mode
+  PowerMode power_mode = 2;
+
+  // Requested duration to stay in `power_mode`
+  optional google.protobuf.Duration duration = 3;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message SetPowerModeResponse {}
