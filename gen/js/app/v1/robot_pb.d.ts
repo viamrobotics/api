@@ -393,6 +393,11 @@ export class AuthConfig extends jspb.Message {
   setTlsAuthEntitiesList(value: Array<string>): void;
   addTlsAuthEntities(value: string, index?: number): string;
 
+  hasExternalAuthConfig(): boolean;
+  clearExternalAuthConfig(): void;
+  getExternalAuthConfig(): ExternalAuthConfig | undefined;
+  setExternalAuthConfig(value?: ExternalAuthConfig): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AuthConfig.AsObject;
   static toObject(includeInstance: boolean, msg: AuthConfig): AuthConfig.AsObject;
@@ -407,6 +412,7 @@ export namespace AuthConfig {
   export type AsObject = {
     handlersList: Array<AuthHandlerConfig.AsObject>,
     tlsAuthEntitiesList: Array<string>,
+    externalAuthConfig?: ExternalAuthConfig.AsObject,
   }
 }
 
@@ -456,6 +462,28 @@ export class AuthHandlerWebOauthConfig extends jspb.Message {
 export namespace AuthHandlerWebOauthConfig {
   export type AsObject = {
     allowedAudiencesList: Array<string>,
+    jwks?: JWKSFile.AsObject,
+  }
+}
+
+export class ExternalAuthConfig extends jspb.Message {
+  hasJwks(): boolean;
+  clearJwks(): void;
+  getJwks(): JWKSFile | undefined;
+  setJwks(value?: JWKSFile): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ExternalAuthConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: ExternalAuthConfig): ExternalAuthConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ExternalAuthConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ExternalAuthConfig;
+  static deserializeBinaryFromReader(message: ExternalAuthConfig, reader: jspb.BinaryReader): ExternalAuthConfig;
+}
+
+export namespace ExternalAuthConfig {
+  export type AsObject = {
     jwks?: JWKSFile.AsObject,
   }
 }
