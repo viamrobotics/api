@@ -130,6 +130,8 @@ message AuthHandlerWebOauthConfig {
   JWKSFile jwks = 2;
 }
 
+// ExternalAuthConfig describes how a viam managed robot can accept
+// credentials signed by the cloud app.
 message ExternalAuthConfig {
   JWKSFile jwks = 1;
 }
