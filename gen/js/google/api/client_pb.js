@@ -1147,7 +1147,8 @@ proto.google.api.Publishing.toObject = function(includeInstance, msg) {
     docTagPrefix: jspb.Message.getFieldWithDefault(msg, 106, ""),
     organization: jspb.Message.getFieldWithDefault(msg, 107, 0),
     librarySettingsList: jspb.Message.toObjectList(msg.getLibrarySettingsList(),
-    proto.google.api.ClientLibrarySettings.toObject, includeInstance)
+    proto.google.api.ClientLibrarySettings.toObject, includeInstance),
+    protoReferenceDocumentationUri: jspb.Message.getFieldWithDefault(msg, 110, "")
   };
 
   if (includeInstance) {
@@ -1221,6 +1222,10 @@ proto.google.api.Publishing.deserializeBinaryFromReader = function(msg, reader) 
       var value = new proto.google.api.ClientLibrarySettings;
       reader.readMessage(value,proto.google.api.ClientLibrarySettings.deserializeBinaryFromReader);
       msg.addLibrarySettings(value);
+      break;
+    case 110:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProtoReferenceDocumentationUri(value);
       break;
     default:
       reader.skipField();
@@ -1314,6 +1319,13 @@ proto.google.api.Publishing.serializeBinaryToWriter = function(message, writer) 
       109,
       f,
       proto.google.api.ClientLibrarySettings.serializeBinaryToWriter
+    );
+  }
+  f = message.getProtoReferenceDocumentationUri();
+  if (f.length > 0) {
+    writer.writeString(
+      110,
+      f
     );
   }
 };
@@ -1537,6 +1549,24 @@ proto.google.api.Publishing.prototype.addLibrarySettings = function(opt_value, o
  */
 proto.google.api.Publishing.prototype.clearLibrarySettingsList = function() {
   return this.setLibrarySettingsList([]);
+};
+
+
+/**
+ * optional string proto_reference_documentation_uri = 110;
+ * @return {string}
+ */
+proto.google.api.Publishing.prototype.getProtoReferenceDocumentationUri = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 110, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.google.api.Publishing} returns this
+ */
+proto.google.api.Publishing.prototype.setProtoReferenceDocumentationUri = function(value) {
+  return jspb.Message.setProto3StringField(this, 110, value);
 };
 
 
