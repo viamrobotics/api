@@ -142,6 +142,9 @@ export class Publishing extends jspb.Message {
   setLibrarySettingsList(value: Array<ClientLibrarySettings>): void;
   addLibrarySettings(value?: ClientLibrarySettings, index?: number): ClientLibrarySettings;
 
+  getProtoReferenceDocumentationUri(): string;
+  setProtoReferenceDocumentationUri(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Publishing.AsObject;
   static toObject(includeInstance: boolean, msg: Publishing): Publishing.AsObject;
@@ -163,6 +166,7 @@ export namespace Publishing {
     docTagPrefix: string,
     organization: ClientLibraryOrganizationMap[keyof ClientLibraryOrganizationMap],
     librarySettingsList: Array<ClientLibrarySettings.AsObject>,
+    protoReferenceDocumentationUri: string,
   }
 }
 
