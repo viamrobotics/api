@@ -10,6 +10,15 @@ var AppService = (function () {
   return AppService;
 }());
 
+AppService.HealthCheck = {
+  methodName: "HealthCheck",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.HealthCheckRequest,
+  responseType: app_v1_app_pb.HealthCheckResponse
+};
+
 AppService.CreateOrganization = {
   methodName: "CreateOrganization",
   service: AppService,
@@ -403,6 +412,37 @@ function AppServiceClient(serviceHost, options) {
   this.serviceHost = serviceHost;
   this.options = options || {};
 }
+
+AppServiceClient.prototype.healthCheck = function healthCheck(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.HealthCheck, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
 
 AppServiceClient.prototype.createOrganization = function createOrganization(requestMessage, metadata, callback) {
   if (arguments.length === 2) {

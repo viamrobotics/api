@@ -22,6 +22,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AppServiceClient interface {
+	// Health Check
+	HealthCheck(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error)
 	// Create a new organization
 	CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error)
 	// List organizations
@@ -119,6 +121,15 @@ type appServiceClient struct {
 
 func NewAppServiceClient(cc grpc.ClientConnInterface) AppServiceClient {
 	return &appServiceClient{cc}
+}
+
+func (c *appServiceClient) HealthCheck(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error) {
+	out := new(HealthCheckResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/HealthCheck", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *appServiceClient) CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error) {
@@ -535,6 +546,8 @@ func (c *appServiceClient) DeleteFragment(ctx context.Context, in *DeleteFragmen
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
 type AppServiceServer interface {
+	// Health Check
+	HealthCheck(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error)
 	// Create a new organization
 	CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error)
 	// List organizations
@@ -631,6 +644,9 @@ type AppServiceServer interface {
 type UnimplementedAppServiceServer struct {
 }
 
+func (UnimplementedAppServiceServer) HealthCheck(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HealthCheck not implemented")
+}
 func (UnimplementedAppServiceServer) CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganization not implemented")
 }
@@ -771,6 +787,24 @@ type UnsafeAppServiceServer interface {
 
 func RegisterAppServiceServer(s grpc.ServiceRegistrar, srv AppServiceServer) {
 	s.RegisterService(&AppService_ServiceDesc, srv)
+}
+
+func _AppService_HealthCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HealthCheckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).HealthCheck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/HealthCheck",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).HealthCheck(ctx, req.(*HealthCheckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _AppService_CreateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -1557,6 +1591,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "viam.app.v1.AppService",
 	HandlerType: (*AppServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "HealthCheck",
+			Handler:    _AppService_HealthCheck_Handler,
+		},
 		{
 			MethodName: "CreateOrganization",
 			Handler:    _AppService_CreateOrganization_Handler,

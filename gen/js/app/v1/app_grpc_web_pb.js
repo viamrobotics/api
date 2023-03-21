@@ -85,6 +85,67 @@ proto.viam.app.v1.AppServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.HealthCheckRequest,
+ *   !proto.viam.app.v1.HealthCheckResponse>}
+ */
+const methodDescriptor_AppService_HealthCheck = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/HealthCheck',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.HealthCheckRequest,
+  proto.viam.app.v1.HealthCheckResponse,
+  /**
+   * @param {!proto.viam.app.v1.HealthCheckRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.HealthCheckResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.HealthCheckRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.HealthCheckResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.HealthCheckResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.healthCheck =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/HealthCheck',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_HealthCheck,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.HealthCheckRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.HealthCheckResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.healthCheck =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/HealthCheck',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_HealthCheck);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.CreateOrganizationRequest,
  *   !proto.viam.app.v1.CreateOrganizationResponse>}
  */
