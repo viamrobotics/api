@@ -25,6 +25,8 @@ var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js'
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
+
+var tagger_v1_tagger_pb = require('../../../tagger/v1/tagger_pb.js')
 const proto = {};
 proto.viam = {};
 proto.viam.app = {};
@@ -751,6 +753,128 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.tagsByFilter =
       request,
       metadata || {},
       methodDescriptor_DataService_TagsByFilter);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.SubmitTrainingJobRequest,
+ *   !proto.viam.app.data.v1.SubmitTrainingJobResponse>}
+ */
+const methodDescriptor_DataService_SubmitTrainingJob = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/SubmitTrainingJob',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.SubmitTrainingJobRequest,
+  proto.viam.app.data.v1.SubmitTrainingJobResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.SubmitTrainingJobRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.SubmitTrainingJobResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.SubmitTrainingJobRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.SubmitTrainingJobResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.SubmitTrainingJobResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.submitTrainingJob =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/SubmitTrainingJob',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_SubmitTrainingJob,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.SubmitTrainingJobRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.SubmitTrainingJobResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.submitTrainingJob =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/SubmitTrainingJob',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_SubmitTrainingJob);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.GetTrainingJobRequest,
+ *   !proto.viam.app.data.v1.GetTrainingJobResponse>}
+ */
+const methodDescriptor_DataService_GetTrainingJob = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/GetTrainingJob',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.GetTrainingJobRequest,
+  proto.viam.app.data.v1.GetTrainingJobResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.GetTrainingJobRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.GetTrainingJobResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetTrainingJobRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.GetTrainingJobResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.GetTrainingJobResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.getTrainingJob =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetTrainingJob',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetTrainingJob,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetTrainingJobRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.GetTrainingJobResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.getTrainingJob =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetTrainingJob',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetTrainingJob);
 };
 
 

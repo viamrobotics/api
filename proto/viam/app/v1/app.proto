@@ -9,9 +9,6 @@ import "tagger/v1/tagger.proto";
 option go_package = "go.viam.com/api/app/v1";
 
 service AppService {
-  // Health Check
-  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse);
-
   // Organizations
 
   // Create a new organization
@@ -187,10 +184,6 @@ message RobotPartHistoryEntry {
   google.protobuf.Timestamp when = 3 [(tagger.v1.tags) = "bson:\"when\" json:\"when\""];
   RobotPart old = 4 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
 }
-
-message HealthCheckRequest {}
-
-message HealthCheckResponse {}
 
 message ListOrganizationsRequest {}
 

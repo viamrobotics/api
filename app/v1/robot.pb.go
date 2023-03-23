@@ -986,6 +986,8 @@ func (x *AuthHandlerWebOauthConfig) GetJwks() *JWKSFile {
 	return nil
 }
 
+// ExternalAuthConfig describes how a viam managed robot can accept
+// credentials signed by the cloud app.
 type ExternalAuthConfig struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

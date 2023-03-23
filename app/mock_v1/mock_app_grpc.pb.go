@@ -517,26 +517,6 @@ func (mr *MockAppServiceClientMockRecorder) GetRoverRentalRobots(ctx, in interfa
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRoverRentalRobots", reflect.TypeOf((*MockAppServiceClient)(nil).GetRoverRentalRobots), varargs...)
 }
 
-// HealthCheck mocks base method.
-func (m *MockAppServiceClient) HealthCheck(ctx context.Context, in *v1.HealthCheckRequest, opts ...grpc.CallOption) (*v1.HealthCheckResponse, error) {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{ctx, in}
-	for _, a := range opts {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "HealthCheck", varargs...)
-	ret0, _ := ret[0].(*v1.HealthCheckResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// HealthCheck indicates an expected call of HealthCheck.
-func (mr *MockAppServiceClientMockRecorder) HealthCheck(ctx, in interface{}, opts ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "HealthCheck", reflect.TypeOf((*MockAppServiceClient)(nil).HealthCheck), varargs...)
-}
-
 // ListFragments mocks base method.
 func (m *MockAppServiceClient) ListFragments(ctx context.Context, in *v1.ListFragmentsRequest, opts ...grpc.CallOption) (*v1.ListFragmentsResponse, error) {
 	m.ctrl.T.Helper()
@@ -1421,21 +1401,6 @@ func (m *MockAppServiceServer) GetRoverRentalRobots(arg0 context.Context, arg1 *
 func (mr *MockAppServiceServerMockRecorder) GetRoverRentalRobots(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRoverRentalRobots", reflect.TypeOf((*MockAppServiceServer)(nil).GetRoverRentalRobots), arg0, arg1)
-}
-
-// HealthCheck mocks base method.
-func (m *MockAppServiceServer) HealthCheck(arg0 context.Context, arg1 *v1.HealthCheckRequest) (*v1.HealthCheckResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "HealthCheck", arg0, arg1)
-	ret0, _ := ret[0].(*v1.HealthCheckResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// HealthCheck indicates an expected call of HealthCheck.
-func (mr *MockAppServiceServerMockRecorder) HealthCheck(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "HealthCheck", reflect.TypeOf((*MockAppServiceServer)(nil).HealthCheck), arg0, arg1)
 }
 
 // ListFragments mocks base method.

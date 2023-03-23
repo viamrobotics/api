@@ -4,15 +4,6 @@
 import * as app_v1_app_pb from "../../app/v1/app_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type AppServiceHealthCheck = {
-  readonly methodName: string;
-  readonly service: typeof AppService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.HealthCheckRequest;
-  readonly responseType: typeof app_v1_app_pb.HealthCheckResponse;
-};
-
 type AppServiceCreateOrganization = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -402,7 +393,6 @@ type AppServiceDeleteFragment = {
 
 export class AppService {
   static readonly serviceName: string;
-  static readonly HealthCheck: AppServiceHealthCheck;
   static readonly CreateOrganization: AppServiceCreateOrganization;
   static readonly ListOrganizations: AppServiceListOrganizations;
   static readonly GetOrganization: AppServiceGetOrganization;
@@ -480,15 +470,6 @@ export class AppServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  healthCheck(
-    requestMessage: app_v1_app_pb.HealthCheckRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.HealthCheckResponse|null) => void
-  ): UnaryResponse;
-  healthCheck(
-    requestMessage: app_v1_app_pb.HealthCheckRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.HealthCheckResponse|null) => void
-  ): UnaryResponse;
   createOrganization(
     requestMessage: app_v1_app_pb.CreateOrganizationRequest,
     metadata: grpc.Metadata,
