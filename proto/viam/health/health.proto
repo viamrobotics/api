@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package viam.health.v1;
+
+option go_package = "go.viam.com/api/health/v1";
+
+enum Service {
+  SERVICE_ALL_UNSPECIFIED = 0;
+  SERVICE_APP = 1;
+  SERVICE_DATASYNC = 2;
+  SERVICE_PACKAGESERVER = 3;
+  SERVICE_ROBOTSERVICE = 4;
+  SERVICE_DATAMANAGEMENT = 5;
+  SERVICE_DNS = 6;
+}
+
+message HealthServiceCheckRequest {
+  Service service = 1;
+}
+
+message HealthServiceCheckResponse {
+  string status = 1;
+}
+
+service HealthService {
+  rpc Check(HealthServiceCheckRequest) returns (HealthServiceCheckResponse);
+}
