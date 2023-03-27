@@ -924,6 +924,64 @@ func (x *JWKSFile) GetJson() *structpb.Struct {
 	return nil
 }
 
+// Structured config for the credential type CREDENTIALS_TYPE_WEB_OAUTH
+// TODO(APP-1412): remove after a week from being deployed
+type AuthHandlerWebOauthConfig struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The allowed aud claims by the web oauth handler.
+	AllowedAudiences []string  `protobuf:"bytes,1,rep,name=allowed_audiences,json=allowedAudiences,proto3" json:"allowed_audiences,omitempty"`
+	Jwks             *JWKSFile `protobuf:"bytes,2,opt,name=jwks,proto3" json:"jwks,omitempty"`
+}
+
+func (x *AuthHandlerWebOauthConfig) Reset() {
+	*x = AuthHandlerWebOauthConfig{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_v1_robot_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AuthHandlerWebOauthConfig) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AuthHandlerWebOauthConfig) ProtoMessage() {}
+
+func (x *AuthHandlerWebOauthConfig) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_robot_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AuthHandlerWebOauthConfig.ProtoReflect.Descriptor instead.
+func (*AuthHandlerWebOauthConfig) Descriptor() ([]byte, []int) {
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *AuthHandlerWebOauthConfig) GetAllowedAudiences() []string {
+	if x != nil {
+		return x.AllowedAudiences
+	}
+	return nil
+}
+
+func (x *AuthHandlerWebOauthConfig) GetJwks() *JWKSFile {
+	if x != nil {
+		return x.Jwks
+	}
+	return nil
+}
+
 // ExternalAuthConfig describes how a viam managed robot can accept
 // credentials signed by the cloud app.
 type ExternalAuthConfig struct {
