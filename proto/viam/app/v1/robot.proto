@@ -264,9 +264,6 @@ enum CredentialsType {
   CREDENTIALS_TYPE_API_KEY = 2;
   CREDENTIALS_TYPE_ROBOT_SECRET = 3;
   CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET = 4;
-
-  // TODO(APP-1412): remove after a week from being deployed
-  CREDENTIALS_TYPE_WEB_OAUTH = 5;
 }
 
 message ConfigRequest {
