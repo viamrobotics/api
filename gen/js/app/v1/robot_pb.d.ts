@@ -438,34 +438,6 @@ export namespace JWKSFile {
   }
 }
 
-export class AuthHandlerWebOauthConfig extends jspb.Message {
-  clearAllowedAudiencesList(): void;
-  getAllowedAudiencesList(): Array<string>;
-  setAllowedAudiencesList(value: Array<string>): void;
-  addAllowedAudiences(value: string, index?: number): string;
-
-  hasJwks(): boolean;
-  clearJwks(): void;
-  getJwks(): JWKSFile | undefined;
-  setJwks(value?: JWKSFile): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AuthHandlerWebOauthConfig.AsObject;
-  static toObject(includeInstance: boolean, msg: AuthHandlerWebOauthConfig): AuthHandlerWebOauthConfig.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AuthHandlerWebOauthConfig, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AuthHandlerWebOauthConfig;
-  static deserializeBinaryFromReader(message: AuthHandlerWebOauthConfig, reader: jspb.BinaryReader): AuthHandlerWebOauthConfig;
-}
-
-export namespace AuthHandlerWebOauthConfig {
-  export type AsObject = {
-    allowedAudiencesList: Array<string>,
-    jwks?: JWKSFile.AsObject,
-  }
-}
-
 export class ExternalAuthConfig extends jspb.Message {
   hasJwks(): boolean;
   clearJwks(): void;
@@ -497,11 +469,6 @@ export class AuthHandlerConfig extends jspb.Message {
   getConfig(): google_protobuf_struct_pb.Struct | undefined;
   setConfig(value?: google_protobuf_struct_pb.Struct): void;
 
-  hasWebOauthConfig(): boolean;
-  clearWebOauthConfig(): void;
-  getWebOauthConfig(): AuthHandlerWebOauthConfig | undefined;
-  setWebOauthConfig(value?: AuthHandlerWebOauthConfig): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AuthHandlerConfig.AsObject;
   static toObject(includeInstance: boolean, msg: AuthHandlerConfig): AuthHandlerConfig.AsObject;
@@ -516,7 +483,6 @@ export namespace AuthHandlerConfig {
   export type AsObject = {
     type: CredentialsTypeMap[keyof CredentialsTypeMap],
     config?: google_protobuf_struct_pb.Struct.AsObject,
-    webOauthConfig?: AuthHandlerWebOauthConfig.AsObject,
   }
 }
 
@@ -1221,7 +1187,6 @@ export interface CredentialsTypeMap {
   CREDENTIALS_TYPE_API_KEY: 2;
   CREDENTIALS_TYPE_ROBOT_SECRET: 3;
   CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET: 4;
-  CREDENTIALS_TYPE_WEB_OAUTH: 5;
 }
 
 export const CredentialsType: CredentialsTypeMap;

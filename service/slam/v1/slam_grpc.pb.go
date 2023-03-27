@@ -23,10 +23,24 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SLAMServiceClient interface {
+	// GetPosition returns the current estimated position of the robot with
+	// respect to the "origin" of the map.
+	GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error)
+	// Deprecated: Do not use.
+	// GetMap returns the latest map image or point cloud
+	GetMap(ctx context.Context, in *GetMapRequest, opts ...grpc.CallOption) (*GetMapResponse, error)
 	// GetPositionNew returns the current estimated position of the robot with
 	// respect to a returned component reference. Note: this function will be
 	// renamed to GetPosition and replace the existing one in the near future
 	GetPositionNew(ctx context.Context, in *GetPositionNewRequest, opts ...grpc.CallOption) (*GetPositionNewResponse, error)
+	// Deprecated: Do not use.
+	// GetPointCloudMap returns the latest point cloud map
+	GetPointCloudMap(ctx context.Context, in *GetPointCloudMapRequest, opts ...grpc.CallOption) (*GetPointCloudMapResponse, error)
+	// Deprecated: Do not use.
+	// GetInternalState returns the internal map as defined by the specified slam
+	// algorithm required to continue mapping/localizing. This endpoint is not
+	// intended for end user usage
+	GetInternalState(ctx context.Context, in *GetInternalStateRequest, opts ...grpc.CallOption) (*GetInternalStateResponse, error)
 	// TODO (RSDK-1066): This will soon be renamed to GetPointCloudMap
 	// GetPointCloudMapStream returns the latest point cloud map available
 	GetPointCloudMapStream(ctx context.Context, in *GetPointCloudMapStreamRequest, opts ...grpc.CallOption) (SLAMService_GetPointCloudMapStreamClient, error)
@@ -47,9 +61,48 @@ func NewSLAMServiceClient(cc grpc.ClientConnInterface) SLAMServiceClient {
 	return &sLAMServiceClient{cc}
 }
 
+func (c *sLAMServiceClient) GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error) {
+	out := new(GetPositionResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.slam.v1.SLAMService/GetPosition", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Deprecated: Do not use.
+func (c *sLAMServiceClient) GetMap(ctx context.Context, in *GetMapRequest, opts ...grpc.CallOption) (*GetMapResponse, error) {
+	out := new(GetMapResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.slam.v1.SLAMService/GetMap", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *sLAMServiceClient) GetPositionNew(ctx context.Context, in *GetPositionNewRequest, opts ...grpc.CallOption) (*GetPositionNewResponse, error) {
 	out := new(GetPositionNewResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.slam.v1.SLAMService/GetPositionNew", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Deprecated: Do not use.
+func (c *sLAMServiceClient) GetPointCloudMap(ctx context.Context, in *GetPointCloudMapRequest, opts ...grpc.CallOption) (*GetPointCloudMapResponse, error) {
+	out := new(GetPointCloudMapResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.slam.v1.SLAMService/GetPointCloudMap", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Deprecated: Do not use.
+func (c *sLAMServiceClient) GetInternalState(ctx context.Context, in *GetInternalStateRequest, opts ...grpc.CallOption) (*GetInternalStateResponse, error) {
+	out := new(GetInternalStateResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.slam.v1.SLAMService/GetInternalState", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -133,10 +186,24 @@ func (c *sLAMServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandReque
 // All implementations must embed UnimplementedSLAMServiceServer
 // for forward compatibility
 type SLAMServiceServer interface {
+	// GetPosition returns the current estimated position of the robot with
+	// respect to the "origin" of the map.
+	GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error)
+	// Deprecated: Do not use.
+	// GetMap returns the latest map image or point cloud
+	GetMap(context.Context, *GetMapRequest) (*GetMapResponse, error)
 	// GetPositionNew returns the current estimated position of the robot with
 	// respect to a returned component reference. Note: this function will be
 	// renamed to GetPosition and replace the existing one in the near future
 	GetPositionNew(context.Context, *GetPositionNewRequest) (*GetPositionNewResponse, error)
+	// Deprecated: Do not use.
+	// GetPointCloudMap returns the latest point cloud map
+	GetPointCloudMap(context.Context, *GetPointCloudMapRequest) (*GetPointCloudMapResponse, error)
+	// Deprecated: Do not use.
+	// GetInternalState returns the internal map as defined by the specified slam
+	// algorithm required to continue mapping/localizing. This endpoint is not
+	// intended for end user usage
+	GetInternalState(context.Context, *GetInternalStateRequest) (*GetInternalStateResponse, error)
 	// TODO (RSDK-1066): This will soon be renamed to GetPointCloudMap
 	// GetPointCloudMapStream returns the latest point cloud map available
 	GetPointCloudMapStream(*GetPointCloudMapStreamRequest, SLAMService_GetPointCloudMapStreamServer) error
@@ -154,8 +221,20 @@ type SLAMServiceServer interface {
 type UnimplementedSLAMServiceServer struct {
 }
 
+func (UnimplementedSLAMServiceServer) GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPosition not implemented")
+}
+func (UnimplementedSLAMServiceServer) GetMap(context.Context, *GetMapRequest) (*GetMapResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMap not implemented")
+}
 func (UnimplementedSLAMServiceServer) GetPositionNew(context.Context, *GetPositionNewRequest) (*GetPositionNewResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPositionNew not implemented")
+}
+func (UnimplementedSLAMServiceServer) GetPointCloudMap(context.Context, *GetPointCloudMapRequest) (*GetPointCloudMapResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPointCloudMap not implemented")
+}
+func (UnimplementedSLAMServiceServer) GetInternalState(context.Context, *GetInternalStateRequest) (*GetInternalStateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInternalState not implemented")
 }
 func (UnimplementedSLAMServiceServer) GetPointCloudMapStream(*GetPointCloudMapStreamRequest, SLAMService_GetPointCloudMapStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetPointCloudMapStream not implemented")
@@ -179,6 +258,42 @@ func RegisterSLAMServiceServer(s grpc.ServiceRegistrar, srv SLAMServiceServer) {
 	s.RegisterService(&SLAMService_ServiceDesc, srv)
 }
 
+func _SLAMService_GetPosition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPositionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SLAMServiceServer).GetPosition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.slam.v1.SLAMService/GetPosition",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SLAMServiceServer).GetPosition(ctx, req.(*GetPositionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SLAMService_GetMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMapRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SLAMServiceServer).GetMap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.slam.v1.SLAMService/GetMap",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SLAMServiceServer).GetMap(ctx, req.(*GetMapRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SLAMService_GetPositionNew_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPositionNewRequest)
 	if err := dec(in); err != nil {
@@ -193,6 +308,42 @@ func _SLAMService_GetPositionNew_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SLAMServiceServer).GetPositionNew(ctx, req.(*GetPositionNewRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SLAMService_GetPointCloudMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPointCloudMapRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SLAMServiceServer).GetPointCloudMap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.slam.v1.SLAMService/GetPointCloudMap",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SLAMServiceServer).GetPointCloudMap(ctx, req.(*GetPointCloudMapRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SLAMService_GetInternalState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetInternalStateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SLAMServiceServer).GetInternalState(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.slam.v1.SLAMService/GetInternalState",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SLAMServiceServer).GetInternalState(ctx, req.(*GetInternalStateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -265,8 +416,24 @@ var SLAMService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*SLAMServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "GetPosition",
+			Handler:    _SLAMService_GetPosition_Handler,
+		},
+		{
+			MethodName: "GetMap",
+			Handler:    _SLAMService_GetMap_Handler,
+		},
+		{
 			MethodName: "GetPositionNew",
 			Handler:    _SLAMService_GetPositionNew_Handler,
+		},
+		{
+			MethodName: "GetPointCloudMap",
+			Handler:    _SLAMService_GetPointCloudMap_Handler,
+		},
+		{
+			MethodName: "GetInternalState",
+			Handler:    _SLAMService_GetInternalState_Handler,
 		},
 		{
 			MethodName: "DoCommand",
