@@ -122,14 +122,6 @@ message JWKSFile {
   google.protobuf.Struct json = 1;
 }
 
-// Structured config for the credential type CREDENTIALS_TYPE_WEB_OAUTH
-// TODO(APP-1412): remove after a week from being deployed
-message AuthHandlerWebOauthConfig {
-  // The allowed aud claims by the web oauth handler.
-  repeated string allowed_audiences = 1;
-  JWKSFile jwks = 2;
-}
-
 // ExternalAuthConfig describes how a viam managed robot can accept
 // credentials signed by the cloud app.
 message ExternalAuthConfig {
@@ -139,10 +131,6 @@ message ExternalAuthConfig {
 message AuthHandlerConfig {
   CredentialsType type = 1;
   google.protobuf.Struct config = 5;
-
-  // Structured config for CREDENTIALS_TYPE_WEB_OAUTH type.
-  // Note: When this is set the config field will be empty.
-  optional AuthHandlerWebOauthConfig web_oauth_config = 6;
 }
 
 message Frame {
