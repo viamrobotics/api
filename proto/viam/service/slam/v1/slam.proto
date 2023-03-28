@@ -19,14 +19,14 @@ service SLAMService {
     };
   }
 
-  // GetPointCloudMapStream returns the latest point cloud map available
+  // GetPointCloudMap returns the latest point cloud map available
   rpc GetPointCloudMap(GetPointCloudMapRequest) returns (stream GetPointCloudMapResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/slam/{name}/point_cloud_map"
     };
   }
 
-  // GetInternalStateStream returns the internal map as defined by the specified slam
+  // GetInternalState returns the internal map as defined by the specified slam
   // algorithm required to continue mapping/localizing.
   // This endpoint is not intended for end users.
   rpc GetInternalState(GetInternalStateRequest) returns (stream GetInternalStateResponse) {
