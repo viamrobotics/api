@@ -137,11 +137,12 @@ message GetPointCloudMapStreamRequest {
 message GetPointCloudMapStreamResponse {
   option deprecated = true;
   // One chunk of the PointCloud.
-  // For a given GetPointCloudMapStream request, concatenating all
-  // GetPointCloudMapStreamResponse.point_cloud_pcd_chunk values in the
-  // order received result in the complete pointcloud in standard PCD
-  // format.
-  // https://pointclouds.org/documentation/tutorials/pcd_file_format.html
+  // For a given GetPointCloudMapStream request,
+  // concatinating all
+  // GetPointCloudMapStreamResponse.point_cloud_pcd_chunk
+  // values in the order received result in
+  // the complete pointcloud in standard PCD format.
+  // https://pointclouds.org/documentation/tutorials/pcd_file_format.html 
   bytes point_cloud_pcd_chunk = 1;
 }
 
