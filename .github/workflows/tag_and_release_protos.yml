@@ -11,47 +11,46 @@ on:
       - 'proto/**'
     branches:
       - main
-      - maximpertsov-patch-1
 
   # Allow running this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  # bump-tag:
-  #   if: github.repository_owner == 'viamrobotics'
-  #   runs-on: [self-hosted, x64]
-  #   container:
-  #     image: ghcr.io/viamrobotics/canon:amd64-cache
-  #     options: --platform linux/amd64
-  #   outputs:
-  #     new_tag: ${{ steps.bump.outputs.new_tag }}
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: Bump tag
-  #       id: bump
-  #       uses: anothrNick/github-tag-action@1.52.0
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.REPO_READ_TOKEN }}
-  #         WITH_V: true
-  #         DEFAULT_BUMP: patch
-  #
-  # buf-push:
-  #   needs: bump-tag
-  #   if: github.repository_owner == 'viamrobotics'
-  #   runs-on: [self-hosted, x64]
-  #   container:
-  #     image: ghcr.io/viamrobotics/canon:amd64-cache
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: bufbuild/buf-setup-action@v1
-  #     - uses: AdamMagaluk/buf-push-action@v1
-  #       with:
-  #         input: proto/viam
-  #         buf_token: ${{ secrets.BUF_TOKEN }}
-  #         tag: ${{needs.bump-tag.outputs.new_tag}}
+  bump-tag:
+    if: github.repository_owner == 'viamrobotics'
+    runs-on: [self-hosted, x64]
+    container:
+      image: ghcr.io/viamrobotics/canon:amd64-cache
+      options: --platform linux/amd64
+    outputs:
+      new_tag: ${{ steps.bump.outputs.new_tag }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Bump tag
+        id: bump
+        uses: anothrNick/github-tag-action@1.52.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_READ_TOKEN }}
+          WITH_V: true
+          DEFAULT_BUMP: patch
+
+  buf-push:
+    needs: bump-tag
+    if: github.repository_owner == 'viamrobotics'
+    runs-on: [self-hosted, x64]
+    container:
+      image: ghcr.io/viamrobotics/canon:amd64-cache
+    steps:
+      - uses: actions/checkout@v3
+      - uses: bufbuild/buf-setup-action@v1
+      - uses: AdamMagaluk/buf-push-action@v1
+        with:
+          input: proto/viam
+          buf_token: ${{ secrets.BUF_TOKEN }}
+          tag: ${{needs.bump-tag.outputs.new_tag}}
 
   dispatch:
-    # needs: buf-push
+    needs: buf-push
     if: github.repository_owner == 'viamrobotics'
     runs-on: [self-hosted, x64]
     container:
@@ -59,12 +58,12 @@ jobs:
     strategy:
       matrix:
         repo:
-          # - viamrobotics/rdk
-          # - viamrobotics/app
-          # - viamrobotics/python-sdk
-          # - viamrobotics/rust-sdk
-          # - viamrobotics/rust-utils
-          # - viamrobotics/viam-cpp-sdk
+          - viamrobotics/rdk
+          - viamrobotics/app
+          - viamrobotics/python-sdk
+          - viamrobotics/rust-sdk
+          - viamrobotics/rust-utils
+          - viamrobotics/viam-cpp-sdk
           - viamrobotics/viam-typescript-sdk
     steps:
       - name: Notify Proto Watchers
