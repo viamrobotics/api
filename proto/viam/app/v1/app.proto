@@ -666,3 +666,54 @@ message DeleteRobotPartSecretRequest {
 }
 
 message DeleteRobotPartSecretResponse {}
+
+message Authorization {
+  string identity_id = 1;
+  string authorization_type = 2;
+  string authorization_id = 3;
+  string resource_type = 4;
+  string resource_id = 5;
+}
+
+message AddRoleRequest {
+  string identity_id = 1;
+  string role_id = 2;
+  string resource_type = 3;
+  string resource_id = 4;
+}
+
+message AddRoleResponse {
+  Authorization authorization = 1;
+}
+
+message RemoveRoleRequest {
+  string identity_id = 1;
+  string role_id = 2;
+  string resource_type = 3;
+  string resource_id = 4;
+}
+
+message RemoveRoleResponse {}
+
+message ListAuthorizationsRequest {
+  string resource_type = 1;
+  string resource_id = 2;
+}
+
+message ListAuthorizationsResponse {
+  repeated Authorization authorizations = 1;
+}
+
+message CheckPermissionsRequest {
+  repeated string resource_ids = 1;
+  repeated string permission_ids = 2;
+}
+
+message AuthorizedPermissions {
+  string resource_id = 1;
+  repeated string permissions = 2;
+}
+
+message CheckPermissionsResponse {
+  repeated AuthorizedPermissions authorized_permissions = 1;
+}
