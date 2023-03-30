@@ -681,6 +681,7 @@ message AddRoleRequest {
   string role_id = 2;
   string resource_type = 3;
   string resource_id = 4;
+  string organization_id = 5;
 }
 
 message AddRoleResponse {

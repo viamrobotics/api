@@ -19352,7 +19352,8 @@ proto.viam.app.v1.AddRoleRequest.toObject = function(includeInstance, msg) {
     identityId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     roleId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     resourceType: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    resourceId: jspb.Message.getFieldWithDefault(msg, 4, "")
+    resourceId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -19404,6 +19405,10 @@ proto.viam.app.v1.AddRoleRequest.deserializeBinaryFromReader = function(msg, rea
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setResourceId(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganizationId(value);
       break;
     default:
       reader.skipField();
@@ -19459,6 +19464,13 @@ proto.viam.app.v1.AddRoleRequest.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getOrganizationId();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -19534,6 +19546,24 @@ proto.viam.app.v1.AddRoleRequest.prototype.getResourceId = function() {
  */
 proto.viam.app.v1.AddRoleRequest.prototype.setResourceId = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string organization_id = 5;
+ * @return {string}
+ */
+proto.viam.app.v1.AddRoleRequest.prototype.getOrganizationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.AddRoleRequest} returns this
+ */
+proto.viam.app.v1.AddRoleRequest.prototype.setOrganizationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
