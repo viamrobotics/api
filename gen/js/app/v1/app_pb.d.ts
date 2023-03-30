@@ -2479,6 +2479,9 @@ export class AddRoleRequest extends jspb.Message {
   getResourceId(): string;
   setResourceId(value: string): void;
 
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddRoleRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AddRoleRequest): AddRoleRequest.AsObject;
@@ -2495,6 +2498,7 @@ export namespace AddRoleRequest {
     roleId: string,
     resourceType: string,
     resourceId: string,
+    organizationId: string,
   }
 }
 
