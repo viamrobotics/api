@@ -254,6 +254,7 @@ message ListOrganizationMembersResponse {
 message CreateOrganizationInviteRequest {
   string organization_id = 1;
   string email = 2;
+  string permissions = 3;
 }
 
 message CreateOrganizationInviteResponse {
