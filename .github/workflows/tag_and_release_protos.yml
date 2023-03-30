@@ -60,8 +60,8 @@ jobs:
         repo:
           - viamrobotics/rdk
           - viamrobotics/app
-          - viamrobotics/python-sdk
-          - viamrobotics/rust-sdk
+          - viamrobotics/viam-python-sdk
+          - viamrobotics/viam-rust-sdk
           - viamrobotics/rust-utils
           - viamrobotics/viam-cpp-sdk
           - viamrobotics/viam-typescript-sdk
