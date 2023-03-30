@@ -254,7 +254,7 @@ message ListOrganizationMembersResponse {
 message CreateOrganizationInviteRequest {
   string organization_id = 1;
   string email = 2;
-  string permissions = 3;
+  repeated  Authorization authorizations = 3;
 }
 
 message CreateOrganizationInviteResponse {
@@ -669,11 +669,10 @@ message DeleteRobotPartSecretRequest {
 message DeleteRobotPartSecretResponse {}
 
 message Authorization {
-  string identity_id = 1;
-  string authorization_type = 2;
-  string authorization_id = 3;
-  string resource_type = 4;
-  string resource_id = 5;
+  string authorization_type = 1;
+  string authorization_id = 2;
+  string resource_type = 3;
+  string resource_id = 4;
 }
 
 message AddRoleRequest {
