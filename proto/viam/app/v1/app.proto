@@ -146,6 +146,17 @@ service AppService {
 
   // Deletes a fragment
   rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
+
+  // Billing
+
+  // Creates a Stripe customer
+  rpc CreateStripeCustomer(CreateStripeCustomerRequest) returns (CreateStripeCustomerResponse);
+
+  // Create a Stripe setup intent
+  rpc CreateStripeSetupIntent(CreateStripeSetupIntentRequest) returns (CreateStripeSetupIntentResponse);
+
+  // Create a Stripe payment intent
+  rpc CreateStripePaymentIntent(CreateStripePaymentIntentRequest) returns (CreateStripePaymentIntentResponse);
 }
 
 message Robot {
@@ -717,4 +728,33 @@ message AuthorizedPermissions {
 
 message CheckPermissionsResponse {
   repeated AuthorizedPermissions authorized_permissions = 1;
+}
+
+message CreateStripeCustomerRequest {
+  optional string description = 1;
+}
+
+message CreateStripeCustomerResponse {
+  string customer_id = 1;
+}
+
+message CreateStripeSetupIntentRequest {}
+
+message CreateStripeSetupIntentResponse {
+  string client_secret = 1; 
+}
+
+message CreateStripePaymentIntentRequest {
+  float amount = 1;
+  string currency = 2;
+  optional string customer_id = 3;
+  optional string description = 4;
+  optional bool confirm = 5;
+  optional bool off_session = 6;
+  optional string payment_method_id = 7;
+}
+
+message CreateStripePaymentIntentResponse {
+  string payment_intent_id = 1;
+  string payment_intent_client_secret = 2;
 }
