@@ -148,7 +148,7 @@ service AppService {
   rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
 
   // Creates an IdentityAuthorization
-  rpc CreateRole(AddRoleRequest) returns (AddRoleResponse);
+  rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
 
   // Deletes an IdentityAuthorization
   rpc RemoveRole(RemoveRoleRequest) returns (RemoveRoleResponse);
