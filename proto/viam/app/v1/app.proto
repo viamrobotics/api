@@ -146,6 +146,15 @@ service AppService {
 
   // Deletes a fragment
   rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
+
+  // Creates an IdentityAuthorization
+  rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
+
+  // Deletes an IdentityAuthorization
+  rpc RemoveRole(RemoveRoleRequest) returns (RemoveRoleResponse);
+
+  // Shows organization, location, and robot level permissions that exist on the resource
+  rpc ListAuthorizations(ListAuthorizationsRequest) returns (ListAuthorizationsResponse);
 }
 
 message Robot {
