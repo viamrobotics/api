@@ -755,6 +755,5 @@ message CreateStripePaymentIntentRequest {
 }
 
 message CreateStripePaymentIntentResponse {
-  string payment_intent_id = 1;
-  string payment_intent_client_secret = 2;
+  string client_secret = 1;
 }
