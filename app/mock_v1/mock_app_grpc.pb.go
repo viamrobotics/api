@@ -37,6 +37,26 @@ func (m *MockAppServiceClient) EXPECT() *MockAppServiceClientMockRecorder {
 	return m.recorder
 }
 
+// AddRole mocks base method.
+func (m *MockAppServiceClient) AddRole(ctx context.Context, in *v1.AddRoleRequest, opts ...grpc.CallOption) (*v1.AddRoleResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "AddRole", varargs...)
+	ret0, _ := ret[0].(*v1.AddRoleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// AddRole indicates an expected call of AddRole.
+func (mr *MockAppServiceClientMockRecorder) AddRole(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddRole", reflect.TypeOf((*MockAppServiceClient)(nil).AddRole), varargs...)
+}
+
 // CreateFragment mocks base method.
 func (m *MockAppServiceClient) CreateFragment(ctx context.Context, in *v1.CreateFragmentRequest, opts ...grpc.CallOption) (*v1.CreateFragmentResponse, error) {
 	m.ctrl.T.Helper()
@@ -517,6 +537,26 @@ func (mr *MockAppServiceClientMockRecorder) GetRoverRentalRobots(ctx, in interfa
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRoverRentalRobots", reflect.TypeOf((*MockAppServiceClient)(nil).GetRoverRentalRobots), varargs...)
 }
 
+// ListAuthorizations mocks base method.
+func (m *MockAppServiceClient) ListAuthorizations(ctx context.Context, in *v1.ListAuthorizationsRequest, opts ...grpc.CallOption) (*v1.ListAuthorizationsResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "ListAuthorizations", varargs...)
+	ret0, _ := ret[0].(*v1.ListAuthorizationsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListAuthorizations indicates an expected call of ListAuthorizations.
+func (mr *MockAppServiceClientMockRecorder) ListAuthorizations(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListAuthorizations", reflect.TypeOf((*MockAppServiceClient)(nil).ListAuthorizations), varargs...)
+}
+
 // ListFragments mocks base method.
 func (m *MockAppServiceClient) ListFragments(ctx context.Context, in *v1.ListFragmentsRequest, opts ...grpc.CallOption) (*v1.ListFragmentsResponse, error) {
 	m.ctrl.T.Helper()
@@ -715,6 +755,26 @@ func (mr *MockAppServiceClientMockRecorder) NewRobotPart(ctx, in interface{}, op
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewRobotPart", reflect.TypeOf((*MockAppServiceClient)(nil).NewRobotPart), varargs...)
+}
+
+// RemoveRole mocks base method.
+func (m *MockAppServiceClient) RemoveRole(ctx context.Context, in *v1.RemoveRoleRequest, opts ...grpc.CallOption) (*v1.RemoveRoleResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "RemoveRole", varargs...)
+	ret0, _ := ret[0].(*v1.RemoveRoleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// RemoveRole indicates an expected call of RemoveRole.
+func (mr *MockAppServiceClientMockRecorder) RemoveRole(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveRole", reflect.TypeOf((*MockAppServiceClient)(nil).RemoveRole), varargs...)
 }
 
 // ResendOrganizationInvite mocks base method.
@@ -1041,6 +1101,21 @@ func NewMockAppServiceServer(ctrl *gomock.Controller) *MockAppServiceServer {
 // EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockAppServiceServer) EXPECT() *MockAppServiceServerMockRecorder {
 	return m.recorder
+}
+
+// AddRole mocks base method.
+func (m *MockAppServiceServer) AddRole(arg0 context.Context, arg1 *v1.AddRoleRequest) (*v1.AddRoleResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "AddRole", arg0, arg1)
+	ret0, _ := ret[0].(*v1.AddRoleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// AddRole indicates an expected call of AddRole.
+func (mr *MockAppServiceServerMockRecorder) AddRole(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddRole", reflect.TypeOf((*MockAppServiceServer)(nil).AddRole), arg0, arg1)
 }
 
 // CreateFragment mocks base method.
@@ -1403,6 +1478,21 @@ func (mr *MockAppServiceServerMockRecorder) GetRoverRentalRobots(arg0, arg1 inte
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRoverRentalRobots", reflect.TypeOf((*MockAppServiceServer)(nil).GetRoverRentalRobots), arg0, arg1)
 }
 
+// ListAuthorizations mocks base method.
+func (m *MockAppServiceServer) ListAuthorizations(arg0 context.Context, arg1 *v1.ListAuthorizationsRequest) (*v1.ListAuthorizationsResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListAuthorizations", arg0, arg1)
+	ret0, _ := ret[0].(*v1.ListAuthorizationsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListAuthorizations indicates an expected call of ListAuthorizations.
+func (mr *MockAppServiceServerMockRecorder) ListAuthorizations(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListAuthorizations", reflect.TypeOf((*MockAppServiceServer)(nil).ListAuthorizations), arg0, arg1)
+}
+
 // ListFragments mocks base method.
 func (m *MockAppServiceServer) ListFragments(arg0 context.Context, arg1 *v1.ListFragmentsRequest) (*v1.ListFragmentsResponse, error) {
 	m.ctrl.T.Helper()
@@ -1551,6 +1641,21 @@ func (m *MockAppServiceServer) NewRobotPart(arg0 context.Context, arg1 *v1.NewRo
 func (mr *MockAppServiceServerMockRecorder) NewRobotPart(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewRobotPart", reflect.TypeOf((*MockAppServiceServer)(nil).NewRobotPart), arg0, arg1)
+}
+
+// RemoveRole mocks base method.
+func (m *MockAppServiceServer) RemoveRole(arg0 context.Context, arg1 *v1.RemoveRoleRequest) (*v1.RemoveRoleResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "RemoveRole", arg0, arg1)
+	ret0, _ := ret[0].(*v1.RemoveRoleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// RemoveRole indicates an expected call of RemoveRole.
+func (mr *MockAppServiceServerMockRecorder) RemoveRole(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveRole", reflect.TypeOf((*MockAppServiceServer)(nil).RemoveRole), arg0, arg1)
 }
 
 // ResendOrganizationInvite mocks base method.
