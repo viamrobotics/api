@@ -151,7 +151,7 @@ service AppService {
   rpc CreateRole(AddRoleRequest) returns (AddRoleResponse);
 
   // Deletes an IdentityAuthorization
-  rpc DeleteRole(RemoveRoleRequest) returns (RemoveRoleResponse);
+  rpc RemoveRole(RemoveRoleRequest) returns (RemoveRoleResponse);
 
   // Shows organization, location, and robot level permissions that exist on the resource
   rpc ListAuthorizations(ListAuthorizationsRequest) returns (ListAuthorizationsResponse);
