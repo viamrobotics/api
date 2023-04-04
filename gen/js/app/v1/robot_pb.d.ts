@@ -393,6 +393,11 @@ export class AuthConfig extends jspb.Message {
   setTlsAuthEntitiesList(value: Array<string>): void;
   addTlsAuthEntities(value: string, index?: number): string;
 
+  hasExternalAuthConfig(): boolean;
+  clearExternalAuthConfig(): void;
+  getExternalAuthConfig(): ExternalAuthConfig | undefined;
+  setExternalAuthConfig(value?: ExternalAuthConfig): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AuthConfig.AsObject;
   static toObject(includeInstance: boolean, msg: AuthConfig): AuthConfig.AsObject;
@@ -407,6 +412,7 @@ export namespace AuthConfig {
   export type AsObject = {
     handlersList: Array<AuthHandlerConfig.AsObject>,
     tlsAuthEntitiesList: Array<string>,
+    externalAuthConfig?: ExternalAuthConfig.AsObject,
   }
 }
 
@@ -432,30 +438,24 @@ export namespace JWKSFile {
   }
 }
 
-export class AuthHandlerWebOauthConfig extends jspb.Message {
-  clearAllowedAudiencesList(): void;
-  getAllowedAudiencesList(): Array<string>;
-  setAllowedAudiencesList(value: Array<string>): void;
-  addAllowedAudiences(value: string, index?: number): string;
-
+export class ExternalAuthConfig extends jspb.Message {
   hasJwks(): boolean;
   clearJwks(): void;
   getJwks(): JWKSFile | undefined;
   setJwks(value?: JWKSFile): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AuthHandlerWebOauthConfig.AsObject;
-  static toObject(includeInstance: boolean, msg: AuthHandlerWebOauthConfig): AuthHandlerWebOauthConfig.AsObject;
+  toObject(includeInstance?: boolean): ExternalAuthConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: ExternalAuthConfig): ExternalAuthConfig.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AuthHandlerWebOauthConfig, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AuthHandlerWebOauthConfig;
-  static deserializeBinaryFromReader(message: AuthHandlerWebOauthConfig, reader: jspb.BinaryReader): AuthHandlerWebOauthConfig;
+  static serializeBinaryToWriter(message: ExternalAuthConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ExternalAuthConfig;
+  static deserializeBinaryFromReader(message: ExternalAuthConfig, reader: jspb.BinaryReader): ExternalAuthConfig;
 }
 
-export namespace AuthHandlerWebOauthConfig {
+export namespace ExternalAuthConfig {
   export type AsObject = {
-    allowedAudiencesList: Array<string>,
     jwks?: JWKSFile.AsObject,
   }
 }
@@ -468,11 +468,6 @@ export class AuthHandlerConfig extends jspb.Message {
   clearConfig(): void;
   getConfig(): google_protobuf_struct_pb.Struct | undefined;
   setConfig(value?: google_protobuf_struct_pb.Struct): void;
-
-  hasWebOauthConfig(): boolean;
-  clearWebOauthConfig(): void;
-  getWebOauthConfig(): AuthHandlerWebOauthConfig | undefined;
-  setWebOauthConfig(value?: AuthHandlerWebOauthConfig): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AuthHandlerConfig.AsObject;
@@ -488,7 +483,6 @@ export namespace AuthHandlerConfig {
   export type AsObject = {
     type: CredentialsTypeMap[keyof CredentialsTypeMap],
     config?: google_protobuf_struct_pb.Struct.AsObject,
-    webOauthConfig?: AuthHandlerWebOauthConfig.AsObject,
   }
 }
 
@@ -1193,7 +1187,6 @@ export interface CredentialsTypeMap {
   CREDENTIALS_TYPE_API_KEY: 2;
   CREDENTIALS_TYPE_ROBOT_SECRET: 3;
   CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET: 4;
-  CREDENTIALS_TYPE_WEB_OAUTH: 5;
 }
 
 export const CredentialsType: CredentialsTypeMap;

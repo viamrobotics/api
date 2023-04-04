@@ -113,6 +113,7 @@ message NetworkConfig {
 message AuthConfig {
   repeated AuthHandlerConfig handlers = 1;
   repeated string tls_auth_entities = 2;
+  optional ExternalAuthConfig external_auth_config = 3;
 }
 
 message JWKSFile {
@@ -121,20 +122,15 @@ message JWKSFile {
   google.protobuf.Struct json = 1;
 }
 
-// Structured config for the credential type CREDENTIALS_TYPE_WEB_OAUTH
-message AuthHandlerWebOauthConfig {
-  // The allowed aud claims by the web oauth handler.
-  repeated string allowed_audiences = 1;
-  JWKSFile jwks = 2;
+// ExternalAuthConfig describes how a viam managed robot can accept
+// credentials signed by the cloud app.
+message ExternalAuthConfig {
+  JWKSFile jwks = 1;
 }
 
 message AuthHandlerConfig {
   CredentialsType type = 1;
   google.protobuf.Struct config = 5;
-
-  // Structured config for CREDENTIALS_TYPE_WEB_OAUTH type.
-  // Note: When this is set the config field will be empty.
-  optional AuthHandlerWebOauthConfig web_oauth_config = 6;
 }
 
 message Frame {
@@ -268,7 +264,6 @@ enum CredentialsType {
   CREDENTIALS_TYPE_API_KEY = 2;
   CREDENTIALS_TYPE_ROBOT_SECRET = 3;
   CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET = 4;
-  CREDENTIALS_TYPE_WEB_OAUTH = 5;
 }
 
 message ConfigRequest {

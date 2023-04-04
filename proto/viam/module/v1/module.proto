@@ -20,6 +20,10 @@ service ModuleService {
 
   // Ready determines if the server is started and ready to recieve resource configurations.
   rpc Ready(ReadyRequest) returns (ReadyResponse);
+
+  // ValidateConfig determines whether the given config is valid and registers/returns implicit
+  // dependencies.
+  rpc ValidateConfig(ValidateConfigRequest) returns (ValidateConfigResponse);
 }
 
 message AddResourceRequest {
@@ -53,4 +57,12 @@ message ReadyRequest {
 message ReadyResponse {
   bool ready = 1;
   HandlerMap handlermap = 2;
+}
+
+message ValidateConfigRequest {
+  viam.app.v1.ComponentConfig config = 1;
+}
+
+message ValidateConfigResponse {
+  repeated string dependencies = 1;
 }

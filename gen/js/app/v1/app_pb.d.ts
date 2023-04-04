@@ -2430,3 +2430,267 @@ export namespace DeleteRobotPartSecretResponse {
   }
 }
 
+export class Authorization extends jspb.Message {
+  getIdentityId(): string;
+  setIdentityId(value: string): void;
+
+  getAuthorizationType(): string;
+  setAuthorizationType(value: string): void;
+
+  getAuthorizationId(): string;
+  setAuthorizationId(value: string): void;
+
+  getResourceType(): string;
+  setResourceType(value: string): void;
+
+  getResourceId(): string;
+  setResourceId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Authorization.AsObject;
+  static toObject(includeInstance: boolean, msg: Authorization): Authorization.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Authorization, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Authorization;
+  static deserializeBinaryFromReader(message: Authorization, reader: jspb.BinaryReader): Authorization;
+}
+
+export namespace Authorization {
+  export type AsObject = {
+    identityId: string,
+    authorizationType: string,
+    authorizationId: string,
+    resourceType: string,
+    resourceId: string,
+  }
+}
+
+export class AddRoleRequest extends jspb.Message {
+  getIdentityId(): string;
+  setIdentityId(value: string): void;
+
+  getRoleId(): string;
+  setRoleId(value: string): void;
+
+  getResourceType(): string;
+  setResourceType(value: string): void;
+
+  getResourceId(): string;
+  setResourceId(value: string): void;
+
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddRoleRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddRoleRequest): AddRoleRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddRoleRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddRoleRequest;
+  static deserializeBinaryFromReader(message: AddRoleRequest, reader: jspb.BinaryReader): AddRoleRequest;
+}
+
+export namespace AddRoleRequest {
+  export type AsObject = {
+    identityId: string,
+    roleId: string,
+    resourceType: string,
+    resourceId: string,
+    organizationId: string,
+  }
+}
+
+export class AddRoleResponse extends jspb.Message {
+  hasAuthorization(): boolean;
+  clearAuthorization(): void;
+  getAuthorization(): Authorization | undefined;
+  setAuthorization(value?: Authorization): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddRoleResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddRoleResponse): AddRoleResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddRoleResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddRoleResponse;
+  static deserializeBinaryFromReader(message: AddRoleResponse, reader: jspb.BinaryReader): AddRoleResponse;
+}
+
+export namespace AddRoleResponse {
+  export type AsObject = {
+    authorization?: Authorization.AsObject,
+  }
+}
+
+export class RemoveRoleRequest extends jspb.Message {
+  getIdentityId(): string;
+  setIdentityId(value: string): void;
+
+  getRoleId(): string;
+  setRoleId(value: string): void;
+
+  getResourceType(): string;
+  setResourceType(value: string): void;
+
+  getResourceId(): string;
+  setResourceId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveRoleRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveRoleRequest): RemoveRoleRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveRoleRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveRoleRequest;
+  static deserializeBinaryFromReader(message: RemoveRoleRequest, reader: jspb.BinaryReader): RemoveRoleRequest;
+}
+
+export namespace RemoveRoleRequest {
+  export type AsObject = {
+    identityId: string,
+    roleId: string,
+    resourceType: string,
+    resourceId: string,
+  }
+}
+
+export class RemoveRoleResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveRoleResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveRoleResponse): RemoveRoleResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveRoleResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveRoleResponse;
+  static deserializeBinaryFromReader(message: RemoveRoleResponse, reader: jspb.BinaryReader): RemoveRoleResponse;
+}
+
+export namespace RemoveRoleResponse {
+  export type AsObject = {
+  }
+}
+
+export class ListAuthorizationsRequest extends jspb.Message {
+  getResourceType(): string;
+  setResourceType(value: string): void;
+
+  getResourceId(): string;
+  setResourceId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListAuthorizationsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListAuthorizationsRequest): ListAuthorizationsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListAuthorizationsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListAuthorizationsRequest;
+  static deserializeBinaryFromReader(message: ListAuthorizationsRequest, reader: jspb.BinaryReader): ListAuthorizationsRequest;
+}
+
+export namespace ListAuthorizationsRequest {
+  export type AsObject = {
+    resourceType: string,
+    resourceId: string,
+  }
+}
+
+export class ListAuthorizationsResponse extends jspb.Message {
+  clearAuthorizationsList(): void;
+  getAuthorizationsList(): Array<Authorization>;
+  setAuthorizationsList(value: Array<Authorization>): void;
+  addAuthorizations(value?: Authorization, index?: number): Authorization;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListAuthorizationsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListAuthorizationsResponse): ListAuthorizationsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListAuthorizationsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListAuthorizationsResponse;
+  static deserializeBinaryFromReader(message: ListAuthorizationsResponse, reader: jspb.BinaryReader): ListAuthorizationsResponse;
+}
+
+export namespace ListAuthorizationsResponse {
+  export type AsObject = {
+    authorizationsList: Array<Authorization.AsObject>,
+  }
+}
+
+export class CheckPermissionsRequest extends jspb.Message {
+  clearResourceIdsList(): void;
+  getResourceIdsList(): Array<string>;
+  setResourceIdsList(value: Array<string>): void;
+  addResourceIds(value: string, index?: number): string;
+
+  clearPermissionIdsList(): void;
+  getPermissionIdsList(): Array<string>;
+  setPermissionIdsList(value: Array<string>): void;
+  addPermissionIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CheckPermissionsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CheckPermissionsRequest): CheckPermissionsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CheckPermissionsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CheckPermissionsRequest;
+  static deserializeBinaryFromReader(message: CheckPermissionsRequest, reader: jspb.BinaryReader): CheckPermissionsRequest;
+}
+
+export namespace CheckPermissionsRequest {
+  export type AsObject = {
+    resourceIdsList: Array<string>,
+    permissionIdsList: Array<string>,
+  }
+}
+
+export class AuthorizedPermissions extends jspb.Message {
+  getResourceId(): string;
+  setResourceId(value: string): void;
+
+  clearPermissionsList(): void;
+  getPermissionsList(): Array<string>;
+  setPermissionsList(value: Array<string>): void;
+  addPermissions(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AuthorizedPermissions.AsObject;
+  static toObject(includeInstance: boolean, msg: AuthorizedPermissions): AuthorizedPermissions.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AuthorizedPermissions, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AuthorizedPermissions;
+  static deserializeBinaryFromReader(message: AuthorizedPermissions, reader: jspb.BinaryReader): AuthorizedPermissions;
+}
+
+export namespace AuthorizedPermissions {
+  export type AsObject = {
+    resourceId: string,
+    permissionsList: Array<string>,
+  }
+}
+
+export class CheckPermissionsResponse extends jspb.Message {
+  clearAuthorizedPermissionsList(): void;
+  getAuthorizedPermissionsList(): Array<AuthorizedPermissions>;
+  setAuthorizedPermissionsList(value: Array<AuthorizedPermissions>): void;
+  addAuthorizedPermissions(value?: AuthorizedPermissions, index?: number): AuthorizedPermissions;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CheckPermissionsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CheckPermissionsResponse): CheckPermissionsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CheckPermissionsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CheckPermissionsResponse;
+  static deserializeBinaryFromReader(message: CheckPermissionsResponse, reader: jspb.BinaryReader): CheckPermissionsResponse;
+}
+
+export namespace CheckPermissionsResponse {
+  export type AsObject = {
+    authorizedPermissionsList: Array<AuthorizedPermissions.AsObject>,
+  }
+}
+

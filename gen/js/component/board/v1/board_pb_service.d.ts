@@ -95,6 +95,15 @@ type BoardServiceGetDigitalInterruptValue = {
   readonly responseType: typeof component_board_v1_board_pb.GetDigitalInterruptValueResponse;
 };
 
+type BoardServiceSetPowerMode = {
+  readonly methodName: string;
+  readonly service: typeof BoardService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_board_v1_board_pb.SetPowerModeRequest;
+  readonly responseType: typeof component_board_v1_board_pb.SetPowerModeResponse;
+};
+
 export class BoardService {
   static readonly serviceName: string;
   static readonly Status: BoardServiceStatus;
@@ -107,6 +116,7 @@ export class BoardService {
   static readonly DoCommand: BoardServiceDoCommand;
   static readonly ReadAnalogReader: BoardServiceReadAnalogReader;
   static readonly GetDigitalInterruptValue: BoardServiceGetDigitalInterruptValue;
+  static readonly SetPowerMode: BoardServiceSetPowerMode;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -230,6 +240,15 @@ export class BoardServiceClient {
   getDigitalInterruptValue(
     requestMessage: component_board_v1_board_pb.GetDigitalInterruptValueRequest,
     callback: (error: ServiceError|null, responseMessage: component_board_v1_board_pb.GetDigitalInterruptValueResponse|null) => void
+  ): UnaryResponse;
+  setPowerMode(
+    requestMessage: component_board_v1_board_pb.SetPowerModeRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_board_v1_board_pb.SetPowerModeResponse|null) => void
+  ): UnaryResponse;
+  setPowerMode(
+    requestMessage: component_board_v1_board_pb.SetPowerModeRequest,
+    callback: (error: ServiceError|null, responseMessage: component_board_v1_board_pb.SetPowerModeResponse|null) => void
   ): UnaryResponse;
 }
 
