@@ -67,8 +67,9 @@ message GetPositionResponse {
 
 message MoveToPositionRequest {
   string name = 1;
+  // Millimeters to move the gantry
+  // There are multiple entries for a multi-axis gantry
   repeated double positions_mm = 2;
-  optional common.v1.WorldState world_state = 3;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
