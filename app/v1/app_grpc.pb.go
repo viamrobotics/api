@@ -117,6 +117,7 @@ type AppServiceClient interface {
 	RemoveRole(ctx context.Context, in *RemoveRoleRequest, opts ...grpc.CallOption) (*RemoveRoleResponse, error)
 	// Shows organization, location, and robot level permissions that exist on the resource
 	ListAuthorizations(ctx context.Context, in *ListAuthorizationsRequest, opts ...grpc.CallOption) (*ListAuthorizationsResponse, error)
+	CheckPermissions(ctx context.Context, in *CheckPermissionsRequest, opts ...grpc.CallOption) (*CheckPermissionsResponse, error)
 }
 
 type appServiceClient struct {
@@ -564,6 +565,15 @@ func (c *appServiceClient) ListAuthorizations(ctx context.Context, in *ListAutho
 	return out, nil
 }
 
+func (c *appServiceClient) CheckPermissions(ctx context.Context, in *CheckPermissionsRequest, opts ...grpc.CallOption) (*CheckPermissionsResponse, error) {
+	out := new(CheckPermissionsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CheckPermissions", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppServiceServer is the server API for AppService service.
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
@@ -663,6 +673,7 @@ type AppServiceServer interface {
 	RemoveRole(context.Context, *RemoveRoleRequest) (*RemoveRoleResponse, error)
 	// Shows organization, location, and robot level permissions that exist on the resource
 	ListAuthorizations(context.Context, *ListAuthorizationsRequest) (*ListAuthorizationsResponse, error)
+	CheckPermissions(context.Context, *CheckPermissionsRequest) (*CheckPermissionsResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -807,6 +818,9 @@ func (UnimplementedAppServiceServer) RemoveRole(context.Context, *RemoveRoleRequ
 }
 func (UnimplementedAppServiceServer) ListAuthorizations(context.Context, *ListAuthorizationsRequest) (*ListAuthorizationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAuthorizations not implemented")
+}
+func (UnimplementedAppServiceServer) CheckPermissions(context.Context, *CheckPermissionsRequest) (*CheckPermissionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckPermissions not implemented")
 }
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
@@ -1652,6 +1666,24 @@ func _AppService_ListAuthorizations_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_CheckPermissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckPermissionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CheckPermissions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CheckPermissions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CheckPermissions(ctx, req.(*CheckPermissionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1838,6 +1870,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListAuthorizations",
 			Handler:    _AppService_ListAuthorizations_Handler,
+		},
+		{
+			MethodName: "CheckPermissions",
+			Handler:    _AppService_CheckPermissions_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

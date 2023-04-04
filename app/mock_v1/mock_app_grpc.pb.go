@@ -57,6 +57,26 @@ func (mr *MockAppServiceClientMockRecorder) AddRole(ctx, in interface{}, opts ..
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddRole", reflect.TypeOf((*MockAppServiceClient)(nil).AddRole), varargs...)
 }
 
+// CheckPermissions mocks base method.
+func (m *MockAppServiceClient) CheckPermissions(ctx context.Context, in *v1.CheckPermissionsRequest, opts ...grpc.CallOption) (*v1.CheckPermissionsResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "CheckPermissions", varargs...)
+	ret0, _ := ret[0].(*v1.CheckPermissionsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CheckPermissions indicates an expected call of CheckPermissions.
+func (mr *MockAppServiceClientMockRecorder) CheckPermissions(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CheckPermissions", reflect.TypeOf((*MockAppServiceClient)(nil).CheckPermissions), varargs...)
+}
+
 // CreateFragment mocks base method.
 func (m *MockAppServiceClient) CreateFragment(ctx context.Context, in *v1.CreateFragmentRequest, opts ...grpc.CallOption) (*v1.CreateFragmentResponse, error) {
 	m.ctrl.T.Helper()
@@ -1116,6 +1136,21 @@ func (m *MockAppServiceServer) AddRole(arg0 context.Context, arg1 *v1.AddRoleReq
 func (mr *MockAppServiceServerMockRecorder) AddRole(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddRole", reflect.TypeOf((*MockAppServiceServer)(nil).AddRole), arg0, arg1)
+}
+
+// CheckPermissions mocks base method.
+func (m *MockAppServiceServer) CheckPermissions(arg0 context.Context, arg1 *v1.CheckPermissionsRequest) (*v1.CheckPermissionsResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CheckPermissions", arg0, arg1)
+	ret0, _ := ret[0].(*v1.CheckPermissionsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CheckPermissions indicates an expected call of CheckPermissions.
+func (mr *MockAppServiceServerMockRecorder) CheckPermissions(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CheckPermissions", reflect.TypeOf((*MockAppServiceServer)(nil).CheckPermissions), arg0, arg1)
 }
 
 // CreateFragment mocks base method.
