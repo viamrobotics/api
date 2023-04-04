@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package viam.service.mlmodels.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "go.viam.com/api/service/mlmodels/v1";
+option java_package = "com.viam.service.mlmodels.v1";
+
+// MLModelService declares the gRPC contract for an ML Model service
+service MLModelService {
+  // Infer takes an already ordered input tensor as a map, and makes an inference on the model, returning an output data map
+  rpc Infer(InferRequest) returns (InferResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/mlmodels/{name}/infer"
+    };
+  }
+  // Metadata returns the metadata associated with the ML model 
+  rpc Metdata(MetadaRequest) returns (MetadataResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/mlmodels/{name}/metadata"
+    };
+  }
+}
+
+message InferRequest {
+  // name of the model service
+  string name = 1;  
+  // this is a struct of input arrays/tensors as specified in the metadata
+  google.protobuf.Struct input_data = 2;
+}
+
+message InferResponse {
+  // this is a struct of output arrays/tensors as specified in the metadata
+  google.protobuf.Struct output_data = 2;
+}
+
+message MetadataRequest {
+  // name of the model service
+  string name = 1;  
+}
+
+message MetadataResponse {
+  // this is the metadata associated with the ML model
+  Metadata metadata = 1;
+}
+
+message Metadata {
+  // name of the model
+  string name = 1; 
+  // type of model e.g. object_detector, text_classifier
+  string type = 2; 
+  // description of the model
+  string description = 3; 
+  // the necessary input arrays/tensors for an inference, order matters
+  repeated TensorInfo input_info = 4; 
+  // the output arrays/tensors of the model, order matters
+  repeated TensorInfo output_info = 5; 
+}
+
+message TensorInfo {
+  // name of the data in the array/tensor
+  string name = 1; 
+  // description of the data in the array/tensor
+  string description = 2; 
+  // data type of the array/tensor, e.g. float32, float64, uint8
+  string data_type = 3; 
+  // number of dimensions in the array/tensor
+  int n_dim = 4; 
+  // files associated with the array/tensor, like for category labels
+  repeated File associated_files = 5; 
+  // anything else you want to say 
+  google.protobuf.Struct extra = 99; 
+}
+
+message File {
+  // name of the file, with file extension
+  string name = 1; 
+  // description of what the file contains
+  string description = 2; 
+  // How to associate the arrays/tensors to the labels in the file
+  LabelType label_type = 3; 
+}
+
+enum LabelType {
+  // the value of the arrays/tensor is the label index.
+  TENSOR_VALUE_LABELS = 1; 
+  // the position of the tensor value in the axis is the label index.
+  TENSOR_AXIS_LABELS = 2; 
+}
+
