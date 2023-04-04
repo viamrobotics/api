@@ -708,6 +708,7 @@ message RemoveRoleResponse {}
 message ListAuthorizationsRequest {
   string resource_type = 1;
   string resource_id = 2;
+  string organization_id = 3;
 }
 
 message ListAuthorizationsResponse {
