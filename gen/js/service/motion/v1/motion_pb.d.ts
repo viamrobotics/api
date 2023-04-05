@@ -30,11 +30,6 @@ export class MoveRequest extends jspb.Message {
   getConstraints(): Constraints | undefined;
   setConstraints(value?: Constraints): void;
 
-  hasSlamServiceName(): boolean;
-  clearSlamServiceName(): void;
-  getSlamServiceName(): common_v1_common_pb.ResourceName | undefined;
-  setSlamServiceName(value?: common_v1_common_pb.ResourceName): void;
-
   hasExtra(): boolean;
   clearExtra(): void;
   getExtra(): google_protobuf_struct_pb.Struct | undefined;
@@ -57,7 +52,6 @@ export namespace MoveRequest {
     componentName?: common_v1_common_pb.ResourceName.AsObject,
     worldState?: common_v1_common_pb.WorldState.AsObject,
     constraints?: Constraints.AsObject,
-    slamServiceName?: common_v1_common_pb.ResourceName.AsObject,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -77,6 +71,70 @@ export class MoveResponse extends jspb.Message {
 }
 
 export namespace MoveResponse {
+  export type AsObject = {
+    success: boolean,
+  }
+}
+
+export class MoveOnMapRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasDestination(): boolean;
+  clearDestination(): void;
+  getDestination(): common_v1_common_pb.Pose | undefined;
+  setDestination(value?: common_v1_common_pb.Pose): void;
+
+  hasComponentName(): boolean;
+  clearComponentName(): void;
+  getComponentName(): common_v1_common_pb.ResourceName | undefined;
+  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+
+  hasSlamServiceName(): boolean;
+  clearSlamServiceName(): void;
+  getSlamServiceName(): common_v1_common_pb.ResourceName | undefined;
+  setSlamServiceName(value?: common_v1_common_pb.ResourceName): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MoveOnMapRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: MoveOnMapRequest): MoveOnMapRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MoveOnMapRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MoveOnMapRequest;
+  static deserializeBinaryFromReader(message: MoveOnMapRequest, reader: jspb.BinaryReader): MoveOnMapRequest;
+}
+
+export namespace MoveOnMapRequest {
+  export type AsObject = {
+    name: string,
+    destination?: common_v1_common_pb.Pose.AsObject,
+    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    slamServiceName?: common_v1_common_pb.ResourceName.AsObject,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class MoveOnMapResponse extends jspb.Message {
+  getSuccess(): boolean;
+  setSuccess(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MoveOnMapResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: MoveOnMapResponse): MoveOnMapResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MoveOnMapResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MoveOnMapResponse;
+  static deserializeBinaryFromReader(message: MoveOnMapResponse, reader: jspb.BinaryReader): MoveOnMapResponse;
+}
+
+export namespace MoveOnMapResponse {
   export type AsObject = {
     success: boolean,
   }
