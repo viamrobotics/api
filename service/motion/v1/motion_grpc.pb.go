@@ -24,6 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MotionServiceClient interface {
 	Move(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveResponse, error)
+	MoveOnMap(ctx context.Context, in *MoveOnMapRequest, opts ...grpc.CallOption) (*MoveOnMapResponse, error)
 	MoveSingleComponent(ctx context.Context, in *MoveSingleComponentRequest, opts ...grpc.CallOption) (*MoveSingleComponentResponse, error)
 	GetPose(ctx context.Context, in *GetPoseRequest, opts ...grpc.CallOption) (*GetPoseResponse, error)
 	// DoCommand sends/receives arbitrary commands
@@ -41,6 +42,15 @@ func NewMotionServiceClient(cc grpc.ClientConnInterface) MotionServiceClient {
 func (c *motionServiceClient) Move(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveResponse, error) {
 	out := new(MoveResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/Move", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *motionServiceClient) MoveOnMap(ctx context.Context, in *MoveOnMapRequest, opts ...grpc.CallOption) (*MoveOnMapResponse, error) {
+	out := new(MoveOnMapResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/MoveOnMap", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -79,6 +89,7 @@ func (c *motionServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandReq
 // for forward compatibility
 type MotionServiceServer interface {
 	Move(context.Context, *MoveRequest) (*MoveResponse, error)
+	MoveOnMap(context.Context, *MoveOnMapRequest) (*MoveOnMapResponse, error)
 	MoveSingleComponent(context.Context, *MoveSingleComponentRequest) (*MoveSingleComponentResponse, error)
 	GetPose(context.Context, *GetPoseRequest) (*GetPoseResponse, error)
 	// DoCommand sends/receives arbitrary commands
@@ -92,6 +103,9 @@ type UnimplementedMotionServiceServer struct {
 
 func (UnimplementedMotionServiceServer) Move(context.Context, *MoveRequest) (*MoveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Move not implemented")
+}
+func (UnimplementedMotionServiceServer) MoveOnMap(context.Context, *MoveOnMapRequest) (*MoveOnMapResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MoveOnMap not implemented")
 }
 func (UnimplementedMotionServiceServer) MoveSingleComponent(context.Context, *MoveSingleComponentRequest) (*MoveSingleComponentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoveSingleComponent not implemented")
@@ -129,6 +143,24 @@ func _MotionService_Move_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MotionServiceServer).Move(ctx, req.(*MoveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MotionService_MoveOnMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MoveOnMapRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MotionServiceServer).MoveOnMap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.motion.v1.MotionService/MoveOnMap",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MotionServiceServer).MoveOnMap(ctx, req.(*MoveOnMapRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -197,6 +229,10 @@ var MotionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Move",
 			Handler:    _MotionService_Move_Handler,
+		},
+		{
+			MethodName: "MoveOnMap",
+			Handler:    _MotionService_MoveOnMap_Handler,
 		},
 		{
 			MethodName: "MoveSingleComponent",
