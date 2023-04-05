@@ -146,6 +146,17 @@ service AppService {
 
   // Deletes a fragment
   rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
+
+  // Creates an IdentityAuthorization
+  rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
+
+  // Deletes an IdentityAuthorization
+  rpc RemoveRole(RemoveRoleRequest) returns (RemoveRoleResponse);
+
+  // Shows organization, location, and robot level permissions that exist on the resource
+  rpc ListAuthorizations(ListAuthorizationsRequest) returns (ListAuthorizationsResponse);
+
+  rpc CheckPermissions(CheckPermissionsRequest) returns (CheckPermissionsResponse);
 }
 
 message Robot {
@@ -254,7 +265,7 @@ message ListOrganizationMembersResponse {
 message CreateOrganizationInviteRequest {
   string organization_id = 1;
   string email = 2;
-  repeated  Authorization authorizations = 3;
+  repeated Authorization authorizations = 3;
 }
 
 message CreateOrganizationInviteResponse {
@@ -692,6 +703,7 @@ message RemoveRoleRequest {
   string role_id = 2;
   string resource_type = 3;
   string resource_id = 4;
+  string organization_id = 5;
 }
 
 message RemoveRoleResponse {}
@@ -699,15 +711,20 @@ message RemoveRoleResponse {}
 message ListAuthorizationsRequest {
   string resource_type = 1;
   string resource_id = 2;
+  string organization_id = 3;
+}
+
+message Authorizations {
+  string identity_id = 1;
+  repeated Authorization authorizations = 2;
 }
 
 message ListAuthorizationsResponse {
-  repeated Authorization authorizations = 1;
+  repeated Authorizations authorizations = 1;
 }
 
 message CheckPermissionsRequest {
-  repeated string resource_ids = 1;
-  repeated string permission_ids = 2;
+  repeated AuthorizedPermissions permissions = 1;
 }
 
 message AuthorizedPermissions {

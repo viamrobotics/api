@@ -391,6 +391,42 @@ type AppServiceDeleteFragment = {
   readonly responseType: typeof app_v1_app_pb.DeleteFragmentResponse;
 };
 
+type AppServiceAddRole = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.AddRoleRequest;
+  readonly responseType: typeof app_v1_app_pb.AddRoleResponse;
+};
+
+type AppServiceRemoveRole = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.RemoveRoleRequest;
+  readonly responseType: typeof app_v1_app_pb.RemoveRoleResponse;
+};
+
+type AppServiceListAuthorizations = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListAuthorizationsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListAuthorizationsResponse;
+};
+
+type AppServiceCheckPermissions = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CheckPermissionsRequest;
+  readonly responseType: typeof app_v1_app_pb.CheckPermissionsResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly CreateOrganization: AppServiceCreateOrganization;
@@ -436,6 +472,10 @@ export class AppService {
   static readonly CreateFragment: AppServiceCreateFragment;
   static readonly UpdateFragment: AppServiceUpdateFragment;
   static readonly DeleteFragment: AppServiceDeleteFragment;
+  static readonly AddRole: AppServiceAddRole;
+  static readonly RemoveRole: AppServiceRemoveRole;
+  static readonly ListAuthorizations: AppServiceListAuthorizations;
+  static readonly CheckPermissions: AppServiceCheckPermissions;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -848,6 +888,42 @@ export class AppServiceClient {
   deleteFragment(
     requestMessage: app_v1_app_pb.DeleteFragmentRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteFragmentResponse|null) => void
+  ): UnaryResponse;
+  addRole(
+    requestMessage: app_v1_app_pb.AddRoleRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.AddRoleResponse|null) => void
+  ): UnaryResponse;
+  addRole(
+    requestMessage: app_v1_app_pb.AddRoleRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.AddRoleResponse|null) => void
+  ): UnaryResponse;
+  removeRole(
+    requestMessage: app_v1_app_pb.RemoveRoleRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RemoveRoleResponse|null) => void
+  ): UnaryResponse;
+  removeRole(
+    requestMessage: app_v1_app_pb.RemoveRoleRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RemoveRoleResponse|null) => void
+  ): UnaryResponse;
+  listAuthorizations(
+    requestMessage: app_v1_app_pb.ListAuthorizationsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListAuthorizationsResponse|null) => void
+  ): UnaryResponse;
+  listAuthorizations(
+    requestMessage: app_v1_app_pb.ListAuthorizationsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListAuthorizationsResponse|null) => void
+  ): UnaryResponse;
+  checkPermissions(
+    requestMessage: app_v1_app_pb.CheckPermissionsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CheckPermissionsResponse|null) => void
+  ): UnaryResponse;
+  checkPermissions(
+    requestMessage: app_v1_app_pb.CheckPermissionsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CheckPermissionsResponse|null) => void
   ): UnaryResponse;
 }
 

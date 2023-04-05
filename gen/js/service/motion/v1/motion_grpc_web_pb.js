@@ -147,6 +147,67 @@ proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.move =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.motion.v1.MoveOnMapRequest,
+ *   !proto.viam.service.motion.v1.MoveOnMapResponse>}
+ */
+const methodDescriptor_MotionService_MoveOnMap = new grpc.web.MethodDescriptor(
+  '/viam.service.motion.v1.MotionService/MoveOnMap',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.motion.v1.MoveOnMapRequest,
+  proto.viam.service.motion.v1.MoveOnMapResponse,
+  /**
+   * @param {!proto.viam.service.motion.v1.MoveOnMapRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.motion.v1.MoveOnMapResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.MoveOnMapRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.motion.v1.MoveOnMapResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.motion.v1.MoveOnMapResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.motion.v1.MotionServiceClient.prototype.moveOnMap =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/MoveOnMap',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_MoveOnMap,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.MoveOnMapRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.motion.v1.MoveOnMapResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.moveOnMap =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/MoveOnMap',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_MoveOnMap);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.service.motion.v1.MoveSingleComponentRequest,
  *   !proto.viam.service.motion.v1.MoveSingleComponentResponse>}
  */
