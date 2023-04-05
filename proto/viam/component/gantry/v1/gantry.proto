@@ -67,8 +67,7 @@ message GetPositionResponse {
 
 message MoveToPositionRequest {
   string name = 1;
-  // Millimeters to move the gantry
-  // There are multiple entries for a multi-axis gantry
+  // Number of millimeters to move the gantry by respective to each axis.
   repeated double positions_mm = 2;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;

@@ -97,13 +97,13 @@ message GetJointPositionsResponse {
   JointPositions positions = 1;
 }
 
-// Moves an arm to a specified pose that is within the reference frame of the arm
-// Move request in Motion API has the same behavior except that it performs obstacle avoidance when a `world_state`
-// message is specified
+// Moves an arm to the specified pose that is within the reference frame of the arm.
+// Move request in Motion API has the same behavior except that it performs obstacle avoidance when a world_state
+// message is specified.
 message MoveToPositionRequest {
   // Name of an arm
   string name = 1;
-  // Destination to move the arm to. This is from the reference frame of the arm
+  // The destination to move the arm to; this is from the reference frame of the arm.
   common.v1.Pose to = 2;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
