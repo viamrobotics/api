@@ -424,6 +424,15 @@ AppService.ListAuthorizations = {
   responseType: app_v1_app_pb.ListAuthorizationsResponse
 };
 
+AppService.CheckPermissions = {
+  methodName: "CheckPermissions",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.CheckPermissionsRequest,
+  responseType: app_v1_app_pb.CheckPermissionsResponse
+};
+
 exports.AppService = AppService;
 
 function AppServiceClient(serviceHost, options) {
@@ -1839,6 +1848,37 @@ AppServiceClient.prototype.listAuthorizations = function listAuthorizations(requ
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListAuthorizations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.checkPermissions = function checkPermissions(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.CheckPermissions, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
