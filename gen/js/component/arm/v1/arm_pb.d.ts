@@ -133,11 +133,6 @@ export class MoveToPositionRequest extends jspb.Message {
   getTo(): common_v1_common_pb.Pose | undefined;
   setTo(value?: common_v1_common_pb.Pose): void;
 
-  hasWorldState(): boolean;
-  clearWorldState(): void;
-  getWorldState(): common_v1_common_pb.WorldState | undefined;
-  setWorldState(value?: common_v1_common_pb.WorldState): void;
-
   hasExtra(): boolean;
   clearExtra(): void;
   getExtra(): google_protobuf_struct_pb.Struct | undefined;
@@ -157,7 +152,6 @@ export namespace MoveToPositionRequest {
   export type AsObject = {
     name: string,
     to?: common_v1_common_pb.Pose.AsObject,
-    worldState?: common_v1_common_pb.WorldState.AsObject,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }

@@ -643,7 +643,6 @@ proto.viam.component.gantry.v1.MoveToPositionRequest.toObject = function(include
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     positionsMmList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 2)) == null ? undefined : f,
-    worldState: (f = msg.getWorldState()) && common_v1_common_pb.WorldState.toObject(includeInstance, f),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -691,11 +690,6 @@ proto.viam.component.gantry.v1.MoveToPositionRequest.deserializeBinaryFromReader
         msg.addPositionsMm(values[i]);
       }
       break;
-    case 3:
-      var value = new common_v1_common_pb.WorldState;
-      reader.readMessage(value,common_v1_common_pb.WorldState.deserializeBinaryFromReader);
-      msg.setWorldState(value);
-      break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
@@ -742,14 +736,6 @@ proto.viam.component.gantry.v1.MoveToPositionRequest.serializeBinaryToWriter = f
     writer.writePackedDouble(
       2,
       f
-    );
-  }
-  f = message.getWorldState();
-  if (f != null) {
-    writer.writeMessage(
-      3,
-      f,
-      common_v1_common_pb.WorldState.serializeBinaryToWriter
     );
   }
   f = message.getExtra();
@@ -815,43 +801,6 @@ proto.viam.component.gantry.v1.MoveToPositionRequest.prototype.addPositionsMm = 
  */
 proto.viam.component.gantry.v1.MoveToPositionRequest.prototype.clearPositionsMmList = function() {
   return this.setPositionsMmList([]);
-};
-
-
-/**
- * optional viam.common.v1.WorldState world_state = 3;
- * @return {?proto.viam.common.v1.WorldState}
- */
-proto.viam.component.gantry.v1.MoveToPositionRequest.prototype.getWorldState = function() {
-  return /** @type{?proto.viam.common.v1.WorldState} */ (
-    jspb.Message.getWrapperField(this, common_v1_common_pb.WorldState, 3));
-};
-
-
-/**
- * @param {?proto.viam.common.v1.WorldState|undefined} value
- * @return {!proto.viam.component.gantry.v1.MoveToPositionRequest} returns this
-*/
-proto.viam.component.gantry.v1.MoveToPositionRequest.prototype.setWorldState = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.component.gantry.v1.MoveToPositionRequest} returns this
- */
-proto.viam.component.gantry.v1.MoveToPositionRequest.prototype.clearWorldState = function() {
-  return this.setWorldState(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.component.gantry.v1.MoveToPositionRequest.prototype.hasWorldState = function() {
-  return jspb.Message.getField(this, 3) != null;
 };
 
 
