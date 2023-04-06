@@ -523,6 +523,11 @@ export class CreateOrganizationInviteRequest extends jspb.Message {
   getEmail(): string;
   setEmail(value: string): void;
 
+  clearAuthorizationsList(): void;
+  getAuthorizationsList(): Array<Authorization>;
+  setAuthorizationsList(value: Array<Authorization>): void;
+  addAuthorizations(value?: Authorization, index?: number): Authorization;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateOrganizationInviteRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateOrganizationInviteRequest): CreateOrganizationInviteRequest.AsObject;
@@ -537,6 +542,7 @@ export namespace CreateOrganizationInviteRequest {
   export type AsObject = {
     organizationId: string,
     email: string,
+    authorizationsList: Array<Authorization.AsObject>,
   }
 }
 
@@ -2431,9 +2437,6 @@ export namespace DeleteRobotPartSecretResponse {
 }
 
 export class Authorization extends jspb.Message {
-  getIdentityId(): string;
-  setIdentityId(value: string): void;
-
   getAuthorizationType(): string;
   setAuthorizationType(value: string): void;
 
@@ -2458,7 +2461,6 @@ export class Authorization extends jspb.Message {
 
 export namespace Authorization {
   export type AsObject = {
-    identityId: string,
     authorizationType: string,
     authorizationId: string,
     resourceType: string,
@@ -2537,6 +2539,9 @@ export class RemoveRoleRequest extends jspb.Message {
   getResourceId(): string;
   setResourceId(value: string): void;
 
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveRoleRequest.AsObject;
   static toObject(includeInstance: boolean, msg: RemoveRoleRequest): RemoveRoleRequest.AsObject;
@@ -2553,6 +2558,7 @@ export namespace RemoveRoleRequest {
     roleId: string,
     resourceType: string,
     resourceId: string,
+    organizationId: string,
   }
 }
 
@@ -2579,6 +2585,9 @@ export class ListAuthorizationsRequest extends jspb.Message {
   getResourceId(): string;
   setResourceId(value: string): void;
 
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListAuthorizationsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListAuthorizationsRequest): ListAuthorizationsRequest.AsObject;
@@ -2593,14 +2602,41 @@ export namespace ListAuthorizationsRequest {
   export type AsObject = {
     resourceType: string,
     resourceId: string,
+    organizationId: string,
+  }
+}
+
+export class Authorizations extends jspb.Message {
+  getIdentityId(): string;
+  setIdentityId(value: string): void;
+
+  clearAuthorizationsList(): void;
+  getAuthorizationsList(): Array<Authorization>;
+  setAuthorizationsList(value: Array<Authorization>): void;
+  addAuthorizations(value?: Authorization, index?: number): Authorization;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Authorizations.AsObject;
+  static toObject(includeInstance: boolean, msg: Authorizations): Authorizations.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Authorizations, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Authorizations;
+  static deserializeBinaryFromReader(message: Authorizations, reader: jspb.BinaryReader): Authorizations;
+}
+
+export namespace Authorizations {
+  export type AsObject = {
+    identityId: string,
+    authorizationsList: Array<Authorization.AsObject>,
   }
 }
 
 export class ListAuthorizationsResponse extends jspb.Message {
   clearAuthorizationsList(): void;
-  getAuthorizationsList(): Array<Authorization>;
-  setAuthorizationsList(value: Array<Authorization>): void;
-  addAuthorizations(value?: Authorization, index?: number): Authorization;
+  getAuthorizationsList(): Array<Authorizations>;
+  setAuthorizationsList(value: Array<Authorizations>): void;
+  addAuthorizations(value?: Authorizations, index?: number): Authorizations;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListAuthorizationsResponse.AsObject;
@@ -2614,20 +2650,15 @@ export class ListAuthorizationsResponse extends jspb.Message {
 
 export namespace ListAuthorizationsResponse {
   export type AsObject = {
-    authorizationsList: Array<Authorization.AsObject>,
+    authorizationsList: Array<Authorizations.AsObject>,
   }
 }
 
 export class CheckPermissionsRequest extends jspb.Message {
-  clearResourceIdsList(): void;
-  getResourceIdsList(): Array<string>;
-  setResourceIdsList(value: Array<string>): void;
-  addResourceIds(value: string, index?: number): string;
-
-  clearPermissionIdsList(): void;
-  getPermissionIdsList(): Array<string>;
-  setPermissionIdsList(value: Array<string>): void;
-  addPermissionIds(value: string, index?: number): string;
+  clearPermissionsList(): void;
+  getPermissionsList(): Array<AuthorizedPermissions>;
+  setPermissionsList(value: Array<AuthorizedPermissions>): void;
+  addPermissions(value?: AuthorizedPermissions, index?: number): AuthorizedPermissions;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CheckPermissionsRequest.AsObject;
@@ -2641,8 +2672,7 @@ export class CheckPermissionsRequest extends jspb.Message {
 
 export namespace CheckPermissionsRequest {
   export type AsObject = {
-    resourceIdsList: Array<string>,
-    permissionIdsList: Array<string>,
+    permissionsList: Array<AuthorizedPermissions.AsObject>,
   }
 }
 

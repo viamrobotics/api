@@ -418,6 +418,15 @@ type AppServiceListAuthorizations = {
   readonly responseType: typeof app_v1_app_pb.ListAuthorizationsResponse;
 };
 
+type AppServiceCheckPermissions = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CheckPermissionsRequest;
+  readonly responseType: typeof app_v1_app_pb.CheckPermissionsResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly CreateOrganization: AppServiceCreateOrganization;
@@ -466,6 +475,7 @@ export class AppService {
   static readonly AddRole: AppServiceAddRole;
   static readonly RemoveRole: AppServiceRemoveRole;
   static readonly ListAuthorizations: AppServiceListAuthorizations;
+  static readonly CheckPermissions: AppServiceCheckPermissions;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -905,6 +915,15 @@ export class AppServiceClient {
   listAuthorizations(
     requestMessage: app_v1_app_pb.ListAuthorizationsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListAuthorizationsResponse|null) => void
+  ): UnaryResponse;
+  checkPermissions(
+    requestMessage: app_v1_app_pb.CheckPermissionsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CheckPermissionsResponse|null) => void
+  ): UnaryResponse;
+  checkPermissions(
+    requestMessage: app_v1_app_pb.CheckPermissionsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CheckPermissionsResponse|null) => void
   ): UnaryResponse;
 }
 
