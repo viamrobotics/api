@@ -2704,7 +2704,8 @@ proto.viam.app.datasync.v1.TabularCapture.toObject = function(includeInstance, m
     fileSizeBytes: jspb.Message.getFieldWithDefault(msg, 16, 0),
     sessionId: jspb.Message.getFieldWithDefault(msg, 17, ""),
     mimeType: jspb.Message.getFieldWithDefault(msg, 18, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 19, "")
+    id: jspb.Message.getFieldWithDefault(msg, 19, ""),
+    bucket: jspb.Message.getFieldWithDefault(msg, 20, "")
   };
 
   if (includeInstance) {
@@ -2819,6 +2820,10 @@ proto.viam.app.datasync.v1.TabularCapture.deserializeBinaryFromReader = function
     case 19:
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
+      break;
+    case 20:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBucket(value);
       break;
     default:
       reader.skipField();
@@ -2977,6 +2982,13 @@ proto.viam.app.datasync.v1.TabularCapture.serializeBinaryToWriter = function(mes
   if (f.length > 0) {
     writer.writeString(
       19,
+      f
+    );
+  }
+  f = message.getBucket();
+  if (f.length > 0) {
+    writer.writeString(
+      20,
       f
     );
   }
@@ -3386,6 +3398,24 @@ proto.viam.app.datasync.v1.TabularCapture.prototype.setId = function(value) {
 };
 
 
+/**
+ * optional string bucket = 20;
+ * @return {string}
+ */
+proto.viam.app.datasync.v1.TabularCapture.prototype.getBucket = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datasync.v1.TabularCapture} returns this
+ */
+proto.viam.app.datasync.v1.TabularCapture.prototype.setBucket = function(value) {
+  return jspb.Message.setProto3StringField(this, 20, value);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -3443,7 +3473,8 @@ proto.viam.app.datasync.v1.BinaryCapture.toObject = function(includeInstance, ms
     mimeType: jspb.Message.getFieldWithDefault(msg, 16, ""),
     fileName: jspb.Message.getFieldWithDefault(msg, 17, ""),
     fileExt: jspb.Message.getFieldWithDefault(msg, 18, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 19, "")
+    id: jspb.Message.getFieldWithDefault(msg, 19, ""),
+    bucket: jspb.Message.getFieldWithDefault(msg, 20, "")
   };
 
   if (includeInstance) {
@@ -3558,6 +3589,10 @@ proto.viam.app.datasync.v1.BinaryCapture.deserializeBinaryFromReader = function(
     case 19:
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
+      break;
+    case 20:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBucket(value);
       break;
     default:
       reader.skipField();
@@ -3716,6 +3751,13 @@ proto.viam.app.datasync.v1.BinaryCapture.serializeBinaryToWriter = function(mess
   if (f.length > 0) {
     writer.writeString(
       19,
+      f
+    );
+  }
+  f = message.getBucket();
+  if (f.length > 0) {
+    writer.writeString(
+      20,
       f
     );
   }
@@ -4103,6 +4145,24 @@ proto.viam.app.datasync.v1.BinaryCapture.prototype.getId = function() {
  */
 proto.viam.app.datasync.v1.BinaryCapture.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 19, value);
+};
+
+
+/**
+ * optional string bucket = 20;
+ * @return {string}
+ */
+proto.viam.app.datasync.v1.BinaryCapture.prototype.getBucket = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datasync.v1.BinaryCapture} returns this
+ */
+proto.viam.app.datasync.v1.BinaryCapture.prototype.setBucket = function(value) {
+  return jspb.Message.setProto3StringField(this, 20, value);
 };
 
 

@@ -400,6 +400,9 @@ export class TabularCapture extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
+  getBucket(): string;
+  setBucket(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularCapture.AsObject;
   static toObject(includeInstance: boolean, msg: TabularCapture): TabularCapture.AsObject;
@@ -431,6 +434,7 @@ export namespace TabularCapture {
     sessionId: string,
     mimeType: string,
     id: string,
+    bucket: string,
   }
 }
 
@@ -495,6 +499,9 @@ export class BinaryCapture extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
+  getBucket(): string;
+  setBucket(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryCapture.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryCapture): BinaryCapture.AsObject;
@@ -526,6 +533,7 @@ export namespace BinaryCapture {
     fileName: string,
     fileExt: string,
     id: string,
+    bucket: string,
   }
 }
 
