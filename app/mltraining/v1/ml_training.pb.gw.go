@@ -180,21 +180,20 @@ func RegisterMLTrainingServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/SubmitTrainingJob", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/SubmitTrainingJob"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/SubmitTrainingJob", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/SubmitTrainingJob"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MLTrainingService_SubmitTrainingJob_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MLTrainingService_SubmitTrainingJob_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MLTrainingService_SubmitTrainingJob_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MLTrainingService_SubmitTrainingJob_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -205,21 +204,20 @@ func RegisterMLTrainingServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/GetTrainingJob", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/GetTrainingJob"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/GetTrainingJob", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/GetTrainingJob"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MLTrainingService_GetTrainingJob_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MLTrainingService_GetTrainingJob_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MLTrainingService_GetTrainingJob_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MLTrainingService_GetTrainingJob_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -230,21 +228,20 @@ func RegisterMLTrainingServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/ListTrainingJobs", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/ListTrainingJobs"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/ListTrainingJobs", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/ListTrainingJobs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MLTrainingService_ListTrainingJobs_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MLTrainingService_ListTrainingJobs_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MLTrainingService_ListTrainingJobs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MLTrainingService_ListTrainingJobs_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -255,21 +252,20 @@ func RegisterMLTrainingServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MLTrainingService_CancelTrainingJob_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MLTrainingService_CancelTrainingJob_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MLTrainingService_CancelTrainingJob_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MLTrainingService_CancelTrainingJob_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -319,20 +315,19 @@ func RegisterMLTrainingServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/SubmitTrainingJob", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/SubmitTrainingJob"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/SubmitTrainingJob", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/SubmitTrainingJob"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MLTrainingService_SubmitTrainingJob_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_MLTrainingService_SubmitTrainingJob_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MLTrainingService_SubmitTrainingJob_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MLTrainingService_SubmitTrainingJob_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -341,20 +336,19 @@ func RegisterMLTrainingServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/GetTrainingJob", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/GetTrainingJob"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/GetTrainingJob", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/GetTrainingJob"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MLTrainingService_GetTrainingJob_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_MLTrainingService_GetTrainingJob_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MLTrainingService_GetTrainingJob_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MLTrainingService_GetTrainingJob_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -363,20 +357,19 @@ func RegisterMLTrainingServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/ListTrainingJobs", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/ListTrainingJobs"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/ListTrainingJobs", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/ListTrainingJobs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MLTrainingService_ListTrainingJobs_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_MLTrainingService_ListTrainingJobs_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MLTrainingService_ListTrainingJobs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MLTrainingService_ListTrainingJobs_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -385,20 +378,19 @@ func RegisterMLTrainingServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MLTrainingService_CancelTrainingJob_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_MLTrainingService_CancelTrainingJob_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MLTrainingService_CancelTrainingJob_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MLTrainingService_CancelTrainingJob_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 

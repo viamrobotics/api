@@ -11,35 +11,6 @@ option java_package = "com.viam.service.vision.v1";
 
 // VisionService declares the gRPC contract for a vision service
 service VisionService {
-  // GetModelParameterSchema takes the model name and returns the parameters needed to add one to the vision registry.
-  rpc GetModelParameterSchema(GetModelParameterSchemaRequest) returns (GetModelParameterSchemaResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/vision/{name}/model_parameter_schema"
-    };
-  }
-  // Detection methods
-
-
-  // GetDetectorNames returns the list of detectors in the registry.
-  rpc GetDetectorNames(GetDetectorNamesRequest) returns (GetDetectorNamesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/vision/{name}/detector_names"
-    };
-  }
-  // AddDetector adds a new detector to the registry.
-  rpc AddDetector(AddDetectorRequest) returns (AddDetectorResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/vision/{name}/add_detector"
-    };
-  }
-
-  // RemoveDetector removes a detector from the registry.
-  rpc RemoveDetector(RemoveDetectorRequest) returns (RemoveDetectorResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/vision/{name}/remove_detector"
-    };
-  }
-
   // GetDetectionsFromCamera will return a list of detections in the next image given a camera and a detector
   rpc GetDetectionsFromCamera(GetDetectionsFromCameraRequest) returns (GetDetectionsFromCameraResponse) {
     option (google.api.http) = {
@@ -54,29 +25,6 @@ service VisionService {
     };
   }
 
-  // Classification methods
-
-  // GetClassifierNames returns the list of classifiers in the registry.
-  rpc GetClassifierNames(GetClassifierNamesRequest) returns (GetClassifierNamesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/vision/{name}/classifier_names"
-    };
-  }
-
-  // AddClassifier adds a new classifier to the registry.
-  rpc AddClassifier(AddClassifierRequest) returns (AddClassifierResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/vision/{name}/add_classifier"
-    };
-  }
-
-  // RemoveClassifier adds a new classifier to the registry.
-  rpc RemoveClassifier(RemoveClassifierRequest) returns (RemoveClassifierResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/vision/{name}/remove_classifier"
-    };
-  }
-
   // GetClassificationsFromCamera will return a list of classifications in the next image given a camera and a classifier
   rpc GetClassificationsFromCamera(GetClassificationsFromCameraRequest) returns (GetClassificationsFromCameraResponse) {
     option (google.api.http) = {
@@ -88,29 +36,6 @@ service VisionService {
   rpc GetClassifications(GetClassificationsRequest) returns (GetClassificationsResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/service/vision/{name}/classifications"
-    };
-  }
-
-  // Segmentation methods
-
-  // GetSegmenterNames returns the list of segmenters in the registry.
-  rpc GetSegmenterNames(GetSegmenterNamesRequest) returns (GetSegmenterNamesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/vision/{name}/segmenter_names"
-    };
-  }
-
-  // AddSegmenter adds a new segmenter to the registry.
-  rpc AddSegmenter(AddSegmenterRequest) returns (AddSegmenterResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/vision/{name}/add_segmenter"
-    };
-  }
-
-  // RemoveSegmenter removes a segmenter from the registry.
-  rpc RemoveSegmenter(RemoveSegmenterRequest) returns (RemoveSegmenterResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/vision/{name}/remove_segmenter"
     };
   }
 
@@ -130,54 +55,6 @@ service VisionService {
     };
   }
 }
-
-message GetModelParameterSchemaRequest {
-  // name of the vision service
-  string name = 1;
-  // name of the type of vision model
-  string model_type = 2;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message GetModelParameterSchemaResponse {
-  // the parameters as JSON bytes of a jsonschema.Schema
-  bytes model_parameter_schema = 1;
-}
-
-message GetDetectorNamesRequest {
-  string name = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message GetDetectorNamesResponse {
-  // detectors in the registry
-  repeated string detector_names = 1;
-}
-
-message AddDetectorRequest {
-  string name = 1;
-  string detector_name = 2;
-  string detector_model_type = 3;
-  google.protobuf.Struct detector_parameters = 4;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message AddDetectorResponse {}
-
-message RemoveDetectorRequest {
-  // name of the vision service
-  string name = 1;
-  // name of detector in registry
-  string detector_name = 2;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message RemoveDetectorResponse {}
-
 message GetDetectionsRequest {
   // name of the vision service
   string name = 1;
@@ -189,8 +66,6 @@ message GetDetectionsRequest {
   int64 height = 4;
   // the actual MIME type of image
   string mime_type = 5;
-  // name of the registered detector to use
-  string detector_name = 6;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -205,9 +80,6 @@ message GetDetectionsFromCameraRequest {
   string name = 1;
   // name of camera source to use as input
   string camera_name = 2;
-  // name of the registered detector to use
-  string detector_name = 3;
-  // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
 
@@ -228,43 +100,6 @@ message Detection {
   string class_name = 6;
 }
 
-message GetClassifierNamesRequest {
-  // name of the vision service
-  string name = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message GetClassifierNamesResponse {
-  repeated string classifier_names = 1;
-}
-
-message AddClassifierRequest {
-  // name of the vision service
-  string name = 1;
-  // name of classifier to add to registry
-  string classifier_name = 2;
-  // the type of classifier
-  string classifier_model_type = 3;
-  // additional parameters
-  google.protobuf.Struct classifier_parameters = 4;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message AddClassifierResponse {}
-
-message RemoveClassifierRequest {
-  // name of the vision service
-  string name = 1;
-  // name of the classifier in registry
-  string classifier_name = 2;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message RemoveClassifierResponse {}
-
 message GetClassificationsRequest {
   // name of the vision service
   string name = 1;
@@ -276,10 +111,8 @@ message GetClassificationsRequest {
   int32 height = 4;
   // the actual MIME type of image
   string mime_type = 5;
-  // the name of the registered classifier
-  string classifier_name = 6;
   // the number of classifications desired
-  int32 n = 7;
+  int32 n = 6;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -293,10 +126,8 @@ message GetClassificationsFromCameraRequest {
   string name = 1;
   // the image encoded as bytes
   string camera_name = 2;
-  // the name of the registered classifier
-  string classifier_name = 3;
   // the number of classifications desired
-  int32 n = 4;
+  int32 n = 3;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -313,51 +144,12 @@ message Classification {
   double confidence = 2;
 }
 
-message GetSegmenterNamesRequest {
-  string name = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message GetSegmenterNamesResponse {
-  // segmenters in the registry
-  repeated string segmenter_names = 1;
-}
-
-message AddSegmenterRequest {
-  // name of the vision service
-  string name = 1;
-  // name of the segmenter
-  string segmenter_name = 2;
-  // name of the segmenter model
-  string segmenter_model_type = 3;
-  // parameters of the segmenter model
-  google.protobuf.Struct segmenter_parameters = 4;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message AddSegmenterResponse {}
-
-message RemoveSegmenterRequest {
-  // name of the vision service
-  string name = 1;
-  // name of segmenter in registry
-  string segmenter_name = 2;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message RemoveSegmenterResponse {}
-
 message GetObjectPointCloudsRequest {
   string name = 1;
   // Name of a camera
   string camera_name = 2;
-  // Name of the segmentation algorithm
-  string segmenter_name = 3;
   // Requested MIME type of response
-  string mime_type = 4;
+  string mime_type = 3;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
