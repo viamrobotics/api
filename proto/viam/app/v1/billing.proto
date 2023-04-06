@@ -62,11 +62,16 @@ message GetCurrentMonthUsageSummaryRequest {
 
 message GetCurrentMonthUsageSummaryResponse {
   double cloud_storage_usage = 1;
-  double data_upload_usage = 2;
-  double data_egres_usage = 3;
-  double standard_compute_usage = 4;
-  double total_usage_with_discount = 5; // returns number with any discounts applied
-  double total_usage_without_discount = 6; // returns number without any discounts applied
+  double cloud_storage_usage_cost = 2;
+  double data_upload_usage_cost = 3;
+  double data_upload_usage_quantity = 4;
+  double data_egres_usage_cost = 5;
+  double data_egres_usage_quantity = 6;
+  double standard_compute_usage_cost = 7;
+  double standard_compute_usage_quantity = 8;
+  double total_usage_quantity = 9;
+  double total_usage_with_discount = 10; // returns amt with any discounts applied
+  double total_usage_without_discount = 11; // returns amt without any discounts applied
 }
 
 message GetUnpaidBalanceRequest {
@@ -103,7 +108,7 @@ message GetBillingSummaryResponse {
   repeated InvoiceSummary invoices = 2;
   double statement_balance = 3; // all unpaid balances at the end of the last billing cycle
   double current_balance = 4; // statement_balance + current_month_usage
-  double current_month_balance = 5; // current_month_usage_cost 
-  google.protobuf.Timestamp current_balance_due_date = 7;
+  double current_month_balance = 5; // current_month_usage_cost
+  google.protobuf.Timestamp current_month_due_date = 7; // due date for current month usage
   string invoice_email = 8;
 }
