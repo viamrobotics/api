@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package viam.component.encoder.v1;
+
+import "common/v1/common.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "go.viam.com/api/component/encoder/v1";
+option java_package = "com.viam.component.encoder.v1";
+
+service EncoderService {
+  // Returns position of the encoder which can either be ticks since last
+  // zeroing for an incremental encoder or degrees for an absolute encoder.
+  rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/encoder/{name}/get_position"
+    };
+  }
+
+  rpc ResetPosition(ResetPositionRequest) returns (ResetPositionResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/encoder/{name}/reset_position"
+    };
+  }
+
+  // Returns a list of all the methods that are
+  // supported by a given robot.
+  rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/encoder/{name}/get_properties"
+    };
+  }
+
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/encoder/{name}/do_command"
+    };
+  }
+}
+
+enum PositionType {
+  POSITION_TYPE_UNSPECIFIED = 0;
+  // Return type for relative encoders that report
+  // how far they've gone from a start position
+  POSITION_TYPE_TICKS_COUNT = 1;
+  // Return type for absolute encoders that report
+  // their position in degrees along the radial axis
+  POSITION_TYPE_ANGLE_DEGREES = 2;
+}
+
+message GetPositionRequest {
+  // Name of encoder
+  string name = 1;
+  // If supplied, the response will return the specified
+  // position type. If the driver does not implement
+  // the requested type, this call will return an error.
+  // If position type is not specified, the response
+  // will return a default according to the driver.
+  optional PositionType position_type = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetPositionResponse {
+  float value = 1;
+  PositionType position_type = 2;
+}
+
+message ResetPositionRequest {
+  // Name of an encoder
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message ResetPositionResponse {}
+
+message GetPropertiesRequest {
+  // Name of the encoder
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetPropertiesResponse {
+  bool ticks_count_supported = 1;
+  bool angle_degrees_supported = 2;
+}
