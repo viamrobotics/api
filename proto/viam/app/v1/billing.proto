@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+package viam.app.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/app/v1";
+
+service BillingService {
+  rpc GetCurrentMonthUsageSummary(GetCurrentMonthUsageSummaryRequest) returns (GetCurrentMonthUsageSummaryResponse);
+  rpc GetUnpaidBalance(GetUnpaidBalanceRequest) returns (GetUnpaidBalanceResponse);
+  rpc GetInvoiceHistory(GetInvoiceHistoryRequest) returns (GetInvoiceHistoryResponse);
+  rpc GetItemizedInvoice(GetItemizedInvoiceRequest) returns (GetItemizedInvoiceResponse);
+  rpc GetBillingSummary(GetBillingSummaryRequest) returns (GetBillingSummaryResponse);
+}
+
+message CurrentMonthUsageSummary {
+  double cloud_storage_usage = 1;
+  double cloud_storage_usage_cost = 2;
+  double data_upload_usage_cost = 3;
+  double data_upload_usage_quantity = 4;
+  double data_egres_usage_cost = 5;
+  double data_egres_usage_quantity = 6;
+  double standard_compute_usage_cost = 7;
+  double standard_compute_usage_quantity = 8;
+  double total_usage_quantity = 9;
+  double total_usage_with_discount = 10; // returns amt with any discounts applied
+  double total_usage_without_discount = 11; // returns amt without any discounts applied
+}
+
+message InvoiceSummary {
+  string id = 1;
+  google.protobuf.Timestamp invoice_date = 2;
+  double invoice_amount = 3;
+  string status = 4;
+  google.protobuf.Timestamp due_date = 5;
+}
+
+message BillableResourceEvent {
+  string id = 1;
+  string type = 2;
+  double usage_quantity = 3;
+  string usage_quantity_unit = 4;
+  string usage_cost = 5;
+  google.protobuf.Timestamp occurred_at = 6;
+  string user_name = 7;
+}
+
+message Invoice {
+  string id = 1;
+  google.protobuf.Timestamp invoice_date = 2;
+  double invoice_amount = 3;
+  string status = 4;
+  google.protobuf.Timestamp due_date = 5;
+  repeated BillableResourceEvent items = 6;
+  string emailed_to = 7;
+}
+
+message GetCurrentMonthUsageSummaryRequest {
+  string org_id = 1;
+}
+
+message GetCurrentMonthUsageSummaryResponse {
+  double cloud_storage_usage = 1;
+  double cloud_storage_usage_cost = 2;
+  double data_upload_usage_cost = 3;
+  double data_upload_usage_quantity = 4;
+  double data_egres_usage_cost = 5;
+  double data_egres_usage_quantity = 6;
+  double standard_compute_usage_cost = 7;
+  double standard_compute_usage_quantity = 8;
+  double total_usage_quantity = 9;
+  double total_usage_with_discount = 10; // returns amt with any discounts applied
+  double total_usage_without_discount = 11; // returns amt without any discounts applied
+}
+
+message GetUnpaidBalanceRequest {
+  string org_id = 1;
+}
+
+message GetUnpaidBalanceResponse {
+  double unpaid_balance = 1;
+  google.protobuf.Timestamp unpaid_balance_due_date = 2;
+}
+
+message GetInvoiceHistoryRequest {
+  string org_id = 1;
+}
+
+message GetInvoiceHistoryResponse {
+  repeated InvoiceSummary invoices = 1;
+}
+
+message GetItemizedInvoiceRequest {
+  string id = 1;
+}
+
+message GetItemizedInvoiceResponse {
+  Invoice invoice = 1;
+}
+
+message GetBillingSummaryRequest {
+  string org_id = 1;
+}
+
+message GetBillingSummaryResponse {
+  CurrentMonthUsageSummary usage_summary = 1;
+  repeated InvoiceSummary invoices = 2;
+  double statement_balance = 3; // all unpaid balances at the end of the last billing cycle
+  double current_balance = 4; // statement_balance + current_month_usage
+  double current_month_balance = 5; // current_month_usage_cost
+  google.protobuf.Timestamp current_month_due_date = 7; // due date for current month usage
+  string invoice_email = 8;
+}
