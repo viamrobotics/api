@@ -1096,7 +1096,7 @@ proto.viam.service.mlmodel.v1.Metadata.prototype.clearOutputInfoList = function(
  * @private {!Array<number>}
  * @const
  */
-proto.viam.service.mlmodel.v1.TensorInfo.repeatedFields_ = [5];
+proto.viam.service.mlmodel.v1.TensorInfo.repeatedFields_ = [4,5];
 
 
 
@@ -1132,7 +1132,7 @@ proto.viam.service.mlmodel.v1.TensorInfo.toObject = function(includeInstance, ms
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     description: jspb.Message.getFieldWithDefault(msg, 2, ""),
     dataType: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    nDim: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    shapeList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
     associatedFilesList: jspb.Message.toObjectList(msg.getAssociatedFilesList(),
     proto.viam.service.mlmodel.v1.File.toObject, includeInstance),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
@@ -1185,8 +1185,10 @@ proto.viam.service.mlmodel.v1.TensorInfo.deserializeBinaryFromReader = function(
       msg.setDataType(value);
       break;
     case 4:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setNDim(value);
+      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedInt32() : [reader.readInt32()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addShape(values[i]);
+      }
       break;
     case 5:
       var value = new proto.viam.service.mlmodel.v1.File;
@@ -1248,9 +1250,9 @@ proto.viam.service.mlmodel.v1.TensorInfo.serializeBinaryToWriter = function(mess
       f
     );
   }
-  f = message.getNDim();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getShapeList();
+  if (f.length > 0) {
+    writer.writePackedInt32(
       4,
       f
     );
@@ -1329,20 +1331,39 @@ proto.viam.service.mlmodel.v1.TensorInfo.prototype.setDataType = function(value)
 
 
 /**
- * optional int32 n_dim = 4;
- * @return {number}
+ * repeated int32 shape = 4;
+ * @return {!Array<number>}
  */
-proto.viam.service.mlmodel.v1.TensorInfo.prototype.getNDim = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+proto.viam.service.mlmodel.v1.TensorInfo.prototype.getShapeList = function() {
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * @param {!Array<number>} value
+ * @return {!proto.viam.service.mlmodel.v1.TensorInfo} returns this
+ */
+proto.viam.service.mlmodel.v1.TensorInfo.prototype.setShapeList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
 };
 
 
 /**
  * @param {number} value
+ * @param {number=} opt_index
  * @return {!proto.viam.service.mlmodel.v1.TensorInfo} returns this
  */
-proto.viam.service.mlmodel.v1.TensorInfo.prototype.setNDim = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
+proto.viam.service.mlmodel.v1.TensorInfo.prototype.addShape = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.service.mlmodel.v1.TensorInfo} returns this
+ */
+proto.viam.service.mlmodel.v1.TensorInfo.prototype.clearShapeList = function() {
+  return this.setShapeList([]);
 };
 
 
