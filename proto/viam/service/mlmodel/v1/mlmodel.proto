@@ -67,8 +67,8 @@ message TensorInfo {
   string description = 2;
   // data type of the array/tensor, e.g. float32, float64, uint8
   string data_type = 3;
-  // number of dimensions in the array/tensor
-  int32 n_dim = 4;
+  // shape of the array/tensor (-1 for unknown)
+  repeated int32 shape = 4;
   // files associated with the array/tensor, like for category labels
   repeated File associated_files = 5;
   // anything else you want to say

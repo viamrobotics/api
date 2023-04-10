@@ -145,8 +145,10 @@ export class TensorInfo extends jspb.Message {
   getDataType(): string;
   setDataType(value: string): void;
 
-  getNDim(): number;
-  setNDim(value: number): void;
+  clearShapeList(): void;
+  getShapeList(): Array<number>;
+  setShapeList(value: Array<number>): void;
+  addShape(value: number, index?: number): number;
 
   clearAssociatedFilesList(): void;
   getAssociatedFilesList(): Array<File>;
@@ -173,7 +175,7 @@ export namespace TensorInfo {
     name: string,
     description: string,
     dataType: string,
-    nDim: number,
+    shapeList: Array<number>,
     associatedFilesList: Array<File.AsObject>,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
