@@ -19,6 +19,7 @@ enum ModelType {
   MODEL_TYPE_UNSPECIFIED = 0;
   MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION = 1;
   MODEL_TYPE_MULTI_LABEL_CLASSIFICATION = 2;
+  MODEL_TYPE_IMAGE_OBJECT_DETECTION = 3;
 }
 
 message SubmitTrainingJobRequest {
@@ -68,6 +69,7 @@ message TrainingJobMetadata {
   string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
   string user_email = 6 [(tagger.v1.tags) = "bson:\"user_email\" json:\"user_email\""];
   string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+  string error_msg = 8 [(tagger.v1.tags) = "bson:\"error_msg\" json:\"error_msg,omitempty\""];
 }
 
 message CancelTrainingJobRequest {
