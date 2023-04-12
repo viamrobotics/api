@@ -1697,7 +1697,9 @@ proto.viam.component.camera.v1.Webcam.toObject = function(includeInstance, msg) 
     label: jspb.Message.getFieldWithDefault(msg, 1, ""),
     status: jspb.Message.getFieldWithDefault(msg, 2, ""),
     propertiesList: jspb.Message.toObjectList(msg.getPropertiesList(),
-    proto.viam.component.camera.v1.Property.toObject, includeInstance)
+    proto.viam.component.camera.v1.Property.toObject, includeInstance),
+    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -1746,6 +1748,14 @@ proto.viam.component.camera.v1.Webcam.deserializeBinaryFromReader = function(msg
       var value = new proto.viam.component.camera.v1.Property;
       reader.readMessage(value,proto.viam.component.camera.v1.Property.deserializeBinaryFromReader);
       msg.addProperties(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -1796,6 +1806,20 @@ proto.viam.component.camera.v1.Webcam.serializeBinaryToWriter = function(message
       3,
       f,
       proto.viam.component.camera.v1.Property.serializeBinaryToWriter
+    );
+  }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
     );
   }
 };
@@ -1872,6 +1896,42 @@ proto.viam.component.camera.v1.Webcam.prototype.addProperties = function(opt_val
  */
 proto.viam.component.camera.v1.Webcam.prototype.clearPropertiesList = function() {
   return this.setPropertiesList([]);
+};
+
+
+/**
+ * optional string name = 4;
+ * @return {string}
+ */
+proto.viam.component.camera.v1.Webcam.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.component.camera.v1.Webcam} returns this
+ */
+proto.viam.component.camera.v1.Webcam.prototype.setName = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string id = 5;
+ * @return {string}
+ */
+proto.viam.component.camera.v1.Webcam.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.component.camera.v1.Webcam} returns this
+ */
+proto.viam.component.camera.v1.Webcam.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
