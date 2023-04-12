@@ -103,6 +103,33 @@ type DataServiceTagsByFilter = {
   readonly responseType: typeof app_data_v1_data_pb.TagsByFilterResponse;
 };
 
+type DataServiceAddBoundingBoxToImageByID = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.AddBoundingBoxToImageByIDRequest;
+  readonly responseType: typeof app_data_v1_data_pb.AddBoundingBoxToImageByIDResponse;
+};
+
+type DataServiceRemoveBoundingBoxFromImageByID = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.RemoveBoundingBoxFromImageByIDRequest;
+  readonly responseType: typeof app_data_v1_data_pb.RemoveBoundingBoxFromImageByIDResponse;
+};
+
+type DataServiceBoundingBoxLabelsByFilter = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.BoundingBoxLabelsByFilterRequest;
+  readonly responseType: typeof app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
@@ -116,6 +143,9 @@ export class DataService {
   static readonly RemoveTagsFromBinaryDataByFileIDs: DataServiceRemoveTagsFromBinaryDataByFileIDs;
   static readonly RemoveTagsFromBinaryDataByFilter: DataServiceRemoveTagsFromBinaryDataByFilter;
   static readonly TagsByFilter: DataServiceTagsByFilter;
+  static readonly AddBoundingBoxToImageByID: DataServiceAddBoundingBoxToImageByID;
+  static readonly RemoveBoundingBoxFromImageByID: DataServiceRemoveBoundingBoxFromImageByID;
+  static readonly BoundingBoxLabelsByFilter: DataServiceBoundingBoxLabelsByFilter;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -248,6 +278,33 @@ export class DataServiceClient {
   tagsByFilter(
     requestMessage: app_data_v1_data_pb.TagsByFilterRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.TagsByFilterResponse|null) => void
+  ): UnaryResponse;
+  addBoundingBoxToImageByID(
+    requestMessage: app_data_v1_data_pb.AddBoundingBoxToImageByIDRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddBoundingBoxToImageByIDResponse|null) => void
+  ): UnaryResponse;
+  addBoundingBoxToImageByID(
+    requestMessage: app_data_v1_data_pb.AddBoundingBoxToImageByIDRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddBoundingBoxToImageByIDResponse|null) => void
+  ): UnaryResponse;
+  removeBoundingBoxFromImageByID(
+    requestMessage: app_data_v1_data_pb.RemoveBoundingBoxFromImageByIDRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveBoundingBoxFromImageByIDResponse|null) => void
+  ): UnaryResponse;
+  removeBoundingBoxFromImageByID(
+    requestMessage: app_data_v1_data_pb.RemoveBoundingBoxFromImageByIDRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveBoundingBoxFromImageByIDResponse|null) => void
+  ): UnaryResponse;
+  boundingBoxLabelsByFilter(
+    requestMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse|null) => void
+  ): UnaryResponse;
+  boundingBoxLabelsByFilter(
+    requestMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse|null) => void
   ): UnaryResponse;
 }
 

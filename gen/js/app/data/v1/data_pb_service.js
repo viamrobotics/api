@@ -109,6 +109,33 @@ DataService.TagsByFilter = {
   responseType: app_data_v1_data_pb.TagsByFilterResponse
 };
 
+DataService.AddBoundingBoxToImageByID = {
+  methodName: "AddBoundingBoxToImageByID",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.AddBoundingBoxToImageByIDRequest,
+  responseType: app_data_v1_data_pb.AddBoundingBoxToImageByIDResponse
+};
+
+DataService.RemoveBoundingBoxFromImageByID = {
+  methodName: "RemoveBoundingBoxFromImageByID",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.RemoveBoundingBoxFromImageByIDRequest,
+  responseType: app_data_v1_data_pb.RemoveBoundingBoxFromImageByIDResponse
+};
+
+DataService.BoundingBoxLabelsByFilter = {
+  methodName: "BoundingBoxLabelsByFilter",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.BoundingBoxLabelsByFilterRequest,
+  responseType: app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse
+};
+
 exports.DataService = DataService;
 
 function DataServiceClient(serviceHost, options) {
@@ -431,6 +458,99 @@ DataServiceClient.prototype.tagsByFilter = function tagsByFilter(requestMessage,
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.TagsByFilter, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.addBoundingBoxToImageByID = function addBoundingBoxToImageByID(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.AddBoundingBoxToImageByID, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.removeBoundingBoxFromImageByID = function removeBoundingBoxFromImageByID(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.RemoveBoundingBoxFromImageByID, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.boundingBoxLabelsByFilter = function boundingBoxLabelsByFilter(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.BoundingBoxLabelsByFilter, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

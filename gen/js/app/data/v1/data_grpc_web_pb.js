@@ -754,5 +754,188 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.tagsByFilter =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest,
+ *   !proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse>}
+ */
+const methodDescriptor_DataService_AddBoundingBoxToImageByID = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/AddBoundingBoxToImageByID',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest,
+  proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.addBoundingBoxToImageByID =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/AddBoundingBoxToImageByID',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_AddBoundingBoxToImageByID,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.addBoundingBoxToImageByID =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/AddBoundingBoxToImageByID',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_AddBoundingBoxToImageByID);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest,
+ *   !proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse>}
+ */
+const methodDescriptor_DataService_RemoveBoundingBoxFromImageByID = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/RemoveBoundingBoxFromImageByID',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest,
+  proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.removeBoundingBoxFromImageByID =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/RemoveBoundingBoxFromImageByID',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_RemoveBoundingBoxFromImageByID,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeBoundingBoxFromImageByID =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/RemoveBoundingBoxFromImageByID',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_RemoveBoundingBoxFromImageByID);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.BoundingBoxLabelsByFilterRequest,
+ *   !proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse>}
+ */
+const methodDescriptor_DataService_BoundingBoxLabelsByFilter = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/BoundingBoxLabelsByFilter',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.BoundingBoxLabelsByFilterRequest,
+  proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.BoundingBoxLabelsByFilterRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.BoundingBoxLabelsByFilterRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.boundingBoxLabelsByFilter =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/BoundingBoxLabelsByFilter',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_BoundingBoxLabelsByFilter,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.BoundingBoxLabelsByFilterRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.boundingBoxLabelsByFilter =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/BoundingBoxLabelsByFilter',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_BoundingBoxLabelsByFilter);
+};
+
+
 module.exports = proto.viam.app.data.v1;
 

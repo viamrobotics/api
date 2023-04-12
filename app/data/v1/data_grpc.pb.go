@@ -44,6 +44,12 @@ type DataServiceClient interface {
 	RemoveTagsFromBinaryDataByFilter(ctx context.Context, in *RemoveTagsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFilterResponse, error)
 	// TagsByFilter gets all unique tags from data based on given filter.
 	TagsByFilter(ctx context.Context, in *TagsByFilterRequest, opts ...grpc.CallOption) (*TagsByFilterResponse, error)
+	// AddBoundingBoxToImageByID adds a bounding box to an image with the given ID.
+	AddBoundingBoxToImageByID(ctx context.Context, in *AddBoundingBoxToImageByIDRequest, opts ...grpc.CallOption) (*AddBoundingBoxToImageByIDResponse, error)
+	// RemoveBoundingBoxFromImageByID removes a bounding box from an image with the given ID.
+	RemoveBoundingBoxFromImageByID(ctx context.Context, in *RemoveBoundingBoxFromImageByIDRequest, opts ...grpc.CallOption) (*RemoveBoundingBoxFromImageByIDResponse, error)
+	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
+	BoundingBoxLabelsByFilter(ctx context.Context, in *BoundingBoxLabelsByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxLabelsByFilterResponse, error)
 }
 
 type dataServiceClient struct {
@@ -153,6 +159,33 @@ func (c *dataServiceClient) TagsByFilter(ctx context.Context, in *TagsByFilterRe
 	return out, nil
 }
 
+func (c *dataServiceClient) AddBoundingBoxToImageByID(ctx context.Context, in *AddBoundingBoxToImageByIDRequest, opts ...grpc.CallOption) (*AddBoundingBoxToImageByIDResponse, error) {
+	out := new(AddBoundingBoxToImageByIDResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/AddBoundingBoxToImageByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) RemoveBoundingBoxFromImageByID(ctx context.Context, in *RemoveBoundingBoxFromImageByIDRequest, opts ...grpc.CallOption) (*RemoveBoundingBoxFromImageByIDResponse, error) {
+	out := new(RemoveBoundingBoxFromImageByIDResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/RemoveBoundingBoxFromImageByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) BoundingBoxLabelsByFilter(ctx context.Context, in *BoundingBoxLabelsByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxLabelsByFilterResponse, error) {
+	out := new(BoundingBoxLabelsByFilterResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/BoundingBoxLabelsByFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -179,6 +212,12 @@ type DataServiceServer interface {
 	RemoveTagsFromBinaryDataByFilter(context.Context, *RemoveTagsFromBinaryDataByFilterRequest) (*RemoveTagsFromBinaryDataByFilterResponse, error)
 	// TagsByFilter gets all unique tags from data based on given filter.
 	TagsByFilter(context.Context, *TagsByFilterRequest) (*TagsByFilterResponse, error)
+	// AddBoundingBoxToImageByID adds a bounding box to an image with the given ID.
+	AddBoundingBoxToImageByID(context.Context, *AddBoundingBoxToImageByIDRequest) (*AddBoundingBoxToImageByIDResponse, error)
+	// RemoveBoundingBoxFromImageByID removes a bounding box from an image with the given ID.
+	RemoveBoundingBoxFromImageByID(context.Context, *RemoveBoundingBoxFromImageByIDRequest) (*RemoveBoundingBoxFromImageByIDResponse, error)
+	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
+	BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -218,6 +257,15 @@ func (UnimplementedDataServiceServer) RemoveTagsFromBinaryDataByFilter(context.C
 }
 func (UnimplementedDataServiceServer) TagsByFilter(context.Context, *TagsByFilterRequest) (*TagsByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TagsByFilter not implemented")
+}
+func (UnimplementedDataServiceServer) AddBoundingBoxToImageByID(context.Context, *AddBoundingBoxToImageByIDRequest) (*AddBoundingBoxToImageByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddBoundingBoxToImageByID not implemented")
+}
+func (UnimplementedDataServiceServer) RemoveBoundingBoxFromImageByID(context.Context, *RemoveBoundingBoxFromImageByIDRequest) (*RemoveBoundingBoxFromImageByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveBoundingBoxFromImageByID not implemented")
+}
+func (UnimplementedDataServiceServer) BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BoundingBoxLabelsByFilter not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -430,6 +478,60 @@ func _DataService_TagsByFilter_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_AddBoundingBoxToImageByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddBoundingBoxToImageByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).AddBoundingBoxToImageByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/AddBoundingBoxToImageByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).AddBoundingBoxToImageByID(ctx, req.(*AddBoundingBoxToImageByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_RemoveBoundingBoxFromImageByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveBoundingBoxFromImageByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).RemoveBoundingBoxFromImageByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/RemoveBoundingBoxFromImageByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).RemoveBoundingBoxFromImageByID(ctx, req.(*RemoveBoundingBoxFromImageByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_BoundingBoxLabelsByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BoundingBoxLabelsByFilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).BoundingBoxLabelsByFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/BoundingBoxLabelsByFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).BoundingBoxLabelsByFilter(ctx, req.(*BoundingBoxLabelsByFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -480,6 +582,18 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TagsByFilter",
 			Handler:    _DataService_TagsByFilter_Handler,
+		},
+		{
+			MethodName: "AddBoundingBoxToImageByID",
+			Handler:    _DataService_AddBoundingBoxToImageByID_Handler,
+		},
+		{
+			MethodName: "RemoveBoundingBoxFromImageByID",
+			Handler:    _DataService_RemoveBoundingBoxFromImageByID_Handler,
+		},
+		{
+			MethodName: "BoundingBoxLabelsByFilter",
+			Handler:    _DataService_BoundingBoxLabelsByFilter_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
