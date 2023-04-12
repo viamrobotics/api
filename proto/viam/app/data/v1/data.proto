@@ -300,10 +300,10 @@ message TagsByFilterResponse {
 message AddBoundingBoxToImageByIDRequest {
   string file_id = 1;
   string label = 2;
-  float normalized_x_min = 3;
-  float normalized_y_min = 4;
-  float normalized_x_max = 5;
-  float normalized_y_max = 6;
+  float x_min_normalized = 3;
+  float y_min_normalized = 4;
+  float x_max_normalized = 5;
+  float y_max_normalized = 6;
 }
 
 message AddBoundingBoxToImageByIDResponse {
