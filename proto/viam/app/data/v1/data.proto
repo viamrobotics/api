@@ -202,7 +202,7 @@ message BoundingBox {
 
 // Annotations are data annotations used for machine learning.
 message Annotations {
-  repeated BoundingBox bounding_boxes = 1;
+  repeated BoundingBox bboxes = 1;
 }
 
 message BinaryMetadata {
@@ -322,5 +322,5 @@ message BoundingBoxLabelsByFilterRequest {
 }
 
 message BoundingBoxLabelsByFilterResponse {
-  repeated string bbox_labels = 1;
+  repeated string labels = 1;
 }
