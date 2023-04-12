@@ -1889,7 +1889,8 @@ proto.viam.app.mltraining.v1.CancelTrainingJobResponse.serializeBinaryToWriter =
 proto.viam.app.mltraining.v1.ModelType = {
   MODEL_TYPE_UNSPECIFIED: 0,
   MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION: 1,
-  MODEL_TYPE_MULTI_LABEL_CLASSIFICATION: 2
+  MODEL_TYPE_MULTI_LABEL_CLASSIFICATION: 2,
+  MODEL_TYPE_OBJECT_DETECTION: 3
 };
 
 /**

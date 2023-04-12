@@ -42,6 +42,15 @@ service DataService {
 
   // TagsByFilter gets all unique tags from data based on given filter.
   rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse);
+
+  // AddBoundingBoxToImageByID adds a bounding box to an image with the given ID.
+  rpc AddBoundingBoxToImageByID(AddBoundingBoxToImageByIDRequest) returns (AddBoundingBoxToImageByIDResponse);
+
+  // RemoveBoundingBoxFromImageByID removes a bounding box from an image with the given ID.
+  rpc RemoveBoundingBoxFromImageByID(RemoveBoundingBoxFromImageByIDRequest) returns (RemoveBoundingBoxFromImageByIDResponse);
+
+  // BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
+  rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse);
 }
 
 enum Order {
@@ -83,6 +92,7 @@ message Filter {
   repeated string mime_type = 12;
   CaptureInterval interval = 13;
   TagsFilter tags_filter = 14;
+  repeated string bbox_labels = 15;
   repeated string tags = 5 [deprecated = true];
 }
 
@@ -179,6 +189,22 @@ message BinaryDataByIDsResponse {
   uint64 count = 2;
 }
 
+// BoundingBox represents a labeled bounding box on an image.
+// x and y values are normalized ratios between 0 and 1.
+message BoundingBox {
+  string id = 1;
+  string label = 2;
+  float x_min_normalized = 3;
+  float y_min_normalized = 4;
+  float x_max_normalized = 5;
+  float y_max_normalized = 6;
+}
+
+// Annotations are data annotations used for machine learning.
+message Annotations {
+  repeated BoundingBox bboxes = 1;
+}
+
 message BinaryMetadata {
   string id = 1;
   CaptureMetadata capture_metadata = 2;
@@ -187,6 +213,7 @@ message BinaryMetadata {
   string file_name = 5;
   string file_ext = 6;
   string uri = 7;
+  Annotations annotations = 8;
 }
 
 // DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided
@@ -268,4 +295,32 @@ message TagsByFilterRequest {
 // TagsByFilterResponse returns the unique tags from data based on given filter
 message TagsByFilterResponse {
   repeated string tags = 1;
+}
+
+message AddBoundingBoxToImageByIDRequest {
+  string file_id = 1;
+  string label = 2;
+  float x_min_normalized = 3;
+  float y_min_normalized = 4;
+  float x_max_normalized = 5;
+  float y_max_normalized = 6;
+}
+
+message AddBoundingBoxToImageByIDResponse {
+  string bbox_id = 1;
+}
+
+message RemoveBoundingBoxFromImageByIDRequest {
+  string file_id = 1;
+  string bbox_id = 2;
+}
+
+message RemoveBoundingBoxFromImageByIDResponse {}
+
+message BoundingBoxLabelsByFilterRequest {
+  Filter filter = 1;
+}
+
+message BoundingBoxLabelsByFilterResponse {
+  repeated string labels = 1;
 }
