@@ -104,12 +104,16 @@ message Webcams {
 }
 
 message Webcam {
-  // Camera driver label
+  // Camera driver label (for internal use only)
   string label = 1;
   // Camera driver status
   string status = 2;
   // Camera properties
   repeated Property properties = 3;
+  // Camera human-readable driver name
+  string name = 4;
+  // Camera unique identifier
+  string id = 5;
 }
 
 message Property {
