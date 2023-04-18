@@ -20827,7 +20827,7 @@ proto.viam.app.v1.CheckPermissionsRequest.prototype.clearPermissionsList = funct
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.AuthorizedPermissions.repeatedFields_ = [2];
+proto.viam.app.v1.AuthorizedPermissions.repeatedFields_ = [3];
 
 
 
@@ -20860,8 +20860,9 @@ proto.viam.app.v1.AuthorizedPermissions.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.AuthorizedPermissions.toObject = function(includeInstance, msg) {
   var f, obj = {
-    resourceId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    permissionsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+    resourceType: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    resourceId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    permissionsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -20900,9 +20901,13 @@ proto.viam.app.v1.AuthorizedPermissions.deserializeBinaryFromReader = function(m
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setResourceId(value);
+      msg.setResourceType(value);
       break;
     case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setResourceId(value);
+      break;
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.addPermissions(value);
       break;
@@ -20935,17 +20940,24 @@ proto.viam.app.v1.AuthorizedPermissions.prototype.serializeBinary = function() {
  */
 proto.viam.app.v1.AuthorizedPermissions.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getResourceId();
+  f = message.getResourceType();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
+  f = message.getResourceId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
   f = message.getPermissionsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      2,
+      3,
       f
     );
   }
@@ -20953,10 +20965,10 @@ proto.viam.app.v1.AuthorizedPermissions.serializeBinaryToWriter = function(messa
 
 
 /**
- * optional string resource_id = 1;
+ * optional string resource_type = 1;
  * @return {string}
  */
-proto.viam.app.v1.AuthorizedPermissions.prototype.getResourceId = function() {
+proto.viam.app.v1.AuthorizedPermissions.prototype.getResourceType = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -20965,17 +20977,35 @@ proto.viam.app.v1.AuthorizedPermissions.prototype.getResourceId = function() {
  * @param {string} value
  * @return {!proto.viam.app.v1.AuthorizedPermissions} returns this
  */
-proto.viam.app.v1.AuthorizedPermissions.prototype.setResourceId = function(value) {
+proto.viam.app.v1.AuthorizedPermissions.prototype.setResourceType = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * repeated string permissions = 2;
+ * optional string resource_id = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.AuthorizedPermissions.prototype.getResourceId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.AuthorizedPermissions} returns this
+ */
+proto.viam.app.v1.AuthorizedPermissions.prototype.setResourceId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * repeated string permissions = 3;
  * @return {!Array<string>}
  */
 proto.viam.app.v1.AuthorizedPermissions.prototype.getPermissionsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
@@ -20984,7 +21014,7 @@ proto.viam.app.v1.AuthorizedPermissions.prototype.getPermissionsList = function(
  * @return {!proto.viam.app.v1.AuthorizedPermissions} returns this
  */
 proto.viam.app.v1.AuthorizedPermissions.prototype.setPermissionsList = function(value) {
-  return jspb.Message.setField(this, 2, value || []);
+  return jspb.Message.setField(this, 3, value || []);
 };
 
 
@@ -20994,7 +21024,7 @@ proto.viam.app.v1.AuthorizedPermissions.prototype.setPermissionsList = function(
  * @return {!proto.viam.app.v1.AuthorizedPermissions} returns this
  */
 proto.viam.app.v1.AuthorizedPermissions.prototype.addPermissions = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
 };
 
 
