@@ -728,8 +728,9 @@ message CheckPermissionsRequest {
 }
 
 message AuthorizedPermissions {
-  string resource_id = 1;
-  repeated string permissions = 2;
+  string resource_type = 1;
+  string resource_id = 2;
+  repeated string permissions = 3;
 }
 
 message CheckPermissionsResponse {
