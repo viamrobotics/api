@@ -2677,6 +2677,9 @@ export namespace CheckPermissionsRequest {
 }
 
 export class AuthorizedPermissions extends jspb.Message {
+  getResourceType(): string;
+  setResourceType(value: string): void;
+
   getResourceId(): string;
   setResourceId(value: string): void;
 
@@ -2697,6 +2700,7 @@ export class AuthorizedPermissions extends jspb.Message {
 
 export namespace AuthorizedPermissions {
   export type AsObject = {
+    resourceType: string,
     resourceId: string,
     permissionsList: Array<string>,
   }
