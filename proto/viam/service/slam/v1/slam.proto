@@ -68,12 +68,12 @@ message GetPointCloudMapResponse {
   // order received result in the complete pointcloud in standard PCD
   // format.
   //
-  // Read more about the point cloud format here:  
-  // https://pointclouds.org/documentation/tutorials/pcd_file_format.html
-  // Viam expects point cloud data with fields "x y z" or "x y z rgb", and for
-  // this to be specified in the point cloud header. If color data is included,
-  // Viam's built-in services expect probability to be encoded in the RGB value
-  // in the blue parameter, on a scale from 1-100. 
+  // Read more about the pointcloud format here:
+  // https://pointclouds.org/documentation/tutorials/pcd_file_format.html Viam
+  // expects pointcloud data with fields "x y z" or "x y z rgb", and for this to
+  // be specified in the pointcloud header in the FIELDS entry. If color data is
+  // included, Viam's built-in services expect probability data to be encoded in
+  // the RGB value in the blue parameter, on a scale from 1-100. 
   bytes point_cloud_pcd_chunk = 1;
 }
 
