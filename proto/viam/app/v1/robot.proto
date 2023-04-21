@@ -101,6 +101,7 @@ message ServiceConfig {
   google.protobuf.Struct attributes = 4;
   repeated string depends_on = 5;
   string model = 6;
+  string api = 9;
 }
 
 message NetworkConfig {
