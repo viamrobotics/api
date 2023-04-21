@@ -3104,7 +3104,8 @@ proto.viam.app.v1.ServiceConfig.toObject = function(includeInstance, msg) {
     type: jspb.Message.getFieldWithDefault(msg, 3, ""),
     attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     dependsOnList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    model: jspb.Message.getFieldWithDefault(msg, 6, "")
+    model: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    api: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -3165,6 +3166,10 @@ proto.viam.app.v1.ServiceConfig.deserializeBinaryFromReader = function(msg, read
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setModel(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setApi(value);
       break;
     default:
       reader.skipField();
@@ -3235,6 +3240,13 @@ proto.viam.app.v1.ServiceConfig.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = message.getApi();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
       f
     );
   }
@@ -3384,6 +3396,24 @@ proto.viam.app.v1.ServiceConfig.prototype.getModel = function() {
  */
 proto.viam.app.v1.ServiceConfig.prototype.setModel = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional string api = 9;
+ * @return {string}
+ */
+proto.viam.app.v1.ServiceConfig.prototype.getApi = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.ServiceConfig} returns this
+ */
+proto.viam.app.v1.ServiceConfig.prototype.setApi = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
