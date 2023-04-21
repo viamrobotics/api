@@ -329,6 +329,9 @@ export class ServiceConfig extends jspb.Message {
   getModel(): string;
   setModel(value: string): void;
 
+  getApi(): string;
+  setApi(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ServiceConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ServiceConfig): ServiceConfig.AsObject;
@@ -347,6 +350,7 @@ export namespace ServiceConfig {
     attributes?: google_protobuf_struct_pb.Struct.AsObject,
     dependsOnList: Array<string>,
     model: string,
+    api: string,
   }
 }
 
