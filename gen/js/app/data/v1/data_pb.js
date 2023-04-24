@@ -4746,19 +4746,19 @@ proto.viam.app.data.v1.BoundingBox.deserializeBinaryFromReader = function(msg, r
       msg.setLabel(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readFloat());
+      var value = /** @type {number} */ (reader.readDouble());
       msg.setXMinNormalized(value);
       break;
     case 4:
-      var value = /** @type {number} */ (reader.readFloat());
+      var value = /** @type {number} */ (reader.readDouble());
       msg.setYMinNormalized(value);
       break;
     case 5:
-      var value = /** @type {number} */ (reader.readFloat());
+      var value = /** @type {number} */ (reader.readDouble());
       msg.setXMaxNormalized(value);
       break;
     case 6:
-      var value = /** @type {number} */ (reader.readFloat());
+      var value = /** @type {number} */ (reader.readDouble());
       msg.setYMaxNormalized(value);
       break;
     default:
@@ -4806,28 +4806,28 @@ proto.viam.app.data.v1.BoundingBox.serializeBinaryToWriter = function(message, w
   }
   f = message.getXMinNormalized();
   if (f !== 0.0) {
-    writer.writeFloat(
+    writer.writeDouble(
       3,
       f
     );
   }
   f = message.getYMinNormalized();
   if (f !== 0.0) {
-    writer.writeFloat(
+    writer.writeDouble(
       4,
       f
     );
   }
   f = message.getXMaxNormalized();
   if (f !== 0.0) {
-    writer.writeFloat(
+    writer.writeDouble(
       5,
       f
     );
   }
   f = message.getYMaxNormalized();
   if (f !== 0.0) {
-    writer.writeFloat(
+    writer.writeDouble(
       6,
       f
     );
@@ -4872,7 +4872,7 @@ proto.viam.app.data.v1.BoundingBox.prototype.setLabel = function(value) {
 
 
 /**
- * optional float x_min_normalized = 3;
+ * optional double x_min_normalized = 3;
  * @return {number}
  */
 proto.viam.app.data.v1.BoundingBox.prototype.getXMinNormalized = function() {
@@ -4890,7 +4890,7 @@ proto.viam.app.data.v1.BoundingBox.prototype.setXMinNormalized = function(value)
 
 
 /**
- * optional float y_min_normalized = 4;
+ * optional double y_min_normalized = 4;
  * @return {number}
  */
 proto.viam.app.data.v1.BoundingBox.prototype.getYMinNormalized = function() {
@@ -4908,7 +4908,7 @@ proto.viam.app.data.v1.BoundingBox.prototype.setYMinNormalized = function(value)
 
 
 /**
- * optional float x_max_normalized = 5;
+ * optional double x_max_normalized = 5;
  * @return {number}
  */
 proto.viam.app.data.v1.BoundingBox.prototype.getXMaxNormalized = function() {
@@ -4926,7 +4926,7 @@ proto.viam.app.data.v1.BoundingBox.prototype.setXMaxNormalized = function(value)
 
 
 /**
- * optional float y_max_normalized = 6;
+ * optional double y_max_normalized = 6;
  * @return {number}
  */
 proto.viam.app.data.v1.BoundingBox.prototype.getYMaxNormalized = function() {
@@ -8204,19 +8204,19 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.deserializeBinaryFromRea
       msg.setLabel(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readFloat());
+      var value = /** @type {number} */ (reader.readDouble());
       msg.setXMinNormalized(value);
       break;
     case 4:
-      var value = /** @type {number} */ (reader.readFloat());
+      var value = /** @type {number} */ (reader.readDouble());
       msg.setYMinNormalized(value);
       break;
     case 5:
-      var value = /** @type {number} */ (reader.readFloat());
+      var value = /** @type {number} */ (reader.readDouble());
       msg.setXMaxNormalized(value);
       break;
     case 6:
-      var value = /** @type {number} */ (reader.readFloat());
+      var value = /** @type {number} */ (reader.readDouble());
       msg.setYMaxNormalized(value);
       break;
     default:
@@ -8264,28 +8264,28 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.serializeBinaryToWriter 
   }
   f = message.getXMinNormalized();
   if (f !== 0.0) {
-    writer.writeFloat(
+    writer.writeDouble(
       3,
       f
     );
   }
   f = message.getYMinNormalized();
   if (f !== 0.0) {
-    writer.writeFloat(
+    writer.writeDouble(
       4,
       f
     );
   }
   f = message.getXMaxNormalized();
   if (f !== 0.0) {
-    writer.writeFloat(
+    writer.writeDouble(
       5,
       f
     );
   }
   f = message.getYMaxNormalized();
   if (f !== 0.0) {
-    writer.writeFloat(
+    writer.writeDouble(
       6,
       f
     );
@@ -8330,7 +8330,7 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.setLabel = fun
 
 
 /**
- * optional float x_min_normalized = 3;
+ * optional double x_min_normalized = 3;
  * @return {number}
  */
 proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.getXMinNormalized = function() {
@@ -8348,7 +8348,7 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.setXMinNormali
 
 
 /**
- * optional float y_min_normalized = 4;
+ * optional double y_min_normalized = 4;
  * @return {number}
  */
 proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.getYMinNormalized = function() {
@@ -8366,7 +8366,7 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.setYMinNormali
 
 
 /**
- * optional float x_max_normalized = 5;
+ * optional double x_max_normalized = 5;
  * @return {number}
  */
 proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.getXMaxNormalized = function() {
@@ -8384,7 +8384,7 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.setXMaxNormali
 
 
 /**
- * optional float y_max_normalized = 6;
+ * optional double y_max_normalized = 6;
  * @return {number}
  */
 proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.getYMaxNormalized = function() {
