@@ -160,6 +160,6 @@ message GetLinearAccelerationRequest {
 }
 
 message GetLinearAccelerationResponse {
-  //Linear acceleration in m/s across x/y/z axes
+  // Linear acceleration in m/s across x/y/z axes
   common.v1.Vector3 linear_acceleration = 1;
 }
