@@ -228,8 +228,8 @@ export class GetPositionResponse extends jspb.Message {
   getCoordinate(): common_v1_common_pb.GeoPoint | undefined;
   setCoordinate(value?: common_v1_common_pb.GeoPoint): void;
 
-  getAltitudeMm(): number;
-  setAltitudeMm(value: number): void;
+  getAltitudeM(): number;
+  setAltitudeM(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPositionResponse.AsObject;
@@ -244,7 +244,7 @@ export class GetPositionResponse extends jspb.Message {
 export namespace GetPositionResponse {
   export type AsObject = {
     coordinate?: common_v1_common_pb.GeoPoint.AsObject,
-    altitudeMm: number,
+    altitudeM: number,
   }
 }
 
@@ -341,8 +341,8 @@ export namespace GetAccuracyRequest {
 }
 
 export class GetAccuracyResponse extends jspb.Message {
-  getAccuracyMmMap(): jspb.Map<string, number>;
-  clearAccuracyMmMap(): void;
+  getAccuracyMap(): jspb.Map<string, number>;
+  clearAccuracyMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAccuracyResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetAccuracyResponse): GetAccuracyResponse.AsObject;
@@ -355,7 +355,7 @@ export class GetAccuracyResponse extends jspb.Message {
 
 export namespace GetAccuracyResponse {
   export type AsObject = {
-    accuracyMmMap: Array<[string, number]>,
+    accuracyMap: Array<[string, number]>,
   }
 }
 

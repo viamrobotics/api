@@ -73,7 +73,7 @@ message GetLinearVelocityRequest {
 }
 
 message GetLinearVelocityResponse {
-  // linear velocity contains velocity in mm/s across x/y/z axes
+  // Linear velocity in m/s across x/y/z axes
   common.v1.Vector3 linear_velocity = 1;
 }
 
@@ -85,7 +85,7 @@ message GetAngularVelocityRequest {
 }
 
 message GetAngularVelocityResponse {
-  // angular velocity contains velocity in degrees/s across x/y/z axes
+  // Angular velocity in degrees/s across x/y/z axes
   common.v1.Vector3 angular_velocity = 1;
 }
 
@@ -122,7 +122,7 @@ message GetPositionRequest {
 
 message GetPositionResponse {
   common.v1.GeoPoint coordinate = 1;
-  float altitude_mm = 2;
+  float altitude_m = 2;
 }
 
 message GetPropertiesRequest {
@@ -149,7 +149,7 @@ message GetAccuracyRequest {
 }
 
 message GetAccuracyResponse {
-  map<string, float> accuracy_mm = 1;
+  map<string, float> accuracy = 1;
 }
 
 message GetLinearAccelerationRequest {
@@ -160,5 +160,6 @@ message GetLinearAccelerationRequest {
 }
 
 message GetLinearAccelerationResponse {
+  // Linear acceleration in m/s across x/y/z axes
   common.v1.Vector3 linear_acceleration = 1;
 }
