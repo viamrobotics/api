@@ -194,10 +194,10 @@ message BinaryDataByIDsResponse {
 message BoundingBox {
   string id = 1;
   string label = 2;
-  float x_min_normalized = 3;
-  float y_min_normalized = 4;
-  float x_max_normalized = 5;
-  float y_max_normalized = 6;
+  double x_min_normalized = 3;
+  double y_min_normalized = 4;
+  double x_max_normalized = 5;
+  double y_max_normalized = 6;
 }
 
 // Annotations are data annotations used for machine learning.
@@ -300,10 +300,10 @@ message TagsByFilterResponse {
 message AddBoundingBoxToImageByIDRequest {
   string file_id = 1;
   string label = 2;
-  float x_min_normalized = 3;
-  float y_min_normalized = 4;
-  float x_max_normalized = 5;
-  float y_max_normalized = 6;
+  double x_min_normalized = 3;
+  double y_min_normalized = 4;
+  double x_max_normalized = 5;
+  double y_max_normalized = 6;
 }
 
 message AddBoundingBoxToImageByIDResponse {
