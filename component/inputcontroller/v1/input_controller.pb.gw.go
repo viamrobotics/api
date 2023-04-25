@@ -15,7 +15,7 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
-	v1_0 "go.viam.com/api/common/v1"
+	"go.viam.com/api/common/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -292,7 +292,7 @@ var (
 )
 
 func request_InputControllerService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client InputControllerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DoCommandRequest
+	var protoReq v1.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -325,7 +325,7 @@ func request_InputControllerService_DoCommand_0(ctx context.Context, marshaler r
 }
 
 func local_request_InputControllerService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, server InputControllerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DoCommandRequest
+	var protoReq v1.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -370,21 +370,20 @@ func RegisterInputControllerServiceHandlerServer(ctx context.Context, mux *runti
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/GetControls", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/controls"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/GetControls", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/controls"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_InputControllerService_GetControls_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_InputControllerService_GetControls_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_InputControllerService_GetControls_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_InputControllerService_GetControls_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -395,21 +394,20 @@ func RegisterInputControllerServiceHandlerServer(ctx context.Context, mux *runti
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/GetEvents", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/events"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/GetEvents", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/events"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_InputControllerService_GetEvents_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_InputControllerService_GetEvents_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_InputControllerService_GetEvents_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_InputControllerService_GetEvents_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -427,21 +425,20 @@ func RegisterInputControllerServiceHandlerServer(ctx context.Context, mux *runti
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/TriggerEvent", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/event"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/TriggerEvent", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/event"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_InputControllerService_TriggerEvent_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_InputControllerService_TriggerEvent_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_InputControllerService_TriggerEvent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_InputControllerService_TriggerEvent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -452,21 +449,20 @@ func RegisterInputControllerServiceHandlerServer(ctx context.Context, mux *runti
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{name}/do_command"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{name}/do_command"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_InputControllerService_DoCommand_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_InputControllerService_DoCommand_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_InputControllerService_DoCommand_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_InputControllerService_DoCommand_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -516,20 +512,19 @@ func RegisterInputControllerServiceHandlerClient(ctx context.Context, mux *runti
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/GetControls", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/controls"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/GetControls", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/controls"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_InputControllerService_GetControls_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_InputControllerService_GetControls_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_InputControllerService_GetControls_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_InputControllerService_GetControls_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -538,20 +533,19 @@ func RegisterInputControllerServiceHandlerClient(ctx context.Context, mux *runti
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/GetEvents", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/events"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/GetEvents", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/events"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_InputControllerService_GetEvents_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_InputControllerService_GetEvents_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_InputControllerService_GetEvents_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_InputControllerService_GetEvents_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -560,20 +554,19 @@ func RegisterInputControllerServiceHandlerClient(ctx context.Context, mux *runti
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/StreamEvents", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/event_stream"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/StreamEvents", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/event_stream"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_InputControllerService_StreamEvents_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_InputControllerService_StreamEvents_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_InputControllerService_StreamEvents_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_InputControllerService_StreamEvents_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -582,20 +575,19 @@ func RegisterInputControllerServiceHandlerClient(ctx context.Context, mux *runti
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/TriggerEvent", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/event"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/TriggerEvent", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{controller}/event"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_InputControllerService_TriggerEvent_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_InputControllerService_TriggerEvent_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_InputControllerService_TriggerEvent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_InputControllerService_TriggerEvent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -604,20 +596,19 @@ func RegisterInputControllerServiceHandlerClient(ctx context.Context, mux *runti
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{name}/do_command"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/viam.component.inputcontroller.v1.InputControllerService/DoCommand", runtime.WithHTTPPathPattern("/viam/api/v1/component/input/{name}/do_command"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_InputControllerService_DoCommand_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		resp, md, err := request_InputControllerService_DoCommand_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_InputControllerService_DoCommand_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_InputControllerService_DoCommand_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
