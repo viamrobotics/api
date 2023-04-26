@@ -19,7 +19,8 @@ service SLAMService {
     };
   }
 
-  // GetPointCloudMap returns the latest point cloud map available
+  // GetPointCloudMap returns the latest pointcloud map available where XY is the ground
+  // plane and positive Z is up, following the Right Hand Rule.
   rpc GetPointCloudMap(GetPointCloudMapRequest) returns (stream GetPointCloudMapResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/slam/{name}/point_cloud_map"
@@ -35,7 +36,7 @@ service SLAMService {
     };
   }
 
-  // DoCommand sends/receives arbitrary commands
+  // DoCommand sends/receives arbitrary commands.
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/service/slam/{name}/do_command"
@@ -66,7 +67,8 @@ message GetPointCloudMapResponse {
   // For a given GetPointCloudMap request, concatenating all
   // GetPointCloudMapResponse.point_cloud_pcd_chunk values in the
   // order received result in the complete pointcloud in standard PCD
-  // format.
+  // format where XY is the ground plane and positive Z is up, following
+  // the Right Hand Rule.
   //
   // Read more about the pointcloud format here:
   // https://pointclouds.org/documentation/tutorials/pcd_file_format.html
