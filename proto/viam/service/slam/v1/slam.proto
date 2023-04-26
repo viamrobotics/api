@@ -19,7 +19,7 @@ service SLAMService {
     };
   }
 
-  // GetPointCloudMap returns the latest pointcloud map available where XY is the ground 
+  // GetPointCloudMap returns the latest pointcloud map available where XY is the ground
   // plane and positive Z is up, following the Right Hand Rule.
   rpc GetPointCloudMap(GetPointCloudMapRequest) returns (stream GetPointCloudMapResponse) {
     option (google.api.http) = {
