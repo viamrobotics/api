@@ -194,8 +194,7 @@ type GetPointCloudMapResponse struct {
 	// For a given GetPointCloudMap request, concatenating all
 	// GetPointCloudMapResponse.point_cloud_pcd_chunk values in the
 	// order received result in the complete pointcloud in standard PCD
-	// format where XY is the ground plane and positive Z is up, following
-	// the Right Hand Rule.
+	// format.
 	//
 	// Read more about the pointcloud format here:
 	// https://pointclouds.org/documentation/tutorials/pcd_file_format.html
