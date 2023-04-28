@@ -56,6 +56,11 @@ message Invoice {
   string emailed_to = 7;
 }
 
+message PaymentMethodCard {
+  string brand = 1;
+  string last_four_digits = 2;
+}
+
 message GetCurrentMonthUsageSummaryRequest {
   string org_id = 1;
 }
@@ -111,4 +116,5 @@ message GetBillingSummaryResponse {
   double current_month_balance = 5; // current_month_usage_cost
   google.protobuf.Timestamp current_month_due_date = 7; // due date for current month usage
   string invoice_email = 8;
+  PaymentMethodCard payment_method = 9;
 }
