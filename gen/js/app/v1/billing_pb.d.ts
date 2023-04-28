@@ -84,6 +84,11 @@ export class InvoiceSummary extends jspb.Message {
   getDueDate(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setDueDate(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasPaidDate(): boolean;
+  clearPaidDate(): void;
+  getPaidDate(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setPaidDate(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): InvoiceSummary.AsObject;
   static toObject(includeInstance: boolean, msg: InvoiceSummary): InvoiceSummary.AsObject;
@@ -101,6 +106,7 @@ export namespace InvoiceSummary {
     invoiceAmount: number,
     status: string,
     dueDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    paidDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -197,6 +203,30 @@ export namespace Invoice {
     dueDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     itemsList: Array<BillableResourceEvent.AsObject>,
     emailedTo: string,
+  }
+}
+
+export class PaymentMethodCard extends jspb.Message {
+  getBrand(): string;
+  setBrand(value: string): void;
+
+  getLastFourDigits(): string;
+  setLastFourDigits(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PaymentMethodCard.AsObject;
+  static toObject(includeInstance: boolean, msg: PaymentMethodCard): PaymentMethodCard.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PaymentMethodCard, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PaymentMethodCard;
+  static deserializeBinaryFromReader(message: PaymentMethodCard, reader: jspb.BinaryReader): PaymentMethodCard;
+}
+
+export namespace PaymentMethodCard {
+  export type AsObject = {
+    brand: string,
+    lastFourDigits: string,
   }
 }
 
@@ -458,6 +488,11 @@ export class GetBillingSummaryResponse extends jspb.Message {
   getInvoiceEmail(): string;
   setInvoiceEmail(value: string): void;
 
+  hasPaymentMethod(): boolean;
+  clearPaymentMethod(): void;
+  getPaymentMethod(): PaymentMethodCard | undefined;
+  setPaymentMethod(value?: PaymentMethodCard): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetBillingSummaryResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetBillingSummaryResponse): GetBillingSummaryResponse.AsObject;
@@ -477,6 +512,7 @@ export namespace GetBillingSummaryResponse {
     currentMonthBalance: number,
     currentMonthDueDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     invoiceEmail: string,
+    paymentMethod?: PaymentMethodCard.AsObject,
   }
 }
 
