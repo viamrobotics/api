@@ -34,6 +34,7 @@ message InvoiceSummary {
   double invoice_amount = 3;
   string status = 4;
   google.protobuf.Timestamp due_date = 5;
+  google.protobuf.Timestamp paid_date = 6;
 }
 
 message BillableResourceEvent {
