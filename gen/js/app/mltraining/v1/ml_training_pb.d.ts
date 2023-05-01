@@ -260,6 +260,7 @@ export interface TrainingStatusMap {
   TRAINING_STATUS_COMPLETED: 3;
   TRAINING_STATUS_FAILED: 4;
   TRAINING_STATUS_CANCELED: 5;
+  TRAINING_STATUS_CANCELING: 6;
 }
 
 export const TrainingStatus: TrainingStatusMap;

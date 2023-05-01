@@ -1902,7 +1902,8 @@ proto.viam.app.mltraining.v1.TrainingStatus = {
   TRAINING_STATUS_IN_PROGRESS: 2,
   TRAINING_STATUS_COMPLETED: 3,
   TRAINING_STATUS_FAILED: 4,
-  TRAINING_STATUS_CANCELED: 5
+  TRAINING_STATUS_CANCELED: 5,
+  TRAINING_STATUS_CANCELING: 6
 };
 
 goog.object.extend(exports, proto.viam.app.mltraining.v1);
