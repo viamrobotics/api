@@ -23,6 +23,12 @@ service MotionService {
     };
   }
 
+  rpc MoveOnGlobe(MoveOnGlobeRequest) returns (MoveOnGlobeResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/motion/{name}/move_on_globe"
+    };
+  }
+
   rpc MoveSingleComponent(MoveSingleComponentRequest) returns (MoveSingleComponentResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/service/motion/{name}/move_single_component"
@@ -78,6 +84,31 @@ message MoveOnMapRequest {
 }
 
 message MoveOnMapResponse {
+  bool success = 1;
+}
+
+message MoveOnGlobeRequest {
+  // Name of the motion service
+  string name = 1;
+  // Destination, encoded as a GeoPoint
+  common.v1.GeoPoint destination = 2;
+  // Optional compass heading to achieve at the destination, in degrees [0-360)
+  optional double heading = 3;
+  // Component on the robot to move to the specified destination
+  common.v1.ResourceName component_name = 4;
+  // Name of the movement sensor which will be used to check robot location
+  common.v1.ResourceName movement_sensor_name = 5;
+  // Obstacles to be considered for motion planning
+  repeated common.v1.GeoObstacle obstacles = 6;
+  // Optional linear velocity to target when moving
+  optional float linear_meters_per_sec = 7;
+  // Optional angular velocity to target when turning
+  optional float angular_deg_per_sec = 8;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message MoveOnGlobeResponse {
   bool success = 1;
 }
 

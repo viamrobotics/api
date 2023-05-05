@@ -296,6 +296,173 @@ func (x *MoveOnMapResponse) GetSuccess() bool {
 	return false
 }
 
+type MoveOnGlobeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Name of the motion service
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Destination, encoded as a GeoPoint
+	Destination *v1.GeoPoint `protobuf:"bytes,2,opt,name=destination,proto3" json:"destination,omitempty"`
+	// Optional compass heading to achieve at the destination, in degrees [0-360)
+	Heading *float64 `protobuf:"fixed64,3,opt,name=heading,proto3,oneof" json:"heading,omitempty"`
+	// Component on the robot to move to the specified destination
+	ComponentName *v1.ResourceName `protobuf:"bytes,4,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
+	// Name of the movement sensor which will be used to check robot location
+	MovementSensorName *v1.ResourceName `protobuf:"bytes,5,opt,name=movement_sensor_name,json=movementSensorName,proto3" json:"movement_sensor_name,omitempty"`
+	// Obstacles to be considered for motion planning
+	Obstacles []*v1.GeoObstacle `protobuf:"bytes,6,rep,name=obstacles,proto3" json:"obstacles,omitempty"`
+	// Optional linear velocity to target when moving
+	LinearMetersPerSec *float32 `protobuf:"fixed32,7,opt,name=linear_meters_per_sec,json=linearMetersPerSec,proto3,oneof" json:"linear_meters_per_sec,omitempty"`
+	// Optional angular velocity to target when turning
+	AngularDegPerSec *float32 `protobuf:"fixed32,8,opt,name=angular_deg_per_sec,json=angularDegPerSec,proto3,oneof" json:"angular_deg_per_sec,omitempty"`
+	// Additional arguments to the method
+	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
+}
+
+func (x *MoveOnGlobeRequest) Reset() {
+	*x = MoveOnGlobeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_motion_v1_motion_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MoveOnGlobeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MoveOnGlobeRequest) ProtoMessage() {}
+
+func (x *MoveOnGlobeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_motion_v1_motion_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MoveOnGlobeRequest.ProtoReflect.Descriptor instead.
+func (*MoveOnGlobeRequest) Descriptor() ([]byte, []int) {
+	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *MoveOnGlobeRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *MoveOnGlobeRequest) GetDestination() *v1.GeoPoint {
+	if x != nil {
+		return x.Destination
+	}
+	return nil
+}
+
+func (x *MoveOnGlobeRequest) GetHeading() float64 {
+	if x != nil && x.Heading != nil {
+		return *x.Heading
+	}
+	return 0
+}
+
+func (x *MoveOnGlobeRequest) GetComponentName() *v1.ResourceName {
+	if x != nil {
+		return x.ComponentName
+	}
+	return nil
+}
+
+func (x *MoveOnGlobeRequest) GetMovementSensorName() *v1.ResourceName {
+	if x != nil {
+		return x.MovementSensorName
+	}
+	return nil
+}
+
+func (x *MoveOnGlobeRequest) GetObstacles() []*v1.GeoObstacle {
+	if x != nil {
+		return x.Obstacles
+	}
+	return nil
+}
+
+func (x *MoveOnGlobeRequest) GetLinearMetersPerSec() float32 {
+	if x != nil && x.LinearMetersPerSec != nil {
+		return *x.LinearMetersPerSec
+	}
+	return 0
+}
+
+func (x *MoveOnGlobeRequest) GetAngularDegPerSec() float32 {
+	if x != nil && x.AngularDegPerSec != nil {
+		return *x.AngularDegPerSec
+	}
+	return 0
+}
+
+func (x *MoveOnGlobeRequest) GetExtra() *structpb.Struct {
+	if x != nil {
+		return x.Extra
+	}
+	return nil
+}
+
+type MoveOnGlobeResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+}
+
+func (x *MoveOnGlobeResponse) Reset() {
+	*x = MoveOnGlobeResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_motion_v1_motion_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MoveOnGlobeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MoveOnGlobeResponse) ProtoMessage() {}
+
+func (x *MoveOnGlobeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_motion_v1_motion_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MoveOnGlobeResponse.ProtoReflect.Descriptor instead.
+func (*MoveOnGlobeResponse) Descriptor() ([]byte, []int) {
+	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *MoveOnGlobeResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 type MoveSingleComponentRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -312,7 +479,7 @@ type MoveSingleComponentRequest struct {
 func (x *MoveSingleComponentRequest) Reset() {
 	*x = MoveSingleComponentRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_motion_v1_motion_proto_msgTypes[4]
+		mi := &file_service_motion_v1_motion_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -325,7 +492,7 @@ func (x *MoveSingleComponentRequest) String() string {
 func (*MoveSingleComponentRequest) ProtoMessage() {}
 
 func (x *MoveSingleComponentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_motion_v1_motion_proto_msgTypes[4]
+	mi := &file_service_motion_v1_motion_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -338,7 +505,7 @@ func (x *MoveSingleComponentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MoveSingleComponentRequest.ProtoReflect.Descriptor instead.
 func (*MoveSingleComponentRequest) Descriptor() ([]byte, []int) {
-	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{4}
+	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *MoveSingleComponentRequest) GetName() string {
@@ -387,7 +554,7 @@ type MoveSingleComponentResponse struct {
 func (x *MoveSingleComponentResponse) Reset() {
 	*x = MoveSingleComponentResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_motion_v1_motion_proto_msgTypes[5]
+		mi := &file_service_motion_v1_motion_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -400,7 +567,7 @@ func (x *MoveSingleComponentResponse) String() string {
 func (*MoveSingleComponentResponse) ProtoMessage() {}
 
 func (x *MoveSingleComponentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_motion_v1_motion_proto_msgTypes[5]
+	mi := &file_service_motion_v1_motion_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -413,7 +580,7 @@ func (x *MoveSingleComponentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MoveSingleComponentResponse.ProtoReflect.Descriptor instead.
 func (*MoveSingleComponentResponse) Descriptor() ([]byte, []int) {
-	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{5}
+	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *MoveSingleComponentResponse) GetSuccess() bool {
@@ -445,7 +612,7 @@ type GetPoseRequest struct {
 func (x *GetPoseRequest) Reset() {
 	*x = GetPoseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_motion_v1_motion_proto_msgTypes[6]
+		mi := &file_service_motion_v1_motion_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -458,7 +625,7 @@ func (x *GetPoseRequest) String() string {
 func (*GetPoseRequest) ProtoMessage() {}
 
 func (x *GetPoseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_motion_v1_motion_proto_msgTypes[6]
+	mi := &file_service_motion_v1_motion_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -471,7 +638,7 @@ func (x *GetPoseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPoseRequest.ProtoReflect.Descriptor instead.
 func (*GetPoseRequest) Descriptor() ([]byte, []int) {
-	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{6}
+	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetPoseRequest) GetName() string {
@@ -520,7 +687,7 @@ type GetPoseResponse struct {
 func (x *GetPoseResponse) Reset() {
 	*x = GetPoseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_motion_v1_motion_proto_msgTypes[7]
+		mi := &file_service_motion_v1_motion_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -533,7 +700,7 @@ func (x *GetPoseResponse) String() string {
 func (*GetPoseResponse) ProtoMessage() {}
 
 func (x *GetPoseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_motion_v1_motion_proto_msgTypes[7]
+	mi := &file_service_motion_v1_motion_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -546,7 +713,7 @@ func (x *GetPoseResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPoseResponse.ProtoReflect.Descriptor instead.
 func (*GetPoseResponse) Descriptor() ([]byte, []int) {
-	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{7}
+	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetPoseResponse) GetPose() *v1.PoseInFrame {
@@ -571,7 +738,7 @@ type Constraints struct {
 func (x *Constraints) Reset() {
 	*x = Constraints{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_motion_v1_motion_proto_msgTypes[8]
+		mi := &file_service_motion_v1_motion_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -584,7 +751,7 @@ func (x *Constraints) String() string {
 func (*Constraints) ProtoMessage() {}
 
 func (x *Constraints) ProtoReflect() protoreflect.Message {
-	mi := &file_service_motion_v1_motion_proto_msgTypes[8]
+	mi := &file_service_motion_v1_motion_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -597,7 +764,7 @@ func (x *Constraints) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Constraints.ProtoReflect.Descriptor instead.
 func (*Constraints) Descriptor() ([]byte, []int) {
-	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{8}
+	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *Constraints) GetLinearConstraint() []*LinearConstraint {
@@ -634,7 +801,7 @@ type LinearConstraint struct {
 func (x *LinearConstraint) Reset() {
 	*x = LinearConstraint{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_motion_v1_motion_proto_msgTypes[9]
+		mi := &file_service_motion_v1_motion_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -647,7 +814,7 @@ func (x *LinearConstraint) String() string {
 func (*LinearConstraint) ProtoMessage() {}
 
 func (x *LinearConstraint) ProtoReflect() protoreflect.Message {
-	mi := &file_service_motion_v1_motion_proto_msgTypes[9]
+	mi := &file_service_motion_v1_motion_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -660,7 +827,7 @@ func (x *LinearConstraint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinearConstraint.ProtoReflect.Descriptor instead.
 func (*LinearConstraint) Descriptor() ([]byte, []int) {
-	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{9}
+	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *LinearConstraint) GetLineToleranceMm() float32 {
@@ -689,7 +856,7 @@ type OrientationConstraint struct {
 func (x *OrientationConstraint) Reset() {
 	*x = OrientationConstraint{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_motion_v1_motion_proto_msgTypes[10]
+		mi := &file_service_motion_v1_motion_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -702,7 +869,7 @@ func (x *OrientationConstraint) String() string {
 func (*OrientationConstraint) ProtoMessage() {}
 
 func (x *OrientationConstraint) ProtoReflect() protoreflect.Message {
-	mi := &file_service_motion_v1_motion_proto_msgTypes[10]
+	mi := &file_service_motion_v1_motion_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -715,7 +882,7 @@ func (x *OrientationConstraint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrientationConstraint.ProtoReflect.Descriptor instead.
 func (*OrientationConstraint) Descriptor() ([]byte, []int) {
-	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{10}
+	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *OrientationConstraint) GetOrientationToleranceDegs() float32 {
@@ -738,7 +905,7 @@ type CollisionSpecification struct {
 func (x *CollisionSpecification) Reset() {
 	*x = CollisionSpecification{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_motion_v1_motion_proto_msgTypes[11]
+		mi := &file_service_motion_v1_motion_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -751,7 +918,7 @@ func (x *CollisionSpecification) String() string {
 func (*CollisionSpecification) ProtoMessage() {}
 
 func (x *CollisionSpecification) ProtoReflect() protoreflect.Message {
-	mi := &file_service_motion_v1_motion_proto_msgTypes[11]
+	mi := &file_service_motion_v1_motion_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -764,7 +931,7 @@ func (x *CollisionSpecification) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CollisionSpecification.ProtoReflect.Descriptor instead.
 func (*CollisionSpecification) Descriptor() ([]byte, []int) {
-	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{11}
+	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *CollisionSpecification) GetAllows() []*CollisionSpecification_AllowedFrameCollisions {
@@ -786,7 +953,7 @@ type CollisionSpecification_AllowedFrameCollisions struct {
 func (x *CollisionSpecification_AllowedFrameCollisions) Reset() {
 	*x = CollisionSpecification_AllowedFrameCollisions{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_motion_v1_motion_proto_msgTypes[12]
+		mi := &file_service_motion_v1_motion_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -799,7 +966,7 @@ func (x *CollisionSpecification_AllowedFrameCollisions) String() string {
 func (*CollisionSpecification_AllowedFrameCollisions) ProtoMessage() {}
 
 func (x *CollisionSpecification_AllowedFrameCollisions) ProtoReflect() protoreflect.Message {
-	mi := &file_service_motion_v1_motion_proto_msgTypes[12]
+	mi := &file_service_motion_v1_motion_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -812,7 +979,7 @@ func (x *CollisionSpecification_AllowedFrameCollisions) ProtoReflect() protorefl
 
 // Deprecated: Use CollisionSpecification_AllowedFrameCollisions.ProtoReflect.Descriptor instead.
 func (*CollisionSpecification_AllowedFrameCollisions) Descriptor() ([]byte, []int) {
-	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{11, 0}
+	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{13, 0}
 }
 
 func (x *CollisionSpecification_AllowedFrameCollisions) GetFrame1() string {
@@ -887,6 +1054,44 @@ var file_service_motion_v1_motion_proto_rawDesc = []byte{
 	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72,
 	0x75, 0x63, 0x74, 0x52, 0x05, 0x65, 0x78, 0x74, 0x72, 0x61, 0x22, 0x2d, 0x0a, 0x11, 0x4d, 0x6f,
 	0x76, 0x65, 0x4f, 0x6e, 0x4d, 0x61, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x18, 0x0a, 0x07, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08,
+	0x52, 0x07, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x22, 0xac, 0x04, 0x0a, 0x12, 0x4d, 0x6f,
+	0x76, 0x65, 0x4f, 0x6e, 0x47, 0x6c, 0x6f, 0x62, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x12, 0x3a, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x6f, 0x50, 0x6f,
+	0x69, 0x6e, 0x74, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x12, 0x1d, 0x0a, 0x07, 0x68, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x01, 0x48, 0x00, 0x52, 0x07, 0x68, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67, 0x88, 0x01, 0x01, 0x12,
+	0x43, 0x0a, 0x0e, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x5f, 0x6e, 0x61, 0x6d,
+	0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63,
+	0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63,
+	0x65, 0x4e, 0x61, 0x6d, 0x65, 0x52, 0x0d, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74,
+	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x4e, 0x0a, 0x14, 0x6d, 0x6f, 0x76, 0x65, 0x6d, 0x65, 0x6e, 0x74,
+	0x5f, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e,
+	0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65,
+	0x52, 0x12, 0x6d, 0x6f, 0x76, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72,
+	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x39, 0x0a, 0x09, 0x6f, 0x62, 0x73, 0x74, 0x61, 0x63, 0x6c, 0x65,
+	0x73, 0x18, 0x06, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63,
+	0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x6f, 0x4f, 0x62, 0x73, 0x74,
+	0x61, 0x63, 0x6c, 0x65, 0x52, 0x09, 0x6f, 0x62, 0x73, 0x74, 0x61, 0x63, 0x6c, 0x65, 0x73, 0x12,
+	0x36, 0x0a, 0x15, 0x6c, 0x69, 0x6e, 0x65, 0x61, 0x72, 0x5f, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73,
+	0x5f, 0x70, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x63, 0x18, 0x07, 0x20, 0x01, 0x28, 0x02, 0x48, 0x01,
+	0x52, 0x12, 0x6c, 0x69, 0x6e, 0x65, 0x61, 0x72, 0x4d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x50, 0x65,
+	0x72, 0x53, 0x65, 0x63, 0x88, 0x01, 0x01, 0x12, 0x32, 0x0a, 0x13, 0x61, 0x6e, 0x67, 0x75, 0x6c,
+	0x61, 0x72, 0x5f, 0x64, 0x65, 0x67, 0x5f, 0x70, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x63, 0x18, 0x08,
+	0x20, 0x01, 0x28, 0x02, 0x48, 0x02, 0x52, 0x10, 0x61, 0x6e, 0x67, 0x75, 0x6c, 0x61, 0x72, 0x44,
+	0x65, 0x67, 0x50, 0x65, 0x72, 0x53, 0x65, 0x63, 0x88, 0x01, 0x01, 0x12, 0x2d, 0x0a, 0x05, 0x65,
+	0x78, 0x74, 0x72, 0x61, 0x18, 0x63, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f,
+	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72,
+	0x75, 0x63, 0x74, 0x52, 0x05, 0x65, 0x78, 0x74, 0x72, 0x61, 0x42, 0x0a, 0x0a, 0x08, 0x5f, 0x68,
+	0x65, 0x61, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x18, 0x0a, 0x16, 0x5f, 0x6c, 0x69, 0x6e, 0x65, 0x61,
+	0x72, 0x5f, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x5f, 0x70, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x63,
+	0x42, 0x16, 0x0a, 0x14, 0x5f, 0x61, 0x6e, 0x67, 0x75, 0x6c, 0x61, 0x72, 0x5f, 0x64, 0x65, 0x67,
+	0x5f, 0x70, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x63, 0x22, 0x2f, 0x0a, 0x13, 0x4d, 0x6f, 0x76, 0x65,
+	0x4f, 0x6e, 0x47, 0x6c, 0x6f, 0x62, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
 	0x18, 0x0a, 0x07, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08,
 	0x52, 0x07, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x22, 0xb5, 0x02, 0x0a, 0x1a, 0x4d, 0x6f,
 	0x76, 0x65, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e,
@@ -984,7 +1189,7 @@ var file_service_motion_v1_motion_proto_rawDesc = []byte{
 	0x61, 0x6d, 0x65, 0x43, 0x6f, 0x6c, 0x6c, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x16, 0x0a,
 	0x06, 0x66, 0x72, 0x61, 0x6d, 0x65, 0x31, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x66,
 	0x72, 0x61, 0x6d, 0x65, 0x31, 0x12, 0x16, 0x0a, 0x06, 0x66, 0x72, 0x61, 0x6d, 0x65, 0x32, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x66, 0x72, 0x61, 0x6d, 0x65, 0x32, 0x32, 0x8a, 0x06,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x66, 0x72, 0x61, 0x6d, 0x65, 0x32, 0x32, 0xad, 0x07,
 	0x0a, 0x0d, 0x4d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
 	0x82, 0x01, 0x0a, 0x04, 0x4d, 0x6f, 0x76, 0x65, 0x12, 0x23, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
 	0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x76,
@@ -1004,41 +1209,51 @@ var file_service_motion_v1_motion_proto_rawDesc = []byte{
 	0x2e, 0x2f, 0x76, 0x69, 0x61, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x73, 0x65,
 	0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x7b, 0x6e, 0x61,
 	0x6d, 0x65, 0x7d, 0x2f, 0x6d, 0x6f, 0x76, 0x65, 0x5f, 0x6f, 0x6e, 0x5f, 0x6d, 0x61, 0x70, 0x12,
-	0xc0, 0x01, 0x0a, 0x13, 0x4d, 0x6f, 0x76, 0x65, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x43, 0x6f,
-	0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x12, 0x32, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x73,
-	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x76, 0x31,
-	0x2e, 0x4d, 0x6f, 0x76, 0x65, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x43, 0x6f, 0x6d, 0x70, 0x6f,
-	0x6e, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x33, 0x2e, 0x76, 0x69,
+	0xa0, 0x01, 0x0a, 0x0b, 0x4d, 0x6f, 0x76, 0x65, 0x4f, 0x6e, 0x47, 0x6c, 0x6f, 0x62, 0x65, 0x12,
+	0x2a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x6d,
+	0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x76, 0x65, 0x4f, 0x6e, 0x47,
+	0x6c, 0x6f, 0x62, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x76, 0x69,
 	0x61, 0x6d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x74, 0x69, 0x6f,
-	0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x76, 0x65, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x43,
-	0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0x40, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x3a, 0x22, 0x38, 0x2f, 0x76, 0x69, 0x61, 0x6d, 0x2f,
-	0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x6d,
-	0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x7b, 0x6e, 0x61, 0x6d, 0x65, 0x7d, 0x2f, 0x6d, 0x6f, 0x76,
-	0x65, 0x5f, 0x73, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x5f, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65,
-	0x6e, 0x74, 0x12, 0x8b, 0x01, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x50, 0x6f, 0x73, 0x65, 0x12, 0x26,
+	0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x76, 0x65, 0x4f, 0x6e, 0x47, 0x6c, 0x6f, 0x62, 0x65,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x38, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x32,
+	0x22, 0x30, 0x2f, 0x76, 0x69, 0x61, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x73,
+	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x7b, 0x6e,
+	0x61, 0x6d, 0x65, 0x7d, 0x2f, 0x6d, 0x6f, 0x76, 0x65, 0x5f, 0x6f, 0x6e, 0x5f, 0x67, 0x6c, 0x6f,
+	0x62, 0x65, 0x12, 0xc0, 0x01, 0x0a, 0x13, 0x4d, 0x6f, 0x76, 0x65, 0x53, 0x69, 0x6e, 0x67, 0x6c,
+	0x65, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x12, 0x32, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e,
+	0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x76, 0x65, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x43, 0x6f,
+	0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x33,
 	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x6d, 0x6f,
-	0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x6f, 0x73, 0x65, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x73, 0x65,
-	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e,
-	0x47, 0x65, 0x74, 0x50, 0x6f, 0x73, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x2f, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x29, 0x12, 0x27, 0x2f, 0x76, 0x69, 0x61, 0x6d, 0x2f, 0x61,
-	0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x6d, 0x6f,
-	0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x7b, 0x6e, 0x61, 0x6d, 0x65, 0x7d, 0x2f, 0x70, 0x6f, 0x73, 0x65,
-	0x12, 0x87, 0x01, 0x0a, 0x09, 0x44, 0x6f, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x12, 0x20,
-	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e,
-	0x44, 0x6f, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76,
-	0x31, 0x2e, 0x44, 0x6f, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x22, 0x35, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2f, 0x22, 0x2d, 0x2f, 0x76, 0x69,
+	0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x76, 0x65, 0x53, 0x69, 0x6e, 0x67,
+	0x6c, 0x65, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0x40, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x3a, 0x22, 0x38, 0x2f, 0x76, 0x69,
 	0x61, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
 	0x65, 0x2f, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x7b, 0x6e, 0x61, 0x6d, 0x65, 0x7d, 0x2f,
-	0x64, 0x6f, 0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x42, 0x3f, 0x0a, 0x1a, 0x63, 0x6f,
-	0x6d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x6d,
-	0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x5a, 0x21, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61,
-	0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x2f, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x6d, 0x6f, 0x76, 0x65, 0x5f, 0x73, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x5f, 0x63, 0x6f, 0x6d, 0x70,
+	0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x12, 0x8b, 0x01, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x50, 0x6f, 0x73,
+	0x65, 0x12, 0x26, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x2e, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x6f,
+	0x73, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2e,
+	0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x6f, 0x73, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x2f, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x29, 0x12, 0x27, 0x2f, 0x76, 0x69, 0x61,
+	0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x2f, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x7b, 0x6e, 0x61, 0x6d, 0x65, 0x7d, 0x2f, 0x70,
+	0x6f, 0x73, 0x65, 0x12, 0x87, 0x01, 0x0a, 0x09, 0x44, 0x6f, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e,
+	0x64, 0x12, 0x20, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e,
+	0x76, 0x31, 0x2e, 0x44, 0x6f, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f,
+	0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x6f, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x35, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2f, 0x22, 0x2d,
+	0x2f, 0x76, 0x69, 0x61, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x73, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x2f, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x7b, 0x6e, 0x61, 0x6d,
+	0x65, 0x7d, 0x2f, 0x64, 0x6f, 0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x42, 0x3f, 0x0a,
+	0x1a, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x2e, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x5a, 0x21, 0x67, 0x6f, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x2f, 0x6d, 0x6f, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x76, 0x31, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1053,67 +1268,78 @@ func file_service_motion_v1_motion_proto_rawDescGZIP() []byte {
 	return file_service_motion_v1_motion_proto_rawDescData
 }
 
-var file_service_motion_v1_motion_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_service_motion_v1_motion_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_service_motion_v1_motion_proto_goTypes = []interface{}{
 	(*MoveRequest)(nil),                                   // 0: viam.service.motion.v1.MoveRequest
 	(*MoveResponse)(nil),                                  // 1: viam.service.motion.v1.MoveResponse
 	(*MoveOnMapRequest)(nil),                              // 2: viam.service.motion.v1.MoveOnMapRequest
 	(*MoveOnMapResponse)(nil),                             // 3: viam.service.motion.v1.MoveOnMapResponse
-	(*MoveSingleComponentRequest)(nil),                    // 4: viam.service.motion.v1.MoveSingleComponentRequest
-	(*MoveSingleComponentResponse)(nil),                   // 5: viam.service.motion.v1.MoveSingleComponentResponse
-	(*GetPoseRequest)(nil),                                // 6: viam.service.motion.v1.GetPoseRequest
-	(*GetPoseResponse)(nil),                               // 7: viam.service.motion.v1.GetPoseResponse
-	(*Constraints)(nil),                                   // 8: viam.service.motion.v1.Constraints
-	(*LinearConstraint)(nil),                              // 9: viam.service.motion.v1.LinearConstraint
-	(*OrientationConstraint)(nil),                         // 10: viam.service.motion.v1.OrientationConstraint
-	(*CollisionSpecification)(nil),                        // 11: viam.service.motion.v1.CollisionSpecification
-	(*CollisionSpecification_AllowedFrameCollisions)(nil), // 12: viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions
-	(*v1.PoseInFrame)(nil),                                // 13: viam.common.v1.PoseInFrame
-	(*v1.ResourceName)(nil),                               // 14: viam.common.v1.ResourceName
-	(*v1.WorldState)(nil),                                 // 15: viam.common.v1.WorldState
-	(*structpb.Struct)(nil),                               // 16: google.protobuf.Struct
-	(*v1.Pose)(nil),                                       // 17: viam.common.v1.Pose
-	(*v1.Transform)(nil),                                  // 18: viam.common.v1.Transform
-	(*v1.DoCommandRequest)(nil),                           // 19: viam.common.v1.DoCommandRequest
-	(*v1.DoCommandResponse)(nil),                          // 20: viam.common.v1.DoCommandResponse
+	(*MoveOnGlobeRequest)(nil),                            // 4: viam.service.motion.v1.MoveOnGlobeRequest
+	(*MoveOnGlobeResponse)(nil),                           // 5: viam.service.motion.v1.MoveOnGlobeResponse
+	(*MoveSingleComponentRequest)(nil),                    // 6: viam.service.motion.v1.MoveSingleComponentRequest
+	(*MoveSingleComponentResponse)(nil),                   // 7: viam.service.motion.v1.MoveSingleComponentResponse
+	(*GetPoseRequest)(nil),                                // 8: viam.service.motion.v1.GetPoseRequest
+	(*GetPoseResponse)(nil),                               // 9: viam.service.motion.v1.GetPoseResponse
+	(*Constraints)(nil),                                   // 10: viam.service.motion.v1.Constraints
+	(*LinearConstraint)(nil),                              // 11: viam.service.motion.v1.LinearConstraint
+	(*OrientationConstraint)(nil),                         // 12: viam.service.motion.v1.OrientationConstraint
+	(*CollisionSpecification)(nil),                        // 13: viam.service.motion.v1.CollisionSpecification
+	(*CollisionSpecification_AllowedFrameCollisions)(nil), // 14: viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions
+	(*v1.PoseInFrame)(nil),                                // 15: viam.common.v1.PoseInFrame
+	(*v1.ResourceName)(nil),                               // 16: viam.common.v1.ResourceName
+	(*v1.WorldState)(nil),                                 // 17: viam.common.v1.WorldState
+	(*structpb.Struct)(nil),                               // 18: google.protobuf.Struct
+	(*v1.Pose)(nil),                                       // 19: viam.common.v1.Pose
+	(*v1.GeoPoint)(nil),                                   // 20: viam.common.v1.GeoPoint
+	(*v1.GeoObstacle)(nil),                                // 21: viam.common.v1.GeoObstacle
+	(*v1.Transform)(nil),                                  // 22: viam.common.v1.Transform
+	(*v1.DoCommandRequest)(nil),                           // 23: viam.common.v1.DoCommandRequest
+	(*v1.DoCommandResponse)(nil),                          // 24: viam.common.v1.DoCommandResponse
 }
 var file_service_motion_v1_motion_proto_depIdxs = []int32{
-	13, // 0: viam.service.motion.v1.MoveRequest.destination:type_name -> viam.common.v1.PoseInFrame
-	14, // 1: viam.service.motion.v1.MoveRequest.component_name:type_name -> viam.common.v1.ResourceName
-	15, // 2: viam.service.motion.v1.MoveRequest.world_state:type_name -> viam.common.v1.WorldState
-	8,  // 3: viam.service.motion.v1.MoveRequest.constraints:type_name -> viam.service.motion.v1.Constraints
-	16, // 4: viam.service.motion.v1.MoveRequest.extra:type_name -> google.protobuf.Struct
-	17, // 5: viam.service.motion.v1.MoveOnMapRequest.destination:type_name -> viam.common.v1.Pose
-	14, // 6: viam.service.motion.v1.MoveOnMapRequest.component_name:type_name -> viam.common.v1.ResourceName
-	14, // 7: viam.service.motion.v1.MoveOnMapRequest.slam_service_name:type_name -> viam.common.v1.ResourceName
-	16, // 8: viam.service.motion.v1.MoveOnMapRequest.extra:type_name -> google.protobuf.Struct
-	13, // 9: viam.service.motion.v1.MoveSingleComponentRequest.destination:type_name -> viam.common.v1.PoseInFrame
-	14, // 10: viam.service.motion.v1.MoveSingleComponentRequest.component_name:type_name -> viam.common.v1.ResourceName
-	15, // 11: viam.service.motion.v1.MoveSingleComponentRequest.world_state:type_name -> viam.common.v1.WorldState
-	16, // 12: viam.service.motion.v1.MoveSingleComponentRequest.extra:type_name -> google.protobuf.Struct
-	14, // 13: viam.service.motion.v1.GetPoseRequest.component_name:type_name -> viam.common.v1.ResourceName
-	18, // 14: viam.service.motion.v1.GetPoseRequest.supplemental_transforms:type_name -> viam.common.v1.Transform
-	16, // 15: viam.service.motion.v1.GetPoseRequest.extra:type_name -> google.protobuf.Struct
-	13, // 16: viam.service.motion.v1.GetPoseResponse.pose:type_name -> viam.common.v1.PoseInFrame
-	9,  // 17: viam.service.motion.v1.Constraints.linear_constraint:type_name -> viam.service.motion.v1.LinearConstraint
-	10, // 18: viam.service.motion.v1.Constraints.orientation_constraint:type_name -> viam.service.motion.v1.OrientationConstraint
-	11, // 19: viam.service.motion.v1.Constraints.collision_specification:type_name -> viam.service.motion.v1.CollisionSpecification
-	12, // 20: viam.service.motion.v1.CollisionSpecification.allows:type_name -> viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions
-	0,  // 21: viam.service.motion.v1.MotionService.Move:input_type -> viam.service.motion.v1.MoveRequest
-	2,  // 22: viam.service.motion.v1.MotionService.MoveOnMap:input_type -> viam.service.motion.v1.MoveOnMapRequest
-	4,  // 23: viam.service.motion.v1.MotionService.MoveSingleComponent:input_type -> viam.service.motion.v1.MoveSingleComponentRequest
-	6,  // 24: viam.service.motion.v1.MotionService.GetPose:input_type -> viam.service.motion.v1.GetPoseRequest
-	19, // 25: viam.service.motion.v1.MotionService.DoCommand:input_type -> viam.common.v1.DoCommandRequest
-	1,  // 26: viam.service.motion.v1.MotionService.Move:output_type -> viam.service.motion.v1.MoveResponse
-	3,  // 27: viam.service.motion.v1.MotionService.MoveOnMap:output_type -> viam.service.motion.v1.MoveOnMapResponse
-	5,  // 28: viam.service.motion.v1.MotionService.MoveSingleComponent:output_type -> viam.service.motion.v1.MoveSingleComponentResponse
-	7,  // 29: viam.service.motion.v1.MotionService.GetPose:output_type -> viam.service.motion.v1.GetPoseResponse
-	20, // 30: viam.service.motion.v1.MotionService.DoCommand:output_type -> viam.common.v1.DoCommandResponse
-	26, // [26:31] is the sub-list for method output_type
-	21, // [21:26] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	15, // 0: viam.service.motion.v1.MoveRequest.destination:type_name -> viam.common.v1.PoseInFrame
+	16, // 1: viam.service.motion.v1.MoveRequest.component_name:type_name -> viam.common.v1.ResourceName
+	17, // 2: viam.service.motion.v1.MoveRequest.world_state:type_name -> viam.common.v1.WorldState
+	10, // 3: viam.service.motion.v1.MoveRequest.constraints:type_name -> viam.service.motion.v1.Constraints
+	18, // 4: viam.service.motion.v1.MoveRequest.extra:type_name -> google.protobuf.Struct
+	19, // 5: viam.service.motion.v1.MoveOnMapRequest.destination:type_name -> viam.common.v1.Pose
+	16, // 6: viam.service.motion.v1.MoveOnMapRequest.component_name:type_name -> viam.common.v1.ResourceName
+	16, // 7: viam.service.motion.v1.MoveOnMapRequest.slam_service_name:type_name -> viam.common.v1.ResourceName
+	18, // 8: viam.service.motion.v1.MoveOnMapRequest.extra:type_name -> google.protobuf.Struct
+	20, // 9: viam.service.motion.v1.MoveOnGlobeRequest.destination:type_name -> viam.common.v1.GeoPoint
+	16, // 10: viam.service.motion.v1.MoveOnGlobeRequest.component_name:type_name -> viam.common.v1.ResourceName
+	16, // 11: viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name:type_name -> viam.common.v1.ResourceName
+	21, // 12: viam.service.motion.v1.MoveOnGlobeRequest.obstacles:type_name -> viam.common.v1.GeoObstacle
+	18, // 13: viam.service.motion.v1.MoveOnGlobeRequest.extra:type_name -> google.protobuf.Struct
+	15, // 14: viam.service.motion.v1.MoveSingleComponentRequest.destination:type_name -> viam.common.v1.PoseInFrame
+	16, // 15: viam.service.motion.v1.MoveSingleComponentRequest.component_name:type_name -> viam.common.v1.ResourceName
+	17, // 16: viam.service.motion.v1.MoveSingleComponentRequest.world_state:type_name -> viam.common.v1.WorldState
+	18, // 17: viam.service.motion.v1.MoveSingleComponentRequest.extra:type_name -> google.protobuf.Struct
+	16, // 18: viam.service.motion.v1.GetPoseRequest.component_name:type_name -> viam.common.v1.ResourceName
+	22, // 19: viam.service.motion.v1.GetPoseRequest.supplemental_transforms:type_name -> viam.common.v1.Transform
+	18, // 20: viam.service.motion.v1.GetPoseRequest.extra:type_name -> google.protobuf.Struct
+	15, // 21: viam.service.motion.v1.GetPoseResponse.pose:type_name -> viam.common.v1.PoseInFrame
+	11, // 22: viam.service.motion.v1.Constraints.linear_constraint:type_name -> viam.service.motion.v1.LinearConstraint
+	12, // 23: viam.service.motion.v1.Constraints.orientation_constraint:type_name -> viam.service.motion.v1.OrientationConstraint
+	13, // 24: viam.service.motion.v1.Constraints.collision_specification:type_name -> viam.service.motion.v1.CollisionSpecification
+	14, // 25: viam.service.motion.v1.CollisionSpecification.allows:type_name -> viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions
+	0,  // 26: viam.service.motion.v1.MotionService.Move:input_type -> viam.service.motion.v1.MoveRequest
+	2,  // 27: viam.service.motion.v1.MotionService.MoveOnMap:input_type -> viam.service.motion.v1.MoveOnMapRequest
+	4,  // 28: viam.service.motion.v1.MotionService.MoveOnGlobe:input_type -> viam.service.motion.v1.MoveOnGlobeRequest
+	6,  // 29: viam.service.motion.v1.MotionService.MoveSingleComponent:input_type -> viam.service.motion.v1.MoveSingleComponentRequest
+	8,  // 30: viam.service.motion.v1.MotionService.GetPose:input_type -> viam.service.motion.v1.GetPoseRequest
+	23, // 31: viam.service.motion.v1.MotionService.DoCommand:input_type -> viam.common.v1.DoCommandRequest
+	1,  // 32: viam.service.motion.v1.MotionService.Move:output_type -> viam.service.motion.v1.MoveResponse
+	3,  // 33: viam.service.motion.v1.MotionService.MoveOnMap:output_type -> viam.service.motion.v1.MoveOnMapResponse
+	5,  // 34: viam.service.motion.v1.MotionService.MoveOnGlobe:output_type -> viam.service.motion.v1.MoveOnGlobeResponse
+	7,  // 35: viam.service.motion.v1.MotionService.MoveSingleComponent:output_type -> viam.service.motion.v1.MoveSingleComponentResponse
+	9,  // 36: viam.service.motion.v1.MotionService.GetPose:output_type -> viam.service.motion.v1.GetPoseResponse
+	24, // 37: viam.service.motion.v1.MotionService.DoCommand:output_type -> viam.common.v1.DoCommandResponse
+	32, // [32:38] is the sub-list for method output_type
+	26, // [26:32] is the sub-list for method input_type
+	26, // [26:26] is the sub-list for extension type_name
+	26, // [26:26] is the sub-list for extension extendee
+	0,  // [0:26] is the sub-list for field type_name
 }
 
 func init() { file_service_motion_v1_motion_proto_init() }
@@ -1171,7 +1397,7 @@ func file_service_motion_v1_motion_proto_init() {
 			}
 		}
 		file_service_motion_v1_motion_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MoveSingleComponentRequest); i {
+			switch v := v.(*MoveOnGlobeRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1183,7 +1409,7 @@ func file_service_motion_v1_motion_proto_init() {
 			}
 		}
 		file_service_motion_v1_motion_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MoveSingleComponentResponse); i {
+			switch v := v.(*MoveOnGlobeResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1195,7 +1421,7 @@ func file_service_motion_v1_motion_proto_init() {
 			}
 		}
 		file_service_motion_v1_motion_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetPoseRequest); i {
+			switch v := v.(*MoveSingleComponentRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1207,7 +1433,7 @@ func file_service_motion_v1_motion_proto_init() {
 			}
 		}
 		file_service_motion_v1_motion_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetPoseResponse); i {
+			switch v := v.(*MoveSingleComponentResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1219,7 +1445,7 @@ func file_service_motion_v1_motion_proto_init() {
 			}
 		}
 		file_service_motion_v1_motion_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Constraints); i {
+			switch v := v.(*GetPoseRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1231,7 +1457,7 @@ func file_service_motion_v1_motion_proto_init() {
 			}
 		}
 		file_service_motion_v1_motion_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*LinearConstraint); i {
+			switch v := v.(*GetPoseResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1243,7 +1469,7 @@ func file_service_motion_v1_motion_proto_init() {
 			}
 		}
 		file_service_motion_v1_motion_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OrientationConstraint); i {
+			switch v := v.(*Constraints); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1255,7 +1481,7 @@ func file_service_motion_v1_motion_proto_init() {
 			}
 		}
 		file_service_motion_v1_motion_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CollisionSpecification); i {
+			switch v := v.(*LinearConstraint); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1267,6 +1493,30 @@ func file_service_motion_v1_motion_proto_init() {
 			}
 		}
 		file_service_motion_v1_motion_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*OrientationConstraint); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_motion_v1_motion_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CollisionSpecification); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_motion_v1_motion_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CollisionSpecification_AllowedFrameCollisions); i {
 			case 0:
 				return &v.state
@@ -1281,15 +1531,16 @@ func file_service_motion_v1_motion_proto_init() {
 	}
 	file_service_motion_v1_motion_proto_msgTypes[0].OneofWrappers = []interface{}{}
 	file_service_motion_v1_motion_proto_msgTypes[4].OneofWrappers = []interface{}{}
-	file_service_motion_v1_motion_proto_msgTypes[9].OneofWrappers = []interface{}{}
-	file_service_motion_v1_motion_proto_msgTypes[10].OneofWrappers = []interface{}{}
+	file_service_motion_v1_motion_proto_msgTypes[6].OneofWrappers = []interface{}{}
+	file_service_motion_v1_motion_proto_msgTypes[11].OneofWrappers = []interface{}{}
+	file_service_motion_v1_motion_proto_msgTypes[12].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_motion_v1_motion_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

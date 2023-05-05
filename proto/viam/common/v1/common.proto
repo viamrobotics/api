@@ -130,6 +130,15 @@ message GeoPoint {
   double longitude = 2;
 }
 
+// GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,
+// captured in latitude and longitude.
+message GeoObstacle {
+  // Location of the obstacle
+  GeoPoint location = 1;
+  // Geometries that describe the obstacle, where embedded Pose data is with respect to the specified location
+  repeated Geometry geometries = 2;
+}
+
 // Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference
 // frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
 // reference frame as observed within the second reference frame.
