@@ -140,6 +140,94 @@ export namespace MoveOnMapResponse {
   }
 }
 
+export class MoveOnGlobeRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasDestination(): boolean;
+  clearDestination(): void;
+  getDestination(): common_v1_common_pb.GeoPoint | undefined;
+  setDestination(value?: common_v1_common_pb.GeoPoint): void;
+
+  hasHeading(): boolean;
+  clearHeading(): void;
+  getHeading(): number;
+  setHeading(value: number): void;
+
+  hasComponentName(): boolean;
+  clearComponentName(): void;
+  getComponentName(): common_v1_common_pb.ResourceName | undefined;
+  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+
+  hasMovementSensorName(): boolean;
+  clearMovementSensorName(): void;
+  getMovementSensorName(): common_v1_common_pb.ResourceName | undefined;
+  setMovementSensorName(value?: common_v1_common_pb.ResourceName): void;
+
+  clearObstaclesList(): void;
+  getObstaclesList(): Array<common_v1_common_pb.GeoObstacle>;
+  setObstaclesList(value: Array<common_v1_common_pb.GeoObstacle>): void;
+  addObstacles(value?: common_v1_common_pb.GeoObstacle, index?: number): common_v1_common_pb.GeoObstacle;
+
+  hasLinearMetersPerSec(): boolean;
+  clearLinearMetersPerSec(): void;
+  getLinearMetersPerSec(): number;
+  setLinearMetersPerSec(value: number): void;
+
+  hasAngularDegPerSec(): boolean;
+  clearAngularDegPerSec(): void;
+  getAngularDegPerSec(): number;
+  setAngularDegPerSec(value: number): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MoveOnGlobeRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: MoveOnGlobeRequest): MoveOnGlobeRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MoveOnGlobeRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MoveOnGlobeRequest;
+  static deserializeBinaryFromReader(message: MoveOnGlobeRequest, reader: jspb.BinaryReader): MoveOnGlobeRequest;
+}
+
+export namespace MoveOnGlobeRequest {
+  export type AsObject = {
+    name: string,
+    destination?: common_v1_common_pb.GeoPoint.AsObject,
+    heading: number,
+    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    movementSensorName?: common_v1_common_pb.ResourceName.AsObject,
+    obstaclesList: Array<common_v1_common_pb.GeoObstacle.AsObject>,
+    linearMetersPerSec: number,
+    angularDegPerSec: number,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class MoveOnGlobeResponse extends jspb.Message {
+  getSuccess(): boolean;
+  setSuccess(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MoveOnGlobeResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: MoveOnGlobeResponse): MoveOnGlobeResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MoveOnGlobeResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MoveOnGlobeResponse;
+  static deserializeBinaryFromReader(message: MoveOnGlobeResponse, reader: jspb.BinaryReader): MoveOnGlobeResponse;
+}
+
+export namespace MoveOnGlobeResponse {
+  export type AsObject = {
+    success: boolean,
+  }
+}
+
 export class MoveSingleComponentRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
