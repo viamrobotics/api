@@ -3533,7 +3533,10 @@ proto.google.api.ClientLibraryOrganization = {
   CLOUD: 1,
   ADS: 2,
   PHOTOS: 3,
-  STREET_VIEW: 4
+  STREET_VIEW: 4,
+  SHOPPING: 5,
+  GEO: 6,
+  GENERATIVE_AI: 7
 };
 
 /**

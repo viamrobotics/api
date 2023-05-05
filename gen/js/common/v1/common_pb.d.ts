@@ -425,6 +425,34 @@ export namespace GeoPoint {
   }
 }
 
+export class GeoObstacle extends jspb.Message {
+  hasLocation(): boolean;
+  clearLocation(): void;
+  getLocation(): GeoPoint | undefined;
+  setLocation(value?: GeoPoint): void;
+
+  clearGeometriesList(): void;
+  getGeometriesList(): Array<Geometry>;
+  setGeometriesList(value: Array<Geometry>): void;
+  addGeometries(value?: Geometry, index?: number): Geometry;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GeoObstacle.AsObject;
+  static toObject(includeInstance: boolean, msg: GeoObstacle): GeoObstacle.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GeoObstacle, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GeoObstacle;
+  static deserializeBinaryFromReader(message: GeoObstacle, reader: jspb.BinaryReader): GeoObstacle;
+}
+
+export namespace GeoObstacle {
+  export type AsObject = {
+    location?: GeoPoint.AsObject,
+    geometriesList: Array<Geometry.AsObject>,
+  }
+}
+
 export class Transform extends jspb.Message {
   getReferenceFrame(): string;
   setReferenceFrame(value: string): void;
