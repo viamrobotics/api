@@ -13,6 +13,8 @@ lint:
     - DEFAULT
   except:
     - PACKAGE_DIRECTORY_MATCH
+  ignore:
+    - health/v1/health.proto
   ignore_only:
     RPC_RESPONSE_STANDARD_NAME:
       - component/camera/v1/camera.proto
