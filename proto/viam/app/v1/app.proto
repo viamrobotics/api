@@ -95,6 +95,9 @@ service AppService {
   // Update a robot
   rpc UpdateRobotPart(UpdateRobotPartRequest) returns (UpdateRobotPartResponse);
 
+  // Rename a robot part
+  rpc RenameRobotPart(RenameRobotPartRequest) returns (RenameRobotPartResponse);
+
   // Create a new robot part
   rpc NewRobotPart(NewRobotPartRequest) returns (NewRobotPartResponse);
 
@@ -541,6 +544,18 @@ message UpdateRobotPartRequest {
 
 message UpdateRobotPartResponse {
   RobotPart part = 1;
+}
+
+message RenameRobotPartRequest {
+  string id = 1;
+  string new_name = 2;
+}
+
+message RenameRobotPartResponse {
+  string name = 1;
+  string dns_name = 2;
+  string fqdn = 3;
+  string local_fqdn = 4;
 }
 
 message NewRobotPartRequest {
