@@ -206,6 +206,8 @@ type GetPointCloudMapResponse struct {
 	// value encodes a confidence score for that data point. Viam expects the
 	// confidence score to be encoded in the blue parameter of the RGB value, on a
 	// scale from 1-100.
+	//
+	// Pointclouds are little endian encoded.
 	PointCloudPcdChunk []byte `protobuf:"bytes,1,opt,name=point_cloud_pcd_chunk,json=pointCloudPcdChunk,proto3" json:"point_cloud_pcd_chunk,omitempty"`
 }
 
