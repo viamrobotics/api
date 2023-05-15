@@ -14,6 +14,7 @@ service BillingService {
   rpc GetBillingSummary(GetBillingSummaryRequest) returns (GetBillingSummaryResponse);
 }
 
+// Will be deprecated/removed in favor of GetCurrentMonthUsageSummaryResponse
 message CurrentMonthUsageSummary {
   double cloud_storage_usage = 1;
   double cloud_storage_usage_cost = 2;
@@ -105,10 +106,59 @@ message GetItemizedInvoiceResponse {
   Invoice invoice = 1;
 }
 
+// Begin Suggestion 1:
+message GetPaymentMethodCardRequest {
+  string org_id = 1;
+}
+
+message GetPaymentMethodCardResponse {
+  PaymentMethodCard method = 1;
+}
+// End Suggestion 1
+
+// Begin Suggestion 2:
+message GetPaymentMethodRequest {
+  string org_id = 1;
+}
+
+// would go at top of file with the rest of the
+// non-request/response message types
+enum PaymentMethod {
+  PAYMENT_METHOD_UNSPECIFIED = 0;
+  PAYMENT_METHOD_CARD = 1;
+}
+
+message GetPaymentMethodResponse {
+  PaymentMethodType type = 1;
+  // defined if type is PAYMENT_METHOD_CARD
+  optional PaymentMethodCard method = 2;
+}
+// End Suggestion 2
+
+message GetBillingSummaryRequest {
+  string org_id = 1;
+}
+message GetBalanceSummaryResponse {
+  // all unpaid balances at the end of the last billing cycle
+  double statement_balance = 1;
+  // statement_balance + current_month_balance
+  double current_balance = 2;
+  // equivalent to GetCurrentMonthUsageSummaryResponse.total_usage_with_discount
+  double current_month_balance = 3;
+  // due date for current month usage
+  google.protobuf.Timestamp current_month_due_date = 4;
+  string invoice_email = 5;
+}
+
 message GetBillingSummaryRequest {
   string org_id = 1;
 }
 
+// Will be deprecated/removed in favor of smaller requests to:
+// - GetCurrentMonthUsageSummary
+// - GetInvoiceHistory
+// - GetBalanceSummary
+// - GetPaymentMethod
 message GetBillingSummaryResponse {
   CurrentMonthUsageSummary usage_summary = 1;
   repeated InvoiceSummary invoices = 2;
