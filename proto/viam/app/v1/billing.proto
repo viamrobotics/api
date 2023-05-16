@@ -15,9 +15,9 @@ service BillingService {
   // Detailed breakdown of current month's costs
   rpc GetCurrentMonthUsage(GetCurrentMonthUsageRequest) returns (GetCurrentMonthUsageResponse);
   // Org-level information (like billing email and payment details)
-  rpc GetBillingInformation(GetBillingInformationRequest) returns (GetBillingInformationResponse);
+  rpc GetOrgBillingInformation(GetOrgBillingInformationRequest) returns (GetOrgBillingInformationResponse);
   // Total outstanding balance and previous invoices
-  rpc GetBalanceSummary(GetBalanceSummaryRequest) returns (GetBalanceSummaryResponse);
+  rpc GetInvoicesSummary(GetInvoicesSummaryRequest) returns (GetInvoicesSummaryResponse);
 }
 
 // TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage
@@ -142,11 +142,11 @@ message GetItemizedInvoiceResponse {
   Invoice invoice = 1;
 }
 
-message GetBillingInformationRequest {
+message GetOrgBillingInformationRequest {
   string org_id = 1;
 }
 
-message GetBillingInformationResponse {
+message GetOrgBillingInformationResponse {
   PaymentMethodType type = 1;
   string billing_email = 2;
 
@@ -154,11 +154,11 @@ message GetBillingInformationResponse {
   optional PaymentMethodCard method = 3;
 }
 
-message GetBalanceSummaryRequest {
+message GetInvoicesSummaryRequest {
   string org_id = 1;
 }
 
-message GetBalanceSummaryResponse {
+message GetInvoicesSummaryResponse {
   // all unpaid balances at the end of the last billing cycle
   double outstanding_balance = 1;
   // all previous invoices
