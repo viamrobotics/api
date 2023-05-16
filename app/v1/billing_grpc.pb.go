@@ -27,6 +27,12 @@ type BillingServiceClient interface {
 	GetInvoiceHistory(ctx context.Context, in *GetInvoiceHistoryRequest, opts ...grpc.CallOption) (*GetInvoiceHistoryResponse, error)
 	GetItemizedInvoice(ctx context.Context, in *GetItemizedInvoiceRequest, opts ...grpc.CallOption) (*GetItemizedInvoiceResponse, error)
 	GetBillingSummary(ctx context.Context, in *GetBillingSummaryRequest, opts ...grpc.CallOption) (*GetBillingSummaryResponse, error)
+	// Detailed breakdown of current month's costs
+	GetCurrentMonthUsage(ctx context.Context, in *GetCurrentMonthUsageRequest, opts ...grpc.CallOption) (*GetCurrentMonthUsageResponse, error)
+	// Org-level information (like billing email and payment details)
+	GetOrgBillingInformation(ctx context.Context, in *GetOrgBillingInformationRequest, opts ...grpc.CallOption) (*GetOrgBillingInformationResponse, error)
+	// Total outstanding balance and previous invoices
+	GetInvoicesSummary(ctx context.Context, in *GetInvoicesSummaryRequest, opts ...grpc.CallOption) (*GetInvoicesSummaryResponse, error)
 }
 
 type billingServiceClient struct {
@@ -82,6 +88,33 @@ func (c *billingServiceClient) GetBillingSummary(ctx context.Context, in *GetBil
 	return out, nil
 }
 
+func (c *billingServiceClient) GetCurrentMonthUsage(ctx context.Context, in *GetCurrentMonthUsageRequest, opts ...grpc.CallOption) (*GetCurrentMonthUsageResponse, error) {
+	out := new(GetCurrentMonthUsageResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.BillingService/GetCurrentMonthUsage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingServiceClient) GetOrgBillingInformation(ctx context.Context, in *GetOrgBillingInformationRequest, opts ...grpc.CallOption) (*GetOrgBillingInformationResponse, error) {
+	out := new(GetOrgBillingInformationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.BillingService/GetOrgBillingInformation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingServiceClient) GetInvoicesSummary(ctx context.Context, in *GetInvoicesSummaryRequest, opts ...grpc.CallOption) (*GetInvoicesSummaryResponse, error) {
+	out := new(GetInvoicesSummaryResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.BillingService/GetInvoicesSummary", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BillingServiceServer is the server API for BillingService service.
 // All implementations must embed UnimplementedBillingServiceServer
 // for forward compatibility
@@ -91,6 +124,12 @@ type BillingServiceServer interface {
 	GetInvoiceHistory(context.Context, *GetInvoiceHistoryRequest) (*GetInvoiceHistoryResponse, error)
 	GetItemizedInvoice(context.Context, *GetItemizedInvoiceRequest) (*GetItemizedInvoiceResponse, error)
 	GetBillingSummary(context.Context, *GetBillingSummaryRequest) (*GetBillingSummaryResponse, error)
+	// Detailed breakdown of current month's costs
+	GetCurrentMonthUsage(context.Context, *GetCurrentMonthUsageRequest) (*GetCurrentMonthUsageResponse, error)
+	// Org-level information (like billing email and payment details)
+	GetOrgBillingInformation(context.Context, *GetOrgBillingInformationRequest) (*GetOrgBillingInformationResponse, error)
+	// Total outstanding balance and previous invoices
+	GetInvoicesSummary(context.Context, *GetInvoicesSummaryRequest) (*GetInvoicesSummaryResponse, error)
 	mustEmbedUnimplementedBillingServiceServer()
 }
 
@@ -112,6 +151,15 @@ func (UnimplementedBillingServiceServer) GetItemizedInvoice(context.Context, *Ge
 }
 func (UnimplementedBillingServiceServer) GetBillingSummary(context.Context, *GetBillingSummaryRequest) (*GetBillingSummaryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBillingSummary not implemented")
+}
+func (UnimplementedBillingServiceServer) GetCurrentMonthUsage(context.Context, *GetCurrentMonthUsageRequest) (*GetCurrentMonthUsageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentMonthUsage not implemented")
+}
+func (UnimplementedBillingServiceServer) GetOrgBillingInformation(context.Context, *GetOrgBillingInformationRequest) (*GetOrgBillingInformationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrgBillingInformation not implemented")
+}
+func (UnimplementedBillingServiceServer) GetInvoicesSummary(context.Context, *GetInvoicesSummaryRequest) (*GetInvoicesSummaryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInvoicesSummary not implemented")
 }
 func (UnimplementedBillingServiceServer) mustEmbedUnimplementedBillingServiceServer() {}
 
@@ -216,6 +264,60 @@ func _BillingService_GetBillingSummary_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BillingService_GetCurrentMonthUsage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCurrentMonthUsageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BillingServiceServer).GetCurrentMonthUsage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.BillingService/GetCurrentMonthUsage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BillingServiceServer).GetCurrentMonthUsage(ctx, req.(*GetCurrentMonthUsageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BillingService_GetOrgBillingInformation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrgBillingInformationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BillingServiceServer).GetOrgBillingInformation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.BillingService/GetOrgBillingInformation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BillingServiceServer).GetOrgBillingInformation(ctx, req.(*GetOrgBillingInformationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BillingService_GetInvoicesSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetInvoicesSummaryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BillingServiceServer).GetInvoicesSummary(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.BillingService/GetInvoicesSummary",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BillingServiceServer).GetInvoicesSummary(ctx, req.(*GetInvoicesSummaryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BillingService_ServiceDesc is the grpc.ServiceDesc for BillingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -242,6 +344,18 @@ var BillingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBillingSummary",
 			Handler:    _BillingService_GetBillingSummary_Handler,
+		},
+		{
+			MethodName: "GetCurrentMonthUsage",
+			Handler:    _BillingService_GetCurrentMonthUsage_Handler,
+		},
+		{
+			MethodName: "GetOrgBillingInformation",
+			Handler:    _BillingService_GetOrgBillingInformation_Handler,
+		},
+		{
+			MethodName: "GetInvoicesSummary",
+			Handler:    _BillingService_GetInvoicesSummary_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
