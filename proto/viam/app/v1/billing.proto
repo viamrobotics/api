@@ -12,9 +12,15 @@ service BillingService {
   rpc GetInvoiceHistory(GetInvoiceHistoryRequest) returns (GetInvoiceHistoryResponse);
   rpc GetItemizedInvoice(GetItemizedInvoiceRequest) returns (GetItemizedInvoiceResponse);
   rpc GetBillingSummary(GetBillingSummaryRequest) returns (GetBillingSummaryResponse);
+  // Detailed breakdown of current month's costs
+  rpc GetCurrentMonthUsage(GetCurrentMonthUsageRequest) returns (GetCurrentMonthUsageResponse);
+  // Org-level information (like billing email and payment details)
+  rpc GetBillingInformation(GetBillingInformationRequest) returns (GetBillingInformationResponse);
+  // Total outstanding balance and previous invoices
+  rpc GetBalanceSummary(GetBalanceSummaryRequest) returns (GetBalanceSummaryResponse);
 }
 
-// Will be deprecated/removed in favor of GetCurrentMonthUsageSummaryResponse
+// TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage
 message CurrentMonthUsageSummary {
   double cloud_storage_usage = 1;
   double cloud_storage_usage_cost = 2;
@@ -58,15 +64,22 @@ message Invoice {
   string emailed_to = 7;
 }
 
+enum PaymentMethodType {
+  PAYMENT_METHOD_TYPE_UNSPECIFIED = 0;
+  PAYMENT_METHOD_TYPE_CARD = 1;
+}
+
 message PaymentMethodCard {
   string brand = 1;
   string last_four_digits = 2;
 }
 
+// TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage
 message GetCurrentMonthUsageSummaryRequest {
   string org_id = 1;
 }
 
+// TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage
 message GetCurrentMonthUsageSummaryResponse {
   double cloud_storage_usage = 1;
   double cloud_storage_usage_cost = 2;
@@ -81,86 +94,83 @@ message GetCurrentMonthUsageSummaryResponse {
   double total_usage_without_discount = 11; // returns amt without any discounts applied
 }
 
+message GetCurrentMonthUsageRequest {
+  string org_id = 1;
+}
+
+message GetCurrentMonthUsageResponse {
+  google.protobuf.Timestamp start_date = 1;
+  google.protobuf.Timestamp end_date = 2;
+  double cloud_storage_usage_cost = 3;
+  double data_upload_usage_cost = 4;
+  double data_egres_usage_cost = 5;
+  double remote_control_usage_cost = 6;
+  double standard_compute_usage_cost = 7;
+  double discount_amount = 8;
+  double total_usage_with_discount = 9;
+  double total_usage_without_discount = 10;
+}
+
+// TODO(APP-1865) may want to remove
 message GetUnpaidBalanceRequest {
   string org_id = 1;
 }
 
+// TODO(APP-1865) may want to remove
 message GetUnpaidBalanceResponse {
   double unpaid_balance = 1;
   google.protobuf.Timestamp unpaid_balance_due_date = 2;
 }
 
+// TODO(APP-1865) may want to remove
 message GetInvoiceHistoryRequest {
   string org_id = 1;
 }
 
+// TODO(APP-1865) may want to remove
 message GetInvoiceHistoryResponse {
   repeated InvoiceSummary invoices = 1;
 }
 
+// TODO(APP-1865) may want to remove
 message GetItemizedInvoiceRequest {
   string id = 1;
 }
 
+// TODO(APP-1865) may want to remove
 message GetItemizedInvoiceResponse {
   Invoice invoice = 1;
 }
 
-// Begin Suggestion 1:
-message GetPaymentMethodCardRequest {
+message GetBillingInformationRequest {
   string org_id = 1;
 }
 
-message GetPaymentMethodCardResponse {
-  PaymentMethodCard method = 1;
-}
-// End Suggestion 1
-
-
-// Begin Suggestion 2:
-message GetPaymentMethodRequest {
-  string org_id = 1;
-}
-
-// would go at top of file with the rest of the
-// non-request/response message types
-enum PaymentMethodType {
-  PAYMENT_METHOD_TYPE_UNSPECIFIED = 0;
-  PAYMENT_METHOD_TYPE_CARD = 1;
-}
-
-message GetPaymentMethodResponse {
+message GetBillingInformationResponse {
   PaymentMethodType type = 1;
-  // defined if type is PAYMENT_METHOD_TYPE_CARD
-  optional PaymentMethodCard method = 2;
-}
-// End Suggestion 2
+  string billing_email = 2;
 
+  // defined if type is PAYMENT_METHOD_TYPE_CARD
+  optional PaymentMethodCard method = 3;
+}
 
 message GetBalanceSummaryRequest {
   string org_id = 1;
 }
+
 message GetBalanceSummaryResponse {
   // all unpaid balances at the end of the last billing cycle
-  double statement_balance = 1;
-  // statement_balance + current_month_balance
-  double current_balance = 2;
-  // equivalent to GetCurrentMonthUsageSummaryResponse.total_usage_with_discount
-  double current_month_balance = 3;
-  // due date for current month usage
-  google.protobuf.Timestamp current_month_due_date = 4;
-  string invoice_email = 5;
+  double outstanding_balance = 1;
+  // all previous invoices
+  repeated InvoiceSummary invoices = 2;
 }
 
+// TODO(APP-1865) should be deprecated/removed
 message GetBillingSummaryRequest {
   string org_id = 1;
 }
 
-// Will be deprecated/removed in favor of smaller requests to:
-// - GetCurrentMonthUsageSummary
-// - GetInvoiceHistory
-// - GetBalanceSummary
-// - GetPaymentMethod
+// TODO(APP-1865) should be deprecated/removed
 message GetBillingSummaryResponse {
   CurrentMonthUsageSummary usage_summary = 1;
   repeated InvoiceSummary invoices = 2;
