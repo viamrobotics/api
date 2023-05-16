@@ -383,5 +383,188 @@ proto.viam.app.v1.BillingServicePromiseClient.prototype.getBillingSummary =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetCurrentMonthUsageRequest,
+ *   !proto.viam.app.v1.GetCurrentMonthUsageResponse>}
+ */
+const methodDescriptor_BillingService_GetCurrentMonthUsage = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/GetCurrentMonthUsage',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetCurrentMonthUsageRequest,
+  proto.viam.app.v1.GetCurrentMonthUsageResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetCurrentMonthUsageRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetCurrentMonthUsageResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetCurrentMonthUsageRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetCurrentMonthUsageResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetCurrentMonthUsageResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.getCurrentMonthUsage =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/GetCurrentMonthUsage',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetCurrentMonthUsage,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetCurrentMonthUsageRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetCurrentMonthUsageResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.getCurrentMonthUsage =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/GetCurrentMonthUsage',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetCurrentMonthUsage);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetOrgBillingInformationRequest,
+ *   !proto.viam.app.v1.GetOrgBillingInformationResponse>}
+ */
+const methodDescriptor_BillingService_GetOrgBillingInformation = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/GetOrgBillingInformation',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetOrgBillingInformationRequest,
+  proto.viam.app.v1.GetOrgBillingInformationResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetOrgBillingInformationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetOrgBillingInformationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetOrgBillingInformationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetOrgBillingInformationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetOrgBillingInformationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.getOrgBillingInformation =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/GetOrgBillingInformation',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetOrgBillingInformation,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetOrgBillingInformationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetOrgBillingInformationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.getOrgBillingInformation =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/GetOrgBillingInformation',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetOrgBillingInformation);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetInvoicesSummaryRequest,
+ *   !proto.viam.app.v1.GetInvoicesSummaryResponse>}
+ */
+const methodDescriptor_BillingService_GetInvoicesSummary = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/GetInvoicesSummary',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetInvoicesSummaryRequest,
+  proto.viam.app.v1.GetInvoicesSummaryResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetInvoicesSummaryRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetInvoicesSummaryResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetInvoicesSummaryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetInvoicesSummaryResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetInvoicesSummaryResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.getInvoicesSummary =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/GetInvoicesSummary',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetInvoicesSummary,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetInvoicesSummaryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetInvoicesSummaryResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.getInvoicesSummary =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/GetInvoicesSummary',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetInvoicesSummary);
+};
+
+
 module.exports = proto.viam.app.v1;
 
