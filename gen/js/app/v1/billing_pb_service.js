@@ -55,6 +55,33 @@ BillingService.GetBillingSummary = {
   responseType: app_v1_billing_pb.GetBillingSummaryResponse
 };
 
+BillingService.GetCurrentMonthUsage = {
+  methodName: "GetCurrentMonthUsage",
+  service: BillingService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_billing_pb.GetCurrentMonthUsageRequest,
+  responseType: app_v1_billing_pb.GetCurrentMonthUsageResponse
+};
+
+BillingService.GetOrgBillingInformation = {
+  methodName: "GetOrgBillingInformation",
+  service: BillingService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_billing_pb.GetOrgBillingInformationRequest,
+  responseType: app_v1_billing_pb.GetOrgBillingInformationResponse
+};
+
+BillingService.GetInvoicesSummary = {
+  methodName: "GetInvoicesSummary",
+  service: BillingService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_billing_pb.GetInvoicesSummaryRequest,
+  responseType: app_v1_billing_pb.GetInvoicesSummaryResponse
+};
+
 exports.BillingService = BillingService;
 
 function BillingServiceClient(serviceHost, options) {
@@ -191,6 +218,99 @@ BillingServiceClient.prototype.getBillingSummary = function getBillingSummary(re
     callback = arguments[1];
   }
   var client = grpc.unary(BillingService.GetBillingSummary, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BillingServiceClient.prototype.getCurrentMonthUsage = function getCurrentMonthUsage(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BillingService.GetCurrentMonthUsage, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BillingServiceClient.prototype.getOrgBillingInformation = function getOrgBillingInformation(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BillingService.GetOrgBillingInformation, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BillingServiceClient.prototype.getInvoicesSummary = function getInvoicesSummary(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BillingService.GetInvoicesSummary, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
