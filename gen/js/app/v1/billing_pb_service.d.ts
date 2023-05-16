@@ -49,6 +49,33 @@ type BillingServiceGetBillingSummary = {
   readonly responseType: typeof app_v1_billing_pb.GetBillingSummaryResponse;
 };
 
+type BillingServiceGetCurrentMonthUsage = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.GetCurrentMonthUsageRequest;
+  readonly responseType: typeof app_v1_billing_pb.GetCurrentMonthUsageResponse;
+};
+
+type BillingServiceGetOrgBillingInformation = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.GetOrgBillingInformationRequest;
+  readonly responseType: typeof app_v1_billing_pb.GetOrgBillingInformationResponse;
+};
+
+type BillingServiceGetInvoicesSummary = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.GetInvoicesSummaryRequest;
+  readonly responseType: typeof app_v1_billing_pb.GetInvoicesSummaryResponse;
+};
+
 export class BillingService {
   static readonly serviceName: string;
   static readonly GetCurrentMonthUsageSummary: BillingServiceGetCurrentMonthUsageSummary;
@@ -56,6 +83,9 @@ export class BillingService {
   static readonly GetInvoiceHistory: BillingServiceGetInvoiceHistory;
   static readonly GetItemizedInvoice: BillingServiceGetItemizedInvoice;
   static readonly GetBillingSummary: BillingServiceGetBillingSummary;
+  static readonly GetCurrentMonthUsage: BillingServiceGetCurrentMonthUsage;
+  static readonly GetOrgBillingInformation: BillingServiceGetOrgBillingInformation;
+  static readonly GetInvoicesSummary: BillingServiceGetInvoicesSummary;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -134,6 +164,33 @@ export class BillingServiceClient {
   getBillingSummary(
     requestMessage: app_v1_billing_pb.GetBillingSummaryRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetBillingSummaryResponse|null) => void
+  ): UnaryResponse;
+  getCurrentMonthUsage(
+    requestMessage: app_v1_billing_pb.GetCurrentMonthUsageRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetCurrentMonthUsageResponse|null) => void
+  ): UnaryResponse;
+  getCurrentMonthUsage(
+    requestMessage: app_v1_billing_pb.GetCurrentMonthUsageRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetCurrentMonthUsageResponse|null) => void
+  ): UnaryResponse;
+  getOrgBillingInformation(
+    requestMessage: app_v1_billing_pb.GetOrgBillingInformationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetOrgBillingInformationResponse|null) => void
+  ): UnaryResponse;
+  getOrgBillingInformation(
+    requestMessage: app_v1_billing_pb.GetOrgBillingInformationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetOrgBillingInformationResponse|null) => void
+  ): UnaryResponse;
+  getInvoicesSummary(
+    requestMessage: app_v1_billing_pb.GetInvoicesSummaryRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetInvoicesSummaryResponse|null) => void
+  ): UnaryResponse;
+  getInvoicesSummary(
+    requestMessage: app_v1_billing_pb.GetInvoicesSummaryRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetInvoicesSummaryResponse|null) => void
   ): UnaryResponse;
 }
 
