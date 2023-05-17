@@ -252,6 +252,9 @@ export class Property extends jspb.Message {
   getFrameFormat(): string;
   setFrameFormat(value: string): void;
 
+  getFrameRate(): number;
+  setFrameRate(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Property.AsObject;
   static toObject(includeInstance: boolean, msg: Property): Property.AsObject;
@@ -267,6 +270,7 @@ export namespace Property {
     widthPx: number,
     heightPx: number,
     frameFormat: string,
+    frameRate: number,
   }
 }
 
