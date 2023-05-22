@@ -692,6 +692,48 @@ export namespace GetBillingSummaryResponse {
   }
 }
 
+export class GetInvoicePdfRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetInvoicePdfRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetInvoicePdfRequest): GetInvoicePdfRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetInvoicePdfRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetInvoicePdfRequest;
+  static deserializeBinaryFromReader(message: GetInvoicePdfRequest, reader: jspb.BinaryReader): GetInvoicePdfRequest;
+}
+
+export namespace GetInvoicePdfRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class GetInvoicePdfResponse extends jspb.Message {
+  getChunk(): Uint8Array | string;
+  getChunk_asU8(): Uint8Array;
+  getChunk_asB64(): string;
+  setChunk(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetInvoicePdfResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetInvoicePdfResponse): GetInvoicePdfResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetInvoicePdfResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetInvoicePdfResponse;
+  static deserializeBinaryFromReader(message: GetInvoicePdfResponse, reader: jspb.BinaryReader): GetInvoicePdfResponse;
+}
+
+export namespace GetInvoicePdfResponse {
+  export type AsObject = {
+    chunk: Uint8Array | string,
+  }
+}
+
 export interface PaymentMethodTypeMap {
   PAYMENT_METHOD_TYPE_UNSPECIFIED: 0;
   PAYMENT_METHOD_TYPE_CARD: 1;
