@@ -8908,7 +8908,8 @@ proto.viam.app.v1.ModuleConfig.prototype.toObject = function(opt_includeInstance
 proto.viam.app.v1.ModuleConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    path: jspb.Message.getFieldWithDefault(msg, 2, "")
+    path: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    logLevel: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -8953,6 +8954,10 @@ proto.viam.app.v1.ModuleConfig.deserializeBinaryFromReader = function(msg, reade
       var value = /** @type {string} */ (reader.readString());
       msg.setPath(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLogLevel(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -8996,6 +9001,13 @@ proto.viam.app.v1.ModuleConfig.serializeBinaryToWriter = function(message, write
       f
     );
   }
+  f = message.getLogLevel();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -9032,6 +9044,24 @@ proto.viam.app.v1.ModuleConfig.prototype.getPath = function() {
  */
 proto.viam.app.v1.ModuleConfig.prototype.setPath = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string log_level = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.ModuleConfig.prototype.getLogLevel = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.ModuleConfig} returns this
+ */
+proto.viam.app.v1.ModuleConfig.prototype.setLogLevel = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
