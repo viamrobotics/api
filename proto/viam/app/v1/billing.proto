@@ -185,8 +185,7 @@ message GetBillingSummaryResponse {
 }
 
 message GetInvoicePdfRequest {
-  string org_id = 1;
-  string invoice_id = 2;
+  string id = 1;
 }
 
 message GetInvoicePdfResponse {
