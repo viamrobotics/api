@@ -1140,6 +1140,9 @@ export class ModuleConfig extends jspb.Message {
   getPath(): string;
   setPath(value: string): void;
 
+  getLogLevel(): string;
+  setLogLevel(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
@@ -1154,6 +1157,7 @@ export namespace ModuleConfig {
   export type AsObject = {
     name: string,
     path: string,
+    logLevel: string,
   }
 }
 

@@ -316,6 +316,8 @@ message ModuleConfig {
   string name = 1;
   // path to the executable
   string path = 2;
+  // log level for module
+  string log_level = 3;
 }
 
 // PackageConfig is the configration for deployed Packages.
