@@ -5,7 +5,7 @@ export GOBIN := $(shell pwd)/$(TOOL_BIN)
 export PATH := $(GOBIN):$(shell npm root)/.bin:$(PATH)
 
 .PHONY: all
-all: clean build
+all: clean dist/buf
 
 .PHONY: setup
 setup:
