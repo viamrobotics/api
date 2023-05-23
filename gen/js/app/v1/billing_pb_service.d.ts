@@ -76,6 +76,15 @@ type BillingServiceGetInvoicesSummary = {
   readonly responseType: typeof app_v1_billing_pb.GetInvoicesSummaryResponse;
 };
 
+type BillingServiceGetInvoicePdf = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof app_v1_billing_pb.GetInvoicePdfRequest;
+  readonly responseType: typeof app_v1_billing_pb.GetInvoicePdfResponse;
+};
+
 export class BillingService {
   static readonly serviceName: string;
   static readonly GetCurrentMonthUsageSummary: BillingServiceGetCurrentMonthUsageSummary;
@@ -86,6 +95,7 @@ export class BillingService {
   static readonly GetCurrentMonthUsage: BillingServiceGetCurrentMonthUsage;
   static readonly GetOrgBillingInformation: BillingServiceGetOrgBillingInformation;
   static readonly GetInvoicesSummary: BillingServiceGetInvoicesSummary;
+  static readonly GetInvoicePdf: BillingServiceGetInvoicePdf;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -192,5 +202,6 @@ export class BillingServiceClient {
     requestMessage: app_v1_billing_pb.GetInvoicesSummaryRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetInvoicesSummaryResponse|null) => void
   ): UnaryResponse;
+  getInvoicePdf(requestMessage: app_v1_billing_pb.GetInvoicePdfRequest, metadata?: grpc.Metadata): ResponseStream<app_v1_billing_pb.GetInvoicePdfResponse>;
 }
 

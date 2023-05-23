@@ -18,6 +18,8 @@ service BillingService {
   rpc GetOrgBillingInformation(GetOrgBillingInformationRequest) returns (GetOrgBillingInformationResponse);
   // Total outstanding balance and previous invoices
   rpc GetInvoicesSummary(GetInvoicesSummaryRequest) returns (GetInvoicesSummaryResponse);
+  // Download a PDF invoice
+  rpc GetInvoicePdf(GetInvoicePdfRequest) returns (stream GetInvoicePdfResponse);
 }
 
 // TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage
@@ -180,4 +182,12 @@ message GetBillingSummaryResponse {
   google.protobuf.Timestamp current_month_due_date = 7; // due date for current month usage
   string invoice_email = 8;
   PaymentMethodCard payment_method = 9;
+}
+
+message GetInvoicePdfRequest {
+  string id = 1;
+}
+
+message GetInvoicePdfResponse {
+  bytes chunk = 1;
 }
