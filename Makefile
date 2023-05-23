@@ -11,9 +11,6 @@ all: clean build
 setup:
 	bash etc/setup.sh
 
-.PHONY: build
-build: dist/buf-go dist/buf-web
-
 .PHONY: clean
 clean:
 	git clean -fxd
@@ -33,6 +30,9 @@ dist/tool-install: Makefile
 		github.com/bufbuild/buf/cmd/buf
 	mkdir -p dist
 	touch dist/tool-install
+
+.PHONY: dist/buf
+dist/buf: dist/buf-go dist/buf-web
 
 dist/buf-go: dist/tool-install $(PROTO_FILES)
 	buf lint

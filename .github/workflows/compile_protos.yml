@@ -91,7 +91,7 @@ jobs:
 
       - name: Compile protos
         if: env.is-auto-commit == false
-        run: make build
+        run: make dist/buf
 
       - name: Add SHORT_SHA env property
         if: env.is-auto-commit == false
@@ -112,4 +112,4 @@ jobs:
         with:
           repo-token: ${{ secrets.REPO_READ_TOKEN }}
           add-labels: ${{ env.LABEL_NAME }}
-          issue-number: ${{ steps.get-pr-number.outputs.result }}
+          issue-number:  ${{ steps.get-pr-number.outputs.result }}

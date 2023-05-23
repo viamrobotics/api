@@ -8,7 +8,7 @@ Protobuf definitions for Viam's public-facing API.
 
 - `make setup` - Setup your development environment
 - `make all` - Clean and build the Go and web generated libraries
-- `make build` - Build the Go and web generated libraries without cleaning
+- `make dist/buf` - Build the Go and web generated libraries without cleaning
 - `make clean` - Clean tool cache
 
 ### Submitting PRs for Protobuf Changes
