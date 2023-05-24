@@ -250,7 +250,7 @@ func local_request_AudioInputService_DoCommand_0(ctx context.Context, marshaler 
 }
 
 func request_AudioInputService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, client AudioInputServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.GetGeometriesRequest
+	var protoReq v1_0.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -276,7 +276,7 @@ func request_AudioInputService_GetGeometries_0(ctx context.Context, marshaler ru
 }
 
 func local_request_AudioInputService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, server AudioInputServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.GetGeometriesRequest
+	var protoReq v1_0.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
