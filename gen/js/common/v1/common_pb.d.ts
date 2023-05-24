@@ -581,5 +581,101 @@ export namespace DoCommandResponse {
   }
 }
 
+export class GetKinematicsRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetKinematicsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetKinematicsRequest): GetKinematicsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetKinematicsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetKinematicsRequest;
+  static deserializeBinaryFromReader(message: GetKinematicsRequest, reader: jspb.BinaryReader): GetKinematicsRequest;
+}
+
+export namespace GetKinematicsRequest {
+  export type AsObject = {
+    name: string,
+  }
+}
+
+export class GetKinematicsResponse extends jspb.Message {
+  getFormat(): KinematicsFileFormatMap[keyof KinematicsFileFormatMap];
+  setFormat(value: KinematicsFileFormatMap[keyof KinematicsFileFormatMap]): void;
+
+  getKinematicsData(): Uint8Array | string;
+  getKinematicsData_asU8(): Uint8Array;
+  getKinematicsData_asB64(): string;
+  setKinematicsData(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetKinematicsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetKinematicsResponse): GetKinematicsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetKinematicsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetKinematicsResponse;
+  static deserializeBinaryFromReader(message: GetKinematicsResponse, reader: jspb.BinaryReader): GetKinematicsResponse;
+}
+
+export namespace GetKinematicsResponse {
+  export type AsObject = {
+    format: KinematicsFileFormatMap[keyof KinematicsFileFormatMap],
+    kinematicsData: Uint8Array | string,
+  }
+}
+
+export class GetGeometriesRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetGeometriesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetGeometriesRequest): GetGeometriesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetGeometriesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetGeometriesRequest;
+  static deserializeBinaryFromReader(message: GetGeometriesRequest, reader: jspb.BinaryReader): GetGeometriesRequest;
+}
+
+export namespace GetGeometriesRequest {
+  export type AsObject = {
+    name: string,
+  }
+}
+
+export class GetGeometriesResponse extends jspb.Message {
+  clearGeometriesList(): void;
+  getGeometriesList(): Array<Geometry>;
+  setGeometriesList(value: Array<Geometry>): void;
+  addGeometries(value?: Geometry, index?: number): Geometry;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetGeometriesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetGeometriesResponse): GetGeometriesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetGeometriesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetGeometriesResponse;
+  static deserializeBinaryFromReader(message: GetGeometriesResponse, reader: jspb.BinaryReader): GetGeometriesResponse;
+}
+
+export namespace GetGeometriesResponse {
+  export type AsObject = {
+    geometriesList: Array<Geometry.AsObject>,
+  }
+}
+
   export const safetyHeartbeatMonitored: jspb.ExtensionFieldInfo<boolean>;
+
+export interface KinematicsFileFormatMap {
+  KINEMATICS_FILE_FORMAT_UNSPECIFIED: 0;
+  KINEMATICS_FILE_FORMAT_SVA: 1;
+  KINEMATICS_FILE_FORMAT_URDF: 2;
+}
+
+export const KinematicsFileFormat: KinematicsFileFormatMap;
 

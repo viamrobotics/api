@@ -24,6 +24,55 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type KinematicsFileFormat int32
+
+const (
+	KinematicsFileFormat_KINEMATICS_FILE_FORMAT_UNSPECIFIED KinematicsFileFormat = 0
+	KinematicsFileFormat_KINEMATICS_FILE_FORMAT_SVA         KinematicsFileFormat = 1
+	KinematicsFileFormat_KINEMATICS_FILE_FORMAT_URDF        KinematicsFileFormat = 2
+)
+
+// Enum value maps for KinematicsFileFormat.
+var (
+	KinematicsFileFormat_name = map[int32]string{
+		0: "KINEMATICS_FILE_FORMAT_UNSPECIFIED",
+		1: "KINEMATICS_FILE_FORMAT_SVA",
+		2: "KINEMATICS_FILE_FORMAT_URDF",
+	}
+	KinematicsFileFormat_value = map[string]int32{
+		"KINEMATICS_FILE_FORMAT_UNSPECIFIED": 0,
+		"KINEMATICS_FILE_FORMAT_SVA":         1,
+		"KINEMATICS_FILE_FORMAT_URDF":        2,
+	}
+)
+
+func (x KinematicsFileFormat) Enum() *KinematicsFileFormat {
+	p := new(KinematicsFileFormat)
+	*p = x
+	return p
+}
+
+func (x KinematicsFileFormat) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (KinematicsFileFormat) Descriptor() protoreflect.EnumDescriptor {
+	return file_common_v1_common_proto_enumTypes[0].Descriptor()
+}
+
+func (KinematicsFileFormat) Type() protoreflect.EnumType {
+	return &file_common_v1_common_proto_enumTypes[0]
+}
+
+func (x KinematicsFileFormat) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use KinematicsFileFormat.Descriptor instead.
+func (KinematicsFileFormat) EnumDescriptor() ([]byte, []int) {
+	return file_common_v1_common_proto_rawDescGZIP(), []int{0}
+}
+
 type ResourceName struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1329,6 +1378,208 @@ func (x *DoCommandResponse) GetResult() *structpb.Struct {
 	return nil
 }
 
+type GetKinematicsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The component name
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *GetKinematicsRequest) Reset() {
+	*x = GetKinematicsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_common_v1_common_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetKinematicsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetKinematicsRequest) ProtoMessage() {}
+
+func (x *GetKinematicsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_common_v1_common_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetKinematicsRequest.ProtoReflect.Descriptor instead.
+func (*GetKinematicsRequest) Descriptor() ([]byte, []int) {
+	return file_common_v1_common_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *GetKinematicsRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type GetKinematicsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
+	// https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters
+	Format KinematicsFileFormat `protobuf:"varint,1,opt,name=format,proto3,enum=viam.common.v1.KinematicsFileFormat" json:"format,omitempty"`
+	// The byte contents of the file
+	KinematicsData []byte `protobuf:"bytes,2,opt,name=kinematics_data,json=kinematicsData,proto3" json:"kinematics_data,omitempty"`
+}
+
+func (x *GetKinematicsResponse) Reset() {
+	*x = GetKinematicsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_common_v1_common_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetKinematicsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetKinematicsResponse) ProtoMessage() {}
+
+func (x *GetKinematicsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_common_v1_common_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetKinematicsResponse.ProtoReflect.Descriptor instead.
+func (*GetKinematicsResponse) Descriptor() ([]byte, []int) {
+	return file_common_v1_common_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *GetKinematicsResponse) GetFormat() KinematicsFileFormat {
+	if x != nil {
+		return x.Format
+	}
+	return KinematicsFileFormat_KINEMATICS_FILE_FORMAT_UNSPECIFIED
+}
+
+func (x *GetKinematicsResponse) GetKinematicsData() []byte {
+	if x != nil {
+		return x.KinematicsData
+	}
+	return nil
+}
+
+type GetGeometriesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The component name
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *GetGeometriesRequest) Reset() {
+	*x = GetGeometriesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_common_v1_common_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetGeometriesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetGeometriesRequest) ProtoMessage() {}
+
+func (x *GetGeometriesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_common_v1_common_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetGeometriesRequest.ProtoReflect.Descriptor instead.
+func (*GetGeometriesRequest) Descriptor() ([]byte, []int) {
+	return file_common_v1_common_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *GetGeometriesRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type GetGeometriesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// All geometries associated with the component, in their current configuration, in the frame of that component.
+	Geometries []*Geometry `protobuf:"bytes,1,rep,name=geometries,proto3" json:"geometries,omitempty"`
+}
+
+func (x *GetGeometriesResponse) Reset() {
+	*x = GetGeometriesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_common_v1_common_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetGeometriesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetGeometriesResponse) ProtoMessage() {}
+
+func (x *GetGeometriesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_common_v1_common_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetGeometriesResponse.ProtoReflect.Descriptor instead.
+func (*GetGeometriesResponse) Descriptor() ([]byte, []int) {
+	return file_common_v1_common_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *GetGeometriesResponse) GetGeometries() []*Geometry {
+	if x != nil {
+		return x.Geometries
+	}
+	return nil
+}
+
 var file_common_v1_common_proto_extTypes = []protoimpl.ExtensionInfo{
 	{
 		ExtendedType:  (*descriptorpb.MethodOptions)(nil),
@@ -1508,17 +1759,44 @@ var file_common_v1_common_proto_rawDesc = []byte{
 	0x6d, 0x61, 0x6e, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2f, 0x0a, 0x06,
 	0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67,
 	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53,
-	0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x3a, 0x61, 0x0a,
-	0x1a, 0x73, 0x61, 0x66, 0x65, 0x74, 0x79, 0x5f, 0x68, 0x65, 0x61, 0x72, 0x74, 0x62, 0x65, 0x61,
-	0x74, 0x5f, 0x6d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x65, 0x64, 0x12, 0x1e, 0x2e, 0x67, 0x6f,
-	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4d, 0x65,
-	0x74, 0x68, 0x6f, 0x64, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0xa4, 0x92, 0x05, 0x20,
-	0x01, 0x28, 0x08, 0x52, 0x18, 0x73, 0x61, 0x66, 0x65, 0x74, 0x79, 0x48, 0x65, 0x61, 0x72, 0x74,
-	0x62, 0x65, 0x61, 0x74, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x65, 0x64, 0x88, 0x01, 0x01,
-	0x42, 0x2f, 0x0a, 0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d,
-	0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x5a, 0x19, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
-	0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x76,
-	0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x2a, 0x0a,
+	0x14, 0x47, 0x65, 0x74, 0x4b, 0x69, 0x6e, 0x65, 0x6d, 0x61, 0x74, 0x69, 0x63, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x7e, 0x0a, 0x15, 0x47, 0x65, 0x74,
+	0x4b, 0x69, 0x6e, 0x65, 0x6d, 0x61, 0x74, 0x69, 0x63, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x3c, 0x0a, 0x06, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0e, 0x32, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e,
+	0x2e, 0x76, 0x31, 0x2e, 0x4b, 0x69, 0x6e, 0x65, 0x6d, 0x61, 0x74, 0x69, 0x63, 0x73, 0x46, 0x69,
+	0x6c, 0x65, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x52, 0x06, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74,
+	0x12, 0x27, 0x0a, 0x0f, 0x6b, 0x69, 0x6e, 0x65, 0x6d, 0x61, 0x74, 0x69, 0x63, 0x73, 0x5f, 0x64,
+	0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0e, 0x6b, 0x69, 0x6e, 0x65, 0x6d,
+	0x61, 0x74, 0x69, 0x63, 0x73, 0x44, 0x61, 0x74, 0x61, 0x22, 0x2a, 0x0a, 0x14, 0x47, 0x65, 0x74,
+	0x47, 0x65, 0x6f, 0x6d, 0x65, 0x74, 0x72, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x51, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x47, 0x65, 0x6f, 0x6d,
+	0x65, 0x74, 0x72, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x38,
+	0x0a, 0x0a, 0x67, 0x65, 0x6f, 0x6d, 0x65, 0x74, 0x72, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x18, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e,
+	0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x6f, 0x6d, 0x65, 0x74, 0x72, 0x79, 0x52, 0x0a, 0x67, 0x65,
+	0x6f, 0x6d, 0x65, 0x74, 0x72, 0x69, 0x65, 0x73, 0x2a, 0x7f, 0x0a, 0x14, 0x4b, 0x69, 0x6e, 0x65,
+	0x6d, 0x61, 0x74, 0x69, 0x63, 0x73, 0x46, 0x69, 0x6c, 0x65, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74,
+	0x12, 0x26, 0x0a, 0x22, 0x4b, 0x49, 0x4e, 0x45, 0x4d, 0x41, 0x54, 0x49, 0x43, 0x53, 0x5f, 0x46,
+	0x49, 0x4c, 0x45, 0x5f, 0x46, 0x4f, 0x52, 0x4d, 0x41, 0x54, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45,
+	0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x1e, 0x0a, 0x1a, 0x4b, 0x49, 0x4e, 0x45,
+	0x4d, 0x41, 0x54, 0x49, 0x43, 0x53, 0x5f, 0x46, 0x49, 0x4c, 0x45, 0x5f, 0x46, 0x4f, 0x52, 0x4d,
+	0x41, 0x54, 0x5f, 0x53, 0x56, 0x41, 0x10, 0x01, 0x12, 0x1f, 0x0a, 0x1b, 0x4b, 0x49, 0x4e, 0x45,
+	0x4d, 0x41, 0x54, 0x49, 0x43, 0x53, 0x5f, 0x46, 0x49, 0x4c, 0x45, 0x5f, 0x46, 0x4f, 0x52, 0x4d,
+	0x41, 0x54, 0x5f, 0x55, 0x52, 0x44, 0x46, 0x10, 0x02, 0x3a, 0x61, 0x0a, 0x1a, 0x73, 0x61, 0x66,
+	0x65, 0x74, 0x79, 0x5f, 0x68, 0x65, 0x61, 0x72, 0x74, 0x62, 0x65, 0x61, 0x74, 0x5f, 0x6d, 0x6f,
+	0x6e, 0x69, 0x74, 0x6f, 0x72, 0x65, 0x64, 0x12, 0x1e, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4d, 0x65, 0x74, 0x68, 0x6f, 0x64,
+	0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0xa4, 0x92, 0x05, 0x20, 0x01, 0x28, 0x08, 0x52,
+	0x18, 0x73, 0x61, 0x66, 0x65, 0x74, 0x79, 0x48, 0x65, 0x61, 0x72, 0x74, 0x62, 0x65, 0x61, 0x74,
+	0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x65, 0x64, 0x88, 0x01, 0x01, 0x42, 0x2f, 0x0a, 0x12,
+	0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e,
+	0x76, 0x31, 0x5a, 0x19, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
+	0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1533,61 +1811,69 @@ func file_common_v1_common_proto_rawDescGZIP() []byte {
 	return file_common_v1_common_proto_rawDescData
 }
 
-var file_common_v1_common_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_common_v1_common_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_common_v1_common_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
 var file_common_v1_common_proto_goTypes = []interface{}{
-	(*ResourceName)(nil),               // 0: viam.common.v1.ResourceName
-	(*BoardStatus)(nil),                // 1: viam.common.v1.BoardStatus
-	(*AnalogStatus)(nil),               // 2: viam.common.v1.AnalogStatus
-	(*DigitalInterruptStatus)(nil),     // 3: viam.common.v1.DigitalInterruptStatus
-	(*Pose)(nil),                       // 4: viam.common.v1.Pose
-	(*Orientation)(nil),                // 5: viam.common.v1.Orientation
-	(*PoseInFrame)(nil),                // 6: viam.common.v1.PoseInFrame
-	(*Vector3)(nil),                    // 7: viam.common.v1.Vector3
-	(*Sphere)(nil),                     // 8: viam.common.v1.Sphere
-	(*Capsule)(nil),                    // 9: viam.common.v1.Capsule
-	(*RectangularPrism)(nil),           // 10: viam.common.v1.RectangularPrism
-	(*Geometry)(nil),                   // 11: viam.common.v1.Geometry
-	(*GeometriesInFrame)(nil),          // 12: viam.common.v1.GeometriesInFrame
-	(*PointCloudObject)(nil),           // 13: viam.common.v1.PointCloudObject
-	(*GeoPoint)(nil),                   // 14: viam.common.v1.GeoPoint
-	(*GeoObstacle)(nil),                // 15: viam.common.v1.GeoObstacle
-	(*Transform)(nil),                  // 16: viam.common.v1.Transform
-	(*WorldState)(nil),                 // 17: viam.common.v1.WorldState
-	(*ActuatorStatus)(nil),             // 18: viam.common.v1.ActuatorStatus
-	(*DoCommandRequest)(nil),           // 19: viam.common.v1.DoCommandRequest
-	(*DoCommandResponse)(nil),          // 20: viam.common.v1.DoCommandResponse
-	nil,                                // 21: viam.common.v1.BoardStatus.AnalogsEntry
-	nil,                                // 22: viam.common.v1.BoardStatus.DigitalInterruptsEntry
-	(*structpb.Struct)(nil),            // 23: google.protobuf.Struct
-	(*descriptorpb.MethodOptions)(nil), // 24: google.protobuf.MethodOptions
+	(KinematicsFileFormat)(0),          // 0: viam.common.v1.KinematicsFileFormat
+	(*ResourceName)(nil),               // 1: viam.common.v1.ResourceName
+	(*BoardStatus)(nil),                // 2: viam.common.v1.BoardStatus
+	(*AnalogStatus)(nil),               // 3: viam.common.v1.AnalogStatus
+	(*DigitalInterruptStatus)(nil),     // 4: viam.common.v1.DigitalInterruptStatus
+	(*Pose)(nil),                       // 5: viam.common.v1.Pose
+	(*Orientation)(nil),                // 6: viam.common.v1.Orientation
+	(*PoseInFrame)(nil),                // 7: viam.common.v1.PoseInFrame
+	(*Vector3)(nil),                    // 8: viam.common.v1.Vector3
+	(*Sphere)(nil),                     // 9: viam.common.v1.Sphere
+	(*Capsule)(nil),                    // 10: viam.common.v1.Capsule
+	(*RectangularPrism)(nil),           // 11: viam.common.v1.RectangularPrism
+	(*Geometry)(nil),                   // 12: viam.common.v1.Geometry
+	(*GeometriesInFrame)(nil),          // 13: viam.common.v1.GeometriesInFrame
+	(*PointCloudObject)(nil),           // 14: viam.common.v1.PointCloudObject
+	(*GeoPoint)(nil),                   // 15: viam.common.v1.GeoPoint
+	(*GeoObstacle)(nil),                // 16: viam.common.v1.GeoObstacle
+	(*Transform)(nil),                  // 17: viam.common.v1.Transform
+	(*WorldState)(nil),                 // 18: viam.common.v1.WorldState
+	(*ActuatorStatus)(nil),             // 19: viam.common.v1.ActuatorStatus
+	(*DoCommandRequest)(nil),           // 20: viam.common.v1.DoCommandRequest
+	(*DoCommandResponse)(nil),          // 21: viam.common.v1.DoCommandResponse
+	(*GetKinematicsRequest)(nil),       // 22: viam.common.v1.GetKinematicsRequest
+	(*GetKinematicsResponse)(nil),      // 23: viam.common.v1.GetKinematicsResponse
+	(*GetGeometriesRequest)(nil),       // 24: viam.common.v1.GetGeometriesRequest
+	(*GetGeometriesResponse)(nil),      // 25: viam.common.v1.GetGeometriesResponse
+	nil,                                // 26: viam.common.v1.BoardStatus.AnalogsEntry
+	nil,                                // 27: viam.common.v1.BoardStatus.DigitalInterruptsEntry
+	(*structpb.Struct)(nil),            // 28: google.protobuf.Struct
+	(*descriptorpb.MethodOptions)(nil), // 29: google.protobuf.MethodOptions
 }
 var file_common_v1_common_proto_depIdxs = []int32{
-	21, // 0: viam.common.v1.BoardStatus.analogs:type_name -> viam.common.v1.BoardStatus.AnalogsEntry
-	22, // 1: viam.common.v1.BoardStatus.digital_interrupts:type_name -> viam.common.v1.BoardStatus.DigitalInterruptsEntry
-	4,  // 2: viam.common.v1.PoseInFrame.pose:type_name -> viam.common.v1.Pose
-	7,  // 3: viam.common.v1.RectangularPrism.dims_mm:type_name -> viam.common.v1.Vector3
-	4,  // 4: viam.common.v1.Geometry.center:type_name -> viam.common.v1.Pose
-	8,  // 5: viam.common.v1.Geometry.sphere:type_name -> viam.common.v1.Sphere
-	10, // 6: viam.common.v1.Geometry.box:type_name -> viam.common.v1.RectangularPrism
-	9,  // 7: viam.common.v1.Geometry.capsule:type_name -> viam.common.v1.Capsule
-	11, // 8: viam.common.v1.GeometriesInFrame.geometries:type_name -> viam.common.v1.Geometry
-	12, // 9: viam.common.v1.PointCloudObject.geometries:type_name -> viam.common.v1.GeometriesInFrame
-	14, // 10: viam.common.v1.GeoObstacle.location:type_name -> viam.common.v1.GeoPoint
-	11, // 11: viam.common.v1.GeoObstacle.geometries:type_name -> viam.common.v1.Geometry
-	6,  // 12: viam.common.v1.Transform.pose_in_observer_frame:type_name -> viam.common.v1.PoseInFrame
-	11, // 13: viam.common.v1.Transform.physical_object:type_name -> viam.common.v1.Geometry
-	12, // 14: viam.common.v1.WorldState.obstacles:type_name -> viam.common.v1.GeometriesInFrame
-	16, // 15: viam.common.v1.WorldState.transforms:type_name -> viam.common.v1.Transform
-	23, // 16: viam.common.v1.DoCommandRequest.command:type_name -> google.protobuf.Struct
-	23, // 17: viam.common.v1.DoCommandResponse.result:type_name -> google.protobuf.Struct
-	2,  // 18: viam.common.v1.BoardStatus.AnalogsEntry.value:type_name -> viam.common.v1.AnalogStatus
-	3,  // 19: viam.common.v1.BoardStatus.DigitalInterruptsEntry.value:type_name -> viam.common.v1.DigitalInterruptStatus
-	24, // 20: viam.common.v1.safety_heartbeat_monitored:extendee -> google.protobuf.MethodOptions
-	21, // [21:21] is the sub-list for method output_type
-	21, // [21:21] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	20, // [20:21] is the sub-list for extension extendee
-	0,  // [0:20] is the sub-list for field type_name
+	26, // 0: viam.common.v1.BoardStatus.analogs:type_name -> viam.common.v1.BoardStatus.AnalogsEntry
+	27, // 1: viam.common.v1.BoardStatus.digital_interrupts:type_name -> viam.common.v1.BoardStatus.DigitalInterruptsEntry
+	5,  // 2: viam.common.v1.PoseInFrame.pose:type_name -> viam.common.v1.Pose
+	8,  // 3: viam.common.v1.RectangularPrism.dims_mm:type_name -> viam.common.v1.Vector3
+	5,  // 4: viam.common.v1.Geometry.center:type_name -> viam.common.v1.Pose
+	9,  // 5: viam.common.v1.Geometry.sphere:type_name -> viam.common.v1.Sphere
+	11, // 6: viam.common.v1.Geometry.box:type_name -> viam.common.v1.RectangularPrism
+	10, // 7: viam.common.v1.Geometry.capsule:type_name -> viam.common.v1.Capsule
+	12, // 8: viam.common.v1.GeometriesInFrame.geometries:type_name -> viam.common.v1.Geometry
+	13, // 9: viam.common.v1.PointCloudObject.geometries:type_name -> viam.common.v1.GeometriesInFrame
+	15, // 10: viam.common.v1.GeoObstacle.location:type_name -> viam.common.v1.GeoPoint
+	12, // 11: viam.common.v1.GeoObstacle.geometries:type_name -> viam.common.v1.Geometry
+	7,  // 12: viam.common.v1.Transform.pose_in_observer_frame:type_name -> viam.common.v1.PoseInFrame
+	12, // 13: viam.common.v1.Transform.physical_object:type_name -> viam.common.v1.Geometry
+	13, // 14: viam.common.v1.WorldState.obstacles:type_name -> viam.common.v1.GeometriesInFrame
+	17, // 15: viam.common.v1.WorldState.transforms:type_name -> viam.common.v1.Transform
+	28, // 16: viam.common.v1.DoCommandRequest.command:type_name -> google.protobuf.Struct
+	28, // 17: viam.common.v1.DoCommandResponse.result:type_name -> google.protobuf.Struct
+	0,  // 18: viam.common.v1.GetKinematicsResponse.format:type_name -> viam.common.v1.KinematicsFileFormat
+	12, // 19: viam.common.v1.GetGeometriesResponse.geometries:type_name -> viam.common.v1.Geometry
+	3,  // 20: viam.common.v1.BoardStatus.AnalogsEntry.value:type_name -> viam.common.v1.AnalogStatus
+	4,  // 21: viam.common.v1.BoardStatus.DigitalInterruptsEntry.value:type_name -> viam.common.v1.DigitalInterruptStatus
+	29, // 22: viam.common.v1.safety_heartbeat_monitored:extendee -> google.protobuf.MethodOptions
+	23, // [23:23] is the sub-list for method output_type
+	23, // [23:23] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	22, // [22:23] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_common_v1_common_proto_init() }
@@ -1848,6 +2134,54 @@ func file_common_v1_common_proto_init() {
 				return nil
 			}
 		}
+		file_common_v1_common_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetKinematicsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_common_v1_common_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetKinematicsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_common_v1_common_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetGeometriesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_common_v1_common_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetGeometriesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_common_v1_common_proto_msgTypes[11].OneofWrappers = []interface{}{
 		(*Geometry_Sphere)(nil),
@@ -1860,13 +2194,14 @@ func file_common_v1_common_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_common_v1_common_proto_rawDesc,
-			NumEnums:      0,
-			NumMessages:   23,
+			NumEnums:      1,
+			NumMessages:   27,
 			NumExtensions: 1,
 			NumServices:   0,
 		},
 		GoTypes:           file_common_v1_common_proto_goTypes,
 		DependencyIndexes: file_common_v1_common_proto_depIdxs,
+		EnumInfos:         file_common_v1_common_proto_enumTypes,
 		MessageInfos:      file_common_v1_common_proto_msgTypes,
 		ExtensionInfos:    file_common_v1_common_proto_extTypes,
 	}.Build()

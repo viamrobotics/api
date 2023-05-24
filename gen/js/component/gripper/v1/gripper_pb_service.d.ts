@@ -50,6 +50,15 @@ type GripperServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type GripperServiceGetGeometries = {
+  readonly methodName: string;
+  readonly service: typeof GripperService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetGeometriesRequest;
+  readonly responseType: typeof common_v1_common_pb.GetGeometriesResponse;
+};
+
 export class GripperService {
   static readonly serviceName: string;
   static readonly Open: GripperServiceOpen;
@@ -57,6 +66,7 @@ export class GripperService {
   static readonly Stop: GripperServiceStop;
   static readonly IsMoving: GripperServiceIsMoving;
   static readonly DoCommand: GripperServiceDoCommand;
+  static readonly GetGeometries: GripperServiceGetGeometries;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -135,6 +145,15 @@ export class GripperServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
   ): UnaryResponse;
 }
 

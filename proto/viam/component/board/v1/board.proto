@@ -92,6 +92,13 @@ service BoardService {
       put: "/viam/api/v1/component/board/{name}/power_mode"
     };
   }
+
+  // GetGeometries returns the geometries of the component in their current configuration
+  rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/board/{name}/geometries"
+    };
+  }
 }
 
 message StatusRequest {

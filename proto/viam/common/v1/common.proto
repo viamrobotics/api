@@ -182,3 +182,32 @@ message DoCommandRequest {
 message DoCommandResponse {
   google.protobuf.Struct result = 1;
 }
+
+message GetKinematicsRequest {
+  // The component name
+  string name = 1;
+}
+
+enum KinematicsFileFormat {
+  KINEMATICS_FILE_FORMAT_UNSPECIFIED = 0;
+  KINEMATICS_FILE_FORMAT_SVA = 1;
+  KINEMATICS_FILE_FORMAT_URDF = 2;
+}
+
+message GetKinematicsResponse {
+  // The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
+  // https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters
+  KinematicsFileFormat format = 1;
+  // The byte contents of the file
+  bytes kinematics_data = 2;
+}
+
+message GetGeometriesRequest {
+  // The component name
+  string name = 1;
+}
+
+message GetGeometriesResponse {
+  // All geometries associated with the component, in their current configuration, in the frame of that component.
+  repeated Geometry geometries = 1;
+}

@@ -324,5 +324,66 @@ proto.viam.component.audioinput.v1.AudioInputServicePromiseClient.prototype.doCo
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.common.v1.GetGeometriesRequest,
+ *   !proto.viam.common.v1.GetGeometriesResponse>}
+ */
+const methodDescriptor_AudioInputService_GetGeometries = new grpc.web.MethodDescriptor(
+  '/viam.component.audioinput.v1.AudioInputService/GetGeometries',
+  grpc.web.MethodType.UNARY,
+  common_v1_common_pb.GetGeometriesRequest,
+  common_v1_common_pb.GetGeometriesResponse,
+  /**
+   * @param {!proto.viam.common.v1.GetGeometriesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  common_v1_common_pb.GetGeometriesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.common.v1.GetGeometriesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.common.v1.GetGeometriesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.common.v1.GetGeometriesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.audioinput.v1.AudioInputServiceClient.prototype.getGeometries =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.audioinput.v1.AudioInputService/GetGeometries',
+      request,
+      metadata || {},
+      methodDescriptor_AudioInputService_GetGeometries,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.common.v1.GetGeometriesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.common.v1.GetGeometriesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.audioinput.v1.AudioInputServicePromiseClient.prototype.getGeometries =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.audioinput.v1.AudioInputService/GetGeometries',
+      request,
+      metadata || {},
+      methodDescriptor_AudioInputService_GetGeometries);
+};
+
+
 module.exports = proto.viam.component.audioinput.v1;
 

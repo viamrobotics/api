@@ -68,6 +68,24 @@ type ArmServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type ArmServiceGetKinematics = {
+  readonly methodName: string;
+  readonly service: typeof ArmService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetKinematicsRequest;
+  readonly responseType: typeof common_v1_common_pb.GetKinematicsResponse;
+};
+
+type ArmServiceGetGeometries = {
+  readonly methodName: string;
+  readonly service: typeof ArmService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetGeometriesRequest;
+  readonly responseType: typeof common_v1_common_pb.GetGeometriesResponse;
+};
+
 export class ArmService {
   static readonly serviceName: string;
   static readonly GetEndPosition: ArmServiceGetEndPosition;
@@ -77,6 +95,8 @@ export class ArmService {
   static readonly Stop: ArmServiceStop;
   static readonly IsMoving: ArmServiceIsMoving;
   static readonly DoCommand: ArmServiceDoCommand;
+  static readonly GetKinematics: ArmServiceGetKinematics;
+  static readonly GetGeometries: ArmServiceGetGeometries;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -173,6 +193,24 @@ export class ArmServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getKinematics(
+    requestMessage: common_v1_common_pb.GetKinematicsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetKinematicsResponse|null) => void
+  ): UnaryResponse;
+  getKinematics(
+    requestMessage: common_v1_common_pb.GetKinematicsRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetKinematicsResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
   ): UnaryResponse;
 }
 
