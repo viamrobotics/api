@@ -33,6 +33,8 @@ type BillingServiceClient interface {
 	GetOrgBillingInformation(ctx context.Context, in *GetOrgBillingInformationRequest, opts ...grpc.CallOption) (*GetOrgBillingInformationResponse, error)
 	// Total outstanding balance and previous invoices
 	GetInvoicesSummary(ctx context.Context, in *GetInvoicesSummaryRequest, opts ...grpc.CallOption) (*GetInvoicesSummaryResponse, error)
+	// Download a PDF invoice
+	GetInvoicePdf(ctx context.Context, in *GetInvoicePdfRequest, opts ...grpc.CallOption) (BillingService_GetInvoicePdfClient, error)
 }
 
 type billingServiceClient struct {
@@ -115,6 +117,38 @@ func (c *billingServiceClient) GetInvoicesSummary(ctx context.Context, in *GetIn
 	return out, nil
 }
 
+func (c *billingServiceClient) GetInvoicePdf(ctx context.Context, in *GetInvoicePdfRequest, opts ...grpc.CallOption) (BillingService_GetInvoicePdfClient, error) {
+	stream, err := c.cc.NewStream(ctx, &BillingService_ServiceDesc.Streams[0], "/viam.app.v1.BillingService/GetInvoicePdf", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &billingServiceGetInvoicePdfClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type BillingService_GetInvoicePdfClient interface {
+	Recv() (*GetInvoicePdfResponse, error)
+	grpc.ClientStream
+}
+
+type billingServiceGetInvoicePdfClient struct {
+	grpc.ClientStream
+}
+
+func (x *billingServiceGetInvoicePdfClient) Recv() (*GetInvoicePdfResponse, error) {
+	m := new(GetInvoicePdfResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // BillingServiceServer is the server API for BillingService service.
 // All implementations must embed UnimplementedBillingServiceServer
 // for forward compatibility
@@ -130,6 +164,8 @@ type BillingServiceServer interface {
 	GetOrgBillingInformation(context.Context, *GetOrgBillingInformationRequest) (*GetOrgBillingInformationResponse, error)
 	// Total outstanding balance and previous invoices
 	GetInvoicesSummary(context.Context, *GetInvoicesSummaryRequest) (*GetInvoicesSummaryResponse, error)
+	// Download a PDF invoice
+	GetInvoicePdf(*GetInvoicePdfRequest, BillingService_GetInvoicePdfServer) error
 	mustEmbedUnimplementedBillingServiceServer()
 }
 
@@ -160,6 +196,9 @@ func (UnimplementedBillingServiceServer) GetOrgBillingInformation(context.Contex
 }
 func (UnimplementedBillingServiceServer) GetInvoicesSummary(context.Context, *GetInvoicesSummaryRequest) (*GetInvoicesSummaryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetInvoicesSummary not implemented")
+}
+func (UnimplementedBillingServiceServer) GetInvoicePdf(*GetInvoicePdfRequest, BillingService_GetInvoicePdfServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetInvoicePdf not implemented")
 }
 func (UnimplementedBillingServiceServer) mustEmbedUnimplementedBillingServiceServer() {}
 
@@ -318,6 +357,27 @@ func _BillingService_GetInvoicesSummary_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BillingService_GetInvoicePdf_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GetInvoicePdfRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(BillingServiceServer).GetInvoicePdf(m, &billingServiceGetInvoicePdfServer{stream})
+}
+
+type BillingService_GetInvoicePdfServer interface {
+	Send(*GetInvoicePdfResponse) error
+	grpc.ServerStream
+}
+
+type billingServiceGetInvoicePdfServer struct {
+	grpc.ServerStream
+}
+
+func (x *billingServiceGetInvoicePdfServer) Send(m *GetInvoicePdfResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // BillingService_ServiceDesc is the grpc.ServiceDesc for BillingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -358,6 +418,12 @@ var BillingService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _BillingService_GetInvoicesSummary_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "GetInvoicePdf",
+			Handler:       _BillingService_GetInvoicePdf_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "app/v1/billing.proto",
 }

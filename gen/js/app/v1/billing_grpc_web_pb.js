@@ -566,5 +566,61 @@ proto.viam.app.v1.BillingServicePromiseClient.prototype.getInvoicesSummary =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetInvoicePdfRequest,
+ *   !proto.viam.app.v1.GetInvoicePdfResponse>}
+ */
+const methodDescriptor_BillingService_GetInvoicePdf = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/GetInvoicePdf',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.viam.app.v1.GetInvoicePdfRequest,
+  proto.viam.app.v1.GetInvoicePdfResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetInvoicePdfRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetInvoicePdfResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetInvoicePdfRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetInvoicePdfResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.getInvoicePdf =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.app.v1.BillingService/GetInvoicePdf',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetInvoicePdf);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetInvoicePdfRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetInvoicePdfResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.getInvoicePdf =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.app.v1.BillingService/GetInvoicePdf',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetInvoicePdf);
+};
+
+
 module.exports = proto.viam.app.v1;
 
