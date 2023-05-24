@@ -62,6 +62,12 @@ enum TrainingStatus {
   TRAINING_STATUS_CANCELING = 6;
 }
 
+message ErrorStatus {
+  // A Code is an unsigned 32-bit error code as defined in the gRPC spec.
+  uint32 code = 1 [(tagger.v1.tags) = "bson:\"code\" json:\"code,omitempty\""];
+  string message = 2 [(tagger.v1.tags) = "bson:\"message\" json:\"message,omitempty\""];
+}
+
 message TrainingJobMetadata {
   SubmitTrainingJobRequest request = 1 [(tagger.v1.tags) = "bson:\"request\" json:\"request\""];
   TrainingStatus status = 2 [(tagger.v1.tags) = "bson:\"status\" json:\"status\""];
@@ -70,6 +76,7 @@ message TrainingJobMetadata {
   string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
   string user_email = 6 [(tagger.v1.tags) = "bson:\"user_email\" json:\"user_email\""];
   string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+  ErrorStatus error_status = 8 [(tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
 }
 
 message CancelTrainingJobRequest {
