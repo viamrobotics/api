@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package viam.app.agent.v1;
+
+import "google/protobuf/duration.proto";
+
+option go_package = "go.viam.com/api/app/agent/v1";
+
+// AgentService is used by viam-agent to retrieve update info for subsystems.
+service AgentService {
+  // AgentConfig requests the current config for the agent itself
+  rpc AgentConfig(AgentConfigRequest) returns (AgentConfigResponse);
+  // SubsystemConfig requests the current config for a given subsystem
+  rpc SubsystemConfig(SubsystemConfigRequest) returns (SubsystemConfigResponse);
+}
+
+message AgentConfigRequest {
+  // the currently running version
+  string agent_version = 1;
+  // info about the host system
+  HostInfo host_info = 2;
+}
+
+message AgentConfigResponse {
+  // data needed to download/validate the agent
+  UpdateInfo update_info = 1;
+  // subsystems to be installed/configured/updated
+  // note: previously installed subsystems will be removed from the system if removed from this list
+  repeated string subsystems = 2;
+  // how often this request should be repeated
+  google.protobuf.Duration check_interval = 3;
+}
+
+message SubsystemConfigRequest {
+  // subsystem is always "viam-server" for now
+  string subsystem = 1;
+  // the currently running version
+  string subsystem_version = 2;
+  // info about the host system
+  HostInfo host_info = 3;
+}
+
+message SubsystemConfigResponse {
+  // data needed to download/validate the subsystem
+  UpdateInfo update_info = 1;
+  // if this subsystem is disabled and should not be started by the agent
+  bool disable = 2;
+  // force_restart will restart the subsystem, even if no updates are available
+  bool force_restart = 3;
+  // how often this request should be repeated
+  google.protobuf.Duration check_interval = 4;
+}
+
+message HostInfo {
+  // os is the output of 'uname -s', Linux, Darwin, FreeBSD etc.
+  string os = 1;
+  // 'uname -m', x86_64, arm64, aarch64, armv7l, etc.
+  string architecture = 2;
+  // ID field from /etc/os-release, "arch", "debian", etc.
+  optional string distro = 3;
+  // VERSION_ID field from /etc/os-release, "11", "22.04", etc.
+  optional string distro_version = 4;
+  // additional tags for specific hardware or software that's present and may affect software selection
+  // ex: "jetson", "pi4", "low-memory", "hardened-kernel", etc.
+  repeated string tags = 5;
+}
+
+message UpdateInfo {
+  // filename as it is expected on disk (regardless of url)
+  string filename = 1;
+  // url to download from
+  string url = 2;
+  // version expected at the url
+  string version = 3;
+  // sha256 sum of file as downloaded
+  bytes sha256 = 4;
+  // determines if decompression or executable permissions are needed
+  optional Format format = 5;
+}
+
+enum Format {
+  // unknown/unset (autodetection may be attempted)
+  FORMAT_UNSPECIFIED = 0;
+  // do nothing
+  FORMAT_RAW = 1;
+  // decompress .xz file
+  FORMAT_XZ = 2;
+  // set executable permissions
+  FORMAT_EXECUTABLE = 3;
+  // decompress and set executable
+  FORMAT_XZ_EXECUTABLE = 4;
+}
