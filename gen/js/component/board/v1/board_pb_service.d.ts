@@ -104,6 +104,15 @@ type BoardServiceSetPowerMode = {
   readonly responseType: typeof component_board_v1_board_pb.SetPowerModeResponse;
 };
 
+type BoardServiceGetGeometries = {
+  readonly methodName: string;
+  readonly service: typeof BoardService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetGeometriesRequest;
+  readonly responseType: typeof common_v1_common_pb.GetGeometriesResponse;
+};
+
 export class BoardService {
   static readonly serviceName: string;
   static readonly Status: BoardServiceStatus;
@@ -117,6 +126,7 @@ export class BoardService {
   static readonly ReadAnalogReader: BoardServiceReadAnalogReader;
   static readonly GetDigitalInterruptValue: BoardServiceGetDigitalInterruptValue;
   static readonly SetPowerMode: BoardServiceSetPowerMode;
+  static readonly GetGeometries: BoardServiceGetGeometries;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -249,6 +259,15 @@ export class BoardServiceClient {
   setPowerMode(
     requestMessage: component_board_v1_board_pb.SetPowerModeRequest,
     callback: (error: ServiceError|null, responseMessage: component_board_v1_board_pb.SetPowerModeResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
   ): UnaryResponse;
 }
 

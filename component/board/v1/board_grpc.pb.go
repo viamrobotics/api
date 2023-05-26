@@ -43,6 +43,8 @@ type BoardServiceClient interface {
 	GetDigitalInterruptValue(ctx context.Context, in *GetDigitalInterruptValueRequest, opts ...grpc.CallOption) (*GetDigitalInterruptValueResponse, error)
 	// `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
 	SetPowerMode(ctx context.Context, in *SetPowerModeRequest, opts ...grpc.CallOption) (*SetPowerModeResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 }
 
 type boardServiceClient struct {
@@ -152,6 +154,15 @@ func (c *boardServiceClient) SetPowerMode(ctx context.Context, in *SetPowerModeR
 	return out, nil
 }
 
+func (c *boardServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error) {
+	out := new(v1.GetGeometriesResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.board.v1.BoardService/GetGeometries", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BoardServiceServer is the server API for BoardService service.
 // All implementations must embed UnimplementedBoardServiceServer
 // for forward compatibility
@@ -176,6 +187,8 @@ type BoardServiceServer interface {
 	GetDigitalInterruptValue(context.Context, *GetDigitalInterruptValueRequest) (*GetDigitalInterruptValueResponse, error)
 	// `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
 	SetPowerMode(context.Context, *SetPowerModeRequest) (*SetPowerModeResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	mustEmbedUnimplementedBoardServiceServer()
 }
 
@@ -215,6 +228,9 @@ func (UnimplementedBoardServiceServer) GetDigitalInterruptValue(context.Context,
 }
 func (UnimplementedBoardServiceServer) SetPowerMode(context.Context, *SetPowerModeRequest) (*SetPowerModeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetPowerMode not implemented")
+}
+func (UnimplementedBoardServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
 }
 func (UnimplementedBoardServiceServer) mustEmbedUnimplementedBoardServiceServer() {}
 
@@ -427,6 +443,24 @@ func _BoardService_SetPowerMode_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BoardService_GetGeometries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetGeometriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BoardServiceServer).GetGeometries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.board.v1.BoardService/GetGeometries",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BoardServiceServer).GetGeometries(ctx, req.(*v1.GetGeometriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BoardService_ServiceDesc is the grpc.ServiceDesc for BoardService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -477,6 +511,10 @@ var BoardService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetPowerMode",
 			Handler:    _BoardService_SetPowerMode_Handler,
+		},
+		{
+			MethodName: "GetGeometries",
+			Handler:    _BoardService_GetGeometries_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
