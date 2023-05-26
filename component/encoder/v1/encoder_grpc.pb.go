@@ -31,6 +31,8 @@ type EncoderServiceClient interface {
 	// supported by a given robot.
 	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 }
 
 type encoderServiceClient struct {
@@ -77,6 +79,15 @@ func (c *encoderServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRe
 	return out, nil
 }
 
+func (c *encoderServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error) {
+	out := new(v1.GetGeometriesResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.encoder.v1.EncoderService/GetGeometries", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // EncoderServiceServer is the server API for EncoderService service.
 // All implementations must embed UnimplementedEncoderServiceServer
 // for forward compatibility
@@ -89,6 +100,8 @@ type EncoderServiceServer interface {
 	// supported by a given robot.
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	mustEmbedUnimplementedEncoderServiceServer()
 }
 
@@ -107,6 +120,9 @@ func (UnimplementedEncoderServiceServer) GetProperties(context.Context, *GetProp
 }
 func (UnimplementedEncoderServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedEncoderServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
 }
 func (UnimplementedEncoderServiceServer) mustEmbedUnimplementedEncoderServiceServer() {}
 
@@ -193,6 +209,24 @@ func _EncoderService_DoCommand_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EncoderService_GetGeometries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetGeometriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EncoderServiceServer).GetGeometries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.encoder.v1.EncoderService/GetGeometries",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EncoderServiceServer).GetGeometries(ctx, req.(*v1.GetGeometriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // EncoderService_ServiceDesc is the grpc.ServiceDesc for EncoderService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -215,6 +249,10 @@ var EncoderService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _EncoderService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetGeometries",
+			Handler:    _EncoderService_GetGeometries_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

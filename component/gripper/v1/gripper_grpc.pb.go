@@ -33,6 +33,8 @@ type GripperServiceClient interface {
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 }
 
 type gripperServiceClient struct {
@@ -88,6 +90,15 @@ func (c *gripperServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRe
 	return out, nil
 }
 
+func (c *gripperServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error) {
+	out := new(v1.GetGeometriesResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.gripper.v1.GripperService/GetGeometries", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GripperServiceServer is the server API for GripperService service.
 // All implementations must embed UnimplementedGripperServiceServer
 // for forward compatibility
@@ -102,6 +113,8 @@ type GripperServiceServer interface {
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	mustEmbedUnimplementedGripperServiceServer()
 }
 
@@ -123,6 +136,9 @@ func (UnimplementedGripperServiceServer) IsMoving(context.Context, *IsMovingRequ
 }
 func (UnimplementedGripperServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedGripperServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
 }
 func (UnimplementedGripperServiceServer) mustEmbedUnimplementedGripperServiceServer() {}
 
@@ -227,6 +243,24 @@ func _GripperService_DoCommand_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GripperService_GetGeometries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetGeometriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GripperServiceServer).GetGeometries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.gripper.v1.GripperService/GetGeometries",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GripperServiceServer).GetGeometries(ctx, req.(*v1.GetGeometriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GripperService_ServiceDesc is the grpc.ServiceDesc for GripperService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -253,6 +287,10 @@ var GripperService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _GripperService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetGeometries",
+			Handler:    _GripperService_GetGeometries_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
