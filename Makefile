@@ -1,7 +1,6 @@
-TOOL_BIN := bin/gotools/$(shell uname -s)-$(shell uname -m)
 PROTO_FILES := $(shell find proto/ -type f -name '*.proto')
 
-export GOBIN := $(shell pwd)/$(TOOL_BIN)
+export GOBIN := $(shell pwd)/bin/gotools/$(shell uname -s)-$(shell uname -m)
 export PATH := $(GOBIN):$(shell npm root)/.bin:$(PATH)
 
 .PHONY: all
@@ -52,5 +51,5 @@ dist/buf-web: dist/tool-install $(PROTO_FILES)
 lint: dist/tool-install
 	buf lint
 	buf format -w
-	export pkgs=`go list -f '{{.Dir}}' ./... | grep -v gen | grep -v proto` && echo "$$pkgs" | xargs go vet -vettool=$(TOOL_BIN)/combined
-	export GOGC=50 pkgs=`go list -f '{{.Dir}}' ./... | grep -v gen | grep -v proto` && echo "$$pkgs" | xargs $(TOOL_BIN)/golangci-lint run $(LINT_BUILD_TAGS) -v --fix --config=./etc/.golangci.yaml
+	export pkgs=`go list -f '{{.Dir}}' ./... | grep -v gen | grep -v proto` && echo "$$pkgs" | xargs go vet -vettool=`which combined`
+	export GOGC=50 pkgs=`go list -f '{{.Dir}}' ./... | grep -v gen | grep -v proto` && echo "$$pkgs" | xargs golangci-lint run $(LINT_BUILD_TAGS) -v --fix --config=./etc/.golangci.yaml
