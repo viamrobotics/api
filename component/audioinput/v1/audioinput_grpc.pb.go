@@ -34,6 +34,8 @@ type AudioInputServiceClient interface {
 	Record(ctx context.Context, in *RecordRequest, opts ...grpc.CallOption) (*httpbody.HttpBody, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 }
 
 type audioInputServiceClient struct {
@@ -103,6 +105,15 @@ func (c *audioInputServiceClient) DoCommand(ctx context.Context, in *v1.DoComman
 	return out, nil
 }
 
+func (c *audioInputServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error) {
+	out := new(v1.GetGeometriesResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.audioinput.v1.AudioInputService/GetGeometries", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AudioInputServiceServer is the server API for AudioInputService service.
 // All implementations must embed UnimplementedAudioInputServiceServer
 // for forward compatibility
@@ -117,6 +128,8 @@ type AudioInputServiceServer interface {
 	Record(context.Context, *RecordRequest) (*httpbody.HttpBody, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	mustEmbedUnimplementedAudioInputServiceServer()
 }
 
@@ -135,6 +148,9 @@ func (UnimplementedAudioInputServiceServer) Record(context.Context, *RecordReque
 }
 func (UnimplementedAudioInputServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedAudioInputServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
 }
 func (UnimplementedAudioInputServiceServer) mustEmbedUnimplementedAudioInputServiceServer() {}
 
@@ -224,6 +240,24 @@ func _AudioInputService_DoCommand_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AudioInputService_GetGeometries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetGeometriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AudioInputServiceServer).GetGeometries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.audioinput.v1.AudioInputService/GetGeometries",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AudioInputServiceServer).GetGeometries(ctx, req.(*v1.GetGeometriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AudioInputService_ServiceDesc is the grpc.ServiceDesc for AudioInputService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -242,6 +276,10 @@ var AudioInputService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _AudioInputService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetGeometries",
+			Handler:    _AudioInputService_GetGeometries_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

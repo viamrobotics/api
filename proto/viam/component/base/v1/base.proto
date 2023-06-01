@@ -67,6 +67,13 @@ service BaseService {
       post: "/viam/api/v1/component/base/{name}/do_command"
     };
   }
+
+  // GetGeometries returns the geometries of the component in their current configuration
+  rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/base/{name}/geometries"
+    };
+  }
 }
 
 message MoveStraightRequest {

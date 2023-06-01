@@ -510,5 +510,127 @@ proto.viam.component.arm.v1.ArmServicePromiseClient.prototype.doCommand =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.common.v1.GetKinematicsRequest,
+ *   !proto.viam.common.v1.GetKinematicsResponse>}
+ */
+const methodDescriptor_ArmService_GetKinematics = new grpc.web.MethodDescriptor(
+  '/viam.component.arm.v1.ArmService/GetKinematics',
+  grpc.web.MethodType.UNARY,
+  common_v1_common_pb.GetKinematicsRequest,
+  common_v1_common_pb.GetKinematicsResponse,
+  /**
+   * @param {!proto.viam.common.v1.GetKinematicsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  common_v1_common_pb.GetKinematicsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.common.v1.GetKinematicsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.common.v1.GetKinematicsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.common.v1.GetKinematicsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.arm.v1.ArmServiceClient.prototype.getKinematics =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/GetKinematics',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_GetKinematics,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.common.v1.GetKinematicsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.common.v1.GetKinematicsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.arm.v1.ArmServicePromiseClient.prototype.getKinematics =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/GetKinematics',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_GetKinematics);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.common.v1.GetGeometriesRequest,
+ *   !proto.viam.common.v1.GetGeometriesResponse>}
+ */
+const methodDescriptor_ArmService_GetGeometries = new grpc.web.MethodDescriptor(
+  '/viam.component.arm.v1.ArmService/GetGeometries',
+  grpc.web.MethodType.UNARY,
+  common_v1_common_pb.GetGeometriesRequest,
+  common_v1_common_pb.GetGeometriesResponse,
+  /**
+   * @param {!proto.viam.common.v1.GetGeometriesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  common_v1_common_pb.GetGeometriesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.common.v1.GetGeometriesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.common.v1.GetGeometriesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.common.v1.GetGeometriesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.arm.v1.ArmServiceClient.prototype.getGeometries =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/GetGeometries',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_GetGeometries,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.common.v1.GetGeometriesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.common.v1.GetGeometriesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.arm.v1.ArmServicePromiseClient.prototype.getGeometries =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/GetGeometries',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_GetGeometries);
+};
+
+
 module.exports = proto.viam.component.arm.v1;
 

@@ -34,6 +34,8 @@ type ServoServiceClient interface {
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 }
 
 type servoServiceClient struct {
@@ -89,6 +91,15 @@ func (c *servoServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequ
 	return out, nil
 }
 
+func (c *servoServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error) {
+	out := new(v1.GetGeometriesResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.servo.v1.ServoService/GetGeometries", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServoServiceServer is the server API for ServoService service.
 // All implementations must embed UnimplementedServoServiceServer
 // for forward compatibility
@@ -104,6 +115,8 @@ type ServoServiceServer interface {
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	mustEmbedUnimplementedServoServiceServer()
 }
 
@@ -125,6 +138,9 @@ func (UnimplementedServoServiceServer) IsMoving(context.Context, *IsMovingReques
 }
 func (UnimplementedServoServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedServoServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
 }
 func (UnimplementedServoServiceServer) mustEmbedUnimplementedServoServiceServer() {}
 
@@ -229,6 +245,24 @@ func _ServoService_DoCommand_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServoService_GetGeometries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetGeometriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServoServiceServer).GetGeometries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.servo.v1.ServoService/GetGeometries",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServoServiceServer).GetGeometries(ctx, req.(*v1.GetGeometriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ServoService_ServiceDesc is the grpc.ServiceDesc for ServoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -255,6 +289,10 @@ var ServoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _ServoService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetGeometries",
+			Handler:    _ServoService_GetGeometries_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

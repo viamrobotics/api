@@ -42,12 +42,22 @@ type AudioInputServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type AudioInputServiceGetGeometries = {
+  readonly methodName: string;
+  readonly service: typeof AudioInputService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetGeometriesRequest;
+  readonly responseType: typeof common_v1_common_pb.GetGeometriesResponse;
+};
+
 export class AudioInputService {
   static readonly serviceName: string;
   static readonly Chunks: AudioInputServiceChunks;
   static readonly Properties: AudioInputServiceProperties;
   static readonly Record: AudioInputServiceRecord;
   static readonly DoCommand: AudioInputServiceDoCommand;
+  static readonly GetGeometries: AudioInputServiceGetGeometries;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -109,6 +119,15 @@ export class AudioInputServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
   ): UnaryResponse;
 }
 
