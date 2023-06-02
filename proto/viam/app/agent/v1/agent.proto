@@ -10,8 +10,6 @@ option go_package = "go.viam.com/api/app/agent/v1";
 service AgentService {
   // AgentConfig requests the current config for the agent itself
   rpc AgentConfig(AgentConfigRequest) returns (AgentConfigResponse);
-  // SubsystemConfig requests the current config for a given subsystem
-  rpc SubsystemConfig(SubsystemConfigRequest) returns (SubsystemConfigResponse);
 }
 
 message AgentConfigRequest {
@@ -19,6 +17,8 @@ message AgentConfigRequest {
   string agent_version = 1;
   // info about the host system
   HostInfo host_info = 2;
+  // current subsystems and versions
+  repeated SubsystemVersion subsystem_versions = 3;
 }
 
 message AgentConfigResponse {
@@ -26,29 +26,24 @@ message AgentConfigResponse {
   UpdateInfo update_info = 1;
   // subsystems to be installed/configured/updated
   // note: previously installed subsystems will be removed from the system if removed from this list
-  repeated string subsystems = 2;
+  repeated SubsystemConfig subsystem_config = 2;
   // how often this request should be repeated
   google.protobuf.Duration check_interval = 3;
 }
 
-message SubsystemConfigRequest {
-  // subsystem is always "viam-server" for now
-  string subsystem = 1;
-  // the currently running version
-  string subsystem_version = 2;
-  // info about the host system
-  HostInfo host_info = 3;
+message SubsystemConfig {
+  string subsystem_name = 1;
+  // data needed to download/validate the subsystem
+  UpdateInfo update_info = 2;
+  // if this subsystem is disabled and should not be started by the agent
+  bool disable = 3;
+  // force_restart will restart the subsystem, even if no updates are available
+  bool force_restart = 4;
 }
 
-message SubsystemConfigResponse {
-  // data needed to download/validate the subsystem
-  UpdateInfo update_info = 1;
-  // if this subsystem is disabled and should not be started by the agent
-  bool disable = 2;
-  // force_restart will restart the subsystem, even if no updates are available
-  bool force_restart = 3;
-  // how often this request should be repeated
-  google.protobuf.Duration check_interval = 4;
+message SubsystemVersion {
+  string subsystem_name = 1;
+  string subsystem_version = 2;
 }
 
 message HostInfo {
