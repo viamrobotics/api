@@ -41,12 +41,22 @@ type EncoderServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type EncoderServiceGetGeometries = {
+  readonly methodName: string;
+  readonly service: typeof EncoderService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetGeometriesRequest;
+  readonly responseType: typeof common_v1_common_pb.GetGeometriesResponse;
+};
+
 export class EncoderService {
   static readonly serviceName: string;
   static readonly GetPosition: EncoderServiceGetPosition;
   static readonly ResetPosition: EncoderServiceResetPosition;
   static readonly GetProperties: EncoderServiceGetProperties;
   static readonly DoCommand: EncoderServiceDoCommand;
+  static readonly GetGeometries: EncoderServiceGetGeometries;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -116,6 +126,15 @@ export class EncoderServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
   ): UnaryResponse;
 }
 

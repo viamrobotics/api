@@ -34,6 +34,8 @@ type InputControllerServiceClient interface {
 	TriggerEvent(ctx context.Context, in *TriggerEventRequest, opts ...grpc.CallOption) (*TriggerEventResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 }
 
 type inputControllerServiceClient struct {
@@ -112,6 +114,15 @@ func (c *inputControllerServiceClient) DoCommand(ctx context.Context, in *v1.DoC
 	return out, nil
 }
 
+func (c *inputControllerServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error) {
+	out := new(v1.GetGeometriesResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.inputcontroller.v1.InputControllerService/GetGeometries", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InputControllerServiceServer is the server API for InputControllerService service.
 // All implementations must embed UnimplementedInputControllerServiceServer
 // for forward compatibility
@@ -127,6 +138,8 @@ type InputControllerServiceServer interface {
 	TriggerEvent(context.Context, *TriggerEventRequest) (*TriggerEventResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	mustEmbedUnimplementedInputControllerServiceServer()
 }
 
@@ -148,6 +161,9 @@ func (UnimplementedInputControllerServiceServer) TriggerEvent(context.Context, *
 }
 func (UnimplementedInputControllerServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedInputControllerServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
 }
 func (UnimplementedInputControllerServiceServer) mustEmbedUnimplementedInputControllerServiceServer() {
 }
@@ -256,6 +272,24 @@ func _InputControllerService_DoCommand_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _InputControllerService_GetGeometries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetGeometriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InputControllerServiceServer).GetGeometries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.inputcontroller.v1.InputControllerService/GetGeometries",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InputControllerServiceServer).GetGeometries(ctx, req.(*v1.GetGeometriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // InputControllerService_ServiceDesc is the grpc.ServiceDesc for InputControllerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -278,6 +312,10 @@ var InputControllerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _InputControllerService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetGeometries",
+			Handler:    _InputControllerService_GetGeometries_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

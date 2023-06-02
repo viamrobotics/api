@@ -37,6 +37,13 @@ service AudioInputService {
       post: "/viam/api/v1/component/audioinput/{name}/do_command"
     };
   }
+
+  // GetGeometries returns the geometries of the component in their current configuration
+  rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/audioinput/{name}/geometries"
+    };
+  }
 }
 
 enum SampleFormat {
