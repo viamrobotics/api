@@ -19,6 +19,8 @@ var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js');
 goog.object.extend(proto, app_data_v1_data_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
+var google_rpc_status_pb = require('../../../google/rpc/status_pb.js');
+goog.object.extend(proto, google_rpc_status_pb);
 var tagger_v1_tagger_pb = require('../../../tagger/v1/tagger_pb.js');
 goog.object.extend(proto, tagger_v1_tagger_pb);
 goog.exportSymbol('proto.viam.app.mltraining.v1.CancelTrainingJobRequest', null, global);
@@ -1317,7 +1319,8 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInst
     lastModified: (f = msg.getLastModified()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, ""),
     userEmail: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 7, "")
+    id: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    errorStatus: (f = msg.getErrorStatus()) && google_rpc_status_pb.Status.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1384,6 +1387,11 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
+      break;
+    case 8:
+      var value = new google_rpc_status_pb.Status;
+      reader.readMessage(value,google_rpc_status_pb.Status.deserializeBinaryFromReader);
+      msg.setErrorStatus(value);
       break;
     default:
       reader.skipField();
@@ -1464,6 +1472,14 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
     writer.writeString(
       7,
       f
+    );
+  }
+  f = message.getErrorStatus();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      google_rpc_status_pb.Status.serializeBinaryToWriter
     );
   }
 };
@@ -1649,6 +1665,43 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getId = function() {
  */
 proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional google.rpc.Status error_status = 8;
+ * @return {?proto.google.rpc.Status}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getErrorStatus = function() {
+  return /** @type{?proto.google.rpc.Status} */ (
+    jspb.Message.getWrapperField(this, google_rpc_status_pb.Status, 8));
+};
+
+
+/**
+ * @param {?proto.google.rpc.Status|undefined} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+*/
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setErrorStatus = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.clearErrorStatus = function() {
+  return this.setErrorStatus(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.hasErrorStatus = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 

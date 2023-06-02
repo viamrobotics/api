@@ -4,6 +4,7 @@ package viam.app.mltraining.v1;
 
 import "app/data/v1/data.proto";
 import "google/protobuf/timestamp.proto";
+import "google/rpc/status.proto";
 import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/app/mltraining/v1";
@@ -70,6 +71,7 @@ message TrainingJobMetadata {
   string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
   string user_email = 6 [(tagger.v1.tags) = "bson:\"user_email\" json:\"user_email\""];
   string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+  google.rpc.Status error_status = 8 [(tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
 }
 
 message CancelTrainingJobRequest {
