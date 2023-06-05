@@ -1,3 +1,5 @@
+SHELL := bash
+
 PROTO_FILES := $(shell find proto/ -type f -name '*.proto')
 
 export GOBIN := $(shell pwd)/bin/gotools/$(shell uname -s)-$(shell uname -m)
