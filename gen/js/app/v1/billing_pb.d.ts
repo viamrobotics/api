@@ -356,6 +356,24 @@ export class GetCurrentMonthUsageResponse extends jspb.Message {
   getStandardComputeUsageCost(): number;
   setStandardComputeUsageCost(value: number): void;
 
+  getBinaryCloudStorageUsage(): number;
+  setBinaryCloudStorageUsage(value: number): void;
+
+  getTabularCloudStorageUsage(): number;
+  setTabularCloudStorageUsage(value: number): void;
+
+  getTabularDataEgress(): number;
+  setTabularDataEgress(value: number): void;
+
+  getTabularDataUpload(): number;
+  setTabularDataUpload(value: number): void;
+
+  getBinaryDataEgress(): number;
+  setBinaryDataEgress(value: number): void;
+
+  getBinaryDataUpload(): number;
+  setBinaryDataUpload(value: number): void;
+
   getDiscountAmount(): number;
   setDiscountAmount(value: number): void;
 
@@ -384,6 +402,12 @@ export namespace GetCurrentMonthUsageResponse {
     dataEgresUsageCost: number,
     remoteControlUsageCost: number,
     standardComputeUsageCost: number,
+    binaryCloudStorageUsage: number,
+    tabularCloudStorageUsage: number,
+    tabularDataEgress: number,
+    tabularDataUpload: number,
+    binaryDataEgress: number,
+    binaryDataUpload: number,
     discountAmount: number,
     totalUsageWithDiscount: number,
     totalUsageWithoutDiscount: number,

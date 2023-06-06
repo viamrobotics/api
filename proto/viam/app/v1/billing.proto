@@ -110,7 +110,7 @@ message GetCurrentMonthUsageResponse {
   double standard_compute_usage_cost = 7;
   double binary_cloud_storage_usage = 11;
   double tabular_cloud_storage_usage = 12;
-  double tabular_data_egress = 13; 
+  double tabular_data_egress = 13;
   double tabular_data_upload = 14;
   double binary_data_egress = 15;
   double binary_data_upload = 16;

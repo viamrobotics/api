@@ -2899,6 +2899,12 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.toObject = function(includeInstan
     dataEgresUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
     remoteControlUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
     standardComputeUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
+    binaryCloudStorageUsage: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0),
+    tabularCloudStorageUsage: jspb.Message.getFloatingPointFieldWithDefault(msg, 12, 0.0),
+    tabularDataEgress: jspb.Message.getFloatingPointFieldWithDefault(msg, 13, 0.0),
+    tabularDataUpload: jspb.Message.getFloatingPointFieldWithDefault(msg, 14, 0.0),
+    binaryDataEgress: jspb.Message.getFloatingPointFieldWithDefault(msg, 15, 0.0),
+    binaryDataUpload: jspb.Message.getFloatingPointFieldWithDefault(msg, 16, 0.0),
     discountAmount: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
     totalUsageWithDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
     totalUsageWithoutDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0)
@@ -2967,6 +2973,30 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.deserializeBinaryFromReader = fun
     case 7:
       var value = /** @type {number} */ (reader.readDouble());
       msg.setStandardComputeUsageCost(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setBinaryCloudStorageUsage(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setTabularCloudStorageUsage(value);
+      break;
+    case 13:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setTabularDataEgress(value);
+      break;
+    case 14:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setTabularDataUpload(value);
+      break;
+    case 15:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setBinaryDataEgress(value);
+      break;
+    case 16:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setBinaryDataUpload(value);
       break;
     case 8:
       var value = /** @type {number} */ (reader.readDouble());
@@ -3057,6 +3087,48 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.serializeBinaryToWriter = functio
   if (f !== 0.0) {
     writer.writeDouble(
       7,
+      f
+    );
+  }
+  f = message.getBinaryCloudStorageUsage();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      11,
+      f
+    );
+  }
+  f = message.getTabularCloudStorageUsage();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      12,
+      f
+    );
+  }
+  f = message.getTabularDataEgress();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      13,
+      f
+    );
+  }
+  f = message.getTabularDataUpload();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      14,
+      f
+    );
+  }
+  f = message.getBinaryDataEgress();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      15,
+      f
+    );
+  }
+  f = message.getBinaryDataUpload();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      16,
       f
     );
   }
@@ -3245,6 +3317,114 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getStandardComputeUsage
  */
 proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setStandardComputeUsageCost = function(value) {
   return jspb.Message.setProto3FloatField(this, 7, value);
+};
+
+
+/**
+ * optional double binary_cloud_storage_usage = 11;
+ * @return {number}
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getBinaryCloudStorageUsage = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 11, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.GetCurrentMonthUsageResponse} returns this
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setBinaryCloudStorageUsage = function(value) {
+  return jspb.Message.setProto3FloatField(this, 11, value);
+};
+
+
+/**
+ * optional double tabular_cloud_storage_usage = 12;
+ * @return {number}
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getTabularCloudStorageUsage = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 12, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.GetCurrentMonthUsageResponse} returns this
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setTabularCloudStorageUsage = function(value) {
+  return jspb.Message.setProto3FloatField(this, 12, value);
+};
+
+
+/**
+ * optional double tabular_data_egress = 13;
+ * @return {number}
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getTabularDataEgress = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 13, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.GetCurrentMonthUsageResponse} returns this
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setTabularDataEgress = function(value) {
+  return jspb.Message.setProto3FloatField(this, 13, value);
+};
+
+
+/**
+ * optional double tabular_data_upload = 14;
+ * @return {number}
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getTabularDataUpload = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 14, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.GetCurrentMonthUsageResponse} returns this
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setTabularDataUpload = function(value) {
+  return jspb.Message.setProto3FloatField(this, 14, value);
+};
+
+
+/**
+ * optional double binary_data_egress = 15;
+ * @return {number}
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getBinaryDataEgress = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 15, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.GetCurrentMonthUsageResponse} returns this
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setBinaryDataEgress = function(value) {
+  return jspb.Message.setProto3FloatField(this, 15, value);
+};
+
+
+/**
+ * optional double binary_data_upload = 16;
+ * @return {number}
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getBinaryDataUpload = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 16, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.GetCurrentMonthUsageResponse} returns this
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setBinaryDataUpload = function(value) {
+  return jspb.Message.setProto3FloatField(this, 16, value);
 };
 
 
