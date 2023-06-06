@@ -32,9 +32,15 @@ message CurrentMonthUsageSummary {
   double data_egres_usage_quantity = 6;
   double standard_compute_usage_cost = 7;
   double standard_compute_usage_quantity = 8;
-  double total_usage_quantity = 9;
-  double total_usage_with_discount = 10; // returns amt with any discounts applied
-  double total_usage_without_discount = 11; // returns amt without any discounts applied
+  double binary_cloud_storage_usage = 9;
+  double tabular_cloud_storage_usage = 10;
+  double tabular_data_egress = 11; 
+  double tabular_data_upload = 12;
+  double binary_data_egress = 13;
+  double binary_data_upload = 14;
+  double total_usage_quantity = 15;
+  double total_usage_with_discount = 16; // returns amt with any discounts applied
+  double total_usage_without_discount = 17; // returns amt without any discounts applied
 }
 
 message InvoiceSummary {
@@ -91,9 +97,15 @@ message GetCurrentMonthUsageSummaryResponse {
   double data_egres_usage_quantity = 6;
   double standard_compute_usage_cost = 7;
   double standard_compute_usage_quantity = 8;
-  double total_usage_quantity = 9;
-  double total_usage_with_discount = 10; // returns amt with any discounts applied
-  double total_usage_without_discount = 11; // returns amt without any discounts applied
+  double binary_cloud_storage_usage = 9;
+  double tabular_cloud_storage_usage = 10;
+  double tabular_data_egress = 11; 
+  double tabular_data_upload = 12;
+  double binary_data_egress = 13;
+  double binary_data_upload = 14;
+  double total_usage_quantity = 15;
+  double total_usage_with_discount = 16; // returns amt with any discounts applied
+  double total_usage_without_discount = 17; // returns amt without any discounts applied
 }
 
 message GetCurrentMonthUsageRequest {
