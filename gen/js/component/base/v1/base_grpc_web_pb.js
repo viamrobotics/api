@@ -571,5 +571,66 @@ proto.viam.component.base.v1.BaseServicePromiseClient.prototype.getGeometries =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.base.v1.GetPropertiesRequest,
+ *   !proto.viam.component.base.v1.GetPropertiesResponse>}
+ */
+const methodDescriptor_BaseService_GetProperties = new grpc.web.MethodDescriptor(
+  '/viam.component.base.v1.BaseService/GetProperties',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.base.v1.GetPropertiesRequest,
+  proto.viam.component.base.v1.GetPropertiesResponse,
+  /**
+   * @param {!proto.viam.component.base.v1.GetPropertiesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.base.v1.GetPropertiesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.base.v1.GetPropertiesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.base.v1.GetPropertiesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.base.v1.GetPropertiesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.base.v1.BaseServiceClient.prototype.getProperties =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.base.v1.BaseService/GetProperties',
+      request,
+      metadata || {},
+      methodDescriptor_BaseService_GetProperties,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.base.v1.GetPropertiesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.base.v1.GetPropertiesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.base.v1.BaseServicePromiseClient.prototype.getProperties =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.base.v1.BaseService/GetProperties',
+      request,
+      metadata || {},
+      methodDescriptor_BaseService_GetProperties);
+};
+
+
 module.exports = proto.viam.component.base.v1;
 

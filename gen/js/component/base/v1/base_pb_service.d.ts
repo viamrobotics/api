@@ -77,6 +77,15 @@ type BaseServiceGetGeometries = {
   readonly responseType: typeof common_v1_common_pb.GetGeometriesResponse;
 };
 
+type BaseServiceGetProperties = {
+  readonly methodName: string;
+  readonly service: typeof BaseService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_base_v1_base_pb.GetPropertiesRequest;
+  readonly responseType: typeof component_base_v1_base_pb.GetPropertiesResponse;
+};
+
 export class BaseService {
   static readonly serviceName: string;
   static readonly MoveStraight: BaseServiceMoveStraight;
@@ -87,6 +96,7 @@ export class BaseService {
   static readonly IsMoving: BaseServiceIsMoving;
   static readonly DoCommand: BaseServiceDoCommand;
   static readonly GetGeometries: BaseServiceGetGeometries;
+  static readonly GetProperties: BaseServiceGetProperties;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -192,6 +202,15 @@ export class BaseServiceClient {
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
+  ): UnaryResponse;
+  getProperties(
+    requestMessage: component_base_v1_base_pb.GetPropertiesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_base_v1_base_pb.GetPropertiesResponse|null) => void
+  ): UnaryResponse;
+  getProperties(
+    requestMessage: component_base_v1_base_pb.GetPropertiesRequest,
+    callback: (error: ServiceError|null, responseMessage: component_base_v1_base_pb.GetPropertiesResponse|null) => void
   ): UnaryResponse;
 }
 
