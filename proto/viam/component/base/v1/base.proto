@@ -77,9 +77,9 @@ service BaseService {
 
   // GetProperties returns the properties of a base in its current configuration
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
-	option (google.api.http) = {
-  	get: "/viam/api/v1/component/base/{name}/properties"
-	};
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/base/{name}/properties"
+    };
   }
 }
 
@@ -155,6 +155,7 @@ message IsMovingResponse {
 message GetPropertiesRequest {
   // Name of the base
   string name = 1;
+  google.protobuf.Struct extra = 99;
 }
 
 message GetPropertiesResponse {
