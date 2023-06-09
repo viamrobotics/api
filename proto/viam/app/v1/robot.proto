@@ -109,6 +109,11 @@ message NetworkConfig {
   string bind_address = 2;
   string tls_cert_file = 3;
   string tls_key_file = 4;
+  SessionsConfig sessions = 5;
+}
+
+message SessionsConfig {
+  google.protobuf.Duration heartbeat_window = 1;
 }
 
 message AuthConfig {
