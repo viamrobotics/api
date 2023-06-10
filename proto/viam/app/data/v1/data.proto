@@ -250,7 +250,7 @@ message DeleteBinaryDataByFilterResponse {
 message DeleteBinaryDataByIDsRequest {
   repeated BinaryID binary_ids = 2;
 
-  repeated string file_ids = 1 [deprecated = true];  // Replaced with binary_ids
+  repeated string file_ids = 1 [deprecated = true]; // Replaced with binary_ids
 }
 
 // DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided
