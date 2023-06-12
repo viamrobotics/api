@@ -367,6 +367,11 @@ export class NetworkConfig extends jspb.Message {
   getTlsKeyFile(): string;
   setTlsKeyFile(value: string): void;
 
+  hasSessions(): boolean;
+  clearSessions(): void;
+  getSessions(): SessionsConfig | undefined;
+  setSessions(value?: SessionsConfig): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): NetworkConfig.AsObject;
   static toObject(includeInstance: boolean, msg: NetworkConfig): NetworkConfig.AsObject;
@@ -383,6 +388,29 @@ export namespace NetworkConfig {
     bindAddress: string,
     tlsCertFile: string,
     tlsKeyFile: string,
+    sessions?: SessionsConfig.AsObject,
+  }
+}
+
+export class SessionsConfig extends jspb.Message {
+  hasHeartbeatWindow(): boolean;
+  clearHeartbeatWindow(): void;
+  getHeartbeatWindow(): google_protobuf_duration_pb.Duration | undefined;
+  setHeartbeatWindow(value?: google_protobuf_duration_pb.Duration): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SessionsConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: SessionsConfig): SessionsConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SessionsConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SessionsConfig;
+  static deserializeBinaryFromReader(message: SessionsConfig, reader: jspb.BinaryReader): SessionsConfig;
+}
+
+export namespace SessionsConfig {
+  export type AsObject = {
+    heartbeatWindow?: google_protobuf_duration_pb.Duration.AsObject,
   }
 }
 
