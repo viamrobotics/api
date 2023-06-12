@@ -253,13 +253,13 @@ message DeleteBinaryDataByIDsRequest {
   repeated string file_ids = 1 [deprecated = true]; // Replaced by binary_ids
 }
 
-// DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided
+// DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided
 message DeleteBinaryDataByIDsResponse {
   uint64 deleted_count = 1;
   Result result = 2;
 }
 
-// AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when file IDs are provided
+// AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when binary ids are provided
 message AddTagsToBinaryDataByFileIDsRequest {
   repeated BinaryID binary_ids = 3;
   repeated string tags = 2;
@@ -277,7 +277,7 @@ message AddTagsToBinaryDataByFilterRequest {
 
 message AddTagsToBinaryDataByFilterResponse {}
 
-// RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when file IDs are provided
+// RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when binary ids are provided
 message RemoveTagsFromBinaryDataByFileIDsRequest {
   repeated BinaryID binary_ids = 3;
   repeated string tags = 2;
