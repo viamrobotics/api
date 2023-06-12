@@ -177,10 +177,18 @@ message BinaryDataByFilterResponse {
   string last = 3;
 }
 
-// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by file ids
+message BinaryID {
+  string file_id = 1;
+  string organization_id = 2;
+  string location_id = 3;
+}
+
+// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids
 message BinaryDataByIDsRequest {
-  repeated string file_ids = 1;
-  bool include_binary = 2; // by default
+  bool include_binary = 2;
+  repeated BinaryID binary_ids = 3;
+
+  repeated string file_ids = 1 [deprecated = true]; // Replaced by binary_ids
 }
 
 // BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided
@@ -238,21 +246,25 @@ message DeleteBinaryDataByFilterResponse {
   Result result = 2;
 }
 
-// DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when file ids are provided
+// DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided
 message DeleteBinaryDataByIDsRequest {
-  repeated string file_ids = 1;
+  repeated BinaryID binary_ids = 2;
+
+  repeated string file_ids = 1 [deprecated = true]; // Replaced by binary_ids
 }
 
-// DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided
+// DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided
 message DeleteBinaryDataByIDsResponse {
   uint64 deleted_count = 1;
   Result result = 2;
 }
 
-// AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when file IDs are provided
+// AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when binary ids are provided
 message AddTagsToBinaryDataByFileIDsRequest {
-  repeated string file_ids = 1;
+  repeated BinaryID binary_ids = 3;
   repeated string tags = 2;
+
+  repeated string file_ids = 1 [deprecated = true]; // Replaced by binary_ids
 }
 
 message AddTagsToBinaryDataByFileIDsResponse {}
@@ -265,10 +277,12 @@ message AddTagsToBinaryDataByFilterRequest {
 
 message AddTagsToBinaryDataByFilterResponse {}
 
-// RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when file IDs are provided
+// RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when binary ids are provided
 message RemoveTagsFromBinaryDataByFileIDsRequest {
-  repeated string file_ids = 1;
+  repeated BinaryID binary_ids = 3;
   repeated string tags = 2;
+
+  repeated string file_ids = 1 [deprecated = true]; // Replaced by binary_ids
 }
 
 // RemoveTagsFromBinaryDataByFileIDsResponse returns the number of binary files which had tags removed
@@ -298,12 +312,14 @@ message TagsByFilterResponse {
 }
 
 message AddBoundingBoxToImageByIDRequest {
-  string file_id = 1;
+  BinaryID binary_id = 7;
   string label = 2;
   double x_min_normalized = 3;
   double y_min_normalized = 4;
   double x_max_normalized = 5;
   double y_max_normalized = 6;
+
+  string file_id = 1 [deprecated = true]; // Replaced by binary_id
 }
 
 message AddBoundingBoxToImageByIDResponse {
@@ -311,8 +327,10 @@ message AddBoundingBoxToImageByIDResponse {
 }
 
 message RemoveBoundingBoxFromImageByIDRequest {
-  string file_id = 1;
+  BinaryID binary_id = 3;
   string bbox_id = 2;
+
+  string file_id = 1 [deprecated = true]; // Replaced by binary_id
 }
 
 message RemoveBoundingBoxFromImageByIDResponse {}
