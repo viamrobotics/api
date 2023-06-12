@@ -104,6 +104,8 @@ message GetPropertiesResponse {
   IntrinsicParameters intrinsic_parameters = 2;
   // Parameters for modeling lens distortion in cameras
   DistortionParameters distortion_parameters = 3;
+  // If attempting to create a transform camera, do NOT provide intrinsic or distortion parameters
+  // Transform camera does not require these fields and will fail if provided
 }
 
 message Webcams {
