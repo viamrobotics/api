@@ -372,6 +372,11 @@ export class NetworkConfig extends jspb.Message {
   getSessions(): SessionsConfig | undefined;
   setSessions(value?: SessionsConfig): void;
 
+  hasResourceConfigurationTimeout(): boolean;
+  clearResourceConfigurationTimeout(): void;
+  getResourceConfigurationTimeout(): google_protobuf_duration_pb.Duration | undefined;
+  setResourceConfigurationTimeout(value?: google_protobuf_duration_pb.Duration): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): NetworkConfig.AsObject;
   static toObject(includeInstance: boolean, msg: NetworkConfig): NetworkConfig.AsObject;
@@ -389,6 +394,7 @@ export namespace NetworkConfig {
     tlsCertFile: string,
     tlsKeyFile: string,
     sessions?: SessionsConfig.AsObject,
+    resourceConfigurationTimeout?: google_protobuf_duration_pb.Duration.AsObject,
   }
 }
 
