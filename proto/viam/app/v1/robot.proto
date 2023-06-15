@@ -110,6 +110,7 @@ message NetworkConfig {
   string tls_cert_file = 3;
   string tls_key_file = 4;
   SessionsConfig sessions = 5;
+  google.protobuf.Duration resource_configuration_timeout = 6;
 }
 
 message SessionsConfig {
