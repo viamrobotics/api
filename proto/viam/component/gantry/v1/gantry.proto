@@ -98,8 +98,8 @@ message HomeRequest {
 }
 
 message HomeResponse {
-	// A bool describing whether the gantry has completed homing
-	bool homed = 1;
+  // A bool describing whether the gantry has completed homing
+  bool homed = 1;
 }
 
 message GetLengthsRequest {
