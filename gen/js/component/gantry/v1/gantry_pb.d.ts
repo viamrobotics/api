@@ -63,6 +63,11 @@ export class MoveToPositionRequest extends jspb.Message {
   setPositionsMmList(value: Array<number>): void;
   addPositionsMm(value: number, index?: number): number;
 
+  clearSpeedsMmPerSecList(): void;
+  getSpeedsMmPerSecList(): Array<number>;
+  setSpeedsMmPerSecList(value: Array<number>): void;
+  addSpeedsMmPerSec(value: number, index?: number): number;
+
   hasExtra(): boolean;
   clearExtra(): void;
   getExtra(): google_protobuf_struct_pb.Struct | undefined;
@@ -82,6 +87,7 @@ export namespace MoveToPositionRequest {
   export type AsObject = {
     name: string,
     positionsMmList: Array<number>,
+    speedsMmPerSecList: Array<number>,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -99,6 +105,52 @@ export class MoveToPositionResponse extends jspb.Message {
 
 export namespace MoveToPositionResponse {
   export type AsObject = {
+  }
+}
+
+export class HomeRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): HomeRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: HomeRequest): HomeRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: HomeRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): HomeRequest;
+  static deserializeBinaryFromReader(message: HomeRequest, reader: jspb.BinaryReader): HomeRequest;
+}
+
+export namespace HomeRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class HomeResponse extends jspb.Message {
+  getHomed(): boolean;
+  setHomed(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): HomeResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: HomeResponse): HomeResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: HomeResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): HomeResponse;
+  static deserializeBinaryFromReader(message: HomeResponse, reader: jspb.BinaryReader): HomeResponse;
+}
+
+export namespace HomeResponse {
+  export type AsObject = {
+    homed: boolean,
   }
 }
 

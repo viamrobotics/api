@@ -29,6 +29,15 @@ GantryService.MoveToPosition = {
   responseType: component_gantry_v1_gantry_pb.MoveToPositionResponse
 };
 
+GantryService.Home = {
+  methodName: "Home",
+  service: GantryService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_gantry_v1_gantry_pb.HomeRequest,
+  responseType: component_gantry_v1_gantry_pb.HomeResponse
+};
+
 GantryService.GetLengths = {
   methodName: "GetLengths",
   service: GantryService,
@@ -117,6 +126,37 @@ GantryServiceClient.prototype.moveToPosition = function moveToPosition(requestMe
     callback = arguments[1];
   }
   var client = grpc.unary(GantryService.MoveToPosition, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+GantryServiceClient.prototype.home = function home(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(GantryService.Home, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
