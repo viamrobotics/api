@@ -469,14 +469,47 @@ export namespace BinaryDataByFilterResponse {
   }
 }
 
+export class BinaryID extends jspb.Message {
+  getFileId(): string;
+  setFileId(value: string): void;
+
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BinaryID.AsObject;
+  static toObject(includeInstance: boolean, msg: BinaryID): BinaryID.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BinaryID, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BinaryID;
+  static deserializeBinaryFromReader(message: BinaryID, reader: jspb.BinaryReader): BinaryID;
+}
+
+export namespace BinaryID {
+  export type AsObject = {
+    fileId: string,
+    organizationId: string,
+    locationId: string,
+  }
+}
+
 export class BinaryDataByIDsRequest extends jspb.Message {
+  getIncludeBinary(): boolean;
+  setIncludeBinary(value: boolean): void;
+
+  clearBinaryIdsList(): void;
+  getBinaryIdsList(): Array<BinaryID>;
+  setBinaryIdsList(value: Array<BinaryID>): void;
+  addBinaryIds(value?: BinaryID, index?: number): BinaryID;
+
   clearFileIdsList(): void;
   getFileIdsList(): Array<string>;
   setFileIdsList(value: Array<string>): void;
   addFileIds(value: string, index?: number): string;
-
-  getIncludeBinary(): boolean;
-  setIncludeBinary(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataByIDsRequest.AsObject;
@@ -490,8 +523,9 @@ export class BinaryDataByIDsRequest extends jspb.Message {
 
 export namespace BinaryDataByIDsRequest {
   export type AsObject = {
-    fileIdsList: Array<string>,
     includeBinary: boolean,
+    binaryIdsList: Array<BinaryID.AsObject>,
+    fileIdsList: Array<string>,
   }
 }
 
@@ -736,6 +770,11 @@ export namespace DeleteBinaryDataByFilterResponse {
 }
 
 export class DeleteBinaryDataByIDsRequest extends jspb.Message {
+  clearBinaryIdsList(): void;
+  getBinaryIdsList(): Array<BinaryID>;
+  setBinaryIdsList(value: Array<BinaryID>): void;
+  addBinaryIds(value?: BinaryID, index?: number): BinaryID;
+
   clearFileIdsList(): void;
   getFileIdsList(): Array<string>;
   setFileIdsList(value: Array<string>): void;
@@ -753,6 +792,7 @@ export class DeleteBinaryDataByIDsRequest extends jspb.Message {
 
 export namespace DeleteBinaryDataByIDsRequest {
   export type AsObject = {
+    binaryIdsList: Array<BinaryID.AsObject>,
     fileIdsList: Array<string>,
   }
 }
@@ -784,15 +824,20 @@ export namespace DeleteBinaryDataByIDsResponse {
 }
 
 export class AddTagsToBinaryDataByFileIDsRequest extends jspb.Message {
-  clearFileIdsList(): void;
-  getFileIdsList(): Array<string>;
-  setFileIdsList(value: Array<string>): void;
-  addFileIds(value: string, index?: number): string;
+  clearBinaryIdsList(): void;
+  getBinaryIdsList(): Array<BinaryID>;
+  setBinaryIdsList(value: Array<BinaryID>): void;
+  addBinaryIds(value?: BinaryID, index?: number): BinaryID;
 
   clearTagsList(): void;
   getTagsList(): Array<string>;
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
+
+  clearFileIdsList(): void;
+  getFileIdsList(): Array<string>;
+  setFileIdsList(value: Array<string>): void;
+  addFileIds(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddTagsToBinaryDataByFileIDsRequest.AsObject;
@@ -806,8 +851,9 @@ export class AddTagsToBinaryDataByFileIDsRequest extends jspb.Message {
 
 export namespace AddTagsToBinaryDataByFileIDsRequest {
   export type AsObject = {
-    fileIdsList: Array<string>,
+    binaryIdsList: Array<BinaryID.AsObject>,
     tagsList: Array<string>,
+    fileIdsList: Array<string>,
   }
 }
 
@@ -872,15 +918,20 @@ export namespace AddTagsToBinaryDataByFilterResponse {
 }
 
 export class RemoveTagsFromBinaryDataByFileIDsRequest extends jspb.Message {
-  clearFileIdsList(): void;
-  getFileIdsList(): Array<string>;
-  setFileIdsList(value: Array<string>): void;
-  addFileIds(value: string, index?: number): string;
+  clearBinaryIdsList(): void;
+  getBinaryIdsList(): Array<BinaryID>;
+  setBinaryIdsList(value: Array<BinaryID>): void;
+  addBinaryIds(value?: BinaryID, index?: number): BinaryID;
 
   clearTagsList(): void;
   getTagsList(): Array<string>;
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
+
+  clearFileIdsList(): void;
+  getFileIdsList(): Array<string>;
+  setFileIdsList(value: Array<string>): void;
+  addFileIds(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveTagsFromBinaryDataByFileIDsRequest.AsObject;
@@ -894,8 +945,9 @@ export class RemoveTagsFromBinaryDataByFileIDsRequest extends jspb.Message {
 
 export namespace RemoveTagsFromBinaryDataByFileIDsRequest {
   export type AsObject = {
-    fileIdsList: Array<string>,
+    binaryIdsList: Array<BinaryID.AsObject>,
     tagsList: Array<string>,
+    fileIdsList: Array<string>,
   }
 }
 
@@ -1012,8 +1064,10 @@ export namespace TagsByFilterResponse {
 }
 
 export class AddBoundingBoxToImageByIDRequest extends jspb.Message {
-  getFileId(): string;
-  setFileId(value: string): void;
+  hasBinaryId(): boolean;
+  clearBinaryId(): void;
+  getBinaryId(): BinaryID | undefined;
+  setBinaryId(value?: BinaryID): void;
 
   getLabel(): string;
   setLabel(value: string): void;
@@ -1030,6 +1084,9 @@ export class AddBoundingBoxToImageByIDRequest extends jspb.Message {
   getYMaxNormalized(): number;
   setYMaxNormalized(value: number): void;
 
+  getFileId(): string;
+  setFileId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddBoundingBoxToImageByIDRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AddBoundingBoxToImageByIDRequest): AddBoundingBoxToImageByIDRequest.AsObject;
@@ -1042,12 +1099,13 @@ export class AddBoundingBoxToImageByIDRequest extends jspb.Message {
 
 export namespace AddBoundingBoxToImageByIDRequest {
   export type AsObject = {
-    fileId: string,
+    binaryId?: BinaryID.AsObject,
     label: string,
     xMinNormalized: number,
     yMinNormalized: number,
     xMaxNormalized: number,
     yMaxNormalized: number,
+    fileId: string,
   }
 }
 
@@ -1072,11 +1130,16 @@ export namespace AddBoundingBoxToImageByIDResponse {
 }
 
 export class RemoveBoundingBoxFromImageByIDRequest extends jspb.Message {
-  getFileId(): string;
-  setFileId(value: string): void;
+  hasBinaryId(): boolean;
+  clearBinaryId(): void;
+  getBinaryId(): BinaryID | undefined;
+  setBinaryId(value?: BinaryID): void;
 
   getBboxId(): string;
   setBboxId(value: string): void;
+
+  getFileId(): string;
+  setFileId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveBoundingBoxFromImageByIDRequest.AsObject;
@@ -1090,8 +1153,9 @@ export class RemoveBoundingBoxFromImageByIDRequest extends jspb.Message {
 
 export namespace RemoveBoundingBoxFromImageByIDRequest {
   export type AsObject = {
-    fileId: string,
+    binaryId?: BinaryID.AsObject,
     bboxId: string,
+    fileId: string,
   }
 }
 
