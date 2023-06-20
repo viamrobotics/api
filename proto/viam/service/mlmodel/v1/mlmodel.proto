@@ -30,16 +30,24 @@ message InferRequest {
   string name = 1;
   // this is a struct of input arrays/tensors as specified in the metadata
   google.protobuf.Struct input_data = 2;
+  // the input data can also be provided as set of named flat tensors
+  FlatTensors input_tensors = 3;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message InferResponse {
   // this is a struct of output arrays/tensors as specified in the metadata
   google.protobuf.Struct output_data = 2;
+  // the output data can be provided as a set of named flat tensors
+  FlatTensors output_tensors = 3;
 }
 
 message MetadataRequest {
   // name of the model service
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message MetadataResponse {
@@ -90,4 +98,71 @@ enum LabelType {
   LABEL_TYPE_TENSOR_VALUE = 1;
   // the position of the tensor value in the axis is the label index
   LABEL_TYPE_TENSOR_AXIS = 2;
+}
+
+message FlatTensorDataInt8 {
+  bytes data = 1;
+}
+
+message FlatTensorDataUInt8 {
+  bytes data = 1;
+}
+
+message FlatTensorDataInt16 {
+  // packs two 16-bit numbers per entry - explicitly little-endian
+  // so big-endian producers/consumers must compensate
+  repeated fixed32 data = 1 [packed = true];
+}
+
+message FlatTensorDataUInt16 {
+  // packs two 16-bit numbers per entry - explicitly little-endian
+  // so big-endian producers/consumers must compensate
+  repeated fixed32 data = 1 [packed = true];
+}
+
+message FlatTensorDataInt32 {
+  repeated sfixed32 data = 1 [packed = true];
+}
+
+message FlatTensorDataUInt32 {
+  repeated fixed32 data = 1 [packed = true];
+}
+
+message FlatTensorDataInt64 {
+  repeated sfixed64 data = 1 [packed = true];
+}
+
+message FlatTensorDataUInt64 {
+  repeated fixed64 data = 1 [packed = true];
+}
+
+message FlatTensorDataFloat {
+  repeated float data = 1 [packed = true];
+}
+
+message FlatTensorDataDouble {
+  repeated double data = 1 [packed = true];
+}
+
+message FlatTensor {
+  // the shape of the provided tensor as a list of integer extents
+  repeated fixed64 shape = 1;
+  // the flat data to be interpreted per the above shape information
+  oneof tensor {
+    FlatTensorDataInt8 int8_tensor = 2;
+    FlatTensorDataUInt8 uint8_tensor = 3;
+    FlatTensorDataInt16 int16_tensor = 4;
+    FlatTensorDataUInt16 uint16_tensor = 5;
+    FlatTensorDataInt32 int32_tensor = 6;
+    FlatTensorDataUInt32 uint32_tensor = 7;
+    FlatTensorDataInt64 int64_tensor = 8;
+    FlatTensorDataUInt64 uint64_tensor = 9;
+    FlatTensorDataFloat float_tensor = 10;
+    FlatTensorDataDouble double_tensor = 11;
+  }
+}
+
+message FlatTensors {
+  // A name-indexed collection of flat tensor objects
+  map<string, FlatTensor> tensors = 1;
 }
