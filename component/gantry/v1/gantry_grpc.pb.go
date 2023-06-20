@@ -27,6 +27,8 @@ type GantryServiceClient interface {
 	GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error)
 	// MoveToPosition moves a gantry of the underlying robot to the requested position.
 	MoveToPosition(ctx context.Context, in *MoveToPositionRequest, opts ...grpc.CallOption) (*MoveToPositionResponse, error)
+	// Home runs the homing sequence of a gantry and returns true once it's completed.
+	Home(ctx context.Context, in *HomeRequest, opts ...grpc.CallOption) (*HomeResponse, error)
 	// GetLengths gets the lengths of a gantry of the underlying robot.
 	GetLengths(ctx context.Context, in *GetLengthsRequest, opts ...grpc.CallOption) (*GetLengthsResponse, error)
 	// Stop stops a robot's gantry
@@ -59,6 +61,15 @@ func (c *gantryServiceClient) GetPosition(ctx context.Context, in *GetPositionRe
 func (c *gantryServiceClient) MoveToPosition(ctx context.Context, in *MoveToPositionRequest, opts ...grpc.CallOption) (*MoveToPositionResponse, error) {
 	out := new(MoveToPositionResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.gantry.v1.GantryService/MoveToPosition", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gantryServiceClient) Home(ctx context.Context, in *HomeRequest, opts ...grpc.CallOption) (*HomeResponse, error) {
+	out := new(HomeResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.gantry.v1.GantryService/Home", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -118,6 +129,8 @@ type GantryServiceServer interface {
 	GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error)
 	// MoveToPosition moves a gantry of the underlying robot to the requested position.
 	MoveToPosition(context.Context, *MoveToPositionRequest) (*MoveToPositionResponse, error)
+	// Home runs the homing sequence of a gantry and returns true once it's completed.
+	Home(context.Context, *HomeRequest) (*HomeResponse, error)
 	// GetLengths gets the lengths of a gantry of the underlying robot.
 	GetLengths(context.Context, *GetLengthsRequest) (*GetLengthsResponse, error)
 	// Stop stops a robot's gantry
@@ -140,6 +153,9 @@ func (UnimplementedGantryServiceServer) GetPosition(context.Context, *GetPositio
 }
 func (UnimplementedGantryServiceServer) MoveToPosition(context.Context, *MoveToPositionRequest) (*MoveToPositionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoveToPosition not implemented")
+}
+func (UnimplementedGantryServiceServer) Home(context.Context, *HomeRequest) (*HomeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Home not implemented")
 }
 func (UnimplementedGantryServiceServer) GetLengths(context.Context, *GetLengthsRequest) (*GetLengthsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLengths not implemented")
@@ -201,6 +217,24 @@ func _GantryService_MoveToPosition_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GantryServiceServer).MoveToPosition(ctx, req.(*MoveToPositionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GantryService_Home_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HomeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GantryServiceServer).Home(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.gantry.v1.GantryService/Home",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GantryServiceServer).Home(ctx, req.(*HomeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -309,6 +343,10 @@ var GantryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MoveToPosition",
 			Handler:    _GantryService_MoveToPosition_Handler,
+		},
+		{
+			MethodName: "Home",
+			Handler:    _GantryService_Home_Handler,
 		},
 		{
 			MethodName: "GetLengths",
