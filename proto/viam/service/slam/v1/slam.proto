@@ -36,6 +36,13 @@ service SLAMService {
     };
   }
 
+    // GetLatestMapInfo returns a message indicating details regarding the latest map returned to the system
+  rpc GetLatestMapInfo(GetLatestMapInfoRequest) returns (GetLatestMapInfoResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/slam/{name}/latest_map_info"
+    };
+  }
+
   // DoCommand sends/receives arbitrary commands.
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
@@ -94,3 +101,12 @@ message GetInternalStateResponse {
   // mapping/localization
   bytes internal_state_chunk = 1;
 }
+
+message GetLatestMapInfoRequest {
+  // Name of the SLAM algo
+  string name = 1;
+}
+message GetLatestMapInfoResponse {
+  google.protobuf.Timestamp last_map_update = 1;
+}
+
