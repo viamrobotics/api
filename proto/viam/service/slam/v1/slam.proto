@@ -92,7 +92,7 @@ message GetPointCloudMapResponse {
 }
 
 message GetInternalStateRequest {
-  // Name of slam service
+  // Name of slam services
   string name = 1;
 }
 
@@ -106,6 +106,7 @@ message GetLatestMapInfoRequest {
   // Name of the SLAM algo
   string name = 1;
 }
+
 message GetLatestMapInfoResponse {
   google.protobuf.Timestamp last_map_update = 1;
 }
