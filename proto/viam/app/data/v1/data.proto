@@ -59,19 +59,6 @@ enum Order {
   ORDER_ASCENDING = 2;
 }
 
-// TODO(DATA-1376): Remove
-enum Status {
-  STATUS_UNSPECIFIED = 0;
-  STATUS_PARTIAL_SUCCESS = 1;
-  STATUS_SUCCESS = 2;
-}
-
-// TODO(DATA-1376): Remove
-message Result {
-  Status status = 1;
-  string message = 2;
-}
-
 message DataRequest {
   Filter filter = 1;
   uint64 limit = 2;
