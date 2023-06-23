@@ -59,15 +59,16 @@ enum Order {
   ORDER_ASCENDING = 2;
 }
 
+// TODO(DATA-1376): Remove
 enum Status {
   STATUS_UNSPECIFIED = 0;
   STATUS_PARTIAL_SUCCESS = 1;
   STATUS_SUCCESS = 2;
 }
 
+// TODO(DATA-1376): Remove
 message Result {
   Status status = 1;
-  // message is an aggregated error message string
   string message = 2;
 }
 
@@ -81,7 +82,6 @@ message DataRequest {
 message Filter {
   string component_name = 1;
   string component_type = 2;
-  string component_model = 3;
   string method = 4;
   string robot_name = 6;
   string robot_id = 7;
@@ -93,7 +93,8 @@ message Filter {
   CaptureInterval interval = 13;
   TagsFilter tags_filter = 14;
   repeated string bbox_labels = 15;
-  repeated string tags = 5 [deprecated = true];
+
+  reserved 3, 5;
 }
 
 message TagsFilter {
@@ -122,12 +123,13 @@ message CaptureMetadata {
   string part_name = 5;
   string part_id = 6;
   string component_type = 7;
-  string component_model = 8;
   string component_name = 9;
   string method_name = 10;
   map<string, google.protobuf.Any> method_parameters = 11;
   repeated string tags = 12;
   string mime_type = 13;
+
+  reserved 8;
 }
 
 // CaptureInterval describes the start and end time of the capture in this file
@@ -232,7 +234,8 @@ message DeleteTabularDataByFilterRequest {
 // DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided
 message DeleteTabularDataByFilterResponse {
   uint64 deleted_count = 1;
-  Result result = 2;
+
+  reserved 2;
 }
 
 // DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
@@ -243,7 +246,8 @@ message DeleteBinaryDataByFilterRequest {
 // DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided
 message DeleteBinaryDataByFilterResponse {
   uint64 deleted_count = 1;
-  Result result = 2;
+
+  reserved 2;
 }
 
 // DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided
@@ -256,7 +260,8 @@ message DeleteBinaryDataByIDsRequest {
 // DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided
 message DeleteBinaryDataByIDsResponse {
   uint64 deleted_count = 1;
-  Result result = 2;
+
+  reserved 2;
 }
 
 // AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when binary ids are provided
