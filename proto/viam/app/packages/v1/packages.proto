@@ -92,20 +92,6 @@ message Package {
   string id = 5;
 }
 
-// InternalPackage is stored in the packages database and represents our interval view of the uploaded package
-message InternalPackage {
-  string organization_id = 1 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
-  string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
-  string version = 3 [(tagger.v1.tags) = "bson:\"version\" json:\"version\""];
-  PackageType type = 4 [(tagger.v1.tags) = "bson:\"type\" json:\"type\""];
-  repeated FileInfo files = 5 [(tagger.v1.tags) = "bson:\"files\" json:\"files\""];
-  google.protobuf.Struct metadata = 6 [(tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
-  string blob_path = 7 [(tagger.v1.tags) = "bson:\"blob_path\" json:\"blob_path\""];
-  google.protobuf.Timestamp created_on = 8 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
-  string checksum = 9 [(tagger.v1.tags) = "bson:\"checksum\" json:\"checksum\""];
-  bool latest = 10 [(tagger.v1.tags) = "bson:\"latest\" json:\"latest\""];
-}
-
 message GetPackageRequest {
   string id = 1;
   string version = 2;
