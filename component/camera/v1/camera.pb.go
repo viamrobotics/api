@@ -364,8 +364,12 @@ type GetPropertiesResponse struct {
 	// A boolean property determining whether the camera supports the return of pointcloud data
 	SupportsPcd bool `protobuf:"varint,1,opt,name=supports_pcd,json=supportsPcd,proto3" json:"supports_pcd,omitempty"`
 	// Parameters for doing a perspective of a 3D scene to a 2D plane
+	// If camera does not provide intrinsic parameters, leave the field empty
+	// Initializing the parameters with 0-values is considered an error
 	IntrinsicParameters *IntrinsicParameters `protobuf:"bytes,2,opt,name=intrinsic_parameters,json=intrinsicParameters,proto3" json:"intrinsic_parameters,omitempty"`
 	// Parameters for modeling lens distortion in cameras
+	// If camera does not provide distortion parameters, leave the field empty
+	// Initializing the parameters with 0-values is considered an error
 	DistortionParameters *DistortionParameters `protobuf:"bytes,3,opt,name=distortion_parameters,json=distortionParameters,proto3" json:"distortion_parameters,omitempty"`
 }
 
