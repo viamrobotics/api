@@ -5,6 +5,7 @@ import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
+import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class GetPositionRequest extends jspb.Message {
   getName(): string;
@@ -139,6 +140,48 @@ export class GetInternalStateResponse extends jspb.Message {
 export namespace GetInternalStateResponse {
   export type AsObject = {
     internalStateChunk: Uint8Array | string,
+  }
+}
+
+export class GetLatestMapInfoRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetLatestMapInfoRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLatestMapInfoRequest): GetLatestMapInfoRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetLatestMapInfoRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLatestMapInfoRequest;
+  static deserializeBinaryFromReader(message: GetLatestMapInfoRequest, reader: jspb.BinaryReader): GetLatestMapInfoRequest;
+}
+
+export namespace GetLatestMapInfoRequest {
+  export type AsObject = {
+    name: string,
+  }
+}
+
+export class GetLatestMapInfoResponse extends jspb.Message {
+  hasLastMapUpdate(): boolean;
+  clearLastMapUpdate(): void;
+  getLastMapUpdate(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastMapUpdate(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetLatestMapInfoResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLatestMapInfoResponse): GetLatestMapInfoResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetLatestMapInfoResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLatestMapInfoResponse;
+  static deserializeBinaryFromReader(message: GetLatestMapInfoResponse, reader: jspb.BinaryReader): GetLatestMapInfoResponse;
+}
+
+export namespace GetLatestMapInfoResponse {
+  export type AsObject = {
+    lastMapUpdate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
