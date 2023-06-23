@@ -37,7 +37,7 @@ service SLAMService {
     };
   }
 
-    // GetLatestMapInfo returns details regarding the latest map returned to the system
+  // GetLatestMapInfo returns details regarding the latest map returned to the system
   rpc GetLatestMapInfo(GetLatestMapInfoRequest) returns (GetLatestMapInfoResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/slam/{name}/latest_map_info"
@@ -111,4 +111,3 @@ message GetLatestMapInfoRequest {
 message GetLatestMapInfoResponse {
   google.protobuf.Timestamp last_map_update = 1;
 }
-
