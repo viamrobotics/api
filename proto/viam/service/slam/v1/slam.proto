@@ -93,7 +93,7 @@ message GetPointCloudMapResponse {
 }
 
 message GetInternalStateRequest {
-  // Name of slam services
+  // Name of slam service
   string name = 1;
 }
 
