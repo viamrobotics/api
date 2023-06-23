@@ -5,6 +5,7 @@ package viam.service.slam.v1;
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/service/slam/v1";
 option java_package = "com.viam.service.slam.v1";
@@ -36,6 +37,14 @@ service SLAMService {
     };
   }
 
+  // GetLatestMapInfo returns a message indicating details regarding the
+  // latest map returned to the system.
+  rpc GetLatestMapInfo(GetLatestMapInfoRequest) returns (GetLatestMapInfoResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/slam/{name}/latest_map_info"
+    };
+  }
+
   // DoCommand sends/receives arbitrary commands.
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
@@ -43,6 +52,7 @@ service SLAMService {
     };
   }
 }
+
 message GetPositionRequest {
   // Name of slam service
   string name = 1;
@@ -93,4 +103,12 @@ message GetInternalStateResponse {
   // Chunk of the internal state of the SLAM algorithm required to continue
   // mapping/localization
   bytes internal_state_chunk = 1;
+}
+
+message GetLatestMapInfoRequest {
+  // Name of the SLAM algo
+  string name = 1;
+}
+message GetLatestMapInfoResponse {
+  google.protobuf.Timestamp last_map_update = 1;
 }

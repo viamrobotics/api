@@ -32,6 +32,15 @@ type SLAMServiceGetInternalState = {
   readonly responseType: typeof service_slam_v1_slam_pb.GetInternalStateResponse;
 };
 
+type SLAMServiceGetLatestMapInfo = {
+  readonly methodName: string;
+  readonly service: typeof SLAMService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_slam_v1_slam_pb.GetLatestMapInfoRequest;
+  readonly responseType: typeof service_slam_v1_slam_pb.GetLatestMapInfoResponse;
+};
+
 type SLAMServiceDoCommand = {
   readonly methodName: string;
   readonly service: typeof SLAMService;
@@ -46,6 +55,7 @@ export class SLAMService {
   static readonly GetPosition: SLAMServiceGetPosition;
   static readonly GetPointCloudMap: SLAMServiceGetPointCloudMap;
   static readonly GetInternalState: SLAMServiceGetInternalState;
+  static readonly GetLatestMapInfo: SLAMServiceGetLatestMapInfo;
   static readonly DoCommand: SLAMServiceDoCommand;
 }
 
@@ -92,6 +102,15 @@ export class SLAMServiceClient {
   ): UnaryResponse;
   getPointCloudMap(requestMessage: service_slam_v1_slam_pb.GetPointCloudMapRequest, metadata?: grpc.Metadata): ResponseStream<service_slam_v1_slam_pb.GetPointCloudMapResponse>;
   getInternalState(requestMessage: service_slam_v1_slam_pb.GetInternalStateRequest, metadata?: grpc.Metadata): ResponseStream<service_slam_v1_slam_pb.GetInternalStateResponse>;
+  getLatestMapInfo(
+    requestMessage: service_slam_v1_slam_pb.GetLatestMapInfoRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_slam_v1_slam_pb.GetLatestMapInfoResponse|null) => void
+  ): UnaryResponse;
+  getLatestMapInfo(
+    requestMessage: service_slam_v1_slam_pb.GetLatestMapInfoRequest,
+    callback: (error: ServiceError|null, responseMessage: service_slam_v1_slam_pb.GetLatestMapInfoResponse|null) => void
+  ): UnaryResponse;
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     metadata: grpc.Metadata,

@@ -38,6 +38,15 @@ SLAMService.GetInternalState = {
   responseType: service_slam_v1_slam_pb.GetInternalStateResponse
 };
 
+SLAMService.GetLatestMapInfo = {
+  methodName: "GetLatestMapInfo",
+  service: SLAMService,
+  requestStream: false,
+  responseStream: false,
+  requestType: service_slam_v1_slam_pb.GetLatestMapInfoRequest,
+  responseType: service_slam_v1_slam_pb.GetLatestMapInfoResponse
+};
+
 SLAMService.DoCommand = {
   methodName: "DoCommand",
   service: SLAMService,
@@ -158,6 +167,37 @@ SLAMServiceClient.prototype.getInternalState = function getInternalState(request
     },
     cancel: function () {
       listeners = null;
+      client.close();
+    }
+  };
+};
+
+SLAMServiceClient.prototype.getLatestMapInfo = function getLatestMapInfo(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(SLAMService.GetLatestMapInfo, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
       client.close();
     }
   };
