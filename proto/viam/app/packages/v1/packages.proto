@@ -5,7 +5,6 @@ package viam.app.packages.v1;
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
-import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/app/packages/v1";
 

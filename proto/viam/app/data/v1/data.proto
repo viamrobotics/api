@@ -117,6 +117,7 @@ message CaptureMetadata {
   string mime_type = 13;
 
   reserved 8;
+  reserved "component_model";
 }
 
 // CaptureInterval describes the start and end time of the capture in this file
@@ -223,6 +224,7 @@ message DeleteTabularDataByFilterResponse {
   uint64 deleted_count = 1;
 
   reserved 2;
+  reserved "result";
 }
 
 // DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
@@ -235,6 +237,7 @@ message DeleteBinaryDataByFilterResponse {
   uint64 deleted_count = 1;
 
   reserved 2;
+  reserved "result";
 }
 
 // DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided
@@ -249,6 +252,7 @@ message DeleteBinaryDataByIDsResponse {
   uint64 deleted_count = 1;
 
   reserved 2;
+  reserved "result";
 }
 
 // AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when binary ids are provided
