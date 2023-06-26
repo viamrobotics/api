@@ -82,6 +82,7 @@ message Filter {
   repeated string bbox_labels = 15;
 
   reserved 3, 5;
+  reserved "component_model", "tags";
 }
 
 message TagsFilter {
