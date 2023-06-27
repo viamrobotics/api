@@ -730,6 +730,11 @@ message GetAuthorizationsForUserInOrgRequest {
   string organization_id = 2;
 }
 
+message GetAuthorizationsForUserInOrgResponse {
+  string identity_id = 1;
+  repeated Authorization authorizations = 2;
+}
+
 message CheckPermissionsRequest {
   repeated AuthorizedPermissions permissions = 1;
 }
