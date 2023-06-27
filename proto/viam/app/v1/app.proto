@@ -731,8 +731,7 @@ message GetAuthorizationsForUserInOrgRequest {
 }
 
 message GetAuthorizationsForUserInOrgResponse {
-  string identity_id = 1;
-  repeated Authorization authorizations = 2;
+  repeated Authorization authorizations = 1;
 }
 
 message CheckPermissionsRequest {
