@@ -5,7 +5,6 @@ import * as jspb from "google-protobuf";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
-import * as tagger_v1_tagger_pb from "../../../tagger/v1/tagger_pb";
 
 export class FileInfo extends jspb.Message {
   getName(): string;
@@ -213,68 +212,6 @@ export namespace Package {
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     checksum: string,
     id: string,
-  }
-}
-
-export class InternalPackage extends jspb.Message {
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
-
-  getName(): string;
-  setName(value: string): void;
-
-  getVersion(): string;
-  setVersion(value: string): void;
-
-  getType(): PackageTypeMap[keyof PackageTypeMap];
-  setType(value: PackageTypeMap[keyof PackageTypeMap]): void;
-
-  clearFilesList(): void;
-  getFilesList(): Array<FileInfo>;
-  setFilesList(value: Array<FileInfo>): void;
-  addFiles(value?: FileInfo, index?: number): FileInfo;
-
-  hasMetadata(): boolean;
-  clearMetadata(): void;
-  getMetadata(): google_protobuf_struct_pb.Struct | undefined;
-  setMetadata(value?: google_protobuf_struct_pb.Struct): void;
-
-  getBlobPath(): string;
-  setBlobPath(value: string): void;
-
-  hasCreatedOn(): boolean;
-  clearCreatedOn(): void;
-  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
-  getChecksum(): string;
-  setChecksum(value: string): void;
-
-  getLatest(): boolean;
-  setLatest(value: boolean): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): InternalPackage.AsObject;
-  static toObject(includeInstance: boolean, msg: InternalPackage): InternalPackage.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: InternalPackage, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): InternalPackage;
-  static deserializeBinaryFromReader(message: InternalPackage, reader: jspb.BinaryReader): InternalPackage;
-}
-
-export namespace InternalPackage {
-  export type AsObject = {
-    organizationId: string,
-    name: string,
-    version: string,
-    type: PackageTypeMap[keyof PackageTypeMap],
-    filesList: Array<FileInfo.AsObject>,
-    metadata?: google_protobuf_struct_pb.Struct.AsObject,
-    blobPath: string,
-    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    checksum: string,
-    latest: boolean,
   }
 }
 
