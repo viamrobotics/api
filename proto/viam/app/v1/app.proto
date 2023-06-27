@@ -156,7 +156,7 @@ service AppService {
   // Shows organization, location, and robot level permissions that exist on the resource
   rpc ListAuthorizations(ListAuthorizationsRequest) returns (ListAuthorizationsResponse);
 
-  rpc GetAuthorizationsForUserInOrg(GetAuthorizationsForUserInOrgRequest) returns (Authorizations);
+  rpc GetAuthorizationsForUserInOrg(GetAuthorizationsForUserInOrgRequest) returns (GetAuthorizationsForUserInOrgResponse);
 
   rpc CheckPermissions(CheckPermissionsRequest) returns (CheckPermissionsResponse);
 }
