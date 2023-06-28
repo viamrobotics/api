@@ -752,61 +752,62 @@ message CheckPermissionsResponse {
 // Modules
 message CreateModuleRequest {
   // The public namespace that is reserved for your organization
-	string public_namespace = 1;
+  string public_namespace = 1;
   // The name of the module, which must be unique within your org
-	string name = 2;
+  string name = 2;
 }
 
 message CreateModuleResponse {
   // The id of the module containing the namespace and name
-	string module_id = 1;
+  string module_id = 1;
 }
 
 enum Visibility {
+  VISIBILITY_UNSPECIFIED = 0;
   // Private modules are visible only within your org
-  PRIVATE = 0;
+  VISIBILITY_PRIVATE = 1;
   // Public modules are visible to everyone
-  PUBLIC = 1;
+  VISIBILITY_PUBLIC = 2;
 }
 
 message UpdateModuleRequest {
   // The id of the module being updated, containing the namespace and name
-	string module_id = 1;
+  string module_id = 1;
   // The visibility that should be set for the module
-	Visibility visibility = 2;
+  Visibility visibility = 2;
   // The url to reference for documentation, code, etc.
-	string url = 3;
+  string url = 3;
   // A short description of the module that explains its purpose
-	string description = 4;
+  string description = 4;
   // A list of models that are available in the module
-	repeated Model models = 5;
+  repeated Model models = 5;
 }
 
 message UpdateModuleResponse {}
 
 message Model {
   // The colon-delimited-triplet of the api implemented by the model
-	string api = 1;
+  string api = 1;
   // The colon-delimited-triplet of the model
   string model = 2;
 }
 
 message ModuleFileInfo {
   // The module_id that is being uploaded
-	string module_id = 1;
+  string module_id = 1;
   // The semver string that represents the new major/minor/patch version of the module
-	string version = 2;
+  string version = 2;
   // The platform that the file is built to run on
-	string platform = 3;
+  string platform = 3;
 }
 
 message UploadModuleFileRequest {
-	oneof module_file {
+  oneof module_file {
     // The information about the module file being uploaded
-		ModuleFileInfo module_file_info = 1;
+    ModuleFileInfo module_file_info = 1;
     // The file contents to be uploaded
-		bytes file = 2;
-	}
+    bytes file = 2;
+  }
 }
 
 message UploadModuleFileResponse {}
@@ -814,7 +815,7 @@ message UploadModuleFileResponse {}
 
 message GetModuleRequest {
   // The id of the module, containing the namespace and name
-	string module_id = 1;
+  string module_id = 1;
 }
 
 message GetModuleResponse {
@@ -824,45 +825,45 @@ message GetModuleResponse {
 
 message Module {
   // The id of the module, containing the namespace and name
-	string module_id = 1;
+  string module_id = 1;
   // The name of the module
-	string name = 2;
+  string name = 2;
   // The visibility of the module
-	Visibility visibility = 3;
+  Visibility visibility = 3;
   // The versions of the module that are available
-	repeated VersionHistory versions = 4;
+  repeated VersionHistory versions = 4;
   // The url to reference for documentation, code, etc.
-	string url = 5;
+  string url = 5;
   // A short description of the module that explains its purpose
-	string description = 6;
+  string description = 6;
   // A list of models that are available in the module
-	repeated Model models = 7;
+  repeated Model models = 7;
   // The total number of robots using this module
-	int64 total_robot_usage = 8;
+  int64 total_robot_usage = 8;
   // The total number of organizations using this module
   int64 total_organization_usage = 9;
 }
 
 message VersionHistory {
   // The semver string that represents the major/minor/patch version of the module
-	string version = 1;
+  string version = 1;
   // The uploads that are available for this module version
-	repeated Uploads files = 2;
+  repeated Uploads files = 2;
 }
 
 message Uploads {
   // The OS and architecture the module is built to run on
-	string platform = 1;
+  string platform = 1;
   // The time when the file was uploaded
-	google.protobuf.Timestamp uploaded_at = 2;
+  google.protobuf.Timestamp uploaded_at = 2;
 }
 
 message ListModulesRequest {
   // The id of the organization to return private modules for.
-	optional string organization_id = 1;
+  optional string organization_id = 1;
 }
 
 message ListModulesResponse {
   // A listed of modules. When authenticated, this API will return modules that are private for this org. Public modules are always returned.
-	repeated Module modules = 1;
+  repeated Module modules = 1;
 }
