@@ -256,12 +256,14 @@ message RemoteAuth {
 
 message AgentInfo {
   string host = 1;
-  string os = 2;
+  string os = 2 [deprecated = true]; // Replaced by platform
   // list of all ipv4 ips.
   repeated string ips = 3;
   // RDK version
   string version = 4;
   string git_revision = 5;
+  // The platform the RDK is running on. For example linux/amd64
+  optional string platform = 6;
 }
 
 enum CredentialsType {
@@ -277,7 +279,7 @@ message ConfigRequest {
   string id = 1;
 
   // Details about the RDK (os, version) are updated during this request.
-  optional AgentInfo agent_info = 2;
+  AgentInfo agent_info = 2;
 }
 
 message ConfigResponse {
