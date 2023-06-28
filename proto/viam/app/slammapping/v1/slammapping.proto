@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package viam.app.slammapping.v1;
+
+import "common/v1/common.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/app/slammapping/v1";
+
+service CloudSLAMService {
+    rpc StartMappingSession(StartMappingSessionRequest) returns (StartMappingSessionResponse);
+    rpc GetActiveMappingSessionsForRobot(GetActiveMappingSessionsForRobotRequest) returns (GetActiveMappingSessionsForRobotResponse);
+    rpc GetMappingSessionPointCloud(GetMappingSessionPointCloudRequest) returns (GetMappingSessionPointCloudResponse);
+    rpc ListMappingSessions(ListMappingSessionsRequest) returns (ListMappingSessionsResponse);
+    rpc StopMappingSession(StopMappingSessionRequest) returns (StopMappingSessionResponse);
+}
+
+// StartMappingSession
+
+message StartMappingSessionRequest {
+    // the config required to run slam. This includes a replay sensor and map package  
+    google.protobuf.Struct slam_config = 1; //for cartographer/algo specific fields
+    string slam_version = 2; // version to use for slam, defaults stable
+    string map_name = 3;
+}  
+
+message StartMappingSessionResponse {
+    string session_id = 1;
+}
+  
+// GetMappingSession
+
+message GetMappingSessionRequest {
+    string id = 1;
+}
+
+message ReplaySensor{
+    string org_id = 1;
+    string location_id = 2;
+    string robot_id = 3;
+    // source component that the replay sensor will use
+    string source = 4;
+    CaptureInterval interval = 5;
+}
+  
+  
+message Map{
+    string package_id = 1;
+    string version = 2;
+    google.protobuf.Timestamp created_on = 3;
+}
+
+message GetActiveMappingSessionsForRobotRequest {
+    string robot_id = 1; // assumes only one active mapping session on a robot
+}
+
+
+message GetActiveMappingSessionsForRobotResponse {
+    string session_id = 1;
+}
+
+
+message GetMappingSessionPointCloudRequest {
+    string session_id = 1;
+}
+
+
+message GetMappingSessionPointCloudResponse {
+    // url to the pointcloud map
+    string url = 1;
+    // Current position within the SLAM Map
+    common.v1.Pose pose = 2;
+}
+
+
+message ListMappingSessionsRequest {
+    string org_id = 1;
+    string location_id = 2;
+}
+
+
+message ListMappingSessionsResponse {
+    repeated MappingMetadata session = 1;
+}
+
+message MappingMetadata {
+    string org_id = 1;	// org owning the slam session
+    string location_id = 2;	// location owning the slam session
+    string robot_id = 3; // robot running the slam session
+    google.protobuf.Timestamp time_submitted = 4; // time this document was created
+    google.protobuf.Timestamp time_started = 5;	// time the cloud run job started
+    google.protobuf.Timestamp time_ended = 6;	// time the cloud run job ended
+    string session_id = 7;	// 
+    string end_status = 8;
+}
+
+message StopMappingSessionRequest {
+    string session_id = 1;
+    bool save_map = 2;
+}
+
+message StopMappingSessionResponse {
+    string package_id = 1;
+    string version = 2;
+}
