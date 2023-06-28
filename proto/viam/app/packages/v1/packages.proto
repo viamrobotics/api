@@ -94,7 +94,9 @@ message Package {
 message GetPackageRequest {
   string id = 1;
   string version = 2;
-  optional bool include_url = 3;
+  bool include_url = 4;
+
+  reserved 3;
 }
 
 message GetPackageResponse {
@@ -103,10 +105,12 @@ message GetPackageResponse {
 
 message ListPackagesRequest {
   string organization_id = 1;
-  optional string name = 2;
-  optional string version = 3;
-  optional PackageType type = 4;
-  optional bool include_url = 5;
+  string name = 6;
+  string version = 7;
+  PackageType type = 8;
+  bool include_url = 9;
+
+  reserved 2 to 5;
 }
 
 message ListPackagesResponse {
