@@ -805,7 +805,7 @@ message UploadModuleFileRequest {
     // The information about the module file being uploaded
 		ModuleFileInfo module_file_info = 1;
     // The file contents to be uploaded
-		byte file = 2;
+		bytes file = 2;
 	}
 }
 
