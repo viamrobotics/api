@@ -279,7 +279,7 @@ message ConfigRequest {
   string id = 1;
 
   // Details about the RDK (os, version) are updated during this request.
-  AgentInfo agent_info = 2;
+  optional AgentInfo agent_info = 2;
 }
 
 message ConfigResponse {
