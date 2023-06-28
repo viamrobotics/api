@@ -222,8 +222,6 @@ export class GetPackageRequest extends jspb.Message {
   getVersion(): string;
   setVersion(value: string): void;
 
-  hasIncludeUrl(): boolean;
-  clearIncludeUrl(): void;
   getIncludeUrl(): boolean;
   setIncludeUrl(value: boolean): void;
 
@@ -271,23 +269,15 @@ export class ListPackagesRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
-  hasName(): boolean;
-  clearName(): void;
   getName(): string;
   setName(value: string): void;
 
-  hasVersion(): boolean;
-  clearVersion(): void;
   getVersion(): string;
   setVersion(value: string): void;
 
-  hasType(): boolean;
-  clearType(): void;
   getType(): PackageTypeMap[keyof PackageTypeMap];
   setType(value: PackageTypeMap[keyof PackageTypeMap]): void;
 
-  hasIncludeUrl(): boolean;
-  clearIncludeUrl(): void;
   getIncludeUrl(): boolean;
   setIncludeUrl(value: boolean): void;
 

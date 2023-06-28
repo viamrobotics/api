@@ -64,13 +64,13 @@ DataService.DeleteBinaryDataByIDs = {
   responseType: app_data_v1_data_pb.DeleteBinaryDataByIDsResponse
 };
 
-DataService.AddTagsToBinaryDataByFileIDs = {
-  methodName: "AddTagsToBinaryDataByFileIDs",
+DataService.AddTagsToBinaryDataByIDs = {
+  methodName: "AddTagsToBinaryDataByIDs",
   service: DataService,
   requestStream: false,
   responseStream: false,
-  requestType: app_data_v1_data_pb.AddTagsToBinaryDataByFileIDsRequest,
-  responseType: app_data_v1_data_pb.AddTagsToBinaryDataByFileIDsResponse
+  requestType: app_data_v1_data_pb.AddTagsToBinaryDataByIDsRequest,
+  responseType: app_data_v1_data_pb.AddTagsToBinaryDataByIDsResponse
 };
 
 DataService.AddTagsToBinaryDataByFilter = {
@@ -82,13 +82,13 @@ DataService.AddTagsToBinaryDataByFilter = {
   responseType: app_data_v1_data_pb.AddTagsToBinaryDataByFilterResponse
 };
 
-DataService.RemoveTagsFromBinaryDataByFileIDs = {
-  methodName: "RemoveTagsFromBinaryDataByFileIDs",
+DataService.RemoveTagsFromBinaryDataByIDs = {
+  methodName: "RemoveTagsFromBinaryDataByIDs",
   service: DataService,
   requestStream: false,
   responseStream: false,
-  requestType: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFileIDsRequest,
-  responseType: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFileIDsResponse
+  requestType: app_data_v1_data_pb.RemoveTagsFromBinaryDataByIDsRequest,
+  responseType: app_data_v1_data_pb.RemoveTagsFromBinaryDataByIDsResponse
 };
 
 DataService.RemoveTagsFromBinaryDataByFilter = {
@@ -329,11 +329,11 @@ DataServiceClient.prototype.deleteBinaryDataByIDs = function deleteBinaryDataByI
   };
 };
 
-DataServiceClient.prototype.addTagsToBinaryDataByFileIDs = function addTagsToBinaryDataByFileIDs(requestMessage, metadata, callback) {
+DataServiceClient.prototype.addTagsToBinaryDataByIDs = function addTagsToBinaryDataByIDs(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataService.AddTagsToBinaryDataByFileIDs, {
+  var client = grpc.unary(DataService.AddTagsToBinaryDataByIDs, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -391,11 +391,11 @@ DataServiceClient.prototype.addTagsToBinaryDataByFilter = function addTagsToBina
   };
 };
 
-DataServiceClient.prototype.removeTagsFromBinaryDataByFileIDs = function removeTagsFromBinaryDataByFileIDs(requestMessage, metadata, callback) {
+DataServiceClient.prototype.removeTagsFromBinaryDataByIDs = function removeTagsFromBinaryDataByIDs(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataService.RemoveTagsFromBinaryDataByFileIDs, {
+  var client = grpc.unary(DataService.RemoveTagsFromBinaryDataByIDs, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
