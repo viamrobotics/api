@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package viam.app.slammapping.v1;
 
-import "data/v1/data.proto";
+import "app/data/v1/data.proto";
 import "common/v1/common.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
