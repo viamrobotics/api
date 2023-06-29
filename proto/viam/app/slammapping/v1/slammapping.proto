@@ -42,7 +42,7 @@ message ReplaySensor{
     string robot_id = 3;
     // source component that the replay sensor will use
     string source = 4;
-    data.v1.CaptureInterval interval = 5;
+    viam.app.data.v1.CaptureInterval interval = 5;
 }
   
   
