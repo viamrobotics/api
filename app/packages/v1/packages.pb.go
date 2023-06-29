@@ -29,6 +29,7 @@ const (
 	PackageType_PACKAGE_TYPE_UNSPECIFIED PackageType = 0
 	PackageType_PACKAGE_TYPE_ARCHIVE     PackageType = 1
 	PackageType_PACKAGE_TYPE_ML_MODEL    PackageType = 2
+	PackageType_PACKAGE_TYPE_MODULE      PackageType = 3
 )
 
 // Enum value maps for PackageType.
@@ -37,11 +38,13 @@ var (
 		0: "PACKAGE_TYPE_UNSPECIFIED",
 		1: "PACKAGE_TYPE_ARCHIVE",
 		2: "PACKAGE_TYPE_ML_MODEL",
+		3: "PACKAGE_TYPE_MODULE",
 	}
 	PackageType_value = map[string]int32{
 		"PACKAGE_TYPE_UNSPECIFIED": 0,
 		"PACKAGE_TYPE_ARCHIVE":     1,
 		"PACKAGE_TYPE_ML_MODEL":    2,
+		"PACKAGE_TYPE_MODULE":      3,
 	}
 )
 
@@ -586,6 +589,20 @@ func (x *GetPackageRequest) GetIncludeUrl() bool {
 		return x.IncludeUrl
 	}
 	return false
+}
+
+func (x *GetPackageRequest) GetType() string {
+	if x != nil && x.Type != nil {
+		return *x.Type
+	}
+	return ""
+}
+
+func (x *GetPackageRequest) GetPlatform() string {
+	if x != nil && x.Platform != nil {
+		return *x.Platform
+	}
+	return ""
 }
 
 type GetPackageResponse struct {

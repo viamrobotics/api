@@ -7582,7 +7582,8 @@ proto.viam.app.v1.AgentInfo.toObject = function(includeInstance, msg) {
     os: jspb.Message.getFieldWithDefault(msg, 2, ""),
     ipsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
     version: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    gitRevision: jspb.Message.getFieldWithDefault(msg, 5, "")
+    gitRevision: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    platform: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -7638,6 +7639,10 @@ proto.viam.app.v1.AgentInfo.deserializeBinaryFromReader = function(msg, reader) 
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setGitRevision(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPlatform(value);
       break;
     default:
       reader.skipField();
@@ -7700,6 +7705,13 @@ proto.viam.app.v1.AgentInfo.serializeBinaryToWriter = function(message, writer) 
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -7812,6 +7824,42 @@ proto.viam.app.v1.AgentInfo.prototype.getGitRevision = function() {
  */
 proto.viam.app.v1.AgentInfo.prototype.setGitRevision = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string platform = 6;
+ * @return {string}
+ */
+proto.viam.app.v1.AgentInfo.prototype.getPlatform = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.AgentInfo} returns this
+ */
+proto.viam.app.v1.AgentInfo.prototype.setPlatform = function(value) {
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.AgentInfo} returns this
+ */
+proto.viam.app.v1.AgentInfo.prototype.clearPlatform = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.AgentInfo.prototype.hasPlatform = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
@@ -9323,7 +9371,8 @@ proto.viam.app.v1.PackageConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     pb_package: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 3, "")
+    version: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -9372,6 +9421,10 @@ proto.viam.app.v1.PackageConfig.deserializeBinaryFromReader = function(msg, read
       var value = /** @type {string} */ (reader.readString());
       msg.setVersion(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setType(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -9419,6 +9472,13 @@ proto.viam.app.v1.PackageConfig.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getType();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -9476,6 +9536,24 @@ proto.viam.app.v1.PackageConfig.prototype.getVersion = function() {
  */
 proto.viam.app.v1.PackageConfig.prototype.setVersion = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string type = 4;
+ * @return {string}
+ */
+proto.viam.app.v1.PackageConfig.prototype.getType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.PackageConfig} returns this
+ */
+proto.viam.app.v1.PackageConfig.prototype.setType = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 

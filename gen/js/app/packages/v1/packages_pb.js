@@ -1801,6 +1801,14 @@ proto.viam.app.packages.v1.GetPackageRequest.deserializeBinaryFromReader = funct
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIncludeUrl(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setType(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPlatform(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1848,6 +1856,20 @@ proto.viam.app.packages.v1.GetPackageRequest.serializeBinaryToWriter = function(
   if (f) {
     writer.writeBool(
       4,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -1905,6 +1927,78 @@ proto.viam.app.packages.v1.GetPackageRequest.prototype.getIncludeUrl = function(
  */
 proto.viam.app.packages.v1.GetPackageRequest.prototype.setIncludeUrl = function(value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional string type = 4;
+ * @return {string}
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.getType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.packages.v1.GetPackageRequest} returns this
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.setType = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.packages.v1.GetPackageRequest} returns this
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.clearType = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.hasType = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional string platform = 5;
+ * @return {string}
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.getPlatform = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.packages.v1.GetPackageRequest} returns this
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.setPlatform = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.packages.v1.GetPackageRequest} returns this
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.clearPlatform = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.packages.v1.GetPackageRequest.prototype.hasPlatform = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -2475,7 +2569,8 @@ proto.viam.app.packages.v1.ListPackagesResponse.prototype.clearPackagesList = fu
 proto.viam.app.packages.v1.PackageType = {
   PACKAGE_TYPE_UNSPECIFIED: 0,
   PACKAGE_TYPE_ARCHIVE: 1,
-  PACKAGE_TYPE_ML_MODEL: 2
+  PACKAGE_TYPE_ML_MODEL: 2,
+  PACKAGE_TYPE_MODULE: 3
 };
 
 goog.object.extend(exports, proto.viam.app.packages.v1);
