@@ -7582,7 +7582,8 @@ proto.viam.app.v1.AgentInfo.toObject = function(includeInstance, msg) {
     os: jspb.Message.getFieldWithDefault(msg, 2, ""),
     ipsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
     version: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    gitRevision: jspb.Message.getFieldWithDefault(msg, 5, "")
+    gitRevision: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    platform: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -7638,6 +7639,10 @@ proto.viam.app.v1.AgentInfo.deserializeBinaryFromReader = function(msg, reader) 
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setGitRevision(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPlatform(value);
       break;
     default:
       reader.skipField();
@@ -7700,6 +7705,13 @@ proto.viam.app.v1.AgentInfo.serializeBinaryToWriter = function(message, writer) 
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -7812,6 +7824,42 @@ proto.viam.app.v1.AgentInfo.prototype.getGitRevision = function() {
  */
 proto.viam.app.v1.AgentInfo.prototype.setGitRevision = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string platform = 6;
+ * @return {string}
+ */
+proto.viam.app.v1.AgentInfo.prototype.getPlatform = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.AgentInfo} returns this
+ */
+proto.viam.app.v1.AgentInfo.prototype.setPlatform = function(value) {
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.AgentInfo} returns this
+ */
+proto.viam.app.v1.AgentInfo.prototype.clearPlatform = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.AgentInfo.prototype.hasPlatform = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 

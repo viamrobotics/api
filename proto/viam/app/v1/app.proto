@@ -812,7 +812,6 @@ message UploadModuleFileRequest {
 
 message UploadModuleFileResponse {}
 
-
 message GetModuleRequest {
   // The id of the module, containing the namespace and name
   string module_id = 1;

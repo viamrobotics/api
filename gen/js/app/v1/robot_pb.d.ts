@@ -953,6 +953,11 @@ export class AgentInfo extends jspb.Message {
   getGitRevision(): string;
   setGitRevision(value: string): void;
 
+  hasPlatform(): boolean;
+  clearPlatform(): void;
+  getPlatform(): string;
+  setPlatform(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AgentInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AgentInfo): AgentInfo.AsObject;
@@ -970,6 +975,7 @@ export namespace AgentInfo {
     ipsList: Array<string>,
     version: string,
     gitRevision: string,
+    platform: string,
   }
 }
 
