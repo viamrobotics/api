@@ -19,7 +19,7 @@ service CloudSLAMService {
 // StartMappingSession
 
 message StartMappingSessionRequest {
-  // The config required to run slam. This includes a replay sensor and map package, and any fields specific to the slam algorithm.
+  // The given config contains details such as sensor, map package and algorithm-specific fields required to run slam.
   google.protobuf.Struct slam_config = 1;
   // Version to use for slam, defaults stable
   string slam_version = 2;
