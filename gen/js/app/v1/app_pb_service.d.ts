@@ -427,6 +427,51 @@ type AppServiceCheckPermissions = {
   readonly responseType: typeof app_v1_app_pb.CheckPermissionsResponse;
 };
 
+type AppServiceCreateModule = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateModuleRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateModuleResponse;
+};
+
+type AppServiceUpdateModule = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateModuleRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateModuleResponse;
+};
+
+type AppServiceUploadModuleFile = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: true;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UploadModuleFileRequest;
+  readonly responseType: typeof app_v1_app_pb.UploadModuleFileResponse;
+};
+
+type AppServiceGetModule = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetModuleRequest;
+  readonly responseType: typeof app_v1_app_pb.GetModuleResponse;
+};
+
+type AppServiceListModules = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListModulesRequest;
+  readonly responseType: typeof app_v1_app_pb.ListModulesResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly CreateOrganization: AppServiceCreateOrganization;
@@ -476,6 +521,11 @@ export class AppService {
   static readonly RemoveRole: AppServiceRemoveRole;
   static readonly ListAuthorizations: AppServiceListAuthorizations;
   static readonly CheckPermissions: AppServiceCheckPermissions;
+  static readonly CreateModule: AppServiceCreateModule;
+  static readonly UpdateModule: AppServiceUpdateModule;
+  static readonly UploadModuleFile: AppServiceUploadModuleFile;
+  static readonly GetModule: AppServiceGetModule;
+  static readonly ListModules: AppServiceListModules;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -924,6 +974,43 @@ export class AppServiceClient {
   checkPermissions(
     requestMessage: app_v1_app_pb.CheckPermissionsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CheckPermissionsResponse|null) => void
+  ): UnaryResponse;
+  createModule(
+    requestMessage: app_v1_app_pb.CreateModuleRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateModuleResponse|null) => void
+  ): UnaryResponse;
+  createModule(
+    requestMessage: app_v1_app_pb.CreateModuleRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateModuleResponse|null) => void
+  ): UnaryResponse;
+  updateModule(
+    requestMessage: app_v1_app_pb.UpdateModuleRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateModuleResponse|null) => void
+  ): UnaryResponse;
+  updateModule(
+    requestMessage: app_v1_app_pb.UpdateModuleRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateModuleResponse|null) => void
+  ): UnaryResponse;
+  uploadModuleFile(metadata?: grpc.Metadata): RequestStream<app_v1_app_pb.UploadModuleFileRequest>;
+  getModule(
+    requestMessage: app_v1_app_pb.GetModuleRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetModuleResponse|null) => void
+  ): UnaryResponse;
+  getModule(
+    requestMessage: app_v1_app_pb.GetModuleRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetModuleResponse|null) => void
+  ): UnaryResponse;
+  listModules(
+    requestMessage: app_v1_app_pb.ListModulesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListModulesResponse|null) => void
+  ): UnaryResponse;
+  listModules(
+    requestMessage: app_v1_app_pb.ListModulesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListModulesResponse|null) => void
   ): UnaryResponse;
 }
 

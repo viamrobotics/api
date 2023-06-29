@@ -227,6 +227,16 @@ export class GetPackageRequest extends jspb.Message {
   getIncludeUrl(): boolean;
   setIncludeUrl(value: boolean): void;
 
+  hasType(): boolean;
+  clearType(): void;
+  getType(): string;
+  setType(value: string): void;
+
+  hasPlatform(): boolean;
+  clearPlatform(): void;
+  getPlatform(): string;
+  setPlatform(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPackageRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPackageRequest): GetPackageRequest.AsObject;
@@ -242,6 +252,8 @@ export namespace GetPackageRequest {
     id: string,
     version: string,
     includeUrl: boolean,
+    type: string,
+    platform: string,
   }
 }
 
@@ -337,6 +349,7 @@ export interface PackageTypeMap {
   PACKAGE_TYPE_UNSPECIFIED: 0;
   PACKAGE_TYPE_ARCHIVE: 1;
   PACKAGE_TYPE_ML_MODEL: 2;
+  PACKAGE_TYPE_MODULE: 3;
 }
 
 export const PackageType: PackageTypeMap;

@@ -953,6 +953,11 @@ export class AgentInfo extends jspb.Message {
   getGitRevision(): string;
   setGitRevision(value: string): void;
 
+  hasPlatform(): boolean;
+  clearPlatform(): void;
+  getPlatform(): string;
+  setPlatform(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AgentInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AgentInfo): AgentInfo.AsObject;
@@ -970,6 +975,7 @@ export namespace AgentInfo {
     ipsList: Array<string>,
     version: string,
     gitRevision: string,
+    platform: string,
   }
 }
 
@@ -1199,6 +1205,9 @@ export class PackageConfig extends jspb.Message {
   getVersion(): string;
   setVersion(value: string): void;
 
+  getType(): string;
+  setType(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PackageConfig.AsObject;
   static toObject(includeInstance: boolean, msg: PackageConfig): PackageConfig.AsObject;
@@ -1214,6 +1223,7 @@ export namespace PackageConfig {
     name: string,
     pb_package: string,
     version: string,
+    type: string,
   }
 }
 

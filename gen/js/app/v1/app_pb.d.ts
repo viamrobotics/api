@@ -192,6 +192,9 @@ export class Organization extends jspb.Message {
   getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getPublicNamespace(): string;
+  setPublicNamespace(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Organization.AsObject;
   static toObject(includeInstance: boolean, msg: Organization): Organization.AsObject;
@@ -207,6 +210,7 @@ export namespace Organization {
     id: string,
     name: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    publicNamespace: string,
   }
 }
 
@@ -389,6 +393,11 @@ export class UpdateOrganizationRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasPublicNamespace(): boolean;
+  clearPublicNamespace(): void;
+  getPublicNamespace(): string;
+  setPublicNamespace(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateOrganizationRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateOrganizationRequest): UpdateOrganizationRequest.AsObject;
@@ -403,6 +412,7 @@ export namespace UpdateOrganizationRequest {
   export type AsObject = {
     organizationId: string,
     name: string,
+    publicNamespace: string,
   }
 }
 
@@ -2727,4 +2737,409 @@ export namespace CheckPermissionsResponse {
     authorizedPermissionsList: Array<AuthorizedPermissions.AsObject>,
   }
 }
+
+export class CreateModuleRequest extends jspb.Message {
+  getPublicNamespace(): string;
+  setPublicNamespace(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateModuleRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateModuleRequest): CreateModuleRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateModuleRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateModuleRequest;
+  static deserializeBinaryFromReader(message: CreateModuleRequest, reader: jspb.BinaryReader): CreateModuleRequest;
+}
+
+export namespace CreateModuleRequest {
+  export type AsObject = {
+    publicNamespace: string,
+    name: string,
+  }
+}
+
+export class CreateModuleResponse extends jspb.Message {
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateModuleResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateModuleResponse): CreateModuleResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateModuleResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateModuleResponse;
+  static deserializeBinaryFromReader(message: CreateModuleResponse, reader: jspb.BinaryReader): CreateModuleResponse;
+}
+
+export namespace CreateModuleResponse {
+  export type AsObject = {
+    moduleId: string,
+  }
+}
+
+export class UpdateModuleRequest extends jspb.Message {
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  getVisibility(): VisibilityMap[keyof VisibilityMap];
+  setVisibility(value: VisibilityMap[keyof VisibilityMap]): void;
+
+  getUrl(): string;
+  setUrl(value: string): void;
+
+  getDescription(): string;
+  setDescription(value: string): void;
+
+  clearModelsList(): void;
+  getModelsList(): Array<Model>;
+  setModelsList(value: Array<Model>): void;
+  addModels(value?: Model, index?: number): Model;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateModuleRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateModuleRequest): UpdateModuleRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateModuleRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateModuleRequest;
+  static deserializeBinaryFromReader(message: UpdateModuleRequest, reader: jspb.BinaryReader): UpdateModuleRequest;
+}
+
+export namespace UpdateModuleRequest {
+  export type AsObject = {
+    moduleId: string,
+    visibility: VisibilityMap[keyof VisibilityMap],
+    url: string,
+    description: string,
+    modelsList: Array<Model.AsObject>,
+  }
+}
+
+export class UpdateModuleResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateModuleResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateModuleResponse): UpdateModuleResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateModuleResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateModuleResponse;
+  static deserializeBinaryFromReader(message: UpdateModuleResponse, reader: jspb.BinaryReader): UpdateModuleResponse;
+}
+
+export namespace UpdateModuleResponse {
+  export type AsObject = {
+  }
+}
+
+export class Model extends jspb.Message {
+  getApi(): string;
+  setApi(value: string): void;
+
+  getModel(): string;
+  setModel(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Model.AsObject;
+  static toObject(includeInstance: boolean, msg: Model): Model.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Model, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Model;
+  static deserializeBinaryFromReader(message: Model, reader: jspb.BinaryReader): Model;
+}
+
+export namespace Model {
+  export type AsObject = {
+    api: string,
+    model: string,
+  }
+}
+
+export class ModuleFileInfo extends jspb.Message {
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  getPlatform(): string;
+  setPlatform(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleFileInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleFileInfo): ModuleFileInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleFileInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleFileInfo;
+  static deserializeBinaryFromReader(message: ModuleFileInfo, reader: jspb.BinaryReader): ModuleFileInfo;
+}
+
+export namespace ModuleFileInfo {
+  export type AsObject = {
+    moduleId: string,
+    version: string,
+    platform: string,
+  }
+}
+
+export class UploadModuleFileRequest extends jspb.Message {
+  hasModuleFileInfo(): boolean;
+  clearModuleFileInfo(): void;
+  getModuleFileInfo(): ModuleFileInfo | undefined;
+  setModuleFileInfo(value?: ModuleFileInfo): void;
+
+  hasFile(): boolean;
+  clearFile(): void;
+  getFile(): Uint8Array | string;
+  getFile_asU8(): Uint8Array;
+  getFile_asB64(): string;
+  setFile(value: Uint8Array | string): void;
+
+  getModuleFileCase(): UploadModuleFileRequest.ModuleFileCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UploadModuleFileRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UploadModuleFileRequest): UploadModuleFileRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UploadModuleFileRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UploadModuleFileRequest;
+  static deserializeBinaryFromReader(message: UploadModuleFileRequest, reader: jspb.BinaryReader): UploadModuleFileRequest;
+}
+
+export namespace UploadModuleFileRequest {
+  export type AsObject = {
+    moduleFileInfo?: ModuleFileInfo.AsObject,
+    file: Uint8Array | string,
+  }
+
+  export enum ModuleFileCase {
+    MODULE_FILE_NOT_SET = 0,
+    MODULE_FILE_INFO = 1,
+    FILE = 2,
+  }
+}
+
+export class UploadModuleFileResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UploadModuleFileResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UploadModuleFileResponse): UploadModuleFileResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UploadModuleFileResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UploadModuleFileResponse;
+  static deserializeBinaryFromReader(message: UploadModuleFileResponse, reader: jspb.BinaryReader): UploadModuleFileResponse;
+}
+
+export namespace UploadModuleFileResponse {
+  export type AsObject = {
+  }
+}
+
+export class GetModuleRequest extends jspb.Message {
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetModuleRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetModuleRequest): GetModuleRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetModuleRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetModuleRequest;
+  static deserializeBinaryFromReader(message: GetModuleRequest, reader: jspb.BinaryReader): GetModuleRequest;
+}
+
+export namespace GetModuleRequest {
+  export type AsObject = {
+    moduleId: string,
+  }
+}
+
+export class GetModuleResponse extends jspb.Message {
+  hasModule(): boolean;
+  clearModule(): void;
+  getModule(): Module | undefined;
+  setModule(value?: Module): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetModuleResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetModuleResponse): GetModuleResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetModuleResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetModuleResponse;
+  static deserializeBinaryFromReader(message: GetModuleResponse, reader: jspb.BinaryReader): GetModuleResponse;
+}
+
+export namespace GetModuleResponse {
+  export type AsObject = {
+    module?: Module.AsObject,
+  }
+}
+
+export class Module extends jspb.Message {
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  getVisibility(): VisibilityMap[keyof VisibilityMap];
+  setVisibility(value: VisibilityMap[keyof VisibilityMap]): void;
+
+  clearVersionsList(): void;
+  getVersionsList(): Array<VersionHistory>;
+  setVersionsList(value: Array<VersionHistory>): void;
+  addVersions(value?: VersionHistory, index?: number): VersionHistory;
+
+  getUrl(): string;
+  setUrl(value: string): void;
+
+  getDescription(): string;
+  setDescription(value: string): void;
+
+  clearModelsList(): void;
+  getModelsList(): Array<Model>;
+  setModelsList(value: Array<Model>): void;
+  addModels(value?: Model, index?: number): Model;
+
+  getTotalRobotUsage(): number;
+  setTotalRobotUsage(value: number): void;
+
+  getTotalOrganizationUsage(): number;
+  setTotalOrganizationUsage(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Module.AsObject;
+  static toObject(includeInstance: boolean, msg: Module): Module.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Module, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Module;
+  static deserializeBinaryFromReader(message: Module, reader: jspb.BinaryReader): Module;
+}
+
+export namespace Module {
+  export type AsObject = {
+    moduleId: string,
+    name: string,
+    visibility: VisibilityMap[keyof VisibilityMap],
+    versionsList: Array<VersionHistory.AsObject>,
+    url: string,
+    description: string,
+    modelsList: Array<Model.AsObject>,
+    totalRobotUsage: number,
+    totalOrganizationUsage: number,
+  }
+}
+
+export class VersionHistory extends jspb.Message {
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  clearFilesList(): void;
+  getFilesList(): Array<Uploads>;
+  setFilesList(value: Array<Uploads>): void;
+  addFiles(value?: Uploads, index?: number): Uploads;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): VersionHistory.AsObject;
+  static toObject(includeInstance: boolean, msg: VersionHistory): VersionHistory.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: VersionHistory, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): VersionHistory;
+  static deserializeBinaryFromReader(message: VersionHistory, reader: jspb.BinaryReader): VersionHistory;
+}
+
+export namespace VersionHistory {
+  export type AsObject = {
+    version: string,
+    filesList: Array<Uploads.AsObject>,
+  }
+}
+
+export class Uploads extends jspb.Message {
+  getPlatform(): string;
+  setPlatform(value: string): void;
+
+  hasUploadedAt(): boolean;
+  clearUploadedAt(): void;
+  getUploadedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setUploadedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Uploads.AsObject;
+  static toObject(includeInstance: boolean, msg: Uploads): Uploads.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Uploads, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Uploads;
+  static deserializeBinaryFromReader(message: Uploads, reader: jspb.BinaryReader): Uploads;
+}
+
+export namespace Uploads {
+  export type AsObject = {
+    platform: string,
+    uploadedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class ListModulesRequest extends jspb.Message {
+  hasOrganizationId(): boolean;
+  clearOrganizationId(): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListModulesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListModulesRequest): ListModulesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListModulesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListModulesRequest;
+  static deserializeBinaryFromReader(message: ListModulesRequest, reader: jspb.BinaryReader): ListModulesRequest;
+}
+
+export namespace ListModulesRequest {
+  export type AsObject = {
+    organizationId: string,
+  }
+}
+
+export class ListModulesResponse extends jspb.Message {
+  clearModulesList(): void;
+  getModulesList(): Array<Module>;
+  setModulesList(value: Array<Module>): void;
+  addModules(value?: Module, index?: number): Module;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListModulesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListModulesResponse): ListModulesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListModulesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListModulesResponse;
+  static deserializeBinaryFromReader(message: ListModulesResponse, reader: jspb.BinaryReader): ListModulesResponse;
+}
+
+export namespace ListModulesResponse {
+  export type AsObject = {
+    modulesList: Array<Module.AsObject>,
+  }
+}
+
+export interface VisibilityMap {
+  VISIBILITY_UNSPECIFIED: 0;
+  VISIBILITY_PRIVATE: 1;
+  VISIBILITY_PUBLIC: 2;
+}
+
+export const Visibility: VisibilityMap;
 
