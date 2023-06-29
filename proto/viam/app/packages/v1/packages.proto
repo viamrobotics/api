@@ -45,7 +45,8 @@ enum PackageType {
   PACKAGE_TYPE_UNSPECIFIED = 0;
   PACKAGE_TYPE_ARCHIVE = 1;
   PACKAGE_TYPE_ML_MODEL = 2;
-  PACKAGE_TYPE_SLAM_MAP = 3;
+  PACKAGE_TYPE_MODULE = 3;
+  PACKAGE_TYPE_SLAM_MAP = 4;
 }
 
 message FileInfo {
@@ -96,6 +97,8 @@ message GetPackageRequest {
   string id = 1;
   string version = 2;
   optional bool include_url = 3;
+  optional string type = 4;
+  optional string platform = 5;
 }
 
 message GetPackageResponse {

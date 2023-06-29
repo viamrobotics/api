@@ -118,6 +118,11 @@ type AppServiceClient interface {
 	// Shows organization, location, and robot level permissions that exist on the resource
 	ListAuthorizations(ctx context.Context, in *ListAuthorizationsRequest, opts ...grpc.CallOption) (*ListAuthorizationsResponse, error)
 	CheckPermissions(ctx context.Context, in *CheckPermissionsRequest, opts ...grpc.CallOption) (*CheckPermissionsResponse, error)
+	CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error)
+	UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error)
+	UploadModuleFile(ctx context.Context, opts ...grpc.CallOption) (AppService_UploadModuleFileClient, error)
+	GetModule(ctx context.Context, in *GetModuleRequest, opts ...grpc.CallOption) (*GetModuleResponse, error)
+	ListModules(ctx context.Context, in *ListModulesRequest, opts ...grpc.CallOption) (*ListModulesResponse, error)
 }
 
 type appServiceClient struct {
@@ -574,6 +579,76 @@ func (c *appServiceClient) CheckPermissions(ctx context.Context, in *CheckPermis
 	return out, nil
 }
 
+func (c *appServiceClient) CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error) {
+	out := new(CreateModuleResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateModule", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error) {
+	out := new(UpdateModuleResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateModule", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UploadModuleFile(ctx context.Context, opts ...grpc.CallOption) (AppService_UploadModuleFileClient, error) {
+	stream, err := c.cc.NewStream(ctx, &AppService_ServiceDesc.Streams[1], "/viam.app.v1.AppService/UploadModuleFile", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &appServiceUploadModuleFileClient{stream}
+	return x, nil
+}
+
+type AppService_UploadModuleFileClient interface {
+	Send(*UploadModuleFileRequest) error
+	CloseAndRecv() (*UploadModuleFileResponse, error)
+	grpc.ClientStream
+}
+
+type appServiceUploadModuleFileClient struct {
+	grpc.ClientStream
+}
+
+func (x *appServiceUploadModuleFileClient) Send(m *UploadModuleFileRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *appServiceUploadModuleFileClient) CloseAndRecv() (*UploadModuleFileResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(UploadModuleFileResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *appServiceClient) GetModule(ctx context.Context, in *GetModuleRequest, opts ...grpc.CallOption) (*GetModuleResponse, error) {
+	out := new(GetModuleResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetModule", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListModules(ctx context.Context, in *ListModulesRequest, opts ...grpc.CallOption) (*ListModulesResponse, error) {
+	out := new(ListModulesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListModules", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppServiceServer is the server API for AppService service.
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
@@ -674,6 +749,11 @@ type AppServiceServer interface {
 	// Shows organization, location, and robot level permissions that exist on the resource
 	ListAuthorizations(context.Context, *ListAuthorizationsRequest) (*ListAuthorizationsResponse, error)
 	CheckPermissions(context.Context, *CheckPermissionsRequest) (*CheckPermissionsResponse, error)
+	CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error)
+	UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error)
+	UploadModuleFile(AppService_UploadModuleFileServer) error
+	GetModule(context.Context, *GetModuleRequest) (*GetModuleResponse, error)
+	ListModules(context.Context, *ListModulesRequest) (*ListModulesResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -821,6 +901,21 @@ func (UnimplementedAppServiceServer) ListAuthorizations(context.Context, *ListAu
 }
 func (UnimplementedAppServiceServer) CheckPermissions(context.Context, *CheckPermissionsRequest) (*CheckPermissionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckPermissions not implemented")
+}
+func (UnimplementedAppServiceServer) CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateModule not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateModule not implemented")
+}
+func (UnimplementedAppServiceServer) UploadModuleFile(AppService_UploadModuleFileServer) error {
+	return status.Errorf(codes.Unimplemented, "method UploadModuleFile not implemented")
+}
+func (UnimplementedAppServiceServer) GetModule(context.Context, *GetModuleRequest) (*GetModuleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetModule not implemented")
+}
+func (UnimplementedAppServiceServer) ListModules(context.Context, *ListModulesRequest) (*ListModulesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModules not implemented")
 }
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
@@ -1684,6 +1779,104 @@ func _AppService_CheckPermissions_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_CreateModule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateModuleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CreateModule(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CreateModule",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CreateModule(ctx, req.(*CreateModuleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateModule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateModuleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateModule(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateModule",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateModule(ctx, req.(*UpdateModuleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UploadModuleFile_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(AppServiceServer).UploadModuleFile(&appServiceUploadModuleFileServer{stream})
+}
+
+type AppService_UploadModuleFileServer interface {
+	SendAndClose(*UploadModuleFileResponse) error
+	Recv() (*UploadModuleFileRequest, error)
+	grpc.ServerStream
+}
+
+type appServiceUploadModuleFileServer struct {
+	grpc.ServerStream
+}
+
+func (x *appServiceUploadModuleFileServer) SendAndClose(m *UploadModuleFileResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *appServiceUploadModuleFileServer) Recv() (*UploadModuleFileRequest, error) {
+	m := new(UploadModuleFileRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func _AppService_GetModule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetModuleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetModule(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetModule",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetModule(ctx, req.(*GetModuleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListModules_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListModulesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListModules(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListModules",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListModules(ctx, req.(*ListModulesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1875,12 +2068,33 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "CheckPermissions",
 			Handler:    _AppService_CheckPermissions_Handler,
 		},
+		{
+			MethodName: "CreateModule",
+			Handler:    _AppService_CreateModule_Handler,
+		},
+		{
+			MethodName: "UpdateModule",
+			Handler:    _AppService_UpdateModule_Handler,
+		},
+		{
+			MethodName: "GetModule",
+			Handler:    _AppService_GetModule_Handler,
+		},
+		{
+			MethodName: "ListModules",
+			Handler:    _AppService_ListModules_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "TailRobotPartLogs",
 			Handler:       _AppService_TailRobotPartLogs_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "UploadModuleFile",
+			Handler:       _AppService_UploadModuleFile_Handler,
+			ClientStreams: true,
 		},
 	},
 	Metadata: "app/v1/app.proto",
