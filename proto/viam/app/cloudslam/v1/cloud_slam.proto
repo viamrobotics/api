@@ -81,8 +81,8 @@ message MappingMetadata {
   string org_id = 1; // org associated with the slam session
   string location_id = 2; // location associated with the slam session
   string robot_id = 3; // robot associated with slam session
-  google.protobuf.Timestamp time__start_submitted = 4; // time this document was created
-  google.protobuf.Timestamp time__cloud_run_job_started = 5; // time the cloud run job started
+  google.protobuf.Timestamp time_start_submitted = 4; // time this document was created
+  google.protobuf.Timestamp time_cloud_run_job_started = 5; // time the cloud run job started
   google.protobuf.Timestamp time_end_submitted = 6; // time StopSlamSession was called
   google.protobuf.Timestamp time_cloud_run_job_ended = 7; // time the cloud run job ended
   string end_status = 8; // “success”, “failed to start”, etc 
