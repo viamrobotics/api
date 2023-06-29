@@ -58,13 +58,13 @@ type DataServiceDeleteBinaryDataByIDs = {
   readonly responseType: typeof app_data_v1_data_pb.DeleteBinaryDataByIDsResponse;
 };
 
-type DataServiceAddTagsToBinaryDataByFileIDs = {
+type DataServiceAddTagsToBinaryDataByIDs = {
   readonly methodName: string;
   readonly service: typeof DataService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_data_v1_data_pb.AddTagsToBinaryDataByFileIDsRequest;
-  readonly responseType: typeof app_data_v1_data_pb.AddTagsToBinaryDataByFileIDsResponse;
+  readonly requestType: typeof app_data_v1_data_pb.AddTagsToBinaryDataByIDsRequest;
+  readonly responseType: typeof app_data_v1_data_pb.AddTagsToBinaryDataByIDsResponse;
 };
 
 type DataServiceAddTagsToBinaryDataByFilter = {
@@ -76,13 +76,13 @@ type DataServiceAddTagsToBinaryDataByFilter = {
   readonly responseType: typeof app_data_v1_data_pb.AddTagsToBinaryDataByFilterResponse;
 };
 
-type DataServiceRemoveTagsFromBinaryDataByFileIDs = {
+type DataServiceRemoveTagsFromBinaryDataByIDs = {
   readonly methodName: string;
   readonly service: typeof DataService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_data_v1_data_pb.RemoveTagsFromBinaryDataByFileIDsRequest;
-  readonly responseType: typeof app_data_v1_data_pb.RemoveTagsFromBinaryDataByFileIDsResponse;
+  readonly requestType: typeof app_data_v1_data_pb.RemoveTagsFromBinaryDataByIDsRequest;
+  readonly responseType: typeof app_data_v1_data_pb.RemoveTagsFromBinaryDataByIDsResponse;
 };
 
 type DataServiceRemoveTagsFromBinaryDataByFilter = {
@@ -138,9 +138,9 @@ export class DataService {
   static readonly DeleteTabularDataByFilter: DataServiceDeleteTabularDataByFilter;
   static readonly DeleteBinaryDataByFilter: DataServiceDeleteBinaryDataByFilter;
   static readonly DeleteBinaryDataByIDs: DataServiceDeleteBinaryDataByIDs;
-  static readonly AddTagsToBinaryDataByFileIDs: DataServiceAddTagsToBinaryDataByFileIDs;
+  static readonly AddTagsToBinaryDataByIDs: DataServiceAddTagsToBinaryDataByIDs;
   static readonly AddTagsToBinaryDataByFilter: DataServiceAddTagsToBinaryDataByFilter;
-  static readonly RemoveTagsFromBinaryDataByFileIDs: DataServiceRemoveTagsFromBinaryDataByFileIDs;
+  static readonly RemoveTagsFromBinaryDataByIDs: DataServiceRemoveTagsFromBinaryDataByIDs;
   static readonly RemoveTagsFromBinaryDataByFilter: DataServiceRemoveTagsFromBinaryDataByFilter;
   static readonly TagsByFilter: DataServiceTagsByFilter;
   static readonly AddBoundingBoxToImageByID: DataServiceAddBoundingBoxToImageByID;
@@ -234,14 +234,14 @@ export class DataServiceClient {
     requestMessage: app_data_v1_data_pb.DeleteBinaryDataByIDsRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteBinaryDataByIDsResponse|null) => void
   ): UnaryResponse;
-  addTagsToBinaryDataByFileIDs(
-    requestMessage: app_data_v1_data_pb.AddTagsToBinaryDataByFileIDsRequest,
+  addTagsToBinaryDataByIDs(
+    requestMessage: app_data_v1_data_pb.AddTagsToBinaryDataByIDsRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddTagsToBinaryDataByFileIDsResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddTagsToBinaryDataByIDsResponse|null) => void
   ): UnaryResponse;
-  addTagsToBinaryDataByFileIDs(
-    requestMessage: app_data_v1_data_pb.AddTagsToBinaryDataByFileIDsRequest,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddTagsToBinaryDataByFileIDsResponse|null) => void
+  addTagsToBinaryDataByIDs(
+    requestMessage: app_data_v1_data_pb.AddTagsToBinaryDataByIDsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddTagsToBinaryDataByIDsResponse|null) => void
   ): UnaryResponse;
   addTagsToBinaryDataByFilter(
     requestMessage: app_data_v1_data_pb.AddTagsToBinaryDataByFilterRequest,
@@ -252,14 +252,14 @@ export class DataServiceClient {
     requestMessage: app_data_v1_data_pb.AddTagsToBinaryDataByFilterRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddTagsToBinaryDataByFilterResponse|null) => void
   ): UnaryResponse;
-  removeTagsFromBinaryDataByFileIDs(
-    requestMessage: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFileIDsRequest,
+  removeTagsFromBinaryDataByIDs(
+    requestMessage: app_data_v1_data_pb.RemoveTagsFromBinaryDataByIDsRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFileIDsResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveTagsFromBinaryDataByIDsResponse|null) => void
   ): UnaryResponse;
-  removeTagsFromBinaryDataByFileIDs(
-    requestMessage: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFileIDsRequest,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFileIDsResponse|null) => void
+  removeTagsFromBinaryDataByIDs(
+    requestMessage: app_data_v1_data_pb.RemoveTagsFromBinaryDataByIDsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveTagsFromBinaryDataByIDsResponse|null) => void
   ): UnaryResponse;
   removeTagsFromBinaryDataByFilter(
     requestMessage: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFilterRequest,
