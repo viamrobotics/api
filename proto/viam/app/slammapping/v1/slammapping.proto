@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package viam.app.slammapping.v1;
 
+import "data/v1/data.proto";
 import "common/v1/common.proto";
-import "app/data/v1/data.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -42,7 +42,7 @@ message ReplaySensor{
     string robot_id = 3;
     // source component that the replay sensor will use
     string source = 4;
-    CaptureInterval interval = 5;
+    data.v1.CaptureInterval interval = 5;
 }
   
   
