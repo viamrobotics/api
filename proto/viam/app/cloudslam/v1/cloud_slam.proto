@@ -1,13 +1,12 @@
 syntax = "proto3";
 
-package viam.app.slammapping.v1;
+package viam.app.cloudslam.v1;
 
-import "app/data/v1/data.proto";
 import "common/v1/common.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "go.viam.com/api/app/slammapping/v1";
+option go_package = "go.viam.com/api/app/cloudslam/v1";
 
 service CloudSLAMService {
   rpc StartMappingSession(StartMappingSessionRequest) returns (StartMappingSessionResponse);
@@ -17,10 +16,13 @@ service CloudSLAMService {
   rpc StopMappingSession(StopMappingSessionRequest) returns (StopMappingSessionResponse);
 }
 
+// StartMappingSession
+
 message StartMappingSessionRequest {
-  // the config required to run slam. This includes a replay sensor and map package
-  google.protobuf.Struct slam_config = 1; //for cartographer/algo specific fields
-  string slam_version = 2; // version to use for slam, defaults stable
+  // The config required to run slam. This includes a replay sensor and map package, and any fields specific to the slam algorithm.
+  google.protobuf.Struct slam_config = 1;
+  // Version to use for slam, defaults stable
+  string slam_version = 2;
   string map_name = 3;
 }
 
@@ -28,32 +30,18 @@ message StartMappingSessionResponse {
   string session_id = 1;
 }
 
-message GetMappingSessionRequest {
-  string id = 1;
-}
-
-message ReplaySensor {
-  string org_id = 1;
-  string location_id = 2;
-  string robot_id = 3;
-  // source component that the replay sensor will use
-  string source = 4;
-  viam.app.data.v1.CaptureInterval interval = 5;
-}
-
-message Map {
-  string package_id = 1;
-  string version = 2;
-  google.protobuf.Timestamp created_on = 3;
-}
+// GetActiveMappingSessionsForRobot
 
 message GetActiveMappingSessionsForRobotRequest {
-  string robot_id = 1; // assumes only one active mapping session on a robot
+  // assumes only one active mapping session on a robot
+  string robot_id = 1;
 }
 
 message GetActiveMappingSessionsForRobotResponse {
   string session_id = 1;
 }
+
+// GetMappingSessionPointCloud
 
 message GetMappingSessionPointCloudRequest {
   string session_id = 1;
@@ -66,6 +54,8 @@ message GetMappingSessionPointCloudResponse {
   common.v1.Pose pose = 2;
 }
 
+// ListMappingSessions
+
 message ListMappingSessionsRequest {
   string org_id = 1;
   string location_id = 2;
@@ -75,16 +65,7 @@ message ListMappingSessionsResponse {
   repeated MappingMetadata session = 1;
 }
 
-message MappingMetadata {
-  string org_id = 1; // org owning the slam session
-  string location_id = 2; // location owning the slam session
-  string robot_id = 3; // robot running the slam session
-  google.protobuf.Timestamp time_submitted = 4; // time this document was created
-  google.protobuf.Timestamp time_started = 5; // time the cloud run job started
-  google.protobuf.Timestamp time_ended = 6; // time the cloud run job ended
-  string session_id = 7; //
-  string end_status = 8;
-}
+// StopMappingSession
 
 message StopMappingSessionRequest {
   string session_id = 1;
@@ -94,4 +75,20 @@ message StopMappingSessionRequest {
 message StopMappingSessionResponse {
   string package_id = 1;
   string version = 2;
+}
+
+message MappingMetadata {
+  string org_id = 1; // org associated with the slam session
+  string location_id = 2; // location associated with the slam session
+  string robot_id = 3; // robot associated with slam session
+  google.protobuf.Timestamp time__start_submitted = 4; // time this document was created
+  google.protobuf.Timestamp time__cloud_run_job_started = 5; // time the cloud run job started
+  google.protobuf.Timestamp time_end_submitted = 6; // time StopSlamSession was called
+  google.protobuf.Timestamp time_cloud_run_job_ended = 7; // time the cloud run job ended
+  string end_status = 8; // “success”, “failed to start”, etc 
+	string cloud_run_job_id = 9; // initially unset
+	string viam_server_version = 10; // version tag from request, defaults to stable
+	string map_name = 11; // name of the map package
+	string slam_version = 12; // version tag from request, defaults to stable
+	string config = 13; // a robot config for a slam session
 }
