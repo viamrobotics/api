@@ -67,10 +67,10 @@ export class Filter extends jspb.Message {
   setLocationIdsList(value: Array<string>): void;
   addLocationIds(value: string, index?: number): string;
 
-  clearOrgIdsList(): void;
-  getOrgIdsList(): Array<string>;
-  setOrgIdsList(value: Array<string>): void;
-  addOrgIds(value: string, index?: number): string;
+  clearOrganizationIdsList(): void;
+  getOrganizationIdsList(): Array<string>;
+  setOrganizationIdsList(value: Array<string>): void;
+  addOrganizationIds(value: string, index?: number): string;
 
   clearMimeTypeList(): void;
   getMimeTypeList(): Array<string>;
@@ -112,7 +112,7 @@ export namespace Filter {
     partName: string,
     partId: string,
     locationIdsList: Array<string>,
-    orgIdsList: Array<string>,
+    organizationIdsList: Array<string>,
     mimeTypeList: Array<string>,
     interval?: CaptureInterval.AsObject,
     tagsFilter?: TagsFilter.AsObject,
@@ -147,8 +147,8 @@ export namespace TagsFilter {
 }
 
 export class CaptureMetadata extends jspb.Message {
-  getOrgId(): string;
-  setOrgId(value: string): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
 
   getLocationId(): string;
   setLocationId(value: string): void;
@@ -196,7 +196,7 @@ export class CaptureMetadata extends jspb.Message {
 
 export namespace CaptureMetadata {
   export type AsObject = {
-    orgId: string,
+    organizationId: string,
     locationId: string,
     robotName: string,
     robotId: string,
@@ -767,7 +767,7 @@ export namespace DeleteBinaryDataByIDsResponse {
   }
 }
 
-export class AddTagsToBinaryDataByFileIDsRequest extends jspb.Message {
+export class AddTagsToBinaryDataByIDsRequest extends jspb.Message {
   clearBinaryIdsList(): void;
   getBinaryIdsList(): Array<BinaryID>;
   setBinaryIdsList(value: Array<BinaryID>): void;
@@ -784,16 +784,16 @@ export class AddTagsToBinaryDataByFileIDsRequest extends jspb.Message {
   addFileIds(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddTagsToBinaryDataByFileIDsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddTagsToBinaryDataByFileIDsRequest): AddTagsToBinaryDataByFileIDsRequest.AsObject;
+  toObject(includeInstance?: boolean): AddTagsToBinaryDataByIDsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddTagsToBinaryDataByIDsRequest): AddTagsToBinaryDataByIDsRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddTagsToBinaryDataByFileIDsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddTagsToBinaryDataByFileIDsRequest;
-  static deserializeBinaryFromReader(message: AddTagsToBinaryDataByFileIDsRequest, reader: jspb.BinaryReader): AddTagsToBinaryDataByFileIDsRequest;
+  static serializeBinaryToWriter(message: AddTagsToBinaryDataByIDsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddTagsToBinaryDataByIDsRequest;
+  static deserializeBinaryFromReader(message: AddTagsToBinaryDataByIDsRequest, reader: jspb.BinaryReader): AddTagsToBinaryDataByIDsRequest;
 }
 
-export namespace AddTagsToBinaryDataByFileIDsRequest {
+export namespace AddTagsToBinaryDataByIDsRequest {
   export type AsObject = {
     binaryIdsList: Array<BinaryID.AsObject>,
     tagsList: Array<string>,
@@ -801,18 +801,18 @@ export namespace AddTagsToBinaryDataByFileIDsRequest {
   }
 }
 
-export class AddTagsToBinaryDataByFileIDsResponse extends jspb.Message {
+export class AddTagsToBinaryDataByIDsResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddTagsToBinaryDataByFileIDsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: AddTagsToBinaryDataByFileIDsResponse): AddTagsToBinaryDataByFileIDsResponse.AsObject;
+  toObject(includeInstance?: boolean): AddTagsToBinaryDataByIDsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddTagsToBinaryDataByIDsResponse): AddTagsToBinaryDataByIDsResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddTagsToBinaryDataByFileIDsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddTagsToBinaryDataByFileIDsResponse;
-  static deserializeBinaryFromReader(message: AddTagsToBinaryDataByFileIDsResponse, reader: jspb.BinaryReader): AddTagsToBinaryDataByFileIDsResponse;
+  static serializeBinaryToWriter(message: AddTagsToBinaryDataByIDsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddTagsToBinaryDataByIDsResponse;
+  static deserializeBinaryFromReader(message: AddTagsToBinaryDataByIDsResponse, reader: jspb.BinaryReader): AddTagsToBinaryDataByIDsResponse;
 }
 
-export namespace AddTagsToBinaryDataByFileIDsResponse {
+export namespace AddTagsToBinaryDataByIDsResponse {
   export type AsObject = {
   }
 }
@@ -861,7 +861,7 @@ export namespace AddTagsToBinaryDataByFilterResponse {
   }
 }
 
-export class RemoveTagsFromBinaryDataByFileIDsRequest extends jspb.Message {
+export class RemoveTagsFromBinaryDataByIDsRequest extends jspb.Message {
   clearBinaryIdsList(): void;
   getBinaryIdsList(): Array<BinaryID>;
   setBinaryIdsList(value: Array<BinaryID>): void;
@@ -878,16 +878,16 @@ export class RemoveTagsFromBinaryDataByFileIDsRequest extends jspb.Message {
   addFileIds(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveTagsFromBinaryDataByFileIDsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveTagsFromBinaryDataByFileIDsRequest): RemoveTagsFromBinaryDataByFileIDsRequest.AsObject;
+  toObject(includeInstance?: boolean): RemoveTagsFromBinaryDataByIDsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveTagsFromBinaryDataByIDsRequest): RemoveTagsFromBinaryDataByIDsRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveTagsFromBinaryDataByFileIDsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveTagsFromBinaryDataByFileIDsRequest;
-  static deserializeBinaryFromReader(message: RemoveTagsFromBinaryDataByFileIDsRequest, reader: jspb.BinaryReader): RemoveTagsFromBinaryDataByFileIDsRequest;
+  static serializeBinaryToWriter(message: RemoveTagsFromBinaryDataByIDsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveTagsFromBinaryDataByIDsRequest;
+  static deserializeBinaryFromReader(message: RemoveTagsFromBinaryDataByIDsRequest, reader: jspb.BinaryReader): RemoveTagsFromBinaryDataByIDsRequest;
 }
 
-export namespace RemoveTagsFromBinaryDataByFileIDsRequest {
+export namespace RemoveTagsFromBinaryDataByIDsRequest {
   export type AsObject = {
     binaryIdsList: Array<BinaryID.AsObject>,
     tagsList: Array<string>,
@@ -895,21 +895,21 @@ export namespace RemoveTagsFromBinaryDataByFileIDsRequest {
   }
 }
 
-export class RemoveTagsFromBinaryDataByFileIDsResponse extends jspb.Message {
+export class RemoveTagsFromBinaryDataByIDsResponse extends jspb.Message {
   getDeletedCount(): number;
   setDeletedCount(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveTagsFromBinaryDataByFileIDsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveTagsFromBinaryDataByFileIDsResponse): RemoveTagsFromBinaryDataByFileIDsResponse.AsObject;
+  toObject(includeInstance?: boolean): RemoveTagsFromBinaryDataByIDsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveTagsFromBinaryDataByIDsResponse): RemoveTagsFromBinaryDataByIDsResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveTagsFromBinaryDataByFileIDsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveTagsFromBinaryDataByFileIDsResponse;
-  static deserializeBinaryFromReader(message: RemoveTagsFromBinaryDataByFileIDsResponse, reader: jspb.BinaryReader): RemoveTagsFromBinaryDataByFileIDsResponse;
+  static serializeBinaryToWriter(message: RemoveTagsFromBinaryDataByIDsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveTagsFromBinaryDataByIDsResponse;
+  static deserializeBinaryFromReader(message: RemoveTagsFromBinaryDataByIDsResponse, reader: jspb.BinaryReader): RemoveTagsFromBinaryDataByIDsResponse;
 }
 
-export namespace RemoveTagsFromBinaryDataByFileIDsResponse {
+export namespace RemoveTagsFromBinaryDataByIDsResponse {
   export type AsObject = {
     deletedCount: number,
   }
