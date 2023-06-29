@@ -1205,6 +1205,9 @@ export class PackageConfig extends jspb.Message {
   getVersion(): string;
   setVersion(value: string): void;
 
+  getType(): string;
+  setType(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PackageConfig.AsObject;
   static toObject(includeInstance: boolean, msg: PackageConfig): PackageConfig.AsObject;
@@ -1220,6 +1223,7 @@ export namespace PackageConfig {
     name: string,
     pb_package: string,
     version: string,
+    type: string,
   }
 }
 

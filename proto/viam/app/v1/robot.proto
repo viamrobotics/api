@@ -335,4 +335,6 @@ message PackageConfig {
   string package = 2;
   // version of the package ID hosted by Viam. If not specified "latest" is assumed.
   string version = 3;
+  // type of the package
+  string type = 4;
 }

@@ -9371,7 +9371,8 @@ proto.viam.app.v1.PackageConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     pb_package: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 3, "")
+    version: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -9420,6 +9421,10 @@ proto.viam.app.v1.PackageConfig.deserializeBinaryFromReader = function(msg, read
       var value = /** @type {string} */ (reader.readString());
       msg.setVersion(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setType(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -9467,6 +9472,13 @@ proto.viam.app.v1.PackageConfig.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getType();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -9524,6 +9536,24 @@ proto.viam.app.v1.PackageConfig.prototype.getVersion = function() {
  */
 proto.viam.app.v1.PackageConfig.prototype.setVersion = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string type = 4;
+ * @return {string}
+ */
+proto.viam.app.v1.PackageConfig.prototype.getType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.PackageConfig} returns this
+ */
+proto.viam.app.v1.PackageConfig.prototype.setType = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
