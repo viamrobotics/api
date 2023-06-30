@@ -413,6 +413,9 @@ export class BinaryDataByFilterResponse extends jspb.Message {
   getLast(): string;
   setLast(value: string): void;
 
+  getTotalSizeBytes(): number;
+  setTotalSizeBytes(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataByFilterResponse.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryDataByFilterResponse): BinaryDataByFilterResponse.AsObject;
@@ -428,6 +431,7 @@ export namespace BinaryDataByFilterResponse {
     dataList: Array<BinaryData.AsObject>,
     count: number,
     last: string,
+    totalSizeBytes: number,
   }
 }
 
