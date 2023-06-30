@@ -28,14 +28,14 @@ service DataService {
   // DeleteBinaryDataByIDs deletes binary data based on given IDs.
   rpc DeleteBinaryDataByIDs(DeleteBinaryDataByIDsRequest) returns (DeleteBinaryDataByIDsResponse);
 
-  // AddTagsToBinaryDataByFileIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
-  rpc AddTagsToBinaryDataByFileIDs(AddTagsToBinaryDataByFileIDsRequest) returns (AddTagsToBinaryDataByFileIDsResponse);
+  // AddTagsToBinaryDataByIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
+  rpc AddTagsToBinaryDataByIDs(AddTagsToBinaryDataByIDsRequest) returns (AddTagsToBinaryDataByIDsResponse);
 
   // AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
   rpc AddTagsToBinaryDataByFilter(AddTagsToBinaryDataByFilterRequest) returns (AddTagsToBinaryDataByFilterResponse);
 
-  // RemoveTagsToBinaryDataByFileIDs removes string tags from binary data based on given IDs.
-  rpc RemoveTagsFromBinaryDataByFileIDs(RemoveTagsFromBinaryDataByFileIDsRequest) returns (RemoveTagsFromBinaryDataByFileIDsResponse);
+  // RemoveTagsToBinaryDataByIDs removes string tags from binary data based on given IDs.
+  rpc RemoveTagsFromBinaryDataByIDs(RemoveTagsFromBinaryDataByIDsRequest) returns (RemoveTagsFromBinaryDataByIDsResponse);
 
   // RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
   rpc RemoveTagsFromBinaryDataByFilter(RemoveTagsFromBinaryDataByFilterRequest) returns (RemoveTagsFromBinaryDataByFilterResponse);
@@ -75,7 +75,7 @@ message Filter {
   string part_name = 8;
   string part_id = 9;
   repeated string location_ids = 10;
-  repeated string org_ids = 11;
+  repeated string organization_ids = 11;
   repeated string mime_type = 12;
   CaptureInterval interval = 13;
   TagsFilter tags_filter = 14;
@@ -104,7 +104,7 @@ enum TagsFilterType {
 
 // CaptureMetadata contains information on the settings used for the data capture
 message CaptureMetadata {
-  string org_id = 1;
+  string organization_id = 1;
   string location_id = 2;
   string robot_name = 3;
   string robot_id = 4;
@@ -137,14 +137,14 @@ message TabularDataByFilterRequest {
 message TabularDataByFilterResponse {
   repeated CaptureMetadata metadata = 1;
   repeated TabularData data = 2;
-  int64 count = 3;
+  uint64 count = 3;
   string last = 4;
   uint64 total_size_bytes = 5;
 }
 
 message TabularData {
   google.protobuf.Struct data = 1;
-  int32 metadata_index = 2;
+  uint32 metadata_index = 2;
   google.protobuf.Timestamp time_requested = 3;
   google.protobuf.Timestamp time_received = 4;
 }
@@ -257,15 +257,15 @@ message DeleteBinaryDataByIDsResponse {
   reserved "result";
 }
 
-// AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when binary ids are provided
-message AddTagsToBinaryDataByFileIDsRequest {
+// AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided
+message AddTagsToBinaryDataByIDsRequest {
   repeated BinaryID binary_ids = 3;
   repeated string tags = 2;
 
   repeated string file_ids = 1 [deprecated = true]; // Replaced by binary_ids
 }
 
-message AddTagsToBinaryDataByFileIDsResponse {}
+message AddTagsToBinaryDataByIDsResponse {}
 
 // AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided
 message AddTagsToBinaryDataByFilterRequest {
@@ -275,16 +275,16 @@ message AddTagsToBinaryDataByFilterRequest {
 
 message AddTagsToBinaryDataByFilterResponse {}
 
-// RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when binary ids are provided
-message RemoveTagsFromBinaryDataByFileIDsRequest {
+// RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided
+message RemoveTagsFromBinaryDataByIDsRequest {
   repeated BinaryID binary_ids = 3;
   repeated string tags = 2;
 
   repeated string file_ids = 1 [deprecated = true]; // Replaced by binary_ids
 }
 
-// RemoveTagsFromBinaryDataByFileIDsResponse returns the number of binary files which had tags removed
-message RemoveTagsFromBinaryDataByFileIDsResponse {
+// RemoveTagsFromBinaryDataByIDsResponse returns the number of binary files which had tags removed
+message RemoveTagsFromBinaryDataByIDsResponse {
   uint64 deleted_count = 1;
 }
 

@@ -256,7 +256,7 @@ message RemoteAuth {
 
 message AgentInfo {
   string host = 1;
-  string os = 2 [deprecated = true]; // Replaced by platform
+  string os = 2; // Will soon be deprecated, use platform instead
   // list of all ipv4 ips.
   repeated string ips = 3;
   // RDK version
