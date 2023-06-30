@@ -164,9 +164,13 @@ service AppService {
   // Deletes an IdentityAuthorization
   rpc RemoveRole(RemoveRoleRequest) returns (RemoveRoleResponse);
 
-  // Shows organization, location, and robot level permissions that exist on the resource
+  // Returns all authorization roles for a given resource
   rpc ListAuthorizations(ListAuthorizationsRequest) returns (ListAuthorizationsResponse);
 
+  // Returns a user's authorization roles in the org
+  rpc ListAuthorizationsForUser(ListAuthorizationsForUserRequest) returns (ListAuthorizationsForUserResponse);
+
+  // Validates a permission for the current user
   rpc CheckPermissions(CheckPermissionsRequest) returns (CheckPermissionsResponse);
 
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
@@ -739,19 +743,28 @@ message RemoveRoleRequest {
 
 message RemoveRoleResponse {}
 
+message Authorizations {
+  string identity_id = 1;
+  repeated Authorization authorizations = 2;
+}
+
 message ListAuthorizationsRequest {
   string resource_type = 1;
   string resource_id = 2;
   string organization_id = 3;
 }
 
-message Authorizations {
-  string identity_id = 1;
-  repeated Authorization authorizations = 2;
-}
-
 message ListAuthorizationsResponse {
   repeated Authorizations authorizations = 1;
+}
+
+message ListAuthorizationsForUserRequest {
+  string user_id = 1;
+  string organization_id = 2;
+}
+
+message ListAuthorizationsForUserResponse {
+  repeated Authorization authorizations = 1;
 }
 
 message CheckPermissionsRequest {
