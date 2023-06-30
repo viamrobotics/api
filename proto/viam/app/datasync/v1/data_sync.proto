@@ -18,7 +18,9 @@ message DataCaptureUploadRequest {
   repeated SensorData sensor_contents = 2;
 }
 
-message DataCaptureUploadResponse {}
+message DataCaptureUploadResponse {
+  string file_id = 1;
+}
 
 message FileUploadRequest {
   oneof upload_packet {
@@ -27,7 +29,9 @@ message FileUploadRequest {
   }
 }
 
-message FileUploadResponse {}
+message FileUploadResponse {
+  string file_id = 1;
+}
 
 message SensorMetadata {
   google.protobuf.Timestamp time_requested = 1;
