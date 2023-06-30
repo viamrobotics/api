@@ -487,7 +487,7 @@ proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.toObject = functi
  */
 proto.viam.app.datasync.v1.DataCaptureUploadResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    fileId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -524,6 +524,10 @@ proto.viam.app.datasync.v1.DataCaptureUploadResponse.deserializeBinaryFromReader
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFileId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -553,6 +557,31 @@ proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.serializeBinary =
  */
 proto.viam.app.datasync.v1.DataCaptureUploadResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getFileId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string file_id = 1;
+ * @return {string}
+ */
+proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.getFileId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datasync.v1.DataCaptureUploadResponse} returns this
+ */
+proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.setFileId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -816,7 +845,7 @@ proto.viam.app.datasync.v1.FileUploadResponse.prototype.toObject = function(opt_
  */
 proto.viam.app.datasync.v1.FileUploadResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    fileId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -853,6 +882,10 @@ proto.viam.app.datasync.v1.FileUploadResponse.deserializeBinaryFromReader = func
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFileId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -882,6 +915,31 @@ proto.viam.app.datasync.v1.FileUploadResponse.prototype.serializeBinary = functi
  */
 proto.viam.app.datasync.v1.FileUploadResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getFileId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string file_id = 1;
+ * @return {string}
+ */
+proto.viam.app.datasync.v1.FileUploadResponse.prototype.getFileId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datasync.v1.FileUploadResponse} returns this
+ */
+proto.viam.app.datasync.v1.FileUploadResponse.prototype.setFileId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
