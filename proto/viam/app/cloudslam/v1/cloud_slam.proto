@@ -24,6 +24,9 @@ message StartMappingSessionRequest {
   // Version to use for slam, defaults stable
   string slam_version = 2;
   string map_name = 3;
+  string org_id = 4;
+  string location_id = 5;
+  string robot_id = 6;
 }
 
 message StartMappingSessionResponse {

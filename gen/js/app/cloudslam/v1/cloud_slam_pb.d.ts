@@ -12,6 +12,15 @@ export class StartMappingSessionRequest extends jspb.Message {
   getSlamConfig(): google_protobuf_struct_pb.Struct | undefined;
   setSlamConfig(value?: google_protobuf_struct_pb.Struct): void;
 
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  getRobotId(): string;
+  setRobotId(value: string): void;
+
   getSlamVersion(): string;
   setSlamVersion(value: string): void;
 
@@ -31,6 +40,9 @@ export class StartMappingSessionRequest extends jspb.Message {
 export namespace StartMappingSessionRequest {
   export type AsObject = {
     slamConfig?: google_protobuf_struct_pb.Struct.AsObject,
+    orgId: string,
+    locationId: string,
+    robotId: string,
     slamVersion: string,
     mapName: string,
   }
