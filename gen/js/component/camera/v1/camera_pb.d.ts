@@ -216,6 +216,12 @@ export class Webcam extends jspb.Message {
   setPropertiesList(value: Array<Property>): void;
   addProperties(value?: Property, index?: number): Property;
 
+  getName(): string;
+  setName(value: string): void;
+
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Webcam.AsObject;
   static toObject(includeInstance: boolean, msg: Webcam): Webcam.AsObject;
@@ -231,6 +237,8 @@ export namespace Webcam {
     label: string,
     status: string,
     propertiesList: Array<Property.AsObject>,
+    name: string,
+    id: string,
   }
 }
 
@@ -243,6 +251,9 @@ export class Property extends jspb.Message {
 
   getFrameFormat(): string;
   setFrameFormat(value: string): void;
+
+  getFrameRate(): number;
+  setFrameRate(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Property.AsObject;
@@ -259,6 +270,7 @@ export namespace Property {
     widthPx: number,
     heightPx: number,
     frameFormat: string,
+    frameRate: number,
   }
 }
 

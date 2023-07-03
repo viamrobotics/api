@@ -5,21 +5,13 @@ package viam.service.slam.v1;
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/service/slam/v1";
 option java_package = "com.viam.service.slam.v1";
 
 // A SlamService declares the gRPC contract for a slam service
 service SLAMService {
-  // GetPositionNew returns the current estimated position of the robot with
-  // respect to a returned component reference. Note: this function will be
-  // renamed to GetPosition and replace the existing one in the near future
-  rpc GetPositionNew(GetPositionNewRequest) returns (GetPositionNewResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/slam/{name}/position_new"
-    };
-  }
-
   // GetPosition returns the current estimated position of the robot with
   // respect to a returned component reference.
   rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {
@@ -28,28 +20,11 @@ service SLAMService {
     };
   }
 
-  // TODO (RSDK-1066): This will soon be renamed to GetPointCloudMap
-  // GetPointCloudMapStream returns the latest point cloud map available
-  rpc GetPointCloudMapStream(GetPointCloudMapStreamRequest) returns (stream GetPointCloudMapStreamResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/slam/{name}/point_cloud_map_stream"
-    };
-  }
-
-  // GetPointCloudMap returns the latest point cloud map in PCD format
+  // GetPointCloudMap returns the latest pointcloud map available where XY is the ground
+  // plane and positive Z is up, following the Right Hand Rule.
   rpc GetPointCloudMap(GetPointCloudMapRequest) returns (stream GetPointCloudMapResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/slam/{name}/point_cloud_map"
-    };
-  }
-
-  // TODO (RSDK-1066): This will be renamed to GetInternalState
-  // GetInternalStateStream returns the internal map as defined by the specified slam
-  // algorithm required to continue mapping/localizing.
-  // This endpoint is not intended for end users.
-  rpc GetInternalStateStream(GetInternalStateStreamRequest) returns (stream GetInternalStateStreamResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/slam/{name}/internal_state_stream"
     };
   }
 
@@ -62,7 +37,15 @@ service SLAMService {
     };
   }
 
-  // DoCommand sends/receives arbitrary commands
+  // GetLatestMapInfo returns a message indicating details regarding the
+  // latest map returned to the system.
+  rpc GetLatestMapInfo(GetLatestMapInfoRequest) returns (GetLatestMapInfoResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/slam/{name}/latest_map_info"
+    };
+  }
+
+  // DoCommand sends/receives arbitrary commands.
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/service/slam/{name}/do_command"
@@ -84,22 +67,6 @@ message GetPositionResponse {
   google.protobuf.Struct extra = 99;
 }
 
-message GetPositionNewRequest {
-  option deprecated = true;
-  // Name of slam service
-  string name = 1;
-}
-
-message GetPositionNewResponse {
-  option deprecated = true;
-  // Current position of the specified component in the SLAM Map
-  common.v1.Pose pose = 1;
-  // This is usually the name of the camera that is in the SLAM config
-  string component_reference = 2;
-  // Additional information in the response
-  google.protobuf.Struct extra = 99;
-}
-
 message GetPointCloudMapRequest {
   // Name of slam service
   string name = 1;
@@ -107,11 +74,23 @@ message GetPointCloudMapRequest {
 
 message GetPointCloudMapResponse {
   // One chunk of the PointCloud.
-  // For a given GetPointCloudMapStream request, concatinating all
-  // GetPointCloudMapStreamResponse.point_cloud_pcd_chunk values in the
+  // For a given GetPointCloudMap request, concatenating all
+  // GetPointCloudMapResponse.point_cloud_pcd_chunk values in the
   // order received result in the complete pointcloud in standard PCD
-  // format.
+  // format where XY is the ground plane and positive Z is up, following
+  // the Right Hand Rule.
+  //
+  // Read more about the pointcloud format here:
   // https://pointclouds.org/documentation/tutorials/pcd_file_format.html
+  //
+  // Viam expects pointcloud data with fields "x y z" or "x y z rgb", and for
+  // this to be specified in the pointcloud header in the FIELDS entry. If color
+  // data is included in the pointcloud, Viam's services assume that the color
+  // value encodes a confidence score for that data point. Viam expects the
+  // confidence score to be encoded in the blue parameter of the RGB value, on a
+  // scale from 1-100.
+  //
+  // Pointclouds are little endian encoded.
   bytes point_cloud_pcd_chunk = 1;
 }
 
@@ -126,33 +105,10 @@ message GetInternalStateResponse {
   bytes internal_state_chunk = 1;
 }
 
-message GetPointCloudMapStreamRequest {
-  option deprecated = true;
-  // Name of slam service
+message GetLatestMapInfoRequest {
+  // Name of the SLAM algo
   string name = 1;
 }
-
-message GetPointCloudMapStreamResponse {
-  option deprecated = true;
-  // One chunk of the PointCloud.
-  // For a given GetPointCloudMapStream request,
-  // concatinating all
-  // GetPointCloudMapStreamResponse.point_cloud_pcd_chunk
-  // values in the order received result in the
-  // complete pointcloud in standard PCD format.
-  // https://pointclouds.org/documentation/tutorials/pcd_file_format.html
-  bytes point_cloud_pcd_chunk = 1;
-}
-
-message GetInternalStateStreamRequest {
-  option deprecated = true;
-  // Name of slam service
-  string name = 1;
-}
-
-message GetInternalStateStreamResponse {
-  option deprecated = true;
-  // Chunk of the internal state of the SLAM algorithm required to continue
-  // mapping/localization
-  bytes internal_state_chunk = 1;
+message GetLatestMapInfoResponse {
+  google.protobuf.Timestamp last_map_update = 1;
 }

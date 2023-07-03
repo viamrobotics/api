@@ -452,61 +452,61 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.deleteBinaryDataByIDs 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsRequest,
- *   !proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse>}
+ *   !proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest,
+ *   !proto.viam.app.data.v1.AddTagsToBinaryDataByIDsResponse>}
  */
-const methodDescriptor_DataService_AddTagsToBinaryDataByFileIDs = new grpc.web.MethodDescriptor(
-  '/viam.app.data.v1.DataService/AddTagsToBinaryDataByFileIDs',
+const methodDescriptor_DataService_AddTagsToBinaryDataByIDs = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/AddTagsToBinaryDataByIDs',
   grpc.web.MethodType.UNARY,
-  proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsRequest,
-  proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse,
+  proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest,
+  proto.viam.app.data.v1.AddTagsToBinaryDataByIDsResponse,
   /**
-   * @param {!proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsRequest} request
+   * @param {!proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse.deserializeBinary
+  proto.viam.app.data.v1.AddTagsToBinaryDataByIDsResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsRequest} request The
+ * @param {!proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.AddTagsToBinaryDataByIDsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.AddTagsToBinaryDataByIDsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.data.v1.DataServiceClient.prototype.addTagsToBinaryDataByFileIDs =
+proto.viam.app.data.v1.DataServiceClient.prototype.addTagsToBinaryDataByIDs =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/AddTagsToBinaryDataByFileIDs',
+      '/viam.app.data.v1.DataService/AddTagsToBinaryDataByIDs',
       request,
       metadata || {},
-      methodDescriptor_DataService_AddTagsToBinaryDataByFileIDs,
+      methodDescriptor_DataService_AddTagsToBinaryDataByIDs,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsRequest} request The
+ * @param {!proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.app.data.v1.AddTagsToBinaryDataByFileIDsResponse>}
+ * @return {!Promise<!proto.viam.app.data.v1.AddTagsToBinaryDataByIDsResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.data.v1.DataServicePromiseClient.prototype.addTagsToBinaryDataByFileIDs =
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.addTagsToBinaryDataByIDs =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/AddTagsToBinaryDataByFileIDs',
+      '/viam.app.data.v1.DataService/AddTagsToBinaryDataByIDs',
       request,
       metadata || {},
-      methodDescriptor_DataService_AddTagsToBinaryDataByFileIDs);
+      methodDescriptor_DataService_AddTagsToBinaryDataByIDs);
 };
 
 
@@ -574,61 +574,61 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.addTagsToBinaryDataByF
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsRequest,
- *   !proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse>}
+ *   !proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest,
+ *   !proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse>}
  */
-const methodDescriptor_DataService_RemoveTagsFromBinaryDataByFileIDs = new grpc.web.MethodDescriptor(
-  '/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFileIDs',
+const methodDescriptor_DataService_RemoveTagsFromBinaryDataByIDs = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByIDs',
   grpc.web.MethodType.UNARY,
-  proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsRequest,
-  proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse,
+  proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest,
+  proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse,
   /**
-   * @param {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsRequest} request
+   * @param {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse.deserializeBinary
+  proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsRequest} request The
+ * @param {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.data.v1.DataServiceClient.prototype.removeTagsFromBinaryDataByFileIDs =
+proto.viam.app.data.v1.DataServiceClient.prototype.removeTagsFromBinaryDataByIDs =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFileIDs',
+      '/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByIDs',
       request,
       metadata || {},
-      methodDescriptor_DataService_RemoveTagsFromBinaryDataByFileIDs,
+      methodDescriptor_DataService_RemoveTagsFromBinaryDataByIDs,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsRequest} request The
+ * @param {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFileIDsResponse>}
+ * @return {!Promise<!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeTagsFromBinaryDataByFileIDs =
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeTagsFromBinaryDataByIDs =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFileIDs',
+      '/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByIDs',
       request,
       metadata || {},
-      methodDescriptor_DataService_RemoveTagsFromBinaryDataByFileIDs);
+      methodDescriptor_DataService_RemoveTagsFromBinaryDataByIDs);
 };
 
 
@@ -751,6 +751,189 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.tagsByFilter =
       request,
       metadata || {},
       methodDescriptor_DataService_TagsByFilter);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest,
+ *   !proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse>}
+ */
+const methodDescriptor_DataService_AddBoundingBoxToImageByID = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/AddBoundingBoxToImageByID',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest,
+  proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.addBoundingBoxToImageByID =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/AddBoundingBoxToImageByID',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_AddBoundingBoxToImageByID,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.addBoundingBoxToImageByID =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/AddBoundingBoxToImageByID',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_AddBoundingBoxToImageByID);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest,
+ *   !proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse>}
+ */
+const methodDescriptor_DataService_RemoveBoundingBoxFromImageByID = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/RemoveBoundingBoxFromImageByID',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest,
+  proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.removeBoundingBoxFromImageByID =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/RemoveBoundingBoxFromImageByID',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_RemoveBoundingBoxFromImageByID,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeBoundingBoxFromImageByID =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/RemoveBoundingBoxFromImageByID',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_RemoveBoundingBoxFromImageByID);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.BoundingBoxLabelsByFilterRequest,
+ *   !proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse>}
+ */
+const methodDescriptor_DataService_BoundingBoxLabelsByFilter = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/BoundingBoxLabelsByFilter',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.BoundingBoxLabelsByFilterRequest,
+  proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.BoundingBoxLabelsByFilterRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.BoundingBoxLabelsByFilterRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.boundingBoxLabelsByFilter =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/BoundingBoxLabelsByFilter',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_BoundingBoxLabelsByFilter,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.BoundingBoxLabelsByFilterRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.boundingBoxLabelsByFilter =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/BoundingBoxLabelsByFilter',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_BoundingBoxLabelsByFilter);
 };
 
 

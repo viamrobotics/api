@@ -65,8 +65,8 @@ message CloudConfig {
 
 message ComponentConfig {
   string name = 1;
-  string namespace = 2;
-  string type = 3;
+  string namespace = 2; // deprecated; use api
+  string type = 3; // deprecated; use api
   string model = 4;
   Frame frame = 5;
   repeated string depends_on = 6;
@@ -96,11 +96,12 @@ message ProcessConfig {
 
 message ServiceConfig {
   string name = 1;
-  string namespace = 2;
-  string type = 3;
+  string namespace = 2; // deprecated; use api
+  string type = 3; // deprecated; use api
   google.protobuf.Struct attributes = 4;
   repeated string depends_on = 5;
   string model = 6;
+  string api = 9;
 }
 
 message NetworkConfig {
@@ -108,11 +109,17 @@ message NetworkConfig {
   string bind_address = 2;
   string tls_cert_file = 3;
   string tls_key_file = 4;
+  SessionsConfig sessions = 5;
+}
+
+message SessionsConfig {
+  google.protobuf.Duration heartbeat_window = 1;
 }
 
 message AuthConfig {
   repeated AuthHandlerConfig handlers = 1;
   repeated string tls_auth_entities = 2;
+  optional ExternalAuthConfig external_auth_config = 3;
 }
 
 message JWKSFile {
@@ -121,20 +128,15 @@ message JWKSFile {
   google.protobuf.Struct json = 1;
 }
 
-// Structured config for the credential type CREDENTIALS_TYPE_WEB_OAUTH
-message AuthHandlerWebOauthConfig {
-  // The allowed aud claims by the web oauth handler.
-  repeated string allowed_audiences = 1;
-  JWKSFile jwks = 2;
+// ExternalAuthConfig describes how a viam managed robot can accept
+// credentials signed by the cloud app.
+message ExternalAuthConfig {
+  JWKSFile jwks = 1;
 }
 
 message AuthHandlerConfig {
   CredentialsType type = 1;
   google.protobuf.Struct config = 5;
-
-  // Structured config for CREDENTIALS_TYPE_WEB_OAUTH type.
-  // Note: When this is set the config field will be empty.
-  optional AuthHandlerWebOauthConfig web_oauth_config = 6;
 }
 
 message Frame {
@@ -254,12 +256,14 @@ message RemoteAuth {
 
 message AgentInfo {
   string host = 1;
-  string os = 2;
+  string os = 2; // Will soon be deprecated, use platform instead
   // list of all ipv4 ips.
   repeated string ips = 3;
   // RDK version
   string version = 4;
   string git_revision = 5;
+  // The platform the RDK is running on. For example linux/amd64
+  optional string platform = 6;
 }
 
 enum CredentialsType {
@@ -268,7 +272,6 @@ enum CredentialsType {
   CREDENTIALS_TYPE_API_KEY = 2;
   CREDENTIALS_TYPE_ROBOT_SECRET = 3;
   CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET = 4;
-  CREDENTIALS_TYPE_WEB_OAUTH = 5;
 }
 
 message ConfigRequest {
@@ -320,6 +323,8 @@ message ModuleConfig {
   string name = 1;
   // path to the executable
   string path = 2;
+  // log level for module
+  string log_level = 3;
 }
 
 // PackageConfig is the configration for deployed Packages.
@@ -330,4 +335,6 @@ message PackageConfig {
   string package = 2;
   // version of the package ID hosted by Viam. If not specified "latest" is assumed.
   string version = 3;
+  // type of the package
+  string type = 4;
 }

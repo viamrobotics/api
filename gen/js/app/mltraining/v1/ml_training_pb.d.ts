@@ -4,6 +4,7 @@
 import * as jspb from "google-protobuf";
 import * as app_data_v1_data_pb from "../../../app/data/v1/data_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
+import * as google_rpc_status_pb from "../../../google/rpc/status_pb";
 import * as tagger_v1_tagger_pb from "../../../tagger/v1/tagger_pb";
 
 export class SubmitTrainingJobRequest extends jspb.Message {
@@ -186,6 +187,11 @@ export class TrainingJobMetadata extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
+  hasErrorStatus(): boolean;
+  clearErrorStatus(): void;
+  getErrorStatus(): google_rpc_status_pb.Status | undefined;
+  setErrorStatus(value?: google_rpc_status_pb.Status): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJobMetadata): TrainingJobMetadata.AsObject;
@@ -205,6 +211,7 @@ export namespace TrainingJobMetadata {
     syncedModelId: string,
     userEmail: string,
     id: string,
+    errorStatus?: google_rpc_status_pb.Status.AsObject,
   }
 }
 
@@ -248,6 +255,7 @@ export interface ModelTypeMap {
   MODEL_TYPE_UNSPECIFIED: 0;
   MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION: 1;
   MODEL_TYPE_MULTI_LABEL_CLASSIFICATION: 2;
+  MODEL_TYPE_OBJECT_DETECTION: 3;
 }
 
 export const ModelType: ModelTypeMap;
@@ -259,6 +267,7 @@ export interface TrainingStatusMap {
   TRAINING_STATUS_COMPLETED: 3;
   TRAINING_STATUS_FAILED: 4;
   TRAINING_STATUS_CANCELED: 5;
+  TRAINING_STATUS_CANCELING: 6;
 }
 
 export const TrainingStatus: TrainingStatusMap;

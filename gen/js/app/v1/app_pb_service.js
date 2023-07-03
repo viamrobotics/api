@@ -10,6 +10,15 @@ var AppService = (function () {
   return AppService;
 }());
 
+AppService.GetUserIdByEmail = {
+  methodName: "GetUserIdByEmail",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetUserIdByEmailRequest,
+  responseType: app_v1_app_pb.GetUserIdByEmailResponse
+};
+
 AppService.CreateOrganization = {
   methodName: "CreateOrganization",
   service: AppService,
@@ -26,6 +35,15 @@ AppService.ListOrganizations = {
   responseStream: false,
   requestType: app_v1_app_pb.ListOrganizationsRequest,
   responseType: app_v1_app_pb.ListOrganizationsResponse
+};
+
+AppService.ListOrganizationsByUser = {
+  methodName: "ListOrganizationsByUser",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListOrganizationsByUserRequest,
+  responseType: app_v1_app_pb.ListOrganizationsByUserResponse
 };
 
 AppService.GetOrganization = {
@@ -397,12 +415,124 @@ AppService.DeleteFragment = {
   responseType: app_v1_app_pb.DeleteFragmentResponse
 };
 
+AppService.AddRole = {
+  methodName: "AddRole",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.AddRoleRequest,
+  responseType: app_v1_app_pb.AddRoleResponse
+};
+
+AppService.RemoveRole = {
+  methodName: "RemoveRole",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.RemoveRoleRequest,
+  responseType: app_v1_app_pb.RemoveRoleResponse
+};
+
+AppService.ListAuthorizations = {
+  methodName: "ListAuthorizations",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListAuthorizationsRequest,
+  responseType: app_v1_app_pb.ListAuthorizationsResponse
+};
+
+AppService.CheckPermissions = {
+  methodName: "CheckPermissions",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.CheckPermissionsRequest,
+  responseType: app_v1_app_pb.CheckPermissionsResponse
+};
+
+AppService.CreateModule = {
+  methodName: "CreateModule",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.CreateModuleRequest,
+  responseType: app_v1_app_pb.CreateModuleResponse
+};
+
+AppService.UpdateModule = {
+  methodName: "UpdateModule",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateModuleRequest,
+  responseType: app_v1_app_pb.UpdateModuleResponse
+};
+
+AppService.UploadModuleFile = {
+  methodName: "UploadModuleFile",
+  service: AppService,
+  requestStream: true,
+  responseStream: false,
+  requestType: app_v1_app_pb.UploadModuleFileRequest,
+  responseType: app_v1_app_pb.UploadModuleFileResponse
+};
+
+AppService.GetModule = {
+  methodName: "GetModule",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetModuleRequest,
+  responseType: app_v1_app_pb.GetModuleResponse
+};
+
+AppService.ListModules = {
+  methodName: "ListModules",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListModulesRequest,
+  responseType: app_v1_app_pb.ListModulesResponse
+};
+
 exports.AppService = AppService;
 
 function AppServiceClient(serviceHost, options) {
   this.serviceHost = serviceHost;
   this.options = options || {};
 }
+
+AppServiceClient.prototype.getUserIdByEmail = function getUserIdByEmail(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetUserIdByEmail, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
 
 AppServiceClient.prototype.createOrganization = function createOrganization(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
@@ -440,6 +570,37 @@ AppServiceClient.prototype.listOrganizations = function listOrganizations(reques
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListOrganizations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listOrganizationsByUser = function listOrganizationsByUser(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListOrganizationsByUser, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1719,6 +1880,295 @@ AppServiceClient.prototype.deleteFragment = function deleteFragment(requestMessa
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.DeleteFragment, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.addRole = function addRole(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.AddRole, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.removeRole = function removeRole(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.RemoveRole, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listAuthorizations = function listAuthorizations(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListAuthorizations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.checkPermissions = function checkPermissions(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.CheckPermissions, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.createModule = function createModule(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.CreateModule, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateModule = function updateModule(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateModule, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.uploadModuleFile = function uploadModuleFile(metadata) {
+  var listeners = {
+    end: [],
+    status: []
+  };
+  var client = grpc.client(AppService.UploadModuleFile, {
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport
+  });
+  client.onEnd(function (status, statusMessage, trailers) {
+    listeners.status.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners.end.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners = null;
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    write: function (requestMessage) {
+      if (!client.started) {
+        client.start(metadata);
+      }
+      client.send(requestMessage);
+      return this;
+    },
+    end: function () {
+      client.finishSend();
+    },
+    cancel: function () {
+      listeners = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getModule = function getModule(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetModule, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listModules = function listModules(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListModules, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

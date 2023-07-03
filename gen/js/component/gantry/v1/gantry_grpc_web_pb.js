@@ -208,6 +208,67 @@ proto.viam.component.gantry.v1.GantryServicePromiseClient.prototype.moveToPositi
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.gantry.v1.HomeRequest,
+ *   !proto.viam.component.gantry.v1.HomeResponse>}
+ */
+const methodDescriptor_GantryService_Home = new grpc.web.MethodDescriptor(
+  '/viam.component.gantry.v1.GantryService/Home',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.gantry.v1.HomeRequest,
+  proto.viam.component.gantry.v1.HomeResponse,
+  /**
+   * @param {!proto.viam.component.gantry.v1.HomeRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.gantry.v1.HomeResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.gantry.v1.HomeRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.gantry.v1.HomeResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.gantry.v1.HomeResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.gantry.v1.GantryServiceClient.prototype.home =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.gantry.v1.GantryService/Home',
+      request,
+      metadata || {},
+      methodDescriptor_GantryService_Home,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.gantry.v1.HomeRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.gantry.v1.HomeResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.gantry.v1.GantryServicePromiseClient.prototype.home =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.gantry.v1.GantryService/Home',
+      request,
+      metadata || {},
+      methodDescriptor_GantryService_Home);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.component.gantry.v1.GetLengthsRequest,
  *   !proto.viam.component.gantry.v1.GetLengthsResponse>}
  */
@@ -446,6 +507,67 @@ proto.viam.component.gantry.v1.GantryServicePromiseClient.prototype.doCommand =
       request,
       metadata || {},
       methodDescriptor_GantryService_DoCommand);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.common.v1.GetGeometriesRequest,
+ *   !proto.viam.common.v1.GetGeometriesResponse>}
+ */
+const methodDescriptor_GantryService_GetGeometries = new grpc.web.MethodDescriptor(
+  '/viam.component.gantry.v1.GantryService/GetGeometries',
+  grpc.web.MethodType.UNARY,
+  common_v1_common_pb.GetGeometriesRequest,
+  common_v1_common_pb.GetGeometriesResponse,
+  /**
+   * @param {!proto.viam.common.v1.GetGeometriesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  common_v1_common_pb.GetGeometriesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.common.v1.GetGeometriesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.common.v1.GetGeometriesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.common.v1.GetGeometriesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.gantry.v1.GantryServiceClient.prototype.getGeometries =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.gantry.v1.GantryService/GetGeometries',
+      request,
+      metadata || {},
+      methodDescriptor_GantryService_GetGeometries,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.common.v1.GetGeometriesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.common.v1.GetGeometriesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.gantry.v1.GantryServicePromiseClient.prototype.getGeometries =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.gantry.v1.GantryService/GetGeometries',
+      request,
+      metadata || {},
+      methodDescriptor_GantryService_GetGeometries);
 };
 
 

@@ -1697,7 +1697,9 @@ proto.viam.component.camera.v1.Webcam.toObject = function(includeInstance, msg) 
     label: jspb.Message.getFieldWithDefault(msg, 1, ""),
     status: jspb.Message.getFieldWithDefault(msg, 2, ""),
     propertiesList: jspb.Message.toObjectList(msg.getPropertiesList(),
-    proto.viam.component.camera.v1.Property.toObject, includeInstance)
+    proto.viam.component.camera.v1.Property.toObject, includeInstance),
+    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -1746,6 +1748,14 @@ proto.viam.component.camera.v1.Webcam.deserializeBinaryFromReader = function(msg
       var value = new proto.viam.component.camera.v1.Property;
       reader.readMessage(value,proto.viam.component.camera.v1.Property.deserializeBinaryFromReader);
       msg.addProperties(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -1796,6 +1806,20 @@ proto.viam.component.camera.v1.Webcam.serializeBinaryToWriter = function(message
       3,
       f,
       proto.viam.component.camera.v1.Property.serializeBinaryToWriter
+    );
+  }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
     );
   }
 };
@@ -1875,6 +1899,42 @@ proto.viam.component.camera.v1.Webcam.prototype.clearPropertiesList = function()
 };
 
 
+/**
+ * optional string name = 4;
+ * @return {string}
+ */
+proto.viam.component.camera.v1.Webcam.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.component.camera.v1.Webcam} returns this
+ */
+proto.viam.component.camera.v1.Webcam.prototype.setName = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string id = 5;
+ * @return {string}
+ */
+proto.viam.component.camera.v1.Webcam.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.component.camera.v1.Webcam} returns this
+ */
+proto.viam.component.camera.v1.Webcam.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
 
 
 
@@ -1909,7 +1969,8 @@ proto.viam.component.camera.v1.Property.toObject = function(includeInstance, msg
   var f, obj = {
     widthPx: jspb.Message.getFieldWithDefault(msg, 1, 0),
     heightPx: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    frameFormat: jspb.Message.getFieldWithDefault(msg, 3, "")
+    frameFormat: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    frameRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -1958,6 +2019,10 @@ proto.viam.component.camera.v1.Property.deserializeBinaryFromReader = function(m
       var value = /** @type {string} */ (reader.readString());
       msg.setFrameFormat(value);
       break;
+    case 4:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setFrameRate(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2005,6 +2070,13 @@ proto.viam.component.camera.v1.Property.serializeBinaryToWriter = function(messa
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getFrameRate();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      4,
       f
     );
   }
@@ -2062,6 +2134,24 @@ proto.viam.component.camera.v1.Property.prototype.getFrameFormat = function() {
  */
 proto.viam.component.camera.v1.Property.prototype.setFrameFormat = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional float frame_rate = 4;
+ * @return {number}
+ */
+proto.viam.component.camera.v1.Property.prototype.getFrameRate = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 4, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.component.camera.v1.Property} returns this
+ */
+proto.viam.component.camera.v1.Property.prototype.setFrameRate = function(value) {
+  return jspb.Message.setProto3FloatField(this, 4, value);
 };
 
 

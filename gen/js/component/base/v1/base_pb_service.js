@@ -74,6 +74,24 @@ BaseService.DoCommand = {
   responseType: common_v1_common_pb.DoCommandResponse
 };
 
+BaseService.GetGeometries = {
+  methodName: "GetGeometries",
+  service: BaseService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.GetGeometriesRequest,
+  responseType: common_v1_common_pb.GetGeometriesResponse
+};
+
+BaseService.GetProperties = {
+  methodName: "GetProperties",
+  service: BaseService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_base_v1_base_pb.GetPropertiesRequest,
+  responseType: component_base_v1_base_pb.GetPropertiesResponse
+};
+
 exports.BaseService = BaseService;
 
 function BaseServiceClient(serviceHost, options) {
@@ -272,6 +290,68 @@ BaseServiceClient.prototype.doCommand = function doCommand(requestMessage, metad
     callback = arguments[1];
   }
   var client = grpc.unary(BaseService.DoCommand, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BaseServiceClient.prototype.getGeometries = function getGeometries(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BaseService.GetGeometries, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BaseServiceClient.prototype.getProperties = function getProperties(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BaseService.GetProperties, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

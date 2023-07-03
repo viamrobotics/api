@@ -14,6 +14,24 @@ type MotionServiceMove = {
   readonly responseType: typeof service_motion_v1_motion_pb.MoveResponse;
 };
 
+type MotionServiceMoveOnMap = {
+  readonly methodName: string;
+  readonly service: typeof MotionService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_motion_v1_motion_pb.MoveOnMapRequest;
+  readonly responseType: typeof service_motion_v1_motion_pb.MoveOnMapResponse;
+};
+
+type MotionServiceMoveOnGlobe = {
+  readonly methodName: string;
+  readonly service: typeof MotionService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_motion_v1_motion_pb.MoveOnGlobeRequest;
+  readonly responseType: typeof service_motion_v1_motion_pb.MoveOnGlobeResponse;
+};
+
 type MotionServiceMoveSingleComponent = {
   readonly methodName: string;
   readonly service: typeof MotionService;
@@ -44,6 +62,8 @@ type MotionServiceDoCommand = {
 export class MotionService {
   static readonly serviceName: string;
   static readonly Move: MotionServiceMove;
+  static readonly MoveOnMap: MotionServiceMoveOnMap;
+  static readonly MoveOnGlobe: MotionServiceMoveOnGlobe;
   static readonly MoveSingleComponent: MotionServiceMoveSingleComponent;
   static readonly GetPose: MotionServiceGetPose;
   static readonly DoCommand: MotionServiceDoCommand;
@@ -89,6 +109,24 @@ export class MotionServiceClient {
   move(
     requestMessage: service_motion_v1_motion_pb.MoveRequest,
     callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.MoveResponse|null) => void
+  ): UnaryResponse;
+  moveOnMap(
+    requestMessage: service_motion_v1_motion_pb.MoveOnMapRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.MoveOnMapResponse|null) => void
+  ): UnaryResponse;
+  moveOnMap(
+    requestMessage: service_motion_v1_motion_pb.MoveOnMapRequest,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.MoveOnMapResponse|null) => void
+  ): UnaryResponse;
+  moveOnGlobe(
+    requestMessage: service_motion_v1_motion_pb.MoveOnGlobeRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.MoveOnGlobeResponse|null) => void
+  ): UnaryResponse;
+  moveOnGlobe(
+    requestMessage: service_motion_v1_motion_pb.MoveOnGlobeRequest,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.MoveOnGlobeResponse|null) => void
   ): UnaryResponse;
   moveSingleComponent(
     requestMessage: service_motion_v1_motion_pb.MoveSingleComponentRequest,

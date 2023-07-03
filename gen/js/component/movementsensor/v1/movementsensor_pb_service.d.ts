@@ -86,6 +86,15 @@ type MovementSensorServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type MovementSensorServiceGetGeometries = {
+  readonly methodName: string;
+  readonly service: typeof MovementSensorService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetGeometriesRequest;
+  readonly responseType: typeof common_v1_common_pb.GetGeometriesResponse;
+};
+
 export class MovementSensorService {
   static readonly serviceName: string;
   static readonly GetLinearVelocity: MovementSensorServiceGetLinearVelocity;
@@ -97,6 +106,7 @@ export class MovementSensorService {
   static readonly GetAccuracy: MovementSensorServiceGetAccuracy;
   static readonly GetLinearAcceleration: MovementSensorServiceGetLinearAcceleration;
   static readonly DoCommand: MovementSensorServiceDoCommand;
+  static readonly GetGeometries: MovementSensorServiceGetGeometries;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -211,6 +221,15 @@ export class MovementSensorServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
   ): UnaryResponse;
 }
 

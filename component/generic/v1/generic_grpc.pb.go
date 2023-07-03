@@ -8,6 +8,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,7 +24,9 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GenericServiceClient interface {
 	// DoCommand sends/recieves arbitrary commands
-	DoCommand(ctx context.Context, in *DoCommandRequest, opts ...grpc.CallOption) (*DoCommandResponse, error)
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 }
 
 type genericServiceClient struct {
@@ -34,9 +37,18 @@ func NewGenericServiceClient(cc grpc.ClientConnInterface) GenericServiceClient {
 	return &genericServiceClient{cc}
 }
 
-func (c *genericServiceClient) DoCommand(ctx context.Context, in *DoCommandRequest, opts ...grpc.CallOption) (*DoCommandResponse, error) {
-	out := new(DoCommandResponse)
+func (c *genericServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.generic.v1.GenericService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *genericServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error) {
+	out := new(v1.GetGeometriesResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.generic.v1.GenericService/GetGeometries", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +60,9 @@ func (c *genericServiceClient) DoCommand(ctx context.Context, in *DoCommandReque
 // for forward compatibility
 type GenericServiceServer interface {
 	// DoCommand sends/recieves arbitrary commands
-	DoCommand(context.Context, *DoCommandRequest) (*DoCommandResponse, error)
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetGeometries returns the geometries of the component in their current configuration
+	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	mustEmbedUnimplementedGenericServiceServer()
 }
 
@@ -56,8 +70,11 @@ type GenericServiceServer interface {
 type UnimplementedGenericServiceServer struct {
 }
 
-func (UnimplementedGenericServiceServer) DoCommand(context.Context, *DoCommandRequest) (*DoCommandResponse, error) {
+func (UnimplementedGenericServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedGenericServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
 }
 func (UnimplementedGenericServiceServer) mustEmbedUnimplementedGenericServiceServer() {}
 
@@ -73,7 +90,7 @@ func RegisterGenericServiceServer(s grpc.ServiceRegistrar, srv GenericServiceSer
 }
 
 func _GenericService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DoCommandRequest)
+	in := new(v1.DoCommandRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -85,7 +102,25 @@ func _GenericService_DoCommand_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: "/viam.component.generic.v1.GenericService/DoCommand",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GenericServiceServer).DoCommand(ctx, req.(*DoCommandRequest))
+		return srv.(GenericServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GenericService_GetGeometries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetGeometriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GenericServiceServer).GetGeometries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.generic.v1.GenericService/GetGeometries",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GenericServiceServer).GetGeometries(ctx, req.(*v1.GetGeometriesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -100,6 +135,10 @@ var GenericService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _GenericService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetGeometries",
+			Handler:    _GenericService_GetGeometries_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

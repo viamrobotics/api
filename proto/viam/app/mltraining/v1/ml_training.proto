@@ -4,6 +4,7 @@ package viam.app.mltraining.v1;
 
 import "app/data/v1/data.proto";
 import "google/protobuf/timestamp.proto";
+import "google/rpc/status.proto";
 import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/app/mltraining/v1";
@@ -19,6 +20,7 @@ enum ModelType {
   MODEL_TYPE_UNSPECIFIED = 0;
   MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION = 1;
   MODEL_TYPE_MULTI_LABEL_CLASSIFICATION = 2;
+  MODEL_TYPE_OBJECT_DETECTION = 3;
 }
 
 message SubmitTrainingJobRequest {
@@ -58,6 +60,7 @@ enum TrainingStatus {
   TRAINING_STATUS_COMPLETED = 3;
   TRAINING_STATUS_FAILED = 4;
   TRAINING_STATUS_CANCELED = 5;
+  TRAINING_STATUS_CANCELING = 6;
 }
 
 message TrainingJobMetadata {
@@ -68,6 +71,7 @@ message TrainingJobMetadata {
   string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
   string user_email = 6 [(tagger.v1.tags) = "bson:\"user_email\" json:\"user_email\""];
   string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+  google.rpc.Status error_status = 8 [(tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
 }
 
 message CancelTrainingJobRequest {

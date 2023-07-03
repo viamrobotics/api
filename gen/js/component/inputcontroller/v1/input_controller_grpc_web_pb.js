@@ -385,5 +385,66 @@ proto.viam.component.inputcontroller.v1.InputControllerServicePromiseClient.prot
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.common.v1.GetGeometriesRequest,
+ *   !proto.viam.common.v1.GetGeometriesResponse>}
+ */
+const methodDescriptor_InputControllerService_GetGeometries = new grpc.web.MethodDescriptor(
+  '/viam.component.inputcontroller.v1.InputControllerService/GetGeometries',
+  grpc.web.MethodType.UNARY,
+  common_v1_common_pb.GetGeometriesRequest,
+  common_v1_common_pb.GetGeometriesResponse,
+  /**
+   * @param {!proto.viam.common.v1.GetGeometriesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  common_v1_common_pb.GetGeometriesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.common.v1.GetGeometriesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.common.v1.GetGeometriesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.common.v1.GetGeometriesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.inputcontroller.v1.InputControllerServiceClient.prototype.getGeometries =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.inputcontroller.v1.InputControllerService/GetGeometries',
+      request,
+      metadata || {},
+      methodDescriptor_InputControllerService_GetGeometries,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.common.v1.GetGeometriesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.common.v1.GetGeometriesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.inputcontroller.v1.InputControllerServicePromiseClient.prototype.getGeometries =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.inputcontroller.v1.InputControllerService/GetGeometries',
+      request,
+      metadata || {},
+      methodDescriptor_InputControllerService_GetGeometries);
+};
+
+
 module.exports = proto.viam.component.inputcontroller.v1;
 

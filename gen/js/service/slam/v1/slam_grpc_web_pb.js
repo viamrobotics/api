@@ -25,6 +25,8 @@ var common_v1_common_pb = require('../../../common/v1/common_pb.js')
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
 
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
+
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 const proto = {};
 proto.viam = {};
 proto.viam.service = {};
@@ -80,67 +82,6 @@ proto.viam.service.slam.v1.SLAMServicePromiseClient =
    */
   this.hostname_ = hostname.replace(/\/+$/, '');
 
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.service.slam.v1.GetPositionNewRequest,
- *   !proto.viam.service.slam.v1.GetPositionNewResponse>}
- */
-const methodDescriptor_SLAMService_GetPositionNew = new grpc.web.MethodDescriptor(
-  '/viam.service.slam.v1.SLAMService/GetPositionNew',
-  grpc.web.MethodType.UNARY,
-  proto.viam.service.slam.v1.GetPositionNewRequest,
-  proto.viam.service.slam.v1.GetPositionNewResponse,
-  /**
-   * @param {!proto.viam.service.slam.v1.GetPositionNewRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.service.slam.v1.GetPositionNewResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.service.slam.v1.GetPositionNewRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.service.slam.v1.GetPositionNewResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.slam.v1.GetPositionNewResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.service.slam.v1.SLAMServiceClient.prototype.getPositionNew =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.service.slam.v1.SLAMService/GetPositionNew',
-      request,
-      metadata || {},
-      methodDescriptor_SLAMService_GetPositionNew,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.service.slam.v1.GetPositionNewRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.service.slam.v1.GetPositionNewResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.service.slam.v1.SLAMServicePromiseClient.prototype.getPositionNew =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.service.slam.v1.SLAMService/GetPositionNew',
-      request,
-      metadata || {},
-      methodDescriptor_SLAMService_GetPositionNew);
 };
 
 
@@ -208,62 +149,6 @@ proto.viam.service.slam.v1.SLAMServicePromiseClient.prototype.getPosition =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.service.slam.v1.GetPointCloudMapStreamRequest,
- *   !proto.viam.service.slam.v1.GetPointCloudMapStreamResponse>}
- */
-const methodDescriptor_SLAMService_GetPointCloudMapStream = new grpc.web.MethodDescriptor(
-  '/viam.service.slam.v1.SLAMService/GetPointCloudMapStream',
-  grpc.web.MethodType.SERVER_STREAMING,
-  proto.viam.service.slam.v1.GetPointCloudMapStreamRequest,
-  proto.viam.service.slam.v1.GetPointCloudMapStreamResponse,
-  /**
-   * @param {!proto.viam.service.slam.v1.GetPointCloudMapStreamRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.service.slam.v1.GetPointCloudMapStreamResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.service.slam.v1.GetPointCloudMapStreamRequest} request The request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.slam.v1.GetPointCloudMapStreamResponse>}
- *     The XHR Node Readable Stream
- */
-proto.viam.service.slam.v1.SLAMServiceClient.prototype.getPointCloudMapStream =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/viam.service.slam.v1.SLAMService/GetPointCloudMapStream',
-      request,
-      metadata || {},
-      methodDescriptor_SLAMService_GetPointCloudMapStream);
-};
-
-
-/**
- * @param {!proto.viam.service.slam.v1.GetPointCloudMapStreamRequest} request The request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.slam.v1.GetPointCloudMapStreamResponse>}
- *     The XHR Node Readable Stream
- */
-proto.viam.service.slam.v1.SLAMServicePromiseClient.prototype.getPointCloudMapStream =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/viam.service.slam.v1.SLAMService/GetPointCloudMapStream',
-      request,
-      metadata || {},
-      methodDescriptor_SLAMService_GetPointCloudMapStream);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.service.slam.v1.GetPointCloudMapRequest,
  *   !proto.viam.service.slam.v1.GetPointCloudMapResponse>}
  */
@@ -320,62 +205,6 @@ proto.viam.service.slam.v1.SLAMServicePromiseClient.prototype.getPointCloudMap =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.service.slam.v1.GetInternalStateStreamRequest,
- *   !proto.viam.service.slam.v1.GetInternalStateStreamResponse>}
- */
-const methodDescriptor_SLAMService_GetInternalStateStream = new grpc.web.MethodDescriptor(
-  '/viam.service.slam.v1.SLAMService/GetInternalStateStream',
-  grpc.web.MethodType.SERVER_STREAMING,
-  proto.viam.service.slam.v1.GetInternalStateStreamRequest,
-  proto.viam.service.slam.v1.GetInternalStateStreamResponse,
-  /**
-   * @param {!proto.viam.service.slam.v1.GetInternalStateStreamRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.service.slam.v1.GetInternalStateStreamResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.service.slam.v1.GetInternalStateStreamRequest} request The request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.slam.v1.GetInternalStateStreamResponse>}
- *     The XHR Node Readable Stream
- */
-proto.viam.service.slam.v1.SLAMServiceClient.prototype.getInternalStateStream =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/viam.service.slam.v1.SLAMService/GetInternalStateStream',
-      request,
-      metadata || {},
-      methodDescriptor_SLAMService_GetInternalStateStream);
-};
-
-
-/**
- * @param {!proto.viam.service.slam.v1.GetInternalStateStreamRequest} request The request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.slam.v1.GetInternalStateStreamResponse>}
- *     The XHR Node Readable Stream
- */
-proto.viam.service.slam.v1.SLAMServicePromiseClient.prototype.getInternalStateStream =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/viam.service.slam.v1.SLAMService/GetInternalStateStream',
-      request,
-      metadata || {},
-      methodDescriptor_SLAMService_GetInternalStateStream);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.service.slam.v1.GetInternalStateRequest,
  *   !proto.viam.service.slam.v1.GetInternalStateResponse>}
  */
@@ -426,6 +255,67 @@ proto.viam.service.slam.v1.SLAMServicePromiseClient.prototype.getInternalState =
       request,
       metadata || {},
       methodDescriptor_SLAMService_GetInternalState);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.slam.v1.GetLatestMapInfoRequest,
+ *   !proto.viam.service.slam.v1.GetLatestMapInfoResponse>}
+ */
+const methodDescriptor_SLAMService_GetLatestMapInfo = new grpc.web.MethodDescriptor(
+  '/viam.service.slam.v1.SLAMService/GetLatestMapInfo',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.slam.v1.GetLatestMapInfoRequest,
+  proto.viam.service.slam.v1.GetLatestMapInfoResponse,
+  /**
+   * @param {!proto.viam.service.slam.v1.GetLatestMapInfoRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.slam.v1.GetLatestMapInfoResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.slam.v1.GetLatestMapInfoRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.slam.v1.GetLatestMapInfoResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.slam.v1.GetLatestMapInfoResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.slam.v1.SLAMServiceClient.prototype.getLatestMapInfo =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.slam.v1.SLAMService/GetLatestMapInfo',
+      request,
+      metadata || {},
+      methodDescriptor_SLAMService_GetLatestMapInfo,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.slam.v1.GetLatestMapInfoRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.slam.v1.GetLatestMapInfoResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.slam.v1.SLAMServicePromiseClient.prototype.getLatestMapInfo =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.slam.v1.SLAMService/GetLatestMapInfo',
+      request,
+      metadata || {},
+      methodDescriptor_SLAMService_GetLatestMapInfo);
 };
 
 

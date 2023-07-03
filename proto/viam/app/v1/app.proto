@@ -9,6 +9,11 @@ import "tagger/v1/tagger.proto";
 option go_package = "go.viam.com/api/app/v1";
 
 service AppService {
+  // Users
+
+  // Get the id of the user with the email
+  rpc GetUserIdByEmail(GetUserIdByEmailRequest) returns (GetUserIdByEmailResponse);
+
   // Organizations
 
   // Create a new organization
@@ -16,6 +21,9 @@ service AppService {
 
   // List organizations
   rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
+
+  // List the organizations a user belongs to
+  rpc ListOrganizationsByUser(ListOrganizationsByUserRequest) returns (ListOrganizationsByUserResponse);
 
   // Get an organization
   rpc GetOrganization(GetOrganizationRequest) returns (GetOrganizationResponse);
@@ -146,6 +154,27 @@ service AppService {
 
   // Deletes a fragment
   rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
+
+  // Creates an IdentityAuthorization
+  rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
+
+  // Deletes an IdentityAuthorization
+  rpc RemoveRole(RemoveRoleRequest) returns (RemoveRoleResponse);
+
+  // Shows organization, location, and robot level permissions that exist on the resource
+  rpc ListAuthorizations(ListAuthorizationsRequest) returns (ListAuthorizationsResponse);
+
+  rpc CheckPermissions(CheckPermissionsRequest) returns (CheckPermissionsResponse);
+
+  rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
+
+  rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
+
+  rpc UploadModuleFile(stream UploadModuleFileRequest) returns (UploadModuleFileResponse);
+
+  rpc GetModule(GetModuleRequest) returns (GetModuleResponse);
+
+  rpc ListModules(ListModulesRequest) returns (ListModulesResponse);
 }
 
 message Robot {
@@ -191,6 +220,7 @@ message Organization {
   string id = 1;
   string name = 2;
   google.protobuf.Timestamp created_on = 3;
+  string public_namespace = 4;
 }
 
 message OrganizationMember {
@@ -229,6 +259,7 @@ message GetOrganizationResponse {
 message UpdateOrganizationRequest {
   string organization_id = 1;
   string name = 2;
+  optional string public_namespace = 3;
 }
 
 message UpdateOrganizationResponse {
@@ -254,6 +285,7 @@ message ListOrganizationMembersResponse {
 message CreateOrganizationInviteRequest {
   string organization_id = 1;
   string email = 2;
+  repeated Authorization authorizations = 3;
 }
 
 message CreateOrganizationInviteResponse {
@@ -666,3 +698,200 @@ message DeleteRobotPartSecretRequest {
 }
 
 message DeleteRobotPartSecretResponse {}
+
+message Authorization {
+  string authorization_type = 1;
+  string authorization_id = 2;
+  string resource_type = 3;
+  string resource_id = 4;
+}
+
+message AddRoleRequest {
+  string identity_id = 1;
+  string role_id = 2;
+  string resource_type = 3;
+  string resource_id = 4;
+  string organization_id = 5;
+}
+
+message AddRoleResponse {
+  Authorization authorization = 1;
+}
+
+message RemoveRoleRequest {
+  string identity_id = 1;
+  string role_id = 2;
+  string resource_type = 3;
+  string resource_id = 4;
+  string organization_id = 5;
+}
+
+message RemoveRoleResponse {}
+
+message ListAuthorizationsRequest {
+  string resource_type = 1;
+  string resource_id = 2;
+  string organization_id = 3;
+}
+
+message Authorizations {
+  string identity_id = 1;
+  repeated Authorization authorizations = 2;
+}
+
+message ListAuthorizationsResponse {
+  repeated Authorizations authorizations = 1;
+}
+
+message CheckPermissionsRequest {
+  repeated AuthorizedPermissions permissions = 1;
+}
+
+message AuthorizedPermissions {
+  string resource_type = 1;
+  string resource_id = 2;
+  repeated string permissions = 3;
+}
+
+message CheckPermissionsResponse {
+  repeated AuthorizedPermissions authorized_permissions = 1;
+}
+
+// Modules
+message CreateModuleRequest {
+  // The public namespace that is reserved for your organization
+  string public_namespace = 1;
+  // The name of the module, which must be unique within your org
+  string name = 2;
+}
+
+message CreateModuleResponse {
+  // The id of the module containing the namespace and name
+  string module_id = 1;
+}
+
+enum Visibility {
+  VISIBILITY_UNSPECIFIED = 0;
+  // Private modules are visible only within your org
+  VISIBILITY_PRIVATE = 1;
+  // Public modules are visible to everyone
+  VISIBILITY_PUBLIC = 2;
+}
+
+message UpdateModuleRequest {
+  // The id of the module being updated, containing the namespace and name
+  string module_id = 1;
+  // The visibility that should be set for the module
+  Visibility visibility = 2;
+  // The url to reference for documentation, code, etc.
+  string url = 3;
+  // A short description of the module that explains its purpose
+  string description = 4;
+  // A list of models that are available in the module
+  repeated Model models = 5;
+}
+
+message UpdateModuleResponse {}
+
+message Model {
+  // The colon-delimited-triplet of the api implemented by the model
+  string api = 1;
+  // The colon-delimited-triplet of the model
+  string model = 2;
+}
+
+message ModuleFileInfo {
+  // The module_id that is being uploaded
+  string module_id = 1;
+  // The semver string that represents the new major/minor/patch version of the module
+  string version = 2;
+  // The platform that the file is built to run on
+  string platform = 3;
+}
+
+message UploadModuleFileRequest {
+  oneof module_file {
+    // The information about the module file being uploaded
+    ModuleFileInfo module_file_info = 1;
+    // The file contents to be uploaded
+    bytes file = 2;
+  }
+}
+
+message UploadModuleFileResponse {}
+
+message GetModuleRequest {
+  // The id of the module, containing the namespace and name
+  string module_id = 1;
+}
+
+message GetModuleResponse {
+  // The module object
+  Module module = 1;
+}
+
+message Module {
+  // The id of the module, containing the namespace and name
+  string module_id = 1;
+  // The name of the module
+  string name = 2;
+  // The visibility of the module
+  Visibility visibility = 3;
+  // The versions of the module that are available
+  repeated VersionHistory versions = 4;
+  // The url to reference for documentation, code, etc.
+  string url = 5;
+  // A short description of the module that explains its purpose
+  string description = 6;
+  // A list of models that are available in the module
+  repeated Model models = 7;
+  // The total number of robots using this module
+  int64 total_robot_usage = 8;
+  // The total number of organizations using this module
+  int64 total_organization_usage = 9;
+}
+
+message VersionHistory {
+  // The semver string that represents the major/minor/patch version of the module
+  string version = 1;
+  // The uploads that are available for this module version
+  repeated Uploads files = 2;
+}
+
+message Uploads {
+  // The OS and architecture the module is built to run on
+  string platform = 1;
+  // The time when the file was uploaded
+  google.protobuf.Timestamp uploaded_at = 2;
+}
+
+message ListModulesRequest {
+  // The id of the organization to return private modules for.
+  optional string organization_id = 1;
+}
+
+message ListModulesResponse {
+  // A listed of modules. When authenticated, this API will return modules that are private for this org. Public modules are always returned.
+  repeated Module modules = 1;
+}
+
+message GetUserIdByEmailRequest {
+  string email = 1;
+}
+
+message GetUserIdByEmailResponse {
+  string user_id = 1;
+}
+
+message ListOrganizationsByUserRequest {
+  string user_id = 1;
+}
+
+message OrgDetails {
+  string org_id = 1;
+  string org_name = 2;
+}
+
+message ListOrganizationsByUserResponse {
+  repeated OrgDetails orgs = 1;
+}

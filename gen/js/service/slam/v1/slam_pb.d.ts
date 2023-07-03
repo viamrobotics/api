@@ -5,6 +5,7 @@ import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
+import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class GetPositionRequest extends jspb.Message {
   getName(): string;
@@ -51,58 +52,6 @@ export class GetPositionResponse extends jspb.Message {
 }
 
 export namespace GetPositionResponse {
-  export type AsObject = {
-    pose?: common_v1_common_pb.Pose.AsObject,
-    componentReference: string,
-    extra?: google_protobuf_struct_pb.Struct.AsObject,
-  }
-}
-
-export class GetPositionNewRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetPositionNewRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetPositionNewRequest): GetPositionNewRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetPositionNewRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetPositionNewRequest;
-  static deserializeBinaryFromReader(message: GetPositionNewRequest, reader: jspb.BinaryReader): GetPositionNewRequest;
-}
-
-export namespace GetPositionNewRequest {
-  export type AsObject = {
-    name: string,
-  }
-}
-
-export class GetPositionNewResponse extends jspb.Message {
-  hasPose(): boolean;
-  clearPose(): void;
-  getPose(): common_v1_common_pb.Pose | undefined;
-  setPose(value?: common_v1_common_pb.Pose): void;
-
-  getComponentReference(): string;
-  setComponentReference(value: string): void;
-
-  hasExtra(): boolean;
-  clearExtra(): void;
-  getExtra(): google_protobuf_struct_pb.Struct | undefined;
-  setExtra(value?: google_protobuf_struct_pb.Struct): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetPositionNewResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetPositionNewResponse): GetPositionNewResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetPositionNewResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetPositionNewResponse;
-  static deserializeBinaryFromReader(message: GetPositionNewResponse, reader: jspb.BinaryReader): GetPositionNewResponse;
-}
-
-export namespace GetPositionNewResponse {
   export type AsObject = {
     pose?: common_v1_common_pb.Pose.AsObject,
     componentReference: string,
@@ -194,87 +143,45 @@ export namespace GetInternalStateResponse {
   }
 }
 
-export class GetPointCloudMapStreamRequest extends jspb.Message {
+export class GetLatestMapInfoRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetPointCloudMapStreamRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetPointCloudMapStreamRequest): GetPointCloudMapStreamRequest.AsObject;
+  toObject(includeInstance?: boolean): GetLatestMapInfoRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLatestMapInfoRequest): GetLatestMapInfoRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetPointCloudMapStreamRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetPointCloudMapStreamRequest;
-  static deserializeBinaryFromReader(message: GetPointCloudMapStreamRequest, reader: jspb.BinaryReader): GetPointCloudMapStreamRequest;
+  static serializeBinaryToWriter(message: GetLatestMapInfoRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLatestMapInfoRequest;
+  static deserializeBinaryFromReader(message: GetLatestMapInfoRequest, reader: jspb.BinaryReader): GetLatestMapInfoRequest;
 }
 
-export namespace GetPointCloudMapStreamRequest {
+export namespace GetLatestMapInfoRequest {
   export type AsObject = {
     name: string,
   }
 }
 
-export class GetPointCloudMapStreamResponse extends jspb.Message {
-  getPointCloudPcdChunk(): Uint8Array | string;
-  getPointCloudPcdChunk_asU8(): Uint8Array;
-  getPointCloudPcdChunk_asB64(): string;
-  setPointCloudPcdChunk(value: Uint8Array | string): void;
+export class GetLatestMapInfoResponse extends jspb.Message {
+  hasLastMapUpdate(): boolean;
+  clearLastMapUpdate(): void;
+  getLastMapUpdate(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastMapUpdate(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetPointCloudMapStreamResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetPointCloudMapStreamResponse): GetPointCloudMapStreamResponse.AsObject;
+  toObject(includeInstance?: boolean): GetLatestMapInfoResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLatestMapInfoResponse): GetLatestMapInfoResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetPointCloudMapStreamResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetPointCloudMapStreamResponse;
-  static deserializeBinaryFromReader(message: GetPointCloudMapStreamResponse, reader: jspb.BinaryReader): GetPointCloudMapStreamResponse;
+  static serializeBinaryToWriter(message: GetLatestMapInfoResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLatestMapInfoResponse;
+  static deserializeBinaryFromReader(message: GetLatestMapInfoResponse, reader: jspb.BinaryReader): GetLatestMapInfoResponse;
 }
 
-export namespace GetPointCloudMapStreamResponse {
+export namespace GetLatestMapInfoResponse {
   export type AsObject = {
-    pointCloudPcdChunk: Uint8Array | string,
-  }
-}
-
-export class GetInternalStateStreamRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetInternalStateStreamRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetInternalStateStreamRequest): GetInternalStateStreamRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetInternalStateStreamRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetInternalStateStreamRequest;
-  static deserializeBinaryFromReader(message: GetInternalStateStreamRequest, reader: jspb.BinaryReader): GetInternalStateStreamRequest;
-}
-
-export namespace GetInternalStateStreamRequest {
-  export type AsObject = {
-    name: string,
-  }
-}
-
-export class GetInternalStateStreamResponse extends jspb.Message {
-  getInternalStateChunk(): Uint8Array | string;
-  getInternalStateChunk_asU8(): Uint8Array;
-  getInternalStateChunk_asB64(): string;
-  setInternalStateChunk(value: Uint8Array | string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetInternalStateStreamResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetInternalStateStreamResponse): GetInternalStateStreamResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetInternalStateStreamResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetInternalStateStreamResponse;
-  static deserializeBinaryFromReader(message: GetInternalStateStreamResponse, reader: jspb.BinaryReader): GetInternalStateStreamResponse;
-}
-
-export namespace GetInternalStateStreamResponse {
-  export type AsObject = {
-    internalStateChunk: Uint8Array | string,
+    lastMapUpdate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 

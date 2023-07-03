@@ -23,6 +23,15 @@ type GantryServiceMoveToPosition = {
   readonly responseType: typeof component_gantry_v1_gantry_pb.MoveToPositionResponse;
 };
 
+type GantryServiceHome = {
+  readonly methodName: string;
+  readonly service: typeof GantryService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_gantry_v1_gantry_pb.HomeRequest;
+  readonly responseType: typeof component_gantry_v1_gantry_pb.HomeResponse;
+};
+
 type GantryServiceGetLengths = {
   readonly methodName: string;
   readonly service: typeof GantryService;
@@ -59,14 +68,25 @@ type GantryServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type GantryServiceGetGeometries = {
+  readonly methodName: string;
+  readonly service: typeof GantryService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetGeometriesRequest;
+  readonly responseType: typeof common_v1_common_pb.GetGeometriesResponse;
+};
+
 export class GantryService {
   static readonly serviceName: string;
   static readonly GetPosition: GantryServiceGetPosition;
   static readonly MoveToPosition: GantryServiceMoveToPosition;
+  static readonly Home: GantryServiceHome;
   static readonly GetLengths: GantryServiceGetLengths;
   static readonly Stop: GantryServiceStop;
   static readonly IsMoving: GantryServiceIsMoving;
   static readonly DoCommand: GantryServiceDoCommand;
+  static readonly GetGeometries: GantryServiceGetGeometries;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -119,6 +139,15 @@ export class GantryServiceClient {
     requestMessage: component_gantry_v1_gantry_pb.MoveToPositionRequest,
     callback: (error: ServiceError|null, responseMessage: component_gantry_v1_gantry_pb.MoveToPositionResponse|null) => void
   ): UnaryResponse;
+  home(
+    requestMessage: component_gantry_v1_gantry_pb.HomeRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_gantry_v1_gantry_pb.HomeResponse|null) => void
+  ): UnaryResponse;
+  home(
+    requestMessage: component_gantry_v1_gantry_pb.HomeRequest,
+    callback: (error: ServiceError|null, responseMessage: component_gantry_v1_gantry_pb.HomeResponse|null) => void
+  ): UnaryResponse;
   getLengths(
     requestMessage: component_gantry_v1_gantry_pb.GetLengthsRequest,
     metadata: grpc.Metadata,
@@ -154,6 +183,15 @@ export class GantryServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
+  ): UnaryResponse;
+  getGeometries(
+    requestMessage: common_v1_common_pb.GetGeometriesRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
   ): UnaryResponse;
 }
 

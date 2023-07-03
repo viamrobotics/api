@@ -130,6 +130,15 @@ message GeoPoint {
   double longitude = 2;
 }
 
+// GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,
+// captured in latitude and longitude.
+message GeoObstacle {
+  // Location of the obstacle
+  GeoPoint location = 1;
+  // Geometries that describe the obstacle, where embedded Pose data is with respect to the specified location
+  repeated Geometry geometries = 2;
+}
+
 // Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference
 // frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
 // reference frame as observed within the second reference frame.
@@ -172,4 +181,33 @@ message DoCommandRequest {
 // DoCommandResponse represents a generic DoCommand output
 message DoCommandResponse {
   google.protobuf.Struct result = 1;
+}
+
+message GetKinematicsRequest {
+  // The component name
+  string name = 1;
+}
+
+enum KinematicsFileFormat {
+  KINEMATICS_FILE_FORMAT_UNSPECIFIED = 0;
+  KINEMATICS_FILE_FORMAT_SVA = 1;
+  KINEMATICS_FILE_FORMAT_URDF = 2;
+}
+
+message GetKinematicsResponse {
+  // The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
+  // https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters
+  KinematicsFileFormat format = 1;
+  // The byte contents of the file
+  bytes kinematics_data = 2;
+}
+
+message GetGeometriesRequest {
+  // The component name
+  string name = 1;
+}
+
+message GetGeometriesResponse {
+  // All geometries associated with the component, in their current configuration, in the frame of that component.
+  repeated Geometry geometries = 1;
 }

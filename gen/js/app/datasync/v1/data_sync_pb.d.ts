@@ -5,7 +5,6 @@ import * as jspb from "google-protobuf";
 import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
-import * as tagger_v1_tagger_pb from "../../../tagger/v1/tagger_pb";
 
 export class DataCaptureUploadRequest extends jspb.Message {
   hasMetadata(): boolean;
@@ -36,6 +35,9 @@ export namespace DataCaptureUploadRequest {
 }
 
 export class DataCaptureUploadResponse extends jspb.Message {
+  getFileId(): string;
+  setFileId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataCaptureUploadResponse.AsObject;
   static toObject(includeInstance: boolean, msg: DataCaptureUploadResponse): DataCaptureUploadResponse.AsObject;
@@ -48,6 +50,7 @@ export class DataCaptureUploadResponse extends jspb.Message {
 
 export namespace DataCaptureUploadResponse {
   export type AsObject = {
+    fileId: string,
   }
 }
 
@@ -87,6 +90,9 @@ export namespace FileUploadRequest {
 }
 
 export class FileUploadResponse extends jspb.Message {
+  getFileId(): string;
+  setFileId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FileUploadResponse.AsObject;
   static toObject(includeInstance: boolean, msg: FileUploadResponse): FileUploadResponse.AsObject;
@@ -99,6 +105,7 @@ export class FileUploadResponse extends jspb.Message {
 
 export namespace FileUploadResponse {
   export type AsObject = {
+    fileId: string,
   }
 }
 
@@ -205,9 +212,6 @@ export class UploadMetadata extends jspb.Message {
   getComponentName(): string;
   setComponentName(value: string): void;
 
-  getComponentModel(): string;
-  setComponentModel(value: string): void;
-
   getMethodName(): string;
   setMethodName(value: string): void;
 
@@ -227,9 +231,6 @@ export class UploadMetadata extends jspb.Message {
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
-  getSessionId(): string;
-  setSessionId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UploadMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UploadMetadata): UploadMetadata.AsObject;
@@ -245,14 +246,12 @@ export namespace UploadMetadata {
     partId: string,
     componentType: string,
     componentName: string,
-    componentModel: string,
     methodName: string,
     type: DataTypeMap[keyof DataTypeMap],
     fileName: string,
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
     fileExtension: string,
     tagsList: Array<string>,
-    sessionId: string,
   }
 }
 
@@ -291,9 +290,6 @@ export class DataCaptureMetadata extends jspb.Message {
   getComponentName(): string;
   setComponentName(value: string): void;
 
-  getComponentModel(): string;
-  setComponentModel(value: string): void;
-
   getMethodName(): string;
   setMethodName(value: string): void;
 
@@ -310,9 +306,6 @@ export class DataCaptureMetadata extends jspb.Message {
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
-  getSessionId(): string;
-  setSessionId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataCaptureMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: DataCaptureMetadata): DataCaptureMetadata.AsObject;
@@ -327,205 +320,11 @@ export namespace DataCaptureMetadata {
   export type AsObject = {
     componentType: string,
     componentName: string,
-    componentModel: string,
     methodName: string,
     type: DataTypeMap[keyof DataTypeMap],
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
     fileExtension: string,
     tagsList: Array<string>,
-    sessionId: string,
-  }
-}
-
-export class TabularCapture extends jspb.Message {
-  hasInterval(): boolean;
-  clearInterval(): void;
-  getInterval(): CaptureInterval | undefined;
-  setInterval(value?: CaptureInterval): void;
-
-  getOrgId(): string;
-  setOrgId(value: string): void;
-
-  getRobotId(): string;
-  setRobotId(value: string): void;
-
-  getPartId(): string;
-  setPartId(value: string): void;
-
-  getLocationId(): string;
-  setLocationId(value: string): void;
-
-  getComponentName(): string;
-  setComponentName(value: string): void;
-
-  getComponentType(): string;
-  setComponentType(value: string): void;
-
-  getComponentModel(): string;
-  setComponentModel(value: string): void;
-
-  getMethodName(): string;
-  setMethodName(value: string): void;
-
-  getBlobPath(): string;
-  setBlobPath(value: string): void;
-
-  clearColumnNamesList(): void;
-  getColumnNamesList(): Array<string>;
-  setColumnNamesList(value: Array<string>): void;
-  addColumnNames(value: string, index?: number): string;
-
-  getMethodParametersMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearMethodParametersMap(): void;
-  getFileId(): string;
-  setFileId(value: string): void;
-
-  clearTagsList(): void;
-  getTagsList(): Array<string>;
-  setTagsList(value: Array<string>): void;
-  addTags(value: string, index?: number): string;
-
-  getMessageCount(): number;
-  setMessageCount(value: number): void;
-
-  getFileSizeBytes(): number;
-  setFileSizeBytes(value: number): void;
-
-  getSessionId(): string;
-  setSessionId(value: string): void;
-
-  getMimeType(): string;
-  setMimeType(value: string): void;
-
-  getId(): string;
-  setId(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TabularCapture.AsObject;
-  static toObject(includeInstance: boolean, msg: TabularCapture): TabularCapture.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TabularCapture, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TabularCapture;
-  static deserializeBinaryFromReader(message: TabularCapture, reader: jspb.BinaryReader): TabularCapture;
-}
-
-export namespace TabularCapture {
-  export type AsObject = {
-    interval?: CaptureInterval.AsObject,
-    orgId: string,
-    robotId: string,
-    partId: string,
-    locationId: string,
-    componentName: string,
-    componentType: string,
-    componentModel: string,
-    methodName: string,
-    blobPath: string,
-    columnNamesList: Array<string>,
-    methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
-    fileId: string,
-    tagsList: Array<string>,
-    messageCount: number,
-    fileSizeBytes: number,
-    sessionId: string,
-    mimeType: string,
-    id: string,
-  }
-}
-
-export class BinaryCapture extends jspb.Message {
-  hasInterval(): boolean;
-  clearInterval(): void;
-  getInterval(): CaptureInterval | undefined;
-  setInterval(value?: CaptureInterval): void;
-
-  getOrgId(): string;
-  setOrgId(value: string): void;
-
-  getRobotId(): string;
-  setRobotId(value: string): void;
-
-  getPartId(): string;
-  setPartId(value: string): void;
-
-  getLocationId(): string;
-  setLocationId(value: string): void;
-
-  getComponentName(): string;
-  setComponentName(value: string): void;
-
-  getComponentType(): string;
-  setComponentType(value: string): void;
-
-  getComponentModel(): string;
-  setComponentModel(value: string): void;
-
-  getMethodName(): string;
-  setMethodName(value: string): void;
-
-  getBlobPath(): string;
-  setBlobPath(value: string): void;
-
-  getMethodParametersMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearMethodParametersMap(): void;
-  getFileId(): string;
-  setFileId(value: string): void;
-
-  clearTagsList(): void;
-  getTagsList(): Array<string>;
-  setTagsList(value: Array<string>): void;
-  addTags(value: string, index?: number): string;
-
-  getFileSizeBytes(): number;
-  setFileSizeBytes(value: number): void;
-
-  getSessionId(): string;
-  setSessionId(value: string): void;
-
-  getMimeType(): string;
-  setMimeType(value: string): void;
-
-  getFileName(): string;
-  setFileName(value: string): void;
-
-  getFileExt(): string;
-  setFileExt(value: string): void;
-
-  getId(): string;
-  setId(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BinaryCapture.AsObject;
-  static toObject(includeInstance: boolean, msg: BinaryCapture): BinaryCapture.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: BinaryCapture, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BinaryCapture;
-  static deserializeBinaryFromReader(message: BinaryCapture, reader: jspb.BinaryReader): BinaryCapture;
-}
-
-export namespace BinaryCapture {
-  export type AsObject = {
-    interval?: CaptureInterval.AsObject,
-    orgId: string,
-    robotId: string,
-    partId: string,
-    locationId: string,
-    componentName: string,
-    componentType: string,
-    componentModel: string,
-    methodName: string,
-    blobPath: string,
-    methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
-    fileId: string,
-    tagsList: Array<string>,
-    fileSizeBytes: number,
-    sessionId: string,
-    mimeType: string,
-    fileName: string,
-    fileExt: string,
-    id: string,
   }
 }
 
