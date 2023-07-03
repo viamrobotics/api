@@ -296,8 +296,11 @@ proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.toObject = func
 proto.viam.app.cloudslam.v1.StartMappingSessionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     slamConfig: (f = msg.getSlamConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    slamVersion: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    mapName: jspb.Message.getFieldWithDefault(msg, 3, "")
+    orgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    locationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    robotId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    slamVersion: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    mapName: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -341,9 +344,21 @@ proto.viam.app.cloudslam.v1.StartMappingSessionRequest.deserializeBinaryFromRead
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setSlamVersion(value);
+      msg.setOrgId(value);
       break;
     case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLocationId(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRobotId(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSlamVersion(value);
+      break;
+    case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setMapName(value);
       break;
@@ -384,17 +399,38 @@ proto.viam.app.cloudslam.v1.StartMappingSessionRequest.serializeBinaryToWriter =
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
-  f = message.getSlamVersion();
+  f = message.getOrgId();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getMapName();
+  f = message.getLocationId();
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getRobotId();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getSlamVersion();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getMapName();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -439,10 +475,10 @@ proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.hasSlamConfig =
 
 
 /**
- * optional string slam_version = 2;
+ * optional string org_id = 2;
  * @return {string}
  */
-proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.getSlamVersion = function() {
+proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.getOrgId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -451,16 +487,16 @@ proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.getSlamVersion 
  * @param {string} value
  * @return {!proto.viam.app.cloudslam.v1.StartMappingSessionRequest} returns this
  */
-proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.setSlamVersion = function(value) {
+proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.setOrgId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string map_name = 3;
+ * optional string location_id = 3;
  * @return {string}
  */
-proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.getMapName = function() {
+proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.getLocationId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -469,8 +505,62 @@ proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.getMapName = fu
  * @param {string} value
  * @return {!proto.viam.app.cloudslam.v1.StartMappingSessionRequest} returns this
  */
-proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.setMapName = function(value) {
+proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.setLocationId = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string robot_id = 4;
+ * @return {string}
+ */
+proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.getRobotId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.cloudslam.v1.StartMappingSessionRequest} returns this
+ */
+proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.setRobotId = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string slam_version = 5;
+ * @return {string}
+ */
+proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.getSlamVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.cloudslam.v1.StartMappingSessionRequest} returns this
+ */
+proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.setSlamVersion = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string map_name = 6;
+ * @return {string}
+ */
+proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.getMapName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.cloudslam.v1.StartMappingSessionRequest} returns this
+ */
+proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.setMapName = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
