@@ -696,6 +696,9 @@ export class GetInvoicePdfRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetInvoicePdfRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetInvoicePdfRequest): GetInvoicePdfRequest.AsObject;
@@ -709,6 +712,7 @@ export class GetInvoicePdfRequest extends jspb.Message {
 export namespace GetInvoicePdfRequest {
   export type AsObject = {
     id: string,
+    orgId: string,
   }
 }
 
