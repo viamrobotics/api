@@ -5440,7 +5440,8 @@ proto.viam.app.v1.GetInvoicePdfRequest.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.GetInvoicePdfRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    orgId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -5481,6 +5482,10 @@ proto.viam.app.v1.GetInvoicePdfRequest.deserializeBinaryFromReader = function(ms
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrgId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -5517,6 +5522,13 @@ proto.viam.app.v1.GetInvoicePdfRequest.serializeBinaryToWriter = function(messag
       f
     );
   }
+  f = message.getOrgId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -5535,6 +5547,24 @@ proto.viam.app.v1.GetInvoicePdfRequest.prototype.getId = function() {
  */
 proto.viam.app.v1.GetInvoicePdfRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string org_id = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.GetInvoicePdfRequest.prototype.getOrgId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetInvoicePdfRequest} returns this
+ */
+proto.viam.app.v1.GetInvoicePdfRequest.prototype.setOrgId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
