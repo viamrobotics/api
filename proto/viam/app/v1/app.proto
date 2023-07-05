@@ -12,7 +12,7 @@ service AppService {
   // Users
 
   // Get the id of the user with the email
-  rpc GetUserIdByEmail(GetUserIdByEmailRequest) returns (GetUserIdByEmailResponse);
+  rpc GetUserIDByEmail(GetUserIDByEmailRequest) returns (GetUserIDByEmailResponse);
 
   // Organizations
 
@@ -875,11 +875,11 @@ message ListModulesResponse {
   repeated Module modules = 1;
 }
 
-message GetUserIdByEmailRequest {
+message GetUserIDByEmailRequest {
   string email = 1;
 }
 
-message GetUserIdByEmailResponse {
+message GetUserIDByEmailResponse {
   string user_id = 1;
 }
 

@@ -3135,41 +3135,41 @@ export namespace ListModulesResponse {
   }
 }
 
-export class GetUserIdByEmailRequest extends jspb.Message {
+export class GetUserIDByEmailRequest extends jspb.Message {
   getEmail(): string;
   setEmail(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetUserIdByEmailRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetUserIdByEmailRequest): GetUserIdByEmailRequest.AsObject;
+  toObject(includeInstance?: boolean): GetUserIDByEmailRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetUserIDByEmailRequest): GetUserIDByEmailRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetUserIdByEmailRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetUserIdByEmailRequest;
-  static deserializeBinaryFromReader(message: GetUserIdByEmailRequest, reader: jspb.BinaryReader): GetUserIdByEmailRequest;
+  static serializeBinaryToWriter(message: GetUserIDByEmailRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetUserIDByEmailRequest;
+  static deserializeBinaryFromReader(message: GetUserIDByEmailRequest, reader: jspb.BinaryReader): GetUserIDByEmailRequest;
 }
 
-export namespace GetUserIdByEmailRequest {
+export namespace GetUserIDByEmailRequest {
   export type AsObject = {
     email: string,
   }
 }
 
-export class GetUserIdByEmailResponse extends jspb.Message {
+export class GetUserIDByEmailResponse extends jspb.Message {
   getUserId(): string;
   setUserId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetUserIdByEmailResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetUserIdByEmailResponse): GetUserIdByEmailResponse.AsObject;
+  toObject(includeInstance?: boolean): GetUserIDByEmailResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetUserIDByEmailResponse): GetUserIDByEmailResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetUserIdByEmailResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetUserIdByEmailResponse;
-  static deserializeBinaryFromReader(message: GetUserIdByEmailResponse, reader: jspb.BinaryReader): GetUserIdByEmailResponse;
+  static serializeBinaryToWriter(message: GetUserIDByEmailResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetUserIDByEmailResponse;
+  static deserializeBinaryFromReader(message: GetUserIDByEmailResponse, reader: jspb.BinaryReader): GetUserIDByEmailResponse;
 }
 
-export namespace GetUserIdByEmailResponse {
+export namespace GetUserIDByEmailResponse {
   export type AsObject = {
     userId: string,
   }
