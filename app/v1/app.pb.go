@@ -6992,7 +6992,7 @@ func (x *ListModulesResponse) GetModules() []*Module {
 	return nil
 }
 
-type GetUserIdByEmailRequest struct {
+type GetUserIDByEmailRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -7000,8 +7000,8 @@ type GetUserIdByEmailRequest struct {
 	Email string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 }
 
-func (x *GetUserIdByEmailRequest) Reset() {
-	*x = GetUserIdByEmailRequest{}
+func (x *GetUserIDByEmailRequest) Reset() {
+	*x = GetUserIDByEmailRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[125]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7009,13 +7009,13 @@ func (x *GetUserIdByEmailRequest) Reset() {
 	}
 }
 
-func (x *GetUserIdByEmailRequest) String() string {
+func (x *GetUserIDByEmailRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetUserIdByEmailRequest) ProtoMessage() {}
+func (*GetUserIDByEmailRequest) ProtoMessage() {}
 
-func (x *GetUserIdByEmailRequest) ProtoReflect() protoreflect.Message {
+func (x *GetUserIDByEmailRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[125]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7027,19 +7027,19 @@ func (x *GetUserIdByEmailRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetUserIdByEmailRequest.ProtoReflect.Descriptor instead.
-func (*GetUserIdByEmailRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetUserIDByEmailRequest.ProtoReflect.Descriptor instead.
+func (*GetUserIDByEmailRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{125}
 }
 
-func (x *GetUserIdByEmailRequest) GetEmail() string {
+func (x *GetUserIDByEmailRequest) GetEmail() string {
 	if x != nil {
 		return x.Email
 	}
 	return ""
 }
 
-type GetUserIdByEmailResponse struct {
+type GetUserIDByEmailResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -7047,8 +7047,8 @@ type GetUserIdByEmailResponse struct {
 	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 }
 
-func (x *GetUserIdByEmailResponse) Reset() {
-	*x = GetUserIdByEmailResponse{}
+func (x *GetUserIDByEmailResponse) Reset() {
+	*x = GetUserIDByEmailResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[126]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7056,13 +7056,13 @@ func (x *GetUserIdByEmailResponse) Reset() {
 	}
 }
 
-func (x *GetUserIdByEmailResponse) String() string {
+func (x *GetUserIDByEmailResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetUserIdByEmailResponse) ProtoMessage() {}
+func (*GetUserIDByEmailResponse) ProtoMessage() {}
 
-func (x *GetUserIdByEmailResponse) ProtoReflect() protoreflect.Message {
+func (x *GetUserIDByEmailResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[126]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7074,12 +7074,12 @@ func (x *GetUserIdByEmailResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetUserIdByEmailResponse.ProtoReflect.Descriptor instead.
-func (*GetUserIdByEmailResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetUserIDByEmailResponse.ProtoReflect.Descriptor instead.
+func (*GetUserIDByEmailResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{126}
 }
 
-func (x *GetUserIdByEmailResponse) GetUserId() string {
+func (x *GetUserIDByEmailResponse) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
@@ -8076,10 +8076,10 @@ var file_app_v1_app_proto_rawDesc = []byte{
 	0x2d, 0x0a, 0x07, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
 	0x32, 0x13, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4d,
 	0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x07, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x73, 0x22, 0x2f,
-	0x0a, 0x17, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x42, 0x79, 0x45, 0x6d, 0x61,
+	0x0a, 0x17, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44, 0x42, 0x79, 0x45, 0x6d, 0x61,
 	0x69, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61,
 	0x69, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x22,
-	0x33, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x42, 0x79, 0x45, 0x6d,
+	0x33, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44, 0x42, 0x79, 0x45, 0x6d,
 	0x61, 0x69, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x75,
 	0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73,
 	0x65, 0x72, 0x49, 0x64, 0x22, 0x39, 0x0a, 0x1e, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x72, 0x67, 0x61,
@@ -8102,11 +8102,11 @@ var file_app_v1_app_proto_rawDesc = []byte{
 	0x01, 0x12, 0x15, 0x0a, 0x11, 0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f,
 	0x50, 0x55, 0x42, 0x4c, 0x49, 0x43, 0x10, 0x02, 0x32, 0x9a, 0x28, 0x0a, 0x0a, 0x41, 0x70, 0x70,
 	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x5f, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x55, 0x73,
-	0x65, 0x72, 0x49, 0x64, 0x42, 0x79, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x24, 0x2e, 0x76, 0x69,
+	0x65, 0x72, 0x49, 0x44, 0x42, 0x79, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x24, 0x2e, 0x76, 0x69,
 	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65,
-	0x72, 0x49, 0x64, 0x42, 0x79, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x72, 0x49, 0x44, 0x42, 0x79, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
 	0x74, 0x1a, 0x25, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e,
-	0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x42, 0x79, 0x45, 0x6d, 0x61, 0x69, 0x6c,
+	0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44, 0x42, 0x79, 0x45, 0x6d, 0x61, 0x69, 0x6c,
 	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x65, 0x0a, 0x12, 0x43, 0x72, 0x65, 0x61,
 	0x74, 0x65, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x26,
 	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65,
@@ -8569,8 +8569,8 @@ var file_app_v1_app_proto_goTypes = []interface{}{
 	(*Uploads)(nil),                          // 124: viam.app.v1.Uploads
 	(*ListModulesRequest)(nil),               // 125: viam.app.v1.ListModulesRequest
 	(*ListModulesResponse)(nil),              // 126: viam.app.v1.ListModulesResponse
-	(*GetUserIdByEmailRequest)(nil),          // 127: viam.app.v1.GetUserIdByEmailRequest
-	(*GetUserIdByEmailResponse)(nil),         // 128: viam.app.v1.GetUserIdByEmailResponse
+	(*GetUserIDByEmailRequest)(nil),          // 127: viam.app.v1.GetUserIDByEmailRequest
+	(*GetUserIDByEmailResponse)(nil),         // 128: viam.app.v1.GetUserIDByEmailResponse
 	(*ListOrganizationsByUserRequest)(nil),   // 129: viam.app.v1.ListOrganizationsByUserRequest
 	(*OrgDetails)(nil),                       // 130: viam.app.v1.OrgDetails
 	(*ListOrganizationsByUserResponse)(nil),  // 131: viam.app.v1.ListOrganizationsByUserResponse
@@ -8650,7 +8650,7 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	132, // 69: viam.app.v1.Uploads.uploaded_at:type_name -> google.protobuf.Timestamp
 	122, // 70: viam.app.v1.ListModulesResponse.modules:type_name -> viam.app.v1.Module
 	130, // 71: viam.app.v1.ListOrganizationsByUserResponse.orgs:type_name -> viam.app.v1.OrgDetails
-	127, // 72: viam.app.v1.AppService.GetUserIdByEmail:input_type -> viam.app.v1.GetUserIdByEmailRequest
+	127, // 72: viam.app.v1.AppService.GetUserIDByEmail:input_type -> viam.app.v1.GetUserIDByEmailRequest
 	10,  // 73: viam.app.v1.AppService.CreateOrganization:input_type -> viam.app.v1.CreateOrganizationRequest
 	5,   // 74: viam.app.v1.AppService.ListOrganizations:input_type -> viam.app.v1.ListOrganizationsRequest
 	129, // 75: viam.app.v1.AppService.ListOrganizationsByUser:input_type -> viam.app.v1.ListOrganizationsByUserRequest
@@ -8704,7 +8704,7 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	118, // 123: viam.app.v1.AppService.UploadModuleFile:input_type -> viam.app.v1.UploadModuleFileRequest
 	120, // 124: viam.app.v1.AppService.GetModule:input_type -> viam.app.v1.GetModuleRequest
 	125, // 125: viam.app.v1.AppService.ListModules:input_type -> viam.app.v1.ListModulesRequest
-	128, // 126: viam.app.v1.AppService.GetUserIdByEmail:output_type -> viam.app.v1.GetUserIdByEmailResponse
+	128, // 126: viam.app.v1.AppService.GetUserIDByEmail:output_type -> viam.app.v1.GetUserIDByEmailResponse
 	11,  // 127: viam.app.v1.AppService.CreateOrganization:output_type -> viam.app.v1.CreateOrganizationResponse
 	8,   // 128: viam.app.v1.AppService.ListOrganizations:output_type -> viam.app.v1.ListOrganizationsResponse
 	131, // 129: viam.app.v1.AppService.ListOrganizationsByUser:output_type -> viam.app.v1.ListOrganizationsByUserResponse
@@ -10272,7 +10272,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[125].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserIdByEmailRequest); i {
+			switch v := v.(*GetUserIDByEmailRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10284,7 +10284,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[126].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserIdByEmailResponse); i {
+			switch v := v.(*GetUserIDByEmailResponse); i {
 			case 0:
 				return &v.state
 			case 1:

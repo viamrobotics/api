@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AppServiceClient interface {
 	// Get the id of the user with the email
-	GetUserIdByEmail(ctx context.Context, in *GetUserIdByEmailRequest, opts ...grpc.CallOption) (*GetUserIdByEmailResponse, error)
+	GetUserIDByEmail(ctx context.Context, in *GetUserIDByEmailRequest, opts ...grpc.CallOption) (*GetUserIDByEmailResponse, error)
 	// Create a new organization
 	CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error)
 	// List organizations
@@ -137,9 +137,9 @@ func NewAppServiceClient(cc grpc.ClientConnInterface) AppServiceClient {
 	return &appServiceClient{cc}
 }
 
-func (c *appServiceClient) GetUserIdByEmail(ctx context.Context, in *GetUserIdByEmailRequest, opts ...grpc.CallOption) (*GetUserIdByEmailResponse, error) {
-	out := new(GetUserIdByEmailResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetUserIdByEmail", in, out, opts...)
+func (c *appServiceClient) GetUserIDByEmail(ctx context.Context, in *GetUserIDByEmailRequest, opts ...grpc.CallOption) (*GetUserIDByEmailResponse, error) {
+	out := new(GetUserIDByEmailResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetUserIDByEmail", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -676,7 +676,7 @@ func (c *appServiceClient) ListModules(ctx context.Context, in *ListModulesReque
 // for forward compatibility
 type AppServiceServer interface {
 	// Get the id of the user with the email
-	GetUserIdByEmail(context.Context, *GetUserIdByEmailRequest) (*GetUserIdByEmailResponse, error)
+	GetUserIDByEmail(context.Context, *GetUserIDByEmailRequest) (*GetUserIDByEmailResponse, error)
 	// Create a new organization
 	CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error)
 	// List organizations
@@ -787,8 +787,8 @@ type AppServiceServer interface {
 type UnimplementedAppServiceServer struct {
 }
 
-func (UnimplementedAppServiceServer) GetUserIdByEmail(context.Context, *GetUserIdByEmailRequest) (*GetUserIdByEmailResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserIdByEmail not implemented")
+func (UnimplementedAppServiceServer) GetUserIDByEmail(context.Context, *GetUserIDByEmailRequest) (*GetUserIDByEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserIDByEmail not implemented")
 }
 func (UnimplementedAppServiceServer) CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganization not implemented")
@@ -962,20 +962,20 @@ func RegisterAppServiceServer(s grpc.ServiceRegistrar, srv AppServiceServer) {
 	s.RegisterService(&AppService_ServiceDesc, srv)
 }
 
-func _AppService_GetUserIdByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserIdByEmailRequest)
+func _AppService_GetUserIDByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserIDByEmailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).GetUserIdByEmail(ctx, in)
+		return srv.(AppServiceServer).GetUserIDByEmail(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/GetUserIdByEmail",
+		FullMethod: "/viam.app.v1.AppService/GetUserIDByEmail",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).GetUserIdByEmail(ctx, req.(*GetUserIdByEmailRequest))
+		return srv.(AppServiceServer).GetUserIDByEmail(ctx, req.(*GetUserIDByEmailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1953,8 +1953,8 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AppServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetUserIdByEmail",
-			Handler:    _AppService_GetUserIdByEmail_Handler,
+			MethodName: "GetUserIDByEmail",
+			Handler:    _AppService_GetUserIDByEmail_Handler,
 		},
 		{
 			MethodName: "CreateOrganization",
