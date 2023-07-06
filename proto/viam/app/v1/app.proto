@@ -760,6 +760,8 @@ message CreateModuleRequest {
 message CreateModuleResponse {
   // The id of the module containing the namespace and name
   string module_id = 1;
+  // The detail page of the module
+  string url = 2;
 }
 
 enum Visibility {
@@ -781,9 +783,14 @@ message UpdateModuleRequest {
   string description = 4;
   // A list of models that are available in the module
   repeated Model models = 5;
+  // The executable to run to start the module program
+  string entrypoint = 6;
 }
 
-message UpdateModuleResponse {}
+message UpdateModuleResponse {
+    // The detail page of the module
+  string url = 1;
+}
 
 message Model {
   // The colon-delimited-triplet of the api implemented by the model
@@ -810,7 +817,10 @@ message UploadModuleFileRequest {
   }
 }
 
-message UploadModuleFileResponse {}
+message UploadModuleFileResponse {
+  // The detail page of the module
+  string url = 1;
+}
 
 message GetModuleRequest {
   // The id of the module, containing the namespace and name
@@ -825,6 +835,8 @@ message GetModuleResponse {
 message Module {
   // The id of the module, containing the namespace and name
   string module_id = 1;
+  // The id of the organization that owns the module
+  string organization_id = 10;
   // The name of the module
   string name = 2;
   // The visibility of the module
