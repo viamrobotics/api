@@ -712,17 +712,12 @@ message DeleteRobotPartSecretRequest {
 message DeleteRobotPartSecretResponse {}
 
 message Authorization {
-  string identity_id = 1; 
-  string authorization_type = 2;
-  string authorization_id = 3;
-  string resource_type = 4;
-  string resource_id = 5;
-  string org_id = 6;
-}
-
-message ResourceFilter {
-  string resource_type = 2;
-  string resource_id = 3;
+  string authorization_type = 1;
+  string authorization_id = 2;
+  string resource_type = 3;
+  string resource_id = 4;
+  string identity_id = 5;
+  string organization_id = 6;
 }
 
 message AddRoleRequest {
@@ -739,7 +734,7 @@ message RemoveRoleResponse {}
 
 message ListAuthorizationsRequest {
   string organization_id = 1;
-  repeated ResourceFilter filter = 2;
+  repeated string resource_ids = 2; // optional filter
 }
 
 message ListAuthorizationsResponse {
