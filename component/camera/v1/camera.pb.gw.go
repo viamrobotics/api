@@ -365,7 +365,7 @@ func local_request_CameraService_DoCommand_0(ctx context.Context, marshaler runt
 }
 
 func request_CameraService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, client CameraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetGeometriesRequest
+	var protoReq v1.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -391,7 +391,7 @@ func request_CameraService_GetGeometries_0(ctx context.Context, marshaler runtim
 }
 
 func local_request_CameraService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, server CameraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetGeometriesRequest
+	var protoReq v1.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (

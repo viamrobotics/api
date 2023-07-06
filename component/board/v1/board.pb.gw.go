@@ -843,7 +843,7 @@ func local_request_BoardService_SetPowerMode_0(ctx context.Context, marshaler ru
 }
 
 func request_BoardService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, client BoardServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetGeometriesRequest
+	var protoReq v1.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -869,7 +869,7 @@ func request_BoardService_GetGeometries_0(ctx context.Context, marshaler runtime
 }
 
 func local_request_BoardService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, server BoardServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetGeometriesRequest
+	var protoReq v1.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
