@@ -4,13 +4,13 @@
 import * as app_v1_app_pb from "../../app/v1/app_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type AppServiceGetUserIdByEmail = {
+type AppServiceGetUserIDByEmail = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.GetUserIdByEmailRequest;
-  readonly responseType: typeof app_v1_app_pb.GetUserIdByEmailResponse;
+  readonly requestType: typeof app_v1_app_pb.GetUserIDByEmailRequest;
+  readonly responseType: typeof app_v1_app_pb.GetUserIDByEmailResponse;
 };
 
 type AppServiceCreateOrganization = {
@@ -492,7 +492,7 @@ type AppServiceListModules = {
 
 export class AppService {
   static readonly serviceName: string;
-  static readonly GetUserIdByEmail: AppServiceGetUserIdByEmail;
+  static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
   static readonly CreateOrganization: AppServiceCreateOrganization;
   static readonly ListOrganizations: AppServiceListOrganizations;
   static readonly ListOrganizationsByUser: AppServiceListOrganizationsByUser;
@@ -580,14 +580,14 @@ export class AppServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  getUserIdByEmail(
-    requestMessage: app_v1_app_pb.GetUserIdByEmailRequest,
+  getUserIDByEmail(
+    requestMessage: app_v1_app_pb.GetUserIDByEmailRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetUserIdByEmailResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetUserIDByEmailResponse|null) => void
   ): UnaryResponse;
-  getUserIdByEmail(
-    requestMessage: app_v1_app_pb.GetUserIdByEmailRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetUserIdByEmailResponse|null) => void
+  getUserIDByEmail(
+    requestMessage: app_v1_app_pb.GetUserIDByEmailRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetUserIDByEmailResponse|null) => void
   ): UnaryResponse;
   createOrganization(
     requestMessage: app_v1_app_pb.CreateOrganizationRequest,

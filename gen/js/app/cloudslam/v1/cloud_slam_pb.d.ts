@@ -18,6 +18,15 @@ export class StartMappingSessionRequest extends jspb.Message {
   getMapName(): string;
   setMapName(value: string): void;
 
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  getRobotId(): string;
+  setRobotId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartMappingSessionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: StartMappingSessionRequest): StartMappingSessionRequest.AsObject;
@@ -33,6 +42,9 @@ export namespace StartMappingSessionRequest {
     slamConfig?: google_protobuf_struct_pb.Struct.AsObject,
     slamVersion: string,
     mapName: string,
+    orgId: string,
+    locationId: string,
+    robotId: string,
   }
 }
 

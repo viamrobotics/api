@@ -10,13 +10,13 @@ var AppService = (function () {
   return AppService;
 }());
 
-AppService.GetUserIdByEmail = {
-  methodName: "GetUserIdByEmail",
+AppService.GetUserIDByEmail = {
+  methodName: "GetUserIDByEmail",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.GetUserIdByEmailRequest,
-  responseType: app_v1_app_pb.GetUserIdByEmailResponse
+  requestType: app_v1_app_pb.GetUserIDByEmailRequest,
+  responseType: app_v1_app_pb.GetUserIDByEmailResponse
 };
 
 AppService.CreateOrganization = {
@@ -503,11 +503,11 @@ function AppServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
-AppServiceClient.prototype.getUserIdByEmail = function getUserIdByEmail(requestMessage, metadata, callback) {
+AppServiceClient.prototype.getUserIDByEmail = function getUserIDByEmail(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.GetUserIdByEmail, {
+  var client = grpc.unary(AppService.GetUserIDByEmail, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
