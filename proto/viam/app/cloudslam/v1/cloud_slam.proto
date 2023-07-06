@@ -24,9 +24,11 @@ message StartMappingSessionRequest {
   // Version to use for slam, defaults stable
   string slam_version = 2;
   string map_name = 3;
-  string org_id = 4;
+  string organization_id = 4;
   string location_id = 5;
   string robot_id = 6;
+  // Version to use for viam, defaults stable
+  string viam_server_version = 7;
 }
 
 message StartMappingSessionResponse {
@@ -60,7 +62,7 @@ message GetMappingSessionPointCloudResponse {
 // ListMappingSessions
 
 message ListMappingSessionsRequest {
-  string org_id = 1;
+  string organization_id = 1;
   string location_id = 2;
 }
 
