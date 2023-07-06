@@ -3135,6 +3135,112 @@ export namespace ListModulesResponse {
   }
 }
 
+export class GetUserIDByEmailRequest extends jspb.Message {
+  getEmail(): string;
+  setEmail(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetUserIDByEmailRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetUserIDByEmailRequest): GetUserIDByEmailRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetUserIDByEmailRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetUserIDByEmailRequest;
+  static deserializeBinaryFromReader(message: GetUserIDByEmailRequest, reader: jspb.BinaryReader): GetUserIDByEmailRequest;
+}
+
+export namespace GetUserIDByEmailRequest {
+  export type AsObject = {
+    email: string,
+  }
+}
+
+export class GetUserIDByEmailResponse extends jspb.Message {
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetUserIDByEmailResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetUserIDByEmailResponse): GetUserIDByEmailResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetUserIDByEmailResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetUserIDByEmailResponse;
+  static deserializeBinaryFromReader(message: GetUserIDByEmailResponse, reader: jspb.BinaryReader): GetUserIDByEmailResponse;
+}
+
+export namespace GetUserIDByEmailResponse {
+  export type AsObject = {
+    userId: string,
+  }
+}
+
+export class ListOrganizationsByUserRequest extends jspb.Message {
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListOrganizationsByUserRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListOrganizationsByUserRequest): ListOrganizationsByUserRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListOrganizationsByUserRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListOrganizationsByUserRequest;
+  static deserializeBinaryFromReader(message: ListOrganizationsByUserRequest, reader: jspb.BinaryReader): ListOrganizationsByUserRequest;
+}
+
+export namespace ListOrganizationsByUserRequest {
+  export type AsObject = {
+    userId: string,
+  }
+}
+
+export class OrgDetails extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getOrgName(): string;
+  setOrgName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): OrgDetails.AsObject;
+  static toObject(includeInstance: boolean, msg: OrgDetails): OrgDetails.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: OrgDetails, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): OrgDetails;
+  static deserializeBinaryFromReader(message: OrgDetails, reader: jspb.BinaryReader): OrgDetails;
+}
+
+export namespace OrgDetails {
+  export type AsObject = {
+    orgId: string,
+    orgName: string,
+  }
+}
+
+export class ListOrganizationsByUserResponse extends jspb.Message {
+  clearOrgsList(): void;
+  getOrgsList(): Array<OrgDetails>;
+  setOrgsList(value: Array<OrgDetails>): void;
+  addOrgs(value?: OrgDetails, index?: number): OrgDetails;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListOrganizationsByUserResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListOrganizationsByUserResponse): ListOrganizationsByUserResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListOrganizationsByUserResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListOrganizationsByUserResponse;
+  static deserializeBinaryFromReader(message: ListOrganizationsByUserResponse, reader: jspb.BinaryReader): ListOrganizationsByUserResponse;
+}
+
+export namespace ListOrganizationsByUserResponse {
+  export type AsObject = {
+    orgsList: Array<OrgDetails.AsObject>,
+  }
+}
+
 export interface VisibilityMap {
   VISIBILITY_UNSPECIFIED: 0;
   VISIBILITY_PRIVATE: 1;

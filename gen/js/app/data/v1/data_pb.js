@@ -3839,7 +3839,8 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.toObject = function(includeIns
     dataList: jspb.Message.toObjectList(msg.getDataList(),
     proto.viam.app.data.v1.BinaryData.toObject, includeInstance),
     count: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    last: jspb.Message.getFieldWithDefault(msg, 3, "")
+    last: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    totalSizeBytes: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -3889,6 +3890,10 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.deserializeBinaryFromReader = 
       var value = /** @type {string} */ (reader.readString());
       msg.setLast(value);
       break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotalSizeBytes(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3937,6 +3942,13 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.serializeBinaryToWriter = func
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getTotalSizeBytes();
+  if (f !== 0) {
+    writer.writeUint64(
+      4,
       f
     );
   }
@@ -4014,6 +4026,24 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.getLast = function()
  */
 proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.setLast = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional uint64 total_size_bytes = 4;
+ * @return {number}
+ */
+proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.getTotalSizeBytes = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.data.v1.BinaryDataByFilterResponse} returns this
+ */
+proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.setTotalSizeBytes = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 

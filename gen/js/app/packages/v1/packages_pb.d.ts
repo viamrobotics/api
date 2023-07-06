@@ -350,6 +350,7 @@ export interface PackageTypeMap {
   PACKAGE_TYPE_ARCHIVE: 1;
   PACKAGE_TYPE_ML_MODEL: 2;
   PACKAGE_TYPE_MODULE: 3;
+  PACKAGE_TYPE_SLAM_MAP: 4;
 }
 
 export const PackageType: PackageTypeMap;

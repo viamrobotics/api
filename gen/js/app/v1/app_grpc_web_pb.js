@@ -85,6 +85,67 @@ proto.viam.app.v1.AppServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetUserIDByEmailRequest,
+ *   !proto.viam.app.v1.GetUserIDByEmailResponse>}
+ */
+const methodDescriptor_AppService_GetUserIDByEmail = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetUserIDByEmail',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetUserIDByEmailRequest,
+  proto.viam.app.v1.GetUserIDByEmailResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetUserIDByEmailRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetUserIDByEmailResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetUserIDByEmailRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetUserIDByEmailResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetUserIDByEmailResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getUserIDByEmail =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetUserIDByEmail',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetUserIDByEmail,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetUserIDByEmailRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetUserIDByEmailResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getUserIDByEmail =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetUserIDByEmail',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetUserIDByEmail);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.CreateOrganizationRequest,
  *   !proto.viam.app.v1.CreateOrganizationResponse>}
  */
@@ -201,6 +262,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listOrganizations =
       request,
       metadata || {},
       methodDescriptor_AppService_ListOrganizations);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.ListOrganizationsByUserRequest,
+ *   !proto.viam.app.v1.ListOrganizationsByUserResponse>}
+ */
+const methodDescriptor_AppService_ListOrganizationsByUser = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/ListOrganizationsByUser',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.ListOrganizationsByUserRequest,
+  proto.viam.app.v1.ListOrganizationsByUserResponse,
+  /**
+   * @param {!proto.viam.app.v1.ListOrganizationsByUserRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.ListOrganizationsByUserResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.ListOrganizationsByUserRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ListOrganizationsByUserResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ListOrganizationsByUserResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.listOrganizationsByUser =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListOrganizationsByUser',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListOrganizationsByUser,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ListOrganizationsByUserRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.ListOrganizationsByUserResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.listOrganizationsByUser =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListOrganizationsByUser',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListOrganizationsByUser);
 };
 
 

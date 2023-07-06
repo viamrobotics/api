@@ -10,6 +10,15 @@ var AppService = (function () {
   return AppService;
 }());
 
+AppService.GetUserIDByEmail = {
+  methodName: "GetUserIDByEmail",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetUserIDByEmailRequest,
+  responseType: app_v1_app_pb.GetUserIDByEmailResponse
+};
+
 AppService.CreateOrganization = {
   methodName: "CreateOrganization",
   service: AppService,
@@ -26,6 +35,15 @@ AppService.ListOrganizations = {
   responseStream: false,
   requestType: app_v1_app_pb.ListOrganizationsRequest,
   responseType: app_v1_app_pb.ListOrganizationsResponse
+};
+
+AppService.ListOrganizationsByUser = {
+  methodName: "ListOrganizationsByUser",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListOrganizationsByUserRequest,
+  responseType: app_v1_app_pb.ListOrganizationsByUserResponse
 };
 
 AppService.GetOrganization = {
@@ -485,6 +503,37 @@ function AppServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
+AppServiceClient.prototype.getUserIDByEmail = function getUserIDByEmail(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetUserIDByEmail, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.createOrganization = function createOrganization(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -521,6 +570,37 @@ AppServiceClient.prototype.listOrganizations = function listOrganizations(reques
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListOrganizations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listOrganizationsByUser = function listOrganizationsByUser(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListOrganizationsByUser, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

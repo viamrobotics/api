@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+package viam.app.cloudslam.v1;
+
+import "common/v1/common.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/app/cloudslam/v1";
+
+service CloudSLAMService {
+  rpc StartMappingSession(StartMappingSessionRequest) returns (StartMappingSessionResponse);
+  rpc GetActiveMappingSessionsForRobot(GetActiveMappingSessionsForRobotRequest) returns (GetActiveMappingSessionsForRobotResponse);
+  rpc GetMappingSessionPointCloud(GetMappingSessionPointCloudRequest) returns (GetMappingSessionPointCloudResponse);
+  rpc ListMappingSessions(ListMappingSessionsRequest) returns (ListMappingSessionsResponse);
+  rpc StopMappingSession(StopMappingSessionRequest) returns (StopMappingSessionResponse);
+}
+
+// StartMappingSession
+
+message StartMappingSessionRequest {
+  // The given config contains details such as sensor, map package and algorithm-specific fields required to run slam.
+  google.protobuf.Struct slam_config = 1;
+  // Version to use for slam, defaults stable
+  string slam_version = 2;
+  string map_name = 3;
+  string org_id = 4;
+  string location_id = 5;
+  string robot_id = 6;
+}
+
+message StartMappingSessionResponse {
+  string session_id = 1;
+}
+
+// GetActiveMappingSessionsForRobot
+
+message GetActiveMappingSessionsForRobotRequest {
+  // assumes only one active mapping session on a robot
+  string robot_id = 1;
+}
+
+message GetActiveMappingSessionsForRobotResponse {
+  string session_id = 1;
+}
+
+// GetMappingSessionPointCloud
+
+message GetMappingSessionPointCloudRequest {
+  string session_id = 1;
+}
+
+message GetMappingSessionPointCloudResponse {
+  // url to the pointcloud map
+  string map_url = 1;
+  // Current position within the SLAM Map
+  common.v1.Pose pose = 2;
+}
+
+// ListMappingSessions
+
+message ListMappingSessionsRequest {
+  string org_id = 1;
+  string location_id = 2;
+}
+
+message ListMappingSessionsResponse {
+  repeated MappingMetadata session = 1;
+}
+
+// StopMappingSession
+
+message StopMappingSessionRequest {
+  string session_id = 1;
+  bool save_map = 2;
+}
+
+message StopMappingSessionResponse {
+  string package_id = 1;
+  string version = 2;
+}
+
+message MappingMetadata {
+  string org_id = 1; // org associated with the slam session
+  string location_id = 2; // location associated with the slam session
+  string robot_id = 3; // robot associated with slam session
+  google.protobuf.Timestamp time_start_submitted = 4; // time this document was created
+  google.protobuf.Timestamp time_cloud_run_job_started = 5; // time the cloud run job started
+  google.protobuf.Timestamp time_end_submitted = 6; // time StopSlamSession was called
+  google.protobuf.Timestamp time_cloud_run_job_ended = 7; // time the cloud run job ended
+  string end_status = 8; // “success”, “failed to start”, etc
+  string cloud_run_job_id = 9; // initially unset
+  string viam_server_version = 10; // version tag from request, defaults to stable
+  string map_name = 11; // name of the map package
+  string slam_version = 12; // version tag from request, defaults to stable
+  string config = 13; // a robot config for a slam session
+}

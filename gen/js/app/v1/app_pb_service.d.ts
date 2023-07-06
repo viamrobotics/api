@@ -4,6 +4,15 @@
 import * as app_v1_app_pb from "../../app/v1/app_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
+type AppServiceGetUserIDByEmail = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetUserIDByEmailRequest;
+  readonly responseType: typeof app_v1_app_pb.GetUserIDByEmailResponse;
+};
+
 type AppServiceCreateOrganization = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -20,6 +29,15 @@ type AppServiceListOrganizations = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.ListOrganizationsRequest;
   readonly responseType: typeof app_v1_app_pb.ListOrganizationsResponse;
+};
+
+type AppServiceListOrganizationsByUser = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListOrganizationsByUserRequest;
+  readonly responseType: typeof app_v1_app_pb.ListOrganizationsByUserResponse;
 };
 
 type AppServiceGetOrganization = {
@@ -474,8 +492,10 @@ type AppServiceListModules = {
 
 export class AppService {
   static readonly serviceName: string;
+  static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
   static readonly CreateOrganization: AppServiceCreateOrganization;
   static readonly ListOrganizations: AppServiceListOrganizations;
+  static readonly ListOrganizationsByUser: AppServiceListOrganizationsByUser;
   static readonly GetOrganization: AppServiceGetOrganization;
   static readonly UpdateOrganization: AppServiceUpdateOrganization;
   static readonly DeleteOrganization: AppServiceDeleteOrganization;
@@ -560,6 +580,15 @@ export class AppServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
+  getUserIDByEmail(
+    requestMessage: app_v1_app_pb.GetUserIDByEmailRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetUserIDByEmailResponse|null) => void
+  ): UnaryResponse;
+  getUserIDByEmail(
+    requestMessage: app_v1_app_pb.GetUserIDByEmailRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetUserIDByEmailResponse|null) => void
+  ): UnaryResponse;
   createOrganization(
     requestMessage: app_v1_app_pb.CreateOrganizationRequest,
     metadata: grpc.Metadata,
@@ -577,6 +606,15 @@ export class AppServiceClient {
   listOrganizations(
     requestMessage: app_v1_app_pb.ListOrganizationsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsResponse|null) => void
+  ): UnaryResponse;
+  listOrganizationsByUser(
+    requestMessage: app_v1_app_pb.ListOrganizationsByUserRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsByUserResponse|null) => void
+  ): UnaryResponse;
+  listOrganizationsByUser(
+    requestMessage: app_v1_app_pb.ListOrganizationsByUserRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsByUserResponse|null) => void
   ): UnaryResponse;
   getOrganization(
     requestMessage: app_v1_app_pb.GetOrganizationRequest,
