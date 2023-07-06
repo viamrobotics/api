@@ -2766,6 +2766,9 @@ export class CreateModuleResponse extends jspb.Message {
   getModuleId(): string;
   setModuleId(value: string): void;
 
+  getUrl(): string;
+  setUrl(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateModuleResponse.AsObject;
   static toObject(includeInstance: boolean, msg: CreateModuleResponse): CreateModuleResponse.AsObject;
@@ -2779,6 +2782,7 @@ export class CreateModuleResponse extends jspb.Message {
 export namespace CreateModuleResponse {
   export type AsObject = {
     moduleId: string,
+    url: string,
   }
 }
 
@@ -2800,6 +2804,9 @@ export class UpdateModuleRequest extends jspb.Message {
   setModelsList(value: Array<Model>): void;
   addModels(value?: Model, index?: number): Model;
 
+  getEntrypoint(): string;
+  setEntrypoint(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleRequest): UpdateModuleRequest.AsObject;
@@ -2817,10 +2824,14 @@ export namespace UpdateModuleRequest {
     url: string,
     description: string,
     modelsList: Array<Model.AsObject>,
+    entrypoint: string,
   }
 }
 
 export class UpdateModuleResponse extends jspb.Message {
+  getUrl(): string;
+  setUrl(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleResponse.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleResponse): UpdateModuleResponse.AsObject;
@@ -2833,6 +2844,7 @@ export class UpdateModuleResponse extends jspb.Message {
 
 export namespace UpdateModuleResponse {
   export type AsObject = {
+    url: string,
   }
 }
 
@@ -2926,6 +2938,9 @@ export namespace UploadModuleFileRequest {
 }
 
 export class UploadModuleFileResponse extends jspb.Message {
+  getUrl(): string;
+  setUrl(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UploadModuleFileResponse.AsObject;
   static toObject(includeInstance: boolean, msg: UploadModuleFileResponse): UploadModuleFileResponse.AsObject;
@@ -2938,6 +2953,7 @@ export class UploadModuleFileResponse extends jspb.Message {
 
 export namespace UploadModuleFileResponse {
   export type AsObject = {
+    url: string,
   }
 }
 
@@ -2987,6 +3003,9 @@ export class Module extends jspb.Message {
   getModuleId(): string;
   setModuleId(value: string): void;
 
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
   getName(): string;
   setName(value: string): void;
 
@@ -3028,6 +3047,7 @@ export class Module extends jspb.Message {
 export namespace Module {
   export type AsObject = {
     moduleId: string,
+    organizationId: string,
     name: string,
     visibility: VisibilityMap[keyof VisibilityMap],
     versionsList: Array<VersionHistory.AsObject>,

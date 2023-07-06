@@ -796,7 +796,7 @@ message UpdateModuleRequest {
 }
 
 message UpdateModuleResponse {
-    // The detail page of the module
+  // The detail page of the module
   string url = 1;
 }
 
