@@ -606,6 +606,7 @@ message ListFragmentsResponse {
 
 message GetFragmentRequest {
   string id = 1;
+  string organization_id = 2;
 }
 
 message GetFragmentResponse {
@@ -615,6 +616,7 @@ message GetFragmentResponse {
 message CreateFragmentRequest {
   string name = 1;
   google.protobuf.Struct config = 2;
+  string organization_id = 3;
 }
 
 message CreateFragmentResponse {
@@ -626,6 +628,7 @@ message UpdateFragmentRequest {
   string name = 2;
   google.protobuf.Struct config = 3;
   optional bool public = 4;
+  string organization_id = 5;
 }
 
 message UpdateFragmentResponse {
@@ -634,6 +637,7 @@ message UpdateFragmentResponse {
 
 message DeleteFragmentRequest {
   string id = 1;
+  string organization_id = 2;
 }
 
 message DeleteFragmentResponse {}
