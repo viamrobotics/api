@@ -586,7 +586,6 @@ message Fragment {
   bool public = 5 [(tagger.v1.tags) = "bson:\"public\" json:\"public\""];
   google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
   string organization_name = 7;
-  bool readonly = 8;
   // number of robot parts using this fragment
   int32 robot_part_count = 9;
   // number of organizations using this fragment
@@ -615,6 +614,7 @@ message GetFragmentResponse {
 message CreateFragmentRequest {
   string name = 1;
   google.protobuf.Struct config = 2;
+  string organization_id = 3;
 }
 
 message CreateFragmentResponse {
