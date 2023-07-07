@@ -1940,9 +1940,6 @@ export class GetFragmentRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetFragmentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetFragmentRequest): GetFragmentRequest.AsObject;
@@ -1956,7 +1953,6 @@ export class GetFragmentRequest extends jspb.Message {
 export namespace GetFragmentRequest {
   export type AsObject = {
     id: string,
-    organizationId: string,
   }
 }
 
@@ -1991,9 +1987,6 @@ export class CreateFragmentRequest extends jspb.Message {
   getConfig(): google_protobuf_struct_pb.Struct | undefined;
   setConfig(value?: google_protobuf_struct_pb.Struct): void;
 
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateFragmentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateFragmentRequest): CreateFragmentRequest.AsObject;
@@ -2008,7 +2001,6 @@ export namespace CreateFragmentRequest {
   export type AsObject = {
     name: string,
     config?: google_protobuf_struct_pb.Struct.AsObject,
-    organizationId: string,
   }
 }
 
@@ -2051,9 +2043,6 @@ export class UpdateFragmentRequest extends jspb.Message {
   getPublic(): boolean;
   setPublic(value: boolean): void;
 
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateFragmentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateFragmentRequest): UpdateFragmentRequest.AsObject;
@@ -2070,7 +2059,6 @@ export namespace UpdateFragmentRequest {
     name: string,
     config?: google_protobuf_struct_pb.Struct.AsObject,
     pb_public: boolean,
-    organizationId: string,
   }
 }
 
@@ -2100,9 +2088,6 @@ export class DeleteFragmentRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteFragmentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: DeleteFragmentRequest): DeleteFragmentRequest.AsObject;
@@ -2116,7 +2101,6 @@ export class DeleteFragmentRequest extends jspb.Message {
 export namespace DeleteFragmentRequest {
   export type AsObject = {
     id: string,
-    organizationId: string,
   }
 }
 
