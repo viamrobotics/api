@@ -22029,7 +22029,8 @@ proto.viam.app.v1.CreateModuleResponse.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.CreateModuleResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    moduleId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    url: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -22070,6 +22071,10 @@ proto.viam.app.v1.CreateModuleResponse.deserializeBinaryFromReader = function(ms
       var value = /** @type {string} */ (reader.readString());
       msg.setModuleId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUrl(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -22106,6 +22111,13 @@ proto.viam.app.v1.CreateModuleResponse.serializeBinaryToWriter = function(messag
       f
     );
   }
+  f = message.getUrl();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -22124,6 +22136,24 @@ proto.viam.app.v1.CreateModuleResponse.prototype.getModuleId = function() {
  */
 proto.viam.app.v1.CreateModuleResponse.prototype.setModuleId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string url = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateModuleResponse.prototype.getUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateModuleResponse} returns this
+ */
+proto.viam.app.v1.CreateModuleResponse.prototype.setUrl = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -22171,7 +22201,8 @@ proto.viam.app.v1.UpdateModuleRequest.toObject = function(includeInstance, msg) 
     url: jspb.Message.getFieldWithDefault(msg, 3, ""),
     description: jspb.Message.getFieldWithDefault(msg, 4, ""),
     modelsList: jspb.Message.toObjectList(msg.getModelsList(),
-    proto.viam.app.v1.Model.toObject, includeInstance)
+    proto.viam.app.v1.Model.toObject, includeInstance),
+    entrypoint: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -22228,6 +22259,10 @@ proto.viam.app.v1.UpdateModuleRequest.deserializeBinaryFromReader = function(msg
       var value = new proto.viam.app.v1.Model;
       reader.readMessage(value,proto.viam.app.v1.Model.deserializeBinaryFromReader);
       msg.addModels(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEntrypoint(value);
       break;
     default:
       reader.skipField();
@@ -22292,6 +22327,13 @@ proto.viam.app.v1.UpdateModuleRequest.serializeBinaryToWriter = function(message
       5,
       f,
       proto.viam.app.v1.Model.serializeBinaryToWriter
+    );
+  }
+  f = message.getEntrypoint();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
     );
   }
 };
@@ -22407,6 +22449,24 @@ proto.viam.app.v1.UpdateModuleRequest.prototype.clearModelsList = function() {
 };
 
 
+/**
+ * optional string entrypoint = 6;
+ * @return {string}
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.getEntrypoint = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.setEntrypoint = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
 
 
 
@@ -22439,7 +22499,7 @@ proto.viam.app.v1.UpdateModuleResponse.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.UpdateModuleResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    url: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -22476,6 +22536,10 @@ proto.viam.app.v1.UpdateModuleResponse.deserializeBinaryFromReader = function(ms
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUrl(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -22505,6 +22569,31 @@ proto.viam.app.v1.UpdateModuleResponse.prototype.serializeBinary = function() {
  */
 proto.viam.app.v1.UpdateModuleResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getUrl();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string url = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.UpdateModuleResponse.prototype.getUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UpdateModuleResponse} returns this
+ */
+proto.viam.app.v1.UpdateModuleResponse.prototype.setUrl = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -23139,7 +23228,7 @@ proto.viam.app.v1.UploadModuleFileResponse.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.UploadModuleFileResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    url: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -23176,6 +23265,10 @@ proto.viam.app.v1.UploadModuleFileResponse.deserializeBinaryFromReader = functio
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUrl(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -23205,6 +23298,31 @@ proto.viam.app.v1.UploadModuleFileResponse.prototype.serializeBinary = function(
  */
 proto.viam.app.v1.UploadModuleFileResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getUrl();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string url = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.UploadModuleFileResponse.prototype.getUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UploadModuleFileResponse} returns this
+ */
+proto.viam.app.v1.UploadModuleFileResponse.prototype.setUrl = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -23529,6 +23647,7 @@ proto.viam.app.v1.Module.prototype.toObject = function(opt_includeInstance) {
 proto.viam.app.v1.Module.toObject = function(includeInstance, msg) {
   var f, obj = {
     moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 10, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     visibility: jspb.Message.getFieldWithDefault(msg, 3, 0),
     versionsList: jspb.Message.toObjectList(msg.getVersionsList(),
@@ -23578,6 +23697,10 @@ proto.viam.app.v1.Module.deserializeBinaryFromReader = function(msg, reader) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.setModuleId(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganizationId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -23646,6 +23769,13 @@ proto.viam.app.v1.Module.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       1,
+      f
+    );
+  }
+  f = message.getOrganizationId();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
       f
     );
   }
@@ -23725,6 +23855,24 @@ proto.viam.app.v1.Module.prototype.getModuleId = function() {
  */
 proto.viam.app.v1.Module.prototype.setModuleId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string organization_id = 10;
+ * @return {string}
+ */
+proto.viam.app.v1.Module.prototype.getOrganizationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.Module} returns this
+ */
+proto.viam.app.v1.Module.prototype.setOrganizationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
