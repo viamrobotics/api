@@ -1852,9 +1852,6 @@ export class Fragment extends jspb.Message {
   getOrganizationName(): string;
   setOrganizationName(value: string): void;
 
-  getReadonly(): boolean;
-  setReadonly(value: boolean): void;
-
   getRobotPartCount(): number;
   setRobotPartCount(value: number): void;
 
@@ -1883,7 +1880,6 @@ export namespace Fragment {
     pb_public: boolean,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     organizationName: string,
-    readonly: boolean,
     robotPartCount: number,
     organizationCount: number,
     onlyUsedByOwner: boolean,
@@ -1987,6 +1983,9 @@ export class CreateFragmentRequest extends jspb.Message {
   getConfig(): google_protobuf_struct_pb.Struct | undefined;
   setConfig(value?: google_protobuf_struct_pb.Struct): void;
 
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateFragmentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateFragmentRequest): CreateFragmentRequest.AsObject;
@@ -2001,6 +2000,7 @@ export namespace CreateFragmentRequest {
   export type AsObject = {
     name: string,
     config?: google_protobuf_struct_pb.Struct.AsObject,
+    organizationId: string,
   }
 }
 
