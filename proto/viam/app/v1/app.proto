@@ -763,8 +763,8 @@ message CheckPermissionsResponse {
 
 // Modules
 message CreateModuleRequest {
-  // The public namespace that is reserved for your organization
-  string public_namespace = 1;
+  // The organization to create the module under
+  string organization_id = 1;
   // The name of the module, which must be unique within your org
   string name = 2;
 }
@@ -783,8 +783,10 @@ enum Visibility {
 }
 
 message UpdateModuleRequest {
-  // The id of the module being updated, containing the namespace and name
+  // The id of the module being updated, containing module name or namespace and module name
   string module_id = 1;
+  // The organization of the module being updated, required if no namespace exists in the module_id
+  optional string organization_id = 7;
   // The visibility that should be set for the module
   Visibility visibility = 2;
   // The url to reference for documentation, code, etc.
@@ -805,8 +807,10 @@ message Model {
 }
 
 message ModuleFileInfo {
-  // The module_id that is being uploaded
+  // The id of the module being uploaded, containing module name or namespace and module name
   string module_id = 1;
+  // The organization of the module being updated, required if no namespace exists in the module_id
+  optional string organization_id = 4;
   // The semver string that represents the new major/minor/patch version of the module
   string version = 2;
   // The platform that the file is built to run on
@@ -825,8 +829,10 @@ message UploadModuleFileRequest {
 message UploadModuleFileResponse {}
 
 message GetModuleRequest {
-  // The id of the module, containing the namespace and name
+  // The id of the module being retrieved, containing module name or namespace and module name
   string module_id = 1;
+  // The organization of the module being updated, required if no namespace exists in the module_id
+  optional string organization_id = 2;
 }
 
 message GetModuleResponse {
@@ -835,7 +841,7 @@ message GetModuleResponse {
 }
 
 message Module {
-  // The id of the module, containing the namespace and name
+  // The id of the module, containing module name or namespace and module name
   string module_id = 1;
   // The name of the module
   string name = 2;
@@ -850,6 +856,8 @@ message Module {
   // A list of models that are available in the module
   repeated Model models = 7;
   // The total number of robots using this module
+  // The executable to run to start the module program
+  string entrypoint = 10;
   int64 total_robot_usage = 8;
   // The total number of organizations using this module
   int64 total_organization_usage = 9;
