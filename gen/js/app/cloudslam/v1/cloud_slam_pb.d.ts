@@ -18,14 +18,17 @@ export class StartMappingSessionRequest extends jspb.Message {
   getMapName(): string;
   setMapName(value: string): void;
 
-  getOrgId(): string;
-  setOrgId(value: string): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
 
   getLocationId(): string;
   setLocationId(value: string): void;
 
   getRobotId(): string;
   setRobotId(value: string): void;
+
+  getViamServerVersion(): string;
+  setViamServerVersion(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartMappingSessionRequest.AsObject;
@@ -42,9 +45,10 @@ export namespace StartMappingSessionRequest {
     slamConfig?: google_protobuf_struct_pb.Struct.AsObject,
     slamVersion: string,
     mapName: string,
-    orgId: string,
+    organizationId: string,
     locationId: string,
     robotId: string,
+    viamServerVersion: string,
   }
 }
 
@@ -155,8 +159,8 @@ export namespace GetMappingSessionPointCloudResponse {
 }
 
 export class ListMappingSessionsRequest extends jspb.Message {
-  getOrgId(): string;
-  setOrgId(value: string): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
 
   getLocationId(): string;
   setLocationId(value: string): void;
@@ -173,7 +177,7 @@ export class ListMappingSessionsRequest extends jspb.Message {
 
 export namespace ListMappingSessionsRequest {
   export type AsObject = {
-    orgId: string,
+    organizationId: string,
     locationId: string,
   }
 }
