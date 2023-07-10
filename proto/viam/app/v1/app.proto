@@ -606,7 +606,6 @@ message ListFragmentsResponse {
 
 message GetFragmentRequest {
   string id = 1;
-  string organization_id = 2;
 }
 
 message GetFragmentResponse {
@@ -616,7 +615,6 @@ message GetFragmentResponse {
 message CreateFragmentRequest {
   string name = 1;
   google.protobuf.Struct config = 2;
-  string organization_id = 3;
 }
 
 message CreateFragmentResponse {
@@ -628,7 +626,6 @@ message UpdateFragmentRequest {
   string name = 2;
   google.protobuf.Struct config = 3;
   optional bool public = 4;
-  string organization_id = 5;
 }
 
 message UpdateFragmentResponse {
@@ -637,7 +634,6 @@ message UpdateFragmentResponse {
 
 message DeleteFragmentRequest {
   string id = 1;
-  string organization_id = 2;
 }
 
 message DeleteFragmentResponse {}
@@ -772,6 +768,8 @@ message CreateModuleRequest {
 message CreateModuleResponse {
   // The id of the module containing the namespace and name
   string module_id = 1;
+  // The detail page of the module
+  string url = 2;
 }
 
 enum Visibility {
@@ -795,9 +793,14 @@ message UpdateModuleRequest {
   string description = 4;
   // A list of models that are available in the module
   repeated Model models = 5;
+  // The executable to run to start the module program
+  string entrypoint = 6;
 }
 
-message UpdateModuleResponse {}
+message UpdateModuleResponse {
+  // The detail page of the module
+  string url = 1;
+}
 
 message Model {
   // The colon-delimited-triplet of the api implemented by the model
@@ -826,7 +829,10 @@ message UploadModuleFileRequest {
   }
 }
 
-message UploadModuleFileResponse {}
+message UploadModuleFileResponse {
+  // The detail page of the module
+  string url = 1;
+}
 
 message GetModuleRequest {
   // The id of the module being retrieved, containing module name or namespace and module name
@@ -843,6 +849,8 @@ message GetModuleResponse {
 message Module {
   // The id of the module, containing module name or namespace and module name
   string module_id = 1;
+  // The id of the organization that owns the module
+  string organization_id = 10;
   // The name of the module
   string name = 2;
   // The visibility of the module
