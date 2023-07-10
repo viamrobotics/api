@@ -857,7 +857,7 @@ message Module {
   repeated Model models = 7;
   // The total number of robots using this module
   // The executable to run to start the module program
-  string entrypoint = 10;
+  string entrypoint = 11;
   int64 total_robot_usage = 8;
   // The total number of organizations using this module
   int64 total_organization_usage = 9;
