@@ -15506,7 +15506,6 @@ proto.viam.app.v1.Fragment.toObject = function(includeInstance, msg) {
     pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     organizationName: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    readonly: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
     robotPartCount: jspb.Message.getFieldWithDefault(msg, 9, 0),
     organizationCount: jspb.Message.getFieldWithDefault(msg, 10, 0),
     onlyUsedByOwner: jspb.Message.getBooleanFieldWithDefault(msg, 11, false)
@@ -15575,10 +15574,6 @@ proto.viam.app.v1.Fragment.deserializeBinaryFromReader = function(msg, reader) {
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setOrganizationName(value);
-      break;
-    case 8:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setReadonly(value);
       break;
     case 9:
       var value = /** @type {number} */ (reader.readInt32());
@@ -15669,13 +15664,6 @@ proto.viam.app.v1.Fragment.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       7,
-      f
-    );
-  }
-  f = message.getReadonly();
-  if (f) {
-    writer.writeBool(
-      8,
       f
     );
   }
@@ -15864,24 +15852,6 @@ proto.viam.app.v1.Fragment.prototype.getOrganizationName = function() {
  */
 proto.viam.app.v1.Fragment.prototype.setOrganizationName = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
-};
-
-
-/**
- * optional bool readonly = 8;
- * @return {boolean}
- */
-proto.viam.app.v1.Fragment.prototype.getReadonly = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.viam.app.v1.Fragment} returns this
- */
-proto.viam.app.v1.Fragment.prototype.setReadonly = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
@@ -16573,7 +16543,8 @@ proto.viam.app.v1.CreateFragmentRequest.prototype.toObject = function(opt_includ
 proto.viam.app.v1.CreateFragmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -16619,6 +16590,10 @@ proto.viam.app.v1.CreateFragmentRequest.deserializeBinaryFromReader = function(m
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setConfig(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganizationId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -16661,6 +16636,13 @@ proto.viam.app.v1.CreateFragmentRequest.serializeBinaryToWriter = function(messa
       2,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getOrganizationId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
     );
   }
 };
@@ -16718,6 +16700,24 @@ proto.viam.app.v1.CreateFragmentRequest.prototype.clearConfig = function() {
  */
 proto.viam.app.v1.CreateFragmentRequest.prototype.hasConfig = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional string organization_id = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateFragmentRequest.prototype.getOrganizationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateFragmentRequest} returns this
+ */
+proto.viam.app.v1.CreateFragmentRequest.prototype.setOrganizationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
