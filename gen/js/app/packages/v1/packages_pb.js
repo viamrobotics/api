@@ -468,6 +468,7 @@ proto.viam.app.packages.v1.PackageInfo.toObject = function(includeInstance, msg)
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     version: jspb.Message.getFieldWithDefault(msg, 3, ""),
     type: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    platform: jspb.Message.getFieldWithDefault(msg, 7, ""),
     filesList: jspb.Message.toObjectList(msg.getFilesList(),
     proto.viam.app.packages.v1.FileInfo.toObject, includeInstance),
     metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
@@ -522,6 +523,10 @@ proto.viam.app.packages.v1.PackageInfo.deserializeBinaryFromReader = function(ms
     case 4:
       var value = /** @type {!proto.viam.app.packages.v1.PackageType} */ (reader.readEnum());
       msg.setType(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPlatform(value);
       break;
     case 5:
       var value = new proto.viam.app.packages.v1.FileInfo;
@@ -587,6 +592,13 @@ proto.viam.app.packages.v1.PackageInfo.serializeBinaryToWriter = function(messag
   if (f !== 0.0) {
     writer.writeEnum(
       4,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 7));
+  if (f != null) {
+    writer.writeString(
+      7,
       f
     );
   }
@@ -678,6 +690,42 @@ proto.viam.app.packages.v1.PackageInfo.prototype.getType = function() {
  */
 proto.viam.app.packages.v1.PackageInfo.prototype.setType = function(value) {
   return jspb.Message.setProto3EnumField(this, 4, value);
+};
+
+
+/**
+ * optional string platform = 7;
+ * @return {string}
+ */
+proto.viam.app.packages.v1.PackageInfo.prototype.getPlatform = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.packages.v1.PackageInfo} returns this
+ */
+proto.viam.app.packages.v1.PackageInfo.prototype.setPlatform = function(value) {
+  return jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.packages.v1.PackageInfo} returns this
+ */
+proto.viam.app.packages.v1.PackageInfo.prototype.clearPlatform = function() {
+  return jspb.Message.setField(this, 7, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.packages.v1.PackageInfo.prototype.hasPlatform = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 

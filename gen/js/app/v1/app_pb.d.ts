@@ -2739,8 +2739,8 @@ export namespace CheckPermissionsResponse {
 }
 
 export class CreateModuleRequest extends jspb.Message {
-  getPublicNamespace(): string;
-  setPublicNamespace(value: string): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
 
   getName(): string;
   setName(value: string): void;
@@ -2757,7 +2757,7 @@ export class CreateModuleRequest extends jspb.Message {
 
 export namespace CreateModuleRequest {
   export type AsObject = {
-    publicNamespace: string,
+    organizationId: string,
     name: string,
   }
 }
@@ -2790,6 +2790,11 @@ export class UpdateModuleRequest extends jspb.Message {
   getModuleId(): string;
   setModuleId(value: string): void;
 
+  hasOrganizationId(): boolean;
+  clearOrganizationId(): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
   getVisibility(): VisibilityMap[keyof VisibilityMap];
   setVisibility(value: VisibilityMap[keyof VisibilityMap]): void;
 
@@ -2820,6 +2825,7 @@ export class UpdateModuleRequest extends jspb.Message {
 export namespace UpdateModuleRequest {
   export type AsObject = {
     moduleId: string,
+    organizationId: string,
     visibility: VisibilityMap[keyof VisibilityMap],
     url: string,
     description: string,
@@ -2876,6 +2882,11 @@ export class ModuleFileInfo extends jspb.Message {
   getModuleId(): string;
   setModuleId(value: string): void;
 
+  hasOrganizationId(): boolean;
+  clearOrganizationId(): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
   getVersion(): string;
   setVersion(value: string): void;
 
@@ -2895,6 +2906,7 @@ export class ModuleFileInfo extends jspb.Message {
 export namespace ModuleFileInfo {
   export type AsObject = {
     moduleId: string,
+    organizationId: string,
     version: string,
     platform: string,
   }
@@ -2961,6 +2973,11 @@ export class GetModuleRequest extends jspb.Message {
   getModuleId(): string;
   setModuleId(value: string): void;
 
+  hasOrganizationId(): boolean;
+  clearOrganizationId(): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetModuleRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetModuleRequest): GetModuleRequest.AsObject;
@@ -2974,6 +2991,7 @@ export class GetModuleRequest extends jspb.Message {
 export namespace GetModuleRequest {
   export type AsObject = {
     moduleId: string,
+    organizationId: string,
   }
 }
 
@@ -3028,6 +3046,9 @@ export class Module extends jspb.Message {
   setModelsList(value: Array<Model>): void;
   addModels(value?: Model, index?: number): Model;
 
+  getEntrypoint(): string;
+  setEntrypoint(value: string): void;
+
   getTotalRobotUsage(): number;
   setTotalRobotUsage(value: number): void;
 
@@ -3054,6 +3075,7 @@ export namespace Module {
     url: string,
     description: string,
     modelsList: Array<Model.AsObject>,
+    entrypoint: string,
     totalRobotUsage: number,
     totalOrganizationUsage: number,
   }

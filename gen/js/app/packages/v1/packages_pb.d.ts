@@ -43,6 +43,11 @@ export class PackageInfo extends jspb.Message {
   getType(): PackageTypeMap[keyof PackageTypeMap];
   setType(value: PackageTypeMap[keyof PackageTypeMap]): void;
 
+  hasPlatform(): boolean;
+  clearPlatform(): void;
+  getPlatform(): string;
+  setPlatform(value: string): void;
+
   clearFilesList(): void;
   getFilesList(): Array<FileInfo>;
   setFilesList(value: Array<FileInfo>): void;
@@ -69,6 +74,7 @@ export namespace PackageInfo {
     name: string,
     version: string,
     type: PackageTypeMap[keyof PackageTypeMap],
+    platform: string,
     filesList: Array<FileInfo.AsObject>,
     metadata?: google_protobuf_struct_pb.Struct.AsObject,
   }
