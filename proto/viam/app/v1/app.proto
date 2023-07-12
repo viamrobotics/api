@@ -37,17 +37,20 @@ service AppService {
   // List all members of an organization and all invited members to the organization.
   rpc ListOrganizationMembers(ListOrganizationMembersRequest) returns (ListOrganizationMembersResponse);
 
-  // Create an organization invite to an organization
-  rpc CreateOrganizationInvite(CreateOrganizationInviteRequest) returns (CreateOrganizationInviteResponse);
+  // Create an invite to a resource
+  rpc CreateInvite(CreateInviteRequest) returns (CreateInviteResponse);
+
+  // Update an invite to a resource
+  rpc UpdateInvite(UpdateInviteRequest) returns (UpdateInviteResponse);
 
   // Delete an organization member from an organization
   rpc DeleteOrganizationMember(DeleteOrganizationMemberRequest) returns (DeleteOrganizationMemberResponse);
 
-  // Delete an organization invite
-  rpc DeleteOrganizationInvite(DeleteOrganizationInviteRequest) returns (DeleteOrganizationInviteResponse);
+  // Delete an invite
+  rpc DeleteInvite(DeleteInviteRequest) returns (DeleteInviteResponse);
 
-  // Resend an organization invite
-  rpc ResendOrganizationInvite(ResendOrganizationInviteRequest) returns (ResendOrganizationInviteResponse);
+  // Resend an invite
+  rpc ResendInvite(ResendInviteRequest) returns (ResendInviteResponse);
 
   // Location
 
@@ -233,7 +236,7 @@ message ListOrganizationsResponse {
   repeated Organization organizations = 1;
 }
 
-message OrganizationInvite {
+message Invite {
   string organization_id = 1;
   string email = 2;
   google.protobuf.Timestamp created_on = 3;
@@ -279,33 +282,43 @@ message ListOrganizationMembersRequest {
 message ListOrganizationMembersResponse {
   string organization_id = 1;
   repeated OrganizationMember members = 2;
-  repeated OrganizationInvite invites = 3;
+  repeated Invite invites = 3;
 }
 
-message CreateOrganizationInviteRequest {
+message CreateInviteRequest {
   string organization_id = 1;
   string email = 2;
   repeated Authorization authorizations = 3;
 }
 
-message CreateOrganizationInviteResponse {
-  OrganizationInvite invite = 1;
+message CreateInviteResponse {
+  Invite invite = 1;
 }
 
-message DeleteOrganizationInviteRequest {
+message UpdateInviteRequest {
+  string organization_id = 1;
+  string email = 2;
+  repeated Authorization authorizations = 3;
+}
+
+message UpdateInviteResponse {
+  Invite invite = 1;
+}
+
+message DeleteInviteRequest {
   string organization_id = 1;
   string email = 2;
 }
 
-message DeleteOrganizationInviteResponse {}
+message DeleteInviteResponse {}
 
-message ResendOrganizationInviteRequest {
+message ResendInviteRequest {
   string organization_id = 1;
   string email = 2;
 }
 
-message ResendOrganizationInviteResponse {
-  OrganizationInvite invite = 1;
+message ResendInviteResponse {
+  Invite invite = 1;
 }
 
 message DeleteOrganizationMemberRequest {
