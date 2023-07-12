@@ -135,11 +135,11 @@ message RemoveWaypointResponse {}
 // when the robot is sensing the obstacle
 message GetObstaclesRequest {
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetObstaclesResponse {
   // List of all known geometries
   repeated common.v1.GeoObstacle obstacles = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
 }
