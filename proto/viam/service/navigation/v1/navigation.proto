@@ -53,7 +53,6 @@ service NavigationService {
     };
   }
 
-
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
@@ -133,12 +132,12 @@ message RemoveWaypointResponse {}
 // GetObstacles will return the geopoint location and geometry of all
 // known obstacles on the navigation map. Obstacles that are detected
 // through the vision service will only be returned if this endpoint is called
-// when the robot is sensing the obstacle 
+// when the robot is sensing the obstacle
 message GetObstaclesRequest {}
 
 message GetObstaclesResponse {
   // List of all known geometries
-   repeated common.v1.GeoObstacles obstacles = 1
+  repeated common.v1.GeoObstacle obstacles = 1;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
