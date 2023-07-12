@@ -133,12 +133,13 @@ message RemoveWaypointResponse {}
 // known obstacles on the navigation map. Obstacles that are detected
 // through the vision service will only be returned if this endpoint is called
 // when the robot is sensing the obstacle
-message GetObstaclesRequest {}
+message GetObstaclesRequest {
+  string name = 1;
+}
 
 message GetObstaclesResponse {
-  string name = 1;
   // List of all known geometries
-  repeated common.v1.GeoObstacle obstacles = 2;
+  repeated common.v1.GeoObstacle obstacles = 1;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
