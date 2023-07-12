@@ -49,7 +49,7 @@ service NavigationService {
 
   rpc GetObstacles(GetObstaclesRequest) returns (GetObstaclesResponse) {
     option (google.api.http) = {
-      get: "/viam/api/v1/service/navigation/{name}/obstacles"
+      get: "/viam/api/v1/service/navigation/{name}/get_obstacles"
     };
   }
 
@@ -136,8 +136,9 @@ message RemoveWaypointResponse {}
 message GetObstaclesRequest {}
 
 message GetObstaclesResponse {
+  string name = 1;
   // List of all known geometries
-  repeated common.v1.GeoObstacle obstacles = 1;
+  repeated common.v1.GeoObstacle obstacles = 2;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
