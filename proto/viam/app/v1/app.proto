@@ -41,7 +41,7 @@ service AppService {
   rpc ListOrganizationMembers(ListOrganizationMembersRequest) returns (ListOrganizationMembersResponse);
 
   // Create an invite to a resource
-  rpc CreateInvite(CreateInviteRequest) returns (CreateInviteResponse);
+  rpc CreateOrganizationInvite(CreateOrganizationInviteRequest) returns (CreateOrganizationInviteResponse);
 
   // Update an invite to a resource
   rpc AddAndRemoveOrganizationInviteAuthorizations(AddAndRemoveOrganizationInviteAuthorizationsRequest) returns (AddAndRemoveOrganizationInviteAuthorizationsResponse);
@@ -50,10 +50,10 @@ service AppService {
   rpc DeleteOrganizationMember(DeleteOrganizationMemberRequest) returns (DeleteOrganizationMemberResponse);
 
   // Delete an invite
-  rpc DeleteInvite(DeleteInviteRequest) returns (DeleteInviteResponse);
+  rpc DeleteOrganizationInvite(DeleteOrganizationInviteRequest) returns (DeleteOrganizationInviteResponse);
 
   // Resend an invite
-  rpc ResendInvite(ResendInviteRequest) returns (ResendInviteResponse);
+  rpc ResendOrganizationInvite(ResendOrganizationInviteRequest) returns (ResendOrganizationInviteResponse);
 
   // Location
 
