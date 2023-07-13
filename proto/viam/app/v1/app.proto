@@ -40,19 +40,19 @@ service AppService {
   // List all members of an organization and all invited members to the organization.
   rpc ListOrganizationMembers(ListOrganizationMembersRequest) returns (ListOrganizationMembersResponse);
 
-  // Create an invite to a resource
+  // Create an organization invite to an organization
   rpc CreateOrganizationInvite(CreateOrganizationInviteRequest) returns (CreateOrganizationInviteResponse);
 
-  // Update an invite to a resource
+  // Update the authorizations attached to an organization invite
   rpc AddAndRemoveOrganizationInviteAuthorizations(AddAndRemoveOrganizationInviteAuthorizationsRequest) returns (AddAndRemoveOrganizationInviteAuthorizationsResponse);
 
   // Delete an organization member from an organization
   rpc DeleteOrganizationMember(DeleteOrganizationMemberRequest) returns (DeleteOrganizationMemberResponse);
 
-  // Delete an invite
+  // Delete an organization invite
   rpc DeleteOrganizationInvite(DeleteOrganizationInviteRequest) returns (DeleteOrganizationInviteResponse);
 
-  // Resend an invite
+  // Resend an organization invite
   rpc ResendOrganizationInvite(ResendOrganizationInviteRequest) returns (ResendOrganizationInviteResponse);
 
   // Location
