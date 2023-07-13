@@ -98,7 +98,7 @@ message GetPackageRequest {
   string id = 1;
   string version = 2;
   optional bool include_url = 3;
-  optional string type = 4;
+  optional PackageType type = 4;
   optional string platform = 5;
 }
 

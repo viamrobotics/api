@@ -55,6 +55,15 @@ AppService.GetOrganization = {
   responseType: app_v1_app_pb.GetOrganizationResponse
 };
 
+AppService.GetOrganizationNamespaceAvailability = {
+  methodName: "GetOrganizationNamespaceAvailability",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest,
+  responseType: app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse
+};
+
 AppService.UpdateOrganization = {
   methodName: "UpdateOrganization",
   service: AppService,
@@ -632,6 +641,37 @@ AppServiceClient.prototype.getOrganization = function getOrganization(requestMes
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.GetOrganization, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getOrganizationNamespaceAvailability = function getOrganizationNamespaceAvailability(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetOrganizationNamespaceAvailability, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -49,6 +49,15 @@ type AppServiceGetOrganization = {
   readonly responseType: typeof app_v1_app_pb.GetOrganizationResponse;
 };
 
+type AppServiceGetOrganizationNamespaceAvailability = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest;
+  readonly responseType: typeof app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse;
+};
+
 type AppServiceUpdateOrganization = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -497,6 +506,7 @@ export class AppService {
   static readonly ListOrganizations: AppServiceListOrganizations;
   static readonly ListOrganizationsByUser: AppServiceListOrganizationsByUser;
   static readonly GetOrganization: AppServiceGetOrganization;
+  static readonly GetOrganizationNamespaceAvailability: AppServiceGetOrganizationNamespaceAvailability;
   static readonly UpdateOrganization: AppServiceUpdateOrganization;
   static readonly DeleteOrganization: AppServiceDeleteOrganization;
   static readonly ListOrganizationMembers: AppServiceListOrganizationMembers;
@@ -624,6 +634,15 @@ export class AppServiceClient {
   getOrganization(
     requestMessage: app_v1_app_pb.GetOrganizationRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationNamespaceAvailability(
+    requestMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationNamespaceAvailability(
+    requestMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse|null) => void
   ): UnaryResponse;
   updateOrganization(
     requestMessage: app_v1_app_pb.UpdateOrganizationRequest,
