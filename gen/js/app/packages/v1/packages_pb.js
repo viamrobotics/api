@@ -1801,7 +1801,7 @@ proto.viam.app.packages.v1.GetPackageRequest.toObject = function(includeInstance
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     version: jspb.Message.getFieldWithDefault(msg, 2, ""),
     includeUrl: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    type: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 4, 0),
     platform: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
@@ -1852,7 +1852,7 @@ proto.viam.app.packages.v1.GetPackageRequest.deserializeBinaryFromReader = funct
       msg.setIncludeUrl(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {!proto.viam.app.packages.v1.PackageType} */ (reader.readEnum());
       msg.setType(value);
       break;
     case 5:
@@ -1909,9 +1909,9 @@ proto.viam.app.packages.v1.GetPackageRequest.serializeBinaryToWriter = function(
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 4));
+  f = /** @type {!proto.viam.app.packages.v1.PackageType} */ (jspb.Message.getField(message, 4));
   if (f != null) {
-    writer.writeString(
+    writer.writeEnum(
       4,
       f
     );
@@ -1999,16 +1999,16 @@ proto.viam.app.packages.v1.GetPackageRequest.prototype.hasIncludeUrl = function(
 
 
 /**
- * optional string type = 4;
- * @return {string}
+ * optional PackageType type = 4;
+ * @return {!proto.viam.app.packages.v1.PackageType}
  */
 proto.viam.app.packages.v1.GetPackageRequest.prototype.getType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {!proto.viam.app.packages.v1.PackageType} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {!proto.viam.app.packages.v1.PackageType} value
  * @return {!proto.viam.app.packages.v1.GetPackageRequest} returns this
  */
 proto.viam.app.packages.v1.GetPackageRequest.prototype.setType = function(value) {
