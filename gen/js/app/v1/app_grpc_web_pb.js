@@ -390,6 +390,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.getOrganization =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest,
+ *   !proto.viam.app.v1.GetOrganizationNamespaceAvailabilityResponse>}
+ */
+const methodDescriptor_AppService_GetOrganizationNamespaceAvailability = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetOrganizationNamespaceAvailability',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest,
+  proto.viam.app.v1.GetOrganizationNamespaceAvailabilityResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetOrganizationNamespaceAvailabilityResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetOrganizationNamespaceAvailabilityResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetOrganizationNamespaceAvailabilityResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getOrganizationNamespaceAvailability =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetOrganizationNamespaceAvailability',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetOrganizationNamespaceAvailability,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetOrganizationNamespaceAvailabilityResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getOrganizationNamespaceAvailability =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetOrganizationNamespaceAvailability',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetOrganizationNamespaceAvailability);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.UpdateOrganizationRequest,
  *   !proto.viam.app.v1.UpdateOrganizationResponse>}
  */

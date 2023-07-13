@@ -386,6 +386,46 @@ export namespace GetOrganizationResponse {
   }
 }
 
+export class GetOrganizationNamespaceAvailabilityRequest extends jspb.Message {
+  getPublicNamespace(): string;
+  setPublicNamespace(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetOrganizationNamespaceAvailabilityRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetOrganizationNamespaceAvailabilityRequest): GetOrganizationNamespaceAvailabilityRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetOrganizationNamespaceAvailabilityRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetOrganizationNamespaceAvailabilityRequest;
+  static deserializeBinaryFromReader(message: GetOrganizationNamespaceAvailabilityRequest, reader: jspb.BinaryReader): GetOrganizationNamespaceAvailabilityRequest;
+}
+
+export namespace GetOrganizationNamespaceAvailabilityRequest {
+  export type AsObject = {
+    publicNamespace: string,
+  }
+}
+
+export class GetOrganizationNamespaceAvailabilityResponse extends jspb.Message {
+  getAvailable(): boolean;
+  setAvailable(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetOrganizationNamespaceAvailabilityResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetOrganizationNamespaceAvailabilityResponse): GetOrganizationNamespaceAvailabilityResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetOrganizationNamespaceAvailabilityResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetOrganizationNamespaceAvailabilityResponse;
+  static deserializeBinaryFromReader(message: GetOrganizationNamespaceAvailabilityResponse, reader: jspb.BinaryReader): GetOrganizationNamespaceAvailabilityResponse;
+}
+
+export namespace GetOrganizationNamespaceAvailabilityResponse {
+  export type AsObject = {
+    available: boolean,
+  }
+}
+
 export class UpdateOrganizationRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
