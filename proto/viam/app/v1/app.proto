@@ -309,8 +309,8 @@ message CreateOrganizationInviteResponse {
 message AddAndRemoveOrganizationInviteAuthorizationsRequest {
   string organization_id = 1;
   string email = 2;
-  repeated Authorization addAuthorizations = 3;
-  repeated Authorization removeAuthorizations = 4;
+  repeated Authorization add_authorizations = 3;
+  repeated Authorization remove_authorizations = 4;
 }
 
 message AddAndRemoveOrganizationInviteAuthorizationsResponse {
