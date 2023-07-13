@@ -28,6 +28,9 @@ service AppService {
   // Get an organization
   rpc GetOrganization(GetOrganizationRequest) returns (GetOrganizationResponse);
 
+  // Checks for namespace availablity throughout all orgs.
+  rpc GetOrganizationNamespaceAvailability(GetOrganizationNamespaceAvailabilityRequest) returns (GetOrganizationNamespaceAvailabilityResponse);
+
   // Update an organization
   rpc UpdateOrganization(UpdateOrganizationRequest) returns (UpdateOrganizationResponse);
 
@@ -254,6 +257,14 @@ message GetOrganizationRequest {
 
 message GetOrganizationResponse {
   Organization organization = 1;
+}
+
+message GetOrganizationNamespaceAvailabilityRequest {
+  string public_namespace = 1;
+}
+
+message GetOrganizationNamespaceAvailabilityResponse {
+  bool available = 1;
 }
 
 message UpdateOrganizationRequest {
