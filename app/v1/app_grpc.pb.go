@@ -42,6 +42,8 @@ type AppServiceClient interface {
 	ListOrganizationMembers(ctx context.Context, in *ListOrganizationMembersRequest, opts ...grpc.CallOption) (*ListOrganizationMembersResponse, error)
 	// Create an organization invite to an organization
 	CreateOrganizationInvite(ctx context.Context, in *CreateOrganizationInviteRequest, opts ...grpc.CallOption) (*CreateOrganizationInviteResponse, error)
+	// Update the authorizations attached to an organization invite
+	UpdateOrganizationInviteAuthorizations(ctx context.Context, in *UpdateOrganizationInviteAuthorizationsRequest, opts ...grpc.CallOption) (*UpdateOrganizationInviteAuthorizationsResponse, error)
 	// Delete an organization member from an organization
 	DeleteOrganizationMember(ctx context.Context, in *DeleteOrganizationMemberRequest, opts ...grpc.CallOption) (*DeleteOrganizationMemberResponse, error)
 	// Delete an organization invite
@@ -224,6 +226,15 @@ func (c *appServiceClient) ListOrganizationMembers(ctx context.Context, in *List
 func (c *appServiceClient) CreateOrganizationInvite(ctx context.Context, in *CreateOrganizationInviteRequest, opts ...grpc.CallOption) (*CreateOrganizationInviteResponse, error) {
 	out := new(CreateOrganizationInviteResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateOrganizationInvite", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateOrganizationInviteAuthorizations(ctx context.Context, in *UpdateOrganizationInviteAuthorizationsRequest, opts ...grpc.CallOption) (*UpdateOrganizationInviteAuthorizationsResponse, error) {
+	out := new(UpdateOrganizationInviteAuthorizationsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateOrganizationInviteAuthorizations", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -707,6 +718,8 @@ type AppServiceServer interface {
 	ListOrganizationMembers(context.Context, *ListOrganizationMembersRequest) (*ListOrganizationMembersResponse, error)
 	// Create an organization invite to an organization
 	CreateOrganizationInvite(context.Context, *CreateOrganizationInviteRequest) (*CreateOrganizationInviteResponse, error)
+	// Update the authorizations attached to an organization invite
+	UpdateOrganizationInviteAuthorizations(context.Context, *UpdateOrganizationInviteAuthorizationsRequest) (*UpdateOrganizationInviteAuthorizationsResponse, error)
 	// Delete an organization member from an organization
 	DeleteOrganizationMember(context.Context, *DeleteOrganizationMemberRequest) (*DeleteOrganizationMemberResponse, error)
 	// Delete an organization invite
@@ -831,6 +844,9 @@ func (UnimplementedAppServiceServer) ListOrganizationMembers(context.Context, *L
 }
 func (UnimplementedAppServiceServer) CreateOrganizationInvite(context.Context, *CreateOrganizationInviteRequest) (*CreateOrganizationInviteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganizationInvite not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateOrganizationInviteAuthorizations(context.Context, *UpdateOrganizationInviteAuthorizationsRequest) (*UpdateOrganizationInviteAuthorizationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationInviteAuthorizations not implemented")
 }
 func (UnimplementedAppServiceServer) DeleteOrganizationMember(context.Context, *DeleteOrganizationMemberRequest) (*DeleteOrganizationMemberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationMember not implemented")
@@ -1156,6 +1172,24 @@ func _AppService_CreateOrganizationInvite_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).CreateOrganizationInvite(ctx, req.(*CreateOrganizationInviteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateOrganizationInviteAuthorizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationInviteAuthorizationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateOrganizationInviteAuthorizations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateOrganizationInviteAuthorizations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateOrganizationInviteAuthorizations(ctx, req.(*UpdateOrganizationInviteAuthorizationsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2027,6 +2061,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateOrganizationInvite",
 			Handler:    _AppService_CreateOrganizationInvite_Handler,
+		},
+		{
+			MethodName: "UpdateOrganizationInviteAuthorizations",
+			Handler:    _AppService_UpdateOrganizationInviteAuthorizations_Handler,
 		},
 		{
 			MethodName: "DeleteOrganizationMember",

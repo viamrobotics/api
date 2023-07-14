@@ -695,6 +695,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.createOrganizationInvite =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest,
+ *   !proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse>}
+ */
+const methodDescriptor_AppService_UpdateOrganizationInviteAuthorizations = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/UpdateOrganizationInviteAuthorizations',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest,
+  proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse,
+  /**
+   * @param {!proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.updateOrganizationInviteAuthorizations =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateOrganizationInviteAuthorizations',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateOrganizationInviteAuthorizations,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.updateOrganizationInviteAuthorizations =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateOrganizationInviteAuthorizations',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateOrganizationInviteAuthorizations);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.DeleteOrganizationMemberRequest,
  *   !proto.viam.app.v1.DeleteOrganizationMemberResponse>}
  */

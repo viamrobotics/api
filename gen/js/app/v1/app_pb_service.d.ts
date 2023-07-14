@@ -94,6 +94,15 @@ type AppServiceCreateOrganizationInvite = {
   readonly responseType: typeof app_v1_app_pb.CreateOrganizationInviteResponse;
 };
 
+type AppServiceUpdateOrganizationInviteAuthorizations = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse;
+};
+
 type AppServiceDeleteOrganizationMember = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -511,6 +520,7 @@ export class AppService {
   static readonly DeleteOrganization: AppServiceDeleteOrganization;
   static readonly ListOrganizationMembers: AppServiceListOrganizationMembers;
   static readonly CreateOrganizationInvite: AppServiceCreateOrganizationInvite;
+  static readonly UpdateOrganizationInviteAuthorizations: AppServiceUpdateOrganizationInviteAuthorizations;
   static readonly DeleteOrganizationMember: AppServiceDeleteOrganizationMember;
   static readonly DeleteOrganizationInvite: AppServiceDeleteOrganizationInvite;
   static readonly ResendOrganizationInvite: AppServiceResendOrganizationInvite;
@@ -679,6 +689,15 @@ export class AppServiceClient {
   createOrganizationInvite(
     requestMessage: app_v1_app_pb.CreateOrganizationInviteRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOrganizationInviteResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationInviteAuthorizations(
+    requestMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationInviteAuthorizations(
+    requestMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse|null) => void
   ): UnaryResponse;
   deleteOrganizationMember(
     requestMessage: app_v1_app_pb.DeleteOrganizationMemberRequest,
