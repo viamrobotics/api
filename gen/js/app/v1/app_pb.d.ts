@@ -618,6 +618,64 @@ export namespace CreateOrganizationInviteResponse {
   }
 }
 
+export class UpdateOrganizationInviteAuthorizationsRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getEmail(): string;
+  setEmail(value: string): void;
+
+  clearAddAuthorizationsList(): void;
+  getAddAuthorizationsList(): Array<Authorization>;
+  setAddAuthorizationsList(value: Array<Authorization>): void;
+  addAddAuthorizations(value?: Authorization, index?: number): Authorization;
+
+  clearRemoveAuthorizationsList(): void;
+  getRemoveAuthorizationsList(): Array<Authorization>;
+  setRemoveAuthorizationsList(value: Array<Authorization>): void;
+  addRemoveAuthorizations(value?: Authorization, index?: number): Authorization;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateOrganizationInviteAuthorizationsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateOrganizationInviteAuthorizationsRequest): UpdateOrganizationInviteAuthorizationsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateOrganizationInviteAuthorizationsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateOrganizationInviteAuthorizationsRequest;
+  static deserializeBinaryFromReader(message: UpdateOrganizationInviteAuthorizationsRequest, reader: jspb.BinaryReader): UpdateOrganizationInviteAuthorizationsRequest;
+}
+
+export namespace UpdateOrganizationInviteAuthorizationsRequest {
+  export type AsObject = {
+    organizationId: string,
+    email: string,
+    addAuthorizationsList: Array<Authorization.AsObject>,
+    removeAuthorizationsList: Array<Authorization.AsObject>,
+  }
+}
+
+export class UpdateOrganizationInviteAuthorizationsResponse extends jspb.Message {
+  hasInvite(): boolean;
+  clearInvite(): void;
+  getInvite(): OrganizationInvite | undefined;
+  setInvite(value?: OrganizationInvite): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateOrganizationInviteAuthorizationsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateOrganizationInviteAuthorizationsResponse): UpdateOrganizationInviteAuthorizationsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateOrganizationInviteAuthorizationsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateOrganizationInviteAuthorizationsResponse;
+  static deserializeBinaryFromReader(message: UpdateOrganizationInviteAuthorizationsResponse, reader: jspb.BinaryReader): UpdateOrganizationInviteAuthorizationsResponse;
+}
+
+export namespace UpdateOrganizationInviteAuthorizationsResponse {
+  export type AsObject = {
+    invite?: OrganizationInvite.AsObject,
+  }
+}
+
 export class DeleteOrganizationInviteRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
