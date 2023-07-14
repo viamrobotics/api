@@ -32,6 +32,8 @@ type AppServiceClient interface {
 	ListOrganizationsByUser(ctx context.Context, in *ListOrganizationsByUserRequest, opts ...grpc.CallOption) (*ListOrganizationsByUserResponse, error)
 	// Get an organization
 	GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error)
+	// Checks for namespace availablity throughout all orgs.
+	GetOrganizationNamespaceAvailability(ctx context.Context, in *GetOrganizationNamespaceAvailabilityRequest, opts ...grpc.CallOption) (*GetOrganizationNamespaceAvailabilityResponse, error)
 	// Update an organization
 	UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error)
 	// Delete an organization
@@ -119,8 +121,9 @@ type AppServiceClient interface {
 	AddRole(ctx context.Context, in *AddRoleRequest, opts ...grpc.CallOption) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
 	RemoveRole(ctx context.Context, in *RemoveRoleRequest, opts ...grpc.CallOption) (*RemoveRoleResponse, error)
-	// Shows organization, location, and robot level permissions that exist on the resource
+	// Returns all authorization roles for a given resource
 	ListAuthorizations(ctx context.Context, in *ListAuthorizationsRequest, opts ...grpc.CallOption) (*ListAuthorizationsResponse, error)
+	// Validates a permission for the current user
 	CheckPermissions(ctx context.Context, in *CheckPermissionsRequest, opts ...grpc.CallOption) (*CheckPermissionsResponse, error)
 	CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error)
 	UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error)
@@ -176,6 +179,15 @@ func (c *appServiceClient) ListOrganizationsByUser(ctx context.Context, in *List
 func (c *appServiceClient) GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error) {
 	out := new(GetOrganizationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganization", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetOrganizationNamespaceAvailability(ctx context.Context, in *GetOrganizationNamespaceAvailabilityRequest, opts ...grpc.CallOption) (*GetOrganizationNamespaceAvailabilityResponse, error) {
+	out := new(GetOrganizationNamespaceAvailabilityResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganizationNamespaceAvailability", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -685,6 +697,8 @@ type AppServiceServer interface {
 	ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error)
 	// Get an organization
 	GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error)
+	// Checks for namespace availablity throughout all orgs.
+	GetOrganizationNamespaceAvailability(context.Context, *GetOrganizationNamespaceAvailabilityRequest) (*GetOrganizationNamespaceAvailabilityResponse, error)
 	// Update an organization
 	UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error)
 	// Delete an organization
@@ -772,8 +786,9 @@ type AppServiceServer interface {
 	AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
 	RemoveRole(context.Context, *RemoveRoleRequest) (*RemoveRoleResponse, error)
-	// Shows organization, location, and robot level permissions that exist on the resource
+	// Returns all authorization roles for a given resource
 	ListAuthorizations(context.Context, *ListAuthorizationsRequest) (*ListAuthorizationsResponse, error)
+	// Validates a permission for the current user
 	CheckPermissions(context.Context, *CheckPermissionsRequest) (*CheckPermissionsResponse, error)
 	CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error)
 	UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error)
@@ -801,6 +816,9 @@ func (UnimplementedAppServiceServer) ListOrganizationsByUser(context.Context, *L
 }
 func (UnimplementedAppServiceServer) GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganization not implemented")
+}
+func (UnimplementedAppServiceServer) GetOrganizationNamespaceAvailability(context.Context, *GetOrganizationNamespaceAvailabilityRequest) (*GetOrganizationNamespaceAvailabilityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationNamespaceAvailability not implemented")
 }
 func (UnimplementedAppServiceServer) UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganization not implemented")
@@ -1048,6 +1066,24 @@ func _AppService_GetOrganization_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).GetOrganization(ctx, req.(*GetOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetOrganizationNamespaceAvailability_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationNamespaceAvailabilityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetOrganizationNamespaceAvailability(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetOrganizationNamespaceAvailability",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetOrganizationNamespaceAvailability(ctx, req.(*GetOrganizationNamespaceAvailabilityRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1971,6 +2007,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOrganization",
 			Handler:    _AppService_GetOrganization_Handler,
+		},
+		{
+			MethodName: "GetOrganizationNamespaceAvailability",
+			Handler:    _AppService_GetOrganizationNamespaceAvailability_Handler,
 		},
 		{
 			MethodName: "UpdateOrganization",

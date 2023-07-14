@@ -235,8 +235,8 @@ export class GetPackageRequest extends jspb.Message {
 
   hasType(): boolean;
   clearType(): void;
-  getType(): string;
-  setType(value: string): void;
+  getType(): PackageTypeMap[keyof PackageTypeMap];
+  setType(value: PackageTypeMap[keyof PackageTypeMap]): void;
 
   hasPlatform(): boolean;
   clearPlatform(): void;
@@ -258,7 +258,7 @@ export namespace GetPackageRequest {
     id: string,
     version: string,
     includeUrl: boolean,
-    type: string,
+    type: PackageTypeMap[keyof PackageTypeMap],
     platform: string,
   }
 }
