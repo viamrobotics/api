@@ -174,6 +174,10 @@ extend google.protobuf.MethodOptions {
 }
 
 message ResponseMetadata {
+  // captured_at is the time at which the resource as close as physically possible, captured
+  // the data in the response.
+  // Note: If correlating between other resources, be sure that the means
+  // of measuring the capture are similar enough such that comparison can be made between them.
   optional google.protobuf.Timestamp captured_at = 1;
 }
 
