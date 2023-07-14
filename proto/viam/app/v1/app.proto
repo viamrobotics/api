@@ -317,6 +317,7 @@ message UpdateOrganizationInviteAuthorizationsRequest {
   string email = 2;
   repeated Authorization add_authorizations = 3;
   repeated Authorization remove_authorizations = 4;
+
 }
 
 message UpdateOrganizationInviteAuthorizationsResponse {
