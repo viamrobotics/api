@@ -4,6 +4,7 @@
 import * as jspb from "google-protobuf";
 import * as google_protobuf_descriptor_pb from "google-protobuf/google/protobuf/descriptor_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
+import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class ResourceName extends jspb.Message {
   getNamespace(): string;
@@ -530,6 +531,28 @@ export class ActuatorStatus extends jspb.Message {
 export namespace ActuatorStatus {
   export type AsObject = {
     isMoving: boolean,
+  }
+}
+
+export class ResponseMetadata extends jspb.Message {
+  hasCapturedAt(): boolean;
+  clearCapturedAt(): void;
+  getCapturedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCapturedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ResponseMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: ResponseMetadata): ResponseMetadata.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ResponseMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ResponseMetadata;
+  static deserializeBinaryFromReader(message: ResponseMetadata, reader: jspb.BinaryReader): ResponseMetadata;
+}
+
+export namespace ResponseMetadata {
+  export type AsObject = {
+    capturedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 

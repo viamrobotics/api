@@ -85,7 +85,8 @@ message GetImagesRequest {
 message GetImagesResponse {
   // list of images returned from the camera system
   repeated Image images = 1;
-  option (common.v1.captured_at) = true;
+  // contains timestamp data
+  common.v1.ResponseMetadata response_metadata = 84260;
 }
 
 message Image {

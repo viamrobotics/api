@@ -5,6 +5,7 @@ package viam.common.v1;
 
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/common/v1";
 option java_package = "com.viam.common.v1";
@@ -172,7 +173,7 @@ extend google.protobuf.MethodOptions {
   optional bool safety_heartbeat_monitored = 84260;
 }
 
-extend google.protobuf.MessageOptions {
+message ResponseMetadata {
   optional google.protobuf.Timestamp captured_at = 84260;
 }
 
