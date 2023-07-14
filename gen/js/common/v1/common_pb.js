@@ -460,7 +460,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.common.v1.ResponseMetadata = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, 500, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.viam.common.v1.ResponseMetadata, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -4355,7 +4355,7 @@ proto.viam.common.v1.ResponseMetadata.deserializeBinaryFromReader = function(msg
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 84260:
+    case 1:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setCapturedAt(value);
@@ -4392,7 +4392,7 @@ proto.viam.common.v1.ResponseMetadata.serializeBinaryToWriter = function(message
   f = message.getCapturedAt();
   if (f != null) {
     writer.writeMessage(
-      84260,
+      1,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -4401,12 +4401,12 @@ proto.viam.common.v1.ResponseMetadata.serializeBinaryToWriter = function(message
 
 
 /**
- * optional google.protobuf.Timestamp captured_at = 84260;
+ * optional google.protobuf.Timestamp captured_at = 1;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.viam.common.v1.ResponseMetadata.prototype.getCapturedAt = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 84260));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 1));
 };
 
 
@@ -4415,7 +4415,7 @@ proto.viam.common.v1.ResponseMetadata.prototype.getCapturedAt = function() {
  * @return {!proto.viam.common.v1.ResponseMetadata} returns this
 */
 proto.viam.common.v1.ResponseMetadata.prototype.setCapturedAt = function(value) {
-  return jspb.Message.setWrapperField(this, 84260, value);
+  return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
@@ -4433,7 +4433,7 @@ proto.viam.common.v1.ResponseMetadata.prototype.clearCapturedAt = function() {
  * @return {boolean}
  */
 proto.viam.common.v1.ResponseMetadata.prototype.hasCapturedAt = function() {
-  return jspb.Message.getField(this, 84260) != null;
+  return jspb.Message.getField(this, 1) != null;
 };
 
 

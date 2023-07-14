@@ -174,7 +174,7 @@ extend google.protobuf.MethodOptions {
 }
 
 message ResponseMetadata {
-  optional google.protobuf.Timestamp captured_at = 84260;
+  optional google.protobuf.Timestamp captured_at = 1;
 }
 
 // DoCommandRequest represents a generic DoCommand input
