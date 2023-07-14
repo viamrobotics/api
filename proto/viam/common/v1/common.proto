@@ -172,6 +172,10 @@ extend google.protobuf.MethodOptions {
   optional bool safety_heartbeat_monitored = 84260;
 }
 
+extend google.protobuf.MessageOptions {
+  optional google.protobuf.Timestamp captured_at = 84260;
+}
+
 // DoCommandRequest represents a generic DoCommand input
 message DoCommandRequest {
   string name = 1;
