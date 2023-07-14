@@ -195,6 +195,9 @@ export class Organization extends jspb.Message {
   getPublicNamespace(): string;
   setPublicNamespace(value: string): void;
 
+  getDefaultRegion(): string;
+  setDefaultRegion(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Organization.AsObject;
   static toObject(includeInstance: boolean, msg: Organization): Organization.AsObject;
@@ -211,6 +214,7 @@ export namespace Organization {
     name: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     publicNamespace: string,
+    defaultRegion: string,
   }
 }
 
@@ -430,6 +434,8 @@ export class UpdateOrganizationRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
+  hasName(): boolean;
+  clearName(): void;
   getName(): string;
   setName(value: string): void;
 
@@ -437,6 +443,11 @@ export class UpdateOrganizationRequest extends jspb.Message {
   clearPublicNamespace(): void;
   getPublicNamespace(): string;
   setPublicNamespace(value: string): void;
+
+  hasRegion(): boolean;
+  clearRegion(): void;
+  getRegion(): string;
+  setRegion(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateOrganizationRequest.AsObject;
@@ -453,6 +464,7 @@ export namespace UpdateOrganizationRequest {
     organizationId: string,
     name: string,
     publicNamespace: string,
+    region: string,
   }
 }
 
@@ -856,6 +868,26 @@ export namespace LocationAuth {
   }
 }
 
+export class StorageConfig extends jspb.Message {
+  getRegion(): string;
+  setRegion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StorageConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: StorageConfig): StorageConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StorageConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StorageConfig;
+  static deserializeBinaryFromReader(message: StorageConfig, reader: jspb.BinaryReader): StorageConfig;
+}
+
+export namespace StorageConfig {
+  export type AsObject = {
+    region: string,
+  }
+}
+
 export class Location extends jspb.Message {
   getId(): string;
   setId(value: string): void;
@@ -884,6 +916,11 @@ export class Location extends jspb.Message {
   getRobotCount(): number;
   setRobotCount(value: number): void;
 
+  hasConfig(): boolean;
+  clearConfig(): void;
+  getConfig(): StorageConfig | undefined;
+  setConfig(value?: StorageConfig): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Location.AsObject;
   static toObject(includeInstance: boolean, msg: Location): Location.AsObject;
@@ -903,6 +940,7 @@ export namespace Location {
     organizationsList: Array<LocationOrganization.AsObject>,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     robotCount: number,
+    config?: StorageConfig.AsObject,
   }
 }
 
@@ -1056,6 +1094,11 @@ export class UpdateLocationRequest extends jspb.Message {
   getParentLocationId(): string;
   setParentLocationId(value: string): void;
 
+  hasRegion(): boolean;
+  clearRegion(): void;
+  getRegion(): string;
+  setRegion(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateLocationRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateLocationRequest): UpdateLocationRequest.AsObject;
@@ -1071,6 +1114,7 @@ export namespace UpdateLocationRequest {
     locationId: string,
     name: string,
     parentLocationId: string,
+    region: string,
   }
 }
 

@@ -228,6 +228,9 @@ message Organization {
   string name = 2;
   google.protobuf.Timestamp created_on = 3;
   string public_namespace = 4;
+  // GCS region of the organization. Locations created under this org will have their GCS region set to this by default and packages
+  // associated with this org will be stored in this region.
+  string default_region = 5;
 }
 
 message OrganizationMember {
@@ -273,8 +276,10 @@ message GetOrganizationNamespaceAvailabilityResponse {
 
 message UpdateOrganizationRequest {
   string organization_id = 1;
-  string name = 2;
+  optional string name = 2;
   optional string public_namespace = 3;
+  // The new GCS region to associate the org with.
+  optional string region = 4;
 }
 
 message UpdateOrganizationResponse {
@@ -312,7 +317,6 @@ message UpdateOrganizationInviteAuthorizationsRequest {
   string email = 2;
   repeated Authorization add_authorizations = 3;
   repeated Authorization remove_authorizations = 4;
-
 }
 
 message UpdateOrganizationInviteAuthorizationsResponse {
@@ -363,6 +367,11 @@ message LocationAuth {
   repeated SharedSecret secrets = 3;
 }
 
+message StorageConfig {
+  // GCS region that data is stored in.
+  string region = 1;
+}
+
 message Location {
   // Location ID.
   string id = 1;
@@ -378,6 +387,8 @@ message Location {
   google.protobuf.Timestamp created_on = 3;
   //
   int32 robot_count = 7;
+  // Config for how data in this location is stored.
+  StorageConfig config = 8;
 }
 
 // SharedSecret is a secret used for LocationAuth and RobotParts.
@@ -430,10 +441,12 @@ message GetLocationResponse {
 message UpdateLocationRequest {
   // Location ID of location to update.
   string location_id = 1;
-  // The new to be updated on location.
+  // The new name to be updated on location.
   optional string name = 2;
   // The new parent location to move the location under.
   optional string parent_location_id = 3;
+  // The new GCS region to associate the location with.
+  optional string region = 4;
 }
 
 message UpdateLocationResponse {
