@@ -100,6 +100,15 @@ AppService.CreateOrganizationInvite = {
   responseType: app_v1_app_pb.CreateOrganizationInviteResponse
 };
 
+AppService.UpdateOrganizationInviteAuthorizations = {
+  methodName: "UpdateOrganizationInviteAuthorizations",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest,
+  responseType: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse
+};
+
 AppService.DeleteOrganizationMember = {
   methodName: "DeleteOrganizationMember",
   service: AppService,
@@ -796,6 +805,37 @@ AppServiceClient.prototype.createOrganizationInvite = function createOrganizatio
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.CreateOrganizationInvite, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateOrganizationInviteAuthorizations = function updateOrganizationInviteAuthorizations(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateOrganizationInviteAuthorizations, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

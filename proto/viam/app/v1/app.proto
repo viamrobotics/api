@@ -43,6 +43,9 @@ service AppService {
   // Create an organization invite to an organization
   rpc CreateOrganizationInvite(CreateOrganizationInviteRequest) returns (CreateOrganizationInviteResponse);
 
+  // Update the authorizations attached to an organization invite
+  rpc UpdateOrganizationInviteAuthorizations(UpdateOrganizationInviteAuthorizationsRequest) returns (UpdateOrganizationInviteAuthorizationsResponse);
+
   // Delete an organization member from an organization
   rpc DeleteOrganizationMember(DeleteOrganizationMemberRequest) returns (DeleteOrganizationMemberResponse);
 
@@ -306,6 +309,17 @@ message CreateOrganizationInviteRequest {
 }
 
 message CreateOrganizationInviteResponse {
+  OrganizationInvite invite = 1;
+}
+
+message UpdateOrganizationInviteAuthorizationsRequest {
+  string organization_id = 1;
+  string email = 2;
+  repeated Authorization add_authorizations = 3;
+  repeated Authorization remove_authorizations = 4;
+}
+
+message UpdateOrganizationInviteAuthorizationsResponse {
   OrganizationInvite invite = 1;
 }
 
