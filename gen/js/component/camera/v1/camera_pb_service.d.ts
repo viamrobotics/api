@@ -15,6 +15,15 @@ type CameraServiceGetImage = {
   readonly responseType: typeof component_camera_v1_camera_pb.GetImageResponse;
 };
 
+type CameraServiceGetImages = {
+  readonly methodName: string;
+  readonly service: typeof CameraService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_camera_v1_camera_pb.GetImagesRequest;
+  readonly responseType: typeof component_camera_v1_camera_pb.GetImagesResponse;
+};
+
 type CameraServiceRenderFrame = {
   readonly methodName: string;
   readonly service: typeof CameraService;
@@ -63,6 +72,7 @@ type CameraServiceGetGeometries = {
 export class CameraService {
   static readonly serviceName: string;
   static readonly GetImage: CameraServiceGetImage;
+  static readonly GetImages: CameraServiceGetImages;
   static readonly RenderFrame: CameraServiceRenderFrame;
   static readonly GetPointCloud: CameraServiceGetPointCloud;
   static readonly GetProperties: CameraServiceGetProperties;
@@ -110,6 +120,15 @@ export class CameraServiceClient {
   getImage(
     requestMessage: component_camera_v1_camera_pb.GetImageRequest,
     callback: (error: ServiceError|null, responseMessage: component_camera_v1_camera_pb.GetImageResponse|null) => void
+  ): UnaryResponse;
+  getImages(
+    requestMessage: component_camera_v1_camera_pb.GetImagesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_camera_v1_camera_pb.GetImagesResponse|null) => void
+  ): UnaryResponse;
+  getImages(
+    requestMessage: component_camera_v1_camera_pb.GetImagesRequest,
+    callback: (error: ServiceError|null, responseMessage: component_camera_v1_camera_pb.GetImagesResponse|null) => void
   ): UnaryResponse;
   renderFrame(
     requestMessage: component_camera_v1_camera_pb.RenderFrameRequest,
