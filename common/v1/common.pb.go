@@ -1280,6 +1280,10 @@ type ResponseMetadata struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// captured_at is the time at which the resource as close as physically possible, captured
+	// the data in the response.
+	// Note: If correlating between other resources, be sure that the means
+	// of measuring the capture are similar enough such that comparison can be made between them.
 	CapturedAt *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=captured_at,json=capturedAt,proto3,oneof" json:"captured_at,omitempty"`
 }
 
