@@ -27,6 +27,7 @@ type CameraServiceClient interface {
 	// GetImage returns a frame from a camera of the underlying robot. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
 	GetImage(ctx context.Context, in *GetImageRequest, opts ...grpc.CallOption) (*GetImageResponse, error)
+	GetImages(ctx context.Context, in *GetImagesRequest, opts ...grpc.CallOption) (*GetImagesResponse, error)
 	// RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
 	RenderFrame(ctx context.Context, in *RenderFrameRequest, opts ...grpc.CallOption) (*httpbody.HttpBody, error)
@@ -52,6 +53,15 @@ func NewCameraServiceClient(cc grpc.ClientConnInterface) CameraServiceClient {
 func (c *cameraServiceClient) GetImage(ctx context.Context, in *GetImageRequest, opts ...grpc.CallOption) (*GetImageResponse, error) {
 	out := new(GetImageResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.camera.v1.CameraService/GetImage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cameraServiceClient) GetImages(ctx context.Context, in *GetImagesRequest, opts ...grpc.CallOption) (*GetImagesResponse, error) {
+	out := new(GetImagesResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.camera.v1.CameraService/GetImages", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -110,6 +120,7 @@ type CameraServiceServer interface {
 	// GetImage returns a frame from a camera of the underlying robot. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
 	GetImage(context.Context, *GetImageRequest) (*GetImageResponse, error)
+	GetImages(context.Context, *GetImagesRequest) (*GetImagesResponse, error)
 	// RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
 	RenderFrame(context.Context, *RenderFrameRequest) (*httpbody.HttpBody, error)
@@ -131,6 +142,9 @@ type UnimplementedCameraServiceServer struct {
 
 func (UnimplementedCameraServiceServer) GetImage(context.Context, *GetImageRequest) (*GetImageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetImage not implemented")
+}
+func (UnimplementedCameraServiceServer) GetImages(context.Context, *GetImagesRequest) (*GetImagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetImages not implemented")
 }
 func (UnimplementedCameraServiceServer) RenderFrame(context.Context, *RenderFrameRequest) (*httpbody.HttpBody, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenderFrame not implemented")
@@ -174,6 +188,24 @@ func _CameraService_GetImage_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CameraServiceServer).GetImage(ctx, req.(*GetImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CameraService_GetImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetImagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CameraServiceServer).GetImages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.camera.v1.CameraService/GetImages",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CameraServiceServer).GetImages(ctx, req.(*GetImagesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -278,6 +310,10 @@ var CameraService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetImage",
 			Handler:    _CameraService_GetImage_Handler,
+		},
+		{
+			MethodName: "GetImages",
+			Handler:    _CameraService_GetImages_Handler,
 		},
 		{
 			MethodName: "RenderFrame",
