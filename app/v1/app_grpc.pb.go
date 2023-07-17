@@ -121,8 +121,9 @@ type AppServiceClient interface {
 	AddRole(ctx context.Context, in *AddRoleRequest, opts ...grpc.CallOption) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
 	RemoveRole(ctx context.Context, in *RemoveRoleRequest, opts ...grpc.CallOption) (*RemoveRoleResponse, error)
-	// Shows organization, location, and robot level permissions that exist on the resource
+	// Returns all authorization roles for a given resource
 	ListAuthorizations(ctx context.Context, in *ListAuthorizationsRequest, opts ...grpc.CallOption) (*ListAuthorizationsResponse, error)
+	// Validates a permission for the current user
 	CheckPermissions(ctx context.Context, in *CheckPermissionsRequest, opts ...grpc.CallOption) (*CheckPermissionsResponse, error)
 	CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error)
 	UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error)
@@ -785,8 +786,9 @@ type AppServiceServer interface {
 	AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
 	RemoveRole(context.Context, *RemoveRoleRequest) (*RemoveRoleResponse, error)
-	// Shows organization, location, and robot level permissions that exist on the resource
+	// Returns all authorization roles for a given resource
 	ListAuthorizations(context.Context, *ListAuthorizationsRequest) (*ListAuthorizationsResponse, error)
+	// Validates a permission for the current user
 	CheckPermissions(context.Context, *CheckPermissionsRequest) (*CheckPermissionsResponse, error)
 	CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error)
 	UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error)
