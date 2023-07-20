@@ -195,6 +195,8 @@ message DoCommandResponse {
 message GetKinematicsRequest {
   // The component name
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 enum KinematicsFileFormat {
@@ -214,6 +216,8 @@ message GetKinematicsResponse {
 message GetGeometriesRequest {
   // The component name
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetGeometriesResponse {
