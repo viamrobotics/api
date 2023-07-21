@@ -49,6 +49,15 @@ type AppServiceGetOrganization = {
   readonly responseType: typeof app_v1_app_pb.GetOrganizationResponse;
 };
 
+type AppServiceGetOrganizationNamespaceAvailability = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest;
+  readonly responseType: typeof app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse;
+};
+
 type AppServiceUpdateOrganization = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -83,6 +92,15 @@ type AppServiceCreateOrganizationInvite = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.CreateOrganizationInviteRequest;
   readonly responseType: typeof app_v1_app_pb.CreateOrganizationInviteResponse;
+};
+
+type AppServiceUpdateOrganizationInviteAuthorizations = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse;
 };
 
 type AppServiceDeleteOrganizationMember = {
@@ -497,10 +515,12 @@ export class AppService {
   static readonly ListOrganizations: AppServiceListOrganizations;
   static readonly ListOrganizationsByUser: AppServiceListOrganizationsByUser;
   static readonly GetOrganization: AppServiceGetOrganization;
+  static readonly GetOrganizationNamespaceAvailability: AppServiceGetOrganizationNamespaceAvailability;
   static readonly UpdateOrganization: AppServiceUpdateOrganization;
   static readonly DeleteOrganization: AppServiceDeleteOrganization;
   static readonly ListOrganizationMembers: AppServiceListOrganizationMembers;
   static readonly CreateOrganizationInvite: AppServiceCreateOrganizationInvite;
+  static readonly UpdateOrganizationInviteAuthorizations: AppServiceUpdateOrganizationInviteAuthorizations;
   static readonly DeleteOrganizationMember: AppServiceDeleteOrganizationMember;
   static readonly DeleteOrganizationInvite: AppServiceDeleteOrganizationInvite;
   static readonly ResendOrganizationInvite: AppServiceResendOrganizationInvite;
@@ -625,6 +645,15 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.GetOrganizationRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationResponse|null) => void
   ): UnaryResponse;
+  getOrganizationNamespaceAvailability(
+    requestMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationNamespaceAvailability(
+    requestMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse|null) => void
+  ): UnaryResponse;
   updateOrganization(
     requestMessage: app_v1_app_pb.UpdateOrganizationRequest,
     metadata: grpc.Metadata,
@@ -660,6 +689,15 @@ export class AppServiceClient {
   createOrganizationInvite(
     requestMessage: app_v1_app_pb.CreateOrganizationInviteRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOrganizationInviteResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationInviteAuthorizations(
+    requestMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationInviteAuthorizations(
+    requestMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse|null) => void
   ): UnaryResponse;
   deleteOrganizationMember(
     requestMessage: app_v1_app_pb.DeleteOrganizationMemberRequest,

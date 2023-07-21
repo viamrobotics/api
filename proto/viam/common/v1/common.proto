@@ -5,6 +5,7 @@ package viam.common.v1;
 
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/common/v1";
 option java_package = "com.viam.common.v1";
@@ -170,6 +171,14 @@ extend google.protobuf.MethodOptions {
   // and the session was the last to call this method, the resource associated with the
   // method will be stopped.
   optional bool safety_heartbeat_monitored = 84260;
+}
+
+message ResponseMetadata {
+  // captured_at is the time at which the resource as close as physically possible, captured
+  // the data in the response.
+  // Note: If correlating between other resources, be sure that the means
+  // of measuring the capture are similar enough such that comparison can be made between them.
+  optional google.protobuf.Timestamp captured_at = 1;
 }
 
 // DoCommandRequest represents a generic DoCommand input

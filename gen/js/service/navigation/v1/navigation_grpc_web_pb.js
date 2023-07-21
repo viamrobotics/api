@@ -452,6 +452,67 @@ proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.remove
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.GetObstaclesRequest,
+ *   !proto.viam.service.navigation.v1.GetObstaclesResponse>}
+ */
+const methodDescriptor_NavigationService_GetObstacles = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/GetObstacles',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.GetObstaclesRequest,
+  proto.viam.service.navigation.v1.GetObstaclesResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.GetObstaclesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.GetObstaclesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GetObstaclesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.GetObstaclesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.GetObstaclesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.getObstacles =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GetObstacles',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GetObstacles,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GetObstaclesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.GetObstaclesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getObstacles =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GetObstacles',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GetObstacles);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.common.v1.DoCommandRequest,
  *   !proto.viam.common.v1.DoCommandResponse>}
  */

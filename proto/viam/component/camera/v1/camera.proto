@@ -19,6 +19,12 @@ service CameraService {
     };
   }
 
+  rpc GetImages(GetImagesRequest) returns (GetImagesResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/camera/{name}/images"
+    };
+  }
+
   // RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
   // can be requested but may not necessarily be the same one returned.
   rpc RenderFrame(RenderFrameRequest) returns (google.api.HttpBody) {
@@ -69,6 +75,35 @@ message GetImageResponse {
   string mime_type = 1;
   // Frame in bytes
   bytes image = 2;
+}
+
+message GetImagesRequest {
+  // Name of a camera
+  string name = 1;
+}
+
+message GetImagesResponse {
+  // list of images returned from the camera system
+  repeated Image images = 1;
+  // contains timestamp data
+  common.v1.ResponseMetadata response_metadata = 84260;
+}
+
+message Image {
+  // the name of the sensor where the image came from
+  string source_name = 1;
+  // format of the response image bytes
+  Format format = 2;
+  // image in bytes
+  bytes image = 3;
+}
+
+enum Format {
+  FORMAT_UNSPECIFIED = 0;
+  FORMAT_RAW_RGBA = 1;
+  FORMAT_RAW_DEPTH = 2;
+  FORMAT_JPEG = 3;
+  FORMAT_PNG = 4;
 }
 
 message RenderFrameRequest {

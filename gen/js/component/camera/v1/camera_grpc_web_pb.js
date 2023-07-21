@@ -147,6 +147,67 @@ proto.viam.component.camera.v1.CameraServicePromiseClient.prototype.getImage =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.camera.v1.GetImagesRequest,
+ *   !proto.viam.component.camera.v1.GetImagesResponse>}
+ */
+const methodDescriptor_CameraService_GetImages = new grpc.web.MethodDescriptor(
+  '/viam.component.camera.v1.CameraService/GetImages',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.camera.v1.GetImagesRequest,
+  proto.viam.component.camera.v1.GetImagesResponse,
+  /**
+   * @param {!proto.viam.component.camera.v1.GetImagesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.camera.v1.GetImagesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.camera.v1.GetImagesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.camera.v1.GetImagesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.camera.v1.GetImagesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.camera.v1.CameraServiceClient.prototype.getImages =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.camera.v1.CameraService/GetImages',
+      request,
+      metadata || {},
+      methodDescriptor_CameraService_GetImages,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.camera.v1.GetImagesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.camera.v1.GetImagesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.camera.v1.CameraServicePromiseClient.prototype.getImages =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.camera.v1.CameraService/GetImages',
+      request,
+      metadata || {},
+      methodDescriptor_CameraService_GetImages);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.component.camera.v1.RenderFrameRequest,
  *   !proto.google.api.HttpBody>}
  */
