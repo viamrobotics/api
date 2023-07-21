@@ -60,9 +60,12 @@ enum Order {
   ORDER_ASCENDING = 2;
 }
 
-// DataRequest encapsulates the filter for the data, a limit on the maximum results returned, a last string associated with the last returned document, and the sorting order by time.
-// last is returned in the responses TabularDataByFilterResponse and BinaryDataByFilterResponse from the API calls TabularDataByFilter and BinaryDataByFilter, respectively
-// We can then use the last string from the previous API calls in the subsequent request to get the next set of ordered documents.
+// DataRequest encapsulates the filter for the data, a limit on the maximum results returned,
+// a last string associated with the last returned document, and the sorting order by time.
+// last is returned in the responses TabularDataByFilterResponse and BinaryDataByFilterResponse
+// from the API calls TabularDataByFilter and BinaryDataByFilter, respectively.
+// We can then use the last string from the previous API calls in the subsequent request
+// to get the next set of ordered documents.
 message DataRequest {
   Filter filter = 1;
   uint64 limit = 2;
@@ -71,9 +74,10 @@ message DataRequest {
 }
 
 // Filter defines the fields over which we can filter data using a logic AND.
-// For example, if component_type and robot_id are specified, only data from that ``robot_id`` of type ``component_type`` is returned.
-// However, we logical OR over the specified tags and bounding box labels, such that if component_type, robot_id, tagA, tagB are specified,
-// we return data from that ``robot_id`` of type ``component_type`` with ``tagA`` or ``tagB``.
+// For example, if component_type and robot_id are specified, only data from that `robot_id` of
+// type `component_type` is returned. However, we logical OR over the specified tags and bounding
+// box labels, such that if component_type, robot_id, tagA, tagB are specified,
+// we return data from that `robot_id` of type `component_type` with `tagA` or `tagB`.
 message Filter {
   string component_name = 1;
   string component_type = 2;
