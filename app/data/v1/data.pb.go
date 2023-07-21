@@ -23,6 +23,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Order specifies the order in which data is returned.
 type Order int32
 
 const (
@@ -128,6 +129,12 @@ func (TagsFilterType) EnumDescriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{1}
 }
 
+// DataRequest encapsulates the filter for the data, a limit on the maximum results returned,
+// a last string associated with the last returned document, and the sorting order by time.
+// last is returned in the responses TabularDataByFilterResponse and BinaryDataByFilterResponse
+// from the API calls TabularDataByFilter and BinaryDataByFilter, respectively.
+// We can then use the last string from the previous API calls in the subsequent request
+// to get the next set of ordered documents.
 type DataRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -199,6 +206,11 @@ func (x *DataRequest) GetSortOrder() Order {
 	return Order_ORDER_UNSPECIFIED
 }
 
+// Filter defines the fields over which we can filter data using a logic AND.
+// For example, if component_type and robot_id are specified, only data from that `robot_id` of
+// type `component_type` is returned. However, we logical OR over the specified tags and bounding
+// box labels, such that if component_type, robot_id, tagA, tagB are specified,
+// we return data from that `robot_id` of type `component_type` with `tagA` or `tagB`.
 type Filter struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -216,7 +228,8 @@ type Filter struct {
 	MimeType        []string         `protobuf:"bytes,12,rep,name=mime_type,json=mimeType,proto3" json:"mime_type,omitempty"`
 	Interval        *CaptureInterval `protobuf:"bytes,13,opt,name=interval,proto3" json:"interval,omitempty"`
 	TagsFilter      *TagsFilter      `protobuf:"bytes,14,opt,name=tags_filter,json=tagsFilter,proto3" json:"tags_filter,omitempty"`
-	BboxLabels      []string         `protobuf:"bytes,15,rep,name=bbox_labels,json=bboxLabels,proto3" json:"bbox_labels,omitempty"`
+	// bbox_labels are used to match documents with the specified bounding box labels (using logical OR)
+	BboxLabels []string `protobuf:"bytes,15,rep,name=bbox_labels,json=bboxLabels,proto3" json:"bbox_labels,omitempty"`
 }
 
 func (x *Filter) Reset() {
@@ -342,13 +355,14 @@ func (x *Filter) GetBboxLabels() []string {
 	return nil
 }
 
+// TagsFilter defines the type of filtering and, if applicable, over which tags to perform a logical OR.
 type TagsFilter struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	Type TagsFilterType `protobuf:"varint,1,opt,name=type,proto3,enum=viam.app.data.v1.TagsFilterType" json:"type,omitempty"`
-	// Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_ORG
+	// Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_OR
 	Tags []string `protobuf:"bytes,2,rep,name=tags,proto3" json:"tags,omitempty"`
 }
 
