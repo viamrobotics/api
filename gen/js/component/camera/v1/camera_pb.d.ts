@@ -56,6 +56,84 @@ export namespace GetImageResponse {
   }
 }
 
+export class GetImagesRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetImagesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetImagesRequest): GetImagesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetImagesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetImagesRequest;
+  static deserializeBinaryFromReader(message: GetImagesRequest, reader: jspb.BinaryReader): GetImagesRequest;
+}
+
+export namespace GetImagesRequest {
+  export type AsObject = {
+    name: string,
+  }
+}
+
+export class GetImagesResponse extends jspb.Message {
+  clearImagesList(): void;
+  getImagesList(): Array<Image>;
+  setImagesList(value: Array<Image>): void;
+  addImages(value?: Image, index?: number): Image;
+
+  hasResponseMetadata(): boolean;
+  clearResponseMetadata(): void;
+  getResponseMetadata(): common_v1_common_pb.ResponseMetadata | undefined;
+  setResponseMetadata(value?: common_v1_common_pb.ResponseMetadata): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetImagesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetImagesResponse): GetImagesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetImagesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetImagesResponse;
+  static deserializeBinaryFromReader(message: GetImagesResponse, reader: jspb.BinaryReader): GetImagesResponse;
+}
+
+export namespace GetImagesResponse {
+  export type AsObject = {
+    imagesList: Array<Image.AsObject>,
+    responseMetadata?: common_v1_common_pb.ResponseMetadata.AsObject,
+  }
+}
+
+export class Image extends jspb.Message {
+  getSourceName(): string;
+  setSourceName(value: string): void;
+
+  getFormat(): FormatMap[keyof FormatMap];
+  setFormat(value: FormatMap[keyof FormatMap]): void;
+
+  getImage(): Uint8Array | string;
+  getImage_asU8(): Uint8Array;
+  getImage_asB64(): string;
+  setImage(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Image.AsObject;
+  static toObject(includeInstance: boolean, msg: Image): Image.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Image, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Image;
+  static deserializeBinaryFromReader(message: Image, reader: jspb.BinaryReader): Image;
+}
+
+export namespace Image {
+  export type AsObject = {
+    sourceName: string,
+    format: FormatMap[keyof FormatMap],
+    image: Uint8Array | string,
+  }
+}
+
 export class RenderFrameRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
@@ -339,4 +417,14 @@ export namespace DistortionParameters {
     parametersList: Array<number>,
   }
 }
+
+export interface FormatMap {
+  FORMAT_UNSPECIFIED: 0;
+  FORMAT_RAW_RGBA: 1;
+  FORMAT_RAW_DEPTH: 2;
+  FORMAT_JPEG: 3;
+  FORMAT_PNG: 4;
+}
+
+export const Format: FormatMap;
 
