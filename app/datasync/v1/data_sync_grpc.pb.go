@@ -24,6 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type DataSyncServiceClient interface {
 	DataCaptureUpload(ctx context.Context, in *DataCaptureUploadRequest, opts ...grpc.CallOption) (*DataCaptureUploadResponse, error)
 	FileUpload(ctx context.Context, opts ...grpc.CallOption) (DataSyncService_FileUploadClient, error)
+	StreamingDataCaptureUpload(ctx context.Context, opts ...grpc.CallOption) (DataSyncService_StreamingDataCaptureUploadClient, error)
 }
 
 type dataSyncServiceClient struct {
@@ -77,12 +78,47 @@ func (x *dataSyncServiceFileUploadClient) CloseAndRecv() (*FileUploadResponse, e
 	return m, nil
 }
 
+func (c *dataSyncServiceClient) StreamingDataCaptureUpload(ctx context.Context, opts ...grpc.CallOption) (DataSyncService_StreamingDataCaptureUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &DataSyncService_ServiceDesc.Streams[1], "/viam.app.datasync.v1.DataSyncService/StreamingDataCaptureUpload", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &dataSyncServiceStreamingDataCaptureUploadClient{stream}
+	return x, nil
+}
+
+type DataSyncService_StreamingDataCaptureUploadClient interface {
+	Send(*StreamingDataCaptureUploadRequest) error
+	CloseAndRecv() (*StreamingDataCaptureUploadResponse, error)
+	grpc.ClientStream
+}
+
+type dataSyncServiceStreamingDataCaptureUploadClient struct {
+	grpc.ClientStream
+}
+
+func (x *dataSyncServiceStreamingDataCaptureUploadClient) Send(m *StreamingDataCaptureUploadRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *dataSyncServiceStreamingDataCaptureUploadClient) CloseAndRecv() (*StreamingDataCaptureUploadResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(StreamingDataCaptureUploadResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // DataSyncServiceServer is the server API for DataSyncService service.
 // All implementations must embed UnimplementedDataSyncServiceServer
 // for forward compatibility
 type DataSyncServiceServer interface {
 	DataCaptureUpload(context.Context, *DataCaptureUploadRequest) (*DataCaptureUploadResponse, error)
 	FileUpload(DataSyncService_FileUploadServer) error
+	StreamingDataCaptureUpload(DataSyncService_StreamingDataCaptureUploadServer) error
 	mustEmbedUnimplementedDataSyncServiceServer()
 }
 
@@ -95,6 +131,9 @@ func (UnimplementedDataSyncServiceServer) DataCaptureUpload(context.Context, *Da
 }
 func (UnimplementedDataSyncServiceServer) FileUpload(DataSyncService_FileUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method FileUpload not implemented")
+}
+func (UnimplementedDataSyncServiceServer) StreamingDataCaptureUpload(DataSyncService_StreamingDataCaptureUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamingDataCaptureUpload not implemented")
 }
 func (UnimplementedDataSyncServiceServer) mustEmbedUnimplementedDataSyncServiceServer() {}
 
@@ -153,6 +192,32 @@ func (x *dataSyncServiceFileUploadServer) Recv() (*FileUploadRequest, error) {
 	return m, nil
 }
 
+func _DataSyncService_StreamingDataCaptureUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(DataSyncServiceServer).StreamingDataCaptureUpload(&dataSyncServiceStreamingDataCaptureUploadServer{stream})
+}
+
+type DataSyncService_StreamingDataCaptureUploadServer interface {
+	SendAndClose(*StreamingDataCaptureUploadResponse) error
+	Recv() (*StreamingDataCaptureUploadRequest, error)
+	grpc.ServerStream
+}
+
+type dataSyncServiceStreamingDataCaptureUploadServer struct {
+	grpc.ServerStream
+}
+
+func (x *dataSyncServiceStreamingDataCaptureUploadServer) SendAndClose(m *StreamingDataCaptureUploadResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *dataSyncServiceStreamingDataCaptureUploadServer) Recv() (*StreamingDataCaptureUploadRequest, error) {
+	m := new(StreamingDataCaptureUploadRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // DataSyncService_ServiceDesc is the grpc.ServiceDesc for DataSyncService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -169,6 +234,11 @@ var DataSyncService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "FileUpload",
 			Handler:       _DataSyncService_FileUpload_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "StreamingDataCaptureUpload",
+			Handler:       _DataSyncService_StreamingDataCaptureUpload_Handler,
 			ClientStreams: true,
 		},
 	},

@@ -102,6 +102,70 @@ export namespace FileUploadResponse {
   }
 }
 
+export class StreamingDataCaptureUploadRequest extends jspb.Message {
+  hasUploadMetadata(): boolean;
+  clearUploadMetadata(): void;
+  getUploadMetadata(): UploadMetadata | undefined;
+  setUploadMetadata(value?: UploadMetadata): void;
+
+  hasReadingMetadata(): boolean;
+  clearReadingMetadata(): void;
+  getReadingMetadata(): SensorMetadata | undefined;
+  setReadingMetadata(value?: SensorMetadata): void;
+
+  hasData(): boolean;
+  clearData(): void;
+  getData(): Uint8Array | string;
+  getData_asU8(): Uint8Array;
+  getData_asB64(): string;
+  setData(value: Uint8Array | string): void;
+
+  getUploadPacketCase(): StreamingDataCaptureUploadRequest.UploadPacketCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StreamingDataCaptureUploadRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: StreamingDataCaptureUploadRequest): StreamingDataCaptureUploadRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StreamingDataCaptureUploadRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StreamingDataCaptureUploadRequest;
+  static deserializeBinaryFromReader(message: StreamingDataCaptureUploadRequest, reader: jspb.BinaryReader): StreamingDataCaptureUploadRequest;
+}
+
+export namespace StreamingDataCaptureUploadRequest {
+  export type AsObject = {
+    uploadMetadata?: UploadMetadata.AsObject,
+    readingMetadata?: SensorMetadata.AsObject,
+    data: Uint8Array | string,
+  }
+
+  export enum UploadPacketCase {
+    UPLOAD_PACKET_NOT_SET = 0,
+    UPLOAD_METADATA = 1,
+    READING_METADATA = 2,
+    DATA = 3,
+  }
+}
+
+export class StreamingDataCaptureUploadResponse extends jspb.Message {
+  getFileId(): string;
+  setFileId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StreamingDataCaptureUploadResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: StreamingDataCaptureUploadResponse): StreamingDataCaptureUploadResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StreamingDataCaptureUploadResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StreamingDataCaptureUploadResponse;
+  static deserializeBinaryFromReader(message: StreamingDataCaptureUploadResponse, reader: jspb.BinaryReader): StreamingDataCaptureUploadResponse;
+}
+
+export namespace StreamingDataCaptureUploadResponse {
+  export type AsObject = {
+    fileId: string,
+  }
+}
+
 export class SensorMetadata extends jspb.Message {
   hasTimeRequested(): boolean;
   clearTimeRequested(): void;

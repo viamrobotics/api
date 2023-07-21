@@ -109,6 +109,50 @@ func request_DataSyncService_FileUpload_0(ctx context.Context, marshaler runtime
 
 }
 
+func request_DataSyncService_StreamingDataCaptureUpload_0(ctx context.Context, marshaler runtime.Marshaler, client DataSyncServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var metadata runtime.ServerMetadata
+	stream, err := client.StreamingDataCaptureUpload(ctx)
+	if err != nil {
+		grpclog.Infof("Failed to start streaming: %v", err)
+		return nil, metadata, err
+	}
+	dec := marshaler.NewDecoder(req.Body)
+	for {
+		var protoReq StreamingDataCaptureUploadRequest
+		err = dec.Decode(&protoReq)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			grpclog.Infof("Failed to decode request: %v", err)
+			return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+		}
+		if err = stream.Send(&protoReq); err != nil {
+			if err == io.EOF {
+				break
+			}
+			grpclog.Infof("Failed to send request: %v", err)
+			return nil, metadata, err
+		}
+	}
+
+	if err := stream.CloseSend(); err != nil {
+		grpclog.Infof("Failed to terminate client stream: %v", err)
+		return nil, metadata, err
+	}
+	header, err := stream.Header()
+	if err != nil {
+		grpclog.Infof("Failed to get header from client: %v", err)
+		return nil, metadata, err
+	}
+	metadata.HeaderMD = header
+
+	msg, err := stream.CloseAndRecv()
+	metadata.TrailerMD = stream.Trailer()
+	return msg, metadata, err
+
+}
+
 // RegisterDataSyncServiceHandlerServer registers the http handlers for service DataSyncService to "mux".
 // UnaryRPC     :call DataSyncServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -141,6 +185,13 @@ func RegisterDataSyncServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 	})
 
 	mux.Handle("POST", pattern_DataSyncService_FileUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
+		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+		return
+	})
+
+	mux.Handle("POST", pattern_DataSyncService_StreamingDataCaptureUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -232,6 +283,28 @@ func RegisterDataSyncServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
+	mux.Handle("POST", pattern_DataSyncService_StreamingDataCaptureUpload_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.datasync.v1.DataSyncService/StreamingDataCaptureUpload", runtime.WithHTTPPathPattern("/viam.app.datasync.v1.DataSyncService/StreamingDataCaptureUpload"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_DataSyncService_StreamingDataCaptureUpload_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_DataSyncService_StreamingDataCaptureUpload_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -239,10 +312,14 @@ var (
 	pattern_DataSyncService_DataCaptureUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.datasync.v1.DataSyncService", "DataCaptureUpload"}, ""))
 
 	pattern_DataSyncService_FileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.datasync.v1.DataSyncService", "FileUpload"}, ""))
+
+	pattern_DataSyncService_StreamingDataCaptureUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.datasync.v1.DataSyncService", "StreamingDataCaptureUpload"}, ""))
 )
 
 var (
 	forward_DataSyncService_DataCaptureUpload_0 = runtime.ForwardResponseMessage
 
 	forward_DataSyncService_FileUpload_0 = runtime.ForwardResponseMessage
+
+	forward_DataSyncService_StreamingDataCaptureUpload_0 = runtime.ForwardResponseMessage
 )

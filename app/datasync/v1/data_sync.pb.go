@@ -288,6 +288,150 @@ func (*FileUploadResponse) Descriptor() ([]byte, []int) {
 	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{3}
 }
 
+type StreamingDataCaptureUploadRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Types that are assignable to UploadPacket:
+	//
+	//	*StreamingDataCaptureUploadRequest_UploadMetadata
+	//	*StreamingDataCaptureUploadRequest_ReadingMetadata
+	//	*StreamingDataCaptureUploadRequest_Data
+	UploadPacket isStreamingDataCaptureUploadRequest_UploadPacket `protobuf_oneof:"upload_packet"`
+}
+
+func (x *StreamingDataCaptureUploadRequest) Reset() {
+	*x = StreamingDataCaptureUploadRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *StreamingDataCaptureUploadRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StreamingDataCaptureUploadRequest) ProtoMessage() {}
+
+func (x *StreamingDataCaptureUploadRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StreamingDataCaptureUploadRequest.ProtoReflect.Descriptor instead.
+func (*StreamingDataCaptureUploadRequest) Descriptor() ([]byte, []int) {
+	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{4}
+}
+
+func (m *StreamingDataCaptureUploadRequest) GetUploadPacket() isStreamingDataCaptureUploadRequest_UploadPacket {
+	if m != nil {
+		return m.UploadPacket
+	}
+	return nil
+}
+
+func (x *StreamingDataCaptureUploadRequest) GetUploadMetadata() *UploadMetadata {
+	if x, ok := x.GetUploadPacket().(*StreamingDataCaptureUploadRequest_UploadMetadata); ok {
+		return x.UploadMetadata
+	}
+	return nil
+}
+
+func (x *StreamingDataCaptureUploadRequest) GetReadingMetadata() *SensorMetadata {
+	if x, ok := x.GetUploadPacket().(*StreamingDataCaptureUploadRequest_ReadingMetadata); ok {
+		return x.ReadingMetadata
+	}
+	return nil
+}
+
+func (x *StreamingDataCaptureUploadRequest) GetData() []byte {
+	if x, ok := x.GetUploadPacket().(*StreamingDataCaptureUploadRequest_Data); ok {
+		return x.Data
+	}
+	return nil
+}
+
+type isStreamingDataCaptureUploadRequest_UploadPacket interface {
+	isStreamingDataCaptureUploadRequest_UploadPacket()
+}
+
+type StreamingDataCaptureUploadRequest_UploadMetadata struct {
+	UploadMetadata *UploadMetadata `protobuf:"bytes,1,opt,name=upload_metadata,json=uploadMetadata,proto3,oneof"`
+}
+
+type StreamingDataCaptureUploadRequest_ReadingMetadata struct {
+	ReadingMetadata *SensorMetadata `protobuf:"bytes,2,opt,name=reading_metadata,json=readingMetadata,proto3,oneof"`
+}
+
+type StreamingDataCaptureUploadRequest_Data struct {
+	Data []byte `protobuf:"bytes,3,opt,name=data,proto3,oneof"`
+}
+
+func (*StreamingDataCaptureUploadRequest_UploadMetadata) isStreamingDataCaptureUploadRequest_UploadPacket() {
+}
+
+func (*StreamingDataCaptureUploadRequest_ReadingMetadata) isStreamingDataCaptureUploadRequest_UploadPacket() {
+}
+
+func (*StreamingDataCaptureUploadRequest_Data) isStreamingDataCaptureUploadRequest_UploadPacket() {}
+
+type StreamingDataCaptureUploadResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FileId string `protobuf:"bytes,1,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
+}
+
+func (x *StreamingDataCaptureUploadResponse) Reset() {
+	*x = StreamingDataCaptureUploadResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *StreamingDataCaptureUploadResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StreamingDataCaptureUploadResponse) ProtoMessage() {}
+
+func (x *StreamingDataCaptureUploadResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StreamingDataCaptureUploadResponse.ProtoReflect.Descriptor instead.
+func (*StreamingDataCaptureUploadResponse) Descriptor() ([]byte, []int) {
+	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *StreamingDataCaptureUploadResponse) GetFileId() string {
+	if x != nil {
+		return x.FileId
+	}
+	return ""
+}
+
 type SensorMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -300,7 +444,7 @@ type SensorMetadata struct {
 func (x *SensorMetadata) Reset() {
 	*x = SensorMetadata{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[4]
+		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -313,7 +457,7 @@ func (x *SensorMetadata) String() string {
 func (*SensorMetadata) ProtoMessage() {}
 
 func (x *SensorMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[4]
+	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -326,7 +470,7 @@ func (x *SensorMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SensorMetadata.ProtoReflect.Descriptor instead.
 func (*SensorMetadata) Descriptor() ([]byte, []int) {
-	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{4}
+	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *SensorMetadata) GetTimeRequested() *timestamppb.Timestamp {
@@ -343,6 +487,9 @@ func (x *SensorMetadata) GetTimeReceived() *timestamppb.Timestamp {
 	return nil
 }
 
+// TODO: For streaming, we don't want one metadata per data - it's 1:N
+//
+//	So should this somehow be moved up a layer?
 type SensorData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -359,7 +506,7 @@ type SensorData struct {
 func (x *SensorData) Reset() {
 	*x = SensorData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[5]
+		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -372,7 +519,7 @@ func (x *SensorData) String() string {
 func (*SensorData) ProtoMessage() {}
 
 func (x *SensorData) ProtoReflect() protoreflect.Message {
-	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[5]
+	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -385,7 +532,7 @@ func (x *SensorData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SensorData.ProtoReflect.Descriptor instead.
 func (*SensorData) Descriptor() ([]byte, []int) {
-	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{5}
+	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *SensorData) GetMetadata() *SensorMetadata {
@@ -443,7 +590,7 @@ type FileData struct {
 func (x *FileData) Reset() {
 	*x = FileData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[6]
+		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -456,7 +603,7 @@ func (x *FileData) String() string {
 func (*FileData) ProtoMessage() {}
 
 func (x *FileData) ProtoReflect() protoreflect.Message {
-	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[6]
+	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -469,7 +616,7 @@ func (x *FileData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FileData.ProtoReflect.Descriptor instead.
 func (*FileData) Descriptor() ([]byte, []int) {
-	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{6}
+	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *FileData) GetData() []byte {
@@ -500,7 +647,7 @@ type UploadMetadata struct {
 func (x *UploadMetadata) Reset() {
 	*x = UploadMetadata{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[7]
+		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -513,7 +660,7 @@ func (x *UploadMetadata) String() string {
 func (*UploadMetadata) ProtoMessage() {}
 
 func (x *UploadMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[7]
+	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -526,7 +673,7 @@ func (x *UploadMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadMetadata.ProtoReflect.Descriptor instead.
 func (*UploadMetadata) Descriptor() ([]byte, []int) {
-	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{7}
+	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *UploadMetadata) GetPartId() string {
@@ -618,7 +765,7 @@ type CaptureInterval struct {
 func (x *CaptureInterval) Reset() {
 	*x = CaptureInterval{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[8]
+		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -631,7 +778,7 @@ func (x *CaptureInterval) String() string {
 func (*CaptureInterval) ProtoMessage() {}
 
 func (x *CaptureInterval) ProtoReflect() protoreflect.Message {
-	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[8]
+	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -644,7 +791,7 @@ func (x *CaptureInterval) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CaptureInterval.ProtoReflect.Descriptor instead.
 func (*CaptureInterval) Descriptor() ([]byte, []int) {
-	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{8}
+	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CaptureInterval) GetStart() *timestamppb.Timestamp {
@@ -680,7 +827,7 @@ type DataCaptureMetadata struct {
 func (x *DataCaptureMetadata) Reset() {
 	*x = DataCaptureMetadata{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[9]
+		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -693,7 +840,7 @@ func (x *DataCaptureMetadata) String() string {
 func (*DataCaptureMetadata) ProtoMessage() {}
 
 func (x *DataCaptureMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[9]
+	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -706,7 +853,7 @@ func (x *DataCaptureMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataCaptureMetadata.ProtoReflect.Descriptor instead.
 func (*DataCaptureMetadata) Descriptor() ([]byte, []int) {
-	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{9}
+	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *DataCaptureMetadata) GetComponentType() string {
@@ -801,7 +948,7 @@ type TabularCapture struct {
 func (x *TabularCapture) Reset() {
 	*x = TabularCapture{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[10]
+		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -814,7 +961,7 @@ func (x *TabularCapture) String() string {
 func (*TabularCapture) ProtoMessage() {}
 
 func (x *TabularCapture) ProtoReflect() protoreflect.Message {
-	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[10]
+	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -827,7 +974,7 @@ func (x *TabularCapture) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TabularCapture.ProtoReflect.Descriptor instead.
 func (*TabularCapture) Descriptor() ([]byte, []int) {
-	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{10}
+	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *TabularCapture) GetInterval() *CaptureInterval {
@@ -992,7 +1139,7 @@ type BinaryCapture struct {
 func (x *BinaryCapture) Reset() {
 	*x = BinaryCapture{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[11]
+		mi := &file_app_datasync_v1_data_sync_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1005,7 +1152,7 @@ func (x *BinaryCapture) String() string {
 func (*BinaryCapture) ProtoMessage() {}
 
 func (x *BinaryCapture) ProtoReflect() protoreflect.Message {
-	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[11]
+	mi := &file_app_datasync_v1_data_sync_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1018,7 +1165,7 @@ func (x *BinaryCapture) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BinaryCapture.ProtoReflect.Descriptor instead.
 func (*BinaryCapture) Descriptor() ([]byte, []int) {
-	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{11}
+	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *BinaryCapture) GetInterval() *CaptureInterval {
@@ -1192,7 +1339,26 @@ var file_app_datasync_v1_data_sync_proto_rawDesc = []byte{
 	0x61, 0x48, 0x00, 0x52, 0x0c, 0x66, 0x69, 0x6c, 0x65, 0x43, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74,
 	0x73, 0x42, 0x0f, 0x0a, 0x0d, 0x75, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x5f, 0x70, 0x61, 0x63, 0x6b,
 	0x65, 0x74, 0x22, 0x14, 0x0a, 0x12, 0x46, 0x69, 0x6c, 0x65, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x94, 0x01, 0x0a, 0x0e, 0x53, 0x65, 0x6e,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xee, 0x01, 0x0a, 0x21, 0x53, 0x74, 0x72,
+	0x65, 0x61, 0x6d, 0x69, 0x6e, 0x67, 0x44, 0x61, 0x74, 0x61, 0x43, 0x61, 0x70, 0x74, 0x75, 0x72,
+	0x65, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x4f,
+	0x0a, 0x0f, 0x75, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
+	0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x73, 0x79, 0x6e, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x55,
+	0x70, 0x6c, 0x6f, 0x61, 0x64, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x48, 0x00, 0x52,
+	0x0e, 0x75, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12,
+	0x51, 0x0a, 0x10, 0x72, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x64,
+	0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x73, 0x79, 0x6e, 0x63, 0x2e, 0x76, 0x31,
+	0x2e, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x48,
+	0x00, 0x52, 0x0f, 0x72, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
+	0x74, 0x61, 0x12, 0x14, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0c,
+	0x48, 0x00, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x42, 0x0f, 0x0a, 0x0d, 0x75, 0x70, 0x6c, 0x6f,
+	0x61, 0x64, 0x5f, 0x70, 0x61, 0x63, 0x6b, 0x65, 0x74, 0x22, 0x3d, 0x0a, 0x22, 0x53, 0x74, 0x72,
+	0x65, 0x61, 0x6d, 0x69, 0x6e, 0x67, 0x44, 0x61, 0x74, 0x61, 0x43, 0x61, 0x70, 0x74, 0x75, 0x72,
+	0x65, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x17, 0x0a, 0x07, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x66, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x22, 0x94, 0x01, 0x0a, 0x0e, 0x53, 0x65, 0x6e,
 	0x73, 0x6f, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x41, 0x0a, 0x0e, 0x74,
 	0x69, 0x6d, 0x65, 0x5f, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x65, 0x64, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
@@ -1496,7 +1662,7 @@ var file_app_datasync_v1_data_sync_proto_rawDesc = []byte{
 	0x53, 0x45, 0x4e, 0x53, 0x4f, 0x52, 0x10, 0x01, 0x12, 0x1c, 0x0a, 0x18, 0x44, 0x41, 0x54, 0x41,
 	0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x54, 0x41, 0x42, 0x55, 0x4c, 0x41, 0x52, 0x5f, 0x53, 0x45,
 	0x4e, 0x53, 0x4f, 0x52, 0x10, 0x02, 0x12, 0x12, 0x0a, 0x0e, 0x44, 0x41, 0x54, 0x41, 0x5f, 0x54,
-	0x59, 0x50, 0x45, 0x5f, 0x46, 0x49, 0x4c, 0x45, 0x10, 0x03, 0x32, 0xea, 0x01, 0x0a, 0x0f, 0x44,
+	0x59, 0x50, 0x45, 0x5f, 0x46, 0x49, 0x4c, 0x45, 0x10, 0x03, 0x32, 0xfe, 0x02, 0x0a, 0x0f, 0x44,
 	0x61, 0x74, 0x61, 0x53, 0x79, 0x6e, 0x63, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x74,
 	0x0a, 0x11, 0x44, 0x61, 0x74, 0x61, 0x43, 0x61, 0x70, 0x74, 0x75, 0x72, 0x65, 0x55, 0x70, 0x6c,
 	0x6f, 0x61, 0x64, 0x12, 0x2e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64,
@@ -1511,10 +1677,19 @@ var file_app_datasync_v1_data_sync_proto_rawDesc = []byte{
 	0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x76, 0x69,
 	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x73, 0x79, 0x6e, 0x63, 0x2e,
 	0x76, 0x31, 0x2e, 0x46, 0x69, 0x6c, 0x65, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x28, 0x01, 0x42, 0x21, 0x5a, 0x1f, 0x67, 0x6f, 0x2e, 0x76, 0x69,
-	0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x64,
-	0x61, 0x74, 0x61, 0x73, 0x79, 0x6e, 0x63, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x28, 0x01, 0x12, 0x91, 0x01, 0x0a, 0x1a, 0x53, 0x74, 0x72, 0x65,
+	0x61, 0x6d, 0x69, 0x6e, 0x67, 0x44, 0x61, 0x74, 0x61, 0x43, 0x61, 0x70, 0x74, 0x75, 0x72, 0x65,
+	0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x12, 0x37, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
+	0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x73, 0x79, 0x6e, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x74,
+	0x72, 0x65, 0x61, 0x6d, 0x69, 0x6e, 0x67, 0x44, 0x61, 0x74, 0x61, 0x43, 0x61, 0x70, 0x74, 0x75,
+	0x72, 0x65, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x38, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x73,
+	0x79, 0x6e, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x69, 0x6e, 0x67,
+	0x44, 0x61, 0x74, 0x61, 0x43, 0x61, 0x70, 0x74, 0x75, 0x72, 0x65, 0x55, 0x70, 0x6c, 0x6f, 0x61,
+	0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x28, 0x01, 0x42, 0x21, 0x5a, 0x1f, 0x67,
+	0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61,
+	0x70, 0x70, 0x2f, 0x64, 0x61, 0x74, 0x61, 0x73, 0x79, 0x6e, 0x63, 0x2f, 0x76, 0x31, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1530,61 +1705,67 @@ func file_app_datasync_v1_data_sync_proto_rawDescGZIP() []byte {
 }
 
 var file_app_datasync_v1_data_sync_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_app_datasync_v1_data_sync_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_app_datasync_v1_data_sync_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_app_datasync_v1_data_sync_proto_goTypes = []interface{}{
-	(DataType)(0),                     // 0: viam.app.datasync.v1.DataType
-	(*DataCaptureUploadRequest)(nil),  // 1: viam.app.datasync.v1.DataCaptureUploadRequest
-	(*DataCaptureUploadResponse)(nil), // 2: viam.app.datasync.v1.DataCaptureUploadResponse
-	(*FileUploadRequest)(nil),         // 3: viam.app.datasync.v1.FileUploadRequest
-	(*FileUploadResponse)(nil),        // 4: viam.app.datasync.v1.FileUploadResponse
-	(*SensorMetadata)(nil),            // 5: viam.app.datasync.v1.SensorMetadata
-	(*SensorData)(nil),                // 6: viam.app.datasync.v1.SensorData
-	(*FileData)(nil),                  // 7: viam.app.datasync.v1.FileData
-	(*UploadMetadata)(nil),            // 8: viam.app.datasync.v1.UploadMetadata
-	(*CaptureInterval)(nil),           // 9: viam.app.datasync.v1.CaptureInterval
-	(*DataCaptureMetadata)(nil),       // 10: viam.app.datasync.v1.DataCaptureMetadata
-	(*TabularCapture)(nil),            // 11: viam.app.datasync.v1.TabularCapture
-	(*BinaryCapture)(nil),             // 12: viam.app.datasync.v1.BinaryCapture
-	nil,                               // 13: viam.app.datasync.v1.UploadMetadata.MethodParametersEntry
-	nil,                               // 14: viam.app.datasync.v1.DataCaptureMetadata.MethodParametersEntry
-	nil,                               // 15: viam.app.datasync.v1.TabularCapture.MethodParametersEntry
-	nil,                               // 16: viam.app.datasync.v1.BinaryCapture.MethodParametersEntry
-	(*timestamppb.Timestamp)(nil),     // 17: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),           // 18: google.protobuf.Struct
-	(*anypb.Any)(nil),                 // 19: google.protobuf.Any
+	(DataType)(0),                              // 0: viam.app.datasync.v1.DataType
+	(*DataCaptureUploadRequest)(nil),           // 1: viam.app.datasync.v1.DataCaptureUploadRequest
+	(*DataCaptureUploadResponse)(nil),          // 2: viam.app.datasync.v1.DataCaptureUploadResponse
+	(*FileUploadRequest)(nil),                  // 3: viam.app.datasync.v1.FileUploadRequest
+	(*FileUploadResponse)(nil),                 // 4: viam.app.datasync.v1.FileUploadResponse
+	(*StreamingDataCaptureUploadRequest)(nil),  // 5: viam.app.datasync.v1.StreamingDataCaptureUploadRequest
+	(*StreamingDataCaptureUploadResponse)(nil), // 6: viam.app.datasync.v1.StreamingDataCaptureUploadResponse
+	(*SensorMetadata)(nil),                     // 7: viam.app.datasync.v1.SensorMetadata
+	(*SensorData)(nil),                         // 8: viam.app.datasync.v1.SensorData
+	(*FileData)(nil),                           // 9: viam.app.datasync.v1.FileData
+	(*UploadMetadata)(nil),                     // 10: viam.app.datasync.v1.UploadMetadata
+	(*CaptureInterval)(nil),                    // 11: viam.app.datasync.v1.CaptureInterval
+	(*DataCaptureMetadata)(nil),                // 12: viam.app.datasync.v1.DataCaptureMetadata
+	(*TabularCapture)(nil),                     // 13: viam.app.datasync.v1.TabularCapture
+	(*BinaryCapture)(nil),                      // 14: viam.app.datasync.v1.BinaryCapture
+	nil,                                        // 15: viam.app.datasync.v1.UploadMetadata.MethodParametersEntry
+	nil,                                        // 16: viam.app.datasync.v1.DataCaptureMetadata.MethodParametersEntry
+	nil,                                        // 17: viam.app.datasync.v1.TabularCapture.MethodParametersEntry
+	nil,                                        // 18: viam.app.datasync.v1.BinaryCapture.MethodParametersEntry
+	(*timestamppb.Timestamp)(nil),              // 19: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                    // 20: google.protobuf.Struct
+	(*anypb.Any)(nil),                          // 21: google.protobuf.Any
 }
 var file_app_datasync_v1_data_sync_proto_depIdxs = []int32{
-	8,  // 0: viam.app.datasync.v1.DataCaptureUploadRequest.metadata:type_name -> viam.app.datasync.v1.UploadMetadata
-	6,  // 1: viam.app.datasync.v1.DataCaptureUploadRequest.sensor_contents:type_name -> viam.app.datasync.v1.SensorData
-	8,  // 2: viam.app.datasync.v1.FileUploadRequest.metadata:type_name -> viam.app.datasync.v1.UploadMetadata
-	7,  // 3: viam.app.datasync.v1.FileUploadRequest.file_contents:type_name -> viam.app.datasync.v1.FileData
-	17, // 4: viam.app.datasync.v1.SensorMetadata.time_requested:type_name -> google.protobuf.Timestamp
-	17, // 5: viam.app.datasync.v1.SensorMetadata.time_received:type_name -> google.protobuf.Timestamp
-	5,  // 6: viam.app.datasync.v1.SensorData.metadata:type_name -> viam.app.datasync.v1.SensorMetadata
-	18, // 7: viam.app.datasync.v1.SensorData.struct:type_name -> google.protobuf.Struct
-	0,  // 8: viam.app.datasync.v1.UploadMetadata.type:type_name -> viam.app.datasync.v1.DataType
-	13, // 9: viam.app.datasync.v1.UploadMetadata.method_parameters:type_name -> viam.app.datasync.v1.UploadMetadata.MethodParametersEntry
-	17, // 10: viam.app.datasync.v1.CaptureInterval.start:type_name -> google.protobuf.Timestamp
-	17, // 11: viam.app.datasync.v1.CaptureInterval.end:type_name -> google.protobuf.Timestamp
-	0,  // 12: viam.app.datasync.v1.DataCaptureMetadata.type:type_name -> viam.app.datasync.v1.DataType
-	14, // 13: viam.app.datasync.v1.DataCaptureMetadata.method_parameters:type_name -> viam.app.datasync.v1.DataCaptureMetadata.MethodParametersEntry
-	9,  // 14: viam.app.datasync.v1.TabularCapture.interval:type_name -> viam.app.datasync.v1.CaptureInterval
-	15, // 15: viam.app.datasync.v1.TabularCapture.method_parameters:type_name -> viam.app.datasync.v1.TabularCapture.MethodParametersEntry
-	9,  // 16: viam.app.datasync.v1.BinaryCapture.interval:type_name -> viam.app.datasync.v1.CaptureInterval
-	16, // 17: viam.app.datasync.v1.BinaryCapture.method_parameters:type_name -> viam.app.datasync.v1.BinaryCapture.MethodParametersEntry
-	19, // 18: viam.app.datasync.v1.UploadMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
-	19, // 19: viam.app.datasync.v1.DataCaptureMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
-	19, // 20: viam.app.datasync.v1.TabularCapture.MethodParametersEntry.value:type_name -> google.protobuf.Any
-	19, // 21: viam.app.datasync.v1.BinaryCapture.MethodParametersEntry.value:type_name -> google.protobuf.Any
-	1,  // 22: viam.app.datasync.v1.DataSyncService.DataCaptureUpload:input_type -> viam.app.datasync.v1.DataCaptureUploadRequest
-	3,  // 23: viam.app.datasync.v1.DataSyncService.FileUpload:input_type -> viam.app.datasync.v1.FileUploadRequest
-	2,  // 24: viam.app.datasync.v1.DataSyncService.DataCaptureUpload:output_type -> viam.app.datasync.v1.DataCaptureUploadResponse
-	4,  // 25: viam.app.datasync.v1.DataSyncService.FileUpload:output_type -> viam.app.datasync.v1.FileUploadResponse
-	24, // [24:26] is the sub-list for method output_type
-	22, // [22:24] is the sub-list for method input_type
-	22, // [22:22] is the sub-list for extension type_name
-	22, // [22:22] is the sub-list for extension extendee
-	0,  // [0:22] is the sub-list for field type_name
+	10, // 0: viam.app.datasync.v1.DataCaptureUploadRequest.metadata:type_name -> viam.app.datasync.v1.UploadMetadata
+	8,  // 1: viam.app.datasync.v1.DataCaptureUploadRequest.sensor_contents:type_name -> viam.app.datasync.v1.SensorData
+	10, // 2: viam.app.datasync.v1.FileUploadRequest.metadata:type_name -> viam.app.datasync.v1.UploadMetadata
+	9,  // 3: viam.app.datasync.v1.FileUploadRequest.file_contents:type_name -> viam.app.datasync.v1.FileData
+	10, // 4: viam.app.datasync.v1.StreamingDataCaptureUploadRequest.upload_metadata:type_name -> viam.app.datasync.v1.UploadMetadata
+	7,  // 5: viam.app.datasync.v1.StreamingDataCaptureUploadRequest.reading_metadata:type_name -> viam.app.datasync.v1.SensorMetadata
+	19, // 6: viam.app.datasync.v1.SensorMetadata.time_requested:type_name -> google.protobuf.Timestamp
+	19, // 7: viam.app.datasync.v1.SensorMetadata.time_received:type_name -> google.protobuf.Timestamp
+	7,  // 8: viam.app.datasync.v1.SensorData.metadata:type_name -> viam.app.datasync.v1.SensorMetadata
+	20, // 9: viam.app.datasync.v1.SensorData.struct:type_name -> google.protobuf.Struct
+	0,  // 10: viam.app.datasync.v1.UploadMetadata.type:type_name -> viam.app.datasync.v1.DataType
+	15, // 11: viam.app.datasync.v1.UploadMetadata.method_parameters:type_name -> viam.app.datasync.v1.UploadMetadata.MethodParametersEntry
+	19, // 12: viam.app.datasync.v1.CaptureInterval.start:type_name -> google.protobuf.Timestamp
+	19, // 13: viam.app.datasync.v1.CaptureInterval.end:type_name -> google.protobuf.Timestamp
+	0,  // 14: viam.app.datasync.v1.DataCaptureMetadata.type:type_name -> viam.app.datasync.v1.DataType
+	16, // 15: viam.app.datasync.v1.DataCaptureMetadata.method_parameters:type_name -> viam.app.datasync.v1.DataCaptureMetadata.MethodParametersEntry
+	11, // 16: viam.app.datasync.v1.TabularCapture.interval:type_name -> viam.app.datasync.v1.CaptureInterval
+	17, // 17: viam.app.datasync.v1.TabularCapture.method_parameters:type_name -> viam.app.datasync.v1.TabularCapture.MethodParametersEntry
+	11, // 18: viam.app.datasync.v1.BinaryCapture.interval:type_name -> viam.app.datasync.v1.CaptureInterval
+	18, // 19: viam.app.datasync.v1.BinaryCapture.method_parameters:type_name -> viam.app.datasync.v1.BinaryCapture.MethodParametersEntry
+	21, // 20: viam.app.datasync.v1.UploadMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	21, // 21: viam.app.datasync.v1.DataCaptureMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	21, // 22: viam.app.datasync.v1.TabularCapture.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	21, // 23: viam.app.datasync.v1.BinaryCapture.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	1,  // 24: viam.app.datasync.v1.DataSyncService.DataCaptureUpload:input_type -> viam.app.datasync.v1.DataCaptureUploadRequest
+	3,  // 25: viam.app.datasync.v1.DataSyncService.FileUpload:input_type -> viam.app.datasync.v1.FileUploadRequest
+	5,  // 26: viam.app.datasync.v1.DataSyncService.StreamingDataCaptureUpload:input_type -> viam.app.datasync.v1.StreamingDataCaptureUploadRequest
+	2,  // 27: viam.app.datasync.v1.DataSyncService.DataCaptureUpload:output_type -> viam.app.datasync.v1.DataCaptureUploadResponse
+	4,  // 28: viam.app.datasync.v1.DataSyncService.FileUpload:output_type -> viam.app.datasync.v1.FileUploadResponse
+	6,  // 29: viam.app.datasync.v1.DataSyncService.StreamingDataCaptureUpload:output_type -> viam.app.datasync.v1.StreamingDataCaptureUploadResponse
+	27, // [27:30] is the sub-list for method output_type
+	24, // [24:27] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_app_datasync_v1_data_sync_proto_init() }
@@ -1642,7 +1823,7 @@ func file_app_datasync_v1_data_sync_proto_init() {
 			}
 		}
 		file_app_datasync_v1_data_sync_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SensorMetadata); i {
+			switch v := v.(*StreamingDataCaptureUploadRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1654,7 +1835,7 @@ func file_app_datasync_v1_data_sync_proto_init() {
 			}
 		}
 		file_app_datasync_v1_data_sync_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SensorData); i {
+			switch v := v.(*StreamingDataCaptureUploadResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1666,7 +1847,7 @@ func file_app_datasync_v1_data_sync_proto_init() {
 			}
 		}
 		file_app_datasync_v1_data_sync_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FileData); i {
+			switch v := v.(*SensorMetadata); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1678,7 +1859,7 @@ func file_app_datasync_v1_data_sync_proto_init() {
 			}
 		}
 		file_app_datasync_v1_data_sync_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UploadMetadata); i {
+			switch v := v.(*SensorData); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1690,7 +1871,7 @@ func file_app_datasync_v1_data_sync_proto_init() {
 			}
 		}
 		file_app_datasync_v1_data_sync_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CaptureInterval); i {
+			switch v := v.(*FileData); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1702,7 +1883,7 @@ func file_app_datasync_v1_data_sync_proto_init() {
 			}
 		}
 		file_app_datasync_v1_data_sync_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DataCaptureMetadata); i {
+			switch v := v.(*UploadMetadata); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1714,7 +1895,7 @@ func file_app_datasync_v1_data_sync_proto_init() {
 			}
 		}
 		file_app_datasync_v1_data_sync_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TabularCapture); i {
+			switch v := v.(*CaptureInterval); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1726,6 +1907,30 @@ func file_app_datasync_v1_data_sync_proto_init() {
 			}
 		}
 		file_app_datasync_v1_data_sync_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DataCaptureMetadata); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_app_datasync_v1_data_sync_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TabularCapture); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_app_datasync_v1_data_sync_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*BinaryCapture); i {
 			case 0:
 				return &v.state
@@ -1742,7 +1947,12 @@ func file_app_datasync_v1_data_sync_proto_init() {
 		(*FileUploadRequest_Metadata)(nil),
 		(*FileUploadRequest_FileContents)(nil),
 	}
-	file_app_datasync_v1_data_sync_proto_msgTypes[5].OneofWrappers = []interface{}{
+	file_app_datasync_v1_data_sync_proto_msgTypes[4].OneofWrappers = []interface{}{
+		(*StreamingDataCaptureUploadRequest_UploadMetadata)(nil),
+		(*StreamingDataCaptureUploadRequest_ReadingMetadata)(nil),
+		(*StreamingDataCaptureUploadRequest_Data)(nil),
+	}
+	file_app_datasync_v1_data_sync_proto_msgTypes[7].OneofWrappers = []interface{}{
 		(*SensorData_Struct)(nil),
 		(*SensorData_Binary)(nil),
 	}
@@ -1752,7 +1962,7 @@ func file_app_datasync_v1_data_sync_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_app_datasync_v1_data_sync_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   16,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

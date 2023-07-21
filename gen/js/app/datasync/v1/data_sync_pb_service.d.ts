@@ -22,10 +22,20 @@ type DataSyncServiceFileUpload = {
   readonly responseType: typeof app_datasync_v1_data_sync_pb.FileUploadResponse;
 };
 
+type DataSyncServiceStreamingDataCaptureUpload = {
+  readonly methodName: string;
+  readonly service: typeof DataSyncService;
+  readonly requestStream: true;
+  readonly responseStream: false;
+  readonly requestType: typeof app_datasync_v1_data_sync_pb.StreamingDataCaptureUploadRequest;
+  readonly responseType: typeof app_datasync_v1_data_sync_pb.StreamingDataCaptureUploadResponse;
+};
+
 export class DataSyncService {
   static readonly serviceName: string;
   static readonly DataCaptureUpload: DataSyncServiceDataCaptureUpload;
   static readonly FileUpload: DataSyncServiceFileUpload;
+  static readonly StreamingDataCaptureUpload: DataSyncServiceStreamingDataCaptureUpload;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -70,5 +80,6 @@ export class DataSyncServiceClient {
     callback: (error: ServiceError|null, responseMessage: app_datasync_v1_data_sync_pb.DataCaptureUploadResponse|null) => void
   ): UnaryResponse;
   fileUpload(metadata?: grpc.Metadata): RequestStream<app_datasync_v1_data_sync_pb.FileUploadRequest>;
+  streamingDataCaptureUpload(metadata?: grpc.Metadata): RequestStream<app_datasync_v1_data_sync_pb.StreamingDataCaptureUploadRequest>;
 }
 
