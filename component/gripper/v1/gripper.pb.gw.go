@@ -15,7 +15,7 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
-	v1_0 "go.viam.com/api/common/v1"
+	"go.viam.com/api/common/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -299,7 +299,7 @@ var (
 )
 
 func request_GripperService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client GripperServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DoCommandRequest
+	var protoReq v1.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -332,7 +332,7 @@ func request_GripperService_DoCommand_0(ctx context.Context, marshaler runtime.M
 }
 
 func local_request_GripperService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, server GripperServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DoCommandRequest
+	var protoReq v1.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -364,8 +364,12 @@ func local_request_GripperService_DoCommand_0(ctx context.Context, marshaler run
 
 }
 
+var (
+	filter_GripperService_GetGeometries_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+)
+
 func request_GripperService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, client GripperServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetGeometriesRequest
+	var protoReq v1.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -383,6 +387,13 @@ func request_GripperService_GetGeometries_0(ctx context.Context, marshaler runti
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_GripperService_GetGeometries_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := client.GetGeometries(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -391,7 +402,7 @@ func request_GripperService_GetGeometries_0(ctx context.Context, marshaler runti
 }
 
 func local_request_GripperService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, server GripperServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetGeometriesRequest
+	var protoReq v1.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -409,6 +420,13 @@ func local_request_GripperService_GetGeometries_0(ctx context.Context, marshaler
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_GripperService_GetGeometries_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := server.GetGeometries(ctx, &protoReq)

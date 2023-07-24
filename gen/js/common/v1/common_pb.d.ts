@@ -608,6 +608,11 @@ export class GetKinematicsRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetKinematicsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetKinematicsRequest): GetKinematicsRequest.AsObject;
@@ -621,6 +626,7 @@ export class GetKinematicsRequest extends jspb.Message {
 export namespace GetKinematicsRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -654,6 +660,11 @@ export class GetGeometriesRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetGeometriesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetGeometriesRequest): GetGeometriesRequest.AsObject;
@@ -667,6 +678,7 @@ export class GetGeometriesRequest extends jspb.Message {
 export namespace GetGeometriesRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
