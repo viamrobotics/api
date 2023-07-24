@@ -552,6 +552,11 @@ export class GetOrgBillingInformationResponse extends jspb.Message {
   getMethod(): PaymentMethodCard | undefined;
   setMethod(value?: PaymentMethodCard): void;
 
+  hasBillingTier(): boolean;
+  clearBillingTier(): void;
+  getBillingTier(): string;
+  setBillingTier(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetOrgBillingInformationResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetOrgBillingInformationResponse): GetOrgBillingInformationResponse.AsObject;
@@ -567,6 +572,7 @@ export namespace GetOrgBillingInformationResponse {
     type: PaymentMethodTypeMap[keyof PaymentMethodTypeMap],
     billingEmail: string,
     method?: PaymentMethodCard.AsObject,
+    billingTier: string,
   }
 }
 
