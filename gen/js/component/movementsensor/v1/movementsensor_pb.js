@@ -1894,7 +1894,7 @@ proto.viam.component.movementsensor.v1.GetPositionResponse.prototype.toObject = 
 proto.viam.component.movementsensor.v1.GetPositionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     coordinate: (f = msg.getCoordinate()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f),
-    altitudeMm: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+    altitudeM: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -1938,7 +1938,7 @@ proto.viam.component.movementsensor.v1.GetPositionResponse.deserializeBinaryFrom
       break;
     case 2:
       var value = /** @type {number} */ (reader.readFloat());
-      msg.setAltitudeMm(value);
+      msg.setAltitudeM(value);
       break;
     default:
       reader.skipField();
@@ -1977,7 +1977,7 @@ proto.viam.component.movementsensor.v1.GetPositionResponse.serializeBinaryToWrit
       common_v1_common_pb.GeoPoint.serializeBinaryToWriter
     );
   }
-  f = message.getAltitudeMm();
+  f = message.getAltitudeM();
   if (f !== 0.0) {
     writer.writeFloat(
       2,
@@ -2025,10 +2025,10 @@ proto.viam.component.movementsensor.v1.GetPositionResponse.prototype.hasCoordina
 
 
 /**
- * optional float altitude_mm = 2;
+ * optional float altitude_m = 2;
  * @return {number}
  */
-proto.viam.component.movementsensor.v1.GetPositionResponse.prototype.getAltitudeMm = function() {
+proto.viam.component.movementsensor.v1.GetPositionResponse.prototype.getAltitudeM = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 2, 0.0));
 };
 
@@ -2037,7 +2037,7 @@ proto.viam.component.movementsensor.v1.GetPositionResponse.prototype.getAltitude
  * @param {number} value
  * @return {!proto.viam.component.movementsensor.v1.GetPositionResponse} returns this
  */
-proto.viam.component.movementsensor.v1.GetPositionResponse.prototype.setAltitudeMm = function(value) {
+proto.viam.component.movementsensor.v1.GetPositionResponse.prototype.setAltitudeM = function(value) {
   return jspb.Message.setProto3FloatField(this, 2, value);
 };
 
@@ -2716,7 +2716,7 @@ proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.toObject = 
  */
 proto.viam.component.movementsensor.v1.GetAccuracyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    accuracyMmMap: (f = msg.getAccuracyMmMap()) ? f.toObject(includeInstance, undefined) : []
+    accuracyMap: (f = msg.getAccuracyMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -2754,7 +2754,7 @@ proto.viam.component.movementsensor.v1.GetAccuracyResponse.deserializeBinaryFrom
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = msg.getAccuracyMmMap();
+      var value = msg.getAccuracyMap();
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readFloat, null, "", 0.0);
          });
@@ -2788,7 +2788,7 @@ proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.serializeBi
  */
 proto.viam.component.movementsensor.v1.GetAccuracyResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAccuracyMmMap(true);
+  f = message.getAccuracyMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(1, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeFloat);
   }
@@ -2796,12 +2796,12 @@ proto.viam.component.movementsensor.v1.GetAccuracyResponse.serializeBinaryToWrit
 
 
 /**
- * map<string, float> accuracy_mm = 1;
+ * map<string, float> accuracy = 1;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
  * @return {!jspb.Map<string,number>}
  */
-proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.getAccuracyMmMap = function(opt_noLazyCreate) {
+proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.getAccuracyMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,number>} */ (
       jspb.Message.getMapField(this, 1, opt_noLazyCreate,
       null));
@@ -2812,8 +2812,8 @@ proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.getAccuracy
  * Clears values from the map. The map will be non-null.
  * @return {!proto.viam.component.movementsensor.v1.GetAccuracyResponse} returns this
  */
-proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.clearAccuracyMmMap = function() {
-  this.getAccuracyMmMap().clear();
+proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.clearAccuracyMap = function() {
+  this.getAccuracyMap().clear();
   return this;};
 
 

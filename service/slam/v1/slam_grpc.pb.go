@@ -26,13 +26,17 @@ type SLAMServiceClient interface {
 	// GetPosition returns the current estimated position of the robot with
 	// respect to a returned component reference.
 	GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error)
-	// GetPointCloudMap returns the latest point cloud map available
+	// GetPointCloudMap returns the latest pointcloud map available where XY is the ground
+	// plane and positive Z is up, following the Right Hand Rule.
 	GetPointCloudMap(ctx context.Context, in *GetPointCloudMapRequest, opts ...grpc.CallOption) (SLAMService_GetPointCloudMapClient, error)
 	// GetInternalState returns the internal map as defined by the specified slam
 	// algorithm required to continue mapping/localizing.
 	// This endpoint is not intended for end users.
 	GetInternalState(ctx context.Context, in *GetInternalStateRequest, opts ...grpc.CallOption) (SLAMService_GetInternalStateClient, error)
-	// DoCommand sends/receives arbitrary commands
+	// GetLatestMapInfo returns a message indicating details regarding the
+	// latest map returned to the system.
+	GetLatestMapInfo(ctx context.Context, in *GetLatestMapInfoRequest, opts ...grpc.CallOption) (*GetLatestMapInfoResponse, error)
+	// DoCommand sends/receives arbitrary commands.
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
@@ -117,6 +121,15 @@ func (x *sLAMServiceGetInternalStateClient) Recv() (*GetInternalStateResponse, e
 	return m, nil
 }
 
+func (c *sLAMServiceClient) GetLatestMapInfo(ctx context.Context, in *GetLatestMapInfoRequest, opts ...grpc.CallOption) (*GetLatestMapInfoResponse, error) {
+	out := new(GetLatestMapInfoResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.slam.v1.SLAMService/GetLatestMapInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *sLAMServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.slam.v1.SLAMService/DoCommand", in, out, opts...)
@@ -133,13 +146,17 @@ type SLAMServiceServer interface {
 	// GetPosition returns the current estimated position of the robot with
 	// respect to a returned component reference.
 	GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error)
-	// GetPointCloudMap returns the latest point cloud map available
+	// GetPointCloudMap returns the latest pointcloud map available where XY is the ground
+	// plane and positive Z is up, following the Right Hand Rule.
 	GetPointCloudMap(*GetPointCloudMapRequest, SLAMService_GetPointCloudMapServer) error
 	// GetInternalState returns the internal map as defined by the specified slam
 	// algorithm required to continue mapping/localizing.
 	// This endpoint is not intended for end users.
 	GetInternalState(*GetInternalStateRequest, SLAMService_GetInternalStateServer) error
-	// DoCommand sends/receives arbitrary commands
+	// GetLatestMapInfo returns a message indicating details regarding the
+	// latest map returned to the system.
+	GetLatestMapInfo(context.Context, *GetLatestMapInfoRequest) (*GetLatestMapInfoResponse, error)
+	// DoCommand sends/receives arbitrary commands.
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedSLAMServiceServer()
 }
@@ -156,6 +173,9 @@ func (UnimplementedSLAMServiceServer) GetPointCloudMap(*GetPointCloudMapRequest,
 }
 func (UnimplementedSLAMServiceServer) GetInternalState(*GetInternalStateRequest, SLAMService_GetInternalStateServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetInternalState not implemented")
+}
+func (UnimplementedSLAMServiceServer) GetLatestMapInfo(context.Context, *GetLatestMapInfoRequest) (*GetLatestMapInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLatestMapInfo not implemented")
 }
 func (UnimplementedSLAMServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -233,6 +253,24 @@ func (x *sLAMServiceGetInternalStateServer) Send(m *GetInternalStateResponse) er
 	return x.ServerStream.SendMsg(m)
 }
 
+func _SLAMService_GetLatestMapInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLatestMapInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SLAMServiceServer).GetLatestMapInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.slam.v1.SLAMService/GetLatestMapInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SLAMServiceServer).GetLatestMapInfo(ctx, req.(*GetLatestMapInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SLAMService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DoCommandRequest)
 	if err := dec(in); err != nil {
@@ -261,6 +299,10 @@ var SLAMService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPosition",
 			Handler:    _SLAMService_GetPosition_Handler,
+		},
+		{
+			MethodName: "GetLatestMapInfo",
+			Handler:    _SLAMService_GetLatestMapInfo_Handler,
 		},
 		{
 			MethodName: "DoCommand",

@@ -34,16 +34,22 @@ type DataServiceClient interface {
 	DeleteBinaryDataByFilter(ctx context.Context, in *DeleteBinaryDataByFilterRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByFilterResponse, error)
 	// DeleteBinaryDataByIDs deletes binary data based on given IDs.
 	DeleteBinaryDataByIDs(ctx context.Context, in *DeleteBinaryDataByIDsRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByIDsResponse, error)
-	// AddTagsToBinaryDataByFileIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
-	AddTagsToBinaryDataByFileIDs(ctx context.Context, in *AddTagsToBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*AddTagsToBinaryDataByFileIDsResponse, error)
+	// AddTagsToBinaryDataByIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
+	AddTagsToBinaryDataByIDs(ctx context.Context, in *AddTagsToBinaryDataByIDsRequest, opts ...grpc.CallOption) (*AddTagsToBinaryDataByIDsResponse, error)
 	// AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
 	AddTagsToBinaryDataByFilter(ctx context.Context, in *AddTagsToBinaryDataByFilterRequest, opts ...grpc.CallOption) (*AddTagsToBinaryDataByFilterResponse, error)
-	// RemoveTagsToBinaryDataByFileIDs removes string tags from binary data based on given IDs.
-	RemoveTagsFromBinaryDataByFileIDs(ctx context.Context, in *RemoveTagsFromBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFileIDsResponse, error)
+	// RemoveTagsToBinaryDataByIDs removes string tags from binary data based on given IDs.
+	RemoveTagsFromBinaryDataByIDs(ctx context.Context, in *RemoveTagsFromBinaryDataByIDsRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByIDsResponse, error)
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(ctx context.Context, in *RemoveTagsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFilterResponse, error)
 	// TagsByFilter gets all unique tags from data based on given filter.
 	TagsByFilter(ctx context.Context, in *TagsByFilterRequest, opts ...grpc.CallOption) (*TagsByFilterResponse, error)
+	// AddBoundingBoxToImageByID adds a bounding box to an image with the given ID.
+	AddBoundingBoxToImageByID(ctx context.Context, in *AddBoundingBoxToImageByIDRequest, opts ...grpc.CallOption) (*AddBoundingBoxToImageByIDResponse, error)
+	// RemoveBoundingBoxFromImageByID removes a bounding box from an image with the given ID.
+	RemoveBoundingBoxFromImageByID(ctx context.Context, in *RemoveBoundingBoxFromImageByIDRequest, opts ...grpc.CallOption) (*RemoveBoundingBoxFromImageByIDResponse, error)
+	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
+	BoundingBoxLabelsByFilter(ctx context.Context, in *BoundingBoxLabelsByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxLabelsByFilterResponse, error)
 }
 
 type dataServiceClient struct {
@@ -108,9 +114,9 @@ func (c *dataServiceClient) DeleteBinaryDataByIDs(ctx context.Context, in *Delet
 	return out, nil
 }
 
-func (c *dataServiceClient) AddTagsToBinaryDataByFileIDs(ctx context.Context, in *AddTagsToBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*AddTagsToBinaryDataByFileIDsResponse, error) {
-	out := new(AddTagsToBinaryDataByFileIDsResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/AddTagsToBinaryDataByFileIDs", in, out, opts...)
+func (c *dataServiceClient) AddTagsToBinaryDataByIDs(ctx context.Context, in *AddTagsToBinaryDataByIDsRequest, opts ...grpc.CallOption) (*AddTagsToBinaryDataByIDsResponse, error) {
+	out := new(AddTagsToBinaryDataByIDsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/AddTagsToBinaryDataByIDs", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -126,9 +132,9 @@ func (c *dataServiceClient) AddTagsToBinaryDataByFilter(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *dataServiceClient) RemoveTagsFromBinaryDataByFileIDs(ctx context.Context, in *RemoveTagsFromBinaryDataByFileIDsRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFileIDsResponse, error) {
-	out := new(RemoveTagsFromBinaryDataByFileIDsResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFileIDs", in, out, opts...)
+func (c *dataServiceClient) RemoveTagsFromBinaryDataByIDs(ctx context.Context, in *RemoveTagsFromBinaryDataByIDsRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByIDsResponse, error) {
+	out := new(RemoveTagsFromBinaryDataByIDsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByIDs", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -153,6 +159,33 @@ func (c *dataServiceClient) TagsByFilter(ctx context.Context, in *TagsByFilterRe
 	return out, nil
 }
 
+func (c *dataServiceClient) AddBoundingBoxToImageByID(ctx context.Context, in *AddBoundingBoxToImageByIDRequest, opts ...grpc.CallOption) (*AddBoundingBoxToImageByIDResponse, error) {
+	out := new(AddBoundingBoxToImageByIDResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/AddBoundingBoxToImageByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) RemoveBoundingBoxFromImageByID(ctx context.Context, in *RemoveBoundingBoxFromImageByIDRequest, opts ...grpc.CallOption) (*RemoveBoundingBoxFromImageByIDResponse, error) {
+	out := new(RemoveBoundingBoxFromImageByIDResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/RemoveBoundingBoxFromImageByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) BoundingBoxLabelsByFilter(ctx context.Context, in *BoundingBoxLabelsByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxLabelsByFilterResponse, error) {
+	out := new(BoundingBoxLabelsByFilterResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/BoundingBoxLabelsByFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -169,16 +202,22 @@ type DataServiceServer interface {
 	DeleteBinaryDataByFilter(context.Context, *DeleteBinaryDataByFilterRequest) (*DeleteBinaryDataByFilterResponse, error)
 	// DeleteBinaryDataByIDs deletes binary data based on given IDs.
 	DeleteBinaryDataByIDs(context.Context, *DeleteBinaryDataByIDsRequest) (*DeleteBinaryDataByIDsResponse, error)
-	// AddTagsToBinaryDataByFileIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
-	AddTagsToBinaryDataByFileIDs(context.Context, *AddTagsToBinaryDataByFileIDsRequest) (*AddTagsToBinaryDataByFileIDsResponse, error)
+	// AddTagsToBinaryDataByIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
+	AddTagsToBinaryDataByIDs(context.Context, *AddTagsToBinaryDataByIDsRequest) (*AddTagsToBinaryDataByIDsResponse, error)
 	// AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
 	AddTagsToBinaryDataByFilter(context.Context, *AddTagsToBinaryDataByFilterRequest) (*AddTagsToBinaryDataByFilterResponse, error)
-	// RemoveTagsToBinaryDataByFileIDs removes string tags from binary data based on given IDs.
-	RemoveTagsFromBinaryDataByFileIDs(context.Context, *RemoveTagsFromBinaryDataByFileIDsRequest) (*RemoveTagsFromBinaryDataByFileIDsResponse, error)
+	// RemoveTagsToBinaryDataByIDs removes string tags from binary data based on given IDs.
+	RemoveTagsFromBinaryDataByIDs(context.Context, *RemoveTagsFromBinaryDataByIDsRequest) (*RemoveTagsFromBinaryDataByIDsResponse, error)
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(context.Context, *RemoveTagsFromBinaryDataByFilterRequest) (*RemoveTagsFromBinaryDataByFilterResponse, error)
 	// TagsByFilter gets all unique tags from data based on given filter.
 	TagsByFilter(context.Context, *TagsByFilterRequest) (*TagsByFilterResponse, error)
+	// AddBoundingBoxToImageByID adds a bounding box to an image with the given ID.
+	AddBoundingBoxToImageByID(context.Context, *AddBoundingBoxToImageByIDRequest) (*AddBoundingBoxToImageByIDResponse, error)
+	// RemoveBoundingBoxFromImageByID removes a bounding box from an image with the given ID.
+	RemoveBoundingBoxFromImageByID(context.Context, *RemoveBoundingBoxFromImageByIDRequest) (*RemoveBoundingBoxFromImageByIDResponse, error)
+	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
+	BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -204,20 +243,29 @@ func (UnimplementedDataServiceServer) DeleteBinaryDataByFilter(context.Context, 
 func (UnimplementedDataServiceServer) DeleteBinaryDataByIDs(context.Context, *DeleteBinaryDataByIDsRequest) (*DeleteBinaryDataByIDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBinaryDataByIDs not implemented")
 }
-func (UnimplementedDataServiceServer) AddTagsToBinaryDataByFileIDs(context.Context, *AddTagsToBinaryDataByFileIDsRequest) (*AddTagsToBinaryDataByFileIDsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddTagsToBinaryDataByFileIDs not implemented")
+func (UnimplementedDataServiceServer) AddTagsToBinaryDataByIDs(context.Context, *AddTagsToBinaryDataByIDsRequest) (*AddTagsToBinaryDataByIDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddTagsToBinaryDataByIDs not implemented")
 }
 func (UnimplementedDataServiceServer) AddTagsToBinaryDataByFilter(context.Context, *AddTagsToBinaryDataByFilterRequest) (*AddTagsToBinaryDataByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddTagsToBinaryDataByFilter not implemented")
 }
-func (UnimplementedDataServiceServer) RemoveTagsFromBinaryDataByFileIDs(context.Context, *RemoveTagsFromBinaryDataByFileIDsRequest) (*RemoveTagsFromBinaryDataByFileIDsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveTagsFromBinaryDataByFileIDs not implemented")
+func (UnimplementedDataServiceServer) RemoveTagsFromBinaryDataByIDs(context.Context, *RemoveTagsFromBinaryDataByIDsRequest) (*RemoveTagsFromBinaryDataByIDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveTagsFromBinaryDataByIDs not implemented")
 }
 func (UnimplementedDataServiceServer) RemoveTagsFromBinaryDataByFilter(context.Context, *RemoveTagsFromBinaryDataByFilterRequest) (*RemoveTagsFromBinaryDataByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveTagsFromBinaryDataByFilter not implemented")
 }
 func (UnimplementedDataServiceServer) TagsByFilter(context.Context, *TagsByFilterRequest) (*TagsByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TagsByFilter not implemented")
+}
+func (UnimplementedDataServiceServer) AddBoundingBoxToImageByID(context.Context, *AddBoundingBoxToImageByIDRequest) (*AddBoundingBoxToImageByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddBoundingBoxToImageByID not implemented")
+}
+func (UnimplementedDataServiceServer) RemoveBoundingBoxFromImageByID(context.Context, *RemoveBoundingBoxFromImageByIDRequest) (*RemoveBoundingBoxFromImageByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveBoundingBoxFromImageByID not implemented")
+}
+func (UnimplementedDataServiceServer) BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BoundingBoxLabelsByFilter not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -340,20 +388,20 @@ func _DataService_DeleteBinaryDataByIDs_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataService_AddTagsToBinaryDataByFileIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddTagsToBinaryDataByFileIDsRequest)
+func _DataService_AddTagsToBinaryDataByIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddTagsToBinaryDataByIDsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DataServiceServer).AddTagsToBinaryDataByFileIDs(ctx, in)
+		return srv.(DataServiceServer).AddTagsToBinaryDataByIDs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/AddTagsToBinaryDataByFileIDs",
+		FullMethod: "/viam.app.data.v1.DataService/AddTagsToBinaryDataByIDs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).AddTagsToBinaryDataByFileIDs(ctx, req.(*AddTagsToBinaryDataByFileIDsRequest))
+		return srv.(DataServiceServer).AddTagsToBinaryDataByIDs(ctx, req.(*AddTagsToBinaryDataByIDsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -376,20 +424,20 @@ func _DataService_AddTagsToBinaryDataByFilter_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataService_RemoveTagsFromBinaryDataByFileIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemoveTagsFromBinaryDataByFileIDsRequest)
+func _DataService_RemoveTagsFromBinaryDataByIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveTagsFromBinaryDataByIDsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DataServiceServer).RemoveTagsFromBinaryDataByFileIDs(ctx, in)
+		return srv.(DataServiceServer).RemoveTagsFromBinaryDataByIDs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFileIDs",
+		FullMethod: "/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByIDs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).RemoveTagsFromBinaryDataByFileIDs(ctx, req.(*RemoveTagsFromBinaryDataByFileIDsRequest))
+		return srv.(DataServiceServer).RemoveTagsFromBinaryDataByIDs(ctx, req.(*RemoveTagsFromBinaryDataByIDsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -430,6 +478,60 @@ func _DataService_TagsByFilter_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_AddBoundingBoxToImageByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddBoundingBoxToImageByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).AddBoundingBoxToImageByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/AddBoundingBoxToImageByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).AddBoundingBoxToImageByID(ctx, req.(*AddBoundingBoxToImageByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_RemoveBoundingBoxFromImageByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveBoundingBoxFromImageByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).RemoveBoundingBoxFromImageByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/RemoveBoundingBoxFromImageByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).RemoveBoundingBoxFromImageByID(ctx, req.(*RemoveBoundingBoxFromImageByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_BoundingBoxLabelsByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BoundingBoxLabelsByFilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).BoundingBoxLabelsByFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/BoundingBoxLabelsByFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).BoundingBoxLabelsByFilter(ctx, req.(*BoundingBoxLabelsByFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -462,16 +564,16 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataService_DeleteBinaryDataByIDs_Handler,
 		},
 		{
-			MethodName: "AddTagsToBinaryDataByFileIDs",
-			Handler:    _DataService_AddTagsToBinaryDataByFileIDs_Handler,
+			MethodName: "AddTagsToBinaryDataByIDs",
+			Handler:    _DataService_AddTagsToBinaryDataByIDs_Handler,
 		},
 		{
 			MethodName: "AddTagsToBinaryDataByFilter",
 			Handler:    _DataService_AddTagsToBinaryDataByFilter_Handler,
 		},
 		{
-			MethodName: "RemoveTagsFromBinaryDataByFileIDs",
-			Handler:    _DataService_RemoveTagsFromBinaryDataByFileIDs_Handler,
+			MethodName: "RemoveTagsFromBinaryDataByIDs",
+			Handler:    _DataService_RemoveTagsFromBinaryDataByIDs_Handler,
 		},
 		{
 			MethodName: "RemoveTagsFromBinaryDataByFilter",
@@ -480,6 +582,18 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TagsByFilter",
 			Handler:    _DataService_TagsByFilter_Handler,
+		},
+		{
+			MethodName: "AddBoundingBoxToImageByID",
+			Handler:    _DataService_AddBoundingBoxToImageByID_Handler,
+		},
+		{
+			MethodName: "RemoveBoundingBoxFromImageByID",
+			Handler:    _DataService_RemoveBoundingBoxFromImageByID_Handler,
+		},
+		{
+			MethodName: "BoundingBoxLabelsByFilter",
+			Handler:    _DataService_BoundingBoxLabelsByFilter_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

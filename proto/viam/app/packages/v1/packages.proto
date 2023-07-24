@@ -5,7 +5,6 @@ package viam.app.packages.v1;
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
-import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/app/packages/v1";
 
@@ -46,6 +45,8 @@ enum PackageType {
   PACKAGE_TYPE_UNSPECIFIED = 0;
   PACKAGE_TYPE_ARCHIVE = 1;
   PACKAGE_TYPE_ML_MODEL = 2;
+  PACKAGE_TYPE_MODULE = 3;
+  PACKAGE_TYPE_SLAM_MAP = 4;
 }
 
 message FileInfo {
@@ -58,6 +59,7 @@ message PackageInfo {
   string name = 2;
   string version = 3;
   PackageType type = 4;
+  optional string platform = 7;
   repeated FileInfo files = 5;
   google.protobuf.Struct metadata = 6;
 }
@@ -92,24 +94,12 @@ message Package {
   string id = 5;
 }
 
-// InternalPackage is stored in the packages database and represents our interval view of the uploaded package
-message InternalPackage {
-  string organization_id = 1 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
-  string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
-  string version = 3 [(tagger.v1.tags) = "bson:\"version\" json:\"version\""];
-  PackageType type = 4 [(tagger.v1.tags) = "bson:\"type\" json:\"type\""];
-  repeated FileInfo files = 5 [(tagger.v1.tags) = "bson:\"files\" json:\"files\""];
-  google.protobuf.Struct metadata = 6 [(tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
-  string blob_path = 7 [(tagger.v1.tags) = "bson:\"blob_path\" json:\"blob_path\""];
-  google.protobuf.Timestamp created_on = 8 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
-  string checksum = 9 [(tagger.v1.tags) = "bson:\"checksum\" json:\"checksum\""];
-  bool latest = 10 [(tagger.v1.tags) = "bson:\"latest\" json:\"latest\""];
-}
-
 message GetPackageRequest {
   string id = 1;
   string version = 2;
   optional bool include_url = 3;
+  optional PackageType type = 4;
+  optional string platform = 5;
 }
 
 message GetPackageResponse {

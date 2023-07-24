@@ -5,6 +5,7 @@ package viam.common.v1;
 
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/common/v1";
 option java_package = "com.viam.common.v1";
@@ -130,6 +131,15 @@ message GeoPoint {
   double longitude = 2;
 }
 
+// GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,
+// captured in latitude and longitude.
+message GeoObstacle {
+  // Location of the obstacle
+  GeoPoint location = 1;
+  // Geometries that describe the obstacle, where embedded Pose data is with respect to the specified location
+  repeated Geometry geometries = 2;
+}
+
 // Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference
 // frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
 // reference frame as observed within the second reference frame.
@@ -163,6 +173,14 @@ extend google.protobuf.MethodOptions {
   optional bool safety_heartbeat_monitored = 84260;
 }
 
+message ResponseMetadata {
+  // captured_at is the time at which the resource as close as physically possible, captured
+  // the data in the response.
+  // Note: If correlating between other resources, be sure that the means
+  // of measuring the capture are similar enough such that comparison can be made between them.
+  optional google.protobuf.Timestamp captured_at = 1;
+}
+
 // DoCommandRequest represents a generic DoCommand input
 message DoCommandRequest {
   string name = 1;
@@ -172,4 +190,33 @@ message DoCommandRequest {
 // DoCommandResponse represents a generic DoCommand output
 message DoCommandResponse {
   google.protobuf.Struct result = 1;
+}
+
+message GetKinematicsRequest {
+  // The component name
+  string name = 1;
+}
+
+enum KinematicsFileFormat {
+  KINEMATICS_FILE_FORMAT_UNSPECIFIED = 0;
+  KINEMATICS_FILE_FORMAT_SVA = 1;
+  KINEMATICS_FILE_FORMAT_URDF = 2;
+}
+
+message GetKinematicsResponse {
+  // The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
+  // https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters
+  KinematicsFileFormat format = 1;
+  // The byte contents of the file
+  bytes kinematics_data = 2;
+}
+
+message GetGeometriesRequest {
+  // The component name
+  string name = 1;
+}
+
+message GetGeometriesResponse {
+  // All geometries associated with the component, in their current configuration, in the frame of that component.
+  repeated Geometry geometries = 1;
 }

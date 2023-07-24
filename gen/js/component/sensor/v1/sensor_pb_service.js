@@ -29,6 +29,15 @@ SensorService.DoCommand = {
   responseType: common_v1_common_pb.DoCommandResponse
 };
 
+SensorService.GetGeometries = {
+  methodName: "GetGeometries",
+  service: SensorService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.GetGeometriesRequest,
+  responseType: common_v1_common_pb.GetGeometriesResponse
+};
+
 exports.SensorService = SensorService;
 
 function SensorServiceClient(serviceHost, options) {
@@ -72,6 +81,37 @@ SensorServiceClient.prototype.doCommand = function doCommand(requestMessage, met
     callback = arguments[1];
   }
   var client = grpc.unary(SensorService.DoCommand, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+SensorServiceClient.prototype.getGeometries = function getGeometries(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(SensorService.GetGeometries, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

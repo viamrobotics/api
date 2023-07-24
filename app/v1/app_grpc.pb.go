@@ -22,12 +22,18 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AppServiceClient interface {
+	// Get the id of the user with the email
+	GetUserIDByEmail(ctx context.Context, in *GetUserIDByEmailRequest, opts ...grpc.CallOption) (*GetUserIDByEmailResponse, error)
 	// Create a new organization
 	CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error)
 	// List organizations
 	ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error)
+	// List the organizations a user belongs to
+	ListOrganizationsByUser(ctx context.Context, in *ListOrganizationsByUserRequest, opts ...grpc.CallOption) (*ListOrganizationsByUserResponse, error)
 	// Get an organization
 	GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error)
+	// Checks for namespace availablity throughout all orgs.
+	GetOrganizationNamespaceAvailability(ctx context.Context, in *GetOrganizationNamespaceAvailabilityRequest, opts ...grpc.CallOption) (*GetOrganizationNamespaceAvailabilityResponse, error)
 	// Update an organization
 	UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error)
 	// Delete an organization
@@ -36,6 +42,8 @@ type AppServiceClient interface {
 	ListOrganizationMembers(ctx context.Context, in *ListOrganizationMembersRequest, opts ...grpc.CallOption) (*ListOrganizationMembersResponse, error)
 	// Create an organization invite to an organization
 	CreateOrganizationInvite(ctx context.Context, in *CreateOrganizationInviteRequest, opts ...grpc.CallOption) (*CreateOrganizationInviteResponse, error)
+	// Update the authorizations attached to an organization invite
+	UpdateOrganizationInviteAuthorizations(ctx context.Context, in *UpdateOrganizationInviteAuthorizationsRequest, opts ...grpc.CallOption) (*UpdateOrganizationInviteAuthorizationsResponse, error)
 	// Delete an organization member from an organization
 	DeleteOrganizationMember(ctx context.Context, in *DeleteOrganizationMemberRequest, opts ...grpc.CallOption) (*DeleteOrganizationMemberResponse, error)
 	// Delete an organization invite
@@ -115,8 +123,15 @@ type AppServiceClient interface {
 	AddRole(ctx context.Context, in *AddRoleRequest, opts ...grpc.CallOption) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
 	RemoveRole(ctx context.Context, in *RemoveRoleRequest, opts ...grpc.CallOption) (*RemoveRoleResponse, error)
-	// Shows organization, location, and robot level permissions that exist on the resource
+	// Returns all authorization roles for a given resource
 	ListAuthorizations(ctx context.Context, in *ListAuthorizationsRequest, opts ...grpc.CallOption) (*ListAuthorizationsResponse, error)
+	// Validates a permission for the current user
+	CheckPermissions(ctx context.Context, in *CheckPermissionsRequest, opts ...grpc.CallOption) (*CheckPermissionsResponse, error)
+	CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error)
+	UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error)
+	UploadModuleFile(ctx context.Context, opts ...grpc.CallOption) (AppService_UploadModuleFileClient, error)
+	GetModule(ctx context.Context, in *GetModuleRequest, opts ...grpc.CallOption) (*GetModuleResponse, error)
+	ListModules(ctx context.Context, in *ListModulesRequest, opts ...grpc.CallOption) (*ListModulesResponse, error)
 }
 
 type appServiceClient struct {
@@ -125,6 +140,15 @@ type appServiceClient struct {
 
 func NewAppServiceClient(cc grpc.ClientConnInterface) AppServiceClient {
 	return &appServiceClient{cc}
+}
+
+func (c *appServiceClient) GetUserIDByEmail(ctx context.Context, in *GetUserIDByEmailRequest, opts ...grpc.CallOption) (*GetUserIDByEmailResponse, error) {
+	out := new(GetUserIDByEmailResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetUserIDByEmail", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *appServiceClient) CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error) {
@@ -145,9 +169,27 @@ func (c *appServiceClient) ListOrganizations(ctx context.Context, in *ListOrgani
 	return out, nil
 }
 
+func (c *appServiceClient) ListOrganizationsByUser(ctx context.Context, in *ListOrganizationsByUserRequest, opts ...grpc.CallOption) (*ListOrganizationsByUserResponse, error) {
+	out := new(ListOrganizationsByUserResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListOrganizationsByUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error) {
 	out := new(GetOrganizationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganization", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetOrganizationNamespaceAvailability(ctx context.Context, in *GetOrganizationNamespaceAvailabilityRequest, opts ...grpc.CallOption) (*GetOrganizationNamespaceAvailabilityResponse, error) {
+	out := new(GetOrganizationNamespaceAvailabilityResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganizationNamespaceAvailability", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -184,6 +226,15 @@ func (c *appServiceClient) ListOrganizationMembers(ctx context.Context, in *List
 func (c *appServiceClient) CreateOrganizationInvite(ctx context.Context, in *CreateOrganizationInviteRequest, opts ...grpc.CallOption) (*CreateOrganizationInviteResponse, error) {
 	out := new(CreateOrganizationInviteResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateOrganizationInvite", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateOrganizationInviteAuthorizations(ctx context.Context, in *UpdateOrganizationInviteAuthorizationsRequest, opts ...grpc.CallOption) (*UpdateOrganizationInviteAuthorizationsResponse, error) {
+	out := new(UpdateOrganizationInviteAuthorizationsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateOrganizationInviteAuthorizations", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -564,16 +615,101 @@ func (c *appServiceClient) ListAuthorizations(ctx context.Context, in *ListAutho
 	return out, nil
 }
 
+func (c *appServiceClient) CheckPermissions(ctx context.Context, in *CheckPermissionsRequest, opts ...grpc.CallOption) (*CheckPermissionsResponse, error) {
+	out := new(CheckPermissionsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CheckPermissions", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error) {
+	out := new(CreateModuleResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateModule", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error) {
+	out := new(UpdateModuleResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateModule", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UploadModuleFile(ctx context.Context, opts ...grpc.CallOption) (AppService_UploadModuleFileClient, error) {
+	stream, err := c.cc.NewStream(ctx, &AppService_ServiceDesc.Streams[1], "/viam.app.v1.AppService/UploadModuleFile", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &appServiceUploadModuleFileClient{stream}
+	return x, nil
+}
+
+type AppService_UploadModuleFileClient interface {
+	Send(*UploadModuleFileRequest) error
+	CloseAndRecv() (*UploadModuleFileResponse, error)
+	grpc.ClientStream
+}
+
+type appServiceUploadModuleFileClient struct {
+	grpc.ClientStream
+}
+
+func (x *appServiceUploadModuleFileClient) Send(m *UploadModuleFileRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *appServiceUploadModuleFileClient) CloseAndRecv() (*UploadModuleFileResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(UploadModuleFileResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *appServiceClient) GetModule(ctx context.Context, in *GetModuleRequest, opts ...grpc.CallOption) (*GetModuleResponse, error) {
+	out := new(GetModuleResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetModule", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListModules(ctx context.Context, in *ListModulesRequest, opts ...grpc.CallOption) (*ListModulesResponse, error) {
+	out := new(ListModulesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListModules", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppServiceServer is the server API for AppService service.
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
 type AppServiceServer interface {
+	// Get the id of the user with the email
+	GetUserIDByEmail(context.Context, *GetUserIDByEmailRequest) (*GetUserIDByEmailResponse, error)
 	// Create a new organization
 	CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error)
 	// List organizations
 	ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error)
+	// List the organizations a user belongs to
+	ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error)
 	// Get an organization
 	GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error)
+	// Checks for namespace availablity throughout all orgs.
+	GetOrganizationNamespaceAvailability(context.Context, *GetOrganizationNamespaceAvailabilityRequest) (*GetOrganizationNamespaceAvailabilityResponse, error)
 	// Update an organization
 	UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error)
 	// Delete an organization
@@ -582,6 +718,8 @@ type AppServiceServer interface {
 	ListOrganizationMembers(context.Context, *ListOrganizationMembersRequest) (*ListOrganizationMembersResponse, error)
 	// Create an organization invite to an organization
 	CreateOrganizationInvite(context.Context, *CreateOrganizationInviteRequest) (*CreateOrganizationInviteResponse, error)
+	// Update the authorizations attached to an organization invite
+	UpdateOrganizationInviteAuthorizations(context.Context, *UpdateOrganizationInviteAuthorizationsRequest) (*UpdateOrganizationInviteAuthorizationsResponse, error)
 	// Delete an organization member from an organization
 	DeleteOrganizationMember(context.Context, *DeleteOrganizationMemberRequest) (*DeleteOrganizationMemberResponse, error)
 	// Delete an organization invite
@@ -661,8 +799,15 @@ type AppServiceServer interface {
 	AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
 	RemoveRole(context.Context, *RemoveRoleRequest) (*RemoveRoleResponse, error)
-	// Shows organization, location, and robot level permissions that exist on the resource
+	// Returns all authorization roles for a given resource
 	ListAuthorizations(context.Context, *ListAuthorizationsRequest) (*ListAuthorizationsResponse, error)
+	// Validates a permission for the current user
+	CheckPermissions(context.Context, *CheckPermissionsRequest) (*CheckPermissionsResponse, error)
+	CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error)
+	UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error)
+	UploadModuleFile(AppService_UploadModuleFileServer) error
+	GetModule(context.Context, *GetModuleRequest) (*GetModuleResponse, error)
+	ListModules(context.Context, *ListModulesRequest) (*ListModulesResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -670,14 +815,23 @@ type AppServiceServer interface {
 type UnimplementedAppServiceServer struct {
 }
 
+func (UnimplementedAppServiceServer) GetUserIDByEmail(context.Context, *GetUserIDByEmailRequest) (*GetUserIDByEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserIDByEmail not implemented")
+}
 func (UnimplementedAppServiceServer) CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganization not implemented")
 }
 func (UnimplementedAppServiceServer) ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizations not implemented")
 }
+func (UnimplementedAppServiceServer) ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationsByUser not implemented")
+}
 func (UnimplementedAppServiceServer) GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganization not implemented")
+}
+func (UnimplementedAppServiceServer) GetOrganizationNamespaceAvailability(context.Context, *GetOrganizationNamespaceAvailabilityRequest) (*GetOrganizationNamespaceAvailabilityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationNamespaceAvailability not implemented")
 }
 func (UnimplementedAppServiceServer) UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganization not implemented")
@@ -690,6 +844,9 @@ func (UnimplementedAppServiceServer) ListOrganizationMembers(context.Context, *L
 }
 func (UnimplementedAppServiceServer) CreateOrganizationInvite(context.Context, *CreateOrganizationInviteRequest) (*CreateOrganizationInviteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganizationInvite not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateOrganizationInviteAuthorizations(context.Context, *UpdateOrganizationInviteAuthorizationsRequest) (*UpdateOrganizationInviteAuthorizationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationInviteAuthorizations not implemented")
 }
 func (UnimplementedAppServiceServer) DeleteOrganizationMember(context.Context, *DeleteOrganizationMemberRequest) (*DeleteOrganizationMemberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationMember not implemented")
@@ -808,6 +965,24 @@ func (UnimplementedAppServiceServer) RemoveRole(context.Context, *RemoveRoleRequ
 func (UnimplementedAppServiceServer) ListAuthorizations(context.Context, *ListAuthorizationsRequest) (*ListAuthorizationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAuthorizations not implemented")
 }
+func (UnimplementedAppServiceServer) CheckPermissions(context.Context, *CheckPermissionsRequest) (*CheckPermissionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckPermissions not implemented")
+}
+func (UnimplementedAppServiceServer) CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateModule not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateModule not implemented")
+}
+func (UnimplementedAppServiceServer) UploadModuleFile(AppService_UploadModuleFileServer) error {
+	return status.Errorf(codes.Unimplemented, "method UploadModuleFile not implemented")
+}
+func (UnimplementedAppServiceServer) GetModule(context.Context, *GetModuleRequest) (*GetModuleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetModule not implemented")
+}
+func (UnimplementedAppServiceServer) ListModules(context.Context, *ListModulesRequest) (*ListModulesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModules not implemented")
+}
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
 // UnsafeAppServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -819,6 +994,24 @@ type UnsafeAppServiceServer interface {
 
 func RegisterAppServiceServer(s grpc.ServiceRegistrar, srv AppServiceServer) {
 	s.RegisterService(&AppService_ServiceDesc, srv)
+}
+
+func _AppService_GetUserIDByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserIDByEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetUserIDByEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetUserIDByEmail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetUserIDByEmail(ctx, req.(*GetUserIDByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _AppService_CreateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -857,6 +1050,24 @@ func _AppService_ListOrganizations_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_ListOrganizationsByUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOrganizationsByUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListOrganizationsByUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListOrganizationsByUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListOrganizationsByUser(ctx, req.(*ListOrganizationsByUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_GetOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetOrganizationRequest)
 	if err := dec(in); err != nil {
@@ -871,6 +1082,24 @@ func _AppService_GetOrganization_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).GetOrganization(ctx, req.(*GetOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetOrganizationNamespaceAvailability_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationNamespaceAvailabilityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetOrganizationNamespaceAvailability(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetOrganizationNamespaceAvailability",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetOrganizationNamespaceAvailability(ctx, req.(*GetOrganizationNamespaceAvailabilityRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -943,6 +1172,24 @@ func _AppService_CreateOrganizationInvite_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).CreateOrganizationInvite(ctx, req.(*CreateOrganizationInviteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateOrganizationInviteAuthorizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationInviteAuthorizationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateOrganizationInviteAuthorizations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateOrganizationInviteAuthorizations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateOrganizationInviteAuthorizations(ctx, req.(*UpdateOrganizationInviteAuthorizationsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1652,6 +1899,122 @@ func _AppService_ListAuthorizations_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_CheckPermissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckPermissionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CheckPermissions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CheckPermissions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CheckPermissions(ctx, req.(*CheckPermissionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_CreateModule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateModuleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CreateModule(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CreateModule",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CreateModule(ctx, req.(*CreateModuleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateModule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateModuleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateModule(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateModule",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateModule(ctx, req.(*UpdateModuleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UploadModuleFile_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(AppServiceServer).UploadModuleFile(&appServiceUploadModuleFileServer{stream})
+}
+
+type AppService_UploadModuleFileServer interface {
+	SendAndClose(*UploadModuleFileResponse) error
+	Recv() (*UploadModuleFileRequest, error)
+	grpc.ServerStream
+}
+
+type appServiceUploadModuleFileServer struct {
+	grpc.ServerStream
+}
+
+func (x *appServiceUploadModuleFileServer) SendAndClose(m *UploadModuleFileResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *appServiceUploadModuleFileServer) Recv() (*UploadModuleFileRequest, error) {
+	m := new(UploadModuleFileRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func _AppService_GetModule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetModuleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetModule(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetModule",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetModule(ctx, req.(*GetModuleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListModules_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListModulesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListModules(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListModules",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListModules(ctx, req.(*ListModulesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1659,6 +2022,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "viam.app.v1.AppService",
 	HandlerType: (*AppServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetUserIDByEmail",
+			Handler:    _AppService_GetUserIDByEmail_Handler,
+		},
 		{
 			MethodName: "CreateOrganization",
 			Handler:    _AppService_CreateOrganization_Handler,
@@ -1668,8 +2035,16 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_ListOrganizations_Handler,
 		},
 		{
+			MethodName: "ListOrganizationsByUser",
+			Handler:    _AppService_ListOrganizationsByUser_Handler,
+		},
+		{
 			MethodName: "GetOrganization",
 			Handler:    _AppService_GetOrganization_Handler,
+		},
+		{
+			MethodName: "GetOrganizationNamespaceAvailability",
+			Handler:    _AppService_GetOrganizationNamespaceAvailability_Handler,
 		},
 		{
 			MethodName: "UpdateOrganization",
@@ -1686,6 +2061,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateOrganizationInvite",
 			Handler:    _AppService_CreateOrganizationInvite_Handler,
+		},
+		{
+			MethodName: "UpdateOrganizationInviteAuthorizations",
+			Handler:    _AppService_UpdateOrganizationInviteAuthorizations_Handler,
 		},
 		{
 			MethodName: "DeleteOrganizationMember",
@@ -1839,12 +2218,37 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "ListAuthorizations",
 			Handler:    _AppService_ListAuthorizations_Handler,
 		},
+		{
+			MethodName: "CheckPermissions",
+			Handler:    _AppService_CheckPermissions_Handler,
+		},
+		{
+			MethodName: "CreateModule",
+			Handler:    _AppService_CreateModule_Handler,
+		},
+		{
+			MethodName: "UpdateModule",
+			Handler:    _AppService_UpdateModule_Handler,
+		},
+		{
+			MethodName: "GetModule",
+			Handler:    _AppService_GetModule_Handler,
+		},
+		{
+			MethodName: "ListModules",
+			Handler:    _AppService_ListModules_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "TailRobotPartLogs",
 			Handler:       _AppService_TailRobotPartLogs_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "UploadModuleFile",
+			Handler:       _AppService_UploadModuleFile_Handler,
+			ClientStreams: true,
 		},
 	},
 	Metadata: "app/v1/app.proto",

@@ -329,6 +329,9 @@ export class ServiceConfig extends jspb.Message {
   getModel(): string;
   setModel(value: string): void;
 
+  getApi(): string;
+  setApi(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ServiceConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ServiceConfig): ServiceConfig.AsObject;
@@ -347,6 +350,7 @@ export namespace ServiceConfig {
     attributes?: google_protobuf_struct_pb.Struct.AsObject,
     dependsOnList: Array<string>,
     model: string,
+    api: string,
   }
 }
 
@@ -362,6 +366,11 @@ export class NetworkConfig extends jspb.Message {
 
   getTlsKeyFile(): string;
   setTlsKeyFile(value: string): void;
+
+  hasSessions(): boolean;
+  clearSessions(): void;
+  getSessions(): SessionsConfig | undefined;
+  setSessions(value?: SessionsConfig): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): NetworkConfig.AsObject;
@@ -379,6 +388,29 @@ export namespace NetworkConfig {
     bindAddress: string,
     tlsCertFile: string,
     tlsKeyFile: string,
+    sessions?: SessionsConfig.AsObject,
+  }
+}
+
+export class SessionsConfig extends jspb.Message {
+  hasHeartbeatWindow(): boolean;
+  clearHeartbeatWindow(): void;
+  getHeartbeatWindow(): google_protobuf_duration_pb.Duration | undefined;
+  setHeartbeatWindow(value?: google_protobuf_duration_pb.Duration): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SessionsConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: SessionsConfig): SessionsConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SessionsConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SessionsConfig;
+  static deserializeBinaryFromReader(message: SessionsConfig, reader: jspb.BinaryReader): SessionsConfig;
+}
+
+export namespace SessionsConfig {
+  export type AsObject = {
+    heartbeatWindow?: google_protobuf_duration_pb.Duration.AsObject,
   }
 }
 
@@ -921,6 +953,11 @@ export class AgentInfo extends jspb.Message {
   getGitRevision(): string;
   setGitRevision(value: string): void;
 
+  hasPlatform(): boolean;
+  clearPlatform(): void;
+  getPlatform(): string;
+  setPlatform(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AgentInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AgentInfo): AgentInfo.AsObject;
@@ -938,6 +975,7 @@ export namespace AgentInfo {
     ipsList: Array<string>,
     version: string,
     gitRevision: string,
+    platform: string,
   }
 }
 
@@ -1136,6 +1174,9 @@ export class ModuleConfig extends jspb.Message {
   getPath(): string;
   setPath(value: string): void;
 
+  getLogLevel(): string;
+  setLogLevel(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
@@ -1150,6 +1191,7 @@ export namespace ModuleConfig {
   export type AsObject = {
     name: string,
     path: string,
+    logLevel: string,
   }
 }
 
@@ -1162,6 +1204,9 @@ export class PackageConfig extends jspb.Message {
 
   getVersion(): string;
   setVersion(value: string): void;
+
+  getType(): string;
+  setType(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PackageConfig.AsObject;
@@ -1178,6 +1223,7 @@ export namespace PackageConfig {
     name: string,
     pb_package: string,
     version: string,
+    type: string,
   }
 }
 

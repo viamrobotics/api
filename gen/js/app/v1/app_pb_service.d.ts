@@ -4,6 +4,15 @@
 import * as app_v1_app_pb from "../../app/v1/app_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
+type AppServiceGetUserIDByEmail = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetUserIDByEmailRequest;
+  readonly responseType: typeof app_v1_app_pb.GetUserIDByEmailResponse;
+};
+
 type AppServiceCreateOrganization = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -22,6 +31,15 @@ type AppServiceListOrganizations = {
   readonly responseType: typeof app_v1_app_pb.ListOrganizationsResponse;
 };
 
+type AppServiceListOrganizationsByUser = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListOrganizationsByUserRequest;
+  readonly responseType: typeof app_v1_app_pb.ListOrganizationsByUserResponse;
+};
+
 type AppServiceGetOrganization = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -29,6 +47,15 @@ type AppServiceGetOrganization = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.GetOrganizationRequest;
   readonly responseType: typeof app_v1_app_pb.GetOrganizationResponse;
+};
+
+type AppServiceGetOrganizationNamespaceAvailability = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest;
+  readonly responseType: typeof app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse;
 };
 
 type AppServiceUpdateOrganization = {
@@ -65,6 +92,15 @@ type AppServiceCreateOrganizationInvite = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.CreateOrganizationInviteRequest;
   readonly responseType: typeof app_v1_app_pb.CreateOrganizationInviteResponse;
+};
+
+type AppServiceUpdateOrganizationInviteAuthorizations = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse;
 };
 
 type AppServiceDeleteOrganizationMember = {
@@ -418,15 +454,73 @@ type AppServiceListAuthorizations = {
   readonly responseType: typeof app_v1_app_pb.ListAuthorizationsResponse;
 };
 
+type AppServiceCheckPermissions = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CheckPermissionsRequest;
+  readonly responseType: typeof app_v1_app_pb.CheckPermissionsResponse;
+};
+
+type AppServiceCreateModule = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateModuleRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateModuleResponse;
+};
+
+type AppServiceUpdateModule = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateModuleRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateModuleResponse;
+};
+
+type AppServiceUploadModuleFile = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: true;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UploadModuleFileRequest;
+  readonly responseType: typeof app_v1_app_pb.UploadModuleFileResponse;
+};
+
+type AppServiceGetModule = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetModuleRequest;
+  readonly responseType: typeof app_v1_app_pb.GetModuleResponse;
+};
+
+type AppServiceListModules = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListModulesRequest;
+  readonly responseType: typeof app_v1_app_pb.ListModulesResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
+  static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
   static readonly CreateOrganization: AppServiceCreateOrganization;
   static readonly ListOrganizations: AppServiceListOrganizations;
+  static readonly ListOrganizationsByUser: AppServiceListOrganizationsByUser;
   static readonly GetOrganization: AppServiceGetOrganization;
+  static readonly GetOrganizationNamespaceAvailability: AppServiceGetOrganizationNamespaceAvailability;
   static readonly UpdateOrganization: AppServiceUpdateOrganization;
   static readonly DeleteOrganization: AppServiceDeleteOrganization;
   static readonly ListOrganizationMembers: AppServiceListOrganizationMembers;
   static readonly CreateOrganizationInvite: AppServiceCreateOrganizationInvite;
+  static readonly UpdateOrganizationInviteAuthorizations: AppServiceUpdateOrganizationInviteAuthorizations;
   static readonly DeleteOrganizationMember: AppServiceDeleteOrganizationMember;
   static readonly DeleteOrganizationInvite: AppServiceDeleteOrganizationInvite;
   static readonly ResendOrganizationInvite: AppServiceResendOrganizationInvite;
@@ -466,6 +560,12 @@ export class AppService {
   static readonly AddRole: AppServiceAddRole;
   static readonly RemoveRole: AppServiceRemoveRole;
   static readonly ListAuthorizations: AppServiceListAuthorizations;
+  static readonly CheckPermissions: AppServiceCheckPermissions;
+  static readonly CreateModule: AppServiceCreateModule;
+  static readonly UpdateModule: AppServiceUpdateModule;
+  static readonly UploadModuleFile: AppServiceUploadModuleFile;
+  static readonly GetModule: AppServiceGetModule;
+  static readonly ListModules: AppServiceListModules;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -500,6 +600,15 @@ export class AppServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
+  getUserIDByEmail(
+    requestMessage: app_v1_app_pb.GetUserIDByEmailRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetUserIDByEmailResponse|null) => void
+  ): UnaryResponse;
+  getUserIDByEmail(
+    requestMessage: app_v1_app_pb.GetUserIDByEmailRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetUserIDByEmailResponse|null) => void
+  ): UnaryResponse;
   createOrganization(
     requestMessage: app_v1_app_pb.CreateOrganizationRequest,
     metadata: grpc.Metadata,
@@ -518,6 +627,15 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.ListOrganizationsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsResponse|null) => void
   ): UnaryResponse;
+  listOrganizationsByUser(
+    requestMessage: app_v1_app_pb.ListOrganizationsByUserRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsByUserResponse|null) => void
+  ): UnaryResponse;
+  listOrganizationsByUser(
+    requestMessage: app_v1_app_pb.ListOrganizationsByUserRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsByUserResponse|null) => void
+  ): UnaryResponse;
   getOrganization(
     requestMessage: app_v1_app_pb.GetOrganizationRequest,
     metadata: grpc.Metadata,
@@ -526,6 +644,15 @@ export class AppServiceClient {
   getOrganization(
     requestMessage: app_v1_app_pb.GetOrganizationRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationNamespaceAvailability(
+    requestMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationNamespaceAvailability(
+    requestMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse|null) => void
   ): UnaryResponse;
   updateOrganization(
     requestMessage: app_v1_app_pb.UpdateOrganizationRequest,
@@ -562,6 +689,15 @@ export class AppServiceClient {
   createOrganizationInvite(
     requestMessage: app_v1_app_pb.CreateOrganizationInviteRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOrganizationInviteResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationInviteAuthorizations(
+    requestMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationInviteAuthorizations(
+    requestMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse|null) => void
   ): UnaryResponse;
   deleteOrganizationMember(
     requestMessage: app_v1_app_pb.DeleteOrganizationMemberRequest,
@@ -905,6 +1041,52 @@ export class AppServiceClient {
   listAuthorizations(
     requestMessage: app_v1_app_pb.ListAuthorizationsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListAuthorizationsResponse|null) => void
+  ): UnaryResponse;
+  checkPermissions(
+    requestMessage: app_v1_app_pb.CheckPermissionsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CheckPermissionsResponse|null) => void
+  ): UnaryResponse;
+  checkPermissions(
+    requestMessage: app_v1_app_pb.CheckPermissionsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CheckPermissionsResponse|null) => void
+  ): UnaryResponse;
+  createModule(
+    requestMessage: app_v1_app_pb.CreateModuleRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateModuleResponse|null) => void
+  ): UnaryResponse;
+  createModule(
+    requestMessage: app_v1_app_pb.CreateModuleRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateModuleResponse|null) => void
+  ): UnaryResponse;
+  updateModule(
+    requestMessage: app_v1_app_pb.UpdateModuleRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateModuleResponse|null) => void
+  ): UnaryResponse;
+  updateModule(
+    requestMessage: app_v1_app_pb.UpdateModuleRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateModuleResponse|null) => void
+  ): UnaryResponse;
+  uploadModuleFile(metadata?: grpc.Metadata): RequestStream<app_v1_app_pb.UploadModuleFileRequest>;
+  getModule(
+    requestMessage: app_v1_app_pb.GetModuleRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetModuleResponse|null) => void
+  ): UnaryResponse;
+  getModule(
+    requestMessage: app_v1_app_pb.GetModuleRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetModuleResponse|null) => void
+  ): UnaryResponse;
+  listModules(
+    requestMessage: app_v1_app_pb.ListModulesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListModulesResponse|null) => void
+  ): UnaryResponse;
+  listModules(
+    requestMessage: app_v1_app_pb.ListModulesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListModulesResponse|null) => void
   ): UnaryResponse;
 }
 

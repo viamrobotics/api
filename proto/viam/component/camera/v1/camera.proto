@@ -19,6 +19,12 @@ service CameraService {
     };
   }
 
+  rpc GetImages(GetImagesRequest) returns (GetImagesResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/camera/{name}/images"
+    };
+  }
+
   // RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
   // can be requested but may not necessarily be the same one returned.
   rpc RenderFrame(RenderFrameRequest) returns (google.api.HttpBody) {
@@ -48,6 +54,13 @@ service CameraService {
       post: "/viam/api/v1/component/camera/{name}/do_command"
     };
   }
+
+  // GetGeometries returns the geometries of the component in their current configuration
+  rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/camera/{name}/geometries"
+    };
+  }
 }
 
 message GetImageRequest {
@@ -62,6 +75,35 @@ message GetImageResponse {
   string mime_type = 1;
   // Frame in bytes
   bytes image = 2;
+}
+
+message GetImagesRequest {
+  // Name of a camera
+  string name = 1;
+}
+
+message GetImagesResponse {
+  // list of images returned from the camera system
+  repeated Image images = 1;
+  // contains timestamp data
+  common.v1.ResponseMetadata response_metadata = 84260;
+}
+
+message Image {
+  // the name of the sensor where the image came from
+  string source_name = 1;
+  // format of the response image bytes
+  Format format = 2;
+  // image in bytes
+  bytes image = 3;
+}
+
+enum Format {
+  FORMAT_UNSPECIFIED = 0;
+  FORMAT_RAW_RGBA = 1;
+  FORMAT_RAW_DEPTH = 2;
+  FORMAT_JPEG = 3;
+  FORMAT_PNG = 4;
 }
 
 message RenderFrameRequest {
@@ -94,8 +136,12 @@ message GetPropertiesResponse {
   // A boolean property determining whether the camera supports the return of pointcloud data
   bool supports_pcd = 1;
   // Parameters for doing a perspective of a 3D scene to a 2D plane
+  // If camera does not provide intrinsic parameters, leave the field empty
+  // Initializing the parameters with 0-values is considered an error
   IntrinsicParameters intrinsic_parameters = 2;
   // Parameters for modeling lens distortion in cameras
+  // If camera does not provide distortion parameters, leave the field empty
+  // Initializing the parameters with 0-values is considered an error
   DistortionParameters distortion_parameters = 3;
 }
 
@@ -104,12 +150,16 @@ message Webcams {
 }
 
 message Webcam {
-  // Camera driver label
+  // Camera driver label (for internal use only)
   string label = 1;
   // Camera driver status
   string status = 2;
   // Camera properties
   repeated Property properties = 3;
+  // Camera human-readable driver name
+  string name = 4;
+  // Camera unique identifier
+  string id = 5;
 }
 
 message Property {
@@ -119,6 +169,8 @@ message Property {
   int32 height_px = 2;
   // Video frame format
   string frame_format = 3;
+  // Video frame rate in fps
+  float frame_rate = 4;
 }
 
 message IntrinsicParameters {

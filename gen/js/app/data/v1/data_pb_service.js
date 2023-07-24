@@ -64,13 +64,13 @@ DataService.DeleteBinaryDataByIDs = {
   responseType: app_data_v1_data_pb.DeleteBinaryDataByIDsResponse
 };
 
-DataService.AddTagsToBinaryDataByFileIDs = {
-  methodName: "AddTagsToBinaryDataByFileIDs",
+DataService.AddTagsToBinaryDataByIDs = {
+  methodName: "AddTagsToBinaryDataByIDs",
   service: DataService,
   requestStream: false,
   responseStream: false,
-  requestType: app_data_v1_data_pb.AddTagsToBinaryDataByFileIDsRequest,
-  responseType: app_data_v1_data_pb.AddTagsToBinaryDataByFileIDsResponse
+  requestType: app_data_v1_data_pb.AddTagsToBinaryDataByIDsRequest,
+  responseType: app_data_v1_data_pb.AddTagsToBinaryDataByIDsResponse
 };
 
 DataService.AddTagsToBinaryDataByFilter = {
@@ -82,13 +82,13 @@ DataService.AddTagsToBinaryDataByFilter = {
   responseType: app_data_v1_data_pb.AddTagsToBinaryDataByFilterResponse
 };
 
-DataService.RemoveTagsFromBinaryDataByFileIDs = {
-  methodName: "RemoveTagsFromBinaryDataByFileIDs",
+DataService.RemoveTagsFromBinaryDataByIDs = {
+  methodName: "RemoveTagsFromBinaryDataByIDs",
   service: DataService,
   requestStream: false,
   responseStream: false,
-  requestType: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFileIDsRequest,
-  responseType: app_data_v1_data_pb.RemoveTagsFromBinaryDataByFileIDsResponse
+  requestType: app_data_v1_data_pb.RemoveTagsFromBinaryDataByIDsRequest,
+  responseType: app_data_v1_data_pb.RemoveTagsFromBinaryDataByIDsResponse
 };
 
 DataService.RemoveTagsFromBinaryDataByFilter = {
@@ -107,6 +107,33 @@ DataService.TagsByFilter = {
   responseStream: false,
   requestType: app_data_v1_data_pb.TagsByFilterRequest,
   responseType: app_data_v1_data_pb.TagsByFilterResponse
+};
+
+DataService.AddBoundingBoxToImageByID = {
+  methodName: "AddBoundingBoxToImageByID",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.AddBoundingBoxToImageByIDRequest,
+  responseType: app_data_v1_data_pb.AddBoundingBoxToImageByIDResponse
+};
+
+DataService.RemoveBoundingBoxFromImageByID = {
+  methodName: "RemoveBoundingBoxFromImageByID",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.RemoveBoundingBoxFromImageByIDRequest,
+  responseType: app_data_v1_data_pb.RemoveBoundingBoxFromImageByIDResponse
+};
+
+DataService.BoundingBoxLabelsByFilter = {
+  methodName: "BoundingBoxLabelsByFilter",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.BoundingBoxLabelsByFilterRequest,
+  responseType: app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse
 };
 
 exports.DataService = DataService;
@@ -302,11 +329,11 @@ DataServiceClient.prototype.deleteBinaryDataByIDs = function deleteBinaryDataByI
   };
 };
 
-DataServiceClient.prototype.addTagsToBinaryDataByFileIDs = function addTagsToBinaryDataByFileIDs(requestMessage, metadata, callback) {
+DataServiceClient.prototype.addTagsToBinaryDataByIDs = function addTagsToBinaryDataByIDs(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataService.AddTagsToBinaryDataByFileIDs, {
+  var client = grpc.unary(DataService.AddTagsToBinaryDataByIDs, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -364,11 +391,11 @@ DataServiceClient.prototype.addTagsToBinaryDataByFilter = function addTagsToBina
   };
 };
 
-DataServiceClient.prototype.removeTagsFromBinaryDataByFileIDs = function removeTagsFromBinaryDataByFileIDs(requestMessage, metadata, callback) {
+DataServiceClient.prototype.removeTagsFromBinaryDataByIDs = function removeTagsFromBinaryDataByIDs(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataService.RemoveTagsFromBinaryDataByFileIDs, {
+  var client = grpc.unary(DataService.RemoveTagsFromBinaryDataByIDs, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -431,6 +458,99 @@ DataServiceClient.prototype.tagsByFilter = function tagsByFilter(requestMessage,
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.TagsByFilter, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.addBoundingBoxToImageByID = function addBoundingBoxToImageByID(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.AddBoundingBoxToImageByID, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.removeBoundingBoxFromImageByID = function removeBoundingBoxFromImageByID(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.RemoveBoundingBoxFromImageByID, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.boundingBoxLabelsByFilter = function boundingBoxLabelsByFilter(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.BoundingBoxLabelsByFilter, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
