@@ -489,9 +489,6 @@ func (x *SensorMetadata) GetTimeReceived() *timestamppb.Timestamp {
 	return nil
 }
 
-// TODO: For streaming, we don't want one metadata per data - it's 1:N
-//
-//	So should this somehow be moved up a layer?
 type SensorData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
