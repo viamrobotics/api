@@ -36,7 +36,7 @@ service PowerSensorService {
  // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
-      get: "/viam/api/v1/component/power_sensor/{name}/do_command"
+      post: "/viam/api/v1/component/power_sensor/{name}/do_command"
     };
   }
 }
