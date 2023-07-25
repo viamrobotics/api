@@ -10,56 +10,72 @@ option go_package = "go.viam.com/api/component/powersensor/v1";
 option java_package = "com.viam.component.powersensor.v1";
 
 
+// PowerSensorService services all power sensors associated with a robot
 service PowerSensorService {
-    rpc GetVoltage(GetVoltageRequest) returns (GetVoltageResponse) {
-        option (google.api.http) = {
-            get: "/viam/api/v1/component/power_sensor/{name}/voltage"
-          };
-    }
+  // GetVoltage returns the voltage reading of a power sensor in volts
+  rpc GetVoltage(GetVoltageRequest) returns (GetVoltageResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/power_sensor/{name}/voltage"
+    };
+  }
 
-    rpc GetCurrent(GetCurrentRequest) returns (GetCurrentResponse) {
-        option (google.api.http) = {
-            get: "/viam/api/v1/component/power_sensor/{name}/current"
-          };
-    }
+   // GetCurrent returns the current reading of a power sensor in amperes
+  rpc GetCurrent(GetCurrentRequest) returns (GetCurrentResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/power_sensor/{name}/current"
+    };
+  }
 
-    rpc GetPower(GetPowerRequest) returns (GetPowerResponse) {
-        option (google.api.http) = {
-            get: "/viam/api/v1/component/power_sensor/{name}/power"
-          };
-    }
+  // GetPower returns the power reading of a power sensor in watts
+  rpc GetPower(GetPowerRequest) returns (GetPowerResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/power_sensor/{name}/power"
+    };
+  }
 
-    rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-        option (google.api.http) = {
-            get: "/viam/api/v1/component/power_sensor/{name}/do_command"
-          };
-    }
+ // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/power_sensor/{name}/do_command"
+    };
+  }
 }
 
 message GetVoltageRequest {
-	string name = 1;
-	google.protobuf.Struct extra = 99; 
+  // Name of a power sensor 
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetVoltageResponse {
-	double volts = 1;
-	bool is_ac = 2;
+  // Voltage in volts
+  double volts = 1;
+  // Bool describing whether the voltage is DC or AC
+  bool is_ac = 2;
 }
 
 message GetCurrentRequest {
-	string name = 1;
-	google.protobuf.Struct extra = 99; 
+  // Name of a power sensor
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetCurrentResponse {
-	double amperes = 1;
-	bool is_ac = 2;
+  // Current in amperes
+  double amperes = 1;
+  // Bool descibing whether the current is DC or AC
+  bool is_ac = 2;
 }
 message GetPowerRequest {
-	string name = 1;
-	google.protobuf.Struct extra = 99; 
+  // Name of a power sensor
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetPowerResponse {
-	double watts = 1;
+  // Power in watts
+  double watts = 1;
 }
