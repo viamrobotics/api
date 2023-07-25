@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package viam.component.powersensor.v1;
+
+import "common/v1/common.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "go.viam.com/api/component/powersensor/v1";
+option java_package = "com.viam.component.powersensor.v1";
+
+
+service PowerSensorService {
+    rpc GetVoltage(GetVoltageRequest) returns (GetVoltageResponse) {
+        option (google.api.http) = {
+            get: "/viam/api/v1/component/power_sensor/{name}/voltage"
+          };
+    }
+
+    rpc GetCurrent(GetCurrentRequest) returns (GetCurrentResponse) {
+        option (google.api.http) = {
+            get: "/viam/api/v1/component/power_sensor/{name}/current"
+          };
+    }
+
+    rpc GetPower(GetPowerRequest) returns (GetPowerResponse) {
+        option (google.api.http) = {
+            get: "/viam/api/v1/component/power_sensor/{name}/power"
+          };
+    }
+
+    rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+        option (google.api.http) = {
+            get: "/viam/api/v1/component/power_sensor/{name}/do_command"
+          };
+    }
+}
+
+message GetVoltageRequest {
+	string name = 1;
+	google.protobuf.Struct extra = 99; 
+}
+
+message GetVoltageResponse {
+	double volts = 1;
+	bool is_ac = 2;
+}
+
+message GetCurrentRequest {
+	string name = 1;
+	google.protobuf.Struct extra = 99; 
+}
+
+message GetCurrentResponse {
+	double amperes = 1;
+	bool is_ac = 2;
+}
+message GetPowerRequest {
+	string name = 1;
+	google.protobuf.Struct extra = 99; 
+}
+
+message GetPowerResponse {
+	double watts = 1;
+}
+
+
