@@ -63,5 +63,3 @@ message GetPowerRequest {
 message GetPowerResponse {
 	double watts = 1;
 }
-
-
