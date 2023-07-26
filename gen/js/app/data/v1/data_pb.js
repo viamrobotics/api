@@ -4243,7 +4243,7 @@ proto.viam.app.data.v1.BinaryID.prototype.setLocationId = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.BinaryDataByIDsRequest.repeatedFields_ = [3,1];
+proto.viam.app.data.v1.BinaryDataByIDsRequest.repeatedFields_ = [3];
 
 
 
@@ -4278,8 +4278,7 @@ proto.viam.app.data.v1.BinaryDataByIDsRequest.toObject = function(includeInstanc
   var f, obj = {
     includeBinary: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
     binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
-    proto.viam.app.data.v1.BinaryID.toObject, includeInstance),
-    fileIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    proto.viam.app.data.v1.BinaryID.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -4325,10 +4324,6 @@ proto.viam.app.data.v1.BinaryDataByIDsRequest.deserializeBinaryFromReader = func
       reader.readMessage(value,proto.viam.app.data.v1.BinaryID.deserializeBinaryFromReader);
       msg.addBinaryIds(value);
       break;
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addFileIds(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -4371,13 +4366,6 @@ proto.viam.app.data.v1.BinaryDataByIDsRequest.serializeBinaryToWriter = function
       3,
       f,
       proto.viam.app.data.v1.BinaryID.serializeBinaryToWriter
-    );
-  }
-  f = message.getFileIdsList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
-      1,
-      f
     );
   }
 };
@@ -4436,43 +4424,6 @@ proto.viam.app.data.v1.BinaryDataByIDsRequest.prototype.addBinaryIds = function(
  */
 proto.viam.app.data.v1.BinaryDataByIDsRequest.prototype.clearBinaryIdsList = function() {
   return this.setBinaryIdsList([]);
-};
-
-
-/**
- * repeated string file_ids = 1;
- * @return {!Array<string>}
- */
-proto.viam.app.data.v1.BinaryDataByIDsRequest.prototype.getFileIdsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.viam.app.data.v1.BinaryDataByIDsRequest} returns this
- */
-proto.viam.app.data.v1.BinaryDataByIDsRequest.prototype.setFileIdsList = function(value) {
-  return jspb.Message.setField(this, 1, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.viam.app.data.v1.BinaryDataByIDsRequest} returns this
- */
-proto.viam.app.data.v1.BinaryDataByIDsRequest.prototype.addFileIds = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.viam.app.data.v1.BinaryDataByIDsRequest} returns this
- */
-proto.viam.app.data.v1.BinaryDataByIDsRequest.prototype.clearFileIdsList = function() {
-  return this.setFileIdsList([]);
 };
 
 
@@ -6098,7 +6049,7 @@ proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.prototype.setDeletedCoun
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.repeatedFields_ = [2,1];
+proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.repeatedFields_ = [2];
 
 
 
@@ -6132,8 +6083,7 @@ proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.prototype.toObject = functio
 proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
-    proto.viam.app.data.v1.BinaryID.toObject, includeInstance),
-    fileIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    proto.viam.app.data.v1.BinaryID.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -6175,10 +6125,6 @@ proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.deserializeBinaryFromReader 
       reader.readMessage(value,proto.viam.app.data.v1.BinaryID.deserializeBinaryFromReader);
       msg.addBinaryIds(value);
       break;
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addFileIds(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -6214,13 +6160,6 @@ proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.serializeBinaryToWriter = fu
       2,
       f,
       proto.viam.app.data.v1.BinaryID.serializeBinaryToWriter
-    );
-  }
-  f = message.getFileIdsList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
-      1,
-      f
     );
   }
 };
@@ -6261,43 +6200,6 @@ proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.prototype.addBinaryIds = fun
  */
 proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.prototype.clearBinaryIdsList = function() {
   return this.setBinaryIdsList([]);
-};
-
-
-/**
- * repeated string file_ids = 1;
- * @return {!Array<string>}
- */
-proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.prototype.getFileIdsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest} returns this
- */
-proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.prototype.setFileIdsList = function(value) {
-  return jspb.Message.setField(this, 1, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest} returns this
- */
-proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.prototype.addFileIds = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest} returns this
- */
-proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.prototype.clearFileIdsList = function() {
-  return this.setFileIdsList([]);
 };
 
 
@@ -6437,7 +6339,7 @@ proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.prototype.setDeletedCount =
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.repeatedFields_ = [3,2,1];
+proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.repeatedFields_ = [3,2];
 
 
 
@@ -6472,8 +6374,7 @@ proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.toObject = function(inclu
   var f, obj = {
     binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
     proto.viam.app.data.v1.BinaryID.toObject, includeInstance),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    fileIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -6519,10 +6420,6 @@ proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.deserializeBinaryFromRead
       var value = /** @type {string} */ (reader.readString());
       msg.addTags(value);
       break;
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addFileIds(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -6564,13 +6461,6 @@ proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.serializeBinaryToWriter =
   if (f.length > 0) {
     writer.writeRepeatedString(
       2,
-      f
-    );
-  }
-  f = message.getFileIdsList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
-      1,
       f
     );
   }
@@ -6649,43 +6539,6 @@ proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.prototype.addTags = funct
  */
 proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.prototype.clearTagsList = function() {
   return this.setTagsList([]);
-};
-
-
-/**
- * repeated string file_ids = 1;
- * @return {!Array<string>}
- */
-proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.prototype.getFileIdsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest} returns this
- */
-proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.prototype.setFileIdsList = function(value) {
-  return jspb.Message.setField(this, 1, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest} returns this
- */
-proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.prototype.addFileIds = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest} returns this
- */
-proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.prototype.clearFileIdsList = function() {
-  return this.setFileIdsList([]);
 };
 
 
@@ -7104,7 +6957,7 @@ proto.viam.app.data.v1.AddTagsToBinaryDataByFilterResponse.serializeBinaryToWrit
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.repeatedFields_ = [3,2,1];
+proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.repeatedFields_ = [3,2];
 
 
 
@@ -7139,8 +6992,7 @@ proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.toObject = function(
   var f, obj = {
     binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
     proto.viam.app.data.v1.BinaryID.toObject, includeInstance),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    fileIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -7186,10 +7038,6 @@ proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.deserializeBinaryFro
       var value = /** @type {string} */ (reader.readString());
       msg.addTags(value);
       break;
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addFileIds(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -7231,13 +7079,6 @@ proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.serializeBinaryToWri
   if (f.length > 0) {
     writer.writeRepeatedString(
       2,
-      f
-    );
-  }
-  f = message.getFileIdsList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
-      1,
       f
     );
   }
@@ -7316,43 +7157,6 @@ proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.prototype.addTags = 
  */
 proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.prototype.clearTagsList = function() {
   return this.setTagsList([]);
-};
-
-
-/**
- * repeated string file_ids = 1;
- * @return {!Array<string>}
- */
-proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.prototype.getFileIdsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest} returns this
- */
-proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.prototype.setFileIdsList = function(value) {
-  return jspb.Message.setField(this, 1, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest} returns this
- */
-proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.prototype.addFileIds = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest} returns this
- */
-proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.prototype.clearFileIdsList = function() {
-  return this.setFileIdsList([]);
 };
 
 
@@ -8167,8 +7971,7 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.toObject = function(incl
     xMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     yMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
     xMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    yMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    fileId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    yMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0)
   };
 
   if (includeInstance) {
@@ -8229,10 +8032,6 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.deserializeBinaryFromRea
     case 6:
       var value = /** @type {number} */ (reader.readDouble());
       msg.setYMaxNormalized(value);
-      break;
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setFileId(value);
       break;
     default:
       reader.skipField();
@@ -8303,13 +8102,6 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.serializeBinaryToWriter 
   if (f !== 0.0) {
     writer.writeDouble(
       6,
-      f
-    );
-  }
-  f = message.getFileId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
       f
     );
   }
@@ -8440,24 +8232,6 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.getYMaxNormali
  */
 proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.setYMaxNormalized = function(value) {
   return jspb.Message.setProto3FloatField(this, 6, value);
-};
-
-
-/**
- * optional string file_id = 1;
- * @return {string}
- */
-proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.getFileId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest} returns this
- */
-proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.setFileId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -8624,8 +8398,7 @@ proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest.prototype.toObject 
 proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     binaryId: (f = msg.getBinaryId()) && proto.viam.app.data.v1.BinaryID.toObject(includeInstance, f),
-    bboxId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    fileId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    bboxId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -8671,10 +8444,6 @@ proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest.deserializeBinaryFr
       var value = /** @type {string} */ (reader.readString());
       msg.setBboxId(value);
       break;
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setFileId(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -8716,13 +8485,6 @@ proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest.serializeBinaryToWr
   if (f.length > 0) {
     writer.writeString(
       2,
-      f
-    );
-  }
-  f = message.getFileId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
       f
     );
   }
@@ -8781,24 +8543,6 @@ proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest.prototype.getBboxId
  */
 proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest.prototype.setBboxId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional string file_id = 1;
- * @return {string}
- */
-proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest.prototype.getFileId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest} returns this
- */
-proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest.prototype.setFileId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
