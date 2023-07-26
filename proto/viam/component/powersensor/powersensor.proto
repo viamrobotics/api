@@ -9,7 +9,6 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/component/powersensor/v1";
 option java_package = "com.viam.component.powersensor.v1";
 
-
 // PowerSensorService services all power sensors associated with a robot
 service PowerSensorService {
   // GetVoltage returns the voltage reading of a power sensor in volts
@@ -19,7 +18,7 @@ service PowerSensorService {
     };
   }
 
-   // GetCurrent returns the current reading of a power sensor in amperes
+  // GetCurrent returns the current reading of a power sensor in amperes
   rpc GetCurrent(GetCurrentRequest) returns (GetCurrentResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/power_sensor/{name}/current"
@@ -33,7 +32,7 @@ service PowerSensorService {
     };
   }
 
- // DoCommand sends/receives arbitrary commands
+  // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/component/power_sensor/{name}/do_command"
@@ -42,7 +41,7 @@ service PowerSensorService {
 }
 
 message GetVoltageRequest {
-  // Name of a power sensor 
+  // Name of a power sensor
   string name = 1;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
