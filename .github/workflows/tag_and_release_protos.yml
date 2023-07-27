@@ -65,6 +65,7 @@ jobs:
           - viamrobotics/rust-utils
           - viamrobotics/viam-cpp-sdk
           - viamrobotics/viam-typescript-sdk
+          - viamrobotics/viam-flutter-sdk
     steps:
       - name: Notify Proto Watchers
         uses: peter-evans/repository-dispatch@v2
