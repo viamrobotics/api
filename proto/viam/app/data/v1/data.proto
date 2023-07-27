@@ -194,7 +194,8 @@ message BinaryDataByIDsRequest {
   bool include_binary = 2;
   repeated BinaryID binary_ids = 3;
 
-  repeated string file_ids = 1 [deprecated = true]; // Replaced by binary_ids
+  reserved 1;
+  reserved "file_ids";
 }
 
 // BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided
@@ -260,7 +261,8 @@ message DeleteBinaryDataByFilterResponse {
 message DeleteBinaryDataByIDsRequest {
   repeated BinaryID binary_ids = 2;
 
-  repeated string file_ids = 1 [deprecated = true]; // Replaced by binary_ids
+  reserved 1;
+  reserved "file_ids";
 }
 
 // DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided
@@ -276,7 +278,8 @@ message AddTagsToBinaryDataByIDsRequest {
   repeated BinaryID binary_ids = 3;
   repeated string tags = 2;
 
-  repeated string file_ids = 1 [deprecated = true]; // Replaced by binary_ids
+  reserved 1;
+  reserved "file_ids";
 }
 
 message AddTagsToBinaryDataByIDsResponse {}
@@ -294,7 +297,8 @@ message RemoveTagsFromBinaryDataByIDsRequest {
   repeated BinaryID binary_ids = 3;
   repeated string tags = 2;
 
-  repeated string file_ids = 1 [deprecated = true]; // Replaced by binary_ids
+  reserved 1;
+  reserved "file_ids";
 }
 
 // RemoveTagsFromBinaryDataByIDsResponse returns the number of binary files which had tags removed
@@ -331,7 +335,8 @@ message AddBoundingBoxToImageByIDRequest {
   double x_max_normalized = 5;
   double y_max_normalized = 6;
 
-  string file_id = 1 [deprecated = true]; // Replaced by binary_id
+  reserved 1;
+  reserved "file_id";
 }
 
 message AddBoundingBoxToImageByIDResponse {
@@ -342,7 +347,8 @@ message RemoveBoundingBoxFromImageByIDRequest {
   BinaryID binary_id = 3;
   string bbox_id = 2;
 
-  string file_id = 1 [deprecated = true]; // Replaced by binary_id
+  reserved 1;
+  reserved "file_id";
 }
 
 message RemoveBoundingBoxFromImageByIDResponse {}

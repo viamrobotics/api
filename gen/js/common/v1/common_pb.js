@@ -4801,7 +4801,8 @@ proto.viam.common.v1.GetKinematicsRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.common.v1.GetKinematicsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4842,6 +4843,11 @@ proto.viam.common.v1.GetKinematicsRequest.deserializeBinaryFromReader = function
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -4878,6 +4884,14 @@ proto.viam.common.v1.GetKinematicsRequest.serializeBinaryToWriter = function(mes
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -4896,6 +4910,43 @@ proto.viam.common.v1.GetKinematicsRequest.prototype.getName = function() {
  */
 proto.viam.common.v1.GetKinematicsRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.common.v1.GetKinematicsRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.common.v1.GetKinematicsRequest} returns this
+*/
+proto.viam.common.v1.GetKinematicsRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.common.v1.GetKinematicsRequest} returns this
+ */
+proto.viam.common.v1.GetKinematicsRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.common.v1.GetKinematicsRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -5115,7 +5166,8 @@ proto.viam.common.v1.GetGeometriesRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.common.v1.GetGeometriesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5156,6 +5208,11 @@ proto.viam.common.v1.GetGeometriesRequest.deserializeBinaryFromReader = function
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -5192,6 +5249,14 @@ proto.viam.common.v1.GetGeometriesRequest.serializeBinaryToWriter = function(mes
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -5210,6 +5275,43 @@ proto.viam.common.v1.GetGeometriesRequest.prototype.getName = function() {
  */
 proto.viam.common.v1.GetGeometriesRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.common.v1.GetGeometriesRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.common.v1.GetGeometriesRequest} returns this
+*/
+proto.viam.common.v1.GetGeometriesRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.common.v1.GetGeometriesRequest} returns this
+ */
+proto.viam.common.v1.GetGeometriesRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.common.v1.GetGeometriesRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
