@@ -98,11 +98,11 @@ message GetMappingSessionMetadataByIDResponse {
 
 message UpdateMappingSessionMetadataByIDRequest {
   string session_id = 1;
+  // “success”, “failed to start”, etc
   string end_status = 2;
 }
 
-message UpdateMappingSessionMetadataByIDResponse {
-}
+message UpdateMappingSessionMetadataByIDResponse {}
 
 message MappingMetadata {
   string org_id = 1; // org associated with the slam session
