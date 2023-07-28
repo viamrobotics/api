@@ -31,7 +31,7 @@ message StartMappingSessionRequest {
   string robot_id = 6;
   // Version to use for viam, defaults stable
   string viam_server_version = 7;
-  bool isOnline = 8;
+  bool is_online = 8;
 }
 
 message StartMappingSessionResponse {
