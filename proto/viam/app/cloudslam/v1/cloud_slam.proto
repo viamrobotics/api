@@ -90,7 +90,6 @@ message GetMappingSessionMetadataByIDRequest {
   string session_id = 1;
 }
 
-
 message GetMappingSessionMetadataByIDResponse {
   MappingMetadata session_metadata = 1;
 }
@@ -102,11 +101,8 @@ message UpdateMappingSessionMetadataByIDRequest {
   string end_status = 2;
 }
 
-
 message UpdateMappingSessionMetadataByIDResponse {
-  bool success = 1;
 }
-
 
 message MappingMetadata {
   string org_id = 1; // org associated with the slam session
