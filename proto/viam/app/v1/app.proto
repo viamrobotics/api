@@ -14,6 +14,9 @@ service AppService {
   // Get the id of the user with the email
   rpc GetUserIDByEmail(GetUserIDByEmailRequest) returns (GetUserIDByEmailResponse);
 
+  // Get user by ID
+  rpc GetUserByID(GetUserByIDRequest) returns (GetUserByIDResponse);
+
   // Organizations
 
   // Create a new organization
@@ -927,6 +930,21 @@ message GetUserIDByEmailRequest {
 
 message GetUserIDByEmailResponse {
   string user_id = 1;
+}
+
+message User {
+  string id = 1;
+  repeated string emails = 2;
+  google.protobuf.Timestamp date_added = 3;
+  google.protobuf.Timestamp last_login = 4;
+}
+
+message GetUserByIDRequest {
+  string id = 1;
+}
+
+message GetUserByIDResponse {
+  User user = 1;
 }
 
 message ListOrganizationsByUserRequest {
