@@ -30,6 +30,9 @@ export class StartMappingSessionRequest extends jspb.Message {
   getViamServerVersion(): string;
   setViamServerVersion(value: string): void;
 
+  getIsOnline(): boolean;
+  setIsOnline(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartMappingSessionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: StartMappingSessionRequest): StartMappingSessionRequest.AsObject;
@@ -49,6 +52,7 @@ export namespace StartMappingSessionRequest {
     locationId: string,
     robotId: string,
     viamServerVersion: string,
+    isOnline: boolean,
   }
 }
 
@@ -208,9 +212,6 @@ export class StopMappingSessionRequest extends jspb.Message {
   getSessionId(): string;
   setSessionId(value: string): void;
 
-  getSaveMap(): boolean;
-  setSaveMap(value: boolean): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StopMappingSessionRequest.AsObject;
   static toObject(includeInstance: boolean, msg: StopMappingSessionRequest): StopMappingSessionRequest.AsObject;
@@ -224,7 +225,6 @@ export class StopMappingSessionRequest extends jspb.Message {
 export namespace StopMappingSessionRequest {
   export type AsObject = {
     sessionId: string,
-    saveMap: boolean,
   }
 }
 
@@ -249,6 +249,88 @@ export namespace StopMappingSessionResponse {
   export type AsObject = {
     packageId: string,
     version: string,
+  }
+}
+
+export class GetMappingSessionMetadataByIDRequest extends jspb.Message {
+  getSessionId(): string;
+  setSessionId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetMappingSessionMetadataByIDRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetMappingSessionMetadataByIDRequest): GetMappingSessionMetadataByIDRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetMappingSessionMetadataByIDRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetMappingSessionMetadataByIDRequest;
+  static deserializeBinaryFromReader(message: GetMappingSessionMetadataByIDRequest, reader: jspb.BinaryReader): GetMappingSessionMetadataByIDRequest;
+}
+
+export namespace GetMappingSessionMetadataByIDRequest {
+  export type AsObject = {
+    sessionId: string,
+  }
+}
+
+export class GetMappingSessionMetadataByIDResponse extends jspb.Message {
+  hasSessionMetadata(): boolean;
+  clearSessionMetadata(): void;
+  getSessionMetadata(): MappingMetadata | undefined;
+  setSessionMetadata(value?: MappingMetadata): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetMappingSessionMetadataByIDResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetMappingSessionMetadataByIDResponse): GetMappingSessionMetadataByIDResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetMappingSessionMetadataByIDResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetMappingSessionMetadataByIDResponse;
+  static deserializeBinaryFromReader(message: GetMappingSessionMetadataByIDResponse, reader: jspb.BinaryReader): GetMappingSessionMetadataByIDResponse;
+}
+
+export namespace GetMappingSessionMetadataByIDResponse {
+  export type AsObject = {
+    sessionMetadata?: MappingMetadata.AsObject,
+  }
+}
+
+export class UpdateMappingSessionMetadataByIDRequest extends jspb.Message {
+  getSessionId(): string;
+  setSessionId(value: string): void;
+
+  getEndStatus(): string;
+  setEndStatus(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateMappingSessionMetadataByIDRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateMappingSessionMetadataByIDRequest): UpdateMappingSessionMetadataByIDRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateMappingSessionMetadataByIDRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateMappingSessionMetadataByIDRequest;
+  static deserializeBinaryFromReader(message: UpdateMappingSessionMetadataByIDRequest, reader: jspb.BinaryReader): UpdateMappingSessionMetadataByIDRequest;
+}
+
+export namespace UpdateMappingSessionMetadataByIDRequest {
+  export type AsObject = {
+    sessionId: string,
+    endStatus: string,
+  }
+}
+
+export class UpdateMappingSessionMetadataByIDResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateMappingSessionMetadataByIDResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateMappingSessionMetadataByIDResponse): UpdateMappingSessionMetadataByIDResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateMappingSessionMetadataByIDResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateMappingSessionMetadataByIDResponse;
+  static deserializeBinaryFromReader(message: UpdateMappingSessionMetadataByIDResponse, reader: jspb.BinaryReader): UpdateMappingSessionMetadataByIDResponse;
+}
+
+export namespace UpdateMappingSessionMetadataByIDResponse {
+  export type AsObject = {
   }
 }
 
