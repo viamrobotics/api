@@ -197,6 +197,8 @@ message GetPropertiesRequest {
 message GetPropertiesResponse {
   // Returns true if the motor supports reporting its position
   bool position_reporting = 1;
+  // Returns a position reporting motor's ticks per rotation
+  double ticks_per_rotation= 2;
 }
 
 message Status {
