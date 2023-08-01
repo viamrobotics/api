@@ -181,9 +181,6 @@ export class TrainingJobMetadata extends jspb.Message {
   getSyncedModelId(): string;
   setSyncedModelId(value: string): void;
 
-  getUserEmail(): string;
-  setUserEmail(value: string): void;
-
   getId(): string;
   setId(value: string): void;
 
@@ -209,7 +206,6 @@ export namespace TrainingJobMetadata {
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     lastModified?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     syncedModelId: string,
-    userEmail: string,
     id: string,
     errorStatus?: google_rpc_status_pb.Status.AsObject,
   }
