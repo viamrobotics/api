@@ -68,6 +68,8 @@ message GetImageRequest {
   string name = 1;
   // Requested MIME type of response
   string mime_type = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetImageResponse {
