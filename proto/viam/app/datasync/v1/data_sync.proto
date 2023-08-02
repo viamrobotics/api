@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.app.datasync.v1;
 
+import "google/api/annotations.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
@@ -9,9 +10,21 @@ import "google/protobuf/timestamp.proto";
 option go_package = "go.viam.com/api/app/datasync/v1";
 
 service DataSyncService {
-  rpc DataCaptureUpload(viam.app.datasync.v1.DataCaptureUploadRequest) returns (viam.app.datasync.v1.DataCaptureUploadResponse);
-  rpc FileUpload(stream viam.app.datasync.v1.FileUploadRequest) returns (viam.app.datasync.v1.FileUploadResponse);
-  rpc StreamingDataCaptureUpload(stream viam.app.datasync.v1.StreamingDataCaptureUploadRequest) returns (viam.app.datasync.v1.StreamingDataCaptureUploadResponse);
+  rpc DataCaptureUpload(viam.app.datasync.v1.DataCaptureUploadRequest) returns (viam.app.datasync.v1.DataCaptureUploadResponse) {
+    option (google.api.http) = {
+      post: "/datasync/v1/data_capture_upload"
+    };
+  }
+  rpc FileUpload(stream viam.app.datasync.v1.FileUploadRequest) returns (viam.app.datasync.v1.FileUploadResponse) {
+    option (google.api.http) = {
+      post: "/datasync/v1/file_upload"
+    };
+  }
+  rpc StreamingDataCaptureUpload(stream viam.app.datasync.v1.StreamingDataCaptureUploadRequest) returns (viam.app.datasync.v1.StreamingDataCaptureUploadResponse) {
+    option (google.api.http) = {
+      post: "/datasync/v1/streaming_data_capture_upload"
+    };
+  }
 }
 
 message DataCaptureUploadRequest {

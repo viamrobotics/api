@@ -31,15 +31,18 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
+var (
+	filter_DataSyncService_DataCaptureUpload_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_DataSyncService_DataCaptureUpload_0(ctx context.Context, marshaler runtime.Marshaler, client DataSyncServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DataCaptureUploadRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DataSyncService_DataCaptureUpload_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -52,11 +55,10 @@ func local_request_DataSyncService_DataCaptureUpload_0(ctx context.Context, mars
 	var protoReq DataCaptureUploadRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DataSyncService_DataCaptureUpload_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -167,7 +169,7 @@ func RegisterDataSyncServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.datasync.v1.DataSyncService/DataCaptureUpload", runtime.WithHTTPPathPattern("/viam.app.datasync.v1.DataSyncService/DataCaptureUpload"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.datasync.v1.DataSyncService/DataCaptureUpload", runtime.WithHTTPPathPattern("/datasync/v1/data_capture_upload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -245,7 +247,7 @@ func RegisterDataSyncServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.datasync.v1.DataSyncService/DataCaptureUpload", runtime.WithHTTPPathPattern("/viam.app.datasync.v1.DataSyncService/DataCaptureUpload"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.datasync.v1.DataSyncService/DataCaptureUpload", runtime.WithHTTPPathPattern("/datasync/v1/data_capture_upload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -267,7 +269,7 @@ func RegisterDataSyncServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.datasync.v1.DataSyncService/FileUpload", runtime.WithHTTPPathPattern("/viam.app.datasync.v1.DataSyncService/FileUpload"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.datasync.v1.DataSyncService/FileUpload", runtime.WithHTTPPathPattern("/datasync/v1/file_upload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -289,7 +291,7 @@ func RegisterDataSyncServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.datasync.v1.DataSyncService/StreamingDataCaptureUpload", runtime.WithHTTPPathPattern("/viam.app.datasync.v1.DataSyncService/StreamingDataCaptureUpload"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.datasync.v1.DataSyncService/StreamingDataCaptureUpload", runtime.WithHTTPPathPattern("/datasync/v1/streaming_data_capture_upload"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -309,11 +311,11 @@ func RegisterDataSyncServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 }
 
 var (
-	pattern_DataSyncService_DataCaptureUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.datasync.v1.DataSyncService", "DataCaptureUpload"}, ""))
+	pattern_DataSyncService_DataCaptureUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"datasync", "v1", "data_capture_upload"}, ""))
 
-	pattern_DataSyncService_FileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.datasync.v1.DataSyncService", "FileUpload"}, ""))
+	pattern_DataSyncService_FileUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"datasync", "v1", "file_upload"}, ""))
 
-	pattern_DataSyncService_StreamingDataCaptureUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.datasync.v1.DataSyncService", "StreamingDataCaptureUpload"}, ""))
+	pattern_DataSyncService_StreamingDataCaptureUpload_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"datasync", "v1", "streaming_data_capture_upload"}, ""))
 )
 
 var (
