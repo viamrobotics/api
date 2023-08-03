@@ -877,6 +877,9 @@ message Module {
   string module_id = 1;
   // The id of the organization that owns the module
   string organization_id = 10;
+  // The public namespace of the organization that owns the module
+  // This is empty if no public namespace is set
+  string public_namespace = 12;
   // The name of the module
   string name = 2;
   // The visibility of the module
