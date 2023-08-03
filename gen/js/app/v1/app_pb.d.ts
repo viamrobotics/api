@@ -3109,9 +3109,6 @@ export class Module extends jspb.Message {
   getModuleId(): string;
   setModuleId(value: string): void;
 
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
-
   getName(): string;
   setName(value: string): void;
 
@@ -3134,14 +3131,20 @@ export class Module extends jspb.Message {
   setModelsList(value: Array<Model>): void;
   addModels(value?: Model, index?: number): Model;
 
-  getEntrypoint(): string;
-  setEntrypoint(value: string): void;
-
   getTotalRobotUsage(): number;
   setTotalRobotUsage(value: number): void;
 
   getTotalOrganizationUsage(): number;
   setTotalOrganizationUsage(value: number): void;
+
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getEntrypoint(): string;
+  setEntrypoint(value: string): void;
+
+  getPublicNamespace(): string;
+  setPublicNamespace(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Module.AsObject;
@@ -3156,16 +3159,17 @@ export class Module extends jspb.Message {
 export namespace Module {
   export type AsObject = {
     moduleId: string,
-    organizationId: string,
     name: string,
     visibility: VisibilityMap[keyof VisibilityMap],
     versionsList: Array<VersionHistory.AsObject>,
     url: string,
     description: string,
     modelsList: Array<Model.AsObject>,
-    entrypoint: string,
     totalRobotUsage: number,
     totalOrganizationUsage: number,
+    organizationId: string,
+    entrypoint: string,
+    publicNamespace: string,
   }
 }
 
