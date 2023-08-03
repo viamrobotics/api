@@ -15,7 +15,7 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
-	"go.viam.com/api/common/v1"
+	v1_0 "go.viam.com/api/common/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -292,7 +292,7 @@ var (
 )
 
 func request_InputControllerService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client InputControllerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.DoCommandRequest
+	var protoReq v1_0.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -325,7 +325,7 @@ func request_InputControllerService_DoCommand_0(ctx context.Context, marshaler r
 }
 
 func local_request_InputControllerService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, server InputControllerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.DoCommandRequest
+	var protoReq v1_0.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -362,7 +362,7 @@ var (
 )
 
 func request_InputControllerService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, client InputControllerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.GetGeometriesRequest
+	var protoReq v1_0.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -395,7 +395,7 @@ func request_InputControllerService_GetGeometries_0(ctx context.Context, marshal
 }
 
 func local_request_InputControllerService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, server InputControllerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.GetGeometriesRequest
+	var protoReq v1_0.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
