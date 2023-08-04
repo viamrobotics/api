@@ -198,6 +198,11 @@ export class Organization extends jspb.Message {
   getDefaultRegion(): string;
   setDefaultRegion(value: string): void;
 
+  hasCid(): boolean;
+  clearCid(): void;
+  getCid(): string;
+  setCid(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Organization.AsObject;
   static toObject(includeInstance: boolean, msg: Organization): Organization.AsObject;
@@ -215,6 +220,7 @@ export namespace Organization {
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     publicNamespace: string,
     defaultRegion: string,
+    cid: string,
   }
 }
 
@@ -449,6 +455,11 @@ export class UpdateOrganizationRequest extends jspb.Message {
   getRegion(): string;
   setRegion(value: string): void;
 
+  hasCid(): boolean;
+  clearCid(): void;
+  getCid(): string;
+  setCid(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateOrganizationRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateOrganizationRequest): UpdateOrganizationRequest.AsObject;
@@ -465,6 +476,7 @@ export namespace UpdateOrganizationRequest {
     name: string,
     publicNamespace: string,
     region: string,
+    cid: string,
   }
 }
 
