@@ -99,6 +99,9 @@ message GetLocationRequest {
 
 message GetLocationResponse {
   common.v1.GeoPoint location = 1;
+  // A number from [0-359) where 0 is north
+  // 90 is east, 180 is south, 270 is west
+  double compass_heading = 2;
 }
 
 message GetWaypointsRequest {
