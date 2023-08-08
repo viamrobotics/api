@@ -394,7 +394,7 @@ type GetLocationResponse struct {
 	unknownFields protoimpl.UnknownFields
 
 	Location *v1.GeoPoint `protobuf:"bytes,1,opt,name=location,proto3" json:"location,omitempty"`
-	// A number from [0-359) where 0 is north
+	// A number from [0-360) where 0 is north
 	// 90 is east, 180 is south, 270 is west
 	CompassHeading float64 `protobuf:"fixed64,2,opt,name=compass_heading,json=compassHeading,proto3" json:"compass_heading,omitempty"`
 }
