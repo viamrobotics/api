@@ -25,6 +25,9 @@ service AppService {
   // List the organizations a user belongs to
   rpc ListOrganizationsByUser(ListOrganizationsByUserRequest) returns (ListOrganizationsByUserResponse);
 
+  // List the organizations with the CID
+  rpc ListOrganizationsByCID(ListOrganizationsByCIDRequest) returns (ListOrganizationsByCIDResponse);
+
   // Get an organization
   rpc GetOrganization(GetOrganizationRequest) returns (GetOrganizationResponse);
 
@@ -945,4 +948,12 @@ message OrgDetails {
 
 message ListOrganizationsByUserResponse {
   repeated OrgDetails orgs = 1;
+}
+
+message ListOrganizationsByCIDRequest {
+  string cid = 1;
+}
+
+message ListOrganizationsByCIDResponse {
+  repeated OrgDetails orgs = 1; 
 }
