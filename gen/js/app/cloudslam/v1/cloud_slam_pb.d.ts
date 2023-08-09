@@ -301,6 +301,11 @@ export class UpdateMappingSessionMetadataByIDRequest extends jspb.Message {
   getEndStatus(): string;
   setEndStatus(value: string): void;
 
+  hasTimeCloudRunJobEnded(): boolean;
+  clearTimeCloudRunJobEnded(): void;
+  getTimeCloudRunJobEnded(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeCloudRunJobEnded(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateMappingSessionMetadataByIDRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateMappingSessionMetadataByIDRequest): UpdateMappingSessionMetadataByIDRequest.AsObject;
@@ -315,6 +320,7 @@ export namespace UpdateMappingSessionMetadataByIDRequest {
   export type AsObject = {
     sessionId: string,
     endStatus: string,
+    timeCloudRunJobEnded?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
