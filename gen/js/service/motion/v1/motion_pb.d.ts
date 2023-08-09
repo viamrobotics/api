@@ -140,6 +140,64 @@ export namespace MoveOnMapResponse {
   }
 }
 
+export class MotionConfiguration extends jspb.Message {
+  clearVisionServicesList(): void;
+  getVisionServicesList(): Array<common_v1_common_pb.ResourceName>;
+  setVisionServicesList(value: Array<common_v1_common_pb.ResourceName>): void;
+  addVisionServices(value?: common_v1_common_pb.ResourceName, index?: number): common_v1_common_pb.ResourceName;
+
+  hasPositionPollingFrequency(): boolean;
+  clearPositionPollingFrequency(): void;
+  getPositionPollingFrequency(): number;
+  setPositionPollingFrequency(value: number): void;
+
+  hasObstaclePollingFrequency(): boolean;
+  clearObstaclePollingFrequency(): void;
+  getObstaclePollingFrequency(): number;
+  setObstaclePollingFrequency(value: number): void;
+
+  hasPlanDeviationM(): boolean;
+  clearPlanDeviationM(): void;
+  getPlanDeviationM(): number;
+  setPlanDeviationM(value: number): void;
+
+  hasReplanCostFactor(): boolean;
+  clearReplanCostFactor(): void;
+  getReplanCostFactor(): number;
+  setReplanCostFactor(value: number): void;
+
+  hasLinearMPerSec(): boolean;
+  clearLinearMPerSec(): void;
+  getLinearMPerSec(): number;
+  setLinearMPerSec(value: number): void;
+
+  hasAngularDegsPerSec(): boolean;
+  clearAngularDegsPerSec(): void;
+  getAngularDegsPerSec(): number;
+  setAngularDegsPerSec(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MotionConfiguration.AsObject;
+  static toObject(includeInstance: boolean, msg: MotionConfiguration): MotionConfiguration.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MotionConfiguration, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MotionConfiguration;
+  static deserializeBinaryFromReader(message: MotionConfiguration, reader: jspb.BinaryReader): MotionConfiguration;
+}
+
+export namespace MotionConfiguration {
+  export type AsObject = {
+    visionServicesList: Array<common_v1_common_pb.ResourceName.AsObject>,
+    positionPollingFrequency: number,
+    obstaclePollingFrequency: number,
+    planDeviationM: number,
+    replanCostFactor: number,
+    linearMPerSec: number,
+    angularDegsPerSec: number,
+  }
+}
+
 export class MoveOnGlobeRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
@@ -169,15 +227,10 @@ export class MoveOnGlobeRequest extends jspb.Message {
   setObstaclesList(value: Array<common_v1_common_pb.GeoObstacle>): void;
   addObstacles(value?: common_v1_common_pb.GeoObstacle, index?: number): common_v1_common_pb.GeoObstacle;
 
-  hasLinearMetersPerSec(): boolean;
-  clearLinearMetersPerSec(): void;
-  getLinearMetersPerSec(): number;
-  setLinearMetersPerSec(value: number): void;
-
-  hasAngularDegPerSec(): boolean;
-  clearAngularDegPerSec(): void;
-  getAngularDegPerSec(): number;
-  setAngularDegPerSec(value: number): void;
+  hasMotionConfiguration(): boolean;
+  clearMotionConfiguration(): void;
+  getMotionConfiguration(): MotionConfiguration | undefined;
+  setMotionConfiguration(value?: MotionConfiguration): void;
 
   hasExtra(): boolean;
   clearExtra(): void;
@@ -202,8 +255,7 @@ export namespace MoveOnGlobeRequest {
     componentName?: common_v1_common_pb.ResourceName.AsObject,
     movementSensorName?: common_v1_common_pb.ResourceName.AsObject,
     obstaclesList: Array<common_v1_common_pb.GeoObstacle.AsObject>,
-    linearMetersPerSec: number,
-    angularDegPerSec: number,
+    motionConfiguration?: MotionConfiguration.AsObject,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
