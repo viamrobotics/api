@@ -269,67 +269,6 @@ proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.moveOnGlobe =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.service.motion.v1.MoveSingleComponentRequest,
- *   !proto.viam.service.motion.v1.MoveSingleComponentResponse>}
- */
-const methodDescriptor_MotionService_MoveSingleComponent = new grpc.web.MethodDescriptor(
-  '/viam.service.motion.v1.MotionService/MoveSingleComponent',
-  grpc.web.MethodType.UNARY,
-  proto.viam.service.motion.v1.MoveSingleComponentRequest,
-  proto.viam.service.motion.v1.MoveSingleComponentResponse,
-  /**
-   * @param {!proto.viam.service.motion.v1.MoveSingleComponentRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.service.motion.v1.MoveSingleComponentResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.service.motion.v1.MoveSingleComponentRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.service.motion.v1.MoveSingleComponentResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.motion.v1.MoveSingleComponentResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.service.motion.v1.MotionServiceClient.prototype.moveSingleComponent =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.service.motion.v1.MotionService/MoveSingleComponent',
-      request,
-      metadata || {},
-      methodDescriptor_MotionService_MoveSingleComponent,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.service.motion.v1.MoveSingleComponentRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.service.motion.v1.MoveSingleComponentResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.moveSingleComponent =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.service.motion.v1.MotionService/MoveSingleComponent',
-      request,
-      metadata || {},
-      methodDescriptor_MotionService_MoveSingleComponent);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.service.motion.v1.GetPoseRequest,
  *   !proto.viam.service.motion.v1.GetPoseResponse>}
  */
