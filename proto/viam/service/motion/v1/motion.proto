@@ -90,12 +90,10 @@ message MotionConfiguration {
   optional double obstacle_polling_frequency = 3;
   // Sets the distance in meters that a robot is allowed to deviate from the motion plan
   optional double plan_deviation_m = 4;
-  // If this value is set, it will set the radius of an ellipse that a robot should search in when attempting to replan.
-  optional double replan_cost_factor = 5;
   // Optional linear velocity to target when moving
-  optional double linear_m_per_sec = 6;
+  optional double linear_m_per_sec = 5;
   // Optional angular velocity to target when turning
-  optional double angular_degs_per_sec = 7;
+  optional double angular_degs_per_sec = 6;
 }
 
 message MoveOnGlobeRequest {

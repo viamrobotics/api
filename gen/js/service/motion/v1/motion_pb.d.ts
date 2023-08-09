@@ -161,11 +161,6 @@ export class MotionConfiguration extends jspb.Message {
   getPlanDeviationM(): number;
   setPlanDeviationM(value: number): void;
 
-  hasReplanCostFactor(): boolean;
-  clearReplanCostFactor(): void;
-  getReplanCostFactor(): number;
-  setReplanCostFactor(value: number): void;
-
   hasLinearMPerSec(): boolean;
   clearLinearMPerSec(): void;
   getLinearMPerSec(): number;
@@ -192,7 +187,6 @@ export namespace MotionConfiguration {
     positionPollingFrequency: number,
     obstaclePollingFrequency: number,
     planDeviationM: number,
-    replanCostFactor: number,
     linearMPerSec: number,
     angularDegsPerSec: number,
   }

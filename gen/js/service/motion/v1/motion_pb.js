@@ -1352,9 +1352,8 @@ proto.viam.service.motion.v1.MotionConfiguration.toObject = function(includeInst
     positionPollingFrequency: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
     obstaclePollingFrequency: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     planDeviationM: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    replanCostFactor: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    linearMPerSec: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    angularDegsPerSec: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0)
+    linearMPerSec: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+    angularDegsPerSec: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0)
   };
 
   if (includeInstance) {
@@ -1410,13 +1409,9 @@ proto.viam.service.motion.v1.MotionConfiguration.deserializeBinaryFromReader = f
       break;
     case 5:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setReplanCostFactor(value);
-      break;
-    case 6:
-      var value = /** @type {number} */ (reader.readDouble());
       msg.setLinearMPerSec(value);
       break;
-    case 7:
+    case 6:
       var value = /** @type {number} */ (reader.readDouble());
       msg.setAngularDegsPerSec(value);
       break;
@@ -1489,13 +1484,6 @@ proto.viam.service.motion.v1.MotionConfiguration.serializeBinaryToWriter = funct
   if (f != null) {
     writer.writeDouble(
       6,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 7));
-  if (f != null) {
-    writer.writeDouble(
-      7,
       f
     );
   }
@@ -1649,10 +1637,10 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.hasPlanDeviationM = f
 
 
 /**
- * optional double replan_cost_factor = 5;
+ * optional double linear_m_per_sec = 5;
  * @return {number}
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.getReplanCostFactor = function() {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.getLinearMPerSec = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 5, 0.0));
 };
 
@@ -1661,7 +1649,7 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.getReplanCostFactor =
  * @param {number} value
  * @return {!proto.viam.service.motion.v1.MotionConfiguration} returns this
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.setReplanCostFactor = function(value) {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.setLinearMPerSec = function(value) {
   return jspb.Message.setField(this, 5, value);
 };
 
@@ -1670,7 +1658,7 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.setReplanCostFactor =
  * Clears the field making it undefined.
  * @return {!proto.viam.service.motion.v1.MotionConfiguration} returns this
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.clearReplanCostFactor = function() {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.clearLinearMPerSec = function() {
   return jspb.Message.setField(this, 5, undefined);
 };
 
@@ -1679,16 +1667,16 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.clearReplanCostFactor
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.hasReplanCostFactor = function() {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.hasLinearMPerSec = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
- * optional double linear_m_per_sec = 6;
+ * optional double angular_degs_per_sec = 6;
  * @return {number}
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.getLinearMPerSec = function() {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.getAngularDegsPerSec = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 6, 0.0));
 };
 
@@ -1697,7 +1685,7 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.getLinearMPerSec = fu
  * @param {number} value
  * @return {!proto.viam.service.motion.v1.MotionConfiguration} returns this
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.setLinearMPerSec = function(value) {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.setAngularDegsPerSec = function(value) {
   return jspb.Message.setField(this, 6, value);
 };
 
@@ -1706,7 +1694,7 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.setLinearMPerSec = fu
  * Clears the field making it undefined.
  * @return {!proto.viam.service.motion.v1.MotionConfiguration} returns this
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.clearLinearMPerSec = function() {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.clearAngularDegsPerSec = function() {
   return jspb.Message.setField(this, 6, undefined);
 };
 
@@ -1715,44 +1703,8 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.clearLinearMPerSec = 
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.hasLinearMPerSec = function() {
-  return jspb.Message.getField(this, 6) != null;
-};
-
-
-/**
- * optional double angular_degs_per_sec = 7;
- * @return {number}
- */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.getAngularDegsPerSec = function() {
-  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 7, 0.0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.viam.service.motion.v1.MotionConfiguration} returns this
- */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.setAngularDegsPerSec = function(value) {
-  return jspb.Message.setField(this, 7, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.viam.service.motion.v1.MotionConfiguration} returns this
- */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.clearAngularDegsPerSec = function() {
-  return jspb.Message.setField(this, 7, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
 proto.viam.service.motion.v1.MotionConfiguration.prototype.hasAngularDegsPerSec = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
