@@ -1369,7 +1369,8 @@ proto.viam.service.navigation.v1.GetLocationResponse.prototype.toObject = functi
  */
 proto.viam.service.navigation.v1.GetLocationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    location: (f = msg.getLocation()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f)
+    location: (f = msg.getLocation()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f),
+    compassHeading: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -1411,6 +1412,10 @@ proto.viam.service.navigation.v1.GetLocationResponse.deserializeBinaryFromReader
       reader.readMessage(value,common_v1_common_pb.GeoPoint.deserializeBinaryFromReader);
       msg.setLocation(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setCompassHeading(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1446,6 +1451,13 @@ proto.viam.service.navigation.v1.GetLocationResponse.serializeBinaryToWriter = f
       1,
       f,
       common_v1_common_pb.GeoPoint.serializeBinaryToWriter
+    );
+  }
+  f = message.getCompassHeading();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      2,
+      f
     );
   }
 };
@@ -1485,6 +1497,24 @@ proto.viam.service.navigation.v1.GetLocationResponse.prototype.clearLocation = f
  */
 proto.viam.service.navigation.v1.GetLocationResponse.prototype.hasLocation = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional double compass_heading = 2;
+ * @return {number}
+ */
+proto.viam.service.navigation.v1.GetLocationResponse.prototype.getCompassHeading = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 2, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.service.navigation.v1.GetLocationResponse} returns this
+ */
+proto.viam.service.navigation.v1.GetLocationResponse.prototype.setCompassHeading = function(value) {
+  return jspb.Message.setProto3FloatField(this, 2, value);
 };
 
 

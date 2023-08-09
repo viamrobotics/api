@@ -100,6 +100,8 @@ message UpdateMappingSessionMetadataByIDRequest {
   string session_id = 1;
   // “success”, “failed to start”, etc
   string end_status = 2;
+  // set at the time of job closeout and used as the package version
+  google.protobuf.Timestamp time_cloud_run_job_ended = 3;
 }
 
 message UpdateMappingSessionMetadataByIDResponse {}
