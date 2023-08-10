@@ -2537,7 +2537,8 @@ proto.viam.component.base.v1.GetPropertiesResponse.prototype.toObject = function
 proto.viam.component.base.v1.GetPropertiesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     widthMeters: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    turningRadiusMeters: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+    turningRadiusMeters: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    wheelCircumferenceMeters: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0)
   };
 
   if (includeInstance) {
@@ -2582,6 +2583,10 @@ proto.viam.component.base.v1.GetPropertiesResponse.deserializeBinaryFromReader =
       var value = /** @type {number} */ (reader.readDouble());
       msg.setTurningRadiusMeters(value);
       break;
+    case 3:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setWheelCircumferenceMeters(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2625,6 +2630,13 @@ proto.viam.component.base.v1.GetPropertiesResponse.serializeBinaryToWriter = fun
       f
     );
   }
+  f = message.getWheelCircumferenceMeters();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -2661,6 +2673,24 @@ proto.viam.component.base.v1.GetPropertiesResponse.prototype.getTurningRadiusMet
  */
 proto.viam.component.base.v1.GetPropertiesResponse.prototype.setTurningRadiusMeters = function(value) {
   return jspb.Message.setProto3FloatField(this, 2, value);
+};
+
+
+/**
+ * optional double wheel_circumference_meters = 3;
+ * @return {number}
+ */
+proto.viam.component.base.v1.GetPropertiesResponse.prototype.getWheelCircumferenceMeters = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 3, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.component.base.v1.GetPropertiesResponse} returns this
+ */
+proto.viam.component.base.v1.GetPropertiesResponse.prototype.setWheelCircumferenceMeters = function(value) {
+  return jspb.Message.setProto3FloatField(this, 3, value);
 };
 
 

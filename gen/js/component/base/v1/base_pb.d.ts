@@ -329,6 +329,9 @@ export class GetPropertiesResponse extends jspb.Message {
   getTurningRadiusMeters(): number;
   setTurningRadiusMeters(value: number): void;
 
+  getWheelCircumferenceMeters(): number;
+  setWheelCircumferenceMeters(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
@@ -343,6 +346,7 @@ export namespace GetPropertiesResponse {
   export type AsObject = {
     widthMeters: number,
     turningRadiusMeters: number,
+    wheelCircumferenceMeters: number,
   }
 }
 
