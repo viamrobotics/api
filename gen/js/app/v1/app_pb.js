@@ -4297,7 +4297,8 @@ proto.viam.app.v1.Organization.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     publicNamespace: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    defaultRegion: jspb.Message.getFieldWithDefault(msg, 5, "")
+    defaultRegion: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    cid: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -4354,6 +4355,10 @@ proto.viam.app.v1.Organization.deserializeBinaryFromReader = function(msg, reade
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setDefaultRegion(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCid(value);
       break;
     default:
       reader.skipField();
@@ -4417,6 +4422,13 @@ proto.viam.app.v1.Organization.serializeBinaryToWriter = function(message, write
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -4529,6 +4541,42 @@ proto.viam.app.v1.Organization.prototype.getDefaultRegion = function() {
  */
 proto.viam.app.v1.Organization.prototype.setDefaultRegion = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string cid = 6;
+ * @return {string}
+ */
+proto.viam.app.v1.Organization.prototype.getCid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.Organization} returns this
+ */
+proto.viam.app.v1.Organization.prototype.setCid = function(value) {
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.Organization} returns this
+ */
+proto.viam.app.v1.Organization.prototype.clearCid = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Organization.prototype.hasCid = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
@@ -6027,7 +6075,8 @@ proto.viam.app.v1.UpdateOrganizationRequest.toObject = function(includeInstance,
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     publicNamespace: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    region: jspb.Message.getFieldWithDefault(msg, 4, "")
+    region: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    cid: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -6079,6 +6128,10 @@ proto.viam.app.v1.UpdateOrganizationRequest.deserializeBinaryFromReader = functi
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setRegion(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCid(value);
       break;
     default:
       reader.skipField();
@@ -6134,6 +6187,13 @@ proto.viam.app.v1.UpdateOrganizationRequest.serializeBinaryToWriter = function(m
   if (f != null) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -6263,6 +6323,42 @@ proto.viam.app.v1.UpdateOrganizationRequest.prototype.clearRegion = function() {
  */
 proto.viam.app.v1.UpdateOrganizationRequest.prototype.hasRegion = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional string cid = 5;
+ * @return {string}
+ */
+proto.viam.app.v1.UpdateOrganizationRequest.prototype.getCid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UpdateOrganizationRequest} returns this
+ */
+proto.viam.app.v1.UpdateOrganizationRequest.prototype.setCid = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateOrganizationRequest} returns this
+ */
+proto.viam.app.v1.UpdateOrganizationRequest.prototype.clearCid = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateOrganizationRequest.prototype.hasCid = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -24386,7 +24482,6 @@ proto.viam.app.v1.Module.prototype.toObject = function(opt_includeInstance) {
 proto.viam.app.v1.Module.toObject = function(includeInstance, msg) {
   var f, obj = {
     moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 10, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     visibility: jspb.Message.getFieldWithDefault(msg, 3, 0),
     versionsList: jspb.Message.toObjectList(msg.getVersionsList(),
@@ -24395,9 +24490,11 @@ proto.viam.app.v1.Module.toObject = function(includeInstance, msg) {
     description: jspb.Message.getFieldWithDefault(msg, 6, ""),
     modelsList: jspb.Message.toObjectList(msg.getModelsList(),
     proto.viam.app.v1.Model.toObject, includeInstance),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 11, ""),
     totalRobotUsage: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    totalOrganizationUsage: jspb.Message.getFieldWithDefault(msg, 9, 0)
+    totalOrganizationUsage: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    entrypoint: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    publicNamespace: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -24438,10 +24535,6 @@ proto.viam.app.v1.Module.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setModuleId(value);
       break;
-    case 10:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setOrganizationId(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
@@ -24468,10 +24561,6 @@ proto.viam.app.v1.Module.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.viam.app.v1.Model.deserializeBinaryFromReader);
       msg.addModels(value);
       break;
-    case 11:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setEntrypoint(value);
-      break;
     case 8:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setTotalRobotUsage(value);
@@ -24479,6 +24568,18 @@ proto.viam.app.v1.Module.deserializeBinaryFromReader = function(msg, reader) {
     case 9:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setTotalOrganizationUsage(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganizationId(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEntrypoint(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPublicNamespace(value);
       break;
     default:
       reader.skipField();
@@ -24513,13 +24614,6 @@ proto.viam.app.v1.Module.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       1,
-      f
-    );
-  }
-  f = message.getOrganizationId();
-  if (f.length > 0) {
-    writer.writeString(
-      10,
       f
     );
   }
@@ -24567,13 +24661,6 @@ proto.viam.app.v1.Module.serializeBinaryToWriter = function(message, writer) {
       proto.viam.app.v1.Model.serializeBinaryToWriter
     );
   }
-  f = message.getEntrypoint();
-  if (f.length > 0) {
-    writer.writeString(
-      11,
-      f
-    );
-  }
   f = message.getTotalRobotUsage();
   if (f !== 0) {
     writer.writeInt64(
@@ -24585,6 +24672,27 @@ proto.viam.app.v1.Module.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeInt64(
       9,
+      f
+    );
+  }
+  f = message.getOrganizationId();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
+  f = message.getEntrypoint();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
+      f
+    );
+  }
+  f = message.getPublicNamespace();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
       f
     );
   }
@@ -24606,24 +24714,6 @@ proto.viam.app.v1.Module.prototype.getModuleId = function() {
  */
 proto.viam.app.v1.Module.prototype.setModuleId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string organization_id = 10;
- * @return {string}
- */
-proto.viam.app.v1.Module.prototype.getOrganizationId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.v1.Module} returns this
- */
-proto.viam.app.v1.Module.prototype.setOrganizationId = function(value) {
-  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
@@ -24776,24 +24866,6 @@ proto.viam.app.v1.Module.prototype.clearModelsList = function() {
 
 
 /**
- * optional string entrypoint = 11;
- * @return {string}
- */
-proto.viam.app.v1.Module.prototype.getEntrypoint = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.v1.Module} returns this
- */
-proto.viam.app.v1.Module.prototype.setEntrypoint = function(value) {
-  return jspb.Message.setProto3StringField(this, 11, value);
-};
-
-
-/**
  * optional int64 total_robot_usage = 8;
  * @return {number}
  */
@@ -24826,6 +24898,60 @@ proto.viam.app.v1.Module.prototype.getTotalOrganizationUsage = function() {
  */
 proto.viam.app.v1.Module.prototype.setTotalOrganizationUsage = function(value) {
   return jspb.Message.setProto3IntField(this, 9, value);
+};
+
+
+/**
+ * optional string organization_id = 10;
+ * @return {string}
+ */
+proto.viam.app.v1.Module.prototype.getOrganizationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.Module} returns this
+ */
+proto.viam.app.v1.Module.prototype.setOrganizationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional string entrypoint = 11;
+ * @return {string}
+ */
+proto.viam.app.v1.Module.prototype.getEntrypoint = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.Module} returns this
+ */
+proto.viam.app.v1.Module.prototype.setEntrypoint = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional string public_namespace = 12;
+ * @return {string}
+ */
+proto.viam.app.v1.Module.prototype.getPublicNamespace = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.Module} returns this
+ */
+proto.viam.app.v1.Module.prototype.setPublicNamespace = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
 };
 
 

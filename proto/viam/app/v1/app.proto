@@ -231,6 +231,7 @@ message Organization {
   // GCS region of the organization. Locations created under this org will have their GCS region set to this by default and packages
   // associated with this org will be stored in this region.
   string default_region = 5;
+  optional string cid = 6;
 }
 
 message OrganizationMember {
@@ -280,6 +281,7 @@ message UpdateOrganizationRequest {
   optional string public_namespace = 3;
   // The new GCS region to associate the org with.
   optional string region = 4;
+  optional string cid = 5;
 }
 
 message UpdateOrganizationResponse {
@@ -875,8 +877,6 @@ message GetModuleResponse {
 message Module {
   // The id of the module, containing module name or namespace and module name
   string module_id = 1;
-  // The id of the organization that owns the module
-  string organization_id = 10;
   // The name of the module
   string name = 2;
   // The visibility of the module
@@ -889,12 +889,17 @@ message Module {
   string description = 6;
   // A list of models that are available in the module
   repeated Model models = 7;
-  // The executable to run to start the module program
-  string entrypoint = 11;
   // The total number of robots using this module
   int64 total_robot_usage = 8;
   // The total number of organizations using this module
   int64 total_organization_usage = 9;
+  // The id of the organization that owns the module
+  string organization_id = 10;
+  // The executable to run to start the module program
+  string entrypoint = 11;
+  // The public namespace of the organization that owns the module
+  // This is empty if no public namespace is set
+  string public_namespace = 12;
 }
 
 message VersionHistory {

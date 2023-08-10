@@ -2337,7 +2337,8 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.to
 proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    endStatus: jspb.Message.getFieldWithDefault(msg, 2, "")
+    endStatus: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    timeCloudRunJobEnded: (f = msg.getTimeCloudRunJobEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2382,6 +2383,11 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.deserializeB
       var value = /** @type {string} */ (reader.readString());
       msg.setEndStatus(value);
       break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTimeCloudRunJobEnded(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2425,6 +2431,14 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.serializeBin
       f
     );
   }
+  f = message.getTimeCloudRunJobEnded();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -2461,6 +2475,43 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.ge
  */
 proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.setEndStatus = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp time_cloud_run_job_ended = 3;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.getTimeCloudRunJobEnded = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest} returns this
+*/
+proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.setTimeCloudRunJobEnded = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest} returns this
+ */
+proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.clearTimeCloudRunJobEnded = function() {
+  return this.setTimeCloudRunJobEnded(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.hasTimeCloudRunJobEnded = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
