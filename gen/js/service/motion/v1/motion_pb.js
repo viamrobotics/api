@@ -1349,8 +1349,8 @@ proto.viam.service.motion.v1.MotionConfiguration.toObject = function(includeInst
   var f, obj = {
     visionServicesList: jspb.Message.toObjectList(msg.getVisionServicesList(),
     common_v1_common_pb.ResourceName.toObject, includeInstance),
-    positionPollingFrequency: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    obstaclePollingFrequency: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    positionPollingFrequencyHz: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    obstaclePollingFrequencyHz: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     planDeviationM: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
     linearMPerSec: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
     angularDegsPerSec: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0)
@@ -1397,11 +1397,11 @@ proto.viam.service.motion.v1.MotionConfiguration.deserializeBinaryFromReader = f
       break;
     case 2:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setPositionPollingFrequency(value);
+      msg.setPositionPollingFrequencyHz(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setObstaclePollingFrequency(value);
+      msg.setObstaclePollingFrequencyHz(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readDouble());
@@ -1529,10 +1529,10 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.clearVisionServicesLi
 
 
 /**
- * optional double position_polling_frequency = 2;
+ * optional double position_polling_frequency_hz = 2;
  * @return {number}
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.getPositionPollingFrequency = function() {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.getPositionPollingFrequencyHz = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 2, 0.0));
 };
 
@@ -1541,7 +1541,7 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.getPositionPollingFre
  * @param {number} value
  * @return {!proto.viam.service.motion.v1.MotionConfiguration} returns this
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.setPositionPollingFrequency = function(value) {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.setPositionPollingFrequencyHz = function(value) {
   return jspb.Message.setField(this, 2, value);
 };
 
@@ -1550,7 +1550,7 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.setPositionPollingFre
  * Clears the field making it undefined.
  * @return {!proto.viam.service.motion.v1.MotionConfiguration} returns this
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.clearPositionPollingFrequency = function() {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.clearPositionPollingFrequencyHz = function() {
   return jspb.Message.setField(this, 2, undefined);
 };
 
@@ -1559,16 +1559,16 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.clearPositionPollingF
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.hasPositionPollingFrequency = function() {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.hasPositionPollingFrequencyHz = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * optional double obstacle_polling_frequency = 3;
+ * optional double obstacle_polling_frequency_hz = 3;
  * @return {number}
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.getObstaclePollingFrequency = function() {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.getObstaclePollingFrequencyHz = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 3, 0.0));
 };
 
@@ -1577,7 +1577,7 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.getObstaclePollingFre
  * @param {number} value
  * @return {!proto.viam.service.motion.v1.MotionConfiguration} returns this
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.setObstaclePollingFrequency = function(value) {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.setObstaclePollingFrequencyHz = function(value) {
   return jspb.Message.setField(this, 3, value);
 };
 
@@ -1586,7 +1586,7 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.setObstaclePollingFre
  * Clears the field making it undefined.
  * @return {!proto.viam.service.motion.v1.MotionConfiguration} returns this
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.clearObstaclePollingFrequency = function() {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.clearObstaclePollingFrequencyHz = function() {
   return jspb.Message.setField(this, 3, undefined);
 };
 
@@ -1595,7 +1595,7 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.clearObstaclePollingF
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.MotionConfiguration.prototype.hasObstaclePollingFrequency = function() {
+proto.viam.service.motion.v1.MotionConfiguration.prototype.hasObstaclePollingFrequencyHz = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 

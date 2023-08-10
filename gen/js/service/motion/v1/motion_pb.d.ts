@@ -146,15 +146,15 @@ export class MotionConfiguration extends jspb.Message {
   setVisionServicesList(value: Array<common_v1_common_pb.ResourceName>): void;
   addVisionServices(value?: common_v1_common_pb.ResourceName, index?: number): common_v1_common_pb.ResourceName;
 
-  hasPositionPollingFrequency(): boolean;
-  clearPositionPollingFrequency(): void;
-  getPositionPollingFrequency(): number;
-  setPositionPollingFrequency(value: number): void;
+  hasPositionPollingFrequencyHz(): boolean;
+  clearPositionPollingFrequencyHz(): void;
+  getPositionPollingFrequencyHz(): number;
+  setPositionPollingFrequencyHz(value: number): void;
 
-  hasObstaclePollingFrequency(): boolean;
-  clearObstaclePollingFrequency(): void;
-  getObstaclePollingFrequency(): number;
-  setObstaclePollingFrequency(value: number): void;
+  hasObstaclePollingFrequencyHz(): boolean;
+  clearObstaclePollingFrequencyHz(): void;
+  getObstaclePollingFrequencyHz(): number;
+  setObstaclePollingFrequencyHz(value: number): void;
 
   hasPlanDeviationM(): boolean;
   clearPlanDeviationM(): void;
@@ -184,8 +184,8 @@ export class MotionConfiguration extends jspb.Message {
 export namespace MotionConfiguration {
   export type AsObject = {
     visionServicesList: Array<common_v1_common_pb.ResourceName.AsObject>,
-    positionPollingFrequency: number,
-    obstaclePollingFrequency: number,
+    positionPollingFrequencyHz: number,
+    obstaclePollingFrequencyHz: number,
     planDeviationM: number,
     linearMPerSec: number,
     angularDegsPerSec: number,

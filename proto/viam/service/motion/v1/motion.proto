@@ -85,9 +85,9 @@ message MotionConfiguration {
   // The name of the vision service(s) that will be used to detect obstacles
   repeated common.v1.ResourceName vision_services = 1;
   // Sets the frequency to poll for the position of the robot
-  optional double position_polling_frequency = 2;
+  optional double position_polling_frequency_hz = 2;
   // Sets the frequency to poll the vision service(s) for new obstacles
-  optional double obstacle_polling_frequency = 3;
+  optional double obstacle_polling_frequency_hz = 3;
   // Sets the distance in meters that a robot is allowed to deviate from the motion plan
   optional double plan_deviation_m = 4;
   // Optional linear velocity to target when moving
