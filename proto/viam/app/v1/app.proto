@@ -238,6 +238,7 @@ message OrganizationMember {
   string user_id = 1;
   repeated string emails = 2;
   google.protobuf.Timestamp date_added = 3;
+  google.protobuf.Timestamp last_login = 4;
 }
 
 message ListOrganizationsResponse {
