@@ -332,6 +332,11 @@ export class ServiceConfig extends jspb.Message {
   getApi(): string;
   setApi(value: string): void;
 
+  clearServiceConfigsList(): void;
+  getServiceConfigsList(): Array<ResourceLevelServiceConfig>;
+  setServiceConfigsList(value: Array<ResourceLevelServiceConfig>): void;
+  addServiceConfigs(value?: ResourceLevelServiceConfig, index?: number): ResourceLevelServiceConfig;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ServiceConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ServiceConfig): ServiceConfig.AsObject;
@@ -351,6 +356,7 @@ export namespace ServiceConfig {
     dependsOnList: Array<string>,
     model: string,
     api: string,
+    serviceConfigsList: Array<ResourceLevelServiceConfig.AsObject>,
   }
 }
 
