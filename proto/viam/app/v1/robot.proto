@@ -101,6 +101,7 @@ message ServiceConfig {
   google.protobuf.Struct attributes = 4;
   repeated string depends_on = 5;
   string model = 6;
+  repeated ResourceLevelServiceConfig service_configs = 7 [(tagger.v1.tags) = "json:\"service_config\""];
 }
 
 message NetworkConfig {

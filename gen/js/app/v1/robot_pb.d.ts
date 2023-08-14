@@ -329,6 +329,11 @@ export class ServiceConfig extends jspb.Message {
   getModel(): string;
   setModel(value: string): void;
 
+  clearServiceConfigsList(): void;
+  getServiceConfigsList(): Array<ResourceLevelServiceConfig>;
+  setServiceConfigsList(value: Array<ResourceLevelServiceConfig>): void;
+  addServiceConfigs(value?: ResourceLevelServiceConfig, index?: number): ResourceLevelServiceConfig;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ServiceConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ServiceConfig): ServiceConfig.AsObject;
@@ -347,6 +352,7 @@ export namespace ServiceConfig {
     attributes?: google_protobuf_struct_pb.Struct.AsObject,
     dependsOnList: Array<string>,
     model: string,
+    serviceConfigsList: Array<ResourceLevelServiceConfig.AsObject>,
   }
 }
 

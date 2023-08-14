@@ -3066,7 +3066,7 @@ proto.viam.app.v1.ProcessConfig.prototype.hasStopTimeout = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.ServiceConfig.repeatedFields_ = [5];
+proto.viam.app.v1.ServiceConfig.repeatedFields_ = [5,7];
 
 
 
@@ -3104,7 +3104,9 @@ proto.viam.app.v1.ServiceConfig.toObject = function(includeInstance, msg) {
     type: jspb.Message.getFieldWithDefault(msg, 3, ""),
     attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     dependsOnList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    model: jspb.Message.getFieldWithDefault(msg, 6, "")
+    model: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    serviceConfigsList: jspb.Message.toObjectList(msg.getServiceConfigsList(),
+    proto.viam.app.v1.ResourceLevelServiceConfig.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -3165,6 +3167,11 @@ proto.viam.app.v1.ServiceConfig.deserializeBinaryFromReader = function(msg, read
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setModel(value);
+      break;
+    case 7:
+      var value = new proto.viam.app.v1.ResourceLevelServiceConfig;
+      reader.readMessage(value,proto.viam.app.v1.ResourceLevelServiceConfig.deserializeBinaryFromReader);
+      msg.addServiceConfigs(value);
       break;
     default:
       reader.skipField();
@@ -3236,6 +3243,14 @@ proto.viam.app.v1.ServiceConfig.serializeBinaryToWriter = function(message, writ
     writer.writeString(
       6,
       f
+    );
+  }
+  f = message.getServiceConfigsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      7,
+      f,
+      proto.viam.app.v1.ResourceLevelServiceConfig.serializeBinaryToWriter
     );
   }
 };
@@ -3384,6 +3399,44 @@ proto.viam.app.v1.ServiceConfig.prototype.getModel = function() {
  */
 proto.viam.app.v1.ServiceConfig.prototype.setModel = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * repeated ResourceLevelServiceConfig service_configs = 7;
+ * @return {!Array<!proto.viam.app.v1.ResourceLevelServiceConfig>}
+ */
+proto.viam.app.v1.ServiceConfig.prototype.getServiceConfigsList = function() {
+  return /** @type{!Array<!proto.viam.app.v1.ResourceLevelServiceConfig>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.v1.ResourceLevelServiceConfig, 7));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.app.v1.ResourceLevelServiceConfig>} value
+ * @return {!proto.viam.app.v1.ServiceConfig} returns this
+*/
+proto.viam.app.v1.ServiceConfig.prototype.setServiceConfigsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 7, value);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ResourceLevelServiceConfig=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.ResourceLevelServiceConfig}
+ */
+proto.viam.app.v1.ServiceConfig.prototype.addServiceConfigs = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.viam.app.v1.ResourceLevelServiceConfig, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.ServiceConfig} returns this
+ */
+proto.viam.app.v1.ServiceConfig.prototype.clearServiceConfigsList = function() {
+  return this.setServiceConfigsList([]);
 };
 
 
