@@ -238,6 +238,11 @@ export class OrganizationMember extends jspb.Message {
   getDateAdded(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setDateAdded(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasLastLogin(): boolean;
+  clearLastLogin(): void;
+  getLastLogin(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastLogin(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OrganizationMember.AsObject;
   static toObject(includeInstance: boolean, msg: OrganizationMember): OrganizationMember.AsObject;
@@ -253,6 +258,7 @@ export namespace OrganizationMember {
     userId: string,
     emailsList: Array<string>,
     dateAdded?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    lastLogin?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
