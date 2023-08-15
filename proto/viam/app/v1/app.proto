@@ -185,6 +185,8 @@ service AppService {
   rpc GetModule(GetModuleRequest) returns (GetModuleResponse);
 
   rpc ListModules(ListModulesRequest) returns (ListModulesResponse);
+
+  rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse);
 }
 
 message Robot {
@@ -752,6 +754,7 @@ message Authorization {
   string resource_id = 4;
   string identity_id = 5;
   string organization_id = 6;
+  string identity_type = 7;
 }
 
 message AddRoleRequest {
@@ -957,3 +960,13 @@ message OrgDetails {
 message ListOrganizationsByUserResponse {
   repeated OrgDetails orgs = 1;
 }
+
+message CreateKeyRequest {
+  repeated Authorization authorizations = 1;
+  string name = 2;
+}
+
+message CreateKeyResponse {
+  string key = 1;
+}
+
