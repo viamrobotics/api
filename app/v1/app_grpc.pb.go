@@ -123,6 +123,8 @@ type AppServiceClient interface {
 	AddRole(ctx context.Context, in *AddRoleRequest, opts ...grpc.CallOption) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
 	RemoveRole(ctx context.Context, in *RemoveRoleRequest, opts ...grpc.CallOption) (*RemoveRoleResponse, error)
+	// Changes an IdentityAuthorization to a new IdentityAuthorization
+	ChangeRole(ctx context.Context, in *ChangeRoleRequest, opts ...grpc.CallOption) (*ChangeRoleResponse, error)
 	// Returns all authorization roles for a given resource
 	ListAuthorizations(ctx context.Context, in *ListAuthorizationsRequest, opts ...grpc.CallOption) (*ListAuthorizationsResponse, error)
 	// Validates a permission for the current user
@@ -606,6 +608,15 @@ func (c *appServiceClient) RemoveRole(ctx context.Context, in *RemoveRoleRequest
 	return out, nil
 }
 
+func (c *appServiceClient) ChangeRole(ctx context.Context, in *ChangeRoleRequest, opts ...grpc.CallOption) (*ChangeRoleResponse, error) {
+	out := new(ChangeRoleResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ChangeRole", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) ListAuthorizations(ctx context.Context, in *ListAuthorizationsRequest, opts ...grpc.CallOption) (*ListAuthorizationsResponse, error) {
 	out := new(ListAuthorizationsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListAuthorizations", in, out, opts...)
@@ -799,6 +810,8 @@ type AppServiceServer interface {
 	AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
 	RemoveRole(context.Context, *RemoveRoleRequest) (*RemoveRoleResponse, error)
+	// Changes an IdentityAuthorization to a new IdentityAuthorization
+	ChangeRole(context.Context, *ChangeRoleRequest) (*ChangeRoleResponse, error)
 	// Returns all authorization roles for a given resource
 	ListAuthorizations(context.Context, *ListAuthorizationsRequest) (*ListAuthorizationsResponse, error)
 	// Validates a permission for the current user
@@ -961,6 +974,9 @@ func (UnimplementedAppServiceServer) AddRole(context.Context, *AddRoleRequest) (
 }
 func (UnimplementedAppServiceServer) RemoveRole(context.Context, *RemoveRoleRequest) (*RemoveRoleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveRole not implemented")
+}
+func (UnimplementedAppServiceServer) ChangeRole(context.Context, *ChangeRoleRequest) (*ChangeRoleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeRole not implemented")
 }
 func (UnimplementedAppServiceServer) ListAuthorizations(context.Context, *ListAuthorizationsRequest) (*ListAuthorizationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAuthorizations not implemented")
@@ -1881,6 +1897,24 @@ func _AppService_RemoveRole_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_ChangeRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeRoleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ChangeRole(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ChangeRole",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ChangeRole(ctx, req.(*ChangeRoleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_ListAuthorizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListAuthorizationsRequest)
 	if err := dec(in); err != nil {
@@ -2213,6 +2247,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveRole",
 			Handler:    _AppService_RemoveRole_Handler,
+		},
+		{
+			MethodName: "ChangeRole",
+			Handler:    _AppService_ChangeRole_Handler,
 		},
 		{
 			MethodName: "ListAuthorizations",

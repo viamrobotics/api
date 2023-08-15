@@ -167,6 +167,9 @@ service AppService {
   // Deletes an IdentityAuthorization
   rpc RemoveRole(RemoveRoleRequest) returns (RemoveRoleResponse);
 
+  // Changes an IdentityAuthorization to a new IdentityAuthorization
+  rpc ChangeRole(ChangeRoleRequest) returns (ChangeRoleResponse);
+
   // Returns all authorization roles for a given resource
   rpc ListAuthorizations(ListAuthorizationsRequest) returns (ListAuthorizationsResponse);
 
@@ -762,6 +765,13 @@ message RemoveRoleRequest {
 }
 
 message RemoveRoleResponse {}
+
+message ChangeRoleRequest {
+  Authorization old_authorization = 1;
+  Authorization new_authorization = 2;
+}
+
+message ChangeRoleResponse {}
 
 message ListAuthorizationsRequest {
   string organization_id = 1;

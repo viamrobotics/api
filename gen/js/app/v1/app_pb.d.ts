@@ -2722,6 +2722,50 @@ export namespace RemoveRoleResponse {
   }
 }
 
+export class ChangeRoleRequest extends jspb.Message {
+  hasOldAuthorization(): boolean;
+  clearOldAuthorization(): void;
+  getOldAuthorization(): Authorization | undefined;
+  setOldAuthorization(value?: Authorization): void;
+
+  hasNewAuthorization(): boolean;
+  clearNewAuthorization(): void;
+  getNewAuthorization(): Authorization | undefined;
+  setNewAuthorization(value?: Authorization): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChangeRoleRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ChangeRoleRequest): ChangeRoleRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChangeRoleRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChangeRoleRequest;
+  static deserializeBinaryFromReader(message: ChangeRoleRequest, reader: jspb.BinaryReader): ChangeRoleRequest;
+}
+
+export namespace ChangeRoleRequest {
+  export type AsObject = {
+    oldAuthorization?: Authorization.AsObject,
+    newAuthorization?: Authorization.AsObject,
+  }
+}
+
+export class ChangeRoleResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChangeRoleResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ChangeRoleResponse): ChangeRoleResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChangeRoleResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChangeRoleResponse;
+  static deserializeBinaryFromReader(message: ChangeRoleResponse, reader: jspb.BinaryReader): ChangeRoleResponse;
+}
+
+export namespace ChangeRoleResponse {
+  export type AsObject = {
+  }
+}
+
 export class ListAuthorizationsRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
