@@ -3069,6 +3069,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.removeRole =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.ChangeRoleRequest,
+ *   !proto.viam.app.v1.ChangeRoleResponse>}
+ */
+const methodDescriptor_AppService_ChangeRole = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/ChangeRole',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.ChangeRoleRequest,
+  proto.viam.app.v1.ChangeRoleResponse,
+  /**
+   * @param {!proto.viam.app.v1.ChangeRoleRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.ChangeRoleResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.ChangeRoleRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ChangeRoleResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ChangeRoleResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.changeRole =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/ChangeRole',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ChangeRole,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ChangeRoleRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.ChangeRoleResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.changeRole =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/ChangeRole',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ChangeRole);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.ListAuthorizationsRequest,
  *   !proto.viam.app.v1.ListAuthorizationsResponse>}
  */

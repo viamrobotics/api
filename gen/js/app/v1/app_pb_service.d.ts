@@ -445,6 +445,15 @@ type AppServiceRemoveRole = {
   readonly responseType: typeof app_v1_app_pb.RemoveRoleResponse;
 };
 
+type AppServiceChangeRole = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ChangeRoleRequest;
+  readonly responseType: typeof app_v1_app_pb.ChangeRoleResponse;
+};
+
 type AppServiceListAuthorizations = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -559,6 +568,7 @@ export class AppService {
   static readonly DeleteFragment: AppServiceDeleteFragment;
   static readonly AddRole: AppServiceAddRole;
   static readonly RemoveRole: AppServiceRemoveRole;
+  static readonly ChangeRole: AppServiceChangeRole;
   static readonly ListAuthorizations: AppServiceListAuthorizations;
   static readonly CheckPermissions: AppServiceCheckPermissions;
   static readonly CreateModule: AppServiceCreateModule;
@@ -1032,6 +1042,15 @@ export class AppServiceClient {
   removeRole(
     requestMessage: app_v1_app_pb.RemoveRoleRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RemoveRoleResponse|null) => void
+  ): UnaryResponse;
+  changeRole(
+    requestMessage: app_v1_app_pb.ChangeRoleRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ChangeRoleResponse|null) => void
+  ): UnaryResponse;
+  changeRole(
+    requestMessage: app_v1_app_pb.ChangeRoleRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ChangeRoleResponse|null) => void
   ): UnaryResponse;
   listAuthorizations(
     requestMessage: app_v1_app_pb.ListAuthorizationsRequest,

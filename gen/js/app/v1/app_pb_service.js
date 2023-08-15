@@ -451,6 +451,15 @@ AppService.RemoveRole = {
   responseType: app_v1_app_pb.RemoveRoleResponse
 };
 
+AppService.ChangeRole = {
+  methodName: "ChangeRole",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ChangeRoleRequest,
+  responseType: app_v1_app_pb.ChangeRoleResponse
+};
+
 AppService.ListAuthorizations = {
   methodName: "ListAuthorizations",
   service: AppService,
@@ -2022,6 +2031,37 @@ AppServiceClient.prototype.removeRole = function removeRole(requestMessage, meta
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.RemoveRole, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.changeRole = function changeRole(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ChangeRole, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
