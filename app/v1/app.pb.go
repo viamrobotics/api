@@ -7033,6 +7033,7 @@ type Module struct {
 	// The visibility of the module
 	Visibility Visibility `protobuf:"varint,3,opt,name=visibility,proto3,enum=viam.app.v1.Visibility" json:"visibility,omitempty"`
 	// The versions of the module that are available
+	// When this is returned from the backend, the versions are sorted in ascending order by the semver version
 	Versions []*VersionHistory `protobuf:"bytes,4,rep,name=versions,proto3" json:"versions,omitempty"`
 	// The url to reference for documentation, code, etc.
 	Url string `protobuf:"bytes,5,opt,name=url,proto3" json:"url,omitempty"`

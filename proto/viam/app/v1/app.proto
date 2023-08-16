@@ -893,6 +893,7 @@ message Module {
   // The visibility of the module
   Visibility visibility = 3;
   // The versions of the module that are available
+  // When this is returned from the backend, the versions are sorted in ascending order by the semver version
   repeated VersionHistory versions = 4;
   // The url to reference for documentation, code, etc.
   string url = 5;
