@@ -361,6 +361,7 @@ export interface PackageTypeMap {
   PACKAGE_TYPE_ML_MODEL: 2;
   PACKAGE_TYPE_MODULE: 3;
   PACKAGE_TYPE_SLAM_MAP: 4;
+  PACKAGE_TYPE_BOARD_DEFS: 5;
 }
 
 export const PackageType: PackageTypeMap;

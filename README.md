@@ -19,6 +19,10 @@ Protobuf definitions for Viam's public-facing API.
     - Do not make further changes after this point.
     - If stuck waiting for merge checks _after_ `protos-compiled` is added, try adding an unrelated label (ex: `enhancement`) to trigger it again.
 - Do not make breaking changes to APIs if it can be avoided.
+- Always use semantic version tags (not hashes) when importing this into other projects, such as RDK.
+    + For example, use `go get go.viam.com/api@v0.1.180` NOT `go get go.viam.com/api@037415e`
+    + Add a new (semantic version compatible) tag when needed for this.
+    + Do NOT duplicate, move, or remove version tags.
 
 ## License
 
