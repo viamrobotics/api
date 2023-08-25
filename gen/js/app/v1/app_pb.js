@@ -25397,7 +25397,7 @@ proto.viam.app.v1.VersionHistory.toObject = function(includeInstance, msg) {
     proto.viam.app.v1.Uploads.toObject, includeInstance),
     modelsList: jspb.Message.toObjectList(msg.getModelsList(),
     proto.viam.app.v1.Model.toObject, includeInstance),
-    entrpoint: jspb.Message.getFieldWithDefault(msg, 4, "")
+    entrypoint: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -25450,7 +25450,7 @@ proto.viam.app.v1.VersionHistory.deserializeBinaryFromReader = function(msg, rea
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setEntrpoint(value);
+      msg.setEntrypoint(value);
       break;
     default:
       reader.skipField();
@@ -25504,7 +25504,7 @@ proto.viam.app.v1.VersionHistory.serializeBinaryToWriter = function(message, wri
       proto.viam.app.v1.Model.serializeBinaryToWriter
     );
   }
-  f = message.getEntrpoint();
+  f = message.getEntrypoint();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -25609,10 +25609,10 @@ proto.viam.app.v1.VersionHistory.prototype.clearModelsList = function() {
 
 
 /**
- * optional string entrpoint = 4;
+ * optional string entrypoint = 4;
  * @return {string}
  */
-proto.viam.app.v1.VersionHistory.prototype.getEntrpoint = function() {
+proto.viam.app.v1.VersionHistory.prototype.getEntrypoint = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -25621,7 +25621,7 @@ proto.viam.app.v1.VersionHistory.prototype.getEntrpoint = function() {
  * @param {string} value
  * @return {!proto.viam.app.v1.VersionHistory} returns this
  */
-proto.viam.app.v1.VersionHistory.prototype.setEntrpoint = function(value) {
+proto.viam.app.v1.VersionHistory.prototype.setEntrypoint = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
