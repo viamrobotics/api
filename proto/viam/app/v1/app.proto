@@ -922,7 +922,7 @@ message VersionHistory {
   // The models that this verion of the module provides
   repeated Model models = 3;
   // The entrypoint for this version of the module
-  string entrpoint = 4;
+  string entrypoint = 4;
 }
 
 message Uploads {

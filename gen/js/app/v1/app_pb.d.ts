@@ -3249,8 +3249,8 @@ export class VersionHistory extends jspb.Message {
   setModelsList(value: Array<Model>): void;
   addModels(value?: Model, index?: number): Model;
 
-  getEntrpoint(): string;
-  setEntrpoint(value: string): void;
+  getEntrypoint(): string;
+  setEntrypoint(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): VersionHistory.AsObject;
@@ -3267,7 +3267,7 @@ export namespace VersionHistory {
     version: string,
     filesList: Array<Uploads.AsObject>,
     modelsList: Array<Model.AsObject>,
-    entrpoint: string,
+    entrypoint: string,
   }
 }
 
