@@ -27038,7 +27038,8 @@ proto.viam.app.v1.CreateKeyResponse.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.CreateKeyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    key: jspb.Message.getFieldWithDefault(msg, 1, "")
+    key: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -27079,6 +27080,10 @@ proto.viam.app.v1.CreateKeyResponse.deserializeBinaryFromReader = function(msg, 
       var value = /** @type {string} */ (reader.readString());
       msg.setKey(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -27115,6 +27120,13 @@ proto.viam.app.v1.CreateKeyResponse.serializeBinaryToWriter = function(message, 
       f
     );
   }
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -27133,6 +27145,24 @@ proto.viam.app.v1.CreateKeyResponse.prototype.getKey = function() {
  */
 proto.viam.app.v1.CreateKeyResponse.prototype.setKey = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string id = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateKeyResponse.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateKeyResponse} returns this
+ */
+proto.viam.app.v1.CreateKeyResponse.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
