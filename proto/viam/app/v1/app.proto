@@ -969,5 +969,5 @@ message CreateKeyRequest {
 
 message CreateKeyResponse {
   string key = 1;
-  string key_id = 2;
+  string id = 2;
 }
