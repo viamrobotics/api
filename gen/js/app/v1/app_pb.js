@@ -27039,7 +27039,7 @@ proto.viam.app.v1.CreateKeyResponse.prototype.toObject = function(opt_includeIns
 proto.viam.app.v1.CreateKeyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     key: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    keyId: jspb.Message.getFieldWithDefault(msg, 2, "")
+    id: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -27082,7 +27082,7 @@ proto.viam.app.v1.CreateKeyResponse.deserializeBinaryFromReader = function(msg, 
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setKeyId(value);
+      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -27120,7 +27120,7 @@ proto.viam.app.v1.CreateKeyResponse.serializeBinaryToWriter = function(message, 
       f
     );
   }
-  f = message.getKeyId();
+  f = message.getId();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -27149,10 +27149,10 @@ proto.viam.app.v1.CreateKeyResponse.prototype.setKey = function(value) {
 
 
 /**
- * optional string key_id = 2;
+ * optional string id = 2;
  * @return {string}
  */
-proto.viam.app.v1.CreateKeyResponse.prototype.getKeyId = function() {
+proto.viam.app.v1.CreateKeyResponse.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -27161,7 +27161,7 @@ proto.viam.app.v1.CreateKeyResponse.prototype.getKeyId = function() {
  * @param {string} value
  * @return {!proto.viam.app.v1.CreateKeyResponse} returns this
  */
-proto.viam.app.v1.CreateKeyResponse.prototype.setKeyId = function(value) {
+proto.viam.app.v1.CreateKeyResponse.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 

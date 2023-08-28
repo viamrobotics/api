@@ -3471,8 +3471,8 @@ export class CreateKeyResponse extends jspb.Message {
   getKey(): string;
   setKey(value: string): void;
 
-  getKeyId(): string;
-  setKeyId(value: string): void;
+  getId(): string;
+  setId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateKeyResponse.AsObject;
@@ -3487,7 +3487,7 @@ export class CreateKeyResponse extends jspb.Message {
 export namespace CreateKeyResponse {
   export type AsObject = {
     key: string,
-    keyId: string,
+    id: string,
   }
 }
 
