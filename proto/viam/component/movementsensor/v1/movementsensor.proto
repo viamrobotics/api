@@ -118,7 +118,7 @@ message GetOrientationRequest {
 
 message GetOrientationResponse {
   // Orientation is returned as an orientation message with 
-  // OX OY OZ dimensionalles and Theta in degrees
+  // OX OY OZ as unit-normalized components of the axis of the vector, and Theta in degrees
   common.v1.Orientation orientation = 1;
 }
 
