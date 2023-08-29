@@ -40,6 +40,15 @@ type DataServiceDeleteTabularDataByFilter = {
   readonly responseType: typeof app_data_v1_data_pb.DeleteTabularDataByFilterResponse;
 };
 
+type DataServiceDeleteTabularData = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.DeleteTabularDataRequest;
+  readonly responseType: typeof app_data_v1_data_pb.DeleteTabularDataResponse;
+};
+
 type DataServiceDeleteBinaryDataByFilter = {
   readonly methodName: string;
   readonly service: typeof DataService;
@@ -136,6 +145,7 @@ export class DataService {
   static readonly BinaryDataByFilter: DataServiceBinaryDataByFilter;
   static readonly BinaryDataByIDs: DataServiceBinaryDataByIDs;
   static readonly DeleteTabularDataByFilter: DataServiceDeleteTabularDataByFilter;
+  static readonly DeleteTabularData: DataServiceDeleteTabularData;
   static readonly DeleteBinaryDataByFilter: DataServiceDeleteBinaryDataByFilter;
   static readonly DeleteBinaryDataByIDs: DataServiceDeleteBinaryDataByIDs;
   static readonly AddTagsToBinaryDataByIDs: DataServiceAddTagsToBinaryDataByIDs;
@@ -215,6 +225,15 @@ export class DataServiceClient {
   deleteTabularDataByFilter(
     requestMessage: app_data_v1_data_pb.DeleteTabularDataByFilterRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteTabularDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  deleteTabularData(
+    requestMessage: app_data_v1_data_pb.DeleteTabularDataRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteTabularDataResponse|null) => void
+  ): UnaryResponse;
+  deleteTabularData(
+    requestMessage: app_data_v1_data_pb.DeleteTabularDataRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteTabularDataResponse|null) => void
   ): UnaryResponse;
   deleteBinaryDataByFilter(
     requestMessage: app_data_v1_data_pb.DeleteBinaryDataByFilterRequest,

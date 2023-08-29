@@ -249,7 +249,7 @@ message DeleteTabularDataByFilterResponse {
 
 // DeleteTabularDataRequest deletes the data from the organization that is older than `delete_older_than_days`.
 // For example if `delete_older_than_days` is 10, this deletes any data that was captured up to 10 days ago.
-// If it is 0, all existing data is deleted. 
+// If it is 0, all existing data is deleted.
 message DeleteTabularDataRequest {
   string organization_id = 1;
   uint32 delete_older_than_days = 2;
