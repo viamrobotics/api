@@ -295,7 +295,7 @@ type GetCompassHeadingResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A number from 0-359 where
+	// A number from 0-359 in degrees where
 	// 0 is North, 90 is East, 180 is South, and 270 is   West
 	Value float64 `protobuf:"fixed64,1,opt,name=value,proto3" json:"value,omitempty"`
 }
@@ -401,6 +401,8 @@ type GetOrientationResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// Orientation is returned as an orientation message with
+	// OX OY OZ as unit-normalized components of the axis of the vector, and Theta in degrees
 	Orientation *v1.Orientation `protobuf:"bytes,1,opt,name=orientation,proto3" json:"orientation,omitempty"`
 }
 
@@ -505,6 +507,8 @@ type GetPositionResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// Position is returned in a coordinate of latitute and longitude
+	// and an altidue in meters
 	Coordinate *v1.GeoPoint `protobuf:"bytes,1,opt,name=coordinate,proto3" json:"coordinate,omitempty"`
 	AltitudeM  float32      `protobuf:"fixed32,2,opt,name=altitude_m,json=altitudeM,proto3" json:"altitude_m,omitempty"`
 }

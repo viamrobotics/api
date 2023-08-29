@@ -22,6 +22,9 @@ service DataService {
   // DeleteTabularDataByFilter deletes tabular data based on given filters.
   rpc DeleteTabularDataByFilter(DeleteTabularDataByFilterRequest) returns (DeleteTabularDataByFilterResponse);
 
+  // DeleteTabularData deletes tabular data older than a number of days, based on the given organization ID.
+  rpc DeleteTabularData(DeleteTabularDataRequest) returns (DeleteTabularDataResponse);
+
   // DeleteBinaryDataByFilter deletes binary data based on given filters.
   rpc DeleteBinaryDataByFilter(DeleteBinaryDataByFilterRequest) returns (DeleteBinaryDataByFilterResponse);
 
@@ -242,6 +245,19 @@ message DeleteTabularDataByFilterResponse {
 
   reserved 2;
   reserved "result";
+}
+
+// DeleteTabularDataRequest deletes the data from the organization that is older than `delete_older_than_days`.
+// For example if `delete_older_than_days` is 10, this deletes any data that was captured up to 10 days ago.
+// If it is 0, all existing data is deleted.
+message DeleteTabularDataRequest {
+  string organization_id = 1;
+  uint32 delete_older_than_days = 2;
+}
+
+// DeleteBinaryDataResponse returns the number of tabular datapoints deleted.
+message DeleteTabularDataResponse {
+  uint64 deleted_count = 1;
 }
 
 // DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided

@@ -46,6 +46,15 @@ DataService.DeleteTabularDataByFilter = {
   responseType: app_data_v1_data_pb.DeleteTabularDataByFilterResponse
 };
 
+DataService.DeleteTabularData = {
+  methodName: "DeleteTabularData",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.DeleteTabularDataRequest,
+  responseType: app_data_v1_data_pb.DeleteTabularDataResponse
+};
+
 DataService.DeleteBinaryDataByFilter = {
   methodName: "DeleteBinaryDataByFilter",
   service: DataService,
@@ -241,6 +250,37 @@ DataServiceClient.prototype.deleteTabularDataByFilter = function deleteTabularDa
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.DeleteTabularDataByFilter, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.deleteTabularData = function deleteTabularData(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.DeleteTabularData, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
