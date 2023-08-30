@@ -2625,6 +2625,9 @@ export class Authorization extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
+  getIdentityType(): string;
+  setIdentityType(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Authorization.AsObject;
   static toObject(includeInstance: boolean, msg: Authorization): Authorization.AsObject;
@@ -2643,6 +2646,7 @@ export namespace Authorization {
     resourceId: string,
     identityId: string,
     organizationId: string,
+    identityType: string,
   }
 }
 
@@ -3444,6 +3448,56 @@ export class ListOrganizationsByUserResponse extends jspb.Message {
 export namespace ListOrganizationsByUserResponse {
   export type AsObject = {
     orgsList: Array<OrgDetails.AsObject>,
+  }
+}
+
+export class CreateKeyRequest extends jspb.Message {
+  clearAuthorizationsList(): void;
+  getAuthorizationsList(): Array<Authorization>;
+  setAuthorizationsList(value: Array<Authorization>): void;
+  addAuthorizations(value?: Authorization, index?: number): Authorization;
+
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateKeyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateKeyRequest): CreateKeyRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateKeyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateKeyRequest;
+  static deserializeBinaryFromReader(message: CreateKeyRequest, reader: jspb.BinaryReader): CreateKeyRequest;
+}
+
+export namespace CreateKeyRequest {
+  export type AsObject = {
+    authorizationsList: Array<Authorization.AsObject>,
+    name: string,
+  }
+}
+
+export class CreateKeyResponse extends jspb.Message {
+  getKey(): string;
+  setKey(value: string): void;
+
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateKeyResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateKeyResponse): CreateKeyResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateKeyResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateKeyResponse;
+  static deserializeBinaryFromReader(message: CreateKeyResponse, reader: jspb.BinaryReader): CreateKeyResponse;
+}
+
+export namespace CreateKeyResponse {
+  export type AsObject = {
+    key: string,
+    id: string,
   }
 }
 

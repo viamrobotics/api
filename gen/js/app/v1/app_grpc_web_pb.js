@@ -3493,5 +3493,66 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listModules =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.CreateKeyRequest,
+ *   !proto.viam.app.v1.CreateKeyResponse>}
+ */
+const methodDescriptor_AppService_CreateKey = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/CreateKey',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.CreateKeyRequest,
+  proto.viam.app.v1.CreateKeyResponse,
+  /**
+   * @param {!proto.viam.app.v1.CreateKeyRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.CreateKeyResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateKeyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.CreateKeyResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.CreateKeyResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.createKey =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateKey',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateKey,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateKeyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.CreateKeyResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.createKey =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateKey',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateKey);
+};
+
+
 module.exports = proto.viam.app.v1;
 
