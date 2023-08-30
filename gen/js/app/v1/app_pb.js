@@ -25433,7 +25433,7 @@ proto.viam.app.v1.Module.prototype.setPublicNamespace = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.VersionHistory.repeatedFields_ = [2];
+proto.viam.app.v1.VersionHistory.repeatedFields_ = [2,3];
 
 
 
@@ -25468,7 +25468,10 @@ proto.viam.app.v1.VersionHistory.toObject = function(includeInstance, msg) {
   var f, obj = {
     version: jspb.Message.getFieldWithDefault(msg, 1, ""),
     filesList: jspb.Message.toObjectList(msg.getFilesList(),
-    proto.viam.app.v1.Uploads.toObject, includeInstance)
+    proto.viam.app.v1.Uploads.toObject, includeInstance),
+    modelsList: jspb.Message.toObjectList(msg.getModelsList(),
+    proto.viam.app.v1.Model.toObject, includeInstance),
+    entrypoint: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -25514,6 +25517,15 @@ proto.viam.app.v1.VersionHistory.deserializeBinaryFromReader = function(msg, rea
       reader.readMessage(value,proto.viam.app.v1.Uploads.deserializeBinaryFromReader);
       msg.addFiles(value);
       break;
+    case 3:
+      var value = new proto.viam.app.v1.Model;
+      reader.readMessage(value,proto.viam.app.v1.Model.deserializeBinaryFromReader);
+      msg.addModels(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEntrypoint(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -25556,6 +25568,21 @@ proto.viam.app.v1.VersionHistory.serializeBinaryToWriter = function(message, wri
       2,
       f,
       proto.viam.app.v1.Uploads.serializeBinaryToWriter
+    );
+  }
+  f = message.getModelsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      proto.viam.app.v1.Model.serializeBinaryToWriter
+    );
+  }
+  f = message.getEntrypoint();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -25614,6 +25641,62 @@ proto.viam.app.v1.VersionHistory.prototype.addFiles = function(opt_value, opt_in
  */
 proto.viam.app.v1.VersionHistory.prototype.clearFilesList = function() {
   return this.setFilesList([]);
+};
+
+
+/**
+ * repeated Model models = 3;
+ * @return {!Array<!proto.viam.app.v1.Model>}
+ */
+proto.viam.app.v1.VersionHistory.prototype.getModelsList = function() {
+  return /** @type{!Array<!proto.viam.app.v1.Model>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.v1.Model, 3));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.app.v1.Model>} value
+ * @return {!proto.viam.app.v1.VersionHistory} returns this
+*/
+proto.viam.app.v1.VersionHistory.prototype.setModelsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.Model=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.Model}
+ */
+proto.viam.app.v1.VersionHistory.prototype.addModels = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.viam.app.v1.Model, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.VersionHistory} returns this
+ */
+proto.viam.app.v1.VersionHistory.prototype.clearModelsList = function() {
+  return this.setModelsList([]);
+};
+
+
+/**
+ * optional string entrypoint = 4;
+ * @return {string}
+ */
+proto.viam.app.v1.VersionHistory.prototype.getEntrypoint = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.VersionHistory} returns this
+ */
+proto.viam.app.v1.VersionHistory.prototype.setEntrypoint = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 

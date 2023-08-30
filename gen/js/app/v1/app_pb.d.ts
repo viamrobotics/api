@@ -3248,6 +3248,14 @@ export class VersionHistory extends jspb.Message {
   setFilesList(value: Array<Uploads>): void;
   addFiles(value?: Uploads, index?: number): Uploads;
 
+  clearModelsList(): void;
+  getModelsList(): Array<Model>;
+  setModelsList(value: Array<Model>): void;
+  addModels(value?: Model, index?: number): Model;
+
+  getEntrypoint(): string;
+  setEntrypoint(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): VersionHistory.AsObject;
   static toObject(includeInstance: boolean, msg: VersionHistory): VersionHistory.AsObject;
@@ -3262,6 +3270,8 @@ export namespace VersionHistory {
   export type AsObject = {
     version: string,
     filesList: Array<Uploads.AsObject>,
+    modelsList: Array<Model.AsObject>,
+    entrypoint: string,
   }
 }
 

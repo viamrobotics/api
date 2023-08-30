@@ -922,6 +922,10 @@ message VersionHistory {
   string version = 1;
   // The uploads that are available for this module version
   repeated Uploads files = 2;
+  // The models that this verion of the module provides
+  repeated Model models = 3;
+  // The entrypoint for this version of the module
+  string entrypoint = 4;
 }
 
 message Uploads {
