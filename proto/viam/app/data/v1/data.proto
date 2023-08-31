@@ -51,6 +51,9 @@ service DataService {
 
   // BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
   rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse);
+
+  // GetDatabaseUser gets user credentials for any Viam user within their org to access a MongoDB Atlas Data Federation instance.
+  rpc GetDatabaseUser(GetDatabaseUserRequest) returns (GetDatabaseUserResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -359,4 +362,13 @@ message BoundingBoxLabelsByFilterRequest {
 
 message BoundingBoxLabelsByFilterResponse {
   repeated string labels = 1;
+}
+
+message GetDatabaseUserRequest {
+  string org_id = 1;
+}
+
+message GetDatabaseUserResponse {
+  string username = 1; // unsure if we need to repond with username because every org is given one default username
+  string connection_string = 2; // hostname...(I think?)
 }
