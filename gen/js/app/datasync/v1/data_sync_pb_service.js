@@ -28,6 +28,15 @@ DataSyncService.FileUpload = {
   responseType: app_datasync_v1_data_sync_pb.FileUploadResponse
 };
 
+DataSyncService.StreamingDataCaptureUpload = {
+  methodName: "StreamingDataCaptureUpload",
+  service: DataSyncService,
+  requestStream: true,
+  responseStream: false,
+  requestType: app_datasync_v1_data_sync_pb.StreamingDataCaptureUploadRequest,
+  responseType: app_datasync_v1_data_sync_pb.StreamingDataCaptureUploadResponse
+};
+
 exports.DataSyncService = DataSyncService;
 
 function DataSyncServiceClient(serviceHost, options) {
@@ -72,6 +81,47 @@ DataSyncServiceClient.prototype.fileUpload = function fileUpload(metadata) {
     status: []
   };
   var client = grpc.client(DataSyncService.FileUpload, {
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport
+  });
+  client.onEnd(function (status, statusMessage, trailers) {
+    listeners.status.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners.end.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners = null;
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    write: function (requestMessage) {
+      if (!client.started) {
+        client.start(metadata);
+      }
+      client.send(requestMessage);
+      return this;
+    },
+    end: function () {
+      client.finishSend();
+    },
+    cancel: function () {
+      listeners = null;
+      client.close();
+    }
+  };
+};
+
+DataSyncServiceClient.prototype.streamingDataCaptureUpload = function streamingDataCaptureUpload(metadata) {
+  var listeners = {
+    end: [],
+    status: []
+  };
+  var client = grpc.client(DataSyncService.StreamingDataCaptureUpload, {
     host: this.serviceHost,
     metadata: metadata,
     transport: this.options.transport

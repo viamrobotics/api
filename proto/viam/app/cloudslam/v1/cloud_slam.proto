@@ -14,6 +14,8 @@ service CloudSLAMService {
   rpc GetMappingSessionPointCloud(GetMappingSessionPointCloudRequest) returns (GetMappingSessionPointCloudResponse);
   rpc ListMappingSessions(ListMappingSessionsRequest) returns (ListMappingSessionsResponse);
   rpc StopMappingSession(StopMappingSessionRequest) returns (StopMappingSessionResponse);
+  rpc GetMappingSessionMetadataByID(GetMappingSessionMetadataByIDRequest) returns (GetMappingSessionMetadataByIDResponse);
+  rpc UpdateMappingSessionMetadataByID(UpdateMappingSessionMetadataByIDRequest) returns (UpdateMappingSessionMetadataByIDResponse);
 }
 
 // StartMappingSession
@@ -24,9 +26,12 @@ message StartMappingSessionRequest {
   // Version to use for slam, defaults stable
   string slam_version = 2;
   string map_name = 3;
-  string org_id = 4;
+  string organization_id = 4;
   string location_id = 5;
   string robot_id = 6;
+  // Version to use for viam, defaults stable
+  string viam_server_version = 7;
+  bool is_online = 8;
 }
 
 message StartMappingSessionResponse {
@@ -60,7 +65,7 @@ message GetMappingSessionPointCloudResponse {
 // ListMappingSessions
 
 message ListMappingSessionsRequest {
-  string org_id = 1;
+  string organization_id = 1;
   string location_id = 2;
 }
 
@@ -72,13 +77,36 @@ message ListMappingSessionsResponse {
 
 message StopMappingSessionRequest {
   string session_id = 1;
-  bool save_map = 2;
 }
 
 message StopMappingSessionResponse {
   string package_id = 1;
   string version = 2;
 }
+
+// GetMappingSessionMetadataByID
+
+message GetMappingSessionMetadataByIDRequest {
+  string session_id = 1;
+}
+
+message GetMappingSessionMetadataByIDResponse {
+  MappingMetadata session_metadata = 1;
+}
+
+// UpdateMappingSessionMetadataByID
+
+message UpdateMappingSessionMetadataByIDRequest {
+  string session_id = 1;
+  // “success”, “failed to start”, etc
+  string end_status = 2;
+  // set at the time of job closeout and used as the package version
+  google.protobuf.Timestamp time_cloud_run_job_ended = 3;
+  // additional details on the end status if needed, such as errors
+  string error_msg = 4;
+}
+
+message UpdateMappingSessionMetadataByIDResponse {}
 
 message MappingMetadata {
   string org_id = 1; // org associated with the slam session
@@ -94,4 +122,5 @@ message MappingMetadata {
   string map_name = 11; // name of the map package
   string slam_version = 12; // version tag from request, defaults to stable
   string config = 13; // a robot config for a slam session
+  string error_msg = 14; // additional details on the end status if needed, such as errors
 }

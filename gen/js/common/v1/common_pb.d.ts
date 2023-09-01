@@ -4,6 +4,7 @@
 import * as jspb from "google-protobuf";
 import * as google_protobuf_descriptor_pb from "google-protobuf/google/protobuf/descriptor_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
+import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class ResourceName extends jspb.Message {
   getNamespace(): string;
@@ -533,6 +534,28 @@ export namespace ActuatorStatus {
   }
 }
 
+export class ResponseMetadata extends jspb.Message {
+  hasCapturedAt(): boolean;
+  clearCapturedAt(): void;
+  getCapturedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCapturedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ResponseMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: ResponseMetadata): ResponseMetadata.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ResponseMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ResponseMetadata;
+  static deserializeBinaryFromReader(message: ResponseMetadata, reader: jspb.BinaryReader): ResponseMetadata;
+}
+
+export namespace ResponseMetadata {
+  export type AsObject = {
+    capturedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
 export class DoCommandRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
@@ -585,6 +608,11 @@ export class GetKinematicsRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetKinematicsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetKinematicsRequest): GetKinematicsRequest.AsObject;
@@ -598,6 +626,7 @@ export class GetKinematicsRequest extends jspb.Message {
 export namespace GetKinematicsRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -631,6 +660,11 @@ export class GetGeometriesRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetGeometriesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetGeometriesRequest): GetGeometriesRequest.AsObject;
@@ -644,6 +678,7 @@ export class GetGeometriesRequest extends jspb.Message {
 export namespace GetGeometriesRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 

@@ -248,6 +248,9 @@ export class TabularDataByFilterRequest extends jspb.Message {
   getCountOnly(): boolean;
   setCountOnly(value: boolean): void;
 
+  getIncludeInternalData(): boolean;
+  setIncludeInternalData(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataByFilterRequest.AsObject;
   static toObject(includeInstance: boolean, msg: TabularDataByFilterRequest): TabularDataByFilterRequest.AsObject;
@@ -262,6 +265,7 @@ export namespace TabularDataByFilterRequest {
   export type AsObject = {
     dataRequest?: DataRequest.AsObject,
     countOnly: boolean,
+    includeInternalData: boolean,
   }
 }
 
@@ -383,6 +387,9 @@ export class BinaryDataByFilterRequest extends jspb.Message {
   getCountOnly(): boolean;
   setCountOnly(value: boolean): void;
 
+  getIncludeInternalData(): boolean;
+  setIncludeInternalData(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataByFilterRequest.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryDataByFilterRequest): BinaryDataByFilterRequest.AsObject;
@@ -398,6 +405,7 @@ export namespace BinaryDataByFilterRequest {
     dataRequest?: DataRequest.AsObject,
     includeBinary: boolean,
     countOnly: boolean,
+    includeInternalData: boolean,
   }
 }
 
@@ -472,11 +480,6 @@ export class BinaryDataByIDsRequest extends jspb.Message {
   setBinaryIdsList(value: Array<BinaryID>): void;
   addBinaryIds(value?: BinaryID, index?: number): BinaryID;
 
-  clearFileIdsList(): void;
-  getFileIdsList(): Array<string>;
-  setFileIdsList(value: Array<string>): void;
-  addFileIds(value: string, index?: number): string;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataByIDsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryDataByIDsRequest): BinaryDataByIDsRequest.AsObject;
@@ -491,7 +494,6 @@ export namespace BinaryDataByIDsRequest {
   export type AsObject = {
     includeBinary: boolean,
     binaryIdsList: Array<BinaryID.AsObject>,
-    fileIdsList: Array<string>,
   }
 }
 
@@ -681,6 +683,50 @@ export namespace DeleteTabularDataByFilterResponse {
   }
 }
 
+export class DeleteTabularDataRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getDeleteOlderThanDays(): number;
+  setDeleteOlderThanDays(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteTabularDataRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteTabularDataRequest): DeleteTabularDataRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteTabularDataRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteTabularDataRequest;
+  static deserializeBinaryFromReader(message: DeleteTabularDataRequest, reader: jspb.BinaryReader): DeleteTabularDataRequest;
+}
+
+export namespace DeleteTabularDataRequest {
+  export type AsObject = {
+    organizationId: string,
+    deleteOlderThanDays: number,
+  }
+}
+
+export class DeleteTabularDataResponse extends jspb.Message {
+  getDeletedCount(): number;
+  setDeletedCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteTabularDataResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteTabularDataResponse): DeleteTabularDataResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteTabularDataResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteTabularDataResponse;
+  static deserializeBinaryFromReader(message: DeleteTabularDataResponse, reader: jspb.BinaryReader): DeleteTabularDataResponse;
+}
+
+export namespace DeleteTabularDataResponse {
+  export type AsObject = {
+    deletedCount: number,
+  }
+}
+
 export class DeleteBinaryDataByFilterRequest extends jspb.Message {
   hasFilter(): boolean;
   clearFilter(): void;
@@ -729,11 +775,6 @@ export class DeleteBinaryDataByIDsRequest extends jspb.Message {
   setBinaryIdsList(value: Array<BinaryID>): void;
   addBinaryIds(value?: BinaryID, index?: number): BinaryID;
 
-  clearFileIdsList(): void;
-  getFileIdsList(): Array<string>;
-  setFileIdsList(value: Array<string>): void;
-  addFileIds(value: string, index?: number): string;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteBinaryDataByIDsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: DeleteBinaryDataByIDsRequest): DeleteBinaryDataByIDsRequest.AsObject;
@@ -747,7 +788,6 @@ export class DeleteBinaryDataByIDsRequest extends jspb.Message {
 export namespace DeleteBinaryDataByIDsRequest {
   export type AsObject = {
     binaryIdsList: Array<BinaryID.AsObject>,
-    fileIdsList: Array<string>,
   }
 }
 
@@ -782,11 +822,6 @@ export class AddTagsToBinaryDataByIDsRequest extends jspb.Message {
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
-  clearFileIdsList(): void;
-  getFileIdsList(): Array<string>;
-  setFileIdsList(value: Array<string>): void;
-  addFileIds(value: string, index?: number): string;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddTagsToBinaryDataByIDsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AddTagsToBinaryDataByIDsRequest): AddTagsToBinaryDataByIDsRequest.AsObject;
@@ -801,7 +836,6 @@ export namespace AddTagsToBinaryDataByIDsRequest {
   export type AsObject = {
     binaryIdsList: Array<BinaryID.AsObject>,
     tagsList: Array<string>,
-    fileIdsList: Array<string>,
   }
 }
 
@@ -876,11 +910,6 @@ export class RemoveTagsFromBinaryDataByIDsRequest extends jspb.Message {
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
-  clearFileIdsList(): void;
-  getFileIdsList(): Array<string>;
-  setFileIdsList(value: Array<string>): void;
-  addFileIds(value: string, index?: number): string;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveTagsFromBinaryDataByIDsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: RemoveTagsFromBinaryDataByIDsRequest): RemoveTagsFromBinaryDataByIDsRequest.AsObject;
@@ -895,7 +924,6 @@ export namespace RemoveTagsFromBinaryDataByIDsRequest {
   export type AsObject = {
     binaryIdsList: Array<BinaryID.AsObject>,
     tagsList: Array<string>,
-    fileIdsList: Array<string>,
   }
 }
 
@@ -1032,9 +1060,6 @@ export class AddBoundingBoxToImageByIDRequest extends jspb.Message {
   getYMaxNormalized(): number;
   setYMaxNormalized(value: number): void;
 
-  getFileId(): string;
-  setFileId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddBoundingBoxToImageByIDRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AddBoundingBoxToImageByIDRequest): AddBoundingBoxToImageByIDRequest.AsObject;
@@ -1053,7 +1078,6 @@ export namespace AddBoundingBoxToImageByIDRequest {
     yMinNormalized: number,
     xMaxNormalized: number,
     yMaxNormalized: number,
-    fileId: string,
   }
 }
 
@@ -1086,9 +1110,6 @@ export class RemoveBoundingBoxFromImageByIDRequest extends jspb.Message {
   getBboxId(): string;
   setBboxId(value: string): void;
 
-  getFileId(): string;
-  setFileId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveBoundingBoxFromImageByIDRequest.AsObject;
   static toObject(includeInstance: boolean, msg: RemoveBoundingBoxFromImageByIDRequest): RemoveBoundingBoxFromImageByIDRequest.AsObject;
@@ -1103,7 +1124,6 @@ export namespace RemoveBoundingBoxFromImageByIDRequest {
   export type AsObject = {
     binaryId?: BinaryID.AsObject,
     bboxId: string,
-    fileId: string,
   }
 }
 

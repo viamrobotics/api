@@ -47,6 +47,12 @@ service NavigationService {
     };
   }
 
+  rpc GetObstacles(GetObstaclesRequest) returns (GetObstaclesResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/navigation/{name}/get_obstacles"
+    };
+  }
+
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
@@ -93,6 +99,9 @@ message GetLocationRequest {
 
 message GetLocationResponse {
   common.v1.GeoPoint location = 1;
+  // A number from [0-360) where 0 is north
+  // 90 is east, 180 is south, 270 is west
+  double compass_heading = 2;
 }
 
 message GetWaypointsRequest {
@@ -122,3 +131,18 @@ message RemoveWaypointRequest {
 }
 
 message RemoveWaypointResponse {}
+
+// GetObstacles will return the geopoint location and geometry of all
+// known obstacles on the navigation map. Obstacles that are detected
+// through the vision service will only be returned if this endpoint is called
+// when the robot is sensing the obstacle
+message GetObstaclesRequest {
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetObstaclesResponse {
+  // List of all known geometries
+  repeated common.v1.GeoObstacle obstacles = 1;
+}

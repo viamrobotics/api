@@ -55,6 +55,24 @@ CloudSLAMService.StopMappingSession = {
   responseType: app_cloudslam_v1_cloud_slam_pb.StopMappingSessionResponse
 };
 
+CloudSLAMService.GetMappingSessionMetadataByID = {
+  methodName: "GetMappingSessionMetadataByID",
+  service: CloudSLAMService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_cloudslam_v1_cloud_slam_pb.GetMappingSessionMetadataByIDRequest,
+  responseType: app_cloudslam_v1_cloud_slam_pb.GetMappingSessionMetadataByIDResponse
+};
+
+CloudSLAMService.UpdateMappingSessionMetadataByID = {
+  methodName: "UpdateMappingSessionMetadataByID",
+  service: CloudSLAMService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_cloudslam_v1_cloud_slam_pb.UpdateMappingSessionMetadataByIDRequest,
+  responseType: app_cloudslam_v1_cloud_slam_pb.UpdateMappingSessionMetadataByIDResponse
+};
+
 exports.CloudSLAMService = CloudSLAMService;
 
 function CloudSLAMServiceClient(serviceHost, options) {
@@ -191,6 +209,68 @@ CloudSLAMServiceClient.prototype.stopMappingSession = function stopMappingSessio
     callback = arguments[1];
   }
   var client = grpc.unary(CloudSLAMService.StopMappingSession, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+CloudSLAMServiceClient.prototype.getMappingSessionMetadataByID = function getMappingSessionMetadataByID(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(CloudSLAMService.GetMappingSessionMetadataByID, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+CloudSLAMServiceClient.prototype.updateMappingSessionMetadataByID = function updateMappingSessionMetadataByID(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(CloudSLAMService.UpdateMappingSessionMetadataByID, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

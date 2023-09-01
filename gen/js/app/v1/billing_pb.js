@@ -4348,7 +4348,8 @@ proto.viam.app.v1.GetOrgBillingInformationResponse.toObject = function(includeIn
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, 0),
     billingEmail: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    method: (f = msg.getMethod()) && proto.viam.app.v1.PaymentMethodCard.toObject(includeInstance, f)
+    method: (f = msg.getMethod()) && proto.viam.app.v1.PaymentMethodCard.toObject(includeInstance, f),
+    billingTier: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -4397,6 +4398,10 @@ proto.viam.app.v1.GetOrgBillingInformationResponse.deserializeBinaryFromReader =
       var value = new proto.viam.app.v1.PaymentMethodCard;
       reader.readMessage(value,proto.viam.app.v1.PaymentMethodCard.deserializeBinaryFromReader);
       msg.setMethod(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBillingTier(value);
       break;
     default:
       reader.skipField();
@@ -4447,6 +4452,13 @@ proto.viam.app.v1.GetOrgBillingInformationResponse.serializeBinaryToWriter = fun
       3,
       f,
       proto.viam.app.v1.PaymentMethodCard.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -4522,6 +4534,42 @@ proto.viam.app.v1.GetOrgBillingInformationResponse.prototype.clearMethod = funct
  */
 proto.viam.app.v1.GetOrgBillingInformationResponse.prototype.hasMethod = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string billing_tier = 4;
+ * @return {string}
+ */
+proto.viam.app.v1.GetOrgBillingInformationResponse.prototype.getBillingTier = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetOrgBillingInformationResponse} returns this
+ */
+proto.viam.app.v1.GetOrgBillingInformationResponse.prototype.setBillingTier = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.GetOrgBillingInformationResponse} returns this
+ */
+proto.viam.app.v1.GetOrgBillingInformationResponse.prototype.clearBillingTier = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetOrgBillingInformationResponse.prototype.hasBillingTier = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 

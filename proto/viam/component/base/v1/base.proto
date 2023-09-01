@@ -161,4 +161,5 @@ message GetPropertiesRequest {
 message GetPropertiesResponse {
   double width_meters = 1;
   double turning_radius_meters = 2;
+  double wheel_circumference_meters = 3;
 }

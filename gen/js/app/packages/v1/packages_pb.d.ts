@@ -43,6 +43,11 @@ export class PackageInfo extends jspb.Message {
   getType(): PackageTypeMap[keyof PackageTypeMap];
   setType(value: PackageTypeMap[keyof PackageTypeMap]): void;
 
+  hasPlatform(): boolean;
+  clearPlatform(): void;
+  getPlatform(): string;
+  setPlatform(value: string): void;
+
   clearFilesList(): void;
   getFilesList(): Array<FileInfo>;
   setFilesList(value: Array<FileInfo>): void;
@@ -69,6 +74,7 @@ export namespace PackageInfo {
     name: string,
     version: string,
     type: PackageTypeMap[keyof PackageTypeMap],
+    platform: string,
     filesList: Array<FileInfo.AsObject>,
     metadata?: google_protobuf_struct_pb.Struct.AsObject,
   }
@@ -142,6 +148,9 @@ export class DeletePackageRequest extends jspb.Message {
   getVersion(): string;
   setVersion(value: string): void;
 
+  getType(): PackageTypeMap[keyof PackageTypeMap];
+  setType(value: PackageTypeMap[keyof PackageTypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeletePackageRequest.AsObject;
   static toObject(includeInstance: boolean, msg: DeletePackageRequest): DeletePackageRequest.AsObject;
@@ -156,6 +165,7 @@ export namespace DeletePackageRequest {
   export type AsObject = {
     id: string,
     version: string,
+    type: PackageTypeMap[keyof PackageTypeMap],
   }
 }
 
@@ -229,8 +239,8 @@ export class GetPackageRequest extends jspb.Message {
 
   hasType(): boolean;
   clearType(): void;
-  getType(): string;
-  setType(value: string): void;
+  getType(): PackageTypeMap[keyof PackageTypeMap];
+  setType(value: PackageTypeMap[keyof PackageTypeMap]): void;
 
   hasPlatform(): boolean;
   clearPlatform(): void;
@@ -252,7 +262,7 @@ export namespace GetPackageRequest {
     id: string,
     version: string,
     includeUrl: boolean,
-    type: string,
+    type: PackageTypeMap[keyof PackageTypeMap],
     platform: string,
   }
 }
@@ -351,6 +361,7 @@ export interface PackageTypeMap {
   PACKAGE_TYPE_ML_MODEL: 2;
   PACKAGE_TYPE_MODULE: 3;
   PACKAGE_TYPE_SLAM_MAP: 4;
+  PACKAGE_TYPE_BOARD_DEFS: 5;
 }
 
 export const PackageType: PackageTypeMap;

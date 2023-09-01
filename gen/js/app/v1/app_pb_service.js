@@ -55,6 +55,15 @@ AppService.GetOrganization = {
   responseType: app_v1_app_pb.GetOrganizationResponse
 };
 
+AppService.GetOrganizationNamespaceAvailability = {
+  methodName: "GetOrganizationNamespaceAvailability",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest,
+  responseType: app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse
+};
+
 AppService.UpdateOrganization = {
   methodName: "UpdateOrganization",
   service: AppService,
@@ -89,6 +98,15 @@ AppService.CreateOrganizationInvite = {
   responseStream: false,
   requestType: app_v1_app_pb.CreateOrganizationInviteRequest,
   responseType: app_v1_app_pb.CreateOrganizationInviteResponse
+};
+
+AppService.UpdateOrganizationInviteAuthorizations = {
+  methodName: "UpdateOrganizationInviteAuthorizations",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest,
+  responseType: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse
 };
 
 AppService.DeleteOrganizationMember = {
@@ -433,6 +451,15 @@ AppService.RemoveRole = {
   responseType: app_v1_app_pb.RemoveRoleResponse
 };
 
+AppService.ChangeRole = {
+  methodName: "ChangeRole",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ChangeRoleRequest,
+  responseType: app_v1_app_pb.ChangeRoleResponse
+};
+
 AppService.ListAuthorizations = {
   methodName: "ListAuthorizations",
   service: AppService,
@@ -494,6 +521,15 @@ AppService.ListModules = {
   responseStream: false,
   requestType: app_v1_app_pb.ListModulesRequest,
   responseType: app_v1_app_pb.ListModulesResponse
+};
+
+AppService.CreateKey = {
+  methodName: "CreateKey",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.CreateKeyRequest,
+  responseType: app_v1_app_pb.CreateKeyResponse
 };
 
 exports.AppService = AppService;
@@ -658,6 +694,37 @@ AppServiceClient.prototype.getOrganization = function getOrganization(requestMes
   };
 };
 
+AppServiceClient.prototype.getOrganizationNamespaceAvailability = function getOrganizationNamespaceAvailability(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetOrganizationNamespaceAvailability, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.updateOrganization = function updateOrganization(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -756,6 +823,37 @@ AppServiceClient.prototype.createOrganizationInvite = function createOrganizatio
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.CreateOrganizationInvite, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateOrganizationInviteAuthorizations = function updateOrganizationInviteAuthorizations(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateOrganizationInviteAuthorizations, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1968,6 +2066,37 @@ AppServiceClient.prototype.removeRole = function removeRole(requestMessage, meta
   };
 };
 
+AppServiceClient.prototype.changeRole = function changeRole(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ChangeRole, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.listAuthorizations = function listAuthorizations(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -2169,6 +2298,37 @@ AppServiceClient.prototype.listModules = function listModules(requestMessage, me
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListModules, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.createKey = function createKey(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.CreateKey, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

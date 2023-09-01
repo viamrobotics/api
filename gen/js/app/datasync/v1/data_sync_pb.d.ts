@@ -2,6 +2,7 @@
 // file: app/datasync/v1/data_sync.proto
 
 import * as jspb from "google-protobuf";
+import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
@@ -104,6 +105,63 @@ export class FileUploadResponse extends jspb.Message {
 }
 
 export namespace FileUploadResponse {
+  export type AsObject = {
+    fileId: string,
+  }
+}
+
+export class StreamingDataCaptureUploadRequest extends jspb.Message {
+  hasMetadata(): boolean;
+  clearMetadata(): void;
+  getMetadata(): DataCaptureUploadMetadata | undefined;
+  setMetadata(value?: DataCaptureUploadMetadata): void;
+
+  hasData(): boolean;
+  clearData(): void;
+  getData(): Uint8Array | string;
+  getData_asU8(): Uint8Array;
+  getData_asB64(): string;
+  setData(value: Uint8Array | string): void;
+
+  getUploadPacketCase(): StreamingDataCaptureUploadRequest.UploadPacketCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StreamingDataCaptureUploadRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: StreamingDataCaptureUploadRequest): StreamingDataCaptureUploadRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StreamingDataCaptureUploadRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StreamingDataCaptureUploadRequest;
+  static deserializeBinaryFromReader(message: StreamingDataCaptureUploadRequest, reader: jspb.BinaryReader): StreamingDataCaptureUploadRequest;
+}
+
+export namespace StreamingDataCaptureUploadRequest {
+  export type AsObject = {
+    metadata?: DataCaptureUploadMetadata.AsObject,
+    data: Uint8Array | string,
+  }
+
+  export enum UploadPacketCase {
+    UPLOAD_PACKET_NOT_SET = 0,
+    METADATA = 1,
+    DATA = 2,
+  }
+}
+
+export class StreamingDataCaptureUploadResponse extends jspb.Message {
+  getFileId(): string;
+  setFileId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StreamingDataCaptureUploadResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: StreamingDataCaptureUploadResponse): StreamingDataCaptureUploadResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StreamingDataCaptureUploadResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StreamingDataCaptureUploadResponse;
+  static deserializeBinaryFromReader(message: StreamingDataCaptureUploadResponse, reader: jspb.BinaryReader): StreamingDataCaptureUploadResponse;
+}
+
+export namespace StreamingDataCaptureUploadResponse {
   export type AsObject = {
     fileId: string,
   }
@@ -325,6 +383,34 @@ export namespace DataCaptureMetadata {
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
     fileExtension: string,
     tagsList: Array<string>,
+  }
+}
+
+export class DataCaptureUploadMetadata extends jspb.Message {
+  hasUploadMetadata(): boolean;
+  clearUploadMetadata(): void;
+  getUploadMetadata(): UploadMetadata | undefined;
+  setUploadMetadata(value?: UploadMetadata): void;
+
+  hasSensorMetadata(): boolean;
+  clearSensorMetadata(): void;
+  getSensorMetadata(): SensorMetadata | undefined;
+  setSensorMetadata(value?: SensorMetadata): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DataCaptureUploadMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: DataCaptureUploadMetadata): DataCaptureUploadMetadata.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DataCaptureUploadMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DataCaptureUploadMetadata;
+  static deserializeBinaryFromReader(message: DataCaptureUploadMetadata, reader: jspb.BinaryReader): DataCaptureUploadMetadata;
+}
+
+export namespace DataCaptureUploadMetadata {
+  export type AsObject = {
+    uploadMetadata?: UploadMetadata.AsObject,
+    sensorMetadata?: SensorMetadata.AsObject,
   }
 }
 

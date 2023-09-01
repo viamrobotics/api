@@ -47,6 +47,7 @@ enum PackageType {
   PACKAGE_TYPE_ML_MODEL = 2;
   PACKAGE_TYPE_MODULE = 3;
   PACKAGE_TYPE_SLAM_MAP = 4;
+  PACKAGE_TYPE_BOARD_DEFS = 5;
 }
 
 message FileInfo {
@@ -59,6 +60,7 @@ message PackageInfo {
   string name = 2;
   string version = 3;
   PackageType type = 4;
+  optional string platform = 7;
   repeated FileInfo files = 5;
   google.protobuf.Struct metadata = 6;
 }
@@ -81,6 +83,7 @@ message CreatePackageResponse {
 message DeletePackageRequest {
   string id = 1;
   string version = 2;
+  PackageType type = 3;
 }
 
 message DeletePackageResponse {}
@@ -97,7 +100,7 @@ message GetPackageRequest {
   string id = 1;
   string version = 2;
   optional bool include_url = 3;
-  optional string type = 4;
+  optional PackageType type = 4;
   optional string platform = 5;
 }
 

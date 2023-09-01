@@ -140,6 +140,58 @@ export namespace MoveOnMapResponse {
   }
 }
 
+export class MotionConfiguration extends jspb.Message {
+  clearVisionServicesList(): void;
+  getVisionServicesList(): Array<common_v1_common_pb.ResourceName>;
+  setVisionServicesList(value: Array<common_v1_common_pb.ResourceName>): void;
+  addVisionServices(value?: common_v1_common_pb.ResourceName, index?: number): common_v1_common_pb.ResourceName;
+
+  hasPositionPollingFrequencyHz(): boolean;
+  clearPositionPollingFrequencyHz(): void;
+  getPositionPollingFrequencyHz(): number;
+  setPositionPollingFrequencyHz(value: number): void;
+
+  hasObstaclePollingFrequencyHz(): boolean;
+  clearObstaclePollingFrequencyHz(): void;
+  getObstaclePollingFrequencyHz(): number;
+  setObstaclePollingFrequencyHz(value: number): void;
+
+  hasPlanDeviationM(): boolean;
+  clearPlanDeviationM(): void;
+  getPlanDeviationM(): number;
+  setPlanDeviationM(value: number): void;
+
+  hasLinearMPerSec(): boolean;
+  clearLinearMPerSec(): void;
+  getLinearMPerSec(): number;
+  setLinearMPerSec(value: number): void;
+
+  hasAngularDegsPerSec(): boolean;
+  clearAngularDegsPerSec(): void;
+  getAngularDegsPerSec(): number;
+  setAngularDegsPerSec(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MotionConfiguration.AsObject;
+  static toObject(includeInstance: boolean, msg: MotionConfiguration): MotionConfiguration.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MotionConfiguration, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MotionConfiguration;
+  static deserializeBinaryFromReader(message: MotionConfiguration, reader: jspb.BinaryReader): MotionConfiguration;
+}
+
+export namespace MotionConfiguration {
+  export type AsObject = {
+    visionServicesList: Array<common_v1_common_pb.ResourceName.AsObject>,
+    positionPollingFrequencyHz: number,
+    obstaclePollingFrequencyHz: number,
+    planDeviationM: number,
+    linearMPerSec: number,
+    angularDegsPerSec: number,
+  }
+}
+
 export class MoveOnGlobeRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
@@ -169,15 +221,10 @@ export class MoveOnGlobeRequest extends jspb.Message {
   setObstaclesList(value: Array<common_v1_common_pb.GeoObstacle>): void;
   addObstacles(value?: common_v1_common_pb.GeoObstacle, index?: number): common_v1_common_pb.GeoObstacle;
 
-  hasLinearMetersPerSec(): boolean;
-  clearLinearMetersPerSec(): void;
-  getLinearMetersPerSec(): number;
-  setLinearMetersPerSec(value: number): void;
-
-  hasAngularDegPerSec(): boolean;
-  clearAngularDegPerSec(): void;
-  getAngularDegPerSec(): number;
-  setAngularDegPerSec(value: number): void;
+  hasMotionConfiguration(): boolean;
+  clearMotionConfiguration(): void;
+  getMotionConfiguration(): MotionConfiguration | undefined;
+  setMotionConfiguration(value?: MotionConfiguration): void;
 
   hasExtra(): boolean;
   clearExtra(): void;
@@ -202,8 +249,7 @@ export namespace MoveOnGlobeRequest {
     componentName?: common_v1_common_pb.ResourceName.AsObject,
     movementSensorName?: common_v1_common_pb.ResourceName.AsObject,
     obstaclesList: Array<common_v1_common_pb.GeoObstacle.AsObject>,
-    linearMetersPerSec: number,
-    angularDegPerSec: number,
+    motionConfiguration?: MotionConfiguration.AsObject,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -223,70 +269,6 @@ export class MoveOnGlobeResponse extends jspb.Message {
 }
 
 export namespace MoveOnGlobeResponse {
-  export type AsObject = {
-    success: boolean,
-  }
-}
-
-export class MoveSingleComponentRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  hasDestination(): boolean;
-  clearDestination(): void;
-  getDestination(): common_v1_common_pb.PoseInFrame | undefined;
-  setDestination(value?: common_v1_common_pb.PoseInFrame): void;
-
-  hasComponentName(): boolean;
-  clearComponentName(): void;
-  getComponentName(): common_v1_common_pb.ResourceName | undefined;
-  setComponentName(value?: common_v1_common_pb.ResourceName): void;
-
-  hasWorldState(): boolean;
-  clearWorldState(): void;
-  getWorldState(): common_v1_common_pb.WorldState | undefined;
-  setWorldState(value?: common_v1_common_pb.WorldState): void;
-
-  hasExtra(): boolean;
-  clearExtra(): void;
-  getExtra(): google_protobuf_struct_pb.Struct | undefined;
-  setExtra(value?: google_protobuf_struct_pb.Struct): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): MoveSingleComponentRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: MoveSingleComponentRequest): MoveSingleComponentRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: MoveSingleComponentRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): MoveSingleComponentRequest;
-  static deserializeBinaryFromReader(message: MoveSingleComponentRequest, reader: jspb.BinaryReader): MoveSingleComponentRequest;
-}
-
-export namespace MoveSingleComponentRequest {
-  export type AsObject = {
-    name: string,
-    destination?: common_v1_common_pb.PoseInFrame.AsObject,
-    componentName?: common_v1_common_pb.ResourceName.AsObject,
-    worldState?: common_v1_common_pb.WorldState.AsObject,
-    extra?: google_protobuf_struct_pb.Struct.AsObject,
-  }
-}
-
-export class MoveSingleComponentResponse extends jspb.Message {
-  getSuccess(): boolean;
-  setSuccess(value: boolean): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): MoveSingleComponentResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: MoveSingleComponentResponse): MoveSingleComponentResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: MoveSingleComponentResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): MoveSingleComponentResponse;
-  static deserializeBinaryFromReader(message: MoveSingleComponentResponse, reader: jspb.BinaryReader): MoveSingleComponentResponse;
-}
-
-export namespace MoveSingleComponentResponse {
   export type AsObject = {
     success: boolean,
   }

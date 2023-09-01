@@ -156,6 +156,9 @@ export class GetLocationResponse extends jspb.Message {
   getLocation(): common_v1_common_pb.GeoPoint | undefined;
   setLocation(value?: common_v1_common_pb.GeoPoint): void;
 
+  getCompassHeading(): number;
+  setCompassHeading(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetLocationResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetLocationResponse): GetLocationResponse.AsObject;
@@ -169,6 +172,7 @@ export class GetLocationResponse extends jspb.Message {
 export namespace GetLocationResponse {
   export type AsObject = {
     location?: common_v1_common_pb.GeoPoint.AsObject,
+    compassHeading: number,
   }
 }
 
@@ -311,6 +315,54 @@ export class RemoveWaypointResponse extends jspb.Message {
 
 export namespace RemoveWaypointResponse {
   export type AsObject = {
+  }
+}
+
+export class GetObstaclesRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetObstaclesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetObstaclesRequest): GetObstaclesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetObstaclesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetObstaclesRequest;
+  static deserializeBinaryFromReader(message: GetObstaclesRequest, reader: jspb.BinaryReader): GetObstaclesRequest;
+}
+
+export namespace GetObstaclesRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetObstaclesResponse extends jspb.Message {
+  clearObstaclesList(): void;
+  getObstaclesList(): Array<common_v1_common_pb.GeoObstacle>;
+  setObstaclesList(value: Array<common_v1_common_pb.GeoObstacle>): void;
+  addObstacles(value?: common_v1_common_pb.GeoObstacle, index?: number): common_v1_common_pb.GeoObstacle;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetObstaclesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetObstaclesResponse): GetObstaclesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetObstaclesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetObstaclesResponse;
+  static deserializeBinaryFromReader(message: GetObstaclesResponse, reader: jspb.BinaryReader): GetObstaclesResponse;
+}
+
+export namespace GetObstaclesResponse {
+  export type AsObject = {
+    obstaclesList: Array<common_v1_common_pb.GeoObstacle.AsObject>,
   }
 }
 

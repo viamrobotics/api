@@ -21,6 +21,15 @@ CameraService.GetImage = {
   responseType: component_camera_v1_camera_pb.GetImageResponse
 };
 
+CameraService.GetImages = {
+  methodName: "GetImages",
+  service: CameraService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_camera_v1_camera_pb.GetImagesRequest,
+  responseType: component_camera_v1_camera_pb.GetImagesResponse
+};
+
 CameraService.RenderFrame = {
   methodName: "RenderFrame",
   service: CameraService,
@@ -78,6 +87,37 @@ CameraServiceClient.prototype.getImage = function getImage(requestMessage, metad
     callback = arguments[1];
   }
   var client = grpc.unary(CameraService.GetImage, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+CameraServiceClient.prototype.getImages = function getImages(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(CameraService.GetImages, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

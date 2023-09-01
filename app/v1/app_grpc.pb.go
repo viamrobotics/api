@@ -32,6 +32,8 @@ type AppServiceClient interface {
 	ListOrganizationsByUser(ctx context.Context, in *ListOrganizationsByUserRequest, opts ...grpc.CallOption) (*ListOrganizationsByUserResponse, error)
 	// Get an organization
 	GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error)
+	// Checks for namespace availablity throughout all orgs.
+	GetOrganizationNamespaceAvailability(ctx context.Context, in *GetOrganizationNamespaceAvailabilityRequest, opts ...grpc.CallOption) (*GetOrganizationNamespaceAvailabilityResponse, error)
 	// Update an organization
 	UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error)
 	// Delete an organization
@@ -40,6 +42,8 @@ type AppServiceClient interface {
 	ListOrganizationMembers(ctx context.Context, in *ListOrganizationMembersRequest, opts ...grpc.CallOption) (*ListOrganizationMembersResponse, error)
 	// Create an organization invite to an organization
 	CreateOrganizationInvite(ctx context.Context, in *CreateOrganizationInviteRequest, opts ...grpc.CallOption) (*CreateOrganizationInviteResponse, error)
+	// Update the authorizations attached to an organization invite
+	UpdateOrganizationInviteAuthorizations(ctx context.Context, in *UpdateOrganizationInviteAuthorizationsRequest, opts ...grpc.CallOption) (*UpdateOrganizationInviteAuthorizationsResponse, error)
 	// Delete an organization member from an organization
 	DeleteOrganizationMember(ctx context.Context, in *DeleteOrganizationMemberRequest, opts ...grpc.CallOption) (*DeleteOrganizationMemberResponse, error)
 	// Delete an organization invite
@@ -119,14 +123,18 @@ type AppServiceClient interface {
 	AddRole(ctx context.Context, in *AddRoleRequest, opts ...grpc.CallOption) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
 	RemoveRole(ctx context.Context, in *RemoveRoleRequest, opts ...grpc.CallOption) (*RemoveRoleResponse, error)
-	// Shows organization, location, and robot level permissions that exist on the resource
+	// Changes an IdentityAuthorization to a new IdentityAuthorization
+	ChangeRole(ctx context.Context, in *ChangeRoleRequest, opts ...grpc.CallOption) (*ChangeRoleResponse, error)
+	// Returns all authorization roles for a given resource
 	ListAuthorizations(ctx context.Context, in *ListAuthorizationsRequest, opts ...grpc.CallOption) (*ListAuthorizationsResponse, error)
+	// Validates a permission for the current user
 	CheckPermissions(ctx context.Context, in *CheckPermissionsRequest, opts ...grpc.CallOption) (*CheckPermissionsResponse, error)
 	CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error)
 	UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error)
 	UploadModuleFile(ctx context.Context, opts ...grpc.CallOption) (AppService_UploadModuleFileClient, error)
 	GetModule(ctx context.Context, in *GetModuleRequest, opts ...grpc.CallOption) (*GetModuleResponse, error)
 	ListModules(ctx context.Context, in *ListModulesRequest, opts ...grpc.CallOption) (*ListModulesResponse, error)
+	CreateKey(ctx context.Context, in *CreateKeyRequest, opts ...grpc.CallOption) (*CreateKeyResponse, error)
 }
 
 type appServiceClient struct {
@@ -182,6 +190,15 @@ func (c *appServiceClient) GetOrganization(ctx context.Context, in *GetOrganizat
 	return out, nil
 }
 
+func (c *appServiceClient) GetOrganizationNamespaceAvailability(ctx context.Context, in *GetOrganizationNamespaceAvailabilityRequest, opts ...grpc.CallOption) (*GetOrganizationNamespaceAvailabilityResponse, error) {
+	out := new(GetOrganizationNamespaceAvailabilityResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganizationNamespaceAvailability", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error) {
 	out := new(UpdateOrganizationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateOrganization", in, out, opts...)
@@ -212,6 +229,15 @@ func (c *appServiceClient) ListOrganizationMembers(ctx context.Context, in *List
 func (c *appServiceClient) CreateOrganizationInvite(ctx context.Context, in *CreateOrganizationInviteRequest, opts ...grpc.CallOption) (*CreateOrganizationInviteResponse, error) {
 	out := new(CreateOrganizationInviteResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateOrganizationInvite", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateOrganizationInviteAuthorizations(ctx context.Context, in *UpdateOrganizationInviteAuthorizationsRequest, opts ...grpc.CallOption) (*UpdateOrganizationInviteAuthorizationsResponse, error) {
+	out := new(UpdateOrganizationInviteAuthorizationsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateOrganizationInviteAuthorizations", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -583,6 +609,15 @@ func (c *appServiceClient) RemoveRole(ctx context.Context, in *RemoveRoleRequest
 	return out, nil
 }
 
+func (c *appServiceClient) ChangeRole(ctx context.Context, in *ChangeRoleRequest, opts ...grpc.CallOption) (*ChangeRoleResponse, error) {
+	out := new(ChangeRoleResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ChangeRole", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) ListAuthorizations(ctx context.Context, in *ListAuthorizationsRequest, opts ...grpc.CallOption) (*ListAuthorizationsResponse, error) {
 	out := new(ListAuthorizationsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListAuthorizations", in, out, opts...)
@@ -671,6 +706,15 @@ func (c *appServiceClient) ListModules(ctx context.Context, in *ListModulesReque
 	return out, nil
 }
 
+func (c *appServiceClient) CreateKey(ctx context.Context, in *CreateKeyRequest, opts ...grpc.CallOption) (*CreateKeyResponse, error) {
+	out := new(CreateKeyResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateKey", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppServiceServer is the server API for AppService service.
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
@@ -685,6 +729,8 @@ type AppServiceServer interface {
 	ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error)
 	// Get an organization
 	GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error)
+	// Checks for namespace availablity throughout all orgs.
+	GetOrganizationNamespaceAvailability(context.Context, *GetOrganizationNamespaceAvailabilityRequest) (*GetOrganizationNamespaceAvailabilityResponse, error)
 	// Update an organization
 	UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error)
 	// Delete an organization
@@ -693,6 +739,8 @@ type AppServiceServer interface {
 	ListOrganizationMembers(context.Context, *ListOrganizationMembersRequest) (*ListOrganizationMembersResponse, error)
 	// Create an organization invite to an organization
 	CreateOrganizationInvite(context.Context, *CreateOrganizationInviteRequest) (*CreateOrganizationInviteResponse, error)
+	// Update the authorizations attached to an organization invite
+	UpdateOrganizationInviteAuthorizations(context.Context, *UpdateOrganizationInviteAuthorizationsRequest) (*UpdateOrganizationInviteAuthorizationsResponse, error)
 	// Delete an organization member from an organization
 	DeleteOrganizationMember(context.Context, *DeleteOrganizationMemberRequest) (*DeleteOrganizationMemberResponse, error)
 	// Delete an organization invite
@@ -772,14 +820,18 @@ type AppServiceServer interface {
 	AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
 	RemoveRole(context.Context, *RemoveRoleRequest) (*RemoveRoleResponse, error)
-	// Shows organization, location, and robot level permissions that exist on the resource
+	// Changes an IdentityAuthorization to a new IdentityAuthorization
+	ChangeRole(context.Context, *ChangeRoleRequest) (*ChangeRoleResponse, error)
+	// Returns all authorization roles for a given resource
 	ListAuthorizations(context.Context, *ListAuthorizationsRequest) (*ListAuthorizationsResponse, error)
+	// Validates a permission for the current user
 	CheckPermissions(context.Context, *CheckPermissionsRequest) (*CheckPermissionsResponse, error)
 	CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error)
 	UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error)
 	UploadModuleFile(AppService_UploadModuleFileServer) error
 	GetModule(context.Context, *GetModuleRequest) (*GetModuleResponse, error)
 	ListModules(context.Context, *ListModulesRequest) (*ListModulesResponse, error)
+	CreateKey(context.Context, *CreateKeyRequest) (*CreateKeyResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -802,6 +854,9 @@ func (UnimplementedAppServiceServer) ListOrganizationsByUser(context.Context, *L
 func (UnimplementedAppServiceServer) GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganization not implemented")
 }
+func (UnimplementedAppServiceServer) GetOrganizationNamespaceAvailability(context.Context, *GetOrganizationNamespaceAvailabilityRequest) (*GetOrganizationNamespaceAvailabilityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationNamespaceAvailability not implemented")
+}
 func (UnimplementedAppServiceServer) UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganization not implemented")
 }
@@ -813,6 +868,9 @@ func (UnimplementedAppServiceServer) ListOrganizationMembers(context.Context, *L
 }
 func (UnimplementedAppServiceServer) CreateOrganizationInvite(context.Context, *CreateOrganizationInviteRequest) (*CreateOrganizationInviteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganizationInvite not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateOrganizationInviteAuthorizations(context.Context, *UpdateOrganizationInviteAuthorizationsRequest) (*UpdateOrganizationInviteAuthorizationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationInviteAuthorizations not implemented")
 }
 func (UnimplementedAppServiceServer) DeleteOrganizationMember(context.Context, *DeleteOrganizationMemberRequest) (*DeleteOrganizationMemberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationMember not implemented")
@@ -928,6 +986,9 @@ func (UnimplementedAppServiceServer) AddRole(context.Context, *AddRoleRequest) (
 func (UnimplementedAppServiceServer) RemoveRole(context.Context, *RemoveRoleRequest) (*RemoveRoleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveRole not implemented")
 }
+func (UnimplementedAppServiceServer) ChangeRole(context.Context, *ChangeRoleRequest) (*ChangeRoleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeRole not implemented")
+}
 func (UnimplementedAppServiceServer) ListAuthorizations(context.Context, *ListAuthorizationsRequest) (*ListAuthorizationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAuthorizations not implemented")
 }
@@ -948,6 +1009,9 @@ func (UnimplementedAppServiceServer) GetModule(context.Context, *GetModuleReques
 }
 func (UnimplementedAppServiceServer) ListModules(context.Context, *ListModulesRequest) (*ListModulesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModules not implemented")
+}
+func (UnimplementedAppServiceServer) CreateKey(context.Context, *CreateKeyRequest) (*CreateKeyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateKey not implemented")
 }
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
@@ -1052,6 +1116,24 @@ func _AppService_GetOrganization_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_GetOrganizationNamespaceAvailability_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationNamespaceAvailabilityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetOrganizationNamespaceAvailability(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetOrganizationNamespaceAvailability",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetOrganizationNamespaceAvailability(ctx, req.(*GetOrganizationNamespaceAvailabilityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_UpdateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateOrganizationRequest)
 	if err := dec(in); err != nil {
@@ -1120,6 +1202,24 @@ func _AppService_CreateOrganizationInvite_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).CreateOrganizationInvite(ctx, req.(*CreateOrganizationInviteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateOrganizationInviteAuthorizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationInviteAuthorizationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateOrganizationInviteAuthorizations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateOrganizationInviteAuthorizations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateOrganizationInviteAuthorizations(ctx, req.(*UpdateOrganizationInviteAuthorizationsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1811,6 +1911,24 @@ func _AppService_RemoveRole_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_ChangeRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeRoleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ChangeRole(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ChangeRole",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ChangeRole(ctx, req.(*ChangeRoleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_ListAuthorizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListAuthorizationsRequest)
 	if err := dec(in); err != nil {
@@ -1945,6 +2063,24 @@ func _AppService_ListModules_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_CreateKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateKeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CreateKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CreateKey",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CreateKey(ctx, req.(*CreateKeyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1973,6 +2109,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_GetOrganization_Handler,
 		},
 		{
+			MethodName: "GetOrganizationNamespaceAvailability",
+			Handler:    _AppService_GetOrganizationNamespaceAvailability_Handler,
+		},
+		{
 			MethodName: "UpdateOrganization",
 			Handler:    _AppService_UpdateOrganization_Handler,
 		},
@@ -1987,6 +2127,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateOrganizationInvite",
 			Handler:    _AppService_CreateOrganizationInvite_Handler,
+		},
+		{
+			MethodName: "UpdateOrganizationInviteAuthorizations",
+			Handler:    _AppService_UpdateOrganizationInviteAuthorizations_Handler,
 		},
 		{
 			MethodName: "DeleteOrganizationMember",
@@ -2137,6 +2281,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_RemoveRole_Handler,
 		},
 		{
+			MethodName: "ChangeRole",
+			Handler:    _AppService_ChangeRole_Handler,
+		},
+		{
 			MethodName: "ListAuthorizations",
 			Handler:    _AppService_ListAuthorizations_Handler,
 		},
@@ -2159,6 +2307,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListModules",
 			Handler:    _AppService_ListModules_Handler,
+		},
+		{
+			MethodName: "CreateKey",
+			Handler:    _AppService_CreateKey_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

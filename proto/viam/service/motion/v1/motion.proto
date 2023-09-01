@@ -29,12 +29,6 @@ service MotionService {
     };
   }
 
-  rpc MoveSingleComponent(MoveSingleComponentRequest) returns (MoveSingleComponentResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/motion/{name}/move_single_component"
-    };
-  }
-
   rpc GetPose(GetPoseRequest) returns (GetPoseResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/motion/{name}/pose"
@@ -87,6 +81,21 @@ message MoveOnMapResponse {
   bool success = 1;
 }
 
+message MotionConfiguration {
+  // The name of the vision service(s) that will be used to detect obstacles
+  repeated common.v1.ResourceName vision_services = 1;
+  // Sets the frequency to poll for the position of the robot
+  optional double position_polling_frequency_hz = 2;
+  // Sets the frequency to poll the vision service(s) for new obstacles
+  optional double obstacle_polling_frequency_hz = 3;
+  // Sets the distance in meters that a robot is allowed to deviate from the motion plan
+  optional double plan_deviation_m = 4;
+  // Optional linear velocity to target when moving
+  optional double linear_m_per_sec = 5;
+  // Optional angular velocity to target when turning
+  optional double angular_degs_per_sec = 6;
+}
+
 message MoveOnGlobeRequest {
   // Name of the motion service
   string name = 1;
@@ -100,28 +109,13 @@ message MoveOnGlobeRequest {
   common.v1.ResourceName movement_sensor_name = 5;
   // Obstacles to be considered for motion planning
   repeated common.v1.GeoObstacle obstacles = 6;
-  // Optional linear velocity to target when moving
-  optional float linear_meters_per_sec = 7;
-  // Optional angular velocity to target when turning
-  optional float angular_deg_per_sec = 8;
+  // Optional set of motion configuration options
+  optional MotionConfiguration motion_configuration = 7;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
 
 message MoveOnGlobeResponse {
-  bool success = 1;
-}
-
-message MoveSingleComponentRequest {
-  string name = 1;
-  common.v1.PoseInFrame destination = 2;
-  common.v1.ResourceName component_name = 3;
-  optional common.v1.WorldState world_state = 4;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message MoveSingleComponentResponse {
   bool success = 1;
 }
 
@@ -153,15 +147,19 @@ message Constraints {
   // Arc constraint, Time constraint, and others will be added here when they are supported
 }
 
-// LinearConstraint specifies that the component being moved should move linearly relative to its goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move
+// LinearConstraint specifies that the component being moved should move linearly relative to its goal.
+// It does not constrain the motion of components other than the `component_name` specified in motion.Move
 message LinearConstraint {
   optional float line_tolerance_mm = 1; // Max linear deviation from straight-line between start and goal, in mm.
-  optional float orientation_tolerance_degs = 2; // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
+  // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
+  optional float orientation_tolerance_degs = 2;
 }
 
-// OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative to the goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move
+// OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative
+// to the goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move
 message OrientationConstraint {
-  optional float orientation_tolerance_degs = 1; // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
+  // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
+  optional float orientation_tolerance_degs = 1;
 }
 
 // CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot

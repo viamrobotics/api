@@ -104,7 +104,7 @@ message GetCompassHeadingRequest {
 }
 
 message GetCompassHeadingResponse {
-  // A number from 0-359 where
+  // A number from 0-359 in degrees where
   // 0 is North, 90 is East, 180 is South, and 270 is   West
   double value = 1;
 }
@@ -117,6 +117,8 @@ message GetOrientationRequest {
 }
 
 message GetOrientationResponse {
+  // Orientation is returned as an orientation message with
+  // OX OY OZ as unit-normalized components of the axis of the vector, and Theta in degrees
   common.v1.Orientation orientation = 1;
 }
 
@@ -128,6 +130,8 @@ message GetPositionRequest {
 }
 
 message GetPositionResponse {
+  // Position is returned in a coordinate of latitute and longitude
+  // and an altidue in meters
   common.v1.GeoPoint coordinate = 1;
   float altitude_m = 2;
 }

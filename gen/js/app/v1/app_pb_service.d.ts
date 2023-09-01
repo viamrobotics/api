@@ -49,6 +49,15 @@ type AppServiceGetOrganization = {
   readonly responseType: typeof app_v1_app_pb.GetOrganizationResponse;
 };
 
+type AppServiceGetOrganizationNamespaceAvailability = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest;
+  readonly responseType: typeof app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse;
+};
+
 type AppServiceUpdateOrganization = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -83,6 +92,15 @@ type AppServiceCreateOrganizationInvite = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.CreateOrganizationInviteRequest;
   readonly responseType: typeof app_v1_app_pb.CreateOrganizationInviteResponse;
+};
+
+type AppServiceUpdateOrganizationInviteAuthorizations = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse;
 };
 
 type AppServiceDeleteOrganizationMember = {
@@ -427,6 +445,15 @@ type AppServiceRemoveRole = {
   readonly responseType: typeof app_v1_app_pb.RemoveRoleResponse;
 };
 
+type AppServiceChangeRole = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ChangeRoleRequest;
+  readonly responseType: typeof app_v1_app_pb.ChangeRoleResponse;
+};
+
 type AppServiceListAuthorizations = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -490,6 +517,15 @@ type AppServiceListModules = {
   readonly responseType: typeof app_v1_app_pb.ListModulesResponse;
 };
 
+type AppServiceCreateKey = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateKeyRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateKeyResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
@@ -497,10 +533,12 @@ export class AppService {
   static readonly ListOrganizations: AppServiceListOrganizations;
   static readonly ListOrganizationsByUser: AppServiceListOrganizationsByUser;
   static readonly GetOrganization: AppServiceGetOrganization;
+  static readonly GetOrganizationNamespaceAvailability: AppServiceGetOrganizationNamespaceAvailability;
   static readonly UpdateOrganization: AppServiceUpdateOrganization;
   static readonly DeleteOrganization: AppServiceDeleteOrganization;
   static readonly ListOrganizationMembers: AppServiceListOrganizationMembers;
   static readonly CreateOrganizationInvite: AppServiceCreateOrganizationInvite;
+  static readonly UpdateOrganizationInviteAuthorizations: AppServiceUpdateOrganizationInviteAuthorizations;
   static readonly DeleteOrganizationMember: AppServiceDeleteOrganizationMember;
   static readonly DeleteOrganizationInvite: AppServiceDeleteOrganizationInvite;
   static readonly ResendOrganizationInvite: AppServiceResendOrganizationInvite;
@@ -539,6 +577,7 @@ export class AppService {
   static readonly DeleteFragment: AppServiceDeleteFragment;
   static readonly AddRole: AppServiceAddRole;
   static readonly RemoveRole: AppServiceRemoveRole;
+  static readonly ChangeRole: AppServiceChangeRole;
   static readonly ListAuthorizations: AppServiceListAuthorizations;
   static readonly CheckPermissions: AppServiceCheckPermissions;
   static readonly CreateModule: AppServiceCreateModule;
@@ -546,6 +585,7 @@ export class AppService {
   static readonly UploadModuleFile: AppServiceUploadModuleFile;
   static readonly GetModule: AppServiceGetModule;
   static readonly ListModules: AppServiceListModules;
+  static readonly CreateKey: AppServiceCreateKey;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -625,6 +665,15 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.GetOrganizationRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationResponse|null) => void
   ): UnaryResponse;
+  getOrganizationNamespaceAvailability(
+    requestMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationNamespaceAvailability(
+    requestMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityResponse|null) => void
+  ): UnaryResponse;
   updateOrganization(
     requestMessage: app_v1_app_pb.UpdateOrganizationRequest,
     metadata: grpc.Metadata,
@@ -660,6 +709,15 @@ export class AppServiceClient {
   createOrganizationInvite(
     requestMessage: app_v1_app_pb.CreateOrganizationInviteRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOrganizationInviteResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationInviteAuthorizations(
+    requestMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationInviteAuthorizations(
+    requestMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationInviteAuthorizationsResponse|null) => void
   ): UnaryResponse;
   deleteOrganizationMember(
     requestMessage: app_v1_app_pb.DeleteOrganizationMemberRequest,
@@ -995,6 +1053,15 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.RemoveRoleRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RemoveRoleResponse|null) => void
   ): UnaryResponse;
+  changeRole(
+    requestMessage: app_v1_app_pb.ChangeRoleRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ChangeRoleResponse|null) => void
+  ): UnaryResponse;
+  changeRole(
+    requestMessage: app_v1_app_pb.ChangeRoleRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ChangeRoleResponse|null) => void
+  ): UnaryResponse;
   listAuthorizations(
     requestMessage: app_v1_app_pb.ListAuthorizationsRequest,
     metadata: grpc.Metadata,
@@ -1049,6 +1116,15 @@ export class AppServiceClient {
   listModules(
     requestMessage: app_v1_app_pb.ListModulesRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListModulesResponse|null) => void
+  ): UnaryResponse;
+  createKey(
+    requestMessage: app_v1_app_pb.CreateKeyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateKeyResponse|null) => void
+  ): UnaryResponse;
+  createKey(
+    requestMessage: app_v1_app_pb.CreateKeyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateKeyResponse|null) => void
   ): UnaryResponse;
 }
 

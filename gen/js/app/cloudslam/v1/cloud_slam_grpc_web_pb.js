@@ -388,5 +388,127 @@ proto.viam.app.cloudslam.v1.CloudSLAMServicePromiseClient.prototype.stopMappingS
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDRequest,
+ *   !proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDResponse>}
+ */
+const methodDescriptor_CloudSLAMService_GetMappingSessionMetadataByID = new grpc.web.MethodDescriptor(
+  '/viam.app.cloudslam.v1.CloudSLAMService/GetMappingSessionMetadataByID',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDRequest,
+  proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDResponse,
+  /**
+   * @param {!proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.cloudslam.v1.CloudSLAMServiceClient.prototype.getMappingSessionMetadataByID =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.cloudslam.v1.CloudSLAMService/GetMappingSessionMetadataByID',
+      request,
+      metadata || {},
+      methodDescriptor_CloudSLAMService_GetMappingSessionMetadataByID,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.cloudslam.v1.CloudSLAMServicePromiseClient.prototype.getMappingSessionMetadataByID =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.cloudslam.v1.CloudSLAMService/GetMappingSessionMetadataByID',
+      request,
+      metadata || {},
+      methodDescriptor_CloudSLAMService_GetMappingSessionMetadataByID);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest,
+ *   !proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDResponse>}
+ */
+const methodDescriptor_CloudSLAMService_UpdateMappingSessionMetadataByID = new grpc.web.MethodDescriptor(
+  '/viam.app.cloudslam.v1.CloudSLAMService/UpdateMappingSessionMetadataByID',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest,
+  proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDResponse,
+  /**
+   * @param {!proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.cloudslam.v1.CloudSLAMServiceClient.prototype.updateMappingSessionMetadataByID =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.cloudslam.v1.CloudSLAMService/UpdateMappingSessionMetadataByID',
+      request,
+      metadata || {},
+      methodDescriptor_CloudSLAMService_UpdateMappingSessionMetadataByID,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.cloudslam.v1.CloudSLAMServicePromiseClient.prototype.updateMappingSessionMetadataByID =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.cloudslam.v1.CloudSLAMService/UpdateMappingSessionMetadataByID',
+      request,
+      metadata || {},
+      methodDescriptor_CloudSLAMService_UpdateMappingSessionMetadataByID);
+};
+
+
 module.exports = proto.viam.app.cloudslam.v1;
 

@@ -28,6 +28,9 @@ service AppService {
   // Get an organization
   rpc GetOrganization(GetOrganizationRequest) returns (GetOrganizationResponse);
 
+  // Checks for namespace availablity throughout all orgs.
+  rpc GetOrganizationNamespaceAvailability(GetOrganizationNamespaceAvailabilityRequest) returns (GetOrganizationNamespaceAvailabilityResponse);
+
   // Update an organization
   rpc UpdateOrganization(UpdateOrganizationRequest) returns (UpdateOrganizationResponse);
 
@@ -39,6 +42,9 @@ service AppService {
 
   // Create an organization invite to an organization
   rpc CreateOrganizationInvite(CreateOrganizationInviteRequest) returns (CreateOrganizationInviteResponse);
+
+  // Update the authorizations attached to an organization invite
+  rpc UpdateOrganizationInviteAuthorizations(UpdateOrganizationInviteAuthorizationsRequest) returns (UpdateOrganizationInviteAuthorizationsResponse);
 
   // Delete an organization member from an organization
   rpc DeleteOrganizationMember(DeleteOrganizationMemberRequest) returns (DeleteOrganizationMemberResponse);
@@ -161,9 +167,13 @@ service AppService {
   // Deletes an IdentityAuthorization
   rpc RemoveRole(RemoveRoleRequest) returns (RemoveRoleResponse);
 
-  // Shows organization, location, and robot level permissions that exist on the resource
+  // Changes an IdentityAuthorization to a new IdentityAuthorization
+  rpc ChangeRole(ChangeRoleRequest) returns (ChangeRoleResponse);
+
+  // Returns all authorization roles for a given resource
   rpc ListAuthorizations(ListAuthorizationsRequest) returns (ListAuthorizationsResponse);
 
+  // Validates a permission for the current user
   rpc CheckPermissions(CheckPermissionsRequest) returns (CheckPermissionsResponse);
 
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
@@ -175,6 +185,8 @@ service AppService {
   rpc GetModule(GetModuleRequest) returns (GetModuleResponse);
 
   rpc ListModules(ListModulesRequest) returns (ListModulesResponse);
+
+  rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse);
 }
 
 message Robot {
@@ -221,12 +233,17 @@ message Organization {
   string name = 2;
   google.protobuf.Timestamp created_on = 3;
   string public_namespace = 4;
+  // GCS region of the organization. Locations created under this org will have their GCS region set to this by default and packages
+  // associated with this org will be stored in this region.
+  string default_region = 5;
+  optional string cid = 6;
 }
 
 message OrganizationMember {
   string user_id = 1;
   repeated string emails = 2;
   google.protobuf.Timestamp date_added = 3;
+  optional google.protobuf.Timestamp last_login = 4;
 }
 
 message ListOrganizationsResponse {
@@ -256,10 +273,21 @@ message GetOrganizationResponse {
   Organization organization = 1;
 }
 
+message GetOrganizationNamespaceAvailabilityRequest {
+  string public_namespace = 1;
+}
+
+message GetOrganizationNamespaceAvailabilityResponse {
+  bool available = 1;
+}
+
 message UpdateOrganizationRequest {
   string organization_id = 1;
-  string name = 2;
+  optional string name = 2;
   optional string public_namespace = 3;
+  // The new GCS region to associate the org with.
+  optional string region = 4;
+  optional string cid = 5;
 }
 
 message UpdateOrganizationResponse {
@@ -289,6 +317,17 @@ message CreateOrganizationInviteRequest {
 }
 
 message CreateOrganizationInviteResponse {
+  OrganizationInvite invite = 1;
+}
+
+message UpdateOrganizationInviteAuthorizationsRequest {
+  string organization_id = 1;
+  string email = 2;
+  repeated Authorization add_authorizations = 3;
+  repeated Authorization remove_authorizations = 4;
+}
+
+message UpdateOrganizationInviteAuthorizationsResponse {
   OrganizationInvite invite = 1;
 }
 
@@ -336,6 +375,11 @@ message LocationAuth {
   repeated SharedSecret secrets = 3;
 }
 
+message StorageConfig {
+  // GCS region that data is stored in.
+  string region = 1;
+}
+
 message Location {
   // Location ID.
   string id = 1;
@@ -351,6 +395,8 @@ message Location {
   google.protobuf.Timestamp created_on = 3;
   //
   int32 robot_count = 7;
+  // Config for how data in this location is stored.
+  StorageConfig config = 8;
 }
 
 // SharedSecret is a secret used for LocationAuth and RobotParts.
@@ -403,10 +449,12 @@ message GetLocationResponse {
 message UpdateLocationRequest {
   // Location ID of location to update.
   string location_id = 1;
-  // The new to be updated on location.
+  // The new name to be updated on location.
   optional string name = 2;
   // The new parent location to move the location under.
   optional string parent_location_id = 3;
+  // The new GCS region to associate the location with.
+  optional string region = 4;
 }
 
 message UpdateLocationResponse {
@@ -586,7 +634,6 @@ message Fragment {
   bool public = 5 [(tagger.v1.tags) = "bson:\"public\" json:\"public\""];
   google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
   string organization_name = 7;
-  bool readonly = 8;
   // number of robot parts using this fragment
   int32 robot_part_count = 9;
   // number of organizations using this fragment
@@ -615,6 +662,7 @@ message GetFragmentResponse {
 message CreateFragmentRequest {
   string name = 1;
   google.protobuf.Struct config = 2;
+  string organization_id = 3;
 }
 
 message CreateFragmentResponse {
@@ -704,43 +752,37 @@ message Authorization {
   string authorization_id = 2;
   string resource_type = 3;
   string resource_id = 4;
+  string identity_id = 5;
+  string organization_id = 6;
+  string identity_type = 7;
 }
 
 message AddRoleRequest {
-  string identity_id = 1;
-  string role_id = 2;
-  string resource_type = 3;
-  string resource_id = 4;
-  string organization_id = 5;
-}
-
-message AddRoleResponse {
   Authorization authorization = 1;
 }
 
+message AddRoleResponse {}
+
 message RemoveRoleRequest {
-  string identity_id = 1;
-  string role_id = 2;
-  string resource_type = 3;
-  string resource_id = 4;
-  string organization_id = 5;
+  Authorization authorization = 1;
 }
 
 message RemoveRoleResponse {}
 
-message ListAuthorizationsRequest {
-  string resource_type = 1;
-  string resource_id = 2;
-  string organization_id = 3;
+message ChangeRoleRequest {
+  Authorization old_authorization = 1;
+  Authorization new_authorization = 2;
 }
 
-message Authorizations {
-  string identity_id = 1;
-  repeated Authorization authorizations = 2;
+message ChangeRoleResponse {}
+
+message ListAuthorizationsRequest {
+  string organization_id = 1;
+  repeated string resource_ids = 2; // optional filter
 }
 
 message ListAuthorizationsResponse {
-  repeated Authorizations authorizations = 1;
+  repeated Authorization authorizations = 1;
 }
 
 message CheckPermissionsRequest {
@@ -759,8 +801,8 @@ message CheckPermissionsResponse {
 
 // Modules
 message CreateModuleRequest {
-  // The public namespace that is reserved for your organization
-  string public_namespace = 1;
+  // The organization to create the module under
+  string organization_id = 1;
   // The name of the module, which must be unique within your org
   string name = 2;
 }
@@ -768,6 +810,8 @@ message CreateModuleRequest {
 message CreateModuleResponse {
   // The id of the module containing the namespace and name
   string module_id = 1;
+  // The detail page of the module
+  string url = 2;
 }
 
 enum Visibility {
@@ -779,8 +823,10 @@ enum Visibility {
 }
 
 message UpdateModuleRequest {
-  // The id of the module being updated, containing the namespace and name
+  // The id of the module being updated, containing module name or namespace and module name
   string module_id = 1;
+  // The organization of the module being updated, required if no namespace exists in the module_id
+  optional string organization_id = 7;
   // The visibility that should be set for the module
   Visibility visibility = 2;
   // The url to reference for documentation, code, etc.
@@ -789,9 +835,14 @@ message UpdateModuleRequest {
   string description = 4;
   // A list of models that are available in the module
   repeated Model models = 5;
+  // The executable to run to start the module program
+  string entrypoint = 6;
 }
 
-message UpdateModuleResponse {}
+message UpdateModuleResponse {
+  // The detail page of the module
+  string url = 1;
+}
 
 message Model {
   // The colon-delimited-triplet of the api implemented by the model
@@ -801,8 +852,10 @@ message Model {
 }
 
 message ModuleFileInfo {
-  // The module_id that is being uploaded
+  // The id of the module being uploaded, containing module name or namespace and module name
   string module_id = 1;
+  // The organization of the module being updated, required if no namespace exists in the module_id
+  optional string organization_id = 4;
   // The semver string that represents the new major/minor/patch version of the module
   string version = 2;
   // The platform that the file is built to run on
@@ -818,11 +871,16 @@ message UploadModuleFileRequest {
   }
 }
 
-message UploadModuleFileResponse {}
+message UploadModuleFileResponse {
+  // The detail page of the module
+  string url = 1;
+}
 
 message GetModuleRequest {
-  // The id of the module, containing the namespace and name
+  // The id of the module being retrieved, containing module name or namespace and module name
   string module_id = 1;
+  // The organization of the module being updated, required if no namespace exists in the module_id
+  optional string organization_id = 2;
 }
 
 message GetModuleResponse {
@@ -831,13 +889,14 @@ message GetModuleResponse {
 }
 
 message Module {
-  // The id of the module, containing the namespace and name
+  // The id of the module, containing module name or namespace and module name
   string module_id = 1;
   // The name of the module
   string name = 2;
   // The visibility of the module
   Visibility visibility = 3;
   // The versions of the module that are available
+  // When this is returned from the backend, the versions are sorted in ascending order by the semver version
   repeated VersionHistory versions = 4;
   // The url to reference for documentation, code, etc.
   string url = 5;
@@ -849,6 +908,13 @@ message Module {
   int64 total_robot_usage = 8;
   // The total number of organizations using this module
   int64 total_organization_usage = 9;
+  // The id of the organization that owns the module
+  string organization_id = 10;
+  // The executable to run to start the module program
+  string entrypoint = 11;
+  // The public namespace of the organization that owns the module
+  // This is empty if no public namespace is set
+  string public_namespace = 12;
 }
 
 message VersionHistory {
@@ -856,6 +922,10 @@ message VersionHistory {
   string version = 1;
   // The uploads that are available for this module version
   repeated Uploads files = 2;
+  // The models that this verion of the module provides
+  repeated Model models = 3;
+  // The entrypoint for this version of the module
+  string entrypoint = 4;
 }
 
 message Uploads {
@@ -894,4 +964,14 @@ message OrgDetails {
 
 message ListOrganizationsByUserResponse {
   repeated OrgDetails orgs = 1;
+}
+
+message CreateKeyRequest {
+  repeated Authorization authorizations = 1;
+  string name = 2;
+}
+
+message CreateKeyResponse {
+  string key = 1;
+  string id = 2;
 }
