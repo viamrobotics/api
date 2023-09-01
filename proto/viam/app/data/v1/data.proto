@@ -148,6 +148,7 @@ message CaptureInterval {
 message TabularDataByFilterRequest {
   DataRequest data_request = 1;
   bool count_only = 2;
+  bool include_internal_data = 3;
 }
 
 // TabularDataByFilterResponse provides the data and metadata of tabular data
@@ -176,6 +177,7 @@ message BinaryDataByFilterRequest {
   DataRequest data_request = 1;
   bool include_binary = 2;
   bool count_only = 3;
+  bool include_internal_data = 4;
 }
 
 // BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided
