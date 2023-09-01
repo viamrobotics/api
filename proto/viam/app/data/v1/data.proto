@@ -369,6 +369,6 @@ message GetDatabaseUserRequest {
 }
 
 message GetDatabaseUserResponse {
-  string username = 1; // unsure if we need to repond with username because every org is given one default username
-  string connection_string = 2; // hostname...(I think?)
+  string username = 1;
+  string hostname = 2;
 }
