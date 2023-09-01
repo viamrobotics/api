@@ -2691,7 +2691,8 @@ proto.viam.app.data.v1.TabularDataByFilterRequest.prototype.toObject = function(
 proto.viam.app.data.v1.TabularDataByFilterRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     dataRequest: (f = msg.getDataRequest()) && proto.viam.app.data.v1.DataRequest.toObject(includeInstance, f),
-    countOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+    countOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    includeInternalData: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -2737,6 +2738,10 @@ proto.viam.app.data.v1.TabularDataByFilterRequest.deserializeBinaryFromReader = 
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setCountOnly(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeInternalData(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2778,6 +2783,13 @@ proto.viam.app.data.v1.TabularDataByFilterRequest.serializeBinaryToWriter = func
   if (f) {
     writer.writeBool(
       2,
+      f
+    );
+  }
+  f = message.getIncludeInternalData();
+  if (f) {
+    writer.writeBool(
+      3,
       f
     );
   }
@@ -2836,6 +2848,24 @@ proto.viam.app.data.v1.TabularDataByFilterRequest.prototype.getCountOnly = funct
  */
 proto.viam.app.data.v1.TabularDataByFilterRequest.prototype.setCountOnly = function(value) {
   return jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
+
+/**
+ * optional bool include_internal_data = 3;
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.TabularDataByFilterRequest.prototype.getIncludeInternalData = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.data.v1.TabularDataByFilterRequest} returns this
+ */
+proto.viam.app.data.v1.TabularDataByFilterRequest.prototype.setIncludeInternalData = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -3664,7 +3694,8 @@ proto.viam.app.data.v1.BinaryDataByFilterRequest.toObject = function(includeInst
   var f, obj = {
     dataRequest: (f = msg.getDataRequest()) && proto.viam.app.data.v1.DataRequest.toObject(includeInstance, f),
     includeBinary: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    countOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    countOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    includeInternalData: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -3714,6 +3745,10 @@ proto.viam.app.data.v1.BinaryDataByFilterRequest.deserializeBinaryFromReader = f
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setCountOnly(value);
       break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeInternalData(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3762,6 +3797,13 @@ proto.viam.app.data.v1.BinaryDataByFilterRequest.serializeBinaryToWriter = funct
   if (f) {
     writer.writeBool(
       3,
+      f
+    );
+  }
+  f = message.getIncludeInternalData();
+  if (f) {
+    writer.writeBool(
+      4,
       f
     );
   }
@@ -3838,6 +3880,24 @@ proto.viam.app.data.v1.BinaryDataByFilterRequest.prototype.getCountOnly = functi
  */
 proto.viam.app.data.v1.BinaryDataByFilterRequest.prototype.setCountOnly = function(value) {
   return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+/**
+ * optional bool include_internal_data = 4;
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.BinaryDataByFilterRequest.prototype.getIncludeInternalData = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.data.v1.BinaryDataByFilterRequest} returns this
+ */
+proto.viam.app.data.v1.BinaryDataByFilterRequest.prototype.setIncludeInternalData = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 

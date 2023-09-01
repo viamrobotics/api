@@ -306,6 +306,9 @@ export class UpdateMappingSessionMetadataByIDRequest extends jspb.Message {
   getTimeCloudRunJobEnded(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTimeCloudRunJobEnded(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getEndStatusMsg(): string;
+  setEndStatusMsg(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateMappingSessionMetadataByIDRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateMappingSessionMetadataByIDRequest): UpdateMappingSessionMetadataByIDRequest.AsObject;
@@ -321,6 +324,7 @@ export namespace UpdateMappingSessionMetadataByIDRequest {
     sessionId: string,
     endStatus: string,
     timeCloudRunJobEnded?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    endStatusMsg: string,
   }
 }
 
@@ -388,6 +392,9 @@ export class MappingMetadata extends jspb.Message {
   getConfig(): string;
   setConfig(value: string): void;
 
+  getEndStatusMsg(): string;
+  setEndStatusMsg(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MappingMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: MappingMetadata): MappingMetadata.AsObject;
@@ -413,6 +420,7 @@ export namespace MappingMetadata {
     mapName: string,
     slamVersion: string,
     config: string,
+    endStatusMsg: string,
   }
 }
 
