@@ -675,6 +675,50 @@ export namespace DeleteTabularDataByFilterResponse {
   }
 }
 
+export class DeleteTabularDataRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getDeleteOlderThanDays(): number;
+  setDeleteOlderThanDays(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteTabularDataRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteTabularDataRequest): DeleteTabularDataRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteTabularDataRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteTabularDataRequest;
+  static deserializeBinaryFromReader(message: DeleteTabularDataRequest, reader: jspb.BinaryReader): DeleteTabularDataRequest;
+}
+
+export namespace DeleteTabularDataRequest {
+  export type AsObject = {
+    organizationId: string,
+    deleteOlderThanDays: number,
+  }
+}
+
+export class DeleteTabularDataResponse extends jspb.Message {
+  getDeletedCount(): number;
+  setDeletedCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteTabularDataResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteTabularDataResponse): DeleteTabularDataResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteTabularDataResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteTabularDataResponse;
+  static deserializeBinaryFromReader(message: DeleteTabularDataResponse, reader: jspb.BinaryReader): DeleteTabularDataResponse;
+}
+
+export namespace DeleteTabularDataResponse {
+  export type AsObject = {
+    deletedCount: number,
+  }
+}
+
 export class DeleteBinaryDataByFilterRequest extends jspb.Message {
   hasFilter(): boolean;
   clearFilter(): void;
