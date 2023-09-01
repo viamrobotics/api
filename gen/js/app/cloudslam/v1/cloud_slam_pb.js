@@ -2339,7 +2339,7 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.toObject = f
     sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     endStatus: jspb.Message.getFieldWithDefault(msg, 2, ""),
     timeCloudRunJobEnded: (f = msg.getTimeCloudRunJobEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endStatusMsg: jspb.Message.getFieldWithDefault(msg, 4, "")
+    errorMsg: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -2391,7 +2391,7 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.deserializeB
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setEndStatusMsg(value);
+      msg.setErrorMsg(value);
       break;
     default:
       reader.skipField();
@@ -2444,7 +2444,7 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.serializeBin
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
-  f = message.getEndStatusMsg();
+  f = message.getErrorMsg();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -2528,10 +2528,10 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.ha
 
 
 /**
- * optional string end_status_msg = 4;
+ * optional string error_msg = 4;
  * @return {string}
  */
-proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.getEndStatusMsg = function() {
+proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.getErrorMsg = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -2540,7 +2540,7 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.ge
  * @param {string} value
  * @return {!proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest} returns this
  */
-proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.setEndStatusMsg = function(value) {
+proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.setErrorMsg = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -2691,7 +2691,7 @@ proto.viam.app.cloudslam.v1.MappingMetadata.toObject = function(includeInstance,
     mapName: jspb.Message.getFieldWithDefault(msg, 11, ""),
     slamVersion: jspb.Message.getFieldWithDefault(msg, 12, ""),
     config: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    endStatusMsg: jspb.Message.getFieldWithDefault(msg, 14, "")
+    errorMsg: jspb.Message.getFieldWithDefault(msg, 14, "")
   };
 
   if (includeInstance) {
@@ -2786,7 +2786,7 @@ proto.viam.app.cloudslam.v1.MappingMetadata.deserializeBinaryFromReader = functi
       break;
     case 14:
       var value = /** @type {string} */ (reader.readString());
-      msg.setEndStatusMsg(value);
+      msg.setErrorMsg(value);
       break;
     default:
       reader.skipField();
@@ -2912,7 +2912,7 @@ proto.viam.app.cloudslam.v1.MappingMetadata.serializeBinaryToWriter = function(m
       f
     );
   }
-  f = message.getEndStatusMsg();
+  f = message.getErrorMsg();
   if (f.length > 0) {
     writer.writeString(
       14,
@@ -3233,10 +3233,10 @@ proto.viam.app.cloudslam.v1.MappingMetadata.prototype.setConfig = function(value
 
 
 /**
- * optional string end_status_msg = 14;
+ * optional string error_msg = 14;
  * @return {string}
  */
-proto.viam.app.cloudslam.v1.MappingMetadata.prototype.getEndStatusMsg = function() {
+proto.viam.app.cloudslam.v1.MappingMetadata.prototype.getErrorMsg = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
 };
 
@@ -3245,7 +3245,7 @@ proto.viam.app.cloudslam.v1.MappingMetadata.prototype.getEndStatusMsg = function
  * @param {string} value
  * @return {!proto.viam.app.cloudslam.v1.MappingMetadata} returns this
  */
-proto.viam.app.cloudslam.v1.MappingMetadata.prototype.setEndStatusMsg = function(value) {
+proto.viam.app.cloudslam.v1.MappingMetadata.prototype.setErrorMsg = function(value) {
   return jspb.Message.setProto3StringField(this, 14, value);
 };
 
