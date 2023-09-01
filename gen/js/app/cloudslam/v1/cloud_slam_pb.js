@@ -2338,7 +2338,8 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.toObject = f
   var f, obj = {
     sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     endStatus: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    timeCloudRunJobEnded: (f = msg.getTimeCloudRunJobEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    timeCloudRunJobEnded: (f = msg.getTimeCloudRunJobEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    errorMsg: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -2387,6 +2388,10 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.deserializeB
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTimeCloudRunJobEnded(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setErrorMsg(value);
       break;
     default:
       reader.skipField();
@@ -2437,6 +2442,13 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.serializeBin
       3,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getErrorMsg();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -2512,6 +2524,24 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.cl
  */
 proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.hasTimeCloudRunJobEnded = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string error_msg = 4;
+ * @return {string}
+ */
+proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.getErrorMsg = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest} returns this
+ */
+proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.setErrorMsg = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -2660,7 +2690,8 @@ proto.viam.app.cloudslam.v1.MappingMetadata.toObject = function(includeInstance,
     viamServerVersion: jspb.Message.getFieldWithDefault(msg, 10, ""),
     mapName: jspb.Message.getFieldWithDefault(msg, 11, ""),
     slamVersion: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    config: jspb.Message.getFieldWithDefault(msg, 13, "")
+    config: jspb.Message.getFieldWithDefault(msg, 13, ""),
+    errorMsg: jspb.Message.getFieldWithDefault(msg, 14, "")
   };
 
   if (includeInstance) {
@@ -2752,6 +2783,10 @@ proto.viam.app.cloudslam.v1.MappingMetadata.deserializeBinaryFromReader = functi
     case 13:
       var value = /** @type {string} */ (reader.readString());
       msg.setConfig(value);
+      break;
+    case 14:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setErrorMsg(value);
       break;
     default:
       reader.skipField();
@@ -2874,6 +2909,13 @@ proto.viam.app.cloudslam.v1.MappingMetadata.serializeBinaryToWriter = function(m
   if (f.length > 0) {
     writer.writeString(
       13,
+      f
+    );
+  }
+  f = message.getErrorMsg();
+  if (f.length > 0) {
+    writer.writeString(
+      14,
       f
     );
   }
@@ -3187,6 +3229,24 @@ proto.viam.app.cloudslam.v1.MappingMetadata.prototype.getConfig = function() {
  */
 proto.viam.app.cloudslam.v1.MappingMetadata.prototype.setConfig = function(value) {
   return jspb.Message.setProto3StringField(this, 13, value);
+};
+
+
+/**
+ * optional string error_msg = 14;
+ * @return {string}
+ */
+proto.viam.app.cloudslam.v1.MappingMetadata.prototype.getErrorMsg = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.cloudslam.v1.MappingMetadata} returns this
+ */
+proto.viam.app.cloudslam.v1.MappingMetadata.prototype.setErrorMsg = function(value) {
+  return jspb.Message.setProto3StringField(this, 14, value);
 };
 
 
