@@ -103,7 +103,7 @@ message UpdateMappingSessionMetadataByIDRequest {
   // set at the time of job closeout and used as the package version
   google.protobuf.Timestamp time_cloud_run_job_ended = 3;
   // additional details on the end status if needed, such as errors
-  string end_status_msg = 4;
+  string error_msg = 4;
 }
 
 message UpdateMappingSessionMetadataByIDResponse {}
@@ -122,5 +122,5 @@ message MappingMetadata {
   string map_name = 11; // name of the map package
   string slam_version = 12; // version tag from request, defaults to stable
   string config = 13; // a robot config for a slam session
-  string end_status_msg = 14; // additional details on the end status if needed, such as errors
+  string error_msg = 14; // additional details on the end status if needed, such as errors
 }
