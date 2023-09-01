@@ -248,6 +248,9 @@ export class TabularDataByFilterRequest extends jspb.Message {
   getCountOnly(): boolean;
   setCountOnly(value: boolean): void;
 
+  getIncludeInternalData(): boolean;
+  setIncludeInternalData(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataByFilterRequest.AsObject;
   static toObject(includeInstance: boolean, msg: TabularDataByFilterRequest): TabularDataByFilterRequest.AsObject;
@@ -262,6 +265,7 @@ export namespace TabularDataByFilterRequest {
   export type AsObject = {
     dataRequest?: DataRequest.AsObject,
     countOnly: boolean,
+    includeInternalData: boolean,
   }
 }
 
@@ -383,6 +387,9 @@ export class BinaryDataByFilterRequest extends jspb.Message {
   getCountOnly(): boolean;
   setCountOnly(value: boolean): void;
 
+  getIncludeInternalData(): boolean;
+  setIncludeInternalData(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataByFilterRequest.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryDataByFilterRequest): BinaryDataByFilterRequest.AsObject;
@@ -398,6 +405,7 @@ export namespace BinaryDataByFilterRequest {
     dataRequest?: DataRequest.AsObject,
     includeBinary: boolean,
     countOnly: boolean,
+    includeInternalData: boolean,
   }
 }
 
