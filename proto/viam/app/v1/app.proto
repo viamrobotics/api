@@ -161,6 +161,8 @@ service AppService {
   // Deletes a fragment
   rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
 
+  // Authorizations
+
   // Creates an IdentityAuthorization
   rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
 
@@ -176,6 +178,10 @@ service AppService {
   // Validates a permission for the current user
   rpc CheckPermissions(CheckPermissionsRequest) returns (CheckPermissionsResponse);
 
+  rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse);
+
+  // Modules
+
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
 
   rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
@@ -185,8 +191,6 @@ service AppService {
   rpc GetModule(GetModuleRequest) returns (GetModuleResponse);
 
   rpc ListModules(ListModulesRequest) returns (ListModulesResponse);
-
-  rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse);
 }
 
 message Robot {
