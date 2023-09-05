@@ -998,5 +998,66 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.boundingBoxLabelsByFil
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.GetDatabaseConnectionRequest,
+ *   !proto.viam.app.data.v1.GetDatabaseConnectionResponse>}
+ */
+const methodDescriptor_DataService_GetDatabaseConnection = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/GetDatabaseConnection',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.GetDatabaseConnectionRequest,
+  proto.viam.app.data.v1.GetDatabaseConnectionResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.GetDatabaseConnectionRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.GetDatabaseConnectionResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetDatabaseConnectionRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.GetDatabaseConnectionResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.GetDatabaseConnectionResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.getDatabaseConnection =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetDatabaseConnection',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetDatabaseConnection,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetDatabaseConnectionRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.GetDatabaseConnectionResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.getDatabaseConnection =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetDatabaseConnection',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetDatabaseConnection);
+};
+
+
 module.exports = proto.viam.app.data.v1;
 

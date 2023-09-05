@@ -54,6 +54,9 @@ service DataService {
 
   // BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
   rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse);
+
+  // GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It returns the hostname of the federated database.
+  rpc GetDatabaseConnection(GetDatabaseConnectionRequest) returns (GetDatabaseConnectionResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -377,4 +380,12 @@ message BoundingBoxLabelsByFilterRequest {
 
 message BoundingBoxLabelsByFilterResponse {
   repeated string labels = 1;
+}
+
+message GetDatabaseConnectionRequest {
+  string organization_id = 1;
+}
+
+message GetDatabaseConnectionResponse {
+  string hostname = 1;
 }

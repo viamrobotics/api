@@ -139,6 +139,15 @@ type DataServiceBoundingBoxLabelsByFilter = {
   readonly responseType: typeof app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse;
 };
 
+type DataServiceGetDatabaseConnection = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.GetDatabaseConnectionRequest;
+  readonly responseType: typeof app_data_v1_data_pb.GetDatabaseConnectionResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
@@ -156,6 +165,7 @@ export class DataService {
   static readonly AddBoundingBoxToImageByID: DataServiceAddBoundingBoxToImageByID;
   static readonly RemoveBoundingBoxFromImageByID: DataServiceRemoveBoundingBoxFromImageByID;
   static readonly BoundingBoxLabelsByFilter: DataServiceBoundingBoxLabelsByFilter;
+  static readonly GetDatabaseConnection: DataServiceGetDatabaseConnection;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -324,6 +334,15 @@ export class DataServiceClient {
   boundingBoxLabelsByFilter(
     requestMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse|null) => void
+  ): UnaryResponse;
+  getDatabaseConnection(
+    requestMessage: app_data_v1_data_pb.GetDatabaseConnectionRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetDatabaseConnectionResponse|null) => void
+  ): UnaryResponse;
+  getDatabaseConnection(
+    requestMessage: app_data_v1_data_pb.GetDatabaseConnectionRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetDatabaseConnectionResponse|null) => void
   ): UnaryResponse;
 }
 
