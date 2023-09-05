@@ -380,11 +380,10 @@ message BoundingBoxLabelsByFilterResponse {
   repeated string labels = 1;
 }
 
-message GetDatabaseUserRequest {
+message GetDatabaseConnectionRequest {
   string org_id = 1;
 }
 
-message GetDatabaseUserResponse {
-  string username = 1;
-  string hostname = 2;
+message GetDatabaseConnectionResponse {
+  string hostname = 1;
 }
