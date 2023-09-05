@@ -168,6 +168,7 @@ message TabularData {
   uint32 metadata_index = 2;
   google.protobuf.Timestamp time_requested = 3;
   google.protobuf.Timestamp time_received = 4;
+  google.protobuf.Any any = 5;
 }
 
 message BinaryData {

@@ -68,6 +68,7 @@ message SensorData {
   oneof data {
     google.protobuf.Struct struct = 2;
     bytes binary = 3;
+    google.protobuf.Any any = 4;
   }
 }
 
