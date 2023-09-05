@@ -55,7 +55,7 @@ service DataService {
   // BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
   rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse);
 
-  // GetDatabaseConnection gets a hostname connection for a Viam user who is an org owner to access a MongoDB Atlas Data Federation instance.
+  // GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It returns the hostname of the federated database.
   rpc GetDatabaseConnection(GetDatabaseConnectionRequest) returns (GetDatabaseConnectionResponse);
 }
 
@@ -383,7 +383,7 @@ message BoundingBoxLabelsByFilterResponse {
 }
 
 message GetDatabaseConnectionRequest {
-  string org_id = 1;
+  string organization_id = 1;
 }
 
 message GetDatabaseConnectionResponse {
