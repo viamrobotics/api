@@ -254,7 +254,7 @@ message OrganizationInvite {
   string organization_id = 1;
   string email = 2;
   google.protobuf.Timestamp created_on = 3;
-  int64 robot_count = 4;
+  repeated Authorization authorizations = 4;
 }
 
 message CreateOrganizationRequest {
