@@ -46,6 +46,15 @@ DataService.DeleteTabularDataByFilter = {
   responseType: app_data_v1_data_pb.DeleteTabularDataByFilterResponse
 };
 
+DataService.DeleteTabularData = {
+  methodName: "DeleteTabularData",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.DeleteTabularDataRequest,
+  responseType: app_data_v1_data_pb.DeleteTabularDataResponse
+};
+
 DataService.DeleteBinaryDataByFilter = {
   methodName: "DeleteBinaryDataByFilter",
   service: DataService,
@@ -134,6 +143,15 @@ DataService.BoundingBoxLabelsByFilter = {
   responseStream: false,
   requestType: app_data_v1_data_pb.BoundingBoxLabelsByFilterRequest,
   responseType: app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse
+};
+
+DataService.GetDatabaseConnection = {
+  methodName: "GetDatabaseConnection",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.GetDatabaseConnectionRequest,
+  responseType: app_data_v1_data_pb.GetDatabaseConnectionResponse
 };
 
 exports.DataService = DataService;
@@ -241,6 +259,37 @@ DataServiceClient.prototype.deleteTabularDataByFilter = function deleteTabularDa
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.DeleteTabularDataByFilter, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.deleteTabularData = function deleteTabularData(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.DeleteTabularData, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -551,6 +600,37 @@ DataServiceClient.prototype.boundingBoxLabelsByFilter = function boundingBoxLabe
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.BoundingBoxLabelsByFilter, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.getDatabaseConnection = function getDatabaseConnection(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.GetDatabaseConnection, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

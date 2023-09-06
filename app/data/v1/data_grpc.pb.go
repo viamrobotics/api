@@ -30,6 +30,8 @@ type DataServiceClient interface {
 	BinaryDataByIDs(ctx context.Context, in *BinaryDataByIDsRequest, opts ...grpc.CallOption) (*BinaryDataByIDsResponse, error)
 	// DeleteTabularDataByFilter deletes tabular data based on given filters.
 	DeleteTabularDataByFilter(ctx context.Context, in *DeleteTabularDataByFilterRequest, opts ...grpc.CallOption) (*DeleteTabularDataByFilterResponse, error)
+	// DeleteTabularData deletes tabular data older than a number of days, based on the given organization ID.
+	DeleteTabularData(ctx context.Context, in *DeleteTabularDataRequest, opts ...grpc.CallOption) (*DeleteTabularDataResponse, error)
 	// DeleteBinaryDataByFilter deletes binary data based on given filters.
 	DeleteBinaryDataByFilter(ctx context.Context, in *DeleteBinaryDataByFilterRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByFilterResponse, error)
 	// DeleteBinaryDataByIDs deletes binary data based on given IDs.
@@ -50,6 +52,8 @@ type DataServiceClient interface {
 	RemoveBoundingBoxFromImageByID(ctx context.Context, in *RemoveBoundingBoxFromImageByIDRequest, opts ...grpc.CallOption) (*RemoveBoundingBoxFromImageByIDResponse, error)
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(ctx context.Context, in *BoundingBoxLabelsByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxLabelsByFilterResponse, error)
+	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It returns the hostname of the federated database.
+	GetDatabaseConnection(ctx context.Context, in *GetDatabaseConnectionRequest, opts ...grpc.CallOption) (*GetDatabaseConnectionResponse, error)
 }
 
 type dataServiceClient struct {
@@ -90,6 +94,15 @@ func (c *dataServiceClient) BinaryDataByIDs(ctx context.Context, in *BinaryDataB
 func (c *dataServiceClient) DeleteTabularDataByFilter(ctx context.Context, in *DeleteTabularDataByFilterRequest, opts ...grpc.CallOption) (*DeleteTabularDataByFilterResponse, error) {
 	out := new(DeleteTabularDataByFilterResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/DeleteTabularDataByFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) DeleteTabularData(ctx context.Context, in *DeleteTabularDataRequest, opts ...grpc.CallOption) (*DeleteTabularDataResponse, error) {
+	out := new(DeleteTabularDataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/DeleteTabularData", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -186,6 +199,15 @@ func (c *dataServiceClient) BoundingBoxLabelsByFilter(ctx context.Context, in *B
 	return out, nil
 }
 
+func (c *dataServiceClient) GetDatabaseConnection(ctx context.Context, in *GetDatabaseConnectionRequest, opts ...grpc.CallOption) (*GetDatabaseConnectionResponse, error) {
+	out := new(GetDatabaseConnectionResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/GetDatabaseConnection", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -198,6 +220,8 @@ type DataServiceServer interface {
 	BinaryDataByIDs(context.Context, *BinaryDataByIDsRequest) (*BinaryDataByIDsResponse, error)
 	// DeleteTabularDataByFilter deletes tabular data based on given filters.
 	DeleteTabularDataByFilter(context.Context, *DeleteTabularDataByFilterRequest) (*DeleteTabularDataByFilterResponse, error)
+	// DeleteTabularData deletes tabular data older than a number of days, based on the given organization ID.
+	DeleteTabularData(context.Context, *DeleteTabularDataRequest) (*DeleteTabularDataResponse, error)
 	// DeleteBinaryDataByFilter deletes binary data based on given filters.
 	DeleteBinaryDataByFilter(context.Context, *DeleteBinaryDataByFilterRequest) (*DeleteBinaryDataByFilterResponse, error)
 	// DeleteBinaryDataByIDs deletes binary data based on given IDs.
@@ -218,6 +242,8 @@ type DataServiceServer interface {
 	RemoveBoundingBoxFromImageByID(context.Context, *RemoveBoundingBoxFromImageByIDRequest) (*RemoveBoundingBoxFromImageByIDResponse, error)
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error)
+	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It returns the hostname of the federated database.
+	GetDatabaseConnection(context.Context, *GetDatabaseConnectionRequest) (*GetDatabaseConnectionResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -236,6 +262,9 @@ func (UnimplementedDataServiceServer) BinaryDataByIDs(context.Context, *BinaryDa
 }
 func (UnimplementedDataServiceServer) DeleteTabularDataByFilter(context.Context, *DeleteTabularDataByFilterRequest) (*DeleteTabularDataByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTabularDataByFilter not implemented")
+}
+func (UnimplementedDataServiceServer) DeleteTabularData(context.Context, *DeleteTabularDataRequest) (*DeleteTabularDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTabularData not implemented")
 }
 func (UnimplementedDataServiceServer) DeleteBinaryDataByFilter(context.Context, *DeleteBinaryDataByFilterRequest) (*DeleteBinaryDataByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBinaryDataByFilter not implemented")
@@ -266,6 +295,9 @@ func (UnimplementedDataServiceServer) RemoveBoundingBoxFromImageByID(context.Con
 }
 func (UnimplementedDataServiceServer) BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BoundingBoxLabelsByFilter not implemented")
+}
+func (UnimplementedDataServiceServer) GetDatabaseConnection(context.Context, *GetDatabaseConnectionRequest) (*GetDatabaseConnectionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDatabaseConnection not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -348,6 +380,24 @@ func _DataService_DeleteTabularDataByFilter_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataServiceServer).DeleteTabularDataByFilter(ctx, req.(*DeleteTabularDataByFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_DeleteTabularData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTabularDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).DeleteTabularData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/DeleteTabularData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).DeleteTabularData(ctx, req.(*DeleteTabularDataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -532,6 +582,24 @@ func _DataService_BoundingBoxLabelsByFilter_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_GetDatabaseConnection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDatabaseConnectionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).GetDatabaseConnection(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/GetDatabaseConnection",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).GetDatabaseConnection(ctx, req.(*GetDatabaseConnectionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -554,6 +622,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteTabularDataByFilter",
 			Handler:    _DataService_DeleteTabularDataByFilter_Handler,
+		},
+		{
+			MethodName: "DeleteTabularData",
+			Handler:    _DataService_DeleteTabularData_Handler,
 		},
 		{
 			MethodName: "DeleteBinaryDataByFilter",
@@ -594,6 +666,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BoundingBoxLabelsByFilter",
 			Handler:    _DataService_BoundingBoxLabelsByFilter_Handler,
+		},
+		{
+			MethodName: "GetDatabaseConnection",
+			Handler:    _DataService_GetDatabaseConnection_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

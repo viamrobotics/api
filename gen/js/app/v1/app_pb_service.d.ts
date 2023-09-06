@@ -517,6 +517,15 @@ type AppServiceListModules = {
   readonly responseType: typeof app_v1_app_pb.ListModulesResponse;
 };
 
+type AppServiceCreateKey = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateKeyRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateKeyResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
@@ -576,6 +585,7 @@ export class AppService {
   static readonly UploadModuleFile: AppServiceUploadModuleFile;
   static readonly GetModule: AppServiceGetModule;
   static readonly ListModules: AppServiceListModules;
+  static readonly CreateKey: AppServiceCreateKey;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -1106,6 +1116,15 @@ export class AppServiceClient {
   listModules(
     requestMessage: app_v1_app_pb.ListModulesRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListModulesResponse|null) => void
+  ): UnaryResponse;
+  createKey(
+    requestMessage: app_v1_app_pb.CreateKeyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateKeyResponse|null) => void
+  ): UnaryResponse;
+  createKey(
+    requestMessage: app_v1_app_pb.CreateKeyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateKeyResponse|null) => void
   ): UnaryResponse;
 }
 
