@@ -369,7 +369,7 @@ var (
 )
 
 func request_ServoService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, client ServoServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.GetGeometriesRequest
+	var protoReq v1_0.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -402,7 +402,7 @@ func request_ServoService_GetGeometries_0(ctx context.Context, marshaler runtime
 }
 
 func local_request_ServoService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, server ServoServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.GetGeometriesRequest
+	var protoReq v1_0.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (

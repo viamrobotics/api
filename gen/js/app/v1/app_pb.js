@@ -320,7 +320,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.OrganizationInvite = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.OrganizationInvite.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.v1.OrganizationInvite, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -5117,6 +5117,13 @@ proto.viam.app.v1.ListOrganizationsResponse.prototype.clearOrganizationsList = f
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.OrganizationInvite.repeatedFields_ = [4];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -5151,7 +5158,8 @@ proto.viam.app.v1.OrganizationInvite.toObject = function(includeInstance, msg) {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     email: jspb.Message.getFieldWithDefault(msg, 2, ""),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    robotCount: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    authorizationsList: jspb.Message.toObjectList(msg.getAuthorizationsList(),
+    proto.viam.app.v1.Authorization.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -5202,8 +5210,9 @@ proto.viam.app.v1.OrganizationInvite.deserializeBinaryFromReader = function(msg,
       msg.setCreatedOn(value);
       break;
     case 4:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setRobotCount(value);
+      var value = new proto.viam.app.v1.Authorization;
+      reader.readMessage(value,proto.viam.app.v1.Authorization.deserializeBinaryFromReader);
+      msg.addAuthorizations(value);
       break;
     default:
       reader.skipField();
@@ -5256,11 +5265,12 @@ proto.viam.app.v1.OrganizationInvite.serializeBinaryToWriter = function(message,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
-  f = message.getRobotCount();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = message.getAuthorizationsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
       4,
-      f
+      f,
+      proto.viam.app.v1.Authorization.serializeBinaryToWriter
     );
   }
 };
@@ -5340,20 +5350,40 @@ proto.viam.app.v1.OrganizationInvite.prototype.hasCreatedOn = function() {
 
 
 /**
- * optional int64 robot_count = 4;
- * @return {number}
+ * repeated Authorization authorizations = 4;
+ * @return {!Array<!proto.viam.app.v1.Authorization>}
  */
-proto.viam.app.v1.OrganizationInvite.prototype.getRobotCount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+proto.viam.app.v1.OrganizationInvite.prototype.getAuthorizationsList = function() {
+  return /** @type{!Array<!proto.viam.app.v1.Authorization>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.v1.Authorization, 4));
 };
 
 
 /**
- * @param {number} value
+ * @param {!Array<!proto.viam.app.v1.Authorization>} value
+ * @return {!proto.viam.app.v1.OrganizationInvite} returns this
+*/
+proto.viam.app.v1.OrganizationInvite.prototype.setAuthorizationsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.Authorization=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.Authorization}
+ */
+proto.viam.app.v1.OrganizationInvite.prototype.addAuthorizations = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.viam.app.v1.Authorization, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
  * @return {!proto.viam.app.v1.OrganizationInvite} returns this
  */
-proto.viam.app.v1.OrganizationInvite.prototype.setRobotCount = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
+proto.viam.app.v1.OrganizationInvite.prototype.clearAuthorizationsList = function() {
+  return this.setAuthorizationsList([]);
 };
 
 

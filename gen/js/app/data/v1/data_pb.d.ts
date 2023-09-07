@@ -1187,6 +1187,46 @@ export namespace BoundingBoxLabelsByFilterResponse {
   }
 }
 
+export class GetDatabaseConnectionRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDatabaseConnectionRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDatabaseConnectionRequest): GetDatabaseConnectionRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDatabaseConnectionRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDatabaseConnectionRequest;
+  static deserializeBinaryFromReader(message: GetDatabaseConnectionRequest, reader: jspb.BinaryReader): GetDatabaseConnectionRequest;
+}
+
+export namespace GetDatabaseConnectionRequest {
+  export type AsObject = {
+    organizationId: string,
+  }
+}
+
+export class GetDatabaseConnectionResponse extends jspb.Message {
+  getHostname(): string;
+  setHostname(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDatabaseConnectionResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDatabaseConnectionResponse): GetDatabaseConnectionResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDatabaseConnectionResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDatabaseConnectionResponse;
+  static deserializeBinaryFromReader(message: GetDatabaseConnectionResponse, reader: jspb.BinaryReader): GetDatabaseConnectionResponse;
+}
+
+export namespace GetDatabaseConnectionResponse {
+  export type AsObject = {
+    hostname: string,
+  }
+}
+
 export interface OrderMap {
   ORDER_UNSPECIFIED: 0;
   ORDER_DESCENDING: 1;
