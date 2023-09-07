@@ -22,6 +22,9 @@ service DataService {
   // DeleteTabularDataByFilter deletes tabular data based on given filters.
   rpc DeleteTabularDataByFilter(DeleteTabularDataByFilterRequest) returns (DeleteTabularDataByFilterResponse);
 
+  // DeleteTabularData deletes tabular data older than a number of days, based on the given organization ID.
+  rpc DeleteTabularData(DeleteTabularDataRequest) returns (DeleteTabularDataResponse);
+
   // DeleteBinaryDataByFilter deletes binary data based on given filters.
   rpc DeleteBinaryDataByFilter(DeleteBinaryDataByFilterRequest) returns (DeleteBinaryDataByFilterResponse);
 
@@ -55,6 +58,10 @@ service DataService {
   // ConfigureDatabaseUser configures a database user for the Viam organization. It can also be used to
   // reset the password of an existing database user.
   rpc ConfigureDatabaseUser(ConfigureDatabaseUserRequest) returns (ConfigureDatabaseUserResponse);
+
+  // GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It returns the hostname of the federated database.
+  rpc GetDatabaseConnection(GetDatabaseConnectionRequest) returns (GetDatabaseConnectionResponse);
+
 }
 
 // Order specifies the order in which data is returned.
@@ -149,6 +156,7 @@ message CaptureInterval {
 message TabularDataByFilterRequest {
   DataRequest data_request = 1;
   bool count_only = 2;
+  bool include_internal_data = 3;
 }
 
 // TabularDataByFilterResponse provides the data and metadata of tabular data
@@ -177,6 +185,7 @@ message BinaryDataByFilterRequest {
   DataRequest data_request = 1;
   bool include_binary = 2;
   bool count_only = 3;
+  bool include_internal_data = 4;
 }
 
 // BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided
@@ -246,6 +255,19 @@ message DeleteTabularDataByFilterResponse {
 
   reserved 2;
   reserved "result";
+}
+
+// DeleteTabularDataRequest deletes the data from the organization that is older than `delete_older_than_days`.
+// For example if `delete_older_than_days` is 10, this deletes any data that was captured up to 10 days ago.
+// If it is 0, all existing data is deleted.
+message DeleteTabularDataRequest {
+  string organization_id = 1;
+  uint32 delete_older_than_days = 2;
+}
+
+// DeleteBinaryDataResponse returns the number of tabular datapoints deleted.
+message DeleteTabularDataResponse {
+  uint64 deleted_count = 1;
 }
 
 // DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
@@ -373,3 +395,10 @@ message ConfigureDatabaseUserRequest {
 message ConfigureDatabaseUserResponse {
 }
 
+message GetDatabaseConnectionRequest {
+  string organization_id = 1;
+}
+
+message GetDatabaseConnectionResponse {
+  string hostname = 1;
+}

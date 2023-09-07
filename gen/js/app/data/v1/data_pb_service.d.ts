@@ -40,6 +40,15 @@ type DataServiceDeleteTabularDataByFilter = {
   readonly responseType: typeof app_data_v1_data_pb.DeleteTabularDataByFilterResponse;
 };
 
+type DataServiceDeleteTabularData = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.DeleteTabularDataRequest;
+  readonly responseType: typeof app_data_v1_data_pb.DeleteTabularDataResponse;
+};
+
 type DataServiceDeleteBinaryDataByFilter = {
   readonly methodName: string;
   readonly service: typeof DataService;
@@ -130,12 +139,22 @@ type DataServiceBoundingBoxLabelsByFilter = {
   readonly responseType: typeof app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse;
 };
 
+type DataServiceGetDatabaseConnection = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.GetDatabaseConnectionRequest;
+  readonly responseType: typeof app_data_v1_data_pb.GetDatabaseConnectionResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
   static readonly BinaryDataByFilter: DataServiceBinaryDataByFilter;
   static readonly BinaryDataByIDs: DataServiceBinaryDataByIDs;
   static readonly DeleteTabularDataByFilter: DataServiceDeleteTabularDataByFilter;
+  static readonly DeleteTabularData: DataServiceDeleteTabularData;
   static readonly DeleteBinaryDataByFilter: DataServiceDeleteBinaryDataByFilter;
   static readonly DeleteBinaryDataByIDs: DataServiceDeleteBinaryDataByIDs;
   static readonly AddTagsToBinaryDataByIDs: DataServiceAddTagsToBinaryDataByIDs;
@@ -146,6 +165,7 @@ export class DataService {
   static readonly AddBoundingBoxToImageByID: DataServiceAddBoundingBoxToImageByID;
   static readonly RemoveBoundingBoxFromImageByID: DataServiceRemoveBoundingBoxFromImageByID;
   static readonly BoundingBoxLabelsByFilter: DataServiceBoundingBoxLabelsByFilter;
+  static readonly GetDatabaseConnection: DataServiceGetDatabaseConnection;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -216,6 +236,15 @@ export class DataServiceClient {
     requestMessage: app_data_v1_data_pb.DeleteTabularDataByFilterRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteTabularDataByFilterResponse|null) => void
   ): UnaryResponse;
+  deleteTabularData(
+    requestMessage: app_data_v1_data_pb.DeleteTabularDataRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteTabularDataResponse|null) => void
+  ): UnaryResponse;
+  deleteTabularData(
+    requestMessage: app_data_v1_data_pb.DeleteTabularDataRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteTabularDataResponse|null) => void
+  ): UnaryResponse;
   deleteBinaryDataByFilter(
     requestMessage: app_data_v1_data_pb.DeleteBinaryDataByFilterRequest,
     metadata: grpc.Metadata,
@@ -305,6 +334,15 @@ export class DataServiceClient {
   boundingBoxLabelsByFilter(
     requestMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse|null) => void
+  ): UnaryResponse;
+  getDatabaseConnection(
+    requestMessage: app_data_v1_data_pb.GetDatabaseConnectionRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetDatabaseConnectionResponse|null) => void
+  ): UnaryResponse;
+  getDatabaseConnection(
+    requestMessage: app_data_v1_data_pb.GetDatabaseConnectionRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetDatabaseConnectionResponse|null) => void
   ): UnaryResponse;
 }
 
