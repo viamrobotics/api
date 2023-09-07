@@ -19,6 +19,7 @@ service CloudSLAMService {
 }
 
 // StartMappingSession
+
 message StartMappingSessionRequest {  
   // Version to use for slam, defaults stable
   string slam_version = 1;
@@ -36,12 +37,14 @@ message StartMappingSessionRequest {
 
 message SensorInfo {
   string source_component_name = 1;
+  // type is the RDK component type
   string type = 2;
   string data_frequency_hz = 3;
 }
 
 message CaptureInterval {
   google.protobuf.Timestamp start_time = 1;
+  // if no end_time specified cloud slam will be run using live sensors
   google.protobuf.Timestamp end_time = 2;
 }
 
