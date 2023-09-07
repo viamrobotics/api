@@ -19,19 +19,30 @@ service CloudSLAMService {
 }
 
 // StartMappingSession
-
-message StartMappingSessionRequest {
-  // The given config contains details such as sensor, map package and algorithm-specific fields required to run slam.
-  google.protobuf.Struct slam_config = 1;
+message StartMappingSessionRequest {  
   // Version to use for slam, defaults stable
-  string slam_version = 2;
-  string map_name = 3;
-  string organization_id = 4;
-  string location_id = 5;
-  string robot_id = 6;
-  // Version to use for viam, defaults stable
-  string viam_server_version = 7;
-  bool is_online = 8;
+  string slam_version = 1;
+  // Version to use for viam, defaults stable  
+  string viam_server_version = 2;  
+  string map_name = 3;  
+  string organization_id = 4; 
+  string location_id = 5;  
+  string robot_id = 6;  
+  CaptureInterval interval = 7;
+  repeated SensorInfo Sensors = 8;
+  google.protobuf.Struct SLAMAlgorithmParams = 10;
+  string existing_map_version = 11;
+}
+
+message SensorInfo {
+  string source_component_name = 1;
+  string type = 2;
+  string data_frequency_hz = 3;
+}
+
+message CaptureInterval {
+  google.protobuf.Timestamp start_time = 1;
+  google.protobuf.Timestamp end_time = 2;
 }
 
 message StartMappingSessionResponse {
