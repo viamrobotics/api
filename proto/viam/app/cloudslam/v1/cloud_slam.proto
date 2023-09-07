@@ -20,18 +20,18 @@ service CloudSLAMService {
 
 // StartMappingSession
 
-message StartMappingSessionRequest {  
+message StartMappingSessionRequest {
   // Version to use for slam, defaults stable
   string slam_version = 1;
-  // Version to use for viam, defaults stable  
-  string viam_server_version = 2;  
-  string map_name = 3;  
-  string organization_id = 4; 
-  string location_id = 5;  
-  string robot_id = 6;  
-  CaptureInterval interval = 7;
-  repeated SensorInfo Sensors = 8;
-  google.protobuf.Struct SLAMAlgorithmParams = 10;
+  // Version to use for viam, defaults stable
+  string viam_server_version = 2;
+  string map_name = 3;
+  string organization_id = 4;
+  string location_id = 5;
+  string robot_id = 6;
+  CaptureInterval capture_interval = 7;
+  repeated SensorInfo sensors = 8;
+  google.protobuf.Struct slam_algorithm_params = 10;
   string existing_map_version = 11;
 }
 
