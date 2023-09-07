@@ -3503,6 +3503,116 @@ export namespace CreateKeyResponse {
   }
 }
 
+export class DeleteKeyRequest extends jspb.Message {
+  getKey(): string;
+  setKey(value: string): void;
+
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteKeyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteKeyRequest): DeleteKeyRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteKeyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteKeyRequest;
+  static deserializeBinaryFromReader(message: DeleteKeyRequest, reader: jspb.BinaryReader): DeleteKeyRequest;
+}
+
+export namespace DeleteKeyRequest {
+  export type AsObject = {
+    key: string,
+    id: string,
+  }
+}
+
+export class DeleteKeyResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteKeyResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteKeyResponse): DeleteKeyResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteKeyResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteKeyResponse;
+  static deserializeBinaryFromReader(message: DeleteKeyResponse, reader: jspb.BinaryReader): DeleteKeyResponse;
+}
+
+export namespace DeleteKeyResponse {
+  export type AsObject = {
+  }
+}
+
+export class ApiKey extends jspb.Message {
+  getKey(): string;
+  setKey(value: string): void;
+
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ApiKey.AsObject;
+  static toObject(includeInstance: boolean, msg: ApiKey): ApiKey.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ApiKey, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ApiKey;
+  static deserializeBinaryFromReader(message: ApiKey, reader: jspb.BinaryReader): ApiKey;
+}
+
+export namespace ApiKey {
+  export type AsObject = {
+    key: string,
+    id: string,
+  }
+}
+
+export class ListKeysRequest extends jspb.Message {
+  getKey(): string;
+  setKey(value: string): void;
+
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListKeysRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListKeysRequest): ListKeysRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListKeysRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListKeysRequest;
+  static deserializeBinaryFromReader(message: ListKeysRequest, reader: jspb.BinaryReader): ListKeysRequest;
+}
+
+export namespace ListKeysRequest {
+  export type AsObject = {
+    key: string,
+    id: string,
+  }
+}
+
+export class ListKeysResponse extends jspb.Message {
+  clearApiKeysList(): void;
+  getApiKeysList(): Array<ApiKey>;
+  setApiKeysList(value: Array<ApiKey>): void;
+  addApiKeys(value?: ApiKey, index?: number): ApiKey;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListKeysResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListKeysResponse): ListKeysResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListKeysResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListKeysResponse;
+  static deserializeBinaryFromReader(message: ListKeysResponse, reader: jspb.BinaryReader): ListKeysResponse;
+}
+
+export namespace ListKeysResponse {
+  export type AsObject = {
+    apiKeysList: Array<ApiKey.AsObject>,
+  }
+}
+
 export interface VisibilityMap {
   VISIBILITY_UNSPECIFIED: 0;
   VISIBILITY_PRIVATE: 1;
