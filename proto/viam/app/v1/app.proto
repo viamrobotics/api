@@ -187,6 +187,10 @@ service AppService {
   rpc ListModules(ListModulesRequest) returns (ListModulesResponse);
 
   rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse);
+
+  rpc DeleteKey(DeleteKeyRequest) returns (DeleteKeyResponse);
+
+  rpc ListKeys(ListKeysRequest) returns (ListKeysResponse);
 }
 
 message Robot {
@@ -974,4 +978,25 @@ message CreateKeyRequest {
 message CreateKeyResponse {
   string key = 1;
   string id = 2;
+}
+
+message DeleteKeyRequest {
+  string key = 1;
+  string id = 2;
+}
+
+message DeleteKeyResponse {}
+
+message ApiKey {
+  string key = 1;
+  string id = 2;
+}
+
+message ListKeysRequest {
+  string key = 1;
+  string id = 2;
+}
+
+message ListKeysResponse {
+  repeated ApiKey api_keys = 1;
 }
