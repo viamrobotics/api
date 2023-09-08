@@ -72,18 +72,16 @@ service MotionService {
   }
 }
 
-// Moves any component on the robot to a specified destination which can be from
-// the reference frame of any other component on the robot.
+// Moves any component on the robot to a specified destination which can be from the reference frame of any other component on the robot.
 message MoveRequest {
   // Name of the motion service
   string name = 1;
-  // Destination to move to, which can a pose in the reference frame of any
-  // frame in the robot's frame system
+  // Destination to move to, which can a pose in the reference frame of any frame in the robot's frame system
   common.v1.PoseInFrame destination = 2;
   // Component on the robot to move to the specified destination
   common.v1.ResourceName component_name = 3;
   // Avoid obstacles by specifying their geometries in the world state
-  // Augment the frame system of the robot by specifying additional transforms
+  // Augment the frame system of the robot by specifying additional transforms to add to it for the duration of the Move
   // to add to it for the duration of the Move
   optional common.v1.WorldState world_state = 4;
   // Constrain the way the robot will move
@@ -99,8 +97,7 @@ message MoveResponse {
 message MoveOnMapRequest {
   // Name of the motion service
   string name = 1;
-  // Specify a destination to, which can be any pose with respect to the SLAM
-  // map's origin
+  // Specify a destination to, which can be any pose with respect to the SLAM map's origin
   common.v1.Pose destination = 2;
   // Component on the robot to move to the specified destination
   common.v1.ResourceName component_name = 3;
@@ -121,8 +118,7 @@ message MotionConfiguration {
   optional double position_polling_frequency_hz = 2;
   // Sets the frequency to poll the vision service(s) for new obstacles
   optional double obstacle_polling_frequency_hz = 3;
-  // Sets the distance in meters that a robot is allowed to deviate from the
-  // motion plan
+  // Sets the distance in meters that a robot is allowed to deviate from the motion plan
   optional double plan_deviation_m = 4;
   // Optional linear velocity to target when moving
   optional double linear_m_per_sec = 5;
@@ -172,40 +168,31 @@ message GetPoseResponse {
   common.v1.PoseInFrame pose = 1;
 }
 
-// Constraints specifies all enumerated constraints to be passed to Viam's
-// motion planning, along with any optional parameters
+// Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters
 message Constraints {
   // Typed message for a specific constraint
   repeated LinearConstraint linear_constraint = 1;
   repeated OrientationConstraint orientation_constraint = 2;
   repeated CollisionSpecification collision_specification = 3;
-  // Arc constraint, Time constraint, and others will be added here when they
-  // are supported
+  // Arc constraint, Time constraint, and others will be added here when they are supported
 }
 
-// LinearConstraint specifies that the component being moved should move
-// linearly relative to its goal. It does not constrain the motion of components
-// other than the `component_name` specified in motion.Move
+// LinearConstraint specifies that the component being moved should move linearly relative to its goal.
+// It does not constrain the motion of components other than the `component_name` specified in motion.Move
 message LinearConstraint {
-  optional float line_tolerance_mm = 1; // Max linear deviation from straight-line between start and goal, in
-  // mm.
-  // Max allowable orientation deviation, in degrees, while on the shortest path
-  // between start / goal states
+  optional float line_tolerance_mm = 1; // Max linear deviation from straight-line between start and goal, in mm.
+  // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
   optional float orientation_tolerance_degs = 2;
 }
 
-// OrientationConstraint specifies that the component being moved will not
-// deviate its orientation beyond some threshold relative to the goal. It does
-// not constrain the motion of components other than the `component_name`
-// specified in motion.Move
+// OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative
+// to the goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move
 message OrientationConstraint {
-  // Max allowable orientation deviation, in degrees, while on the shortest path
-  // between start / goal states
+  // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
   optional float orientation_tolerance_degs = 1;
 }
 
-// CollisionSpecification is used to selectively apply obstacle avoidance to
-// specific parts of the robot
+// CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot
 message CollisionSpecification {
   message AllowedFrameCollisions {
     string frame1 = 1;
