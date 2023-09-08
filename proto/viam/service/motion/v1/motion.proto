@@ -272,8 +272,10 @@ message PlanWithStatus {
 }
 
 message GetPlanRequest {
+  // The name of the motion service
+  string name = 1;
   // The operation ID of the queried plan
-  string operation_id = 1;
+  string operation_id = 2;
 }
 
 message GetPlanResponse {
