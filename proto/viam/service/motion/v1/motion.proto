@@ -287,6 +287,9 @@ message GetPlanResponse {
   // field will be empty if the motion service
   // did not need to re-plan
   repeated PlanWithStatus replan_history = 2;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message MoveOnGlobeNewRequest {
@@ -316,6 +319,9 @@ message MoveOnGlobeNewResponse {
 message ListPlanStatusesRequest {
   // The name of the motion service
   string name = 1;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 // Status of all executed / executing plan statuses within the 24 hour TTL
