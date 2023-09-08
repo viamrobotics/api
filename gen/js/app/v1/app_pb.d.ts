@@ -3568,11 +3568,11 @@ export namespace ApiKey {
 }
 
 export class ListKeysRequest extends jspb.Message {
-  getKey(): string;
-  setKey(value: string): void;
+  getResourceId(): string;
+  setResourceId(value: string): void;
 
-  getId(): string;
-  setId(value: string): void;
+  getResourceType(): string;
+  setResourceType(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListKeysRequest.AsObject;
@@ -3586,8 +3586,8 @@ export class ListKeysRequest extends jspb.Message {
 
 export namespace ListKeysRequest {
   export type AsObject = {
-    key: string,
-    id: string,
+    resourceId: string,
+    resourceType: string,
   }
 }
 
