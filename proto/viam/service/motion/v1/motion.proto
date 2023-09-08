@@ -82,7 +82,6 @@ message MoveRequest {
   common.v1.ResourceName component_name = 3;
   // Avoid obstacles by specifying their geometries in the world state
   // Augment the frame system of the robot by specifying additional transforms to add to it for the duration of the Move
-  // to add to it for the duration of the Move
   optional common.v1.WorldState world_state = 4;
   // Constrain the way the robot will move
   optional Constraints constraints = 5;
