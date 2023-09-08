@@ -13,46 +13,78 @@ option java_package = "com.viam.service.motion.v1";
 service MotionService {
   rpc Move(MoveRequest) returns (MoveResponse) {
     option (google.api.http) = {
-      post: "/viam/api/v1/service/motion/{name}/move"
+      post : "/viam/api/v1/service/motion/{name}/move"
     };
   }
 
   rpc MoveOnMap(MoveOnMapRequest) returns (MoveOnMapResponse) {
     option (google.api.http) = {
-      post: "/viam/api/v1/service/motion/{name}/move_on_map"
+      post : "/viam/api/v1/service/motion/{name}/move_on_map"
     };
   }
 
   rpc MoveOnGlobe(MoveOnGlobeRequest) returns (MoveOnGlobeResponse) {
     option (google.api.http) = {
-      post: "/viam/api/v1/service/motion/{name}/move_on_globe"
+      post : "/viam/api/v1/service/motion/{name}/move_on_globe"
     };
   }
 
   rpc GetPose(GetPoseRequest) returns (GetPoseResponse) {
     option (google.api.http) = {
-      get: "/viam/api/v1/service/motion/{name}/pose"
+      get : "/viam/api/v1/service/motion/{name}/pose"
+    };
+  }
+
+  rpc MoveOnGlobeNew(MoveOnGlobeNewRequest) returns MoveOnGlobeNewResponse {
+    option (google.api.http) = {
+      get : "/viam/api/v1/service/motion/{name}/move_on_globe"
+    };
+  }
+
+  // Returns the status ofplans created by MoveOnGlobeNew requests
+  // that are executing OR had their last state transition within a 24HR TTL OR
+  // until the robot reinitializes Replans always create new plans. Replans
+  // share the op id of the previously executing plan.
+  rpc ListPlanStatuses(ListPlanStatusesRequest)
+      returns ListPlanStatusesResponse {
+    option (google.api.http) = {
+      get : "/viam/api/v1/service/motion/{name}/list_all_plans"
+    };
+  }
+
+  // Returns the plan & state history and steps of an operation created by a
+  // MoveOnGlobeNew requests if that plan's last state transition was within the
+  // last 24 hours & the robot has not reinitialized. Plans are never mutated.
+  // Replans always create new plans.
+  // Replans share the op id of the previously executing plan.
+  rpc GetPlan(GetPlanRequest) returns GetPlanResponse {
+    option (google.api.http) = {
+      get : "/viam/api/v1/service/motion/{name}/get_plan_status"
     };
   }
 
   // DoCommand sends/receives arbitrary commands
-  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+  rpc DoCommand(common.v1.DoCommandRequest)
+      returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
-      post: "/viam/api/v1/service/motion/{name}/do_command"
+      post : "/viam/api/v1/service/motion/{name}/do_command"
     };
   }
 }
 
-// Moves any component on the robot to a specified destination which can be from the reference frame of any other component on the robot.
+// Moves any component on the robot to a specified destination which can be from
+// the reference frame of any other component on the robot.
 message MoveRequest {
   // Name of the motion service
   string name = 1;
-  // Destination to move to, which can a pose in the reference frame of any frame in the robot's frame system
+  // Destination to move to, which can a pose in the reference frame of any
+  // frame in the robot's frame system
   common.v1.PoseInFrame destination = 2;
   // Component on the robot to move to the specified destination
   common.v1.ResourceName component_name = 3;
   // Avoid obstacles by specifying their geometries in the world state
-  // Augment the frame system of the robot by specifying additional transforms to add to it for the duration of the Move
+  // Augment the frame system of the robot by specifying additional transforms
+  // to add to it for the duration of the Move
   optional common.v1.WorldState world_state = 4;
   // Constrain the way the robot will move
   optional Constraints constraints = 5;
@@ -60,14 +92,13 @@ message MoveRequest {
   google.protobuf.Struct extra = 99;
 }
 
-message MoveResponse {
-  bool success = 1;
-}
+message MoveResponse { bool success = 1; }
 
 message MoveOnMapRequest {
   // Name of the motion service
   string name = 1;
-  // Specify a destination to, which can be any pose with respect to the SLAM map's origin
+  // Specify a destination to, which can be any pose with respect to the SLAM
+  // map's origin
   common.v1.Pose destination = 2;
   // Component on the robot to move to the specified destination
   common.v1.ResourceName component_name = 3;
@@ -77,9 +108,7 @@ message MoveOnMapRequest {
   google.protobuf.Struct extra = 99;
 }
 
-message MoveOnMapResponse {
-  bool success = 1;
-}
+message MoveOnMapResponse { bool success = 1; }
 
 message MotionConfiguration {
   // The name of the vision service(s) that will be used to detect obstacles
@@ -88,7 +117,8 @@ message MotionConfiguration {
   optional double position_polling_frequency_hz = 2;
   // Sets the frequency to poll the vision service(s) for new obstacles
   optional double obstacle_polling_frequency_hz = 3;
-  // Sets the distance in meters that a robot is allowed to deviate from the motion plan
+  // Sets the distance in meters that a robot is allowed to deviate from the
+  // motion plan
   optional double plan_deviation_m = 4;
   // Optional linear velocity to target when moving
   optional double linear_m_per_sec = 5;
@@ -115,9 +145,7 @@ message MoveOnGlobeRequest {
   google.protobuf.Struct extra = 99;
 }
 
-message MoveOnGlobeResponse {
-  bool success = 1;
-}
+message MoveOnGlobeResponse { bool success = 1; }
 
 message GetPoseRequest {
   string name = 1;
@@ -134,35 +162,43 @@ message GetPoseRequest {
   google.protobuf.Struct extra = 99;
 }
 
-message GetPoseResponse {
-  common.v1.PoseInFrame pose = 1;
-}
+message GetPoseResponse { common.v1.PoseInFrame pose = 1; }
 
-// Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters
+// Constraints specifies all enumerated constraints to be passed to Viam's
+// motion planning, along with any optional parameters
 message Constraints {
   // Typed message for a specific constraint
   repeated LinearConstraint linear_constraint = 1;
   repeated OrientationConstraint orientation_constraint = 2;
   repeated CollisionSpecification collision_specification = 3;
-  // Arc constraint, Time constraint, and others will be added here when they are supported
+  // Arc constraint, Time constraint, and others will be added here when they
+  // are supported
 }
 
-// LinearConstraint specifies that the component being moved should move linearly relative to its goal.
-// It does not constrain the motion of components other than the `component_name` specified in motion.Move
+// LinearConstraint specifies that the component being moved should move
+// linearly relative to its goal. It does not constrain the motion of components
+// other than the `component_name` specified in motion.Move
 message LinearConstraint {
-  optional float line_tolerance_mm = 1; // Max linear deviation from straight-line between start and goal, in mm.
-  // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
+  optional float line_tolerance_mm =
+      1; // Max linear deviation from straight-line between start and goal, in
+         // mm.
+  // Max allowable orientation deviation, in degrees, while on the shortest path
+  // between start / goal states
   optional float orientation_tolerance_degs = 2;
 }
 
-// OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative
-// to the goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move
+// OrientationConstraint specifies that the component being moved will not
+// deviate its orientation beyond some threshold relative to the goal. It does
+// not constrain the motion of components other than the `component_name`
+// specified in motion.Move
 message OrientationConstraint {
-  // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
+  // Max allowable orientation deviation, in degrees, while on the shortest path
+  // between start / goal states
   optional float orientation_tolerance_degs = 1;
 }
 
-// CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot
+// CollisionSpecification is used to selectively apply obstacle avoidance to
+// specific parts of the robot
 message CollisionSpecification {
   message AllowedFrameCollisions {
     string frame1 = 1;
@@ -170,4 +206,99 @@ message CollisionSpecification {
   }
   // Pairs of frame which should be allowed to collide with one another
   repeated AllowedFrameCollisions allows = 1;
+}
+
+// A plan describes a motion plan
+message Plan {
+  // The plan's unique ID
+  string id = 1;
+
+  // The steps of a plan is an ordered list of component states each
+  // resource should reach while executing a plan
+  repeated map<common.v1.ResourceName, ComponentState> steps = 2;
+}
+
+// The states that a plan can be in
+// In progress if the plan is executing
+// Cancelled if the OP ID of the plan was cancelled
+// Suceeded if the robot reached its destination successfully
+// Failed if the robot did not reach its destination
+enum PlanState {
+  UNSPECIFIED = 0;
+  IN_PROGRESS = 1;
+  CANCELLED = 2;
+  SUCCEEDED = 3;
+  FAILED = 4;
+}
+
+// Plan status describes the state of a given plan execution at a
+// point in time
+message PlanStatus {
+  // The unique ID of the plan
+  string plan_id = 1;
+
+  // The operation ID of the plan execution.
+  string operation_id = 2;
+
+  // The state of the plan execution
+  PlanState state = 3;
+
+  // The time the executing plan transtioned to the state
+  google.protobuf.Timestamp timestamp = 4;
+
+  // The reason for the state change. If motion plan failed
+  // this will return the error message
+  // If motion needed to re-plan, this will return
+  // the re-plan reason
+
+  optional string reason = 5;
+}
+
+// A pose
+message ComponentState { common.v1.Pose pose = 1; }
+
+// Describes a plan, its current status & all status changes
+// that have occured previously on that plan
+message PlanWithStatus {
+  // The plan
+  Plan plan = 1;
+
+  // The current status of the plan
+  PlanStatus status = 2;
+
+  // The prior status changes that have happened during plan execution
+  repeated PlanStatus status_history = 3;
+}
+
+message GetPlanRequest {
+  // The operation ID of the queried plan
+  string operation_id = 1;
+}
+
+message GetPlanResponse {
+  // The current plan and status that matches the request query
+  PlanWithStatus current_plan_with_status = 1;
+
+  // Returns the history of all the plans that were
+  // generated in ascending order. This
+  // field will be empty if the motion service
+  // did not need to re-plan
+  repeated PlanWithStatus replan_history = 2;
+}
+
+message MoveOnGlobeNewResponse {
+  // The operation of the newly executing plan
+  robot.v1.Operation operation = 1;
+}
+
+message ListPlanStatusesRequest {
+  // The name of the motion service
+  string name = 1;
+}
+
+// Status of all executed / executing plan statuses within the 24 hour TTL
+message ListPlanStatusesResponse {
+  // List of last known statuses of all plans within the TTL
+  // ordered by timestamp in ascending order
+  repeated PlanStatus statuses = 1;
 }
