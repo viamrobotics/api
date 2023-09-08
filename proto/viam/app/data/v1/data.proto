@@ -61,7 +61,6 @@ service DataService {
 
   // GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It returns the hostname of the federated database.
   rpc GetDatabaseConnection(GetDatabaseConnectionRequest) returns (GetDatabaseConnectionResponse);
-
 }
 
 // Order specifies the order in which data is returned.
@@ -392,8 +391,7 @@ message ConfigureDatabaseUserRequest {
   string password = 2;
 }
 
-message ConfigureDatabaseUserResponse {
-}
+message ConfigureDatabaseUserResponse {}
 
 message GetDatabaseConnectionRequest {
   string organization_id = 1;
