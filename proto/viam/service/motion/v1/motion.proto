@@ -5,6 +5,8 @@ package viam.service.motion.v1;
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "robot/v1/robot.proto";
 
 option go_package = "go.viam.com/api/service/motion/v1";
 option java_package = "com.viam.service.motion.v1";
@@ -32,6 +34,33 @@ service MotionService {
   rpc GetPose(GetPoseRequest) returns (GetPoseResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/motion/{name}/pose"
+    };
+  }
+
+  rpc MoveOnGlobeNew(MoveOnGlobeNewRequest) returns (MoveOnGlobeNewResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/motion/{name}/move_on_globe_new"
+    };
+  }
+
+  // Returns the status ofplans created by MoveOnGlobeNew requests
+  // that are executing OR had their last state transition within a 24HR TTL OR
+  // until the robot reinitializes Replans always create new plans. Replans
+  // share the op id of the previously executing plan.
+  rpc ListPlanStatuses(ListPlanStatusesRequest) returns (ListPlanStatusesResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/motion/{name}/list_all_plans"
+    };
+  }
+
+  // Returns the plan & state history and steps of an operation created by a
+  // MoveOnGlobeNew requests if that plan's last state transition was within the
+  // last 24 hours & the robot has not reinitialized. Plans are never mutated.
+  // Replans always create new plans.
+  // Replans share the op id of the previously executing plan.
+  rpc GetPlan(GetPlanRequest) returns (GetPlanResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/motion/{name}/get_plan_status"
     };
   }
 
@@ -170,4 +199,134 @@ message CollisionSpecification {
   }
   // Pairs of frame which should be allowed to collide with one another
   repeated AllowedFrameCollisions allows = 1;
+}
+
+message PlanSteps {
+  // A step is the component state each
+  // resource should reach while executing
+  // that step of the plan
+  map<string, ComponentState> step = 1;
+}
+
+// A plan describes a motion plan
+message Plan {
+  // The plan's unique ID
+  string id = 1;
+
+  // The steps of a plan is an ordered list of plan steps
+  repeated PlanSteps steps = 2;
+}
+
+// The states that a plan can be in
+// In progress if the plan is executing
+// Cancelled if the OP ID of the plan was cancelled
+// Suceeded if the robot reached its destination successfully
+// Failed if the robot did not reach its destination
+enum PlanState {
+  PLAN_STATE_UNSPECIFIED = 0;
+  PLAN_STATE_IN_PROGRESS = 1;
+  PLAN_STATE_CANCELLED = 2;
+  PLAN_STATE_SUCCEEDED = 3;
+  PLAN_STATE_FAILED = 4;
+}
+
+// Plan status describes the state of a given plan execution at a
+// point in time
+message PlanStatus {
+  // The unique ID of the plan
+  string plan_id = 1;
+
+  // The operation ID of the plan execution.
+  string operation_id = 2;
+
+  // The state of the plan execution
+  PlanState state = 3;
+
+  // The time the executing plan transtioned to the state
+  google.protobuf.Timestamp timestamp = 4;
+
+  // The reason for the state change. If motion plan failed
+  // this will return the error message
+  // If motion needed to re-plan, this will return
+  // the re-plan reason
+
+  optional string reason = 5;
+}
+
+// A pose
+message ComponentState {
+  common.v1.Pose pose = 1;
+}
+
+// Describes a plan, its current status & all status changes
+// that have occured previously on that plan
+message PlanWithStatus {
+  // The plan
+  Plan plan = 1;
+
+  // The current status of the plan
+  PlanStatus status = 2;
+
+  // The prior status changes that have happened during plan execution
+  repeated PlanStatus status_history = 3;
+}
+
+message GetPlanRequest {
+  // The name of the motion service
+  string name = 1;
+  // The operation ID of the queried plan
+  string operation_id = 2;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetPlanResponse {
+  // The current plan and status that matches the request query
+  PlanWithStatus current_plan_with_status = 1;
+
+  // Returns the history of all the plans that were
+  // generated in ascending order. This
+  // field will be empty if the motion service
+  // did not need to re-plan
+  repeated PlanWithStatus replan_history = 2;
+}
+
+message MoveOnGlobeNewRequest {
+  // Name of the motion service
+  string name = 1;
+  // Destination, encoded as a GeoPoint
+  common.v1.GeoPoint destination = 2;
+  // Optional compass heading to achieve at the destination, in degrees [0-360)
+  optional double heading = 3;
+  // Component on the robot to move to the specified destination
+  common.v1.ResourceName component_name = 4;
+  // Name of the movement sensor which will be used to check robot location
+  common.v1.ResourceName movement_sensor_name = 5;
+  // Obstacles to be considered for motion planning
+  repeated common.v1.GeoObstacle obstacles = 6;
+  // Optional set of motion configuration options
+  optional MotionConfiguration motion_configuration = 7;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message MoveOnGlobeNewResponse {
+  // The operation of the newly executing plan
+  robot.v1.Operation operation = 1;
+}
+
+message ListPlanStatusesRequest {
+  // The name of the motion service
+  string name = 1;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+// Status of all executed / executing plan statuses within the 24 hour TTL
+message ListPlanStatusesResponse {
+  // List of last known statuses of all plans within the TTL
+  // ordered by timestamp in ascending order
+  repeated PlanStatus statuses = 1;
 }
