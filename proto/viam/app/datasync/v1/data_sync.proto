@@ -77,7 +77,7 @@ message SensorMetadata {
   google.protobuf.Timestamp time_received = 2;
 }
 
-// SensorData contains the SensorMetadata and contents of tabular data
+// SensorData contains the contents and metadata for tabular data
 message SensorData {
   SensorMetadata metadata = 1;
   oneof data {
@@ -135,7 +135,7 @@ message DataCaptureMetadata {
   reserved "component_model", "session_id";
 }
 
-// UploadMetadata contains the metadata for streaming binary (image + file) data
+// DataCaptureUploadMetadata contains the metadata for streaming binary (image + file) data
 message DataCaptureUploadMetadata {
   UploadMetadata upload_metadata = 1;
   SensorMetadata sensor_metadata = 2;
