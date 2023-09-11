@@ -139,15 +139,6 @@ type DataServiceBoundingBoxLabelsByFilter = {
   readonly responseType: typeof app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse;
 };
 
-type DataServiceConfigureDatabaseUser = {
-  readonly methodName: string;
-  readonly service: typeof DataService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof app_data_v1_data_pb.ConfigureDatabaseUserRequest;
-  readonly responseType: typeof app_data_v1_data_pb.ConfigureDatabaseUserResponse;
-};
-
 type DataServiceGetDatabaseConnection = {
   readonly methodName: string;
   readonly service: typeof DataService;
@@ -155,6 +146,15 @@ type DataServiceGetDatabaseConnection = {
   readonly responseStream: false;
   readonly requestType: typeof app_data_v1_data_pb.GetDatabaseConnectionRequest;
   readonly responseType: typeof app_data_v1_data_pb.GetDatabaseConnectionResponse;
+};
+
+type DataServiceConfigureDatabaseUser = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.ConfigureDatabaseUserRequest;
+  readonly responseType: typeof app_data_v1_data_pb.ConfigureDatabaseUserResponse;
 };
 
 export class DataService {
@@ -174,8 +174,8 @@ export class DataService {
   static readonly AddBoundingBoxToImageByID: DataServiceAddBoundingBoxToImageByID;
   static readonly RemoveBoundingBoxFromImageByID: DataServiceRemoveBoundingBoxFromImageByID;
   static readonly BoundingBoxLabelsByFilter: DataServiceBoundingBoxLabelsByFilter;
-  static readonly ConfigureDatabaseUser: DataServiceConfigureDatabaseUser;
   static readonly GetDatabaseConnection: DataServiceGetDatabaseConnection;
+  static readonly ConfigureDatabaseUser: DataServiceConfigureDatabaseUser;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -345,15 +345,6 @@ export class DataServiceClient {
     requestMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse|null) => void
   ): UnaryResponse;
-  configureDatabaseUser(
-    requestMessage: app_data_v1_data_pb.ConfigureDatabaseUserRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ConfigureDatabaseUserResponse|null) => void
-  ): UnaryResponse;
-  configureDatabaseUser(
-    requestMessage: app_data_v1_data_pb.ConfigureDatabaseUserRequest,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ConfigureDatabaseUserResponse|null) => void
-  ): UnaryResponse;
   getDatabaseConnection(
     requestMessage: app_data_v1_data_pb.GetDatabaseConnectionRequest,
     metadata: grpc.Metadata,
@@ -362,6 +353,15 @@ export class DataServiceClient {
   getDatabaseConnection(
     requestMessage: app_data_v1_data_pb.GetDatabaseConnectionRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetDatabaseConnectionResponse|null) => void
+  ): UnaryResponse;
+  configureDatabaseUser(
+    requestMessage: app_data_v1_data_pb.ConfigureDatabaseUserRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ConfigureDatabaseUserResponse|null) => void
+  ): UnaryResponse;
+  configureDatabaseUser(
+    requestMessage: app_data_v1_data_pb.ConfigureDatabaseUserRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ConfigureDatabaseUserResponse|null) => void
   ): UnaryResponse;
 }
 

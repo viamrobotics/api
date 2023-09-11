@@ -145,15 +145,6 @@ DataService.BoundingBoxLabelsByFilter = {
   responseType: app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse
 };
 
-DataService.ConfigureDatabaseUser = {
-  methodName: "ConfigureDatabaseUser",
-  service: DataService,
-  requestStream: false,
-  responseStream: false,
-  requestType: app_data_v1_data_pb.ConfigureDatabaseUserRequest,
-  responseType: app_data_v1_data_pb.ConfigureDatabaseUserResponse
-};
-
 DataService.GetDatabaseConnection = {
   methodName: "GetDatabaseConnection",
   service: DataService,
@@ -161,6 +152,15 @@ DataService.GetDatabaseConnection = {
   responseStream: false,
   requestType: app_data_v1_data_pb.GetDatabaseConnectionRequest,
   responseType: app_data_v1_data_pb.GetDatabaseConnectionResponse
+};
+
+DataService.ConfigureDatabaseUser = {
+  methodName: "ConfigureDatabaseUser",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.ConfigureDatabaseUserRequest,
+  responseType: app_data_v1_data_pb.ConfigureDatabaseUserResponse
 };
 
 exports.DataService = DataService;
@@ -635,11 +635,11 @@ DataServiceClient.prototype.boundingBoxLabelsByFilter = function boundingBoxLabe
   };
 };
 
-DataServiceClient.prototype.configureDatabaseUser = function configureDatabaseUser(requestMessage, metadata, callback) {
+DataServiceClient.prototype.getDatabaseConnection = function getDatabaseConnection(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataService.ConfigureDatabaseUser, {
+  var client = grpc.unary(DataService.GetDatabaseConnection, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -666,11 +666,11 @@ DataServiceClient.prototype.configureDatabaseUser = function configureDatabaseUs
   };
 };
 
-DataServiceClient.prototype.getDatabaseConnection = function getDatabaseConnection(requestMessage, metadata, callback) {
+DataServiceClient.prototype.configureDatabaseUser = function configureDatabaseUser(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataService.GetDatabaseConnection, {
+  var client = grpc.unary(DataService.ConfigureDatabaseUser, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

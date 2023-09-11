@@ -52,11 +52,12 @@ type DataServiceClient interface {
 	RemoveBoundingBoxFromImageByID(ctx context.Context, in *RemoveBoundingBoxFromImageByIDRequest, opts ...grpc.CallOption) (*RemoveBoundingBoxFromImageByIDResponse, error)
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(ctx context.Context, in *BoundingBoxLabelsByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxLabelsByFilterResponse, error)
-	// ConfigureDatabaseUser configures a database user for the Viam organization. It can also be used to
-	// reset the password of an existing database user.
-	ConfigureDatabaseUser(ctx context.Context, in *ConfigureDatabaseUserRequest, opts ...grpc.CallOption) (*ConfigureDatabaseUserResponse, error)
-	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It returns the hostname of the federated database.
+	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
+	// returns the hostname of the federated database.
 	GetDatabaseConnection(ctx context.Context, in *GetDatabaseConnectionRequest, opts ...grpc.CallOption) (*GetDatabaseConnectionResponse, error)
+	// ConfigureDatabaseUser configures a database user for the Viam organization's MongoDB Atlas Data
+	// Federation instance. It can also be used to reset the password of the existing database user.
+	ConfigureDatabaseUser(ctx context.Context, in *ConfigureDatabaseUserRequest, opts ...grpc.CallOption) (*ConfigureDatabaseUserResponse, error)
 }
 
 type dataServiceClient struct {
@@ -202,18 +203,18 @@ func (c *dataServiceClient) BoundingBoxLabelsByFilter(ctx context.Context, in *B
 	return out, nil
 }
 
-func (c *dataServiceClient) ConfigureDatabaseUser(ctx context.Context, in *ConfigureDatabaseUserRequest, opts ...grpc.CallOption) (*ConfigureDatabaseUserResponse, error) {
-	out := new(ConfigureDatabaseUserResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/ConfigureDatabaseUser", in, out, opts...)
+func (c *dataServiceClient) GetDatabaseConnection(ctx context.Context, in *GetDatabaseConnectionRequest, opts ...grpc.CallOption) (*GetDatabaseConnectionResponse, error) {
+	out := new(GetDatabaseConnectionResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/GetDatabaseConnection", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dataServiceClient) GetDatabaseConnection(ctx context.Context, in *GetDatabaseConnectionRequest, opts ...grpc.CallOption) (*GetDatabaseConnectionResponse, error) {
-	out := new(GetDatabaseConnectionResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/GetDatabaseConnection", in, out, opts...)
+func (c *dataServiceClient) ConfigureDatabaseUser(ctx context.Context, in *ConfigureDatabaseUserRequest, opts ...grpc.CallOption) (*ConfigureDatabaseUserResponse, error) {
+	out := new(ConfigureDatabaseUserResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/ConfigureDatabaseUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -254,11 +255,12 @@ type DataServiceServer interface {
 	RemoveBoundingBoxFromImageByID(context.Context, *RemoveBoundingBoxFromImageByIDRequest) (*RemoveBoundingBoxFromImageByIDResponse, error)
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error)
-	// ConfigureDatabaseUser configures a database user for the Viam organization. It can also be used to
-	// reset the password of an existing database user.
-	ConfigureDatabaseUser(context.Context, *ConfigureDatabaseUserRequest) (*ConfigureDatabaseUserResponse, error)
-	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It returns the hostname of the federated database.
+	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
+	// returns the hostname of the federated database.
 	GetDatabaseConnection(context.Context, *GetDatabaseConnectionRequest) (*GetDatabaseConnectionResponse, error)
+	// ConfigureDatabaseUser configures a database user for the Viam organization's MongoDB Atlas Data
+	// Federation instance. It can also be used to reset the password of the existing database user.
+	ConfigureDatabaseUser(context.Context, *ConfigureDatabaseUserRequest) (*ConfigureDatabaseUserResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -311,11 +313,11 @@ func (UnimplementedDataServiceServer) RemoveBoundingBoxFromImageByID(context.Con
 func (UnimplementedDataServiceServer) BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BoundingBoxLabelsByFilter not implemented")
 }
-func (UnimplementedDataServiceServer) ConfigureDatabaseUser(context.Context, *ConfigureDatabaseUserRequest) (*ConfigureDatabaseUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ConfigureDatabaseUser not implemented")
-}
 func (UnimplementedDataServiceServer) GetDatabaseConnection(context.Context, *GetDatabaseConnectionRequest) (*GetDatabaseConnectionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDatabaseConnection not implemented")
+}
+func (UnimplementedDataServiceServer) ConfigureDatabaseUser(context.Context, *ConfigureDatabaseUserRequest) (*ConfigureDatabaseUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfigureDatabaseUser not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -600,24 +602,6 @@ func _DataService_BoundingBoxLabelsByFilter_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataService_ConfigureDatabaseUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ConfigureDatabaseUserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataServiceServer).ConfigureDatabaseUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/ConfigureDatabaseUser",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).ConfigureDatabaseUser(ctx, req.(*ConfigureDatabaseUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _DataService_GetDatabaseConnection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDatabaseConnectionRequest)
 	if err := dec(in); err != nil {
@@ -632,6 +616,24 @@ func _DataService_GetDatabaseConnection_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataServiceServer).GetDatabaseConnection(ctx, req.(*GetDatabaseConnectionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_ConfigureDatabaseUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConfigureDatabaseUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).ConfigureDatabaseUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/ConfigureDatabaseUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).ConfigureDatabaseUser(ctx, req.(*ConfigureDatabaseUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -704,12 +706,12 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataService_BoundingBoxLabelsByFilter_Handler,
 		},
 		{
-			MethodName: "ConfigureDatabaseUser",
-			Handler:    _DataService_ConfigureDatabaseUser_Handler,
-		},
-		{
 			MethodName: "GetDatabaseConnection",
 			Handler:    _DataService_GetDatabaseConnection_Handler,
+		},
+		{
+			MethodName: "ConfigureDatabaseUser",
+			Handler:    _DataService_ConfigureDatabaseUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
