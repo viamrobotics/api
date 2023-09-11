@@ -259,6 +259,7 @@ message DeleteTabularDataByFilterResponse {
 message DeleteTabularDataRequest {
   string organization_id = 1;
   uint32 delete_older_than_days = 2;
+  bool include_internal_data = 3;
 }
 
 // DeleteBinaryDataResponse returns the number of tabular datapoints deleted.
