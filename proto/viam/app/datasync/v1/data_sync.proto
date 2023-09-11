@@ -121,6 +121,7 @@ message CaptureInterval {
   google.protobuf.Timestamp end = 2;
 }
 
+// DataCaptureMetadata contains the metadata for data captured by collectors
 message DataCaptureMetadata {
   string component_type = 1;
   string component_name = 2;
