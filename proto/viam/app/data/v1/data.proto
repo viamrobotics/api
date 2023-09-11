@@ -391,8 +391,7 @@ message ConfigureDatabaseUserRequest {
   string password = 2;
 }
 
-message ConfigureDatabaseUserResponse {
-}
+message ConfigureDatabaseUserResponse {}
 
 message GetDatabaseConnectionRequest {
   string organization_id = 1;

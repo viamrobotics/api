@@ -1001,6 +1001,67 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.boundingBoxLabelsByFil
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.ConfigureDatabaseUserRequest,
+ *   !proto.viam.app.data.v1.ConfigureDatabaseUserResponse>}
+ */
+const methodDescriptor_DataService_ConfigureDatabaseUser = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/ConfigureDatabaseUser',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.ConfigureDatabaseUserRequest,
+  proto.viam.app.data.v1.ConfigureDatabaseUserResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.ConfigureDatabaseUserRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.ConfigureDatabaseUserResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ConfigureDatabaseUserRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.ConfigureDatabaseUserResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.ConfigureDatabaseUserResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.configureDatabaseUser =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ConfigureDatabaseUser',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ConfigureDatabaseUser,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ConfigureDatabaseUserRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.ConfigureDatabaseUserResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.configureDatabaseUser =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ConfigureDatabaseUser',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ConfigureDatabaseUser);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.data.v1.GetDatabaseConnectionRequest,
  *   !proto.viam.app.data.v1.GetDatabaseConnectionResponse>}
  */
