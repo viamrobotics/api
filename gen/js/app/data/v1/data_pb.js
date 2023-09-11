@@ -5661,7 +5661,8 @@ proto.viam.app.data.v1.DeleteTabularDataByFilterRequest.prototype.toObject = fun
  */
 proto.viam.app.data.v1.DeleteTabularDataByFilterRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f)
+    filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f),
+    includeInternalData: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -5703,6 +5704,10 @@ proto.viam.app.data.v1.DeleteTabularDataByFilterRequest.deserializeBinaryFromRea
       reader.readMessage(value,proto.viam.app.data.v1.Filter.deserializeBinaryFromReader);
       msg.setFilter(value);
       break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeInternalData(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -5738,6 +5743,13 @@ proto.viam.app.data.v1.DeleteTabularDataByFilterRequest.serializeBinaryToWriter 
       1,
       f,
       proto.viam.app.data.v1.Filter.serializeBinaryToWriter
+    );
+  }
+  f = message.getIncludeInternalData();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
     );
   }
 };
@@ -5777,6 +5789,24 @@ proto.viam.app.data.v1.DeleteTabularDataByFilterRequest.prototype.clearFilter = 
  */
 proto.viam.app.data.v1.DeleteTabularDataByFilterRequest.prototype.hasFilter = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional bool include_internal_data = 2;
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.DeleteTabularDataByFilterRequest.prototype.getIncludeInternalData = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.data.v1.DeleteTabularDataByFilterRequest} returns this
+ */
+proto.viam.app.data.v1.DeleteTabularDataByFilterRequest.prototype.setIncludeInternalData = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
@@ -5943,7 +5973,8 @@ proto.viam.app.data.v1.DeleteTabularDataRequest.prototype.toObject = function(op
 proto.viam.app.data.v1.DeleteTabularDataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    deleteOlderThanDays: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    deleteOlderThanDays: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    includeInternalData: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -5988,6 +6019,10 @@ proto.viam.app.data.v1.DeleteTabularDataRequest.deserializeBinaryFromReader = fu
       var value = /** @type {number} */ (reader.readUint32());
       msg.setDeleteOlderThanDays(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeInternalData(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -6031,6 +6066,13 @@ proto.viam.app.data.v1.DeleteTabularDataRequest.serializeBinaryToWriter = functi
       f
     );
   }
+  f = message.getIncludeInternalData();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -6067,6 +6109,24 @@ proto.viam.app.data.v1.DeleteTabularDataRequest.prototype.getDeleteOlderThanDays
  */
 proto.viam.app.data.v1.DeleteTabularDataRequest.prototype.setDeleteOlderThanDays = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional bool include_internal_data = 3;
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.DeleteTabularDataRequest.prototype.getIncludeInternalData = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.data.v1.DeleteTabularDataRequest} returns this
+ */
+proto.viam.app.data.v1.DeleteTabularDataRequest.prototype.setIncludeInternalData = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -6232,7 +6292,8 @@ proto.viam.app.data.v1.DeleteBinaryDataByFilterRequest.prototype.toObject = func
  */
 proto.viam.app.data.v1.DeleteBinaryDataByFilterRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f)
+    filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f),
+    includeInternalData: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -6274,6 +6335,10 @@ proto.viam.app.data.v1.DeleteBinaryDataByFilterRequest.deserializeBinaryFromRead
       reader.readMessage(value,proto.viam.app.data.v1.Filter.deserializeBinaryFromReader);
       msg.setFilter(value);
       break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeInternalData(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -6309,6 +6374,13 @@ proto.viam.app.data.v1.DeleteBinaryDataByFilterRequest.serializeBinaryToWriter =
       1,
       f,
       proto.viam.app.data.v1.Filter.serializeBinaryToWriter
+    );
+  }
+  f = message.getIncludeInternalData();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
     );
   }
 };
@@ -6348,6 +6420,24 @@ proto.viam.app.data.v1.DeleteBinaryDataByFilterRequest.prototype.clearFilter = f
  */
 proto.viam.app.data.v1.DeleteBinaryDataByFilterRequest.prototype.hasFilter = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional bool include_internal_data = 2;
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.DeleteBinaryDataByFilterRequest.prototype.getIncludeInternalData = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.data.v1.DeleteBinaryDataByFilterRequest} returns this
+ */
+proto.viam.app.data.v1.DeleteBinaryDataByFilterRequest.prototype.setIncludeInternalData = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
