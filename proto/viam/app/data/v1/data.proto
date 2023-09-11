@@ -242,6 +242,7 @@ message BinaryMetadata {
 // DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided
 message DeleteTabularDataByFilterRequest {
   Filter filter = 1;
+  bool include_internal_data = 2;
 }
 
 // DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided
@@ -268,6 +269,7 @@ message DeleteTabularDataResponse {
 // DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
 message DeleteBinaryDataByFilterRequest {
   Filter filter = 1;
+  bool include_internal_data = 2;
 }
 
 // DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided
