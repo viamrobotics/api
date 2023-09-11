@@ -163,6 +163,7 @@ message TabularDataByFilterResponse {
   uint64 total_size_bytes = 5;
 }
 
+// TabularData contains data and metadata associated with tabular data
 message TabularData {
   google.protobuf.Struct data = 1;
   uint32 metadata_index = 2;
@@ -170,6 +171,7 @@ message TabularData {
   google.protobuf.Timestamp time_received = 4;
 }
 
+// BinaryData contains data and metadata associated with binary data
 message BinaryData {
   bytes binary = 1;
   BinaryMetadata metadata = 2;
@@ -191,6 +193,7 @@ message BinaryDataByFilterResponse {
   uint64 total_size_bytes = 4;
 }
 
+// BinaryID is the unique identifier for a file that one can request to be retrieved or modified
 message BinaryID {
   string file_id = 1;
   string organization_id = 2;
@@ -228,6 +231,7 @@ message Annotations {
   repeated BoundingBox bboxes = 1;
 }
 
+// BinaryMetadata is the metadata associated with binary data
 message BinaryMetadata {
   string id = 1;
   CaptureMetadata capture_metadata = 2;
@@ -348,6 +352,8 @@ message TagsByFilterResponse {
   repeated string tags = 1;
 }
 
+// AddBoundingBoxToImageByIDRequest specifies the binary ID to which a bounding box
+// with the associated label and position in normalized coordinates will be added
 message AddBoundingBoxToImageByIDRequest {
   BinaryID binary_id = 7;
   string label = 2;
@@ -360,10 +366,12 @@ message AddBoundingBoxToImageByIDRequest {
   reserved "file_id";
 }
 
+// AddBoundingBoxToImageByIDResponse returns the bounding box ID of the successfully added bounding box
 message AddBoundingBoxToImageByIDResponse {
   string bbox_id = 1;
 }
 
+// RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bbox ID for the file represented by the binary id
 message RemoveBoundingBoxFromImageByIDRequest {
   BinaryID binary_id = 3;
   string bbox_id = 2;
@@ -374,18 +382,22 @@ message RemoveBoundingBoxFromImageByIDRequest {
 
 message RemoveBoundingBoxFromImageByIDResponse {}
 
+// BoundingBoxLabelsByFilterRequest requests all the labels of the bounding boxes from files from a given filter
 message BoundingBoxLabelsByFilterRequest {
   Filter filter = 1;
 }
 
+// BoundingBoxLabelsByFilterRequest returns all the labels of the bounding boxes from files from a given filter
 message BoundingBoxLabelsByFilterResponse {
   repeated string labels = 1;
 }
 
+// GetDatabaseConnectionRequest returns the database connection hostname endpoint for a given organization
 message GetDatabaseConnectionRequest {
   string organization_id = 1;
 }
 
+// GetDatabaseConnectionResponse returns the database connection hostname endpoint
 message GetDatabaseConnectionResponse {
   string hostname = 1;
 }
