@@ -629,6 +629,7 @@ message DeleteRobotPartRequest {
 
 message GetRobotAPIKeysRequest {
   string robot_id = 1;
+  string org_id = 2;
 }
 
 message ApiKey {
@@ -638,7 +639,7 @@ message ApiKey {
 
 message GetRobotAPIKeysResponse {
   repeated ApiKey api_keys = 1;
-} 
+}
 
 message DeleteRobotPartResponse {}
 
