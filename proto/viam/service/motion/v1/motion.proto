@@ -276,6 +276,9 @@ message GetPlanRequest {
   string name = 1;
   // The operation ID of the queried plan
   string operation_id = 2;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetPlanResponse {
@@ -287,9 +290,6 @@ message GetPlanResponse {
   // field will be empty if the motion service
   // did not need to re-plan
   repeated PlanWithStatus replan_history = 2;
-
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
 }
 
 message MoveOnGlobeNewRequest {
