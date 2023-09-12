@@ -629,7 +629,6 @@ message DeleteRobotPartRequest {
 
 message GetRobotAPIKeysRequest {
   string robot_id = 1;
-  string org_id = 2;
 }
 
 message ApiKey {
