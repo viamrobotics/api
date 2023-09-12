@@ -39,7 +39,7 @@ service MotionService {
 
   rpc MoveOnGlobeNew(MoveOnGlobeNewRequest) returns (MoveOnGlobeNewResponse) {
     option (google.api.http) = {
-      get: "/viam/api/v1/service/motion/{name}/move_on_globe"
+      get: "/viam/api/v1/service/motion/{name}/move_on_globe_new"
     };
   }
 
