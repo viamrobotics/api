@@ -993,8 +993,7 @@ message ApiKey {
 }
 
 message ListKeysRequest {
-  string resource_id = 1;
-  string resource_type = 2;
+  string org_id = 1;
 }
 
 message ListKeysResponse {

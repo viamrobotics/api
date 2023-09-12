@@ -27842,8 +27842,7 @@ proto.viam.app.v1.ListKeysRequest.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.app.v1.ListKeysRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    resourceId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    resourceType: jspb.Message.getFieldWithDefault(msg, 2, "")
+    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -27882,11 +27881,7 @@ proto.viam.app.v1.ListKeysRequest.deserializeBinaryFromReader = function(msg, re
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setResourceId(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setResourceType(value);
+      msg.setOrgId(value);
       break;
     default:
       reader.skipField();
@@ -27917,17 +27912,10 @@ proto.viam.app.v1.ListKeysRequest.prototype.serializeBinary = function() {
  */
 proto.viam.app.v1.ListKeysRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getResourceId();
+  f = message.getOrgId();
   if (f.length > 0) {
     writer.writeString(
       1,
-      f
-    );
-  }
-  f = message.getResourceType();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
       f
     );
   }
@@ -27935,10 +27923,10 @@ proto.viam.app.v1.ListKeysRequest.serializeBinaryToWriter = function(message, wr
 
 
 /**
- * optional string resource_id = 1;
+ * optional string org_id = 1;
  * @return {string}
  */
-proto.viam.app.v1.ListKeysRequest.prototype.getResourceId = function() {
+proto.viam.app.v1.ListKeysRequest.prototype.getOrgId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -27947,26 +27935,8 @@ proto.viam.app.v1.ListKeysRequest.prototype.getResourceId = function() {
  * @param {string} value
  * @return {!proto.viam.app.v1.ListKeysRequest} returns this
  */
-proto.viam.app.v1.ListKeysRequest.prototype.setResourceId = function(value) {
+proto.viam.app.v1.ListKeysRequest.prototype.setOrgId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string resource_type = 2;
- * @return {string}
- */
-proto.viam.app.v1.ListKeysRequest.prototype.getResourceType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.v1.ListKeysRequest} returns this
- */
-proto.viam.app.v1.ListKeysRequest.prototype.setResourceType = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
