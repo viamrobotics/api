@@ -23390,7 +23390,6 @@ proto.viam.app.v1.UpdateModuleRequest.prototype.toObject = function(opt_includeI
 proto.viam.app.v1.UpdateModuleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 7, ""),
     visibility: jspb.Message.getFieldWithDefault(msg, 2, 0),
     url: jspb.Message.getFieldWithDefault(msg, 3, ""),
     description: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -23436,10 +23435,6 @@ proto.viam.app.v1.UpdateModuleRequest.deserializeBinaryFromReader = function(msg
     case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.setModuleId(value);
-      break;
-    case 7:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setOrganizationId(value);
       break;
     case 2:
       var value = /** @type {!proto.viam.app.v1.Visibility} */ (reader.readEnum());
@@ -23498,13 +23493,6 @@ proto.viam.app.v1.UpdateModuleRequest.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 7));
-  if (f != null) {
-    writer.writeString(
-      7,
-      f
-    );
-  }
   f = message.getVisibility();
   if (f !== 0.0) {
     writer.writeEnum(
@@ -23559,42 +23547,6 @@ proto.viam.app.v1.UpdateModuleRequest.prototype.getModuleId = function() {
  */
 proto.viam.app.v1.UpdateModuleRequest.prototype.setModuleId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string organization_id = 7;
- * @return {string}
- */
-proto.viam.app.v1.UpdateModuleRequest.prototype.getOrganizationId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
- */
-proto.viam.app.v1.UpdateModuleRequest.prototype.setOrganizationId = function(value) {
-  return jspb.Message.setField(this, 7, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
- */
-proto.viam.app.v1.UpdateModuleRequest.prototype.clearOrganizationId = function() {
-  return jspb.Message.setField(this, 7, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.v1.UpdateModuleRequest.prototype.hasOrganizationId = function() {
-  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -24031,7 +23983,6 @@ proto.viam.app.v1.ModuleFileInfo.prototype.toObject = function(opt_includeInstan
 proto.viam.app.v1.ModuleFileInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
     moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 4, ""),
     version: jspb.Message.getFieldWithDefault(msg, 2, ""),
     platform: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -24073,10 +24024,6 @@ proto.viam.app.v1.ModuleFileInfo.deserializeBinaryFromReader = function(msg, rea
     case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.setModuleId(value);
-      break;
-    case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setOrganizationId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -24122,13 +24069,6 @@ proto.viam.app.v1.ModuleFileInfo.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 4));
-  if (f != null) {
-    writer.writeString(
-      4,
-      f
-    );
-  }
   f = message.getVersion();
   if (f.length > 0) {
     writer.writeString(
@@ -24161,42 +24101,6 @@ proto.viam.app.v1.ModuleFileInfo.prototype.getModuleId = function() {
  */
 proto.viam.app.v1.ModuleFileInfo.prototype.setModuleId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string organization_id = 4;
- * @return {string}
- */
-proto.viam.app.v1.ModuleFileInfo.prototype.getOrganizationId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.v1.ModuleFileInfo} returns this
- */
-proto.viam.app.v1.ModuleFileInfo.prototype.setOrganizationId = function(value) {
-  return jspb.Message.setField(this, 4, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.viam.app.v1.ModuleFileInfo} returns this
- */
-proto.viam.app.v1.ModuleFileInfo.prototype.clearOrganizationId = function() {
-  return jspb.Message.setField(this, 4, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.v1.ModuleFileInfo.prototype.hasOrganizationId = function() {
-  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -24647,8 +24551,7 @@ proto.viam.app.v1.GetModuleRequest.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.GetModuleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 2, "")
+    moduleId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -24689,10 +24592,6 @@ proto.viam.app.v1.GetModuleRequest.deserializeBinaryFromReader = function(msg, r
       var value = /** @type {string} */ (reader.readString());
       msg.setModuleId(value);
       break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setOrganizationId(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -24729,13 +24628,6 @@ proto.viam.app.v1.GetModuleRequest.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 2));
-  if (f != null) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
 };
 
 
@@ -24754,42 +24646,6 @@ proto.viam.app.v1.GetModuleRequest.prototype.getModuleId = function() {
  */
 proto.viam.app.v1.GetModuleRequest.prototype.setModuleId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string organization_id = 2;
- * @return {string}
- */
-proto.viam.app.v1.GetModuleRequest.prototype.getOrganizationId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.v1.GetModuleRequest} returns this
- */
-proto.viam.app.v1.GetModuleRequest.prototype.setOrganizationId = function(value) {
-  return jspb.Message.setField(this, 2, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.viam.app.v1.GetModuleRequest} returns this
- */
-proto.viam.app.v1.GetModuleRequest.prototype.clearOrganizationId = function() {
-  return jspb.Message.setField(this, 2, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.v1.GetModuleRequest.prototype.hasOrganizationId = function() {
-  return jspb.Message.getField(this, 2) != null;
 };
 
 
