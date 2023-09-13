@@ -787,6 +787,22 @@ message RemoveRoleRequest {
 
 message RemoveRoleResponse {}
 
+message AddRoleToKeyRequest {
+  Authorization authorization = 1;
+  string key = 2;
+  string id = 3;
+}
+
+message AddRoleToKeyResponse {}
+
+message RemoveRoleFromKeyRequest {
+  Authorization authorization = 1;
+  string key = 2;
+  string id = 3;
+}
+
+message RemoveRoleFromKeyResponse {}
+
 message ChangeRoleRequest {
   Authorization old_authorization = 1;
   Authorization new_authorization = 2;

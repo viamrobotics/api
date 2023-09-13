@@ -2804,6 +2804,98 @@ export namespace RemoveRoleResponse {
   }
 }
 
+export class AddRoleToKeyRequest extends jspb.Message {
+  hasAuthorization(): boolean;
+  clearAuthorization(): void;
+  getAuthorization(): Authorization | undefined;
+  setAuthorization(value?: Authorization): void;
+
+  getKey(): string;
+  setKey(value: string): void;
+
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddRoleToKeyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddRoleToKeyRequest): AddRoleToKeyRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddRoleToKeyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddRoleToKeyRequest;
+  static deserializeBinaryFromReader(message: AddRoleToKeyRequest, reader: jspb.BinaryReader): AddRoleToKeyRequest;
+}
+
+export namespace AddRoleToKeyRequest {
+  export type AsObject = {
+    authorization?: Authorization.AsObject,
+    key: string,
+    id: string,
+  }
+}
+
+export class AddRoleToKeyResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddRoleToKeyResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddRoleToKeyResponse): AddRoleToKeyResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddRoleToKeyResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddRoleToKeyResponse;
+  static deserializeBinaryFromReader(message: AddRoleToKeyResponse, reader: jspb.BinaryReader): AddRoleToKeyResponse;
+}
+
+export namespace AddRoleToKeyResponse {
+  export type AsObject = {
+  }
+}
+
+export class RemoveRoleFromKeyRequest extends jspb.Message {
+  hasAuthorization(): boolean;
+  clearAuthorization(): void;
+  getAuthorization(): Authorization | undefined;
+  setAuthorization(value?: Authorization): void;
+
+  getKey(): string;
+  setKey(value: string): void;
+
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveRoleFromKeyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveRoleFromKeyRequest): RemoveRoleFromKeyRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveRoleFromKeyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveRoleFromKeyRequest;
+  static deserializeBinaryFromReader(message: RemoveRoleFromKeyRequest, reader: jspb.BinaryReader): RemoveRoleFromKeyRequest;
+}
+
+export namespace RemoveRoleFromKeyRequest {
+  export type AsObject = {
+    authorization?: Authorization.AsObject,
+    key: string,
+    id: string,
+  }
+}
+
+export class RemoveRoleFromKeyResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveRoleFromKeyResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveRoleFromKeyResponse): RemoveRoleFromKeyResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveRoleFromKeyResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveRoleFromKeyResponse;
+  static deserializeBinaryFromReader(message: RemoveRoleFromKeyResponse, reader: jspb.BinaryReader): RemoveRoleFromKeyResponse;
+}
+
+export namespace RemoveRoleFromKeyResponse {
+  export type AsObject = {
+  }
+}
+
 export class ChangeRoleRequest extends jspb.Message {
   hasOldAuthorization(): boolean;
   clearOldAuthorization(): void;
