@@ -733,6 +733,9 @@ export class DeleteBinaryDataByFilterRequest extends jspb.Message {
   getFilter(): Filter | undefined;
   setFilter(value?: Filter): void;
 
+  getIncludeInternalData(): boolean;
+  setIncludeInternalData(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteBinaryDataByFilterRequest.AsObject;
   static toObject(includeInstance: boolean, msg: DeleteBinaryDataByFilterRequest): DeleteBinaryDataByFilterRequest.AsObject;
@@ -746,6 +749,7 @@ export class DeleteBinaryDataByFilterRequest extends jspb.Message {
 export namespace DeleteBinaryDataByFilterRequest {
   export type AsObject = {
     filter?: Filter.AsObject,
+    includeInternalData: boolean,
   }
 }
 
