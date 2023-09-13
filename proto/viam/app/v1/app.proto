@@ -631,17 +631,15 @@ message GetRobotAPIKeysRequest {
   string robot_id = 1;
 }
 
-message ApiKey {
+message RobotApiKey {
   string id = 1;
   string key = 2;
   string name = 3;
   google.protobuf.Timestamp created_on = 4;
-  repeated string locations = 5;
-  repeated string robots = 6;
 }
 
 message GetRobotAPIKeysResponse {
-  repeated ApiKey api_keys = 1;
+  repeated RobotApiKey api_keys = 1;
 }
 
 message DeleteRobotPartResponse {}
