@@ -3543,12 +3543,61 @@ export namespace DeleteKeyResponse {
   }
 }
 
+export class AuthorizationDetails extends jspb.Message {
+  getAuthorizationType(): string;
+  setAuthorizationType(value: string): void;
+
+  getAuthorizationId(): string;
+  setAuthorizationId(value: string): void;
+
+  getResourceType(): string;
+  setResourceType(value: string): void;
+
+  getResourceId(): string;
+  setResourceId(value: string): void;
+
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AuthorizationDetails.AsObject;
+  static toObject(includeInstance: boolean, msg: AuthorizationDetails): AuthorizationDetails.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AuthorizationDetails, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AuthorizationDetails;
+  static deserializeBinaryFromReader(message: AuthorizationDetails, reader: jspb.BinaryReader): AuthorizationDetails;
+}
+
+export namespace AuthorizationDetails {
+  export type AsObject = {
+    authorizationType: string,
+    authorizationId: string,
+    resourceType: string,
+    resourceId: string,
+    orgId: string,
+  }
+}
+
 export class ApiKey extends jspb.Message {
   getKey(): string;
   setKey(value: string): void;
 
   getId(): string;
   setId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  hasCreatedDate(): boolean;
+  clearCreatedDate(): void;
+  getCreatedDate(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedDate(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  clearAuthorizationsList(): void;
+  getAuthorizationsList(): Array<AuthorizationDetails>;
+  setAuthorizationsList(value: Array<AuthorizationDetails>): void;
+  addAuthorizations(value?: AuthorizationDetails, index?: number): AuthorizationDetails;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ApiKey.AsObject;
@@ -3564,6 +3613,9 @@ export namespace ApiKey {
   export type AsObject = {
     key: string,
     id: string,
+    name: string,
+    createdDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    authorizationsList: Array<AuthorizationDetails.AsObject>,
   }
 }
 
