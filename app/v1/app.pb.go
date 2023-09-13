@@ -6044,6 +6044,208 @@ func (*RemoveRoleResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{108}
 }
 
+type AddRoleToKeyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Authorization *Authorization `protobuf:"bytes,1,opt,name=authorization,proto3" json:"authorization,omitempty"`
+	Key           string         `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
+	Id            string         `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *AddRoleToKeyRequest) Reset() {
+	*x = AddRoleToKeyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_v1_app_proto_msgTypes[109]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddRoleToKeyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRoleToKeyRequest) ProtoMessage() {}
+
+func (x *AddRoleToKeyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_app_proto_msgTypes[109]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRoleToKeyRequest.ProtoReflect.Descriptor instead.
+func (*AddRoleToKeyRequest) Descriptor() ([]byte, []int) {
+	return file_app_v1_app_proto_rawDescGZIP(), []int{109}
+}
+
+func (x *AddRoleToKeyRequest) GetAuthorization() *Authorization {
+	if x != nil {
+		return x.Authorization
+	}
+	return nil
+}
+
+func (x *AddRoleToKeyRequest) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *AddRoleToKeyRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type AddRoleToKeyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddRoleToKeyResponse) Reset() {
+	*x = AddRoleToKeyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_v1_app_proto_msgTypes[110]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddRoleToKeyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRoleToKeyResponse) ProtoMessage() {}
+
+func (x *AddRoleToKeyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_app_proto_msgTypes[110]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRoleToKeyResponse.ProtoReflect.Descriptor instead.
+func (*AddRoleToKeyResponse) Descriptor() ([]byte, []int) {
+	return file_app_v1_app_proto_rawDescGZIP(), []int{110}
+}
+
+type RemoveRoleFromKeyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Authorization *Authorization `protobuf:"bytes,1,opt,name=authorization,proto3" json:"authorization,omitempty"`
+	Key           string         `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
+	Id            string         `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *RemoveRoleFromKeyRequest) Reset() {
+	*x = RemoveRoleFromKeyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_v1_app_proto_msgTypes[111]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RemoveRoleFromKeyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveRoleFromKeyRequest) ProtoMessage() {}
+
+func (x *RemoveRoleFromKeyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_app_proto_msgTypes[111]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveRoleFromKeyRequest.ProtoReflect.Descriptor instead.
+func (*RemoveRoleFromKeyRequest) Descriptor() ([]byte, []int) {
+	return file_app_v1_app_proto_rawDescGZIP(), []int{111}
+}
+
+func (x *RemoveRoleFromKeyRequest) GetAuthorization() *Authorization {
+	if x != nil {
+		return x.Authorization
+	}
+	return nil
+}
+
+func (x *RemoveRoleFromKeyRequest) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *RemoveRoleFromKeyRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type RemoveRoleFromKeyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *RemoveRoleFromKeyResponse) Reset() {
+	*x = RemoveRoleFromKeyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_v1_app_proto_msgTypes[112]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RemoveRoleFromKeyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveRoleFromKeyResponse) ProtoMessage() {}
+
+func (x *RemoveRoleFromKeyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_app_proto_msgTypes[112]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveRoleFromKeyResponse.ProtoReflect.Descriptor instead.
+func (*RemoveRoleFromKeyResponse) Descriptor() ([]byte, []int) {
+	return file_app_v1_app_proto_rawDescGZIP(), []int{112}
+}
+
 type ChangeRoleRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -6056,7 +6258,7 @@ type ChangeRoleRequest struct {
 func (x *ChangeRoleRequest) Reset() {
 	*x = ChangeRoleRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[109]
+		mi := &file_app_v1_app_proto_msgTypes[113]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6069,7 +6271,7 @@ func (x *ChangeRoleRequest) String() string {
 func (*ChangeRoleRequest) ProtoMessage() {}
 
 func (x *ChangeRoleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[109]
+	mi := &file_app_v1_app_proto_msgTypes[113]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6082,7 +6284,7 @@ func (x *ChangeRoleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeRoleRequest.ProtoReflect.Descriptor instead.
 func (*ChangeRoleRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{109}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{113}
 }
 
 func (x *ChangeRoleRequest) GetOldAuthorization() *Authorization {
@@ -6108,7 +6310,7 @@ type ChangeRoleResponse struct {
 func (x *ChangeRoleResponse) Reset() {
 	*x = ChangeRoleResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[110]
+		mi := &file_app_v1_app_proto_msgTypes[114]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6121,7 +6323,7 @@ func (x *ChangeRoleResponse) String() string {
 func (*ChangeRoleResponse) ProtoMessage() {}
 
 func (x *ChangeRoleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[110]
+	mi := &file_app_v1_app_proto_msgTypes[114]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6134,7 +6336,7 @@ func (x *ChangeRoleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeRoleResponse.ProtoReflect.Descriptor instead.
 func (*ChangeRoleResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{110}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{114}
 }
 
 type ListAuthorizationsRequest struct {
@@ -6149,7 +6351,7 @@ type ListAuthorizationsRequest struct {
 func (x *ListAuthorizationsRequest) Reset() {
 	*x = ListAuthorizationsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[111]
+		mi := &file_app_v1_app_proto_msgTypes[115]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6162,7 +6364,7 @@ func (x *ListAuthorizationsRequest) String() string {
 func (*ListAuthorizationsRequest) ProtoMessage() {}
 
 func (x *ListAuthorizationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[111]
+	mi := &file_app_v1_app_proto_msgTypes[115]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6175,7 +6377,7 @@ func (x *ListAuthorizationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAuthorizationsRequest.ProtoReflect.Descriptor instead.
 func (*ListAuthorizationsRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{111}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{115}
 }
 
 func (x *ListAuthorizationsRequest) GetOrganizationId() string {
@@ -6203,7 +6405,7 @@ type ListAuthorizationsResponse struct {
 func (x *ListAuthorizationsResponse) Reset() {
 	*x = ListAuthorizationsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[112]
+		mi := &file_app_v1_app_proto_msgTypes[116]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6216,7 +6418,7 @@ func (x *ListAuthorizationsResponse) String() string {
 func (*ListAuthorizationsResponse) ProtoMessage() {}
 
 func (x *ListAuthorizationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[112]
+	mi := &file_app_v1_app_proto_msgTypes[116]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6229,7 +6431,7 @@ func (x *ListAuthorizationsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAuthorizationsResponse.ProtoReflect.Descriptor instead.
 func (*ListAuthorizationsResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{112}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{116}
 }
 
 func (x *ListAuthorizationsResponse) GetAuthorizations() []*Authorization {
@@ -6250,7 +6452,7 @@ type CheckPermissionsRequest struct {
 func (x *CheckPermissionsRequest) Reset() {
 	*x = CheckPermissionsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[113]
+		mi := &file_app_v1_app_proto_msgTypes[117]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6263,7 +6465,7 @@ func (x *CheckPermissionsRequest) String() string {
 func (*CheckPermissionsRequest) ProtoMessage() {}
 
 func (x *CheckPermissionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[113]
+	mi := &file_app_v1_app_proto_msgTypes[117]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6276,7 +6478,7 @@ func (x *CheckPermissionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckPermissionsRequest.ProtoReflect.Descriptor instead.
 func (*CheckPermissionsRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{113}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{117}
 }
 
 func (x *CheckPermissionsRequest) GetPermissions() []*AuthorizedPermissions {
@@ -6299,7 +6501,7 @@ type AuthorizedPermissions struct {
 func (x *AuthorizedPermissions) Reset() {
 	*x = AuthorizedPermissions{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[114]
+		mi := &file_app_v1_app_proto_msgTypes[118]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6312,7 +6514,7 @@ func (x *AuthorizedPermissions) String() string {
 func (*AuthorizedPermissions) ProtoMessage() {}
 
 func (x *AuthorizedPermissions) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[114]
+	mi := &file_app_v1_app_proto_msgTypes[118]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6325,7 +6527,7 @@ func (x *AuthorizedPermissions) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthorizedPermissions.ProtoReflect.Descriptor instead.
 func (*AuthorizedPermissions) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{114}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{118}
 }
 
 func (x *AuthorizedPermissions) GetResourceType() string {
@@ -6360,7 +6562,7 @@ type CheckPermissionsResponse struct {
 func (x *CheckPermissionsResponse) Reset() {
 	*x = CheckPermissionsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[115]
+		mi := &file_app_v1_app_proto_msgTypes[119]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6373,7 +6575,7 @@ func (x *CheckPermissionsResponse) String() string {
 func (*CheckPermissionsResponse) ProtoMessage() {}
 
 func (x *CheckPermissionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[115]
+	mi := &file_app_v1_app_proto_msgTypes[119]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6386,7 +6588,7 @@ func (x *CheckPermissionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckPermissionsResponse.ProtoReflect.Descriptor instead.
 func (*CheckPermissionsResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{115}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{119}
 }
 
 func (x *CheckPermissionsResponse) GetAuthorizedPermissions() []*AuthorizedPermissions {
@@ -6411,7 +6613,7 @@ type CreateModuleRequest struct {
 func (x *CreateModuleRequest) Reset() {
 	*x = CreateModuleRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[116]
+		mi := &file_app_v1_app_proto_msgTypes[120]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6424,7 +6626,7 @@ func (x *CreateModuleRequest) String() string {
 func (*CreateModuleRequest) ProtoMessage() {}
 
 func (x *CreateModuleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[116]
+	mi := &file_app_v1_app_proto_msgTypes[120]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6437,7 +6639,7 @@ func (x *CreateModuleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateModuleRequest.ProtoReflect.Descriptor instead.
 func (*CreateModuleRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{116}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{120}
 }
 
 func (x *CreateModuleRequest) GetOrganizationId() string {
@@ -6468,7 +6670,7 @@ type CreateModuleResponse struct {
 func (x *CreateModuleResponse) Reset() {
 	*x = CreateModuleResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[117]
+		mi := &file_app_v1_app_proto_msgTypes[121]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6481,7 +6683,7 @@ func (x *CreateModuleResponse) String() string {
 func (*CreateModuleResponse) ProtoMessage() {}
 
 func (x *CreateModuleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[117]
+	mi := &file_app_v1_app_proto_msgTypes[121]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6494,7 +6696,7 @@ func (x *CreateModuleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateModuleResponse.ProtoReflect.Descriptor instead.
 func (*CreateModuleResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{117}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{121}
 }
 
 func (x *CreateModuleResponse) GetModuleId() string {
@@ -6535,7 +6737,7 @@ type UpdateModuleRequest struct {
 func (x *UpdateModuleRequest) Reset() {
 	*x = UpdateModuleRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[118]
+		mi := &file_app_v1_app_proto_msgTypes[122]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6548,7 +6750,7 @@ func (x *UpdateModuleRequest) String() string {
 func (*UpdateModuleRequest) ProtoMessage() {}
 
 func (x *UpdateModuleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[118]
+	mi := &file_app_v1_app_proto_msgTypes[122]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6561,7 +6763,7 @@ func (x *UpdateModuleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateModuleRequest.ProtoReflect.Descriptor instead.
 func (*UpdateModuleRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{118}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{122}
 }
 
 func (x *UpdateModuleRequest) GetModuleId() string {
@@ -6625,7 +6827,7 @@ type UpdateModuleResponse struct {
 func (x *UpdateModuleResponse) Reset() {
 	*x = UpdateModuleResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[119]
+		mi := &file_app_v1_app_proto_msgTypes[123]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6638,7 +6840,7 @@ func (x *UpdateModuleResponse) String() string {
 func (*UpdateModuleResponse) ProtoMessage() {}
 
 func (x *UpdateModuleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[119]
+	mi := &file_app_v1_app_proto_msgTypes[123]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6651,7 +6853,7 @@ func (x *UpdateModuleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateModuleResponse.ProtoReflect.Descriptor instead.
 func (*UpdateModuleResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{119}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{123}
 }
 
 func (x *UpdateModuleResponse) GetUrl() string {
@@ -6675,7 +6877,7 @@ type Model struct {
 func (x *Model) Reset() {
 	*x = Model{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[120]
+		mi := &file_app_v1_app_proto_msgTypes[124]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6688,7 +6890,7 @@ func (x *Model) String() string {
 func (*Model) ProtoMessage() {}
 
 func (x *Model) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[120]
+	mi := &file_app_v1_app_proto_msgTypes[124]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6701,7 +6903,7 @@ func (x *Model) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Model.ProtoReflect.Descriptor instead.
 func (*Model) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{120}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{124}
 }
 
 func (x *Model) GetApi() string {
@@ -6736,7 +6938,7 @@ type ModuleFileInfo struct {
 func (x *ModuleFileInfo) Reset() {
 	*x = ModuleFileInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[121]
+		mi := &file_app_v1_app_proto_msgTypes[125]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6749,7 +6951,7 @@ func (x *ModuleFileInfo) String() string {
 func (*ModuleFileInfo) ProtoMessage() {}
 
 func (x *ModuleFileInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[121]
+	mi := &file_app_v1_app_proto_msgTypes[125]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6762,7 +6964,7 @@ func (x *ModuleFileInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ModuleFileInfo.ProtoReflect.Descriptor instead.
 func (*ModuleFileInfo) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{121}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{125}
 }
 
 func (x *ModuleFileInfo) GetModuleId() string {
@@ -6808,7 +7010,7 @@ type UploadModuleFileRequest struct {
 func (x *UploadModuleFileRequest) Reset() {
 	*x = UploadModuleFileRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[122]
+		mi := &file_app_v1_app_proto_msgTypes[126]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6821,7 +7023,7 @@ func (x *UploadModuleFileRequest) String() string {
 func (*UploadModuleFileRequest) ProtoMessage() {}
 
 func (x *UploadModuleFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[122]
+	mi := &file_app_v1_app_proto_msgTypes[126]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6834,7 +7036,7 @@ func (x *UploadModuleFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadModuleFileRequest.ProtoReflect.Descriptor instead.
 func (*UploadModuleFileRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{122}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{126}
 }
 
 func (m *UploadModuleFileRequest) GetModuleFile() isUploadModuleFileRequest_ModuleFile {
@@ -6888,7 +7090,7 @@ type UploadModuleFileResponse struct {
 func (x *UploadModuleFileResponse) Reset() {
 	*x = UploadModuleFileResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[123]
+		mi := &file_app_v1_app_proto_msgTypes[127]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6901,7 +7103,7 @@ func (x *UploadModuleFileResponse) String() string {
 func (*UploadModuleFileResponse) ProtoMessage() {}
 
 func (x *UploadModuleFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[123]
+	mi := &file_app_v1_app_proto_msgTypes[127]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6914,7 +7116,7 @@ func (x *UploadModuleFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadModuleFileResponse.ProtoReflect.Descriptor instead.
 func (*UploadModuleFileResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{123}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{127}
 }
 
 func (x *UploadModuleFileResponse) GetUrl() string {
@@ -6938,7 +7140,7 @@ type GetModuleRequest struct {
 func (x *GetModuleRequest) Reset() {
 	*x = GetModuleRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[124]
+		mi := &file_app_v1_app_proto_msgTypes[128]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6951,7 +7153,7 @@ func (x *GetModuleRequest) String() string {
 func (*GetModuleRequest) ProtoMessage() {}
 
 func (x *GetModuleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[124]
+	mi := &file_app_v1_app_proto_msgTypes[128]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6964,7 +7166,7 @@ func (x *GetModuleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetModuleRequest.ProtoReflect.Descriptor instead.
 func (*GetModuleRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{124}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{128}
 }
 
 func (x *GetModuleRequest) GetModuleId() string {
@@ -6993,7 +7195,7 @@ type GetModuleResponse struct {
 func (x *GetModuleResponse) Reset() {
 	*x = GetModuleResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[125]
+		mi := &file_app_v1_app_proto_msgTypes[129]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7006,7 +7208,7 @@ func (x *GetModuleResponse) String() string {
 func (*GetModuleResponse) ProtoMessage() {}
 
 func (x *GetModuleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[125]
+	mi := &file_app_v1_app_proto_msgTypes[129]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7019,7 +7221,7 @@ func (x *GetModuleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetModuleResponse.ProtoReflect.Descriptor instead.
 func (*GetModuleResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{125}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{129}
 }
 
 func (x *GetModuleResponse) GetModule() *Module {
@@ -7065,7 +7267,7 @@ type Module struct {
 func (x *Module) Reset() {
 	*x = Module{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[126]
+		mi := &file_app_v1_app_proto_msgTypes[130]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7078,7 +7280,7 @@ func (x *Module) String() string {
 func (*Module) ProtoMessage() {}
 
 func (x *Module) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[126]
+	mi := &file_app_v1_app_proto_msgTypes[130]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7091,7 +7293,7 @@ func (x *Module) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Module.ProtoReflect.Descriptor instead.
 func (*Module) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{126}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{130}
 }
 
 func (x *Module) GetModuleId() string {
@@ -7196,7 +7398,7 @@ type VersionHistory struct {
 func (x *VersionHistory) Reset() {
 	*x = VersionHistory{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[127]
+		mi := &file_app_v1_app_proto_msgTypes[131]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7209,7 +7411,7 @@ func (x *VersionHistory) String() string {
 func (*VersionHistory) ProtoMessage() {}
 
 func (x *VersionHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[127]
+	mi := &file_app_v1_app_proto_msgTypes[131]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7222,7 +7424,7 @@ func (x *VersionHistory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VersionHistory.ProtoReflect.Descriptor instead.
 func (*VersionHistory) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{127}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{131}
 }
 
 func (x *VersionHistory) GetVersion() string {
@@ -7267,7 +7469,7 @@ type Uploads struct {
 func (x *Uploads) Reset() {
 	*x = Uploads{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[128]
+		mi := &file_app_v1_app_proto_msgTypes[132]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7280,7 +7482,7 @@ func (x *Uploads) String() string {
 func (*Uploads) ProtoMessage() {}
 
 func (x *Uploads) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[128]
+	mi := &file_app_v1_app_proto_msgTypes[132]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7293,7 +7495,7 @@ func (x *Uploads) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Uploads.ProtoReflect.Descriptor instead.
 func (*Uploads) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{128}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{132}
 }
 
 func (x *Uploads) GetPlatform() string {
@@ -7322,7 +7524,7 @@ type ListModulesRequest struct {
 func (x *ListModulesRequest) Reset() {
 	*x = ListModulesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[129]
+		mi := &file_app_v1_app_proto_msgTypes[133]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7335,7 +7537,7 @@ func (x *ListModulesRequest) String() string {
 func (*ListModulesRequest) ProtoMessage() {}
 
 func (x *ListModulesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[129]
+	mi := &file_app_v1_app_proto_msgTypes[133]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7348,7 +7550,7 @@ func (x *ListModulesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModulesRequest.ProtoReflect.Descriptor instead.
 func (*ListModulesRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{129}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{133}
 }
 
 func (x *ListModulesRequest) GetOrganizationId() string {
@@ -7370,7 +7572,7 @@ type ListModulesResponse struct {
 func (x *ListModulesResponse) Reset() {
 	*x = ListModulesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[130]
+		mi := &file_app_v1_app_proto_msgTypes[134]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7383,7 +7585,7 @@ func (x *ListModulesResponse) String() string {
 func (*ListModulesResponse) ProtoMessage() {}
 
 func (x *ListModulesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[130]
+	mi := &file_app_v1_app_proto_msgTypes[134]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7396,7 +7598,7 @@ func (x *ListModulesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModulesResponse.ProtoReflect.Descriptor instead.
 func (*ListModulesResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{130}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{134}
 }
 
 func (x *ListModulesResponse) GetModules() []*Module {
@@ -7417,7 +7619,7 @@ type GetUserIDByEmailRequest struct {
 func (x *GetUserIDByEmailRequest) Reset() {
 	*x = GetUserIDByEmailRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[131]
+		mi := &file_app_v1_app_proto_msgTypes[135]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7430,7 +7632,7 @@ func (x *GetUserIDByEmailRequest) String() string {
 func (*GetUserIDByEmailRequest) ProtoMessage() {}
 
 func (x *GetUserIDByEmailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[131]
+	mi := &file_app_v1_app_proto_msgTypes[135]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7443,7 +7645,7 @@ func (x *GetUserIDByEmailRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserIDByEmailRequest.ProtoReflect.Descriptor instead.
 func (*GetUserIDByEmailRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{131}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{135}
 }
 
 func (x *GetUserIDByEmailRequest) GetEmail() string {
@@ -7464,7 +7666,7 @@ type GetUserIDByEmailResponse struct {
 func (x *GetUserIDByEmailResponse) Reset() {
 	*x = GetUserIDByEmailResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[132]
+		mi := &file_app_v1_app_proto_msgTypes[136]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7477,7 +7679,7 @@ func (x *GetUserIDByEmailResponse) String() string {
 func (*GetUserIDByEmailResponse) ProtoMessage() {}
 
 func (x *GetUserIDByEmailResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[132]
+	mi := &file_app_v1_app_proto_msgTypes[136]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7490,7 +7692,7 @@ func (x *GetUserIDByEmailResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserIDByEmailResponse.ProtoReflect.Descriptor instead.
 func (*GetUserIDByEmailResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{132}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{136}
 }
 
 func (x *GetUserIDByEmailResponse) GetUserId() string {
@@ -7511,7 +7713,7 @@ type ListOrganizationsByUserRequest struct {
 func (x *ListOrganizationsByUserRequest) Reset() {
 	*x = ListOrganizationsByUserRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[133]
+		mi := &file_app_v1_app_proto_msgTypes[137]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7524,7 +7726,7 @@ func (x *ListOrganizationsByUserRequest) String() string {
 func (*ListOrganizationsByUserRequest) ProtoMessage() {}
 
 func (x *ListOrganizationsByUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[133]
+	mi := &file_app_v1_app_proto_msgTypes[137]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7537,7 +7739,7 @@ func (x *ListOrganizationsByUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListOrganizationsByUserRequest.ProtoReflect.Descriptor instead.
 func (*ListOrganizationsByUserRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{133}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{137}
 }
 
 func (x *ListOrganizationsByUserRequest) GetUserId() string {
@@ -7559,7 +7761,7 @@ type OrgDetails struct {
 func (x *OrgDetails) Reset() {
 	*x = OrgDetails{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[134]
+		mi := &file_app_v1_app_proto_msgTypes[138]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7572,7 +7774,7 @@ func (x *OrgDetails) String() string {
 func (*OrgDetails) ProtoMessage() {}
 
 func (x *OrgDetails) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[134]
+	mi := &file_app_v1_app_proto_msgTypes[138]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7585,7 +7787,7 @@ func (x *OrgDetails) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrgDetails.ProtoReflect.Descriptor instead.
 func (*OrgDetails) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{134}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{138}
 }
 
 func (x *OrgDetails) GetOrgId() string {
@@ -7613,7 +7815,7 @@ type ListOrganizationsByUserResponse struct {
 func (x *ListOrganizationsByUserResponse) Reset() {
 	*x = ListOrganizationsByUserResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[135]
+		mi := &file_app_v1_app_proto_msgTypes[139]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7626,7 +7828,7 @@ func (x *ListOrganizationsByUserResponse) String() string {
 func (*ListOrganizationsByUserResponse) ProtoMessage() {}
 
 func (x *ListOrganizationsByUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[135]
+	mi := &file_app_v1_app_proto_msgTypes[139]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7639,7 +7841,7 @@ func (x *ListOrganizationsByUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListOrganizationsByUserResponse.ProtoReflect.Descriptor instead.
 func (*ListOrganizationsByUserResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{135}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{139}
 }
 
 func (x *ListOrganizationsByUserResponse) GetOrgs() []*OrgDetails {
@@ -7654,14 +7856,14 @@ type CreateKeyRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Authorizations []*Authorization `protobuf:"bytes,1,rep,name=authorizations,proto3" json:"authorizations,omitempty"`
+Authorizations []*Authorization `protobuf:"bytes,1,rep,name=authorizations,proto3" json:"authorizations,omitempty"`
 	Name           string           `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 }
 
 func (x *CreateKeyRequest) Reset() {
 	*x = CreateKeyRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[136]
+		mi := &file_app_v1_app_proto_msgTypes[140]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7674,7 +7876,7 @@ func (x *CreateKeyRequest) String() string {
 func (*CreateKeyRequest) ProtoMessage() {}
 
 func (x *CreateKeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[136]
+	mi := &file_app_v1_app_proto_msgTypes[140]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7687,7 +7889,7 @@ func (x *CreateKeyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateKeyRequest.ProtoReflect.Descriptor instead.
 func (*CreateKeyRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{136}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{140}
 }
 
 func (x *CreateKeyRequest) GetAuthorizations() []*Authorization {
@@ -7716,7 +7918,7 @@ type CreateKeyResponse struct {
 func (x *CreateKeyResponse) Reset() {
 	*x = CreateKeyResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[137]
+		mi := &file_app_v1_app_proto_msgTypes[141]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7729,7 +7931,7 @@ func (x *CreateKeyResponse) String() string {
 func (*CreateKeyResponse) ProtoMessage() {}
 
 func (x *CreateKeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[137]
+	mi := &file_app_v1_app_proto_msgTypes[141]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7742,7 +7944,7 @@ func (x *CreateKeyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateKeyResponse.ProtoReflect.Descriptor instead.
 func (*CreateKeyResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{137}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{141}
 }
 
 func (x *CreateKeyResponse) GetKey() string {
@@ -8510,7 +8712,26 @@ var file_app_v1_app_proto_rawDesc = []byte{
 	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x75, 0x74, 0x68, 0x6f,
 	0x72, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0d, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72,
 	0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x14, 0x0a, 0x12, 0x52, 0x65, 0x6d, 0x6f, 0x76,
-	0x65, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xa5, 0x01,
+	0x65, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x79, 0x0a,
+	0x13, 0x41, 0x64, 0x64, 0x52, 0x6f, 0x6c, 0x65, 0x54, 0x6f, 0x4b, 0x65, 0x79, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x40, 0x0a, 0x0d, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x76, 0x69,
+	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72,
+	0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0d, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69,
+	0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x16, 0x0a, 0x14, 0x41, 0x64, 0x64, 0x52,
+	0x6f, 0x6c, 0x65, 0x54, 0x6f, 0x4b, 0x65, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x7e, 0x0a, 0x18, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x52, 0x6f, 0x6c, 0x65, 0x46, 0x72,
+	0x6f, 0x6d, 0x4b, 0x65, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x40, 0x0a, 0x0d,
+	0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76,
+	0x31, 0x2e, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52,
+	0x0d, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x10,
+	0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79,
+	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64,
+	0x22, 0x1b, 0x0a, 0x19, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x52, 0x6f, 0x6c, 0x65, 0x46, 0x72,
+	0x6f, 0x6d, 0x4b, 0x65, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xa5, 0x01,
 	0x0a, 0x11, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75,
 	0x65, 0x73, 0x74, 0x12, 0x47, 0x0a, 0x11, 0x6f, 0x6c, 0x64, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f,
 	0x72, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a,
@@ -9086,7 +9307,7 @@ func file_app_v1_app_proto_rawDescGZIP() []byte {
 }
 
 var file_app_v1_app_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_app_v1_app_proto_msgTypes = make([]protoimpl.MessageInfo, 138)
+var file_app_v1_app_proto_msgTypes = make([]protoimpl.MessageInfo, 142)
 var file_app_v1_app_proto_goTypes = []interface{}{
 	(Visibility)(0),                                        // 0: viam.app.v1.Visibility
 	(SharedSecret_State)(0),                                // 1: viam.app.v1.SharedSecret.State
@@ -9199,53 +9420,57 @@ var file_app_v1_app_proto_goTypes = []interface{}{
 	(*AddRoleResponse)(nil),                                // 108: viam.app.v1.AddRoleResponse
 	(*RemoveRoleRequest)(nil),                              // 109: viam.app.v1.RemoveRoleRequest
 	(*RemoveRoleResponse)(nil),                             // 110: viam.app.v1.RemoveRoleResponse
-	(*ChangeRoleRequest)(nil),                              // 111: viam.app.v1.ChangeRoleRequest
-	(*ChangeRoleResponse)(nil),                             // 112: viam.app.v1.ChangeRoleResponse
-	(*ListAuthorizationsRequest)(nil),                      // 113: viam.app.v1.ListAuthorizationsRequest
-	(*ListAuthorizationsResponse)(nil),                     // 114: viam.app.v1.ListAuthorizationsResponse
-	(*CheckPermissionsRequest)(nil),                        // 115: viam.app.v1.CheckPermissionsRequest
-	(*AuthorizedPermissions)(nil),                          // 116: viam.app.v1.AuthorizedPermissions
-	(*CheckPermissionsResponse)(nil),                       // 117: viam.app.v1.CheckPermissionsResponse
-	(*CreateModuleRequest)(nil),                            // 118: viam.app.v1.CreateModuleRequest
-	(*CreateModuleResponse)(nil),                           // 119: viam.app.v1.CreateModuleResponse
-	(*UpdateModuleRequest)(nil),                            // 120: viam.app.v1.UpdateModuleRequest
-	(*UpdateModuleResponse)(nil),                           // 121: viam.app.v1.UpdateModuleResponse
-	(*Model)(nil),                                          // 122: viam.app.v1.Model
-	(*ModuleFileInfo)(nil),                                 // 123: viam.app.v1.ModuleFileInfo
-	(*UploadModuleFileRequest)(nil),                        // 124: viam.app.v1.UploadModuleFileRequest
-	(*UploadModuleFileResponse)(nil),                       // 125: viam.app.v1.UploadModuleFileResponse
-	(*GetModuleRequest)(nil),                               // 126: viam.app.v1.GetModuleRequest
-	(*GetModuleResponse)(nil),                              // 127: viam.app.v1.GetModuleResponse
-	(*Module)(nil),                                         // 128: viam.app.v1.Module
-	(*VersionHistory)(nil),                                 // 129: viam.app.v1.VersionHistory
-	(*Uploads)(nil),                                        // 130: viam.app.v1.Uploads
-	(*ListModulesRequest)(nil),                             // 131: viam.app.v1.ListModulesRequest
-	(*ListModulesResponse)(nil),                            // 132: viam.app.v1.ListModulesResponse
-	(*GetUserIDByEmailRequest)(nil),                        // 133: viam.app.v1.GetUserIDByEmailRequest
-	(*GetUserIDByEmailResponse)(nil),                       // 134: viam.app.v1.GetUserIDByEmailResponse
-	(*ListOrganizationsByUserRequest)(nil),                 // 135: viam.app.v1.ListOrganizationsByUserRequest
-	(*OrgDetails)(nil),                                     // 136: viam.app.v1.OrgDetails
-	(*ListOrganizationsByUserResponse)(nil),                // 137: viam.app.v1.ListOrganizationsByUserResponse
-	(*CreateKeyRequest)(nil),                               // 138: viam.app.v1.CreateKeyRequest
-	(*CreateKeyResponse)(nil),                              // 139: viam.app.v1.CreateKeyResponse
-	(*timestamppb.Timestamp)(nil),                          // 140: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                                // 141: google.protobuf.Struct
+	(*AddRoleToKeyRequest)(nil),                            // 111: viam.app.v1.AddRoleToKeyRequest
+	(*AddRoleToKeyResponse)(nil),                           // 112: viam.app.v1.AddRoleToKeyResponse
+	(*RemoveRoleFromKeyRequest)(nil),                       // 113: viam.app.v1.RemoveRoleFromKeyRequest
+	(*RemoveRoleFromKeyResponse)(nil),                      // 114: viam.app.v1.RemoveRoleFromKeyResponse
+	(*ChangeRoleRequest)(nil),                              // 115: viam.app.v1.ChangeRoleRequest
+	(*ChangeRoleResponse)(nil),                             // 116: viam.app.v1.ChangeRoleResponse
+	(*ListAuthorizationsRequest)(nil),                      // 117: viam.app.v1.ListAuthorizationsRequest
+	(*ListAuthorizationsResponse)(nil),                     // 118: viam.app.v1.ListAuthorizationsResponse
+	(*CheckPermissionsRequest)(nil),                        // 119: viam.app.v1.CheckPermissionsRequest
+	(*AuthorizedPermissions)(nil),                          // 120: viam.app.v1.AuthorizedPermissions
+	(*CheckPermissionsResponse)(nil),                       // 121: viam.app.v1.CheckPermissionsResponse
+	(*CreateModuleRequest)(nil),                            // 122: viam.app.v1.CreateModuleRequest
+	(*CreateModuleResponse)(nil),                           // 123: viam.app.v1.CreateModuleResponse
+	(*UpdateModuleRequest)(nil),                            // 124: viam.app.v1.UpdateModuleRequest
+	(*UpdateModuleResponse)(nil),                           // 125: viam.app.v1.UpdateModuleResponse
+	(*Model)(nil),                                          // 126: viam.app.v1.Model
+	(*ModuleFileInfo)(nil),                                 // 127: viam.app.v1.ModuleFileInfo
+	(*UploadModuleFileRequest)(nil),                        // 128: viam.app.v1.UploadModuleFileRequest
+	(*UploadModuleFileResponse)(nil),                       // 129: viam.app.v1.UploadModuleFileResponse
+	(*GetModuleRequest)(nil),                               // 130: viam.app.v1.GetModuleRequest
+	(*GetModuleResponse)(nil),                              // 131: viam.app.v1.GetModuleResponse
+	(*Module)(nil),                                         // 132: viam.app.v1.Module
+	(*VersionHistory)(nil),                                 // 133: viam.app.v1.VersionHistory
+	(*Uploads)(nil),                                        // 134: viam.app.v1.Uploads
+	(*ListModulesRequest)(nil),                             // 135: viam.app.v1.ListModulesRequest
+	(*ListModulesResponse)(nil),                            // 136: viam.app.v1.ListModulesResponse
+	(*GetUserIDByEmailRequest)(nil),                        // 137: viam.app.v1.GetUserIDByEmailRequest
+	(*GetUserIDByEmailResponse)(nil),                       // 138: viam.app.v1.GetUserIDByEmailResponse
+	(*ListOrganizationsByUserRequest)(nil),                 // 139: viam.app.v1.ListOrganizationsByUserRequest
+	(*OrgDetails)(nil),                                     // 140: viam.app.v1.OrgDetails
+	(*ListOrganizationsByUserResponse)(nil),                // 141: viam.app.v1.ListOrganizationsByUserResponse
+	(*CreateKeyRequest)(nil),                               // 142: viam.app.v1.CreateKeyRequest
+	(*CreateKeyResponse)(nil),                              // 143: viam.app.v1.CreateKeyResponse
+	(*timestamppb.Timestamp)(nil),                          // 144: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                                // 145: google.protobuf.Struct
 }
 var file_app_v1_app_proto_depIdxs = []int32{
-	140, // 0: viam.app.v1.Robot.last_access:type_name -> google.protobuf.Timestamp
-	140, // 1: viam.app.v1.Robot.created_on:type_name -> google.protobuf.Timestamp
-	141, // 2: viam.app.v1.RobotPart.robot_config:type_name -> google.protobuf.Struct
-	140, // 3: viam.app.v1.RobotPart.last_access:type_name -> google.protobuf.Timestamp
-	141, // 4: viam.app.v1.RobotPart.user_supplied_info:type_name -> google.protobuf.Struct
-	140, // 5: viam.app.v1.RobotPart.created_on:type_name -> google.protobuf.Timestamp
+	144, // 0: viam.app.v1.Robot.last_access:type_name -> google.protobuf.Timestamp
+	144, // 1: viam.app.v1.Robot.created_on:type_name -> google.protobuf.Timestamp
+	145, // 2: viam.app.v1.RobotPart.robot_config:type_name -> google.protobuf.Struct
+	144, // 3: viam.app.v1.RobotPart.last_access:type_name -> google.protobuf.Timestamp
+	145, // 4: viam.app.v1.RobotPart.user_supplied_info:type_name -> google.protobuf.Struct
+	144, // 5: viam.app.v1.RobotPart.created_on:type_name -> google.protobuf.Timestamp
 	36,  // 6: viam.app.v1.RobotPart.secrets:type_name -> viam.app.v1.SharedSecret
-	140, // 7: viam.app.v1.RobotPartHistoryEntry.when:type_name -> google.protobuf.Timestamp
+	144, // 7: viam.app.v1.RobotPartHistoryEntry.when:type_name -> google.protobuf.Timestamp
 	3,   // 8: viam.app.v1.RobotPartHistoryEntry.old:type_name -> viam.app.v1.RobotPart
-	140, // 9: viam.app.v1.Organization.created_on:type_name -> google.protobuf.Timestamp
-	140, // 10: viam.app.v1.OrganizationMember.date_added:type_name -> google.protobuf.Timestamp
-	140, // 11: viam.app.v1.OrganizationMember.last_login:type_name -> google.protobuf.Timestamp
+	144, // 9: viam.app.v1.Organization.created_on:type_name -> google.protobuf.Timestamp
+	144, // 10: viam.app.v1.OrganizationMember.date_added:type_name -> google.protobuf.Timestamp
+	144, // 11: viam.app.v1.OrganizationMember.last_login:type_name -> google.protobuf.Timestamp
 	6,   // 12: viam.app.v1.ListOrganizationsResponse.organizations:type_name -> viam.app.v1.Organization
-	140, // 13: viam.app.v1.OrganizationInvite.created_on:type_name -> google.protobuf.Timestamp
+	144, // 13: viam.app.v1.OrganizationInvite.created_on:type_name -> google.protobuf.Timestamp
 	106, // 14: viam.app.v1.OrganizationInvite.authorizations:type_name -> viam.app.v1.Authorization
 	6,   // 15: viam.app.v1.CreateOrganizationResponse.organization:type_name -> viam.app.v1.Organization
 	6,   // 16: viam.app.v1.GetOrganizationResponse.organization:type_name -> viam.app.v1.Organization
@@ -9261,9 +9486,9 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	36,  // 26: viam.app.v1.LocationAuth.secrets:type_name -> viam.app.v1.SharedSecret
 	33,  // 27: viam.app.v1.Location.auth:type_name -> viam.app.v1.LocationAuth
 	32,  // 28: viam.app.v1.Location.organizations:type_name -> viam.app.v1.LocationOrganization
-	140, // 29: viam.app.v1.Location.created_on:type_name -> google.protobuf.Timestamp
+	144, // 29: viam.app.v1.Location.created_on:type_name -> google.protobuf.Timestamp
 	34,  // 30: viam.app.v1.Location.config:type_name -> viam.app.v1.StorageConfig
-	140, // 31: viam.app.v1.SharedSecret.created_on:type_name -> google.protobuf.Timestamp
+	144, // 31: viam.app.v1.SharedSecret.created_on:type_name -> google.protobuf.Timestamp
 	1,   // 32: viam.app.v1.SharedSecret.state:type_name -> viam.app.v1.SharedSecret.State
 	35,  // 33: viam.app.v1.CreateLocationResponse.location:type_name -> viam.app.v1.Location
 	35,  // 34: viam.app.v1.GetLocationResponse.location:type_name -> viam.app.v1.Location
@@ -9275,166 +9500,168 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	2,   // 40: viam.app.v1.GetRobotResponse.robot:type_name -> viam.app.v1.Robot
 	3,   // 41: viam.app.v1.GetRobotPartsResponse.parts:type_name -> viam.app.v1.RobotPart
 	3,   // 42: viam.app.v1.GetRobotPartResponse.part:type_name -> viam.app.v1.RobotPart
-	140, // 43: viam.app.v1.LogEntry.time:type_name -> google.protobuf.Timestamp
-	141, // 44: viam.app.v1.LogEntry.caller:type_name -> google.protobuf.Struct
-	141, // 45: viam.app.v1.LogEntry.fields:type_name -> google.protobuf.Struct
+	144, // 43: viam.app.v1.LogEntry.time:type_name -> google.protobuf.Timestamp
+	145, // 44: viam.app.v1.LogEntry.caller:type_name -> google.protobuf.Struct
+	145, // 45: viam.app.v1.LogEntry.fields:type_name -> google.protobuf.Struct
 	67,  // 46: viam.app.v1.GetRobotPartLogsResponse.logs:type_name -> viam.app.v1.LogEntry
 	67,  // 47: viam.app.v1.TailRobotPartLogsResponse.logs:type_name -> viam.app.v1.LogEntry
 	4,   // 48: viam.app.v1.GetRobotPartHistoryResponse.history:type_name -> viam.app.v1.RobotPartHistoryEntry
-	141, // 49: viam.app.v1.UpdateRobotPartRequest.robot_config:type_name -> google.protobuf.Struct
+	145, // 49: viam.app.v1.UpdateRobotPartRequest.robot_config:type_name -> google.protobuf.Struct
 	3,   // 50: viam.app.v1.UpdateRobotPartResponse.part:type_name -> viam.app.v1.RobotPart
-	141, // 51: viam.app.v1.Fragment.fragment:type_name -> google.protobuf.Struct
-	140, // 52: viam.app.v1.Fragment.created_on:type_name -> google.protobuf.Timestamp
+	145, // 51: viam.app.v1.Fragment.fragment:type_name -> google.protobuf.Struct
+	144, // 52: viam.app.v1.Fragment.created_on:type_name -> google.protobuf.Timestamp
 	79,  // 53: viam.app.v1.ListFragmentsResponse.fragments:type_name -> viam.app.v1.Fragment
 	79,  // 54: viam.app.v1.GetFragmentResponse.fragment:type_name -> viam.app.v1.Fragment
-	141, // 55: viam.app.v1.CreateFragmentRequest.config:type_name -> google.protobuf.Struct
+	145, // 55: viam.app.v1.CreateFragmentRequest.config:type_name -> google.protobuf.Struct
 	79,  // 56: viam.app.v1.CreateFragmentResponse.fragment:type_name -> viam.app.v1.Fragment
-	141, // 57: viam.app.v1.UpdateFragmentRequest.config:type_name -> google.protobuf.Struct
+	145, // 57: viam.app.v1.UpdateFragmentRequest.config:type_name -> google.protobuf.Struct
 	79,  // 58: viam.app.v1.UpdateFragmentResponse.fragment:type_name -> viam.app.v1.Fragment
 	2,   // 59: viam.app.v1.ListRobotsResponse.robots:type_name -> viam.app.v1.Robot
 	2,   // 60: viam.app.v1.UpdateRobotResponse.robot:type_name -> viam.app.v1.Robot
 	3,   // 61: viam.app.v1.CreateRobotPartSecretResponse.part:type_name -> viam.app.v1.RobotPart
 	106, // 62: viam.app.v1.AddRoleRequest.authorization:type_name -> viam.app.v1.Authorization
 	106, // 63: viam.app.v1.RemoveRoleRequest.authorization:type_name -> viam.app.v1.Authorization
-	106, // 64: viam.app.v1.ChangeRoleRequest.old_authorization:type_name -> viam.app.v1.Authorization
-	106, // 65: viam.app.v1.ChangeRoleRequest.new_authorization:type_name -> viam.app.v1.Authorization
-	106, // 66: viam.app.v1.ListAuthorizationsResponse.authorizations:type_name -> viam.app.v1.Authorization
-	116, // 67: viam.app.v1.CheckPermissionsRequest.permissions:type_name -> viam.app.v1.AuthorizedPermissions
-	116, // 68: viam.app.v1.CheckPermissionsResponse.authorized_permissions:type_name -> viam.app.v1.AuthorizedPermissions
-	0,   // 69: viam.app.v1.UpdateModuleRequest.visibility:type_name -> viam.app.v1.Visibility
-	122, // 70: viam.app.v1.UpdateModuleRequest.models:type_name -> viam.app.v1.Model
-	123, // 71: viam.app.v1.UploadModuleFileRequest.module_file_info:type_name -> viam.app.v1.ModuleFileInfo
-	128, // 72: viam.app.v1.GetModuleResponse.module:type_name -> viam.app.v1.Module
-	0,   // 73: viam.app.v1.Module.visibility:type_name -> viam.app.v1.Visibility
-	129, // 74: viam.app.v1.Module.versions:type_name -> viam.app.v1.VersionHistory
-	122, // 75: viam.app.v1.Module.models:type_name -> viam.app.v1.Model
-	130, // 76: viam.app.v1.VersionHistory.files:type_name -> viam.app.v1.Uploads
-	122, // 77: viam.app.v1.VersionHistory.models:type_name -> viam.app.v1.Model
-	140, // 78: viam.app.v1.Uploads.uploaded_at:type_name -> google.protobuf.Timestamp
-	128, // 79: viam.app.v1.ListModulesResponse.modules:type_name -> viam.app.v1.Module
-	136, // 80: viam.app.v1.ListOrganizationsByUserResponse.orgs:type_name -> viam.app.v1.OrgDetails
-	106, // 81: viam.app.v1.CreateKeyRequest.authorizations:type_name -> viam.app.v1.Authorization
-	133, // 82: viam.app.v1.AppService.GetUserIDByEmail:input_type -> viam.app.v1.GetUserIDByEmailRequest
-	10,  // 83: viam.app.v1.AppService.CreateOrganization:input_type -> viam.app.v1.CreateOrganizationRequest
-	5,   // 84: viam.app.v1.AppService.ListOrganizations:input_type -> viam.app.v1.ListOrganizationsRequest
-	135, // 85: viam.app.v1.AppService.ListOrganizationsByUser:input_type -> viam.app.v1.ListOrganizationsByUserRequest
-	12,  // 86: viam.app.v1.AppService.GetOrganization:input_type -> viam.app.v1.GetOrganizationRequest
-	14,  // 87: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:input_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityRequest
-	16,  // 88: viam.app.v1.AppService.UpdateOrganization:input_type -> viam.app.v1.UpdateOrganizationRequest
-	18,  // 89: viam.app.v1.AppService.DeleteOrganization:input_type -> viam.app.v1.DeleteOrganizationRequest
-	20,  // 90: viam.app.v1.AppService.ListOrganizationMembers:input_type -> viam.app.v1.ListOrganizationMembersRequest
-	22,  // 91: viam.app.v1.AppService.CreateOrganizationInvite:input_type -> viam.app.v1.CreateOrganizationInviteRequest
-	24,  // 92: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:input_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest
-	30,  // 93: viam.app.v1.AppService.DeleteOrganizationMember:input_type -> viam.app.v1.DeleteOrganizationMemberRequest
-	26,  // 94: viam.app.v1.AppService.DeleteOrganizationInvite:input_type -> viam.app.v1.DeleteOrganizationInviteRequest
-	28,  // 95: viam.app.v1.AppService.ResendOrganizationInvite:input_type -> viam.app.v1.ResendOrganizationInviteRequest
-	37,  // 96: viam.app.v1.AppService.CreateLocation:input_type -> viam.app.v1.CreateLocationRequest
-	39,  // 97: viam.app.v1.AppService.GetLocation:input_type -> viam.app.v1.GetLocationRequest
-	41,  // 98: viam.app.v1.AppService.UpdateLocation:input_type -> viam.app.v1.UpdateLocationRequest
-	43,  // 99: viam.app.v1.AppService.DeleteLocation:input_type -> viam.app.v1.DeleteLocationRequest
-	45,  // 100: viam.app.v1.AppService.ListLocations:input_type -> viam.app.v1.ListLocationsRequest
-	46,  // 101: viam.app.v1.AppService.ShareLocation:input_type -> viam.app.v1.ShareLocationRequest
-	48,  // 102: viam.app.v1.AppService.UnshareLocation:input_type -> viam.app.v1.UnshareLocationRequest
-	55,  // 103: viam.app.v1.AppService.LocationAuth:input_type -> viam.app.v1.LocationAuthRequest
-	51,  // 104: viam.app.v1.AppService.CreateLocationSecret:input_type -> viam.app.v1.CreateLocationSecretRequest
-	53,  // 105: viam.app.v1.AppService.DeleteLocationSecret:input_type -> viam.app.v1.DeleteLocationSecretRequest
-	57,  // 106: viam.app.v1.AppService.GetRobot:input_type -> viam.app.v1.GetRobotRequest
-	58,  // 107: viam.app.v1.AppService.GetRoverRentalRobots:input_type -> viam.app.v1.GetRoverRentalRobotsRequest
-	62,  // 108: viam.app.v1.AppService.GetRobotParts:input_type -> viam.app.v1.GetRobotPartsRequest
-	64,  // 109: viam.app.v1.AppService.GetRobotPart:input_type -> viam.app.v1.GetRobotPartRequest
-	66,  // 110: viam.app.v1.AppService.GetRobotPartLogs:input_type -> viam.app.v1.GetRobotPartLogsRequest
-	69,  // 111: viam.app.v1.AppService.TailRobotPartLogs:input_type -> viam.app.v1.TailRobotPartLogsRequest
-	71,  // 112: viam.app.v1.AppService.GetRobotPartHistory:input_type -> viam.app.v1.GetRobotPartHistoryRequest
-	73,  // 113: viam.app.v1.AppService.UpdateRobotPart:input_type -> viam.app.v1.UpdateRobotPartRequest
-	75,  // 114: viam.app.v1.AppService.NewRobotPart:input_type -> viam.app.v1.NewRobotPartRequest
-	77,  // 115: viam.app.v1.AppService.DeleteRobotPart:input_type -> viam.app.v1.DeleteRobotPartRequest
-	98,  // 116: viam.app.v1.AppService.MarkPartAsMain:input_type -> viam.app.v1.MarkPartAsMainRequest
-	100, // 117: viam.app.v1.AppService.MarkPartForRestart:input_type -> viam.app.v1.MarkPartForRestartRequest
-	102, // 118: viam.app.v1.AppService.CreateRobotPartSecret:input_type -> viam.app.v1.CreateRobotPartSecretRequest
-	104, // 119: viam.app.v1.AppService.DeleteRobotPartSecret:input_type -> viam.app.v1.DeleteRobotPartSecretRequest
-	90,  // 120: viam.app.v1.AppService.ListRobots:input_type -> viam.app.v1.ListRobotsRequest
-	92,  // 121: viam.app.v1.AppService.NewRobot:input_type -> viam.app.v1.NewRobotRequest
-	94,  // 122: viam.app.v1.AppService.UpdateRobot:input_type -> viam.app.v1.UpdateRobotRequest
-	96,  // 123: viam.app.v1.AppService.DeleteRobot:input_type -> viam.app.v1.DeleteRobotRequest
-	80,  // 124: viam.app.v1.AppService.ListFragments:input_type -> viam.app.v1.ListFragmentsRequest
-	82,  // 125: viam.app.v1.AppService.GetFragment:input_type -> viam.app.v1.GetFragmentRequest
-	84,  // 126: viam.app.v1.AppService.CreateFragment:input_type -> viam.app.v1.CreateFragmentRequest
-	86,  // 127: viam.app.v1.AppService.UpdateFragment:input_type -> viam.app.v1.UpdateFragmentRequest
-	88,  // 128: viam.app.v1.AppService.DeleteFragment:input_type -> viam.app.v1.DeleteFragmentRequest
-	107, // 129: viam.app.v1.AppService.AddRole:input_type -> viam.app.v1.AddRoleRequest
-	109, // 130: viam.app.v1.AppService.RemoveRole:input_type -> viam.app.v1.RemoveRoleRequest
-	111, // 131: viam.app.v1.AppService.ChangeRole:input_type -> viam.app.v1.ChangeRoleRequest
-	113, // 132: viam.app.v1.AppService.ListAuthorizations:input_type -> viam.app.v1.ListAuthorizationsRequest
-	115, // 133: viam.app.v1.AppService.CheckPermissions:input_type -> viam.app.v1.CheckPermissionsRequest
-	118, // 134: viam.app.v1.AppService.CreateModule:input_type -> viam.app.v1.CreateModuleRequest
-	120, // 135: viam.app.v1.AppService.UpdateModule:input_type -> viam.app.v1.UpdateModuleRequest
-	124, // 136: viam.app.v1.AppService.UploadModuleFile:input_type -> viam.app.v1.UploadModuleFileRequest
-	126, // 137: viam.app.v1.AppService.GetModule:input_type -> viam.app.v1.GetModuleRequest
-	131, // 138: viam.app.v1.AppService.ListModules:input_type -> viam.app.v1.ListModulesRequest
-	138, // 139: viam.app.v1.AppService.CreateKey:input_type -> viam.app.v1.CreateKeyRequest
-	134, // 140: viam.app.v1.AppService.GetUserIDByEmail:output_type -> viam.app.v1.GetUserIDByEmailResponse
-	11,  // 141: viam.app.v1.AppService.CreateOrganization:output_type -> viam.app.v1.CreateOrganizationResponse
-	8,   // 142: viam.app.v1.AppService.ListOrganizations:output_type -> viam.app.v1.ListOrganizationsResponse
-	137, // 143: viam.app.v1.AppService.ListOrganizationsByUser:output_type -> viam.app.v1.ListOrganizationsByUserResponse
-	13,  // 144: viam.app.v1.AppService.GetOrganization:output_type -> viam.app.v1.GetOrganizationResponse
-	15,  // 145: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:output_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityResponse
-	17,  // 146: viam.app.v1.AppService.UpdateOrganization:output_type -> viam.app.v1.UpdateOrganizationResponse
-	19,  // 147: viam.app.v1.AppService.DeleteOrganization:output_type -> viam.app.v1.DeleteOrganizationResponse
-	21,  // 148: viam.app.v1.AppService.ListOrganizationMembers:output_type -> viam.app.v1.ListOrganizationMembersResponse
-	23,  // 149: viam.app.v1.AppService.CreateOrganizationInvite:output_type -> viam.app.v1.CreateOrganizationInviteResponse
-	25,  // 150: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:output_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse
-	31,  // 151: viam.app.v1.AppService.DeleteOrganizationMember:output_type -> viam.app.v1.DeleteOrganizationMemberResponse
-	27,  // 152: viam.app.v1.AppService.DeleteOrganizationInvite:output_type -> viam.app.v1.DeleteOrganizationInviteResponse
-	29,  // 153: viam.app.v1.AppService.ResendOrganizationInvite:output_type -> viam.app.v1.ResendOrganizationInviteResponse
-	38,  // 154: viam.app.v1.AppService.CreateLocation:output_type -> viam.app.v1.CreateLocationResponse
-	40,  // 155: viam.app.v1.AppService.GetLocation:output_type -> viam.app.v1.GetLocationResponse
-	42,  // 156: viam.app.v1.AppService.UpdateLocation:output_type -> viam.app.v1.UpdateLocationResponse
-	44,  // 157: viam.app.v1.AppService.DeleteLocation:output_type -> viam.app.v1.DeleteLocationResponse
-	50,  // 158: viam.app.v1.AppService.ListLocations:output_type -> viam.app.v1.ListLocationsResponse
-	47,  // 159: viam.app.v1.AppService.ShareLocation:output_type -> viam.app.v1.ShareLocationResponse
-	49,  // 160: viam.app.v1.AppService.UnshareLocation:output_type -> viam.app.v1.UnshareLocationResponse
-	56,  // 161: viam.app.v1.AppService.LocationAuth:output_type -> viam.app.v1.LocationAuthResponse
-	52,  // 162: viam.app.v1.AppService.CreateLocationSecret:output_type -> viam.app.v1.CreateLocationSecretResponse
-	54,  // 163: viam.app.v1.AppService.DeleteLocationSecret:output_type -> viam.app.v1.DeleteLocationSecretResponse
-	61,  // 164: viam.app.v1.AppService.GetRobot:output_type -> viam.app.v1.GetRobotResponse
-	60,  // 165: viam.app.v1.AppService.GetRoverRentalRobots:output_type -> viam.app.v1.GetRoverRentalRobotsResponse
-	63,  // 166: viam.app.v1.AppService.GetRobotParts:output_type -> viam.app.v1.GetRobotPartsResponse
-	65,  // 167: viam.app.v1.AppService.GetRobotPart:output_type -> viam.app.v1.GetRobotPartResponse
-	68,  // 168: viam.app.v1.AppService.GetRobotPartLogs:output_type -> viam.app.v1.GetRobotPartLogsResponse
-	70,  // 169: viam.app.v1.AppService.TailRobotPartLogs:output_type -> viam.app.v1.TailRobotPartLogsResponse
-	72,  // 170: viam.app.v1.AppService.GetRobotPartHistory:output_type -> viam.app.v1.GetRobotPartHistoryResponse
-	74,  // 171: viam.app.v1.AppService.UpdateRobotPart:output_type -> viam.app.v1.UpdateRobotPartResponse
-	76,  // 172: viam.app.v1.AppService.NewRobotPart:output_type -> viam.app.v1.NewRobotPartResponse
-	78,  // 173: viam.app.v1.AppService.DeleteRobotPart:output_type -> viam.app.v1.DeleteRobotPartResponse
-	99,  // 174: viam.app.v1.AppService.MarkPartAsMain:output_type -> viam.app.v1.MarkPartAsMainResponse
-	101, // 175: viam.app.v1.AppService.MarkPartForRestart:output_type -> viam.app.v1.MarkPartForRestartResponse
-	103, // 176: viam.app.v1.AppService.CreateRobotPartSecret:output_type -> viam.app.v1.CreateRobotPartSecretResponse
-	105, // 177: viam.app.v1.AppService.DeleteRobotPartSecret:output_type -> viam.app.v1.DeleteRobotPartSecretResponse
-	91,  // 178: viam.app.v1.AppService.ListRobots:output_type -> viam.app.v1.ListRobotsResponse
-	93,  // 179: viam.app.v1.AppService.NewRobot:output_type -> viam.app.v1.NewRobotResponse
-	95,  // 180: viam.app.v1.AppService.UpdateRobot:output_type -> viam.app.v1.UpdateRobotResponse
-	97,  // 181: viam.app.v1.AppService.DeleteRobot:output_type -> viam.app.v1.DeleteRobotResponse
-	81,  // 182: viam.app.v1.AppService.ListFragments:output_type -> viam.app.v1.ListFragmentsResponse
-	83,  // 183: viam.app.v1.AppService.GetFragment:output_type -> viam.app.v1.GetFragmentResponse
-	85,  // 184: viam.app.v1.AppService.CreateFragment:output_type -> viam.app.v1.CreateFragmentResponse
-	87,  // 185: viam.app.v1.AppService.UpdateFragment:output_type -> viam.app.v1.UpdateFragmentResponse
-	89,  // 186: viam.app.v1.AppService.DeleteFragment:output_type -> viam.app.v1.DeleteFragmentResponse
-	108, // 187: viam.app.v1.AppService.AddRole:output_type -> viam.app.v1.AddRoleResponse
-	110, // 188: viam.app.v1.AppService.RemoveRole:output_type -> viam.app.v1.RemoveRoleResponse
-	112, // 189: viam.app.v1.AppService.ChangeRole:output_type -> viam.app.v1.ChangeRoleResponse
-	114, // 190: viam.app.v1.AppService.ListAuthorizations:output_type -> viam.app.v1.ListAuthorizationsResponse
-	117, // 191: viam.app.v1.AppService.CheckPermissions:output_type -> viam.app.v1.CheckPermissionsResponse
-	119, // 192: viam.app.v1.AppService.CreateModule:output_type -> viam.app.v1.CreateModuleResponse
-	121, // 193: viam.app.v1.AppService.UpdateModule:output_type -> viam.app.v1.UpdateModuleResponse
-	125, // 194: viam.app.v1.AppService.UploadModuleFile:output_type -> viam.app.v1.UploadModuleFileResponse
-	127, // 195: viam.app.v1.AppService.GetModule:output_type -> viam.app.v1.GetModuleResponse
-	132, // 196: viam.app.v1.AppService.ListModules:output_type -> viam.app.v1.ListModulesResponse
-	139, // 197: viam.app.v1.AppService.CreateKey:output_type -> viam.app.v1.CreateKeyResponse
-	140, // [140:198] is the sub-list for method output_type
-	82,  // [82:140] is the sub-list for method input_type
-	82,  // [82:82] is the sub-list for extension type_name
-	82,  // [82:82] is the sub-list for extension extendee
-	0,   // [0:82] is the sub-list for field type_name
+	106, // 64: viam.app.v1.AddRoleToKeyRequest.authorization:type_name -> viam.app.v1.Authorization
+	106, // 65: viam.app.v1.RemoveRoleFromKeyRequest.authorization:type_name -> viam.app.v1.Authorization
+	106, // 66: viam.app.v1.ChangeRoleRequest.old_authorization:type_name -> viam.app.v1.Authorization
+	106, // 67: viam.app.v1.ChangeRoleRequest.new_authorization:type_name -> viam.app.v1.Authorization
+	106, // 68: viam.app.v1.ListAuthorizationsResponse.authorizations:type_name -> viam.app.v1.Authorization
+	120, // 69: viam.app.v1.CheckPermissionsRequest.permissions:type_name -> viam.app.v1.AuthorizedPermissions
+	120, // 70: viam.app.v1.CheckPermissionsResponse.authorized_permissions:type_name -> viam.app.v1.AuthorizedPermissions
+	0,   // 71: viam.app.v1.UpdateModuleRequest.visibility:type_name -> viam.app.v1.Visibility
+	126, // 72: viam.app.v1.UpdateModuleRequest.models:type_name -> viam.app.v1.Model
+	127, // 73: viam.app.v1.UploadModuleFileRequest.module_file_info:type_name -> viam.app.v1.ModuleFileInfo
+	132, // 74: viam.app.v1.GetModuleResponse.module:type_name -> viam.app.v1.Module
+	0,   // 75: viam.app.v1.Module.visibility:type_name -> viam.app.v1.Visibility
+	133, // 76: viam.app.v1.Module.versions:type_name -> viam.app.v1.VersionHistory
+	126, // 77: viam.app.v1.Module.models:type_name -> viam.app.v1.Model
+	134, // 78: viam.app.v1.VersionHistory.files:type_name -> viam.app.v1.Uploads
+	126, // 79: viam.app.v1.VersionHistory.models:type_name -> viam.app.v1.Model
+	144, // 80: viam.app.v1.Uploads.uploaded_at:type_name -> google.protobuf.Timestamp
+	132, // 81: viam.app.v1.ListModulesResponse.modules:type_name -> viam.app.v1.Module
+	140, // 82: viam.app.v1.ListOrganizationsByUserResponse.orgs:type_name -> viam.app.v1.OrgDetails
+	106, // 83: viam.app.v1.CreateKeyRequest.authorizations:type_name -> viam.app.v1.Authorization
+	137, // 84: viam.app.v1.AppService.GetUserIDByEmail:input_type -> viam.app.v1.GetUserIDByEmailRequest
+	10,  // 85: viam.app.v1.AppService.CreateOrganization:input_type -> viam.app.v1.CreateOrganizationRequest
+	5,   // 86: viam.app.v1.AppService.ListOrganizations:input_type -> viam.app.v1.ListOrganizationsRequest
+	139, // 87: viam.app.v1.AppService.ListOrganizationsByUser:input_type -> viam.app.v1.ListOrganizationsByUserRequest
+	12,  // 88: viam.app.v1.AppService.GetOrganization:input_type -> viam.app.v1.GetOrganizationRequest
+	14,  // 89: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:input_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityRequest
+	16,  // 90: viam.app.v1.AppService.UpdateOrganization:input_type -> viam.app.v1.UpdateOrganizationRequest
+	18,  // 91: viam.app.v1.AppService.DeleteOrganization:input_type -> viam.app.v1.DeleteOrganizationRequest
+	20,  // 92: viam.app.v1.AppService.ListOrganizationMembers:input_type -> viam.app.v1.ListOrganizationMembersRequest
+	22,  // 93: viam.app.v1.AppService.CreateOrganizationInvite:input_type -> viam.app.v1.CreateOrganizationInviteRequest
+	24,  // 94: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:input_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest
+	30,  // 95: viam.app.v1.AppService.DeleteOrganizationMember:input_type -> viam.app.v1.DeleteOrganizationMemberRequest
+	26,  // 96: viam.app.v1.AppService.DeleteOrganizationInvite:input_type -> viam.app.v1.DeleteOrganizationInviteRequest
+	28,  // 97: viam.app.v1.AppService.ResendOrganizationInvite:input_type -> viam.app.v1.ResendOrganizationInviteRequest
+	37,  // 98: viam.app.v1.AppService.CreateLocation:input_type -> viam.app.v1.CreateLocationRequest
+	39,  // 99: viam.app.v1.AppService.GetLocation:input_type -> viam.app.v1.GetLocationRequest
+	41,  // 100: viam.app.v1.AppService.UpdateLocation:input_type -> viam.app.v1.UpdateLocationRequest
+	43,  // 101: viam.app.v1.AppService.DeleteLocation:input_type -> viam.app.v1.DeleteLocationRequest
+	45,  // 102: viam.app.v1.AppService.ListLocations:input_type -> viam.app.v1.ListLocationsRequest
+	46,  // 103: viam.app.v1.AppService.ShareLocation:input_type -> viam.app.v1.ShareLocationRequest
+	48,  // 104: viam.app.v1.AppService.UnshareLocation:input_type -> viam.app.v1.UnshareLocationRequest
+	55,  // 105: viam.app.v1.AppService.LocationAuth:input_type -> viam.app.v1.LocationAuthRequest
+	51,  // 106: viam.app.v1.AppService.CreateLocationSecret:input_type -> viam.app.v1.CreateLocationSecretRequest
+	53,  // 107: viam.app.v1.AppService.DeleteLocationSecret:input_type -> viam.app.v1.DeleteLocationSecretRequest
+	57,  // 108: viam.app.v1.AppService.GetRobot:input_type -> viam.app.v1.GetRobotRequest
+	58,  // 109: viam.app.v1.AppService.GetRoverRentalRobots:input_type -> viam.app.v1.GetRoverRentalRobotsRequest
+	62,  // 110: viam.app.v1.AppService.GetRobotParts:input_type -> viam.app.v1.GetRobotPartsRequest
+	64,  // 111: viam.app.v1.AppService.GetRobotPart:input_type -> viam.app.v1.GetRobotPartRequest
+	66,  // 112: viam.app.v1.AppService.GetRobotPartLogs:input_type -> viam.app.v1.GetRobotPartLogsRequest
+	69,  // 113: viam.app.v1.AppService.TailRobotPartLogs:input_type -> viam.app.v1.TailRobotPartLogsRequest
+	71,  // 114: viam.app.v1.AppService.GetRobotPartHistory:input_type -> viam.app.v1.GetRobotPartHistoryRequest
+	73,  // 115: viam.app.v1.AppService.UpdateRobotPart:input_type -> viam.app.v1.UpdateRobotPartRequest
+	75,  // 116: viam.app.v1.AppService.NewRobotPart:input_type -> viam.app.v1.NewRobotPartRequest
+	77,  // 117: viam.app.v1.AppService.DeleteRobotPart:input_type -> viam.app.v1.DeleteRobotPartRequest
+	98,  // 118: viam.app.v1.AppService.MarkPartAsMain:input_type -> viam.app.v1.MarkPartAsMainRequest
+	100, // 119: viam.app.v1.AppService.MarkPartForRestart:input_type -> viam.app.v1.MarkPartForRestartRequest
+	102, // 120: viam.app.v1.AppService.CreateRobotPartSecret:input_type -> viam.app.v1.CreateRobotPartSecretRequest
+	104, // 121: viam.app.v1.AppService.DeleteRobotPartSecret:input_type -> viam.app.v1.DeleteRobotPartSecretRequest
+	90,  // 122: viam.app.v1.AppService.ListRobots:input_type -> viam.app.v1.ListRobotsRequest
+	92,  // 123: viam.app.v1.AppService.NewRobot:input_type -> viam.app.v1.NewRobotRequest
+	94,  // 124: viam.app.v1.AppService.UpdateRobot:input_type -> viam.app.v1.UpdateRobotRequest
+	96,  // 125: viam.app.v1.AppService.DeleteRobot:input_type -> viam.app.v1.DeleteRobotRequest
+	80,  // 126: viam.app.v1.AppService.ListFragments:input_type -> viam.app.v1.ListFragmentsRequest
+	82,  // 127: viam.app.v1.AppService.GetFragment:input_type -> viam.app.v1.GetFragmentRequest
+	84,  // 128: viam.app.v1.AppService.CreateFragment:input_type -> viam.app.v1.CreateFragmentRequest
+	86,  // 129: viam.app.v1.AppService.UpdateFragment:input_type -> viam.app.v1.UpdateFragmentRequest
+	88,  // 130: viam.app.v1.AppService.DeleteFragment:input_type -> viam.app.v1.DeleteFragmentRequest
+	107, // 131: viam.app.v1.AppService.AddRole:input_type -> viam.app.v1.AddRoleRequest
+	109, // 132: viam.app.v1.AppService.RemoveRole:input_type -> viam.app.v1.RemoveRoleRequest
+	115, // 133: viam.app.v1.AppService.ChangeRole:input_type -> viam.app.v1.ChangeRoleRequest
+	117, // 134: viam.app.v1.AppService.ListAuthorizations:input_type -> viam.app.v1.ListAuthorizationsRequest
+	119, // 135: viam.app.v1.AppService.CheckPermissions:input_type -> viam.app.v1.CheckPermissionsRequest
+	122, // 136: viam.app.v1.AppService.CreateModule:input_type -> viam.app.v1.CreateModuleRequest
+	124, // 137: viam.app.v1.AppService.UpdateModule:input_type -> viam.app.v1.UpdateModuleRequest
+	128, // 138: viam.app.v1.AppService.UploadModuleFile:input_type -> viam.app.v1.UploadModuleFileRequest
+	130, // 139: viam.app.v1.AppService.GetModule:input_type -> viam.app.v1.GetModuleRequest
+	135, // 140: viam.app.v1.AppService.ListModules:input_type -> viam.app.v1.ListModulesRequest
+	142, // 141: viam.app.v1.AppService.CreateKey:input_type -> viam.app.v1.CreateKeyRequest
+	138, // 142: viam.app.v1.AppService.GetUserIDByEmail:output_type -> viam.app.v1.GetUserIDByEmailResponse
+	11,  // 143: viam.app.v1.AppService.CreateOrganization:output_type -> viam.app.v1.CreateOrganizationResponse
+	8,   // 144: viam.app.v1.AppService.ListOrganizations:output_type -> viam.app.v1.ListOrganizationsResponse
+	141, // 145: viam.app.v1.AppService.ListOrganizationsByUser:output_type -> viam.app.v1.ListOrganizationsByUserResponse
+	13,  // 146: viam.app.v1.AppService.GetOrganization:output_type -> viam.app.v1.GetOrganizationResponse
+	15,  // 147: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:output_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityResponse
+	17,  // 148: viam.app.v1.AppService.UpdateOrganization:output_type -> viam.app.v1.UpdateOrganizationResponse
+	19,  // 149: viam.app.v1.AppService.DeleteOrganization:output_type -> viam.app.v1.DeleteOrganizationResponse
+	21,  // 150: viam.app.v1.AppService.ListOrganizationMembers:output_type -> viam.app.v1.ListOrganizationMembersResponse
+	23,  // 151: viam.app.v1.AppService.CreateOrganizationInvite:output_type -> viam.app.v1.CreateOrganizationInviteResponse
+	25,  // 152: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:output_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse
+	31,  // 153: viam.app.v1.AppService.DeleteOrganizationMember:output_type -> viam.app.v1.DeleteOrganizationMemberResponse
+	27,  // 154: viam.app.v1.AppService.DeleteOrganizationInvite:output_type -> viam.app.v1.DeleteOrganizationInviteResponse
+	29,  // 155: viam.app.v1.AppService.ResendOrganizationInvite:output_type -> viam.app.v1.ResendOrganizationInviteResponse
+	38,  // 156: viam.app.v1.AppService.CreateLocation:output_type -> viam.app.v1.CreateLocationResponse
+	40,  // 157: viam.app.v1.AppService.GetLocation:output_type -> viam.app.v1.GetLocationResponse
+	42,  // 158: viam.app.v1.AppService.UpdateLocation:output_type -> viam.app.v1.UpdateLocationResponse
+	44,  // 159: viam.app.v1.AppService.DeleteLocation:output_type -> viam.app.v1.DeleteLocationResponse
+	50,  // 160: viam.app.v1.AppService.ListLocations:output_type -> viam.app.v1.ListLocationsResponse
+	47,  // 161: viam.app.v1.AppService.ShareLocation:output_type -> viam.app.v1.ShareLocationResponse
+	49,  // 162: viam.app.v1.AppService.UnshareLocation:output_type -> viam.app.v1.UnshareLocationResponse
+	56,  // 163: viam.app.v1.AppService.LocationAuth:output_type -> viam.app.v1.LocationAuthResponse
+	52,  // 164: viam.app.v1.AppService.CreateLocationSecret:output_type -> viam.app.v1.CreateLocationSecretResponse
+	54,  // 165: viam.app.v1.AppService.DeleteLocationSecret:output_type -> viam.app.v1.DeleteLocationSecretResponse
+	61,  // 166: viam.app.v1.AppService.GetRobot:output_type -> viam.app.v1.GetRobotResponse
+	60,  // 167: viam.app.v1.AppService.GetRoverRentalRobots:output_type -> viam.app.v1.GetRoverRentalRobotsResponse
+	63,  // 168: viam.app.v1.AppService.GetRobotParts:output_type -> viam.app.v1.GetRobotPartsResponse
+	65,  // 169: viam.app.v1.AppService.GetRobotPart:output_type -> viam.app.v1.GetRobotPartResponse
+	68,  // 170: viam.app.v1.AppService.GetRobotPartLogs:output_type -> viam.app.v1.GetRobotPartLogsResponse
+	70,  // 171: viam.app.v1.AppService.TailRobotPartLogs:output_type -> viam.app.v1.TailRobotPartLogsResponse
+	72,  // 172: viam.app.v1.AppService.GetRobotPartHistory:output_type -> viam.app.v1.GetRobotPartHistoryResponse
+	74,  // 173: viam.app.v1.AppService.UpdateRobotPart:output_type -> viam.app.v1.UpdateRobotPartResponse
+	76,  // 174: viam.app.v1.AppService.NewRobotPart:output_type -> viam.app.v1.NewRobotPartResponse
+	78,  // 175: viam.app.v1.AppService.DeleteRobotPart:output_type -> viam.app.v1.DeleteRobotPartResponse
+	99,  // 176: viam.app.v1.AppService.MarkPartAsMain:output_type -> viam.app.v1.MarkPartAsMainResponse
+	101, // 177: viam.app.v1.AppService.MarkPartForRestart:output_type -> viam.app.v1.MarkPartForRestartResponse
+	103, // 178: viam.app.v1.AppService.CreateRobotPartSecret:output_type -> viam.app.v1.CreateRobotPartSecretResponse
+	105, // 179: viam.app.v1.AppService.DeleteRobotPartSecret:output_type -> viam.app.v1.DeleteRobotPartSecretResponse
+	91,  // 180: viam.app.v1.AppService.ListRobots:output_type -> viam.app.v1.ListRobotsResponse
+	93,  // 181: viam.app.v1.AppService.NewRobot:output_type -> viam.app.v1.NewRobotResponse
+	95,  // 182: viam.app.v1.AppService.UpdateRobot:output_type -> viam.app.v1.UpdateRobotResponse
+	97,  // 183: viam.app.v1.AppService.DeleteRobot:output_type -> viam.app.v1.DeleteRobotResponse
+	81,  // 184: viam.app.v1.AppService.ListFragments:output_type -> viam.app.v1.ListFragmentsResponse
+	83,  // 185: viam.app.v1.AppService.GetFragment:output_type -> viam.app.v1.GetFragmentResponse
+	85,  // 186: viam.app.v1.AppService.CreateFragment:output_type -> viam.app.v1.CreateFragmentResponse
+	87,  // 187: viam.app.v1.AppService.UpdateFragment:output_type -> viam.app.v1.UpdateFragmentResponse
+	89,  // 188: viam.app.v1.AppService.DeleteFragment:output_type -> viam.app.v1.DeleteFragmentResponse
+	108, // 189: viam.app.v1.AppService.AddRole:output_type -> viam.app.v1.AddRoleResponse
+	110, // 190: viam.app.v1.AppService.RemoveRole:output_type -> viam.app.v1.RemoveRoleResponse
+	116, // 191: viam.app.v1.AppService.ChangeRole:output_type -> viam.app.v1.ChangeRoleResponse
+	118, // 192: viam.app.v1.AppService.ListAuthorizations:output_type -> viam.app.v1.ListAuthorizationsResponse
+	121, // 193: viam.app.v1.AppService.CheckPermissions:output_type -> viam.app.v1.CheckPermissionsResponse
+	123, // 194: viam.app.v1.AppService.CreateModule:output_type -> viam.app.v1.CreateModuleResponse
+	125, // 195: viam.app.v1.AppService.UpdateModule:output_type -> viam.app.v1.UpdateModuleResponse
+	129, // 196: viam.app.v1.AppService.UploadModuleFile:output_type -> viam.app.v1.UploadModuleFileResponse
+	131, // 197: viam.app.v1.AppService.GetModule:output_type -> viam.app.v1.GetModuleResponse
+	136, // 198: viam.app.v1.AppService.ListModules:output_type -> viam.app.v1.ListModulesResponse
+	143, // 199: viam.app.v1.AppService.CreateKey:output_type -> viam.app.v1.CreateKeyResponse
+	142, // [142:200] is the sub-list for method output_type
+	84,  // [84:142] is the sub-list for method input_type
+	84,  // [84:84] is the sub-list for extension type_name
+	84,  // [84:84] is the sub-list for extension extendee
+	0,   // [0:84] is the sub-list for field type_name
 }
 
 func init() { file_app_v1_app_proto_init() }
@@ -10752,7 +10979,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[109].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ChangeRoleRequest); i {
+			switch v := v.(*AddRoleToKeyRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10764,7 +10991,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[110].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ChangeRoleResponse); i {
+			switch v := v.(*AddRoleToKeyResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10776,7 +11003,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[111].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListAuthorizationsRequest); i {
+			switch v := v.(*RemoveRoleFromKeyRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10788,7 +11015,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[112].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListAuthorizationsResponse); i {
+			switch v := v.(*RemoveRoleFromKeyResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10800,7 +11027,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[113].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckPermissionsRequest); i {
+			switch v := v.(*ChangeRoleRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10812,7 +11039,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[114].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AuthorizedPermissions); i {
+			switch v := v.(*ChangeRoleResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10824,7 +11051,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[115].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckPermissionsResponse); i {
+			switch v := v.(*ListAuthorizationsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10836,7 +11063,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[116].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateModuleRequest); i {
+			switch v := v.(*ListAuthorizationsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10848,7 +11075,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[117].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateModuleResponse); i {
+			switch v := v.(*CheckPermissionsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10860,7 +11087,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[118].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateModuleRequest); i {
+			switch v := v.(*AuthorizedPermissions); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10872,7 +11099,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[119].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateModuleResponse); i {
+			switch v := v.(*CheckPermissionsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10884,7 +11111,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[120].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Model); i {
+			switch v := v.(*CreateModuleRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10896,7 +11123,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[121].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ModuleFileInfo); i {
+			switch v := v.(*CreateModuleResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10908,7 +11135,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[122].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UploadModuleFileRequest); i {
+			switch v := v.(*UpdateModuleRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10920,7 +11147,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[123].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UploadModuleFileResponse); i {
+			switch v := v.(*UpdateModuleResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10932,7 +11159,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[124].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetModuleRequest); i {
+			switch v := v.(*Model); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10944,7 +11171,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[125].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetModuleResponse); i {
+			switch v := v.(*ModuleFileInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10956,7 +11183,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[126].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Module); i {
+			switch v := v.(*UploadModuleFileRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10968,7 +11195,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[127].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*VersionHistory); i {
+			switch v := v.(*UploadModuleFileResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10980,7 +11207,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[128].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Uploads); i {
+			switch v := v.(*GetModuleRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10992,7 +11219,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[129].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListModulesRequest); i {
+			switch v := v.(*GetModuleResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11004,7 +11231,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[130].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListModulesResponse); i {
+			switch v := v.(*Module); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11016,7 +11243,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[131].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserIDByEmailRequest); i {
+			switch v := v.(*VersionHistory); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11028,7 +11255,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[132].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserIDByEmailResponse); i {
+			switch v := v.(*Uploads); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11040,7 +11267,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[133].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListOrganizationsByUserRequest); i {
+			switch v := v.(*ListModulesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11052,7 +11279,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[134].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OrgDetails); i {
+			switch v := v.(*ListModulesResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11064,7 +11291,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[135].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListOrganizationsByUserResponse); i {
+			switch v := v.(*GetUserIDByEmailRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11076,7 +11303,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[136].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateKeyRequest); i {
+			switch v := v.(*GetUserIDByEmailResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11088,6 +11315,54 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[137].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListOrganizationsByUserRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_app_v1_app_proto_msgTypes[138].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*OrgDetails); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_app_v1_app_proto_msgTypes[139].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListOrganizationsByUserResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_app_v1_app_proto_msgTypes[140].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateKeyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_app_v1_app_proto_msgTypes[141].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateKeyResponse); i {
 			case 0:
 				return &v.state
@@ -11108,21 +11383,21 @@ func file_app_v1_app_proto_init() {
 	file_app_v1_app_proto_msgTypes[64].OneofWrappers = []interface{}{}
 	file_app_v1_app_proto_msgTypes[67].OneofWrappers = []interface{}{}
 	file_app_v1_app_proto_msgTypes[84].OneofWrappers = []interface{}{}
-	file_app_v1_app_proto_msgTypes[118].OneofWrappers = []interface{}{}
-	file_app_v1_app_proto_msgTypes[121].OneofWrappers = []interface{}{}
-	file_app_v1_app_proto_msgTypes[122].OneofWrappers = []interface{}{
+	file_app_v1_app_proto_msgTypes[122].OneofWrappers = []interface{}{}
+	file_app_v1_app_proto_msgTypes[125].OneofWrappers = []interface{}{}
+	file_app_v1_app_proto_msgTypes[126].OneofWrappers = []interface{}{
 		(*UploadModuleFileRequest_ModuleFileInfo)(nil),
 		(*UploadModuleFileRequest_File)(nil),
 	}
-	file_app_v1_app_proto_msgTypes[124].OneofWrappers = []interface{}{}
-	file_app_v1_app_proto_msgTypes[129].OneofWrappers = []interface{}{}
+	file_app_v1_app_proto_msgTypes[128].OneofWrappers = []interface{}{}
+	file_app_v1_app_proto_msgTypes[133].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_app_v1_app_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   138,
+			NumMessages:   142,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
