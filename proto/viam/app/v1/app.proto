@@ -632,8 +632,12 @@ message GetRobotAPIKeysRequest {
 }
 
 message ApiKey {
-  string key = 1;
-  string id = 2;
+  string id = 1;
+  string key = 2;
+  string name = 3;
+  google.protobuf.Timestamp created_on = 4;
+  repeated string locations = 5;
+  repeated string robots = 6;
 }
 
 message GetRobotAPIKeysResponse {
