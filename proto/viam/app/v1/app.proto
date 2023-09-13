@@ -987,9 +987,20 @@ message DeleteKeyRequest {
 
 message DeleteKeyResponse {}
 
+message AuthorizationDetails {
+  string authorization_type = 1;
+  string authorization_id = 2;
+  string resource_type = 3;
+  string resource_id = 4;
+  string org_id = 5;
+}
+
 message ApiKey {
   string key = 1;
   string id = 2;
+  string name = 3;
+  google.protobuf.Timestamp created_date = 4;
+  repeated AuthorizationDetails authorizations = 5;
 }
 
 message ListKeysRequest {
