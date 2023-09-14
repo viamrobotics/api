@@ -88,6 +88,8 @@ type AppServiceClient interface {
 	NewRobotPart(ctx context.Context, in *NewRobotPartRequest, opts ...grpc.CallOption) (*NewRobotPartResponse, error)
 	// Delete a robot part
 	DeleteRobotPart(ctx context.Context, in *DeleteRobotPartRequest, opts ...grpc.CallOption) (*DeleteRobotPartResponse, error)
+	// Gets the Robot API Keys for the robot
+	GetRobotAPIKeys(ctx context.Context, in *GetRobotAPIKeysRequest, opts ...grpc.CallOption) (*GetRobotAPIKeysResponse, error)
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(ctx context.Context, in *MarkPartAsMainRequest, opts ...grpc.CallOption) (*MarkPartAsMainResponse, error)
 	// Marks part for restart. Once the robot part checks-in with the app the flag
@@ -135,8 +137,6 @@ type AppServiceClient interface {
 	GetModule(ctx context.Context, in *GetModuleRequest, opts ...grpc.CallOption) (*GetModuleResponse, error)
 	ListModules(ctx context.Context, in *ListModulesRequest, opts ...grpc.CallOption) (*ListModulesResponse, error)
 	CreateKey(ctx context.Context, in *CreateKeyRequest, opts ...grpc.CallOption) (*CreateKeyResponse, error)
-	DeleteKey(ctx context.Context, in *DeleteKeyRequest, opts ...grpc.CallOption) (*DeleteKeyResponse, error)
-	ListKeys(ctx context.Context, in *ListKeysRequest, opts ...grpc.CallOption) (*ListKeysResponse, error)
 }
 
 type appServiceClient struct {
@@ -476,6 +476,15 @@ func (c *appServiceClient) DeleteRobotPart(ctx context.Context, in *DeleteRobotP
 	return out, nil
 }
 
+func (c *appServiceClient) GetRobotAPIKeys(ctx context.Context, in *GetRobotAPIKeysRequest, opts ...grpc.CallOption) (*GetRobotAPIKeysResponse, error) {
+	out := new(GetRobotAPIKeysResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotAPIKeys", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) MarkPartAsMain(ctx context.Context, in *MarkPartAsMainRequest, opts ...grpc.CallOption) (*MarkPartAsMainResponse, error) {
 	out := new(MarkPartAsMainResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/MarkPartAsMain", in, out, opts...)
@@ -717,24 +726,6 @@ func (c *appServiceClient) CreateKey(ctx context.Context, in *CreateKeyRequest, 
 	return out, nil
 }
 
-func (c *appServiceClient) DeleteKey(ctx context.Context, in *DeleteKeyRequest, opts ...grpc.CallOption) (*DeleteKeyResponse, error) {
-	out := new(DeleteKeyResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteKey", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appServiceClient) ListKeys(ctx context.Context, in *ListKeysRequest, opts ...grpc.CallOption) (*ListKeysResponse, error) {
-	out := new(ListKeysResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListKeys", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // AppServiceServer is the server API for AppService service.
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
@@ -805,6 +796,8 @@ type AppServiceServer interface {
 	NewRobotPart(context.Context, *NewRobotPartRequest) (*NewRobotPartResponse, error)
 	// Delete a robot part
 	DeleteRobotPart(context.Context, *DeleteRobotPartRequest) (*DeleteRobotPartResponse, error)
+	// Gets the Robot API Keys for the robot
+	GetRobotAPIKeys(context.Context, *GetRobotAPIKeysRequest) (*GetRobotAPIKeysResponse, error)
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(context.Context, *MarkPartAsMainRequest) (*MarkPartAsMainResponse, error)
 	// Marks part for restart. Once the robot part checks-in with the app the flag
@@ -852,8 +845,6 @@ type AppServiceServer interface {
 	GetModule(context.Context, *GetModuleRequest) (*GetModuleResponse, error)
 	ListModules(context.Context, *ListModulesRequest) (*ListModulesResponse, error)
 	CreateKey(context.Context, *CreateKeyRequest) (*CreateKeyResponse, error)
-	DeleteKey(context.Context, *DeleteKeyRequest) (*DeleteKeyResponse, error)
-	ListKeys(context.Context, *ListKeysRequest) (*ListKeysResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -963,6 +954,9 @@ func (UnimplementedAppServiceServer) NewRobotPart(context.Context, *NewRobotPart
 func (UnimplementedAppServiceServer) DeleteRobotPart(context.Context, *DeleteRobotPartRequest) (*DeleteRobotPartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRobotPart not implemented")
 }
+func (UnimplementedAppServiceServer) GetRobotAPIKeys(context.Context, *GetRobotAPIKeysRequest) (*GetRobotAPIKeysResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRobotAPIKeys not implemented")
+}
 func (UnimplementedAppServiceServer) MarkPartAsMain(context.Context, *MarkPartAsMainRequest) (*MarkPartAsMainResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MarkPartAsMain not implemented")
 }
@@ -1034,12 +1028,6 @@ func (UnimplementedAppServiceServer) ListModules(context.Context, *ListModulesRe
 }
 func (UnimplementedAppServiceServer) CreateKey(context.Context, *CreateKeyRequest) (*CreateKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateKey not implemented")
-}
-func (UnimplementedAppServiceServer) DeleteKey(context.Context, *DeleteKeyRequest) (*DeleteKeyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteKey not implemented")
-}
-func (UnimplementedAppServiceServer) ListKeys(context.Context, *ListKeysRequest) (*ListKeysResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListKeys not implemented")
 }
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
@@ -1669,6 +1657,24 @@ func _AppService_DeleteRobotPart_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_GetRobotAPIKeys_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRobotAPIKeysRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetRobotAPIKeys(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetRobotAPIKeys",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetRobotAPIKeys(ctx, req.(*GetRobotAPIKeysRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_MarkPartAsMain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MarkPartAsMainRequest)
 	if err := dec(in); err != nil {
@@ -2109,42 +2115,6 @@ func _AppService_CreateKey_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_DeleteKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteKeyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppServiceServer).DeleteKey(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/DeleteKey",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).DeleteKey(ctx, req.(*DeleteKeyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppService_ListKeys_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListKeysRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppServiceServer).ListKeys(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/ListKeys",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).ListKeys(ctx, req.(*ListKeysRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2285,6 +2255,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_DeleteRobotPart_Handler,
 		},
 		{
+			MethodName: "GetRobotAPIKeys",
+			Handler:    _AppService_GetRobotAPIKeys_Handler,
+		},
+		{
 			MethodName: "MarkPartAsMain",
 			Handler:    _AppService_MarkPartAsMain_Handler,
 		},
@@ -2375,14 +2349,6 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateKey",
 			Handler:    _AppService_CreateKey_Handler,
-		},
-		{
-			MethodName: "DeleteKey",
-			Handler:    _AppService_DeleteKey_Handler,
-		},
-		{
-			MethodName: "ListKeys",
-			Handler:    _AppService_ListKeys_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

@@ -2154,6 +2154,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.deleteRobotPart =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetRobotAPIKeysRequest,
+ *   !proto.viam.app.v1.GetRobotAPIKeysResponse>}
+ */
+const methodDescriptor_AppService_GetRobotAPIKeys = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetRobotAPIKeys',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetRobotAPIKeysRequest,
+  proto.viam.app.v1.GetRobotAPIKeysResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetRobotAPIKeysRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetRobotAPIKeysResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetRobotAPIKeysRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetRobotAPIKeysResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetRobotAPIKeysResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getRobotAPIKeys =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetRobotAPIKeys',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetRobotAPIKeys,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetRobotAPIKeysRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetRobotAPIKeysResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getRobotAPIKeys =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetRobotAPIKeys',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetRobotAPIKeys);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.MarkPartAsMainRequest,
  *   !proto.viam.app.v1.MarkPartAsMainResponse>}
  */
@@ -3551,128 +3612,6 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.createKey =
       request,
       metadata || {},
       methodDescriptor_AppService_CreateKey);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.v1.DeleteKeyRequest,
- *   !proto.viam.app.v1.DeleteKeyResponse>}
- */
-const methodDescriptor_AppService_DeleteKey = new grpc.web.MethodDescriptor(
-  '/viam.app.v1.AppService/DeleteKey',
-  grpc.web.MethodType.UNARY,
-  proto.viam.app.v1.DeleteKeyRequest,
-  proto.viam.app.v1.DeleteKeyResponse,
-  /**
-   * @param {!proto.viam.app.v1.DeleteKeyRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.app.v1.DeleteKeyResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.app.v1.DeleteKeyRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeleteKeyResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeleteKeyResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.app.v1.AppServiceClient.prototype.deleteKey =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.v1.AppService/DeleteKey',
-      request,
-      metadata || {},
-      methodDescriptor_AppService_DeleteKey,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.app.v1.DeleteKeyRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.app.v1.DeleteKeyResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.app.v1.AppServicePromiseClient.prototype.deleteKey =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.v1.AppService/DeleteKey',
-      request,
-      metadata || {},
-      methodDescriptor_AppService_DeleteKey);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.v1.ListKeysRequest,
- *   !proto.viam.app.v1.ListKeysResponse>}
- */
-const methodDescriptor_AppService_ListKeys = new grpc.web.MethodDescriptor(
-  '/viam.app.v1.AppService/ListKeys',
-  grpc.web.MethodType.UNARY,
-  proto.viam.app.v1.ListKeysRequest,
-  proto.viam.app.v1.ListKeysResponse,
-  /**
-   * @param {!proto.viam.app.v1.ListKeysRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.app.v1.ListKeysResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.app.v1.ListKeysRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ListKeysResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ListKeysResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.app.v1.AppServiceClient.prototype.listKeys =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.v1.AppService/ListKeys',
-      request,
-      metadata || {},
-      methodDescriptor_AppService_ListKeys,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.app.v1.ListKeysRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.app.v1.ListKeysResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.app.v1.AppServicePromiseClient.prototype.listKeys =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.v1.AppService/ListKeys',
-      request,
-      metadata || {},
-      methodDescriptor_AppService_ListKeys);
 };
 
 
