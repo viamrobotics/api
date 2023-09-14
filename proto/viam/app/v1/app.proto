@@ -631,7 +631,7 @@ message GetRobotAPIKeysRequest {
   string robot_id = 1;
 }
 
-message RobotApiKey {
+message APIKey {
   string id = 1;
   string key = 2;
   string name = 3;
@@ -639,7 +639,7 @@ message RobotApiKey {
 }
 
 message GetRobotAPIKeysResponse {
-  repeated RobotApiKey api_keys = 1;
+  repeated APIKey api_keys = 1;
 }
 
 message DeleteRobotPartResponse {}
