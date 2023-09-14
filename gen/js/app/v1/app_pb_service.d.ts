@@ -445,6 +445,15 @@ type AppServiceAddRole = {
   readonly responseType: typeof app_v1_app_pb.AddRoleResponse;
 };
 
+type AppServiceAddRoleToAPIKey = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.AddRoleToAPIKeyRequest;
+  readonly responseType: typeof app_v1_app_pb.AddRoleToAPIKeyResponse;
+};
+
 type AppServiceRemoveRole = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -452,6 +461,15 @@ type AppServiceRemoveRole = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.RemoveRoleRequest;
   readonly responseType: typeof app_v1_app_pb.RemoveRoleResponse;
+};
+
+type AppServiceRemoveRoleFromAPIKey = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.RemoveRoleFromAPIKeyRequest;
+  readonly responseType: typeof app_v1_app_pb.RemoveRoleFromAPIKeyResponse;
 };
 
 type AppServiceChangeRole = {
@@ -586,7 +604,9 @@ export class AppService {
   static readonly UpdateFragment: AppServiceUpdateFragment;
   static readonly DeleteFragment: AppServiceDeleteFragment;
   static readonly AddRole: AppServiceAddRole;
+  static readonly AddRoleToAPIKey: AppServiceAddRoleToAPIKey;
   static readonly RemoveRole: AppServiceRemoveRole;
+  static readonly RemoveRoleFromAPIKey: AppServiceRemoveRoleFromAPIKey;
   static readonly ChangeRole: AppServiceChangeRole;
   static readonly ListAuthorizations: AppServiceListAuthorizations;
   static readonly CheckPermissions: AppServiceCheckPermissions;
@@ -1063,6 +1083,15 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.AddRoleRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.AddRoleResponse|null) => void
   ): UnaryResponse;
+  addRoleToAPIKey(
+    requestMessage: app_v1_app_pb.AddRoleToAPIKeyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.AddRoleToAPIKeyResponse|null) => void
+  ): UnaryResponse;
+  addRoleToAPIKey(
+    requestMessage: app_v1_app_pb.AddRoleToAPIKeyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.AddRoleToAPIKeyResponse|null) => void
+  ): UnaryResponse;
   removeRole(
     requestMessage: app_v1_app_pb.RemoveRoleRequest,
     metadata: grpc.Metadata,
@@ -1071,6 +1100,15 @@ export class AppServiceClient {
   removeRole(
     requestMessage: app_v1_app_pb.RemoveRoleRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RemoveRoleResponse|null) => void
+  ): UnaryResponse;
+  removeRoleFromAPIKey(
+    requestMessage: app_v1_app_pb.RemoveRoleFromAPIKeyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RemoveRoleFromAPIKeyResponse|null) => void
+  ): UnaryResponse;
+  removeRoleFromAPIKey(
+    requestMessage: app_v1_app_pb.RemoveRoleFromAPIKeyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RemoveRoleFromAPIKeyResponse|null) => void
   ): UnaryResponse;
   changeRole(
     requestMessage: app_v1_app_pb.ChangeRoleRequest,

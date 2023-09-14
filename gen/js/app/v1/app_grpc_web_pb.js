@@ -3069,6 +3069,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.addRole =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.AddRoleToAPIKeyRequest,
+ *   !proto.viam.app.v1.AddRoleToAPIKeyResponse>}
+ */
+const methodDescriptor_AppService_AddRoleToAPIKey = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/AddRoleToAPIKey',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.AddRoleToAPIKeyRequest,
+  proto.viam.app.v1.AddRoleToAPIKeyResponse,
+  /**
+   * @param {!proto.viam.app.v1.AddRoleToAPIKeyRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.AddRoleToAPIKeyResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.AddRoleToAPIKeyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.AddRoleToAPIKeyResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.AddRoleToAPIKeyResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.addRoleToAPIKey =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/AddRoleToAPIKey',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_AddRoleToAPIKey,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.AddRoleToAPIKeyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.AddRoleToAPIKeyResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.addRoleToAPIKey =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/AddRoleToAPIKey',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_AddRoleToAPIKey);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.RemoveRoleRequest,
  *   !proto.viam.app.v1.RemoveRoleResponse>}
  */
@@ -3124,6 +3185,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.removeRole =
       request,
       metadata || {},
       methodDescriptor_AppService_RemoveRole);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.RemoveRoleFromAPIKeyRequest,
+ *   !proto.viam.app.v1.RemoveRoleFromAPIKeyResponse>}
+ */
+const methodDescriptor_AppService_RemoveRoleFromAPIKey = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/RemoveRoleFromAPIKey',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.RemoveRoleFromAPIKeyRequest,
+  proto.viam.app.v1.RemoveRoleFromAPIKeyResponse,
+  /**
+   * @param {!proto.viam.app.v1.RemoveRoleFromAPIKeyRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.RemoveRoleFromAPIKeyResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.RemoveRoleFromAPIKeyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.RemoveRoleFromAPIKeyResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.RemoveRoleFromAPIKeyResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.removeRoleFromAPIKey =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/RemoveRoleFromAPIKey',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_RemoveRoleFromAPIKey,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.RemoveRoleFromAPIKeyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.RemoveRoleFromAPIKeyResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.removeRoleFromAPIKey =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/RemoveRoleFromAPIKey',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_RemoveRoleFromAPIKey);
 };
 
 

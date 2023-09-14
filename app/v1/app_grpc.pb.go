@@ -123,8 +123,12 @@ type AppServiceClient interface {
 	DeleteFragment(ctx context.Context, in *DeleteFragmentRequest, opts ...grpc.CallOption) (*DeleteFragmentResponse, error)
 	// Creates an IdentityAuthorization
 	AddRole(ctx context.Context, in *AddRoleRequest, opts ...grpc.CallOption) (*AddRoleResponse, error)
+	// Creates an IdentityAuthorization for an api key
+	AddRoleToAPIKey(ctx context.Context, in *AddRoleToAPIKeyRequest, opts ...grpc.CallOption) (*AddRoleToAPIKeyResponse, error)
 	// Deletes an IdentityAuthorization
 	RemoveRole(ctx context.Context, in *RemoveRoleRequest, opts ...grpc.CallOption) (*RemoveRoleResponse, error)
+	// Deletes an IdentityAuthorization from an api key
+	RemoveRoleFromAPIKey(ctx context.Context, in *RemoveRoleFromAPIKeyRequest, opts ...grpc.CallOption) (*RemoveRoleFromAPIKeyResponse, error)
 	// Changes an IdentityAuthorization to a new IdentityAuthorization
 	ChangeRole(ctx context.Context, in *ChangeRoleRequest, opts ...grpc.CallOption) (*ChangeRoleResponse, error)
 	// Returns all authorization roles for a given resource
@@ -611,9 +615,27 @@ func (c *appServiceClient) AddRole(ctx context.Context, in *AddRoleRequest, opts
 	return out, nil
 }
 
+func (c *appServiceClient) AddRoleToAPIKey(ctx context.Context, in *AddRoleToAPIKeyRequest, opts ...grpc.CallOption) (*AddRoleToAPIKeyResponse, error) {
+	out := new(AddRoleToAPIKeyResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/AddRoleToAPIKey", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) RemoveRole(ctx context.Context, in *RemoveRoleRequest, opts ...grpc.CallOption) (*RemoveRoleResponse, error) {
 	out := new(RemoveRoleResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/RemoveRole", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) RemoveRoleFromAPIKey(ctx context.Context, in *RemoveRoleFromAPIKeyRequest, opts ...grpc.CallOption) (*RemoveRoleFromAPIKeyResponse, error) {
+	out := new(RemoveRoleFromAPIKeyResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/RemoveRoleFromAPIKey", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -831,8 +853,12 @@ type AppServiceServer interface {
 	DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error)
 	// Creates an IdentityAuthorization
 	AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error)
+	// Creates an IdentityAuthorization for an api key
+	AddRoleToAPIKey(context.Context, *AddRoleToAPIKeyRequest) (*AddRoleToAPIKeyResponse, error)
 	// Deletes an IdentityAuthorization
 	RemoveRole(context.Context, *RemoveRoleRequest) (*RemoveRoleResponse, error)
+	// Deletes an IdentityAuthorization from an api key
+	RemoveRoleFromAPIKey(context.Context, *RemoveRoleFromAPIKeyRequest) (*RemoveRoleFromAPIKeyResponse, error)
 	// Changes an IdentityAuthorization to a new IdentityAuthorization
 	ChangeRole(context.Context, *ChangeRoleRequest) (*ChangeRoleResponse, error)
 	// Returns all authorization roles for a given resource
@@ -999,8 +1025,14 @@ func (UnimplementedAppServiceServer) DeleteFragment(context.Context, *DeleteFrag
 func (UnimplementedAppServiceServer) AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddRole not implemented")
 }
+func (UnimplementedAppServiceServer) AddRoleToAPIKey(context.Context, *AddRoleToAPIKeyRequest) (*AddRoleToAPIKeyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddRoleToAPIKey not implemented")
+}
 func (UnimplementedAppServiceServer) RemoveRole(context.Context, *RemoveRoleRequest) (*RemoveRoleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveRole not implemented")
+}
+func (UnimplementedAppServiceServer) RemoveRoleFromAPIKey(context.Context, *RemoveRoleFromAPIKeyRequest) (*RemoveRoleFromAPIKeyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveRoleFromAPIKey not implemented")
 }
 func (UnimplementedAppServiceServer) ChangeRole(context.Context, *ChangeRoleRequest) (*ChangeRoleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeRole not implemented")
@@ -1927,6 +1959,24 @@ func _AppService_AddRole_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_AddRoleToAPIKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddRoleToAPIKeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).AddRoleToAPIKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/AddRoleToAPIKey",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).AddRoleToAPIKey(ctx, req.(*AddRoleToAPIKeyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_RemoveRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RemoveRoleRequest)
 	if err := dec(in); err != nil {
@@ -1941,6 +1991,24 @@ func _AppService_RemoveRole_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).RemoveRole(ctx, req.(*RemoveRoleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_RemoveRoleFromAPIKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveRoleFromAPIKeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).RemoveRoleFromAPIKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/RemoveRoleFromAPIKey",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).RemoveRoleFromAPIKey(ctx, req.(*RemoveRoleFromAPIKeyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2315,8 +2383,16 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_AddRole_Handler,
 		},
 		{
+			MethodName: "AddRoleToAPIKey",
+			Handler:    _AppService_AddRoleToAPIKey_Handler,
+		},
+		{
 			MethodName: "RemoveRole",
 			Handler:    _AppService_RemoveRole_Handler,
+		},
+		{
+			MethodName: "RemoveRoleFromAPIKey",
+			Handler:    _AppService_RemoveRoleFromAPIKey_Handler,
 		},
 		{
 			MethodName: "ChangeRole",

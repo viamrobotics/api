@@ -2804,7 +2804,7 @@ export namespace RemoveRoleResponse {
   }
 }
 
-export class AddRoleToKeyRequest extends jspb.Message {
+export class AddRoleToAPIKeyRequest extends jspb.Message {
   hasAuthorization(): boolean;
   clearAuthorization(): void;
   getAuthorization(): Authorization | undefined;
@@ -2817,16 +2817,16 @@ export class AddRoleToKeyRequest extends jspb.Message {
   setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddRoleToKeyRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddRoleToKeyRequest): AddRoleToKeyRequest.AsObject;
+  toObject(includeInstance?: boolean): AddRoleToAPIKeyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddRoleToAPIKeyRequest): AddRoleToAPIKeyRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddRoleToKeyRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddRoleToKeyRequest;
-  static deserializeBinaryFromReader(message: AddRoleToKeyRequest, reader: jspb.BinaryReader): AddRoleToKeyRequest;
+  static serializeBinaryToWriter(message: AddRoleToAPIKeyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddRoleToAPIKeyRequest;
+  static deserializeBinaryFromReader(message: AddRoleToAPIKeyRequest, reader: jspb.BinaryReader): AddRoleToAPIKeyRequest;
 }
 
-export namespace AddRoleToKeyRequest {
+export namespace AddRoleToAPIKeyRequest {
   export type AsObject = {
     authorization?: Authorization.AsObject,
     key: string,
@@ -2834,23 +2834,23 @@ export namespace AddRoleToKeyRequest {
   }
 }
 
-export class AddRoleToKeyResponse extends jspb.Message {
+export class AddRoleToAPIKeyResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddRoleToKeyResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: AddRoleToKeyResponse): AddRoleToKeyResponse.AsObject;
+  toObject(includeInstance?: boolean): AddRoleToAPIKeyResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddRoleToAPIKeyResponse): AddRoleToAPIKeyResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddRoleToKeyResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddRoleToKeyResponse;
-  static deserializeBinaryFromReader(message: AddRoleToKeyResponse, reader: jspb.BinaryReader): AddRoleToKeyResponse;
+  static serializeBinaryToWriter(message: AddRoleToAPIKeyResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddRoleToAPIKeyResponse;
+  static deserializeBinaryFromReader(message: AddRoleToAPIKeyResponse, reader: jspb.BinaryReader): AddRoleToAPIKeyResponse;
 }
 
-export namespace AddRoleToKeyResponse {
+export namespace AddRoleToAPIKeyResponse {
   export type AsObject = {
   }
 }
 
-export class RemoveRoleFromKeyRequest extends jspb.Message {
+export class RemoveRoleFromAPIKeyRequest extends jspb.Message {
   hasAuthorization(): boolean;
   clearAuthorization(): void;
   getAuthorization(): Authorization | undefined;
@@ -2863,16 +2863,16 @@ export class RemoveRoleFromKeyRequest extends jspb.Message {
   setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveRoleFromKeyRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveRoleFromKeyRequest): RemoveRoleFromKeyRequest.AsObject;
+  toObject(includeInstance?: boolean): RemoveRoleFromAPIKeyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveRoleFromAPIKeyRequest): RemoveRoleFromAPIKeyRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveRoleFromKeyRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveRoleFromKeyRequest;
-  static deserializeBinaryFromReader(message: RemoveRoleFromKeyRequest, reader: jspb.BinaryReader): RemoveRoleFromKeyRequest;
+  static serializeBinaryToWriter(message: RemoveRoleFromAPIKeyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveRoleFromAPIKeyRequest;
+  static deserializeBinaryFromReader(message: RemoveRoleFromAPIKeyRequest, reader: jspb.BinaryReader): RemoveRoleFromAPIKeyRequest;
 }
 
-export namespace RemoveRoleFromKeyRequest {
+export namespace RemoveRoleFromAPIKeyRequest {
   export type AsObject = {
     authorization?: Authorization.AsObject,
     key: string,
@@ -2880,18 +2880,18 @@ export namespace RemoveRoleFromKeyRequest {
   }
 }
 
-export class RemoveRoleFromKeyResponse extends jspb.Message {
+export class RemoveRoleFromAPIKeyResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoveRoleFromKeyResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoveRoleFromKeyResponse): RemoveRoleFromKeyResponse.AsObject;
+  toObject(includeInstance?: boolean): RemoveRoleFromAPIKeyResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveRoleFromAPIKeyResponse): RemoveRoleFromAPIKeyResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RemoveRoleFromKeyResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoveRoleFromKeyResponse;
-  static deserializeBinaryFromReader(message: RemoveRoleFromKeyResponse, reader: jspb.BinaryReader): RemoveRoleFromKeyResponse;
+  static serializeBinaryToWriter(message: RemoveRoleFromAPIKeyResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveRoleFromAPIKeyResponse;
+  static deserializeBinaryFromReader(message: RemoveRoleFromAPIKeyResponse, reader: jspb.BinaryReader): RemoveRoleFromAPIKeyResponse;
 }
 
-export namespace RemoveRoleFromKeyResponse {
+export namespace RemoveRoleFromAPIKeyResponse {
   export type AsObject = {
   }
 }
