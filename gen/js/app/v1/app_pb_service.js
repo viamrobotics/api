@@ -316,6 +316,15 @@ AppService.DeleteRobotPart = {
   responseType: app_v1_app_pb.DeleteRobotPartResponse
 };
 
+AppService.GetRobotAPIKeys = {
+  methodName: "GetRobotAPIKeys",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetRobotAPIKeysRequest,
+  responseType: app_v1_app_pb.GetRobotAPIKeysResponse
+};
+
 AppService.MarkPartAsMain = {
   methodName: "MarkPartAsMain",
   service: AppService,
@@ -1575,6 +1584,37 @@ AppServiceClient.prototype.deleteRobotPart = function deleteRobotPart(requestMes
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.DeleteRobotPart, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getRobotAPIKeys = function getRobotAPIKeys(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetRobotAPIKeys, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
