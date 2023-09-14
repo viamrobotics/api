@@ -472,7 +472,6 @@ proto.viam.service.mlmodel.v1.InferRequest.prototype.toObject = function(opt_inc
 proto.viam.service.mlmodel.v1.InferRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    inputData: (f = msg.getInputData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     inputTensors: (f = msg.getInputTensors()) && proto.viam.service.mlmodel.v1.FlatTensors.toObject(includeInstance, f),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
@@ -514,11 +513,6 @@ proto.viam.service.mlmodel.v1.InferRequest.deserializeBinaryFromReader = functio
     case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
-      break;
-    case 2:
-      var value = new google_protobuf_struct_pb.Struct;
-      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setInputData(value);
       break;
     case 3:
       var value = new proto.viam.service.mlmodel.v1.FlatTensors;
@@ -566,14 +560,6 @@ proto.viam.service.mlmodel.v1.InferRequest.serializeBinaryToWriter = function(me
       f
     );
   }
-  f = message.getInputData();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
-    );
-  }
   f = message.getInputTensors();
   if (f != null) {
     writer.writeMessage(
@@ -608,43 +594,6 @@ proto.viam.service.mlmodel.v1.InferRequest.prototype.getName = function() {
  */
 proto.viam.service.mlmodel.v1.InferRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional google.protobuf.Struct input_data = 2;
- * @return {?proto.google.protobuf.Struct}
- */
-proto.viam.service.mlmodel.v1.InferRequest.prototype.getInputData = function() {
-  return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.viam.service.mlmodel.v1.InferRequest} returns this
-*/
-proto.viam.service.mlmodel.v1.InferRequest.prototype.setInputData = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.service.mlmodel.v1.InferRequest} returns this
- */
-proto.viam.service.mlmodel.v1.InferRequest.prototype.clearInputData = function() {
-  return this.setInputData(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.service.mlmodel.v1.InferRequest.prototype.hasInputData = function() {
-  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -754,7 +703,6 @@ proto.viam.service.mlmodel.v1.InferResponse.prototype.toObject = function(opt_in
  */
 proto.viam.service.mlmodel.v1.InferResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    outputData: (f = msg.getOutputData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     outputTensors: (f = msg.getOutputTensors()) && proto.viam.service.mlmodel.v1.FlatTensors.toObject(includeInstance, f)
   };
 
@@ -792,11 +740,6 @@ proto.viam.service.mlmodel.v1.InferResponse.deserializeBinaryFromReader = functi
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 2:
-      var value = new google_protobuf_struct_pb.Struct;
-      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setOutputData(value);
-      break;
     case 3:
       var value = new proto.viam.service.mlmodel.v1.FlatTensors;
       reader.readMessage(value,proto.viam.service.mlmodel.v1.FlatTensors.deserializeBinaryFromReader);
@@ -831,14 +774,6 @@ proto.viam.service.mlmodel.v1.InferResponse.prototype.serializeBinary = function
  */
 proto.viam.service.mlmodel.v1.InferResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getOutputData();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
-    );
-  }
   f = message.getOutputTensors();
   if (f != null) {
     writer.writeMessage(
@@ -847,43 +782,6 @@ proto.viam.service.mlmodel.v1.InferResponse.serializeBinaryToWriter = function(m
       proto.viam.service.mlmodel.v1.FlatTensors.serializeBinaryToWriter
     );
   }
-};
-
-
-/**
- * optional google.protobuf.Struct output_data = 2;
- * @return {?proto.google.protobuf.Struct}
- */
-proto.viam.service.mlmodel.v1.InferResponse.prototype.getOutputData = function() {
-  return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.viam.service.mlmodel.v1.InferResponse} returns this
-*/
-proto.viam.service.mlmodel.v1.InferResponse.prototype.setOutputData = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.service.mlmodel.v1.InferResponse} returns this
- */
-proto.viam.service.mlmodel.v1.InferResponse.prototype.clearOutputData = function() {
-  return this.setOutputData(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.service.mlmodel.v1.InferResponse.prototype.hasOutputData = function() {
-  return jspb.Message.getField(this, 2) != null;
 };
 
 
