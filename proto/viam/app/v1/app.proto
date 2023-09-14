@@ -115,6 +115,9 @@ service AppService {
   // Delete a robot part
   rpc DeleteRobotPart(DeleteRobotPartRequest) returns (DeleteRobotPartResponse);
 
+  // Gets the Robot API Keys for the robot
+  rpc GetRobotAPIKeys(GetRobotAPIKeysRequest) returns (GetRobotAPIKeysResponse);
+
   // Marks the given part as the main part, and all the others as not
   rpc MarkPartAsMain(MarkPartAsMainRequest) returns (MarkPartAsMainResponse);
 
@@ -622,6 +625,21 @@ message NewRobotPartResponse {
 
 message DeleteRobotPartRequest {
   string part_id = 1;
+}
+
+message GetRobotAPIKeysRequest {
+  string robot_id = 1;
+}
+
+message APIKey {
+  string id = 1;
+  string key = 2;
+  string name = 3;
+  google.protobuf.Timestamp created_on = 4;
+}
+
+message GetRobotAPIKeysResponse {
+  repeated APIKey api_keys = 1;
 }
 
 message DeleteRobotPartResponse {}
