@@ -28,19 +28,21 @@ service MLModelService {
 message InferRequest {
   // name of the model service
   string name = 1;
-  // this is a struct of input arrays/tensors as specified in the metadata
-  google.protobuf.Struct input_data = 2;
-  // the input data can also be provided as set of named flat tensors
+  // the input data is provided as set of named flat tensors
   FlatTensors input_tensors = 3;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
+
+  reserved 2;
+  reserved "input_data";
 }
 
 message InferResponse {
-  // this is a struct of output arrays/tensors as specified in the metadata
-  google.protobuf.Struct output_data = 2;
-  // the output data can be provided as a set of named flat tensors
+  // the output data is provided as a set of named flat tensors
   FlatTensors output_tensors = 3;
+
+  reserved 1, 2;
+  reserved "name", "output_data";
 }
 
 message MetadataRequest {
