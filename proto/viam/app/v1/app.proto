@@ -164,8 +164,14 @@ service AppService {
   // Creates an IdentityAuthorization
   rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
 
+  // Creates an IdentityAuthorization for an api key
+  rpc AddRoleToAPIKey(AddRoleToAPIKeyRequest) returns (AddRoleToAPIKeyResponse);
+
   // Deletes an IdentityAuthorization
   rpc RemoveRole(RemoveRoleRequest) returns (RemoveRoleResponse);
+
+  // Deletes an IdentityAuthorization from an api key
+  rpc RemoveRoleFromAPIKey(RemoveRoleFromAPIKeyRequest) returns (RemoveRoleFromAPIKeyResponse);
 
   // Changes an IdentityAuthorization to a new IdentityAuthorization
   rpc ChangeRole(ChangeRoleRequest) returns (ChangeRoleResponse);
@@ -769,21 +775,21 @@ message RemoveRoleRequest {
 
 message RemoveRoleResponse {}
 
-message AddRoleToKeyRequest {
+message AddRoleToAPIKeyRequest {
   Authorization authorization = 1;
   string key = 2;
   string id = 3;
 }
 
-message AddRoleToKeyResponse {}
+message AddRoleToAPIKeyResponse {}
 
-message RemoveRoleFromKeyRequest {
+message RemoveRoleFromAPIKeyRequest {
   Authorization authorization = 1;
   string key = 2;
   string id = 3;
 }
 
-message RemoveRoleFromKeyResponse {}
+message RemoveRoleFromAPIKeyResponse {}
 
 message ChangeRoleRequest {
   Authorization old_authorization = 1;

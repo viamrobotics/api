@@ -442,6 +442,15 @@ AppService.AddRole = {
   responseType: app_v1_app_pb.AddRoleResponse
 };
 
+AppService.AddRoleToAPIKey = {
+  methodName: "AddRoleToAPIKey",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.AddRoleToAPIKeyRequest,
+  responseType: app_v1_app_pb.AddRoleToAPIKeyResponse
+};
+
 AppService.RemoveRole = {
   methodName: "RemoveRole",
   service: AppService,
@@ -449,6 +458,15 @@ AppService.RemoveRole = {
   responseStream: false,
   requestType: app_v1_app_pb.RemoveRoleRequest,
   responseType: app_v1_app_pb.RemoveRoleResponse
+};
+
+AppService.RemoveRoleFromAPIKey = {
+  methodName: "RemoveRoleFromAPIKey",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.RemoveRoleFromAPIKeyRequest,
+  responseType: app_v1_app_pb.RemoveRoleFromAPIKeyResponse
 };
 
 AppService.ChangeRole = {
@@ -2035,11 +2053,73 @@ AppServiceClient.prototype.addRole = function addRole(requestMessage, metadata, 
   };
 };
 
+AppServiceClient.prototype.addRoleToAPIKey = function addRoleToAPIKey(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.AddRoleToAPIKey, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.removeRole = function removeRole(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.RemoveRole, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.removeRoleFromAPIKey = function removeRoleFromAPIKey(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.RemoveRoleFromAPIKey, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
