@@ -55,8 +55,13 @@ service DataService {
   // BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
   rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse);
 
-  // GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It returns the hostname of the federated database.
+  // GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
+  // returns the hostname of the federated database.
   rpc GetDatabaseConnection(GetDatabaseConnectionRequest) returns (GetDatabaseConnectionResponse);
+
+  // ConfigureDatabaseUser configures a database user for the Viam organization's MongoDB Atlas Data
+  // Federation instance. It can also be used to reset the password of the existing database user.
+  rpc ConfigureDatabaseUser(ConfigureDatabaseUserRequest) returns (ConfigureDatabaseUserResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -382,6 +387,16 @@ message BoundingBoxLabelsByFilterRequest {
 message BoundingBoxLabelsByFilterResponse {
   repeated string labels = 1;
 }
+
+// ConfigureDatabaseUserRequest accepts a Viam organization ID and a password for the database user
+// being configured. Viam uses gRPC over TLS, so the entire request will be encrypted while in
+// flight, including the password.
+message ConfigureDatabaseUserRequest {
+  string organization_id = 1;
+  string password = 2;
+}
+
+message ConfigureDatabaseUserResponse {}
 
 message GetDatabaseConnectionRequest {
   string organization_id = 1;
