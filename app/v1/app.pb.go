@@ -4360,6 +4360,171 @@ func (x *DeleteRobotPartRequest) GetPartId() string {
 	return ""
 }
 
+type GetRobotAPIKeysRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	RobotId string `protobuf:"bytes,1,opt,name=robot_id,json=robotId,proto3" json:"robot_id,omitempty"`
+}
+
+func (x *GetRobotAPIKeysRequest) Reset() {
+	*x = GetRobotAPIKeysRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_v1_app_proto_msgTypes[76]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetRobotAPIKeysRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRobotAPIKeysRequest) ProtoMessage() {}
+
+func (x *GetRobotAPIKeysRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_app_proto_msgTypes[76]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRobotAPIKeysRequest.ProtoReflect.Descriptor instead.
+func (*GetRobotAPIKeysRequest) Descriptor() ([]byte, []int) {
+	return file_app_v1_app_proto_rawDescGZIP(), []int{76}
+}
+
+func (x *GetRobotAPIKeysRequest) GetRobotId() string {
+	if x != nil {
+		return x.RobotId
+	}
+	return ""
+}
+
+type APIKey struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id        string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Key       string                 `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
+	Name      string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	CreatedOn *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=created_on,json=createdOn,proto3" json:"created_on,omitempty"`
+}
+
+func (x *APIKey) Reset() {
+	*x = APIKey{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_v1_app_proto_msgTypes[77]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *APIKey) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*APIKey) ProtoMessage() {}
+
+func (x *APIKey) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_app_proto_msgTypes[77]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use APIKey.ProtoReflect.Descriptor instead.
+func (*APIKey) Descriptor() ([]byte, []int) {
+	return file_app_v1_app_proto_rawDescGZIP(), []int{77}
+}
+
+func (x *APIKey) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *APIKey) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *APIKey) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *APIKey) GetCreatedOn() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedOn
+	}
+	return nil
+}
+
+type GetRobotAPIKeysResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ApiKeys []*APIKey `protobuf:"bytes,1,rep,name=api_keys,json=apiKeys,proto3" json:"api_keys,omitempty"`
+}
+
+func (x *GetRobotAPIKeysResponse) Reset() {
+	*x = GetRobotAPIKeysResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_v1_app_proto_msgTypes[78]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetRobotAPIKeysResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRobotAPIKeysResponse) ProtoMessage() {}
+
+func (x *GetRobotAPIKeysResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_app_proto_msgTypes[78]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRobotAPIKeysResponse.ProtoReflect.Descriptor instead.
+func (*GetRobotAPIKeysResponse) Descriptor() ([]byte, []int) {
+	return file_app_v1_app_proto_rawDescGZIP(), []int{78}
+}
+
+func (x *GetRobotAPIKeysResponse) GetApiKeys() []*APIKey {
+	if x != nil {
+		return x.ApiKeys
+	}
+	return nil
+}
+
 type DeleteRobotPartResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -4369,7 +4534,7 @@ type DeleteRobotPartResponse struct {
 func (x *DeleteRobotPartResponse) Reset() {
 	*x = DeleteRobotPartResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[76]
+		mi := &file_app_v1_app_proto_msgTypes[79]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4382,7 +4547,7 @@ func (x *DeleteRobotPartResponse) String() string {
 func (*DeleteRobotPartResponse) ProtoMessage() {}
 
 func (x *DeleteRobotPartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[76]
+	mi := &file_app_v1_app_proto_msgTypes[79]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4395,7 +4560,7 @@ func (x *DeleteRobotPartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRobotPartResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRobotPartResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{76}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{79}
 }
 
 type Fragment struct {
@@ -4421,7 +4586,7 @@ type Fragment struct {
 func (x *Fragment) Reset() {
 	*x = Fragment{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[77]
+		mi := &file_app_v1_app_proto_msgTypes[80]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4434,7 +4599,7 @@ func (x *Fragment) String() string {
 func (*Fragment) ProtoMessage() {}
 
 func (x *Fragment) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[77]
+	mi := &file_app_v1_app_proto_msgTypes[80]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4447,7 +4612,7 @@ func (x *Fragment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Fragment.ProtoReflect.Descriptor instead.
 func (*Fragment) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{77}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *Fragment) GetId() string {
@@ -4532,7 +4697,7 @@ type ListFragmentsRequest struct {
 func (x *ListFragmentsRequest) Reset() {
 	*x = ListFragmentsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[78]
+		mi := &file_app_v1_app_proto_msgTypes[81]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4545,7 +4710,7 @@ func (x *ListFragmentsRequest) String() string {
 func (*ListFragmentsRequest) ProtoMessage() {}
 
 func (x *ListFragmentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[78]
+	mi := &file_app_v1_app_proto_msgTypes[81]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4558,7 +4723,7 @@ func (x *ListFragmentsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFragmentsRequest.ProtoReflect.Descriptor instead.
 func (*ListFragmentsRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{78}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *ListFragmentsRequest) GetOrganizationId() string {
@@ -4586,7 +4751,7 @@ type ListFragmentsResponse struct {
 func (x *ListFragmentsResponse) Reset() {
 	*x = ListFragmentsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[79]
+		mi := &file_app_v1_app_proto_msgTypes[82]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4599,7 +4764,7 @@ func (x *ListFragmentsResponse) String() string {
 func (*ListFragmentsResponse) ProtoMessage() {}
 
 func (x *ListFragmentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[79]
+	mi := &file_app_v1_app_proto_msgTypes[82]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4612,7 +4777,7 @@ func (x *ListFragmentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFragmentsResponse.ProtoReflect.Descriptor instead.
 func (*ListFragmentsResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{79}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *ListFragmentsResponse) GetFragments() []*Fragment {
@@ -4633,7 +4798,7 @@ type GetFragmentRequest struct {
 func (x *GetFragmentRequest) Reset() {
 	*x = GetFragmentRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[80]
+		mi := &file_app_v1_app_proto_msgTypes[83]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4646,7 +4811,7 @@ func (x *GetFragmentRequest) String() string {
 func (*GetFragmentRequest) ProtoMessage() {}
 
 func (x *GetFragmentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[80]
+	mi := &file_app_v1_app_proto_msgTypes[83]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4659,7 +4824,7 @@ func (x *GetFragmentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFragmentRequest.ProtoReflect.Descriptor instead.
 func (*GetFragmentRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{80}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *GetFragmentRequest) GetId() string {
@@ -4680,7 +4845,7 @@ type GetFragmentResponse struct {
 func (x *GetFragmentResponse) Reset() {
 	*x = GetFragmentResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[81]
+		mi := &file_app_v1_app_proto_msgTypes[84]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4693,7 +4858,7 @@ func (x *GetFragmentResponse) String() string {
 func (*GetFragmentResponse) ProtoMessage() {}
 
 func (x *GetFragmentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[81]
+	mi := &file_app_v1_app_proto_msgTypes[84]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4706,7 +4871,7 @@ func (x *GetFragmentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFragmentResponse.ProtoReflect.Descriptor instead.
 func (*GetFragmentResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{81}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *GetFragmentResponse) GetFragment() *Fragment {
@@ -4729,7 +4894,7 @@ type CreateFragmentRequest struct {
 func (x *CreateFragmentRequest) Reset() {
 	*x = CreateFragmentRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[82]
+		mi := &file_app_v1_app_proto_msgTypes[85]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4742,7 +4907,7 @@ func (x *CreateFragmentRequest) String() string {
 func (*CreateFragmentRequest) ProtoMessage() {}
 
 func (x *CreateFragmentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[82]
+	mi := &file_app_v1_app_proto_msgTypes[85]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4755,7 +4920,7 @@ func (x *CreateFragmentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateFragmentRequest.ProtoReflect.Descriptor instead.
 func (*CreateFragmentRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{82}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *CreateFragmentRequest) GetName() string {
@@ -4790,7 +4955,7 @@ type CreateFragmentResponse struct {
 func (x *CreateFragmentResponse) Reset() {
 	*x = CreateFragmentResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[83]
+		mi := &file_app_v1_app_proto_msgTypes[86]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4803,7 +4968,7 @@ func (x *CreateFragmentResponse) String() string {
 func (*CreateFragmentResponse) ProtoMessage() {}
 
 func (x *CreateFragmentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[83]
+	mi := &file_app_v1_app_proto_msgTypes[86]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4816,7 +4981,7 @@ func (x *CreateFragmentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateFragmentResponse.ProtoReflect.Descriptor instead.
 func (*CreateFragmentResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{83}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *CreateFragmentResponse) GetFragment() *Fragment {
@@ -4840,7 +5005,7 @@ type UpdateFragmentRequest struct {
 func (x *UpdateFragmentRequest) Reset() {
 	*x = UpdateFragmentRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[84]
+		mi := &file_app_v1_app_proto_msgTypes[87]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4853,7 +5018,7 @@ func (x *UpdateFragmentRequest) String() string {
 func (*UpdateFragmentRequest) ProtoMessage() {}
 
 func (x *UpdateFragmentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[84]
+	mi := &file_app_v1_app_proto_msgTypes[87]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4866,7 +5031,7 @@ func (x *UpdateFragmentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFragmentRequest.ProtoReflect.Descriptor instead.
 func (*UpdateFragmentRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{84}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *UpdateFragmentRequest) GetId() string {
@@ -4908,7 +5073,7 @@ type UpdateFragmentResponse struct {
 func (x *UpdateFragmentResponse) Reset() {
 	*x = UpdateFragmentResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[85]
+		mi := &file_app_v1_app_proto_msgTypes[88]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4921,7 +5086,7 @@ func (x *UpdateFragmentResponse) String() string {
 func (*UpdateFragmentResponse) ProtoMessage() {}
 
 func (x *UpdateFragmentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[85]
+	mi := &file_app_v1_app_proto_msgTypes[88]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4934,7 +5099,7 @@ func (x *UpdateFragmentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFragmentResponse.ProtoReflect.Descriptor instead.
 func (*UpdateFragmentResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{85}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *UpdateFragmentResponse) GetFragment() *Fragment {
@@ -4955,7 +5120,7 @@ type DeleteFragmentRequest struct {
 func (x *DeleteFragmentRequest) Reset() {
 	*x = DeleteFragmentRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[86]
+		mi := &file_app_v1_app_proto_msgTypes[89]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4968,7 +5133,7 @@ func (x *DeleteFragmentRequest) String() string {
 func (*DeleteFragmentRequest) ProtoMessage() {}
 
 func (x *DeleteFragmentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[86]
+	mi := &file_app_v1_app_proto_msgTypes[89]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4981,7 +5146,7 @@ func (x *DeleteFragmentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteFragmentRequest.ProtoReflect.Descriptor instead.
 func (*DeleteFragmentRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{86}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *DeleteFragmentRequest) GetId() string {
@@ -5000,7 +5165,7 @@ type DeleteFragmentResponse struct {
 func (x *DeleteFragmentResponse) Reset() {
 	*x = DeleteFragmentResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[87]
+		mi := &file_app_v1_app_proto_msgTypes[90]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5013,7 +5178,7 @@ func (x *DeleteFragmentResponse) String() string {
 func (*DeleteFragmentResponse) ProtoMessage() {}
 
 func (x *DeleteFragmentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[87]
+	mi := &file_app_v1_app_proto_msgTypes[90]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5026,7 +5191,7 @@ func (x *DeleteFragmentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteFragmentResponse.ProtoReflect.Descriptor instead.
 func (*DeleteFragmentResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{87}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{90}
 }
 
 type ListRobotsRequest struct {
@@ -5040,7 +5205,7 @@ type ListRobotsRequest struct {
 func (x *ListRobotsRequest) Reset() {
 	*x = ListRobotsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[88]
+		mi := &file_app_v1_app_proto_msgTypes[91]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5053,7 +5218,7 @@ func (x *ListRobotsRequest) String() string {
 func (*ListRobotsRequest) ProtoMessage() {}
 
 func (x *ListRobotsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[88]
+	mi := &file_app_v1_app_proto_msgTypes[91]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5066,7 +5231,7 @@ func (x *ListRobotsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRobotsRequest.ProtoReflect.Descriptor instead.
 func (*ListRobotsRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{88}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *ListRobotsRequest) GetLocationId() string {
@@ -5087,7 +5252,7 @@ type ListRobotsResponse struct {
 func (x *ListRobotsResponse) Reset() {
 	*x = ListRobotsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[89]
+		mi := &file_app_v1_app_proto_msgTypes[92]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5100,7 +5265,7 @@ func (x *ListRobotsResponse) String() string {
 func (*ListRobotsResponse) ProtoMessage() {}
 
 func (x *ListRobotsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[89]
+	mi := &file_app_v1_app_proto_msgTypes[92]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5113,7 +5278,7 @@ func (x *ListRobotsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRobotsResponse.ProtoReflect.Descriptor instead.
 func (*ListRobotsResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{89}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *ListRobotsResponse) GetRobots() []*Robot {
@@ -5135,7 +5300,7 @@ type NewRobotRequest struct {
 func (x *NewRobotRequest) Reset() {
 	*x = NewRobotRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[90]
+		mi := &file_app_v1_app_proto_msgTypes[93]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5148,7 +5313,7 @@ func (x *NewRobotRequest) String() string {
 func (*NewRobotRequest) ProtoMessage() {}
 
 func (x *NewRobotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[90]
+	mi := &file_app_v1_app_proto_msgTypes[93]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5161,7 +5326,7 @@ func (x *NewRobotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NewRobotRequest.ProtoReflect.Descriptor instead.
 func (*NewRobotRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{90}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *NewRobotRequest) GetName() string {
@@ -5189,7 +5354,7 @@ type NewRobotResponse struct {
 func (x *NewRobotResponse) Reset() {
 	*x = NewRobotResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[91]
+		mi := &file_app_v1_app_proto_msgTypes[94]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5202,7 +5367,7 @@ func (x *NewRobotResponse) String() string {
 func (*NewRobotResponse) ProtoMessage() {}
 
 func (x *NewRobotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[91]
+	mi := &file_app_v1_app_proto_msgTypes[94]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5215,7 +5380,7 @@ func (x *NewRobotResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NewRobotResponse.ProtoReflect.Descriptor instead.
 func (*NewRobotResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{91}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *NewRobotResponse) GetId() string {
@@ -5238,7 +5403,7 @@ type UpdateRobotRequest struct {
 func (x *UpdateRobotRequest) Reset() {
 	*x = UpdateRobotRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[92]
+		mi := &file_app_v1_app_proto_msgTypes[95]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5251,7 +5416,7 @@ func (x *UpdateRobotRequest) String() string {
 func (*UpdateRobotRequest) ProtoMessage() {}
 
 func (x *UpdateRobotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[92]
+	mi := &file_app_v1_app_proto_msgTypes[95]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5264,7 +5429,7 @@ func (x *UpdateRobotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRobotRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRobotRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{92}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{95}
 }
 
 func (x *UpdateRobotRequest) GetId() string {
@@ -5299,7 +5464,7 @@ type UpdateRobotResponse struct {
 func (x *UpdateRobotResponse) Reset() {
 	*x = UpdateRobotResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[93]
+		mi := &file_app_v1_app_proto_msgTypes[96]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5312,7 +5477,7 @@ func (x *UpdateRobotResponse) String() string {
 func (*UpdateRobotResponse) ProtoMessage() {}
 
 func (x *UpdateRobotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[93]
+	mi := &file_app_v1_app_proto_msgTypes[96]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5325,7 +5490,7 @@ func (x *UpdateRobotResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRobotResponse.ProtoReflect.Descriptor instead.
 func (*UpdateRobotResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{93}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{96}
 }
 
 func (x *UpdateRobotResponse) GetRobot() *Robot {
@@ -5346,7 +5511,7 @@ type DeleteRobotRequest struct {
 func (x *DeleteRobotRequest) Reset() {
 	*x = DeleteRobotRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[94]
+		mi := &file_app_v1_app_proto_msgTypes[97]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5359,7 +5524,7 @@ func (x *DeleteRobotRequest) String() string {
 func (*DeleteRobotRequest) ProtoMessage() {}
 
 func (x *DeleteRobotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[94]
+	mi := &file_app_v1_app_proto_msgTypes[97]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5372,7 +5537,7 @@ func (x *DeleteRobotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRobotRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRobotRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{94}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{97}
 }
 
 func (x *DeleteRobotRequest) GetId() string {
@@ -5391,7 +5556,7 @@ type DeleteRobotResponse struct {
 func (x *DeleteRobotResponse) Reset() {
 	*x = DeleteRobotResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[95]
+		mi := &file_app_v1_app_proto_msgTypes[98]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5404,7 +5569,7 @@ func (x *DeleteRobotResponse) String() string {
 func (*DeleteRobotResponse) ProtoMessage() {}
 
 func (x *DeleteRobotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[95]
+	mi := &file_app_v1_app_proto_msgTypes[98]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5417,7 +5582,7 @@ func (x *DeleteRobotResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRobotResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRobotResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{95}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{98}
 }
 
 type MarkPartAsMainRequest struct {
@@ -5431,7 +5596,7 @@ type MarkPartAsMainRequest struct {
 func (x *MarkPartAsMainRequest) Reset() {
 	*x = MarkPartAsMainRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[96]
+		mi := &file_app_v1_app_proto_msgTypes[99]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5444,7 +5609,7 @@ func (x *MarkPartAsMainRequest) String() string {
 func (*MarkPartAsMainRequest) ProtoMessage() {}
 
 func (x *MarkPartAsMainRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[96]
+	mi := &file_app_v1_app_proto_msgTypes[99]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5457,7 +5622,7 @@ func (x *MarkPartAsMainRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkPartAsMainRequest.ProtoReflect.Descriptor instead.
 func (*MarkPartAsMainRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{96}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{99}
 }
 
 func (x *MarkPartAsMainRequest) GetPartId() string {
@@ -5476,7 +5641,7 @@ type MarkPartAsMainResponse struct {
 func (x *MarkPartAsMainResponse) Reset() {
 	*x = MarkPartAsMainResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[97]
+		mi := &file_app_v1_app_proto_msgTypes[100]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5489,7 +5654,7 @@ func (x *MarkPartAsMainResponse) String() string {
 func (*MarkPartAsMainResponse) ProtoMessage() {}
 
 func (x *MarkPartAsMainResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[97]
+	mi := &file_app_v1_app_proto_msgTypes[100]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5502,7 +5667,7 @@ func (x *MarkPartAsMainResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkPartAsMainResponse.ProtoReflect.Descriptor instead.
 func (*MarkPartAsMainResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{97}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{100}
 }
 
 type MarkPartForRestartRequest struct {
@@ -5516,7 +5681,7 @@ type MarkPartForRestartRequest struct {
 func (x *MarkPartForRestartRequest) Reset() {
 	*x = MarkPartForRestartRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[98]
+		mi := &file_app_v1_app_proto_msgTypes[101]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5529,7 +5694,7 @@ func (x *MarkPartForRestartRequest) String() string {
 func (*MarkPartForRestartRequest) ProtoMessage() {}
 
 func (x *MarkPartForRestartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[98]
+	mi := &file_app_v1_app_proto_msgTypes[101]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5542,7 +5707,7 @@ func (x *MarkPartForRestartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkPartForRestartRequest.ProtoReflect.Descriptor instead.
 func (*MarkPartForRestartRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{98}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{101}
 }
 
 func (x *MarkPartForRestartRequest) GetPartId() string {
@@ -5561,7 +5726,7 @@ type MarkPartForRestartResponse struct {
 func (x *MarkPartForRestartResponse) Reset() {
 	*x = MarkPartForRestartResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[99]
+		mi := &file_app_v1_app_proto_msgTypes[102]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5574,7 +5739,7 @@ func (x *MarkPartForRestartResponse) String() string {
 func (*MarkPartForRestartResponse) ProtoMessage() {}
 
 func (x *MarkPartForRestartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[99]
+	mi := &file_app_v1_app_proto_msgTypes[102]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5587,7 +5752,7 @@ func (x *MarkPartForRestartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarkPartForRestartResponse.ProtoReflect.Descriptor instead.
 func (*MarkPartForRestartResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{99}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{102}
 }
 
 type CreateRobotPartSecretRequest struct {
@@ -5602,7 +5767,7 @@ type CreateRobotPartSecretRequest struct {
 func (x *CreateRobotPartSecretRequest) Reset() {
 	*x = CreateRobotPartSecretRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[100]
+		mi := &file_app_v1_app_proto_msgTypes[103]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5615,7 +5780,7 @@ func (x *CreateRobotPartSecretRequest) String() string {
 func (*CreateRobotPartSecretRequest) ProtoMessage() {}
 
 func (x *CreateRobotPartSecretRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[100]
+	mi := &file_app_v1_app_proto_msgTypes[103]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5628,7 +5793,7 @@ func (x *CreateRobotPartSecretRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRobotPartSecretRequest.ProtoReflect.Descriptor instead.
 func (*CreateRobotPartSecretRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{100}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{103}
 }
 
 func (x *CreateRobotPartSecretRequest) GetPartId() string {
@@ -5650,7 +5815,7 @@ type CreateRobotPartSecretResponse struct {
 func (x *CreateRobotPartSecretResponse) Reset() {
 	*x = CreateRobotPartSecretResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[101]
+		mi := &file_app_v1_app_proto_msgTypes[104]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5663,7 +5828,7 @@ func (x *CreateRobotPartSecretResponse) String() string {
 func (*CreateRobotPartSecretResponse) ProtoMessage() {}
 
 func (x *CreateRobotPartSecretResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[101]
+	mi := &file_app_v1_app_proto_msgTypes[104]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5676,7 +5841,7 @@ func (x *CreateRobotPartSecretResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRobotPartSecretResponse.ProtoReflect.Descriptor instead.
 func (*CreateRobotPartSecretResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{101}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{104}
 }
 
 func (x *CreateRobotPartSecretResponse) GetPart() *RobotPart {
@@ -5698,7 +5863,7 @@ type DeleteRobotPartSecretRequest struct {
 func (x *DeleteRobotPartSecretRequest) Reset() {
 	*x = DeleteRobotPartSecretRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[102]
+		mi := &file_app_v1_app_proto_msgTypes[105]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5711,7 +5876,7 @@ func (x *DeleteRobotPartSecretRequest) String() string {
 func (*DeleteRobotPartSecretRequest) ProtoMessage() {}
 
 func (x *DeleteRobotPartSecretRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[102]
+	mi := &file_app_v1_app_proto_msgTypes[105]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5724,7 +5889,7 @@ func (x *DeleteRobotPartSecretRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRobotPartSecretRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRobotPartSecretRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{102}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{105}
 }
 
 func (x *DeleteRobotPartSecretRequest) GetPartId() string {
@@ -5750,7 +5915,7 @@ type DeleteRobotPartSecretResponse struct {
 func (x *DeleteRobotPartSecretResponse) Reset() {
 	*x = DeleteRobotPartSecretResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[103]
+		mi := &file_app_v1_app_proto_msgTypes[106]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5763,7 +5928,7 @@ func (x *DeleteRobotPartSecretResponse) String() string {
 func (*DeleteRobotPartSecretResponse) ProtoMessage() {}
 
 func (x *DeleteRobotPartSecretResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[103]
+	mi := &file_app_v1_app_proto_msgTypes[106]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5776,7 +5941,7 @@ func (x *DeleteRobotPartSecretResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRobotPartSecretResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRobotPartSecretResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{103}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{106}
 }
 
 type Authorization struct {
@@ -5796,7 +5961,7 @@ type Authorization struct {
 func (x *Authorization) Reset() {
 	*x = Authorization{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[104]
+		mi := &file_app_v1_app_proto_msgTypes[107]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5809,7 +5974,7 @@ func (x *Authorization) String() string {
 func (*Authorization) ProtoMessage() {}
 
 func (x *Authorization) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[104]
+	mi := &file_app_v1_app_proto_msgTypes[107]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5822,7 +5987,7 @@ func (x *Authorization) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Authorization.ProtoReflect.Descriptor instead.
 func (*Authorization) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{104}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{107}
 }
 
 func (x *Authorization) GetAuthorizationType() string {
@@ -5885,7 +6050,7 @@ type AddRoleRequest struct {
 func (x *AddRoleRequest) Reset() {
 	*x = AddRoleRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[105]
+		mi := &file_app_v1_app_proto_msgTypes[108]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5898,7 +6063,7 @@ func (x *AddRoleRequest) String() string {
 func (*AddRoleRequest) ProtoMessage() {}
 
 func (x *AddRoleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[105]
+	mi := &file_app_v1_app_proto_msgTypes[108]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5911,7 +6076,7 @@ func (x *AddRoleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddRoleRequest.ProtoReflect.Descriptor instead.
 func (*AddRoleRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{105}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{108}
 }
 
 func (x *AddRoleRequest) GetAuthorization() *Authorization {
@@ -5930,7 +6095,7 @@ type AddRoleResponse struct {
 func (x *AddRoleResponse) Reset() {
 	*x = AddRoleResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[106]
+		mi := &file_app_v1_app_proto_msgTypes[109]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5943,7 +6108,7 @@ func (x *AddRoleResponse) String() string {
 func (*AddRoleResponse) ProtoMessage() {}
 
 func (x *AddRoleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[106]
+	mi := &file_app_v1_app_proto_msgTypes[109]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5956,7 +6121,7 @@ func (x *AddRoleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddRoleResponse.ProtoReflect.Descriptor instead.
 func (*AddRoleResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{106}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{109}
 }
 
 type RemoveRoleRequest struct {
@@ -5970,7 +6135,7 @@ type RemoveRoleRequest struct {
 func (x *RemoveRoleRequest) Reset() {
 	*x = RemoveRoleRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[107]
+		mi := &file_app_v1_app_proto_msgTypes[110]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5983,7 +6148,7 @@ func (x *RemoveRoleRequest) String() string {
 func (*RemoveRoleRequest) ProtoMessage() {}
 
 func (x *RemoveRoleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[107]
+	mi := &file_app_v1_app_proto_msgTypes[110]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5996,7 +6161,7 @@ func (x *RemoveRoleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveRoleRequest.ProtoReflect.Descriptor instead.
 func (*RemoveRoleRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{107}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{110}
 }
 
 func (x *RemoveRoleRequest) GetAuthorization() *Authorization {
@@ -6015,7 +6180,7 @@ type RemoveRoleResponse struct {
 func (x *RemoveRoleResponse) Reset() {
 	*x = RemoveRoleResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[108]
+		mi := &file_app_v1_app_proto_msgTypes[111]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -6028,7 +6193,7 @@ func (x *RemoveRoleResponse) String() string {
 func (*RemoveRoleResponse) ProtoMessage() {}
 
 func (x *RemoveRoleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[108]
+	mi := &file_app_v1_app_proto_msgTypes[111]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6042,208 +6207,6 @@ func (x *RemoveRoleResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use RemoveRoleResponse.ProtoReflect.Descriptor instead.
 func (*RemoveRoleResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{108}
-}
-
-type AddRoleToAPIKeyRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Authorization *Authorization `protobuf:"bytes,1,opt,name=authorization,proto3" json:"authorization,omitempty"`
-	Key           string         `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
-	Id            string         `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (x *AddRoleToAPIKeyRequest) Reset() {
-	*x = AddRoleToAPIKeyRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[109]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *AddRoleToAPIKeyRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddRoleToAPIKeyRequest) ProtoMessage() {}
-
-func (x *AddRoleToAPIKeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[109]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddRoleToAPIKeyRequest.ProtoReflect.Descriptor instead.
-func (*AddRoleToAPIKeyRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{109}
-}
-
-func (x *AddRoleToAPIKeyRequest) GetAuthorization() *Authorization {
-	if x != nil {
-		return x.Authorization
-	}
-	return nil
-}
-
-func (x *AddRoleToAPIKeyRequest) GetKey() string {
-	if x != nil {
-		return x.Key
-	}
-	return ""
-}
-
-func (x *AddRoleToAPIKeyRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type AddRoleToAPIKeyResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *AddRoleToAPIKeyResponse) Reset() {
-	*x = AddRoleToAPIKeyResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[110]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *AddRoleToAPIKeyResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddRoleToAPIKeyResponse) ProtoMessage() {}
-
-func (x *AddRoleToAPIKeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[110]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddRoleToAPIKeyResponse.ProtoReflect.Descriptor instead.
-func (*AddRoleToAPIKeyResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{110}
-}
-
-type RemoveRoleFromAPIKeyRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Authorization *Authorization `protobuf:"bytes,1,opt,name=authorization,proto3" json:"authorization,omitempty"`
-	Key           string         `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
-	Id            string         `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (x *RemoveRoleFromAPIKeyRequest) Reset() {
-	*x = RemoveRoleFromAPIKeyRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[111]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *RemoveRoleFromAPIKeyRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RemoveRoleFromAPIKeyRequest) ProtoMessage() {}
-
-func (x *RemoveRoleFromAPIKeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[111]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RemoveRoleFromAPIKeyRequest.ProtoReflect.Descriptor instead.
-func (*RemoveRoleFromAPIKeyRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{111}
-}
-
-func (x *RemoveRoleFromAPIKeyRequest) GetAuthorization() *Authorization {
-	if x != nil {
-		return x.Authorization
-	}
-	return nil
-}
-
-func (x *RemoveRoleFromAPIKeyRequest) GetKey() string {
-	if x != nil {
-		return x.Key
-	}
-	return ""
-}
-
-func (x *RemoveRoleFromAPIKeyRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type RemoveRoleFromAPIKeyResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *RemoveRoleFromAPIKeyResponse) Reset() {
-	*x = RemoveRoleFromAPIKeyResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_app_proto_msgTypes[112]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *RemoveRoleFromAPIKeyResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RemoveRoleFromAPIKeyResponse) ProtoMessage() {}
-
-func (x *RemoveRoleFromAPIKeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[112]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RemoveRoleFromAPIKeyResponse.ProtoReflect.Descriptor instead.
-func (*RemoveRoleFromAPIKeyResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{112}
 }
 
 type ChangeRoleRequest struct {
@@ -6661,7 +6624,7 @@ type CreateModuleResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The id of the module containing the namespace and name
+	// The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)
 	ModuleId string `protobuf:"bytes,1,opt,name=module_id,json=moduleId,proto3" json:"module_id,omitempty"`
 	// The detail page of the module
 	Url string `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
@@ -6718,10 +6681,8 @@ type UpdateModuleRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The id of the module being updated, containing module name or namespace and module name
+	// The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)
 	ModuleId string `protobuf:"bytes,1,opt,name=module_id,json=moduleId,proto3" json:"module_id,omitempty"`
-	// The organization of the module being updated, required if no namespace exists in the module_id
-	OrganizationId *string `protobuf:"bytes,7,opt,name=organization_id,json=organizationId,proto3,oneof" json:"organization_id,omitempty"`
 	// The visibility that should be set for the module
 	Visibility Visibility `protobuf:"varint,2,opt,name=visibility,proto3,enum=viam.app.v1.Visibility" json:"visibility,omitempty"`
 	// The url to reference for documentation, code, etc.
@@ -6769,13 +6730,6 @@ func (*UpdateModuleRequest) Descriptor() ([]byte, []int) {
 func (x *UpdateModuleRequest) GetModuleId() string {
 	if x != nil {
 		return x.ModuleId
-	}
-	return ""
-}
-
-func (x *UpdateModuleRequest) GetOrganizationId() string {
-	if x != nil && x.OrganizationId != nil {
-		return *x.OrganizationId
 	}
 	return ""
 }
@@ -6925,10 +6879,8 @@ type ModuleFileInfo struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The id of the module being uploaded, containing module name or namespace and module name
+	// The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)
 	ModuleId string `protobuf:"bytes,1,opt,name=module_id,json=moduleId,proto3" json:"module_id,omitempty"`
-	// The organization of the module being updated, required if no namespace exists in the module_id
-	OrganizationId *string `protobuf:"bytes,4,opt,name=organization_id,json=organizationId,proto3,oneof" json:"organization_id,omitempty"`
 	// The semver string that represents the new major/minor/patch version of the module
 	Version string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
 	// The platform that the file is built to run on
@@ -6970,13 +6922,6 @@ func (*ModuleFileInfo) Descriptor() ([]byte, []int) {
 func (x *ModuleFileInfo) GetModuleId() string {
 	if x != nil {
 		return x.ModuleId
-	}
-	return ""
-}
-
-func (x *ModuleFileInfo) GetOrganizationId() string {
-	if x != nil && x.OrganizationId != nil {
-		return *x.OrganizationId
 	}
 	return ""
 }
@@ -7131,10 +7076,8 @@ type GetModuleRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The id of the module being retrieved, containing module name or namespace and module name
+	// The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)
 	ModuleId string `protobuf:"bytes,1,opt,name=module_id,json=moduleId,proto3" json:"module_id,omitempty"`
-	// The organization of the module being updated, required if no namespace exists in the module_id
-	OrganizationId *string `protobuf:"bytes,2,opt,name=organization_id,json=organizationId,proto3,oneof" json:"organization_id,omitempty"`
 }
 
 func (x *GetModuleRequest) Reset() {
@@ -7172,13 +7115,6 @@ func (*GetModuleRequest) Descriptor() ([]byte, []int) {
 func (x *GetModuleRequest) GetModuleId() string {
 	if x != nil {
 		return x.ModuleId
-	}
-	return ""
-}
-
-func (x *GetModuleRequest) GetOrganizationId() string {
-	if x != nil && x.OrganizationId != nil {
-		return *x.OrganizationId
 	}
 	return ""
 }
@@ -7236,7 +7172,7 @@ type Module struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The id of the module, containing module name or namespace and module name
+	// The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)
 	ModuleId string `protobuf:"bytes,1,opt,name=module_id,json=moduleId,proto3" json:"module_id,omitempty"`
 	// The name of the module
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
@@ -8538,69 +8474,99 @@ var file_app_v1_app_proto_rawDesc = []byte{
 	0x74, 0x49, 0x64, 0x22, 0x31, 0x0a, 0x16, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x6f, 0x62,
 	0x6f, 0x74, 0x50, 0x61, 0x72, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a,
 	0x07, 0x70, 0x61, 0x72, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
-	0x70, 0x61, 0x72, 0x74, 0x49, 0x64, 0x22, 0x19, 0x0a, 0x17, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
-	0x52, 0x6f, 0x62, 0x6f, 0x74, 0x50, 0x61, 0x72, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0xe8, 0x04, 0x0a, 0x08, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x33,
-	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x23, 0x9a, 0x84, 0x9e, 0x03,
-	0x1e, 0x62, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x5f, 0x69, 0x64, 0x22, 0x20, 0x6a, 0x73, 0x6f, 0x6e,
-	0x3a, 0x22, 0x69, 0x64, 0x2c, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x52,
-	0x02, 0x69, 0x64, 0x12, 0x30, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x42, 0x1c, 0x9a, 0x84, 0x9e, 0x03, 0x17, 0x62, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x6e, 0x61,
-	0x6d, 0x65, 0x22, 0x20, 0x6a, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x52,
-	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x59, 0x0a, 0x08, 0x66, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e,
-	0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74,
-	0x42, 0x24, 0x9a, 0x84, 0x9e, 0x03, 0x1f, 0x62, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x66, 0x72, 0x61,
-	0x67, 0x6d, 0x65, 0x6e, 0x74, 0x22, 0x20, 0x6a, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x66, 0x72, 0x61,
-	0x67, 0x6d, 0x65, 0x6e, 0x74, 0x22, 0x52, 0x08, 0x66, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74,
-	0x12, 0x5a, 0x0a, 0x12, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x5f, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x42, 0x2b, 0x9a, 0x84,
-	0x9e, 0x03, 0x26, 0x62, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x22, 0x20, 0x6a, 0x73, 0x6f,
-	0x6e, 0x3a, 0x22, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x22, 0x52, 0x11, 0x6f, 0x72, 0x67, 0x61, 0x6e,
-	0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x12, 0x38, 0x0a, 0x06,
-	0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x18, 0x05, 0x20, 0x01, 0x28, 0x08, 0x42, 0x20, 0x9a, 0x84,
-	0x9e, 0x03, 0x1b, 0x62, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x22,
-	0x20, 0x6a, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x22, 0x52, 0x06,
-	0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x12, 0x51, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x64, 0x5f, 0x6f, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f,
-	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d,
-	0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x16, 0x9a, 0x84, 0x9e, 0x03, 0x11, 0x62, 0x73, 0x6f,
-	0x6e, 0x3a, 0x22, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x6f, 0x6e, 0x22, 0x52, 0x09,
-	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x4f, 0x6e, 0x12, 0x2b, 0x0a, 0x11, 0x6f, 0x72, 0x67,
-	0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x07,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x10, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x28, 0x0a, 0x10, 0x72, 0x6f, 0x62, 0x6f, 0x74, 0x5f,
-	0x70, 0x61, 0x72, 0x74, 0x5f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x09, 0x20, 0x01, 0x28, 0x05,
-	0x52, 0x0e, 0x72, 0x6f, 0x62, 0x6f, 0x74, 0x50, 0x61, 0x72, 0x74, 0x43, 0x6f, 0x75, 0x6e, 0x74,
-	0x12, 0x2d, 0x0a, 0x12, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x5f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x05, 0x52, 0x11, 0x6f, 0x72,
-	0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12,
-	0x2b, 0x0a, 0x12, 0x6f, 0x6e, 0x6c, 0x79, 0x5f, 0x75, 0x73, 0x65, 0x64, 0x5f, 0x62, 0x79, 0x5f,
-	0x6f, 0x77, 0x6e, 0x65, 0x72, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0f, 0x6f, 0x6e, 0x6c,
-	0x79, 0x55, 0x73, 0x65, 0x64, 0x42, 0x79, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x22, 0x60, 0x0a, 0x14,
-	0x4c, 0x69, 0x73, 0x74, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x12, 0x27, 0x0a, 0x0f, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x6f,
-	0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x1f, 0x0a,
-	0x0b, 0x73, 0x68, 0x6f, 0x77, 0x5f, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x08, 0x52, 0x0a, 0x73, 0x68, 0x6f, 0x77, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x22, 0x4c,
-	0x0a, 0x15, 0x4c, 0x69, 0x73, 0x74, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x33, 0x0a, 0x09, 0x66, 0x72, 0x61, 0x67, 0x6d,
-	0x65, 0x6e, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x76, 0x69, 0x61,
-	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e,
-	0x74, 0x52, 0x09, 0x66, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x22, 0x24, 0x0a, 0x12,
-	0x47, 0x65, 0x74, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02,
-	0x69, 0x64, 0x22, 0x48, 0x0a, 0x13, 0x47, 0x65, 0x74, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e,
+	0x70, 0x61, 0x72, 0x74, 0x49, 0x64, 0x22, 0x33, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x62,
+	0x6f, 0x74, 0x41, 0x50, 0x49, 0x4b, 0x65, 0x79, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x19, 0x0a, 0x08, 0x72, 0x6f, 0x62, 0x6f, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x07, 0x72, 0x6f, 0x62, 0x6f, 0x74, 0x49, 0x64, 0x22, 0x79, 0x0a, 0x06, 0x41,
+	0x50, 0x49, 0x4b, 0x65, 0x79, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x39, 0x0a, 0x0a, 0x63,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x64, 0x4f, 0x6e, 0x22, 0x49, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x62,
+	0x6f, 0x74, 0x41, 0x50, 0x49, 0x4b, 0x65, 0x79, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x2e, 0x0a, 0x08, 0x61, 0x70, 0x69, 0x5f, 0x6b, 0x65, 0x79, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76,
+	0x31, 0x2e, 0x41, 0x50, 0x49, 0x4b, 0x65, 0x79, 0x52, 0x07, 0x61, 0x70, 0x69, 0x4b, 0x65, 0x79,
+	0x73, 0x22, 0x19, 0x0a, 0x17, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x6f, 0x62, 0x6f, 0x74,
+	0x50, 0x61, 0x72, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xe8, 0x04, 0x0a,
+	0x08, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x33, 0x0a, 0x02, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x23, 0x9a, 0x84, 0x9e, 0x03, 0x1e, 0x62, 0x73, 0x6f, 0x6e,
+	0x3a, 0x22, 0x5f, 0x69, 0x64, 0x22, 0x20, 0x6a, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x69, 0x64, 0x2c,
+	0x6f, 0x6d, 0x69, 0x74, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x52, 0x02, 0x69, 0x64, 0x12, 0x30,
+	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x1c, 0x9a, 0x84,
+	0x9e, 0x03, 0x17, 0x62, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x20, 0x6a,
+	0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x12, 0x59, 0x0a, 0x08, 0x66, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x42, 0x24, 0x9a, 0x84, 0x9e,
+	0x03, 0x1f, 0x62, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x66, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74,
+	0x22, 0x20, 0x6a, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x66, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74,
+	0x22, 0x52, 0x08, 0x66, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x5a, 0x0a, 0x12, 0x6f,
+	0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x6f, 0x77, 0x6e, 0x65,
+	0x72, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x42, 0x2b, 0x9a, 0x84, 0x9e, 0x03, 0x26, 0x62, 0x73,
+	0x6f, 0x6e, 0x3a, 0x22, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x5f, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x22, 0x20, 0x6a, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x6f, 0x77,
+	0x6e, 0x65, 0x72, 0x22, 0x52, 0x11, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x12, 0x38, 0x0a, 0x06, 0x70, 0x75, 0x62, 0x6c, 0x69,
+	0x63, 0x18, 0x05, 0x20, 0x01, 0x28, 0x08, 0x42, 0x20, 0x9a, 0x84, 0x9e, 0x03, 0x1b, 0x62, 0x73,
+	0x6f, 0x6e, 0x3a, 0x22, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x22, 0x20, 0x6a, 0x73, 0x6f, 0x6e,
+	0x3a, 0x22, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x22, 0x52, 0x06, 0x70, 0x75, 0x62, 0x6c, 0x69,
+	0x63, 0x12, 0x51, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x6f, 0x6e, 0x18,
+	0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
+	0x70, 0x42, 0x16, 0x9a, 0x84, 0x9e, 0x03, 0x11, 0x62, 0x73, 0x6f, 0x6e, 0x3a, 0x22, 0x63, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x6f, 0x6e, 0x22, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x64, 0x4f, 0x6e, 0x12, 0x2b, 0x0a, 0x11, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x10, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4e, 0x61, 0x6d,
+	0x65, 0x12, 0x28, 0x0a, 0x10, 0x72, 0x6f, 0x62, 0x6f, 0x74, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x5f,
+	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x09, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0e, 0x72, 0x6f, 0x62,
+	0x6f, 0x74, 0x50, 0x61, 0x72, 0x74, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x2d, 0x0a, 0x12, 0x6f,
+	0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x63, 0x6f, 0x75, 0x6e,
+	0x74, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x05, 0x52, 0x11, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x2b, 0x0a, 0x12, 0x6f, 0x6e,
+	0x6c, 0x79, 0x5f, 0x75, 0x73, 0x65, 0x64, 0x5f, 0x62, 0x79, 0x5f, 0x6f, 0x77, 0x6e, 0x65, 0x72,
+	0x18, 0x0b, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0f, 0x6f, 0x6e, 0x6c, 0x79, 0x55, 0x73, 0x65, 0x64,
+	0x42, 0x79, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x22, 0x60, 0x0a, 0x14, 0x4c, 0x69, 0x73, 0x74, 0x46,
+	0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x27, 0x0a, 0x0f, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69,
+	0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x68, 0x6f, 0x77,
+	0x5f, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0a, 0x73,
+	0x68, 0x6f, 0x77, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x22, 0x4c, 0x0a, 0x15, 0x4c, 0x69, 0x73,
+	0x74, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x33, 0x0a, 0x09, 0x66, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x18,
+	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
+	0x2e, 0x76, 0x31, 0x2e, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x09, 0x66, 0x72,
+	0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x22, 0x24, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x46, 0x72,
+	0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x48, 0x0a,
+	0x13, 0x47, 0x65, 0x74, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x31, 0x0a, 0x08, 0x66, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
+	0x70, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x08, 0x66,
+	0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x22, 0x85, 0x01, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x2f, 0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x06,
+	0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x27, 0x0a, 0x0f, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69,
+	0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0e, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x22,
+	0x4b, 0x0a, 0x16, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e,
 	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x31, 0x0a, 0x08, 0x66, 0x72, 0x61,
 	0x67, 0x6d, 0x65, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x76, 0x69,
 	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65,
-	0x6e, 0x74, 0x52, 0x08, 0x66, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x22, 0x85, 0x01, 0x0a,
-	0x15, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01,
+	0x6e, 0x74, 0x52, 0x08, 0x66, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x22, 0x94, 0x01, 0x0a,
+	0x15, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02,
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x2f, 0x0a, 0x06, 0x63, 0x6f,
-	0x6e, 0x66, 0x69, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f,
+	0x6e, 0x66, 0x69, 0x67, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72,
 	0x75, 0x63, 0x74, 0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x27, 0x0a, 0x0f, 0x6f,
 	0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x03,
@@ -9400,74 +9366,73 @@ var file_app_v1_app_proto_goTypes = []interface{}{
 	(*NewRobotPartRequest)(nil),                            // 75: viam.app.v1.NewRobotPartRequest
 	(*NewRobotPartResponse)(nil),                           // 76: viam.app.v1.NewRobotPartResponse
 	(*DeleteRobotPartRequest)(nil),                         // 77: viam.app.v1.DeleteRobotPartRequest
-	(*DeleteRobotPartResponse)(nil),                        // 78: viam.app.v1.DeleteRobotPartResponse
-	(*Fragment)(nil),                                       // 79: viam.app.v1.Fragment
-	(*ListFragmentsRequest)(nil),                           // 80: viam.app.v1.ListFragmentsRequest
-	(*ListFragmentsResponse)(nil),                          // 81: viam.app.v1.ListFragmentsResponse
-	(*GetFragmentRequest)(nil),                             // 82: viam.app.v1.GetFragmentRequest
-	(*GetFragmentResponse)(nil),                            // 83: viam.app.v1.GetFragmentResponse
-	(*CreateFragmentRequest)(nil),                          // 84: viam.app.v1.CreateFragmentRequest
-	(*CreateFragmentResponse)(nil),                         // 85: viam.app.v1.CreateFragmentResponse
-	(*UpdateFragmentRequest)(nil),                          // 86: viam.app.v1.UpdateFragmentRequest
-	(*UpdateFragmentResponse)(nil),                         // 87: viam.app.v1.UpdateFragmentResponse
-	(*DeleteFragmentRequest)(nil),                          // 88: viam.app.v1.DeleteFragmentRequest
-	(*DeleteFragmentResponse)(nil),                         // 89: viam.app.v1.DeleteFragmentResponse
-	(*ListRobotsRequest)(nil),                              // 90: viam.app.v1.ListRobotsRequest
-	(*ListRobotsResponse)(nil),                             // 91: viam.app.v1.ListRobotsResponse
-	(*NewRobotRequest)(nil),                                // 92: viam.app.v1.NewRobotRequest
-	(*NewRobotResponse)(nil),                               // 93: viam.app.v1.NewRobotResponse
-	(*UpdateRobotRequest)(nil),                             // 94: viam.app.v1.UpdateRobotRequest
-	(*UpdateRobotResponse)(nil),                            // 95: viam.app.v1.UpdateRobotResponse
-	(*DeleteRobotRequest)(nil),                             // 96: viam.app.v1.DeleteRobotRequest
-	(*DeleteRobotResponse)(nil),                            // 97: viam.app.v1.DeleteRobotResponse
-	(*MarkPartAsMainRequest)(nil),                          // 98: viam.app.v1.MarkPartAsMainRequest
-	(*MarkPartAsMainResponse)(nil),                         // 99: viam.app.v1.MarkPartAsMainResponse
-	(*MarkPartForRestartRequest)(nil),                      // 100: viam.app.v1.MarkPartForRestartRequest
-	(*MarkPartForRestartResponse)(nil),                     // 101: viam.app.v1.MarkPartForRestartResponse
-	(*CreateRobotPartSecretRequest)(nil),                   // 102: viam.app.v1.CreateRobotPartSecretRequest
-	(*CreateRobotPartSecretResponse)(nil),                  // 103: viam.app.v1.CreateRobotPartSecretResponse
-	(*DeleteRobotPartSecretRequest)(nil),                   // 104: viam.app.v1.DeleteRobotPartSecretRequest
-	(*DeleteRobotPartSecretResponse)(nil),                  // 105: viam.app.v1.DeleteRobotPartSecretResponse
-	(*Authorization)(nil),                                  // 106: viam.app.v1.Authorization
-	(*AddRoleRequest)(nil),                                 // 107: viam.app.v1.AddRoleRequest
-	(*AddRoleResponse)(nil),                                // 108: viam.app.v1.AddRoleResponse
-	(*RemoveRoleRequest)(nil),                              // 109: viam.app.v1.RemoveRoleRequest
-	(*RemoveRoleResponse)(nil),                             // 110: viam.app.v1.RemoveRoleResponse
-	(*AddRoleToAPIKeyRequest)(nil),                         // 111: viam.app.v1.AddRoleToAPIKeyRequest
-	(*AddRoleToAPIKeyResponse)(nil),                        // 112: viam.app.v1.AddRoleToAPIKeyResponse
-	(*RemoveRoleFromAPIKeyRequest)(nil),                    // 113: viam.app.v1.RemoveRoleFromAPIKeyRequest
-	(*RemoveRoleFromAPIKeyResponse)(nil),                   // 114: viam.app.v1.RemoveRoleFromAPIKeyResponse
-	(*ChangeRoleRequest)(nil),                              // 115: viam.app.v1.ChangeRoleRequest
-	(*ChangeRoleResponse)(nil),                             // 116: viam.app.v1.ChangeRoleResponse
-	(*ListAuthorizationsRequest)(nil),                      // 117: viam.app.v1.ListAuthorizationsRequest
-	(*ListAuthorizationsResponse)(nil),                     // 118: viam.app.v1.ListAuthorizationsResponse
-	(*CheckPermissionsRequest)(nil),                        // 119: viam.app.v1.CheckPermissionsRequest
-	(*AuthorizedPermissions)(nil),                          // 120: viam.app.v1.AuthorizedPermissions
-	(*CheckPermissionsResponse)(nil),                       // 121: viam.app.v1.CheckPermissionsResponse
-	(*CreateModuleRequest)(nil),                            // 122: viam.app.v1.CreateModuleRequest
-	(*CreateModuleResponse)(nil),                           // 123: viam.app.v1.CreateModuleResponse
-	(*UpdateModuleRequest)(nil),                            // 124: viam.app.v1.UpdateModuleRequest
-	(*UpdateModuleResponse)(nil),                           // 125: viam.app.v1.UpdateModuleResponse
-	(*Model)(nil),                                          // 126: viam.app.v1.Model
-	(*ModuleFileInfo)(nil),                                 // 127: viam.app.v1.ModuleFileInfo
-	(*UploadModuleFileRequest)(nil),                        // 128: viam.app.v1.UploadModuleFileRequest
-	(*UploadModuleFileResponse)(nil),                       // 129: viam.app.v1.UploadModuleFileResponse
-	(*GetModuleRequest)(nil),                               // 130: viam.app.v1.GetModuleRequest
-	(*GetModuleResponse)(nil),                              // 131: viam.app.v1.GetModuleResponse
-	(*Module)(nil),                                         // 132: viam.app.v1.Module
-	(*VersionHistory)(nil),                                 // 133: viam.app.v1.VersionHistory
-	(*Uploads)(nil),                                        // 134: viam.app.v1.Uploads
-	(*ListModulesRequest)(nil),                             // 135: viam.app.v1.ListModulesRequest
-	(*ListModulesResponse)(nil),                            // 136: viam.app.v1.ListModulesResponse
-	(*GetUserIDByEmailRequest)(nil),                        // 137: viam.app.v1.GetUserIDByEmailRequest
-	(*GetUserIDByEmailResponse)(nil),                       // 138: viam.app.v1.GetUserIDByEmailResponse
-	(*ListOrganizationsByUserRequest)(nil),                 // 139: viam.app.v1.ListOrganizationsByUserRequest
-	(*OrgDetails)(nil),                                     // 140: viam.app.v1.OrgDetails
-	(*ListOrganizationsByUserResponse)(nil),                // 141: viam.app.v1.ListOrganizationsByUserResponse
-	(*CreateKeyRequest)(nil),                               // 142: viam.app.v1.CreateKeyRequest
-	(*CreateKeyResponse)(nil),                              // 143: viam.app.v1.CreateKeyResponse
-	(*timestamppb.Timestamp)(nil),                          // 144: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                                // 145: google.protobuf.Struct
+	(*GetRobotAPIKeysRequest)(nil),                         // 78: viam.app.v1.GetRobotAPIKeysRequest
+	(*APIKey)(nil),                                         // 79: viam.app.v1.APIKey
+	(*GetRobotAPIKeysResponse)(nil),                        // 80: viam.app.v1.GetRobotAPIKeysResponse
+	(*DeleteRobotPartResponse)(nil),                        // 81: viam.app.v1.DeleteRobotPartResponse
+	(*Fragment)(nil),                                       // 82: viam.app.v1.Fragment
+	(*ListFragmentsRequest)(nil),                           // 83: viam.app.v1.ListFragmentsRequest
+	(*ListFragmentsResponse)(nil),                          // 84: viam.app.v1.ListFragmentsResponse
+	(*GetFragmentRequest)(nil),                             // 85: viam.app.v1.GetFragmentRequest
+	(*GetFragmentResponse)(nil),                            // 86: viam.app.v1.GetFragmentResponse
+	(*CreateFragmentRequest)(nil),                          // 87: viam.app.v1.CreateFragmentRequest
+	(*CreateFragmentResponse)(nil),                         // 88: viam.app.v1.CreateFragmentResponse
+	(*UpdateFragmentRequest)(nil),                          // 89: viam.app.v1.UpdateFragmentRequest
+	(*UpdateFragmentResponse)(nil),                         // 90: viam.app.v1.UpdateFragmentResponse
+	(*DeleteFragmentRequest)(nil),                          // 91: viam.app.v1.DeleteFragmentRequest
+	(*DeleteFragmentResponse)(nil),                         // 92: viam.app.v1.DeleteFragmentResponse
+	(*ListRobotsRequest)(nil),                              // 93: viam.app.v1.ListRobotsRequest
+	(*ListRobotsResponse)(nil),                             // 94: viam.app.v1.ListRobotsResponse
+	(*NewRobotRequest)(nil),                                // 95: viam.app.v1.NewRobotRequest
+	(*NewRobotResponse)(nil),                               // 96: viam.app.v1.NewRobotResponse
+	(*UpdateRobotRequest)(nil),                             // 97: viam.app.v1.UpdateRobotRequest
+	(*UpdateRobotResponse)(nil),                            // 98: viam.app.v1.UpdateRobotResponse
+	(*DeleteRobotRequest)(nil),                             // 99: viam.app.v1.DeleteRobotRequest
+	(*DeleteRobotResponse)(nil),                            // 100: viam.app.v1.DeleteRobotResponse
+	(*MarkPartAsMainRequest)(nil),                          // 101: viam.app.v1.MarkPartAsMainRequest
+	(*MarkPartAsMainResponse)(nil),                         // 102: viam.app.v1.MarkPartAsMainResponse
+	(*MarkPartForRestartRequest)(nil),                      // 103: viam.app.v1.MarkPartForRestartRequest
+	(*MarkPartForRestartResponse)(nil),                     // 104: viam.app.v1.MarkPartForRestartResponse
+	(*CreateRobotPartSecretRequest)(nil),                   // 105: viam.app.v1.CreateRobotPartSecretRequest
+	(*CreateRobotPartSecretResponse)(nil),                  // 106: viam.app.v1.CreateRobotPartSecretResponse
+	(*DeleteRobotPartSecretRequest)(nil),                   // 107: viam.app.v1.DeleteRobotPartSecretRequest
+	(*DeleteRobotPartSecretResponse)(nil),                  // 108: viam.app.v1.DeleteRobotPartSecretResponse
+	(*Authorization)(nil),                                  // 109: viam.app.v1.Authorization
+	(*AddRoleRequest)(nil),                                 // 110: viam.app.v1.AddRoleRequest
+	(*AddRoleResponse)(nil),                                // 111: viam.app.v1.AddRoleResponse
+	(*RemoveRoleRequest)(nil),                              // 112: viam.app.v1.RemoveRoleRequest
+	(*RemoveRoleResponse)(nil),                             // 113: viam.app.v1.RemoveRoleResponse
+	(*ChangeRoleRequest)(nil),                              // 114: viam.app.v1.ChangeRoleRequest
+	(*ChangeRoleResponse)(nil),                             // 115: viam.app.v1.ChangeRoleResponse
+	(*ListAuthorizationsRequest)(nil),                      // 116: viam.app.v1.ListAuthorizationsRequest
+	(*ListAuthorizationsResponse)(nil),                     // 117: viam.app.v1.ListAuthorizationsResponse
+	(*CheckPermissionsRequest)(nil),                        // 118: viam.app.v1.CheckPermissionsRequest
+	(*AuthorizedPermissions)(nil),                          // 119: viam.app.v1.AuthorizedPermissions
+	(*CheckPermissionsResponse)(nil),                       // 120: viam.app.v1.CheckPermissionsResponse
+	(*CreateModuleRequest)(nil),                            // 121: viam.app.v1.CreateModuleRequest
+	(*CreateModuleResponse)(nil),                           // 122: viam.app.v1.CreateModuleResponse
+	(*UpdateModuleRequest)(nil),                            // 123: viam.app.v1.UpdateModuleRequest
+	(*UpdateModuleResponse)(nil),                           // 124: viam.app.v1.UpdateModuleResponse
+	(*Model)(nil),                                          // 125: viam.app.v1.Model
+	(*ModuleFileInfo)(nil),                                 // 126: viam.app.v1.ModuleFileInfo
+	(*UploadModuleFileRequest)(nil),                        // 127: viam.app.v1.UploadModuleFileRequest
+	(*UploadModuleFileResponse)(nil),                       // 128: viam.app.v1.UploadModuleFileResponse
+	(*GetModuleRequest)(nil),                               // 129: viam.app.v1.GetModuleRequest
+	(*GetModuleResponse)(nil),                              // 130: viam.app.v1.GetModuleResponse
+	(*Module)(nil),                                         // 131: viam.app.v1.Module
+	(*VersionHistory)(nil),                                 // 132: viam.app.v1.VersionHistory
+	(*Uploads)(nil),                                        // 133: viam.app.v1.Uploads
+	(*ListModulesRequest)(nil),                             // 134: viam.app.v1.ListModulesRequest
+	(*ListModulesResponse)(nil),                            // 135: viam.app.v1.ListModulesResponse
+	(*GetUserIDByEmailRequest)(nil),                        // 136: viam.app.v1.GetUserIDByEmailRequest
+	(*GetUserIDByEmailResponse)(nil),                       // 137: viam.app.v1.GetUserIDByEmailResponse
+	(*ListOrganizationsByUserRequest)(nil),                 // 138: viam.app.v1.ListOrganizationsByUserRequest
+	(*OrgDetails)(nil),                                     // 139: viam.app.v1.OrgDetails
+	(*ListOrganizationsByUserResponse)(nil),                // 140: viam.app.v1.ListOrganizationsByUserResponse
+	(*CreateKeyRequest)(nil),                               // 141: viam.app.v1.CreateKeyRequest
+	(*CreateKeyResponse)(nil),                              // 142: viam.app.v1.CreateKeyResponse
+	(*timestamppb.Timestamp)(nil),                          // 143: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                                // 144: google.protobuf.Struct
 }
 var file_app_v1_app_proto_depIdxs = []int32{
 	144, // 0: viam.app.v1.Robot.last_access:type_name -> google.protobuf.Timestamp
@@ -9490,10 +9455,10 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	6,   // 17: viam.app.v1.UpdateOrganizationResponse.organization:type_name -> viam.app.v1.Organization
 	7,   // 18: viam.app.v1.ListOrganizationMembersResponse.members:type_name -> viam.app.v1.OrganizationMember
 	9,   // 19: viam.app.v1.ListOrganizationMembersResponse.invites:type_name -> viam.app.v1.OrganizationInvite
-	106, // 20: viam.app.v1.CreateOrganizationInviteRequest.authorizations:type_name -> viam.app.v1.Authorization
+	109, // 20: viam.app.v1.CreateOrganizationInviteRequest.authorizations:type_name -> viam.app.v1.Authorization
 	9,   // 21: viam.app.v1.CreateOrganizationInviteResponse.invite:type_name -> viam.app.v1.OrganizationInvite
-	106, // 22: viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest.add_authorizations:type_name -> viam.app.v1.Authorization
-	106, // 23: viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest.remove_authorizations:type_name -> viam.app.v1.Authorization
+	109, // 22: viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest.add_authorizations:type_name -> viam.app.v1.Authorization
+	109, // 23: viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest.remove_authorizations:type_name -> viam.app.v1.Authorization
 	9,   // 24: viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse.invite:type_name -> viam.app.v1.OrganizationInvite
 	9,   // 25: viam.app.v1.ResendOrganizationInviteResponse.invite:type_name -> viam.app.v1.OrganizationInvite
 	36,  // 26: viam.app.v1.LocationAuth.secrets:type_name -> viam.app.v1.SharedSecret
@@ -10600,7 +10565,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[76].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRobotPartResponse); i {
+			switch v := v.(*GetRobotAPIKeysRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10612,7 +10577,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[77].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Fragment); i {
+			switch v := v.(*APIKey); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10624,7 +10589,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[78].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListFragmentsRequest); i {
+			switch v := v.(*GetRobotAPIKeysResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10636,7 +10601,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[79].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListFragmentsResponse); i {
+			switch v := v.(*DeleteRobotPartResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10648,7 +10613,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[80].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetFragmentRequest); i {
+			switch v := v.(*Fragment); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10660,7 +10625,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[81].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetFragmentResponse); i {
+			switch v := v.(*ListFragmentsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10672,7 +10637,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[82].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateFragmentRequest); i {
+			switch v := v.(*ListFragmentsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10684,7 +10649,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[83].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateFragmentResponse); i {
+			switch v := v.(*GetFragmentRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10696,7 +10661,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[84].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateFragmentRequest); i {
+			switch v := v.(*GetFragmentResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10708,7 +10673,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[85].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateFragmentResponse); i {
+			switch v := v.(*CreateFragmentRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10720,7 +10685,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[86].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteFragmentRequest); i {
+			switch v := v.(*CreateFragmentResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10732,7 +10697,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[87].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteFragmentResponse); i {
+			switch v := v.(*UpdateFragmentRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10744,7 +10709,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[88].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListRobotsRequest); i {
+			switch v := v.(*UpdateFragmentResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10756,7 +10721,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[89].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListRobotsResponse); i {
+			switch v := v.(*DeleteFragmentRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10768,7 +10733,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[90].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*NewRobotRequest); i {
+			switch v := v.(*DeleteFragmentResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10780,7 +10745,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[91].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*NewRobotResponse); i {
+			switch v := v.(*ListRobotsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10792,7 +10757,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[92].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateRobotRequest); i {
+			switch v := v.(*ListRobotsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10804,7 +10769,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[93].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateRobotResponse); i {
+			switch v := v.(*NewRobotRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10816,7 +10781,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[94].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRobotRequest); i {
+			switch v := v.(*NewRobotResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10828,7 +10793,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[95].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRobotResponse); i {
+			switch v := v.(*UpdateRobotRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10840,7 +10805,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[96].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MarkPartAsMainRequest); i {
+			switch v := v.(*UpdateRobotResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10852,7 +10817,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[97].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MarkPartAsMainResponse); i {
+			switch v := v.(*DeleteRobotRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10864,7 +10829,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[98].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MarkPartForRestartRequest); i {
+			switch v := v.(*DeleteRobotResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10876,7 +10841,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[99].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MarkPartForRestartResponse); i {
+			switch v := v.(*MarkPartAsMainRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10888,7 +10853,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[100].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateRobotPartSecretRequest); i {
+			switch v := v.(*MarkPartAsMainResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10900,7 +10865,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[101].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateRobotPartSecretResponse); i {
+			switch v := v.(*MarkPartForRestartRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10912,7 +10877,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[102].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRobotPartSecretRequest); i {
+			switch v := v.(*MarkPartForRestartResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10924,7 +10889,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[103].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRobotPartSecretResponse); i {
+			switch v := v.(*CreateRobotPartSecretRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10936,7 +10901,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[104].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Authorization); i {
+			switch v := v.(*CreateRobotPartSecretResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10948,7 +10913,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[105].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddRoleRequest); i {
+			switch v := v.(*DeleteRobotPartSecretRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10960,7 +10925,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[106].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddRoleResponse); i {
+			switch v := v.(*DeleteRobotPartSecretResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10972,7 +10937,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[107].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RemoveRoleRequest); i {
+			switch v := v.(*Authorization); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -10984,7 +10949,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[108].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RemoveRoleResponse); i {
+			switch v := v.(*AddRoleRequest); i {
 			case 0:
 				return &v.state
 			case 1:
