@@ -63,10 +63,13 @@ service DataService {
   // Federation instance. It can also be used to reset the password of the existing database user.
   rpc ConfigureDatabaseUser(ConfigureDatabaseUserRequest) returns (ConfigureDatabaseUserResponse);
 
+  // AddBinaryDataToDatasetByIDs add the binary data to the dataset based on the given binary IDs.
   rpc AddBinaryDataToDatasetByIDs(AddBinaryDataToDatasetByIDsRequest) returns (AddBinaryDataToDatasetByIDsResponse);
 
+  // AddBinaryDataToDatasetByFilter add the binary data to the dataset based on the given filter.
   rpc AddBinaryDataToDatasetByFilter(AddBinaryDataToDatasetByFilterRequest) returns (AddBinaryDataToDatasetByFilterResponse);
 
+  // RemoveBinaryDataFromDatasetByIDs removes the binary data to the dataset based on the given binary IDs.
   rpc RemoveBinaryDataFromDatasetByIDs(RemoveBinaryDataFromDatasetByIDsRequest) returns (RemoveBinaryDataFromDatasetByIDsResponse);
 }
 
@@ -422,6 +425,7 @@ message AddBinaryDataToDatasetByIDsRequest {
 
 message AddBinaryDataToDatasetByIDsResponse {}
 
+// AddBinaryDataToDatasetByIDsRequest adds the binary data associated with a filter to a dataset with dataset_id.
 message AddBinaryDataToDatasetByFilterRequest {
 	Filter filter = 1;
 	string dataset_id = 2;
@@ -429,6 +433,7 @@ message AddBinaryDataToDatasetByFilterRequest {
 
 message AddBinaryDataToDatasetByFilterResponse {}
 
+// RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id.
 message RemoveBinaryDataFromDatasetByIDsRequest {
 	repeated BinaryID binary_ids = 1;
 	string dataset_id = 2;
