@@ -748,6 +748,7 @@ func (x *TabularDataByFilterResponse) GetTotalSizeBytes() uint64 {
 	return 0
 }
 
+// TabularData contains data and metadata associated with tabular data
 type TabularData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -819,6 +820,7 @@ func (x *TabularData) GetTimeReceived() *timestamppb.Timestamp {
 	return nil
 }
 
+// BinaryData contains data and metadata associated with binary data
 type BinaryData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1018,6 +1020,7 @@ func (x *BinaryDataByFilterResponse) GetTotalSizeBytes() uint64 {
 	return 0
 }
 
+// BinaryID is the unique identifier for a file that one can request to be retrieved or modified
 type BinaryID struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1330,6 +1333,7 @@ func (x *Annotations) GetBboxes() []*BoundingBox {
 	return nil
 }
 
+// BinaryMetadata is the metadata associated with binary data
 type BinaryMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2327,6 +2331,8 @@ func (x *TagsByFilterResponse) GetTags() []string {
 	return nil
 }
 
+// AddBoundingBoxToImageByIDRequest specifies the binary ID to which a bounding box
+// with the associated label and position in normalized coordinates will be added
 type AddBoundingBoxToImageByIDRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2414,6 +2420,7 @@ func (x *AddBoundingBoxToImageByIDRequest) GetYMaxNormalized() float64 {
 	return 0
 }
 
+// AddBoundingBoxToImageByIDResponse returns the bounding box ID of the successfully added bounding box
 type AddBoundingBoxToImageByIDResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2461,6 +2468,7 @@ func (x *AddBoundingBoxToImageByIDResponse) GetBboxId() string {
 	return ""
 }
 
+// RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bbox ID for the file represented by the binary id
 type RemoveBoundingBoxFromImageByIDRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2554,6 +2562,7 @@ func (*RemoveBoundingBoxFromImageByIDResponse) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{38}
 }
 
+// BoundingBoxLabelsByFilterRequest requests all the labels of the bounding boxes from files from a given filter
 type BoundingBoxLabelsByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2601,6 +2610,7 @@ func (x *BoundingBoxLabelsByFilterRequest) GetFilter() *Filter {
 	return nil
 }
 
+// BoundingBoxLabelsByFilterRequest returns all the labels of the bounding boxes from files from a given filter
 type BoundingBoxLabelsByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2744,6 +2754,7 @@ func (*ConfigureDatabaseUserResponse) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{42}
 }
 
+// GetDatabaseConnectionRequest returns the database connection hostname endpoint for a given organization
 type GetDatabaseConnectionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2791,6 +2802,7 @@ func (x *GetDatabaseConnectionRequest) GetOrganizationId() string {
 	return ""
 }
 
+// GetDatabaseConnectionResponse returns the database connection hostname endpoint
 type GetDatabaseConnectionResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
