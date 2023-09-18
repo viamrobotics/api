@@ -310,6 +310,15 @@ type AppServiceDeleteRobotPart = {
   readonly responseType: typeof app_v1_app_pb.DeleteRobotPartResponse;
 };
 
+type AppServiceGetRobotAPIKeys = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetRobotAPIKeysRequest;
+  readonly responseType: typeof app_v1_app_pb.GetRobotAPIKeysResponse;
+};
+
 type AppServiceMarkPartAsMain = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -562,6 +571,7 @@ export class AppService {
   static readonly UpdateRobotPart: AppServiceUpdateRobotPart;
   static readonly NewRobotPart: AppServiceNewRobotPart;
   static readonly DeleteRobotPart: AppServiceDeleteRobotPart;
+  static readonly GetRobotAPIKeys: AppServiceGetRobotAPIKeys;
   static readonly MarkPartAsMain: AppServiceMarkPartAsMain;
   static readonly MarkPartForRestart: AppServiceMarkPartForRestart;
   static readonly CreateRobotPartSecret: AppServiceCreateRobotPartSecret;
@@ -917,6 +927,15 @@ export class AppServiceClient {
   deleteRobotPart(
     requestMessage: app_v1_app_pb.DeleteRobotPartRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotPartResponse|null) => void
+  ): UnaryResponse;
+  getRobotAPIKeys(
+    requestMessage: app_v1_app_pb.GetRobotAPIKeysRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotAPIKeysResponse|null) => void
+  ): UnaryResponse;
+  getRobotAPIKeys(
+    requestMessage: app_v1_app_pb.GetRobotAPIKeysRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotAPIKeysResponse|null) => void
   ): UnaryResponse;
   markPartAsMain(
     requestMessage: app_v1_app_pb.MarkPartAsMainRequest,

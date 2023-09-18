@@ -733,6 +733,9 @@ export class DeleteBinaryDataByFilterRequest extends jspb.Message {
   getFilter(): Filter | undefined;
   setFilter(value?: Filter): void;
 
+  getIncludeInternalData(): boolean;
+  setIncludeInternalData(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteBinaryDataByFilterRequest.AsObject;
   static toObject(includeInstance: boolean, msg: DeleteBinaryDataByFilterRequest): DeleteBinaryDataByFilterRequest.AsObject;
@@ -746,6 +749,7 @@ export class DeleteBinaryDataByFilterRequest extends jspb.Message {
 export namespace DeleteBinaryDataByFilterRequest {
   export type AsObject = {
     filter?: Filter.AsObject,
+    includeInternalData: boolean,
   }
 }
 
@@ -1184,6 +1188,46 @@ export class BoundingBoxLabelsByFilterResponse extends jspb.Message {
 export namespace BoundingBoxLabelsByFilterResponse {
   export type AsObject = {
     labelsList: Array<string>,
+  }
+}
+
+export class ConfigureDatabaseUserRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getPassword(): string;
+  setPassword(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ConfigureDatabaseUserRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ConfigureDatabaseUserRequest): ConfigureDatabaseUserRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ConfigureDatabaseUserRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ConfigureDatabaseUserRequest;
+  static deserializeBinaryFromReader(message: ConfigureDatabaseUserRequest, reader: jspb.BinaryReader): ConfigureDatabaseUserRequest;
+}
+
+export namespace ConfigureDatabaseUserRequest {
+  export type AsObject = {
+    organizationId: string,
+    password: string,
+  }
+}
+
+export class ConfigureDatabaseUserResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ConfigureDatabaseUserResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ConfigureDatabaseUserResponse): ConfigureDatabaseUserResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ConfigureDatabaseUserResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ConfigureDatabaseUserResponse;
+  static deserializeBinaryFromReader(message: ConfigureDatabaseUserResponse, reader: jspb.BinaryReader): ConfigureDatabaseUserResponse;
+}
+
+export namespace ConfigureDatabaseUserResponse {
+  export type AsObject = {
   }
 }
 
