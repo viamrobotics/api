@@ -48,8 +48,7 @@ message DeleteDatasetRequest {
   string id = 1;
 }
 
-message DeleteDatasetResponse {
-}
+message DeleteDatasetResponse {}
 
 // RenameDatasetRequest applies the new name to the dataset specified by ID.
 message RenameDatasetRequest {
@@ -57,8 +56,7 @@ message RenameDatasetRequest {
   string name = 2;
 }
 
-message RenameDatasetResponse {
-}
+message RenameDatasetResponse {}
 
 // ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization.
 message ListDatasetsByOrganizationIDRequest {

@@ -419,25 +419,24 @@ message GetDatabaseConnectionResponse {
 
 // AddBinaryDataToDatasetByIDsRequest adds the specified binary IDs to a dataset with dataset_id.
 message AddBinaryDataToDatasetByIDsRequest {
-	repeated BinaryID binary_ids = 1;
-	string dataset_id = 2;
+  repeated BinaryID binary_ids = 1;
+  string dataset_id = 2;
 }
 
 message AddBinaryDataToDatasetByIDsResponse {}
 
 // AddBinaryDataToDatasetByIDsRequest adds the binary data associated with a filter to a dataset with dataset_id.
 message AddBinaryDataToDatasetByFilterRequest {
-	Filter filter = 1;
-	string dataset_id = 2;
+  Filter filter = 1;
+  string dataset_id = 2;
 }
 
 message AddBinaryDataToDatasetByFilterResponse {}
 
 // RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id.
 message RemoveBinaryDataFromDatasetByIDsRequest {
-	repeated BinaryID binary_ids = 1;
-	string dataset_id = 2;
+  repeated BinaryID binary_ids = 1;
+  string dataset_id = 2;
 }
 
-message RemoveBinaryDataFromDatasetByIDsResponse {
-}
+message RemoveBinaryDataFromDatasetByIDsResponse {}
