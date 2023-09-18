@@ -10,21 +10,21 @@ import "google/protobuf/timestamp.proto";
 option go_package = "go.viam.com/api/app/datasync/v1";
 
 service DataSyncService {
-  // DataCaptureUpload uploads the contents and metadata for tabular data
+  // DataCaptureUpload uploads the contents and metadata for tabular data.
   rpc DataCaptureUpload(viam.app.datasync.v1.DataCaptureUploadRequest) returns (viam.app.datasync.v1.DataCaptureUploadResponse) {
     option (google.api.http) = {
       post: "/datasync/v1/data_capture_upload"
     };
   }
   // FileUpload uploads the contents and metadata for binary (image + file) data,
-  // where the first packet must be the UploadMetadata
+  // where the first packet must be the UploadMetadata.
   rpc FileUpload(stream viam.app.datasync.v1.FileUploadRequest) returns (viam.app.datasync.v1.FileUploadResponse) {
     option (google.api.http) = {
       post: "/datasync/v1/file_upload"
     };
   }
   // StreamingDataCaptureUpload uploads the streaming contents and metadata for streaming binary (image + file) data,
-  // where the first packet must be the UploadMetadata
+  // where the first packet must be the UploadMetadata.
   rpc StreamingDataCaptureUpload(stream viam.app.datasync.v1.StreamingDataCaptureUploadRequest) returns (viam.app.datasync.v1.StreamingDataCaptureUploadResponse) {
     option (google.api.http) = {
       post: "/datasync/v1/streaming_data_capture_upload"
@@ -32,19 +32,19 @@ service DataSyncService {
   }
 }
 
-// DataCaptureUploadRequest requests to upload the contents and metadata for tabular data
+// DataCaptureUploadRequest requests to upload the contents and metadata for tabular data.
 message DataCaptureUploadRequest {
   UploadMetadata metadata = 1;
   repeated SensorData sensor_contents = 2;
 }
 
-// DataCaptureUploadResponse returns the file id of the uploaded contents and metadata for tabular data
+// DataCaptureUploadResponse returns the file id of the uploaded contents and metadata for tabular data.
 message DataCaptureUploadResponse {
   string file_id = 1;
 }
 
-// FileUploadRequest requests to upload the contents and metadata for binary (image + file) data
-// The first packet must be the UploadMetadata associated with the binary data
+// FileUploadRequest requests to upload the contents and metadata for binary (image + file) data.
+// The first packet must be the UploadMetadata associated with the binary data.
 message FileUploadRequest {
   oneof upload_packet {
     UploadMetadata metadata = 1;
@@ -52,13 +52,13 @@ message FileUploadRequest {
   }
 }
 
-// FileUploadResponse returns the file id of the uploaded contents and metadata for binary (image + file) data
+// FileUploadResponse returns the file id of the uploaded contents and metadata for binary (image + file) data.
 message FileUploadResponse {
   string file_id = 1;
 }
 
-// StreamingDataCaptureUploadRequest requests to upload the contents and metadata for streaming binary (image + file) data
-// The first packet must be the DataCaptureUploadMetadata associated with the data
+// StreamingDataCaptureUploadRequest requests to upload the contents and metadata for streaming binary (image + file) data.
+// The first packet must be the DataCaptureUploadMetadata associated with the data.
 message StreamingDataCaptureUploadRequest {
   oneof upload_packet {
     DataCaptureUploadMetadata metadata = 1;
@@ -66,18 +66,18 @@ message StreamingDataCaptureUploadRequest {
   }
 }
 
-// StreamingDataCaptureUploadResponse returns the file id of the uploaded contents and metadata for streaming binary (image + file) data
+// StreamingDataCaptureUploadResponse returns the file id of the uploaded contents and metadata for streaming binary (image + file) data.
 message StreamingDataCaptureUploadResponse {
   string file_id = 1;
 }
 
-// SensorMetadata contains the time the sensor data was requested and was received
+// SensorMetadata contains the time the sensor data was requested and was received.
 message SensorMetadata {
   google.protobuf.Timestamp time_requested = 1;
   google.protobuf.Timestamp time_received = 2;
 }
 
-// SensorData contains the contents and metadata for tabular data
+// SensorData contains the contents and metadata for tabular data.
 message SensorData {
   SensorMetadata metadata = 1;
   oneof data {
@@ -86,12 +86,12 @@ message SensorData {
   }
 }
 
-// FileData contains the contents of binary (image + file) data
+// FileData contains the contents of binary (image + file) data.
 message FileData {
   bytes data = 1;
 }
 
-// UploadMetadata contains the metadata for binary (image + file) data
+// UploadMetadata contains the metadata for binary (image + file) data.
 message UploadMetadata {
   string part_id = 1;
   string component_type = 2;
@@ -107,7 +107,7 @@ message UploadMetadata {
   reserved "component_model", "session_id";
 }
 
-// DataType specifies the type of data uploaded
+// DataType specifies the type of data uploaded.
 enum DataType {
   DATA_TYPE_UNSPECIFIED = 0;
   DATA_TYPE_BINARY_SENSOR = 1;
@@ -115,13 +115,13 @@ enum DataType {
   DATA_TYPE_FILE = 3;
 }
 
-// CaptureInterval specifies the start and end times of the data capture
+// CaptureInterval specifies the start and end times of the data capture.
 message CaptureInterval {
   google.protobuf.Timestamp start = 1;
   google.protobuf.Timestamp end = 2;
 }
 
-// DataCaptureMetadata contains the metadata for data captured by collectors
+// DataCaptureMetadata contains the metadata for data captured by collectors.
 message DataCaptureMetadata {
   string component_type = 1;
   string component_name = 2;
@@ -135,7 +135,7 @@ message DataCaptureMetadata {
   reserved "component_model", "session_id";
 }
 
-// DataCaptureUploadMetadata contains the metadata for streaming binary (image + file) data
+// DataCaptureUploadMetadata contains the metadata for streaming binary (image + file) data.
 message DataCaptureUploadMetadata {
   UploadMetadata upload_metadata = 1;
   SensorMetadata sensor_metadata = 2;
