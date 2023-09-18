@@ -70,7 +70,7 @@ message ListDatasetsByOrganizationIDResponse {
 
 // ListDatasetsByIDsRequest requests all of the datasets by their IDs.
 message ListDatasetsByIDsRequest {
-  repeated string id = 1;
+  repeated string ids = 1;
 }
 
 // ListDatasetsByIDsResponse returns all the dataset metadata for the associated dataset IDs.
