@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/app/dataset/v1";
 
-// DatasetService is used to manage data as a dataset.
+// DatasetService is used to manage dataset.
 service DatasetService {
   // CreateDataset makes a new dataset.
   rpc CreateDataset(CreateDatasetRequest) returns (CreateDatasetResponse);
