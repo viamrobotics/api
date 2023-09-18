@@ -24,6 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// DataType specifies the type of data uploaded
 type DataType int32
 
 const (
@@ -76,6 +77,7 @@ func (DataType) EnumDescriptor() ([]byte, []int) {
 	return file_app_datasync_v1_data_sync_proto_rawDescGZIP(), []int{0}
 }
 
+// DataCaptureUploadRequest requests to upload the contents and metadata for tabular data
 type DataCaptureUploadRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -131,6 +133,7 @@ func (x *DataCaptureUploadRequest) GetSensorContents() []*SensorData {
 	return nil
 }
 
+// DataCaptureUploadResponse returns the file id of the uploaded contents and metadata for tabular data
 type DataCaptureUploadResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -178,6 +181,8 @@ func (x *DataCaptureUploadResponse) GetFileId() string {
 	return ""
 }
 
+// FileUploadRequest requests to upload the contents and metadata for binary (image + file) data
+// The first packet must be the UploadMetadata associated with the binary data
 type FileUploadRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -259,6 +264,7 @@ func (*FileUploadRequest_Metadata) isFileUploadRequest_UploadPacket() {}
 
 func (*FileUploadRequest_FileContents) isFileUploadRequest_UploadPacket() {}
 
+// FileUploadResponse returns the file id of the uploaded contents and metadata for binary (image + file) data
 type FileUploadResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -306,6 +312,8 @@ func (x *FileUploadResponse) GetFileId() string {
 	return ""
 }
 
+// StreamingDataCaptureUploadRequest requests to upload the contents and metadata for streaming binary (image + file) data
+// The first packet must be the DataCaptureUploadMetadata associated with the data
 type StreamingDataCaptureUploadRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -388,6 +396,7 @@ func (*StreamingDataCaptureUploadRequest_Metadata) isStreamingDataCaptureUploadR
 
 func (*StreamingDataCaptureUploadRequest_Data) isStreamingDataCaptureUploadRequest_UploadPacket() {}
 
+// StreamingDataCaptureUploadResponse returns the file id of the uploaded contents and metadata for streaming binary (image + file) data
 type StreamingDataCaptureUploadResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -435,6 +444,7 @@ func (x *StreamingDataCaptureUploadResponse) GetFileId() string {
 	return ""
 }
 
+// SensorMetadata contains the time the sensor data was requested and was received
 type SensorMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -490,6 +500,7 @@ func (x *SensorMetadata) GetTimeReceived() *timestamppb.Timestamp {
 	return nil
 }
 
+// SensorData contains the contents and metadata for tabular data
 type SensorData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -579,6 +590,7 @@ func (*SensorData_Struct) isSensorData_Data() {}
 
 func (*SensorData_Binary) isSensorData_Data() {}
 
+// FileData contains the contents of binary (image + file) data
 type FileData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -626,6 +638,7 @@ func (x *FileData) GetData() []byte {
 	return nil
 }
 
+// UploadMetadata contains the metadata for binary (image + file) data
 type UploadMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -737,6 +750,7 @@ func (x *UploadMetadata) GetTags() []string {
 	return nil
 }
 
+// CaptureInterval specifies the start and end times of the data capture
 type CaptureInterval struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -792,6 +806,7 @@ func (x *CaptureInterval) GetEnd() *timestamppb.Timestamp {
 	return nil
 }
 
+// DataCaptureMetadata contains the metadata for data captured by collectors
 type DataCaptureMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -887,6 +902,7 @@ func (x *DataCaptureMetadata) GetTags() []string {
 	return nil
 }
 
+// DataCaptureUploadMetadata contains the metadata for streaming binary (image + file) data
 type DataCaptureUploadMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
