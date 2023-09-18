@@ -22,13 +22,13 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataSyncServiceClient interface {
-	// DataCaptureUpload uploads the contents and metadata for tabular data
+	// DataCaptureUpload uploads the contents and metadata for tabular data.
 	DataCaptureUpload(ctx context.Context, in *DataCaptureUploadRequest, opts ...grpc.CallOption) (*DataCaptureUploadResponse, error)
 	// FileUpload uploads the contents and metadata for binary (image + file) data,
-	// where the first packet must be the UploadMetadata
+	// where the first packet must be the UploadMetadata.
 	FileUpload(ctx context.Context, opts ...grpc.CallOption) (DataSyncService_FileUploadClient, error)
 	// StreamingDataCaptureUpload uploads the streaming contents and metadata for streaming binary (image + file) data,
-	// where the first packet must be the UploadMetadata
+	// where the first packet must be the UploadMetadata.
 	StreamingDataCaptureUpload(ctx context.Context, opts ...grpc.CallOption) (DataSyncService_StreamingDataCaptureUploadClient, error)
 }
 
@@ -121,13 +121,13 @@ func (x *dataSyncServiceStreamingDataCaptureUploadClient) CloseAndRecv() (*Strea
 // All implementations must embed UnimplementedDataSyncServiceServer
 // for forward compatibility
 type DataSyncServiceServer interface {
-	// DataCaptureUpload uploads the contents and metadata for tabular data
+	// DataCaptureUpload uploads the contents and metadata for tabular data.
 	DataCaptureUpload(context.Context, *DataCaptureUploadRequest) (*DataCaptureUploadResponse, error)
 	// FileUpload uploads the contents and metadata for binary (image + file) data,
-	// where the first packet must be the UploadMetadata
+	// where the first packet must be the UploadMetadata.
 	FileUpload(DataSyncService_FileUploadServer) error
 	// StreamingDataCaptureUpload uploads the streaming contents and metadata for streaming binary (image + file) data,
-	// where the first packet must be the UploadMetadata
+	// where the first packet must be the UploadMetadata.
 	StreamingDataCaptureUpload(DataSyncService_StreamingDataCaptureUploadServer) error
 	mustEmbedUnimplementedDataSyncServiceServer()
 }
