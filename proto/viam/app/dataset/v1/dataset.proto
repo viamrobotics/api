@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package viam.app.dataset.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/app/dataset/v1";
+
+service DatasetService {
+  rpc CreateDataset(CreateDatasetRequest) returns (CreateDatasetResponse);
+  rpc DeleteDataset(DeleteDatasetRequest) returns (DeleteDatasetResponse);
+  rpc RenameDataset(RenameDatasetRequest) returns (RenameDatasetResponse);
+  rpc ListDatasetsByOrganizationID(ListDatasetsByIDsRequest) returns (ListDatasetsByIDsResponse);
+  rpc ListDatasetsByIDs(ListDatasetsByIDsRequest) returns (ListDatasetsByIDsResponse);
+}
+
+// Dataset stores the metadata
+message Dataset {
+  string id = 1;
+  string name = 2;
+  string organization_id = 3;
+  google.protobuf.Timestamp time_created = 4;
+}
+
+message CreateDatasetRequest {
+  string name = 1;
+  string organization_id = 2;
+}
+
+message CreateDatasetResponse {
+  string id = 1;
+}
+
+message DeleteDatasetRequest {
+  string id = 1;
+}
+
+message DeleteDatasetResponse {
+}
+
+message RenameDatasetRequest {
+  string id = 1;
+  string name = 2;
+}
+
+message RenameDatasetResponse {
+}
+
+message ListDatasetsByOrganizationIDRequest {
+  string organization_id = 1;
+}
+
+message ListDatasetsByOrganizationIDResponse {
+  repeated Dataset datasets = 1;
+}
+
+message ListDatasetsByIDsRequest {
+  repeated string id = 1;
+}
+
+message ListDatasetsByIDsResponse {
+  repeated Dataset datasets = 1;
+}
