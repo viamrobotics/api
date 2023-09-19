@@ -55,8 +55,22 @@ service DataService {
   // BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
   rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse);
 
-  // GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It returns the hostname of the federated database.
+  // GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
+  // returns the hostname of the federated database.
   rpc GetDatabaseConnection(GetDatabaseConnectionRequest) returns (GetDatabaseConnectionResponse);
+
+  // ConfigureDatabaseUser configures a database user for the Viam organization's MongoDB Atlas Data
+  // Federation instance. It can also be used to reset the password of the existing database user.
+  rpc ConfigureDatabaseUser(ConfigureDatabaseUserRequest) returns (ConfigureDatabaseUserResponse);
+
+  // AddBinaryDataToDatasetByIDs adds the binary data with the given binary IDs to the dataset.
+  rpc AddBinaryDataToDatasetByIDs(AddBinaryDataToDatasetByIDsRequest) returns (AddBinaryDataToDatasetByIDsResponse);
+
+  // AddBinaryDataToDatasetByFilter adds the binary data based on the given filter to the dataset.
+  rpc AddBinaryDataToDatasetByFilter(AddBinaryDataToDatasetByFilterRequest) returns (AddBinaryDataToDatasetByFilterResponse);
+
+  // RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
+  rpc RemoveBinaryDataFromDatasetByIDs(RemoveBinaryDataFromDatasetByIDsRequest) returns (RemoveBinaryDataFromDatasetByIDsResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -97,8 +111,9 @@ message Filter {
   repeated string mime_type = 12;
   CaptureInterval interval = 13;
   TagsFilter tags_filter = 14;
-  // bbox_labels are used to match documents with the specified bounding box labels (using logical OR)
+  // bbox_labels are used to match documents with the specified bounding box labels (using logical OR).
   repeated string bbox_labels = 15;
+  string dataset_id = 16;
 
   reserved 3, 5;
   reserved "component_model", "tags";
@@ -107,22 +122,22 @@ message Filter {
 // TagsFilter defines the type of filtering and, if applicable, over which tags to perform a logical OR.
 message TagsFilter {
   TagsFilterType type = 1;
-  // Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_OR
+  // Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_OR.
   repeated string tags = 2;
 }
 
-// TagsFilterType specifies how data can be filtered based on tags
+// TagsFilterType specifies how data can be filtered based on tags.
 enum TagsFilterType {
   TAGS_FILTER_TYPE_UNSPECIFIED = 0;
-  // TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter
+  // TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter.
   TAGS_FILTER_TYPE_MATCH_BY_OR = 1;
-  // TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned
+  // TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned.
   TAGS_FILTER_TYPE_TAGGED = 2;
-  // TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned
+  // TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned.
   TAGS_FILTER_TYPE_UNTAGGED = 3;
 }
 
-// CaptureMetadata contains information on the settings used for the data capture
+// CaptureMetadata contains information on the settings used for the data capture.
 message CaptureMetadata {
   string organization_id = 1;
   string location_id = 2;
@@ -141,20 +156,20 @@ message CaptureMetadata {
   reserved "component_model";
 }
 
-// CaptureInterval describes the start and end time of the capture in this file
+// CaptureInterval describes the start and end time of the capture in this file.
 message CaptureInterval {
   google.protobuf.Timestamp start = 1;
   google.protobuf.Timestamp end = 2;
 }
 
-// TabularDataByFilterRequest requests tabular data based on filter values
+// TabularDataByFilterRequest requests tabular data based on filter values.
 message TabularDataByFilterRequest {
   DataRequest data_request = 1;
   bool count_only = 2;
   bool include_internal_data = 3;
 }
 
-// TabularDataByFilterResponse provides the data and metadata of tabular data
+// TabularDataByFilterResponse provides the data and metadata of tabular data.
 message TabularDataByFilterResponse {
   repeated CaptureMetadata metadata = 1;
   repeated TabularData data = 2;
@@ -163,6 +178,7 @@ message TabularDataByFilterResponse {
   uint64 total_size_bytes = 5;
 }
 
+// TabularData contains data and metadata associated with tabular data.
 message TabularData {
   google.protobuf.Struct data = 1;
   uint32 metadata_index = 2;
@@ -170,12 +186,13 @@ message TabularData {
   google.protobuf.Timestamp time_received = 4;
 }
 
+// BinaryData contains data and metadata associated with binary data.
 message BinaryData {
   bytes binary = 1;
   BinaryMetadata metadata = 2;
 }
 
-// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when a filter is provided
+// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when a filter is provided.
 message BinaryDataByFilterRequest {
   DataRequest data_request = 1;
   bool include_binary = 2;
@@ -183,7 +200,7 @@ message BinaryDataByFilterRequest {
   bool include_internal_data = 4;
 }
 
-// BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided
+// BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided.
 message BinaryDataByFilterResponse {
   repeated BinaryData data = 1;
   uint64 count = 2;
@@ -191,13 +208,14 @@ message BinaryDataByFilterResponse {
   uint64 total_size_bytes = 4;
 }
 
+// BinaryID is the unique identifier for a file that one can request to be retrieved or modified.
 message BinaryID {
   string file_id = 1;
   string organization_id = 2;
   string location_id = 3;
 }
 
-// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids
+// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids.
 message BinaryDataByIDsRequest {
   bool include_binary = 2;
   repeated BinaryID binary_ids = 3;
@@ -206,7 +224,7 @@ message BinaryDataByIDsRequest {
   reserved "file_ids";
 }
 
-// BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided
+// BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided.
 message BinaryDataByIDsResponse {
   repeated BinaryData data = 1;
   uint64 count = 2;
@@ -228,6 +246,7 @@ message Annotations {
   repeated BoundingBox bboxes = 1;
 }
 
+// BinaryMetadata is the metadata associated with binary data.
 message BinaryMetadata {
   string id = 1;
   CaptureMetadata capture_metadata = 2;
@@ -237,14 +256,15 @@ message BinaryMetadata {
   string file_ext = 6;
   string uri = 7;
   Annotations annotations = 8;
+  repeated string dataset_ids = 9;
 }
 
-// DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided
+// DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided.
 message DeleteTabularDataByFilterRequest {
   Filter filter = 1;
 }
 
-// DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided
+// DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided.
 message DeleteTabularDataByFilterResponse {
   uint64 deleted_count = 1;
 
@@ -265,12 +285,13 @@ message DeleteTabularDataResponse {
   uint64 deleted_count = 1;
 }
 
-// DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
+// DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided.
 message DeleteBinaryDataByFilterRequest {
   Filter filter = 1;
+  bool include_internal_data = 2;
 }
 
-// DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided
+// DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided.
 message DeleteBinaryDataByFilterResponse {
   uint64 deleted_count = 1;
 
@@ -278,7 +299,7 @@ message DeleteBinaryDataByFilterResponse {
   reserved "result";
 }
 
-// DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided
+// DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided.
 message DeleteBinaryDataByIDsRequest {
   repeated BinaryID binary_ids = 2;
 
@@ -286,7 +307,7 @@ message DeleteBinaryDataByIDsRequest {
   reserved "file_ids";
 }
 
-// DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided
+// DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided.
 message DeleteBinaryDataByIDsResponse {
   uint64 deleted_count = 1;
 
@@ -294,7 +315,7 @@ message DeleteBinaryDataByIDsResponse {
   reserved "result";
 }
 
-// AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided
+// AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided.
 message AddTagsToBinaryDataByIDsRequest {
   repeated BinaryID binary_ids = 3;
   repeated string tags = 2;
@@ -305,7 +326,7 @@ message AddTagsToBinaryDataByIDsRequest {
 
 message AddTagsToBinaryDataByIDsResponse {}
 
-// AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided
+// AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided.
 message AddTagsToBinaryDataByFilterRequest {
   Filter filter = 1;
   repeated string tags = 2;
@@ -313,7 +334,7 @@ message AddTagsToBinaryDataByFilterRequest {
 
 message AddTagsToBinaryDataByFilterResponse {}
 
-// RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided
+// RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.
 message RemoveTagsFromBinaryDataByIDsRequest {
   repeated BinaryID binary_ids = 3;
   repeated string tags = 2;
@@ -327,27 +348,29 @@ message RemoveTagsFromBinaryDataByIDsResponse {
   uint64 deleted_count = 1;
 }
 
-// RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided
+// RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided.
 message RemoveTagsFromBinaryDataByFilterRequest {
   Filter filter = 1;
   repeated string tags = 2;
 }
 
-// RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed
+// RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed.
 message RemoveTagsFromBinaryDataByFilterResponse {
   uint64 deleted_count = 1;
 }
 
-// TagsByFilterRequest requests the unique tags from data based on given filter
+// TagsByFilterRequest requests the unique tags from data based on given filter.
 message TagsByFilterRequest {
   Filter filter = 1;
 }
 
-// TagsByFilterResponse returns the unique tags from data based on given filter
+// TagsByFilterResponse returns the unique tags from data based on given filter.
 message TagsByFilterResponse {
   repeated string tags = 1;
 }
 
+// AddBoundingBoxToImageByIDRequest specifies the binary ID to which a bounding box
+// with the associated label and position in normalized coordinates will be added.
 message AddBoundingBoxToImageByIDRequest {
   BinaryID binary_id = 7;
   string label = 2;
@@ -360,10 +383,12 @@ message AddBoundingBoxToImageByIDRequest {
   reserved "file_id";
 }
 
+// AddBoundingBoxToImageByIDResponse returns the bounding box ID of the successfully added bounding box.
 message AddBoundingBoxToImageByIDResponse {
   string bbox_id = 1;
 }
 
+// RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bbox ID for the file represented by the binary id.
 message RemoveBoundingBoxFromImageByIDRequest {
   BinaryID binary_id = 3;
   string bbox_id = 2;
@@ -374,18 +399,56 @@ message RemoveBoundingBoxFromImageByIDRequest {
 
 message RemoveBoundingBoxFromImageByIDResponse {}
 
+// BoundingBoxLabelsByFilterRequest requests all the labels of the bounding boxes from files from a given filter.
 message BoundingBoxLabelsByFilterRequest {
   Filter filter = 1;
 }
 
+// BoundingBoxLabelsByFilterRequest returns all the labels of the bounding boxes from files from a given filter.
 message BoundingBoxLabelsByFilterResponse {
   repeated string labels = 1;
 }
 
+// ConfigureDatabaseUserRequest accepts a Viam organization ID and a password for the database user
+// being configured. Viam uses gRPC over TLS, so the entire request will be encrypted while in
+// flight, including the password.
+message ConfigureDatabaseUserRequest {
+  string organization_id = 1;
+  string password = 2;
+}
+
+message ConfigureDatabaseUserResponse {}
+
+// GetDatabaseConnectionRequest requests the database connection hostname.
 message GetDatabaseConnectionRequest {
   string organization_id = 1;
 }
 
+// GetDatabaseConnectionResponse returns the database connection hostname endpoint.
 message GetDatabaseConnectionResponse {
   string hostname = 1;
 }
+
+// AddBinaryDataToDatasetByIDsRequest adds the binary data with the given binary IDs to a dataset with dataset_id.
+message AddBinaryDataToDatasetByIDsRequest {
+  repeated BinaryID binary_ids = 1;
+  string dataset_id = 2;
+}
+
+message AddBinaryDataToDatasetByIDsResponse {}
+
+// AddBinaryDataToDatasetByIDsRequest adds the binary data associated with a filter to a dataset with dataset_id.
+message AddBinaryDataToDatasetByFilterRequest {
+  Filter filter = 1;
+  string dataset_id = 2;
+}
+
+message AddBinaryDataToDatasetByFilterResponse {}
+
+// RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id.
+message RemoveBinaryDataFromDatasetByIDsRequest {
+  repeated BinaryID binary_ids = 1;
+  string dataset_id = 2;
+}
+
+message RemoveBinaryDataFromDatasetByIDsResponse {}

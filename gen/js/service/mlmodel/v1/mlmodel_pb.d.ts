@@ -9,11 +9,6 @@ export class InferRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  hasInputData(): boolean;
-  clearInputData(): void;
-  getInputData(): google_protobuf_struct_pb.Struct | undefined;
-  setInputData(value?: google_protobuf_struct_pb.Struct): void;
-
   hasInputTensors(): boolean;
   clearInputTensors(): void;
   getInputTensors(): FlatTensors | undefined;
@@ -37,18 +32,12 @@ export class InferRequest extends jspb.Message {
 export namespace InferRequest {
   export type AsObject = {
     name: string,
-    inputData?: google_protobuf_struct_pb.Struct.AsObject,
     inputTensors?: FlatTensors.AsObject,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
 export class InferResponse extends jspb.Message {
-  hasOutputData(): boolean;
-  clearOutputData(): void;
-  getOutputData(): google_protobuf_struct_pb.Struct | undefined;
-  setOutputData(value?: google_protobuf_struct_pb.Struct): void;
-
   hasOutputTensors(): boolean;
   clearOutputTensors(): void;
   getOutputTensors(): FlatTensors | undefined;
@@ -66,7 +55,6 @@ export class InferResponse extends jspb.Message {
 
 export namespace InferResponse {
   export type AsObject = {
-    outputData?: google_protobuf_struct_pb.Struct.AsObject,
     outputTensors?: FlatTensors.AsObject,
   }
 }

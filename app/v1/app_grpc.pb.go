@@ -88,6 +88,8 @@ type AppServiceClient interface {
 	NewRobotPart(ctx context.Context, in *NewRobotPartRequest, opts ...grpc.CallOption) (*NewRobotPartResponse, error)
 	// Delete a robot part
 	DeleteRobotPart(ctx context.Context, in *DeleteRobotPartRequest, opts ...grpc.CallOption) (*DeleteRobotPartResponse, error)
+	// Gets the Robot API Keys for the robot
+	GetRobotAPIKeys(ctx context.Context, in *GetRobotAPIKeysRequest, opts ...grpc.CallOption) (*GetRobotAPIKeysResponse, error)
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(ctx context.Context, in *MarkPartAsMainRequest, opts ...grpc.CallOption) (*MarkPartAsMainResponse, error)
 	// Marks part for restart. Once the robot part checks-in with the app the flag
@@ -474,6 +476,15 @@ func (c *appServiceClient) DeleteRobotPart(ctx context.Context, in *DeleteRobotP
 	return out, nil
 }
 
+func (c *appServiceClient) GetRobotAPIKeys(ctx context.Context, in *GetRobotAPIKeysRequest, opts ...grpc.CallOption) (*GetRobotAPIKeysResponse, error) {
+	out := new(GetRobotAPIKeysResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotAPIKeys", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) MarkPartAsMain(ctx context.Context, in *MarkPartAsMainRequest, opts ...grpc.CallOption) (*MarkPartAsMainResponse, error) {
 	out := new(MarkPartAsMainResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/MarkPartAsMain", in, out, opts...)
@@ -785,6 +796,8 @@ type AppServiceServer interface {
 	NewRobotPart(context.Context, *NewRobotPartRequest) (*NewRobotPartResponse, error)
 	// Delete a robot part
 	DeleteRobotPart(context.Context, *DeleteRobotPartRequest) (*DeleteRobotPartResponse, error)
+	// Gets the Robot API Keys for the robot
+	GetRobotAPIKeys(context.Context, *GetRobotAPIKeysRequest) (*GetRobotAPIKeysResponse, error)
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(context.Context, *MarkPartAsMainRequest) (*MarkPartAsMainResponse, error)
 	// Marks part for restart. Once the robot part checks-in with the app the flag
@@ -940,6 +953,9 @@ func (UnimplementedAppServiceServer) NewRobotPart(context.Context, *NewRobotPart
 }
 func (UnimplementedAppServiceServer) DeleteRobotPart(context.Context, *DeleteRobotPartRequest) (*DeleteRobotPartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRobotPart not implemented")
+}
+func (UnimplementedAppServiceServer) GetRobotAPIKeys(context.Context, *GetRobotAPIKeysRequest) (*GetRobotAPIKeysResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRobotAPIKeys not implemented")
 }
 func (UnimplementedAppServiceServer) MarkPartAsMain(context.Context, *MarkPartAsMainRequest) (*MarkPartAsMainResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MarkPartAsMain not implemented")
@@ -1641,6 +1657,24 @@ func _AppService_DeleteRobotPart_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_GetRobotAPIKeys_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRobotAPIKeysRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetRobotAPIKeys(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetRobotAPIKeys",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetRobotAPIKeys(ctx, req.(*GetRobotAPIKeysRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_MarkPartAsMain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MarkPartAsMainRequest)
 	if err := dec(in); err != nil {
@@ -2219,6 +2253,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteRobotPart",
 			Handler:    _AppService_DeleteRobotPart_Handler,
+		},
+		{
+			MethodName: "GetRobotAPIKeys",
+			Handler:    _AppService_GetRobotAPIKeys_Handler,
 		},
 		{
 			MethodName: "MarkPartAsMain",
