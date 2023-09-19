@@ -993,8 +993,7 @@ message CreateKeyResponse {
 }
 
 message DeleteKeyRequest {
-  string key = 1;
-  string id = 2;
+  string id = 1;
 }
 
 message DeleteKeyResponse {}
@@ -1008,8 +1007,11 @@ message AuthorizationDetails {
 }
 
 message APIKeyWithAuthorizations {
-  APIKey api_key = 1;
-  repeated AuthorizationDetails authorizations = 2;
+  string id = 1;
+  string key = 2;
+  string name = 3;
+  google.protobuf.Timestamp created_on = 4;
+  repeated AuthorizationDetails authorizations = 5;
 }
 
 message ListKeysRequest {
