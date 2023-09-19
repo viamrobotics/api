@@ -535,6 +535,24 @@ type AppServiceCreateKey = {
   readonly responseType: typeof app_v1_app_pb.CreateKeyResponse;
 };
 
+type AppServiceDeleteKey = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteKeyRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteKeyResponse;
+};
+
+type AppServiceListKeys = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListKeysRequest;
+  readonly responseType: typeof app_v1_app_pb.ListKeysResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
@@ -596,6 +614,8 @@ export class AppService {
   static readonly GetModule: AppServiceGetModule;
   static readonly ListModules: AppServiceListModules;
   static readonly CreateKey: AppServiceCreateKey;
+  static readonly DeleteKey: AppServiceDeleteKey;
+  static readonly ListKeys: AppServiceListKeys;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -1144,6 +1164,24 @@ export class AppServiceClient {
   createKey(
     requestMessage: app_v1_app_pb.CreateKeyRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateKeyResponse|null) => void
+  ): UnaryResponse;
+  deleteKey(
+    requestMessage: app_v1_app_pb.DeleteKeyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteKeyResponse|null) => void
+  ): UnaryResponse;
+  deleteKey(
+    requestMessage: app_v1_app_pb.DeleteKeyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteKeyResponse|null) => void
+  ): UnaryResponse;
+  listKeys(
+    requestMessage: app_v1_app_pb.ListKeysRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListKeysResponse|null) => void
+  ): UnaryResponse;
+  listKeys(
+    requestMessage: app_v1_app_pb.ListKeysRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListKeysResponse|null) => void
   ): UnaryResponse;
 }
 
