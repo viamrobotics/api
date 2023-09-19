@@ -163,6 +163,33 @@ DataService.ConfigureDatabaseUser = {
   responseType: app_data_v1_data_pb.ConfigureDatabaseUserResponse
 };
 
+DataService.AddBinaryDataToDatasetByIDs = {
+  methodName: "AddBinaryDataToDatasetByIDs",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.AddBinaryDataToDatasetByIDsRequest,
+  responseType: app_data_v1_data_pb.AddBinaryDataToDatasetByIDsResponse
+};
+
+DataService.AddBinaryDataToDatasetByFilter = {
+  methodName: "AddBinaryDataToDatasetByFilter",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.AddBinaryDataToDatasetByFilterRequest,
+  responseType: app_data_v1_data_pb.AddBinaryDataToDatasetByFilterResponse
+};
+
+DataService.RemoveBinaryDataFromDatasetByIDs = {
+  methodName: "RemoveBinaryDataFromDatasetByIDs",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsRequest,
+  responseType: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse
+};
+
 exports.DataService = DataService;
 
 function DataServiceClient(serviceHost, options) {
@@ -671,6 +698,99 @@ DataServiceClient.prototype.configureDatabaseUser = function configureDatabaseUs
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.ConfigureDatabaseUser, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.addBinaryDataToDatasetByIDs = function addBinaryDataToDatasetByIDs(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.AddBinaryDataToDatasetByIDs, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.addBinaryDataToDatasetByFilter = function addBinaryDataToDatasetByFilter(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.AddBinaryDataToDatasetByFilter, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.removeBinaryDataFromDatasetByIDs = function removeBinaryDataFromDatasetByIDs(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.RemoveBinaryDataFromDatasetByIDs, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

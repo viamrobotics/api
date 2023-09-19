@@ -2854,7 +2854,7 @@ func (x *GetDatabaseConnectionResponse) GetHostname() string {
 	return ""
 }
 
-// AddBinaryDataToDatasetByIDsRequest adds the specified binary IDs to a dataset with dataset_id.
+// AddBinaryDataToDatasetByIDsRequest adds the binary data with the given binary IDs to a dataset with dataset_id.
 type AddBinaryDataToDatasetByIDsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -58,11 +58,11 @@ type DataServiceClient interface {
 	// ConfigureDatabaseUser configures a database user for the Viam organization's MongoDB Atlas Data
 	// Federation instance. It can also be used to reset the password of the existing database user.
 	ConfigureDatabaseUser(ctx context.Context, in *ConfigureDatabaseUserRequest, opts ...grpc.CallOption) (*ConfigureDatabaseUserResponse, error)
-	// AddBinaryDataToDatasetByIDs add the binary data to the dataset based on the given binary IDs.
+	// AddBinaryDataToDatasetByIDs adds the binary data with the given binary IDs to the dataset.
 	AddBinaryDataToDatasetByIDs(ctx context.Context, in *AddBinaryDataToDatasetByIDsRequest, opts ...grpc.CallOption) (*AddBinaryDataToDatasetByIDsResponse, error)
-	// AddBinaryDataToDatasetByFilter add the binary data to the dataset based on the given filter.
+	// AddBinaryDataToDatasetByFilter adds the binary data based on the given filter to the dataset.
 	AddBinaryDataToDatasetByFilter(ctx context.Context, in *AddBinaryDataToDatasetByFilterRequest, opts ...grpc.CallOption) (*AddBinaryDataToDatasetByFilterResponse, error)
-	// RemoveBinaryDataFromDatasetByIDs removes the binary data to the dataset based on the given binary IDs.
+	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
 	RemoveBinaryDataFromDatasetByIDs(ctx context.Context, in *RemoveBinaryDataFromDatasetByIDsRequest, opts ...grpc.CallOption) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
 }
 
@@ -294,11 +294,11 @@ type DataServiceServer interface {
 	// ConfigureDatabaseUser configures a database user for the Viam organization's MongoDB Atlas Data
 	// Federation instance. It can also be used to reset the password of the existing database user.
 	ConfigureDatabaseUser(context.Context, *ConfigureDatabaseUserRequest) (*ConfigureDatabaseUserResponse, error)
-	// AddBinaryDataToDatasetByIDs add the binary data to the dataset based on the given binary IDs.
+	// AddBinaryDataToDatasetByIDs adds the binary data with the given binary IDs to the dataset.
 	AddBinaryDataToDatasetByIDs(context.Context, *AddBinaryDataToDatasetByIDsRequest) (*AddBinaryDataToDatasetByIDsResponse, error)
-	// AddBinaryDataToDatasetByFilter add the binary data to the dataset based on the given filter.
+	// AddBinaryDataToDatasetByFilter adds the binary data based on the given filter to the dataset.
 	AddBinaryDataToDatasetByFilter(context.Context, *AddBinaryDataToDatasetByFilterRequest) (*AddBinaryDataToDatasetByFilterResponse, error)
-	// RemoveBinaryDataFromDatasetByIDs removes the binary data to the dataset based on the given binary IDs.
+	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
 	RemoveBinaryDataFromDatasetByIDs(context.Context, *RemoveBinaryDataFromDatasetByIDsRequest) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }

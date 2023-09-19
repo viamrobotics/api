@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Dataset stores the metadata.
+// Dataset stores the metadata of a dataset.
 type Dataset struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -197,7 +197,7 @@ func (x *CreateDatasetResponse) GetId() string {
 	return ""
 }
 
-// DeleteDatasetRequest deletes the dataset specified by ID.
+// DeleteDatasetRequest deletes the dataset specified by the dataset ID.
 type DeleteDatasetRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -283,7 +283,7 @@ func (*DeleteDatasetResponse) Descriptor() ([]byte, []int) {
 	return file_app_dataset_v1_dataset_proto_rawDescGZIP(), []int{4}
 }
 
-// RenameDatasetRequest applies the new name to the dataset specified by ID.
+// RenameDatasetRequest applies the new name to the dataset specified by the dataset ID.
 type RenameDatasetRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -473,7 +473,7 @@ func (x *ListDatasetsByOrganizationIDResponse) GetDatasets() []*Dataset {
 	return nil
 }
 
-// ListDatasetsByIDsRequest requests all of the datasets by their IDs.
+// ListDatasetsByIDsRequest requests all of the datasets by their dataset IDs.
 type ListDatasetsByIDsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

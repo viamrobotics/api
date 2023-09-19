@@ -30,7 +30,7 @@ type DatasetServiceClient interface {
 	RenameDataset(ctx context.Context, in *RenameDatasetRequest, opts ...grpc.CallOption) (*RenameDatasetResponse, error)
 	// ListDatasetsByOrganizationID lists all of the datasets for an organization.
 	ListDatasetsByOrganizationID(ctx context.Context, in *ListDatasetsByOrganizationIDRequest, opts ...grpc.CallOption) (*ListDatasetsByOrganizationIDResponse, error)
-	// ListDatasetsByIDs lists all of the datasets specified by ID.
+	// ListDatasetsByIDs lists all of the datasets specified by the given dataset IDs.
 	ListDatasetsByIDs(ctx context.Context, in *ListDatasetsByIDsRequest, opts ...grpc.CallOption) (*ListDatasetsByIDsResponse, error)
 }
 
@@ -99,7 +99,7 @@ type DatasetServiceServer interface {
 	RenameDataset(context.Context, *RenameDatasetRequest) (*RenameDatasetResponse, error)
 	// ListDatasetsByOrganizationID lists all of the datasets for an organization.
 	ListDatasetsByOrganizationID(context.Context, *ListDatasetsByOrganizationIDRequest) (*ListDatasetsByOrganizationIDResponse, error)
-	// ListDatasetsByIDs lists all of the datasets specified by ID.
+	// ListDatasetsByIDs lists all of the datasets specified by the given dataset IDs.
 	ListDatasetsByIDs(context.Context, *ListDatasetsByIDsRequest) (*ListDatasetsByIDsResponse, error)
 	mustEmbedUnimplementedDatasetServiceServer()
 }
