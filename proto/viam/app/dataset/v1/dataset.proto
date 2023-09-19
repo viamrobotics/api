@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package viam.app.dataset.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/app/dataset/v1";
+
+// DatasetService is used to manage datasets.
+service DatasetService {
+  // CreateDataset makes a new dataset.
+  rpc CreateDataset(CreateDatasetRequest) returns (CreateDatasetResponse);
+
+  // DeleteDatasets deletes an existing dataset.
+  rpc DeleteDataset(DeleteDatasetRequest) returns (DeleteDatasetResponse);
+
+  // RenameDataset modifies the name of an existing dataset.
+  rpc RenameDataset(RenameDatasetRequest) returns (RenameDatasetResponse);
+
+  // ListDatasetsByOrganizationID lists all of the datasets for an organization.
+  rpc ListDatasetsByOrganizationID(ListDatasetsByOrganizationIDRequest) returns (ListDatasetsByOrganizationIDResponse);
+
+  // ListDatasetsByIDs lists all of the datasets specified by the given dataset IDs.
+  rpc ListDatasetsByIDs(ListDatasetsByIDsRequest) returns (ListDatasetsByIDsResponse);
+}
+
+// Dataset stores the metadata of a dataset.
+message Dataset {
+  string id = 1;
+  string name = 2;
+  string organization_id = 3;
+  google.protobuf.Timestamp time_created = 4;
+}
+
+// CreateDatasetRequest defines the name and organization ID of a dataset.
+message CreateDatasetRequest {
+  string name = 1;
+  string organization_id = 2;
+}
+
+// CreateDatasetResponse returns the dataset ID of the created dataset.
+message CreateDatasetResponse {
+  string id = 1;
+}
+
+// DeleteDatasetRequest deletes the dataset specified by the dataset ID.
+message DeleteDatasetRequest {
+  string id = 1;
+}
+
+message DeleteDatasetResponse {}
+
+// RenameDatasetRequest applies the new name to the dataset specified by the dataset ID.
+message RenameDatasetRequest {
+  string id = 1;
+  string name = 2;
+}
+
+message RenameDatasetResponse {}
+
+// ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization.
+message ListDatasetsByOrganizationIDRequest {
+  string organization_id = 1;
+}
+
+// ListDatasetsByOrganizationIDResponse returns all the dataset metadata for the organization.
+message ListDatasetsByOrganizationIDResponse {
+  repeated Dataset datasets = 1;
+}
+
+// ListDatasetsByIDsRequest requests all of the datasets by their dataset IDs.
+message ListDatasetsByIDsRequest {
+  repeated string ids = 1;
+}
+
+// ListDatasetsByIDsResponse returns all the dataset metadata for the associated dataset IDs.
+message ListDatasetsByIDsResponse {
+  repeated Dataset datasets = 1;
+}
