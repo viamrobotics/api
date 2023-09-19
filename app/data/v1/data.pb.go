@@ -73,16 +73,16 @@ func (Order) EnumDescriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{0}
 }
 
-// TagsFilterType specifies how data can be filtered based on tags
+// TagsFilterType specifies how data can be filtered based on tags.
 type TagsFilterType int32
 
 const (
 	TagsFilterType_TAGS_FILTER_TYPE_UNSPECIFIED TagsFilterType = 0
-	// TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter
+	// TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter.
 	TagsFilterType_TAGS_FILTER_TYPE_MATCH_BY_OR TagsFilterType = 1
-	// TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned
+	// TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned.
 	TagsFilterType_TAGS_FILTER_TYPE_TAGGED TagsFilterType = 2
-	// TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned
+	// TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned.
 	TagsFilterType_TAGS_FILTER_TYPE_UNTAGGED TagsFilterType = 3
 )
 
@@ -228,7 +228,7 @@ type Filter struct {
 	MimeType        []string         `protobuf:"bytes,12,rep,name=mime_type,json=mimeType,proto3" json:"mime_type,omitempty"`
 	Interval        *CaptureInterval `protobuf:"bytes,13,opt,name=interval,proto3" json:"interval,omitempty"`
 	TagsFilter      *TagsFilter      `protobuf:"bytes,14,opt,name=tags_filter,json=tagsFilter,proto3" json:"tags_filter,omitempty"`
-	// bbox_labels are used to match documents with the specified bounding box labels (using logical OR)
+	// bbox_labels are used to match documents with the specified bounding box labels (using logical OR).
 	BboxLabels []string `protobuf:"bytes,15,rep,name=bbox_labels,json=bboxLabels,proto3" json:"bbox_labels,omitempty"`
 }
 
@@ -362,7 +362,7 @@ type TagsFilter struct {
 	unknownFields protoimpl.UnknownFields
 
 	Type TagsFilterType `protobuf:"varint,1,opt,name=type,proto3,enum=viam.app.data.v1.TagsFilterType" json:"type,omitempty"`
-	// Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_OR
+	// Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_OR.
 	Tags []string `protobuf:"bytes,2,rep,name=tags,proto3" json:"tags,omitempty"`
 }
 
@@ -412,7 +412,7 @@ func (x *TagsFilter) GetTags() []string {
 	return nil
 }
 
-// CaptureMetadata contains information on the settings used for the data capture
+// CaptureMetadata contains information on the settings used for the data capture.
 type CaptureMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -548,7 +548,7 @@ func (x *CaptureMetadata) GetMimeType() string {
 	return ""
 }
 
-// CaptureInterval describes the start and end time of the capture in this file
+// CaptureInterval describes the start and end time of the capture in this file.
 type CaptureInterval struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -604,7 +604,7 @@ func (x *CaptureInterval) GetEnd() *timestamppb.Timestamp {
 	return nil
 }
 
-// TabularDataByFilterRequest requests tabular data based on filter values
+// TabularDataByFilterRequest requests tabular data based on filter values.
 type TabularDataByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -668,7 +668,7 @@ func (x *TabularDataByFilterRequest) GetIncludeInternalData() bool {
 	return false
 }
 
-// TabularDataByFilterResponse provides the data and metadata of tabular data
+// TabularDataByFilterResponse provides the data and metadata of tabular data.
 type TabularDataByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -748,6 +748,7 @@ func (x *TabularDataByFilterResponse) GetTotalSizeBytes() uint64 {
 	return 0
 }
 
+// TabularData contains data and metadata associated with tabular data.
 type TabularData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -819,6 +820,7 @@ func (x *TabularData) GetTimeReceived() *timestamppb.Timestamp {
 	return nil
 }
 
+// BinaryData contains data and metadata associated with binary data.
 type BinaryData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -874,7 +876,7 @@ func (x *BinaryData) GetMetadata() *BinaryMetadata {
 	return nil
 }
 
-// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when a filter is provided
+// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when a filter is provided.
 type BinaryDataByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -946,7 +948,7 @@ func (x *BinaryDataByFilterRequest) GetIncludeInternalData() bool {
 	return false
 }
 
-// BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided
+// BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided.
 type BinaryDataByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1018,6 +1020,7 @@ func (x *BinaryDataByFilterResponse) GetTotalSizeBytes() uint64 {
 	return 0
 }
 
+// BinaryID is the unique identifier for a file that one can request to be retrieved or modified.
 type BinaryID struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1081,7 +1084,7 @@ func (x *BinaryID) GetLocationId() string {
 	return ""
 }
 
-// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids
+// BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids.
 type BinaryDataByIDsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1137,7 +1140,7 @@ func (x *BinaryDataByIDsRequest) GetBinaryIds() []*BinaryID {
 	return nil
 }
 
-// BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided
+// BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided.
 type BinaryDataByIDsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1330,6 +1333,7 @@ func (x *Annotations) GetBboxes() []*BoundingBox {
 	return nil
 }
 
+// BinaryMetadata is the metadata associated with binary data.
 type BinaryMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1433,7 +1437,7 @@ func (x *BinaryMetadata) GetAnnotations() *Annotations {
 	return nil
 }
 
-// DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided
+// DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided.
 type DeleteTabularDataByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1481,7 +1485,7 @@ func (x *DeleteTabularDataByFilterRequest) GetFilter() *Filter {
 	return nil
 }
 
-// DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided
+// DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided.
 type DeleteTabularDataByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1635,7 +1639,7 @@ func (x *DeleteTabularDataResponse) GetDeletedCount() uint64 {
 	return 0
 }
 
-// DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
+// DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided.
 type DeleteBinaryDataByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1691,7 +1695,7 @@ func (x *DeleteBinaryDataByFilterRequest) GetIncludeInternalData() bool {
 	return false
 }
 
-// DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided
+// DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided.
 type DeleteBinaryDataByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1739,7 +1743,7 @@ func (x *DeleteBinaryDataByFilterResponse) GetDeletedCount() uint64 {
 	return 0
 }
 
-// DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided
+// DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided.
 type DeleteBinaryDataByIDsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1787,7 +1791,7 @@ func (x *DeleteBinaryDataByIDsRequest) GetBinaryIds() []*BinaryID {
 	return nil
 }
 
-// DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided
+// DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided.
 type DeleteBinaryDataByIDsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1835,7 +1839,7 @@ func (x *DeleteBinaryDataByIDsResponse) GetDeletedCount() uint64 {
 	return 0
 }
 
-// AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided
+// AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided.
 type AddTagsToBinaryDataByIDsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1929,7 +1933,7 @@ func (*AddTagsToBinaryDataByIDsResponse) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{26}
 }
 
-// AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided
+// AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided.
 type AddTagsToBinaryDataByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2023,7 +2027,7 @@ func (*AddTagsToBinaryDataByFilterResponse) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{28}
 }
 
-// RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided
+// RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.
 type RemoveTagsFromBinaryDataByIDsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2127,7 +2131,7 @@ func (x *RemoveTagsFromBinaryDataByIDsResponse) GetDeletedCount() uint64 {
 	return 0
 }
 
-// RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided
+// RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided.
 type RemoveTagsFromBinaryDataByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2183,7 +2187,7 @@ func (x *RemoveTagsFromBinaryDataByFilterRequest) GetTags() []string {
 	return nil
 }
 
-// RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed
+// RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed.
 type RemoveTagsFromBinaryDataByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2231,7 +2235,7 @@ func (x *RemoveTagsFromBinaryDataByFilterResponse) GetDeletedCount() uint64 {
 	return 0
 }
 
-// TagsByFilterRequest requests the unique tags from data based on given filter
+// TagsByFilterRequest requests the unique tags from data based on given filter.
 type TagsByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2279,7 +2283,7 @@ func (x *TagsByFilterRequest) GetFilter() *Filter {
 	return nil
 }
 
-// TagsByFilterResponse returns the unique tags from data based on given filter
+// TagsByFilterResponse returns the unique tags from data based on given filter.
 type TagsByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2327,6 +2331,8 @@ func (x *TagsByFilterResponse) GetTags() []string {
 	return nil
 }
 
+// AddBoundingBoxToImageByIDRequest specifies the binary ID to which a bounding box
+// with the associated label and position in normalized coordinates will be added.
 type AddBoundingBoxToImageByIDRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2414,6 +2420,7 @@ func (x *AddBoundingBoxToImageByIDRequest) GetYMaxNormalized() float64 {
 	return 0
 }
 
+// AddBoundingBoxToImageByIDResponse returns the bounding box ID of the successfully added bounding box.
 type AddBoundingBoxToImageByIDResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2461,6 +2468,7 @@ func (x *AddBoundingBoxToImageByIDResponse) GetBboxId() string {
 	return ""
 }
 
+// RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bbox ID for the file represented by the binary id.
 type RemoveBoundingBoxFromImageByIDRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2554,6 +2562,7 @@ func (*RemoveBoundingBoxFromImageByIDResponse) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{38}
 }
 
+// BoundingBoxLabelsByFilterRequest requests all the labels of the bounding boxes from files from a given filter.
 type BoundingBoxLabelsByFilterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2601,6 +2610,7 @@ func (x *BoundingBoxLabelsByFilterRequest) GetFilter() *Filter {
 	return nil
 }
 
+// BoundingBoxLabelsByFilterRequest returns all the labels of the bounding boxes from files from a given filter.
 type BoundingBoxLabelsByFilterResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2744,6 +2754,7 @@ func (*ConfigureDatabaseUserResponse) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{42}
 }
 
+// GetDatabaseConnectionRequest requests the database connection hostname.
 type GetDatabaseConnectionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2791,6 +2802,7 @@ func (x *GetDatabaseConnectionRequest) GetOrganizationId() string {
 	return ""
 }
 
+// GetDatabaseConnectionResponse returns the database connection hostname endpoint.
 type GetDatabaseConnectionResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
