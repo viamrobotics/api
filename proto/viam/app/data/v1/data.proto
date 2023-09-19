@@ -62,6 +62,15 @@ service DataService {
   // ConfigureDatabaseUser configures a database user for the Viam organization's MongoDB Atlas Data
   // Federation instance. It can also be used to reset the password of the existing database user.
   rpc ConfigureDatabaseUser(ConfigureDatabaseUserRequest) returns (ConfigureDatabaseUserResponse);
+
+  // AddBinaryDataToDatasetByIDs adds the binary data with the given binary IDs to the dataset.
+  rpc AddBinaryDataToDatasetByIDs(AddBinaryDataToDatasetByIDsRequest) returns (AddBinaryDataToDatasetByIDsResponse);
+
+  // AddBinaryDataToDatasetByFilter adds the binary data based on the given filter to the dataset.
+  rpc AddBinaryDataToDatasetByFilter(AddBinaryDataToDatasetByFilterRequest) returns (AddBinaryDataToDatasetByFilterResponse);
+
+  // RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
+  rpc RemoveBinaryDataFromDatasetByIDs(RemoveBinaryDataFromDatasetByIDsRequest) returns (RemoveBinaryDataFromDatasetByIDsResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -104,6 +113,7 @@ message Filter {
   TagsFilter tags_filter = 14;
   // bbox_labels are used to match documents with the specified bounding box labels (using logical OR).
   repeated string bbox_labels = 15;
+  string dataset_id = 16;
 
   reserved 3, 5;
   reserved "component_model", "tags";
@@ -246,6 +256,7 @@ message BinaryMetadata {
   string file_ext = 6;
   string uri = 7;
   Annotations annotations = 8;
+  repeated string dataset_ids = 9;
 }
 
 // DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided.
@@ -417,3 +428,27 @@ message GetDatabaseConnectionRequest {
 message GetDatabaseConnectionResponse {
   string hostname = 1;
 }
+
+// AddBinaryDataToDatasetByIDsRequest adds the binary data with the given binary IDs to a dataset with dataset_id.
+message AddBinaryDataToDatasetByIDsRequest {
+  repeated BinaryID binary_ids = 1;
+  string dataset_id = 2;
+}
+
+message AddBinaryDataToDatasetByIDsResponse {}
+
+// AddBinaryDataToDatasetByIDsRequest adds the binary data associated with a filter to a dataset with dataset_id.
+message AddBinaryDataToDatasetByFilterRequest {
+  Filter filter = 1;
+  string dataset_id = 2;
+}
+
+message AddBinaryDataToDatasetByFilterResponse {}
+
+// RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id.
+message RemoveBinaryDataFromDatasetByIDsRequest {
+  repeated BinaryID binary_ids = 1;
+  string dataset_id = 2;
+}
+
+message RemoveBinaryDataFromDatasetByIDsResponse {}

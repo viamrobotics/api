@@ -157,6 +157,33 @@ type DataServiceConfigureDatabaseUser = {
   readonly responseType: typeof app_data_v1_data_pb.ConfigureDatabaseUserResponse;
 };
 
+type DataServiceAddBinaryDataToDatasetByIDs = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.AddBinaryDataToDatasetByIDsRequest;
+  readonly responseType: typeof app_data_v1_data_pb.AddBinaryDataToDatasetByIDsResponse;
+};
+
+type DataServiceAddBinaryDataToDatasetByFilter = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.AddBinaryDataToDatasetByFilterRequest;
+  readonly responseType: typeof app_data_v1_data_pb.AddBinaryDataToDatasetByFilterResponse;
+};
+
+type DataServiceRemoveBinaryDataFromDatasetByIDs = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsRequest;
+  readonly responseType: typeof app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
@@ -176,6 +203,9 @@ export class DataService {
   static readonly BoundingBoxLabelsByFilter: DataServiceBoundingBoxLabelsByFilter;
   static readonly GetDatabaseConnection: DataServiceGetDatabaseConnection;
   static readonly ConfigureDatabaseUser: DataServiceConfigureDatabaseUser;
+  static readonly AddBinaryDataToDatasetByIDs: DataServiceAddBinaryDataToDatasetByIDs;
+  static readonly AddBinaryDataToDatasetByFilter: DataServiceAddBinaryDataToDatasetByFilter;
+  static readonly RemoveBinaryDataFromDatasetByIDs: DataServiceRemoveBinaryDataFromDatasetByIDs;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -362,6 +392,33 @@ export class DataServiceClient {
   configureDatabaseUser(
     requestMessage: app_data_v1_data_pb.ConfigureDatabaseUserRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ConfigureDatabaseUserResponse|null) => void
+  ): UnaryResponse;
+  addBinaryDataToDatasetByIDs(
+    requestMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByIDsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByIDsResponse|null) => void
+  ): UnaryResponse;
+  addBinaryDataToDatasetByIDs(
+    requestMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByIDsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByIDsResponse|null) => void
+  ): UnaryResponse;
+  addBinaryDataToDatasetByFilter(
+    requestMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByFilterRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByFilterResponse|null) => void
+  ): UnaryResponse;
+  addBinaryDataToDatasetByFilter(
+    requestMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByFilterRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByFilterResponse|null) => void
+  ): UnaryResponse;
+  removeBinaryDataFromDatasetByIDs(
+    requestMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse|null) => void
+  ): UnaryResponse;
+  removeBinaryDataFromDatasetByIDs(
+    requestMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse|null) => void
   ): UnaryResponse;
 }
 

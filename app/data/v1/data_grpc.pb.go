@@ -58,6 +58,12 @@ type DataServiceClient interface {
 	// ConfigureDatabaseUser configures a database user for the Viam organization's MongoDB Atlas Data
 	// Federation instance. It can also be used to reset the password of the existing database user.
 	ConfigureDatabaseUser(ctx context.Context, in *ConfigureDatabaseUserRequest, opts ...grpc.CallOption) (*ConfigureDatabaseUserResponse, error)
+	// AddBinaryDataToDatasetByIDs adds the binary data with the given binary IDs to the dataset.
+	AddBinaryDataToDatasetByIDs(ctx context.Context, in *AddBinaryDataToDatasetByIDsRequest, opts ...grpc.CallOption) (*AddBinaryDataToDatasetByIDsResponse, error)
+	// AddBinaryDataToDatasetByFilter adds the binary data based on the given filter to the dataset.
+	AddBinaryDataToDatasetByFilter(ctx context.Context, in *AddBinaryDataToDatasetByFilterRequest, opts ...grpc.CallOption) (*AddBinaryDataToDatasetByFilterResponse, error)
+	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
+	RemoveBinaryDataFromDatasetByIDs(ctx context.Context, in *RemoveBinaryDataFromDatasetByIDsRequest, opts ...grpc.CallOption) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
 }
 
 type dataServiceClient struct {
@@ -221,6 +227,33 @@ func (c *dataServiceClient) ConfigureDatabaseUser(ctx context.Context, in *Confi
 	return out, nil
 }
 
+func (c *dataServiceClient) AddBinaryDataToDatasetByIDs(ctx context.Context, in *AddBinaryDataToDatasetByIDsRequest, opts ...grpc.CallOption) (*AddBinaryDataToDatasetByIDsResponse, error) {
+	out := new(AddBinaryDataToDatasetByIDsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/AddBinaryDataToDatasetByIDs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) AddBinaryDataToDatasetByFilter(ctx context.Context, in *AddBinaryDataToDatasetByFilterRequest, opts ...grpc.CallOption) (*AddBinaryDataToDatasetByFilterResponse, error) {
+	out := new(AddBinaryDataToDatasetByFilterResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/AddBinaryDataToDatasetByFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) RemoveBinaryDataFromDatasetByIDs(ctx context.Context, in *RemoveBinaryDataFromDatasetByIDsRequest, opts ...grpc.CallOption) (*RemoveBinaryDataFromDatasetByIDsResponse, error) {
+	out := new(RemoveBinaryDataFromDatasetByIDsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/RemoveBinaryDataFromDatasetByIDs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -261,6 +294,12 @@ type DataServiceServer interface {
 	// ConfigureDatabaseUser configures a database user for the Viam organization's MongoDB Atlas Data
 	// Federation instance. It can also be used to reset the password of the existing database user.
 	ConfigureDatabaseUser(context.Context, *ConfigureDatabaseUserRequest) (*ConfigureDatabaseUserResponse, error)
+	// AddBinaryDataToDatasetByIDs adds the binary data with the given binary IDs to the dataset.
+	AddBinaryDataToDatasetByIDs(context.Context, *AddBinaryDataToDatasetByIDsRequest) (*AddBinaryDataToDatasetByIDsResponse, error)
+	// AddBinaryDataToDatasetByFilter adds the binary data based on the given filter to the dataset.
+	AddBinaryDataToDatasetByFilter(context.Context, *AddBinaryDataToDatasetByFilterRequest) (*AddBinaryDataToDatasetByFilterResponse, error)
+	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
+	RemoveBinaryDataFromDatasetByIDs(context.Context, *RemoveBinaryDataFromDatasetByIDsRequest) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -318,6 +357,15 @@ func (UnimplementedDataServiceServer) GetDatabaseConnection(context.Context, *Ge
 }
 func (UnimplementedDataServiceServer) ConfigureDatabaseUser(context.Context, *ConfigureDatabaseUserRequest) (*ConfigureDatabaseUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfigureDatabaseUser not implemented")
+}
+func (UnimplementedDataServiceServer) AddBinaryDataToDatasetByIDs(context.Context, *AddBinaryDataToDatasetByIDsRequest) (*AddBinaryDataToDatasetByIDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddBinaryDataToDatasetByIDs not implemented")
+}
+func (UnimplementedDataServiceServer) AddBinaryDataToDatasetByFilter(context.Context, *AddBinaryDataToDatasetByFilterRequest) (*AddBinaryDataToDatasetByFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddBinaryDataToDatasetByFilter not implemented")
+}
+func (UnimplementedDataServiceServer) RemoveBinaryDataFromDatasetByIDs(context.Context, *RemoveBinaryDataFromDatasetByIDsRequest) (*RemoveBinaryDataFromDatasetByIDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveBinaryDataFromDatasetByIDs not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -638,6 +686,60 @@ func _DataService_ConfigureDatabaseUser_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_AddBinaryDataToDatasetByIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddBinaryDataToDatasetByIDsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).AddBinaryDataToDatasetByIDs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/AddBinaryDataToDatasetByIDs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).AddBinaryDataToDatasetByIDs(ctx, req.(*AddBinaryDataToDatasetByIDsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_AddBinaryDataToDatasetByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddBinaryDataToDatasetByFilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).AddBinaryDataToDatasetByFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/AddBinaryDataToDatasetByFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).AddBinaryDataToDatasetByFilter(ctx, req.(*AddBinaryDataToDatasetByFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_RemoveBinaryDataFromDatasetByIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveBinaryDataFromDatasetByIDsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).RemoveBinaryDataFromDatasetByIDs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/RemoveBinaryDataFromDatasetByIDs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).RemoveBinaryDataFromDatasetByIDs(ctx, req.(*RemoveBinaryDataFromDatasetByIDsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -712,6 +814,18 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConfigureDatabaseUser",
 			Handler:    _DataService_ConfigureDatabaseUser_Handler,
+		},
+		{
+			MethodName: "AddBinaryDataToDatasetByIDs",
+			Handler:    _DataService_AddBinaryDataToDatasetByIDs_Handler,
+		},
+		{
+			MethodName: "AddBinaryDataToDatasetByFilter",
+			Handler:    _DataService_AddBinaryDataToDatasetByFilter_Handler,
+		},
+		{
+			MethodName: "RemoveBinaryDataFromDatasetByIDs",
+			Handler:    _DataService_RemoveBinaryDataFromDatasetByIDs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
