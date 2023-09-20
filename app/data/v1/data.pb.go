@@ -1446,6 +1446,13 @@ func (x *BinaryMetadata) GetAnnotations() *Annotations {
 	return nil
 }
 
+func (x *BinaryMetadata) GetDatasetIds() []string {
+	if x != nil {
+		return x.DatasetIds
+	}
+	return nil
+}
+
 // DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided.
 type DeleteTabularDataByFilterRequest struct {
 	state         protoimpl.MessageState
