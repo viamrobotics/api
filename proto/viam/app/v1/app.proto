@@ -1007,7 +1007,7 @@ message AuthorizationDetails {
 }
 
 message APIKeyWithAuthorizations {
-  APIKey apiKey = 1;
+  APIKey api_key = 1;
   repeated AuthorizationDetails authorizations = 2;
 }
 
