@@ -38,6 +38,15 @@ MotionService.MoveOnGlobe = {
   responseType: service_motion_v1_motion_pb.MoveOnGlobeResponse
 };
 
+MotionService.MoveOnGlobeNew = {
+  methodName: "MoveOnGlobeNew",
+  service: MotionService,
+  requestStream: false,
+  responseStream: false,
+  requestType: service_motion_v1_motion_pb.MoveOnGlobeNewRequest,
+  responseType: service_motion_v1_motion_pb.MoveOnGlobeNewResponse
+};
+
 MotionService.GetPose = {
   methodName: "GetPose",
   service: MotionService,
@@ -45,6 +54,33 @@ MotionService.GetPose = {
   responseStream: false,
   requestType: service_motion_v1_motion_pb.GetPoseRequest,
   responseType: service_motion_v1_motion_pb.GetPoseResponse
+};
+
+MotionService.StopPlan = {
+  methodName: "StopPlan",
+  service: MotionService,
+  requestStream: false,
+  responseStream: false,
+  requestType: service_motion_v1_motion_pb.StopPlanRequest,
+  responseType: service_motion_v1_motion_pb.StopPlanResponse
+};
+
+MotionService.ListPlanStatuses = {
+  methodName: "ListPlanStatuses",
+  service: MotionService,
+  requestStream: false,
+  responseStream: false,
+  requestType: service_motion_v1_motion_pb.ListPlanStatusesRequest,
+  responseType: service_motion_v1_motion_pb.ListPlanStatusesResponse
+};
+
+MotionService.GetPlan = {
+  methodName: "GetPlan",
+  service: MotionService,
+  requestStream: false,
+  responseStream: false,
+  requestType: service_motion_v1_motion_pb.GetPlanRequest,
+  responseType: service_motion_v1_motion_pb.GetPlanResponse
 };
 
 MotionService.DoCommand = {
@@ -156,11 +192,135 @@ MotionServiceClient.prototype.moveOnGlobe = function moveOnGlobe(requestMessage,
   };
 };
 
+MotionServiceClient.prototype.moveOnGlobeNew = function moveOnGlobeNew(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MotionService.MoveOnGlobeNew, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 MotionServiceClient.prototype.getPose = function getPose(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
   var client = grpc.unary(MotionService.GetPose, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MotionServiceClient.prototype.stopPlan = function stopPlan(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MotionService.StopPlan, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MotionServiceClient.prototype.listPlanStatuses = function listPlanStatuses(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MotionService.ListPlanStatuses, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MotionServiceClient.prototype.getPlan = function getPlan(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MotionService.GetPlan, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
