@@ -81,6 +81,7 @@ service MotionService {
     };
   }
 }
+
 // Moves any component on the robot to a specified destination which can be from the reference frame of any other component on the robot.
 message MoveRequest {
   // Name of the motion service
