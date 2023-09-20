@@ -1007,11 +1007,8 @@ message AuthorizationDetails {
 }
 
 message APIKeyWithAuthorizations {
-  string id = 1;
-  string key = 2;
-  string name = 3;
-  google.protobuf.Timestamp created_on = 4;
-  repeated AuthorizationDetails authorizations = 5;
+  APIKey apiKey = 1;
+  repeated AuthorizationDetails authorizations = 2;
 }
 
 message ListKeysRequest {
