@@ -32,6 +32,15 @@ type MotionServiceMoveOnGlobe = {
   readonly responseType: typeof service_motion_v1_motion_pb.MoveOnGlobeResponse;
 };
 
+type MotionServiceMoveOnGlobeNew = {
+  readonly methodName: string;
+  readonly service: typeof MotionService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_motion_v1_motion_pb.MoveOnGlobeNewRequest;
+  readonly responseType: typeof service_motion_v1_motion_pb.MoveOnGlobeNewResponse;
+};
+
 type MotionServiceGetPose = {
   readonly methodName: string;
   readonly service: typeof MotionService;
@@ -39,6 +48,33 @@ type MotionServiceGetPose = {
   readonly responseStream: false;
   readonly requestType: typeof service_motion_v1_motion_pb.GetPoseRequest;
   readonly responseType: typeof service_motion_v1_motion_pb.GetPoseResponse;
+};
+
+type MotionServiceStopPlan = {
+  readonly methodName: string;
+  readonly service: typeof MotionService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_motion_v1_motion_pb.StopPlanRequest;
+  readonly responseType: typeof service_motion_v1_motion_pb.StopPlanResponse;
+};
+
+type MotionServiceListPlanStatuses = {
+  readonly methodName: string;
+  readonly service: typeof MotionService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_motion_v1_motion_pb.ListPlanStatusesRequest;
+  readonly responseType: typeof service_motion_v1_motion_pb.ListPlanStatusesResponse;
+};
+
+type MotionServiceGetPlan = {
+  readonly methodName: string;
+  readonly service: typeof MotionService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_motion_v1_motion_pb.GetPlanRequest;
+  readonly responseType: typeof service_motion_v1_motion_pb.GetPlanResponse;
 };
 
 type MotionServiceDoCommand = {
@@ -55,7 +91,11 @@ export class MotionService {
   static readonly Move: MotionServiceMove;
   static readonly MoveOnMap: MotionServiceMoveOnMap;
   static readonly MoveOnGlobe: MotionServiceMoveOnGlobe;
+  static readonly MoveOnGlobeNew: MotionServiceMoveOnGlobeNew;
   static readonly GetPose: MotionServiceGetPose;
+  static readonly StopPlan: MotionServiceStopPlan;
+  static readonly ListPlanStatuses: MotionServiceListPlanStatuses;
+  static readonly GetPlan: MotionServiceGetPlan;
   static readonly DoCommand: MotionServiceDoCommand;
 }
 
@@ -118,6 +158,15 @@ export class MotionServiceClient {
     requestMessage: service_motion_v1_motion_pb.MoveOnGlobeRequest,
     callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.MoveOnGlobeResponse|null) => void
   ): UnaryResponse;
+  moveOnGlobeNew(
+    requestMessage: service_motion_v1_motion_pb.MoveOnGlobeNewRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.MoveOnGlobeNewResponse|null) => void
+  ): UnaryResponse;
+  moveOnGlobeNew(
+    requestMessage: service_motion_v1_motion_pb.MoveOnGlobeNewRequest,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.MoveOnGlobeNewResponse|null) => void
+  ): UnaryResponse;
   getPose(
     requestMessage: service_motion_v1_motion_pb.GetPoseRequest,
     metadata: grpc.Metadata,
@@ -126,6 +175,33 @@ export class MotionServiceClient {
   getPose(
     requestMessage: service_motion_v1_motion_pb.GetPoseRequest,
     callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.GetPoseResponse|null) => void
+  ): UnaryResponse;
+  stopPlan(
+    requestMessage: service_motion_v1_motion_pb.StopPlanRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.StopPlanResponse|null) => void
+  ): UnaryResponse;
+  stopPlan(
+    requestMessage: service_motion_v1_motion_pb.StopPlanRequest,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.StopPlanResponse|null) => void
+  ): UnaryResponse;
+  listPlanStatuses(
+    requestMessage: service_motion_v1_motion_pb.ListPlanStatusesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.ListPlanStatusesResponse|null) => void
+  ): UnaryResponse;
+  listPlanStatuses(
+    requestMessage: service_motion_v1_motion_pb.ListPlanStatusesRequest,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.ListPlanStatusesResponse|null) => void
+  ): UnaryResponse;
+  getPlan(
+    requestMessage: service_motion_v1_motion_pb.GetPlanRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.GetPlanResponse|null) => void
+  ): UnaryResponse;
+  getPlan(
+    requestMessage: service_motion_v1_motion_pb.GetPlanRequest,
+    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.GetPlanResponse|null) => void
   ): UnaryResponse;
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
