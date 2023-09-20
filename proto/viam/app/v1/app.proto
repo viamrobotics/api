@@ -773,6 +773,7 @@ message Authorization {
   string identity_id = 5;
   string organization_id = 6;
   string identity_type = 7;
+  string api_key = 8;
 }
 
 message AddRoleRequest {
