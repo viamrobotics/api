@@ -194,6 +194,9 @@ service AppService {
   rpc DeleteKey(DeleteKeyRequest) returns (DeleteKeyResponse);
 
   rpc ListKeys(ListKeysRequest) returns (ListKeysResponse);
+
+  rpc RotateKey(RotateKeyRequest) returns (RotateKeyResponse);
+
 }
 
 message Robot {
@@ -1017,4 +1020,14 @@ message ListKeysRequest {
 
 message ListKeysResponse {
   repeated APIKeyWithAuthorizations api_keys = 1;
+}
+
+message RotateKeyRequest {
+  string key = 1;
+  string id =2;
+}
+
+message RotateKeyResponse {
+  string key = 1;
+  string id = 2;
 }
