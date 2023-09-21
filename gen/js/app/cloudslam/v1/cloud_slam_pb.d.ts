@@ -7,13 +7,11 @@ import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/stru
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class StartMappingSessionRequest extends jspb.Message {
-  hasSlamConfig(): boolean;
-  clearSlamConfig(): void;
-  getSlamConfig(): google_protobuf_struct_pb.Struct | undefined;
-  setSlamConfig(value?: google_protobuf_struct_pb.Struct): void;
-
   getSlamVersion(): string;
   setSlamVersion(value: string): void;
+
+  getViamServerVersion(): string;
+  setViamServerVersion(value: string): void;
 
   getMapName(): string;
   setMapName(value: string): void;
@@ -27,11 +25,23 @@ export class StartMappingSessionRequest extends jspb.Message {
   getRobotId(): string;
   setRobotId(value: string): void;
 
-  getViamServerVersion(): string;
-  setViamServerVersion(value: string): void;
+  hasCaptureInterval(): boolean;
+  clearCaptureInterval(): void;
+  getCaptureInterval(): CaptureInterval | undefined;
+  setCaptureInterval(value?: CaptureInterval): void;
 
-  getIsOnline(): boolean;
-  setIsOnline(value: boolean): void;
+  clearSensorsList(): void;
+  getSensorsList(): Array<SensorInfo>;
+  setSensorsList(value: Array<SensorInfo>): void;
+  addSensors(value?: SensorInfo, index?: number): SensorInfo;
+
+  hasSlamAlgorithmParams(): boolean;
+  clearSlamAlgorithmParams(): void;
+  getSlamAlgorithmParams(): google_protobuf_struct_pb.Struct | undefined;
+  setSlamAlgorithmParams(value?: google_protobuf_struct_pb.Struct): void;
+
+  getExistingMapVersion(): string;
+  setExistingMapVersion(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartMappingSessionRequest.AsObject;
@@ -45,14 +55,72 @@ export class StartMappingSessionRequest extends jspb.Message {
 
 export namespace StartMappingSessionRequest {
   export type AsObject = {
-    slamConfig?: google_protobuf_struct_pb.Struct.AsObject,
     slamVersion: string,
+    viamServerVersion: string,
     mapName: string,
     organizationId: string,
     locationId: string,
     robotId: string,
-    viamServerVersion: string,
-    isOnline: boolean,
+    captureInterval?: CaptureInterval.AsObject,
+    sensorsList: Array<SensorInfo.AsObject>,
+    slamAlgorithmParams?: google_protobuf_struct_pb.Struct.AsObject,
+    existingMapVersion: string,
+  }
+}
+
+export class SensorInfo extends jspb.Message {
+  getSourceComponentName(): string;
+  setSourceComponentName(value: string): void;
+
+  getType(): string;
+  setType(value: string): void;
+
+  getDataFrequencyHz(): string;
+  setDataFrequencyHz(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SensorInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: SensorInfo): SensorInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SensorInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SensorInfo;
+  static deserializeBinaryFromReader(message: SensorInfo, reader: jspb.BinaryReader): SensorInfo;
+}
+
+export namespace SensorInfo {
+  export type AsObject = {
+    sourceComponentName: string,
+    type: string,
+    dataFrequencyHz: string,
+  }
+}
+
+export class CaptureInterval extends jspb.Message {
+  hasStartTime(): boolean;
+  clearStartTime(): void;
+  getStartTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStartTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasEndTime(): boolean;
+  clearEndTime(): void;
+  getEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setEndTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CaptureInterval.AsObject;
+  static toObject(includeInstance: boolean, msg: CaptureInterval): CaptureInterval.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CaptureInterval, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CaptureInterval;
+  static deserializeBinaryFromReader(message: CaptureInterval, reader: jspb.BinaryReader): CaptureInterval;
+}
+
+export namespace CaptureInterval {
+  export type AsObject = {
+    startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
