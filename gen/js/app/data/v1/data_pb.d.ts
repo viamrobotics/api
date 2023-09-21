@@ -651,48 +651,6 @@ export namespace BinaryMetadata {
   }
 }
 
-export class DeleteTabularDataByFilterRequest extends jspb.Message {
-  hasFilter(): boolean;
-  clearFilter(): void;
-  getFilter(): Filter | undefined;
-  setFilter(value?: Filter): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteTabularDataByFilterRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteTabularDataByFilterRequest): DeleteTabularDataByFilterRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeleteTabularDataByFilterRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteTabularDataByFilterRequest;
-  static deserializeBinaryFromReader(message: DeleteTabularDataByFilterRequest, reader: jspb.BinaryReader): DeleteTabularDataByFilterRequest;
-}
-
-export namespace DeleteTabularDataByFilterRequest {
-  export type AsObject = {
-    filter?: Filter.AsObject,
-  }
-}
-
-export class DeleteTabularDataByFilterResponse extends jspb.Message {
-  getDeletedCount(): number;
-  setDeletedCount(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteTabularDataByFilterResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteTabularDataByFilterResponse): DeleteTabularDataByFilterResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeleteTabularDataByFilterResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteTabularDataByFilterResponse;
-  static deserializeBinaryFromReader(message: DeleteTabularDataByFilterResponse, reader: jspb.BinaryReader): DeleteTabularDataByFilterResponse;
-}
-
-export namespace DeleteTabularDataByFilterResponse {
-  export type AsObject = {
-    deletedCount: number,
-  }
-}
-
 export class DeleteTabularDataRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;

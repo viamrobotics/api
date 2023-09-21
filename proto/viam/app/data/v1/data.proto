@@ -19,9 +19,6 @@ service DataService {
   // BinaryDataByIDs queries binary data and metadata based on given IDs.
   rpc BinaryDataByIDs(BinaryDataByIDsRequest) returns (BinaryDataByIDsResponse);
 
-  // DeleteTabularDataByFilter deletes tabular data based on given filters.
-  rpc DeleteTabularDataByFilter(DeleteTabularDataByFilterRequest) returns (DeleteTabularDataByFilterResponse);
-
   // DeleteTabularData deletes tabular data older than a number of days, based on the given organization ID.
   rpc DeleteTabularData(DeleteTabularDataRequest) returns (DeleteTabularDataResponse);
 
@@ -257,19 +254,6 @@ message BinaryMetadata {
   string uri = 7;
   Annotations annotations = 8;
   repeated string dataset_ids = 9;
-}
-
-// DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided.
-message DeleteTabularDataByFilterRequest {
-  Filter filter = 1;
-}
-
-// DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided.
-message DeleteTabularDataByFilterResponse {
-  uint64 deleted_count = 1;
-
-  reserved 2;
-  reserved "result";
 }
 
 // DeleteTabularDataRequest deletes the data from the organization that is older than `delete_older_than_days`.

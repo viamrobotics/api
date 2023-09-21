@@ -31,15 +31,6 @@ type DataServiceBinaryDataByIDs = {
   readonly responseType: typeof app_data_v1_data_pb.BinaryDataByIDsResponse;
 };
 
-type DataServiceDeleteTabularDataByFilter = {
-  readonly methodName: string;
-  readonly service: typeof DataService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof app_data_v1_data_pb.DeleteTabularDataByFilterRequest;
-  readonly responseType: typeof app_data_v1_data_pb.DeleteTabularDataByFilterResponse;
-};
-
 type DataServiceDeleteTabularData = {
   readonly methodName: string;
   readonly service: typeof DataService;
@@ -189,7 +180,6 @@ export class DataService {
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
   static readonly BinaryDataByFilter: DataServiceBinaryDataByFilter;
   static readonly BinaryDataByIDs: DataServiceBinaryDataByIDs;
-  static readonly DeleteTabularDataByFilter: DataServiceDeleteTabularDataByFilter;
   static readonly DeleteTabularData: DataServiceDeleteTabularData;
   static readonly DeleteBinaryDataByFilter: DataServiceDeleteBinaryDataByFilter;
   static readonly DeleteBinaryDataByIDs: DataServiceDeleteBinaryDataByIDs;
@@ -266,15 +256,6 @@ export class DataServiceClient {
   binaryDataByIDs(
     requestMessage: app_data_v1_data_pb.BinaryDataByIDsRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryDataByIDsResponse|null) => void
-  ): UnaryResponse;
-  deleteTabularDataByFilter(
-    requestMessage: app_data_v1_data_pb.DeleteTabularDataByFilterRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteTabularDataByFilterResponse|null) => void
-  ): UnaryResponse;
-  deleteTabularDataByFilter(
-    requestMessage: app_data_v1_data_pb.DeleteTabularDataByFilterRequest,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteTabularDataByFilterResponse|null) => void
   ): UnaryResponse;
   deleteTabularData(
     requestMessage: app_data_v1_data_pb.DeleteTabularDataRequest,

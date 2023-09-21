@@ -25,6 +25,8 @@ var common_v1_common_pb = require('../../../common/v1/common_pb.js')
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
 
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
+
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 const proto = {};
 proto.viam = {};
 proto.viam.service = {};
@@ -269,6 +271,67 @@ proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.moveOnGlobe =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.motion.v1.MoveOnGlobeNewRequest,
+ *   !proto.viam.service.motion.v1.MoveOnGlobeNewResponse>}
+ */
+const methodDescriptor_MotionService_MoveOnGlobeNew = new grpc.web.MethodDescriptor(
+  '/viam.service.motion.v1.MotionService/MoveOnGlobeNew',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.motion.v1.MoveOnGlobeNewRequest,
+  proto.viam.service.motion.v1.MoveOnGlobeNewResponse,
+  /**
+   * @param {!proto.viam.service.motion.v1.MoveOnGlobeNewRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.motion.v1.MoveOnGlobeNewResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.MoveOnGlobeNewRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.motion.v1.MoveOnGlobeNewResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.motion.v1.MoveOnGlobeNewResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.motion.v1.MotionServiceClient.prototype.moveOnGlobeNew =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/MoveOnGlobeNew',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_MoveOnGlobeNew,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.MoveOnGlobeNewRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.motion.v1.MoveOnGlobeNewResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.moveOnGlobeNew =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/MoveOnGlobeNew',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_MoveOnGlobeNew);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.service.motion.v1.GetPoseRequest,
  *   !proto.viam.service.motion.v1.GetPoseResponse>}
  */
@@ -324,6 +387,189 @@ proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.getPose =
       request,
       metadata || {},
       methodDescriptor_MotionService_GetPose);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.motion.v1.StopPlanRequest,
+ *   !proto.viam.service.motion.v1.StopPlanResponse>}
+ */
+const methodDescriptor_MotionService_StopPlan = new grpc.web.MethodDescriptor(
+  '/viam.service.motion.v1.MotionService/StopPlan',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.motion.v1.StopPlanRequest,
+  proto.viam.service.motion.v1.StopPlanResponse,
+  /**
+   * @param {!proto.viam.service.motion.v1.StopPlanRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.motion.v1.StopPlanResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.StopPlanRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.motion.v1.StopPlanResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.motion.v1.StopPlanResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.motion.v1.MotionServiceClient.prototype.stopPlan =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/StopPlan',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_StopPlan,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.StopPlanRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.motion.v1.StopPlanResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.stopPlan =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/StopPlan',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_StopPlan);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.motion.v1.ListPlanStatusesRequest,
+ *   !proto.viam.service.motion.v1.ListPlanStatusesResponse>}
+ */
+const methodDescriptor_MotionService_ListPlanStatuses = new grpc.web.MethodDescriptor(
+  '/viam.service.motion.v1.MotionService/ListPlanStatuses',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.motion.v1.ListPlanStatusesRequest,
+  proto.viam.service.motion.v1.ListPlanStatusesResponse,
+  /**
+   * @param {!proto.viam.service.motion.v1.ListPlanStatusesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.motion.v1.ListPlanStatusesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.ListPlanStatusesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.motion.v1.ListPlanStatusesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.motion.v1.ListPlanStatusesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.motion.v1.MotionServiceClient.prototype.listPlanStatuses =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/ListPlanStatuses',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_ListPlanStatuses,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.ListPlanStatusesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.motion.v1.ListPlanStatusesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.listPlanStatuses =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/ListPlanStatuses',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_ListPlanStatuses);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.motion.v1.GetPlanRequest,
+ *   !proto.viam.service.motion.v1.GetPlanResponse>}
+ */
+const methodDescriptor_MotionService_GetPlan = new grpc.web.MethodDescriptor(
+  '/viam.service.motion.v1.MotionService/GetPlan',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.motion.v1.GetPlanRequest,
+  proto.viam.service.motion.v1.GetPlanResponse,
+  /**
+   * @param {!proto.viam.service.motion.v1.GetPlanRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.motion.v1.GetPlanResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.GetPlanRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.motion.v1.GetPlanResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.motion.v1.GetPlanResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.motion.v1.MotionServiceClient.prototype.getPlan =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/GetPlan',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_GetPlan,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.GetPlanRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.motion.v1.GetPlanResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.getPlan =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/GetPlan',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_GetPlan);
 };
 
 
