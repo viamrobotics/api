@@ -139,6 +139,7 @@ type AppServiceClient interface {
 	CreateKey(ctx context.Context, in *CreateKeyRequest, opts ...grpc.CallOption) (*CreateKeyResponse, error)
 	DeleteKey(ctx context.Context, in *DeleteKeyRequest, opts ...grpc.CallOption) (*DeleteKeyResponse, error)
 	ListKeys(ctx context.Context, in *ListKeysRequest, opts ...grpc.CallOption) (*ListKeysResponse, error)
+	RotateKey(ctx context.Context, in *RotateKeyRequest, opts ...grpc.CallOption) (*RotateKeyResponse, error)
 }
 
 type appServiceClient struct {
@@ -746,6 +747,15 @@ func (c *appServiceClient) ListKeys(ctx context.Context, in *ListKeysRequest, op
 	return out, nil
 }
 
+func (c *appServiceClient) RotateKey(ctx context.Context, in *RotateKeyRequest, opts ...grpc.CallOption) (*RotateKeyResponse, error) {
+	out := new(RotateKeyResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/RotateKey", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppServiceServer is the server API for AppService service.
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
@@ -867,6 +877,7 @@ type AppServiceServer interface {
 	CreateKey(context.Context, *CreateKeyRequest) (*CreateKeyResponse, error)
 	DeleteKey(context.Context, *DeleteKeyRequest) (*DeleteKeyResponse, error)
 	ListKeys(context.Context, *ListKeysRequest) (*ListKeysResponse, error)
+	RotateKey(context.Context, *RotateKeyRequest) (*RotateKeyResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -1056,6 +1067,9 @@ func (UnimplementedAppServiceServer) DeleteKey(context.Context, *DeleteKeyReques
 }
 func (UnimplementedAppServiceServer) ListKeys(context.Context, *ListKeysRequest) (*ListKeysResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListKeys not implemented")
+}
+func (UnimplementedAppServiceServer) RotateKey(context.Context, *RotateKeyRequest) (*RotateKeyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RotateKey not implemented")
 }
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
@@ -2179,6 +2193,24 @@ func _AppService_ListKeys_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_RotateKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RotateKeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).RotateKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/RotateKey",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).RotateKey(ctx, req.(*RotateKeyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2421,6 +2453,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListKeys",
 			Handler:    _AppService_ListKeys_Handler,
+		},
+		{
+			MethodName: "RotateKey",
+			Handler:    _AppService_RotateKey_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

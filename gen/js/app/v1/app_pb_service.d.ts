@@ -553,6 +553,15 @@ type AppServiceListKeys = {
   readonly responseType: typeof app_v1_app_pb.ListKeysResponse;
 };
 
+type AppServiceRotateKey = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.RotateKeyRequest;
+  readonly responseType: typeof app_v1_app_pb.RotateKeyResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
@@ -616,6 +625,7 @@ export class AppService {
   static readonly CreateKey: AppServiceCreateKey;
   static readonly DeleteKey: AppServiceDeleteKey;
   static readonly ListKeys: AppServiceListKeys;
+  static readonly RotateKey: AppServiceRotateKey;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -1182,6 +1192,15 @@ export class AppServiceClient {
   listKeys(
     requestMessage: app_v1_app_pb.ListKeysRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListKeysResponse|null) => void
+  ): UnaryResponse;
+  rotateKey(
+    requestMessage: app_v1_app_pb.RotateKeyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RotateKeyResponse|null) => void
+  ): UnaryResponse;
+  rotateKey(
+    requestMessage: app_v1_app_pb.RotateKeyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RotateKeyResponse|null) => void
   ): UnaryResponse;
 }
 

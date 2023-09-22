@@ -3703,6 +3703,50 @@ export namespace ListKeysResponse {
   }
 }
 
+export class RotateKeyRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RotateKeyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RotateKeyRequest): RotateKeyRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RotateKeyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RotateKeyRequest;
+  static deserializeBinaryFromReader(message: RotateKeyRequest, reader: jspb.BinaryReader): RotateKeyRequest;
+}
+
+export namespace RotateKeyRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class RotateKeyResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getKey(): string;
+  setKey(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RotateKeyResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RotateKeyResponse): RotateKeyResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RotateKeyResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RotateKeyResponse;
+  static deserializeBinaryFromReader(message: RotateKeyResponse, reader: jspb.BinaryReader): RotateKeyResponse;
+}
+
+export namespace RotateKeyResponse {
+  export type AsObject = {
+    id: string,
+    key: string,
+  }
+}
+
 export interface VisibilityMap {
   VISIBILITY_UNSPECIFIED: 0;
   VISIBILITY_PRIVATE: 1;
