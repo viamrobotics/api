@@ -196,7 +196,6 @@ service AppService {
   rpc ListKeys(ListKeysRequest) returns (ListKeysResponse);
 
   rpc RotateKey(RotateKeyRequest) returns (RotateKeyResponse);
-
 }
 
 message Robot {

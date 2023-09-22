@@ -3737,5 +3737,66 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listKeys =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.RotateKeyRequest,
+ *   !proto.viam.app.v1.RotateKeyResponse>}
+ */
+const methodDescriptor_AppService_RotateKey = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/RotateKey',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.RotateKeyRequest,
+  proto.viam.app.v1.RotateKeyResponse,
+  /**
+   * @param {!proto.viam.app.v1.RotateKeyRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.RotateKeyResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.RotateKeyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.RotateKeyResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.RotateKeyResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.rotateKey =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/RotateKey',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_RotateKey,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.RotateKeyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.RotateKeyResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.rotateKey =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/RotateKey',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_RotateKey);
+};
+
+
 module.exports = proto.viam.app.v1;
 
