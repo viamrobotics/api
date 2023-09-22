@@ -1021,6 +1021,8 @@ message ListKeysRequest {
 message ListKeysResponse {
   repeated APIKeyWithAuthorizations api_keys = 1;
 }
+
+message RotateKeyRequest {
   string id = 1;
 }
 
