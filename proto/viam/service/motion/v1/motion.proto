@@ -234,7 +234,7 @@ message ListPlanStatusesRequest {
 
 // Status of all executed / executing plan statuses within the 24 hour TTL
 message ListPlanStatusesResponse {
-  // List of last known statuses of all plans within the TTL
+  // List of last known status summaries of all plans within the TTL
   // ordered by timestamp in ascending order
   repeated PlanStatusSummary statuses = 1;
 }
@@ -269,40 +269,32 @@ message GetPlanResponse {
   repeated PlanWithStatus replan_history = 2;
 }
 
-// Constraints specifies all enumerated constraints to be passed to Viam's
-// motion planning, along with any optional parameters
+// Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters
 message Constraints {
   // Typed message for a specific constraint
   repeated LinearConstraint linear_constraint = 1;
   repeated OrientationConstraint orientation_constraint = 2;
   repeated CollisionSpecification collision_specification = 3;
-  // Arc constraint, Time constraint, and others will be added here when they
-  // are supported
+  // Arc constraint, Time constraint, and others will be added here when they are supported
 }
 
 // LinearConstraint specifies that the component being moved should move
 // linearly relative to its goal. It does not constrain the motion of components
 // other than the `component_name` specified in motion.Move
 message LinearConstraint {
-  optional float line_tolerance_mm = 1; // Max linear deviation from straight-line between start and goal, in
-  // mm.
-  // Max allowable orientation deviation, in degrees, while on the shortest path
-  // between start / goal states
+  optional float line_tolerance_mm = 1; // Max linear deviation from straight-line between start and goal, in mm.
+  // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
   optional float orientation_tolerance_degs = 2;
 }
 
-// OrientationConstraint specifies that the component being moved will not
-// deviate its orientation beyond some threshold relative to the goal. It does
-// not constrain the motion of components other than the `component_name`
-// specified in motion.Move
+// OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative
+// to the goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move
 message OrientationConstraint {
-  // Max allowable orientation deviation, in degrees, while on the shortest path
-  // between start / goal states
+  // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
   optional float orientation_tolerance_degs = 1;
 }
 
-// CollisionSpecification is used to selectively apply obstacle avoidance to
-// specific parts of the robot
+// CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot
 message CollisionSpecification {
   message AllowedFrameCollisions {
     string frame1 = 1;
@@ -343,17 +335,7 @@ message PlanStatusSummary {
   // generated due to replanning.
   string execution_id = 3;
 
-  // The state of the plan execution
-  PlanState state = 4;
-
-  // The time the executing plan transtioned to the state
-  google.protobuf.Timestamp timestamp = 5;
-
-  // The reason for the state change. If motion plan failed
-  // this will return the error message.
-  // If motion needed to re-plan, this will return
-  // the re-plan reason.
-  optional string reason = 6;
+  PlanStatus status = 4;
 }
 
 // Plan status describes the state of a given plan at a
