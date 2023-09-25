@@ -273,9 +273,8 @@ message Constraints {
   // Arc constraint, Time constraint, and others will be added here when they are supported
 }
 
-// LinearConstraint specifies that the component being moved should move
-// linearly relative to its goal. It does not constrain the motion of components
-// other than the `component_name` specified in motion.Move
+// LinearConstraint specifies that the component being moved should move linearly relative to its goal.
+// It does not constrain the motion of components other than the `component_name` specified in motion.Move
 message LinearConstraint {
   optional float line_tolerance_mm = 1; // Max linear deviation from straight-line between start and goal, in mm.
   // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
