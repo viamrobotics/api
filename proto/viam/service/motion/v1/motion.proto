@@ -326,7 +326,8 @@ message PlanWithStatus {
 }
 
 // PlanStatusSummary describes the state of a given plan at a
-// point in time
+// point in time plus the plan_id, component_name and execution_id
+// the status is associated with
 message PlanStatusSummary {
   // The unique ID of the plan
   string plan_id = 1;
