@@ -227,9 +227,9 @@ message ListPlanStatusesRequest {
   google.protobuf.Struct extra = 99;
 }
 
-// Status of all executed / executing plan statuses with associated ID within the 24 hour TTL
+// Status of all executed / executing plan statuses with associated IDs within the 24 hour TTL
 message ListPlanStatusesResponse {
-  // List of last known statuses with the associated ID of all plans within the TTL
+  // List of last known statuses with the associated IDs of all plans within the TTL
   // ordered by timestamp in ascending order
   repeated PlanStatusWithID plan_statuses_with_ids = 1;
 }
