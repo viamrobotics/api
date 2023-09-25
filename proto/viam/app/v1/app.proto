@@ -202,6 +202,10 @@ service AppService {
   rpc GetAgentConfig(GetAgentConfigRequest) returns (GetAgentConfigResponse);
 
   rpc UpdateAgentConfig(UpdateAgentConfigRequest) returns (UpdateAgentConfigResponse);
+
+  rpc GetAgentConfig(GetAgentConfigRequest) returns (GetAgentConfigResponse);
+
+  rpc UpdateAgentConfig(UpdateAgentConfigRequest) returns (UpdateAgentConfigResponse);
 }
 
 message Robot {
@@ -998,35 +1002,6 @@ message CreateKeyRequest {
 message CreateKeyResponse {
   string key = 1;
   string id = 2;
-
-message GetAgentConfigRequest {
-  string id = 1;
-}
-
-message GetAgentConfigResponse {
-  AgentConfig agent_config = 1;
-}
-
-message UpdateAgentConfigRequest {
-  string id = 1;
-  AgentConfig agent_config = 2;
-}
-
-message UpdateAgentConfigResponse {
-  AgentConfig agent_config = 1;
-}
-
-message AgentConfig {
-  AgentSubsystemConfig agent_config = 1;
-  repeated AgentSubsystemConfig subsystem_configs = 2;
-}
-
-message AgentSubsystemConfig {
-  string subsystem_name = 1;
-  optional string release_channel = 2;
-  optional string pin_version = 3;
-  optional string pin_url = 4;
-  optional bool disable_subsystem = 5;
 }
 
 message DeleteKeyRequest {

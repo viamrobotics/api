@@ -8,33 +8,73 @@ option go_package = "go.viam.com/api/app/agent/v1";
 
 // AgentService is used by viam-agent to retrieve update info for subsystems.
 service AgentService {
-  // AgentConfig requests the current config for the agent itself
-  rpc AgentConfig(AgentConfigRequest) returns (AgentConfigResponse);
+  // GetAgentConfig is for retrieving config in App.
+  rpc GetAgentConfig(GetAgentConfigRequest) returns (GetAgentConfigResponse);
+
+  // UpdateAgentConfig is for editing config in App.
+  rpc UpdateAgentConfig(UpdateAgentConfigRequest) returns (UpdateAgentConfigResponse);
+
+  // DeviceAgentConfig is for retrieving config by the on-device agent.
+  rpc DeviceAgentConfig(DeviceAgentConfigRequest) returns (DeviceAgentConfigResponse);
 }
 
-message AgentConfigRequest {
+// App side
+message GetAgentConfigRequest {
+  string id = 1;
+}
+
+message GetAgentConfigResponse {
+  AppAgentConfig agent_config = 1;
+}
+
+message UpdateAgentConfigRequest {
+  string id = 1;
+  AppAgentConfig agent_config = 2;
+}
+
+message UpdateAgentConfigResponse {
+  AppAgentConfig agent_config = 1;
+}
+
+message AppAgentConfig {
+  AppSubsystemConfig agent_config = 1;
+  repeated AppSubsystemConfig subsystem_configs = 2;
+}
+
+message AppSubsystemConfig {
+  string subsystem_name = 1;
+  optional string release_channel = 2;
+  optional string pin_version = 3;
+  optional string pin_url = 4;
+  optional bool disable_subsystem = 5;
+}
+
+// Device side
+message DeviceAgentConfigRequest {
+  // robot partID
+  string id = 1;
   // the currently running version
-  string agent_version = 1;
+  string agent_version = 2;
   // info about the host system
-  HostInfo host_info = 2;
+  HostInfo host_info = 3;
   // current subsystems and versions
-  repeated SubsystemVersion subsystem_versions = 3;
+  repeated SubsystemVersion subsystem_versions = 4;
 }
 
-message AgentConfigResponse {
+message DeviceAgentConfigResponse {
   // data needed to download/validate the agent
-  UpdateInfo update_info = 1;
+  SubsystemUpdateInfo update_info = 1;
   // subsystems to be installed/configured/updated
   // note: previously installed subsystems will be removed from the system if removed from this list
-  repeated SubsystemConfig subsystem_config = 2;
+  repeated DeviceSubsystemConfig subsystem_config = 2;
   // how often this request should be repeated
   google.protobuf.Duration check_interval = 3;
 }
 
-message SubsystemConfig {
+message DeviceSubsystemConfig {
   string subsystem_name = 1;
   // data needed to download/validate the subsystem
-  UpdateInfo update_info = 2;
+  SubsystemUpdateInfo update_info = 2;
   // if this subsystem is disabled and should not be started by the agent
   bool disable = 3;
   // force_restart will restart the subsystem, even if no updates are available
@@ -47,21 +87,19 @@ message SubsystemVersion {
 }
 
 message HostInfo {
-  // os is the output of 'uname -s', Linux, Darwin, FreeBSD etc.
-  string os = 1;
-  // 'uname -m', x86_64, arm64, aarch64, armv7l, etc.
-  string architecture = 2;
+  // platform is the docker styled combination of kernel and architecture, e.g linux/amd64, darwin/arm64
+  string platform = 1;
   // ID field from /etc/os-release, "arch", "debian", etc.
-  optional string distro = 3;
+  optional string distro = 2;
   // VERSION_ID field from /etc/os-release, "11", "22.04", etc.
-  optional string distro_version = 4;
+  optional string distro_version = 3;
   // additional tags for specific hardware or software that's present and may affect software selection
   // ex: "jetson", "pi4", "low-memory", "hardened-kernel", etc.
-  repeated string tags = 5;
+  repeated string tags = 4;
 }
 
-message UpdateInfo {
-  // filename as it is expected on disk (regardless of url)
+message SubsystemUpdateInfo {
+  // unpacked filename as it is expected on disk (regardless of url)
   string filename = 1;
   // url to download from
   string url = 2;
@@ -70,18 +108,18 @@ message UpdateInfo {
   // sha256 sum of file as downloaded
   bytes sha256 = 4;
   // determines if decompression or executable permissions are needed
-  optional Format format = 5;
+  optional PackageFormat format = 5;
 }
 
-enum Format {
+enum PackageFormat {
   // unknown/unset (autodetection may be attempted)
-  FORMAT_UNSPECIFIED = 0;
+  PACKAGE_FORMAT_UNSPECIFIED = 0;
   // do nothing
-  FORMAT_RAW = 1;
+  PACKAGE_FORMAT_RAW = 1;
   // decompress .xz file
-  FORMAT_XZ = 2;
+  PACKAGE_FORMAT_XZ = 2;
   // set executable permissions
-  FORMAT_EXECUTABLE = 3;
+  PACKAGE_FORMAT_EXECUTABLE = 3;
   // decompress and set executable
-  FORMAT_XZ_EXECUTABLE = 4;
+  PACKAGE_FORMAT_XZ_EXECUTABLE = 4;
 }
