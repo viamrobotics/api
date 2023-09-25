@@ -227,11 +227,11 @@ message ListPlanStatusesRequest {
   google.protobuf.Struct extra = 99;
 }
 
-// Status of all executed / executing plan statuses within the 24 hour TTL
+// Status of all executed / executing plan statuses with associated ids within the 24 hour TTL
 message ListPlanStatusesResponse {
-  // List of last known status summaries of all plans within the TTL
+  // List of last known statuses with the associated IDs of all plans within the TTL
   // ordered by timestamp in ascending order
-  repeated PlanStatusSummary status_summaries = 1;
+  repeated PlanStatusWithIDs plan_statuses_with_ids = 1;
 }
 
 message GetPlanRequest {
@@ -311,10 +311,10 @@ message PlanWithStatus {
   repeated PlanStatus status_history = 3;
 }
 
-// PlanStatusSummary describes the state of a given plan at a
+// PlanStatusWithIDs describes the state of a given plan at a
 // point in time plus the plan_id, component_name and execution_id
 // the status is associated with
-message PlanStatusSummary {
+message PlanStatusWithIDs {
   // The unique ID of the plan
   string plan_id = 1;
 
