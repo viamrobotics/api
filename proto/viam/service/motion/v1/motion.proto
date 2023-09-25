@@ -231,7 +231,7 @@ message ListPlanStatusesRequest {
 message ListPlanStatusesResponse {
   // List of last known status summaries of all plans within the TTL
   // ordered by timestamp in ascending order
-  repeated PlanStatusSummary statuses = 1;
+  repeated PlanStatusSummary status_summaries = 1;
 }
 
 message GetPlanRequest {
