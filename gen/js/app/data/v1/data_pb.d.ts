@@ -1281,48 +1281,6 @@ export namespace AddBinaryDataToDatasetByIDsResponse {
   }
 }
 
-export class AddBinaryDataToDatasetByFilterRequest extends jspb.Message {
-  hasFilter(): boolean;
-  clearFilter(): void;
-  getFilter(): Filter | undefined;
-  setFilter(value?: Filter): void;
-
-  getDatasetId(): string;
-  setDatasetId(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddBinaryDataToDatasetByFilterRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddBinaryDataToDatasetByFilterRequest): AddBinaryDataToDatasetByFilterRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddBinaryDataToDatasetByFilterRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddBinaryDataToDatasetByFilterRequest;
-  static deserializeBinaryFromReader(message: AddBinaryDataToDatasetByFilterRequest, reader: jspb.BinaryReader): AddBinaryDataToDatasetByFilterRequest;
-}
-
-export namespace AddBinaryDataToDatasetByFilterRequest {
-  export type AsObject = {
-    filter?: Filter.AsObject,
-    datasetId: string,
-  }
-}
-
-export class AddBinaryDataToDatasetByFilterResponse extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddBinaryDataToDatasetByFilterResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: AddBinaryDataToDatasetByFilterResponse): AddBinaryDataToDatasetByFilterResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AddBinaryDataToDatasetByFilterResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddBinaryDataToDatasetByFilterResponse;
-  static deserializeBinaryFromReader(message: AddBinaryDataToDatasetByFilterResponse, reader: jspb.BinaryReader): AddBinaryDataToDatasetByFilterResponse;
-}
-
-export namespace AddBinaryDataToDatasetByFilterResponse {
-  export type AsObject = {
-  }
-}
-
 export class RemoveBinaryDataFromDatasetByIDsRequest extends jspb.Message {
   clearBinaryIdsList(): void;
   getBinaryIdsList(): Array<BinaryID>;
