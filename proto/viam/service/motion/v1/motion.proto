@@ -207,8 +207,8 @@ message StopPlanRequest {
   // The name of the motion service
   string name = 1;
 
-  // The root component of the currently executing plan to stop
-  common.v1.ResourceName root_component = 2;
+  // The component of the currently executing plan to stop
+  common.v1.ResourceName component_name = 2;
 
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
