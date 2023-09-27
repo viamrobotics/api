@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package viam.app.v1;
+
+option go_package = "go.viam.com/api/app/v1";
+
+service EndUserService {
+  // Returns whether the specified user has accepted end user license agreements.
+  // If false, the user should not be able to use the application.
+  rpc IsLegalAccepted(IsLegalAcceptedRequest) returns (IsLegalAcceptedResponse);
+
+  // Marks that the specified user has accepted end user license agreements.
+  rpc AcceptLegal(AcceptLegalRequest) returns (AcceptLegalResponse);
+}
+
+message IsLegalAcceptedRequest {
+  // The user ID to check.
+  string user_id = 1;
+}
+
+message IsLegalAcceptedResponse {
+  // If false, the user should not be able to use the application.
+  bool accepted_legal = 1;
+}
+
+message AcceptLegalRequest {
+  // The user ID to accept legal terms for.
+  string user_id = 1;
+}
+
+message AcceptLegalResponse {}

@@ -1123,67 +1123,6 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.addBinaryDataToDataset
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.data.v1.AddBinaryDataToDatasetByFilterRequest,
- *   !proto.viam.app.data.v1.AddBinaryDataToDatasetByFilterResponse>}
- */
-const methodDescriptor_DataService_AddBinaryDataToDatasetByFilter = new grpc.web.MethodDescriptor(
-  '/viam.app.data.v1.DataService/AddBinaryDataToDatasetByFilter',
-  grpc.web.MethodType.UNARY,
-  proto.viam.app.data.v1.AddBinaryDataToDatasetByFilterRequest,
-  proto.viam.app.data.v1.AddBinaryDataToDatasetByFilterResponse,
-  /**
-   * @param {!proto.viam.app.data.v1.AddBinaryDataToDatasetByFilterRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.app.data.v1.AddBinaryDataToDatasetByFilterResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.app.data.v1.AddBinaryDataToDatasetByFilterRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.AddBinaryDataToDatasetByFilterResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.AddBinaryDataToDatasetByFilterResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.app.data.v1.DataServiceClient.prototype.addBinaryDataToDatasetByFilter =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/AddBinaryDataToDatasetByFilter',
-      request,
-      metadata || {},
-      methodDescriptor_DataService_AddBinaryDataToDatasetByFilter,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.app.data.v1.AddBinaryDataToDatasetByFilterRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.app.data.v1.AddBinaryDataToDatasetByFilterResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.app.data.v1.DataServicePromiseClient.prototype.addBinaryDataToDatasetByFilter =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/AddBinaryDataToDatasetByFilter',
-      request,
-      metadata || {},
-      methodDescriptor_DataService_AddBinaryDataToDatasetByFilter);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest,
  *   !proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse>}
  */
