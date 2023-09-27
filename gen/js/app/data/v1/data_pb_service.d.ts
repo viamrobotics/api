@@ -157,15 +157,6 @@ type DataServiceAddBinaryDataToDatasetByIDs = {
   readonly responseType: typeof app_data_v1_data_pb.AddBinaryDataToDatasetByIDsResponse;
 };
 
-type DataServiceAddBinaryDataToDatasetByFilter = {
-  readonly methodName: string;
-  readonly service: typeof DataService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof app_data_v1_data_pb.AddBinaryDataToDatasetByFilterRequest;
-  readonly responseType: typeof app_data_v1_data_pb.AddBinaryDataToDatasetByFilterResponse;
-};
-
 type DataServiceRemoveBinaryDataFromDatasetByIDs = {
   readonly methodName: string;
   readonly service: typeof DataService;
@@ -194,7 +185,6 @@ export class DataService {
   static readonly GetDatabaseConnection: DataServiceGetDatabaseConnection;
   static readonly ConfigureDatabaseUser: DataServiceConfigureDatabaseUser;
   static readonly AddBinaryDataToDatasetByIDs: DataServiceAddBinaryDataToDatasetByIDs;
-  static readonly AddBinaryDataToDatasetByFilter: DataServiceAddBinaryDataToDatasetByFilter;
   static readonly RemoveBinaryDataFromDatasetByIDs: DataServiceRemoveBinaryDataFromDatasetByIDs;
 }
 
@@ -382,15 +372,6 @@ export class DataServiceClient {
   addBinaryDataToDatasetByIDs(
     requestMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByIDsRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByIDsResponse|null) => void
-  ): UnaryResponse;
-  addBinaryDataToDatasetByFilter(
-    requestMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByFilterRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByFilterResponse|null) => void
-  ): UnaryResponse;
-  addBinaryDataToDatasetByFilter(
-    requestMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByFilterRequest,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddBinaryDataToDatasetByFilterResponse|null) => void
   ): UnaryResponse;
   removeBinaryDataFromDatasetByIDs(
     requestMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsRequest,
