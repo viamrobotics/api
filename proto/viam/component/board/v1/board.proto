@@ -187,6 +187,18 @@ message ReadAnalogReaderResponse {
   int32 value = 1;
 }
 
+// Analog Writer
+
+message WriteAnalogRequest {
+  string name = 1;
+  string pin = 2;
+  int32 value = 3;
+   // Additional arguments to the method
+   google.protobuf.Struct extra = 99;
+}
+
+message WriteAnalogResponse {}
+
 // Digital Interrupt
 
 message GetDigitalInterruptValueRequest {
