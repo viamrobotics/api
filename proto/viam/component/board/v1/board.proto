@@ -193,8 +193,8 @@ message WriteAnalogRequest {
   string name = 1;
   string pin = 2;
   int32 value = 3;
-   // Additional arguments to the method
-   google.protobuf.Struct extra = 99;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message WriteAnalogResponse {}
