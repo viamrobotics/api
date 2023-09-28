@@ -86,6 +86,15 @@ type BoardServiceReadAnalogReader = {
   readonly responseType: typeof component_board_v1_board_pb.ReadAnalogReaderResponse;
 };
 
+type BoardServiceWriteAnalog = {
+  readonly methodName: string;
+  readonly service: typeof BoardService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_board_v1_board_pb.WriteAnalogRequest;
+  readonly responseType: typeof component_board_v1_board_pb.WriteAnalogResponse;
+};
+
 type BoardServiceGetDigitalInterruptValue = {
   readonly methodName: string;
   readonly service: typeof BoardService;
@@ -124,6 +133,7 @@ export class BoardService {
   static readonly SetPWMFrequency: BoardServiceSetPWMFrequency;
   static readonly DoCommand: BoardServiceDoCommand;
   static readonly ReadAnalogReader: BoardServiceReadAnalogReader;
+  static readonly WriteAnalog: BoardServiceWriteAnalog;
   static readonly GetDigitalInterruptValue: BoardServiceGetDigitalInterruptValue;
   static readonly SetPowerMode: BoardServiceSetPowerMode;
   static readonly GetGeometries: BoardServiceGetGeometries;
@@ -241,6 +251,15 @@ export class BoardServiceClient {
   readAnalogReader(
     requestMessage: component_board_v1_board_pb.ReadAnalogReaderRequest,
     callback: (error: ServiceError|null, responseMessage: component_board_v1_board_pb.ReadAnalogReaderResponse|null) => void
+  ): UnaryResponse;
+  writeAnalog(
+    requestMessage: component_board_v1_board_pb.WriteAnalogRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_board_v1_board_pb.WriteAnalogResponse|null) => void
+  ): UnaryResponse;
+  writeAnalog(
+    requestMessage: component_board_v1_board_pb.WriteAnalogRequest,
+    callback: (error: ServiceError|null, responseMessage: component_board_v1_board_pb.WriteAnalogResponse|null) => void
   ): UnaryResponse;
   getDigitalInterruptValue(
     requestMessage: component_board_v1_board_pb.GetDigitalInterruptValueRequest,
