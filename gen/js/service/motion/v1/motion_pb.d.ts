@@ -425,10 +425,10 @@ export class StopPlanRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  hasRootComponent(): boolean;
-  clearRootComponent(): void;
-  getRootComponent(): common_v1_common_pb.ResourceName | undefined;
-  setRootComponent(value?: common_v1_common_pb.ResourceName): void;
+  hasComponentName(): boolean;
+  clearComponentName(): void;
+  getComponentName(): common_v1_common_pb.ResourceName | undefined;
+  setComponentName(value?: common_v1_common_pb.ResourceName): void;
 
   hasExtra(): boolean;
   clearExtra(): void;
@@ -448,7 +448,7 @@ export class StopPlanRequest extends jspb.Message {
 export namespace StopPlanRequest {
   export type AsObject = {
     name: string,
-    rootComponent?: common_v1_common_pb.ResourceName.AsObject,
+    componentName?: common_v1_common_pb.ResourceName.AsObject,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }

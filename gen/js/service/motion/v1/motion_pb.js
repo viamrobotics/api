@@ -3771,7 +3771,7 @@ proto.viam.service.motion.v1.StopPlanRequest.prototype.toObject = function(opt_i
 proto.viam.service.motion.v1.StopPlanRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    rootComponent: (f = msg.getRootComponent()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -3816,7 +3816,7 @@ proto.viam.service.motion.v1.StopPlanRequest.deserializeBinaryFromReader = funct
     case 2:
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
-      msg.setRootComponent(value);
+      msg.setComponentName(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -3859,7 +3859,7 @@ proto.viam.service.motion.v1.StopPlanRequest.serializeBinaryToWriter = function(
       f
     );
   }
-  f = message.getRootComponent();
+  f = message.getComponentName();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -3897,10 +3897,10 @@ proto.viam.service.motion.v1.StopPlanRequest.prototype.setName = function(value)
 
 
 /**
- * optional viam.common.v1.ResourceName root_component = 2;
+ * optional viam.common.v1.ResourceName component_name = 2;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.service.motion.v1.StopPlanRequest.prototype.getRootComponent = function() {
+proto.viam.service.motion.v1.StopPlanRequest.prototype.getComponentName = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 2));
 };
@@ -3910,7 +3910,7 @@ proto.viam.service.motion.v1.StopPlanRequest.prototype.getRootComponent = functi
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
  * @return {!proto.viam.service.motion.v1.StopPlanRequest} returns this
 */
-proto.viam.service.motion.v1.StopPlanRequest.prototype.setRootComponent = function(value) {
+proto.viam.service.motion.v1.StopPlanRequest.prototype.setComponentName = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -3919,8 +3919,8 @@ proto.viam.service.motion.v1.StopPlanRequest.prototype.setRootComponent = functi
  * Clears the message field making it undefined.
  * @return {!proto.viam.service.motion.v1.StopPlanRequest} returns this
  */
-proto.viam.service.motion.v1.StopPlanRequest.prototype.clearRootComponent = function() {
-  return this.setRootComponent(undefined);
+proto.viam.service.motion.v1.StopPlanRequest.prototype.clearComponentName = function() {
+  return this.setComponentName(undefined);
 };
 
 
@@ -3928,7 +3928,7 @@ proto.viam.service.motion.v1.StopPlanRequest.prototype.clearRootComponent = func
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.StopPlanRequest.prototype.hasRootComponent = function() {
+proto.viam.service.motion.v1.StopPlanRequest.prototype.hasComponentName = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 

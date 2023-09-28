@@ -55,7 +55,7 @@ service MotionService {
 
   // Returns the status of plans created by MoveOnGlobe requests
   // that are executing OR are part of an execution which changed it state
-  // within the a 24HR TTL OR until the robot reinitializes
+  // within the a 24HR TTL OR until the robot reinitializes.
   rpc ListPlanStatuses(ListPlanStatusesRequest) returns (ListPlanStatusesResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/motion/{name}/list_plan_statuses"
