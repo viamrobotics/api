@@ -10,6 +10,7 @@ import "google/protobuf/timestamp.proto";
 option go_package = "go.viam.com/api/service/motion/v1";
 option java_package = "com.viam.service.motion.v1";
 
+
 // A MotionService declares the gRPC contract for a motion service
 service MotionService {
   rpc Move(MoveRequest) returns (MoveResponse) {
