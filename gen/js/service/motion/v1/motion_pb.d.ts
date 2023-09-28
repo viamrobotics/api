@@ -500,10 +500,10 @@ export namespace ListPlanStatusesRequest {
 }
 
 export class ListPlanStatusesResponse extends jspb.Message {
-  clearStatusesList(): void;
-  getStatusesList(): Array<PlanStatus>;
-  setStatusesList(value: Array<PlanStatus>): void;
-  addStatuses(value?: PlanStatus, index?: number): PlanStatus;
+  clearPlanStatusesWithIdsList(): void;
+  getPlanStatusesWithIdsList(): Array<PlanStatusWithID>;
+  setPlanStatusesWithIdsList(value: Array<PlanStatusWithID>): void;
+  addPlanStatusesWithIds(value?: PlanStatusWithID, index?: number): PlanStatusWithID;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListPlanStatusesResponse.AsObject;
@@ -517,7 +517,7 @@ export class ListPlanStatusesResponse extends jspb.Message {
 
 export namespace ListPlanStatusesResponse {
   export type AsObject = {
-    statusesList: Array<PlanStatus.AsObject>,
+    planStatusesWithIdsList: Array<PlanStatusWithID.AsObject>,
   }
 }
 
@@ -755,7 +755,7 @@ export namespace PlanWithStatus {
   }
 }
 
-export class PlanStatus extends jspb.Message {
+export class PlanStatusWithID extends jspb.Message {
   getPlanId(): string;
   setPlanId(value: string): void;
 
@@ -767,6 +767,31 @@ export class PlanStatus extends jspb.Message {
   getExecutionId(): string;
   setExecutionId(value: string): void;
 
+  hasStatus(): boolean;
+  clearStatus(): void;
+  getStatus(): PlanStatus | undefined;
+  setStatus(value?: PlanStatus): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PlanStatusWithID.AsObject;
+  static toObject(includeInstance: boolean, msg: PlanStatusWithID): PlanStatusWithID.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PlanStatusWithID, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PlanStatusWithID;
+  static deserializeBinaryFromReader(message: PlanStatusWithID, reader: jspb.BinaryReader): PlanStatusWithID;
+}
+
+export namespace PlanStatusWithID {
+  export type AsObject = {
+    planId: string,
+    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    executionId: string,
+    status?: PlanStatus.AsObject,
+  }
+}
+
+export class PlanStatus extends jspb.Message {
   getState(): PlanStateMap[keyof PlanStateMap];
   setState(value: PlanStateMap[keyof PlanStateMap]): void;
 
@@ -792,9 +817,6 @@ export class PlanStatus extends jspb.Message {
 
 export namespace PlanStatus {
   export type AsObject = {
-    planId: string,
-    componentName?: common_v1_common_pb.ResourceName.AsObject,
-    executionId: string,
     state: PlanStateMap[keyof PlanStateMap],
     timestamp?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     reason: string,
