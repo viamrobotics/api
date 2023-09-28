@@ -3747,6 +3747,50 @@ export namespace RotateKeyResponse {
   }
 }
 
+export class CreateKeyFromExistingKeyAuthorizationsRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateKeyFromExistingKeyAuthorizationsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateKeyFromExistingKeyAuthorizationsRequest): CreateKeyFromExistingKeyAuthorizationsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateKeyFromExistingKeyAuthorizationsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateKeyFromExistingKeyAuthorizationsRequest;
+  static deserializeBinaryFromReader(message: CreateKeyFromExistingKeyAuthorizationsRequest, reader: jspb.BinaryReader): CreateKeyFromExistingKeyAuthorizationsRequest;
+}
+
+export namespace CreateKeyFromExistingKeyAuthorizationsRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class CreateKeyFromExistingKeyAuthorizationsResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getKey(): string;
+  setKey(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateKeyFromExistingKeyAuthorizationsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateKeyFromExistingKeyAuthorizationsResponse): CreateKeyFromExistingKeyAuthorizationsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateKeyFromExistingKeyAuthorizationsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateKeyFromExistingKeyAuthorizationsResponse;
+  static deserializeBinaryFromReader(message: CreateKeyFromExistingKeyAuthorizationsResponse, reader: jspb.BinaryReader): CreateKeyFromExistingKeyAuthorizationsResponse;
+}
+
+export namespace CreateKeyFromExistingKeyAuthorizationsResponse {
+  export type AsObject = {
+    id: string,
+    key: string,
+  }
+}
+
 export interface VisibilityMap {
   VISIBILITY_UNSPECIFIED: 0;
   VISIBILITY_PRIVATE: 1;

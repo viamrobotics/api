@@ -562,6 +562,15 @@ type AppServiceRotateKey = {
   readonly responseType: typeof app_v1_app_pb.RotateKeyResponse;
 };
 
+type AppServiceCreateKeyFromExistingKeyAuthorizations = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
@@ -626,6 +635,7 @@ export class AppService {
   static readonly DeleteKey: AppServiceDeleteKey;
   static readonly ListKeys: AppServiceListKeys;
   static readonly RotateKey: AppServiceRotateKey;
+  static readonly CreateKeyFromExistingKeyAuthorizations: AppServiceCreateKeyFromExistingKeyAuthorizations;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -1201,6 +1211,15 @@ export class AppServiceClient {
   rotateKey(
     requestMessage: app_v1_app_pb.RotateKeyRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RotateKeyResponse|null) => void
+  ): UnaryResponse;
+  createKeyFromExistingKeyAuthorizations(
+    requestMessage: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsResponse|null) => void
+  ): UnaryResponse;
+  createKeyFromExistingKeyAuthorizations(
+    requestMessage: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsResponse|null) => void
   ): UnaryResponse;
 }
 

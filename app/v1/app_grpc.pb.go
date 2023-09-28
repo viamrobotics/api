@@ -140,6 +140,7 @@ type AppServiceClient interface {
 	DeleteKey(ctx context.Context, in *DeleteKeyRequest, opts ...grpc.CallOption) (*DeleteKeyResponse, error)
 	ListKeys(ctx context.Context, in *ListKeysRequest, opts ...grpc.CallOption) (*ListKeysResponse, error)
 	RotateKey(ctx context.Context, in *RotateKeyRequest, opts ...grpc.CallOption) (*RotateKeyResponse, error)
+	CreateKeyFromExistingKeyAuthorizations(ctx context.Context, in *CreateKeyFromExistingKeyAuthorizationsRequest, opts ...grpc.CallOption) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
 }
 
 type appServiceClient struct {
@@ -756,6 +757,15 @@ func (c *appServiceClient) RotateKey(ctx context.Context, in *RotateKeyRequest, 
 	return out, nil
 }
 
+func (c *appServiceClient) CreateKeyFromExistingKeyAuthorizations(ctx context.Context, in *CreateKeyFromExistingKeyAuthorizationsRequest, opts ...grpc.CallOption) (*CreateKeyFromExistingKeyAuthorizationsResponse, error) {
+	out := new(CreateKeyFromExistingKeyAuthorizationsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateKeyFromExistingKeyAuthorizations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppServiceServer is the server API for AppService service.
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
@@ -878,6 +888,7 @@ type AppServiceServer interface {
 	DeleteKey(context.Context, *DeleteKeyRequest) (*DeleteKeyResponse, error)
 	ListKeys(context.Context, *ListKeysRequest) (*ListKeysResponse, error)
 	RotateKey(context.Context, *RotateKeyRequest) (*RotateKeyResponse, error)
+	CreateKeyFromExistingKeyAuthorizations(context.Context, *CreateKeyFromExistingKeyAuthorizationsRequest) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -1070,6 +1081,9 @@ func (UnimplementedAppServiceServer) ListKeys(context.Context, *ListKeysRequest)
 }
 func (UnimplementedAppServiceServer) RotateKey(context.Context, *RotateKeyRequest) (*RotateKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RotateKey not implemented")
+}
+func (UnimplementedAppServiceServer) CreateKeyFromExistingKeyAuthorizations(context.Context, *CreateKeyFromExistingKeyAuthorizationsRequest) (*CreateKeyFromExistingKeyAuthorizationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateKeyFromExistingKeyAuthorizations not implemented")
 }
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
@@ -2211,6 +2225,24 @@ func _AppService_RotateKey_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_CreateKeyFromExistingKeyAuthorizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateKeyFromExistingKeyAuthorizationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CreateKeyFromExistingKeyAuthorizations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CreateKeyFromExistingKeyAuthorizations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CreateKeyFromExistingKeyAuthorizations(ctx, req.(*CreateKeyFromExistingKeyAuthorizationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2457,6 +2489,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RotateKey",
 			Handler:    _AppService_RotateKey_Handler,
+		},
+		{
+			MethodName: "CreateKeyFromExistingKeyAuthorizations",
+			Handler:    _AppService_CreateKeyFromExistingKeyAuthorizations_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
