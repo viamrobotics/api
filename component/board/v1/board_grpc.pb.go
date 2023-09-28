@@ -43,7 +43,7 @@ type BoardServiceClient interface {
 	GetDigitalInterruptValue(ctx context.Context, in *GetDigitalInterruptValueRequest, opts ...grpc.CallOption) (*GetDigitalInterruptValueResponse, error)
 	// `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
 	SetPowerMode(ctx context.Context, in *SetPowerModeRequest, opts ...grpc.CallOption) (*SetPowerModeResponse, error)
-	// GetGeometries returns the geometries of the component in their current configuration
+	// GetGeometries returns the geometries of the component in their current configuration.
 	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 }
 
@@ -187,7 +187,7 @@ type BoardServiceServer interface {
 	GetDigitalInterruptValue(context.Context, *GetDigitalInterruptValueRequest) (*GetDigitalInterruptValueResponse, error)
 	// `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
 	SetPowerMode(context.Context, *SetPowerModeRequest) (*SetPowerModeResponse, error)
-	// GetGeometries returns the geometries of the component in their current configuration
+	// GetGeometries returns the geometries of the component in their current configuration.
 	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	mustEmbedUnimplementedBoardServiceServer()
 }
