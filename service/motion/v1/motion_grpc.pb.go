@@ -36,7 +36,7 @@ type MotionServiceClient interface {
 	StopPlan(ctx context.Context, in *StopPlanRequest, opts ...grpc.CallOption) (*StopPlanResponse, error)
 	// Returns the status of plans created by MoveOnGlobe requests
 	// that are executing OR are part of an execution which changed it state
-	// within the a 24HR TTL OR until the robot reinitializes
+	// within the a 24HR TTL OR until the robot reinitializes.
 	ListPlanStatuses(ctx context.Context, in *ListPlanStatusesRequest, opts ...grpc.CallOption) (*ListPlanStatusesResponse, error)
 	// Returns the plan(s) & state history of the most recent execution to move a
 	// component. Returns a result if the last execution is still executing OR
@@ -155,7 +155,7 @@ type MotionServiceServer interface {
 	StopPlan(context.Context, *StopPlanRequest) (*StopPlanResponse, error)
 	// Returns the status of plans created by MoveOnGlobe requests
 	// that are executing OR are part of an execution which changed it state
-	// within the a 24HR TTL OR until the robot reinitializes
+	// within the a 24HR TTL OR until the robot reinitializes.
 	ListPlanStatuses(context.Context, *ListPlanStatusesRequest) (*ListPlanStatusesResponse, error)
 	// Returns the plan(s) & state history of the most recent execution to move a
 	// component. Returns a result if the last execution is still executing OR
