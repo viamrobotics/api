@@ -39,11 +39,13 @@ type BoardServiceClient interface {
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// ReadAnalogReader reads off the current value of an analog reader of a board of the underlying robot.
 	ReadAnalogReader(ctx context.Context, in *ReadAnalogReaderRequest, opts ...grpc.CallOption) (*ReadAnalogReaderResponse, error)
+	// WriteAnalog writes the value to the analog writer of the board.
+	WriteAnalog(ctx context.Context, in *WriteAnalogRequest, opts ...grpc.CallOption) (*WriteAnalogResponse, error)
 	// GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
 	GetDigitalInterruptValue(ctx context.Context, in *GetDigitalInterruptValueRequest, opts ...grpc.CallOption) (*GetDigitalInterruptValueResponse, error)
 	// `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
 	SetPowerMode(ctx context.Context, in *SetPowerModeRequest, opts ...grpc.CallOption) (*SetPowerModeResponse, error)
-	// GetGeometries returns the geometries of the component in their current configuration
+	// GetGeometries returns the geometries of the component in their current configuration.
 	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 }
 
@@ -136,6 +138,15 @@ func (c *boardServiceClient) ReadAnalogReader(ctx context.Context, in *ReadAnalo
 	return out, nil
 }
 
+func (c *boardServiceClient) WriteAnalog(ctx context.Context, in *WriteAnalogRequest, opts ...grpc.CallOption) (*WriteAnalogResponse, error) {
+	out := new(WriteAnalogResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.board.v1.BoardService/WriteAnalog", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *boardServiceClient) GetDigitalInterruptValue(ctx context.Context, in *GetDigitalInterruptValueRequest, opts ...grpc.CallOption) (*GetDigitalInterruptValueResponse, error) {
 	out := new(GetDigitalInterruptValueResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.board.v1.BoardService/GetDigitalInterruptValue", in, out, opts...)
@@ -183,11 +194,13 @@ type BoardServiceServer interface {
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// ReadAnalogReader reads off the current value of an analog reader of a board of the underlying robot.
 	ReadAnalogReader(context.Context, *ReadAnalogReaderRequest) (*ReadAnalogReaderResponse, error)
+	// WriteAnalog writes the value to the analog writer of the board.
+	WriteAnalog(context.Context, *WriteAnalogRequest) (*WriteAnalogResponse, error)
 	// GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
 	GetDigitalInterruptValue(context.Context, *GetDigitalInterruptValueRequest) (*GetDigitalInterruptValueResponse, error)
 	// `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
 	SetPowerMode(context.Context, *SetPowerModeRequest) (*SetPowerModeResponse, error)
-	// GetGeometries returns the geometries of the component in their current configuration
+	// GetGeometries returns the geometries of the component in their current configuration.
 	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	mustEmbedUnimplementedBoardServiceServer()
 }
@@ -222,6 +235,9 @@ func (UnimplementedBoardServiceServer) DoCommand(context.Context, *v1.DoCommandR
 }
 func (UnimplementedBoardServiceServer) ReadAnalogReader(context.Context, *ReadAnalogReaderRequest) (*ReadAnalogReaderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadAnalogReader not implemented")
+}
+func (UnimplementedBoardServiceServer) WriteAnalog(context.Context, *WriteAnalogRequest) (*WriteAnalogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WriteAnalog not implemented")
 }
 func (UnimplementedBoardServiceServer) GetDigitalInterruptValue(context.Context, *GetDigitalInterruptValueRequest) (*GetDigitalInterruptValueResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDigitalInterruptValue not implemented")
@@ -407,6 +423,24 @@ func _BoardService_ReadAnalogReader_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BoardService_WriteAnalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WriteAnalogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BoardServiceServer).WriteAnalog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.board.v1.BoardService/WriteAnalog",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BoardServiceServer).WriteAnalog(ctx, req.(*WriteAnalogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _BoardService_GetDigitalInterruptValue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDigitalInterruptValueRequest)
 	if err := dec(in); err != nil {
@@ -503,6 +537,10 @@ var BoardService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReadAnalogReader",
 			Handler:    _BoardService_ReadAnalogReader_Handler,
+		},
+		{
+			MethodName: "WriteAnalog",
+			Handler:    _BoardService_WriteAnalog_Handler,
 		},
 		{
 			MethodName: "GetDigitalInterruptValue",

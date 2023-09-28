@@ -79,10 +79,10 @@ service BoardService {
 
   // WriteAnalog writes the value to the analog writer of the board.
   rpc WriteAnalog(WriteAnalogRequest) returns (WriteAnalogResponse) {
-      option (google.api.http) = {
-        put: "/viam/api/v1/component/board/{name}/analog_write"
-      };
-    }
+    option (google.api.http) = {
+      put: "/viam/api/v1/component/board/{name}/analog_write"
+    };
+  }
 
   // Digital Interrupt
 
