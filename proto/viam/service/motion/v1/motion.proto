@@ -207,8 +207,8 @@ message StopPlanRequest {
   // The name of the motion service
   string name = 1;
 
-  // The root component of the currently executing plan to stop
-  common.v1.ResourceName root_component = 2;
+  // The component of the currently executing plan to stop
+  common.v1.ResourceName component_name = 2;
 
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
@@ -227,11 +227,11 @@ message ListPlanStatusesRequest {
   google.protobuf.Struct extra = 99;
 }
 
-// Status of all executed / executing plan statuses within the 24 hour TTL
+// Status of all executed / executing plan statuses with associated IDs within the 24 hour TTL
 message ListPlanStatusesResponse {
-  // List of last known statuses of all plans within the TTL
+  // List of last known statuses with the associated IDs of all plans within the TTL
   // ordered by timestamp in ascending order
-  repeated PlanStatus statuses = 1;
+  repeated PlanStatusWithID plan_statuses_with_ids = 1;
 }
 
 message GetPlanRequest {
@@ -311,9 +311,10 @@ message PlanWithStatus {
   repeated PlanStatus status_history = 3;
 }
 
-// Plan status describes the state of a given plan at a
-// point in time
-message PlanStatus {
+// PlanStatusWithID describes the state of a given plan at a
+// point in time plus the plan_id, component_name and execution_id
+// the status is associated with
+message PlanStatusWithID {
   // The unique ID of the plan
   string plan_id = 1;
 
@@ -328,17 +329,23 @@ message PlanStatus {
   // generated due to replanning.
   string execution_id = 3;
 
+  PlanStatus status = 4;
+}
+
+// Plan status describes the state of a given plan at a
+// point in time
+message PlanStatus {
   // The state of the plan execution
-  PlanState state = 4;
+  PlanState state = 1;
 
   // The time the executing plan transtioned to the state
-  google.protobuf.Timestamp timestamp = 5;
+  google.protobuf.Timestamp timestamp = 2;
 
   // The reason for the state change. If motion plan failed
   // this will return the error message.
   // If motion needed to re-plan, this will return
   // the re-plan reason.
-  optional string reason = 6;
+  optional string reason = 3;
 }
 
 // The states that a plan can be in.
