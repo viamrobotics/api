@@ -75,6 +75,15 @@ service BoardService {
     };
   }
 
+  //Analog Writer
+
+  // WriteAnalog writes the value to the analog writer of the board.
+  rpc WriteAnalog(WriteAnalogRequest) returns (WriteAnalogResponse) {
+    option (google.api.http) = {
+      put: "/viam/api/v1/component/board/{name}/analog_write"
+    };
+  }
+
   // Digital Interrupt
 
   // GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
@@ -93,7 +102,7 @@ service BoardService {
     };
   }
 
-  // GetGeometries returns the geometries of the component in their current configuration
+  // GetGeometries returns the geometries of the component in their current configuration.
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/board/{name}/geometries"
@@ -186,6 +195,18 @@ message ReadAnalogReaderRequest {
 message ReadAnalogReaderResponse {
   int32 value = 1;
 }
+
+// Analog Writer
+
+message WriteAnalogRequest {
+  string name = 1;
+  string pin = 2;
+  int32 value = 3;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message WriteAnalogResponse {}
 
 // Digital Interrupt
 

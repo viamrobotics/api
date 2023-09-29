@@ -405,6 +405,56 @@ export namespace ReadAnalogReaderResponse {
   }
 }
 
+export class WriteAnalogRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getPin(): string;
+  setPin(value: string): void;
+
+  getValue(): number;
+  setValue(value: number): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): WriteAnalogRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: WriteAnalogRequest): WriteAnalogRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: WriteAnalogRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): WriteAnalogRequest;
+  static deserializeBinaryFromReader(message: WriteAnalogRequest, reader: jspb.BinaryReader): WriteAnalogRequest;
+}
+
+export namespace WriteAnalogRequest {
+  export type AsObject = {
+    name: string,
+    pin: string,
+    value: number,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class WriteAnalogResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): WriteAnalogResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: WriteAnalogResponse): WriteAnalogResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: WriteAnalogResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): WriteAnalogResponse;
+  static deserializeBinaryFromReader(message: WriteAnalogResponse, reader: jspb.BinaryReader): WriteAnalogResponse;
+}
+
+export namespace WriteAnalogResponse {
+  export type AsObject = {
+  }
+}
+
 export class GetDigitalInterruptValueRequest extends jspb.Message {
   getBoardName(): string;
   setBoardName(value: string): void;
