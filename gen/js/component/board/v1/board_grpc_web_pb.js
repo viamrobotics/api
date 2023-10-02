@@ -637,6 +637,67 @@ proto.viam.component.board.v1.BoardServicePromiseClient.prototype.readAnalogRead
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.board.v1.WriteAnalogRequest,
+ *   !proto.viam.component.board.v1.WriteAnalogResponse>}
+ */
+const methodDescriptor_BoardService_WriteAnalog = new grpc.web.MethodDescriptor(
+  '/viam.component.board.v1.BoardService/WriteAnalog',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.board.v1.WriteAnalogRequest,
+  proto.viam.component.board.v1.WriteAnalogResponse,
+  /**
+   * @param {!proto.viam.component.board.v1.WriteAnalogRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.board.v1.WriteAnalogResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.board.v1.WriteAnalogRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.board.v1.WriteAnalogResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.board.v1.WriteAnalogResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.board.v1.BoardServiceClient.prototype.writeAnalog =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.board.v1.BoardService/WriteAnalog',
+      request,
+      metadata || {},
+      methodDescriptor_BoardService_WriteAnalog,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.board.v1.WriteAnalogRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.board.v1.WriteAnalogResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.board.v1.BoardServicePromiseClient.prototype.writeAnalog =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.board.v1.BoardService/WriteAnalog',
+      request,
+      metadata || {},
+      methodDescriptor_BoardService_WriteAnalog);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.component.board.v1.GetDigitalInterruptValueRequest,
  *   !proto.viam.component.board.v1.GetDigitalInterruptValueResponse>}
  */

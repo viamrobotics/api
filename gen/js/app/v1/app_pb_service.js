@@ -316,6 +316,15 @@ AppService.DeleteRobotPart = {
   responseType: app_v1_app_pb.DeleteRobotPartResponse
 };
 
+AppService.GetRobotAPIKeys = {
+  methodName: "GetRobotAPIKeys",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetRobotAPIKeysRequest,
+  responseType: app_v1_app_pb.GetRobotAPIKeysResponse
+};
+
 AppService.MarkPartAsMain = {
   methodName: "MarkPartAsMain",
   service: AppService,
@@ -530,6 +539,42 @@ AppService.CreateKey = {
   responseStream: false,
   requestType: app_v1_app_pb.CreateKeyRequest,
   responseType: app_v1_app_pb.CreateKeyResponse
+};
+
+AppService.DeleteKey = {
+  methodName: "DeleteKey",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteKeyRequest,
+  responseType: app_v1_app_pb.DeleteKeyResponse
+};
+
+AppService.ListKeys = {
+  methodName: "ListKeys",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListKeysRequest,
+  responseType: app_v1_app_pb.ListKeysResponse
+};
+
+AppService.RotateKey = {
+  methodName: "RotateKey",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.RotateKeyRequest,
+  responseType: app_v1_app_pb.RotateKeyResponse
+};
+
+AppService.CreateKeyFromExistingKeyAuthorizations = {
+  methodName: "CreateKeyFromExistingKeyAuthorizations",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsRequest,
+  responseType: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsResponse
 };
 
 exports.AppService = AppService;
@@ -1601,6 +1646,37 @@ AppServiceClient.prototype.deleteRobotPart = function deleteRobotPart(requestMes
   };
 };
 
+AppServiceClient.prototype.getRobotAPIKeys = function getRobotAPIKeys(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetRobotAPIKeys, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.markPartAsMain = function markPartAsMain(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -2329,6 +2405,130 @@ AppServiceClient.prototype.createKey = function createKey(requestMessage, metada
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.CreateKey, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteKey = function deleteKey(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteKey, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listKeys = function listKeys(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListKeys, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.rotateKey = function rotateKey(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.RotateKey, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.createKeyFromExistingKeyAuthorizations = function createKeyFromExistingKeyAuthorizations(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.CreateKeyFromExistingKeyAuthorizations, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

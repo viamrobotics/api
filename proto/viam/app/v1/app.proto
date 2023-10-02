@@ -115,6 +115,9 @@ service AppService {
   // Delete a robot part
   rpc DeleteRobotPart(DeleteRobotPartRequest) returns (DeleteRobotPartResponse);
 
+  // Gets the Robot API Keys for the robot
+  rpc GetRobotAPIKeys(GetRobotAPIKeysRequest) returns (GetRobotAPIKeysResponse);
+
   // Marks the given part as the main part, and all the others as not
   rpc MarkPartAsMain(MarkPartAsMainRequest) returns (MarkPartAsMainResponse);
 
@@ -187,6 +190,14 @@ service AppService {
   rpc ListModules(ListModulesRequest) returns (ListModulesResponse);
 
   rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse);
+
+  rpc DeleteKey(DeleteKeyRequest) returns (DeleteKeyResponse);
+
+  rpc ListKeys(ListKeysRequest) returns (ListKeysResponse);
+
+  rpc RotateKey(RotateKeyRequest) returns (RotateKeyResponse);
+
+  rpc CreateKeyFromExistingKeyAuthorizations(CreateKeyFromExistingKeyAuthorizationsRequest) returns (CreateKeyFromExistingKeyAuthorizationsResponse);
 }
 
 message Robot {
@@ -624,6 +635,21 @@ message DeleteRobotPartRequest {
   string part_id = 1;
 }
 
+message GetRobotAPIKeysRequest {
+  string robot_id = 1;
+}
+
+message APIKey {
+  string id = 1;
+  string key = 2;
+  string name = 3;
+  google.protobuf.Timestamp created_on = 4;
+}
+
+message GetRobotAPIKeysResponse {
+  repeated APIKey api_keys = 1;
+}
+
 message DeleteRobotPartResponse {}
 
 message Fragment {
@@ -808,7 +834,7 @@ message CreateModuleRequest {
 }
 
 message CreateModuleResponse {
-  // The id of the module containing the namespace and name
+  // The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)
   string module_id = 1;
   // The detail page of the module
   string url = 2;
@@ -823,10 +849,8 @@ enum Visibility {
 }
 
 message UpdateModuleRequest {
-  // The id of the module being updated, containing module name or namespace and module name
+  // The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)
   string module_id = 1;
-  // The organization of the module being updated, required if no namespace exists in the module_id
-  optional string organization_id = 7;
   // The visibility that should be set for the module
   Visibility visibility = 2;
   // The url to reference for documentation, code, etc.
@@ -852,10 +876,8 @@ message Model {
 }
 
 message ModuleFileInfo {
-  // The id of the module being uploaded, containing module name or namespace and module name
+  // The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)
   string module_id = 1;
-  // The organization of the module being updated, required if no namespace exists in the module_id
-  optional string organization_id = 4;
   // The semver string that represents the new major/minor/patch version of the module
   string version = 2;
   // The platform that the file is built to run on
@@ -877,10 +899,8 @@ message UploadModuleFileResponse {
 }
 
 message GetModuleRequest {
-  // The id of the module being retrieved, containing module name or namespace and module name
+  // The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)
   string module_id = 1;
-  // The organization of the module being updated, required if no namespace exists in the module_id
-  optional string organization_id = 2;
 }
 
 message GetModuleResponse {
@@ -889,7 +909,7 @@ message GetModuleResponse {
 }
 
 message Module {
-  // The id of the module, containing module name or namespace and module name
+  // The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)
   string module_id = 1;
   // The name of the module
   string name = 2;
@@ -974,4 +994,49 @@ message CreateKeyRequest {
 message CreateKeyResponse {
   string key = 1;
   string id = 2;
+}
+
+message DeleteKeyRequest {
+  string id = 1;
+}
+
+message DeleteKeyResponse {}
+
+message AuthorizationDetails {
+  string authorization_type = 1;
+  string authorization_id = 2;
+  string resource_type = 3;
+  string resource_id = 4;
+  string org_id = 5;
+}
+
+message APIKeyWithAuthorizations {
+  APIKey api_key = 1;
+  repeated AuthorizationDetails authorizations = 2;
+}
+
+message ListKeysRequest {
+  string org_id = 1;
+}
+
+message ListKeysResponse {
+  repeated APIKeyWithAuthorizations api_keys = 1;
+}
+
+message RotateKeyRequest {
+  string id = 1;
+}
+
+message RotateKeyResponse {
+  string id = 1;
+  string key = 2;
+}
+
+message CreateKeyFromExistingKeyAuthorizationsRequest {
+  string id = 1;
+}
+
+message CreateKeyFromExistingKeyAuthorizationsResponse {
+  string id = 1;
+  string key = 2;
 }

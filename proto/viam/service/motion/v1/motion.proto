@@ -5,6 +5,7 @@ package viam.service.motion.v1;
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/service/motion/v1";
 option java_package = "com.viam.service.motion.v1";
@@ -29,9 +30,47 @@ service MotionService {
     };
   }
 
+  // Generate and begin executing an execution to move a component
+  // to a specific GPS coordinate.
+  // May replan to avoid obstacles.
+  // Create new a new plan after replanning.
+  rpc MoveOnGlobeNew(MoveOnGlobeNewRequest) returns (MoveOnGlobeNewResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/motion/{name}/move_on_globe_new"
+    };
+  }
+
   rpc GetPose(GetPoseRequest) returns (GetPoseResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/motion/{name}/pose"
+    };
+  }
+
+  // Stops a Plan
+  rpc StopPlan(StopPlanRequest) returns (StopPlanResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/motion/{name}/stop_plan"
+    };
+  }
+
+  // Returns the status of plans created by MoveOnGlobe requests
+  // that are executing OR are part of an execution which changed it state
+  // within the a 24HR TTL OR until the robot reinitializes.
+  rpc ListPlanStatuses(ListPlanStatusesRequest) returns (ListPlanStatusesResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/motion/{name}/list_plan_statuses"
+    };
+  }
+
+  // Returns the plan(s) & state history of the most recent execution to move a
+  // component. Returns a result if the last execution is still executing OR
+  // changed state within the last 24 hours AND the robot has not reinitialized.
+  // Plans are never mutated.
+  // Replans always create new plans.
+  // Replans share the execution_id of the previously executing plan.
+  rpc GetPlan(GetPlanRequest) returns (GetPlanResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/motion/{name}/get_plan"
     };
   }
 
@@ -119,6 +158,32 @@ message MoveOnGlobeResponse {
   bool success = 1;
 }
 
+message MoveOnGlobeNewRequest {
+  // Name of the motion service
+  string name = 1;
+  // Destination, encoded as a GeoPoint
+  common.v1.GeoPoint destination = 2;
+  // Optional compass heading to achieve at the destination, in degrees [0-360)
+  optional double heading = 3;
+  // Component on the robot to move to the specified destination
+  common.v1.ResourceName component_name = 4;
+  // Name of the movement sensor which will be used to check robot location
+  common.v1.ResourceName movement_sensor_name = 5;
+  // Obstacles to be considered for motion planning
+  repeated common.v1.GeoObstacle obstacles = 6;
+  // Optional set of motion configuration options
+  optional MotionConfiguration motion_configuration = 7;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message MoveOnGlobeNewResponse {
+  // The unique ID which identifies the execution.
+  // Multiple plans will share the same execution_id if they were
+  // generated due to replanning.
+  string execution_id = 1;
+}
+
 message GetPoseRequest {
   string name = 1;
   // the component whose pose is being requested
@@ -136,6 +201,67 @@ message GetPoseRequest {
 
 message GetPoseResponse {
   common.v1.PoseInFrame pose = 1;
+}
+
+message StopPlanRequest {
+  // The name of the motion service
+  string name = 1;
+
+  // The component of the currently executing plan to stop
+  common.v1.ResourceName component_name = 2;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message StopPlanResponse {}
+
+message ListPlanStatusesRequest {
+  // The name of the motion service
+  string name = 1;
+  // If supplied, the response will filter the
+  // plan results for the supplied state
+  bool only_active_plans = 2;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+// Status of all executed / executing plan statuses with associated IDs within the 24 hour TTL
+message ListPlanStatusesResponse {
+  // List of last known statuses with the associated IDs of all plans within the TTL
+  // ordered by timestamp in ascending order
+  repeated PlanStatusWithID plan_statuses_with_ids = 1;
+}
+
+message GetPlanRequest {
+  // The name of the motion service
+  string name = 1;
+
+  // The name of the component which the MoveOnGlobeRequest
+  // asked to be moved.
+  common.v1.ResourceName component_name = 2;
+
+  // If supplied, the response will only return
+  // the the last plan for the component / execution
+  bool last_plan_only = 3;
+
+  // If you want to know about the plans of a previous execution
+  optional string execution_id = 4;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetPlanResponse {
+  // The current plan and status that matches the request query
+  PlanWithStatus current_plan_with_status = 1;
+
+  // Returns the history of all previous plans that were
+  // generated in ascending order.
+  // This field will be empty if the motion service
+  // did not need to re-plan.
+  repeated PlanWithStatus replan_history = 2;
 }
 
 // Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters
@@ -170,4 +296,100 @@ message CollisionSpecification {
   }
   // Pairs of frame which should be allowed to collide with one another
   repeated AllowedFrameCollisions allows = 1;
+}
+
+// Describes a plan, its current status & all status changes
+// that have occured previously on that plan
+message PlanWithStatus {
+  // The plan
+  Plan plan = 1;
+
+  // The current status of the plan
+  PlanStatus status = 2;
+
+  // The prior status changes that have happened during plan execution
+  repeated PlanStatus status_history = 3;
+}
+
+// PlanStatusWithID describes the state of a given plan at a
+// point in time plus the plan_id, component_name and execution_id
+// the status is associated with
+message PlanStatusWithID {
+  // The unique ID of the plan
+  string plan_id = 1;
+
+  // The component to be moved.
+  // Used for tracking & stopping.
+  // NOTE: A plan may move more components than just the
+  // component_name.
+  common.v1.ResourceName component_name = 2;
+
+  // The unique ID which identifies the plan execution.
+  // Multiple plans will share the same execution_id if they were
+  // generated due to replanning.
+  string execution_id = 3;
+
+  PlanStatus status = 4;
+}
+
+// Plan status describes the state of a given plan at a
+// point in time
+message PlanStatus {
+  // The state of the plan execution
+  PlanState state = 1;
+
+  // The time the executing plan transtioned to the state
+  google.protobuf.Timestamp timestamp = 2;
+
+  // The reason for the state change. If motion plan failed
+  // this will return the error message.
+  // If motion needed to re-plan, this will return
+  // the re-plan reason.
+  optional string reason = 3;
+}
+
+// The states that a plan can be in.
+// InProgress if the plan is executing.
+// Stopped if the plan was stopped.
+// Suceeded if the robot reached its destination successfully.
+// Failed if the robot did not reach its destination.
+enum PlanState {
+  PLAN_STATE_UNSPECIFIED = 0;
+  PLAN_STATE_IN_PROGRESS = 1;
+  PLAN_STATE_STOPPED = 2;
+  PLAN_STATE_SUCCEEDED = 3;
+  PLAN_STATE_FAILED = 4;
+}
+
+// A plan describes a motion plan
+message Plan {
+  // The plan's unique ID
+  string id = 1;
+
+  // The component requested to be moved.
+  // Used for tracking & stopping.
+  // NOTE: A plan may move more components than just the
+  // root component.
+  common.v1.ResourceName component_name = 2;
+
+  // The unique ID which identifies the execution.
+  // Multiple plans will share the same execution_id if they were
+  // generated due to replanning
+  string execution_id = 3;
+
+  // The steps of a plan is an ordered list of plan steps
+  repeated PlanStep steps = 4;
+}
+
+message PlanStep {
+  // A step is the component state each
+  // component resource should reach while executing
+  // that step of the plan.
+  // Keys are the fully qualified component name.
+  map<string, ComponentState> step = 1;
+}
+
+// A pose
+message ComponentState {
+  common.v1.Pose pose = 1;
 }

@@ -269,67 +269,6 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.binaryDataByIDs =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.data.v1.DeleteTabularDataByFilterRequest,
- *   !proto.viam.app.data.v1.DeleteTabularDataByFilterResponse>}
- */
-const methodDescriptor_DataService_DeleteTabularDataByFilter = new grpc.web.MethodDescriptor(
-  '/viam.app.data.v1.DataService/DeleteTabularDataByFilter',
-  grpc.web.MethodType.UNARY,
-  proto.viam.app.data.v1.DeleteTabularDataByFilterRequest,
-  proto.viam.app.data.v1.DeleteTabularDataByFilterResponse,
-  /**
-   * @param {!proto.viam.app.data.v1.DeleteTabularDataByFilterRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.app.data.v1.DeleteTabularDataByFilterResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.app.data.v1.DeleteTabularDataByFilterRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.DeleteTabularDataByFilterResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.DeleteTabularDataByFilterResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.app.data.v1.DataServiceClient.prototype.deleteTabularDataByFilter =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/DeleteTabularDataByFilter',
-      request,
-      metadata || {},
-      methodDescriptor_DataService_DeleteTabularDataByFilter,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.app.data.v1.DeleteTabularDataByFilterRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.app.data.v1.DeleteTabularDataByFilterResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.app.data.v1.DataServicePromiseClient.prototype.deleteTabularDataByFilter =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.data.v1.DataService/DeleteTabularDataByFilter',
-      request,
-      metadata || {},
-      methodDescriptor_DataService_DeleteTabularDataByFilter);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.data.v1.DeleteTabularDataRequest,
  *   !proto.viam.app.data.v1.DeleteTabularDataResponse>}
  */
@@ -1056,6 +995,189 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.getDatabaseConnection 
       request,
       metadata || {},
       methodDescriptor_DataService_GetDatabaseConnection);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.ConfigureDatabaseUserRequest,
+ *   !proto.viam.app.data.v1.ConfigureDatabaseUserResponse>}
+ */
+const methodDescriptor_DataService_ConfigureDatabaseUser = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/ConfigureDatabaseUser',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.ConfigureDatabaseUserRequest,
+  proto.viam.app.data.v1.ConfigureDatabaseUserResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.ConfigureDatabaseUserRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.ConfigureDatabaseUserResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ConfigureDatabaseUserRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.ConfigureDatabaseUserResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.ConfigureDatabaseUserResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.configureDatabaseUser =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ConfigureDatabaseUser',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ConfigureDatabaseUser,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ConfigureDatabaseUserRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.ConfigureDatabaseUserResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.configureDatabaseUser =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ConfigureDatabaseUser',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ConfigureDatabaseUser);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest,
+ *   !proto.viam.app.data.v1.AddBinaryDataToDatasetByIDsResponse>}
+ */
+const methodDescriptor_DataService_AddBinaryDataToDatasetByIDs = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/AddBinaryDataToDatasetByIDs',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest,
+  proto.viam.app.data.v1.AddBinaryDataToDatasetByIDsResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.AddBinaryDataToDatasetByIDsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.AddBinaryDataToDatasetByIDsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.AddBinaryDataToDatasetByIDsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.addBinaryDataToDatasetByIDs =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/AddBinaryDataToDatasetByIDs',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_AddBinaryDataToDatasetByIDs,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.AddBinaryDataToDatasetByIDsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.addBinaryDataToDatasetByIDs =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/AddBinaryDataToDatasetByIDs',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_AddBinaryDataToDatasetByIDs);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest,
+ *   !proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse>}
+ */
+const methodDescriptor_DataService_RemoveBinaryDataFromDatasetByIDs = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/RemoveBinaryDataFromDatasetByIDs',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest,
+  proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.removeBinaryDataFromDatasetByIDs =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/RemoveBinaryDataFromDatasetByIDs',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_RemoveBinaryDataFromDatasetByIDs,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeBinaryDataFromDatasetByIDs =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/RemoveBinaryDataFromDatasetByIDs',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_RemoveBinaryDataFromDatasetByIDs);
 };
 
 

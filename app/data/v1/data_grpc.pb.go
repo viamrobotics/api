@@ -28,8 +28,6 @@ type DataServiceClient interface {
 	BinaryDataByFilter(ctx context.Context, in *BinaryDataByFilterRequest, opts ...grpc.CallOption) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
 	BinaryDataByIDs(ctx context.Context, in *BinaryDataByIDsRequest, opts ...grpc.CallOption) (*BinaryDataByIDsResponse, error)
-	// DeleteTabularDataByFilter deletes tabular data based on given filters.
-	DeleteTabularDataByFilter(ctx context.Context, in *DeleteTabularDataByFilterRequest, opts ...grpc.CallOption) (*DeleteTabularDataByFilterResponse, error)
 	// DeleteTabularData deletes tabular data older than a number of days, based on the given organization ID.
 	DeleteTabularData(ctx context.Context, in *DeleteTabularDataRequest, opts ...grpc.CallOption) (*DeleteTabularDataResponse, error)
 	// DeleteBinaryDataByFilter deletes binary data based on given filters.
@@ -52,8 +50,16 @@ type DataServiceClient interface {
 	RemoveBoundingBoxFromImageByID(ctx context.Context, in *RemoveBoundingBoxFromImageByIDRequest, opts ...grpc.CallOption) (*RemoveBoundingBoxFromImageByIDResponse, error)
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(ctx context.Context, in *BoundingBoxLabelsByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxLabelsByFilterResponse, error)
-	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It returns the hostname of the federated database.
+	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
+	// returns the hostname of the federated database.
 	GetDatabaseConnection(ctx context.Context, in *GetDatabaseConnectionRequest, opts ...grpc.CallOption) (*GetDatabaseConnectionResponse, error)
+	// ConfigureDatabaseUser configures a database user for the Viam organization's MongoDB Atlas Data
+	// Federation instance. It can also be used to reset the password of the existing database user.
+	ConfigureDatabaseUser(ctx context.Context, in *ConfigureDatabaseUserRequest, opts ...grpc.CallOption) (*ConfigureDatabaseUserResponse, error)
+	// AddBinaryDataToDatasetByIDs adds the binary data with the given binary IDs to the dataset.
+	AddBinaryDataToDatasetByIDs(ctx context.Context, in *AddBinaryDataToDatasetByIDsRequest, opts ...grpc.CallOption) (*AddBinaryDataToDatasetByIDsResponse, error)
+	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
+	RemoveBinaryDataFromDatasetByIDs(ctx context.Context, in *RemoveBinaryDataFromDatasetByIDsRequest, opts ...grpc.CallOption) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
 }
 
 type dataServiceClient struct {
@@ -85,15 +91,6 @@ func (c *dataServiceClient) BinaryDataByFilter(ctx context.Context, in *BinaryDa
 func (c *dataServiceClient) BinaryDataByIDs(ctx context.Context, in *BinaryDataByIDsRequest, opts ...grpc.CallOption) (*BinaryDataByIDsResponse, error) {
 	out := new(BinaryDataByIDsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/BinaryDataByIDs", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataServiceClient) DeleteTabularDataByFilter(ctx context.Context, in *DeleteTabularDataByFilterRequest, opts ...grpc.CallOption) (*DeleteTabularDataByFilterResponse, error) {
-	out := new(DeleteTabularDataByFilterResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/DeleteTabularDataByFilter", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -208,6 +205,33 @@ func (c *dataServiceClient) GetDatabaseConnection(ctx context.Context, in *GetDa
 	return out, nil
 }
 
+func (c *dataServiceClient) ConfigureDatabaseUser(ctx context.Context, in *ConfigureDatabaseUserRequest, opts ...grpc.CallOption) (*ConfigureDatabaseUserResponse, error) {
+	out := new(ConfigureDatabaseUserResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/ConfigureDatabaseUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) AddBinaryDataToDatasetByIDs(ctx context.Context, in *AddBinaryDataToDatasetByIDsRequest, opts ...grpc.CallOption) (*AddBinaryDataToDatasetByIDsResponse, error) {
+	out := new(AddBinaryDataToDatasetByIDsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/AddBinaryDataToDatasetByIDs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) RemoveBinaryDataFromDatasetByIDs(ctx context.Context, in *RemoveBinaryDataFromDatasetByIDsRequest, opts ...grpc.CallOption) (*RemoveBinaryDataFromDatasetByIDsResponse, error) {
+	out := new(RemoveBinaryDataFromDatasetByIDsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/RemoveBinaryDataFromDatasetByIDs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -218,8 +242,6 @@ type DataServiceServer interface {
 	BinaryDataByFilter(context.Context, *BinaryDataByFilterRequest) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
 	BinaryDataByIDs(context.Context, *BinaryDataByIDsRequest) (*BinaryDataByIDsResponse, error)
-	// DeleteTabularDataByFilter deletes tabular data based on given filters.
-	DeleteTabularDataByFilter(context.Context, *DeleteTabularDataByFilterRequest) (*DeleteTabularDataByFilterResponse, error)
 	// DeleteTabularData deletes tabular data older than a number of days, based on the given organization ID.
 	DeleteTabularData(context.Context, *DeleteTabularDataRequest) (*DeleteTabularDataResponse, error)
 	// DeleteBinaryDataByFilter deletes binary data based on given filters.
@@ -242,8 +264,16 @@ type DataServiceServer interface {
 	RemoveBoundingBoxFromImageByID(context.Context, *RemoveBoundingBoxFromImageByIDRequest) (*RemoveBoundingBoxFromImageByIDResponse, error)
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error)
-	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It returns the hostname of the federated database.
+	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
+	// returns the hostname of the federated database.
 	GetDatabaseConnection(context.Context, *GetDatabaseConnectionRequest) (*GetDatabaseConnectionResponse, error)
+	// ConfigureDatabaseUser configures a database user for the Viam organization's MongoDB Atlas Data
+	// Federation instance. It can also be used to reset the password of the existing database user.
+	ConfigureDatabaseUser(context.Context, *ConfigureDatabaseUserRequest) (*ConfigureDatabaseUserResponse, error)
+	// AddBinaryDataToDatasetByIDs adds the binary data with the given binary IDs to the dataset.
+	AddBinaryDataToDatasetByIDs(context.Context, *AddBinaryDataToDatasetByIDsRequest) (*AddBinaryDataToDatasetByIDsResponse, error)
+	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
+	RemoveBinaryDataFromDatasetByIDs(context.Context, *RemoveBinaryDataFromDatasetByIDsRequest) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -259,9 +289,6 @@ func (UnimplementedDataServiceServer) BinaryDataByFilter(context.Context, *Binar
 }
 func (UnimplementedDataServiceServer) BinaryDataByIDs(context.Context, *BinaryDataByIDsRequest) (*BinaryDataByIDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BinaryDataByIDs not implemented")
-}
-func (UnimplementedDataServiceServer) DeleteTabularDataByFilter(context.Context, *DeleteTabularDataByFilterRequest) (*DeleteTabularDataByFilterResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteTabularDataByFilter not implemented")
 }
 func (UnimplementedDataServiceServer) DeleteTabularData(context.Context, *DeleteTabularDataRequest) (*DeleteTabularDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTabularData not implemented")
@@ -298,6 +325,15 @@ func (UnimplementedDataServiceServer) BoundingBoxLabelsByFilter(context.Context,
 }
 func (UnimplementedDataServiceServer) GetDatabaseConnection(context.Context, *GetDatabaseConnectionRequest) (*GetDatabaseConnectionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDatabaseConnection not implemented")
+}
+func (UnimplementedDataServiceServer) ConfigureDatabaseUser(context.Context, *ConfigureDatabaseUserRequest) (*ConfigureDatabaseUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfigureDatabaseUser not implemented")
+}
+func (UnimplementedDataServiceServer) AddBinaryDataToDatasetByIDs(context.Context, *AddBinaryDataToDatasetByIDsRequest) (*AddBinaryDataToDatasetByIDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddBinaryDataToDatasetByIDs not implemented")
+}
+func (UnimplementedDataServiceServer) RemoveBinaryDataFromDatasetByIDs(context.Context, *RemoveBinaryDataFromDatasetByIDsRequest) (*RemoveBinaryDataFromDatasetByIDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveBinaryDataFromDatasetByIDs not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -362,24 +398,6 @@ func _DataService_BinaryDataByIDs_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataServiceServer).BinaryDataByIDs(ctx, req.(*BinaryDataByIDsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DataService_DeleteTabularDataByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteTabularDataByFilterRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataServiceServer).DeleteTabularDataByFilter(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/DeleteTabularDataByFilter",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).DeleteTabularDataByFilter(ctx, req.(*DeleteTabularDataByFilterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -600,6 +618,60 @@ func _DataService_GetDatabaseConnection_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_ConfigureDatabaseUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConfigureDatabaseUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).ConfigureDatabaseUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/ConfigureDatabaseUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).ConfigureDatabaseUser(ctx, req.(*ConfigureDatabaseUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_AddBinaryDataToDatasetByIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddBinaryDataToDatasetByIDsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).AddBinaryDataToDatasetByIDs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/AddBinaryDataToDatasetByIDs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).AddBinaryDataToDatasetByIDs(ctx, req.(*AddBinaryDataToDatasetByIDsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_RemoveBinaryDataFromDatasetByIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveBinaryDataFromDatasetByIDsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).RemoveBinaryDataFromDatasetByIDs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/RemoveBinaryDataFromDatasetByIDs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).RemoveBinaryDataFromDatasetByIDs(ctx, req.(*RemoveBinaryDataFromDatasetByIDsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -618,10 +690,6 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BinaryDataByIDs",
 			Handler:    _DataService_BinaryDataByIDs_Handler,
-		},
-		{
-			MethodName: "DeleteTabularDataByFilter",
-			Handler:    _DataService_DeleteTabularDataByFilter_Handler,
 		},
 		{
 			MethodName: "DeleteTabularData",
@@ -670,6 +738,18 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDatabaseConnection",
 			Handler:    _DataService_GetDatabaseConnection_Handler,
+		},
+		{
+			MethodName: "ConfigureDatabaseUser",
+			Handler:    _DataService_ConfigureDatabaseUser_Handler,
+		},
+		{
+			MethodName: "AddBinaryDataToDatasetByIDs",
+			Handler:    _DataService_AddBinaryDataToDatasetByIDs_Handler,
+		},
+		{
+			MethodName: "RemoveBinaryDataFromDatasetByIDs",
+			Handler:    _DataService_RemoveBinaryDataFromDatasetByIDs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -5,6 +5,7 @@ import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
+import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class MoveRequest extends jspb.Message {
   getName(): string;
@@ -274,6 +275,88 @@ export namespace MoveOnGlobeResponse {
   }
 }
 
+export class MoveOnGlobeNewRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasDestination(): boolean;
+  clearDestination(): void;
+  getDestination(): common_v1_common_pb.GeoPoint | undefined;
+  setDestination(value?: common_v1_common_pb.GeoPoint): void;
+
+  hasHeading(): boolean;
+  clearHeading(): void;
+  getHeading(): number;
+  setHeading(value: number): void;
+
+  hasComponentName(): boolean;
+  clearComponentName(): void;
+  getComponentName(): common_v1_common_pb.ResourceName | undefined;
+  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+
+  hasMovementSensorName(): boolean;
+  clearMovementSensorName(): void;
+  getMovementSensorName(): common_v1_common_pb.ResourceName | undefined;
+  setMovementSensorName(value?: common_v1_common_pb.ResourceName): void;
+
+  clearObstaclesList(): void;
+  getObstaclesList(): Array<common_v1_common_pb.GeoObstacle>;
+  setObstaclesList(value: Array<common_v1_common_pb.GeoObstacle>): void;
+  addObstacles(value?: common_v1_common_pb.GeoObstacle, index?: number): common_v1_common_pb.GeoObstacle;
+
+  hasMotionConfiguration(): boolean;
+  clearMotionConfiguration(): void;
+  getMotionConfiguration(): MotionConfiguration | undefined;
+  setMotionConfiguration(value?: MotionConfiguration): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MoveOnGlobeNewRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: MoveOnGlobeNewRequest): MoveOnGlobeNewRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MoveOnGlobeNewRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MoveOnGlobeNewRequest;
+  static deserializeBinaryFromReader(message: MoveOnGlobeNewRequest, reader: jspb.BinaryReader): MoveOnGlobeNewRequest;
+}
+
+export namespace MoveOnGlobeNewRequest {
+  export type AsObject = {
+    name: string,
+    destination?: common_v1_common_pb.GeoPoint.AsObject,
+    heading: number,
+    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    movementSensorName?: common_v1_common_pb.ResourceName.AsObject,
+    obstaclesList: Array<common_v1_common_pb.GeoObstacle.AsObject>,
+    motionConfiguration?: MotionConfiguration.AsObject,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class MoveOnGlobeNewResponse extends jspb.Message {
+  getExecutionId(): string;
+  setExecutionId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MoveOnGlobeNewResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: MoveOnGlobeNewResponse): MoveOnGlobeNewResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MoveOnGlobeNewResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MoveOnGlobeNewResponse;
+  static deserializeBinaryFromReader(message: MoveOnGlobeNewResponse, reader: jspb.BinaryReader): MoveOnGlobeNewResponse;
+}
+
+export namespace MoveOnGlobeNewResponse {
+  export type AsObject = {
+    executionId: string,
+  }
+}
+
 export class GetPoseRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
@@ -335,6 +418,176 @@ export class GetPoseResponse extends jspb.Message {
 export namespace GetPoseResponse {
   export type AsObject = {
     pose?: common_v1_common_pb.PoseInFrame.AsObject,
+  }
+}
+
+export class StopPlanRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasComponentName(): boolean;
+  clearComponentName(): void;
+  getComponentName(): common_v1_common_pb.ResourceName | undefined;
+  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StopPlanRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: StopPlanRequest): StopPlanRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StopPlanRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StopPlanRequest;
+  static deserializeBinaryFromReader(message: StopPlanRequest, reader: jspb.BinaryReader): StopPlanRequest;
+}
+
+export namespace StopPlanRequest {
+  export type AsObject = {
+    name: string,
+    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class StopPlanResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StopPlanResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: StopPlanResponse): StopPlanResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StopPlanResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StopPlanResponse;
+  static deserializeBinaryFromReader(message: StopPlanResponse, reader: jspb.BinaryReader): StopPlanResponse;
+}
+
+export namespace StopPlanResponse {
+  export type AsObject = {
+  }
+}
+
+export class ListPlanStatusesRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getOnlyActivePlans(): boolean;
+  setOnlyActivePlans(value: boolean): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListPlanStatusesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListPlanStatusesRequest): ListPlanStatusesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListPlanStatusesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListPlanStatusesRequest;
+  static deserializeBinaryFromReader(message: ListPlanStatusesRequest, reader: jspb.BinaryReader): ListPlanStatusesRequest;
+}
+
+export namespace ListPlanStatusesRequest {
+  export type AsObject = {
+    name: string,
+    onlyActivePlans: boolean,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class ListPlanStatusesResponse extends jspb.Message {
+  clearPlanStatusesWithIdsList(): void;
+  getPlanStatusesWithIdsList(): Array<PlanStatusWithID>;
+  setPlanStatusesWithIdsList(value: Array<PlanStatusWithID>): void;
+  addPlanStatusesWithIds(value?: PlanStatusWithID, index?: number): PlanStatusWithID;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListPlanStatusesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListPlanStatusesResponse): ListPlanStatusesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListPlanStatusesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListPlanStatusesResponse;
+  static deserializeBinaryFromReader(message: ListPlanStatusesResponse, reader: jspb.BinaryReader): ListPlanStatusesResponse;
+}
+
+export namespace ListPlanStatusesResponse {
+  export type AsObject = {
+    planStatusesWithIdsList: Array<PlanStatusWithID.AsObject>,
+  }
+}
+
+export class GetPlanRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasComponentName(): boolean;
+  clearComponentName(): void;
+  getComponentName(): common_v1_common_pb.ResourceName | undefined;
+  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+
+  getLastPlanOnly(): boolean;
+  setLastPlanOnly(value: boolean): void;
+
+  hasExecutionId(): boolean;
+  clearExecutionId(): void;
+  getExecutionId(): string;
+  setExecutionId(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPlanRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPlanRequest): GetPlanRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPlanRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPlanRequest;
+  static deserializeBinaryFromReader(message: GetPlanRequest, reader: jspb.BinaryReader): GetPlanRequest;
+}
+
+export namespace GetPlanRequest {
+  export type AsObject = {
+    name: string,
+    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    lastPlanOnly: boolean,
+    executionId: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetPlanResponse extends jspb.Message {
+  hasCurrentPlanWithStatus(): boolean;
+  clearCurrentPlanWithStatus(): void;
+  getCurrentPlanWithStatus(): PlanWithStatus | undefined;
+  setCurrentPlanWithStatus(value?: PlanWithStatus): void;
+
+  clearReplanHistoryList(): void;
+  getReplanHistoryList(): Array<PlanWithStatus>;
+  setReplanHistoryList(value: Array<PlanWithStatus>): void;
+  addReplanHistory(value?: PlanWithStatus, index?: number): PlanWithStatus;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPlanResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPlanResponse): GetPlanResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPlanResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPlanResponse;
+  static deserializeBinaryFromReader(message: GetPlanResponse, reader: jspb.BinaryReader): GetPlanResponse;
+}
+
+export namespace GetPlanResponse {
+  export type AsObject = {
+    currentPlanWithStatus?: PlanWithStatus.AsObject,
+    replanHistoryList: Array<PlanWithStatus.AsObject>,
   }
 }
 
@@ -467,4 +720,193 @@ export namespace CollisionSpecification {
     }
   }
 }
+
+export class PlanWithStatus extends jspb.Message {
+  hasPlan(): boolean;
+  clearPlan(): void;
+  getPlan(): Plan | undefined;
+  setPlan(value?: Plan): void;
+
+  hasStatus(): boolean;
+  clearStatus(): void;
+  getStatus(): PlanStatus | undefined;
+  setStatus(value?: PlanStatus): void;
+
+  clearStatusHistoryList(): void;
+  getStatusHistoryList(): Array<PlanStatus>;
+  setStatusHistoryList(value: Array<PlanStatus>): void;
+  addStatusHistory(value?: PlanStatus, index?: number): PlanStatus;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PlanWithStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: PlanWithStatus): PlanWithStatus.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PlanWithStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PlanWithStatus;
+  static deserializeBinaryFromReader(message: PlanWithStatus, reader: jspb.BinaryReader): PlanWithStatus;
+}
+
+export namespace PlanWithStatus {
+  export type AsObject = {
+    plan?: Plan.AsObject,
+    status?: PlanStatus.AsObject,
+    statusHistoryList: Array<PlanStatus.AsObject>,
+  }
+}
+
+export class PlanStatusWithID extends jspb.Message {
+  getPlanId(): string;
+  setPlanId(value: string): void;
+
+  hasComponentName(): boolean;
+  clearComponentName(): void;
+  getComponentName(): common_v1_common_pb.ResourceName | undefined;
+  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+
+  getExecutionId(): string;
+  setExecutionId(value: string): void;
+
+  hasStatus(): boolean;
+  clearStatus(): void;
+  getStatus(): PlanStatus | undefined;
+  setStatus(value?: PlanStatus): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PlanStatusWithID.AsObject;
+  static toObject(includeInstance: boolean, msg: PlanStatusWithID): PlanStatusWithID.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PlanStatusWithID, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PlanStatusWithID;
+  static deserializeBinaryFromReader(message: PlanStatusWithID, reader: jspb.BinaryReader): PlanStatusWithID;
+}
+
+export namespace PlanStatusWithID {
+  export type AsObject = {
+    planId: string,
+    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    executionId: string,
+    status?: PlanStatus.AsObject,
+  }
+}
+
+export class PlanStatus extends jspb.Message {
+  getState(): PlanStateMap[keyof PlanStateMap];
+  setState(value: PlanStateMap[keyof PlanStateMap]): void;
+
+  hasTimestamp(): boolean;
+  clearTimestamp(): void;
+  getTimestamp(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimestamp(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasReason(): boolean;
+  clearReason(): void;
+  getReason(): string;
+  setReason(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PlanStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: PlanStatus): PlanStatus.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PlanStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PlanStatus;
+  static deserializeBinaryFromReader(message: PlanStatus, reader: jspb.BinaryReader): PlanStatus;
+}
+
+export namespace PlanStatus {
+  export type AsObject = {
+    state: PlanStateMap[keyof PlanStateMap],
+    timestamp?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    reason: string,
+  }
+}
+
+export class Plan extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  hasComponentName(): boolean;
+  clearComponentName(): void;
+  getComponentName(): common_v1_common_pb.ResourceName | undefined;
+  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+
+  getExecutionId(): string;
+  setExecutionId(value: string): void;
+
+  clearStepsList(): void;
+  getStepsList(): Array<PlanStep>;
+  setStepsList(value: Array<PlanStep>): void;
+  addSteps(value?: PlanStep, index?: number): PlanStep;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Plan.AsObject;
+  static toObject(includeInstance: boolean, msg: Plan): Plan.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Plan, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Plan;
+  static deserializeBinaryFromReader(message: Plan, reader: jspb.BinaryReader): Plan;
+}
+
+export namespace Plan {
+  export type AsObject = {
+    id: string,
+    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    executionId: string,
+    stepsList: Array<PlanStep.AsObject>,
+  }
+}
+
+export class PlanStep extends jspb.Message {
+  getStepMap(): jspb.Map<string, ComponentState>;
+  clearStepMap(): void;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PlanStep.AsObject;
+  static toObject(includeInstance: boolean, msg: PlanStep): PlanStep.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PlanStep, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PlanStep;
+  static deserializeBinaryFromReader(message: PlanStep, reader: jspb.BinaryReader): PlanStep;
+}
+
+export namespace PlanStep {
+  export type AsObject = {
+    stepMap: Array<[string, ComponentState.AsObject]>,
+  }
+}
+
+export class ComponentState extends jspb.Message {
+  hasPose(): boolean;
+  clearPose(): void;
+  getPose(): common_v1_common_pb.Pose | undefined;
+  setPose(value?: common_v1_common_pb.Pose): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ComponentState.AsObject;
+  static toObject(includeInstance: boolean, msg: ComponentState): ComponentState.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ComponentState, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ComponentState;
+  static deserializeBinaryFromReader(message: ComponentState, reader: jspb.BinaryReader): ComponentState;
+}
+
+export namespace ComponentState {
+  export type AsObject = {
+    pose?: common_v1_common_pb.Pose.AsObject,
+  }
+}
+
+export interface PlanStateMap {
+  PLAN_STATE_UNSPECIFIED: 0;
+  PLAN_STATE_IN_PROGRESS: 1;
+  PLAN_STATE_STOPPED: 2;
+  PLAN_STATE_SUCCEEDED: 3;
+  PLAN_STATE_FAILED: 4;
+}
+
+export const PlanState: PlanStateMap;
 

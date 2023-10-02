@@ -310,6 +310,15 @@ type AppServiceDeleteRobotPart = {
   readonly responseType: typeof app_v1_app_pb.DeleteRobotPartResponse;
 };
 
+type AppServiceGetRobotAPIKeys = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetRobotAPIKeysRequest;
+  readonly responseType: typeof app_v1_app_pb.GetRobotAPIKeysResponse;
+};
+
 type AppServiceMarkPartAsMain = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -526,6 +535,42 @@ type AppServiceCreateKey = {
   readonly responseType: typeof app_v1_app_pb.CreateKeyResponse;
 };
 
+type AppServiceDeleteKey = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteKeyRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteKeyResponse;
+};
+
+type AppServiceListKeys = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListKeysRequest;
+  readonly responseType: typeof app_v1_app_pb.ListKeysResponse;
+};
+
+type AppServiceRotateKey = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.RotateKeyRequest;
+  readonly responseType: typeof app_v1_app_pb.RotateKeyResponse;
+};
+
+type AppServiceCreateKeyFromExistingKeyAuthorizations = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
@@ -562,6 +607,7 @@ export class AppService {
   static readonly UpdateRobotPart: AppServiceUpdateRobotPart;
   static readonly NewRobotPart: AppServiceNewRobotPart;
   static readonly DeleteRobotPart: AppServiceDeleteRobotPart;
+  static readonly GetRobotAPIKeys: AppServiceGetRobotAPIKeys;
   static readonly MarkPartAsMain: AppServiceMarkPartAsMain;
   static readonly MarkPartForRestart: AppServiceMarkPartForRestart;
   static readonly CreateRobotPartSecret: AppServiceCreateRobotPartSecret;
@@ -586,6 +632,10 @@ export class AppService {
   static readonly GetModule: AppServiceGetModule;
   static readonly ListModules: AppServiceListModules;
   static readonly CreateKey: AppServiceCreateKey;
+  static readonly DeleteKey: AppServiceDeleteKey;
+  static readonly ListKeys: AppServiceListKeys;
+  static readonly RotateKey: AppServiceRotateKey;
+  static readonly CreateKeyFromExistingKeyAuthorizations: AppServiceCreateKeyFromExistingKeyAuthorizations;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -918,6 +968,15 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.DeleteRobotPartRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotPartResponse|null) => void
   ): UnaryResponse;
+  getRobotAPIKeys(
+    requestMessage: app_v1_app_pb.GetRobotAPIKeysRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotAPIKeysResponse|null) => void
+  ): UnaryResponse;
+  getRobotAPIKeys(
+    requestMessage: app_v1_app_pb.GetRobotAPIKeysRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotAPIKeysResponse|null) => void
+  ): UnaryResponse;
   markPartAsMain(
     requestMessage: app_v1_app_pb.MarkPartAsMainRequest,
     metadata: grpc.Metadata,
@@ -1125,6 +1184,42 @@ export class AppServiceClient {
   createKey(
     requestMessage: app_v1_app_pb.CreateKeyRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateKeyResponse|null) => void
+  ): UnaryResponse;
+  deleteKey(
+    requestMessage: app_v1_app_pb.DeleteKeyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteKeyResponse|null) => void
+  ): UnaryResponse;
+  deleteKey(
+    requestMessage: app_v1_app_pb.DeleteKeyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteKeyResponse|null) => void
+  ): UnaryResponse;
+  listKeys(
+    requestMessage: app_v1_app_pb.ListKeysRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListKeysResponse|null) => void
+  ): UnaryResponse;
+  listKeys(
+    requestMessage: app_v1_app_pb.ListKeysRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListKeysResponse|null) => void
+  ): UnaryResponse;
+  rotateKey(
+    requestMessage: app_v1_app_pb.RotateKeyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RotateKeyResponse|null) => void
+  ): UnaryResponse;
+  rotateKey(
+    requestMessage: app_v1_app_pb.RotateKeyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RotateKeyResponse|null) => void
+  ): UnaryResponse;
+  createKeyFromExistingKeyAuthorizations(
+    requestMessage: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsResponse|null) => void
+  ): UnaryResponse;
+  createKeyFromExistingKeyAuthorizations(
+    requestMessage: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsResponse|null) => void
   ): UnaryResponse;
 }
 
