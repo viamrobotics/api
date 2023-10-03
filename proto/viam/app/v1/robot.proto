@@ -270,9 +270,12 @@ message AgentInfo {
 enum CredentialsType {
   CREDENTIALS_TYPE_UNSPECIFIED = 0;
   CREDENTIALS_TYPE_INTERNAL = 1;
+  // deprecated: legacy single string API key implementation
   CREDENTIALS_TYPE_API_KEY = 2;
   CREDENTIALS_TYPE_ROBOT_SECRET = 3;
   CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET = 4;
+  // replaces CREDENTIALS_TYPE_API_KEY; key string by key ID string mapping
+  CREDENTIALS_TYPE_API_KEY_PAIR = 5;
 }
 
 message ConfigRequest {
