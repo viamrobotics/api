@@ -156,6 +156,9 @@ export class GetLocationResponse extends jspb.Message {
   getLocation(): common_v1_common_pb.GeoPoint | undefined;
   setLocation(value?: common_v1_common_pb.GeoPoint): void;
 
+  getCompassHeading(): number;
+  setCompassHeading(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetLocationResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetLocationResponse): GetLocationResponse.AsObject;
@@ -169,6 +172,7 @@ export class GetLocationResponse extends jspb.Message {
 export namespace GetLocationResponse {
   export type AsObject = {
     location?: common_v1_common_pb.GeoPoint.AsObject,
+    compassHeading: number,
   }
 }
 
@@ -440,6 +444,7 @@ export interface ModeMap {
   MODE_UNSPECIFIED: 0;
   MODE_MANUAL: 1;
   MODE_WAYPOINT: 2;
+  MODE_EXPLORE: 3;
 }
 
 export const Mode: ModeMap;
