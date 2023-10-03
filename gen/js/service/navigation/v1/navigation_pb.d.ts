@@ -156,9 +156,6 @@ export class GetLocationResponse extends jspb.Message {
   getLocation(): common_v1_common_pb.GeoPoint | undefined;
   setLocation(value?: common_v1_common_pb.GeoPoint): void;
 
-  getCompassHeading(): number;
-  setCompassHeading(value: number): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetLocationResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetLocationResponse): GetLocationResponse.AsObject;
@@ -172,7 +169,6 @@ export class GetLocationResponse extends jspb.Message {
 export namespace GetLocationResponse {
   export type AsObject = {
     location?: common_v1_common_pb.GeoPoint.AsObject,
-    compassHeading: number,
   }
 }
 
@@ -366,11 +362,84 @@ export namespace GetObstaclesResponse {
   }
 }
 
+export class Path extends jspb.Message {
+  getDestinationWaypointId(): string;
+  setDestinationWaypointId(value: string): void;
+
+  clearGeopointsList(): void;
+  getGeopointsList(): Array<common_v1_common_pb.GeoPoint>;
+  setGeopointsList(value: Array<common_v1_common_pb.GeoPoint>): void;
+  addGeopoints(value?: common_v1_common_pb.GeoPoint, index?: number): common_v1_common_pb.GeoPoint;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Path.AsObject;
+  static toObject(includeInstance: boolean, msg: Path): Path.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Path, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Path;
+  static deserializeBinaryFromReader(message: Path, reader: jspb.BinaryReader): Path;
+}
+
+export namespace Path {
+  export type AsObject = {
+    destinationWaypointId: string,
+    geopointsList: Array<common_v1_common_pb.GeoPoint.AsObject>,
+  }
+}
+
+export class GetPathsRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPathsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPathsRequest): GetPathsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPathsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPathsRequest;
+  static deserializeBinaryFromReader(message: GetPathsRequest, reader: jspb.BinaryReader): GetPathsRequest;
+}
+
+export namespace GetPathsRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetPathsResponse extends jspb.Message {
+  clearPathsList(): void;
+  getPathsList(): Array<Path>;
+  setPathsList(value: Array<Path>): void;
+  addPaths(value?: Path, index?: number): Path;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPathsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPathsResponse): GetPathsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPathsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPathsResponse;
+  static deserializeBinaryFromReader(message: GetPathsResponse, reader: jspb.BinaryReader): GetPathsResponse;
+}
+
+export namespace GetPathsResponse {
+  export type AsObject = {
+    pathsList: Array<Path.AsObject>,
+  }
+}
+
 export interface ModeMap {
   MODE_UNSPECIFIED: 0;
   MODE_MANUAL: 1;
   MODE_WAYPOINT: 2;
-  MODE_EXPLORE: 3;
 }
 
 export const Mode: ModeMap;
