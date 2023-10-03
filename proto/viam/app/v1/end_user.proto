@@ -14,8 +14,9 @@ service EndUserService {
 }
 
 message IsLegalAcceptedRequest {
-  // The user ID to check.
-  string user_id = 1;
+  // user_id is implicitly inferred from the bearer token.
+  reserved 1;
+  reserved "user_id";
 }
 
 message IsLegalAcceptedResponse {
@@ -24,8 +25,9 @@ message IsLegalAcceptedResponse {
 }
 
 message AcceptLegalRequest {
-  // The user ID to accept legal terms for.
-  string user_id = 1;
+  // user_id is implicitly inferred from the bearer token.
+  reserved 1;
+  reserved "user_id";
 }
 
 message AcceptLegalResponse {}
