@@ -22,6 +22,7 @@ goog.object.extend(proto, google_protobuf_struct_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.viam.app.cloudslam.v1.CaptureInterval', null, global);
+goog.exportSymbol('proto.viam.app.cloudslam.v1.EndStatus', null, global);
 goog.exportSymbol('proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotRequest', null, global);
 goog.exportSymbol('proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotResponse', null, global);
 goog.exportSymbol('proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDRequest', null, global);
@@ -2884,7 +2885,7 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.to
 proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     sessionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    endStatus: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    endStatus: jspb.Message.getFieldWithDefault(msg, 2, 0),
     timeCloudRunJobEnded: (f = msg.getTimeCloudRunJobEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     errorMsg: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
@@ -2928,7 +2929,7 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.deserializeB
       msg.setSessionId(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {!proto.viam.app.cloudslam.v1.EndStatus} */ (reader.readEnum());
       msg.setEndStatus(value);
       break;
     case 3:
@@ -2977,8 +2978,8 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.serializeBin
     );
   }
   f = message.getEndStatus();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f !== 0.0) {
+    writer.writeEnum(
       2,
       f
     );
@@ -3020,20 +3021,20 @@ proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.se
 
 
 /**
- * optional string end_status = 2;
- * @return {string}
+ * optional EndStatus end_status = 2;
+ * @return {!proto.viam.app.cloudslam.v1.EndStatus}
  */
 proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.getEndStatus = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type {!proto.viam.app.cloudslam.v1.EndStatus} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {!proto.viam.app.cloudslam.v1.EndStatus} value
  * @return {!proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest} returns this
  */
 proto.viam.app.cloudslam.v1.UpdateMappingSessionMetadataByIDRequest.prototype.setEndStatus = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
@@ -3232,7 +3233,7 @@ proto.viam.app.cloudslam.v1.MappingMetadata.toObject = function(includeInstance,
     timeCloudRunJobStarted: (f = msg.getTimeCloudRunJobStarted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     timeEndSubmitted: (f = msg.getTimeEndSubmitted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     timeCloudRunJobEnded: (f = msg.getTimeCloudRunJobEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endStatus: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    endStatus: jspb.Message.getFieldWithDefault(msg, 8, 0),
     cloudRunJobId: jspb.Message.getFieldWithDefault(msg, 9, ""),
     viamServerVersion: jspb.Message.getFieldWithDefault(msg, 10, ""),
     mapName: jspb.Message.getFieldWithDefault(msg, 11, ""),
@@ -3308,7 +3309,7 @@ proto.viam.app.cloudslam.v1.MappingMetadata.deserializeBinaryFromReader = functi
       msg.setTimeCloudRunJobEnded(value);
       break;
     case 8:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {!proto.viam.app.cloudslam.v1.EndStatus} */ (reader.readEnum());
       msg.setEndStatus(value);
       break;
     case 9:
@@ -3418,8 +3419,8 @@ proto.viam.app.cloudslam.v1.MappingMetadata.serializeBinaryToWriter = function(m
     );
   }
   f = message.getEndStatus();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f !== 0.0) {
+    writer.writeEnum(
       8,
       f
     );
@@ -3672,20 +3673,20 @@ proto.viam.app.cloudslam.v1.MappingMetadata.prototype.hasTimeCloudRunJobEnded = 
 
 
 /**
- * optional string end_status = 8;
- * @return {string}
+ * optional EndStatus end_status = 8;
+ * @return {!proto.viam.app.cloudslam.v1.EndStatus}
  */
 proto.viam.app.cloudslam.v1.MappingMetadata.prototype.getEndStatus = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+  return /** @type {!proto.viam.app.cloudslam.v1.EndStatus} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {!proto.viam.app.cloudslam.v1.EndStatus} value
  * @return {!proto.viam.app.cloudslam.v1.MappingMetadata} returns this
  */
 proto.viam.app.cloudslam.v1.MappingMetadata.prototype.setEndStatus = function(value) {
-  return jspb.Message.setProto3StringField(this, 8, value);
+  return jspb.Message.setProto3EnumField(this, 8, value);
 };
 
 
@@ -3796,5 +3797,15 @@ proto.viam.app.cloudslam.v1.MappingMetadata.prototype.setErrorMsg = function(val
   return jspb.Message.setProto3StringField(this, 14, value);
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.cloudslam.v1.EndStatus = {
+  END_STATUS_UNSPECIFIED: 0,
+  END_STATUS_SUCCESS: 1,
+  END_STATUS_TIMEOUT: 2,
+  END_STATUS_FAIL: 3
+};
 
 goog.object.extend(exports, proto.viam.app.cloudslam.v1);
