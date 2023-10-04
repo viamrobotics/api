@@ -140,7 +140,7 @@ message MappingMetadata {
 }
 
 enum EndStatus {
-  END_STATUS_UNKNOWN = 0;
+  END_STATUS_UNSPECIFIED = 0;
   END_STATUS_SUCCESS = 1;
   END_STATUS_TIMEOUT = 2;
   END_STATUS_FAIL = 3;
