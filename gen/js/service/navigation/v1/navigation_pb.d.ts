@@ -370,6 +370,7 @@ export interface ModeMap {
   MODE_UNSPECIFIED: 0;
   MODE_MANUAL: 1;
   MODE_WAYPOINT: 2;
+  MODE_EXPLORE: 3;
 }
 
 export const Mode: ModeMap;

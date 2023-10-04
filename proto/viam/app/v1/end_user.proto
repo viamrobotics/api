@@ -13,19 +13,13 @@ service EndUserService {
   rpc AcceptLegal(AcceptLegalRequest) returns (AcceptLegalResponse);
 }
 
-message IsLegalAcceptedRequest {
-  // The user ID to check.
-  string user_id = 1;
-}
+message IsLegalAcceptedRequest {}
 
 message IsLegalAcceptedResponse {
   // If false, the user should not be able to use the application.
   bool accepted_legal = 1;
 }
 
-message AcceptLegalRequest {
-  // The user ID to accept legal terms for.
-  string user_id = 1;
-}
+message AcceptLegalRequest {}
 
 message AcceptLegalResponse {}
