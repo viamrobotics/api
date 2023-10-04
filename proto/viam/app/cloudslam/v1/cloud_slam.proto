@@ -112,8 +112,8 @@ message GetMappingSessionMetadataByIDResponse {
 
 message UpdateMappingSessionMetadataByIDRequest {
   string session_id = 1;
-  // “success”, “failed to start”, etc
-  string end_status = 2;
+  // enums that represent “success”, “failed”, etc
+  EndStatus end_status = 2;
   // set at the time of job closeout and used as the package version
   google.protobuf.Timestamp time_cloud_run_job_ended = 3;
   // additional details on the end status if needed, such as errors
@@ -130,11 +130,18 @@ message MappingMetadata {
   google.protobuf.Timestamp time_cloud_run_job_started = 5; // time the cloud run job started
   google.protobuf.Timestamp time_end_submitted = 6; // time StopSlamSession was called
   google.protobuf.Timestamp time_cloud_run_job_ended = 7; // time the cloud run job ended
-  string end_status = 8; // “success”, “failed to start”, etc
+  EndStatus end_status = 8; // enums that represent “success”, “failed”, etc
   string cloud_run_job_id = 9; // initially unset
   string viam_server_version = 10; // version tag from request, defaults to stable
   string map_name = 11; // name of the map package
   string slam_version = 12; // version tag from request, defaults to stable
   string config = 13; // a robot config for a slam session
   string error_msg = 14; // additional details on the end status if needed, such as errors
+}
+
+enum EndStatus {
+  END_STATUS_UNKNOWN = 0;
+  END_STATUS_SUCCESS = 1;
+  END_STATUS_TIMEOUT = 2;
+  END_STATUS_FAIL = 3;
 }
