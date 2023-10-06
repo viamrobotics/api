@@ -120,9 +120,15 @@ message MoveOnMapResponse {
   bool success = 1;
 }
 
+// Pairs a vision service with a camera, informing the service about which camera it may use
+message ObstacleDetector {
+  common.v1.ResourceName vision_service = 1;
+  common.v1.ResourceName camera = 2;
+}
+
 message MotionConfiguration {
-  // The name of the vision service(s) that will be used to detect obstacles
-  repeated common.v1.ResourceName vision_services = 1;
+  // Pairs a vision service with a camera, informing the service about which camera it may use
+  repeated ObstacleDetector obstacle_detectors = 1;
   // Sets the frequency to poll for the position of the robot
   optional double position_polling_frequency_hz = 2;
   // Sets the frequency to poll the vision service(s) for new obstacles
