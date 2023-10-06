@@ -366,8 +366,8 @@ export class UpdateMappingSessionMetadataByIDRequest extends jspb.Message {
   getSessionId(): string;
   setSessionId(value: string): void;
 
-  getEndStatus(): string;
-  setEndStatus(value: string): void;
+  getEndStatus(): EndStatusMap[keyof EndStatusMap];
+  setEndStatus(value: EndStatusMap[keyof EndStatusMap]): void;
 
   hasTimeCloudRunJobEnded(): boolean;
   clearTimeCloudRunJobEnded(): void;
@@ -390,7 +390,7 @@ export class UpdateMappingSessionMetadataByIDRequest extends jspb.Message {
 export namespace UpdateMappingSessionMetadataByIDRequest {
   export type AsObject = {
     sessionId: string,
-    endStatus: string,
+    endStatus: EndStatusMap[keyof EndStatusMap],
     timeCloudRunJobEnded?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     errorMsg: string,
   }
@@ -442,8 +442,8 @@ export class MappingMetadata extends jspb.Message {
   getTimeCloudRunJobEnded(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTimeCloudRunJobEnded(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  getEndStatus(): string;
-  setEndStatus(value: string): void;
+  getEndStatus(): EndStatusMap[keyof EndStatusMap];
+  setEndStatus(value: EndStatusMap[keyof EndStatusMap]): void;
 
   getCloudRunJobId(): string;
   setCloudRunJobId(value: string): void;
@@ -482,7 +482,7 @@ export namespace MappingMetadata {
     timeCloudRunJobStarted?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     timeEndSubmitted?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     timeCloudRunJobEnded?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    endStatus: string,
+    endStatus: EndStatusMap[keyof EndStatusMap],
     cloudRunJobId: string,
     viamServerVersion: string,
     mapName: string,
@@ -491,4 +491,13 @@ export namespace MappingMetadata {
     errorMsg: string,
   }
 }
+
+export interface EndStatusMap {
+  END_STATUS_UNSPECIFIED: 0;
+  END_STATUS_SUCCESS: 1;
+  END_STATUS_TIMEOUT: 2;
+  END_STATUS_FAIL: 3;
+}
+
+export const EndStatus: EndStatusMap;
 
