@@ -135,7 +135,7 @@ proto.viam.app.v1.IsLegalAcceptedRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.IsLegalAcceptedRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userId: jspb.Message.getFieldWithDefault(msg, 1, "")
+
   };
 
   if (includeInstance) {
@@ -172,10 +172,6 @@ proto.viam.app.v1.IsLegalAcceptedRequest.deserializeBinaryFromReader = function(
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setUserId(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -205,31 +201,6 @@ proto.viam.app.v1.IsLegalAcceptedRequest.prototype.serializeBinary = function() 
  */
 proto.viam.app.v1.IsLegalAcceptedRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUserId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional string user_id = 1;
- * @return {string}
- */
-proto.viam.app.v1.IsLegalAcceptedRequest.prototype.getUserId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.v1.IsLegalAcceptedRequest} returns this
- */
-proto.viam.app.v1.IsLegalAcceptedRequest.prototype.setUserId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -395,7 +366,7 @@ proto.viam.app.v1.AcceptLegalRequest.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.AcceptLegalRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userId: jspb.Message.getFieldWithDefault(msg, 1, "")
+
   };
 
   if (includeInstance) {
@@ -432,10 +403,6 @@ proto.viam.app.v1.AcceptLegalRequest.deserializeBinaryFromReader = function(msg,
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setUserId(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -465,31 +432,6 @@ proto.viam.app.v1.AcceptLegalRequest.prototype.serializeBinary = function() {
  */
 proto.viam.app.v1.AcceptLegalRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUserId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional string user_id = 1;
- * @return {string}
- */
-proto.viam.app.v1.AcceptLegalRequest.prototype.getUserId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.v1.AcceptLegalRequest} returns this
- */
-proto.viam.app.v1.AcceptLegalRequest.prototype.setUserId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

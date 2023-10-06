@@ -4,9 +4,6 @@
 import * as jspb from "google-protobuf";
 
 export class IsLegalAcceptedRequest extends jspb.Message {
-  getUserId(): string;
-  setUserId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): IsLegalAcceptedRequest.AsObject;
   static toObject(includeInstance: boolean, msg: IsLegalAcceptedRequest): IsLegalAcceptedRequest.AsObject;
@@ -19,7 +16,6 @@ export class IsLegalAcceptedRequest extends jspb.Message {
 
 export namespace IsLegalAcceptedRequest {
   export type AsObject = {
-    userId: string,
   }
 }
 
@@ -44,9 +40,6 @@ export namespace IsLegalAcceptedResponse {
 }
 
 export class AcceptLegalRequest extends jspb.Message {
-  getUserId(): string;
-  setUserId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AcceptLegalRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AcceptLegalRequest): AcceptLegalRequest.AsObject;
@@ -59,7 +52,6 @@ export class AcceptLegalRequest extends jspb.Message {
 
 export namespace AcceptLegalRequest {
   export type AsObject = {
-    userId: string,
   }
 }
 

@@ -2851,7 +2851,8 @@ proto.viam.service.navigation.v1.GetObstaclesResponse.prototype.clearObstaclesLi
 proto.viam.service.navigation.v1.Mode = {
   MODE_UNSPECIFIED: 0,
   MODE_MANUAL: 1,
-  MODE_WAYPOINT: 2
+  MODE_WAYPOINT: 2,
+  MODE_EXPLORE: 3
 };
 
 goog.object.extend(exports, proto.viam.service.navigation.v1);
