@@ -418,7 +418,7 @@ type MotionConfiguration struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Pairs a vision service with a camera, informing the service about which camera it may use
+	// The ObstacleDetectors that will be used for transient obstacle avoidance
 	ObstacleDetectors []*ObstacleDetector `protobuf:"bytes,1,rep,name=obstacle_detectors,json=obstacleDetectors,proto3" json:"obstacle_detectors,omitempty"`
 	// Sets the frequency to poll for the position of the robot
 	PositionPollingFrequencyHz *float64 `protobuf:"fixed64,2,opt,name=position_polling_frequency_hz,json=positionPollingFrequencyHz,proto3,oneof" json:"position_polling_frequency_hz,omitempty"`

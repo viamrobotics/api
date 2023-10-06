@@ -127,7 +127,7 @@ message ObstacleDetector {
 }
 
 message MotionConfiguration {
-  // Pairs a vision service with a camera, informing the service about which camera it may use
+  // The ObstacleDetectors that will be used for transient obstacle avoidance
   repeated ObstacleDetector obstacle_detectors = 1;
   // Sets the frequency to poll for the position of the robot
   optional double position_polling_frequency_hz = 2;
