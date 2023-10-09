@@ -4,7 +4,6 @@ package viam.component.sensor.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/component/sensor/v1";
 option java_package = "com.viam.component.sensor.v1";
