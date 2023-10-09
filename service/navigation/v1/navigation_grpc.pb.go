@@ -30,6 +30,7 @@ type NavigationServiceClient interface {
 	AddWaypoint(ctx context.Context, in *AddWaypointRequest, opts ...grpc.CallOption) (*AddWaypointResponse, error)
 	RemoveWaypoint(ctx context.Context, in *RemoveWaypointRequest, opts ...grpc.CallOption) (*RemoveWaypointResponse, error)
 	GetObstacles(ctx context.Context, in *GetObstaclesRequest, opts ...grpc.CallOption) (*GetObstaclesResponse, error)
+	GetPaths(ctx context.Context, in *GetPathsRequest, opts ...grpc.CallOption) (*GetPathsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
@@ -105,6 +106,15 @@ func (c *navigationServiceClient) GetObstacles(ctx context.Context, in *GetObsta
 	return out, nil
 }
 
+func (c *navigationServiceClient) GetPaths(ctx context.Context, in *GetPathsRequest, opts ...grpc.CallOption) (*GetPathsResponse, error) {
+	out := new(GetPathsResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GetPaths", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *navigationServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/DoCommand", in, out, opts...)
@@ -125,6 +135,7 @@ type NavigationServiceServer interface {
 	AddWaypoint(context.Context, *AddWaypointRequest) (*AddWaypointResponse, error)
 	RemoveWaypoint(context.Context, *RemoveWaypointRequest) (*RemoveWaypointResponse, error)
 	GetObstacles(context.Context, *GetObstaclesRequest) (*GetObstaclesResponse, error)
+	GetPaths(context.Context, *GetPathsRequest) (*GetPathsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedNavigationServiceServer()
@@ -154,6 +165,9 @@ func (UnimplementedNavigationServiceServer) RemoveWaypoint(context.Context, *Rem
 }
 func (UnimplementedNavigationServiceServer) GetObstacles(context.Context, *GetObstaclesRequest) (*GetObstaclesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObstacles not implemented")
+}
+func (UnimplementedNavigationServiceServer) GetPaths(context.Context, *GetPathsRequest) (*GetPathsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPaths not implemented")
 }
 func (UnimplementedNavigationServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -297,6 +311,24 @@ func _NavigationService_GetObstacles_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NavigationService_GetPaths_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPathsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).GetPaths(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/GetPaths",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).GetPaths(ctx, req.(*GetPathsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _NavigationService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DoCommandRequest)
 	if err := dec(in); err != nil {
@@ -349,6 +381,10 @@ var NavigationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetObstacles",
 			Handler:    _NavigationService_GetObstacles_Handler,
+		},
+		{
+			MethodName: "GetPaths",
+			Handler:    _NavigationService_GetPaths_Handler,
 		},
 		{
 			MethodName: "DoCommand",

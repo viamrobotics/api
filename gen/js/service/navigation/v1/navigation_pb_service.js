@@ -74,6 +74,15 @@ NavigationService.GetObstacles = {
   responseType: service_navigation_v1_navigation_pb.GetObstaclesResponse
 };
 
+NavigationService.GetPaths = {
+  methodName: "GetPaths",
+  service: NavigationService,
+  requestStream: false,
+  responseStream: false,
+  requestType: service_navigation_v1_navigation_pb.GetPathsRequest,
+  responseType: service_navigation_v1_navigation_pb.GetPathsResponse
+};
+
 NavigationService.DoCommand = {
   methodName: "DoCommand",
   service: NavigationService,
@@ -281,6 +290,37 @@ NavigationServiceClient.prototype.getObstacles = function getObstacles(requestMe
     callback = arguments[1];
   }
   var client = grpc.unary(NavigationService.GetObstacles, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+NavigationServiceClient.prototype.getPaths = function getPaths(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(NavigationService.GetPaths, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
