@@ -23,8 +23,6 @@ grpc.web = require('grpc-web');
 var common_v1_common_pb = require('../../../common/v1/common_pb.js')
 
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
-
-var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
 const proto = {};
 proto.viam = {};
 proto.viam.component = {};
@@ -86,33 +84,33 @@ proto.viam.component.sensor.v1.SensorServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.component.sensor.v1.GetReadingsRequest,
- *   !proto.viam.component.sensor.v1.GetReadingsResponse>}
+ *   !proto.viam.common.v1.GetReadingsRequest,
+ *   !proto.viam.common.v1.GetReadingsResponse>}
  */
 const methodDescriptor_SensorService_GetReadings = new grpc.web.MethodDescriptor(
   '/viam.component.sensor.v1.SensorService/GetReadings',
   grpc.web.MethodType.UNARY,
-  proto.viam.component.sensor.v1.GetReadingsRequest,
-  proto.viam.component.sensor.v1.GetReadingsResponse,
+  common_v1_common_pb.GetReadingsRequest,
+  common_v1_common_pb.GetReadingsResponse,
   /**
-   * @param {!proto.viam.component.sensor.v1.GetReadingsRequest} request
+   * @param {!proto.viam.common.v1.GetReadingsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.component.sensor.v1.GetReadingsResponse.deserializeBinary
+  common_v1_common_pb.GetReadingsResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.component.sensor.v1.GetReadingsRequest} request The
+ * @param {!proto.viam.common.v1.GetReadingsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.component.sensor.v1.GetReadingsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.common.v1.GetReadingsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.component.sensor.v1.GetReadingsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.common.v1.GetReadingsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.viam.component.sensor.v1.SensorServiceClient.prototype.getReadings =
@@ -127,11 +125,11 @@ proto.viam.component.sensor.v1.SensorServiceClient.prototype.getReadings =
 
 
 /**
- * @param {!proto.viam.component.sensor.v1.GetReadingsRequest} request The
+ * @param {!proto.viam.common.v1.GetReadingsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.component.sensor.v1.GetReadingsResponse>}
+ * @return {!Promise<!proto.viam.common.v1.GetReadingsResponse>}
  *     Promise that resolves to the response
  */
 proto.viam.component.sensor.v1.SensorServicePromiseClient.prototype.getReadings =

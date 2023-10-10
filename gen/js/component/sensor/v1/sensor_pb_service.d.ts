@@ -10,8 +10,8 @@ type SensorServiceGetReadings = {
   readonly service: typeof SensorService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof component_sensor_v1_sensor_pb.GetReadingsRequest;
-  readonly responseType: typeof component_sensor_v1_sensor_pb.GetReadingsResponse;
+  readonly requestType: typeof common_v1_common_pb.GetReadingsRequest;
+  readonly responseType: typeof common_v1_common_pb.GetReadingsResponse;
 };
 
 type SensorServiceDoCommand = {
@@ -72,13 +72,13 @@ export class SensorServiceClient {
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
   getReadings(
-    requestMessage: component_sensor_v1_sensor_pb.GetReadingsRequest,
+    requestMessage: common_v1_common_pb.GetReadingsRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: component_sensor_v1_sensor_pb.GetReadingsResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetReadingsResponse|null) => void
   ): UnaryResponse;
   getReadings(
-    requestMessage: component_sensor_v1_sensor_pb.GetReadingsRequest,
-    callback: (error: ServiceError|null, responseMessage: component_sensor_v1_sensor_pb.GetReadingsResponse|null) => void
+    requestMessage: common_v1_common_pb.GetReadingsRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetReadingsResponse|null) => void
   ): UnaryResponse;
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
