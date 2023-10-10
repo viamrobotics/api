@@ -74,7 +74,7 @@ service MovementSensorService {
   // GetReadings returns the readings of a sensor of the underlying robot.
   rpc GetReadings(common.v1.GetReadingsRequest) returns (common.v1.GetReadingsResponse) {
     option (google.api.http) = {
-      get: "/viam/api/v1/component/sensor/{name}/readings"
+      get: "/viam/api/v1/component/movementsensor/{name}/readings"
     };
   }
 }
