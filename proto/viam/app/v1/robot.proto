@@ -92,6 +92,8 @@ message ProcessConfig {
   bool log = 6;
   int32 stop_signal = 7;
   google.protobuf.Duration stop_timeout = 8;
+  // additional environment variables passed to the process
+  map<string, string> env = 9;
 }
 
 message ServiceConfig {
@@ -326,6 +328,12 @@ message ModuleConfig {
   string path = 2;
   // log level for module
   string log_level = 3;
+  // type of the module ("local" or "registry")
+  string type = 4;
+  // the id of the module if it is a registry module
+  string module_id = 5;
+  // additional environment variables passed to the module process
+  map<string, string> env = 6;
 }
 
 // PackageConfig is the configration for deployed Packages.

@@ -283,6 +283,8 @@ export class ProcessConfig extends jspb.Message {
   getStopTimeout(): google_protobuf_duration_pb.Duration | undefined;
   setStopTimeout(value?: google_protobuf_duration_pb.Duration): void;
 
+  getEnvMap(): jspb.Map<string, string>;
+  clearEnvMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ProcessConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ProcessConfig): ProcessConfig.AsObject;
@@ -303,6 +305,7 @@ export namespace ProcessConfig {
     log: boolean,
     stopSignal: number,
     stopTimeout?: google_protobuf_duration_pb.Duration.AsObject,
+    envMap: Array<[string, string]>,
   }
 }
 
@@ -1183,6 +1186,14 @@ export class ModuleConfig extends jspb.Message {
   getLogLevel(): string;
   setLogLevel(value: string): void;
 
+  getType(): string;
+  setType(value: string): void;
+
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  getEnvMap(): jspb.Map<string, string>;
+  clearEnvMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
@@ -1198,6 +1209,9 @@ export namespace ModuleConfig {
     name: string,
     path: string,
     logLevel: string,
+    type: string,
+    moduleId: string,
+    envMap: Array<[string, string]>,
   }
 }
 
