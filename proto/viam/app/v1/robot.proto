@@ -331,7 +331,7 @@ message ModuleConfig {
   // type of the module ("local" or "registry")
   string type = 4;
   // the id of the module if it is a registry module
-  optional string module_id = 5;
+  string module_id = 5;
   // additional environment variables passed to the module process
   map<string, string> env = 6;
 }
