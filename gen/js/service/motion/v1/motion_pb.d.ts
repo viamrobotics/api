@@ -141,11 +141,39 @@ export namespace MoveOnMapResponse {
   }
 }
 
+export class ObstacleDetector extends jspb.Message {
+  hasVisionService(): boolean;
+  clearVisionService(): void;
+  getVisionService(): common_v1_common_pb.ResourceName | undefined;
+  setVisionService(value?: common_v1_common_pb.ResourceName): void;
+
+  hasCamera(): boolean;
+  clearCamera(): void;
+  getCamera(): common_v1_common_pb.ResourceName | undefined;
+  setCamera(value?: common_v1_common_pb.ResourceName): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ObstacleDetector.AsObject;
+  static toObject(includeInstance: boolean, msg: ObstacleDetector): ObstacleDetector.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ObstacleDetector, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ObstacleDetector;
+  static deserializeBinaryFromReader(message: ObstacleDetector, reader: jspb.BinaryReader): ObstacleDetector;
+}
+
+export namespace ObstacleDetector {
+  export type AsObject = {
+    visionService?: common_v1_common_pb.ResourceName.AsObject,
+    camera?: common_v1_common_pb.ResourceName.AsObject,
+  }
+}
+
 export class MotionConfiguration extends jspb.Message {
-  clearVisionServicesList(): void;
-  getVisionServicesList(): Array<common_v1_common_pb.ResourceName>;
-  setVisionServicesList(value: Array<common_v1_common_pb.ResourceName>): void;
-  addVisionServices(value?: common_v1_common_pb.ResourceName, index?: number): common_v1_common_pb.ResourceName;
+  clearObstacleDetectorsList(): void;
+  getObstacleDetectorsList(): Array<ObstacleDetector>;
+  setObstacleDetectorsList(value: Array<ObstacleDetector>): void;
+  addObstacleDetectors(value?: ObstacleDetector, index?: number): ObstacleDetector;
 
   hasPositionPollingFrequencyHz(): boolean;
   clearPositionPollingFrequencyHz(): void;
@@ -184,7 +212,7 @@ export class MotionConfiguration extends jspb.Message {
 
 export namespace MotionConfiguration {
   export type AsObject = {
-    visionServicesList: Array<common_v1_common_pb.ResourceName.AsObject>,
+    obstacleDetectorsList: Array<ObstacleDetector.AsObject>,
     positionPollingFrequencyHz: number,
     obstaclePollingFrequencyHz: number,
     planDeviationM: number,
