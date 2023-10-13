@@ -3,17 +3,20 @@ syntax = "proto3";
 package viam.app.agent.v1;
 
 import "google/protobuf/duration.proto";
+import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/app/agent/v1";
 
 // AgentService is used by viam-agent to retrieve update info for subsystems.
-service AgentService {
+service AgentAppService {
   // GetAgentConfig is for retrieving config in App.
   rpc GetAgentConfig(GetAgentConfigRequest) returns (GetAgentConfigResponse);
 
   // UpdateAgentConfig is for editing config in App.
   rpc UpdateAgentConfig(UpdateAgentConfigRequest) returns (UpdateAgentConfigResponse);
+}
 
+service AgentDeviceService {
   // DeviceAgentConfig is for retrieving config by the on-device agent.
   rpc DeviceAgentConfig(DeviceAgentConfigRequest) returns (DeviceAgentConfigResponse);
 }
@@ -37,16 +40,16 @@ message UpdateAgentConfigResponse {
 }
 
 message AppAgentConfig {
-  AppSubsystemConfig agent_config = 1;
-  repeated AppSubsystemConfig subsystem_configs = 2;
+  AppSubsystemConfig agent_config = 1 [(tagger.v1.tags) = "bson:\"agent_config\" json:\"agent_config\""];
+  repeated AppSubsystemConfig subsystem_configs = 2 [(tagger.v1.tags) = "bson:\"subsystem_configs\" json:\"subsystem_configs\""];
 }
 
 message AppSubsystemConfig {
-  string subsystem_name = 1;
-  optional string release_channel = 2;
-  optional string pin_version = 3;
-  optional string pin_url = 4;
-  optional bool disable_subsystem = 5;
+  string subsystem_name = 1 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
+  optional string release_channel = 2 [(tagger.v1.tags) = "bson:\"release_channel\" json:\"release_channel,omitempty\""];
+  optional string pin_version = 3 [(tagger.v1.tags) = "bson:\"pin_version\" json:\"pin_version,omitempty\""];
+  optional string pin_url = 4 [(tagger.v1.tags) = "bson:\"pin_url\" json:\"pin_url,omitempty\""];
+  optional bool disable_subsystem = 5 [(tagger.v1.tags) = "bson:\"disable_subsystem\" json:\"disable_subsystem,omitempty\""];
 }
 
 // Device side
@@ -87,15 +90,13 @@ message SubsystemVersion {
 }
 
 message HostInfo {
-  // platform is the docker styled combination of kernel and architecture, e.g linux/amd64, darwin/arm64
+  // platform is the docker styled combination of kernel and architecture. Ex: linux/amd64, darwin/arm64
   string platform = 1;
-  // ID field from /etc/os-release, "arch", "debian", etc.
+  // ID and VERSION_ID fields from /etc/os-release, colon seperated. Ex: ubuntu:22.04, debian:11
   optional string distro = 2;
-  // VERSION_ID field from /etc/os-release, "11", "22.04", etc.
-  optional string distro_version = 3;
   // additional tags for specific hardware or software that's present and may affect software selection
-  // ex: "jetson", "pi4", "low-memory", "hardened-kernel", etc.
-  repeated string tags = 4;
+  // ex: "jetson", "rpi4", "systemd", etc.
+  repeated string tags = 3;
 }
 
 message SubsystemUpdateInfo {
