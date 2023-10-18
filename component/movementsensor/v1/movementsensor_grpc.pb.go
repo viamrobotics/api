@@ -34,6 +34,8 @@ type MovementSensorServiceClient interface {
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
+	// GetReadings returns the readings of a sensor of the underlying robot.
+	GetReadings(ctx context.Context, in *v1.GetReadingsRequest, opts ...grpc.CallOption) (*v1.GetReadingsResponse, error)
 }
 
 type movementSensorServiceClient struct {
@@ -134,6 +136,15 @@ func (c *movementSensorServiceClient) GetGeometries(ctx context.Context, in *v1.
 	return out, nil
 }
 
+func (c *movementSensorServiceClient) GetReadings(ctx context.Context, in *v1.GetReadingsRequest, opts ...grpc.CallOption) (*v1.GetReadingsResponse, error) {
+	out := new(v1.GetReadingsResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.movementsensor.v1.MovementSensorService/GetReadings", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MovementSensorServiceServer is the server API for MovementSensorService service.
 // All implementations must embed UnimplementedMovementSensorServiceServer
 // for forward compatibility
@@ -149,6 +160,8 @@ type MovementSensorServiceServer interface {
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
+	// GetReadings returns the readings of a sensor of the underlying robot.
+	GetReadings(context.Context, *v1.GetReadingsRequest) (*v1.GetReadingsResponse, error)
 	mustEmbedUnimplementedMovementSensorServiceServer()
 }
 
@@ -185,6 +198,9 @@ func (UnimplementedMovementSensorServiceServer) DoCommand(context.Context, *v1.D
 }
 func (UnimplementedMovementSensorServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
+}
+func (UnimplementedMovementSensorServiceServer) GetReadings(context.Context, *v1.GetReadingsRequest) (*v1.GetReadingsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetReadings not implemented")
 }
 func (UnimplementedMovementSensorServiceServer) mustEmbedUnimplementedMovementSensorServiceServer() {}
 
@@ -379,6 +395,24 @@ func _MovementSensorService_GetGeometries_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MovementSensorService_GetReadings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetReadingsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MovementSensorServiceServer).GetReadings(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.movementsensor.v1.MovementSensorService/GetReadings",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MovementSensorServiceServer).GetReadings(ctx, req.(*v1.GetReadingsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MovementSensorService_ServiceDesc is the grpc.ServiceDesc for MovementSensorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -425,6 +459,10 @@ var MovementSensorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetGeometries",
 			Handler:    _MovementSensorService_GetGeometries_Handler,
+		},
+		{
+			MethodName: "GetReadings",
+			Handler:    _MovementSensorService_GetReadings_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

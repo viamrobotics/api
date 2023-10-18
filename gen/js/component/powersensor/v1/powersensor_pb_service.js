@@ -38,6 +38,15 @@ PowerSensorService.GetPower = {
   responseType: component_powersensor_v1_powersensor_pb.GetPowerResponse
 };
 
+PowerSensorService.GetReadings = {
+  methodName: "GetReadings",
+  service: PowerSensorService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.GetReadingsRequest,
+  responseType: common_v1_common_pb.GetReadingsResponse
+};
+
 PowerSensorService.DoCommand = {
   methodName: "DoCommand",
   service: PowerSensorService,
@@ -121,6 +130,37 @@ PowerSensorServiceClient.prototype.getPower = function getPower(requestMessage, 
     callback = arguments[1];
   }
   var client = grpc.unary(PowerSensorService.GetPower, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+PowerSensorServiceClient.prototype.getReadings = function getReadings(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(PowerSensorService.GetReadings, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
