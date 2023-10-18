@@ -253,6 +253,7 @@ message DiscoverComponentsResponse {
 message Status {
   common.v1.ResourceName name = 1;
   google.protobuf.Struct status = 2;
+  google.protobuf.Timestamp last_reconfigured = 3;
 }
 
 message GetStatusRequest {

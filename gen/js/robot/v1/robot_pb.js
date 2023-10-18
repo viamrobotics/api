@@ -5285,7 +5285,8 @@ proto.viam.robot.v1.Status.prototype.toObject = function(opt_includeInstance) {
 proto.viam.robot.v1.Status.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: (f = msg.getName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-    status: (f = msg.getStatus()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    status: (f = msg.getStatus()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    lastReconfigured: (f = msg.getLastReconfigured()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5332,6 +5333,11 @@ proto.viam.robot.v1.Status.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setStatus(value);
       break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastReconfigured(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -5375,6 +5381,14 @@ proto.viam.robot.v1.Status.serializeBinaryToWriter = function(message, writer) {
       2,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastReconfigured();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -5451,6 +5465,43 @@ proto.viam.robot.v1.Status.prototype.clearStatus = function() {
  */
 proto.viam.robot.v1.Status.prototype.hasStatus = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_reconfigured = 3;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.robot.v1.Status.prototype.getLastReconfigured = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.robot.v1.Status} returns this
+*/
+proto.viam.robot.v1.Status.prototype.setLastReconfigured = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.robot.v1.Status} returns this
+ */
+proto.viam.robot.v1.Status.prototype.clearLastReconfigured = function() {
+  return this.setLastReconfigured(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.robot.v1.Status.prototype.hasLastReconfigured = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 

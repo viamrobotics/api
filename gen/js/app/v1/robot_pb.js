@@ -2741,7 +2741,8 @@ proto.viam.app.v1.ProcessConfig.toObject = function(includeInstance, msg) {
     oneShot: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     log: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     stopSignal: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    stopTimeout: (f = msg.getStopTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+    stopTimeout: (f = msg.getStopTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+    envMap: (f = msg.getEnvMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -2810,6 +2811,12 @@ proto.viam.app.v1.ProcessConfig.deserializeBinaryFromReader = function(msg, read
       var value = new google_protobuf_duration_pb.Duration;
       reader.readMessage(value,google_protobuf_duration_pb.Duration.deserializeBinaryFromReader);
       msg.setStopTimeout(value);
+      break;
+    case 9:
+      var value = msg.getEnvMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
       break;
     default:
       reader.skipField();
@@ -2896,6 +2903,10 @@ proto.viam.app.v1.ProcessConfig.serializeBinaryToWriter = function(message, writ
       f,
       google_protobuf_duration_pb.Duration.serializeBinaryToWriter
     );
+  }
+  f = message.getEnvMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(9, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
 };
 
@@ -3080,6 +3091,28 @@ proto.viam.app.v1.ProcessConfig.prototype.clearStopTimeout = function() {
 proto.viam.app.v1.ProcessConfig.prototype.hasStopTimeout = function() {
   return jspb.Message.getField(this, 8) != null;
 };
+
+
+/**
+ * map<string, string> env = 9;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.viam.app.v1.ProcessConfig.prototype.getEnvMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 9, opt_noLazyCreate,
+      null));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.viam.app.v1.ProcessConfig} returns this
+ */
+proto.viam.app.v1.ProcessConfig.prototype.clearEnvMap = function() {
+  this.getEnvMap().clear();
+  return this;};
 
 
 
@@ -9234,7 +9267,10 @@ proto.viam.app.v1.ModuleConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     path: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    logLevel: jspb.Message.getFieldWithDefault(msg, 3, "")
+    logLevel: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    moduleId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    envMap: (f = msg.getEnvMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -9282,6 +9318,20 @@ proto.viam.app.v1.ModuleConfig.deserializeBinaryFromReader = function(msg, reade
     case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setLogLevel(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setType(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setModuleId(value);
+      break;
+    case 6:
+      var value = msg.getEnvMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
       break;
     default:
       reader.skipField();
@@ -9332,6 +9382,24 @@ proto.viam.app.v1.ModuleConfig.serializeBinaryToWriter = function(message, write
       3,
       f
     );
+  }
+  f = message.getType();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getModuleId();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getEnvMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(6, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
 };
 
@@ -9388,6 +9456,64 @@ proto.viam.app.v1.ModuleConfig.prototype.getLogLevel = function() {
 proto.viam.app.v1.ModuleConfig.prototype.setLogLevel = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
+
+
+/**
+ * optional string type = 4;
+ * @return {string}
+ */
+proto.viam.app.v1.ModuleConfig.prototype.getType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.ModuleConfig} returns this
+ */
+proto.viam.app.v1.ModuleConfig.prototype.setType = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string module_id = 5;
+ * @return {string}
+ */
+proto.viam.app.v1.ModuleConfig.prototype.getModuleId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.ModuleConfig} returns this
+ */
+proto.viam.app.v1.ModuleConfig.prototype.setModuleId = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * map<string, string> env = 6;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.viam.app.v1.ModuleConfig.prototype.getEnvMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 6, opt_noLazyCreate,
+      null));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.viam.app.v1.ModuleConfig} returns this
+ */
+proto.viam.app.v1.ModuleConfig.prototype.clearEnvMap = function() {
+  this.getEnvMap().clear();
+  return this;};
 
 
 

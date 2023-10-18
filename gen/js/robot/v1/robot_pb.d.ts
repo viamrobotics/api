@@ -643,6 +643,11 @@ export class Status extends jspb.Message {
   getStatus(): google_protobuf_struct_pb.Struct | undefined;
   setStatus(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasLastReconfigured(): boolean;
+  clearLastReconfigured(): void;
+  getLastReconfigured(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastReconfigured(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Status.AsObject;
   static toObject(includeInstance: boolean, msg: Status): Status.AsObject;
@@ -657,6 +662,7 @@ export namespace Status {
   export type AsObject = {
     name?: common_v1_common_pb.ResourceName.AsObject,
     status?: google_protobuf_struct_pb.Struct.AsObject,
+    lastReconfigured?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
