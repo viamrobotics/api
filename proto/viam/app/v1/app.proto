@@ -198,14 +198,6 @@ service AppService {
   rpc RotateKey(RotateKeyRequest) returns (RotateKeyResponse);
 
   rpc CreateKeyFromExistingKeyAuthorizations(CreateKeyFromExistingKeyAuthorizationsRequest) returns (CreateKeyFromExistingKeyAuthorizationsResponse);
-
-  rpc GetAgentConfig(GetAgentConfigRequest) returns (GetAgentConfigResponse);
-
-  rpc UpdateAgentConfig(UpdateAgentConfigRequest) returns (UpdateAgentConfigResponse);
-
-  rpc GetAgentConfig(GetAgentConfigRequest) returns (GetAgentConfigResponse);
-
-  rpc UpdateAgentConfig(UpdateAgentConfigRequest) returns (UpdateAgentConfigResponse);
 }
 
 message Robot {
