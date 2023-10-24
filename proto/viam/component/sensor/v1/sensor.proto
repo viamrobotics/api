@@ -4,7 +4,6 @@ package viam.component.sensor.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/component/sensor/v1";
 option java_package = "com.viam.component.sensor.v1";
@@ -12,7 +11,7 @@ option java_package = "com.viam.component.sensor.v1";
 // SensorService services all generic sensors associated with a robot
 service SensorService {
   // GetReadings returns the readings of a sensor of the underlying robot.
-  rpc GetReadings(GetReadingsRequest) returns (GetReadingsResponse) {
+  rpc GetReadings(common.v1.GetReadingsRequest) returns (common.v1.GetReadingsResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/sensor/{name}/readings"
     };
@@ -31,15 +30,4 @@ service SensorService {
       get: "/viam/api/v1/component/sensor/{name}/geometries"
     };
   }
-}
-
-message GetReadingsRequest {
-  // Name of a sensor
-  string name = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message GetReadingsResponse {
-  map<string, google.protobuf.Value> readings = 1;
 }

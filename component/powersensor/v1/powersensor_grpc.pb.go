@@ -29,6 +29,8 @@ type PowerSensorServiceClient interface {
 	GetCurrent(ctx context.Context, in *GetCurrentRequest, opts ...grpc.CallOption) (*GetCurrentResponse, error)
 	// GetPower returns the power reading of a power sensor in watts
 	GetPower(ctx context.Context, in *GetPowerRequest, opts ...grpc.CallOption) (*GetPowerResponse, error)
+	// GetReadings returns the readings of a sensor of the underlying robot.
+	GetReadings(ctx context.Context, in *v1.GetReadingsRequest, opts ...grpc.CallOption) (*v1.GetReadingsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
@@ -68,6 +70,15 @@ func (c *powerSensorServiceClient) GetPower(ctx context.Context, in *GetPowerReq
 	return out, nil
 }
 
+func (c *powerSensorServiceClient) GetReadings(ctx context.Context, in *v1.GetReadingsRequest, opts ...grpc.CallOption) (*v1.GetReadingsResponse, error) {
+	out := new(v1.GetReadingsResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.powersensor.v1.PowerSensorService/GetReadings", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *powerSensorServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.powersensor.v1.PowerSensorService/DoCommand", in, out, opts...)
@@ -87,6 +98,8 @@ type PowerSensorServiceServer interface {
 	GetCurrent(context.Context, *GetCurrentRequest) (*GetCurrentResponse, error)
 	// GetPower returns the power reading of a power sensor in watts
 	GetPower(context.Context, *GetPowerRequest) (*GetPowerResponse, error)
+	// GetReadings returns the readings of a sensor of the underlying robot.
+	GetReadings(context.Context, *v1.GetReadingsRequest) (*v1.GetReadingsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedPowerSensorServiceServer()
@@ -104,6 +117,9 @@ func (UnimplementedPowerSensorServiceServer) GetCurrent(context.Context, *GetCur
 }
 func (UnimplementedPowerSensorServiceServer) GetPower(context.Context, *GetPowerRequest) (*GetPowerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPower not implemented")
+}
+func (UnimplementedPowerSensorServiceServer) GetReadings(context.Context, *v1.GetReadingsRequest) (*v1.GetReadingsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetReadings not implemented")
 }
 func (UnimplementedPowerSensorServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -175,6 +191,24 @@ func _PowerSensorService_GetPower_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PowerSensorService_GetReadings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetReadingsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PowerSensorServiceServer).GetReadings(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.powersensor.v1.PowerSensorService/GetReadings",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PowerSensorServiceServer).GetReadings(ctx, req.(*v1.GetReadingsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PowerSensorService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DoCommandRequest)
 	if err := dec(in); err != nil {
@@ -211,6 +245,10 @@ var PowerSensorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPower",
 			Handler:    _PowerSensorService_GetPower_Handler,
+		},
+		{
+			MethodName: "GetReadings",
+			Handler:    _PowerSensorService_GetReadings_Handler,
 		},
 		{
 			MethodName: "DoCommand",
