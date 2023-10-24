@@ -263,6 +263,7 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.toObject = funct
 proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     filter: (f = msg.getFilter()) && app_data_v1_data_pb.Filter.toObject(includeInstance, f),
+    datasetId: jspb.Message.getFieldWithDefault(msg, 7, ""),
     organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     modelName: jspb.Message.getFieldWithDefault(msg, 3, ""),
     modelVersion: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -308,6 +309,10 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.deserializeBinaryFromReade
       var value = new app_data_v1_data_pb.Filter;
       reader.readMessage(value,app_data_v1_data_pb.Filter.deserializeBinaryFromReader);
       msg.setFilter(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDatasetId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -364,6 +369,13 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.serializeBinaryToWriter = 
       1,
       f,
       app_data_v1_data_pb.Filter.serializeBinaryToWriter
+    );
+  }
+  f = message.getDatasetId();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
     );
   }
   f = message.getOrganizationId();
@@ -438,6 +450,24 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.clearFilter = fu
  */
 proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.hasFilter = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional string dataset_id = 7;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.getDatasetId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.SubmitTrainingJobRequest} returns this
+ */
+proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.setDatasetId = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
