@@ -16,7 +16,7 @@ service MLTrainingService {
   // GetTrainingJob retrieves a training job by its ID.
   rpc GetTrainingJob(GetTrainingJobRequest) returns (GetTrainingJobResponse);
 
-  // ListTrainingJobs lists training jobs given the organization ID and training status.
+  // ListTrainingJobs lists training jobs for a given organization ID and training status.
   rpc ListTrainingJobs(ListTrainingJobsRequest) returns (ListTrainingJobsResponse);
 
   // CancelTrainingJob cancels a training job that has not yet completed.
@@ -97,4 +97,4 @@ message DeleteCompletedTrainingJobRequest {
   string id = 1;
 }
 
-message DeleteCompletedTrainingJobResponse {} 
+message DeleteCompletedTrainingJobResponse {}
