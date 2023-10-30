@@ -251,6 +251,42 @@ export namespace CancelTrainingJobResponse {
   }
 }
 
+export class DeleteCompletedTrainingJobRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteCompletedTrainingJobRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteCompletedTrainingJobRequest): DeleteCompletedTrainingJobRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteCompletedTrainingJobRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteCompletedTrainingJobRequest;
+  static deserializeBinaryFromReader(message: DeleteCompletedTrainingJobRequest, reader: jspb.BinaryReader): DeleteCompletedTrainingJobRequest;
+}
+
+export namespace DeleteCompletedTrainingJobRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class DeleteCompletedTrainingJobResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteCompletedTrainingJobResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteCompletedTrainingJobResponse): DeleteCompletedTrainingJobResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteCompletedTrainingJobResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteCompletedTrainingJobResponse;
+  static deserializeBinaryFromReader(message: DeleteCompletedTrainingJobResponse, reader: jspb.BinaryReader): DeleteCompletedTrainingJobResponse;
+}
+
+export namespace DeleteCompletedTrainingJobResponse {
+  export type AsObject = {
+  }
+}
+
 export interface ModelTypeMap {
   MODEL_TYPE_UNSPECIFIED: 0;
   MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION: 1;

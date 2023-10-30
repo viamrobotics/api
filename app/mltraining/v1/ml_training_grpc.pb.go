@@ -22,10 +22,16 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MLTrainingServiceClient interface {
+	// SubmitTrainingJob submits a training job request.
 	SubmitTrainingJob(ctx context.Context, in *SubmitTrainingJobRequest, opts ...grpc.CallOption) (*SubmitTrainingJobResponse, error)
+	// GetTrainingJob retrieves a training job by its ID.
 	GetTrainingJob(ctx context.Context, in *GetTrainingJobRequest, opts ...grpc.CallOption) (*GetTrainingJobResponse, error)
+	// ListTrainingJobs lists training jobs for a given organization ID and training status.
 	ListTrainingJobs(ctx context.Context, in *ListTrainingJobsRequest, opts ...grpc.CallOption) (*ListTrainingJobsResponse, error)
+	// CancelTrainingJob cancels a training job that has not yet completed.
 	CancelTrainingJob(ctx context.Context, in *CancelTrainingJobRequest, opts ...grpc.CallOption) (*CancelTrainingJobResponse, error)
+	// DeleteCompletedTrainingJob removes a completed training job from the database, whether the job succeeded or failed.
+	DeleteCompletedTrainingJob(ctx context.Context, in *DeleteCompletedTrainingJobRequest, opts ...grpc.CallOption) (*DeleteCompletedTrainingJobResponse, error)
 }
 
 type mLTrainingServiceClient struct {
@@ -72,14 +78,29 @@ func (c *mLTrainingServiceClient) CancelTrainingJob(ctx context.Context, in *Can
 	return out, nil
 }
 
+func (c *mLTrainingServiceClient) DeleteCompletedTrainingJob(ctx context.Context, in *DeleteCompletedTrainingJobRequest, opts ...grpc.CallOption) (*DeleteCompletedTrainingJobResponse, error) {
+	out := new(DeleteCompletedTrainingJobResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.mltraining.v1.MLTrainingService/DeleteCompletedTrainingJob", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MLTrainingServiceServer is the server API for MLTrainingService service.
 // All implementations must embed UnimplementedMLTrainingServiceServer
 // for forward compatibility
 type MLTrainingServiceServer interface {
+	// SubmitTrainingJob submits a training job request.
 	SubmitTrainingJob(context.Context, *SubmitTrainingJobRequest) (*SubmitTrainingJobResponse, error)
+	// GetTrainingJob retrieves a training job by its ID.
 	GetTrainingJob(context.Context, *GetTrainingJobRequest) (*GetTrainingJobResponse, error)
+	// ListTrainingJobs lists training jobs for a given organization ID and training status.
 	ListTrainingJobs(context.Context, *ListTrainingJobsRequest) (*ListTrainingJobsResponse, error)
+	// CancelTrainingJob cancels a training job that has not yet completed.
 	CancelTrainingJob(context.Context, *CancelTrainingJobRequest) (*CancelTrainingJobResponse, error)
+	// DeleteCompletedTrainingJob removes a completed training job from the database, whether the job succeeded or failed.
+	DeleteCompletedTrainingJob(context.Context, *DeleteCompletedTrainingJobRequest) (*DeleteCompletedTrainingJobResponse, error)
 	mustEmbedUnimplementedMLTrainingServiceServer()
 }
 
@@ -98,6 +119,9 @@ func (UnimplementedMLTrainingServiceServer) ListTrainingJobs(context.Context, *L
 }
 func (UnimplementedMLTrainingServiceServer) CancelTrainingJob(context.Context, *CancelTrainingJobRequest) (*CancelTrainingJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelTrainingJob not implemented")
+}
+func (UnimplementedMLTrainingServiceServer) DeleteCompletedTrainingJob(context.Context, *DeleteCompletedTrainingJobRequest) (*DeleteCompletedTrainingJobResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCompletedTrainingJob not implemented")
 }
 func (UnimplementedMLTrainingServiceServer) mustEmbedUnimplementedMLTrainingServiceServer() {}
 
@@ -184,6 +208,24 @@ func _MLTrainingService_CancelTrainingJob_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MLTrainingService_DeleteCompletedTrainingJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCompletedTrainingJobRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MLTrainingServiceServer).DeleteCompletedTrainingJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.mltraining.v1.MLTrainingService/DeleteCompletedTrainingJob",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MLTrainingServiceServer).DeleteCompletedTrainingJob(ctx, req.(*DeleteCompletedTrainingJobRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MLTrainingService_ServiceDesc is the grpc.ServiceDesc for MLTrainingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -206,6 +248,10 @@ var MLTrainingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CancelTrainingJob",
 			Handler:    _MLTrainingService_CancelTrainingJob_Handler,
+		},
+		{
+			MethodName: "DeleteCompletedTrainingJob",
+			Handler:    _MLTrainingService_DeleteCompletedTrainingJob_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
