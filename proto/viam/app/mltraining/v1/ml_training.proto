@@ -10,10 +10,20 @@ import "tagger/v1/tagger.proto";
 option go_package = "go.viam.com/api/app/mltraining/v1";
 
 service MLTrainingService {
+  // SubmitTrainingJob submits a training job request.
   rpc SubmitTrainingJob(SubmitTrainingJobRequest) returns (SubmitTrainingJobResponse);
+
+  // GetTrainingJob retrieves a training job by its ID.
   rpc GetTrainingJob(GetTrainingJobRequest) returns (GetTrainingJobResponse);
+
+  // ListTrainingJobs lists training jobs for a given organization ID and training status.
   rpc ListTrainingJobs(ListTrainingJobsRequest) returns (ListTrainingJobsResponse);
+
+  // CancelTrainingJob cancels a training job that has not yet completed.
   rpc CancelTrainingJob(CancelTrainingJobRequest) returns (CancelTrainingJobResponse);
+
+  // DeleteCompletedTrainingJob removes a completed training job from the database, whether the job succeeded or failed.
+  rpc DeleteCompletedTrainingJob(DeleteCompletedTrainingJobRequest) returns (DeleteCompletedTrainingJobResponse);
 }
 
 enum ModelType {
@@ -82,3 +92,9 @@ message CancelTrainingJobRequest {
 }
 
 message CancelTrainingJobResponse {}
+
+message DeleteCompletedTrainingJobRequest {
+  string id = 1;
+}
+
+message DeleteCompletedTrainingJobResponse {}
