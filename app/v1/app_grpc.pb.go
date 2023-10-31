@@ -28,6 +28,8 @@ type AppServiceClient interface {
 	CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error)
 	// List organizations
 	ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error)
+	// Get all organizations that have access to a location.
+	GetOrganizationsForLocation(ctx context.Context, in *GetOrganizationsForLocationRequest, opts ...grpc.CallOption) (*GetOrganizationsForLocationResponse, error)
 	// List the organizations a user belongs to
 	ListOrganizationsByUser(ctx context.Context, in *ListOrganizationsByUserRequest, opts ...grpc.CallOption) (*ListOrganizationsByUserResponse, error)
 	// Get an organization
@@ -172,6 +174,15 @@ func (c *appServiceClient) CreateOrganization(ctx context.Context, in *CreateOrg
 func (c *appServiceClient) ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error) {
 	out := new(ListOrganizationsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListOrganizations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetOrganizationsForLocation(ctx context.Context, in *GetOrganizationsForLocationRequest, opts ...grpc.CallOption) (*GetOrganizationsForLocationResponse, error) {
+	out := new(GetOrganizationsForLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganizationsForLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -776,6 +787,8 @@ type AppServiceServer interface {
 	CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error)
 	// List organizations
 	ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error)
+	// Get all organizations that have access to a location.
+	GetOrganizationsForLocation(context.Context, *GetOrganizationsForLocationRequest) (*GetOrganizationsForLocationResponse, error)
 	// List the organizations a user belongs to
 	ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error)
 	// Get an organization
@@ -904,6 +917,9 @@ func (UnimplementedAppServiceServer) CreateOrganization(context.Context, *Create
 }
 func (UnimplementedAppServiceServer) ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizations not implemented")
+}
+func (UnimplementedAppServiceServer) GetOrganizationsForLocation(context.Context, *GetOrganizationsForLocationRequest) (*GetOrganizationsForLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationsForLocation not implemented")
 }
 func (UnimplementedAppServiceServer) ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationsByUser not implemented")
@@ -1148,6 +1164,24 @@ func _AppService_ListOrganizations_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).ListOrganizations(ctx, req.(*ListOrganizationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetOrganizationsForLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationsForLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetOrganizationsForLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetOrganizationsForLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetOrganizationsForLocation(ctx, req.(*GetOrganizationsForLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2261,6 +2295,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListOrganizations",
 			Handler:    _AppService_ListOrganizations_Handler,
+		},
+		{
+			MethodName: "GetOrganizationsForLocation",
+			Handler:    _AppService_GetOrganizationsForLocation_Handler,
 		},
 		{
 			MethodName: "ListOrganizationsByUser",

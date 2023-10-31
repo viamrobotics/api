@@ -22,6 +22,9 @@ service AppService {
   // List organizations
   rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
 
+  // Get all organizations that have access to a location.
+  rpc GetOrganizationsForLocation(GetOrganizationsForLocationRequest) returns (GetOrganizationsForLocationResponse);
+
   // List the organizations a user belongs to
   rpc ListOrganizationsByUser(ListOrganizationsByUserRequest) returns (ListOrganizationsByUserResponse);
 
@@ -479,6 +482,14 @@ message DeleteLocationRequest {
 }
 
 message DeleteLocationResponse {}
+
+message GetOrganizationsForLocationRequest {
+  string location_id = 1;
+}
+
+message GetOrganizationsForLocationResponse {
+  repeated Organization organization_ids = 1;
+}
 
 message ListLocationsRequest {
   // Organization ID under which to list all locations.

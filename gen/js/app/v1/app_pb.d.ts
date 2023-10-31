@@ -1196,6 +1196,48 @@ export namespace DeleteLocationResponse {
   }
 }
 
+export class GetOrganizationsForLocationRequest extends jspb.Message {
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetOrganizationsForLocationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetOrganizationsForLocationRequest): GetOrganizationsForLocationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetOrganizationsForLocationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetOrganizationsForLocationRequest;
+  static deserializeBinaryFromReader(message: GetOrganizationsForLocationRequest, reader: jspb.BinaryReader): GetOrganizationsForLocationRequest;
+}
+
+export namespace GetOrganizationsForLocationRequest {
+  export type AsObject = {
+    locationId: string,
+  }
+}
+
+export class GetOrganizationsForLocationResponse extends jspb.Message {
+  clearOrganizationIdsList(): void;
+  getOrganizationIdsList(): Array<Organization>;
+  setOrganizationIdsList(value: Array<Organization>): void;
+  addOrganizationIds(value?: Organization, index?: number): Organization;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetOrganizationsForLocationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetOrganizationsForLocationResponse): GetOrganizationsForLocationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetOrganizationsForLocationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetOrganizationsForLocationResponse;
+  static deserializeBinaryFromReader(message: GetOrganizationsForLocationResponse, reader: jspb.BinaryReader): GetOrganizationsForLocationResponse;
+}
+
+export namespace GetOrganizationsForLocationResponse {
+  export type AsObject = {
+    organizationIdsList: Array<Organization.AsObject>,
+  }
+}
+
 export class ListLocationsRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;

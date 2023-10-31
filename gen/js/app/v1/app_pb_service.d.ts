@@ -31,6 +31,15 @@ type AppServiceListOrganizations = {
   readonly responseType: typeof app_v1_app_pb.ListOrganizationsResponse;
 };
 
+type AppServiceGetOrganizationsForLocation = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetOrganizationsForLocationRequest;
+  readonly responseType: typeof app_v1_app_pb.GetOrganizationsForLocationResponse;
+};
+
 type AppServiceListOrganizationsByUser = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -576,6 +585,7 @@ export class AppService {
   static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
   static readonly CreateOrganization: AppServiceCreateOrganization;
   static readonly ListOrganizations: AppServiceListOrganizations;
+  static readonly GetOrganizationsForLocation: AppServiceGetOrganizationsForLocation;
   static readonly ListOrganizationsByUser: AppServiceListOrganizationsByUser;
   static readonly GetOrganization: AppServiceGetOrganization;
   static readonly GetOrganizationNamespaceAvailability: AppServiceGetOrganizationNamespaceAvailability;
@@ -696,6 +706,15 @@ export class AppServiceClient {
   listOrganizations(
     requestMessage: app_v1_app_pb.ListOrganizationsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationsForLocation(
+    requestMessage: app_v1_app_pb.GetOrganizationsForLocationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationsForLocationResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationsForLocation(
+    requestMessage: app_v1_app_pb.GetOrganizationsForLocationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationsForLocationResponse|null) => void
   ): UnaryResponse;
   listOrganizationsByUser(
     requestMessage: app_v1_app_pb.ListOrganizationsByUserRequest,
