@@ -101,6 +101,15 @@ MovementSensorService.GetGeometries = {
   responseType: common_v1_common_pb.GetGeometriesResponse
 };
 
+MovementSensorService.GetReadings = {
+  methodName: "GetReadings",
+  service: MovementSensorService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.GetReadingsRequest,
+  responseType: common_v1_common_pb.GetReadingsResponse
+};
+
 exports.MovementSensorService = MovementSensorService;
 
 function MovementSensorServiceClient(serviceHost, options) {
@@ -392,6 +401,37 @@ MovementSensorServiceClient.prototype.getGeometries = function getGeometries(req
     callback = arguments[1];
   }
   var client = grpc.unary(MovementSensorService.GetGeometries, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MovementSensorServiceClient.prototype.getReadings = function getReadings(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MovementSensorService.GetReadings, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

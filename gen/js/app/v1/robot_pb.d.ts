@@ -114,6 +114,26 @@ export namespace LocationSecret {
   }
 }
 
+export class AppValidationStatus extends jspb.Message {
+  getError(): string;
+  setError(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AppValidationStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: AppValidationStatus): AppValidationStatus.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AppValidationStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AppValidationStatus;
+  static deserializeBinaryFromReader(message: AppValidationStatus, reader: jspb.BinaryReader): AppValidationStatus;
+}
+
+export namespace AppValidationStatus {
+  export type AsObject = {
+    error: string,
+  }
+}
+
 export class CloudConfig extends jspb.Message {
   getId(): string;
   setId(value: string): void;
@@ -283,6 +303,8 @@ export class ProcessConfig extends jspb.Message {
   getStopTimeout(): google_protobuf_duration_pb.Duration | undefined;
   setStopTimeout(value?: google_protobuf_duration_pb.Duration): void;
 
+  getEnvMap(): jspb.Map<string, string>;
+  clearEnvMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ProcessConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ProcessConfig): ProcessConfig.AsObject;
@@ -303,6 +325,7 @@ export namespace ProcessConfig {
     log: boolean,
     stopSignal: number,
     stopTimeout?: google_protobuf_duration_pb.Duration.AsObject,
+    envMap: Array<[string, string]>,
   }
 }
 
@@ -1183,6 +1206,19 @@ export class ModuleConfig extends jspb.Message {
   getLogLevel(): string;
   setLogLevel(value: string): void;
 
+  getType(): string;
+  setType(value: string): void;
+
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  getEnvMap(): jspb.Map<string, string>;
+  clearEnvMap(): void;
+  hasStatus(): boolean;
+  clearStatus(): void;
+  getStatus(): AppValidationStatus | undefined;
+  setStatus(value?: AppValidationStatus): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
@@ -1198,6 +1234,10 @@ export namespace ModuleConfig {
     name: string,
     path: string,
     logLevel: string,
+    type: string,
+    moduleId: string,
+    envMap: Array<[string, string]>,
+    status?: AppValidationStatus.AsObject,
   }
 }
 
@@ -1213,6 +1253,11 @@ export class PackageConfig extends jspb.Message {
 
   getType(): string;
   setType(value: string): void;
+
+  hasStatus(): boolean;
+  clearStatus(): void;
+  getStatus(): AppValidationStatus | undefined;
+  setStatus(value?: AppValidationStatus): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PackageConfig.AsObject;
@@ -1230,6 +1275,7 @@ export namespace PackageConfig {
     pb_package: string,
     version: string,
     type: string,
+    status?: AppValidationStatus.AsObject,
   }
 }
 

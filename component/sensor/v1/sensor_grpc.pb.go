@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SensorServiceClient interface {
 	// GetReadings returns the readings of a sensor of the underlying robot.
-	GetReadings(ctx context.Context, in *GetReadingsRequest, opts ...grpc.CallOption) (*GetReadingsResponse, error)
+	GetReadings(ctx context.Context, in *v1.GetReadingsRequest, opts ...grpc.CallOption) (*v1.GetReadingsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
@@ -39,8 +39,8 @@ func NewSensorServiceClient(cc grpc.ClientConnInterface) SensorServiceClient {
 	return &sensorServiceClient{cc}
 }
 
-func (c *sensorServiceClient) GetReadings(ctx context.Context, in *GetReadingsRequest, opts ...grpc.CallOption) (*GetReadingsResponse, error) {
-	out := new(GetReadingsResponse)
+func (c *sensorServiceClient) GetReadings(ctx context.Context, in *v1.GetReadingsRequest, opts ...grpc.CallOption) (*v1.GetReadingsResponse, error) {
+	out := new(v1.GetReadingsResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.sensor.v1.SensorService/GetReadings", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -71,7 +71,7 @@ func (c *sensorServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeome
 // for forward compatibility
 type SensorServiceServer interface {
 	// GetReadings returns the readings of a sensor of the underlying robot.
-	GetReadings(context.Context, *GetReadingsRequest) (*GetReadingsResponse, error)
+	GetReadings(context.Context, *v1.GetReadingsRequest) (*v1.GetReadingsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
@@ -83,7 +83,7 @@ type SensorServiceServer interface {
 type UnimplementedSensorServiceServer struct {
 }
 
-func (UnimplementedSensorServiceServer) GetReadings(context.Context, *GetReadingsRequest) (*GetReadingsResponse, error) {
+func (UnimplementedSensorServiceServer) GetReadings(context.Context, *v1.GetReadingsRequest) (*v1.GetReadingsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetReadings not implemented")
 }
 func (UnimplementedSensorServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
@@ -106,7 +106,7 @@ func RegisterSensorServiceServer(s grpc.ServiceRegistrar, srv SensorServiceServe
 }
 
 func _SensorService_GetReadings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetReadingsRequest)
+	in := new(v1.GetReadingsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -118,7 +118,7 @@ func _SensorService_GetReadings_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/viam.component.sensor.v1.SensorService/GetReadings",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SensorServiceServer).GetReadings(ctx, req.(*GetReadingsRequest))
+		return srv.(SensorServiceServer).GetReadings(ctx, req.(*v1.GetReadingsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

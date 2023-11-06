@@ -32,6 +32,13 @@ service PowerSensorService {
     };
   }
 
+  // GetReadings returns the readings of a sensor of the underlying robot.
+  rpc GetReadings(common.v1.GetReadingsRequest) returns (common.v1.GetReadingsResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/power_sensor/{name}/readings"
+    };
+  }
+
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {

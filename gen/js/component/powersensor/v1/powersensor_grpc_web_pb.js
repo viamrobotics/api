@@ -269,6 +269,67 @@ proto.viam.component.powersensor.v1.PowerSensorServicePromiseClient.prototype.ge
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.common.v1.GetReadingsRequest,
+ *   !proto.viam.common.v1.GetReadingsResponse>}
+ */
+const methodDescriptor_PowerSensorService_GetReadings = new grpc.web.MethodDescriptor(
+  '/viam.component.powersensor.v1.PowerSensorService/GetReadings',
+  grpc.web.MethodType.UNARY,
+  common_v1_common_pb.GetReadingsRequest,
+  common_v1_common_pb.GetReadingsResponse,
+  /**
+   * @param {!proto.viam.common.v1.GetReadingsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  common_v1_common_pb.GetReadingsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.common.v1.GetReadingsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.common.v1.GetReadingsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.common.v1.GetReadingsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.powersensor.v1.PowerSensorServiceClient.prototype.getReadings =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.powersensor.v1.PowerSensorService/GetReadings',
+      request,
+      metadata || {},
+      methodDescriptor_PowerSensorService_GetReadings,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.common.v1.GetReadingsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.common.v1.GetReadingsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.powersensor.v1.PowerSensorServicePromiseClient.prototype.getReadings =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.powersensor.v1.PowerSensorService/GetReadings',
+      request,
+      metadata || {},
+      methodDescriptor_PowerSensorService_GetReadings);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.common.v1.DoCommandRequest,
  *   !proto.viam.common.v1.DoCommandResponse>}
  */

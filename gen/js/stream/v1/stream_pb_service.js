@@ -1,55 +1,54 @@
-// package: viam.component.sensor.v1
-// file: component/sensor/v1/sensor.proto
+// package: proto.stream.v1
+// file: stream/v1/stream.proto
 
-var component_sensor_v1_sensor_pb = require("../../../component/sensor/v1/sensor_pb");
-var common_v1_common_pb = require("../../../common/v1/common_pb");
+var stream_v1_stream_pb = require("../../stream/v1/stream_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
-var SensorService = (function () {
-  function SensorService() {}
-  SensorService.serviceName = "viam.component.sensor.v1.SensorService";
-  return SensorService;
+var StreamService = (function () {
+  function StreamService() {}
+  StreamService.serviceName = "proto.stream.v1.StreamService";
+  return StreamService;
 }());
 
-SensorService.GetReadings = {
-  methodName: "GetReadings",
-  service: SensorService,
+StreamService.ListStreams = {
+  methodName: "ListStreams",
+  service: StreamService,
   requestStream: false,
   responseStream: false,
-  requestType: common_v1_common_pb.GetReadingsRequest,
-  responseType: common_v1_common_pb.GetReadingsResponse
+  requestType: stream_v1_stream_pb.ListStreamsRequest,
+  responseType: stream_v1_stream_pb.ListStreamsResponse
 };
 
-SensorService.DoCommand = {
-  methodName: "DoCommand",
-  service: SensorService,
+StreamService.AddStream = {
+  methodName: "AddStream",
+  service: StreamService,
   requestStream: false,
   responseStream: false,
-  requestType: common_v1_common_pb.DoCommandRequest,
-  responseType: common_v1_common_pb.DoCommandResponse
+  requestType: stream_v1_stream_pb.AddStreamRequest,
+  responseType: stream_v1_stream_pb.AddStreamResponse
 };
 
-SensorService.GetGeometries = {
-  methodName: "GetGeometries",
-  service: SensorService,
+StreamService.RemoveStream = {
+  methodName: "RemoveStream",
+  service: StreamService,
   requestStream: false,
   responseStream: false,
-  requestType: common_v1_common_pb.GetGeometriesRequest,
-  responseType: common_v1_common_pb.GetGeometriesResponse
+  requestType: stream_v1_stream_pb.RemoveStreamRequest,
+  responseType: stream_v1_stream_pb.RemoveStreamResponse
 };
 
-exports.SensorService = SensorService;
+exports.StreamService = StreamService;
 
-function SensorServiceClient(serviceHost, options) {
+function StreamServiceClient(serviceHost, options) {
   this.serviceHost = serviceHost;
   this.options = options || {};
 }
 
-SensorServiceClient.prototype.getReadings = function getReadings(requestMessage, metadata, callback) {
+StreamServiceClient.prototype.listStreams = function listStreams(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(SensorService.GetReadings, {
+  var client = grpc.unary(StreamService.ListStreams, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -76,11 +75,11 @@ SensorServiceClient.prototype.getReadings = function getReadings(requestMessage,
   };
 };
 
-SensorServiceClient.prototype.doCommand = function doCommand(requestMessage, metadata, callback) {
+StreamServiceClient.prototype.addStream = function addStream(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(SensorService.DoCommand, {
+  var client = grpc.unary(StreamService.AddStream, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -107,11 +106,11 @@ SensorServiceClient.prototype.doCommand = function doCommand(requestMessage, met
   };
 };
 
-SensorServiceClient.prototype.getGeometries = function getGeometries(requestMessage, metadata, callback) {
+StreamServiceClient.prototype.removeStream = function removeStream(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(SensorService.GetGeometries, {
+  var client = grpc.unary(StreamService.RemoveStream, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -138,5 +137,5 @@ SensorServiceClient.prototype.getGeometries = function getGeometries(requestMess
   };
 };
 
-exports.SensorServiceClient = SensorServiceClient;
+exports.StreamServiceClient = StreamServiceClient;
 
