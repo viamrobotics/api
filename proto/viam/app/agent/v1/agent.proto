@@ -40,60 +40,50 @@ message UpdateAgentConfigResponse {
 }
 
 message AppAgentConfig {
-  AppSubsystemConfig agent_config = 1 [(tagger.v1.tags) = "bson:\"agent_config\" json:\"agent_config\""];
-  repeated AppSubsystemConfig subsystem_configs = 2 [(tagger.v1.tags) = "bson:\"subsystem_configs\" json:\"subsystem_configs\""];
+  map<string, AppSubsystemConfig> subsystem_configs = 1 [(tagger.v1.tags) = "bson:\"subsystem_configs\" json:\"subsystem_configs\""];
 }
 
 message AppSubsystemConfig {
-  string subsystem_name = 1 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
-  optional string release_channel = 2 [(tagger.v1.tags) = "bson:\"release_channel\" json:\"release_channel,omitempty\""];
-  optional string pin_version = 3 [(tagger.v1.tags) = "bson:\"pin_version\" json:\"pin_version,omitempty\""];
-  optional string pin_url = 4 [(tagger.v1.tags) = "bson:\"pin_url\" json:\"pin_url,omitempty\""];
-  optional bool disable_subsystem = 5 [(tagger.v1.tags) = "bson:\"disable_subsystem\" json:\"disable_subsystem,omitempty\""];
+  oneof update_source {
+    string release_channel = 1 [(tagger.v1.tags) = "bson:\"release_channel\" json:\"release_channel\""];
+    string pin_version = 2 [(tagger.v1.tags) = "bson:\"pin_version\" json:\"pin_version\""];
+    string pin_url = 3 [(tagger.v1.tags) = "bson:\"pin_url\" json:\"pin_url\""];
+  }
+  bool disable_subsystem = 4 [(tagger.v1.tags) = "bson:\"disable_subsystem\" json:\"disable_subsystem\""];
 }
 
 // Device side
 message DeviceAgentConfigRequest {
   // robot partID
   string id = 1;
-  // the currently running version
-  string agent_version = 2;
   // info about the host system
-  HostInfo host_info = 3;
+  HostInfo host_info = 2;
   // current subsystems and versions
-  repeated SubsystemVersion subsystem_versions = 4;
+  map<string, string> subsystem_versions = 3;
 }
 
 message DeviceAgentConfigResponse {
-  // data needed to download/validate the agent
-  SubsystemUpdateInfo update_info = 1;
   // subsystems to be installed/configured/updated
   // note: previously installed subsystems will be removed from the system if removed from this list
-  repeated DeviceSubsystemConfig subsystem_config = 2;
+  map<string, DeviceSubsystemConfig> subsystem_configs = 1;
   // how often this request should be repeated
-  google.protobuf.Duration check_interval = 3;
+  google.protobuf.Duration check_interval = 2;
 }
 
 message DeviceSubsystemConfig {
-  string subsystem_name = 1;
   // data needed to download/validate the subsystem
-  SubsystemUpdateInfo update_info = 2;
+  SubsystemUpdateInfo update_info = 1;
   // if this subsystem is disabled and should not be started by the agent
-  bool disable = 3;
+  bool disable = 2;
   // force_restart will restart the subsystem, even if no updates are available
-  bool force_restart = 4;
-}
-
-message SubsystemVersion {
-  string subsystem_name = 1;
-  string subsystem_version = 2;
+  bool force_restart = 3;
 }
 
 message HostInfo {
   // platform is the docker styled combination of kernel and architecture. Ex: linux/amd64, darwin/arm64
   string platform = 1;
   // ID and VERSION_ID fields from /etc/os-release, colon seperated. Ex: ubuntu:22.04, debian:11
-  optional string distro = 2;
+  string distro = 2;
   // additional tags for specific hardware or software that's present and may affect software selection
   // ex: "jetson", "rpi4", "systemd", etc.
   repeated string tags = 3;
@@ -109,7 +99,7 @@ message SubsystemUpdateInfo {
   // sha256 sum of file as downloaded
   bytes sha256 = 4;
   // determines if decompression or executable permissions are needed
-  optional PackageFormat format = 5;
+  PackageFormat format = 5;
 }
 
 enum PackageFormat {
