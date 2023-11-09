@@ -24,10 +24,6 @@ const _ = grpc.SupportPackageIsVersion7
 type DataServiceClient interface {
 	// TabularDataByFilter queries tabular data and metadata based on given filters.
 	TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (*TabularDataByFilterResponse, error)
-	// TabularDataBySQL queries tabular data with a SQL query.
-	TabularDataBySQL(ctx context.Context, in *TabularDataBySQLRequest, opts ...grpc.CallOption) (*TabularDataBySQLResponse, error)
-	// TabularDataByMQL queries tabular data with an MQL (MongoDB Query Language) query.
-	TabularDataByMQL(ctx context.Context, in *TabularDataByMQLRequest, opts ...grpc.CallOption) (*TabularDataByMQLResponse, error)
 	// BinaryDataByFilter queries binary data and metadata based on given filters.
 	BinaryDataByFilter(ctx context.Context, in *BinaryDataByFilterRequest, opts ...grpc.CallOption) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
@@ -77,24 +73,6 @@ func NewDataServiceClient(cc grpc.ClientConnInterface) DataServiceClient {
 func (c *dataServiceClient) TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (*TabularDataByFilterResponse, error) {
 	out := new(TabularDataByFilterResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/TabularDataByFilter", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataServiceClient) TabularDataBySQL(ctx context.Context, in *TabularDataBySQLRequest, opts ...grpc.CallOption) (*TabularDataBySQLResponse, error) {
-	out := new(TabularDataBySQLResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/TabularDataBySQL", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataServiceClient) TabularDataByMQL(ctx context.Context, in *TabularDataByMQLRequest, opts ...grpc.CallOption) (*TabularDataByMQLResponse, error) {
-	out := new(TabularDataByMQLResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/TabularDataByMQL", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -260,10 +238,6 @@ func (c *dataServiceClient) RemoveBinaryDataFromDatasetByIDs(ctx context.Context
 type DataServiceServer interface {
 	// TabularDataByFilter queries tabular data and metadata based on given filters.
 	TabularDataByFilter(context.Context, *TabularDataByFilterRequest) (*TabularDataByFilterResponse, error)
-	// TabularDataBySQL queries tabular data with a SQL query.
-	TabularDataBySQL(context.Context, *TabularDataBySQLRequest) (*TabularDataBySQLResponse, error)
-	// TabularDataByMQL queries tabular data with an MQL (MongoDB Query Language) query.
-	TabularDataByMQL(context.Context, *TabularDataByMQLRequest) (*TabularDataByMQLResponse, error)
 	// BinaryDataByFilter queries binary data and metadata based on given filters.
 	BinaryDataByFilter(context.Context, *BinaryDataByFilterRequest) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
@@ -309,12 +283,6 @@ type UnimplementedDataServiceServer struct {
 
 func (UnimplementedDataServiceServer) TabularDataByFilter(context.Context, *TabularDataByFilterRequest) (*TabularDataByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TabularDataByFilter not implemented")
-}
-func (UnimplementedDataServiceServer) TabularDataBySQL(context.Context, *TabularDataBySQLRequest) (*TabularDataBySQLResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TabularDataBySQL not implemented")
-}
-func (UnimplementedDataServiceServer) TabularDataByMQL(context.Context, *TabularDataByMQLRequest) (*TabularDataByMQLResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TabularDataByMQL not implemented")
 }
 func (UnimplementedDataServiceServer) BinaryDataByFilter(context.Context, *BinaryDataByFilterRequest) (*BinaryDataByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BinaryDataByFilter not implemented")
@@ -394,42 +362,6 @@ func _DataService_TabularDataByFilter_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataServiceServer).TabularDataByFilter(ctx, req.(*TabularDataByFilterRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DataService_TabularDataBySQL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TabularDataBySQLRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataServiceServer).TabularDataBySQL(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/TabularDataBySQL",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).TabularDataBySQL(ctx, req.(*TabularDataBySQLRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DataService_TabularDataByMQL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TabularDataByMQLRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataServiceServer).TabularDataByMQL(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/TabularDataByMQL",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).TabularDataByMQL(ctx, req.(*TabularDataByMQLRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -750,14 +682,6 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TabularDataByFilter",
 			Handler:    _DataService_TabularDataByFilter_Handler,
-		},
-		{
-			MethodName: "TabularDataBySQL",
-			Handler:    _DataService_TabularDataBySQL_Handler,
-		},
-		{
-			MethodName: "TabularDataByMQL",
-			Handler:    _DataService_TabularDataByMQL_Handler,
 		},
 		{
 			MethodName: "BinaryDataByFilter",

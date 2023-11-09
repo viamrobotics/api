@@ -19,24 +19,6 @@ DataService.TabularDataByFilter = {
   responseType: app_data_v1_data_pb.TabularDataByFilterResponse
 };
 
-DataService.TabularDataBySQL = {
-  methodName: "TabularDataBySQL",
-  service: DataService,
-  requestStream: false,
-  responseStream: false,
-  requestType: app_data_v1_data_pb.TabularDataBySQLRequest,
-  responseType: app_data_v1_data_pb.TabularDataBySQLResponse
-};
-
-DataService.TabularDataByMQL = {
-  methodName: "TabularDataByMQL",
-  service: DataService,
-  requestStream: false,
-  responseStream: false,
-  requestType: app_data_v1_data_pb.TabularDataByMQLRequest,
-  responseType: app_data_v1_data_pb.TabularDataByMQLResponse
-};
-
 DataService.BinaryDataByFilter = {
   methodName: "BinaryDataByFilter",
   service: DataService,
@@ -202,68 +184,6 @@ DataServiceClient.prototype.tabularDataByFilter = function tabularDataByFilter(r
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.TabularDataByFilter, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-DataServiceClient.prototype.tabularDataBySQL = function tabularDataBySQL(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(DataService.TabularDataBySQL, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-DataServiceClient.prototype.tabularDataByMQL = function tabularDataByMQL(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(DataService.TabularDataByMQL, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

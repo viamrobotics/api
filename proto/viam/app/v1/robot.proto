@@ -338,7 +338,7 @@ message ModuleConfig {
   string module_id = 5;
   // additional environment variables passed to the module process
   map<string, string> env = 6;
-  // info about the validity of the module
+  // info about the validity of the module 
   AppValidationStatus status = 7;
 }
 
@@ -352,6 +352,6 @@ message PackageConfig {
   string version = 3;
   // type of the package
   string type = 4;
-  // info about the validity of the package
+  // info about the validity of the package 
   AppValidationStatus status = 7;
 }
