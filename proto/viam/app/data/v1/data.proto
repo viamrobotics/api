@@ -195,7 +195,7 @@ message TabularDataBySQLRequest {
 	string sql_query = 2;
 }
 
-// TabularDataBySQLResponse provides unified tabular data queried with SQL.
+// TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL.
 message TabularDataBySQLResponse {
   repeated google.protobuf.Struct data = 1;
 }
@@ -208,7 +208,7 @@ message TabularDataByMQLRequest {
 	string mql_query = 2;
 }
 
-// TabularDataByMQLResponse provides unified tabular data and metadata.
+// TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.
 message TabularDataByMQLResponse {
   repeated google.protobuf.Struct data = 1;
 }
