@@ -204,7 +204,7 @@ message TabularDataBySQLResponse {
 message TabularDataByMQLRequest {
 	string organization_id = 1;
 	// mql_query accepts a MongoDB aggregation pipeline, to be run on the "sensorData.readings"
-	// namespaces, which holds the Viam organization's tabular data.
+	// namespace, which holds the Viam organization's tabular data.
 	string mql_query = 2;
 }
 
