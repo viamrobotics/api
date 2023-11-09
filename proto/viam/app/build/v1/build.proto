@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package viam.app.build.v1;
+
+// import "google/protobuf/any.proto";
+// import "google/protobuf/struct.proto";
+// import "google/protobuf/timestamp.proto";
+option go_package = "go.viam.com/api/app/build/v1";
+
+service BuildService {
+  rpc StartBuild(StartBuildRequest) returns (StartBuildResponse);
+}
+
+message StartBuildRequest {
+  // repo to build
+  optional string repo = 1;
+  // optional git ref; defaults to 'main'
+  optional string ref = 2;
+}
+
+message StartBuildResponse {
+  // todo: does error status go in here or is there a separate error type?
+  // github's ID for the build
+  optional string github_id = 1;
+}
