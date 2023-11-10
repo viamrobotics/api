@@ -18,7 +18,7 @@ service DataService {
 
   // TabularDataByMQL queries tabular data with an MQL (MongoDB Query Language) query.
   rpc TabularDataByMQL(TabularDataByMQLRequest) returns (TabularDataByMQLResponse);
-  
+
   // BinaryDataByFilter queries binary data and metadata based on given filters.
   rpc BinaryDataByFilter(BinaryDataByFilterRequest) returns (BinaryDataByFilterResponse);
 
@@ -188,11 +188,11 @@ message TabularData {
 
 // TabularDataBySQLRequest requests tabular data using a SQL query.
 message TabularDataBySQLRequest {
-	string organization_id = 1;
-	// sql_query accepts any valid SQL SELECT statement. Tabular data is held in a database
-	// called "sensorData" and a table called readings, so queries should select from "readings"
-	// or "sensorData.readings".
-	string sql_query = 2;
+  string organization_id = 1;
+  // sql_query accepts any valid SQL SELECT statement. Tabular data is held in a database
+  // called "sensorData" and a table called readings, so queries should select from "readings"
+  // or "sensorData.readings".
+  string sql_query = 2;
 }
 
 // TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL.
@@ -202,10 +202,10 @@ message TabularDataBySQLResponse {
 
 // TabularDataByMQLRequest requests tabular data using an MQL query.
 message TabularDataByMQLRequest {
-	string organization_id = 1;
-	// mql_query accepts a MongoDB aggregation pipeline, to be run on the "sensorData.readings"
-	// namespace, which holds the Viam organization's tabular data.
-	string mql_query = 2;
+  string organization_id = 1;
+  // mql_query accepts a MongoDB aggregation pipeline, to be run on the "sensorData.readings"
+  // namespace, which holds the Viam organization's tabular data.
+  string mql_query = 2;
 }
 
 // TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.
