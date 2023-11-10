@@ -193,6 +193,16 @@ export class TrainingJobMetadata extends jspb.Message {
   getErrorStatus(): google_rpc_status_pb.Status | undefined;
   setErrorStatus(value?: google_rpc_status_pb.Status): void;
 
+  hasTrainingStarted(): boolean;
+  clearTrainingStarted(): void;
+  getTrainingStarted(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTrainingStarted(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasTrainingEnded(): boolean;
+  clearTrainingEnded(): void;
+  getTrainingEnded(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTrainingEnded(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJobMetadata): TrainingJobMetadata.AsObject;
@@ -212,6 +222,8 @@ export namespace TrainingJobMetadata {
     syncedModelId: string,
     id: string,
     errorStatus?: google_rpc_status_pb.Status.AsObject,
+    trainingStarted?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    trainingEnded?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
