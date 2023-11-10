@@ -351,6 +351,98 @@ export namespace TabularData {
   }
 }
 
+export class TabularDataBySQLRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getSqlQuery(): string;
+  setSqlQuery(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TabularDataBySQLRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TabularDataBySQLRequest): TabularDataBySQLRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TabularDataBySQLRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TabularDataBySQLRequest;
+  static deserializeBinaryFromReader(message: TabularDataBySQLRequest, reader: jspb.BinaryReader): TabularDataBySQLRequest;
+}
+
+export namespace TabularDataBySQLRequest {
+  export type AsObject = {
+    organizationId: string,
+    sqlQuery: string,
+  }
+}
+
+export class TabularDataBySQLResponse extends jspb.Message {
+  clearDataList(): void;
+  getDataList(): Array<google_protobuf_struct_pb.Struct>;
+  setDataList(value: Array<google_protobuf_struct_pb.Struct>): void;
+  addData(value?: google_protobuf_struct_pb.Struct, index?: number): google_protobuf_struct_pb.Struct;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TabularDataBySQLResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TabularDataBySQLResponse): TabularDataBySQLResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TabularDataBySQLResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TabularDataBySQLResponse;
+  static deserializeBinaryFromReader(message: TabularDataBySQLResponse, reader: jspb.BinaryReader): TabularDataBySQLResponse;
+}
+
+export namespace TabularDataBySQLResponse {
+  export type AsObject = {
+    dataList: Array<google_protobuf_struct_pb.Struct.AsObject>,
+  }
+}
+
+export class TabularDataByMQLRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getMqlQuery(): string;
+  setMqlQuery(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TabularDataByMQLRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TabularDataByMQLRequest): TabularDataByMQLRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TabularDataByMQLRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TabularDataByMQLRequest;
+  static deserializeBinaryFromReader(message: TabularDataByMQLRequest, reader: jspb.BinaryReader): TabularDataByMQLRequest;
+}
+
+export namespace TabularDataByMQLRequest {
+  export type AsObject = {
+    organizationId: string,
+    mqlQuery: string,
+  }
+}
+
+export class TabularDataByMQLResponse extends jspb.Message {
+  clearDataList(): void;
+  getDataList(): Array<google_protobuf_struct_pb.Struct>;
+  setDataList(value: Array<google_protobuf_struct_pb.Struct>): void;
+  addData(value?: google_protobuf_struct_pb.Struct, index?: number): google_protobuf_struct_pb.Struct;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TabularDataByMQLResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TabularDataByMQLResponse): TabularDataByMQLResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TabularDataByMQLResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TabularDataByMQLResponse;
+  static deserializeBinaryFromReader(message: TabularDataByMQLResponse, reader: jspb.BinaryReader): TabularDataByMQLResponse;
+}
+
+export namespace TabularDataByMQLResponse {
+  export type AsObject = {
+    dataList: Array<google_protobuf_struct_pb.Struct.AsObject>,
+  }
+}
+
 export class BinaryData extends jspb.Message {
   getBinary(): Uint8Array | string;
   getBinary_asU8(): Uint8Array;

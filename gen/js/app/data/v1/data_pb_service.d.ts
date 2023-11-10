@@ -13,6 +13,24 @@ type DataServiceTabularDataByFilter = {
   readonly responseType: typeof app_data_v1_data_pb.TabularDataByFilterResponse;
 };
 
+type DataServiceTabularDataBySQL = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.TabularDataBySQLRequest;
+  readonly responseType: typeof app_data_v1_data_pb.TabularDataBySQLResponse;
+};
+
+type DataServiceTabularDataByMQL = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.TabularDataByMQLRequest;
+  readonly responseType: typeof app_data_v1_data_pb.TabularDataByMQLResponse;
+};
+
 type DataServiceBinaryDataByFilter = {
   readonly methodName: string;
   readonly service: typeof DataService;
@@ -169,6 +187,8 @@ type DataServiceRemoveBinaryDataFromDatasetByIDs = {
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
+  static readonly TabularDataBySQL: DataServiceTabularDataBySQL;
+  static readonly TabularDataByMQL: DataServiceTabularDataByMQL;
   static readonly BinaryDataByFilter: DataServiceBinaryDataByFilter;
   static readonly BinaryDataByIDs: DataServiceBinaryDataByIDs;
   static readonly DeleteTabularData: DataServiceDeleteTabularData;
@@ -228,6 +248,24 @@ export class DataServiceClient {
   tabularDataByFilter(
     requestMessage: app_data_v1_data_pb.TabularDataByFilterRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.TabularDataByFilterResponse|null) => void
+  ): UnaryResponse;
+  tabularDataBySQL(
+    requestMessage: app_data_v1_data_pb.TabularDataBySQLRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.TabularDataBySQLResponse|null) => void
+  ): UnaryResponse;
+  tabularDataBySQL(
+    requestMessage: app_data_v1_data_pb.TabularDataBySQLRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.TabularDataBySQLResponse|null) => void
+  ): UnaryResponse;
+  tabularDataByMQL(
+    requestMessage: app_data_v1_data_pb.TabularDataByMQLRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.TabularDataByMQLResponse|null) => void
+  ): UnaryResponse;
+  tabularDataByMQL(
+    requestMessage: app_data_v1_data_pb.TabularDataByMQLRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.TabularDataByMQLResponse|null) => void
   ): UnaryResponse;
   binaryDataByFilter(
     requestMessage: app_data_v1_data_pb.BinaryDataByFilterRequest,
