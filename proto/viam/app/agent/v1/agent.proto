@@ -44,11 +44,9 @@ message AppAgentConfig {
 }
 
 message AppSubsystemConfig {
-  oneof update_source {
-    string release_channel = 1 [(tagger.v1.tags) = "bson:\"release_channel\" json:\"release_channel\""];
-    string pin_version = 2 [(tagger.v1.tags) = "bson:\"pin_version\" json:\"pin_version\""];
-    string pin_url = 3 [(tagger.v1.tags) = "bson:\"pin_url\" json:\"pin_url\""];
-  }
+  string release_channel = 1 [(tagger.v1.tags) = "bson:\"release_channel\" json:\"release_channel\""];
+  string pin_version = 2 [(tagger.v1.tags) = "bson:\"pin_version\" json:\"pin_version\""];
+  string pin_url = 3 [(tagger.v1.tags) = "bson:\"pin_url\" json:\"pin_url\""];
   bool disable_subsystem = 4 [(tagger.v1.tags) = "bson:\"disable_subsystem\" json:\"disable_subsystem\""];
 }
 
