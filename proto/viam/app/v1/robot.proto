@@ -353,5 +353,5 @@ message PackageConfig {
   // type of the package
   string type = 4;
   // info about the validity of the package
-  AppValidationStatus status = 7;
+  AppValidationStatus status = 5;
 }

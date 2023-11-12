@@ -9808,7 +9808,7 @@ proto.viam.app.v1.PackageConfig.deserializeBinaryFromReader = function(msg, read
       var value = /** @type {string} */ (reader.readString());
       msg.setType(value);
       break;
-    case 7:
+    case 5:
       var value = new proto.viam.app.v1.AppValidationStatus;
       reader.readMessage(value,proto.viam.app.v1.AppValidationStatus.deserializeBinaryFromReader);
       msg.setStatus(value);
@@ -9873,7 +9873,7 @@ proto.viam.app.v1.PackageConfig.serializeBinaryToWriter = function(message, writ
   f = message.getStatus();
   if (f != null) {
     writer.writeMessage(
-      7,
+      5,
       f,
       proto.viam.app.v1.AppValidationStatus.serializeBinaryToWriter
     );
@@ -9954,12 +9954,12 @@ proto.viam.app.v1.PackageConfig.prototype.setType = function(value) {
 
 
 /**
- * optional AppValidationStatus status = 7;
+ * optional AppValidationStatus status = 5;
  * @return {?proto.viam.app.v1.AppValidationStatus}
  */
 proto.viam.app.v1.PackageConfig.prototype.getStatus = function() {
   return /** @type{?proto.viam.app.v1.AppValidationStatus} */ (
-    jspb.Message.getWrapperField(this, proto.viam.app.v1.AppValidationStatus, 7));
+    jspb.Message.getWrapperField(this, proto.viam.app.v1.AppValidationStatus, 5));
 };
 
 
@@ -9968,7 +9968,7 @@ proto.viam.app.v1.PackageConfig.prototype.getStatus = function() {
  * @return {!proto.viam.app.v1.PackageConfig} returns this
 */
 proto.viam.app.v1.PackageConfig.prototype.setStatus = function(value) {
-  return jspb.Message.setWrapperField(this, 7, value);
+  return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
@@ -9986,7 +9986,7 @@ proto.viam.app.v1.PackageConfig.prototype.clearStatus = function() {
  * @return {boolean}
  */
 proto.viam.app.v1.PackageConfig.prototype.hasStatus = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
