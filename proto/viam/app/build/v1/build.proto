@@ -2,10 +2,14 @@ syntax = "proto3";
 
 package viam.app.build.v1;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "go.viam.com/api/app/build/v1";
 
 service BuildService {
   rpc StartBuild(StartBuildRequest) returns (StartBuildResponse);
+  rpc GetLogs(GetLogsRequest) returns (stream GetLogsResponse);
+  rpc ListJobs(ListJobsRequest) returns (ListJobsResponse);
 }
 
 message StartBuildRequest {
@@ -22,4 +26,52 @@ message StartBuildResponse {
   // todo: does error status go in here or is there a separate error type?
   // github's ID for the build
   optional string github_id = 1;
+}
+
+message GetLogsRequest {
+  // module_id as prefix:name pair
+  string module_id = 1;
+  string job_id = 2;
+}
+
+// GetLogsReponse is a streaming endpoint that may have multiple messages that belong
+// to the same build_step if there are too many log lines to fit into a single gRPC
+// response
+message GetLogsResponse {
+  string build_step = 1;
+  repeated string log_lines = 2;
+}
+
+enum JobStatus {
+  JOB_STATUS_UNSPECIFIED = 0;
+  // QUEUED = in the database, being queued / prepared for execution
+  JOB_STATUS_QUEUED = 1;
+  // IN_PROGRESS = executing on cloud infra. Artifact has not been uploaded
+  JOB_STATUS_IN_PROGRESS = 2;
+  JOB_STATUS_FAILED = 3;
+  JOB_STATUS_DONE = 4;
+}
+
+message JobInfo {
+  string build_id = 1;
+  string job_id = 2;
+  string platform = 3;
+  string version = 4;
+  // if the same job is being retried (same moduleid, version, platform)
+  // it will create a new job with an incremented attempt number
+  int32 attempt_number = 5;
+  JobStatus status = 6;
+  google.protobuf.Timestamp start_time = 7;
+}
+
+message ListJobsRequest {
+  // module_id as prefix:name pair
+  string module_id = 1;
+  // don't return more than desired_length jobs
+  int32 desired_length = 2;
+}
+
+message ListJobsResponse {
+  // jobs should be sorted from earliest starting time -> latest starting time
+  repeated JobInfo jobs = 1;
 }
