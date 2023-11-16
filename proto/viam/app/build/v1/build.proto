@@ -67,8 +67,9 @@ message JobInfo {
 message ListJobsRequest {
   // module_id as prefix:name pair
   string module_id = 1;
-  // don't return more than desired_length jobs
-  int32 desired_length = 2;
+  // don't return more than max_jobs_length jobs
+  // if not present, return all jobs
+  optional int32 max_jobs_length = 2;
 }
 
 message ListJobsResponse {
