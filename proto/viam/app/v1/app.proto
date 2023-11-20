@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.app.v1;
 
+import "app/packages/v1/packages.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "tagger/v1/tagger.proto";
@@ -178,6 +179,8 @@ service AppService {
 
   // Validates a permission for the current user
   rpc CheckPermissions(CheckPermissionsRequest) returns (CheckPermissionsResponse);
+
+  rpc CreateRegistryItem(CreateRegistryItemRequest) returns (CreateRegistryItemResponse);
 
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
 
@@ -824,6 +827,17 @@ message AuthorizedPermissions {
 message CheckPermissionsResponse {
   repeated AuthorizedPermissions authorized_permissions = 1;
 }
+
+message CreateRegistryItemRequest {
+  // The organization to create the registry item under
+  string organization_id = 1;
+  // The name of the registry item, which must be unique within your org
+  string name = 2;
+  // The type of the item in the registry
+  viam.app.packages.v1.PackageType type = 3;
+}
+
+message CreateRegistryItemResponse {}
 
 // Modules
 message CreateModuleRequest {
