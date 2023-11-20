@@ -182,6 +182,8 @@ service AppService {
 
   rpc CreateRegistryItem(CreateRegistryItemRequest) returns (CreateRegistryItemResponse);
 
+  rpc UpdateRegistryItem(UpdateRegistryItemRequest) returns (UpdateRegistryItemResponse);
+
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
 
   rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
@@ -838,6 +840,15 @@ message CreateRegistryItemRequest {
 }
 
 message CreateRegistryItemResponse {}
+
+message UpdateRegistryItemRequest {
+  string item_id = 1;
+  viam.app.packages.v1.PackageType type = 2;
+  string description = 3;
+  Visibility visibility = 4;
+}
+
+message UpdateRegistryItemResponse {}
 
 // Modules
 message CreateModuleRequest {
