@@ -438,9 +438,13 @@ message GetDatabaseConnectionRequest {
   string organization_id = 1;
 }
 
-// GetDatabaseConnectionResponse returns the database connection hostname endpoint.
+// GetDatabaseConnectionResponse returns the database connection hostname endpoint. It also returns
+// a URI that can be used to connect to the database instance through MongoDB clients, as well as
+// information on whether the Viam organization has a database user configured.
 message GetDatabaseConnectionResponse {
   string hostname = 1;
+  string mongodb_uri = 2;
+  bool has_database_user = 3;
 }
 
 // AddBinaryDataToDatasetByIDsRequest adds the binary data with the given binary IDs to a dataset with dataset_id.
