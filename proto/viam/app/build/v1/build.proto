@@ -6,10 +6,15 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/app/build/v1";
 
+// Note on ID types:
+// build_id: the 'parent' ID for a set of builds of module@version. builds contain multiple jobs. This ID is globally unique.
+// job_id: there can be multiple jobs within a build -- at least one per architecture, and more if we support retries. This ID is unique within each build, but *not* globally.
+
 service BuildService {
   rpc StartBuild(StartBuildRequest) returns (StartBuildResponse);
   rpc GetLogs(GetLogsRequest) returns (stream GetLogsResponse);
   rpc ListJobs(ListJobsRequest) returns (ListJobsResponse);
+  rpc WaitForBuild(WaitForBuildRequest) returns (WaitForBuildResponse);
 }
 
 message StartBuildRequest {
@@ -25,16 +30,27 @@ message StartBuildRequest {
 message StartBuildResponse {
   // todo: does error status go in here or is there a separate error type?
   // github's ID for the build
-  optional string github_id = 1;
+  optional string build_id = 1;
 }
 
 message GetLogsRequest {
-  // module_id as prefix:name pair
-  string module_id = 1;
-  string job_id = 2;
+  // identify a build, either uniquely or latest build for module
+  oneof build {
+    // module_id as prefix:name pair
+    string module_id = 1;
+    string build_id = 2;
+  }
+
+  // identify job within build. optional.
+  oneof job {
+    // job_id gets just one of the sub-builds, by job_id.
+    string job_id = 3;
+    // arch gets just one job, keyed by arch. where there are reruns, it gets latest.
+    string arch = 4;
+  }
 }
 
-// GetLogsReponse is a streaming endpoint that may have multiple messages that belong
+// GetLogsResponse is a streaming endpoint that may have multiple messages that belong
 // to the same build_step if there are too many log lines to fit into a single gRPC
 // response
 message GetLogsResponse {
@@ -75,4 +91,24 @@ message ListJobsRequest {
 message ListJobsResponse {
   // jobs should be sorted from earliest starting time -> latest starting time
   repeated JobInfo jobs = 1;
+}
+
+message WaitForBuildRequest {
+  string build_id = 1;
+}
+
+enum WaitStatus {
+  WAIT_STATUS_UNSPECIFIED = 0;
+  // something went wrong with the 'wait' operation itself. you probably want to retry in this case
+  WAIT_STATUS_FAIL_WAITING = 1;
+  // the build succeeded
+  WAIT_STATUS_OK = 2;
+  // the build failed
+  WAIT_STATUS_ERROR = 3;
+}
+
+message WaitForBuildResponse {
+  WaitStatus status = 1;
+  // optional detailed response
+  optional string detail = 2;
 }
