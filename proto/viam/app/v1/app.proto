@@ -184,6 +184,8 @@ service AppService {
 
   rpc UpdateRegistryItem(UpdateRegistryItemRequest) returns (UpdateRegistryItemResponse);
 
+  rpc ListRegistryItems(ListRegistryItemsRequest) returns (ListRegistryItemsResponse);
+
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
 
   rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
@@ -830,6 +832,57 @@ message CheckPermissionsResponse {
   repeated AuthorizedPermissions authorized_permissions = 1;
 }
 
+message ModuleVersion {
+  // The semver string that represents the major/minor/patch version of the module
+  string version = 1;
+  // The uploads that are available for this module version
+  repeated Uploads files = 2;
+  // The models that this verion of the module provides
+  repeated Model models = 3;
+  // The entrypoint for this version of the module
+  string entrypoint = 4;
+}
+
+message ModuleMetadata {
+  // A list of models that are available in the module
+  repeated Model models = 1;
+  // A list of versions of the module that are available
+  repeated ModuleVersion versions = 2;
+  // The executable to run to start the module program
+  string entrypoint = 3;
+}
+
+message RegistryItem {
+  // The id of the item, containing either:
+  // namespace:item_name when a namespace exists on the org.
+  // org_id:item_name when a namespace does not exist.
+  string item_id = 1;
+  // The id of the organization that owns the item
+  string organization_id = 2;
+  // The public namespace of the organization that owns the module
+  // This is empty if no public namespace is set
+  string public_namespace = 3;
+  // The name of the registry item
+  string name = 4;
+  // The type of the item in the registry
+  viam.app.packages.v1.PackageType type = 5;
+  // The visibility of the registry item
+  Visibility visibility = 6;
+  // The url to reference for documentation, code, etc.
+  string url = 7;
+  // A short description of the item that explains its purpose
+  string description = 8;
+  // The total number of robots using this item
+  int64 total_robot_usage = 9;
+  // The total number of organizations using this item
+  int64 total_organization_usage = 10;
+
+  // Type-specific metadata
+  oneof metadata {
+    ModuleMetadata module_metadata = 11;
+  }
+}
+
 message CreateRegistryItemRequest {
   // The organization to create the registry item under
   string organization_id = 1;
@@ -849,6 +902,27 @@ message UpdateRegistryItemRequest {
 }
 
 message UpdateRegistryItemResponse {}
+
+enum RegistryItemStatus {
+  REGISTRY_ITEM_STATUS_UNSPECIFIED = 0;
+  REGISTRY_ITEM_STATUS_PUBLISHED = 1;
+  REGISTRY_ITEM_STATUS_IN_DEVELOPMENT = 2;
+}
+
+message ListRegistryItemsRequest {
+  // The id of the organization to return registry items for.
+  optional string organization_id = 1;
+  repeated viam.app.packages.v1.PackageType types = 2;
+  repeated Visibility visibilities = 3;
+  repeated string platforms = 4;
+  repeated RegistryItemStatus statuses = 5;
+  optional string search_term = 6;
+  optional string page_token = 7;
+}
+
+message ListRegistryItemsResponse {
+  repeated RegistryItem items = 1;
+}
 
 // Modules
 message CreateModuleRequest {
