@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package viam.app.mltraining.v1;
 
-import "app/data/v1/data.proto";
 import "google/protobuf/timestamp.proto";
 import "google/rpc/status.proto";
 import "tagger/v1/tagger.proto";
