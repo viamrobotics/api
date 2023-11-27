@@ -35,19 +35,21 @@ message StartBuildResponse {
 
 message GetLogsRequest {
   // identify a build, either uniquely or latest build for module
-  oneof build {
-    // module_id as prefix:name pair
-    string module_id = 1;
-    string build_id = 2;
-  }
-
-  // identify job within build. optional.
-  oneof job {
-    // job_id gets just one of the sub-builds, by job_id.
-    string job_id = 3;
-    // arch gets just one job, keyed by arch. where there are reruns, it gets latest.
-    string arch = 4;
-  }
+  //  oneof build {
+  //    // module_id as prefix:name pair
+  //    string module_id = 1;
+  //    string build_id = 2;
+  //  }
+  //
+  //  // identify job within build. optional.
+  //  oneof job {
+  // job_id gets just one of the sub-builds, by job_id.
+  // module_id as prefix:name pair
+  string module_id = 1;
+  string job_id = 2;
+  // arch gets just one job, keyed by arch. where there are reruns, it gets latest.
+  //   string arch = 4;
+  //}
 }
 
 // GetLogsResponse is a streaming endpoint that may have multiple messages that belong
@@ -55,7 +57,7 @@ message GetLogsRequest {
 // response
 message GetLogsResponse {
   string build_step = 1;
-  repeated string log_lines = 2;
+  string data = 2;
 }
 
 enum JobStatus {
