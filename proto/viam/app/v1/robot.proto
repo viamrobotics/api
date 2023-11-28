@@ -77,6 +77,7 @@ message ComponentConfig {
   repeated ResourceLevelServiceConfig service_configs = 7 [(tagger.v1.tags) = "json:\"service_config\""];
   google.protobuf.Struct attributes = 8;
   string api = 9;
+  LogConfiguration log_configuration = 10;
 }
 
 // A ResourceLevelServiceConfig describes component or remote configuration for a service.
@@ -151,6 +152,10 @@ message Frame {
   Translation translation = 2;
   Orientation orientation = 3;
   common.v1.Geometry geometry = 4;
+}
+
+message LogConfiguration {
+  string level = 1;
 }
 
 message Translation {
