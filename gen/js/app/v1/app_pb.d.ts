@@ -2,6 +2,7 @@
 // file: app/v1/app.proto
 
 import * as jspb from "google-protobuf";
+import * as app_packages_v1_packages_pb from "../../app/packages/v1/packages_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as tagger_v1_tagger_pb from "../../tagger/v1/tagger_pb";
@@ -3009,6 +3010,98 @@ export class CheckPermissionsResponse extends jspb.Message {
 export namespace CheckPermissionsResponse {
   export type AsObject = {
     authorizedPermissionsList: Array<AuthorizedPermissions.AsObject>,
+  }
+}
+
+export class CreateRegistryItemRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  getType(): app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap];
+  setType(value: app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateRegistryItemRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateRegistryItemRequest): CreateRegistryItemRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateRegistryItemRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateRegistryItemRequest;
+  static deserializeBinaryFromReader(message: CreateRegistryItemRequest, reader: jspb.BinaryReader): CreateRegistryItemRequest;
+}
+
+export namespace CreateRegistryItemRequest {
+  export type AsObject = {
+    organizationId: string,
+    name: string,
+    type: app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap],
+  }
+}
+
+export class CreateRegistryItemResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateRegistryItemResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateRegistryItemResponse): CreateRegistryItemResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateRegistryItemResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateRegistryItemResponse;
+  static deserializeBinaryFromReader(message: CreateRegistryItemResponse, reader: jspb.BinaryReader): CreateRegistryItemResponse;
+}
+
+export namespace CreateRegistryItemResponse {
+  export type AsObject = {
+  }
+}
+
+export class UpdateRegistryItemRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  getType(): app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap];
+  setType(value: app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap]): void;
+
+  getDescription(): string;
+  setDescription(value: string): void;
+
+  getVisibility(): VisibilityMap[keyof VisibilityMap];
+  setVisibility(value: VisibilityMap[keyof VisibilityMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateRegistryItemRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateRegistryItemRequest): UpdateRegistryItemRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateRegistryItemRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateRegistryItemRequest;
+  static deserializeBinaryFromReader(message: UpdateRegistryItemRequest, reader: jspb.BinaryReader): UpdateRegistryItemRequest;
+}
+
+export namespace UpdateRegistryItemRequest {
+  export type AsObject = {
+    itemId: string,
+    type: app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap],
+    description: string,
+    visibility: VisibilityMap[keyof VisibilityMap],
+  }
+}
+
+export class UpdateRegistryItemResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateRegistryItemResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateRegistryItemResponse): UpdateRegistryItemResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateRegistryItemResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateRegistryItemResponse;
+  static deserializeBinaryFromReader(message: UpdateRegistryItemResponse, reader: jspb.BinaryReader): UpdateRegistryItemResponse;
+}
+
+export namespace UpdateRegistryItemResponse {
+  export type AsObject = {
   }
 }
 

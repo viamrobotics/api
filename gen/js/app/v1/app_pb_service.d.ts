@@ -490,6 +490,24 @@ type AppServiceCheckPermissions = {
   readonly responseType: typeof app_v1_app_pb.CheckPermissionsResponse;
 };
 
+type AppServiceCreateRegistryItem = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateRegistryItemRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateRegistryItemResponse;
+};
+
+type AppServiceUpdateRegistryItem = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateRegistryItemRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateRegistryItemResponse;
+};
+
 type AppServiceCreateModule = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -636,6 +654,8 @@ export class AppService {
   static readonly ChangeRole: AppServiceChangeRole;
   static readonly ListAuthorizations: AppServiceListAuthorizations;
   static readonly CheckPermissions: AppServiceCheckPermissions;
+  static readonly CreateRegistryItem: AppServiceCreateRegistryItem;
+  static readonly UpdateRegistryItem: AppServiceUpdateRegistryItem;
   static readonly CreateModule: AppServiceCreateModule;
   static readonly UpdateModule: AppServiceUpdateModule;
   static readonly UploadModuleFile: AppServiceUploadModuleFile;
@@ -1157,6 +1177,24 @@ export class AppServiceClient {
   checkPermissions(
     requestMessage: app_v1_app_pb.CheckPermissionsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CheckPermissionsResponse|null) => void
+  ): UnaryResponse;
+  createRegistryItem(
+    requestMessage: app_v1_app_pb.CreateRegistryItemRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  createRegistryItem(
+    requestMessage: app_v1_app_pb.CreateRegistryItemRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  updateRegistryItem(
+    requestMessage: app_v1_app_pb.UpdateRegistryItemRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  updateRegistryItem(
+    requestMessage: app_v1_app_pb.UpdateRegistryItemRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateRegistryItemResponse|null) => void
   ): UnaryResponse;
   createModule(
     requestMessage: app_v1_app_pb.CreateModuleRequest,

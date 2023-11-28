@@ -224,6 +224,11 @@ export class ComponentConfig extends jspb.Message {
   getApi(): string;
   setApi(value: string): void;
 
+  hasLogConfiguration(): boolean;
+  clearLogConfiguration(): void;
+  getLogConfiguration(): LogConfiguration | undefined;
+  setLogConfiguration(value?: LogConfiguration): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ComponentConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ComponentConfig): ComponentConfig.AsObject;
@@ -245,6 +250,7 @@ export namespace ComponentConfig {
     serviceConfigsList: Array<ResourceLevelServiceConfig.AsObject>,
     attributes?: google_protobuf_struct_pb.Struct.AsObject,
     api: string,
+    logConfiguration?: LogConfiguration.AsObject,
   }
 }
 
@@ -582,6 +588,26 @@ export namespace Frame {
     translation?: Translation.AsObject,
     orientation?: Orientation.AsObject,
     geometry?: common_v1_common_pb.Geometry.AsObject,
+  }
+}
+
+export class LogConfiguration extends jspb.Message {
+  getLevel(): string;
+  setLevel(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LogConfiguration.AsObject;
+  static toObject(includeInstance: boolean, msg: LogConfiguration): LogConfiguration.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: LogConfiguration, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LogConfiguration;
+  static deserializeBinaryFromReader(message: LogConfiguration, reader: jspb.BinaryReader): LogConfiguration;
+}
+
+export namespace LogConfiguration {
+  export type AsObject = {
+    level: string,
   }
 }
 
