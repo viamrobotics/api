@@ -34,22 +34,9 @@ message StartBuildResponse {
 }
 
 message GetLogsRequest {
-  // identify a build, either uniquely or latest build for module
-  //  oneof build {
-  //    // module_id as prefix:name pair
-  //    string module_id = 1;
-  //    string build_id = 2;
-  //  }
-  //
-  //  // identify job within build. optional.
-  //  oneof job {
-  // job_id gets just one of the sub-builds, by job_id.
   // module_id as prefix:name pair
-  string module_id = 1;
-  string job_id = 2;
-  // arch gets just one job, keyed by arch. where there are reruns, it gets latest.
-  //   string arch = 4;
-  //}
+  string build_id = 2;
+  string platform = 3;
 }
 
 // GetLogsResponse is a streaming endpoint that may have multiple messages that belong
@@ -72,14 +59,11 @@ enum JobStatus {
 
 message JobInfo {
   string build_id = 1;
-  string job_id = 2;
-  string platform = 3;
-  string version = 4;
-  // if the same job is being retried (same moduleid, version, platform)
-  // it will create a new job with an incremented attempt number
-  int32 attempt_number = 5;
-  JobStatus status = 6;
-  google.protobuf.Timestamp start_time = 7;
+  string platform = 2;
+  string version = 3;
+  JobStatus status = 4;
+  google.protobuf.Timestamp start_time = 5;
+  optional google.protobuf.Timestamp end_time = 6;
 }
 
 message ListJobsRequest {
