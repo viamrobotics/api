@@ -7,20 +7,24 @@ import "google/protobuf/timestamp.proto";
 option go_package = "go.viam.com/api/app/build/v1";
 
 // Note on ID types:
-// build_id: the 'parent' ID for a set of builds of module@version. builds contain multiple jobs. This ID is globally unique.
+// build_id: The 'parent' ID for a set of builds of module@version. Builds contain multiple jobs. This ID is globally unique.
 
 // 2023-11-28: Unstable API. Will change.
 service BuildService {
+  // Asynchronously start a build of a Viam module, with one job per platform.
   rpc StartBuild(StartBuildRequest) returns (StartBuildResponse);
+  // Fetch logs from a single job of a single build.
   rpc GetLogs(GetLogsRequest) returns (stream GetLogsResponse);
+  // List the jobs for a module ordered by (build start time, alphabetical platform).
   rpc ListJobs(ListJobsRequest) returns (ListJobsResponse);
 }
 
 message StartBuildRequest {
   // repo to build
-  optional string repo = 1;
+  string repo = 1;
   // optional git ref; defaults to 'main'
   optional string ref = 2;
+  // list of platforms to build
   repeated string platform = 3;
   // module_id as prefix:name pair
   string module_id = 4;
@@ -37,7 +41,7 @@ message GetLogsRequest {
 
 // GetLogsResponse is a streaming endpoint that may have multiple messages that belong
 // to the same build_step if there are too many bytes to fit into a single gRPC
-// response
+// response.
 message GetLogsResponse {
   string build_step = 1;
   // includes multiple lines delimited by \n\r
@@ -46,7 +50,7 @@ message GetLogsResponse {
 
 enum JobStatus {
   JOB_STATUS_UNSPECIFIED = 0;
-  // IN_PROGRESS = executing on cloud infra. Artifact has not been uploaded
+  // IN_PROGRESS = pending or executing on cloud infra. Artifact has not been uploaded.
   JOB_STATUS_IN_PROGRESS = 1;
   JOB_STATUS_FAILED = 2;
   JOB_STATUS_DONE = 3;
