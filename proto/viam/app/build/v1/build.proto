@@ -8,13 +8,12 @@ option go_package = "go.viam.com/api/app/build/v1";
 
 // Note on ID types:
 // build_id: the 'parent' ID for a set of builds of module@version. builds contain multiple jobs. This ID is globally unique.
-// job_id: there can be multiple jobs within a build -- at least one per architecture, and more if we support retries. This ID is unique within each build, but *not* globally.
 
+// 2023-11-28: Unstable API. Will change.
 service BuildService {
   rpc StartBuild(StartBuildRequest) returns (StartBuildResponse);
   rpc GetLogs(GetLogsRequest) returns (stream GetLogsResponse);
   rpc ListJobs(ListJobsRequest) returns (ListJobsResponse);
-  rpc WaitForBuild(WaitForBuildRequest) returns (WaitForBuildResponse);
 }
 
 message StartBuildRequest {
@@ -22,39 +21,35 @@ message StartBuildRequest {
   optional string repo = 1;
   // optional git ref; defaults to 'main'
   optional string ref = 2;
-  repeated string arch = 3;
+  repeated string platform = 3;
   // module_id as prefix:name pair
   string module_id = 4;
 }
 
 message StartBuildResponse {
-  // todo: does error status go in here or is there a separate error type?
-  // github's ID for the build
-  optional string build_id = 1;
+  string build_id = 1;
 }
 
 message GetLogsRequest {
-  // module_id as prefix:name pair
-  string build_id = 2;
-  string platform = 3;
+  string build_id = 1;
+  string platform = 2;
 }
 
 // GetLogsResponse is a streaming endpoint that may have multiple messages that belong
-// to the same build_step if there are too many log lines to fit into a single gRPC
+// to the same build_step if there are too many bytes to fit into a single gRPC
 // response
 message GetLogsResponse {
   string build_step = 1;
+  // includes multiple lines delimited by \n\r
   string data = 2;
 }
 
 enum JobStatus {
   JOB_STATUS_UNSPECIFIED = 0;
-  // QUEUED = in the database, being queued / prepared for execution
-  JOB_STATUS_QUEUED = 1;
   // IN_PROGRESS = executing on cloud infra. Artifact has not been uploaded
-  JOB_STATUS_IN_PROGRESS = 2;
-  JOB_STATUS_FAILED = 3;
-  JOB_STATUS_DONE = 4;
+  JOB_STATUS_IN_PROGRESS = 1;
+  JOB_STATUS_FAILED = 2;
+  JOB_STATUS_DONE = 3;
 }
 
 message JobInfo {
@@ -77,24 +72,4 @@ message ListJobsRequest {
 message ListJobsResponse {
   // jobs should be sorted from earliest starting time -> latest starting time
   repeated JobInfo jobs = 1;
-}
-
-message WaitForBuildRequest {
-  string build_id = 1;
-}
-
-enum WaitStatus {
-  WAIT_STATUS_UNSPECIFIED = 0;
-  // something went wrong with the 'wait' operation itself. you probably want to retry in this case
-  WAIT_STATUS_FAIL_WAITING = 1;
-  // the build succeeded
-  WAIT_STATUS_OK = 2;
-  // the build failed
-  WAIT_STATUS_ERROR = 3;
-}
-
-message WaitForBuildResponse {
-  WaitStatus status = 1;
-  // optional detailed response
-  optional string detail = 2;
 }
