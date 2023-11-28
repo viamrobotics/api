@@ -69,13 +69,14 @@ message ListJobsRequest {
   // module_id as prefix:name pair
   string module_id = 1;
   // don't return more than max_jobs_length jobs
-  // if not present, return all jobs
+  // if not present, return all jobs.
   optional int32 max_jobs_length = 2;
-  // only return jobs from this build id (if present)
+  // only return jobs that match this build id
+  // if not present, return all jobs.
   optional string build_id = 3;
 }
 
 message ListJobsResponse {
-  // jobs should be sorted from earliest starting time -> latest starting time
+  // jobs is ordered by (build start time, alphabetical platform).
   repeated JobInfo jobs = 1;
 }
