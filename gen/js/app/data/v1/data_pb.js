@@ -10466,7 +10466,9 @@ proto.viam.app.data.v1.GetDatabaseConnectionResponse.prototype.toObject = functi
  */
 proto.viam.app.data.v1.GetDatabaseConnectionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    hostname: jspb.Message.getFieldWithDefault(msg, 1, "")
+    hostname: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    mongodbUri: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    hasDatabaseUser: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -10507,6 +10509,14 @@ proto.viam.app.data.v1.GetDatabaseConnectionResponse.deserializeBinaryFromReader
       var value = /** @type {string} */ (reader.readString());
       msg.setHostname(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMongodbUri(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setHasDatabaseUser(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -10543,6 +10553,20 @@ proto.viam.app.data.v1.GetDatabaseConnectionResponse.serializeBinaryToWriter = f
       f
     );
   }
+  f = message.getMongodbUri();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getHasDatabaseUser();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -10561,6 +10585,42 @@ proto.viam.app.data.v1.GetDatabaseConnectionResponse.prototype.getHostname = fun
  */
 proto.viam.app.data.v1.GetDatabaseConnectionResponse.prototype.setHostname = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string mongodb_uri = 2;
+ * @return {string}
+ */
+proto.viam.app.data.v1.GetDatabaseConnectionResponse.prototype.getMongodbUri = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.GetDatabaseConnectionResponse} returns this
+ */
+proto.viam.app.data.v1.GetDatabaseConnectionResponse.prototype.setMongodbUri = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional bool has_database_user = 3;
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.GetDatabaseConnectionResponse.prototype.getHasDatabaseUser = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.data.v1.GetDatabaseConnectionResponse} returns this
+ */
+proto.viam.app.data.v1.GetDatabaseConnectionResponse.prototype.setHasDatabaseUser = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
