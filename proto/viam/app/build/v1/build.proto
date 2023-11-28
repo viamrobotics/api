@@ -25,9 +25,12 @@ message StartBuildRequest {
   // optional git ref; defaults to 'main'
   optional string ref = 2;
   // list of platforms to build
-  repeated string platform = 3;
+  repeated string platforms = 3;
   // module_id as prefix:name pair
   string module_id = 4;
+  // version of the module to publish
+  // must be valid semver2.0 string (ex: 1.2.3-rc0)
+  string module_version = 5;
 }
 
 message StartBuildResponse {
