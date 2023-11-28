@@ -295,7 +295,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.data.v1.TabularDataByMQLRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.data.v1.TabularDataByMQLRequest.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.data.v1.TabularDataByMQLRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -4026,6 +4026,13 @@ proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.clearDataList = functi
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.repeatedFields_ = [3];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -4058,7 +4065,8 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.toObject = function(opt
 proto.viam.app.data.v1.TabularDataByMQLRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    mqlQuery: jspb.Message.getFieldWithDefault(msg, 2, "")
+    mqlQuery: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    mqlBinaryList: msg.getMqlBinaryList_asB64()
   };
 
   if (includeInstance) {
@@ -4103,6 +4111,10 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.deserializeBinaryFromReader = fun
       var value = /** @type {string} */ (reader.readString());
       msg.setMqlQuery(value);
       break;
+    case 3:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.addMqlBinary(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -4146,6 +4158,13 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.serializeBinaryToWriter = functio
       f
     );
   }
+  f = message.getMqlBinaryList_asU8();
+  if (f.length > 0) {
+    writer.writeRepeatedBytes(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -4182,6 +4201,67 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.getMqlQuery = function(
  */
 proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.setMqlQuery = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * repeated bytes mql_binary = 3;
+ * @return {!Array<string>}
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.getMqlBinaryList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * repeated bytes mql_binary = 3;
+ * This is a type-conversion wrapper around `getMqlBinaryList()`
+ * @return {!Array<string>}
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.getMqlBinaryList_asB64 = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
+      this.getMqlBinaryList()));
+};
+
+
+/**
+ * repeated bytes mql_binary = 3;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getMqlBinaryList()`
+ * @return {!Array<!Uint8Array>}
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.getMqlBinaryList_asU8 = function() {
+  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
+      this.getMqlBinaryList()));
+};
+
+
+/**
+ * @param {!(Array<!Uint8Array>|Array<string>)} value
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLRequest} returns this
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.setMqlBinaryList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLRequest} returns this
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.addMqlBinary = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLRequest} returns this
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.clearMqlBinaryList = function() {
+  return this.setMqlBinaryList([]);
 };
 
 
