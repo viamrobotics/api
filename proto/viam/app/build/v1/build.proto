@@ -71,6 +71,8 @@ message ListJobsRequest {
   // don't return more than max_jobs_length jobs
   // if not present, return all jobs
   optional int32 max_jobs_length = 2;
+  // only return jobs from this build id (if present)
+  optional string build_id = 3;
 }
 
 message ListJobsResponse {
