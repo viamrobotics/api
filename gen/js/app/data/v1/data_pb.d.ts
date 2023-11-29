@@ -404,6 +404,13 @@ export class TabularDataByMQLRequest extends jspb.Message {
   getMqlQuery(): string;
   setMqlQuery(value: string): void;
 
+  clearMqlBinaryList(): void;
+  getMqlBinaryList(): Array<Uint8Array | string>;
+  getMqlBinaryList_asU8(): Array<Uint8Array>;
+  getMqlBinaryList_asB64(): Array<string>;
+  setMqlBinaryList(value: Array<Uint8Array | string>): void;
+  addMqlBinary(value: Uint8Array | string, index?: number): Uint8Array | string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataByMQLRequest.AsObject;
   static toObject(includeInstance: boolean, msg: TabularDataByMQLRequest): TabularDataByMQLRequest.AsObject;
@@ -418,6 +425,7 @@ export namespace TabularDataByMQLRequest {
   export type AsObject = {
     organizationId: string,
     mqlQuery: string,
+    mqlBinaryList: Array<Uint8Array | string>,
   }
 }
 
@@ -1315,6 +1323,12 @@ export class GetDatabaseConnectionResponse extends jspb.Message {
   getHostname(): string;
   setHostname(value: string): void;
 
+  getMongodbUri(): string;
+  setMongodbUri(value: string): void;
+
+  getHasDatabaseUser(): boolean;
+  setHasDatabaseUser(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetDatabaseConnectionResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetDatabaseConnectionResponse): GetDatabaseConnectionResponse.AsObject;
@@ -1328,6 +1342,8 @@ export class GetDatabaseConnectionResponse extends jspb.Message {
 export namespace GetDatabaseConnectionResponse {
   export type AsObject = {
     hostname: string,
+    mongodbUri: string,
+    hasDatabaseUser: boolean,
   }
 }
 
