@@ -59,12 +59,23 @@ service NavigationService {
     };
   }
 
+  rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/navigation/{name}/get_properties"
+    };
+  }
+
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/service/navigation/{name}/do_command"
     };
   }
+}
+
+enum MapType {
+  MAPTYPE_NONE = 0;
+  MAPTYPE_GPS = 1;
 }
 
 enum Mode {
@@ -174,3 +185,14 @@ message GetPathsRequest {
 message GetPathsResponse {
   repeated Path paths = 1;
 }
+
+message GetPropertiesRequest {
+  // Name of the navigation service
+  string name = 1;
+}
+
+// Returns properties information for the named navigation service such as map type
+message GetPropertiesResponse {
+  MapType map_type = 1;
+}
+
