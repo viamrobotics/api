@@ -32,6 +32,15 @@ type PowerSensorServiceGetPower = {
   readonly responseType: typeof component_powersensor_v1_powersensor_pb.GetPowerResponse;
 };
 
+type PowerSensorServiceGetReadings = {
+  readonly methodName: string;
+  readonly service: typeof PowerSensorService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetReadingsRequest;
+  readonly responseType: typeof common_v1_common_pb.GetReadingsResponse;
+};
+
 type PowerSensorServiceDoCommand = {
   readonly methodName: string;
   readonly service: typeof PowerSensorService;
@@ -46,6 +55,7 @@ export class PowerSensorService {
   static readonly GetVoltage: PowerSensorServiceGetVoltage;
   static readonly GetCurrent: PowerSensorServiceGetCurrent;
   static readonly GetPower: PowerSensorServiceGetPower;
+  static readonly GetReadings: PowerSensorServiceGetReadings;
   static readonly DoCommand: PowerSensorServiceDoCommand;
 }
 
@@ -107,6 +117,15 @@ export class PowerSensorServiceClient {
   getPower(
     requestMessage: component_powersensor_v1_powersensor_pb.GetPowerRequest,
     callback: (error: ServiceError|null, responseMessage: component_powersensor_v1_powersensor_pb.GetPowerResponse|null) => void
+  ): UnaryResponse;
+  getReadings(
+    requestMessage: common_v1_common_pb.GetReadingsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetReadingsResponse|null) => void
+  ): UnaryResponse;
+  getReadings(
+    requestMessage: common_v1_common_pb.GetReadingsRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetReadingsResponse|null) => void
   ): UnaryResponse;
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,

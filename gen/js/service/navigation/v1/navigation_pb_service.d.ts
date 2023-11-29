@@ -68,6 +68,15 @@ type NavigationServiceGetObstacles = {
   readonly responseType: typeof service_navigation_v1_navigation_pb.GetObstaclesResponse;
 };
 
+type NavigationServiceGetPaths = {
+  readonly methodName: string;
+  readonly service: typeof NavigationService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_navigation_v1_navigation_pb.GetPathsRequest;
+  readonly responseType: typeof service_navigation_v1_navigation_pb.GetPathsResponse;
+};
+
 type NavigationServiceDoCommand = {
   readonly methodName: string;
   readonly service: typeof NavigationService;
@@ -86,6 +95,7 @@ export class NavigationService {
   static readonly AddWaypoint: NavigationServiceAddWaypoint;
   static readonly RemoveWaypoint: NavigationServiceRemoveWaypoint;
   static readonly GetObstacles: NavigationServiceGetObstacles;
+  static readonly GetPaths: NavigationServiceGetPaths;
   static readonly DoCommand: NavigationServiceDoCommand;
 }
 
@@ -183,6 +193,15 @@ export class NavigationServiceClient {
   getObstacles(
     requestMessage: service_navigation_v1_navigation_pb.GetObstaclesRequest,
     callback: (error: ServiceError|null, responseMessage: service_navigation_v1_navigation_pb.GetObstaclesResponse|null) => void
+  ): UnaryResponse;
+  getPaths(
+    requestMessage: service_navigation_v1_navigation_pb.GetPathsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_navigation_v1_navigation_pb.GetPathsResponse|null) => void
+  ): UnaryResponse;
+  getPaths(
+    requestMessage: service_navigation_v1_navigation_pb.GetPathsRequest,
+    callback: (error: ServiceError|null, responseMessage: service_navigation_v1_navigation_pb.GetPathsResponse|null) => void
   ): UnaryResponse;
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,

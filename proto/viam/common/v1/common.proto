@@ -224,3 +224,14 @@ message GetGeometriesResponse {
   // All geometries associated with the component, in their current configuration, in the frame of that component.
   repeated Geometry geometries = 1;
 }
+
+message GetReadingsRequest {
+  // Name of a sensor
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetReadingsResponse {
+  map<string, google.protobuf.Value> readings = 1;
+}

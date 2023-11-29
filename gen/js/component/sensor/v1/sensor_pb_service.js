@@ -16,8 +16,8 @@ SensorService.GetReadings = {
   service: SensorService,
   requestStream: false,
   responseStream: false,
-  requestType: component_sensor_v1_sensor_pb.GetReadingsRequest,
-  responseType: component_sensor_v1_sensor_pb.GetReadingsResponse
+  requestType: common_v1_common_pb.GetReadingsRequest,
+  responseType: common_v1_common_pb.GetReadingsResponse
 };
 
 SensorService.DoCommand = {

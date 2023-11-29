@@ -513,6 +513,67 @@ proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getObs
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.GetPathsRequest,
+ *   !proto.viam.service.navigation.v1.GetPathsResponse>}
+ */
+const methodDescriptor_NavigationService_GetPaths = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/GetPaths',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.GetPathsRequest,
+  proto.viam.service.navigation.v1.GetPathsResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.GetPathsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.GetPathsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GetPathsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.GetPathsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.GetPathsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.getPaths =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GetPaths',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GetPaths,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GetPathsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.GetPathsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getPaths =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GetPaths',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GetPaths);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.common.v1.DoCommandRequest,
  *   !proto.viam.common.v1.DoCommandResponse>}
  */

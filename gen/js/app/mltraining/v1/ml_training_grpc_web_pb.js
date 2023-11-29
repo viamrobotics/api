@@ -329,5 +329,66 @@ proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.cancelTrai
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest,
+ *   !proto.viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse>}
+ */
+const methodDescriptor_MLTrainingService_DeleteCompletedTrainingJob = new grpc.web.MethodDescriptor(
+  '/viam.app.mltraining.v1.MLTrainingService/DeleteCompletedTrainingJob',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest,
+  proto.viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse,
+  /**
+   * @param {!proto.viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.mltraining.v1.MLTrainingServiceClient.prototype.deleteCompletedTrainingJob =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/DeleteCompletedTrainingJob',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_DeleteCompletedTrainingJob,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.deleteCompletedTrainingJob =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/DeleteCompletedTrainingJob',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_DeleteCompletedTrainingJob);
+};
+
+
 module.exports = proto.viam.app.mltraining.v1;
 
