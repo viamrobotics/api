@@ -2,11 +2,17 @@
 // file: app/mltraining/v1/ml_training.proto
 
 import * as jspb from "google-protobuf";
+import * as app_data_v1_data_pb from "../../../app/data/v1/data_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as google_rpc_status_pb from "../../../google/rpc/status_pb";
 import * as tagger_v1_tagger_pb from "../../../tagger/v1/tagger_pb";
 
 export class SubmitTrainingJobRequest extends jspb.Message {
+  hasFilter(): boolean;
+  clearFilter(): void;
+  getFilter(): app_data_v1_data_pb.Filter | undefined;
+  setFilter(value?: app_data_v1_data_pb.Filter): void;
+
   getDatasetId(): string;
   setDatasetId(value: string): void;
 
@@ -39,6 +45,7 @@ export class SubmitTrainingJobRequest extends jspb.Message {
 
 export namespace SubmitTrainingJobRequest {
   export type AsObject = {
+    filter?: app_data_v1_data_pb.Filter.AsObject,
     datasetId: string,
     organizationId: string,
     modelName: string,
