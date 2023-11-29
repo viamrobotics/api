@@ -74,8 +74,9 @@ service NavigationService {
 }
 
 enum MapType {
-  MAPTYPE_NONE = 0;
-  MAPTYPE_GPS = 1;
+  MAP_TYPE_UNSPECIFIED = 0;
+  MAP_TYPE_NONE = 1;
+  MAP_TYPE_GPS = 2;
 }
 
 enum Mode {
