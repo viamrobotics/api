@@ -37,13 +37,13 @@ AppService.ListOrganizations = {
   responseType: app_v1_app_pb.ListOrganizationsResponse
 };
 
-AppService.GetOrganizationsForLocation = {
-  methodName: "GetOrganizationsForLocation",
+AppService.GetOrganizationsSharedWithLocation = {
+  methodName: "GetOrganizationsSharedWithLocation",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.GetOrganizationsForLocationRequest,
-  responseType: app_v1_app_pb.GetOrganizationsForLocationResponse
+  requestType: app_v1_app_pb.GetOrganizationsSharedWithLocationRequest,
+  responseType: app_v1_app_pb.GetOrganizationsSharedWithLocationResponse
 };
 
 AppService.ListOrganizationsByUser = {
@@ -704,11 +704,11 @@ AppServiceClient.prototype.listOrganizations = function listOrganizations(reques
   };
 };
 
-AppServiceClient.prototype.getOrganizationsForLocation = function getOrganizationsForLocation(requestMessage, metadata, callback) {
+AppServiceClient.prototype.getOrganizationsSharedWithLocation = function getOrganizationsSharedWithLocation(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.GetOrganizationsForLocation, {
+  var client = grpc.unary(AppService.GetOrganizationsSharedWithLocation, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

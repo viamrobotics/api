@@ -29,7 +29,7 @@ type AppServiceClient interface {
 	// List organizations
 	ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error)
 	// Get all organizations that have access to a location.
-	GetOrganizationsForLocation(ctx context.Context, in *GetOrganizationsForLocationRequest, opts ...grpc.CallOption) (*GetOrganizationsForLocationResponse, error)
+	GetOrganizationsSharedWithLocation(ctx context.Context, in *GetOrganizationsSharedWithLocationRequest, opts ...grpc.CallOption) (*GetOrganizationsSharedWithLocationResponse, error)
 	// List the organizations a user belongs to
 	ListOrganizationsByUser(ctx context.Context, in *ListOrganizationsByUserRequest, opts ...grpc.CallOption) (*ListOrganizationsByUserResponse, error)
 	// Get an organization
@@ -182,9 +182,9 @@ func (c *appServiceClient) ListOrganizations(ctx context.Context, in *ListOrgani
 	return out, nil
 }
 
-func (c *appServiceClient) GetOrganizationsForLocation(ctx context.Context, in *GetOrganizationsForLocationRequest, opts ...grpc.CallOption) (*GetOrganizationsForLocationResponse, error) {
-	out := new(GetOrganizationsForLocationResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganizationsForLocation", in, out, opts...)
+func (c *appServiceClient) GetOrganizationsSharedWithLocation(ctx context.Context, in *GetOrganizationsSharedWithLocationRequest, opts ...grpc.CallOption) (*GetOrganizationsSharedWithLocationResponse, error) {
+	out := new(GetOrganizationsSharedWithLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganizationsSharedWithLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -808,7 +808,7 @@ type AppServiceServer interface {
 	// List organizations
 	ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error)
 	// Get all organizations that have access to a location.
-	GetOrganizationsForLocation(context.Context, *GetOrganizationsForLocationRequest) (*GetOrganizationsForLocationResponse, error)
+	GetOrganizationsSharedWithLocation(context.Context, *GetOrganizationsSharedWithLocationRequest) (*GetOrganizationsSharedWithLocationResponse, error)
 	// List the organizations a user belongs to
 	ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error)
 	// Get an organization
@@ -940,8 +940,8 @@ func (UnimplementedAppServiceServer) CreateOrganization(context.Context, *Create
 func (UnimplementedAppServiceServer) ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizations not implemented")
 }
-func (UnimplementedAppServiceServer) GetOrganizationsForLocation(context.Context, *GetOrganizationsForLocationRequest) (*GetOrganizationsForLocationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationsForLocation not implemented")
+func (UnimplementedAppServiceServer) GetOrganizationsSharedWithLocation(context.Context, *GetOrganizationsSharedWithLocationRequest) (*GetOrganizationsSharedWithLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationsSharedWithLocation not implemented")
 }
 func (UnimplementedAppServiceServer) ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationsByUser not implemented")
@@ -1196,20 +1196,20 @@ func _AppService_ListOrganizations_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_GetOrganizationsForLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetOrganizationsForLocationRequest)
+func _AppService_GetOrganizationsSharedWithLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationsSharedWithLocationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).GetOrganizationsForLocation(ctx, in)
+		return srv.(AppServiceServer).GetOrganizationsSharedWithLocation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/GetOrganizationsForLocation",
+		FullMethod: "/viam.app.v1.AppService/GetOrganizationsSharedWithLocation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).GetOrganizationsForLocation(ctx, req.(*GetOrganizationsForLocationRequest))
+		return srv.(AppServiceServer).GetOrganizationsSharedWithLocation(ctx, req.(*GetOrganizationsSharedWithLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2361,8 +2361,8 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_ListOrganizations_Handler,
 		},
 		{
-			MethodName: "GetOrganizationsForLocation",
-			Handler:    _AppService_GetOrganizationsForLocation_Handler,
+			MethodName: "GetOrganizationsSharedWithLocation",
+			Handler:    _AppService_GetOrganizationsSharedWithLocation_Handler,
 		},
 		{
 			MethodName: "ListOrganizationsByUser",

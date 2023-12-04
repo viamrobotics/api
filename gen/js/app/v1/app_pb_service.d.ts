@@ -31,13 +31,13 @@ type AppServiceListOrganizations = {
   readonly responseType: typeof app_v1_app_pb.ListOrganizationsResponse;
 };
 
-type AppServiceGetOrganizationsForLocation = {
+type AppServiceGetOrganizationsSharedWithLocation = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.GetOrganizationsForLocationRequest;
-  readonly responseType: typeof app_v1_app_pb.GetOrganizationsForLocationResponse;
+  readonly requestType: typeof app_v1_app_pb.GetOrganizationsSharedWithLocationRequest;
+  readonly responseType: typeof app_v1_app_pb.GetOrganizationsSharedWithLocationResponse;
 };
 
 type AppServiceListOrganizationsByUser = {
@@ -603,7 +603,7 @@ export class AppService {
   static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
   static readonly CreateOrganization: AppServiceCreateOrganization;
   static readonly ListOrganizations: AppServiceListOrganizations;
-  static readonly GetOrganizationsForLocation: AppServiceGetOrganizationsForLocation;
+  static readonly GetOrganizationsSharedWithLocation: AppServiceGetOrganizationsSharedWithLocation;
   static readonly ListOrganizationsByUser: AppServiceListOrganizationsByUser;
   static readonly GetOrganization: AppServiceGetOrganization;
   static readonly GetOrganizationNamespaceAvailability: AppServiceGetOrganizationNamespaceAvailability;
@@ -727,14 +727,14 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.ListOrganizationsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsResponse|null) => void
   ): UnaryResponse;
-  getOrganizationsForLocation(
-    requestMessage: app_v1_app_pb.GetOrganizationsForLocationRequest,
+  getOrganizationsSharedWithLocation(
+    requestMessage: app_v1_app_pb.GetOrganizationsSharedWithLocationRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationsForLocationResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationsSharedWithLocationResponse|null) => void
   ): UnaryResponse;
-  getOrganizationsForLocation(
-    requestMessage: app_v1_app_pb.GetOrganizationsForLocationRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationsForLocationResponse|null) => void
+  getOrganizationsSharedWithLocation(
+    requestMessage: app_v1_app_pb.GetOrganizationsSharedWithLocationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationsSharedWithLocationResponse|null) => void
   ): UnaryResponse;
   listOrganizationsByUser(
     requestMessage: app_v1_app_pb.ListOrganizationsByUserRequest,
