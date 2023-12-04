@@ -3498,6 +3498,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.updateRegistryItem =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.ListRegistryItemsRequest,
+ *   !proto.viam.app.v1.ListRegistryItemsResponse>}
+ */
+const methodDescriptor_AppService_ListRegistryItems = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/ListRegistryItems',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.ListRegistryItemsRequest,
+  proto.viam.app.v1.ListRegistryItemsResponse,
+  /**
+   * @param {!proto.viam.app.v1.ListRegistryItemsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.ListRegistryItemsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.ListRegistryItemsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ListRegistryItemsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ListRegistryItemsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.listRegistryItems =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListRegistryItems',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListRegistryItems,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ListRegistryItemsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.ListRegistryItemsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.listRegistryItems =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListRegistryItems',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListRegistryItems);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.CreateModuleRequest,
  *   !proto.viam.app.v1.CreateModuleResponse>}
  */
