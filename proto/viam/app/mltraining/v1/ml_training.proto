@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package viam.app.mltraining.v1;
 
-import "app/data/v1/data.proto";
 import "google/protobuf/timestamp.proto";
 import "google/rpc/status.proto";
 import "tagger/v1/tagger.proto";
@@ -34,13 +33,15 @@ enum ModelType {
 }
 
 message SubmitTrainingJobRequest {
-  viam.app.data.v1.Filter filter = 1 [(tagger.v1.tags) = "bson:\"filter\" json:\"filter\""];
   string dataset_id = 7 [(tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
   string organization_id = 2 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
   string model_name = 3 [(tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
   string model_version = 4 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
   ModelType model_type = 5 [(tagger.v1.tags) = "bson:\"model_type\" json:\"model_type\""];
   repeated string tags = 6 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
+
+  reserved 1;
+  reserved "filter";
 }
 
 message SubmitTrainingJobResponse {
