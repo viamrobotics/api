@@ -386,6 +386,11 @@ export class MethodSettings extends jspb.Message {
   getLongRunning(): MethodSettings.LongRunning | undefined;
   setLongRunning(value?: MethodSettings.LongRunning): void;
 
+  clearAutoPopulatedFieldsList(): void;
+  getAutoPopulatedFieldsList(): Array<string>;
+  setAutoPopulatedFieldsList(value: Array<string>): void;
+  addAutoPopulatedFields(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MethodSettings.AsObject;
   static toObject(includeInstance: boolean, msg: MethodSettings): MethodSettings.AsObject;
@@ -400,6 +405,7 @@ export namespace MethodSettings {
   export type AsObject = {
     selector: string,
     longRunning?: MethodSettings.LongRunning.AsObject,
+    autoPopulatedFieldsList: Array<string>,
   }
 
   export class LongRunning extends jspb.Message {
