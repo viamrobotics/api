@@ -505,6 +505,15 @@ AppService.UpdateRegistryItem = {
   responseType: app_v1_app_pb.UpdateRegistryItemResponse
 };
 
+AppService.ListRegistryItems = {
+  methodName: "ListRegistryItems",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListRegistryItemsRequest,
+  responseType: app_v1_app_pb.ListRegistryItemsResponse
+};
+
 AppService.CreateModule = {
   methodName: "CreateModule",
   service: AppService,
@@ -2289,6 +2298,37 @@ AppServiceClient.prototype.updateRegistryItem = function updateRegistryItem(requ
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.UpdateRegistryItem, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listRegistryItems = function listRegistryItems(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListRegistryItems, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
