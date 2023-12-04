@@ -1218,10 +1218,10 @@ export namespace GetOrganizationsSharedWithLocationRequest {
 }
 
 export class GetOrganizationsSharedWithLocationResponse extends jspb.Message {
-  clearOrganizationIdsList(): void;
-  getOrganizationIdsList(): Array<Organization>;
-  setOrganizationIdsList(value: Array<Organization>): void;
-  addOrganizationIds(value?: Organization, index?: number): Organization;
+  clearOrganizationsList(): void;
+  getOrganizationsList(): Array<Organization>;
+  setOrganizationsList(value: Array<Organization>): void;
+  addOrganizations(value?: Organization, index?: number): Organization;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetOrganizationsSharedWithLocationResponse.AsObject;
@@ -1235,7 +1235,7 @@ export class GetOrganizationsSharedWithLocationResponse extends jspb.Message {
 
 export namespace GetOrganizationsSharedWithLocationResponse {
   export type AsObject = {
-    organizationIdsList: Array<Organization.AsObject>,
+    organizationsList: Array<Organization.AsObject>,
   }
 }
 

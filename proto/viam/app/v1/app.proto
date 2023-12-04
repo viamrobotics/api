@@ -493,7 +493,7 @@ message GetOrganizationsSharedWithLocationRequest {
 }
 
 message GetOrganizationsSharedWithLocationResponse {
-  repeated Organization organization_ids = 1;
+  repeated Organization organizations = 1;
 }
 
 message ListLocationsRequest {

@@ -11992,7 +11992,7 @@ proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.prototype.toObject 
  */
 proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationIdsList: jspb.Message.toObjectList(msg.getOrganizationIdsList(),
+    organizationsList: jspb.Message.toObjectList(msg.getOrganizationsList(),
     proto.viam.app.v1.Organization.toObject, includeInstance)
   };
 
@@ -12033,7 +12033,7 @@ proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.deserializeBinaryFr
     case 1:
       var value = new proto.viam.app.v1.Organization;
       reader.readMessage(value,proto.viam.app.v1.Organization.deserializeBinaryFromReader);
-      msg.addOrganizationIds(value);
+      msg.addOrganizations(value);
       break;
     default:
       reader.skipField();
@@ -12064,7 +12064,7 @@ proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.prototype.serialize
  */
 proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getOrganizationIdsList();
+  f = message.getOrganizationsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
@@ -12076,10 +12076,10 @@ proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.serializeBinaryToWr
 
 
 /**
- * repeated Organization organization_ids = 1;
+ * repeated Organization organizations = 1;
  * @return {!Array<!proto.viam.app.v1.Organization>}
  */
-proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.prototype.getOrganizationIdsList = function() {
+proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.prototype.getOrganizationsList = function() {
   return /** @type{!Array<!proto.viam.app.v1.Organization>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.viam.app.v1.Organization, 1));
 };
@@ -12089,7 +12089,7 @@ proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.prototype.getOrgani
  * @param {!Array<!proto.viam.app.v1.Organization>} value
  * @return {!proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse} returns this
 */
-proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.prototype.setOrganizationIdsList = function(value) {
+proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.prototype.setOrganizationsList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -12099,7 +12099,7 @@ proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.prototype.setOrgani
  * @param {number=} opt_index
  * @return {!proto.viam.app.v1.Organization}
  */
-proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.prototype.addOrganizationIds = function(opt_value, opt_index) {
+proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.prototype.addOrganizations = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.app.v1.Organization, opt_index);
 };
 
@@ -12108,8 +12108,8 @@ proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.prototype.addOrgani
  * Clears the list making it empty but non-null.
  * @return {!proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse} returns this
  */
-proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.prototype.clearOrganizationIdsList = function() {
-  return this.setOrganizationIdsList([]);
+proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.prototype.clearOrganizationsList = function() {
+  return this.setOrganizationsList([]);
 };
 
 
