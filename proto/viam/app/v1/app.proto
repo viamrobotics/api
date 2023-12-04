@@ -24,7 +24,7 @@ service AppService {
   rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse);
 
   // Get all organizations that have access to a location.
-  rpc GetOrganizationsSharedWithLocation(GetOrganizationsSharedWithLocationRequest) returns (GetOrganizationsSharedWithLocationResponse);
+  rpc GetOrganizationsWithAccessToLocation(GetOrganizationsWithAccessToLocationRequest) returns (GetOrganizationsWithAccessToLocationResponse);
 
   // List the organizations a user belongs to
   rpc ListOrganizationsByUser(ListOrganizationsByUserRequest) returns (ListOrganizationsByUserResponse);
@@ -488,11 +488,11 @@ message DeleteLocationRequest {
 
 message DeleteLocationResponse {}
 
-message GetOrganizationsSharedWithLocationRequest {
+message GetOrganizationsWithAccessToLocationRequest {
   string location_id = 1;
 }
 
-message GetOrganizationsSharedWithLocationResponse {
+message GetOrganizationsWithAccessToLocationResponse {
   repeated Organization organizations = 1;
 }
 

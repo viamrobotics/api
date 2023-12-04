@@ -1197,43 +1197,43 @@ export namespace DeleteLocationResponse {
   }
 }
 
-export class GetOrganizationsSharedWithLocationRequest extends jspb.Message {
+export class GetOrganizationsWithAccessToLocationRequest extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetOrganizationsSharedWithLocationRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetOrganizationsSharedWithLocationRequest): GetOrganizationsSharedWithLocationRequest.AsObject;
+  toObject(includeInstance?: boolean): GetOrganizationsWithAccessToLocationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetOrganizationsWithAccessToLocationRequest): GetOrganizationsWithAccessToLocationRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetOrganizationsSharedWithLocationRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetOrganizationsSharedWithLocationRequest;
-  static deserializeBinaryFromReader(message: GetOrganizationsSharedWithLocationRequest, reader: jspb.BinaryReader): GetOrganizationsSharedWithLocationRequest;
+  static serializeBinaryToWriter(message: GetOrganizationsWithAccessToLocationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetOrganizationsWithAccessToLocationRequest;
+  static deserializeBinaryFromReader(message: GetOrganizationsWithAccessToLocationRequest, reader: jspb.BinaryReader): GetOrganizationsWithAccessToLocationRequest;
 }
 
-export namespace GetOrganizationsSharedWithLocationRequest {
+export namespace GetOrganizationsWithAccessToLocationRequest {
   export type AsObject = {
     locationId: string,
   }
 }
 
-export class GetOrganizationsSharedWithLocationResponse extends jspb.Message {
+export class GetOrganizationsWithAccessToLocationResponse extends jspb.Message {
   clearOrganizationsList(): void;
   getOrganizationsList(): Array<Organization>;
   setOrganizationsList(value: Array<Organization>): void;
   addOrganizations(value?: Organization, index?: number): Organization;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetOrganizationsSharedWithLocationResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetOrganizationsSharedWithLocationResponse): GetOrganizationsSharedWithLocationResponse.AsObject;
+  toObject(includeInstance?: boolean): GetOrganizationsWithAccessToLocationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetOrganizationsWithAccessToLocationResponse): GetOrganizationsWithAccessToLocationResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetOrganizationsSharedWithLocationResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetOrganizationsSharedWithLocationResponse;
-  static deserializeBinaryFromReader(message: GetOrganizationsSharedWithLocationResponse, reader: jspb.BinaryReader): GetOrganizationsSharedWithLocationResponse;
+  static serializeBinaryToWriter(message: GetOrganizationsWithAccessToLocationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetOrganizationsWithAccessToLocationResponse;
+  static deserializeBinaryFromReader(message: GetOrganizationsWithAccessToLocationResponse, reader: jspb.BinaryReader): GetOrganizationsWithAccessToLocationResponse;
 }
 
-export namespace GetOrganizationsSharedWithLocationResponse {
+export namespace GetOrganizationsWithAccessToLocationResponse {
   export type AsObject = {
     organizationsList: Array<Organization.AsObject>,
   }

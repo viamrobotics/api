@@ -270,61 +270,61 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listOrganizations =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.v1.GetOrganizationsSharedWithLocationRequest,
- *   !proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse>}
+ *   !proto.viam.app.v1.GetOrganizationsWithAccessToLocationRequest,
+ *   !proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse>}
  */
-const methodDescriptor_AppService_GetOrganizationsSharedWithLocation = new grpc.web.MethodDescriptor(
-  '/viam.app.v1.AppService/GetOrganizationsSharedWithLocation',
+const methodDescriptor_AppService_GetOrganizationsWithAccessToLocation = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetOrganizationsWithAccessToLocation',
   grpc.web.MethodType.UNARY,
-  proto.viam.app.v1.GetOrganizationsSharedWithLocationRequest,
-  proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse,
+  proto.viam.app.v1.GetOrganizationsWithAccessToLocationRequest,
+  proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse,
   /**
-   * @param {!proto.viam.app.v1.GetOrganizationsSharedWithLocationRequest} request
+   * @param {!proto.viam.app.v1.GetOrganizationsWithAccessToLocationRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse.deserializeBinary
+  proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.app.v1.GetOrganizationsSharedWithLocationRequest} request The
+ * @param {!proto.viam.app.v1.GetOrganizationsWithAccessToLocationRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.v1.AppServiceClient.prototype.getOrganizationsSharedWithLocation =
+proto.viam.app.v1.AppServiceClient.prototype.getOrganizationsWithAccessToLocation =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.v1.AppService/GetOrganizationsSharedWithLocation',
+      '/viam.app.v1.AppService/GetOrganizationsWithAccessToLocation',
       request,
       metadata || {},
-      methodDescriptor_AppService_GetOrganizationsSharedWithLocation,
+      methodDescriptor_AppService_GetOrganizationsWithAccessToLocation,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.app.v1.GetOrganizationsSharedWithLocationRequest} request The
+ * @param {!proto.viam.app.v1.GetOrganizationsWithAccessToLocationRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.app.v1.GetOrganizationsSharedWithLocationResponse>}
+ * @return {!Promise<!proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.v1.AppServicePromiseClient.prototype.getOrganizationsSharedWithLocation =
+proto.viam.app.v1.AppServicePromiseClient.prototype.getOrganizationsWithAccessToLocation =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.v1.AppService/GetOrganizationsSharedWithLocation',
+      '/viam.app.v1.AppService/GetOrganizationsWithAccessToLocation',
       request,
       metadata || {},
-      methodDescriptor_AppService_GetOrganizationsSharedWithLocation);
+      methodDescriptor_AppService_GetOrganizationsWithAccessToLocation);
 };
 
 
