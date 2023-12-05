@@ -37,6 +37,15 @@ AppService.ListOrganizations = {
   responseType: app_v1_app_pb.ListOrganizationsResponse
 };
 
+AppService.GetOrganizationsWithAccessToLocation = {
+  methodName: "GetOrganizationsWithAccessToLocation",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetOrganizationsWithAccessToLocationRequest,
+  responseType: app_v1_app_pb.GetOrganizationsWithAccessToLocationResponse
+};
+
 AppService.ListOrganizationsByUser = {
   methodName: "ListOrganizationsByUser",
   service: AppService,
@@ -678,6 +687,37 @@ AppServiceClient.prototype.listOrganizations = function listOrganizations(reques
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListOrganizations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getOrganizationsWithAccessToLocation = function getOrganizationsWithAccessToLocation(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetOrganizationsWithAccessToLocation, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
