@@ -151,7 +151,7 @@ message GetPropertiesResponse {
   // Initializing the parameters with 0-values is considered an error
   DistortionParameters distortion_parameters = 3;
 
-  repeated string frame_formats = 4;
+  repeated string mime_types = 4;
 }
 
 message Webcams {
