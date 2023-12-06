@@ -49,7 +49,7 @@ service MotionService {
   // Stops a Plan
   rpc StopPlan(StopPlanRequest) returns (StopPlanResponse) {
     option (google.api.http) = {
-      get: "/viam/api/v1/service/motion/{name}/stop_plan"
+      put: "/viam/api/v1/service/motion/{name}/stop_plan"
     };
   }
 
