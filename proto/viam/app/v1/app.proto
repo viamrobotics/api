@@ -378,6 +378,15 @@ message DeleteOrganizationMemberResponse {}
 // Location
 //
 
+// Used for rendering an organization's information on the frontend (limited
+// to id, name, or both).
+message OrganizationIdentity {
+  // Organization ID.
+  string organization_id = 1;
+  // Organization name.
+  string organization_name = 2;
+}
+
 message LocationOrganization {
   // Organization ID the location is shared with.
   string organization_id = 1;
@@ -418,6 +427,8 @@ message Location {
   int32 robot_count = 7;
   // Config for how data in this location is stored.
   StorageConfig config = 8;
+  // Organization identities that the location is shared with.
+  repeated OrganizationIdentity organization_identities = 9;
 }
 
 // SharedSecret is a secret used for LocationAuth and RobotParts.
@@ -495,7 +506,7 @@ message GetOrganizationsWithAccessToLocationRequest {
 }
 
 message GetOrganizationsWithAccessToLocationResponse {
-  repeated Organization organizations = 1;
+  repeated OrganizationIdentity organization_identities = 1;
 }
 
 message ListLocationsRequest {
