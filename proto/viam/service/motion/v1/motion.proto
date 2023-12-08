@@ -76,6 +76,7 @@ service MotionService {
   // Plans are never mutated.
   // Replans always create new plans.
   // Replans share the execution_id of the previously executing plan.
+  // This currently only returns plans for MoveOnGlobe and MoveOnMap.
   rpc GetPlan(GetPlanRequest) returns (GetPlanResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/motion/{name}/get_plan"
@@ -275,7 +276,6 @@ message GetPlanRequest {
   string name = 1;
 
   // The name of the component which was requested to be moved.
-  // This currently only returns plans for MoveOnGlobe and MoveOnMap.
   common.v1.ResourceName component_name = 2;
 
   // If supplied, the response will only return
