@@ -239,7 +239,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.component.camera.v1.GetPropertiesResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.component.camera.v1.GetPropertiesResponse.repeatedFields_, null);
 };
 goog.inherits(proto.viam.component.camera.v1.GetPropertiesResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -2041,6 +2041,13 @@ proto.viam.component.camera.v1.GetPropertiesRequest.prototype.setName = function
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.component.camera.v1.GetPropertiesResponse.repeatedFields_ = [4];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -2074,7 +2081,8 @@ proto.viam.component.camera.v1.GetPropertiesResponse.toObject = function(include
   var f, obj = {
     supportsPcd: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
     intrinsicParameters: (f = msg.getIntrinsicParameters()) && proto.viam.component.camera.v1.IntrinsicParameters.toObject(includeInstance, f),
-    distortionParameters: (f = msg.getDistortionParameters()) && proto.viam.component.camera.v1.DistortionParameters.toObject(includeInstance, f)
+    distortionParameters: (f = msg.getDistortionParameters()) && proto.viam.component.camera.v1.DistortionParameters.toObject(includeInstance, f),
+    mimeTypesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2124,6 +2132,10 @@ proto.viam.component.camera.v1.GetPropertiesResponse.deserializeBinaryFromReader
       var value = new proto.viam.component.camera.v1.DistortionParameters;
       reader.readMessage(value,proto.viam.component.camera.v1.DistortionParameters.deserializeBinaryFromReader);
       msg.setDistortionParameters(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addMimeTypes(value);
       break;
     default:
       reader.skipField();
@@ -2175,6 +2187,13 @@ proto.viam.component.camera.v1.GetPropertiesResponse.serializeBinaryToWriter = f
       3,
       f,
       proto.viam.component.camera.v1.DistortionParameters.serializeBinaryToWriter
+    );
+  }
+  f = message.getMimeTypesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      4,
+      f
     );
   }
 };
@@ -2269,6 +2288,43 @@ proto.viam.component.camera.v1.GetPropertiesResponse.prototype.clearDistortionPa
  */
 proto.viam.component.camera.v1.GetPropertiesResponse.prototype.hasDistortionParameters = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * repeated string mime_types = 4;
+ * @return {!Array<string>}
+ */
+proto.viam.component.camera.v1.GetPropertiesResponse.prototype.getMimeTypesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.component.camera.v1.GetPropertiesResponse} returns this
+ */
+proto.viam.component.camera.v1.GetPropertiesResponse.prototype.setMimeTypesList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.component.camera.v1.GetPropertiesResponse} returns this
+ */
+proto.viam.component.camera.v1.GetPropertiesResponse.prototype.addMimeTypes = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.component.camera.v1.GetPropertiesResponse} returns this
+ */
+proto.viam.component.camera.v1.GetPropertiesResponse.prototype.clearMimeTypesList = function() {
+  return this.setMimeTypesList([]);
 };
 
 

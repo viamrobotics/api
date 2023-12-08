@@ -625,7 +625,7 @@ type GetPropertiesResponse struct {
 	// If camera does not provide distortion parameters, leave the field empty
 	// Initializing the parameters with 0-values is considered an error
 	DistortionParameters *DistortionParameters `protobuf:"bytes,3,opt,name=distortion_parameters,json=distortionParameters,proto3" json:"distortion_parameters,omitempty"`
-	MIMETypes            []string              `protobuf:"bytes,4,rep,name=mime_types,json=mimeTypes,proto3" json:"mime_types,omitempty"`
+	MimeTypes            []string              `protobuf:"bytes,4,rep,name=mime_types,json=mimeTypes,proto3" json:"mime_types,omitempty"`
 }
 
 func (x *GetPropertiesResponse) Reset() {
@@ -683,7 +683,7 @@ func (x *GetPropertiesResponse) GetDistortionParameters() *DistortionParameters 
 
 func (x *GetPropertiesResponse) GetMimeTypes() []string {
 	if x != nil {
-		return x.MIMETypes
+		return x.MimeTypes
 	}
 	return nil
 }
