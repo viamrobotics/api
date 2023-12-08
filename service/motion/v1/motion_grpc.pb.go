@@ -25,18 +25,21 @@ const _ = grpc.SupportPackageIsVersion7
 type MotionServiceClient interface {
 	Move(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveResponse, error)
 	MoveOnMap(ctx context.Context, in *MoveOnMapRequest, opts ...grpc.CallOption) (*MoveOnMapResponse, error)
+	// Generate a plan and move a component to a specific pose
+	// with respect to the SLAM map's origin.
+	// May replan to avoid obstacles
+	MoveOnMapNew(ctx context.Context, in *MoveOnMapNewRequest, opts ...grpc.CallOption) (*MoveOnMapNewResponse, error)
 	MoveOnGlobe(ctx context.Context, in *MoveOnGlobeRequest, opts ...grpc.CallOption) (*MoveOnGlobeResponse, error)
-	// Generate and begin executing an execution to move a component
-	// to a specific GPS coordinate.
+	// Generate a plan and move a component to a specific GPS coordinate.
 	// May replan to avoid obstacles.
-	// Create new a new plan after replanning.
 	MoveOnGlobeNew(ctx context.Context, in *MoveOnGlobeNewRequest, opts ...grpc.CallOption) (*MoveOnGlobeNewResponse, error)
 	GetPose(ctx context.Context, in *GetPoseRequest, opts ...grpc.CallOption) (*GetPoseResponse, error)
 	// Stops a Plan
 	StopPlan(ctx context.Context, in *StopPlanRequest, opts ...grpc.CallOption) (*StopPlanResponse, error)
-	// Returns the status of plans created by MoveOnGlobe requests
+	// Returns the status of plans created by requests to move components
 	// that are executing OR are part of an execution which changed it state
 	// within the a 24HR TTL OR until the robot reinitializes.
+	// This currently only returns plans for MoveOnGlobe and MoveOnMap.
 	ListPlanStatuses(ctx context.Context, in *ListPlanStatusesRequest, opts ...grpc.CallOption) (*ListPlanStatusesResponse, error)
 	// Returns the plan(s) & state history of the most recent execution to move a
 	// component. Returns a result if the last execution is still executing OR
@@ -44,6 +47,7 @@ type MotionServiceClient interface {
 	// Plans are never mutated.
 	// Replans always create new plans.
 	// Replans share the execution_id of the previously executing plan.
+	// This currently only returns plans for MoveOnGlobe and MoveOnMap.
 	GetPlan(ctx context.Context, in *GetPlanRequest, opts ...grpc.CallOption) (*GetPlanResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
@@ -69,6 +73,15 @@ func (c *motionServiceClient) Move(ctx context.Context, in *MoveRequest, opts ..
 func (c *motionServiceClient) MoveOnMap(ctx context.Context, in *MoveOnMapRequest, opts ...grpc.CallOption) (*MoveOnMapResponse, error) {
 	out := new(MoveOnMapResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/MoveOnMap", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *motionServiceClient) MoveOnMapNew(ctx context.Context, in *MoveOnMapNewRequest, opts ...grpc.CallOption) (*MoveOnMapNewResponse, error) {
+	out := new(MoveOnMapNewResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/MoveOnMapNew", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -144,18 +157,21 @@ func (c *motionServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandReq
 type MotionServiceServer interface {
 	Move(context.Context, *MoveRequest) (*MoveResponse, error)
 	MoveOnMap(context.Context, *MoveOnMapRequest) (*MoveOnMapResponse, error)
+	// Generate a plan and move a component to a specific pose
+	// with respect to the SLAM map's origin.
+	// May replan to avoid obstacles
+	MoveOnMapNew(context.Context, *MoveOnMapNewRequest) (*MoveOnMapNewResponse, error)
 	MoveOnGlobe(context.Context, *MoveOnGlobeRequest) (*MoveOnGlobeResponse, error)
-	// Generate and begin executing an execution to move a component
-	// to a specific GPS coordinate.
+	// Generate a plan and move a component to a specific GPS coordinate.
 	// May replan to avoid obstacles.
-	// Create new a new plan after replanning.
 	MoveOnGlobeNew(context.Context, *MoveOnGlobeNewRequest) (*MoveOnGlobeNewResponse, error)
 	GetPose(context.Context, *GetPoseRequest) (*GetPoseResponse, error)
 	// Stops a Plan
 	StopPlan(context.Context, *StopPlanRequest) (*StopPlanResponse, error)
-	// Returns the status of plans created by MoveOnGlobe requests
+	// Returns the status of plans created by requests to move components
 	// that are executing OR are part of an execution which changed it state
 	// within the a 24HR TTL OR until the robot reinitializes.
+	// This currently only returns plans for MoveOnGlobe and MoveOnMap.
 	ListPlanStatuses(context.Context, *ListPlanStatusesRequest) (*ListPlanStatusesResponse, error)
 	// Returns the plan(s) & state history of the most recent execution to move a
 	// component. Returns a result if the last execution is still executing OR
@@ -163,6 +179,7 @@ type MotionServiceServer interface {
 	// Plans are never mutated.
 	// Replans always create new plans.
 	// Replans share the execution_id of the previously executing plan.
+	// This currently only returns plans for MoveOnGlobe and MoveOnMap.
 	GetPlan(context.Context, *GetPlanRequest) (*GetPlanResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
@@ -178,6 +195,9 @@ func (UnimplementedMotionServiceServer) Move(context.Context, *MoveRequest) (*Mo
 }
 func (UnimplementedMotionServiceServer) MoveOnMap(context.Context, *MoveOnMapRequest) (*MoveOnMapResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoveOnMap not implemented")
+}
+func (UnimplementedMotionServiceServer) MoveOnMapNew(context.Context, *MoveOnMapNewRequest) (*MoveOnMapNewResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MoveOnMapNew not implemented")
 }
 func (UnimplementedMotionServiceServer) MoveOnGlobe(context.Context, *MoveOnGlobeRequest) (*MoveOnGlobeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoveOnGlobe not implemented")
@@ -245,6 +265,24 @@ func _MotionService_MoveOnMap_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MotionServiceServer).MoveOnMap(ctx, req.(*MoveOnMapRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MotionService_MoveOnMapNew_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MoveOnMapNewRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MotionServiceServer).MoveOnMapNew(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.motion.v1.MotionService/MoveOnMapNew",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MotionServiceServer).MoveOnMapNew(ctx, req.(*MoveOnMapNewRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -389,6 +427,10 @@ var MotionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MoveOnMap",
 			Handler:    _MotionService_MoveOnMap_Handler,
+		},
+		{
+			MethodName: "MoveOnMapNew",
+			Handler:    _MotionService_MoveOnMapNew_Handler,
 		},
 		{
 			MethodName: "MoveOnGlobe",
