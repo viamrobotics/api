@@ -150,7 +150,7 @@ message GetPropertiesResponse {
   // If camera does not provide distortion parameters, leave the field empty
   // Initializing the parameters with 0-values is considered an error
   DistortionParameters distortion_parameters = 3;
-
+  // Supported MIME types by the camera
   repeated string mime_types = 4;
 }
 
