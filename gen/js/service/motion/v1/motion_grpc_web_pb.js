@@ -210,6 +210,67 @@ proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.moveOnMap =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.motion.v1.MoveOnMapNewRequest,
+ *   !proto.viam.service.motion.v1.MoveOnMapNewResponse>}
+ */
+const methodDescriptor_MotionService_MoveOnMapNew = new grpc.web.MethodDescriptor(
+  '/viam.service.motion.v1.MotionService/MoveOnMapNew',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.motion.v1.MoveOnMapNewRequest,
+  proto.viam.service.motion.v1.MoveOnMapNewResponse,
+  /**
+   * @param {!proto.viam.service.motion.v1.MoveOnMapNewRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.motion.v1.MoveOnMapNewResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.MoveOnMapNewRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.motion.v1.MoveOnMapNewResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.motion.v1.MoveOnMapNewResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.motion.v1.MotionServiceClient.prototype.moveOnMapNew =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/MoveOnMapNew',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_MoveOnMapNew,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.motion.v1.MoveOnMapNewRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.motion.v1.MoveOnMapNewResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.moveOnMapNew =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.motion.v1.MotionService/MoveOnMapNew',
+      request,
+      metadata || {},
+      methodDescriptor_MotionService_MoveOnMapNew);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.service.motion.v1.MoveOnGlobeRequest,
  *   !proto.viam.service.motion.v1.MoveOnGlobeResponse>}
  */
