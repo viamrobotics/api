@@ -835,6 +835,30 @@ export namespace DeleteOrganizationMemberResponse {
   }
 }
 
+export class OrganizationIdentity extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getOrganizationName(): string;
+  setOrganizationName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): OrganizationIdentity.AsObject;
+  static toObject(includeInstance: boolean, msg: OrganizationIdentity): OrganizationIdentity.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: OrganizationIdentity, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): OrganizationIdentity;
+  static deserializeBinaryFromReader(message: OrganizationIdentity, reader: jspb.BinaryReader): OrganizationIdentity;
+}
+
+export namespace OrganizationIdentity {
+  export type AsObject = {
+    organizationId: string,
+    organizationName: string,
+  }
+}
+
 export class LocationOrganization extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
@@ -1218,10 +1242,10 @@ export namespace GetOrganizationsWithAccessToLocationRequest {
 }
 
 export class GetOrganizationsWithAccessToLocationResponse extends jspb.Message {
-  clearOrganizationsList(): void;
-  getOrganizationsList(): Array<Organization>;
-  setOrganizationsList(value: Array<Organization>): void;
-  addOrganizations(value?: Organization, index?: number): Organization;
+  clearOrganizationIdentitiesList(): void;
+  getOrganizationIdentitiesList(): Array<OrganizationIdentity>;
+  setOrganizationIdentitiesList(value: Array<OrganizationIdentity>): void;
+  addOrganizationIdentities(value?: OrganizationIdentity, index?: number): OrganizationIdentity;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetOrganizationsWithAccessToLocationResponse.AsObject;
@@ -1235,7 +1259,7 @@ export class GetOrganizationsWithAccessToLocationResponse extends jspb.Message {
 
 export namespace GetOrganizationsWithAccessToLocationResponse {
   export type AsObject = {
-    organizationsList: Array<Organization.AsObject>,
+    organizationIdentitiesList: Array<OrganizationIdentity.AsObject>,
   }
 }
 
