@@ -113,6 +113,13 @@ service RobotService {
       post: "/viam/api/v1/sessions/{id}/heartbeat"
     };
   }
+
+  // ModuleLog sends a log from a module to be logged by this parent robot.
+  rpc ModuleLog(ModuleLogRequest) returns (ModuleLogResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/module_log"
+    };
+  }
 }
 
 message FrameSystemConfig {
@@ -300,3 +307,14 @@ message SendSessionHeartbeatRequest {
 }
 
 message SendSessionHeartbeatResponse {}
+
+// TODO(benji): This message is not 1:1 with the analagous one used for the net
+// logger. Do we need any of "time", "logger_name", "caller", "stack", and
+// "fields"? I am assuming yes, but I started with a simple structure here.
+message ModuleLogRequest {
+  string module_name = 1;
+  string level = 2;
+  string message = 3;
+}
+
+message ModuleLogResponse {}
