@@ -33,19 +33,13 @@ service MotionService {
     };
   }
 
-  rpc MoveOnGlobe(MoveOnGlobeRequest) returns (MoveOnGlobeResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/motion/{name}/move_on_globe"
-    };
-  }
-
   // Generate and begin executing an execution to move a component
   // to a specific GPS coordinate.
   // May replan to avoid obstacles & account for location drift.
   // Creates a new plan upon replanning.
   rpc MoveOnGlobe(MoveOnGlobeRequest) returns (MoveOnGlobeResponse) {
     option (google.api.http) = {
-      get: "/viam/api/v1/service/motion/{name}/move_on_globe"
+      post: "/viam/api/v1/service/motion/{name}/move_on_globe"
     };
   }
 
