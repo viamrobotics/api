@@ -47,15 +47,6 @@ MotionService.MoveOnGlobe = {
   responseType: service_motion_v1_motion_pb.MoveOnGlobeResponse
 };
 
-MotionService.MoveOnGlobeNew = {
-  methodName: "MoveOnGlobeNew",
-  service: MotionService,
-  requestStream: false,
-  responseStream: false,
-  requestType: service_motion_v1_motion_pb.MoveOnGlobeNewRequest,
-  responseType: service_motion_v1_motion_pb.MoveOnGlobeNewResponse
-};
-
 MotionService.GetPose = {
   methodName: "GetPose",
   service: MotionService,
@@ -206,37 +197,6 @@ MotionServiceClient.prototype.moveOnGlobe = function moveOnGlobe(requestMessage,
     callback = arguments[1];
   }
   var client = grpc.unary(MotionService.MoveOnGlobe, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-MotionServiceClient.prototype.moveOnGlobeNew = function moveOnGlobeNew(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(MotionService.MoveOnGlobeNew, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
