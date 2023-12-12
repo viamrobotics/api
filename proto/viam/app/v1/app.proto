@@ -382,9 +382,9 @@ message DeleteOrganizationMemberResponse {}
 // to id, name, or both).
 message OrganizationIdentity {
   // Organization ID.
-  string organization_id = 1;
+  string id = 1;
   // Organization name.
-  string organization_name = 2;
+  string name = 2;
 }
 
 message LocationOrganization {
