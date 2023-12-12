@@ -29,10 +29,11 @@ type MotionServiceClient interface {
 	// with respect to the SLAM map's origin.
 	// May replan to avoid obstacles
 	MoveOnMapNew(ctx context.Context, in *MoveOnMapNewRequest, opts ...grpc.CallOption) (*MoveOnMapNewResponse, error)
+	// Generate and begin executing an execution to move a component
+	// to a specific GPS coordinate.
+	// May replan to avoid obstacles & account for location drift.
+	// Creates a new plan upon replanning.
 	MoveOnGlobe(ctx context.Context, in *MoveOnGlobeRequest, opts ...grpc.CallOption) (*MoveOnGlobeResponse, error)
-	// Generate a plan and move a component to a specific GPS coordinate.
-	// May replan to avoid obstacles.
-	MoveOnGlobeNew(ctx context.Context, in *MoveOnGlobeNewRequest, opts ...grpc.CallOption) (*MoveOnGlobeNewResponse, error)
 	GetPose(ctx context.Context, in *GetPoseRequest, opts ...grpc.CallOption) (*GetPoseResponse, error)
 	// Stops a Plan
 	StopPlan(ctx context.Context, in *StopPlanRequest, opts ...grpc.CallOption) (*StopPlanResponse, error)
@@ -97,15 +98,6 @@ func (c *motionServiceClient) MoveOnGlobe(ctx context.Context, in *MoveOnGlobeRe
 	return out, nil
 }
 
-func (c *motionServiceClient) MoveOnGlobeNew(ctx context.Context, in *MoveOnGlobeNewRequest, opts ...grpc.CallOption) (*MoveOnGlobeNewResponse, error) {
-	out := new(MoveOnGlobeNewResponse)
-	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/MoveOnGlobeNew", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *motionServiceClient) GetPose(ctx context.Context, in *GetPoseRequest, opts ...grpc.CallOption) (*GetPoseResponse, error) {
 	out := new(GetPoseResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/GetPose", in, out, opts...)
@@ -161,10 +153,11 @@ type MotionServiceServer interface {
 	// with respect to the SLAM map's origin.
 	// May replan to avoid obstacles
 	MoveOnMapNew(context.Context, *MoveOnMapNewRequest) (*MoveOnMapNewResponse, error)
+	// Generate and begin executing an execution to move a component
+	// to a specific GPS coordinate.
+	// May replan to avoid obstacles & account for location drift.
+	// Creates a new plan upon replanning.
 	MoveOnGlobe(context.Context, *MoveOnGlobeRequest) (*MoveOnGlobeResponse, error)
-	// Generate a plan and move a component to a specific GPS coordinate.
-	// May replan to avoid obstacles.
-	MoveOnGlobeNew(context.Context, *MoveOnGlobeNewRequest) (*MoveOnGlobeNewResponse, error)
 	GetPose(context.Context, *GetPoseRequest) (*GetPoseResponse, error)
 	// Stops a Plan
 	StopPlan(context.Context, *StopPlanRequest) (*StopPlanResponse, error)
@@ -201,9 +194,6 @@ func (UnimplementedMotionServiceServer) MoveOnMapNew(context.Context, *MoveOnMap
 }
 func (UnimplementedMotionServiceServer) MoveOnGlobe(context.Context, *MoveOnGlobeRequest) (*MoveOnGlobeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoveOnGlobe not implemented")
-}
-func (UnimplementedMotionServiceServer) MoveOnGlobeNew(context.Context, *MoveOnGlobeNewRequest) (*MoveOnGlobeNewResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method MoveOnGlobeNew not implemented")
 }
 func (UnimplementedMotionServiceServer) GetPose(context.Context, *GetPoseRequest) (*GetPoseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPose not implemented")
@@ -301,24 +291,6 @@ func _MotionService_MoveOnGlobe_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MotionServiceServer).MoveOnGlobe(ctx, req.(*MoveOnGlobeRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MotionService_MoveOnGlobeNew_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MoveOnGlobeNewRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MotionServiceServer).MoveOnGlobeNew(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.service.motion.v1.MotionService/MoveOnGlobeNew",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MotionServiceServer).MoveOnGlobeNew(ctx, req.(*MoveOnGlobeNewRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -435,10 +407,6 @@ var MotionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MoveOnGlobe",
 			Handler:    _MotionService_MoveOnGlobe_Handler,
-		},
-		{
-			MethodName: "MoveOnGlobeNew",
-			Handler:    _MotionService_MoveOnGlobeNew_Handler,
 		},
 		{
 			MethodName: "GetPose",

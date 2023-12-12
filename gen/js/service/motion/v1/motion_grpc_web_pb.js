@@ -332,67 +332,6 @@ proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.moveOnGlobe =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.service.motion.v1.MoveOnGlobeNewRequest,
- *   !proto.viam.service.motion.v1.MoveOnGlobeNewResponse>}
- */
-const methodDescriptor_MotionService_MoveOnGlobeNew = new grpc.web.MethodDescriptor(
-  '/viam.service.motion.v1.MotionService/MoveOnGlobeNew',
-  grpc.web.MethodType.UNARY,
-  proto.viam.service.motion.v1.MoveOnGlobeNewRequest,
-  proto.viam.service.motion.v1.MoveOnGlobeNewResponse,
-  /**
-   * @param {!proto.viam.service.motion.v1.MoveOnGlobeNewRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.service.motion.v1.MoveOnGlobeNewResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.service.motion.v1.MoveOnGlobeNewRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.service.motion.v1.MoveOnGlobeNewResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.motion.v1.MoveOnGlobeNewResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.service.motion.v1.MotionServiceClient.prototype.moveOnGlobeNew =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.service.motion.v1.MotionService/MoveOnGlobeNew',
-      request,
-      metadata || {},
-      methodDescriptor_MotionService_MoveOnGlobeNew,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.service.motion.v1.MoveOnGlobeNewRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.service.motion.v1.MoveOnGlobeNewResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.service.motion.v1.MotionServicePromiseClient.prototype.moveOnGlobeNew =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.service.motion.v1.MotionService/MoveOnGlobeNew',
-      request,
-      metadata || {},
-      methodDescriptor_MotionService_MoveOnGlobeNew);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.service.motion.v1.GetPoseRequest,
  *   !proto.viam.service.motion.v1.GetPoseResponse>}
  */
