@@ -261,6 +261,11 @@ export class GetPropertiesResponse extends jspb.Message {
   getDistortionParameters(): DistortionParameters | undefined;
   setDistortionParameters(value?: DistortionParameters): void;
 
+  clearMimeTypesList(): void;
+  getMimeTypesList(): Array<string>;
+  setMimeTypesList(value: Array<string>): void;
+  addMimeTypes(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
@@ -276,6 +281,7 @@ export namespace GetPropertiesResponse {
     supportsPcd: boolean,
     intrinsicParameters?: IntrinsicParameters.AsObject,
     distortionParameters?: DistortionParameters.AsObject,
+    mimeTypesList: Array<string>,
   }
 }
 
