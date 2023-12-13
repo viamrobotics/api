@@ -29,6 +29,15 @@ MotionService.MoveOnMap = {
   responseType: service_motion_v1_motion_pb.MoveOnMapResponse
 };
 
+MotionService.MoveOnMapNew = {
+  methodName: "MoveOnMapNew",
+  service: MotionService,
+  requestStream: false,
+  responseStream: false,
+  requestType: service_motion_v1_motion_pb.MoveOnMapNewRequest,
+  responseType: service_motion_v1_motion_pb.MoveOnMapNewResponse
+};
+
 MotionService.MoveOnGlobe = {
   methodName: "MoveOnGlobe",
   service: MotionService,
@@ -36,15 +45,6 @@ MotionService.MoveOnGlobe = {
   responseStream: false,
   requestType: service_motion_v1_motion_pb.MoveOnGlobeRequest,
   responseType: service_motion_v1_motion_pb.MoveOnGlobeResponse
-};
-
-MotionService.MoveOnGlobeNew = {
-  methodName: "MoveOnGlobeNew",
-  service: MotionService,
-  requestStream: false,
-  responseStream: false,
-  requestType: service_motion_v1_motion_pb.MoveOnGlobeNewRequest,
-  responseType: service_motion_v1_motion_pb.MoveOnGlobeNewResponse
 };
 
 MotionService.GetPose = {
@@ -161,11 +161,11 @@ MotionServiceClient.prototype.moveOnMap = function moveOnMap(requestMessage, met
   };
 };
 
-MotionServiceClient.prototype.moveOnGlobe = function moveOnGlobe(requestMessage, metadata, callback) {
+MotionServiceClient.prototype.moveOnMapNew = function moveOnMapNew(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(MotionService.MoveOnGlobe, {
+  var client = grpc.unary(MotionService.MoveOnMapNew, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -192,11 +192,11 @@ MotionServiceClient.prototype.moveOnGlobe = function moveOnGlobe(requestMessage,
   };
 };
 
-MotionServiceClient.prototype.moveOnGlobeNew = function moveOnGlobeNew(requestMessage, metadata, callback) {
+MotionServiceClient.prototype.moveOnGlobe = function moveOnGlobe(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(MotionService.MoveOnGlobeNew, {
+  var client = grpc.unary(MotionService.MoveOnGlobe, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
