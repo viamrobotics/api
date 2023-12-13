@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.robot.v1;
 
+import "app/v1/app.proto";
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/duration.proto";
@@ -308,13 +309,9 @@ message SendSessionHeartbeatRequest {
 
 message SendSessionHeartbeatResponse {}
 
-// TODO(benji): This message is not 1:1 with the analagous one used for the net
-// logger. Do we need any of "time", "logger_name", "caller", "stack", and
-// "fields"? I am assuming yes, but I started with a simple structure here.
 message ModuleLogRequest {
-  string module_name = 1;
-  string level = 2;
-  string message = 3;
+  // Reuse LogEntry from app proto.
+  app.v1.LogEntry log = 1;
 }
 
 message ModuleLogResponse {}
