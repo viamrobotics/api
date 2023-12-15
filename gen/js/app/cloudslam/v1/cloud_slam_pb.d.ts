@@ -362,56 +362,6 @@ export namespace GetMappingSessionMetadataByIDResponse {
   }
 }
 
-export class UpdateMappingSessionMetadataByIDRequest extends jspb.Message {
-  getSessionId(): string;
-  setSessionId(value: string): void;
-
-  getEndStatus(): EndStatusMap[keyof EndStatusMap];
-  setEndStatus(value: EndStatusMap[keyof EndStatusMap]): void;
-
-  hasTimeCloudRunJobEnded(): boolean;
-  clearTimeCloudRunJobEnded(): void;
-  getTimeCloudRunJobEnded(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setTimeCloudRunJobEnded(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
-  getErrorMsg(): string;
-  setErrorMsg(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateMappingSessionMetadataByIDRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateMappingSessionMetadataByIDRequest): UpdateMappingSessionMetadataByIDRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateMappingSessionMetadataByIDRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateMappingSessionMetadataByIDRequest;
-  static deserializeBinaryFromReader(message: UpdateMappingSessionMetadataByIDRequest, reader: jspb.BinaryReader): UpdateMappingSessionMetadataByIDRequest;
-}
-
-export namespace UpdateMappingSessionMetadataByIDRequest {
-  export type AsObject = {
-    sessionId: string,
-    endStatus: EndStatusMap[keyof EndStatusMap],
-    timeCloudRunJobEnded?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    errorMsg: string,
-  }
-}
-
-export class UpdateMappingSessionMetadataByIDResponse extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateMappingSessionMetadataByIDResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateMappingSessionMetadataByIDResponse): UpdateMappingSessionMetadataByIDResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateMappingSessionMetadataByIDResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateMappingSessionMetadataByIDResponse;
-  static deserializeBinaryFromReader(message: UpdateMappingSessionMetadataByIDResponse, reader: jspb.BinaryReader): UpdateMappingSessionMetadataByIDResponse;
-}
-
-export namespace UpdateMappingSessionMetadataByIDResponse {
-  export type AsObject = {
-  }
-}
-
 export class MappingMetadata extends jspb.Message {
   getOrgId(): string;
   setOrgId(value: string): void;
