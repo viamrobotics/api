@@ -523,6 +523,15 @@ AppService.ListRegistryItems = {
   responseType: app_v1_app_pb.ListRegistryItemsResponse
 };
 
+AppService.DeleteRegistryItem = {
+  methodName: "DeleteRegistryItem",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteRegistryItemRequest,
+  responseType: app_v1_app_pb.DeleteRegistryItemResponse
+};
+
 AppService.CreateModule = {
   methodName: "CreateModule",
   service: AppService,
@@ -2369,6 +2378,37 @@ AppServiceClient.prototype.listRegistryItems = function listRegistryItems(reques
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListRegistryItems, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteRegistryItem = function deleteRegistryItem(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteRegistryItem, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
