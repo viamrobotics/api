@@ -189,6 +189,8 @@ service AppService {
 
   rpc ListRegistryItems(ListRegistryItemsRequest) returns (ListRegistryItemsResponse);
 
+  rpc DeleteRegistryItem(DeleteRegistryItemRequest) returns (DeleteRegistryItemResponse);
+
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
 
   rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
@@ -950,6 +952,13 @@ message ListRegistryItemsRequest {
 message ListRegistryItemsResponse {
   repeated RegistryItem items = 1;
 }
+
+message DeleteRegistryItemRequest {
+  // The id of the item (formatted as prefix:name where prefix is the owner's orgid or namespace)
+  string item_id = 1;
+}
+
+message DeleteRegistryItemResponse {}
 
 // Modules
 message CreateModuleRequest {
