@@ -3559,6 +3559,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listRegistryItems =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeleteRegistryItemRequest,
+ *   !proto.viam.app.v1.DeleteRegistryItemResponse>}
+ */
+const methodDescriptor_AppService_DeleteRegistryItem = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeleteRegistryItem',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeleteRegistryItemRequest,
+  proto.viam.app.v1.DeleteRegistryItemResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeleteRegistryItemRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeleteRegistryItemResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteRegistryItemRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeleteRegistryItemResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeleteRegistryItemResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deleteRegistryItem =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteRegistryItem',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteRegistryItem,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteRegistryItemRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeleteRegistryItemResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deleteRegistryItem =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteRegistryItem',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteRegistryItem);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.CreateModuleRequest,
  *   !proto.viam.app.v1.CreateModuleResponse>}
  */

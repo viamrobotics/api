@@ -136,6 +136,7 @@ type AppServiceClient interface {
 	CreateRegistryItem(ctx context.Context, in *CreateRegistryItemRequest, opts ...grpc.CallOption) (*CreateRegistryItemResponse, error)
 	UpdateRegistryItem(ctx context.Context, in *UpdateRegistryItemRequest, opts ...grpc.CallOption) (*UpdateRegistryItemResponse, error)
 	ListRegistryItems(ctx context.Context, in *ListRegistryItemsRequest, opts ...grpc.CallOption) (*ListRegistryItemsResponse, error)
+	DeleteRegistryItem(ctx context.Context, in *DeleteRegistryItemRequest, opts ...grpc.CallOption) (*DeleteRegistryItemResponse, error)
 	CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error)
 	UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error)
 	UploadModuleFile(ctx context.Context, opts ...grpc.CallOption) (AppService_UploadModuleFileClient, error)
@@ -692,6 +693,15 @@ func (c *appServiceClient) ListRegistryItems(ctx context.Context, in *ListRegist
 	return out, nil
 }
 
+func (c *appServiceClient) DeleteRegistryItem(ctx context.Context, in *DeleteRegistryItemRequest, opts ...grpc.CallOption) (*DeleteRegistryItemResponse, error) {
+	out := new(DeleteRegistryItemResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteRegistryItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error) {
 	out := new(CreateModuleResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateModule", in, out, opts...)
@@ -925,6 +935,7 @@ type AppServiceServer interface {
 	CreateRegistryItem(context.Context, *CreateRegistryItemRequest) (*CreateRegistryItemResponse, error)
 	UpdateRegistryItem(context.Context, *UpdateRegistryItemRequest) (*UpdateRegistryItemResponse, error)
 	ListRegistryItems(context.Context, *ListRegistryItemsRequest) (*ListRegistryItemsResponse, error)
+	DeleteRegistryItem(context.Context, *DeleteRegistryItemRequest) (*DeleteRegistryItemResponse, error)
 	CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error)
 	UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error)
 	UploadModuleFile(AppService_UploadModuleFileServer) error
@@ -1112,6 +1123,9 @@ func (UnimplementedAppServiceServer) UpdateRegistryItem(context.Context, *Update
 }
 func (UnimplementedAppServiceServer) ListRegistryItems(context.Context, *ListRegistryItemsRequest) (*ListRegistryItemsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListRegistryItems not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteRegistryItem(context.Context, *DeleteRegistryItemRequest) (*DeleteRegistryItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRegistryItem not implemented")
 }
 func (UnimplementedAppServiceServer) CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateModule not implemented")
@@ -2185,6 +2199,24 @@ func _AppService_ListRegistryItems_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_DeleteRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRegistryItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteRegistryItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteRegistryItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteRegistryItem(ctx, req.(*DeleteRegistryItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_CreateModule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateModuleRequest)
 	if err := dec(in); err != nil {
@@ -2603,6 +2635,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListRegistryItems",
 			Handler:    _AppService_ListRegistryItems_Handler,
+		},
+		{
+			MethodName: "DeleteRegistryItem",
+			Handler:    _AppService_DeleteRegistryItem_Handler,
 		},
 		{
 			MethodName: "CreateModule",

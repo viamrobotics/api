@@ -517,6 +517,15 @@ type AppServiceListRegistryItems = {
   readonly responseType: typeof app_v1_app_pb.ListRegistryItemsResponse;
 };
 
+type AppServiceDeleteRegistryItem = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteRegistryItemRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteRegistryItemResponse;
+};
+
 type AppServiceCreateModule = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -666,6 +675,7 @@ export class AppService {
   static readonly CreateRegistryItem: AppServiceCreateRegistryItem;
   static readonly UpdateRegistryItem: AppServiceUpdateRegistryItem;
   static readonly ListRegistryItems: AppServiceListRegistryItems;
+  static readonly DeleteRegistryItem: AppServiceDeleteRegistryItem;
   static readonly CreateModule: AppServiceCreateModule;
   static readonly UpdateModule: AppServiceUpdateModule;
   static readonly UploadModuleFile: AppServiceUploadModuleFile;
@@ -1214,6 +1224,15 @@ export class AppServiceClient {
   listRegistryItems(
     requestMessage: app_v1_app_pb.ListRegistryItemsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRegistryItemsResponse|null) => void
+  ): UnaryResponse;
+  deleteRegistryItem(
+    requestMessage: app_v1_app_pb.DeleteRegistryItemRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  deleteRegistryItem(
+    requestMessage: app_v1_app_pb.DeleteRegistryItemRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRegistryItemResponse|null) => void
   ): UnaryResponse;
   createModule(
     requestMessage: app_v1_app_pb.CreateModuleRequest,

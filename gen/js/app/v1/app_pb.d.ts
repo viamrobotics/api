@@ -3374,6 +3374,42 @@ export namespace ListRegistryItemsResponse {
   }
 }
 
+export class DeleteRegistryItemRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteRegistryItemRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteRegistryItemRequest): DeleteRegistryItemRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteRegistryItemRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteRegistryItemRequest;
+  static deserializeBinaryFromReader(message: DeleteRegistryItemRequest, reader: jspb.BinaryReader): DeleteRegistryItemRequest;
+}
+
+export namespace DeleteRegistryItemRequest {
+  export type AsObject = {
+    itemId: string,
+  }
+}
+
+export class DeleteRegistryItemResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteRegistryItemResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteRegistryItemResponse): DeleteRegistryItemResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteRegistryItemResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteRegistryItemResponse;
+  static deserializeBinaryFromReader(message: DeleteRegistryItemResponse, reader: jspb.BinaryReader): DeleteRegistryItemResponse;
+}
+
+export namespace DeleteRegistryItemResponse {
+  export type AsObject = {
+  }
+}
+
 export class CreateModuleRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
