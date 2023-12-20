@@ -490,6 +490,15 @@ type AppServiceCheckPermissions = {
   readonly responseType: typeof app_v1_app_pb.CheckPermissionsResponse;
 };
 
+type AppServiceGetRegistryItem = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetRegistryItemRequest;
+  readonly responseType: typeof app_v1_app_pb.GetRegistryItemResponse;
+};
+
 type AppServiceCreateRegistryItem = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -672,6 +681,7 @@ export class AppService {
   static readonly ChangeRole: AppServiceChangeRole;
   static readonly ListAuthorizations: AppServiceListAuthorizations;
   static readonly CheckPermissions: AppServiceCheckPermissions;
+  static readonly GetRegistryItem: AppServiceGetRegistryItem;
   static readonly CreateRegistryItem: AppServiceCreateRegistryItem;
   static readonly UpdateRegistryItem: AppServiceUpdateRegistryItem;
   static readonly ListRegistryItems: AppServiceListRegistryItems;
@@ -1197,6 +1207,15 @@ export class AppServiceClient {
   checkPermissions(
     requestMessage: app_v1_app_pb.CheckPermissionsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CheckPermissionsResponse|null) => void
+  ): UnaryResponse;
+  getRegistryItem(
+    requestMessage: app_v1_app_pb.GetRegistryItemRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  getRegistryItem(
+    requestMessage: app_v1_app_pb.GetRegistryItemRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRegistryItemResponse|null) => void
   ): UnaryResponse;
   createRegistryItem(
     requestMessage: app_v1_app_pb.CreateRegistryItemRequest,

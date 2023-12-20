@@ -133,6 +133,7 @@ type AppServiceClient interface {
 	ListAuthorizations(ctx context.Context, in *ListAuthorizationsRequest, opts ...grpc.CallOption) (*ListAuthorizationsResponse, error)
 	// Validates a permission for the current user
 	CheckPermissions(ctx context.Context, in *CheckPermissionsRequest, opts ...grpc.CallOption) (*CheckPermissionsResponse, error)
+	GetRegistryItem(ctx context.Context, in *GetRegistryItemRequest, opts ...grpc.CallOption) (*GetRegistryItemResponse, error)
 	CreateRegistryItem(ctx context.Context, in *CreateRegistryItemRequest, opts ...grpc.CallOption) (*CreateRegistryItemResponse, error)
 	UpdateRegistryItem(ctx context.Context, in *UpdateRegistryItemRequest, opts ...grpc.CallOption) (*UpdateRegistryItemResponse, error)
 	ListRegistryItems(ctx context.Context, in *ListRegistryItemsRequest, opts ...grpc.CallOption) (*ListRegistryItemsResponse, error)
@@ -666,6 +667,15 @@ func (c *appServiceClient) CheckPermissions(ctx context.Context, in *CheckPermis
 	return out, nil
 }
 
+func (c *appServiceClient) GetRegistryItem(ctx context.Context, in *GetRegistryItemRequest, opts ...grpc.CallOption) (*GetRegistryItemResponse, error) {
+	out := new(GetRegistryItemResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRegistryItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) CreateRegistryItem(ctx context.Context, in *CreateRegistryItemRequest, opts ...grpc.CallOption) (*CreateRegistryItemResponse, error) {
 	out := new(CreateRegistryItemResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateRegistryItem", in, out, opts...)
@@ -932,6 +942,7 @@ type AppServiceServer interface {
 	ListAuthorizations(context.Context, *ListAuthorizationsRequest) (*ListAuthorizationsResponse, error)
 	// Validates a permission for the current user
 	CheckPermissions(context.Context, *CheckPermissionsRequest) (*CheckPermissionsResponse, error)
+	GetRegistryItem(context.Context, *GetRegistryItemRequest) (*GetRegistryItemResponse, error)
 	CreateRegistryItem(context.Context, *CreateRegistryItemRequest) (*CreateRegistryItemResponse, error)
 	UpdateRegistryItem(context.Context, *UpdateRegistryItemRequest) (*UpdateRegistryItemResponse, error)
 	ListRegistryItems(context.Context, *ListRegistryItemsRequest) (*ListRegistryItemsResponse, error)
@@ -1114,6 +1125,9 @@ func (UnimplementedAppServiceServer) ListAuthorizations(context.Context, *ListAu
 }
 func (UnimplementedAppServiceServer) CheckPermissions(context.Context, *CheckPermissionsRequest) (*CheckPermissionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckPermissions not implemented")
+}
+func (UnimplementedAppServiceServer) GetRegistryItem(context.Context, *GetRegistryItemRequest) (*GetRegistryItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRegistryItem not implemented")
 }
 func (UnimplementedAppServiceServer) CreateRegistryItem(context.Context, *CreateRegistryItemRequest) (*CreateRegistryItemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateRegistryItem not implemented")
@@ -2145,6 +2159,24 @@ func _AppService_CheckPermissions_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_GetRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRegistryItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetRegistryItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetRegistryItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetRegistryItem(ctx, req.(*GetRegistryItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_CreateRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateRegistryItemRequest)
 	if err := dec(in); err != nil {
@@ -2623,6 +2655,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckPermissions",
 			Handler:    _AppService_CheckPermissions_Handler,
+		},
+		{
+			MethodName: "GetRegistryItem",
+			Handler:    _AppService_GetRegistryItem_Handler,
 		},
 		{
 			MethodName: "CreateRegistryItem",
