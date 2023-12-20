@@ -9,6 +9,20 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/component/movementsensor/v1";
 option java_package = "com.viam.component.movementsensor.v1";
 
+// The meaning of each fix value is documented here
+// https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm#GPSQualityIndicators
+enum NmeaGGAFix {
+  NMEA_GGA_FIX_INVALID_UNSPECIFIED = 0;
+  NMEA_GGA_FIX_GNSS = 1;
+  NMEA_GGA_FIX_DGPS = 2;
+  NMEA_GGA_FIX_PPS = 3;
+  NMEA_GGA_FIX_RTK_FIXED = 4;
+  NMEA_GGA_FIX_RTK_FLOAT = 5;
+  NMEA_GGA_FIX_DEAD_RECKONING = 6;
+  NMEA_GGA_FIX_MANUAL = 7;
+  NMEA_GGA_FIX_SIMULATION = 8;
+}
+
 service MovementSensorService {
   rpc GetLinearVelocity(GetLinearVelocityRequest) returns (GetLinearVelocityResponse) {
     option (google.api.http) = {
@@ -168,6 +182,10 @@ message GetAccuracyRequest {
 
 message GetAccuracyResponse {
   map<string, float> accuracy = 1;
+  optional float position_hdop = 2;
+  optional float position_vdop = 3;
+  optional NmeaGGAFix position_nmea_gga_fix = 4;
+  optional float compass_dgree_error = 5;
 }
 
 message GetLinearAccelerationRequest {
