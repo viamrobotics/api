@@ -3202,6 +3202,48 @@ export namespace RegistryItem {
   }
 }
 
+export class GetRegistryItemRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetRegistryItemRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRegistryItemRequest): GetRegistryItemRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetRegistryItemRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRegistryItemRequest;
+  static deserializeBinaryFromReader(message: GetRegistryItemRequest, reader: jspb.BinaryReader): GetRegistryItemRequest;
+}
+
+export namespace GetRegistryItemRequest {
+  export type AsObject = {
+    itemId: string,
+  }
+}
+
+export class GetRegistryItemResponse extends jspb.Message {
+  hasItem(): boolean;
+  clearItem(): void;
+  getItem(): RegistryItem | undefined;
+  setItem(value?: RegistryItem): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetRegistryItemResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRegistryItemResponse): GetRegistryItemResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetRegistryItemResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRegistryItemResponse;
+  static deserializeBinaryFromReader(message: GetRegistryItemResponse, reader: jspb.BinaryReader): GetRegistryItemResponse;
+}
+
+export namespace GetRegistryItemResponse {
+  export type AsObject = {
+    item?: RegistryItem.AsObject,
+  }
+}
+
 export class CreateRegistryItemRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
