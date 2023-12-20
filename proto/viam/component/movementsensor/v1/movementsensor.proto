@@ -9,6 +9,9 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/component/movementsensor/v1";
 option java_package = "com.viam.component.movementsensor.v1";
 
+// NmeaGGAFix includes fix quality of a GPS which is obtained from the GGA message.
+// More information on GGA messages here
+// https://receiverhelp.trimble.com/alloy-gnss/en-us/NMEA-0183messages_GGA.html
 // The meaning of each fix value is documented here
 // https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm#GPSQualityIndicators
 enum NmeaGGAFix {
@@ -185,7 +188,7 @@ message GetAccuracyResponse {
   optional float position_hdop = 2;
   optional float position_vdop = 3;
   optional NmeaGGAFix position_nmea_gga_fix = 4;
-  optional float compass_dgree_error = 5;
+  optional float compass_degree_error = 5;
 }
 
 message GetLinearAccelerationRequest {
