@@ -9,6 +9,8 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/component/movementsensor/v1";
 option java_package = "com.viam.component.movementsensor.v1";
 
+// The meaning of each fix value is documented here
+// https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm#GPSQualityIndicators
 enum NmeaGGAFix {
   NMEA_GGA_FIX_INVALID_UNSPECIFIED = 0;
   NMEA_GGA_FIX_GNSS = 1;
