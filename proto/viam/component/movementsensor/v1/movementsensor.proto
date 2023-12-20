@@ -12,6 +12,7 @@ option java_package = "com.viam.component.movementsensor.v1";
 // NmeaGGAFix includes fix quality of a GPS which is obtained from the GGA message.
 // More information on GGA messages here
 // https://receiverhelp.trimble.com/alloy-gnss/en-us/NMEA-0183messages_GGA.html
+// Generally a fix of 1 or 2 is bad, ideally we want a fix of 4-5 or higher. 
 // The meaning of each fix value is documented here
 // https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm#GPSQualityIndicators
 enum NmeaGGAFix {
