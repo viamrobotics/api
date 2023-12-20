@@ -183,6 +183,8 @@ service AppService {
   // Validates a permission for the current user
   rpc CheckPermissions(CheckPermissionsRequest) returns (CheckPermissionsResponse);
 
+  rpc GetRegistryItem(GetRegistryItemRequest) returns (GetRegistryItemResponse);
+
   rpc CreateRegistryItem(CreateRegistryItemRequest) returns (CreateRegistryItemResponse);
 
   rpc UpdateRegistryItem(UpdateRegistryItemRequest) returns (UpdateRegistryItemResponse);
@@ -910,6 +912,14 @@ message RegistryItem {
     ModuleMetadata module_metadata = 11;
     MLModelMetadata ml_model_metadata = 12;
   }
+}
+
+message GetRegistryItemRequest {
+  string item_id = 1;
+}
+
+message GetRegistryItemResponse {
+  RegistryItem item = 1; 
 }
 
 message CreateRegistryItemRequest {
