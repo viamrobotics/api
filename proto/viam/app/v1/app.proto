@@ -919,7 +919,7 @@ message GetRegistryItemRequest {
 }
 
 message GetRegistryItemResponse {
-  RegistryItem item = 1; 
+  RegistryItem item = 1;
 }
 
 message CreateRegistryItemRequest {
