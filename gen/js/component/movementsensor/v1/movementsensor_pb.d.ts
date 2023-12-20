@@ -343,6 +343,18 @@ export namespace GetAccuracyRequest {
 export class GetAccuracyResponse extends jspb.Message {
   getAccuracyMap(): jspb.Map<string, number>;
   clearAccuracyMap(): void;
+  getPositionHdop(): number;
+  setPositionHdop(value: number): void;
+
+  getPositionVdop(): number;
+  setPositionVdop(value: number): void;
+
+  getPositionNmeaGgaFix(): NmeaGGAFixMap[keyof NmeaGGAFixMap];
+  setPositionNmeaGgaFix(value: NmeaGGAFixMap[keyof NmeaGGAFixMap]): void;
+
+  getCompassDgreeError(): number;
+  setCompassDgreeError(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAccuracyResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetAccuracyResponse): GetAccuracyResponse.AsObject;
@@ -356,6 +368,10 @@ export class GetAccuracyResponse extends jspb.Message {
 export namespace GetAccuracyResponse {
   export type AsObject = {
     accuracyMap: Array<[string, number]>,
+    positionHdop: number,
+    positionVdop: number,
+    positionNmeaGgaFix: NmeaGGAFixMap[keyof NmeaGGAFixMap],
+    compassDgreeError: number,
   }
 }
 
@@ -406,4 +422,18 @@ export namespace GetLinearAccelerationResponse {
     linearAcceleration?: common_v1_common_pb.Vector3.AsObject,
   }
 }
+
+export interface NmeaGGAFixMap {
+  NMEA_GGA_FIX_INVALID_UNSPECIFIED: 0;
+  NMEA_GGA_FIX_GNSS: 1;
+  NMEA_GGA_FIX_DGPS: 2;
+  NMEA_GGA_FIX_PPS: 3;
+  NMEA_GGA_FIX_RTK_FIXED: 4;
+  NMEA_GGA_FIX_RTK_FLOAT: 5;
+  NMEA_GGA_FIX_DEAD_RECKONING: 6;
+  NMEA_GGA_FIX_MANUAL: 7;
+  NMEA_GGA_FIX_SIMULATION: 8;
+}
+
+export const NmeaGGAFix: NmeaGGAFixMap;
 
