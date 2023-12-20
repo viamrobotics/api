@@ -343,15 +343,23 @@ export namespace GetAccuracyRequest {
 export class GetAccuracyResponse extends jspb.Message {
   getAccuracyMap(): jspb.Map<string, number>;
   clearAccuracyMap(): void;
+  hasPositionHdop(): boolean;
+  clearPositionHdop(): void;
   getPositionHdop(): number;
   setPositionHdop(value: number): void;
 
+  hasPositionVdop(): boolean;
+  clearPositionVdop(): void;
   getPositionVdop(): number;
   setPositionVdop(value: number): void;
 
+  hasPositionNmeaGgaFix(): boolean;
+  clearPositionNmeaGgaFix(): void;
   getPositionNmeaGgaFix(): NmeaGGAFixMap[keyof NmeaGGAFixMap];
   setPositionNmeaGgaFix(value: NmeaGGAFixMap[keyof NmeaGGAFixMap]): void;
 
+  hasCompassDgreeError(): boolean;
+  clearCompassDgreeError(): void;
   getCompassDgreeError(): number;
   setCompassDgreeError(value: number): void;
 

@@ -180,10 +180,10 @@ message GetAccuracyRequest {
 
 message GetAccuracyResponse {
   map<string, float> accuracy = 1;
-  float position_hdop = 2;
-  float position_vdop = 3;
-  NmeaGGAFix position_nmea_gga_fix = 4;
-  float compass_dgree_error = 5;
+  optional float position_hdop = 2;
+  optional float position_vdop = 3;
+  optional NmeaGGAFix position_nmea_gga_fix = 4;
+  optional float compass_dgree_error = 5;
 }
 
 message GetLinearAccelerationRequest {

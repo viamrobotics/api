@@ -2813,29 +2813,29 @@ proto.viam.component.movementsensor.v1.GetAccuracyResponse.serializeBinaryToWrit
   if (f && f.getLength() > 0) {
     f.serializeBinary(1, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeFloat);
   }
-  f = message.getPositionHdop();
-  if (f !== 0.0) {
+  f = /** @type {number} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
     writer.writeFloat(
       2,
       f
     );
   }
-  f = message.getPositionVdop();
-  if (f !== 0.0) {
+  f = /** @type {number} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
     writer.writeFloat(
       3,
       f
     );
   }
-  f = message.getPositionNmeaGgaFix();
-  if (f !== 0.0) {
+  f = /** @type {!proto.viam.component.movementsensor.v1.NmeaGGAFix} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
     writer.writeEnum(
       4,
       f
     );
   }
-  f = message.getCompassDgreeError();
-  if (f !== 0.0) {
+  f = /** @type {number} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
     writer.writeFloat(
       5,
       f
@@ -2880,7 +2880,25 @@ proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.getPosition
  * @return {!proto.viam.component.movementsensor.v1.GetAccuracyResponse} returns this
  */
 proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.setPositionHdop = function(value) {
-  return jspb.Message.setProto3FloatField(this, 2, value);
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.component.movementsensor.v1.GetAccuracyResponse} returns this
+ */
+proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.clearPositionHdop = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.hasPositionHdop = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -2898,7 +2916,25 @@ proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.getPosition
  * @return {!proto.viam.component.movementsensor.v1.GetAccuracyResponse} returns this
  */
 proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.setPositionVdop = function(value) {
-  return jspb.Message.setProto3FloatField(this, 3, value);
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.component.movementsensor.v1.GetAccuracyResponse} returns this
+ */
+proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.clearPositionVdop = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.hasPositionVdop = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -2916,7 +2952,25 @@ proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.getPosition
  * @return {!proto.viam.component.movementsensor.v1.GetAccuracyResponse} returns this
  */
 proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.setPositionNmeaGgaFix = function(value) {
-  return jspb.Message.setProto3EnumField(this, 4, value);
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.component.movementsensor.v1.GetAccuracyResponse} returns this
+ */
+proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.clearPositionNmeaGgaFix = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.hasPositionNmeaGgaFix = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -2934,7 +2988,25 @@ proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.getCompassD
  * @return {!proto.viam.component.movementsensor.v1.GetAccuracyResponse} returns this
  */
 proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.setCompassDgreeError = function(value) {
-  return jspb.Message.setProto3FloatField(this, 5, value);
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.component.movementsensor.v1.GetAccuracyResponse} returns this
+ */
+proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.clearCompassDgreeError = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.hasCompassDgreeError = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
