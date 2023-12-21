@@ -58,15 +58,6 @@ type CloudSLAMServiceGetMappingSessionMetadataByID = {
   readonly responseType: typeof app_cloudslam_v1_cloud_slam_pb.GetMappingSessionMetadataByIDResponse;
 };
 
-type CloudSLAMServiceUpdateMappingSessionMetadataByID = {
-  readonly methodName: string;
-  readonly service: typeof CloudSLAMService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof app_cloudslam_v1_cloud_slam_pb.UpdateMappingSessionMetadataByIDRequest;
-  readonly responseType: typeof app_cloudslam_v1_cloud_slam_pb.UpdateMappingSessionMetadataByIDResponse;
-};
-
 export class CloudSLAMService {
   static readonly serviceName: string;
   static readonly StartMappingSession: CloudSLAMServiceStartMappingSession;
@@ -75,7 +66,6 @@ export class CloudSLAMService {
   static readonly ListMappingSessions: CloudSLAMServiceListMappingSessions;
   static readonly StopMappingSession: CloudSLAMServiceStopMappingSession;
   static readonly GetMappingSessionMetadataByID: CloudSLAMServiceGetMappingSessionMetadataByID;
-  static readonly UpdateMappingSessionMetadataByID: CloudSLAMServiceUpdateMappingSessionMetadataByID;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -163,15 +153,6 @@ export class CloudSLAMServiceClient {
   getMappingSessionMetadataByID(
     requestMessage: app_cloudslam_v1_cloud_slam_pb.GetMappingSessionMetadataByIDRequest,
     callback: (error: ServiceError|null, responseMessage: app_cloudslam_v1_cloud_slam_pb.GetMappingSessionMetadataByIDResponse|null) => void
-  ): UnaryResponse;
-  updateMappingSessionMetadataByID(
-    requestMessage: app_cloudslam_v1_cloud_slam_pb.UpdateMappingSessionMetadataByIDRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_cloudslam_v1_cloud_slam_pb.UpdateMappingSessionMetadataByIDResponse|null) => void
-  ): UnaryResponse;
-  updateMappingSessionMetadataByID(
-    requestMessage: app_cloudslam_v1_cloud_slam_pb.UpdateMappingSessionMetadataByIDRequest,
-    callback: (error: ServiceError|null, responseMessage: app_cloudslam_v1_cloud_slam_pb.UpdateMappingSessionMetadataByIDResponse|null) => void
   ): UnaryResponse;
 }
 

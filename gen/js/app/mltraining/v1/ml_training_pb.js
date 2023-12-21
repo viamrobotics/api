@@ -15,8 +15,6 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
-var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js');
-goog.object.extend(proto, app_data_v1_data_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
 var google_rpc_status_pb = require('../../../google/rpc/status_pb.js');
@@ -306,7 +304,6 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.toObject = funct
  */
 proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    filter: (f = msg.getFilter()) && app_data_v1_data_pb.Filter.toObject(includeInstance, f),
     datasetId: jspb.Message.getFieldWithDefault(msg, 7, ""),
     organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     modelName: jspb.Message.getFieldWithDefault(msg, 3, ""),
@@ -349,11 +346,6 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.deserializeBinaryFromReade
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new app_data_v1_data_pb.Filter;
-      reader.readMessage(value,app_data_v1_data_pb.Filter.deserializeBinaryFromReader);
-      msg.setFilter(value);
-      break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setDatasetId(value);
@@ -407,14 +399,6 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.serializeBinary 
  */
 proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getFilter();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      app_data_v1_data_pb.Filter.serializeBinaryToWriter
-    );
-  }
   f = message.getDatasetId();
   if (f.length > 0) {
     writer.writeString(
@@ -457,43 +441,6 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.serializeBinaryToWriter = 
       f
     );
   }
-};
-
-
-/**
- * optional viam.app.data.v1.Filter filter = 1;
- * @return {?proto.viam.app.data.v1.Filter}
- */
-proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.getFilter = function() {
-  return /** @type{?proto.viam.app.data.v1.Filter} */ (
-    jspb.Message.getWrapperField(this, app_data_v1_data_pb.Filter, 1));
-};
-
-
-/**
- * @param {?proto.viam.app.data.v1.Filter|undefined} value
- * @return {!proto.viam.app.mltraining.v1.SubmitTrainingJobRequest} returns this
-*/
-proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.setFilter = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.app.mltraining.v1.SubmitTrainingJobRequest} returns this
- */
-proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.clearFilter = function() {
-  return this.setFilter(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.hasFilter = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 

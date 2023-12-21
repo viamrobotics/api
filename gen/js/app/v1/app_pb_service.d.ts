@@ -31,6 +31,15 @@ type AppServiceListOrganizations = {
   readonly responseType: typeof app_v1_app_pb.ListOrganizationsResponse;
 };
 
+type AppServiceGetOrganizationsWithAccessToLocation = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetOrganizationsWithAccessToLocationRequest;
+  readonly responseType: typeof app_v1_app_pb.GetOrganizationsWithAccessToLocationResponse;
+};
+
 type AppServiceListOrganizationsByUser = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -481,6 +490,15 @@ type AppServiceCheckPermissions = {
   readonly responseType: typeof app_v1_app_pb.CheckPermissionsResponse;
 };
 
+type AppServiceGetRegistryItem = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetRegistryItemRequest;
+  readonly responseType: typeof app_v1_app_pb.GetRegistryItemResponse;
+};
+
 type AppServiceCreateRegistryItem = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -497,6 +515,24 @@ type AppServiceUpdateRegistryItem = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.UpdateRegistryItemRequest;
   readonly responseType: typeof app_v1_app_pb.UpdateRegistryItemResponse;
+};
+
+type AppServiceListRegistryItems = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListRegistryItemsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListRegistryItemsResponse;
+};
+
+type AppServiceDeleteRegistryItem = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteRegistryItemRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteRegistryItemResponse;
 };
 
 type AppServiceCreateModule = {
@@ -594,6 +630,7 @@ export class AppService {
   static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
   static readonly CreateOrganization: AppServiceCreateOrganization;
   static readonly ListOrganizations: AppServiceListOrganizations;
+  static readonly GetOrganizationsWithAccessToLocation: AppServiceGetOrganizationsWithAccessToLocation;
   static readonly ListOrganizationsByUser: AppServiceListOrganizationsByUser;
   static readonly GetOrganization: AppServiceGetOrganization;
   static readonly GetOrganizationNamespaceAvailability: AppServiceGetOrganizationNamespaceAvailability;
@@ -644,8 +681,11 @@ export class AppService {
   static readonly ChangeRole: AppServiceChangeRole;
   static readonly ListAuthorizations: AppServiceListAuthorizations;
   static readonly CheckPermissions: AppServiceCheckPermissions;
+  static readonly GetRegistryItem: AppServiceGetRegistryItem;
   static readonly CreateRegistryItem: AppServiceCreateRegistryItem;
   static readonly UpdateRegistryItem: AppServiceUpdateRegistryItem;
+  static readonly ListRegistryItems: AppServiceListRegistryItems;
+  static readonly DeleteRegistryItem: AppServiceDeleteRegistryItem;
   static readonly CreateModule: AppServiceCreateModule;
   static readonly UpdateModule: AppServiceUpdateModule;
   static readonly UploadModuleFile: AppServiceUploadModuleFile;
@@ -716,6 +756,15 @@ export class AppServiceClient {
   listOrganizations(
     requestMessage: app_v1_app_pb.ListOrganizationsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationsWithAccessToLocation(
+    requestMessage: app_v1_app_pb.GetOrganizationsWithAccessToLocationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationsWithAccessToLocationResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationsWithAccessToLocation(
+    requestMessage: app_v1_app_pb.GetOrganizationsWithAccessToLocationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationsWithAccessToLocationResponse|null) => void
   ): UnaryResponse;
   listOrganizationsByUser(
     requestMessage: app_v1_app_pb.ListOrganizationsByUserRequest,
@@ -1159,6 +1208,15 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.CheckPermissionsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CheckPermissionsResponse|null) => void
   ): UnaryResponse;
+  getRegistryItem(
+    requestMessage: app_v1_app_pb.GetRegistryItemRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  getRegistryItem(
+    requestMessage: app_v1_app_pb.GetRegistryItemRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRegistryItemResponse|null) => void
+  ): UnaryResponse;
   createRegistryItem(
     requestMessage: app_v1_app_pb.CreateRegistryItemRequest,
     metadata: grpc.Metadata,
@@ -1176,6 +1234,24 @@ export class AppServiceClient {
   updateRegistryItem(
     requestMessage: app_v1_app_pb.UpdateRegistryItemRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  listRegistryItems(
+    requestMessage: app_v1_app_pb.ListRegistryItemsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRegistryItemsResponse|null) => void
+  ): UnaryResponse;
+  listRegistryItems(
+    requestMessage: app_v1_app_pb.ListRegistryItemsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRegistryItemsResponse|null) => void
+  ): UnaryResponse;
+  deleteRegistryItem(
+    requestMessage: app_v1_app_pb.DeleteRegistryItemRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  deleteRegistryItem(
+    requestMessage: app_v1_app_pb.DeleteRegistryItemRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRegistryItemResponse|null) => void
   ): UnaryResponse;
   createModule(
     requestMessage: app_v1_app_pb.CreateModuleRequest,

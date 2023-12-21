@@ -15,7 +15,6 @@ service CloudSLAMService {
   rpc ListMappingSessions(ListMappingSessionsRequest) returns (ListMappingSessionsResponse);
   rpc StopMappingSession(StopMappingSessionRequest) returns (StopMappingSessionResponse);
   rpc GetMappingSessionMetadataByID(GetMappingSessionMetadataByIDRequest) returns (GetMappingSessionMetadataByIDResponse);
-  rpc UpdateMappingSessionMetadataByID(UpdateMappingSessionMetadataByIDRequest) returns (UpdateMappingSessionMetadataByIDResponse);
 }
 
 // StartMappingSession
@@ -107,20 +106,6 @@ message GetMappingSessionMetadataByIDRequest {
 message GetMappingSessionMetadataByIDResponse {
   MappingMetadata session_metadata = 1;
 }
-
-// UpdateMappingSessionMetadataByID
-
-message UpdateMappingSessionMetadataByIDRequest {
-  string session_id = 1;
-  // enums that represent “success”, “failed”, etc
-  EndStatus end_status = 2;
-  // set at the time of job closeout and used as the package version
-  google.protobuf.Timestamp time_cloud_run_job_ended = 3;
-  // additional details on the end status if needed, such as errors
-  string error_msg = 4;
-}
-
-message UpdateMappingSessionMetadataByIDResponse {}
 
 message MappingMetadata {
   string org_id = 1; // org associated with the slam session

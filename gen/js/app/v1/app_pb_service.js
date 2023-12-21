@@ -37,6 +37,15 @@ AppService.ListOrganizations = {
   responseType: app_v1_app_pb.ListOrganizationsResponse
 };
 
+AppService.GetOrganizationsWithAccessToLocation = {
+  methodName: "GetOrganizationsWithAccessToLocation",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetOrganizationsWithAccessToLocationRequest,
+  responseType: app_v1_app_pb.GetOrganizationsWithAccessToLocationResponse
+};
+
 AppService.ListOrganizationsByUser = {
   methodName: "ListOrganizationsByUser",
   service: AppService,
@@ -487,6 +496,15 @@ AppService.CheckPermissions = {
   responseType: app_v1_app_pb.CheckPermissionsResponse
 };
 
+AppService.GetRegistryItem = {
+  methodName: "GetRegistryItem",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetRegistryItemRequest,
+  responseType: app_v1_app_pb.GetRegistryItemResponse
+};
+
 AppService.CreateRegistryItem = {
   methodName: "CreateRegistryItem",
   service: AppService,
@@ -503,6 +521,24 @@ AppService.UpdateRegistryItem = {
   responseStream: false,
   requestType: app_v1_app_pb.UpdateRegistryItemRequest,
   responseType: app_v1_app_pb.UpdateRegistryItemResponse
+};
+
+AppService.ListRegistryItems = {
+  methodName: "ListRegistryItems",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListRegistryItemsRequest,
+  responseType: app_v1_app_pb.ListRegistryItemsResponse
+};
+
+AppService.DeleteRegistryItem = {
+  methodName: "DeleteRegistryItem",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteRegistryItemRequest,
+  responseType: app_v1_app_pb.DeleteRegistryItemResponse
 };
 
 AppService.CreateModule = {
@@ -669,6 +705,37 @@ AppServiceClient.prototype.listOrganizations = function listOrganizations(reques
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListOrganizations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getOrganizationsWithAccessToLocation = function getOrganizationsWithAccessToLocation(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetOrganizationsWithAccessToLocation, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -2253,6 +2320,37 @@ AppServiceClient.prototype.checkPermissions = function checkPermissions(requestM
   };
 };
 
+AppServiceClient.prototype.getRegistryItem = function getRegistryItem(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetRegistryItem, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.createRegistryItem = function createRegistryItem(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -2289,6 +2387,68 @@ AppServiceClient.prototype.updateRegistryItem = function updateRegistryItem(requ
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.UpdateRegistryItem, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listRegistryItems = function listRegistryItems(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListRegistryItems, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteRegistryItem = function deleteRegistryItem(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteRegistryItem, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

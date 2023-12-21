@@ -835,6 +835,30 @@ export namespace DeleteOrganizationMemberResponse {
   }
 }
 
+export class OrganizationIdentity extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): OrganizationIdentity.AsObject;
+  static toObject(includeInstance: boolean, msg: OrganizationIdentity): OrganizationIdentity.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: OrganizationIdentity, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): OrganizationIdentity;
+  static deserializeBinaryFromReader(message: OrganizationIdentity, reader: jspb.BinaryReader): OrganizationIdentity;
+}
+
+export namespace OrganizationIdentity {
+  export type AsObject = {
+    id: string,
+    name: string,
+  }
+}
+
 export class LocationOrganization extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
@@ -1194,6 +1218,48 @@ export class DeleteLocationResponse extends jspb.Message {
 
 export namespace DeleteLocationResponse {
   export type AsObject = {
+  }
+}
+
+export class GetOrganizationsWithAccessToLocationRequest extends jspb.Message {
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetOrganizationsWithAccessToLocationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetOrganizationsWithAccessToLocationRequest): GetOrganizationsWithAccessToLocationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetOrganizationsWithAccessToLocationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetOrganizationsWithAccessToLocationRequest;
+  static deserializeBinaryFromReader(message: GetOrganizationsWithAccessToLocationRequest, reader: jspb.BinaryReader): GetOrganizationsWithAccessToLocationRequest;
+}
+
+export namespace GetOrganizationsWithAccessToLocationRequest {
+  export type AsObject = {
+    locationId: string,
+  }
+}
+
+export class GetOrganizationsWithAccessToLocationResponse extends jspb.Message {
+  clearOrganizationIdentitiesList(): void;
+  getOrganizationIdentitiesList(): Array<OrganizationIdentity>;
+  setOrganizationIdentitiesList(value: Array<OrganizationIdentity>): void;
+  addOrganizationIdentities(value?: OrganizationIdentity, index?: number): OrganizationIdentity;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetOrganizationsWithAccessToLocationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetOrganizationsWithAccessToLocationResponse): GetOrganizationsWithAccessToLocationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetOrganizationsWithAccessToLocationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetOrganizationsWithAccessToLocationResponse;
+  static deserializeBinaryFromReader(message: GetOrganizationsWithAccessToLocationResponse, reader: jspb.BinaryReader): GetOrganizationsWithAccessToLocationResponse;
+}
+
+export namespace GetOrganizationsWithAccessToLocationResponse {
+  export type AsObject = {
+    organizationIdentitiesList: Array<OrganizationIdentity.AsObject>,
   }
 }
 
@@ -2971,6 +3037,213 @@ export namespace CheckPermissionsResponse {
   }
 }
 
+export class ModuleVersion extends jspb.Message {
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  clearFilesList(): void;
+  getFilesList(): Array<Uploads>;
+  setFilesList(value: Array<Uploads>): void;
+  addFiles(value?: Uploads, index?: number): Uploads;
+
+  clearModelsList(): void;
+  getModelsList(): Array<Model>;
+  setModelsList(value: Array<Model>): void;
+  addModels(value?: Model, index?: number): Model;
+
+  getEntrypoint(): string;
+  setEntrypoint(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleVersion.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleVersion): ModuleVersion.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleVersion, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleVersion;
+  static deserializeBinaryFromReader(message: ModuleVersion, reader: jspb.BinaryReader): ModuleVersion;
+}
+
+export namespace ModuleVersion {
+  export type AsObject = {
+    version: string,
+    filesList: Array<Uploads.AsObject>,
+    modelsList: Array<Model.AsObject>,
+    entrypoint: string,
+  }
+}
+
+export class ModuleMetadata extends jspb.Message {
+  clearModelsList(): void;
+  getModelsList(): Array<Model>;
+  setModelsList(value: Array<Model>): void;
+  addModels(value?: Model, index?: number): Model;
+
+  clearVersionsList(): void;
+  getVersionsList(): Array<ModuleVersion>;
+  setVersionsList(value: Array<ModuleVersion>): void;
+  addVersions(value?: ModuleVersion, index?: number): ModuleVersion;
+
+  getEntrypoint(): string;
+  setEntrypoint(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleMetadata): ModuleMetadata.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleMetadata;
+  static deserializeBinaryFromReader(message: ModuleMetadata, reader: jspb.BinaryReader): ModuleMetadata;
+}
+
+export namespace ModuleMetadata {
+  export type AsObject = {
+    modelsList: Array<Model.AsObject>,
+    versionsList: Array<ModuleVersion.AsObject>,
+    entrypoint: string,
+  }
+}
+
+export class MLModelMetadata extends jspb.Message {
+  clearVersionsList(): void;
+  getVersionsList(): Array<string>;
+  setVersionsList(value: Array<string>): void;
+  addVersions(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MLModelMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: MLModelMetadata): MLModelMetadata.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MLModelMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MLModelMetadata;
+  static deserializeBinaryFromReader(message: MLModelMetadata, reader: jspb.BinaryReader): MLModelMetadata;
+}
+
+export namespace MLModelMetadata {
+  export type AsObject = {
+    versionsList: Array<string>,
+  }
+}
+
+export class RegistryItem extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getPublicNamespace(): string;
+  setPublicNamespace(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  getType(): app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap];
+  setType(value: app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap]): void;
+
+  getVisibility(): VisibilityMap[keyof VisibilityMap];
+  setVisibility(value: VisibilityMap[keyof VisibilityMap]): void;
+
+  getUrl(): string;
+  setUrl(value: string): void;
+
+  getDescription(): string;
+  setDescription(value: string): void;
+
+  getTotalRobotUsage(): number;
+  setTotalRobotUsage(value: number): void;
+
+  getTotalOrganizationUsage(): number;
+  setTotalOrganizationUsage(value: number): void;
+
+  hasModuleMetadata(): boolean;
+  clearModuleMetadata(): void;
+  getModuleMetadata(): ModuleMetadata | undefined;
+  setModuleMetadata(value?: ModuleMetadata): void;
+
+  hasMlModelMetadata(): boolean;
+  clearMlModelMetadata(): void;
+  getMlModelMetadata(): MLModelMetadata | undefined;
+  setMlModelMetadata(value?: MLModelMetadata): void;
+
+  getMetadataCase(): RegistryItem.MetadataCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RegistryItem.AsObject;
+  static toObject(includeInstance: boolean, msg: RegistryItem): RegistryItem.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RegistryItem, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RegistryItem;
+  static deserializeBinaryFromReader(message: RegistryItem, reader: jspb.BinaryReader): RegistryItem;
+}
+
+export namespace RegistryItem {
+  export type AsObject = {
+    itemId: string,
+    organizationId: string,
+    publicNamespace: string,
+    name: string,
+    type: app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap],
+    visibility: VisibilityMap[keyof VisibilityMap],
+    url: string,
+    description: string,
+    totalRobotUsage: number,
+    totalOrganizationUsage: number,
+    moduleMetadata?: ModuleMetadata.AsObject,
+    mlModelMetadata?: MLModelMetadata.AsObject,
+  }
+
+  export enum MetadataCase {
+    METADATA_NOT_SET = 0,
+    MODULE_METADATA = 11,
+    ML_MODEL_METADATA = 12,
+  }
+}
+
+export class GetRegistryItemRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetRegistryItemRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRegistryItemRequest): GetRegistryItemRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetRegistryItemRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRegistryItemRequest;
+  static deserializeBinaryFromReader(message: GetRegistryItemRequest, reader: jspb.BinaryReader): GetRegistryItemRequest;
+}
+
+export namespace GetRegistryItemRequest {
+  export type AsObject = {
+    itemId: string,
+  }
+}
+
+export class GetRegistryItemResponse extends jspb.Message {
+  hasItem(): boolean;
+  clearItem(): void;
+  getItem(): RegistryItem | undefined;
+  setItem(value?: RegistryItem): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetRegistryItemResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRegistryItemResponse): GetRegistryItemResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetRegistryItemResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRegistryItemResponse;
+  static deserializeBinaryFromReader(message: GetRegistryItemResponse, reader: jspb.BinaryReader): GetRegistryItemResponse;
+}
+
+export namespace GetRegistryItemResponse {
+  export type AsObject = {
+    item?: RegistryItem.AsObject,
+  }
+}
+
 export class CreateRegistryItemRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
@@ -3059,6 +3332,122 @@ export class UpdateRegistryItemResponse extends jspb.Message {
 }
 
 export namespace UpdateRegistryItemResponse {
+  export type AsObject = {
+  }
+}
+
+export class ListRegistryItemsRequest extends jspb.Message {
+  hasOrganizationId(): boolean;
+  clearOrganizationId(): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  clearTypesList(): void;
+  getTypesList(): Array<app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap]>;
+  setTypesList(value: Array<app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap]>): void;
+  addTypes(value: app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap], index?: number): app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap];
+
+  clearVisibilitiesList(): void;
+  getVisibilitiesList(): Array<VisibilityMap[keyof VisibilityMap]>;
+  setVisibilitiesList(value: Array<VisibilityMap[keyof VisibilityMap]>): void;
+  addVisibilities(value: VisibilityMap[keyof VisibilityMap], index?: number): VisibilityMap[keyof VisibilityMap];
+
+  clearPlatformsList(): void;
+  getPlatformsList(): Array<string>;
+  setPlatformsList(value: Array<string>): void;
+  addPlatforms(value: string, index?: number): string;
+
+  clearStatusesList(): void;
+  getStatusesList(): Array<RegistryItemStatusMap[keyof RegistryItemStatusMap]>;
+  setStatusesList(value: Array<RegistryItemStatusMap[keyof RegistryItemStatusMap]>): void;
+  addStatuses(value: RegistryItemStatusMap[keyof RegistryItemStatusMap], index?: number): RegistryItemStatusMap[keyof RegistryItemStatusMap];
+
+  hasSearchTerm(): boolean;
+  clearSearchTerm(): void;
+  getSearchTerm(): string;
+  setSearchTerm(value: string): void;
+
+  hasPageToken(): boolean;
+  clearPageToken(): void;
+  getPageToken(): string;
+  setPageToken(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListRegistryItemsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListRegistryItemsRequest): ListRegistryItemsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListRegistryItemsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListRegistryItemsRequest;
+  static deserializeBinaryFromReader(message: ListRegistryItemsRequest, reader: jspb.BinaryReader): ListRegistryItemsRequest;
+}
+
+export namespace ListRegistryItemsRequest {
+  export type AsObject = {
+    organizationId: string,
+    typesList: Array<app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap]>,
+    visibilitiesList: Array<VisibilityMap[keyof VisibilityMap]>,
+    platformsList: Array<string>,
+    statusesList: Array<RegistryItemStatusMap[keyof RegistryItemStatusMap]>,
+    searchTerm: string,
+    pageToken: string,
+  }
+}
+
+export class ListRegistryItemsResponse extends jspb.Message {
+  clearItemsList(): void;
+  getItemsList(): Array<RegistryItem>;
+  setItemsList(value: Array<RegistryItem>): void;
+  addItems(value?: RegistryItem, index?: number): RegistryItem;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListRegistryItemsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListRegistryItemsResponse): ListRegistryItemsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListRegistryItemsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListRegistryItemsResponse;
+  static deserializeBinaryFromReader(message: ListRegistryItemsResponse, reader: jspb.BinaryReader): ListRegistryItemsResponse;
+}
+
+export namespace ListRegistryItemsResponse {
+  export type AsObject = {
+    itemsList: Array<RegistryItem.AsObject>,
+  }
+}
+
+export class DeleteRegistryItemRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteRegistryItemRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteRegistryItemRequest): DeleteRegistryItemRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteRegistryItemRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteRegistryItemRequest;
+  static deserializeBinaryFromReader(message: DeleteRegistryItemRequest, reader: jspb.BinaryReader): DeleteRegistryItemRequest;
+}
+
+export namespace DeleteRegistryItemRequest {
+  export type AsObject = {
+    itemId: string,
+  }
+}
+
+export class DeleteRegistryItemResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteRegistryItemResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteRegistryItemResponse): DeleteRegistryItemResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteRegistryItemResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteRegistryItemResponse;
+  static deserializeBinaryFromReader(message: DeleteRegistryItemResponse, reader: jspb.BinaryReader): DeleteRegistryItemResponse;
+}
+
+export namespace DeleteRegistryItemResponse {
   export type AsObject = {
   }
 }
@@ -3883,6 +4272,14 @@ export namespace CreateKeyFromExistingKeyAuthorizationsResponse {
     key: string,
   }
 }
+
+export interface RegistryItemStatusMap {
+  REGISTRY_ITEM_STATUS_UNSPECIFIED: 0;
+  REGISTRY_ITEM_STATUS_PUBLISHED: 1;
+  REGISTRY_ITEM_STATUS_IN_DEVELOPMENT: 2;
+}
+
+export const RegistryItemStatus: RegistryItemStatusMap;
 
 export interface VisibilityMap {
   VISIBILITY_UNSPECIFIED: 0;

@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package viam.app.build.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/app/build/v1";
+
+// Note on ID types:
+// build_id: The 'parent' ID for a set of builds of module@version. Builds contain multiple jobs. This ID is globally unique.
+
+// 2023-11-28: Unstable API. Will change.
+service BuildService {
+  // Asynchronously start a build of a Viam module, with one job per platform.
+  rpc StartBuild(StartBuildRequest) returns (StartBuildResponse);
+  // Fetch logs from a single job of a single build.
+  rpc GetLogs(GetLogsRequest) returns (stream GetLogsResponse);
+  // List the jobs for a module ordered by (build start time, alphabetical platform).
+  rpc ListJobs(ListJobsRequest) returns (ListJobsResponse);
+}
+
+message StartBuildRequest {
+  // repo to build
+  string repo = 1;
+  // optional git ref; defaults to 'main'
+  optional string ref = 2;
+  // list of platforms to build
+  repeated string platforms = 3;
+  // module_id as prefix:name pair
+  string module_id = 4;
+  // version of the module to publish
+  // must be valid semver2.0 string (ex: 1.2.3-rc0)
+  string module_version = 5;
+}
+
+message StartBuildResponse {
+  string build_id = 1;
+}
+
+message GetLogsRequest {
+  string build_id = 1;
+  string platform = 2;
+}
+
+// GetLogsResponse is a streaming endpoint that may have multiple messages that belong
+// to the same build_step if there are too many bytes to fit into a single gRPC
+// response.
+message GetLogsResponse {
+  string build_step = 1;
+  // includes multiple lines delimited by \n\r
+  string data = 2;
+}
+
+enum JobStatus {
+  JOB_STATUS_UNSPECIFIED = 0;
+  // IN_PROGRESS = pending or executing on cloud infra. Artifact has not been uploaded.
+  JOB_STATUS_IN_PROGRESS = 1;
+  JOB_STATUS_FAILED = 2;
+  JOB_STATUS_DONE = 3;
+}
+
+message JobInfo {
+  string build_id = 1;
+  string platform = 2;
+  string version = 3;
+  JobStatus status = 4;
+  google.protobuf.Timestamp start_time = 5;
+  optional google.protobuf.Timestamp end_time = 6;
+}
+
+message ListJobsRequest {
+  // module_id as prefix:name pair
+  string module_id = 1;
+  // don't return more than max_jobs_length jobs
+  // if not present, return all jobs.
+  optional int32 max_jobs_length = 2;
+  // only return jobs that match this build id
+  // if not present, return all jobs.
+  optional string build_id = 3;
+}
+
+message ListJobsResponse {
+  // jobs is ordered by (build start time, alphabetical platform).
+  repeated JobInfo jobs = 1;
+}

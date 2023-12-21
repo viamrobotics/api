@@ -28,7 +28,6 @@ type CloudSLAMServiceClient interface {
 	ListMappingSessions(ctx context.Context, in *ListMappingSessionsRequest, opts ...grpc.CallOption) (*ListMappingSessionsResponse, error)
 	StopMappingSession(ctx context.Context, in *StopMappingSessionRequest, opts ...grpc.CallOption) (*StopMappingSessionResponse, error)
 	GetMappingSessionMetadataByID(ctx context.Context, in *GetMappingSessionMetadataByIDRequest, opts ...grpc.CallOption) (*GetMappingSessionMetadataByIDResponse, error)
-	UpdateMappingSessionMetadataByID(ctx context.Context, in *UpdateMappingSessionMetadataByIDRequest, opts ...grpc.CallOption) (*UpdateMappingSessionMetadataByIDResponse, error)
 }
 
 type cloudSLAMServiceClient struct {
@@ -93,15 +92,6 @@ func (c *cloudSLAMServiceClient) GetMappingSessionMetadataByID(ctx context.Conte
 	return out, nil
 }
 
-func (c *cloudSLAMServiceClient) UpdateMappingSessionMetadataByID(ctx context.Context, in *UpdateMappingSessionMetadataByIDRequest, opts ...grpc.CallOption) (*UpdateMappingSessionMetadataByIDResponse, error) {
-	out := new(UpdateMappingSessionMetadataByIDResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.cloudslam.v1.CloudSLAMService/UpdateMappingSessionMetadataByID", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // CloudSLAMServiceServer is the server API for CloudSLAMService service.
 // All implementations must embed UnimplementedCloudSLAMServiceServer
 // for forward compatibility
@@ -112,7 +102,6 @@ type CloudSLAMServiceServer interface {
 	ListMappingSessions(context.Context, *ListMappingSessionsRequest) (*ListMappingSessionsResponse, error)
 	StopMappingSession(context.Context, *StopMappingSessionRequest) (*StopMappingSessionResponse, error)
 	GetMappingSessionMetadataByID(context.Context, *GetMappingSessionMetadataByIDRequest) (*GetMappingSessionMetadataByIDResponse, error)
-	UpdateMappingSessionMetadataByID(context.Context, *UpdateMappingSessionMetadataByIDRequest) (*UpdateMappingSessionMetadataByIDResponse, error)
 	mustEmbedUnimplementedCloudSLAMServiceServer()
 }
 
@@ -137,9 +126,6 @@ func (UnimplementedCloudSLAMServiceServer) StopMappingSession(context.Context, *
 }
 func (UnimplementedCloudSLAMServiceServer) GetMappingSessionMetadataByID(context.Context, *GetMappingSessionMetadataByIDRequest) (*GetMappingSessionMetadataByIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMappingSessionMetadataByID not implemented")
-}
-func (UnimplementedCloudSLAMServiceServer) UpdateMappingSessionMetadataByID(context.Context, *UpdateMappingSessionMetadataByIDRequest) (*UpdateMappingSessionMetadataByIDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateMappingSessionMetadataByID not implemented")
 }
 func (UnimplementedCloudSLAMServiceServer) mustEmbedUnimplementedCloudSLAMServiceServer() {}
 
@@ -262,24 +248,6 @@ func _CloudSLAMService_GetMappingSessionMetadataByID_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CloudSLAMService_UpdateMappingSessionMetadataByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateMappingSessionMetadataByIDRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CloudSLAMServiceServer).UpdateMappingSessionMetadataByID(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.cloudslam.v1.CloudSLAMService/UpdateMappingSessionMetadataByID",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudSLAMServiceServer).UpdateMappingSessionMetadataByID(ctx, req.(*UpdateMappingSessionMetadataByIDRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // CloudSLAMService_ServiceDesc is the grpc.ServiceDesc for CloudSLAMService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -310,10 +278,6 @@ var CloudSLAMService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMappingSessionMetadataByID",
 			Handler:    _CloudSLAMService_GetMappingSessionMetadataByID_Handler,
-		},
-		{
-			MethodName: "UpdateMappingSessionMetadataByID",
-			Handler:    _CloudSLAMService_UpdateMappingSessionMetadataByID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
