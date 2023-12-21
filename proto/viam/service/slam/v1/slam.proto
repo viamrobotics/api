@@ -45,17 +45,17 @@ service SLAMService {
     };
   }
 
-  // DoCommand sends/receives arbitrary commands.
-  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/slam/{name}/do_command"
-    };
-  }
-
   // GetProperties returns properties, such as mapping_mode, of the current slam service 
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/slam/{name}/properties"
+    };
+  }
+
+  // DoCommand sends/receives arbitrary commands.
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/slam/{name}/do_command"
     };
   }
 }
