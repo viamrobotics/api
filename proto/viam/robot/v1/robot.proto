@@ -115,7 +115,7 @@ service RobotService {
     };
   }
 
-  // ModuleLog sends a log from a module to be logged by this parent robot.
+  // ModuleLog sends logs from a module to be logged by this parent robot.
   rpc ModuleLog(ModuleLogRequest) returns (ModuleLogResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/module_log"
@@ -311,7 +311,7 @@ message SendSessionHeartbeatResponse {}
 
 message ModuleLogRequest {
   // Reuse LogEntry from app proto.
-  app.v1.LogEntry log = 1;
+  repeated app.v1.LogEntry log = 1;
 }
 
 message ModuleLogResponse {}
