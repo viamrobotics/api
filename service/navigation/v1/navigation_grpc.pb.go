@@ -31,6 +31,9 @@ type NavigationServiceClient interface {
 	RemoveWaypoint(ctx context.Context, in *RemoveWaypointRequest, opts ...grpc.CallOption) (*RemoveWaypointResponse, error)
 	GetObstacles(ctx context.Context, in *GetObstaclesRequest, opts ...grpc.CallOption) (*GetObstaclesResponse, error)
 	GetPaths(ctx context.Context, in *GetPathsRequest, opts ...grpc.CallOption) (*GetPathsResponse, error)
+	// GetProperties returns properties of the current navigation service, including the
+	// map_type being operated on.
+	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
@@ -115,6 +118,15 @@ func (c *navigationServiceClient) GetPaths(ctx context.Context, in *GetPathsRequ
 	return out, nil
 }
 
+func (c *navigationServiceClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error) {
+	out := new(GetPropertiesResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GetProperties", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *navigationServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/DoCommand", in, out, opts...)
@@ -136,6 +148,9 @@ type NavigationServiceServer interface {
 	RemoveWaypoint(context.Context, *RemoveWaypointRequest) (*RemoveWaypointResponse, error)
 	GetObstacles(context.Context, *GetObstaclesRequest) (*GetObstaclesResponse, error)
 	GetPaths(context.Context, *GetPathsRequest) (*GetPathsResponse, error)
+	// GetProperties returns properties of the current navigation service, including the
+	// map_type being operated on.
+	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedNavigationServiceServer()
@@ -168,6 +183,9 @@ func (UnimplementedNavigationServiceServer) GetObstacles(context.Context, *GetOb
 }
 func (UnimplementedNavigationServiceServer) GetPaths(context.Context, *GetPathsRequest) (*GetPathsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPaths not implemented")
+}
+func (UnimplementedNavigationServiceServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProperties not implemented")
 }
 func (UnimplementedNavigationServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -329,6 +347,24 @@ func _NavigationService_GetPaths_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NavigationService_GetProperties_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPropertiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).GetProperties(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/GetProperties",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).GetProperties(ctx, req.(*GetPropertiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _NavigationService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DoCommandRequest)
 	if err := dec(in); err != nil {
@@ -385,6 +421,10 @@ var NavigationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPaths",
 			Handler:    _NavigationService_GetPaths_Handler,
+		},
+		{
+			MethodName: "GetProperties",
+			Handler:    _NavigationService_GetProperties_Handler,
 		},
 		{
 			MethodName: "DoCommand",
