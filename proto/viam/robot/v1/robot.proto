@@ -311,7 +311,7 @@ message SendSessionHeartbeatResponse {}
 
 message ModuleLogRequest {
   // Reuse LogEntry from app proto.
-  repeated app.v1.LogEntry log = 1;
+  repeated app.v1.LogEntry logs = 1;
 }
 
 message ModuleLogResponse {}
