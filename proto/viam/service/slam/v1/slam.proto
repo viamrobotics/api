@@ -45,7 +45,9 @@ service SLAMService {
     };
   }
 
-  // GetProperties returns properties, such as mapping_mode, of the current slam service 
+  // GetProperties returns properties of the current slam service including mapping_mode
+  // and cloud_slam, where mapping_mode is the type of mapping/localizing being performed
+  // and cloud_slam is a boolean representing if this SLAM service is being run in the cloud.
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/slam/{name}/properties"
@@ -60,6 +62,9 @@ service SLAMService {
   }
 }
 
+// MappingMode represnts the various form of mapping and localizing SLAM can perform.
+// These include, creating a new map, localizing on an existiing map and updating an
+// exisiting map.
 enum MappingMode {
   MAPPING_MODE_UNSPECIFIED = 0;
   MAPPING_MODE_CREATE_NEW_MAP = 1;
