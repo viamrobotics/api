@@ -61,7 +61,7 @@ service NavigationService {
 
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
     option (google.api.http) = {
-      get: "/viam/api/v1/service/navigation/{name}/get_properties"
+      get: "/viam/api/v1/service/navigation/{name}/properties"
     };
   }
 
