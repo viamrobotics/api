@@ -440,6 +440,54 @@ export namespace GetPathsResponse {
   }
 }
 
+export class GetPropertiesRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesRequest): GetPropertiesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesRequest;
+  static deserializeBinaryFromReader(message: GetPropertiesRequest, reader: jspb.BinaryReader): GetPropertiesRequest;
+}
+
+export namespace GetPropertiesRequest {
+  export type AsObject = {
+    name: string,
+  }
+}
+
+export class GetPropertiesResponse extends jspb.Message {
+  getMapType(): MapTypeMap[keyof MapTypeMap];
+  setMapType(value: MapTypeMap[keyof MapTypeMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesResponse;
+  static deserializeBinaryFromReader(message: GetPropertiesResponse, reader: jspb.BinaryReader): GetPropertiesResponse;
+}
+
+export namespace GetPropertiesResponse {
+  export type AsObject = {
+    mapType: MapTypeMap[keyof MapTypeMap],
+  }
+}
+
+export interface MapTypeMap {
+  MAP_TYPE_UNSPECIFIED: 0;
+  MAP_TYPE_NONE: 1;
+  MAP_TYPE_GPS: 2;
+}
+
+export const MapType: MapTypeMap;
+
 export interface ModeMap {
   MODE_UNSPECIFIED: 0;
   MODE_MANUAL: 1;

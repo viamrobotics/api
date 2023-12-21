@@ -36,6 +36,10 @@ type SLAMServiceClient interface {
 	// GetLatestMapInfo returns a message indicating details regarding the
 	// latest map returned to the system.
 	GetLatestMapInfo(ctx context.Context, in *GetLatestMapInfoRequest, opts ...grpc.CallOption) (*GetLatestMapInfoResponse, error)
+	// GetProperties returns properties of the current slam service including mapping_mode
+	// and cloud_slam, where mapping_mode is the type of mapping/localizing being performed
+	// and cloud_slam is a boolean representing if this SLAM service is being run in the cloud.
+	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands.
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
@@ -130,6 +134,15 @@ func (c *sLAMServiceClient) GetLatestMapInfo(ctx context.Context, in *GetLatestM
 	return out, nil
 }
 
+func (c *sLAMServiceClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error) {
+	out := new(GetPropertiesResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.slam.v1.SLAMService/GetProperties", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *sLAMServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.slam.v1.SLAMService/DoCommand", in, out, opts...)
@@ -156,6 +169,10 @@ type SLAMServiceServer interface {
 	// GetLatestMapInfo returns a message indicating details regarding the
 	// latest map returned to the system.
 	GetLatestMapInfo(context.Context, *GetLatestMapInfoRequest) (*GetLatestMapInfoResponse, error)
+	// GetProperties returns properties of the current slam service including mapping_mode
+	// and cloud_slam, where mapping_mode is the type of mapping/localizing being performed
+	// and cloud_slam is a boolean representing if this SLAM service is being run in the cloud.
+	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands.
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedSLAMServiceServer()
@@ -176,6 +193,9 @@ func (UnimplementedSLAMServiceServer) GetInternalState(*GetInternalStateRequest,
 }
 func (UnimplementedSLAMServiceServer) GetLatestMapInfo(context.Context, *GetLatestMapInfoRequest) (*GetLatestMapInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLatestMapInfo not implemented")
+}
+func (UnimplementedSLAMServiceServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProperties not implemented")
 }
 func (UnimplementedSLAMServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -271,6 +291,24 @@ func _SLAMService_GetLatestMapInfo_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SLAMService_GetProperties_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPropertiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SLAMServiceServer).GetProperties(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.slam.v1.SLAMService/GetProperties",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SLAMServiceServer).GetProperties(ctx, req.(*GetPropertiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SLAMService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DoCommandRequest)
 	if err := dec(in); err != nil {
@@ -303,6 +341,10 @@ var SLAMService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetLatestMapInfo",
 			Handler:    _SLAMService_GetLatestMapInfo_Handler,
+		},
+		{
+			MethodName: "GetProperties",
+			Handler:    _SLAMService_GetProperties_Handler,
 		},
 		{
 			MethodName: "DoCommand",
