@@ -37,14 +37,6 @@ service SLAMService {
     };
   }
 
-  // GetLatestMapInfo returns a message indicating details regarding the
-  // latest map returned to the system.
-  rpc GetLatestMapInfo(GetLatestMapInfoRequest) returns (GetLatestMapInfoResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/slam/{name}/latest_map_info"
-    };
-  }
-
   // GetProperties returns properties of the current slam service including mapping_mode
   // and cloud_slam, where mapping_mode is the type of mapping/localizing being performed
   // and cloud_slam is a boolean representing if this SLAM service is being run in the cloud.
@@ -122,14 +114,6 @@ message GetInternalStateResponse {
   // Chunk of the internal state of the SLAM algorithm required to continue
   // mapping/localization
   bytes internal_state_chunk = 1;
-}
-
-message GetLatestMapInfoRequest {
-  // Name of the SLAM algo
-  string name = 1;
-}
-message GetLatestMapInfoResponse {
-  google.protobuf.Timestamp last_map_update = 1;
 }
 
 message GetPropertiesRequest {
