@@ -185,3 +185,56 @@ export namespace GetLatestMapInfoResponse {
   }
 }
 
+export class GetPropertiesRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesRequest): GetPropertiesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesRequest;
+  static deserializeBinaryFromReader(message: GetPropertiesRequest, reader: jspb.BinaryReader): GetPropertiesRequest;
+}
+
+export namespace GetPropertiesRequest {
+  export type AsObject = {
+    name: string,
+  }
+}
+
+export class GetPropertiesResponse extends jspb.Message {
+  getCloudSlam(): boolean;
+  setCloudSlam(value: boolean): void;
+
+  getMappingMode(): MappingModeMap[keyof MappingModeMap];
+  setMappingMode(value: MappingModeMap[keyof MappingModeMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesResponse;
+  static deserializeBinaryFromReader(message: GetPropertiesResponse, reader: jspb.BinaryReader): GetPropertiesResponse;
+}
+
+export namespace GetPropertiesResponse {
+  export type AsObject = {
+    cloudSlam: boolean,
+    mappingMode: MappingModeMap[keyof MappingModeMap],
+  }
+}
+
+export interface MappingModeMap {
+  MAPPING_MODE_UNSPECIFIED: 0;
+  MAPPING_MODE_CREATE_NEW_MAP: 1;
+  MAPPING_MODE_LOCALIZE_ONLY: 2;
+  MAPPING_MODE_UPDATE_EXISTING_MAP: 3;
+}
+
+export const MappingMode: MappingModeMap;
+

@@ -45,12 +45,31 @@ service SLAMService {
     };
   }
 
+  // GetProperties returns properties of the current slam service including mapping_mode
+  // and cloud_slam, where mapping_mode is the type of mapping/localizing being performed
+  // and cloud_slam is a boolean representing if this SLAM service is being run in the cloud.
+  rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/slam/{name}/properties"
+    };
+  }
+
   // DoCommand sends/receives arbitrary commands.
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/service/slam/{name}/do_command"
     };
   }
+}
+
+// MappingMode represnts the various form of mapping and localizing SLAM can perform.
+// These include, creating a new map, localizing on an existiing map and updating an
+// exisiting map.
+enum MappingMode {
+  MAPPING_MODE_UNSPECIFIED = 0;
+  MAPPING_MODE_CREATE_NEW_MAP = 1;
+  MAPPING_MODE_LOCALIZE_ONLY = 2;
+  MAPPING_MODE_UPDATE_EXISTING_MAP = 3;
 }
 
 message GetPositionRequest {
@@ -111,4 +130,15 @@ message GetLatestMapInfoRequest {
 }
 message GetLatestMapInfoResponse {
   google.protobuf.Timestamp last_map_update = 1;
+}
+
+message GetPropertiesRequest {
+  // Name of the slam service
+  string name = 1;
+}
+
+// Returns properties information for the named slam service
+message GetPropertiesResponse {
+  bool cloud_slam = 1;
+  MappingMode mapping_mode = 2;
 }

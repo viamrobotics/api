@@ -20,8 +20,6 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 
-var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js')
-
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 
 var google_rpc_status_pb = require('../../../google/rpc/status_pb.js')

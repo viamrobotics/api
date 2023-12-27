@@ -59,12 +59,27 @@ service NavigationService {
     };
   }
 
+  // GetProperties returns properties of the current navigation service, including the
+  //map_type being operated on.
+  rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/navigation/{name}/properties"
+    };
+  }
+
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/service/navigation/{name}/do_command"
     };
   }
+}
+
+// MapType represents the various types of map the navigation service can ingest.
+enum MapType {
+  MAP_TYPE_UNSPECIFIED = 0;
+  MAP_TYPE_NONE = 1;
+  MAP_TYPE_GPS = 2;
 }
 
 enum Mode {
@@ -173,4 +188,14 @@ message GetPathsRequest {
 
 message GetPathsResponse {
   repeated Path paths = 1;
+}
+
+message GetPropertiesRequest {
+  // Name of the navigation service
+  string name = 1;
+}
+
+// Returns properties information for the named navigation service
+message GetPropertiesResponse {
+  MapType map_type = 1;
 }

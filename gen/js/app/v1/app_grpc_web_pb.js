@@ -270,6 +270,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listOrganizations =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetOrganizationsWithAccessToLocationRequest,
+ *   !proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse>}
+ */
+const methodDescriptor_AppService_GetOrganizationsWithAccessToLocation = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetOrganizationsWithAccessToLocation',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetOrganizationsWithAccessToLocationRequest,
+  proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetOrganizationsWithAccessToLocationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetOrganizationsWithAccessToLocationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getOrganizationsWithAccessToLocation =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetOrganizationsWithAccessToLocation',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetOrganizationsWithAccessToLocation,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetOrganizationsWithAccessToLocationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getOrganizationsWithAccessToLocation =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetOrganizationsWithAccessToLocation',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetOrganizationsWithAccessToLocation);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.ListOrganizationsByUserRequest,
  *   !proto.viam.app.v1.ListOrganizationsByUserResponse>}
  */
@@ -3315,6 +3376,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.checkPermissions =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetRegistryItemRequest,
+ *   !proto.viam.app.v1.GetRegistryItemResponse>}
+ */
+const methodDescriptor_AppService_GetRegistryItem = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetRegistryItem',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetRegistryItemRequest,
+  proto.viam.app.v1.GetRegistryItemResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetRegistryItemRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetRegistryItemResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetRegistryItemRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetRegistryItemResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetRegistryItemResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getRegistryItem =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetRegistryItem',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetRegistryItem,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetRegistryItemRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetRegistryItemResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getRegistryItem =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetRegistryItem',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetRegistryItem);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.CreateRegistryItemRequest,
  *   !proto.viam.app.v1.CreateRegistryItemResponse>}
  */
@@ -3431,6 +3553,128 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.updateRegistryItem =
       request,
       metadata || {},
       methodDescriptor_AppService_UpdateRegistryItem);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.ListRegistryItemsRequest,
+ *   !proto.viam.app.v1.ListRegistryItemsResponse>}
+ */
+const methodDescriptor_AppService_ListRegistryItems = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/ListRegistryItems',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.ListRegistryItemsRequest,
+  proto.viam.app.v1.ListRegistryItemsResponse,
+  /**
+   * @param {!proto.viam.app.v1.ListRegistryItemsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.ListRegistryItemsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.ListRegistryItemsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ListRegistryItemsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ListRegistryItemsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.listRegistryItems =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListRegistryItems',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListRegistryItems,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ListRegistryItemsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.ListRegistryItemsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.listRegistryItems =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListRegistryItems',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListRegistryItems);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeleteRegistryItemRequest,
+ *   !proto.viam.app.v1.DeleteRegistryItemResponse>}
+ */
+const methodDescriptor_AppService_DeleteRegistryItem = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeleteRegistryItem',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeleteRegistryItemRequest,
+  proto.viam.app.v1.DeleteRegistryItemResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeleteRegistryItemRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeleteRegistryItemResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteRegistryItemRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeleteRegistryItemResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeleteRegistryItemResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deleteRegistryItem =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteRegistryItem',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteRegistryItem,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteRegistryItemRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeleteRegistryItemResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deleteRegistryItem =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteRegistryItem',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteRegistryItem);
 };
 
 

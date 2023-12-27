@@ -28,6 +28,8 @@ type AppServiceClient interface {
 	CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error)
 	// List organizations
 	ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error)
+	// Get all organizations that have access to a location.
+	GetOrganizationsWithAccessToLocation(ctx context.Context, in *GetOrganizationsWithAccessToLocationRequest, opts ...grpc.CallOption) (*GetOrganizationsWithAccessToLocationResponse, error)
 	// List the organizations a user belongs to
 	ListOrganizationsByUser(ctx context.Context, in *ListOrganizationsByUserRequest, opts ...grpc.CallOption) (*ListOrganizationsByUserResponse, error)
 	// Get an organization
@@ -131,8 +133,11 @@ type AppServiceClient interface {
 	ListAuthorizations(ctx context.Context, in *ListAuthorizationsRequest, opts ...grpc.CallOption) (*ListAuthorizationsResponse, error)
 	// Validates a permission for the current user
 	CheckPermissions(ctx context.Context, in *CheckPermissionsRequest, opts ...grpc.CallOption) (*CheckPermissionsResponse, error)
+	GetRegistryItem(ctx context.Context, in *GetRegistryItemRequest, opts ...grpc.CallOption) (*GetRegistryItemResponse, error)
 	CreateRegistryItem(ctx context.Context, in *CreateRegistryItemRequest, opts ...grpc.CallOption) (*CreateRegistryItemResponse, error)
 	UpdateRegistryItem(ctx context.Context, in *UpdateRegistryItemRequest, opts ...grpc.CallOption) (*UpdateRegistryItemResponse, error)
+	ListRegistryItems(ctx context.Context, in *ListRegistryItemsRequest, opts ...grpc.CallOption) (*ListRegistryItemsResponse, error)
+	DeleteRegistryItem(ctx context.Context, in *DeleteRegistryItemRequest, opts ...grpc.CallOption) (*DeleteRegistryItemResponse, error)
 	CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error)
 	UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error)
 	UploadModuleFile(ctx context.Context, opts ...grpc.CallOption) (AppService_UploadModuleFileClient, error)
@@ -174,6 +179,15 @@ func (c *appServiceClient) CreateOrganization(ctx context.Context, in *CreateOrg
 func (c *appServiceClient) ListOrganizations(ctx context.Context, in *ListOrganizationsRequest, opts ...grpc.CallOption) (*ListOrganizationsResponse, error) {
 	out := new(ListOrganizationsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListOrganizations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetOrganizationsWithAccessToLocation(ctx context.Context, in *GetOrganizationsWithAccessToLocationRequest, opts ...grpc.CallOption) (*GetOrganizationsWithAccessToLocationResponse, error) {
+	out := new(GetOrganizationsWithAccessToLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganizationsWithAccessToLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -653,6 +667,15 @@ func (c *appServiceClient) CheckPermissions(ctx context.Context, in *CheckPermis
 	return out, nil
 }
 
+func (c *appServiceClient) GetRegistryItem(ctx context.Context, in *GetRegistryItemRequest, opts ...grpc.CallOption) (*GetRegistryItemResponse, error) {
+	out := new(GetRegistryItemResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRegistryItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) CreateRegistryItem(ctx context.Context, in *CreateRegistryItemRequest, opts ...grpc.CallOption) (*CreateRegistryItemResponse, error) {
 	out := new(CreateRegistryItemResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateRegistryItem", in, out, opts...)
@@ -665,6 +688,24 @@ func (c *appServiceClient) CreateRegistryItem(ctx context.Context, in *CreateReg
 func (c *appServiceClient) UpdateRegistryItem(ctx context.Context, in *UpdateRegistryItemRequest, opts ...grpc.CallOption) (*UpdateRegistryItemResponse, error) {
 	out := new(UpdateRegistryItemResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateRegistryItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListRegistryItems(ctx context.Context, in *ListRegistryItemsRequest, opts ...grpc.CallOption) (*ListRegistryItemsResponse, error) {
+	out := new(ListRegistryItemsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListRegistryItems", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteRegistryItem(ctx context.Context, in *DeleteRegistryItemRequest, opts ...grpc.CallOption) (*DeleteRegistryItemResponse, error) {
+	out := new(DeleteRegistryItemResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteRegistryItem", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -796,6 +837,8 @@ type AppServiceServer interface {
 	CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error)
 	// List organizations
 	ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error)
+	// Get all organizations that have access to a location.
+	GetOrganizationsWithAccessToLocation(context.Context, *GetOrganizationsWithAccessToLocationRequest) (*GetOrganizationsWithAccessToLocationResponse, error)
 	// List the organizations a user belongs to
 	ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error)
 	// Get an organization
@@ -899,8 +942,11 @@ type AppServiceServer interface {
 	ListAuthorizations(context.Context, *ListAuthorizationsRequest) (*ListAuthorizationsResponse, error)
 	// Validates a permission for the current user
 	CheckPermissions(context.Context, *CheckPermissionsRequest) (*CheckPermissionsResponse, error)
+	GetRegistryItem(context.Context, *GetRegistryItemRequest) (*GetRegistryItemResponse, error)
 	CreateRegistryItem(context.Context, *CreateRegistryItemRequest) (*CreateRegistryItemResponse, error)
 	UpdateRegistryItem(context.Context, *UpdateRegistryItemRequest) (*UpdateRegistryItemResponse, error)
+	ListRegistryItems(context.Context, *ListRegistryItemsRequest) (*ListRegistryItemsResponse, error)
+	DeleteRegistryItem(context.Context, *DeleteRegistryItemRequest) (*DeleteRegistryItemResponse, error)
 	CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error)
 	UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error)
 	UploadModuleFile(AppService_UploadModuleFileServer) error
@@ -926,6 +972,9 @@ func (UnimplementedAppServiceServer) CreateOrganization(context.Context, *Create
 }
 func (UnimplementedAppServiceServer) ListOrganizations(context.Context, *ListOrganizationsRequest) (*ListOrganizationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizations not implemented")
+}
+func (UnimplementedAppServiceServer) GetOrganizationsWithAccessToLocation(context.Context, *GetOrganizationsWithAccessToLocationRequest) (*GetOrganizationsWithAccessToLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationsWithAccessToLocation not implemented")
 }
 func (UnimplementedAppServiceServer) ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationsByUser not implemented")
@@ -1077,11 +1126,20 @@ func (UnimplementedAppServiceServer) ListAuthorizations(context.Context, *ListAu
 func (UnimplementedAppServiceServer) CheckPermissions(context.Context, *CheckPermissionsRequest) (*CheckPermissionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckPermissions not implemented")
 }
+func (UnimplementedAppServiceServer) GetRegistryItem(context.Context, *GetRegistryItemRequest) (*GetRegistryItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRegistryItem not implemented")
+}
 func (UnimplementedAppServiceServer) CreateRegistryItem(context.Context, *CreateRegistryItemRequest) (*CreateRegistryItemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateRegistryItem not implemented")
 }
 func (UnimplementedAppServiceServer) UpdateRegistryItem(context.Context, *UpdateRegistryItemRequest) (*UpdateRegistryItemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateRegistryItem not implemented")
+}
+func (UnimplementedAppServiceServer) ListRegistryItems(context.Context, *ListRegistryItemsRequest) (*ListRegistryItemsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRegistryItems not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteRegistryItem(context.Context, *DeleteRegistryItemRequest) (*DeleteRegistryItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRegistryItem not implemented")
 }
 func (UnimplementedAppServiceServer) CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateModule not implemented")
@@ -1176,6 +1234,24 @@ func _AppService_ListOrganizations_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).ListOrganizations(ctx, req.(*ListOrganizationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetOrganizationsWithAccessToLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationsWithAccessToLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetOrganizationsWithAccessToLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetOrganizationsWithAccessToLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetOrganizationsWithAccessToLocation(ctx, req.(*GetOrganizationsWithAccessToLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2083,6 +2159,24 @@ func _AppService_CheckPermissions_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_GetRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRegistryItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetRegistryItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetRegistryItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetRegistryItem(ctx, req.(*GetRegistryItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_CreateRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateRegistryItemRequest)
 	if err := dec(in); err != nil {
@@ -2115,6 +2209,42 @@ func _AppService_UpdateRegistryItem_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).UpdateRegistryItem(ctx, req.(*UpdateRegistryItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListRegistryItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRegistryItemsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListRegistryItems(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListRegistryItems",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListRegistryItems(ctx, req.(*ListRegistryItemsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRegistryItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteRegistryItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteRegistryItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteRegistryItem(ctx, req.(*DeleteRegistryItemRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2327,6 +2457,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_ListOrganizations_Handler,
 		},
 		{
+			MethodName: "GetOrganizationsWithAccessToLocation",
+			Handler:    _AppService_GetOrganizationsWithAccessToLocation_Handler,
+		},
+		{
 			MethodName: "ListOrganizationsByUser",
 			Handler:    _AppService_ListOrganizationsByUser_Handler,
 		},
@@ -2523,12 +2657,24 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_CheckPermissions_Handler,
 		},
 		{
+			MethodName: "GetRegistryItem",
+			Handler:    _AppService_GetRegistryItem_Handler,
+		},
+		{
 			MethodName: "CreateRegistryItem",
 			Handler:    _AppService_CreateRegistryItem_Handler,
 		},
 		{
 			MethodName: "UpdateRegistryItem",
 			Handler:    _AppService_UpdateRegistryItem_Handler,
+		},
+		{
+			MethodName: "ListRegistryItems",
+			Handler:    _AppService_ListRegistryItems_Handler,
+		},
+		{
+			MethodName: "DeleteRegistryItem",
+			Handler:    _AppService_DeleteRegistryItem_Handler,
 		},
 		{
 			MethodName: "CreateModule",
