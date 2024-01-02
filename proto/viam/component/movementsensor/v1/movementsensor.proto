@@ -193,7 +193,7 @@ message GetAccuracyResponse {
   // NmeaGGAFix is deprecated
   optional NmeaGGAFix position_nmea_gga_fix = 4 [deprecated=true];
   optional float compass_degrees_error = 5;
-  optional int32 position_nmea_gga_fix = 6;
+  optional int32 nmea_gga_fix = 6;
 }
 
 message GetLinearAccelerationRequest {
