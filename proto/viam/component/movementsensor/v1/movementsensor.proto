@@ -9,6 +9,26 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/component/movementsensor/v1";
 option java_package = "com.viam.component.movementsensor.v1";
 
+// NmeaGGAFix is deprecated
+// NmeaGGAFix includes fix quality of a GPS which is obtained from the GGA message.
+// More information on GGA messages here
+// https://receiverhelp.trimble.com/alloy-gnss/en-us/NMEA-0183messages_GGA.html
+// Generally a fix of 1 or 2 lends to large position errors, ideally we want a
+// fix of 4-5. Other fixes are unsuitable for outdoor navigation.
+// The meaning of each fix value is documented here
+// https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm#GPSQualityIndicators
+enum NmeaGGAFix {
+  NMEA_GGA_FIX_INVALID_UNSPECIFIED = 0 [deprecated = true];
+  NMEA_GGA_FIX_GNSS = 1 [deprecated = true];
+  NMEA_GGA_FIX_DGPS = 2 [deprecated = true];
+  NMEA_GGA_FIX_PPS = 3 [deprecated = true];
+  NMEA_GGA_FIX_RTK_FIXED = 4 [deprecated = true];
+  NMEA_GGA_FIX_RTK_FLOAT = 5 [deprecated = true];
+  NMEA_GGA_FIX_DEAD_RECKONING = 6 [deprecated = true];
+  NMEA_GGA_FIX_MANUAL = 7 [deprecated = true];
+  NMEA_GGA_FIX_SIMULATION = 8 [deprecated = true];
+}
+
 service MovementSensorService {
   rpc GetLinearVelocity(GetLinearVelocityRequest) returns (GetLinearVelocityResponse) {
     option (google.api.http) = {
@@ -170,8 +190,10 @@ message GetAccuracyResponse {
   map<string, float> accuracy = 1;
   optional float position_hdop = 2;
   optional float position_vdop = 3;
-  optional int32 position_nmea_gga_fix = 4;
+  // NmeaGGAFix is deprecated
+  optional NmeaGGAFix position_nmea_gga_fix = 4 [deprecated=true];
   optional float compass_degrees_error = 5;
+  optional int32 position_nmea_gga_fix = 6;
 }
 
 message GetLinearAccelerationRequest {
