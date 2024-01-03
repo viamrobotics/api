@@ -8,6 +8,7 @@ import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/service/sensors/v1";
 option java_package = "com.viam.service.sensors.v1";
+option deprecated = true;
 
 // A SensorsService services keeps track of all sensors associated with a robot
 // This service is deprecated
