@@ -38,7 +38,7 @@ service SensorsService {
   }
 }
 
-// The sensor service messages are deprecated
+// The sensors service messages are deprecated
 message GetSensorsRequest {
   option deprecated = true;
   string name = 1 [deprecated = true];
