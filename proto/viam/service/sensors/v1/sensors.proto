@@ -49,17 +49,17 @@ message GetSensorsResponse {
 }
 
 message GetReadingsRequest {
-  string name = 1;
+  string name = 1  [deprecated = true];
   repeated common.v1.ResourceName sensor_names = 2 [deprecated = true];
   // Additional arguments to the method
   google.protobuf.Struct extra = 99 [deprecated = true];
 }
 
 message Readings {
-  common.v1.ResourceName name = 1;
+  common.v1.ResourceName name = 1  [deprecated = true];
   map<string, google.protobuf.Value> readings = 2 [deprecated = true];
 }
 
 message GetReadingsResponse {
-  repeated Readings readings = 1;
+  repeated Readings readings = 1  [deprecated = true];
 }
