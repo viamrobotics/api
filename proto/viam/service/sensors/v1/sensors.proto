@@ -39,16 +39,19 @@ service SensorsService {
 
 // The sensor service messages are deprecated
 message GetSensorsRequest {
+  option deprecated = true;
   string name = 1 [deprecated = true];
   // Additional arguments to the method
   google.protobuf.Struct extra = 99 [deprecated = true];
 }
 
 message GetSensorsResponse {
+  option deprecated = true;
   repeated common.v1.ResourceName sensor_names = 1 [deprecated = true];
 }
 
 message GetReadingsRequest {
+  option deprecated = true;
   string name = 1  [deprecated = true];
   repeated common.v1.ResourceName sensor_names = 2 [deprecated = true];
   // Additional arguments to the method
@@ -56,10 +59,12 @@ message GetReadingsRequest {
 }
 
 message Readings {
+  option deprecated = true;
   common.v1.ResourceName name = 1  [deprecated = true];
   map<string, google.protobuf.Value> readings = 2 [deprecated = true];
 }
 
 message GetReadingsResponse {
+  option deprecated = true;
   repeated Readings readings = 1  [deprecated = true];
 }
