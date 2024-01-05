@@ -355,8 +355,8 @@ export class GetAccuracyResponse extends jspb.Message {
 
   hasPositionNmeaGgaFix(): boolean;
   clearPositionNmeaGgaFix(): void;
-  getPositionNmeaGgaFix(): NmeaGGAFixMap[keyof NmeaGGAFixMap];
-  setPositionNmeaGgaFix(value: NmeaGGAFixMap[keyof NmeaGGAFixMap]): void;
+  getPositionNmeaGgaFix(): number;
+  setPositionNmeaGgaFix(value: number): void;
 
   hasCompassDegreesError(): boolean;
   clearCompassDegreesError(): void;
@@ -378,7 +378,7 @@ export namespace GetAccuracyResponse {
     accuracyMap: Array<[string, number]>,
     positionHdop: number,
     positionVdop: number,
-    positionNmeaGgaFix: NmeaGGAFixMap[keyof NmeaGGAFixMap],
+    positionNmeaGgaFix: number,
     compassDegreesError: number,
   }
 }
@@ -430,18 +430,4 @@ export namespace GetLinearAccelerationResponse {
     linearAcceleration?: common_v1_common_pb.Vector3.AsObject,
   }
 }
-
-export interface NmeaGGAFixMap {
-  NMEA_GGA_FIX_INVALID_UNSPECIFIED: 0;
-  NMEA_GGA_FIX_GNSS: 1;
-  NMEA_GGA_FIX_DGPS: 2;
-  NMEA_GGA_FIX_PPS: 3;
-  NMEA_GGA_FIX_RTK_FIXED: 4;
-  NMEA_GGA_FIX_RTK_FLOAT: 5;
-  NMEA_GGA_FIX_DEAD_RECKONING: 6;
-  NMEA_GGA_FIX_MANUAL: 7;
-  NMEA_GGA_FIX_SIMULATION: 8;
-}
-
-export const NmeaGGAFix: NmeaGGAFixMap;
 
