@@ -904,8 +904,12 @@ message RegistryItem {
   string description = 8;
   // The total number of robots using this item
   int64 total_robot_usage = 9;
+  // The total number of robots using this item outside of the owning org
+  int64 total_external_robot_usage = 13;
   // The total number of organizations using this item
   int64 total_organization_usage = 10;
+  // The total number of organizations using this item outside of the owning org
+  int64 total_external_organization_usage = 14;
 
   // Type-specific metadata
   oneof metadata {
@@ -913,10 +917,6 @@ message RegistryItem {
     MLModelMetadata ml_model_metadata = 12;
   }
 
-  // The total number of robots using this item outside of the owning org
-  int64 total_external_robot_usage = 13;
-  // The total number of organizations using this item outside of the owning org
-  int64 total_external_organization_usage = 14;
   // When the item was created
   google.protobuf.Timestamp created_at = 15;
   // When the item was last updated, either through an update or upload.
