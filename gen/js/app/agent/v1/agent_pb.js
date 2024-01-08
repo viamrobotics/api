@@ -17,6 +17,8 @@ var global = (function() { return this || window || global || self || Function('
 
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js');
 goog.object.extend(proto, google_protobuf_duration_pb);
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
+goog.object.extend(proto, google_protobuf_struct_pb);
 var tagger_v1_tagger_pb = require('../../../tagger/v1/tagger_pb.js');
 goog.object.extend(proto, tagger_v1_tagger_pb);
 goog.exportSymbol('proto.viam.app.agent.v1.AppAgentConfig', null, global);
@@ -1043,7 +1045,8 @@ proto.viam.app.agent.v1.AppSubsystemConfig.toObject = function(includeInstance, 
     releaseChannel: jspb.Message.getFieldWithDefault(msg, 1, ""),
     pinVersion: jspb.Message.getFieldWithDefault(msg, 2, ""),
     pinUrl: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    disableSubsystem: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+    disableSubsystem: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1095,6 +1098,11 @@ proto.viam.app.agent.v1.AppSubsystemConfig.deserializeBinaryFromReader = functio
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDisableSubsystem(value);
+      break;
+    case 5:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setAttributes(value);
       break;
     default:
       reader.skipField();
@@ -1151,6 +1159,14 @@ proto.viam.app.agent.v1.AppSubsystemConfig.serializeBinaryToWriter = function(me
     writer.writeBool(
       4,
       f
+    );
+  }
+  f = message.getAttributes();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -1225,6 +1241,43 @@ proto.viam.app.agent.v1.AppSubsystemConfig.prototype.getDisableSubsystem = funct
  */
 proto.viam.app.agent.v1.AppSubsystemConfig.prototype.setDisableSubsystem = function(value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct attributes = 5;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.app.agent.v1.AppSubsystemConfig.prototype.getAttributes = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.agent.v1.AppSubsystemConfig} returns this
+*/
+proto.viam.app.agent.v1.AppSubsystemConfig.prototype.setAttributes = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.agent.v1.AppSubsystemConfig} returns this
+ */
+proto.viam.app.agent.v1.AppSubsystemConfig.prototype.clearAttributes = function() {
+  return this.setAttributes(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.agent.v1.AppSubsystemConfig.prototype.hasAttributes = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -1660,7 +1713,8 @@ proto.viam.app.agent.v1.DeviceSubsystemConfig.toObject = function(includeInstanc
   var f, obj = {
     updateInfo: (f = msg.getUpdateInfo()) && proto.viam.app.agent.v1.SubsystemUpdateInfo.toObject(includeInstance, f),
     disable: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    forceRestart: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    forceRestart: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1709,6 +1763,11 @@ proto.viam.app.agent.v1.DeviceSubsystemConfig.deserializeBinaryFromReader = func
     case 3:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setForceRestart(value);
+      break;
+    case 4:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setAttributes(value);
       break;
     default:
       reader.skipField();
@@ -1759,6 +1818,14 @@ proto.viam.app.agent.v1.DeviceSubsystemConfig.serializeBinaryToWriter = function
     writer.writeBool(
       3,
       f
+    );
+  }
+  f = message.getAttributes();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -1834,6 +1901,43 @@ proto.viam.app.agent.v1.DeviceSubsystemConfig.prototype.getForceRestart = functi
  */
 proto.viam.app.agent.v1.DeviceSubsystemConfig.prototype.setForceRestart = function(value) {
   return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct attributes = 4;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.app.agent.v1.DeviceSubsystemConfig.prototype.getAttributes = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 4));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.agent.v1.DeviceSubsystemConfig} returns this
+*/
+proto.viam.app.agent.v1.DeviceSubsystemConfig.prototype.setAttributes = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.agent.v1.DeviceSubsystemConfig} returns this
+ */
+proto.viam.app.agent.v1.DeviceSubsystemConfig.prototype.clearAttributes = function() {
+  return this.setAttributes(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.agent.v1.DeviceSubsystemConfig.prototype.hasAttributes = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
