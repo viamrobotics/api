@@ -765,11 +765,13 @@ type GetAccuracyResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Accuracy            map[string]float32 `protobuf:"bytes,1,rep,name=accuracy,proto3" json:"accuracy,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"fixed32,2,opt,name=value,proto3"`
-	PositionHdop        *float32           `protobuf:"fixed32,2,opt,name=position_hdop,json=positionHdop,proto3,oneof" json:"position_hdop,omitempty"`
-	PositionVdop        *float32           `protobuf:"fixed32,3,opt,name=position_vdop,json=positionVdop,proto3,oneof" json:"position_vdop,omitempty"`
-	PositionNmeaGgaFix  *int32             `protobuf:"varint,4,opt,name=position_nmea_gga_fix,json=positionNmeaGgaFix,proto3,oneof" json:"position_nmea_gga_fix,omitempty"`
-	CompassDegreesError *float32           `protobuf:"fixed32,5,opt,name=compass_degrees_error,json=compassDegreesError,proto3,oneof" json:"compass_degrees_error,omitempty"`
+	Accuracy     map[string]float32 `protobuf:"bytes,1,rep,name=accuracy,proto3" json:"accuracy,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"fixed32,2,opt,name=value,proto3"`
+	PositionHdop *float32           `protobuf:"fixed32,2,opt,name=position_hdop,json=positionHdop,proto3,oneof" json:"position_hdop,omitempty"`
+	PositionVdop *float32           `protobuf:"fixed32,3,opt,name=position_vdop,json=positionVdop,proto3,oneof" json:"position_vdop,omitempty"`
+	// NMEA GGA Fix represents the quality of data
+	// receivd from GPS.
+	PositionNmeaGgaFix  *int32   `protobuf:"varint,4,opt,name=position_nmea_gga_fix,json=positionNmeaGgaFix,proto3,oneof" json:"position_nmea_gga_fix,omitempty"`
+	CompassDegreesError *float32 `protobuf:"fixed32,5,opt,name=compass_degrees_error,json=compassDegreesError,proto3,oneof" json:"compass_degrees_error,omitempty"`
 }
 
 func (x *GetAccuracyResponse) Reset() {
