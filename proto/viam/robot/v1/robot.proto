@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.robot.v1;
 
+import "app/v1/app.proto";
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/duration.proto";
@@ -111,6 +112,13 @@ service RobotService {
   rpc SendSessionHeartbeat(SendSessionHeartbeatRequest) returns (SendSessionHeartbeatResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/sessions/{id}/heartbeat"
+    };
+  }
+
+  // ModuleLog sends logs from a module to be logged by this parent robot.
+  rpc ModuleLog(ModuleLogRequest) returns (ModuleLogResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/module_log"
     };
   }
 }
@@ -300,3 +308,10 @@ message SendSessionHeartbeatRequest {
 }
 
 message SendSessionHeartbeatResponse {}
+
+message ModuleLogRequest {
+  // Reuse LogEntry from app proto.
+  repeated app.v1.LogEntry logs = 1;
+}
+
+message ModuleLogResponse {}

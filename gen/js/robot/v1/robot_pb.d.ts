@@ -2,6 +2,7 @@
 // file: robot/v1/robot.proto
 
 import * as jspb from "google-protobuf";
+import * as app_v1_app_pb from "../../app/v1/app_pb";
 import * as common_v1_common_pb from "../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../google/api/annotations_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
@@ -904,6 +905,44 @@ export class SendSessionHeartbeatResponse extends jspb.Message {
 }
 
 export namespace SendSessionHeartbeatResponse {
+  export type AsObject = {
+  }
+}
+
+export class ModuleLogRequest extends jspb.Message {
+  clearLogsList(): void;
+  getLogsList(): Array<app_v1_app_pb.LogEntry>;
+  setLogsList(value: Array<app_v1_app_pb.LogEntry>): void;
+  addLogs(value?: app_v1_app_pb.LogEntry, index?: number): app_v1_app_pb.LogEntry;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleLogRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleLogRequest): ModuleLogRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleLogRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleLogRequest;
+  static deserializeBinaryFromReader(message: ModuleLogRequest, reader: jspb.BinaryReader): ModuleLogRequest;
+}
+
+export namespace ModuleLogRequest {
+  export type AsObject = {
+    logsList: Array<app_v1_app_pb.LogEntry.AsObject>,
+  }
+}
+
+export class ModuleLogResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleLogResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleLogResponse): ModuleLogResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleLogResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleLogResponse;
+  static deserializeBinaryFromReader(message: ModuleLogResponse, reader: jspb.BinaryReader): ModuleLogResponse;
+}
+
+export namespace ModuleLogResponse {
   export type AsObject = {
   }
 }

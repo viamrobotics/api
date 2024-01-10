@@ -145,6 +145,15 @@ RobotService.SendSessionHeartbeat = {
   responseType: robot_v1_robot_pb.SendSessionHeartbeatResponse
 };
 
+RobotService.ModuleLog = {
+  methodName: "ModuleLog",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.ModuleLogRequest,
+  responseType: robot_v1_robot_pb.ModuleLogResponse
+};
+
 exports.RobotService = RobotService;
 
 function RobotServiceClient(serviceHost, options) {
@@ -599,6 +608,37 @@ RobotServiceClient.prototype.sendSessionHeartbeat = function sendSessionHeartbea
     callback = arguments[1];
   }
   var client = grpc.unary(RobotService.SendSessionHeartbeat, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.moduleLog = function moduleLog(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.ModuleLog, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
