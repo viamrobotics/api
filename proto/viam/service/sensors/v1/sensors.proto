@@ -6,9 +6,9 @@ import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
+option deprecated = true;
 option go_package = "go.viam.com/api/service/sensors/v1";
 option java_package = "com.viam.service.sensors.v1";
-option deprecated = true;
 
 // A SensorsService services keeps track of all sensors associated with a robot
 // This service is deprecated
@@ -53,7 +53,7 @@ message GetSensorsResponse {
 
 message GetReadingsRequest {
   option deprecated = true;
-  string name = 1  [deprecated = true];
+  string name = 1 [deprecated = true];
   repeated common.v1.ResourceName sensor_names = 2 [deprecated = true];
   // Additional arguments to the method
   google.protobuf.Struct extra = 99 [deprecated = true];
@@ -61,11 +61,11 @@ message GetReadingsRequest {
 
 message Readings {
   option deprecated = true;
-  common.v1.ResourceName name = 1  [deprecated = true];
+  common.v1.ResourceName name = 1 [deprecated = true];
   map<string, google.protobuf.Value> readings = 2 [deprecated = true];
 }
 
 message GetReadingsResponse {
   option deprecated = true;
-  repeated Readings readings = 1  [deprecated = true];
+  repeated Readings readings = 1 [deprecated = true];
 }
