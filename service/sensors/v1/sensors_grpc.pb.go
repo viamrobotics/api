@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: service/sensors/v1/sensors.proto
+// service/sensors/v1/sensors.proto is a deprecated file.
 
 package v1
 
@@ -23,10 +23,13 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SensorsServiceClient interface {
+	// Deprecated: Do not use.
 	// GetSensors returns the list of all sensors.
 	GetSensors(ctx context.Context, in *GetSensorsRequest, opts ...grpc.CallOption) (*GetSensorsResponse, error)
+	// Deprecated: Do not use.
 	// GetReadings returns the list of readings for all sensors specified.
 	GetReadings(ctx context.Context, in *GetReadingsRequest, opts ...grpc.CallOption) (*GetReadingsResponse, error)
+	// Deprecated: Do not use.
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
@@ -39,6 +42,7 @@ func NewSensorsServiceClient(cc grpc.ClientConnInterface) SensorsServiceClient {
 	return &sensorsServiceClient{cc}
 }
 
+// Deprecated: Do not use.
 func (c *sensorsServiceClient) GetSensors(ctx context.Context, in *GetSensorsRequest, opts ...grpc.CallOption) (*GetSensorsResponse, error) {
 	out := new(GetSensorsResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.sensors.v1.SensorsService/GetSensors", in, out, opts...)
@@ -48,6 +52,7 @@ func (c *sensorsServiceClient) GetSensors(ctx context.Context, in *GetSensorsReq
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *sensorsServiceClient) GetReadings(ctx context.Context, in *GetReadingsRequest, opts ...grpc.CallOption) (*GetReadingsResponse, error) {
 	out := new(GetReadingsResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.sensors.v1.SensorsService/GetReadings", in, out, opts...)
@@ -57,6 +62,7 @@ func (c *sensorsServiceClient) GetReadings(ctx context.Context, in *GetReadingsR
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *sensorsServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.sensors.v1.SensorsService/DoCommand", in, out, opts...)
@@ -70,10 +76,13 @@ func (c *sensorsServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRe
 // All implementations must embed UnimplementedSensorsServiceServer
 // for forward compatibility
 type SensorsServiceServer interface {
+	// Deprecated: Do not use.
 	// GetSensors returns the list of all sensors.
 	GetSensors(context.Context, *GetSensorsRequest) (*GetSensorsResponse, error)
+	// Deprecated: Do not use.
 	// GetReadings returns the list of readings for all sensors specified.
 	GetReadings(context.Context, *GetReadingsRequest) (*GetReadingsResponse, error)
+	// Deprecated: Do not use.
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedSensorsServiceServer()
