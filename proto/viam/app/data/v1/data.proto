@@ -203,12 +203,10 @@ message TabularDataBySQLResponse {
 // TabularDataByMQLRequest requests tabular data using an MQL query.
 message TabularDataByMQLRequest {
   string organization_id = 1;
-  // mql_query is deprecated.
-  string mql_query = 2;
   // mql_binary accepts a MongoDB aggregation pipeline as a list of BSON documents, where each
   // document is one stage in the pipeline. The pipeline is run on the "sensorData.readings"
   // namespace, which holds the Viam organization's tabular data.
-  repeated bytes mql_binary = 3;
+  repeated bytes mql_binary = 2;
 }
 
 // TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.
