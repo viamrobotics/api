@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package viam.robot.v1;
 
-import "app/v1/app.proto";
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/duration.proto";
@@ -310,8 +309,7 @@ message SendSessionHeartbeatRequest {
 message SendSessionHeartbeatResponse {}
 
 message ModuleLogRequest {
-  // Reuse LogEntry from app proto.
-  repeated app.v1.LogEntry logs = 1;
+  repeated common.v1.LogEntry logs = 1;
 }
 
 message ModuleLogResponse {}

@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.app.v1;
 
 import "app/packages/v1/packages.proto";
+import "common/v1/common.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "tagger/v1/tagger.proto";
@@ -609,19 +610,8 @@ message GetRobotPartLogsRequest {
   optional string page_token = 4;
 }
 
-message LogEntry {
-  string host = 1;
-  string level = 2;
-  google.protobuf.Timestamp time = 3;
-  string logger_name = 4;
-  string message = 5;
-  google.protobuf.Struct caller = 6;
-  string stack = 7;
-  repeated google.protobuf.Struct fields = 8;
-}
-
 message GetRobotPartLogsResponse {
-  repeated LogEntry logs = 1;
+  repeated common.v1.LogEntry logs = 1;
   string next_page_token = 2;
 }
 
@@ -632,7 +622,7 @@ message TailRobotPartLogsRequest {
 }
 
 message TailRobotPartLogsResponse {
-  repeated LogEntry logs = 1;
+  repeated common.v1.LogEntry logs = 1;
 }
 
 message GetRobotPartHistoryRequest {
