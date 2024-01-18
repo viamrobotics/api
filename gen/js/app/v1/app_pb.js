@@ -25414,9 +25414,13 @@ proto.viam.app.v1.RegistryItem.toObject = function(includeInstance, msg) {
     url: jspb.Message.getFieldWithDefault(msg, 7, ""),
     description: jspb.Message.getFieldWithDefault(msg, 8, ""),
     totalRobotUsage: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    totalExternalRobotUsage: jspb.Message.getFieldWithDefault(msg, 13, 0),
     totalOrganizationUsage: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    totalExternalOrganizationUsage: jspb.Message.getFieldWithDefault(msg, 14, 0),
     moduleMetadata: (f = msg.getModuleMetadata()) && proto.viam.app.v1.ModuleMetadata.toObject(includeInstance, f),
-    mlModelMetadata: (f = msg.getMlModelMetadata()) && proto.viam.app.v1.MLModelMetadata.toObject(includeInstance, f)
+    mlModelMetadata: (f = msg.getMlModelMetadata()) && proto.viam.app.v1.MLModelMetadata.toObject(includeInstance, f),
+    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -25489,9 +25493,17 @@ proto.viam.app.v1.RegistryItem.deserializeBinaryFromReader = function(msg, reade
       var value = /** @type {number} */ (reader.readInt64());
       msg.setTotalRobotUsage(value);
       break;
+    case 13:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTotalExternalRobotUsage(value);
+      break;
     case 10:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setTotalOrganizationUsage(value);
+      break;
+    case 14:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTotalExternalOrganizationUsage(value);
       break;
     case 11:
       var value = new proto.viam.app.v1.ModuleMetadata;
@@ -25502,6 +25514,16 @@ proto.viam.app.v1.RegistryItem.deserializeBinaryFromReader = function(msg, reade
       var value = new proto.viam.app.v1.MLModelMetadata;
       reader.readMessage(value,proto.viam.app.v1.MLModelMetadata.deserializeBinaryFromReader);
       msg.setMlModelMetadata(value);
+      break;
+    case 15:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedAt(value);
+      break;
+    case 16:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setUpdatedAt(value);
       break;
     default:
       reader.skipField();
@@ -25595,10 +25617,24 @@ proto.viam.app.v1.RegistryItem.serializeBinaryToWriter = function(message, write
       f
     );
   }
+  f = message.getTotalExternalRobotUsage();
+  if (f !== 0) {
+    writer.writeInt64(
+      13,
+      f
+    );
+  }
   f = message.getTotalOrganizationUsage();
   if (f !== 0) {
     writer.writeInt64(
       10,
+      f
+    );
+  }
+  f = message.getTotalExternalOrganizationUsage();
+  if (f !== 0) {
+    writer.writeInt64(
+      14,
       f
     );
   }
@@ -25616,6 +25652,22 @@ proto.viam.app.v1.RegistryItem.serializeBinaryToWriter = function(message, write
       12,
       f,
       proto.viam.app.v1.MLModelMetadata.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreatedAt();
+  if (f != null) {
+    writer.writeMessage(
+      15,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getUpdatedAt();
+  if (f != null) {
+    writer.writeMessage(
+      16,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -25784,6 +25836,24 @@ proto.viam.app.v1.RegistryItem.prototype.setTotalRobotUsage = function(value) {
 
 
 /**
+ * optional int64 total_external_robot_usage = 13;
+ * @return {number}
+ */
+proto.viam.app.v1.RegistryItem.prototype.getTotalExternalRobotUsage = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.RegistryItem} returns this
+ */
+proto.viam.app.v1.RegistryItem.prototype.setTotalExternalRobotUsage = function(value) {
+  return jspb.Message.setProto3IntField(this, 13, value);
+};
+
+
+/**
  * optional int64 total_organization_usage = 10;
  * @return {number}
  */
@@ -25798,6 +25868,24 @@ proto.viam.app.v1.RegistryItem.prototype.getTotalOrganizationUsage = function() 
  */
 proto.viam.app.v1.RegistryItem.prototype.setTotalOrganizationUsage = function(value) {
   return jspb.Message.setProto3IntField(this, 10, value);
+};
+
+
+/**
+ * optional int64 total_external_organization_usage = 14;
+ * @return {number}
+ */
+proto.viam.app.v1.RegistryItem.prototype.getTotalExternalOrganizationUsage = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.RegistryItem} returns this
+ */
+proto.viam.app.v1.RegistryItem.prototype.setTotalExternalOrganizationUsage = function(value) {
+  return jspb.Message.setProto3IntField(this, 14, value);
 };
 
 
@@ -25872,6 +25960,80 @@ proto.viam.app.v1.RegistryItem.prototype.clearMlModelMetadata = function() {
  */
 proto.viam.app.v1.RegistryItem.prototype.hasMlModelMetadata = function() {
   return jspb.Message.getField(this, 12) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_at = 15;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.RegistryItem.prototype.getCreatedAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 15));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.RegistryItem} returns this
+*/
+proto.viam.app.v1.RegistryItem.prototype.setCreatedAt = function(value) {
+  return jspb.Message.setWrapperField(this, 15, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.RegistryItem} returns this
+ */
+proto.viam.app.v1.RegistryItem.prototype.clearCreatedAt = function() {
+  return this.setCreatedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.RegistryItem.prototype.hasCreatedAt = function() {
+  return jspb.Message.getField(this, 15) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp updated_at = 16;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.RegistryItem.prototype.getUpdatedAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 16));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.RegistryItem} returns this
+*/
+proto.viam.app.v1.RegistryItem.prototype.setUpdatedAt = function(value) {
+  return jspb.Message.setWrapperField(this, 16, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.RegistryItem} returns this
+ */
+proto.viam.app.v1.RegistryItem.prototype.clearUpdatedAt = function() {
+  return this.setUpdatedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.RegistryItem.prototype.hasUpdatedAt = function() {
+  return jspb.Message.getField(this, 16) != null;
 };
 
 

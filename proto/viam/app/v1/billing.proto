@@ -7,11 +7,6 @@ import "google/protobuf/timestamp.proto";
 option go_package = "go.viam.com/api/app/v1";
 
 service BillingService {
-  rpc GetCurrentMonthUsageSummary(GetCurrentMonthUsageSummaryRequest) returns (GetCurrentMonthUsageSummaryResponse);
-  rpc GetUnpaidBalance(GetUnpaidBalanceRequest) returns (GetUnpaidBalanceResponse);
-  rpc GetInvoiceHistory(GetInvoiceHistoryRequest) returns (GetInvoiceHistoryResponse);
-  rpc GetItemizedInvoice(GetItemizedInvoiceRequest) returns (GetItemizedInvoiceResponse);
-  rpc GetBillingSummary(GetBillingSummaryRequest) returns (GetBillingSummaryResponse);
   // Detailed breakdown of current month's costs
   rpc GetCurrentMonthUsage(GetCurrentMonthUsageRequest) returns (GetCurrentMonthUsageResponse);
   // Org-level information (like billing email and payment details)
@@ -20,21 +15,6 @@ service BillingService {
   rpc GetInvoicesSummary(GetInvoicesSummaryRequest) returns (GetInvoicesSummaryResponse);
   // Download a PDF invoice
   rpc GetInvoicePdf(GetInvoicePdfRequest) returns (stream GetInvoicePdfResponse);
-}
-
-// TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage
-message CurrentMonthUsageSummary {
-  double cloud_storage_usage = 1;
-  double cloud_storage_usage_cost = 2;
-  double data_upload_usage_cost = 3;
-  double data_upload_usage_quantity = 4;
-  double data_egres_usage_cost = 5;
-  double data_egres_usage_quantity = 6;
-  double standard_compute_usage_cost = 7;
-  double standard_compute_usage_quantity = 8;
-  double total_usage_quantity = 9;
-  double total_usage_with_discount = 10; // returns amt with any discounts applied
-  double total_usage_without_discount = 11; // returns amt without any discounts applied
 }
 
 message InvoiceSummary {
@@ -76,26 +56,6 @@ message PaymentMethodCard {
   string last_four_digits = 2;
 }
 
-// TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage
-message GetCurrentMonthUsageSummaryRequest {
-  string org_id = 1;
-}
-
-// TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage
-message GetCurrentMonthUsageSummaryResponse {
-  double cloud_storage_usage = 1;
-  double cloud_storage_usage_cost = 2;
-  double data_upload_usage_cost = 3;
-  double data_upload_usage_quantity = 4;
-  double data_egres_usage_cost = 5;
-  double data_egres_usage_quantity = 6;
-  double standard_compute_usage_cost = 7;
-  double standard_compute_usage_quantity = 8;
-  double total_usage_quantity = 9;
-  double total_usage_with_discount = 10; // returns amt with any discounts applied
-  double total_usage_without_discount = 11; // returns amt without any discounts applied
-}
-
 message GetCurrentMonthUsageRequest {
   string org_id = 1;
 }
@@ -111,37 +71,6 @@ message GetCurrentMonthUsageResponse {
   double discount_amount = 8;
   double total_usage_with_discount = 9;
   double total_usage_without_discount = 10;
-}
-
-// TODO(APP-1865) may want to remove
-message GetUnpaidBalanceRequest {
-  string org_id = 1;
-}
-
-// TODO(APP-1865) may want to remove
-message GetUnpaidBalanceResponse {
-  double unpaid_balance = 1;
-  google.protobuf.Timestamp unpaid_balance_due_date = 2;
-}
-
-// TODO(APP-1865) may want to remove
-message GetInvoiceHistoryRequest {
-  string org_id = 1;
-}
-
-// TODO(APP-1865) may want to remove
-message GetInvoiceHistoryResponse {
-  repeated InvoiceSummary invoices = 1;
-}
-
-// TODO(APP-1865) may want to remove
-message GetItemizedInvoiceRequest {
-  string id = 1;
-}
-
-// TODO(APP-1865) may want to remove
-message GetItemizedInvoiceResponse {
-  Invoice invoice = 1;
 }
 
 message GetOrgBillingInformationRequest {
@@ -167,23 +96,6 @@ message GetInvoicesSummaryResponse {
   double outstanding_balance = 1;
   // all previous invoices
   repeated InvoiceSummary invoices = 2;
-}
-
-// TODO(APP-1865) should be deprecated/removed
-message GetBillingSummaryRequest {
-  string org_id = 1;
-}
-
-// TODO(APP-1865) should be deprecated/removed
-message GetBillingSummaryResponse {
-  CurrentMonthUsageSummary usage_summary = 1;
-  repeated InvoiceSummary invoices = 2;
-  double statement_balance = 3; // all unpaid balances at the end of the last billing cycle
-  double current_balance = 4; // statement_balance + current_month_usage
-  double current_month_balance = 5; // current_month_usage_cost
-  google.protobuf.Timestamp current_month_due_date = 7; // due date for current month usage
-  string invoice_email = 8;
-  PaymentMethodCard payment_method = 9;
 }
 
 message GetInvoicePdfRequest {

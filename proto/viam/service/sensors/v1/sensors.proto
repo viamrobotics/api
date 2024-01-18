@@ -6,16 +6,19 @@ import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
+option deprecated = true;
 option go_package = "go.viam.com/api/service/sensors/v1";
 option java_package = "com.viam.service.sensors.v1";
 
 // A SensorsService services keeps track of all sensors associated with a robot
+// This service is deprecated
 service SensorsService {
   // GetSensors returns the list of all sensors.
   rpc GetSensors(GetSensorsRequest) returns (GetSensorsResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/{name}/sensors"
     };
+    option deprecated = true;
   }
 
   // GetReadings returns the list of readings for all sensors specified.
@@ -23,6 +26,7 @@ service SensorsService {
     option (google.api.http) = {
       get: "/viam/api/v1/service/sensors/{name}/readings"
     };
+    option deprecated = true;
   }
 
   // DoCommand sends/receives arbitrary commands
@@ -30,31 +34,38 @@ service SensorsService {
     option (google.api.http) = {
       post: "/viam/api/v1/service/sensors/{name}/do_command"
     };
+    option deprecated = true;
   }
 }
 
+// The sensors service messages are deprecated
 message GetSensorsRequest {
-  string name = 1;
+  option deprecated = true;
+  string name = 1 [deprecated = true];
   // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
+  google.protobuf.Struct extra = 99 [deprecated = true];
 }
 
 message GetSensorsResponse {
-  repeated common.v1.ResourceName sensor_names = 1;
+  option deprecated = true;
+  repeated common.v1.ResourceName sensor_names = 1 [deprecated = true];
 }
 
 message GetReadingsRequest {
-  string name = 1;
-  repeated common.v1.ResourceName sensor_names = 2;
+  option deprecated = true;
+  string name = 1 [deprecated = true];
+  repeated common.v1.ResourceName sensor_names = 2 [deprecated = true];
   // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
+  google.protobuf.Struct extra = 99 [deprecated = true];
 }
 
 message Readings {
-  common.v1.ResourceName name = 1;
-  map<string, google.protobuf.Value> readings = 2;
+  option deprecated = true;
+  common.v1.ResourceName name = 1 [deprecated = true];
+  map<string, google.protobuf.Value> readings = 2 [deprecated = true];
 }
 
 message GetReadingsResponse {
-  repeated Readings readings = 1;
+  option deprecated = true;
+  repeated Readings readings = 1 [deprecated = true];
 }

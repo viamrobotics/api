@@ -3155,8 +3155,14 @@ export class RegistryItem extends jspb.Message {
   getTotalRobotUsage(): number;
   setTotalRobotUsage(value: number): void;
 
+  getTotalExternalRobotUsage(): number;
+  setTotalExternalRobotUsage(value: number): void;
+
   getTotalOrganizationUsage(): number;
   setTotalOrganizationUsage(value: number): void;
+
+  getTotalExternalOrganizationUsage(): number;
+  setTotalExternalOrganizationUsage(value: number): void;
 
   hasModuleMetadata(): boolean;
   clearModuleMetadata(): void;
@@ -3167,6 +3173,16 @@ export class RegistryItem extends jspb.Message {
   clearMlModelMetadata(): void;
   getMlModelMetadata(): MLModelMetadata | undefined;
   setMlModelMetadata(value?: MLModelMetadata): void;
+
+  hasCreatedAt(): boolean;
+  clearCreatedAt(): void;
+  getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasUpdatedAt(): boolean;
+  clearUpdatedAt(): void;
+  getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   getMetadataCase(): RegistryItem.MetadataCase;
   serializeBinary(): Uint8Array;
@@ -3190,9 +3206,13 @@ export namespace RegistryItem {
     url: string,
     description: string,
     totalRobotUsage: number,
+    totalExternalRobotUsage: number,
     totalOrganizationUsage: number,
+    totalExternalOrganizationUsage: number,
     moduleMetadata?: ModuleMetadata.AsObject,
     mlModelMetadata?: MLModelMetadata.AsObject,
+    createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 
   export enum MetadataCase {
