@@ -2,7 +2,6 @@
 // file: robot/v1/robot.proto
 
 import * as jspb from "google-protobuf";
-import * as app_v1_app_pb from "../../app/v1/app_pb";
 import * as common_v1_common_pb from "../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../google/api/annotations_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
@@ -911,9 +910,9 @@ export namespace SendSessionHeartbeatResponse {
 
 export class ModuleLogRequest extends jspb.Message {
   clearLogsList(): void;
-  getLogsList(): Array<app_v1_app_pb.LogEntry>;
-  setLogsList(value: Array<app_v1_app_pb.LogEntry>): void;
-  addLogs(value?: app_v1_app_pb.LogEntry, index?: number): app_v1_app_pb.LogEntry;
+  getLogsList(): Array<common_v1_common_pb.LogEntry>;
+  setLogsList(value: Array<common_v1_common_pb.LogEntry>): void;
+  addLogs(value?: common_v1_common_pb.LogEntry, index?: number): common_v1_common_pb.LogEntry;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleLogRequest.AsObject;
@@ -927,7 +926,7 @@ export class ModuleLogRequest extends jspb.Message {
 
 export namespace ModuleLogRequest {
   export type AsObject = {
-    logsList: Array<app_v1_app_pb.LogEntry.AsObject>,
+    logsList: Array<common_v1_common_pb.LogEntry.AsObject>,
   }
 }
 

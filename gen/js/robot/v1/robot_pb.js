@@ -15,8 +15,6 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
-var app_v1_app_pb = require('../../app/v1/app_pb.js');
-goog.object.extend(proto, app_v1_app_pb);
 var common_v1_common_pb = require('../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
 var google_api_annotations_pb = require('../../google/api/annotations_pb.js');
@@ -7287,7 +7285,7 @@ proto.viam.robot.v1.ModuleLogRequest.prototype.toObject = function(opt_includeIn
 proto.viam.robot.v1.ModuleLogRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     logsList: jspb.Message.toObjectList(msg.getLogsList(),
-    app_v1_app_pb.LogEntry.toObject, includeInstance)
+    common_v1_common_pb.LogEntry.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -7325,8 +7323,8 @@ proto.viam.robot.v1.ModuleLogRequest.deserializeBinaryFromReader = function(msg,
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new app_v1_app_pb.LogEntry;
-      reader.readMessage(value,app_v1_app_pb.LogEntry.deserializeBinaryFromReader);
+      var value = new common_v1_common_pb.LogEntry;
+      reader.readMessage(value,common_v1_common_pb.LogEntry.deserializeBinaryFromReader);
       msg.addLogs(value);
       break;
     default:
@@ -7363,24 +7361,24 @@ proto.viam.robot.v1.ModuleLogRequest.serializeBinaryToWriter = function(message,
     writer.writeRepeatedMessage(
       1,
       f,
-      app_v1_app_pb.LogEntry.serializeBinaryToWriter
+      common_v1_common_pb.LogEntry.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * repeated viam.app.v1.LogEntry logs = 1;
- * @return {!Array<!proto.viam.app.v1.LogEntry>}
+ * repeated viam.common.v1.LogEntry logs = 1;
+ * @return {!Array<!proto.viam.common.v1.LogEntry>}
  */
 proto.viam.robot.v1.ModuleLogRequest.prototype.getLogsList = function() {
-  return /** @type{!Array<!proto.viam.app.v1.LogEntry>} */ (
-    jspb.Message.getRepeatedWrapperField(this, app_v1_app_pb.LogEntry, 1));
+  return /** @type{!Array<!proto.viam.common.v1.LogEntry>} */ (
+    jspb.Message.getRepeatedWrapperField(this, common_v1_common_pb.LogEntry, 1));
 };
 
 
 /**
- * @param {!Array<!proto.viam.app.v1.LogEntry>} value
+ * @param {!Array<!proto.viam.common.v1.LogEntry>} value
  * @return {!proto.viam.robot.v1.ModuleLogRequest} returns this
 */
 proto.viam.robot.v1.ModuleLogRequest.prototype.setLogsList = function(value) {
@@ -7389,12 +7387,12 @@ proto.viam.robot.v1.ModuleLogRequest.prototype.setLogsList = function(value) {
 
 
 /**
- * @param {!proto.viam.app.v1.LogEntry=} opt_value
+ * @param {!proto.viam.common.v1.LogEntry=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.app.v1.LogEntry}
+ * @return {!proto.viam.common.v1.LogEntry}
  */
 proto.viam.robot.v1.ModuleLogRequest.prototype.addLogs = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.app.v1.LogEntry, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.common.v1.LogEntry, opt_index);
 };
 
 
