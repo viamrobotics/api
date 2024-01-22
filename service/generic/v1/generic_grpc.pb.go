@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: component/generic/v1/generic.proto
+// source: service/generic/v1/generic.proto
 
 package v1
 
@@ -25,8 +25,6 @@ const _ = grpc.SupportPackageIsVersion7
 type GenericServiceClient interface {
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
-	// GetGeometries returns the geometries of the component in their current configuration
-	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 }
 
 type genericServiceClient struct {
@@ -39,16 +37,7 @@ func NewGenericServiceClient(cc grpc.ClientConnInterface) GenericServiceClient {
 
 func (c *genericServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
-	err := c.cc.Invoke(ctx, "/viam.component.generic.v1.GenericService/DoCommand", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *genericServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error) {
-	out := new(v1.GetGeometriesResponse)
-	err := c.cc.Invoke(ctx, "/viam.component.generic.v1.GenericService/GetGeometries", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/viam.service.generic.v1.GenericService/DoCommand", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -61,8 +50,6 @@ func (c *genericServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeom
 type GenericServiceServer interface {
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
-	// GetGeometries returns the geometries of the component in their current configuration
-	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	mustEmbedUnimplementedGenericServiceServer()
 }
 
@@ -72,9 +59,6 @@ type UnimplementedGenericServiceServer struct {
 
 func (UnimplementedGenericServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
-}
-func (UnimplementedGenericServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
 }
 func (UnimplementedGenericServiceServer) mustEmbedUnimplementedGenericServiceServer() {}
 
@@ -99,28 +83,10 @@ func _GenericService_DoCommand_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.component.generic.v1.GenericService/DoCommand",
+		FullMethod: "/viam.service.generic.v1.GenericService/DoCommand",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GenericServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GenericService_GetGeometries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1.GetGeometriesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GenericServiceServer).GetGeometries(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.component.generic.v1.GenericService/GetGeometries",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GenericServiceServer).GetGeometries(ctx, req.(*v1.GetGeometriesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -129,18 +95,14 @@ func _GenericService_GetGeometries_Handler(srv interface{}, ctx context.Context,
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var GenericService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "viam.component.generic.v1.GenericService",
+	ServiceName: "viam.service.generic.v1.GenericService",
 	HandlerType: (*GenericServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _GenericService_DoCommand_Handler,
 		},
-		{
-			MethodName: "GetGeometries",
-			Handler:    _GenericService_GetGeometries_Handler,
-		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "component/generic/v1/generic.proto",
+	Metadata: "service/generic/v1/generic.proto",
 }
