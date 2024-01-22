@@ -60,7 +60,7 @@ service NavigationService {
   }
 
   // GetProperties returns properties of the current navigation service, including the
-  //map_type being operated on.
+  // map_type being operated on.
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/navigation/{name}/properties"
@@ -75,7 +75,7 @@ service NavigationService {
   }
 }
 
-// MapType represents the various types of map the navigation service can ingest.
+// MapType represents the various types of maps the navigation service can ingest.
 enum MapType {
   MAP_TYPE_UNSPECIFIED = 0;
   MAP_TYPE_NONE = 1;
