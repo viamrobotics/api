@@ -23,7 +23,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// MapType represents the various types of map the navigation service can ingest.
+// MapType represents the various types of maps the navigation service can ingest.
 type MapType int32
 
 const (

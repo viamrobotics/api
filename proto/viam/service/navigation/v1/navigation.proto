@@ -59,7 +59,7 @@ service NavigationService {
     };
   }
 
-  // GetProperties returns properties of the current navigation service, including the 
+  // GetProperties returns properties of the current navigation service, including the
   // map_type being operated on.
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
     option (google.api.http) = {
@@ -199,4 +199,3 @@ message GetPropertiesRequest {
 message GetPropertiesResponse {
   MapType map_type = 1;
 }
-
