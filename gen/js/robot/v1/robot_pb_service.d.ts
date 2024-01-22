@@ -139,15 +139,6 @@ type RobotServiceSendSessionHeartbeat = {
   readonly responseType: typeof robot_v1_robot_pb.SendSessionHeartbeatResponse;
 };
 
-type RobotServiceModuleLog = {
-  readonly methodName: string;
-  readonly service: typeof RobotService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof robot_v1_robot_pb.ModuleLogRequest;
-  readonly responseType: typeof robot_v1_robot_pb.ModuleLogResponse;
-};
-
 export class RobotService {
   static readonly serviceName: string;
   static readonly GetOperations: RobotServiceGetOperations;
@@ -165,7 +156,6 @@ export class RobotService {
   static readonly StopAll: RobotServiceStopAll;
   static readonly StartSession: RobotServiceStartSession;
   static readonly SendSessionHeartbeat: RobotServiceSendSessionHeartbeat;
-  static readonly ModuleLog: RobotServiceModuleLog;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -326,15 +316,6 @@ export class RobotServiceClient {
   sendSessionHeartbeat(
     requestMessage: robot_v1_robot_pb.SendSessionHeartbeatRequest,
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.SendSessionHeartbeatResponse|null) => void
-  ): UnaryResponse;
-  moduleLog(
-    requestMessage: robot_v1_robot_pb.ModuleLogRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.ModuleLogResponse|null) => void
-  ): UnaryResponse;
-  moduleLog(
-    requestMessage: robot_v1_robot_pb.ModuleLogRequest,
-    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.ModuleLogResponse|null) => void
   ): UnaryResponse;
 }
 
