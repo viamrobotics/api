@@ -877,9 +877,18 @@ message ModuleMetadata {
   string entrypoint = 3;
 }
 
+message MLModelVersion {
+  // The timestamp of when the ml model version was created.
+  string version = 1;
+  // The time when the file was uploaded
+  google.protobuf.Timestamp uploaded_at = 2;
+}
+
 message MLModelMetadata {
+  // versions used to be a repeated string and is now a message
+  reserved 1;
   // A list of package versions for a ML model
-  repeated string versions = 1;
+  repeated MLModelVersion versions = 2;
 }
 
 message RegistryItem {
