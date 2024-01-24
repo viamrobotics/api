@@ -18,6 +18,9 @@ service MotionService {
     };
   }
 
+  // Generate a plan and move a component to a specific pose
+  // with respect to the SLAM map's origin.
+  // May replan to avoid obstacles
   rpc MoveOnMap(MoveOnMapRequest) returns (MoveOnMapResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/service/motion/{name}/move_on_map"
@@ -27,6 +30,7 @@ service MotionService {
   // Generate a plan and move a component to a specific pose
   // with respect to the SLAM map's origin.
   // May replan to avoid obstacles
+  [deprecated = true];
   rpc MoveOnMapNew(MoveOnMapNewRequest) returns (MoveOnMapNewResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/service/motion/{name}/move_on_map_new"
@@ -108,6 +112,7 @@ message MoveResponse {
   bool success = 1;
 }
 
+[deprecated = true];
 message MoveOnMapNewRequest {
   // Name of the motion service
   string name = 1;
@@ -123,6 +128,7 @@ message MoveOnMapNewRequest {
   google.protobuf.Struct extra = 99;
 }
 
+[deprecated = true];
 message MoveOnMapNewResponse {
   // The unique ID which identifies the execution.
   // Multiple plans will share the same execution_id if they were
@@ -139,12 +145,17 @@ message MoveOnMapRequest {
   common.v1.ResourceName component_name = 3;
   // Name of the slam service from which the SLAM map is requested
   common.v1.ResourceName slam_service_name = 4;
+  // Optional set of motion configuration options
+  optional MotionConfiguration motion_configuration = 5;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
 
 message MoveOnMapResponse {
-  bool success = 1;
+  // The unique ID which identifies the execution.
+  // Multiple plans will share the same execution_id if they were
+  // generated due to replanning.
+  string execution_id = 1;
 }
 
 // Pairs a vision service with a camera, informing the service about which camera it may use
