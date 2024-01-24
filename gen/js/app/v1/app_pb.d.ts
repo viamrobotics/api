@@ -3105,11 +3105,37 @@ export namespace ModuleMetadata {
   }
 }
 
+export class MLModelVersion extends jspb.Message {
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  hasUploadedAt(): boolean;
+  clearUploadedAt(): void;
+  getUploadedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setUploadedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MLModelVersion.AsObject;
+  static toObject(includeInstance: boolean, msg: MLModelVersion): MLModelVersion.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MLModelVersion, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MLModelVersion;
+  static deserializeBinaryFromReader(message: MLModelVersion, reader: jspb.BinaryReader): MLModelVersion;
+}
+
+export namespace MLModelVersion {
+  export type AsObject = {
+    version: string,
+    uploadedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
 export class MLModelMetadata extends jspb.Message {
   clearVersionsList(): void;
-  getVersionsList(): Array<string>;
-  setVersionsList(value: Array<string>): void;
-  addVersions(value: string, index?: number): string;
+  getVersionsList(): Array<MLModelVersion>;
+  setVersionsList(value: Array<MLModelVersion>): void;
+  addVersions(value?: MLModelVersion, index?: number): MLModelVersion;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MLModelMetadata.AsObject;
@@ -3123,7 +3149,7 @@ export class MLModelMetadata extends jspb.Message {
 
 export namespace MLModelMetadata {
   export type AsObject = {
-    versionsList: Array<string>,
+    versionsList: Array<MLModelVersion.AsObject>,
   }
 }
 
