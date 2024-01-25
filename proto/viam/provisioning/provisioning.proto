@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package viam.provisioning.v1;
+
+option go_package = "go.viam.com/api/provisioning/v1";
+
+// ProvisionService is used by viam-agent to retrieve device and robot info.
+service ProvisionService {
+  // GetDeviceStatus is for retrieving the status of the device including networking.
+  rpc GetDeviceStatus(GetDeviceStatusRequest) returns (GetDeviceStatusResponse);
+
+  // SetWifiCredentials is to set the wifi credentials.
+  rpc SetWifiCredentials(SetWifiCredentialsRequest) returns (SetWifiCredentialsResponse);
+
+  // SetRobotCredentials is to set the robot credentials.
+  rpc SetRobotCredentials(SetRobotCredentialsRequest) returns (SetRobotCredentialsResponse); 
+
+  // GetVisibleWifiNetworks is to retrieve the list of wifi networks that are visible to the device.
+  rpc GetVisibleWifiNetworks(GetVisibleWifiNetworksRequest) returns (GetVisibleWifiNetworksResponse); 
+}
+
+message GetDeviceStatusRequest {
+}
+
+message GetDeviceStatusResponse {
+  ProviosionInfo provision_info = 1;
+  ConnectionAttempt latest_connection_attempt = 2;
+}
+
+message SetWifiCredentialsRequest {
+  string ssid = 1;
+  string psk = 2;
+}
+
+message SetWifiCredentialsResponse {
+  ConnectionAttempt connection_attempt = 1; 
+}
+
+message SetRobotCredentialsRequest {
+}
+
+message SetRobotCredentialsResponse {
+  CloudConfig cloud = 1;
+}
+
+message GetVisibleWifiNetworksRequest {
+}
+
+message GetVisibleWifiNetworksResponse {
+  repeated NetworkInfo wifis = 1;
+}
+
+message ProviosionInfo { 
+  string fragment_id  = 1;
+  string model = 2;
+  string manufacturer = 3;
+}
+
+message ProvisionStatus {
+  repeated SubsystemStatus subsystems_status = 1;
+}
+
+message SubsystemStatus {
+  string name = 1;
+  string status = 2;
+  string error_msg = 3;
+}
+
+message ConnectionAttempt {
+  NetworkInfo network_info = 1;
+  string command = 2;
+  string error_msg = 3;
+}
+
+message NetworkInfo {
+  string type = 1;
+  string sidd = 2;
+  string security = 3;
+  int32 signal = 4;
+}
+
+// minimal CloudConfig to create /etc/viam.json 
+message CloudConfig {
+  // Robot part id
+  string id = 1;
+  // Robot part secret
+  string secret = 2;
+  string app_address = 3;
+}
+  
