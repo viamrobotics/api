@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
+import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as tagger_v1_tagger_pb from "../../../tagger/v1/tagger_pb";
 
 export class GetAgentConfigRequest extends jspb.Message {
@@ -127,6 +128,11 @@ export class AppSubsystemConfig extends jspb.Message {
   getDisableSubsystem(): boolean;
   setDisableSubsystem(value: boolean): void;
 
+  hasAttributes(): boolean;
+  clearAttributes(): void;
+  getAttributes(): google_protobuf_struct_pb.Struct | undefined;
+  setAttributes(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AppSubsystemConfig.AsObject;
   static toObject(includeInstance: boolean, msg: AppSubsystemConfig): AppSubsystemConfig.AsObject;
@@ -143,6 +149,7 @@ export namespace AppSubsystemConfig {
     pinVersion: string,
     pinUrl: string,
     disableSubsystem: boolean,
+    attributes?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -212,6 +219,11 @@ export class DeviceSubsystemConfig extends jspb.Message {
   getForceRestart(): boolean;
   setForceRestart(value: boolean): void;
 
+  hasAttributes(): boolean;
+  clearAttributes(): void;
+  getAttributes(): google_protobuf_struct_pb.Struct | undefined;
+  setAttributes(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeviceSubsystemConfig.AsObject;
   static toObject(includeInstance: boolean, msg: DeviceSubsystemConfig): DeviceSubsystemConfig.AsObject;
@@ -227,6 +239,7 @@ export namespace DeviceSubsystemConfig {
     updateInfo?: SubsystemUpdateInfo.AsObject,
     disable: boolean,
     forceRestart: boolean,
+    attributes?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 

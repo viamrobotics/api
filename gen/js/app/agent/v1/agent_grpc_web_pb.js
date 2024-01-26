@@ -22,6 +22,8 @@ grpc.web = require('grpc-web');
 
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js')
 
+var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
+
 var tagger_v1_tagger_pb = require('../../../tagger/v1/tagger_pb.js')
 const proto = {};
 proto.viam = {};
