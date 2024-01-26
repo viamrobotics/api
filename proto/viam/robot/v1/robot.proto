@@ -58,6 +58,13 @@ service RobotService {
     };
   }
 
+  // DiscoverRegistrations returns the list of discovered resource registrations.
+  rpc DiscoverRegistrations(DiscoverRegistrationsRequest) returns (DiscoverRegistrationsResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/discovery/registrations"
+    };
+  }
+
   rpc FrameSystemConfig(FrameSystemConfigRequest) returns (FrameSystemConfigResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/frame_system/config"
@@ -248,6 +255,29 @@ message DiscoverComponentsRequest {
 
 message DiscoverComponentsResponse {
   repeated Discovery discovery = 1;
+}
+
+
+enum DiscoverRegistrationsQueryType {
+  DISCOVER_REGISTRATIONS_QUERY_TYPE_UNSPECIFIED = 0;
+  DISCOVER_REGISTRATIONS_QUERY_TYPE_MODULES = 1;
+}
+
+message DiscoverRegistrationsQuery {
+    DiscoverRegistrationsQueryType type = 1;
+}
+
+message DiscoverRegistrationsResult {
+  DiscoverRegistrationsQuery query = 1;
+  google.protobuf.Struct results = 2;
+}
+
+message DiscoverRegistrationsRequest {
+  repeated DiscoverRegistrationsQuery queries = 1;
+}
+
+message DiscoverRegistrationsResponse {
+  repeated DiscoverRegistrationsResult discovery = 1;
 }
 
 message Status {
