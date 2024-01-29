@@ -166,6 +166,11 @@ export class MoveOnMapRequest extends jspb.Message {
   getSlamServiceName(): common_v1_common_pb.ResourceName | undefined;
   setSlamServiceName(value?: common_v1_common_pb.ResourceName): void;
 
+  hasMotionConfiguration(): boolean;
+  clearMotionConfiguration(): void;
+  getMotionConfiguration(): MotionConfiguration | undefined;
+  setMotionConfiguration(value?: MotionConfiguration): void;
+
   hasExtra(): boolean;
   clearExtra(): void;
   getExtra(): google_protobuf_struct_pb.Struct | undefined;
@@ -187,13 +192,14 @@ export namespace MoveOnMapRequest {
     destination?: common_v1_common_pb.Pose.AsObject,
     componentName?: common_v1_common_pb.ResourceName.AsObject,
     slamServiceName?: common_v1_common_pb.ResourceName.AsObject,
+    motionConfiguration?: MotionConfiguration.AsObject,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
 export class MoveOnMapResponse extends jspb.Message {
-  getSuccess(): boolean;
-  setSuccess(value: boolean): void;
+  getExecutionId(): string;
+  setExecutionId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MoveOnMapResponse.AsObject;
@@ -207,7 +213,7 @@ export class MoveOnMapResponse extends jspb.Message {
 
 export namespace MoveOnMapResponse {
   export type AsObject = {
-    success: boolean,
+    executionId: string,
   }
 }
 
