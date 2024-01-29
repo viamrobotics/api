@@ -23,7 +23,7 @@ message GetDeviceStatusRequest {
 }
 
 message GetDeviceStatusResponse {
-  ProviosioningInfo provisioning_info = 1;
+  ProvisioningInfo provisioning_info = 1;
   bool has_device_credentials = 2;
   bool is_online = 3;
   NetworkInfo latest_connection_attempt = 4;
@@ -52,7 +52,7 @@ message GetNetworkListResponse {
   repeated NetworkInfo networks = 1;
 }
 
-message ProviosioningInfo { 
+message ProvisioningInfo { 
   string fragment_id  = 1;
   string model = 2;
   string manufacturer = 3;
