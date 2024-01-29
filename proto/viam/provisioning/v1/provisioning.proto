@@ -4,38 +4,39 @@ package viam.provisioning.v1;
 
 option go_package = "go.viam.com/api/provisioning/v1";
 
-// ProvisioningService is used by viam-agent to retrieve device and smart machine info.
+// ProvisioningService is used by viam-agent to retrieve the smart machine info.
 service ProvisioningService {
-  // GetDeviceStatus is for retrieving the status of the device including networking.
-  rpc GetDeviceStatus(GetDeviceStatusRequest) returns (GetDeviceStatusResponse);
+  // GetSmartMachineStatus is for retrieving the status of the smart machine including networking.
+  rpc GetSmartMachineStatus(GetSmartMachineStatusRequest) returns (GetSmartMachineStatusResponse);
 
-  // SetWifiCredentials is to set the wifi credentials.
-  rpc SetWifiCredentials(SetWifiCredentialsRequest) returns (SetWifiCredentialsResponse);
+  // SetNetworkCredentials is to set the wifi credentials.
+  rpc SetNetworkCredentials(SetNetworkCredentialsRequest) returns (SetNetworkCredentialsResponse);
 
   // SetSmartMachineCredentials is to set the smart machine credentials.
   rpc SetSmartMachineCredentials(SetSmartMachineCredentialsRequest) returns (SetSmartMachineCredentialsResponse); 
 
-  // GetNetworkList is to retrieve the list of networks that are visible to the device.
+  // GetNetworkList is to retrieve the list of networks that are visible to the smart machine.
   rpc GetNetworkList(GetNetworkListRequest) returns (GetNetworkListResponse); 
 }
 
-message GetDeviceStatusRequest {
+message GetSmartMachineStatusRequest {
 }
 
-message GetDeviceStatusResponse {
+message GetSmartMachineStatusResponse {
   ProvisioningInfo provisioning_info = 1;
-  bool has_device_credentials = 2;
+  bool has_smart_machine_credentials = 2;
   bool is_online = 3;
   NetworkInfo latest_connection_attempt = 4;
   repeated string errors = 5;
 }
 
-message SetWifiCredentialsRequest {
-  string ssid = 1;
-  string psk = 2;
+message SetNetworkCredentialsRequest {
+  string type = 1;
+  string ssid = 2;
+  string psk = 3;
 }
 
-message SetWifiCredentialsResponse {
+message SetNetworkCredentialsResponse {
 }
 
 message SetSmartMachineCredentialsRequest {
