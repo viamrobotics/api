@@ -24,7 +24,11 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MotionServiceClient interface {
 	Move(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveResponse, error)
+	// Generate a plan and move a component to a specific pose
+	// with respect to the SLAM map's origin.
+	// May replan to avoid obstacles
 	MoveOnMap(ctx context.Context, in *MoveOnMapRequest, opts ...grpc.CallOption) (*MoveOnMapResponse, error)
+	// Deprecated: Do not use.
 	// Generate a plan and move a component to a specific pose
 	// with respect to the SLAM map's origin.
 	// May replan to avoid obstacles
@@ -80,6 +84,7 @@ func (c *motionServiceClient) MoveOnMap(ctx context.Context, in *MoveOnMapReques
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *motionServiceClient) MoveOnMapNew(ctx context.Context, in *MoveOnMapNewRequest, opts ...grpc.CallOption) (*MoveOnMapNewResponse, error) {
 	out := new(MoveOnMapNewResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/MoveOnMapNew", in, out, opts...)
@@ -148,7 +153,11 @@ func (c *motionServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandReq
 // for forward compatibility
 type MotionServiceServer interface {
 	Move(context.Context, *MoveRequest) (*MoveResponse, error)
+	// Generate a plan and move a component to a specific pose
+	// with respect to the SLAM map's origin.
+	// May replan to avoid obstacles
 	MoveOnMap(context.Context, *MoveOnMapRequest) (*MoveOnMapResponse, error)
+	// Deprecated: Do not use.
 	// Generate a plan and move a component to a specific pose
 	// with respect to the SLAM map's origin.
 	// May replan to avoid obstacles

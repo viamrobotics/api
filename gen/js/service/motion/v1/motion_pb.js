@@ -1728,6 +1728,7 @@ proto.viam.service.motion.v1.MoveOnMapRequest.toObject = function(includeInstanc
     destination: (f = msg.getDestination()) && common_v1_common_pb.Pose.toObject(includeInstance, f),
     componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     slamServiceName: (f = msg.getSlamServiceName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    motionConfiguration: (f = msg.getMotionConfiguration()) && proto.viam.service.motion.v1.MotionConfiguration.toObject(includeInstance, f),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -1783,6 +1784,11 @@ proto.viam.service.motion.v1.MoveOnMapRequest.deserializeBinaryFromReader = func
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
       msg.setSlamServiceName(value);
+      break;
+    case 5:
+      var value = new proto.viam.service.motion.v1.MotionConfiguration;
+      reader.readMessage(value,proto.viam.service.motion.v1.MotionConfiguration.deserializeBinaryFromReader);
+      msg.setMotionConfiguration(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -1847,6 +1853,14 @@ proto.viam.service.motion.v1.MoveOnMapRequest.serializeBinaryToWriter = function
       4,
       f,
       common_v1_common_pb.ResourceName.serializeBinaryToWriter
+    );
+  }
+  f = message.getMotionConfiguration();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      proto.viam.service.motion.v1.MotionConfiguration.serializeBinaryToWriter
     );
   }
   f = message.getExtra();
@@ -1990,6 +2004,43 @@ proto.viam.service.motion.v1.MoveOnMapRequest.prototype.hasSlamServiceName = fun
 
 
 /**
+ * optional MotionConfiguration motion_configuration = 5;
+ * @return {?proto.viam.service.motion.v1.MotionConfiguration}
+ */
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.getMotionConfiguration = function() {
+  return /** @type{?proto.viam.service.motion.v1.MotionConfiguration} */ (
+    jspb.Message.getWrapperField(this, proto.viam.service.motion.v1.MotionConfiguration, 5));
+};
+
+
+/**
+ * @param {?proto.viam.service.motion.v1.MotionConfiguration|undefined} value
+ * @return {!proto.viam.service.motion.v1.MoveOnMapRequest} returns this
+*/
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.setMotionConfiguration = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.service.motion.v1.MoveOnMapRequest} returns this
+ */
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.clearMotionConfiguration = function() {
+  return this.setMotionConfiguration(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.hasMotionConfiguration = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
  * optional google.protobuf.Struct extra = 99;
  * @return {?proto.google.protobuf.Struct}
  */
@@ -2058,7 +2109,7 @@ proto.viam.service.motion.v1.MoveOnMapResponse.prototype.toObject = function(opt
  */
 proto.viam.service.motion.v1.MoveOnMapResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+    executionId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2096,8 +2147,8 @@ proto.viam.service.motion.v1.MoveOnMapResponse.deserializeBinaryFromReader = fun
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setSuccess(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setExecutionId(value);
       break;
     default:
       reader.skipField();
@@ -2128,9 +2179,9 @@ proto.viam.service.motion.v1.MoveOnMapResponse.prototype.serializeBinary = funct
  */
 proto.viam.service.motion.v1.MoveOnMapResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getSuccess();
-  if (f) {
-    writer.writeBool(
+  f = message.getExecutionId();
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
@@ -2139,20 +2190,20 @@ proto.viam.service.motion.v1.MoveOnMapResponse.serializeBinaryToWriter = functio
 
 
 /**
- * optional bool success = 1;
- * @return {boolean}
+ * optional string execution_id = 1;
+ * @return {string}
  */
-proto.viam.service.motion.v1.MoveOnMapResponse.prototype.getSuccess = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
+proto.viam.service.motion.v1.MoveOnMapResponse.prototype.getExecutionId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {boolean} value
+ * @param {string} value
  * @return {!proto.viam.service.motion.v1.MoveOnMapResponse} returns this
  */
-proto.viam.service.motion.v1.MoveOnMapResponse.prototype.setSuccess = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 1, value);
+proto.viam.service.motion.v1.MoveOnMapResponse.prototype.setExecutionId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
