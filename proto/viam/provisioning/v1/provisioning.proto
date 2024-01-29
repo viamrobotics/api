@@ -13,14 +13,13 @@ service ProvisioningService {
   rpc SetNetworkCredentials(SetNetworkCredentialsRequest) returns (SetNetworkCredentialsResponse);
 
   // SetSmartMachineCredentials is to set the smart machine credentials.
-  rpc SetSmartMachineCredentials(SetSmartMachineCredentialsRequest) returns (SetSmartMachineCredentialsResponse); 
+  rpc SetSmartMachineCredentials(SetSmartMachineCredentialsRequest) returns (SetSmartMachineCredentialsResponse);
 
   // GetNetworkList is to retrieve the list of networks that are visible to the smart machine.
-  rpc GetNetworkList(GetNetworkListRequest) returns (GetNetworkListResponse); 
+  rpc GetNetworkList(GetNetworkListRequest) returns (GetNetworkListResponse);
 }
 
-message GetSmartMachineStatusRequest {
-}
+message GetSmartMachineStatusRequest {}
 
 message GetSmartMachineStatusResponse {
   ProvisioningInfo provisioning_info = 1;
@@ -36,39 +35,36 @@ message SetNetworkCredentialsRequest {
   string psk = 3;
 }
 
-message SetNetworkCredentialsResponse {
-}
+message SetNetworkCredentialsResponse {}
 
 message SetSmartMachineCredentialsRequest {
   CloudConfig cloud = 1;
 }
 
-message SetSmartMachineCredentialsResponse {
-}
+message SetSmartMachineCredentialsResponse {}
 
-message GetNetworkListRequest {
-}
+message GetNetworkListRequest {}
 
 message GetNetworkListResponse {
   repeated NetworkInfo networks = 1;
 }
 
-message ProvisioningInfo { 
-  string fragment_id  = 1;
+message ProvisioningInfo {
+  string fragment_id = 1;
   string model = 2;
   string manufacturer = 3;
 }
 
 message NetworkInfo {
   string type = 1;
-  string sidd = 2;
+  string ssid = 2;
   string security = 3;
   int32 signal = 4;
-  bool connected = 5; 
+  bool connected = 5;
   string last_error = 6;
 }
 
-// minimal CloudConfig to create /etc/viam.json 
+// minimal CloudConfig to create /etc/viam.json
 message CloudConfig {
   // SmartMachine part id
   string id = 1;
@@ -76,4 +72,3 @@ message CloudConfig {
   string secret = 2;
   string app_address = 3;
 }
-  
