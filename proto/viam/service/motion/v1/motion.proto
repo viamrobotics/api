@@ -147,6 +147,8 @@ message MoveOnMapRequest {
   common.v1.ResourceName slam_service_name = 4;
   // Optional set of motion configuration options
   optional MotionConfiguration motion_configuration = 5;
+  // Obstacles to be considered for motion planning
+  repeated common.v1.Geometry obstacles = 6;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
