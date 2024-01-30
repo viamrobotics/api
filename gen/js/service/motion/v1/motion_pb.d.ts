@@ -171,6 +171,11 @@ export class MoveOnMapRequest extends jspb.Message {
   getMotionConfiguration(): MotionConfiguration | undefined;
   setMotionConfiguration(value?: MotionConfiguration): void;
 
+  clearObstaclesList(): void;
+  getObstaclesList(): Array<common_v1_common_pb.Geometry>;
+  setObstaclesList(value: Array<common_v1_common_pb.Geometry>): void;
+  addObstacles(value?: common_v1_common_pb.Geometry, index?: number): common_v1_common_pb.Geometry;
+
   hasExtra(): boolean;
   clearExtra(): void;
   getExtra(): google_protobuf_struct_pb.Struct | undefined;
@@ -193,6 +198,7 @@ export namespace MoveOnMapRequest {
     componentName?: common_v1_common_pb.ResourceName.AsObject,
     slamServiceName?: common_v1_common_pb.ResourceName.AsObject,
     motionConfiguration?: MotionConfiguration.AsObject,
+    obstaclesList: Array<common_v1_common_pb.Geometry.AsObject>,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
