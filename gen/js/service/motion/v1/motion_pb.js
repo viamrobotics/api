@@ -148,7 +148,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.service.motion.v1.MoveOnMapRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.service.motion.v1.MoveOnMapRequest.repeatedFields_, null);
 };
 goog.inherits(proto.viam.service.motion.v1.MoveOnMapRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1693,6 +1693,13 @@ proto.viam.service.motion.v1.MoveOnMapNewResponse.prototype.setExecutionId = fun
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.service.motion.v1.MoveOnMapRequest.repeatedFields_ = [6];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1729,6 +1736,8 @@ proto.viam.service.motion.v1.MoveOnMapRequest.toObject = function(includeInstanc
     componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     slamServiceName: (f = msg.getSlamServiceName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     motionConfiguration: (f = msg.getMotionConfiguration()) && proto.viam.service.motion.v1.MotionConfiguration.toObject(includeInstance, f),
+    obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
+    common_v1_common_pb.Geometry.toObject, includeInstance),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -1789,6 +1798,11 @@ proto.viam.service.motion.v1.MoveOnMapRequest.deserializeBinaryFromReader = func
       var value = new proto.viam.service.motion.v1.MotionConfiguration;
       reader.readMessage(value,proto.viam.service.motion.v1.MotionConfiguration.deserializeBinaryFromReader);
       msg.setMotionConfiguration(value);
+      break;
+    case 6:
+      var value = new common_v1_common_pb.Geometry;
+      reader.readMessage(value,common_v1_common_pb.Geometry.deserializeBinaryFromReader);
+      msg.addObstacles(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -1861,6 +1875,14 @@ proto.viam.service.motion.v1.MoveOnMapRequest.serializeBinaryToWriter = function
       5,
       f,
       proto.viam.service.motion.v1.MotionConfiguration.serializeBinaryToWriter
+    );
+  }
+  f = message.getObstaclesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      6,
+      f,
+      common_v1_common_pb.Geometry.serializeBinaryToWriter
     );
   }
   f = message.getExtra();
@@ -2037,6 +2059,44 @@ proto.viam.service.motion.v1.MoveOnMapRequest.prototype.clearMotionConfiguration
  */
 proto.viam.service.motion.v1.MoveOnMapRequest.prototype.hasMotionConfiguration = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * repeated viam.common.v1.Geometry obstacles = 6;
+ * @return {!Array<!proto.viam.common.v1.Geometry>}
+ */
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.getObstaclesList = function() {
+  return /** @type{!Array<!proto.viam.common.v1.Geometry>} */ (
+    jspb.Message.getRepeatedWrapperField(this, common_v1_common_pb.Geometry, 6));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.common.v1.Geometry>} value
+ * @return {!proto.viam.service.motion.v1.MoveOnMapRequest} returns this
+*/
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.setObstaclesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 6, value);
+};
+
+
+/**
+ * @param {!proto.viam.common.v1.Geometry=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.viam.common.v1.Geometry}
+ */
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.addObstacles = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.viam.common.v1.Geometry, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.service.motion.v1.MoveOnMapRequest} returns this
+ */
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.clearObstaclesList = function() {
+  return this.setObstaclesList([]);
 };
 
 
