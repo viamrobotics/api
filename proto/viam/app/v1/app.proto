@@ -603,11 +603,19 @@ message GetRobotPartResponse {
 }
 
 message GetRobotPartLogsRequest {
+  enum LogLevel {
+    INFO = 1;
+    ERROR = 2;
+    DEBUG = 3;
+    WARN = 4;
+    LOG = 5;
+  }
+
   string id = 1;
   bool errors_only = 2;
   optional string filter = 3;
   optional string page_token = 4;
-  repeated string levels = 5;
+  repeated LogLevel levels = 5;
 }
 
 message LogEntry {
