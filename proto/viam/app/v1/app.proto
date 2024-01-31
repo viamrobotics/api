@@ -604,11 +604,12 @@ message GetRobotPartResponse {
 
 message GetRobotPartLogsRequest {
   enum LogLevel {
-    INFO = 1;
-    ERROR = 2;
-    DEBUG = 3;
-    WARN = 4;
-    LOG = 5;
+    LOG_LEVEL_UNSPECIFIED = 0;
+    LOG_LEVEL_INFO = 1;
+    LOG_LEVEL_ERROR = 2;
+    LOG_LEVEL_DEBUG = 3;
+    LOG_LEVEL_WARN = 4;
+    LOG_LEVEL_LOG = 5;
   }
 
   string id = 1;
