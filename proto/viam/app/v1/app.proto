@@ -606,7 +606,8 @@ message GetRobotPartLogsRequest {
   string id = 1;
   bool errors_only = 2;
   optional string filter = 3;
-  optional string page_token = 4;
+  repeated string levels = 4;
+  optional string page_token = 5;
 }
 
 message LogEntry {
