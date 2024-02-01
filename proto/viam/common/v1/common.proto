@@ -235,3 +235,14 @@ message GetReadingsRequest {
 message GetReadingsResponse {
   map<string, google.protobuf.Value> readings = 1;
 }
+
+message LogEntry {
+  string host = 1;
+  string level = 2;
+  google.protobuf.Timestamp time = 3;
+  string logger_name = 4;
+  string message = 5;
+  google.protobuf.Struct caller = 6;
+  string stack = 7;
+  repeated google.protobuf.Struct fields = 8;
+}

@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package viam.app.v1;
 
-import "app/v1/app.proto";
 import "common/v1/common.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
@@ -313,7 +312,7 @@ message CertificateResponse {
 message LogRequest {
   // Robot part id.
   string id = 1;
-  repeated LogEntry logs = 2;
+  repeated common.v1.LogEntry logs = 2;
 }
 
 message LogResponse {}

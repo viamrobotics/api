@@ -749,6 +749,60 @@ export namespace GetReadingsResponse {
   }
 }
 
+export class LogEntry extends jspb.Message {
+  getHost(): string;
+  setHost(value: string): void;
+
+  getLevel(): string;
+  setLevel(value: string): void;
+
+  hasTime(): boolean;
+  clearTime(): void;
+  getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getLoggerName(): string;
+  setLoggerName(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  hasCaller(): boolean;
+  clearCaller(): void;
+  getCaller(): google_protobuf_struct_pb.Struct | undefined;
+  setCaller(value?: google_protobuf_struct_pb.Struct): void;
+
+  getStack(): string;
+  setStack(value: string): void;
+
+  clearFieldsList(): void;
+  getFieldsList(): Array<google_protobuf_struct_pb.Struct>;
+  setFieldsList(value: Array<google_protobuf_struct_pb.Struct>): void;
+  addFields(value?: google_protobuf_struct_pb.Struct, index?: number): google_protobuf_struct_pb.Struct;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LogEntry.AsObject;
+  static toObject(includeInstance: boolean, msg: LogEntry): LogEntry.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: LogEntry, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LogEntry;
+  static deserializeBinaryFromReader(message: LogEntry, reader: jspb.BinaryReader): LogEntry;
+}
+
+export namespace LogEntry {
+  export type AsObject = {
+    host: string,
+    level: string,
+    time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    loggerName: string,
+    message: string,
+    caller?: google_protobuf_struct_pb.Struct.AsObject,
+    stack: string,
+    fieldsList: Array<google_protobuf_struct_pb.Struct.AsObject>,
+  }
+}
+
   export const safetyHeartbeatMonitored: jspb.ExtensionFieldInfo<boolean>;
 
 export interface KinematicsFileFormatMap {
