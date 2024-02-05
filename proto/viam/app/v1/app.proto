@@ -602,21 +602,12 @@ message GetRobotPartResponse {
   string config_json = 2;
 }
 
-enum LogLevel {
-  LOG_LEVEL_UNSPECIFIED = 0;
-  LOG_LEVEL_INFO = 1;
-  LOG_LEVEL_ERROR = 2;
-  LOG_LEVEL_DEBUG = 3;
-  LOG_LEVEL_WARN = 4;
-  LOG_LEVEL_LOG = 5;
-}
-
 message GetRobotPartLogsRequest {
   string id = 1;
   bool errors_only = 2;
   optional string filter = 3;
   optional string page_token = 4;
-  repeated LogLevel levels = 5;
+  repeated string levels = 5;
 }
 
 message LogEntry {
