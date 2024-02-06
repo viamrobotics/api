@@ -6,7 +6,7 @@ option go_package = "github.com/edaniels/gostream/proto/stream/v1";
 
 // A StreamService is used to coordinate with a WebRTC the listing,
 // addition, and removal of registered video streams.
-// O(https://github.com/viamrobotics/rdk/issues/509): support removal
+// TODO(https://github.com/viamrobotics/rdk/issues/509): support removal
 service StreamService {
   // ListStreams returns all streams registered.
   rpc ListStreams(ListStreamsRequest) returns (ListStreamsResponse);
