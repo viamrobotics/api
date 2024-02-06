@@ -4065,7 +4065,6 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.toObject = function(opt
 proto.viam.app.data.v1.TabularDataByMQLRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    mqlQuery: jspb.Message.getFieldWithDefault(msg, 2, ""),
     mqlBinaryList: msg.getMqlBinaryList_asB64()
   };
 
@@ -4107,10 +4106,6 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.deserializeBinaryFromReader = fun
       var value = /** @type {string} */ (reader.readString());
       msg.setOrganizationId(value);
       break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setMqlQuery(value);
-      break;
     case 3:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.addMqlBinary(value);
@@ -4151,13 +4146,6 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.serializeBinaryToWriter = functio
       f
     );
   }
-  f = message.getMqlQuery();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
   f = message.getMqlBinaryList_asU8();
   if (f.length > 0) {
     writer.writeRepeatedBytes(
@@ -4183,24 +4171,6 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.getOrganizationId = fun
  */
 proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.setOrganizationId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string mql_query = 2;
- * @return {string}
- */
-proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.getMqlQuery = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.data.v1.TabularDataByMQLRequest} returns this
- */
-proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.setMqlQuery = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
