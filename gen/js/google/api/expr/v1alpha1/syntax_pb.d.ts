@@ -449,6 +449,11 @@ export class SourceInfo extends jspb.Message {
   clearPositionsMap(): void;
   getMacroCallsMap(): jspb.Map<number, Expr>;
   clearMacroCallsMap(): void;
+  clearExtensionsList(): void;
+  getExtensionsList(): Array<SourceInfo.Extension>;
+  setExtensionsList(value: Array<SourceInfo.Extension>): void;
+  addExtensions(value?: SourceInfo.Extension, index?: number): SourceInfo.Extension;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SourceInfo.AsObject;
   static toObject(includeInstance: boolean, msg: SourceInfo): SourceInfo.AsObject;
@@ -466,6 +471,72 @@ export namespace SourceInfo {
     lineOffsetsList: Array<number>,
     positionsMap: Array<[number, number]>,
     macroCallsMap: Array<[number, Expr.AsObject]>,
+    extensionsList: Array<SourceInfo.Extension.AsObject>,
+  }
+
+  export class Extension extends jspb.Message {
+    getId(): string;
+    setId(value: string): void;
+
+    clearAffectedComponentsList(): void;
+    getAffectedComponentsList(): Array<SourceInfo.Extension.ComponentMap[keyof SourceInfo.Extension.ComponentMap]>;
+    setAffectedComponentsList(value: Array<SourceInfo.Extension.ComponentMap[keyof SourceInfo.Extension.ComponentMap]>): void;
+    addAffectedComponents(value: SourceInfo.Extension.ComponentMap[keyof SourceInfo.Extension.ComponentMap], index?: number): SourceInfo.Extension.ComponentMap[keyof SourceInfo.Extension.ComponentMap];
+
+    hasVersion(): boolean;
+    clearVersion(): void;
+    getVersion(): SourceInfo.Extension.Version | undefined;
+    setVersion(value?: SourceInfo.Extension.Version): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Extension.AsObject;
+    static toObject(includeInstance: boolean, msg: Extension): Extension.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Extension, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Extension;
+    static deserializeBinaryFromReader(message: Extension, reader: jspb.BinaryReader): Extension;
+  }
+
+  export namespace Extension {
+    export type AsObject = {
+      id: string,
+      affectedComponentsList: Array<SourceInfo.Extension.ComponentMap[keyof SourceInfo.Extension.ComponentMap]>,
+      version?: SourceInfo.Extension.Version.AsObject,
+    }
+
+    export class Version extends jspb.Message {
+      getMajor(): number;
+      setMajor(value: number): void;
+
+      getMinor(): number;
+      setMinor(value: number): void;
+
+      serializeBinary(): Uint8Array;
+      toObject(includeInstance?: boolean): Version.AsObject;
+      static toObject(includeInstance: boolean, msg: Version): Version.AsObject;
+      static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+      static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+      static serializeBinaryToWriter(message: Version, writer: jspb.BinaryWriter): void;
+      static deserializeBinary(bytes: Uint8Array): Version;
+      static deserializeBinaryFromReader(message: Version, reader: jspb.BinaryReader): Version;
+    }
+
+    export namespace Version {
+      export type AsObject = {
+        major: number,
+        minor: number,
+      }
+    }
+
+    export interface ComponentMap {
+      COMPONENT_UNSPECIFIED: 0;
+      COMPONENT_PARSER: 1;
+      COMPONENT_TYPE_CHECKER: 2;
+      COMPONENT_RUNTIME: 3;
+    }
+
+    export const Component: ComponentMap;
   }
 }
 

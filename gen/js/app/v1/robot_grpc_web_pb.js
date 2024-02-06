@@ -20,8 +20,6 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 
-var app_v1_app_pb = require('../../app/v1/app_pb.js')
-
 var common_v1_common_pb = require('../../common/v1/common_pb.js')
 
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js')

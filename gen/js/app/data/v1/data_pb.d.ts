@@ -401,9 +401,6 @@ export class TabularDataByMQLRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
-  getMqlQuery(): string;
-  setMqlQuery(value: string): void;
-
   clearMqlBinaryList(): void;
   getMqlBinaryList(): Array<Uint8Array | string>;
   getMqlBinaryList_asU8(): Array<Uint8Array>;
@@ -424,7 +421,6 @@ export class TabularDataByMQLRequest extends jspb.Message {
 export namespace TabularDataByMQLRequest {
   export type AsObject = {
     organizationId: string,
-    mqlQuery: string,
     mqlBinaryList: Array<Uint8Array | string>,
   }
 }
