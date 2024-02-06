@@ -53,7 +53,7 @@ message GetSensorsResponse {
 
 message GetReadingsRequest {
   option deprecated = true;
-  string name = 1 [deprecated = true];
+  string name = 1 [ated = true];
   repeated common.v1.ResourceName sensor_names = 2 [deprecated = true];
   // Additional arguments to the method
   google.protobuf.Struct extra = 99 [deprecated = true];
