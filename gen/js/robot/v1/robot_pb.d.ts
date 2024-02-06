@@ -908,6 +908,44 @@ export namespace SendSessionHeartbeatResponse {
   }
 }
 
+export class LogRequest extends jspb.Message {
+  clearLogsList(): void;
+  getLogsList(): Array<common_v1_common_pb.LogEntry>;
+  setLogsList(value: Array<common_v1_common_pb.LogEntry>): void;
+  addLogs(value?: common_v1_common_pb.LogEntry, index?: number): common_v1_common_pb.LogEntry;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LogRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: LogRequest): LogRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: LogRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LogRequest;
+  static deserializeBinaryFromReader(message: LogRequest, reader: jspb.BinaryReader): LogRequest;
+}
+
+export namespace LogRequest {
+  export type AsObject = {
+    logsList: Array<common_v1_common_pb.LogEntry.AsObject>,
+  }
+}
+
+export class LogResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LogResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: LogResponse): LogResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: LogResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LogResponse;
+  static deserializeBinaryFromReader(message: LogResponse, reader: jspb.BinaryReader): LogResponse;
+}
+
+export namespace LogResponse {
+  export type AsObject = {
+  }
+}
+
 export interface PeerConnectionTypeMap {
   PEER_CONNECTION_TYPE_UNSPECIFIED: 0;
   PEER_CONNECTION_TYPE_GRPC: 1;
