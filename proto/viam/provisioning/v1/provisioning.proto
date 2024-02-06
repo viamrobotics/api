@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package viam.provisioning.v1;
+
+option go_package = "go.viam.com/api/provisioning/v1";
+
+// ProvisioningService is used by viam-agent to retrieve the smart machine info.
+service ProvisioningService {
+  // GetSmartMachineStatus is for retrieving the status of the smart machine including networking.
+  rpc GetSmartMachineStatus(GetSmartMachineStatusRequest) returns (GetSmartMachineStatusResponse);
+
+  // SetNetworkCredentials is to set the wifi credentials.
+  rpc SetNetworkCredentials(SetNetworkCredentialsRequest) returns (SetNetworkCredentialsResponse);
+
+  // SetSmartMachineCredentials is to set the smart machine credentials.
+  rpc SetSmartMachineCredentials(SetSmartMachineCredentialsRequest) returns (SetSmartMachineCredentialsResponse);
+
+  // GetNetworkList is to retrieve the list of networks that are visible to the smart machine.
+  rpc GetNetworkList(GetNetworkListRequest) returns (GetNetworkListResponse);
+}
+
+message GetSmartMachineStatusRequest {}
+
+message GetSmartMachineStatusResponse {
+  ProvisioningInfo provisioning_info = 1;
+  bool has_smart_machine_credentials = 2;
+  bool is_online = 3;
+  NetworkInfo latest_connection_attempt = 4;
+  repeated string errors = 5;
+}
+
+message SetNetworkCredentialsRequest {
+  string type = 1;
+  string ssid = 2;
+  string psk = 3;
+}
+
+message SetNetworkCredentialsResponse {}
+
+message SetSmartMachineCredentialsRequest {
+  CloudConfig cloud = 1;
+}
+
+message SetSmartMachineCredentialsResponse {}
+
+message GetNetworkListRequest {}
+
+message GetNetworkListResponse {
+  repeated NetworkInfo networks = 1;
+}
+
+message ProvisioningInfo {
+  string fragment_id = 1;
+  string model = 2;
+  string manufacturer = 3;
+}
+
+message NetworkInfo {
+  string type = 1;
+  string ssid = 2;
+  string security = 3;
+  int32 signal = 4;
+  bool connected = 5;
+  string last_error = 6;
+}
+
+// minimal CloudConfig to create /etc/viam.json
+message CloudConfig {
+  // SmartMachine part id
+  string id = 1;
+  // SmartMachine part secret
+  string secret = 2;
+  string app_address = 3;
+}
