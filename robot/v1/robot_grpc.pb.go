@@ -48,6 +48,8 @@ type RobotServiceClient interface {
 	// SendSessionHeartbeat sends a heartbeat to the given session. If the session has expired, a
 	// SESSION_EXPIRED error will be returned.
 	SendSessionHeartbeat(ctx context.Context, in *SendSessionHeartbeatRequest, opts ...grpc.CallOption) (*SendSessionHeartbeatResponse, error)
+	// Log sends logs to be logged by this robot. Currently used for module logging.
+	Log(ctx context.Context, in *LogRequest, opts ...grpc.CallOption) (*LogResponse, error)
 }
 
 type robotServiceClient struct {
@@ -216,6 +218,15 @@ func (c *robotServiceClient) SendSessionHeartbeat(ctx context.Context, in *SendS
 	return out, nil
 }
 
+func (c *robotServiceClient) Log(ctx context.Context, in *LogRequest, opts ...grpc.CallOption) (*LogResponse, error) {
+	out := new(LogResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/Log", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RobotServiceServer is the server API for RobotService service.
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
@@ -246,6 +257,8 @@ type RobotServiceServer interface {
 	// SendSessionHeartbeat sends a heartbeat to the given session. If the session has expired, a
 	// SESSION_EXPIRED error will be returned.
 	SendSessionHeartbeat(context.Context, *SendSessionHeartbeatRequest) (*SendSessionHeartbeatResponse, error)
+	// Log sends logs to be logged by this robot. Currently used for module logging.
+	Log(context.Context, *LogRequest) (*LogResponse, error)
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -297,6 +310,9 @@ func (UnimplementedRobotServiceServer) StartSession(context.Context, *StartSessi
 }
 func (UnimplementedRobotServiceServer) SendSessionHeartbeat(context.Context, *SendSessionHeartbeatRequest) (*SendSessionHeartbeatResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendSessionHeartbeat not implemented")
+}
+func (UnimplementedRobotServiceServer) Log(context.Context, *LogRequest) (*LogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Log not implemented")
 }
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
@@ -584,6 +600,24 @@ func _RobotService_SendSessionHeartbeat_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_Log_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).Log(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/Log",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).Log(ctx, req.(*LogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RobotService_ServiceDesc is the grpc.ServiceDesc for RobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -646,6 +680,10 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendSessionHeartbeat",
 			Handler:    _RobotService_SendSessionHeartbeat_Handler,
+		},
+		{
+			MethodName: "Log",
+			Handler:    _RobotService_Log_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
