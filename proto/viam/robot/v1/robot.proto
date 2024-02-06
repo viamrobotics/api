@@ -117,7 +117,7 @@ service RobotService {
   // Log sends logs to be logged by this robot. Currently used for module logging.
   rpc Log(LogRequest) returns (LogResponse) {
     option (google.api.http) = {
-      post: "/viam/api/v1/module_log"
+      post: "/viam/api/v1/log"
     };
   }
 }
