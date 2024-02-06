@@ -17821,7 +17821,7 @@ proto.viam.app.v1.GetRobotAPIKeysResponse.prototype.toObject = function(opt_incl
 proto.viam.app.v1.GetRobotAPIKeysResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     apiKeysList: jspb.Message.toObjectList(msg.getApiKeysList(),
-    proto.viam.app.v1.APIKey.toObject, includeInstance)
+    proto.viam.app.v1.APIKeyWithAuthorizations.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -17859,8 +17859,8 @@ proto.viam.app.v1.GetRobotAPIKeysResponse.deserializeBinaryFromReader = function
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.viam.app.v1.APIKey;
-      reader.readMessage(value,proto.viam.app.v1.APIKey.deserializeBinaryFromReader);
+      var value = new proto.viam.app.v1.APIKeyWithAuthorizations;
+      reader.readMessage(value,proto.viam.app.v1.APIKeyWithAuthorizations.deserializeBinaryFromReader);
       msg.addApiKeys(value);
       break;
     default:
@@ -17897,24 +17897,24 @@ proto.viam.app.v1.GetRobotAPIKeysResponse.serializeBinaryToWriter = function(mes
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.viam.app.v1.APIKey.serializeBinaryToWriter
+      proto.viam.app.v1.APIKeyWithAuthorizations.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * repeated APIKey api_keys = 1;
- * @return {!Array<!proto.viam.app.v1.APIKey>}
+ * repeated APIKeyWithAuthorizations api_keys = 1;
+ * @return {!Array<!proto.viam.app.v1.APIKeyWithAuthorizations>}
  */
 proto.viam.app.v1.GetRobotAPIKeysResponse.prototype.getApiKeysList = function() {
-  return /** @type{!Array<!proto.viam.app.v1.APIKey>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.v1.APIKey, 1));
+  return /** @type{!Array<!proto.viam.app.v1.APIKeyWithAuthorizations>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.v1.APIKeyWithAuthorizations, 1));
 };
 
 
 /**
- * @param {!Array<!proto.viam.app.v1.APIKey>} value
+ * @param {!Array<!proto.viam.app.v1.APIKeyWithAuthorizations>} value
  * @return {!proto.viam.app.v1.GetRobotAPIKeysResponse} returns this
 */
 proto.viam.app.v1.GetRobotAPIKeysResponse.prototype.setApiKeysList = function(value) {
@@ -17923,12 +17923,12 @@ proto.viam.app.v1.GetRobotAPIKeysResponse.prototype.setApiKeysList = function(va
 
 
 /**
- * @param {!proto.viam.app.v1.APIKey=} opt_value
+ * @param {!proto.viam.app.v1.APIKeyWithAuthorizations=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.app.v1.APIKey}
+ * @return {!proto.viam.app.v1.APIKeyWithAuthorizations}
  */
 proto.viam.app.v1.GetRobotAPIKeysResponse.prototype.addApiKeys = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.app.v1.APIKey, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.app.v1.APIKeyWithAuthorizations, opt_index);
 };
 
 
