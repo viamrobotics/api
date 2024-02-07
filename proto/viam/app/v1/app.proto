@@ -609,7 +609,7 @@ message GetRobotPartLogsRequest {
   bool errors_only = 2 [deprecated = true];
   optional string filter = 3;
   optional string page_token = 4;
-  // logs of all levels are returned when the levels field is empty or null
+  // logs of all levels are returned when the levels field is empty
   repeated string levels = 5;
 }
 
