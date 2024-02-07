@@ -1615,7 +1615,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.GetRobotPartLogsRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.GetRobotPartLogsRequest.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.v1.GetRobotPartLogsRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -15525,6 +15525,13 @@ proto.viam.app.v1.GetRobotPartResponse.prototype.setConfigJson = function(value)
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.repeatedFields_ = [5];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -15559,7 +15566,8 @@ proto.viam.app.v1.GetRobotPartLogsRequest.toObject = function(includeInstance, m
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     errorsOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
     filter: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, "")
+    pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    levelsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -15611,6 +15619,10 @@ proto.viam.app.v1.GetRobotPartLogsRequest.deserializeBinaryFromReader = function
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addLevels(value);
       break;
     default:
       reader.skipField();
@@ -15666,6 +15678,13 @@ proto.viam.app.v1.GetRobotPartLogsRequest.serializeBinaryToWriter = function(mes
   if (f != null) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getLevelsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      5,
       f
     );
   }
@@ -15777,6 +15796,43 @@ proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearPageToken = function() 
  */
 proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasPageToken = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * repeated string levels = 5;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.getLevelsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.setLevelsList = function(value) {
+  return jspb.Message.setField(this, 5, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.addLevels = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearLevelsList = function() {
+  return this.setLevelsList([]);
 };
 
 
