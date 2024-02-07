@@ -3884,7 +3884,7 @@ type GetRobotPartLogsRequest struct {
 	ErrorsOnly bool    `protobuf:"varint,2,opt,name=errors_only,json=errorsOnly,proto3" json:"errors_only,omitempty"`
 	Filter     *string `protobuf:"bytes,3,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 	PageToken  *string `protobuf:"bytes,4,opt,name=page_token,json=pageToken,proto3,oneof" json:"page_token,omitempty"`
-	// logs of all levels are returned when the levels field is empty or null
+	// logs of all levels are returned when the levels field is empty
 	Levels []string `protobuf:"bytes,5,rep,name=levels,proto3" json:"levels,omitempty"`
 }
 
