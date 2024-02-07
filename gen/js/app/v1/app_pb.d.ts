@@ -1731,6 +1731,11 @@ export class GetRobotPartLogsRequest extends jspb.Message {
   getPageToken(): string;
   setPageToken(value: string): void;
 
+  clearLevelsList(): void;
+  getLevelsList(): Array<string>;
+  setLevelsList(value: Array<string>): void;
+  addLevels(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartLogsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartLogsRequest): GetRobotPartLogsRequest.AsObject;
@@ -1747,6 +1752,7 @@ export namespace GetRobotPartLogsRequest {
     errorsOnly: boolean,
     filter: string,
     pageToken: string,
+    levelsList: Array<string>,
   }
 }
 
