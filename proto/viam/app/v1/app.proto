@@ -605,9 +605,11 @@ message GetRobotPartResponse {
 
 message GetRobotPartLogsRequest {
   string id = 1;
-  bool errors_only = 2;
+  // TODO(https://viam.atlassian.net/browse/APP-3877): Remove this field
+  bool errors_only = 2 [deprecated = true];
   optional string filter = 3;
   optional string page_token = 4;
+  repeated string levels = 5;
 }
 
 message GetRobotPartLogsResponse {
