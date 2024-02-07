@@ -670,7 +670,7 @@ message APIKey {
 }
 
 message GetRobotAPIKeysResponse {
-  repeated APIKey api_keys = 1;
+  repeated APIKeyWithAuthorizations api_keys = 1;
 }
 
 message DeleteRobotPartResponse {}

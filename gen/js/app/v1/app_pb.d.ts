@@ -2042,9 +2042,9 @@ export namespace APIKey {
 
 export class GetRobotAPIKeysResponse extends jspb.Message {
   clearApiKeysList(): void;
-  getApiKeysList(): Array<APIKey>;
-  setApiKeysList(value: Array<APIKey>): void;
-  addApiKeys(value?: APIKey, index?: number): APIKey;
+  getApiKeysList(): Array<APIKeyWithAuthorizations>;
+  setApiKeysList(value: Array<APIKeyWithAuthorizations>): void;
+  addApiKeys(value?: APIKeyWithAuthorizations, index?: number): APIKeyWithAuthorizations;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotAPIKeysResponse.AsObject;
@@ -2058,7 +2058,7 @@ export class GetRobotAPIKeysResponse extends jspb.Message {
 
 export namespace GetRobotAPIKeysResponse {
   export type AsObject = {
-    apiKeysList: Array<APIKey.AsObject>,
+    apiKeysList: Array<APIKeyWithAuthorizations.AsObject>,
   }
 }
 
