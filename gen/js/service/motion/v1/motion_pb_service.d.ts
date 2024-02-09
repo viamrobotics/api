@@ -23,15 +23,6 @@ type MotionServiceMoveOnMap = {
   readonly responseType: typeof service_motion_v1_motion_pb.MoveOnMapResponse;
 };
 
-type MotionServiceMoveOnMapNew = {
-  readonly methodName: string;
-  readonly service: typeof MotionService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof service_motion_v1_motion_pb.MoveOnMapNewRequest;
-  readonly responseType: typeof service_motion_v1_motion_pb.MoveOnMapNewResponse;
-};
-
 type MotionServiceMoveOnGlobe = {
   readonly methodName: string;
   readonly service: typeof MotionService;
@@ -90,7 +81,6 @@ export class MotionService {
   static readonly serviceName: string;
   static readonly Move: MotionServiceMove;
   static readonly MoveOnMap: MotionServiceMoveOnMap;
-  static readonly MoveOnMapNew: MotionServiceMoveOnMapNew;
   static readonly MoveOnGlobe: MotionServiceMoveOnGlobe;
   static readonly GetPose: MotionServiceGetPose;
   static readonly StopPlan: MotionServiceStopPlan;
@@ -148,15 +138,6 @@ export class MotionServiceClient {
   moveOnMap(
     requestMessage: service_motion_v1_motion_pb.MoveOnMapRequest,
     callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.MoveOnMapResponse|null) => void
-  ): UnaryResponse;
-  moveOnMapNew(
-    requestMessage: service_motion_v1_motion_pb.MoveOnMapNewRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.MoveOnMapNewResponse|null) => void
-  ): UnaryResponse;
-  moveOnMapNew(
-    requestMessage: service_motion_v1_motion_pb.MoveOnMapNewRequest,
-    callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.MoveOnMapNewResponse|null) => void
   ): UnaryResponse;
   moveOnGlobe(
     requestMessage: service_motion_v1_motion_pb.MoveOnGlobeRequest,
