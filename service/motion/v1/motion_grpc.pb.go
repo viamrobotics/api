@@ -28,11 +28,6 @@ type MotionServiceClient interface {
 	// with respect to the SLAM map's origin.
 	// May replan to avoid obstacles
 	MoveOnMap(ctx context.Context, in *MoveOnMapRequest, opts ...grpc.CallOption) (*MoveOnMapResponse, error)
-	// Deprecated: Do not use.
-	// Generate a plan and move a component to a specific pose
-	// with respect to the SLAM map's origin.
-	// May replan to avoid obstacles
-	MoveOnMapNew(ctx context.Context, in *MoveOnMapNewRequest, opts ...grpc.CallOption) (*MoveOnMapNewResponse, error)
 	// Generate and begin executing an execution to move a component
 	// to a specific GPS coordinate.
 	// May replan to avoid obstacles & account for location drift.
@@ -78,16 +73,6 @@ func (c *motionServiceClient) Move(ctx context.Context, in *MoveRequest, opts ..
 func (c *motionServiceClient) MoveOnMap(ctx context.Context, in *MoveOnMapRequest, opts ...grpc.CallOption) (*MoveOnMapResponse, error) {
 	out := new(MoveOnMapResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/MoveOnMap", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *motionServiceClient) MoveOnMapNew(ctx context.Context, in *MoveOnMapNewRequest, opts ...grpc.CallOption) (*MoveOnMapNewResponse, error) {
-	out := new(MoveOnMapNewResponse)
-	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/MoveOnMapNew", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -157,11 +142,6 @@ type MotionServiceServer interface {
 	// with respect to the SLAM map's origin.
 	// May replan to avoid obstacles
 	MoveOnMap(context.Context, *MoveOnMapRequest) (*MoveOnMapResponse, error)
-	// Deprecated: Do not use.
-	// Generate a plan and move a component to a specific pose
-	// with respect to the SLAM map's origin.
-	// May replan to avoid obstacles
-	MoveOnMapNew(context.Context, *MoveOnMapNewRequest) (*MoveOnMapNewResponse, error)
 	// Generate and begin executing an execution to move a component
 	// to a specific GPS coordinate.
 	// May replan to avoid obstacles & account for location drift.
@@ -197,9 +177,6 @@ func (UnimplementedMotionServiceServer) Move(context.Context, *MoveRequest) (*Mo
 }
 func (UnimplementedMotionServiceServer) MoveOnMap(context.Context, *MoveOnMapRequest) (*MoveOnMapResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoveOnMap not implemented")
-}
-func (UnimplementedMotionServiceServer) MoveOnMapNew(context.Context, *MoveOnMapNewRequest) (*MoveOnMapNewResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method MoveOnMapNew not implemented")
 }
 func (UnimplementedMotionServiceServer) MoveOnGlobe(context.Context, *MoveOnGlobeRequest) (*MoveOnGlobeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoveOnGlobe not implemented")
@@ -264,24 +241,6 @@ func _MotionService_MoveOnMap_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MotionServiceServer).MoveOnMap(ctx, req.(*MoveOnMapRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MotionService_MoveOnMapNew_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MoveOnMapNewRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MotionServiceServer).MoveOnMapNew(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.service.motion.v1.MotionService/MoveOnMapNew",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MotionServiceServer).MoveOnMapNew(ctx, req.(*MoveOnMapNewRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -408,10 +367,6 @@ var MotionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MoveOnMap",
 			Handler:    _MotionService_MoveOnMap_Handler,
-		},
-		{
-			MethodName: "MoveOnMapNew",
-			Handler:    _MotionService_MoveOnMapNew_Handler,
 		},
 		{
 			MethodName: "MoveOnGlobe",
