@@ -64,6 +64,8 @@ message CloudConfig {
   string secret = 8;
   // All valid location secrets.
   repeated LocationSecret location_secrets = 9;
+  string primary_org_id = 10;
+  string location_id = 11;
 }
 
 message ComponentConfig {
