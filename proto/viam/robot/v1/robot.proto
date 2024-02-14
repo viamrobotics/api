@@ -314,9 +314,9 @@ message LogRequest {
 
 message LogResponse {}
 
-message CloudMetadataRequest {}
+message GetCloudMetadataRequest {}
 
-message CloudMetadataResponse {
+message GetCloudMetadataResponse {
   string robot_part_id = 1;
   string primary_org_id = 2;
   string location_id = 3;
