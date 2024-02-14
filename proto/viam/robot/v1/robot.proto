@@ -313,3 +313,11 @@ message LogRequest {
 }
 
 message LogResponse {}
+
+message CloudMetadataRequest {}
+
+message CloudMetadataResponse {
+  string robot_part_id = 1;
+  string primary_org_id = 2;
+  string location_id = 3;
+}
