@@ -1873,7 +1873,9 @@ proto.viam.app.v1.CloudConfig.toObject = function(includeInstance, msg) {
     locationSecret: jspb.Message.getFieldWithDefault(msg, 7, ""),
     secret: jspb.Message.getFieldWithDefault(msg, 8, ""),
     locationSecretsList: jspb.Message.toObjectList(msg.getLocationSecretsList(),
-    proto.viam.app.v1.LocationSecret.toObject, includeInstance)
+    proto.viam.app.v1.LocationSecret.toObject, includeInstance),
+    primaryOrgId: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    locationId: jspb.Message.getFieldWithDefault(msg, 11, "")
   };
 
   if (includeInstance) {
@@ -1946,6 +1948,14 @@ proto.viam.app.v1.CloudConfig.deserializeBinaryFromReader = function(msg, reader
       var value = new proto.viam.app.v1.LocationSecret;
       reader.readMessage(value,proto.viam.app.v1.LocationSecret.deserializeBinaryFromReader);
       msg.addLocationSecrets(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPrimaryOrgId(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLocationId(value);
       break;
     default:
       reader.skipField();
@@ -2038,6 +2048,20 @@ proto.viam.app.v1.CloudConfig.serializeBinaryToWriter = function(message, writer
       9,
       f,
       proto.viam.app.v1.LocationSecret.serializeBinaryToWriter
+    );
+  }
+  f = message.getPrimaryOrgId();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
+  f = message.getLocationId();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
+      f
     );
   }
 };
@@ -2222,6 +2246,42 @@ proto.viam.app.v1.CloudConfig.prototype.addLocationSecrets = function(opt_value,
  */
 proto.viam.app.v1.CloudConfig.prototype.clearLocationSecretsList = function() {
   return this.setLocationSecretsList([]);
+};
+
+
+/**
+ * optional string primary_org_id = 10;
+ * @return {string}
+ */
+proto.viam.app.v1.CloudConfig.prototype.getPrimaryOrgId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CloudConfig} returns this
+ */
+proto.viam.app.v1.CloudConfig.prototype.setPrimaryOrgId = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional string location_id = 11;
+ * @return {string}
+ */
+proto.viam.app.v1.CloudConfig.prototype.getLocationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CloudConfig} returns this
+ */
+proto.viam.app.v1.CloudConfig.prototype.setLocationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
 };
 
 

@@ -163,6 +163,12 @@ export class CloudConfig extends jspb.Message {
   setLocationSecretsList(value: Array<LocationSecret>): void;
   addLocationSecrets(value?: LocationSecret, index?: number): LocationSecret;
 
+  getPrimaryOrgId(): string;
+  setPrimaryOrgId(value: string): void;
+
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CloudConfig.AsObject;
   static toObject(includeInstance: boolean, msg: CloudConfig): CloudConfig.AsObject;
@@ -184,6 +190,8 @@ export namespace CloudConfig {
     locationSecret: string,
     secret: string,
     locationSecretsList: Array<LocationSecret.AsObject>,
+    primaryOrgId: string,
+    locationId: string,
   }
 }
 
