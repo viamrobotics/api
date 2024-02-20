@@ -154,6 +154,15 @@ RobotService.Log = {
   responseType: robot_v1_robot_pb.LogResponse
 };
 
+RobotService.GetCloudMetadata = {
+  methodName: "GetCloudMetadata",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.GetCloudMetadataRequest,
+  responseType: robot_v1_robot_pb.GetCloudMetadataResponse
+};
+
 exports.RobotService = RobotService;
 
 function RobotServiceClient(serviceHost, options) {
@@ -639,6 +648,37 @@ RobotServiceClient.prototype.log = function log(requestMessage, metadata, callba
     callback = arguments[1];
   }
   var client = grpc.unary(RobotService.Log, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.getCloudMetadata = function getCloudMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.GetCloudMetadata, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

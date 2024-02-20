@@ -120,6 +120,13 @@ service RobotService {
       post: "/viam/api/v1/log"
     };
   }
+
+  // GetCloudMetadata returns app-related information about the robot.
+  rpc GetCloudMetadata(GetCloudMetadataRequest) returns (GetCloudMetadataResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/cloud_metadata"
+    };
+  }
 }
 
 message FrameSystemConfig {
