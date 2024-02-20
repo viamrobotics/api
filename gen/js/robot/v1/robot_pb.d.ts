@@ -946,6 +946,50 @@ export namespace LogResponse {
   }
 }
 
+export class GetCloudMetadataRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetCloudMetadataRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetCloudMetadataRequest): GetCloudMetadataRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetCloudMetadataRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetCloudMetadataRequest;
+  static deserializeBinaryFromReader(message: GetCloudMetadataRequest, reader: jspb.BinaryReader): GetCloudMetadataRequest;
+}
+
+export namespace GetCloudMetadataRequest {
+  export type AsObject = {
+  }
+}
+
+export class GetCloudMetadataResponse extends jspb.Message {
+  getRobotPartId(): string;
+  setRobotPartId(value: string): void;
+
+  getPrimaryOrgId(): string;
+  setPrimaryOrgId(value: string): void;
+
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetCloudMetadataResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetCloudMetadataResponse): GetCloudMetadataResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetCloudMetadataResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetCloudMetadataResponse;
+  static deserializeBinaryFromReader(message: GetCloudMetadataResponse, reader: jspb.BinaryReader): GetCloudMetadataResponse;
+}
+
+export namespace GetCloudMetadataResponse {
+  export type AsObject = {
+    robotPartId: string,
+    primaryOrgId: string,
+    locationId: string,
+  }
+}
+
 export interface PeerConnectionTypeMap {
   PEER_CONNECTION_TYPE_UNSPECIFIED: 0;
   PEER_CONNECTION_TYPE_GRPC: 1;
