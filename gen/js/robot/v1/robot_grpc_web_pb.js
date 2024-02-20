@@ -1057,5 +1057,66 @@ proto.viam.robot.v1.RobotServicePromiseClient.prototype.log =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.GetCloudMetadataRequest,
+ *   !proto.viam.robot.v1.GetCloudMetadataResponse>}
+ */
+const methodDescriptor_RobotService_GetCloudMetadata = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/GetCloudMetadata',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.GetCloudMetadataRequest,
+  proto.viam.robot.v1.GetCloudMetadataResponse,
+  /**
+   * @param {!proto.viam.robot.v1.GetCloudMetadataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.GetCloudMetadataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.GetCloudMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.GetCloudMetadataResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.GetCloudMetadataResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.getCloudMetadata =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/GetCloudMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_GetCloudMetadata,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.GetCloudMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.GetCloudMetadataResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.getCloudMetadata =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/GetCloudMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_GetCloudMetadata);
+};
+
+
 module.exports = proto.viam.robot.v1;
 

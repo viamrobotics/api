@@ -50,6 +50,8 @@ type RobotServiceClient interface {
 	SendSessionHeartbeat(ctx context.Context, in *SendSessionHeartbeatRequest, opts ...grpc.CallOption) (*SendSessionHeartbeatResponse, error)
 	// Log sends logs to be logged by this robot. Currently used for module logging.
 	Log(ctx context.Context, in *LogRequest, opts ...grpc.CallOption) (*LogResponse, error)
+	// GetCloudMetadata returns app-related information about the robot.
+	GetCloudMetadata(ctx context.Context, in *GetCloudMetadataRequest, opts ...grpc.CallOption) (*GetCloudMetadataResponse, error)
 }
 
 type robotServiceClient struct {
@@ -227,6 +229,15 @@ func (c *robotServiceClient) Log(ctx context.Context, in *LogRequest, opts ...gr
 	return out, nil
 }
 
+func (c *robotServiceClient) GetCloudMetadata(ctx context.Context, in *GetCloudMetadataRequest, opts ...grpc.CallOption) (*GetCloudMetadataResponse, error) {
+	out := new(GetCloudMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetCloudMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RobotServiceServer is the server API for RobotService service.
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
@@ -259,6 +270,8 @@ type RobotServiceServer interface {
 	SendSessionHeartbeat(context.Context, *SendSessionHeartbeatRequest) (*SendSessionHeartbeatResponse, error)
 	// Log sends logs to be logged by this robot. Currently used for module logging.
 	Log(context.Context, *LogRequest) (*LogResponse, error)
+	// GetCloudMetadata returns app-related information about the robot.
+	GetCloudMetadata(context.Context, *GetCloudMetadataRequest) (*GetCloudMetadataResponse, error)
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -313,6 +326,9 @@ func (UnimplementedRobotServiceServer) SendSessionHeartbeat(context.Context, *Se
 }
 func (UnimplementedRobotServiceServer) Log(context.Context, *LogRequest) (*LogResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Log not implemented")
+}
+func (UnimplementedRobotServiceServer) GetCloudMetadata(context.Context, *GetCloudMetadataRequest) (*GetCloudMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCloudMetadata not implemented")
 }
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
@@ -618,6 +634,24 @@ func _RobotService_Log_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_GetCloudMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCloudMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).GetCloudMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/GetCloudMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).GetCloudMetadata(ctx, req.(*GetCloudMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RobotService_ServiceDesc is the grpc.ServiceDesc for RobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -684,6 +718,10 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Log",
 			Handler:    _RobotService_Log_Handler,
+		},
+		{
+			MethodName: "GetCloudMetadata",
+			Handler:    _RobotService_GetCloudMetadata_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
