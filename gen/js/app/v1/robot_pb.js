@@ -867,7 +867,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.RobotConfig.repeatedFields_ = [2,3,4,5,9,11];
+proto.viam.app.v1.RobotConfig.repeatedFields_ = [2,3,4,5,9,11,12];
 
 
 
@@ -916,7 +916,9 @@ proto.viam.app.v1.RobotConfig.toObject = function(includeInstance, msg) {
     proto.viam.app.v1.ModuleConfig.toObject, includeInstance),
     disablePartialStart: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
     packagesList: jspb.Message.toObjectList(msg.getPackagesList(),
-    proto.viam.app.v1.PackageConfig.toObject, includeInstance)
+    proto.viam.app.v1.PackageConfig.toObject, includeInstance),
+    overwriteFragmentStatusList: jspb.Message.toObjectList(msg.getOverwriteFragmentStatusList(),
+    proto.viam.app.v1.AppValidationStatus.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -1005,6 +1007,11 @@ proto.viam.app.v1.RobotConfig.deserializeBinaryFromReader = function(msg, reader
       var value = new proto.viam.app.v1.PackageConfig;
       reader.readMessage(value,proto.viam.app.v1.PackageConfig.deserializeBinaryFromReader);
       msg.addPackages(value);
+      break;
+    case 12:
+      var value = new proto.viam.app.v1.AppValidationStatus;
+      reader.readMessage(value,proto.viam.app.v1.AppValidationStatus.deserializeBinaryFromReader);
+      msg.addOverwriteFragmentStatus(value);
       break;
     default:
       reader.skipField();
@@ -1119,6 +1126,14 @@ proto.viam.app.v1.RobotConfig.serializeBinaryToWriter = function(message, writer
       11,
       f,
       proto.viam.app.v1.PackageConfig.serializeBinaryToWriter
+    );
+  }
+  f = message.getOverwriteFragmentStatusList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      12,
+      f,
+      proto.viam.app.v1.AppValidationStatus.serializeBinaryToWriter
     );
   }
 };
@@ -1532,6 +1547,44 @@ proto.viam.app.v1.RobotConfig.prototype.addPackages = function(opt_value, opt_in
  */
 proto.viam.app.v1.RobotConfig.prototype.clearPackagesList = function() {
   return this.setPackagesList([]);
+};
+
+
+/**
+ * repeated AppValidationStatus overwrite_fragment_status = 12;
+ * @return {!Array<!proto.viam.app.v1.AppValidationStatus>}
+ */
+proto.viam.app.v1.RobotConfig.prototype.getOverwriteFragmentStatusList = function() {
+  return /** @type{!Array<!proto.viam.app.v1.AppValidationStatus>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.v1.AppValidationStatus, 12));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.app.v1.AppValidationStatus>} value
+ * @return {!proto.viam.app.v1.RobotConfig} returns this
+*/
+proto.viam.app.v1.RobotConfig.prototype.setOverwriteFragmentStatusList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 12, value);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.AppValidationStatus=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.AppValidationStatus}
+ */
+proto.viam.app.v1.RobotConfig.prototype.addOverwriteFragmentStatus = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 12, opt_value, proto.viam.app.v1.AppValidationStatus, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.RobotConfig} returns this
+ */
+proto.viam.app.v1.RobotConfig.prototype.clearOverwriteFragmentStatusList = function() {
+  return this.setOverwriteFragmentStatusList([]);
 };
 
 

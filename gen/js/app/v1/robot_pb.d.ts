@@ -63,6 +63,11 @@ export class RobotConfig extends jspb.Message {
   setPackagesList(value: Array<PackageConfig>): void;
   addPackages(value?: PackageConfig, index?: number): PackageConfig;
 
+  clearOverwriteFragmentStatusList(): void;
+  getOverwriteFragmentStatusList(): Array<AppValidationStatus>;
+  setOverwriteFragmentStatusList(value: Array<AppValidationStatus>): void;
+  addOverwriteFragmentStatus(value?: AppValidationStatus, index?: number): AppValidationStatus;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -86,6 +91,7 @@ export namespace RobotConfig {
     modulesList: Array<ModuleConfig.AsObject>,
     disablePartialStart: boolean,
     packagesList: Array<PackageConfig.AsObject>,
+    overwriteFragmentStatusList: Array<AppValidationStatus.AsObject>,
   }
 }
 
