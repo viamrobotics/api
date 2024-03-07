@@ -37,7 +37,7 @@ message RobotConfig {
   repeated ModuleConfig modules = 9;
   optional bool disable_partial_start = 10;
   repeated PackageConfig packages = 11;
-  repeated string overwrite_fragment_errors = 12;
+  repeated AppValidationStatus overwrite_fragment_status = 12;
 }
 
 // Valid location secret that can be used for authentication to the robot.
