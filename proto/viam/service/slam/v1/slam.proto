@@ -80,6 +80,7 @@ message GetPositionResponse {
 message GetPointCloudMapRequest {
   // Name of slam service
   string name = 1;
+  optional bool return_edited_map = 2;
 }
 
 message GetPointCloudMapResponse {
