@@ -35,13 +35,18 @@ export class StartMappingSessionRequest extends jspb.Message {
   setSensorsList(value: Array<SensorInfo>): void;
   addSensors(value?: SensorInfo, index?: number): SensorInfo;
 
-  hasSlamAlgorithmParams(): boolean;
-  clearSlamAlgorithmParams(): void;
-  getSlamAlgorithmParams(): google_protobuf_struct_pb.Struct | undefined;
-  setSlamAlgorithmParams(value?: google_protobuf_struct_pb.Struct): void;
+  hasSlamConfig(): boolean;
+  clearSlamConfig(): void;
+  getSlamConfig(): google_protobuf_struct_pb.Struct | undefined;
+  setSlamConfig(value?: google_protobuf_struct_pb.Struct): void;
 
   getExistingMapVersion(): string;
   setExistingMapVersion(value: string): void;
+
+  hasModule(): boolean;
+  clearModule(): void;
+  getModule(): Module | undefined;
+  setModule(value?: Module): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartMappingSessionRequest.AsObject;
@@ -63,8 +68,41 @@ export namespace StartMappingSessionRequest {
     robotId: string,
     captureInterval?: CaptureInterval.AsObject,
     sensorsList: Array<SensorInfo.AsObject>,
-    slamAlgorithmParams?: google_protobuf_struct_pb.Struct.AsObject,
+    slamConfig?: google_protobuf_struct_pb.Struct.AsObject,
     existingMapVersion: string,
+    module?: Module.AsObject,
+  }
+}
+
+export class Module extends jspb.Message {
+  getType(): string;
+  setType(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Module.AsObject;
+  static toObject(includeInstance: boolean, msg: Module): Module.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Module, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Module;
+  static deserializeBinaryFromReader(message: Module, reader: jspb.BinaryReader): Module;
+}
+
+export namespace Module {
+  export type AsObject = {
+    type: string,
+    name: string,
+    moduleId: string,
+    version: string,
   }
 }
 
