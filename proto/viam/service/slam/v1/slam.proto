@@ -80,6 +80,9 @@ message GetPositionResponse {
 message GetPointCloudMapRequest {
   // Name of slam service
   string name = 1;
+  // For SLAM services that implement handling an edited map, this boolean
+  // should indicate whether to return that edited map. If the SLAM service 
+  // does not handle edited maps, the unedited map will be returned instead.
   optional bool return_edited_map = 2;
 }
 
