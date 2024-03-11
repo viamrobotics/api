@@ -30,8 +30,16 @@ message StartMappingSessionRequest {
   string robot_id = 6;
   CaptureInterval capture_interval = 7;
   repeated SensorInfo sensors = 8;
-  google.protobuf.Struct slam_algorithm_params = 10;
+  google.protobuf.Struct slam_config = 10;
   string existing_map_version = 11;
+  Module module = 12;
+}
+
+message Module {
+  string type = 1;
+  string name = 2;
+  string module_id = 3;
+  string version = 4;
 }
 
 message SensorInfo {
