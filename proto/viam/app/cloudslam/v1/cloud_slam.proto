@@ -36,16 +36,9 @@ message StartMappingSessionRequest {
 }
 
 message Module {
-  ModuleType type = 1;
   string name = 2;
   string module_id = 3;
   string version = 4;
-}
-
-enum ModuleType {
-  MODULE_TYPE_UNSPECIFIED = 0;
-  MODULE_TYPE_LOCAL = 1;
-  MODULE_TYPE_REGISTRY = 2;
 }
 
 message SensorInfo {
