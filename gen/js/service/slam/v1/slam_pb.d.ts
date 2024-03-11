@@ -62,6 +62,11 @@ export class GetPointCloudMapRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasReturnEditedMap(): boolean;
+  clearReturnEditedMap(): void;
+  getReturnEditedMap(): boolean;
+  setReturnEditedMap(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPointCloudMapRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetPointCloudMapRequest): GetPointCloudMapRequest.AsObject;
@@ -75,6 +80,7 @@ export class GetPointCloudMapRequest extends jspb.Message {
 export namespace GetPointCloudMapRequest {
   export type AsObject = {
     name: string,
+    returnEditedMap: boolean,
   }
 }
 
