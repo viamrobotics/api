@@ -592,7 +592,8 @@ proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.toObject = function
  */
 proto.viam.service.slam.v1.GetPointCloudMapRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    returnEditedMap: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -633,6 +634,10 @@ proto.viam.service.slam.v1.GetPointCloudMapRequest.deserializeBinaryFromReader =
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setReturnEditedMap(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -669,6 +674,13 @@ proto.viam.service.slam.v1.GetPointCloudMapRequest.serializeBinaryToWriter = fun
       f
     );
   }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
+    writer.writeBool(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -687,6 +699,42 @@ proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.getName = function(
  */
 proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional bool return_edited_map = 2;
+ * @return {boolean}
+ */
+proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.getReturnEditedMap = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.service.slam.v1.GetPointCloudMapRequest} returns this
+ */
+proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.setReturnEditedMap = function(value) {
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.service.slam.v1.GetPointCloudMapRequest} returns this
+ */
+proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.clearReturnEditedMap = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.hasReturnEditedMap = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
