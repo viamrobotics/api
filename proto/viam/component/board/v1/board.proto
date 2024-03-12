@@ -93,8 +93,8 @@ service BoardService {
     };
   }
 
-   // StreamTicks starts a stream of ticks for the given digital interrupts.
-   rpc StreamTicks(StreamTicksRequest) returns (stream StreamTicksResponse) {
+  // StreamTicks starts a stream of ticks for the given digital interrupts.
+  rpc StreamTicks(StreamTicksRequest) returns (stream StreamTicksResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/board/{name}/tick_stream"
     };

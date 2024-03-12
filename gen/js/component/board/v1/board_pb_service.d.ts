@@ -104,6 +104,15 @@ type BoardServiceGetDigitalInterruptValue = {
   readonly responseType: typeof component_board_v1_board_pb.GetDigitalInterruptValueResponse;
 };
 
+type BoardServiceStreamTicks = {
+  readonly methodName: string;
+  readonly service: typeof BoardService;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof component_board_v1_board_pb.StreamTicksRequest;
+  readonly responseType: typeof component_board_v1_board_pb.StreamTicksResponse;
+};
+
 type BoardServiceSetPowerMode = {
   readonly methodName: string;
   readonly service: typeof BoardService;
@@ -135,6 +144,7 @@ export class BoardService {
   static readonly ReadAnalogReader: BoardServiceReadAnalogReader;
   static readonly WriteAnalog: BoardServiceWriteAnalog;
   static readonly GetDigitalInterruptValue: BoardServiceGetDigitalInterruptValue;
+  static readonly StreamTicks: BoardServiceStreamTicks;
   static readonly SetPowerMode: BoardServiceSetPowerMode;
   static readonly GetGeometries: BoardServiceGetGeometries;
 }
@@ -270,6 +280,7 @@ export class BoardServiceClient {
     requestMessage: component_board_v1_board_pb.GetDigitalInterruptValueRequest,
     callback: (error: ServiceError|null, responseMessage: component_board_v1_board_pb.GetDigitalInterruptValueResponse|null) => void
   ): UnaryResponse;
+  streamTicks(requestMessage: component_board_v1_board_pb.StreamTicksRequest, metadata?: grpc.Metadata): ResponseStream<component_board_v1_board_pb.StreamTicksResponse>;
   setPowerMode(
     requestMessage: component_board_v1_board_pb.SetPowerModeRequest,
     metadata: grpc.Metadata,

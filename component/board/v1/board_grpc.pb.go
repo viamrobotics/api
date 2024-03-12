@@ -43,6 +43,8 @@ type BoardServiceClient interface {
 	WriteAnalog(ctx context.Context, in *WriteAnalogRequest, opts ...grpc.CallOption) (*WriteAnalogResponse, error)
 	// GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
 	GetDigitalInterruptValue(ctx context.Context, in *GetDigitalInterruptValueRequest, opts ...grpc.CallOption) (*GetDigitalInterruptValueResponse, error)
+	// StreamTicks starts a stream of ticks for the given digital interrupts.
+	StreamTicks(ctx context.Context, in *StreamTicksRequest, opts ...grpc.CallOption) (BoardService_StreamTicksClient, error)
 	// `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
 	SetPowerMode(ctx context.Context, in *SetPowerModeRequest, opts ...grpc.CallOption) (*SetPowerModeResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration.
@@ -156,6 +158,38 @@ func (c *boardServiceClient) GetDigitalInterruptValue(ctx context.Context, in *G
 	return out, nil
 }
 
+func (c *boardServiceClient) StreamTicks(ctx context.Context, in *StreamTicksRequest, opts ...grpc.CallOption) (BoardService_StreamTicksClient, error) {
+	stream, err := c.cc.NewStream(ctx, &BoardService_ServiceDesc.Streams[0], "/viam.component.board.v1.BoardService/StreamTicks", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &boardServiceStreamTicksClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type BoardService_StreamTicksClient interface {
+	Recv() (*StreamTicksResponse, error)
+	grpc.ClientStream
+}
+
+type boardServiceStreamTicksClient struct {
+	grpc.ClientStream
+}
+
+func (x *boardServiceStreamTicksClient) Recv() (*StreamTicksResponse, error) {
+	m := new(StreamTicksResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *boardServiceClient) SetPowerMode(ctx context.Context, in *SetPowerModeRequest, opts ...grpc.CallOption) (*SetPowerModeResponse, error) {
 	out := new(SetPowerModeResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.board.v1.BoardService/SetPowerMode", in, out, opts...)
@@ -198,6 +232,8 @@ type BoardServiceServer interface {
 	WriteAnalog(context.Context, *WriteAnalogRequest) (*WriteAnalogResponse, error)
 	// GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
 	GetDigitalInterruptValue(context.Context, *GetDigitalInterruptValueRequest) (*GetDigitalInterruptValueResponse, error)
+	// StreamTicks starts a stream of ticks for the given digital interrupts.
+	StreamTicks(*StreamTicksRequest, BoardService_StreamTicksServer) error
 	// `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
 	SetPowerMode(context.Context, *SetPowerModeRequest) (*SetPowerModeResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration.
@@ -241,6 +277,9 @@ func (UnimplementedBoardServiceServer) WriteAnalog(context.Context, *WriteAnalog
 }
 func (UnimplementedBoardServiceServer) GetDigitalInterruptValue(context.Context, *GetDigitalInterruptValueRequest) (*GetDigitalInterruptValueResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDigitalInterruptValue not implemented")
+}
+func (UnimplementedBoardServiceServer) StreamTicks(*StreamTicksRequest, BoardService_StreamTicksServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamTicks not implemented")
 }
 func (UnimplementedBoardServiceServer) SetPowerMode(context.Context, *SetPowerModeRequest) (*SetPowerModeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetPowerMode not implemented")
@@ -459,6 +498,27 @@ func _BoardService_GetDigitalInterruptValue_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BoardService_StreamTicks_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(StreamTicksRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(BoardServiceServer).StreamTicks(m, &boardServiceStreamTicksServer{stream})
+}
+
+type BoardService_StreamTicksServer interface {
+	Send(*StreamTicksResponse) error
+	grpc.ServerStream
+}
+
+type boardServiceStreamTicksServer struct {
+	grpc.ServerStream
+}
+
+func (x *boardServiceStreamTicksServer) Send(m *StreamTicksResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 func _BoardService_SetPowerMode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SetPowerModeRequest)
 	if err := dec(in); err != nil {
@@ -555,6 +615,12 @@ var BoardService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _BoardService_GetGeometries_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "StreamTicks",
+			Handler:       _BoardService_StreamTicks_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "component/board/v1/board.proto",
 }
