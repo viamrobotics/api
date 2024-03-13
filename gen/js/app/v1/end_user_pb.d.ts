@@ -72,6 +72,9 @@ export namespace AcceptLegalResponse {
 }
 
 export class RegisterApplicationRequest extends jspb.Message {
+  getApplicationName(): string;
+  setApplicationName(value: string): void;
+
   getApplicationId(): string;
   setApplicationId(value: string): void;
 
@@ -100,6 +103,7 @@ export class RegisterApplicationRequest extends jspb.Message {
 
 export namespace RegisterApplicationRequest {
   export type AsObject = {
+    applicationName: string,
     applicationId: string,
     orgId: string,
     originUrisList: Array<string>,

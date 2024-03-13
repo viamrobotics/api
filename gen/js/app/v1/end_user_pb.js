@@ -586,7 +586,7 @@ proto.viam.app.v1.AcceptLegalResponse.serializeBinaryToWriter = function(message
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.RegisterApplicationRequest.repeatedFields_ = [3,4];
+proto.viam.app.v1.RegisterApplicationRequest.repeatedFields_ = [4,5];
 
 
 
@@ -619,10 +619,11 @@ proto.viam.app.v1.RegisterApplicationRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.RegisterApplicationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    applicationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    orgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    originUrisList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+    applicationName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    applicationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    orgId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    originUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+    redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -661,17 +662,21 @@ proto.viam.app.v1.RegisterApplicationRequest.deserializeBinaryFromReader = funct
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setApplicationId(value);
+      msg.setApplicationName(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setOrgId(value);
+      msg.setApplicationId(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.addOriginUris(value);
+      msg.setOrgId(value);
       break;
     case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addOriginUris(value);
+      break;
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.addRedirectUris(value);
       break;
@@ -704,31 +709,38 @@ proto.viam.app.v1.RegisterApplicationRequest.prototype.serializeBinary = functio
  */
 proto.viam.app.v1.RegisterApplicationRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getApplicationId();
+  f = message.getApplicationName();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getOrgId();
+  f = message.getApplicationId();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
+  f = message.getOrgId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
   f = message.getOriginUrisList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      3,
+      4,
       f
     );
   }
   f = message.getRedirectUrisList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      4,
+      5,
       f
     );
   }
@@ -736,10 +748,10 @@ proto.viam.app.v1.RegisterApplicationRequest.serializeBinaryToWriter = function(
 
 
 /**
- * optional string application_id = 1;
+ * optional string application_name = 1;
  * @return {string}
  */
-proto.viam.app.v1.RegisterApplicationRequest.prototype.getApplicationId = function() {
+proto.viam.app.v1.RegisterApplicationRequest.prototype.getApplicationName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -748,16 +760,16 @@ proto.viam.app.v1.RegisterApplicationRequest.prototype.getApplicationId = functi
  * @param {string} value
  * @return {!proto.viam.app.v1.RegisterApplicationRequest} returns this
  */
-proto.viam.app.v1.RegisterApplicationRequest.prototype.setApplicationId = function(value) {
+proto.viam.app.v1.RegisterApplicationRequest.prototype.setApplicationName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string org_id = 2;
+ * optional string application_id = 2;
  * @return {string}
  */
-proto.viam.app.v1.RegisterApplicationRequest.prototype.getOrgId = function() {
+proto.viam.app.v1.RegisterApplicationRequest.prototype.getApplicationId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -766,17 +778,35 @@ proto.viam.app.v1.RegisterApplicationRequest.prototype.getOrgId = function() {
  * @param {string} value
  * @return {!proto.viam.app.v1.RegisterApplicationRequest} returns this
  */
-proto.viam.app.v1.RegisterApplicationRequest.prototype.setOrgId = function(value) {
+proto.viam.app.v1.RegisterApplicationRequest.prototype.setApplicationId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * repeated string origin_uris = 3;
+ * optional string org_id = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.RegisterApplicationRequest.prototype.getOrgId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.RegisterApplicationRequest} returns this
+ */
+proto.viam.app.v1.RegisterApplicationRequest.prototype.setOrgId = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * repeated string origin_uris = 4;
  * @return {!Array<string>}
  */
 proto.viam.app.v1.RegisterApplicationRequest.prototype.getOriginUrisList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 
@@ -785,7 +815,7 @@ proto.viam.app.v1.RegisterApplicationRequest.prototype.getOriginUrisList = funct
  * @return {!proto.viam.app.v1.RegisterApplicationRequest} returns this
  */
 proto.viam.app.v1.RegisterApplicationRequest.prototype.setOriginUrisList = function(value) {
-  return jspb.Message.setField(this, 3, value || []);
+  return jspb.Message.setField(this, 4, value || []);
 };
 
 
@@ -795,7 +825,7 @@ proto.viam.app.v1.RegisterApplicationRequest.prototype.setOriginUrisList = funct
  * @return {!proto.viam.app.v1.RegisterApplicationRequest} returns this
  */
 proto.viam.app.v1.RegisterApplicationRequest.prototype.addOriginUris = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
 
@@ -809,11 +839,11 @@ proto.viam.app.v1.RegisterApplicationRequest.prototype.clearOriginUrisList = fun
 
 
 /**
- * repeated string redirect_uris = 4;
+ * repeated string redirect_uris = 5;
  * @return {!Array<string>}
  */
 proto.viam.app.v1.RegisterApplicationRequest.prototype.getRedirectUrisList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
 
@@ -822,7 +852,7 @@ proto.viam.app.v1.RegisterApplicationRequest.prototype.getRedirectUrisList = fun
  * @return {!proto.viam.app.v1.RegisterApplicationRequest} returns this
  */
 proto.viam.app.v1.RegisterApplicationRequest.prototype.setRedirectUrisList = function(value) {
-  return jspb.Message.setField(this, 4, value || []);
+  return jspb.Message.setField(this, 5, value || []);
 };
 
 
@@ -832,7 +862,7 @@ proto.viam.app.v1.RegisterApplicationRequest.prototype.setRedirectUrisList = fun
  * @return {!proto.viam.app.v1.RegisterApplicationRequest} returns this
  */
 proto.viam.app.v1.RegisterApplicationRequest.prototype.addRedirectUris = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
 };
 
 
