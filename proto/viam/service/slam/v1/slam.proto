@@ -128,7 +128,7 @@ message GetPropertiesRequest {
 message GetPropertiesResponse {
   bool cloud_slam = 1;
   MappingMode mapping_mode = 2;
-  string internal_state_file_type = 3;
+  optional string internal_state_file_type = 3;
   repeated SensorInfo sensor_info = 4;
 }
 
