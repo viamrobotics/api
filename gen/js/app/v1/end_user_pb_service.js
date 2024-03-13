@@ -28,6 +28,15 @@ EndUserService.AcceptLegal = {
   responseType: app_v1_end_user_pb.AcceptLegalResponse
 };
 
+EndUserService.RegisterApplication = {
+  methodName: "RegisterApplication",
+  service: EndUserService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_end_user_pb.RegisterApplicationRequest,
+  responseType: app_v1_end_user_pb.RegisterApplicationResponse
+};
+
 exports.EndUserService = EndUserService;
 
 function EndUserServiceClient(serviceHost, options) {
@@ -71,6 +80,37 @@ EndUserServiceClient.prototype.acceptLegal = function acceptLegal(requestMessage
     callback = arguments[1];
   }
   var client = grpc.unary(EndUserService.AcceptLegal, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+EndUserServiceClient.prototype.registerApplication = function registerApplication(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(EndUserService.RegisterApplication, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

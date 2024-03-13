@@ -35,5 +35,3 @@ message RegisterApplicationRequest {
 }
 
 message RegisterApplicationResponse {}
-
-
