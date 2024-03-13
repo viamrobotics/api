@@ -759,6 +759,62 @@ proto.viam.component.board.v1.BoardServicePromiseClient.prototype.getDigitalInte
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.board.v1.StreamTicksRequest,
+ *   !proto.viam.component.board.v1.StreamTicksResponse>}
+ */
+const methodDescriptor_BoardService_StreamTicks = new grpc.web.MethodDescriptor(
+  '/viam.component.board.v1.BoardService/StreamTicks',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.viam.component.board.v1.StreamTicksRequest,
+  proto.viam.component.board.v1.StreamTicksResponse,
+  /**
+   * @param {!proto.viam.component.board.v1.StreamTicksRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.board.v1.StreamTicksResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.board.v1.StreamTicksRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.board.v1.StreamTicksResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.board.v1.BoardServiceClient.prototype.streamTicks =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.component.board.v1.BoardService/StreamTicks',
+      request,
+      metadata || {},
+      methodDescriptor_BoardService_StreamTicks);
+};
+
+
+/**
+ * @param {!proto.viam.component.board.v1.StreamTicksRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.board.v1.StreamTicksResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.board.v1.BoardServicePromiseClient.prototype.streamTicks =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.component.board.v1.BoardService/StreamTicks',
+      request,
+      metadata || {},
+      methodDescriptor_BoardService_StreamTicks);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.component.board.v1.SetPowerModeRequest,
  *   !proto.viam.component.board.v1.SetPowerModeResponse>}
  */

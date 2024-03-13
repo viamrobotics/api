@@ -505,6 +505,66 @@ export namespace GetDigitalInterruptValueResponse {
   }
 }
 
+export class StreamTicksRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  clearPinNamesList(): void;
+  getPinNamesList(): Array<string>;
+  setPinNamesList(value: Array<string>): void;
+  addPinNames(value: string, index?: number): string;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StreamTicksRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: StreamTicksRequest): StreamTicksRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StreamTicksRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StreamTicksRequest;
+  static deserializeBinaryFromReader(message: StreamTicksRequest, reader: jspb.BinaryReader): StreamTicksRequest;
+}
+
+export namespace StreamTicksRequest {
+  export type AsObject = {
+    name: string,
+    pinNamesList: Array<string>,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class StreamTicksResponse extends jspb.Message {
+  getPinName(): string;
+  setPinName(value: string): void;
+
+  getTime(): number;
+  setTime(value: number): void;
+
+  getHigh(): boolean;
+  setHigh(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StreamTicksResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: StreamTicksResponse): StreamTicksResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StreamTicksResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StreamTicksResponse;
+  static deserializeBinaryFromReader(message: StreamTicksResponse, reader: jspb.BinaryReader): StreamTicksResponse;
+}
+
+export namespace StreamTicksResponse {
+  export type AsObject = {
+    pinName: string,
+    time: number,
+    high: boolean,
+  }
+}
+
 export class SetPowerModeRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;

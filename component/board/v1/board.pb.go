@@ -1171,6 +1171,138 @@ func (x *GetDigitalInterruptValueResponse) GetValue() int64 {
 	return 0
 }
 
+type StreamTicksRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Board name
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Name of digital interrupts to recieve ticks from
+	PinNames []string `protobuf:"bytes,2,rep,name=pin_names,json=pinNames,proto3" json:"pin_names,omitempty"`
+	// Additional arguments to the method
+	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
+}
+
+func (x *StreamTicksRequest) Reset() {
+	*x = StreamTicksRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_component_board_v1_board_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *StreamTicksRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StreamTicksRequest) ProtoMessage() {}
+
+func (x *StreamTicksRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_component_board_v1_board_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StreamTicksRequest.ProtoReflect.Descriptor instead.
+func (*StreamTicksRequest) Descriptor() ([]byte, []int) {
+	return file_component_board_v1_board_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *StreamTicksRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *StreamTicksRequest) GetPinNames() []string {
+	if x != nil {
+		return x.PinNames
+	}
+	return nil
+}
+
+func (x *StreamTicksRequest) GetExtra() *structpb.Struct {
+	if x != nil {
+		return x.Extra
+	}
+	return nil
+}
+
+type StreamTicksResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// name of interrupt
+	PinName string `protobuf:"bytes,1,opt,name=pin_name,json=pinName,proto3" json:"pin_name,omitempty"`
+	// Time in nanoseconds of a tick
+	Time uint64 `protobuf:"varint,2,opt,name=time,proto3" json:"time,omitempty"`
+	// Value high or low of the tick
+	High bool `protobuf:"varint,3,opt,name=high,proto3" json:"high,omitempty"`
+}
+
+func (x *StreamTicksResponse) Reset() {
+	*x = StreamTicksResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_component_board_v1_board_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *StreamTicksResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StreamTicksResponse) ProtoMessage() {}
+
+func (x *StreamTicksResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_component_board_v1_board_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StreamTicksResponse.ProtoReflect.Descriptor instead.
+func (*StreamTicksResponse) Descriptor() ([]byte, []int) {
+	return file_component_board_v1_board_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *StreamTicksResponse) GetPinName() string {
+	if x != nil {
+		return x.PinName
+	}
+	return ""
+}
+
+func (x *StreamTicksResponse) GetTime() uint64 {
+	if x != nil {
+		return x.Time
+	}
+	return 0
+}
+
+func (x *StreamTicksResponse) GetHigh() bool {
+	if x != nil {
+		return x.High
+	}
+	return false
+}
+
 type SetPowerModeRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1189,7 +1321,7 @@ type SetPowerModeRequest struct {
 func (x *SetPowerModeRequest) Reset() {
 	*x = SetPowerModeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_component_board_v1_board_proto_msgTypes[20]
+		mi := &file_component_board_v1_board_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1202,7 +1334,7 @@ func (x *SetPowerModeRequest) String() string {
 func (*SetPowerModeRequest) ProtoMessage() {}
 
 func (x *SetPowerModeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_component_board_v1_board_proto_msgTypes[20]
+	mi := &file_component_board_v1_board_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1215,7 +1347,7 @@ func (x *SetPowerModeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetPowerModeRequest.ProtoReflect.Descriptor instead.
 func (*SetPowerModeRequest) Descriptor() ([]byte, []int) {
-	return file_component_board_v1_board_proto_rawDescGZIP(), []int{20}
+	return file_component_board_v1_board_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *SetPowerModeRequest) GetName() string {
@@ -1255,7 +1387,7 @@ type SetPowerModeResponse struct {
 func (x *SetPowerModeResponse) Reset() {
 	*x = SetPowerModeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_component_board_v1_board_proto_msgTypes[21]
+		mi := &file_component_board_v1_board_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1268,7 +1400,7 @@ func (x *SetPowerModeResponse) String() string {
 func (*SetPowerModeResponse) ProtoMessage() {}
 
 func (x *SetPowerModeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_component_board_v1_board_proto_msgTypes[21]
+	mi := &file_component_board_v1_board_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1281,7 +1413,7 @@ func (x *SetPowerModeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetPowerModeResponse.ProtoReflect.Descriptor instead.
 func (*SetPowerModeResponse) Descriptor() ([]byte, []int) {
-	return file_component_board_v1_board_proto_rawDescGZIP(), []int{21}
+	return file_component_board_v1_board_proto_rawDescGZIP(), []int{23}
 }
 
 var File_component_board_v1_board_proto protoreflect.FileDescriptor
@@ -1402,7 +1534,20 @@ var file_component_board_v1_board_proto_rawDesc = []byte{
 	0x74, 0x44, 0x69, 0x67, 0x69, 0x74, 0x61, 0x6c, 0x49, 0x6e, 0x74, 0x65, 0x72, 0x72, 0x75, 0x70,
 	0x74, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14,
 	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x76,
-	0x61, 0x6c, 0x75, 0x65, 0x22, 0xe4, 0x01, 0x0a, 0x13, 0x53, 0x65, 0x74, 0x50, 0x6f, 0x77, 0x65,
+	0x61, 0x6c, 0x75, 0x65, 0x22, 0x74, 0x0a, 0x12, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x69,
+	0x63, 0x6b, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1b,
+	0x0a, 0x09, 0x70, 0x69, 0x6e, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28,
+	0x09, 0x52, 0x08, 0x70, 0x69, 0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x12, 0x2d, 0x0a, 0x05, 0x65,
+	0x78, 0x74, 0x72, 0x61, 0x18, 0x63, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f,
+	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72,
+	0x75, 0x63, 0x74, 0x52, 0x05, 0x65, 0x78, 0x74, 0x72, 0x61, 0x22, 0x58, 0x0a, 0x13, 0x53, 0x74,
+	0x72, 0x65, 0x61, 0x6d, 0x54, 0x69, 0x63, 0x6b, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x19, 0x0a, 0x08, 0x70, 0x69, 0x6e, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x07, 0x70, 0x69, 0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04,
+	0x74, 0x69, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x04, 0x74, 0x69, 0x6d, 0x65,
+	0x12, 0x12, 0x0a, 0x04, 0x68, 0x69, 0x67, 0x68, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x04,
+	0x68, 0x69, 0x67, 0x68, 0x22, 0xe4, 0x01, 0x0a, 0x13, 0x53, 0x65, 0x74, 0x50, 0x6f, 0x77, 0x65,
 	0x72, 0x4d, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04,
 	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
 	0x12, 0x41, 0x0a, 0x0a, 0x70, 0x6f, 0x77, 0x65, 0x72, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x18, 0x02,
@@ -1424,7 +1569,7 @@ var file_component_board_v1_board_proto_rawDesc = []byte{
 	0x50, 0x4f, 0x57, 0x45, 0x52, 0x5f, 0x4d, 0x4f, 0x44, 0x45, 0x5f, 0x4e, 0x4f, 0x52, 0x4d, 0x41,
 	0x4c, 0x10, 0x01, 0x12, 0x1b, 0x0a, 0x17, 0x50, 0x4f, 0x57, 0x45, 0x52, 0x5f, 0x4d, 0x4f, 0x44,
 	0x45, 0x5f, 0x4f, 0x46, 0x46, 0x4c, 0x49, 0x4e, 0x45, 0x5f, 0x44, 0x45, 0x45, 0x50, 0x10, 0x02,
-	0x32, 0xda, 0x10, 0x0a, 0x0c, 0x42, 0x6f, 0x61, 0x72, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x32, 0x80, 0x12, 0x0a, 0x0c, 0x42, 0x6f, 0x61, 0x72, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
 	0x65, 0x12, 0x8d, 0x01, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x26, 0x2e, 0x76,
 	0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2e, 0x62, 0x6f,
 	0x61, 0x72, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71,
@@ -1538,31 +1683,41 @@ var file_component_board_v1_board_proto_rawDesc = []byte{
 	0x64, 0x69, 0x67, 0x69, 0x74, 0x61, 0x6c, 0x5f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x72, 0x75, 0x70,
 	0x74, 0x2f, 0x7b, 0x64, 0x69, 0x67, 0x69, 0x74, 0x61, 0x6c, 0x5f, 0x69, 0x6e, 0x74, 0x65, 0x72,
 	0x72, 0x75, 0x70, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x7d, 0x2f, 0x76, 0x61, 0x6c, 0x75, 0x65,
-	0x12, 0xa3, 0x01, 0x0a, 0x0c, 0x53, 0x65, 0x74, 0x50, 0x6f, 0x77, 0x65, 0x72, 0x4d, 0x6f, 0x64,
-	0x65, 0x12, 0x2c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65,
-	0x6e, 0x74, 0x2e, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x50,
-	0x6f, 0x77, 0x65, 0x72, 0x4d, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x2d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74,
-	0x2e, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x50, 0x6f, 0x77,
-	0x65, 0x72, 0x4d, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x36,
-	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x30, 0x1a, 0x2e, 0x2f, 0x76, 0x69, 0x61, 0x6d, 0x2f, 0x61, 0x70,
-	0x69, 0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2f, 0x62,
-	0x6f, 0x61, 0x72, 0x64, 0x2f, 0x7b, 0x6e, 0x61, 0x6d, 0x65, 0x7d, 0x2f, 0x70, 0x6f, 0x77, 0x65,
-	0x72, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x12, 0x94, 0x01, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x47, 0x65,
-	0x6f, 0x6d, 0x65, 0x74, 0x72, 0x69, 0x65, 0x73, 0x12, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
-	0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x47, 0x65, 0x6f,
-	0x6d, 0x65, 0x74, 0x72, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25,
+	0x12, 0xa3, 0x01, 0x0a, 0x0b, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x69, 0x63, 0x6b, 0x73,
+	0x12, 0x2b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e,
+	0x74, 0x2e, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x54, 0x69, 0x63, 0x6b, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2e, 0x62,
+	0x6f, 0x61, 0x72, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x69,
+	0x63, 0x6b, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x37, 0x82, 0xd3, 0xe4,
+	0x93, 0x02, 0x31, 0x12, 0x2f, 0x2f, 0x76, 0x69, 0x61, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76,
+	0x31, 0x2f, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2f, 0x62, 0x6f, 0x61, 0x72,
+	0x64, 0x2f, 0x7b, 0x6e, 0x61, 0x6d, 0x65, 0x7d, 0x2f, 0x74, 0x69, 0x63, 0x6b, 0x5f, 0x73, 0x74,
+	0x72, 0x65, 0x61, 0x6d, 0x30, 0x01, 0x12, 0xa3, 0x01, 0x0a, 0x0c, 0x53, 0x65, 0x74, 0x50, 0x6f,
+	0x77, 0x65, 0x72, 0x4d, 0x6f, 0x64, 0x65, 0x12, 0x2c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63,
+	0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2e, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x2e, 0x76,
+	0x31, 0x2e, 0x53, 0x65, 0x74, 0x50, 0x6f, 0x77, 0x65, 0x72, 0x4d, 0x6f, 0x64, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d,
+	0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2e, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x2e, 0x76, 0x31, 0x2e,
+	0x53, 0x65, 0x74, 0x50, 0x6f, 0x77, 0x65, 0x72, 0x4d, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x36, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x30, 0x1a, 0x2e, 0x2f, 0x76,
+	0x69, 0x61, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x6d, 0x70, 0x6f,
+	0x6e, 0x65, 0x6e, 0x74, 0x2f, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x2f, 0x7b, 0x6e, 0x61, 0x6d, 0x65,
+	0x7d, 0x2f, 0x70, 0x6f, 0x77, 0x65, 0x72, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x12, 0x94, 0x01, 0x0a,
+	0x0d, 0x47, 0x65, 0x74, 0x47, 0x65, 0x6f, 0x6d, 0x65, 0x74, 0x72, 0x69, 0x65, 0x73, 0x12, 0x24,
 	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e,
-	0x47, 0x65, 0x74, 0x47, 0x65, 0x6f, 0x6d, 0x65, 0x74, 0x72, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x36, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x30, 0x12, 0x2e, 0x2f,
-	0x76, 0x69, 0x61, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x6d, 0x70,
-	0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2f, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x2f, 0x7b, 0x6e, 0x61, 0x6d,
-	0x65, 0x7d, 0x2f, 0x67, 0x65, 0x6f, 0x6d, 0x65, 0x74, 0x72, 0x69, 0x65, 0x73, 0x42, 0x41, 0x0a,
-	0x1b, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e,
-	0x65, 0x6e, 0x74, 0x2e, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x2e, 0x76, 0x31, 0x5a, 0x22, 0x67, 0x6f,
-	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f,
-	0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2f, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x2f, 0x76, 0x31,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x47, 0x65, 0x74, 0x47, 0x65, 0x6f, 0x6d, 0x65, 0x74, 0x72, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d,
+	0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x47, 0x65, 0x6f, 0x6d, 0x65, 0x74, 0x72,
+	0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x36, 0x82, 0xd3, 0xe4,
+	0x93, 0x02, 0x30, 0x12, 0x2e, 0x2f, 0x76, 0x69, 0x61, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76,
+	0x31, 0x2f, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2f, 0x62, 0x6f, 0x61, 0x72,
+	0x64, 0x2f, 0x7b, 0x6e, 0x61, 0x6d, 0x65, 0x7d, 0x2f, 0x67, 0x65, 0x6f, 0x6d, 0x65, 0x74, 0x72,
+	0x69, 0x65, 0x73, 0x42, 0x41, 0x0a, 0x1b, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
+	0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2e, 0x62, 0x6f, 0x61, 0x72, 0x64, 0x2e,
+	0x76, 0x31, 0x5a, 0x22, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
+	0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2f, 0x62, 0x6f,
+	0x61, 0x72, 0x64, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1578,7 +1733,7 @@ func file_component_board_v1_board_proto_rawDescGZIP() []byte {
 }
 
 var file_component_board_v1_board_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_component_board_v1_board_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_component_board_v1_board_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_component_board_v1_board_proto_goTypes = []interface{}{
 	(PowerMode)(0),                           // 0: viam.component.board.v1.PowerMode
 	(*StatusRequest)(nil),                    // 1: viam.component.board.v1.StatusRequest
@@ -1601,62 +1756,67 @@ var file_component_board_v1_board_proto_goTypes = []interface{}{
 	(*WriteAnalogResponse)(nil),              // 18: viam.component.board.v1.WriteAnalogResponse
 	(*GetDigitalInterruptValueRequest)(nil),  // 19: viam.component.board.v1.GetDigitalInterruptValueRequest
 	(*GetDigitalInterruptValueResponse)(nil), // 20: viam.component.board.v1.GetDigitalInterruptValueResponse
-	(*SetPowerModeRequest)(nil),              // 21: viam.component.board.v1.SetPowerModeRequest
-	(*SetPowerModeResponse)(nil),             // 22: viam.component.board.v1.SetPowerModeResponse
-	(*structpb.Struct)(nil),                  // 23: google.protobuf.Struct
-	(*v1.BoardStatus)(nil),                   // 24: viam.common.v1.BoardStatus
-	(*durationpb.Duration)(nil),              // 25: google.protobuf.Duration
-	(*v1.DoCommandRequest)(nil),              // 26: viam.common.v1.DoCommandRequest
-	(*v1.GetGeometriesRequest)(nil),          // 27: viam.common.v1.GetGeometriesRequest
-	(*v1.DoCommandResponse)(nil),             // 28: viam.common.v1.DoCommandResponse
-	(*v1.GetGeometriesResponse)(nil),         // 29: viam.common.v1.GetGeometriesResponse
+	(*StreamTicksRequest)(nil),               // 21: viam.component.board.v1.StreamTicksRequest
+	(*StreamTicksResponse)(nil),              // 22: viam.component.board.v1.StreamTicksResponse
+	(*SetPowerModeRequest)(nil),              // 23: viam.component.board.v1.SetPowerModeRequest
+	(*SetPowerModeResponse)(nil),             // 24: viam.component.board.v1.SetPowerModeResponse
+	(*structpb.Struct)(nil),                  // 25: google.protobuf.Struct
+	(*v1.BoardStatus)(nil),                   // 26: viam.common.v1.BoardStatus
+	(*durationpb.Duration)(nil),              // 27: google.protobuf.Duration
+	(*v1.DoCommandRequest)(nil),              // 28: viam.common.v1.DoCommandRequest
+	(*v1.GetGeometriesRequest)(nil),          // 29: viam.common.v1.GetGeometriesRequest
+	(*v1.DoCommandResponse)(nil),             // 30: viam.common.v1.DoCommandResponse
+	(*v1.GetGeometriesResponse)(nil),         // 31: viam.common.v1.GetGeometriesResponse
 }
 var file_component_board_v1_board_proto_depIdxs = []int32{
-	23, // 0: viam.component.board.v1.StatusRequest.extra:type_name -> google.protobuf.Struct
-	24, // 1: viam.component.board.v1.StatusResponse.status:type_name -> viam.common.v1.BoardStatus
-	23, // 2: viam.component.board.v1.SetGPIORequest.extra:type_name -> google.protobuf.Struct
-	23, // 3: viam.component.board.v1.GetGPIORequest.extra:type_name -> google.protobuf.Struct
-	23, // 4: viam.component.board.v1.PWMRequest.extra:type_name -> google.protobuf.Struct
-	23, // 5: viam.component.board.v1.SetPWMRequest.extra:type_name -> google.protobuf.Struct
-	23, // 6: viam.component.board.v1.PWMFrequencyRequest.extra:type_name -> google.protobuf.Struct
-	23, // 7: viam.component.board.v1.SetPWMFrequencyRequest.extra:type_name -> google.protobuf.Struct
-	23, // 8: viam.component.board.v1.ReadAnalogReaderRequest.extra:type_name -> google.protobuf.Struct
-	23, // 9: viam.component.board.v1.WriteAnalogRequest.extra:type_name -> google.protobuf.Struct
-	23, // 10: viam.component.board.v1.GetDigitalInterruptValueRequest.extra:type_name -> google.protobuf.Struct
-	0,  // 11: viam.component.board.v1.SetPowerModeRequest.power_mode:type_name -> viam.component.board.v1.PowerMode
-	25, // 12: viam.component.board.v1.SetPowerModeRequest.duration:type_name -> google.protobuf.Duration
-	23, // 13: viam.component.board.v1.SetPowerModeRequest.extra:type_name -> google.protobuf.Struct
-	1,  // 14: viam.component.board.v1.BoardService.Status:input_type -> viam.component.board.v1.StatusRequest
-	3,  // 15: viam.component.board.v1.BoardService.SetGPIO:input_type -> viam.component.board.v1.SetGPIORequest
-	5,  // 16: viam.component.board.v1.BoardService.GetGPIO:input_type -> viam.component.board.v1.GetGPIORequest
-	7,  // 17: viam.component.board.v1.BoardService.PWM:input_type -> viam.component.board.v1.PWMRequest
-	9,  // 18: viam.component.board.v1.BoardService.SetPWM:input_type -> viam.component.board.v1.SetPWMRequest
-	11, // 19: viam.component.board.v1.BoardService.PWMFrequency:input_type -> viam.component.board.v1.PWMFrequencyRequest
-	13, // 20: viam.component.board.v1.BoardService.SetPWMFrequency:input_type -> viam.component.board.v1.SetPWMFrequencyRequest
-	26, // 21: viam.component.board.v1.BoardService.DoCommand:input_type -> viam.common.v1.DoCommandRequest
-	15, // 22: viam.component.board.v1.BoardService.ReadAnalogReader:input_type -> viam.component.board.v1.ReadAnalogReaderRequest
-	17, // 23: viam.component.board.v1.BoardService.WriteAnalog:input_type -> viam.component.board.v1.WriteAnalogRequest
-	19, // 24: viam.component.board.v1.BoardService.GetDigitalInterruptValue:input_type -> viam.component.board.v1.GetDigitalInterruptValueRequest
-	21, // 25: viam.component.board.v1.BoardService.SetPowerMode:input_type -> viam.component.board.v1.SetPowerModeRequest
-	27, // 26: viam.component.board.v1.BoardService.GetGeometries:input_type -> viam.common.v1.GetGeometriesRequest
-	2,  // 27: viam.component.board.v1.BoardService.Status:output_type -> viam.component.board.v1.StatusResponse
-	4,  // 28: viam.component.board.v1.BoardService.SetGPIO:output_type -> viam.component.board.v1.SetGPIOResponse
-	6,  // 29: viam.component.board.v1.BoardService.GetGPIO:output_type -> viam.component.board.v1.GetGPIOResponse
-	8,  // 30: viam.component.board.v1.BoardService.PWM:output_type -> viam.component.board.v1.PWMResponse
-	10, // 31: viam.component.board.v1.BoardService.SetPWM:output_type -> viam.component.board.v1.SetPWMResponse
-	12, // 32: viam.component.board.v1.BoardService.PWMFrequency:output_type -> viam.component.board.v1.PWMFrequencyResponse
-	14, // 33: viam.component.board.v1.BoardService.SetPWMFrequency:output_type -> viam.component.board.v1.SetPWMFrequencyResponse
-	28, // 34: viam.component.board.v1.BoardService.DoCommand:output_type -> viam.common.v1.DoCommandResponse
-	16, // 35: viam.component.board.v1.BoardService.ReadAnalogReader:output_type -> viam.component.board.v1.ReadAnalogReaderResponse
-	18, // 36: viam.component.board.v1.BoardService.WriteAnalog:output_type -> viam.component.board.v1.WriteAnalogResponse
-	20, // 37: viam.component.board.v1.BoardService.GetDigitalInterruptValue:output_type -> viam.component.board.v1.GetDigitalInterruptValueResponse
-	22, // 38: viam.component.board.v1.BoardService.SetPowerMode:output_type -> viam.component.board.v1.SetPowerModeResponse
-	29, // 39: viam.component.board.v1.BoardService.GetGeometries:output_type -> viam.common.v1.GetGeometriesResponse
-	27, // [27:40] is the sub-list for method output_type
-	14, // [14:27] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	25, // 0: viam.component.board.v1.StatusRequest.extra:type_name -> google.protobuf.Struct
+	26, // 1: viam.component.board.v1.StatusResponse.status:type_name -> viam.common.v1.BoardStatus
+	25, // 2: viam.component.board.v1.SetGPIORequest.extra:type_name -> google.protobuf.Struct
+	25, // 3: viam.component.board.v1.GetGPIORequest.extra:type_name -> google.protobuf.Struct
+	25, // 4: viam.component.board.v1.PWMRequest.extra:type_name -> google.protobuf.Struct
+	25, // 5: viam.component.board.v1.SetPWMRequest.extra:type_name -> google.protobuf.Struct
+	25, // 6: viam.component.board.v1.PWMFrequencyRequest.extra:type_name -> google.protobuf.Struct
+	25, // 7: viam.component.board.v1.SetPWMFrequencyRequest.extra:type_name -> google.protobuf.Struct
+	25, // 8: viam.component.board.v1.ReadAnalogReaderRequest.extra:type_name -> google.protobuf.Struct
+	25, // 9: viam.component.board.v1.WriteAnalogRequest.extra:type_name -> google.protobuf.Struct
+	25, // 10: viam.component.board.v1.GetDigitalInterruptValueRequest.extra:type_name -> google.protobuf.Struct
+	25, // 11: viam.component.board.v1.StreamTicksRequest.extra:type_name -> google.protobuf.Struct
+	0,  // 12: viam.component.board.v1.SetPowerModeRequest.power_mode:type_name -> viam.component.board.v1.PowerMode
+	27, // 13: viam.component.board.v1.SetPowerModeRequest.duration:type_name -> google.protobuf.Duration
+	25, // 14: viam.component.board.v1.SetPowerModeRequest.extra:type_name -> google.protobuf.Struct
+	1,  // 15: viam.component.board.v1.BoardService.Status:input_type -> viam.component.board.v1.StatusRequest
+	3,  // 16: viam.component.board.v1.BoardService.SetGPIO:input_type -> viam.component.board.v1.SetGPIORequest
+	5,  // 17: viam.component.board.v1.BoardService.GetGPIO:input_type -> viam.component.board.v1.GetGPIORequest
+	7,  // 18: viam.component.board.v1.BoardService.PWM:input_type -> viam.component.board.v1.PWMRequest
+	9,  // 19: viam.component.board.v1.BoardService.SetPWM:input_type -> viam.component.board.v1.SetPWMRequest
+	11, // 20: viam.component.board.v1.BoardService.PWMFrequency:input_type -> viam.component.board.v1.PWMFrequencyRequest
+	13, // 21: viam.component.board.v1.BoardService.SetPWMFrequency:input_type -> viam.component.board.v1.SetPWMFrequencyRequest
+	28, // 22: viam.component.board.v1.BoardService.DoCommand:input_type -> viam.common.v1.DoCommandRequest
+	15, // 23: viam.component.board.v1.BoardService.ReadAnalogReader:input_type -> viam.component.board.v1.ReadAnalogReaderRequest
+	17, // 24: viam.component.board.v1.BoardService.WriteAnalog:input_type -> viam.component.board.v1.WriteAnalogRequest
+	19, // 25: viam.component.board.v1.BoardService.GetDigitalInterruptValue:input_type -> viam.component.board.v1.GetDigitalInterruptValueRequest
+	21, // 26: viam.component.board.v1.BoardService.StreamTicks:input_type -> viam.component.board.v1.StreamTicksRequest
+	23, // 27: viam.component.board.v1.BoardService.SetPowerMode:input_type -> viam.component.board.v1.SetPowerModeRequest
+	29, // 28: viam.component.board.v1.BoardService.GetGeometries:input_type -> viam.common.v1.GetGeometriesRequest
+	2,  // 29: viam.component.board.v1.BoardService.Status:output_type -> viam.component.board.v1.StatusResponse
+	4,  // 30: viam.component.board.v1.BoardService.SetGPIO:output_type -> viam.component.board.v1.SetGPIOResponse
+	6,  // 31: viam.component.board.v1.BoardService.GetGPIO:output_type -> viam.component.board.v1.GetGPIOResponse
+	8,  // 32: viam.component.board.v1.BoardService.PWM:output_type -> viam.component.board.v1.PWMResponse
+	10, // 33: viam.component.board.v1.BoardService.SetPWM:output_type -> viam.component.board.v1.SetPWMResponse
+	12, // 34: viam.component.board.v1.BoardService.PWMFrequency:output_type -> viam.component.board.v1.PWMFrequencyResponse
+	14, // 35: viam.component.board.v1.BoardService.SetPWMFrequency:output_type -> viam.component.board.v1.SetPWMFrequencyResponse
+	30, // 36: viam.component.board.v1.BoardService.DoCommand:output_type -> viam.common.v1.DoCommandResponse
+	16, // 37: viam.component.board.v1.BoardService.ReadAnalogReader:output_type -> viam.component.board.v1.ReadAnalogReaderResponse
+	18, // 38: viam.component.board.v1.BoardService.WriteAnalog:output_type -> viam.component.board.v1.WriteAnalogResponse
+	20, // 39: viam.component.board.v1.BoardService.GetDigitalInterruptValue:output_type -> viam.component.board.v1.GetDigitalInterruptValueResponse
+	22, // 40: viam.component.board.v1.BoardService.StreamTicks:output_type -> viam.component.board.v1.StreamTicksResponse
+	24, // 41: viam.component.board.v1.BoardService.SetPowerMode:output_type -> viam.component.board.v1.SetPowerModeResponse
+	31, // 42: viam.component.board.v1.BoardService.GetGeometries:output_type -> viam.common.v1.GetGeometriesResponse
+	29, // [29:43] is the sub-list for method output_type
+	15, // [15:29] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_component_board_v1_board_proto_init() }
@@ -1906,7 +2066,7 @@ func file_component_board_v1_board_proto_init() {
 			}
 		}
 		file_component_board_v1_board_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SetPowerModeRequest); i {
+			switch v := v.(*StreamTicksRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1918,6 +2078,30 @@ func file_component_board_v1_board_proto_init() {
 			}
 		}
 		file_component_board_v1_board_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*StreamTicksResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_component_board_v1_board_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetPowerModeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_component_board_v1_board_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetPowerModeResponse); i {
 			case 0:
 				return &v.state
@@ -1930,14 +2114,14 @@ func file_component_board_v1_board_proto_init() {
 			}
 		}
 	}
-	file_component_board_v1_board_proto_msgTypes[20].OneofWrappers = []interface{}{}
+	file_component_board_v1_board_proto_msgTypes[22].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_component_board_v1_board_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   22,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
