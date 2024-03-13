@@ -175,6 +175,8 @@ export class GetPropertiesResponse extends jspb.Message {
   getMappingMode(): MappingModeMap[keyof MappingModeMap];
   setMappingMode(value: MappingModeMap[keyof MappingModeMap]): void;
 
+  hasInternalStateFileType(): boolean;
+  clearInternalStateFileType(): void;
   getInternalStateFileType(): string;
   setInternalStateFileType(value: string): void;
 
