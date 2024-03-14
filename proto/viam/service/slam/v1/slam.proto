@@ -128,4 +128,17 @@ message GetPropertiesRequest {
 message GetPropertiesResponse {
   bool cloud_slam = 1;
   MappingMode mapping_mode = 2;
+  optional string internal_state_file_type = 3;
+  repeated SensorInfo sensor_info = 4;
+}
+
+message SensorInfo {
+  string name = 1;
+  SensorType type = 2;
+}
+
+enum SensorType {
+  SENSOR_TYPE_UNSPECIFIED = 0;
+  SENSOR_TYPE_CAMERA = 1;
+  SENSOR_TYPE_MOVEMENT_SENSOR = 2;
 }
