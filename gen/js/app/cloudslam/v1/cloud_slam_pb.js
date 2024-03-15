@@ -929,7 +929,6 @@ proto.viam.app.cloudslam.v1.Module.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.cloudslam.v1.Module.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     moduleId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     version: jspb.Message.getFieldWithDefault(msg, 4, "")
@@ -969,10 +968,6 @@ proto.viam.app.cloudslam.v1.Module.deserializeBinaryFromReader = function(msg, r
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setType(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
@@ -1014,13 +1009,6 @@ proto.viam.app.cloudslam.v1.Module.prototype.serializeBinary = function() {
  */
 proto.viam.app.cloudslam.v1.Module.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getType();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
   f = message.getName();
   if (f.length > 0) {
     writer.writeString(
@@ -1042,24 +1030,6 @@ proto.viam.app.cloudslam.v1.Module.serializeBinaryToWriter = function(message, w
       f
     );
   }
-};
-
-
-/**
- * optional string type = 1;
- * @return {string}
- */
-proto.viam.app.cloudslam.v1.Module.prototype.getType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.cloudslam.v1.Module} returns this
- */
-proto.viam.app.cloudslam.v1.Module.prototype.setType = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

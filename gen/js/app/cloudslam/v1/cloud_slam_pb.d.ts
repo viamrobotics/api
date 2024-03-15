@@ -75,9 +75,6 @@ export namespace StartMappingSessionRequest {
 }
 
 export class Module extends jspb.Message {
-  getType(): string;
-  setType(value: string): void;
-
   getName(): string;
   setName(value: string): void;
 
@@ -99,7 +96,6 @@ export class Module extends jspb.Message {
 
 export namespace Module {
   export type AsObject = {
-    type: string,
     name: string,
     moduleId: string,
     version: string,
