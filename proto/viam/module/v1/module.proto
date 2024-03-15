@@ -53,10 +53,12 @@ message HandlerMap {
 
 message ReadyRequest {
   string parent_address = 1;
+  string server_sdp = 2;
 }
 message ReadyResponse {
   bool ready = 1;
   HandlerMap handlermap = 2;
+  string module_sdp = 3;
 }
 
 message ValidateConfigRequest {
