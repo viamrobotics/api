@@ -12,8 +12,9 @@ option java_package = "com.viam.component.camera.v1";
 
 // A CameraService services all cameras associated with a robot
 service CameraService {
-  // GetImage returns a frame from a camera of the underlying robot. A specific MIME type
-  // can be requested but may not necessarily be the same one returned.
+  // GetImage returns a frame from a camera of the underlying robot. A specific
+  // MIME type can be requested but may not necessarily be the same one
+  // returned.
   rpc GetImage(GetImageRequest) returns (GetImageResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/camera/{name}/image"
@@ -26,23 +27,26 @@ service CameraService {
     };
   }
 
-  // RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
-  // can be requested but may not necessarily be the same one returned.
+  // RenderFrame renders a frame from a camera of the underlying robot to an
+  // HTTP response. A specific MIME type can be requested but may not
+  // necessarily be the same one returned.
   rpc RenderFrame(RenderFrameRequest) returns (google.api.HttpBody) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/camera/{name}/render_frame"
     };
   }
 
-  // GetPointCloud returns a point cloud from a camera of the underlying robot. A specific MIME type
-  // can be requested but may not necessarily be the same one returned.
+  // GetPointCloud returns a point cloud from a camera of the underlying robot.
+  // A specific MIME type can be requested but may not necessarily be the same
+  // one returned.
   rpc GetPointCloud(GetPointCloudRequest) returns (GetPointCloudResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/camera/{name}/point_cloud"
     };
   }
 
-  // GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying robot, if available.
+  // GetProperties returns the camera intrinsic parameters and camera distortion
+  // parameters from a camera of the underlying robot, if available.
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/camera/{name}/properties"
@@ -56,7 +60,8 @@ service CameraService {
     };
   }
 
-  // GetGeometries returns the geometries of the component in their current configuration
+  // GetGeometries returns the geometries of the component in their current
+  // configuration
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/camera/{name}/geometries"
@@ -140,7 +145,8 @@ message GetPropertiesRequest {
 }
 
 message GetPropertiesResponse {
-  // A boolean property determining whether the camera supports the return of pointcloud data
+  // A boolean property determining whether the camera supports the return of
+  // pointcloud data
   bool supports_pcd = 1;
   // Parameters for doing a perspective of a 3D scene to a 2D plane
   // If camera does not provide intrinsic parameters, leave the field empty
@@ -152,6 +158,8 @@ message GetPropertiesResponse {
   DistortionParameters distortion_parameters = 3;
   // Supported MIME types by the camera
   repeated string mime_types = 4;
+  // Supports WebRTC H264 Passthrough
+  bool supports_webrtc_h264_passthrough = 5;
 }
 
 message Webcams {
