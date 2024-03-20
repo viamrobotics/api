@@ -175,6 +175,16 @@ export class GetPropertiesResponse extends jspb.Message {
   getMappingMode(): MappingModeMap[keyof MappingModeMap];
   setMappingMode(value: MappingModeMap[keyof MappingModeMap]): void;
 
+  hasInternalStateFileType(): boolean;
+  clearInternalStateFileType(): void;
+  getInternalStateFileType(): string;
+  setInternalStateFileType(value: string): void;
+
+  clearSensorInfoList(): void;
+  getSensorInfoList(): Array<SensorInfo>;
+  setSensorInfoList(value: Array<SensorInfo>): void;
+  addSensorInfo(value?: SensorInfo, index?: number): SensorInfo;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
@@ -189,6 +199,32 @@ export namespace GetPropertiesResponse {
   export type AsObject = {
     cloudSlam: boolean,
     mappingMode: MappingModeMap[keyof MappingModeMap],
+    internalStateFileType: string,
+    sensorInfoList: Array<SensorInfo.AsObject>,
+  }
+}
+
+export class SensorInfo extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getType(): SensorTypeMap[keyof SensorTypeMap];
+  setType(value: SensorTypeMap[keyof SensorTypeMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SensorInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: SensorInfo): SensorInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SensorInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SensorInfo;
+  static deserializeBinaryFromReader(message: SensorInfo, reader: jspb.BinaryReader): SensorInfo;
+}
+
+export namespace SensorInfo {
+  export type AsObject = {
+    name: string,
+    type: SensorTypeMap[keyof SensorTypeMap],
   }
 }
 
@@ -200,4 +236,12 @@ export interface MappingModeMap {
 }
 
 export const MappingMode: MappingModeMap;
+
+export interface SensorTypeMap {
+  SENSOR_TYPE_UNSPECIFIED: 0;
+  SENSOR_TYPE_CAMERA: 1;
+  SENSOR_TYPE_MOVEMENT_SENSOR: 2;
+}
+
+export const SensorType: SensorTypeMap;
 
