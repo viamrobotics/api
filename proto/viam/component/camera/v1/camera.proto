@@ -158,8 +158,6 @@ message GetPropertiesResponse {
   DistortionParameters distortion_parameters = 3;
   // Supported MIME types by the camera
   repeated string mime_types = 4;
-  // Supports WebRTC H264 Passthrough
-  bool supports_webrtc_h264_passthrough = 5;
 }
 
 message Webcams {
