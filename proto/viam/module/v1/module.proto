@@ -53,10 +53,13 @@ message HandlerMap {
 
 message ReadyRequest {
   string parent_address = 1;
+  string webrtc_offer = 2;
 }
+
 message ReadyResponse {
   bool ready = 1;
   HandlerMap handlermap = 2;
+  string webrtc_answer = 3;
 }
 
 message ValidateConfigRequest {
