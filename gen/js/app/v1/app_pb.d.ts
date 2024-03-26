@@ -612,6 +612,11 @@ export class CreateOrganizationInviteRequest extends jspb.Message {
   setAuthorizationsList(value: Array<Authorization>): void;
   addAuthorizations(value?: Authorization, index?: number): Authorization;
 
+  hasSendEmailInvite(): boolean;
+  clearSendEmailInvite(): void;
+  getSendEmailInvite(): boolean;
+  setSendEmailInvite(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateOrganizationInviteRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateOrganizationInviteRequest): CreateOrganizationInviteRequest.AsObject;
@@ -627,6 +632,7 @@ export namespace CreateOrganizationInviteRequest {
     organizationId: string,
     email: string,
     authorizationsList: Array<Authorization.AsObject>,
+    sendEmailInvite: boolean,
   }
 }
 
