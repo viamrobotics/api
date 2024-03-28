@@ -340,6 +340,9 @@ message CreateOrganizationInviteRequest {
   string organization_id = 1;
   string email = 2;
   repeated Authorization authorizations = 3;
+  // Set to true (the default) to send an email to the recipient of an invite. The user must accept the email to be added to the associated authorizations.
+  // When set to false, the user automatically receives the associated authorization on the next login of the user with the associated email address.
+  optional bool send_email_invite = 4;
 }
 
 message CreateOrganizationInviteResponse {

@@ -183,6 +183,9 @@ export class ReadyRequest extends jspb.Message {
   getParentAddress(): string;
   setParentAddress(value: string): void;
 
+  getWebrtcOffer(): string;
+  setWebrtcOffer(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ReadyRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ReadyRequest): ReadyRequest.AsObject;
@@ -196,6 +199,7 @@ export class ReadyRequest extends jspb.Message {
 export namespace ReadyRequest {
   export type AsObject = {
     parentAddress: string,
+    webrtcOffer: string,
   }
 }
 
@@ -207,6 +211,9 @@ export class ReadyResponse extends jspb.Message {
   clearHandlermap(): void;
   getHandlermap(): HandlerMap | undefined;
   setHandlermap(value?: HandlerMap): void;
+
+  getWebrtcAnswer(): string;
+  setWebrtcAnswer(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ReadyResponse.AsObject;
@@ -222,6 +229,7 @@ export namespace ReadyResponse {
   export type AsObject = {
     ready: boolean,
     handlermap?: HandlerMap.AsObject,
+    webrtcAnswer: string,
   }
 }
 

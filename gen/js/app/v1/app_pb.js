@@ -7972,7 +7972,8 @@ proto.viam.app.v1.CreateOrganizationInviteRequest.toObject = function(includeIns
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     email: jspb.Message.getFieldWithDefault(msg, 2, ""),
     authorizationsList: jspb.Message.toObjectList(msg.getAuthorizationsList(),
-    proto.viam.app.v1.Authorization.toObject, includeInstance)
+    proto.viam.app.v1.Authorization.toObject, includeInstance),
+    sendEmailInvite: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -8021,6 +8022,10 @@ proto.viam.app.v1.CreateOrganizationInviteRequest.deserializeBinaryFromReader = 
       var value = new proto.viam.app.v1.Authorization;
       reader.readMessage(value,proto.viam.app.v1.Authorization.deserializeBinaryFromReader);
       msg.addAuthorizations(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSendEmailInvite(value);
       break;
     default:
       reader.skipField();
@@ -8071,6 +8076,13 @@ proto.viam.app.v1.CreateOrganizationInviteRequest.serializeBinaryToWriter = func
       3,
       f,
       proto.viam.app.v1.Authorization.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeBool(
+      4,
+      f
     );
   }
 };
@@ -8147,6 +8159,42 @@ proto.viam.app.v1.CreateOrganizationInviteRequest.prototype.addAuthorizations = 
  */
 proto.viam.app.v1.CreateOrganizationInviteRequest.prototype.clearAuthorizationsList = function() {
   return this.setAuthorizationsList([]);
+};
+
+
+/**
+ * optional bool send_email_invite = 4;
+ * @return {boolean}
+ */
+proto.viam.app.v1.CreateOrganizationInviteRequest.prototype.getSendEmailInvite = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.CreateOrganizationInviteRequest} returns this
+ */
+proto.viam.app.v1.CreateOrganizationInviteRequest.prototype.setSendEmailInvite = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.CreateOrganizationInviteRequest} returns this
+ */
+proto.viam.app.v1.CreateOrganizationInviteRequest.prototype.clearSendEmailInvite = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.CreateOrganizationInviteRequest.prototype.hasSendEmailInvite = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 

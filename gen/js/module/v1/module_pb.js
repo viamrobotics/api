@@ -1529,7 +1529,8 @@ proto.viam.module.v1.ReadyRequest.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.module.v1.ReadyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parentAddress: jspb.Message.getFieldWithDefault(msg, 1, "")
+    parentAddress: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    webrtcOffer: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1570,6 +1571,10 @@ proto.viam.module.v1.ReadyRequest.deserializeBinaryFromReader = function(msg, re
       var value = /** @type {string} */ (reader.readString());
       msg.setParentAddress(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWebrtcOffer(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1606,6 +1611,13 @@ proto.viam.module.v1.ReadyRequest.serializeBinaryToWriter = function(message, wr
       f
     );
   }
+  f = message.getWebrtcOffer();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -1624,6 +1636,24 @@ proto.viam.module.v1.ReadyRequest.prototype.getParentAddress = function() {
  */
 proto.viam.module.v1.ReadyRequest.prototype.setParentAddress = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string webrtc_offer = 2;
+ * @return {string}
+ */
+proto.viam.module.v1.ReadyRequest.prototype.getWebrtcOffer = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.module.v1.ReadyRequest} returns this
+ */
+proto.viam.module.v1.ReadyRequest.prototype.setWebrtcOffer = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1660,7 +1690,8 @@ proto.viam.module.v1.ReadyResponse.prototype.toObject = function(opt_includeInst
 proto.viam.module.v1.ReadyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     ready: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    handlermap: (f = msg.getHandlermap()) && proto.viam.module.v1.HandlerMap.toObject(includeInstance, f)
+    handlermap: (f = msg.getHandlermap()) && proto.viam.module.v1.HandlerMap.toObject(includeInstance, f),
+    webrtcAnswer: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1706,6 +1737,10 @@ proto.viam.module.v1.ReadyResponse.deserializeBinaryFromReader = function(msg, r
       reader.readMessage(value,proto.viam.module.v1.HandlerMap.deserializeBinaryFromReader);
       msg.setHandlermap(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWebrtcAnswer(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1748,6 +1783,13 @@ proto.viam.module.v1.ReadyResponse.serializeBinaryToWriter = function(message, w
       2,
       f,
       proto.viam.module.v1.HandlerMap.serializeBinaryToWriter
+    );
+  }
+  f = message.getWebrtcAnswer();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
     );
   }
 };
@@ -1805,6 +1847,24 @@ proto.viam.module.v1.ReadyResponse.prototype.clearHandlermap = function() {
  */
 proto.viam.module.v1.ReadyResponse.prototype.hasHandlermap = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional string webrtc_answer = 3;
+ * @return {string}
+ */
+proto.viam.module.v1.ReadyResponse.prototype.getWebrtcAnswer = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.module.v1.ReadyResponse} returns this
+ */
+proto.viam.module.v1.ReadyResponse.prototype.setWebrtcAnswer = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
