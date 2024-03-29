@@ -972,6 +972,12 @@ export class GetCloudMetadataResponse extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;
 
+  getMachineId(): string;
+  setMachineId(value: string): void;
+
+  getMachinePartId(): string;
+  setMachinePartId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetCloudMetadataResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetCloudMetadataResponse): GetCloudMetadataResponse.AsObject;
@@ -987,6 +993,8 @@ export namespace GetCloudMetadataResponse {
     robotPartId: string,
     primaryOrgId: string,
     locationId: string,
+    machineId: string,
+    machinePartId: string,
   }
 }
 

@@ -67,6 +67,7 @@ message CloudConfig {
   repeated LocationSecret location_secrets = 9;
   string primary_org_id = 10;
   string location_id = 11;
+  string machine_id = 12;
 }
 
 message ComponentConfig {
