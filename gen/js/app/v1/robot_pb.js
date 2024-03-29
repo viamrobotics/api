@@ -1928,7 +1928,8 @@ proto.viam.app.v1.CloudConfig.toObject = function(includeInstance, msg) {
     locationSecretsList: jspb.Message.toObjectList(msg.getLocationSecretsList(),
     proto.viam.app.v1.LocationSecret.toObject, includeInstance),
     primaryOrgId: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 11, "")
+    locationId: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    machineId: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -2009,6 +2010,10 @@ proto.viam.app.v1.CloudConfig.deserializeBinaryFromReader = function(msg, reader
     case 11:
       var value = /** @type {string} */ (reader.readString());
       msg.setLocationId(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMachineId(value);
       break;
     default:
       reader.skipField();
@@ -2114,6 +2119,13 @@ proto.viam.app.v1.CloudConfig.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writeString(
       11,
+      f
+    );
+  }
+  f = message.getMachineId();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
       f
     );
   }
@@ -2335,6 +2347,24 @@ proto.viam.app.v1.CloudConfig.prototype.getLocationId = function() {
  */
 proto.viam.app.v1.CloudConfig.prototype.setLocationId = function(value) {
   return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional string machine_id = 12;
+ * @return {string}
+ */
+proto.viam.app.v1.CloudConfig.prototype.getMachineId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CloudConfig} returns this
+ */
+proto.viam.app.v1.CloudConfig.prototype.setMachineId = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
 };
 
 
