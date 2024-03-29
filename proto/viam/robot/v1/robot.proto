@@ -328,4 +328,5 @@ message GetCloudMetadataResponse {
   string primary_org_id = 2;
   string location_id = 3;
   string machine_id = 4;
+  string machine_part_id = 5;
 }
