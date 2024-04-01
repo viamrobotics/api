@@ -2,6 +2,7 @@
 // file: app/v1/app.proto
 
 import * as jspb from "google-protobuf";
+import * as app_mltraining_v1_ml_training_pb from "../../app/mltraining/v1/ml_training_pb";
 import * as app_packages_v1_packages_pb from "../../app/packages/v1/packages_pb";
 import * as common_v1_common_pb from "../../common/v1/common_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
@@ -3086,6 +3087,40 @@ export namespace MLModelMetadata {
   }
 }
 
+export class MLTrainingMetadata extends jspb.Message {
+  clearVersionsList(): void;
+  getVersionsList(): Array<string>;
+  setVersionsList(value: Array<string>): void;
+  addVersions(value: string, index?: number): string;
+
+  getModelType(): app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap];
+  setModelType(value: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap]): void;
+
+  getModelFramework(): app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap];
+  setModelFramework(value: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap]): void;
+
+  getDraft(): boolean;
+  setDraft(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MLTrainingMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: MLTrainingMetadata): MLTrainingMetadata.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MLTrainingMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MLTrainingMetadata;
+  static deserializeBinaryFromReader(message: MLTrainingMetadata, reader: jspb.BinaryReader): MLTrainingMetadata;
+}
+
+export namespace MLTrainingMetadata {
+  export type AsObject = {
+    versionsList: Array<string>,
+    modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
+    modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
+    draft: boolean,
+  }
+}
+
 export class RegistryItem extends jspb.Message {
   getItemId(): string;
   setItemId(value: string): void;
@@ -3133,6 +3168,11 @@ export class RegistryItem extends jspb.Message {
   getMlModelMetadata(): MLModelMetadata | undefined;
   setMlModelMetadata(value?: MLModelMetadata): void;
 
+  hasMlTrainingMetadata(): boolean;
+  clearMlTrainingMetadata(): void;
+  getMlTrainingMetadata(): MLTrainingMetadata | undefined;
+  setMlTrainingMetadata(value?: MLTrainingMetadata): void;
+
   hasCreatedAt(): boolean;
   clearCreatedAt(): void;
   getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -3170,6 +3210,7 @@ export namespace RegistryItem {
     totalExternalOrganizationUsage: number,
     moduleMetadata?: ModuleMetadata.AsObject,
     mlModelMetadata?: MLModelMetadata.AsObject,
+    mlTrainingMetadata?: MLTrainingMetadata.AsObject,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
@@ -3178,6 +3219,7 @@ export namespace RegistryItem {
     METADATA_NOT_SET = 0,
     MODULE_METADATA = 11,
     ML_MODEL_METADATA = 12,
+    ML_TRAINING_METADATA = 18,
   }
 }
 
