@@ -697,7 +697,8 @@ proto.viam.common.v1.ResourceName.toObject = function(includeInstance, msg) {
     namespace: jspb.Message.getFieldWithDefault(msg, 1, ""),
     type: jspb.Message.getFieldWithDefault(msg, 2, ""),
     subtype: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 4, "")
+    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    machinePartId: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -749,6 +750,10 @@ proto.viam.common.v1.ResourceName.deserializeBinaryFromReader = function(msg, re
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMachinePartId(value);
       break;
     default:
       reader.skipField();
@@ -804,6 +809,13 @@ proto.viam.common.v1.ResourceName.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -879,6 +891,42 @@ proto.viam.common.v1.ResourceName.prototype.getName = function() {
  */
 proto.viam.common.v1.ResourceName.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string machine_part_id = 5;
+ * @return {string}
+ */
+proto.viam.common.v1.ResourceName.prototype.getMachinePartId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.common.v1.ResourceName} returns this
+ */
+proto.viam.common.v1.ResourceName.prototype.setMachinePartId = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.common.v1.ResourceName} returns this
+ */
+proto.viam.common.v1.ResourceName.prototype.clearMachinePartId = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.common.v1.ResourceName.prototype.hasMachinePartId = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
