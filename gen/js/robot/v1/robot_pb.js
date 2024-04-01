@@ -7685,7 +7685,9 @@ proto.viam.robot.v1.GetCloudMetadataResponse.toObject = function(includeInstance
   var f, obj = {
     robotPartId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     primaryOrgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 3, "")
+    locationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    machineId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    machinePartId: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -7734,6 +7736,14 @@ proto.viam.robot.v1.GetCloudMetadataResponse.deserializeBinaryFromReader = funct
       var value = /** @type {string} */ (reader.readString());
       msg.setLocationId(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMachineId(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMachinePartId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -7781,6 +7791,20 @@ proto.viam.robot.v1.GetCloudMetadataResponse.serializeBinaryToWriter = function(
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getMachineId();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getMachinePartId();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -7838,6 +7862,42 @@ proto.viam.robot.v1.GetCloudMetadataResponse.prototype.getLocationId = function(
  */
 proto.viam.robot.v1.GetCloudMetadataResponse.prototype.setLocationId = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string machine_id = 4;
+ * @return {string}
+ */
+proto.viam.robot.v1.GetCloudMetadataResponse.prototype.getMachineId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.robot.v1.GetCloudMetadataResponse} returns this
+ */
+proto.viam.robot.v1.GetCloudMetadataResponse.prototype.setMachineId = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string machine_part_id = 5;
+ * @return {string}
+ */
+proto.viam.robot.v1.GetCloudMetadataResponse.prototype.getMachinePartId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.robot.v1.GetCloudMetadataResponse} returns this
+ */
+proto.viam.robot.v1.GetCloudMetadataResponse.prototype.setMachinePartId = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
