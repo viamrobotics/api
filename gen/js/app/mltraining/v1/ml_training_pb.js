@@ -171,7 +171,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.mltraining.v1.TrainingJobMetadata = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.mltraining.v1.TrainingJobMetadata.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.mltraining.v1.TrainingJobMetadata, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1303,6 +1303,13 @@ proto.viam.app.mltraining.v1.ListTrainingJobsResponse.prototype.clearJobsList = 
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.repeatedFields_ = [16];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1335,14 +1342,20 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.toObject = function(o
 proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
     request: (f = msg.getRequest()) && proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.toObject(includeInstance, f),
+    id: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    datasetId: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    modelName: jspb.Message.getFieldWithDefault(msg, 13, ""),
+    modelVersion: jspb.Message.getFieldWithDefault(msg, 14, ""),
+    modelType: jspb.Message.getFieldWithDefault(msg, 15, 0),
     status: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    errorStatus: (f = msg.getErrorStatus()) && google_rpc_status_pb.Status.toObject(includeInstance, f),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     lastModified: (f = msg.getLastModified()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    errorStatus: (f = msg.getErrorStatus()) && google_rpc_status_pb.Status.toObject(includeInstance, f),
     trainingStarted: (f = msg.getTrainingStarted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    trainingEnded: (f = msg.getTrainingEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    trainingEnded: (f = msg.getTrainingEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    tagsList: (f = jspb.Message.getRepeatedField(msg, 16)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1384,9 +1397,38 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
       reader.readMessage(value,proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.deserializeBinaryFromReader);
       msg.setRequest(value);
       break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDatasetId(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganizationId(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setModelName(value);
+      break;
+    case 14:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setModelVersion(value);
+      break;
+    case 15:
+      var value = /** @type {!proto.viam.app.mltraining.v1.ModelType} */ (reader.readEnum());
+      msg.setModelType(value);
+      break;
     case 2:
       var value = /** @type {!proto.viam.app.mltraining.v1.TrainingStatus} */ (reader.readEnum());
       msg.setStatus(value);
+      break;
+    case 8:
+      var value = new google_rpc_status_pb.Status;
+      reader.readMessage(value,google_rpc_status_pb.Status.deserializeBinaryFromReader);
+      msg.setErrorStatus(value);
       break;
     case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
@@ -1398,19 +1440,6 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setLastModified(value);
       break;
-    case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setSyncedModelId(value);
-      break;
-    case 7:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
-      break;
-    case 8:
-      var value = new google_rpc_status_pb.Status;
-      reader.readMessage(value,google_rpc_status_pb.Status.deserializeBinaryFromReader);
-      msg.setErrorStatus(value);
-      break;
     case 9:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
@@ -1420,6 +1449,14 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTrainingEnded(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSyncedModelId(value);
+      break;
+    case 16:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addTags(value);
       break;
     default:
       reader.skipField();
@@ -1458,11 +1495,61 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
       proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.serializeBinaryToWriter
     );
   }
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getDatasetId();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
+      f
+    );
+  }
+  f = message.getOrganizationId();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
+      f
+    );
+  }
+  f = message.getModelName();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
+    );
+  }
+  f = message.getModelVersion();
+  if (f.length > 0) {
+    writer.writeString(
+      14,
+      f
+    );
+  }
+  f = message.getModelType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      15,
+      f
+    );
+  }
   f = message.getStatus();
   if (f !== 0.0) {
     writer.writeEnum(
       2,
       f
+    );
+  }
+  f = message.getErrorStatus();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      google_rpc_status_pb.Status.serializeBinaryToWriter
     );
   }
   f = message.getCreatedOn();
@@ -1481,28 +1568,6 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
-  f = message.getSyncedModelId();
-  if (f.length > 0) {
-    writer.writeString(
-      5,
-      f
-    );
-  }
-  f = message.getId();
-  if (f.length > 0) {
-    writer.writeString(
-      7,
-      f
-    );
-  }
-  f = message.getErrorStatus();
-  if (f != null) {
-    writer.writeMessage(
-      8,
-      f,
-      google_rpc_status_pb.Status.serializeBinaryToWriter
-    );
-  }
   f = message.getTrainingStarted();
   if (f != null) {
     writer.writeMessage(
@@ -1517,6 +1582,20 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
       10,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getSyncedModelId();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      16,
+      f
     );
   }
 };
@@ -1560,6 +1639,114 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.hasRequest = function
 
 
 /**
+ * optional string id = 7;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string dataset_id = 11;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getDatasetId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setDatasetId = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional string organization_id = 12;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getOrganizationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setOrganizationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
+/**
+ * optional string model_name = 13;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getModelName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setModelName = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
+};
+
+
+/**
+ * optional string model_version = 14;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getModelVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setModelVersion = function(value) {
+  return jspb.Message.setProto3StringField(this, 14, value);
+};
+
+
+/**
+ * optional ModelType model_type = 15;
+ * @return {!proto.viam.app.mltraining.v1.ModelType}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getModelType = function() {
+  return /** @type {!proto.viam.app.mltraining.v1.ModelType} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.ModelType} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setModelType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 15, value);
+};
+
+
+/**
  * optional TrainingStatus status = 2;
  * @return {!proto.viam.app.mltraining.v1.TrainingStatus}
  */
@@ -1574,6 +1761,43 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getStatus = function(
  */
 proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setStatus = function(value) {
   return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional google.rpc.Status error_status = 8;
+ * @return {?proto.google.rpc.Status}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getErrorStatus = function() {
+  return /** @type{?proto.google.rpc.Status} */ (
+    jspb.Message.getWrapperField(this, google_rpc_status_pb.Status, 8));
+};
+
+
+/**
+ * @param {?proto.google.rpc.Status|undefined} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+*/
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setErrorStatus = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.clearErrorStatus = function() {
+  return this.setErrorStatus(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.hasErrorStatus = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
@@ -1652,79 +1876,6 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.hasLastModified = fun
 
 
 /**
- * optional string synced_model_id = 5;
- * @return {string}
- */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getSyncedModelId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
- */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setSyncedModelId = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
-};
-
-
-/**
- * optional string id = 7;
- * @return {string}
- */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
- */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setId = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
-};
-
-
-/**
- * optional google.rpc.Status error_status = 8;
- * @return {?proto.google.rpc.Status}
- */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getErrorStatus = function() {
-  return /** @type{?proto.google.rpc.Status} */ (
-    jspb.Message.getWrapperField(this, google_rpc_status_pb.Status, 8));
-};
-
-
-/**
- * @param {?proto.google.rpc.Status|undefined} value
- * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
-*/
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setErrorStatus = function(value) {
-  return jspb.Message.setWrapperField(this, 8, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
- */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.clearErrorStatus = function() {
-  return this.setErrorStatus(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.hasErrorStatus = function() {
-  return jspb.Message.getField(this, 8) != null;
-};
-
-
-/**
  * optional google.protobuf.Timestamp training_started = 9;
  * @return {?proto.google.protobuf.Timestamp}
  */
@@ -1795,6 +1946,61 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.clearTrainingEnded = 
  */
 proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.hasTrainingEnded = function() {
   return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * optional string synced_model_id = 5;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getSyncedModelId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setSyncedModelId = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * repeated string tags = 16;
+ * @return {!Array<string>}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getTagsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 16));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setTagsList = function(value) {
+  return jspb.Message.setField(this, 16, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.addTags = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 16, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.clearTagsList = function() {
+  return this.setTagsList([]);
 };
 
 
