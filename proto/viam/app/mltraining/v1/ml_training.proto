@@ -85,14 +85,20 @@ enum TrainingStatus {
 
 message TrainingJobMetadata {
   SubmitTrainingJobRequest request = 1 [(tagger.v1.tags) = "bson:\"request\" json:\"request\""];
+  string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+  string dataset_id = 11 [(tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
+  string organization_id = 12 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
+  string model_name = 13 [(tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
+  string model_version = 14 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
+  ModelType model_type = 15 [(tagger.v1.tags) = "bson:\"model_type\" json:\"model_type\""];
   TrainingStatus status = 2 [(tagger.v1.tags) = "bson:\"status\" json:\"status\""];
+  google.rpc.Status error_status = 8 [(tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
   google.protobuf.Timestamp created_on = 3 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
   google.protobuf.Timestamp last_modified = 4 [(tagger.v1.tags) = "bson:\"last_modified\" json:\"last_modified\""];
-  string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
-  string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
-  google.rpc.Status error_status = 8 [(tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
   google.protobuf.Timestamp training_started = 9 [(tagger.v1.tags) = "bson:\"training_started\" json:\"training_started\""];
   google.protobuf.Timestamp training_ended = 10 [(tagger.v1.tags) = "bson:\"training_ended\" json:\"training_ended\""];
+  string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
+  repeated string tags = 16 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
 
   reserved 6;
   reserved "user_email";
