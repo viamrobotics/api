@@ -162,8 +162,31 @@ export class TrainingJobMetadata extends jspb.Message {
   getRequest(): SubmitTrainingJobRequest | undefined;
   setRequest(value?: SubmitTrainingJobRequest): void;
 
+  getId(): string;
+  setId(value: string): void;
+
+  getDatasetId(): string;
+  setDatasetId(value: string): void;
+
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getModelName(): string;
+  setModelName(value: string): void;
+
+  getModelVersion(): string;
+  setModelVersion(value: string): void;
+
+  getModelType(): ModelTypeMap[keyof ModelTypeMap];
+  setModelType(value: ModelTypeMap[keyof ModelTypeMap]): void;
+
   getStatus(): TrainingStatusMap[keyof TrainingStatusMap];
   setStatus(value: TrainingStatusMap[keyof TrainingStatusMap]): void;
+
+  hasErrorStatus(): boolean;
+  clearErrorStatus(): void;
+  getErrorStatus(): google_rpc_status_pb.Status | undefined;
+  setErrorStatus(value?: google_rpc_status_pb.Status): void;
 
   hasCreatedOn(): boolean;
   clearCreatedOn(): void;
@@ -175,17 +198,6 @@ export class TrainingJobMetadata extends jspb.Message {
   getLastModified(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setLastModified(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  getSyncedModelId(): string;
-  setSyncedModelId(value: string): void;
-
-  getId(): string;
-  setId(value: string): void;
-
-  hasErrorStatus(): boolean;
-  clearErrorStatus(): void;
-  getErrorStatus(): google_rpc_status_pb.Status | undefined;
-  setErrorStatus(value?: google_rpc_status_pb.Status): void;
-
   hasTrainingStarted(): boolean;
   clearTrainingStarted(): void;
   getTrainingStarted(): google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -195,6 +207,14 @@ export class TrainingJobMetadata extends jspb.Message {
   clearTrainingEnded(): void;
   getTrainingEnded(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTrainingEnded(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getSyncedModelId(): string;
+  setSyncedModelId(value: string): void;
+
+  clearTagsList(): void;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): void;
+  addTags(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
@@ -209,14 +229,20 @@ export class TrainingJobMetadata extends jspb.Message {
 export namespace TrainingJobMetadata {
   export type AsObject = {
     request?: SubmitTrainingJobRequest.AsObject,
+    id: string,
+    datasetId: string,
+    organizationId: string,
+    modelName: string,
+    modelVersion: string,
+    modelType: ModelTypeMap[keyof ModelTypeMap],
     status: TrainingStatusMap[keyof TrainingStatusMap],
+    errorStatus?: google_rpc_status_pb.Status.AsObject,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     lastModified?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    syncedModelId: string,
-    id: string,
-    errorStatus?: google_rpc_status_pb.Status.AsObject,
     trainingStarted?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     trainingEnded?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    syncedModelId: string,
+    tagsList: Array<string>,
   }
 }
 
