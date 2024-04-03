@@ -327,16 +327,6 @@ export interface ModelTypeMap {
 
 export const ModelType: ModelTypeMap;
 
-export interface ModelFrameworkMap {
-  MODEL_FRAMEWORK_UNSPECIFIED: 0;
-  MODEL_FRAMEWORK_TFLITE: 1;
-  MODEL_FRAMEWORK_TENSORFLOW: 2;
-  MODEL_FRAMEWORK_PYTORCH: 3;
-  MODEL_FRAMEWORK_ONNX: 4;
-}
-
-export const ModelFramework: ModelFrameworkMap;
-
 export interface TrainingStatusMap {
   TRAINING_STATUS_UNSPECIFIED: 0;
   TRAINING_STATUS_PENDING: 1;

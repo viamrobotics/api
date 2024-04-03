@@ -29,7 +29,6 @@ goog.exportSymbol('proto.viam.app.mltraining.v1.GetTrainingJobRequest', null, gl
 goog.exportSymbol('proto.viam.app.mltraining.v1.GetTrainingJobResponse', null, global);
 goog.exportSymbol('proto.viam.app.mltraining.v1.ListTrainingJobsRequest', null, global);
 goog.exportSymbol('proto.viam.app.mltraining.v1.ListTrainingJobsResponse', null, global);
-goog.exportSymbol('proto.viam.app.mltraining.v1.ModelFramework', null, global);
 goog.exportSymbol('proto.viam.app.mltraining.v1.ModelType', null, global);
 goog.exportSymbol('proto.viam.app.mltraining.v1.SubmitTrainingJobRequest', null, global);
 goog.exportSymbol('proto.viam.app.mltraining.v1.SubmitTrainingJobResponse', null, global);
@@ -2475,17 +2474,6 @@ proto.viam.app.mltraining.v1.ModelType = {
   MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION: 1,
   MODEL_TYPE_MULTI_LABEL_CLASSIFICATION: 2,
   MODEL_TYPE_OBJECT_DETECTION: 3
-};
-
-/**
- * @enum {number}
- */
-proto.viam.app.mltraining.v1.ModelFramework = {
-  MODEL_FRAMEWORK_UNSPECIFIED: 0,
-  MODEL_FRAMEWORK_TFLITE: 1,
-  MODEL_FRAMEWORK_TENSORFLOW: 2,
-  MODEL_FRAMEWORK_PYTORCH: 3,
-  MODEL_FRAMEWORK_ONNX: 4
 };
 
 /**
