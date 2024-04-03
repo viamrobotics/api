@@ -13,7 +13,7 @@ service EndUserService {
   rpc AcceptLegal(AcceptLegalRequest) returns (AcceptLegalResponse);
 
   // Allows users to register third party applications using Viam linked to the indicated organization
-  rpc RegisterApplication(RegisterApplicationRequest) returns (RegisterApplicationResponse);
+  rpc RegisterAuthApplication(RegisterAuthApplicationRequest) returns (RegisterAuthApplicationResponse);
 }
 
 message IsLegalAcceptedRequest {}
@@ -27,12 +27,11 @@ message AcceptLegalRequest {}
 
 message AcceptLegalResponse {}
 
-message RegisterApplicationRequest {
+message RegisterAuthApplicationRequest {
   string application_name = 1;
-  string application_id = 2;
-  string org_id = 3;
-  repeated string origin_uris = 4;
-  repeated string redirect_uris = 5;
+  string org_id = 2;
+  repeated string origin_uris = 3;
+  repeated string redirect_uris = 4;
 }
 
-message RegisterApplicationResponse {}
+message RegisterAuthApplicationResponse {}
