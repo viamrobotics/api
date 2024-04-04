@@ -12,8 +12,11 @@ service EndUserService {
   // Marks that the specified user has accepted end user license agreements.
   rpc AcceptLegal(AcceptLegalRequest) returns (AcceptLegalResponse);
 
-  // Allows users to register third party applications using Viam linked to the indicated organization
+  // Allows users to register third party authapplications using Viam linked to the indicated organization
   rpc RegisterAuthApplication(RegisterAuthApplicationRequest) returns (RegisterAuthApplicationResponse);
+
+  // Allows users to update their third party auth applications
+  rpc UpdateAuthApplication(UpdateAuthApplicationRequest) returns (UpdatedAuthApplicationResponse);
 }
 
 message IsLegalAcceptedRequest {}
@@ -32,6 +35,21 @@ message RegisterAuthApplicationRequest {
   string org_id = 2;
   repeated string origin_uris = 3;
   repeated string redirect_uris = 4;
+  string logout_uri = 5;
 }
 
-message RegisterAuthApplicationResponse {}
+message RegisterAuthApplicationResponse {
+  string application_id = 1;
+  string secret = 2;
+}
+
+
+message UpdateAuthApplicationRequest {
+  string org_id = 1;
+  string application_id = 2;
+  repeated string new_origin_uris = 3;
+  repeated string new_redirect_uris = 4;
+  string new_logout_uri = 5;
+}
+
+message UpdatedAuthApplicationResponse {}
