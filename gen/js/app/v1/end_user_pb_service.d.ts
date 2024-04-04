@@ -22,10 +22,20 @@ type EndUserServiceAcceptLegal = {
   readonly responseType: typeof app_v1_end_user_pb.AcceptLegalResponse;
 };
 
+type EndUserServiceRegisterAuthApplication = {
+  readonly methodName: string;
+  readonly service: typeof EndUserService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_end_user_pb.RegisterAuthApplicationRequest;
+  readonly responseType: typeof app_v1_end_user_pb.RegisterAuthApplicationResponse;
+};
+
 export class EndUserService {
   static readonly serviceName: string;
   static readonly IsLegalAccepted: EndUserServiceIsLegalAccepted;
   static readonly AcceptLegal: EndUserServiceAcceptLegal;
+  static readonly RegisterAuthApplication: EndUserServiceRegisterAuthApplication;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -77,6 +87,15 @@ export class EndUserServiceClient {
   acceptLegal(
     requestMessage: app_v1_end_user_pb.AcceptLegalRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_end_user_pb.AcceptLegalResponse|null) => void
+  ): UnaryResponse;
+  registerAuthApplication(
+    requestMessage: app_v1_end_user_pb.RegisterAuthApplicationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_end_user_pb.RegisterAuthApplicationResponse|null) => void
+  ): UnaryResponse;
+  registerAuthApplication(
+    requestMessage: app_v1_end_user_pb.RegisterAuthApplicationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_end_user_pb.RegisterAuthApplicationResponse|null) => void
   ): UnaryResponse;
 }
 
