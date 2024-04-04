@@ -40,16 +40,20 @@ message RegisterAuthApplicationRequest {
 
 message RegisterAuthApplicationResponse {
   string application_id = 1;
-  string secret = 2;
+  string application_name = 2;
+  string secret = 3;
 }
-
 
 message UpdateAuthApplicationRequest {
   string org_id = 1;
   string application_id = 2;
-  repeated string new_origin_uris = 3;
-  repeated string new_redirect_uris = 4;
-  string new_logout_uri = 5;
+  string new_application_name = 3;
+  repeated string new_origin_uris = 4;
+  repeated string new_redirect_uris = 5;
+  string new_logout_uri = 6;
 }
 
-message UpdateAuthApplicationResponse {}
+message UpdateAuthApplicationResponse {
+  string application_id = 1;
+  string application_name = 2;
+}
