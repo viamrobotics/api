@@ -16,7 +16,7 @@ service EndUserService {
   rpc RegisterAuthApplication(RegisterAuthApplicationRequest) returns (RegisterAuthApplicationResponse);
 
   // Allows users to update their third party auth applications
-  rpc UpdateAuthApplication(UpdateAuthApplicationRequest) returns (UpdatedAuthApplicationResponse);
+  rpc UpdateAuthApplication(UpdateAuthApplicationRequest) returns (UpdateAuthApplicationResponse);
 }
 
 message IsLegalAcceptedRequest {}
@@ -52,4 +52,4 @@ message UpdateAuthApplicationRequest {
   string new_logout_uri = 5;
 }
 
-message UpdatedAuthApplicationResponse {}
+message UpdateAuthApplicationResponse {}
