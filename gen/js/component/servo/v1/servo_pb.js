@@ -744,7 +744,8 @@ proto.viam.component.servo.v1.GetPositionResponse.prototype.toObject = function(
  */
 proto.viam.component.servo.v1.GetPositionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    positionDeg: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    positionDeg: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    webhookUrl: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -785,6 +786,10 @@ proto.viam.component.servo.v1.GetPositionResponse.deserializeBinaryFromReader = 
       var value = /** @type {number} */ (reader.readUint32());
       msg.setPositionDeg(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWebhookUrl(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -821,6 +826,13 @@ proto.viam.component.servo.v1.GetPositionResponse.serializeBinaryToWriter = func
       f
     );
   }
+  f = message.getWebhookUrl();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -839,6 +851,24 @@ proto.viam.component.servo.v1.GetPositionResponse.prototype.getPositionDeg = fun
  */
 proto.viam.component.servo.v1.GetPositionResponse.prototype.setPositionDeg = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional string webhook_url = 2;
+ * @return {string}
+ */
+proto.viam.component.servo.v1.GetPositionResponse.prototype.getWebhookUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.component.servo.v1.GetPositionResponse} returns this
+ */
+proto.viam.component.servo.v1.GetPositionResponse.prototype.setWebhookUrl = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

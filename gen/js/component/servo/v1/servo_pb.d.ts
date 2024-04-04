@@ -82,6 +82,9 @@ export class GetPositionResponse extends jspb.Message {
   getPositionDeg(): number;
   setPositionDeg(value: number): void;
 
+  getWebhookUrl(): string;
+  setWebhookUrl(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPositionResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPositionResponse): GetPositionResponse.AsObject;
@@ -95,6 +98,7 @@ export class GetPositionResponse extends jspb.Message {
 export namespace GetPositionResponse {
   export type AsObject = {
     positionDeg: number,
+    webhookUrl: string,
   }
 }
 
