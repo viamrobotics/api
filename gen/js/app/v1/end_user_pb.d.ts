@@ -146,21 +146,21 @@ export class UpdateAuthApplicationRequest extends jspb.Message {
   getApplicationId(): string;
   setApplicationId(value: string): void;
 
-  getNewApplicationName(): string;
-  setNewApplicationName(value: string): void;
+  getApplicationName(): string;
+  setApplicationName(value: string): void;
 
-  clearNewOriginUrisList(): void;
-  getNewOriginUrisList(): Array<string>;
-  setNewOriginUrisList(value: Array<string>): void;
-  addNewOriginUris(value: string, index?: number): string;
+  clearOriginUrisList(): void;
+  getOriginUrisList(): Array<string>;
+  setOriginUrisList(value: Array<string>): void;
+  addOriginUris(value: string, index?: number): string;
 
-  clearNewRedirectUrisList(): void;
-  getNewRedirectUrisList(): Array<string>;
-  setNewRedirectUrisList(value: Array<string>): void;
-  addNewRedirectUris(value: string, index?: number): string;
+  clearRedirectUrisList(): void;
+  getRedirectUrisList(): Array<string>;
+  setRedirectUrisList(value: Array<string>): void;
+  addRedirectUris(value: string, index?: number): string;
 
-  getNewLogoutUri(): string;
-  setNewLogoutUri(value: string): void;
+  getLogoutUri(): string;
+  setLogoutUri(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateAuthApplicationRequest.AsObject;
@@ -176,10 +176,10 @@ export namespace UpdateAuthApplicationRequest {
   export type AsObject = {
     orgId: string,
     applicationId: string,
-    newApplicationName: string,
-    newOriginUrisList: Array<string>,
-    newRedirectUrisList: Array<string>,
-    newLogoutUri: string,
+    applicationName: string,
+    originUrisList: Array<string>,
+    redirectUrisList: Array<string>,
+    logoutUri: string,
   }
 }
 

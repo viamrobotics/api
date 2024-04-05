@@ -1150,10 +1150,10 @@ proto.viam.app.v1.UpdateAuthApplicationRequest.toObject = function(includeInstan
   var f, obj = {
     orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     applicationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    newApplicationName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    newOriginUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    newRedirectUrisList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    newLogoutUri: jspb.Message.getFieldWithDefault(msg, 6, "")
+    applicationName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    originUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+    redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+    logoutUri: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -1200,19 +1200,19 @@ proto.viam.app.v1.UpdateAuthApplicationRequest.deserializeBinaryFromReader = fun
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setNewApplicationName(value);
+      msg.setApplicationName(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.addNewOriginUris(value);
+      msg.addOriginUris(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.addNewRedirectUris(value);
+      msg.addRedirectUris(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setNewLogoutUri(value);
+      msg.setLogoutUri(value);
       break;
     default:
       reader.skipField();
@@ -1257,28 +1257,28 @@ proto.viam.app.v1.UpdateAuthApplicationRequest.serializeBinaryToWriter = functio
       f
     );
   }
-  f = message.getNewApplicationName();
+  f = message.getApplicationName();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getNewOriginUrisList();
+  f = message.getOriginUrisList();
   if (f.length > 0) {
     writer.writeRepeatedString(
       4,
       f
     );
   }
-  f = message.getNewRedirectUrisList();
+  f = message.getRedirectUrisList();
   if (f.length > 0) {
     writer.writeRepeatedString(
       5,
       f
     );
   }
-  f = message.getNewLogoutUri();
+  f = message.getLogoutUri();
   if (f.length > 0) {
     writer.writeString(
       6,
@@ -1325,10 +1325,10 @@ proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.setApplicationId = func
 
 
 /**
- * optional string new_application_name = 3;
+ * optional string application_name = 3;
  * @return {string}
  */
-proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.getNewApplicationName = function() {
+proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.getApplicationName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -1337,16 +1337,16 @@ proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.getNewApplicationName =
  * @param {string} value
  * @return {!proto.viam.app.v1.UpdateAuthApplicationRequest} returns this
  */
-proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.setNewApplicationName = function(value) {
+proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.setApplicationName = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * repeated string new_origin_uris = 4;
+ * repeated string origin_uris = 4;
  * @return {!Array<string>}
  */
-proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.getNewOriginUrisList = function() {
+proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.getOriginUrisList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
@@ -1355,7 +1355,7 @@ proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.getNewOriginUrisList = 
  * @param {!Array<string>} value
  * @return {!proto.viam.app.v1.UpdateAuthApplicationRequest} returns this
  */
-proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.setNewOriginUrisList = function(value) {
+proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.setOriginUrisList = function(value) {
   return jspb.Message.setField(this, 4, value || []);
 };
 
@@ -1365,7 +1365,7 @@ proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.setNewOriginUrisList = 
  * @param {number=} opt_index
  * @return {!proto.viam.app.v1.UpdateAuthApplicationRequest} returns this
  */
-proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.addNewOriginUris = function(value, opt_index) {
+proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.addOriginUris = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
@@ -1374,16 +1374,16 @@ proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.addNewOriginUris = func
  * Clears the list making it empty but non-null.
  * @return {!proto.viam.app.v1.UpdateAuthApplicationRequest} returns this
  */
-proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.clearNewOriginUrisList = function() {
-  return this.setNewOriginUrisList([]);
+proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.clearOriginUrisList = function() {
+  return this.setOriginUrisList([]);
 };
 
 
 /**
- * repeated string new_redirect_uris = 5;
+ * repeated string redirect_uris = 5;
  * @return {!Array<string>}
  */
-proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.getNewRedirectUrisList = function() {
+proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.getRedirectUrisList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
@@ -1392,7 +1392,7 @@ proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.getNewRedirectUrisList 
  * @param {!Array<string>} value
  * @return {!proto.viam.app.v1.UpdateAuthApplicationRequest} returns this
  */
-proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.setNewRedirectUrisList = function(value) {
+proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.setRedirectUrisList = function(value) {
   return jspb.Message.setField(this, 5, value || []);
 };
 
@@ -1402,7 +1402,7 @@ proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.setNewRedirectUrisList 
  * @param {number=} opt_index
  * @return {!proto.viam.app.v1.UpdateAuthApplicationRequest} returns this
  */
-proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.addNewRedirectUris = function(value, opt_index) {
+proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.addRedirectUris = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
 };
 
@@ -1411,16 +1411,16 @@ proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.addNewRedirectUris = fu
  * Clears the list making it empty but non-null.
  * @return {!proto.viam.app.v1.UpdateAuthApplicationRequest} returns this
  */
-proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.clearNewRedirectUrisList = function() {
-  return this.setNewRedirectUrisList([]);
+proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.clearRedirectUrisList = function() {
+  return this.setRedirectUrisList([]);
 };
 
 
 /**
- * optional string new_logout_uri = 6;
+ * optional string logout_uri = 6;
  * @return {string}
  */
-proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.getNewLogoutUri = function() {
+proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.getLogoutUri = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -1429,7 +1429,7 @@ proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.getNewLogoutUri = funct
  * @param {string} value
  * @return {!proto.viam.app.v1.UpdateAuthApplicationRequest} returns this
  */
-proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.setNewLogoutUri = function(value) {
+proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.setLogoutUri = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
