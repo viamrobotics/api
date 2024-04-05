@@ -88,6 +88,9 @@ export class RegisterAuthApplicationRequest extends jspb.Message {
   setRedirectUrisList(value: Array<string>): void;
   addRedirectUris(value: string, index?: number): string;
 
+  getLogoutUri(): string;
+  setLogoutUri(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RegisterAuthApplicationRequest.AsObject;
   static toObject(includeInstance: boolean, msg: RegisterAuthApplicationRequest): RegisterAuthApplicationRequest.AsObject;
@@ -104,10 +107,20 @@ export namespace RegisterAuthApplicationRequest {
     orgId: string,
     originUrisList: Array<string>,
     redirectUrisList: Array<string>,
+    logoutUri: string,
   }
 }
 
 export class RegisterAuthApplicationResponse extends jspb.Message {
+  getApplicationId(): string;
+  setApplicationId(value: string): void;
+
+  getApplicationName(): string;
+  setApplicationName(value: string): void;
+
+  getSecret(): string;
+  setSecret(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RegisterAuthApplicationResponse.AsObject;
   static toObject(includeInstance: boolean, msg: RegisterAuthApplicationResponse): RegisterAuthApplicationResponse.AsObject;
@@ -120,6 +133,77 @@ export class RegisterAuthApplicationResponse extends jspb.Message {
 
 export namespace RegisterAuthApplicationResponse {
   export type AsObject = {
+    applicationId: string,
+    applicationName: string,
+    secret: string,
+  }
+}
+
+export class UpdateAuthApplicationRequest extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getApplicationId(): string;
+  setApplicationId(value: string): void;
+
+  getNewApplicationName(): string;
+  setNewApplicationName(value: string): void;
+
+  clearNewOriginUrisList(): void;
+  getNewOriginUrisList(): Array<string>;
+  setNewOriginUrisList(value: Array<string>): void;
+  addNewOriginUris(value: string, index?: number): string;
+
+  clearNewRedirectUrisList(): void;
+  getNewRedirectUrisList(): Array<string>;
+  setNewRedirectUrisList(value: Array<string>): void;
+  addNewRedirectUris(value: string, index?: number): string;
+
+  getNewLogoutUri(): string;
+  setNewLogoutUri(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateAuthApplicationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateAuthApplicationRequest): UpdateAuthApplicationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateAuthApplicationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateAuthApplicationRequest;
+  static deserializeBinaryFromReader(message: UpdateAuthApplicationRequest, reader: jspb.BinaryReader): UpdateAuthApplicationRequest;
+}
+
+export namespace UpdateAuthApplicationRequest {
+  export type AsObject = {
+    orgId: string,
+    applicationId: string,
+    newApplicationName: string,
+    newOriginUrisList: Array<string>,
+    newRedirectUrisList: Array<string>,
+    newLogoutUri: string,
+  }
+}
+
+export class UpdateAuthApplicationResponse extends jspb.Message {
+  getApplicationId(): string;
+  setApplicationId(value: string): void;
+
+  getApplicationName(): string;
+  setApplicationName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateAuthApplicationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateAuthApplicationResponse): UpdateAuthApplicationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateAuthApplicationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateAuthApplicationResponse;
+  static deserializeBinaryFromReader(message: UpdateAuthApplicationResponse, reader: jspb.BinaryReader): UpdateAuthApplicationResponse;
+}
+
+export namespace UpdateAuthApplicationResponse {
+  export type AsObject = {
+    applicationId: string,
+    applicationName: string,
   }
 }
 
