@@ -47,10 +47,10 @@ message RegisterAuthApplicationResponse {
 message UpdateAuthApplicationRequest {
   string org_id = 1;
   string application_id = 2;
-  string new_application_name = 3;
-  repeated string new_origin_uris = 4;
-  repeated string new_redirect_uris = 5;
-  string new_logout_uri = 6;
+  string application_name = 3;
+  repeated string origin_uris = 4;
+  repeated string redirect_uris = 5;
+  string logout_uri = 6;
 }
 
 message UpdateAuthApplicationResponse {
