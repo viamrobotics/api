@@ -201,8 +201,8 @@ message ReadAnalogReaderRequest {
 
 message ReadAnalogReaderResponse {
   int32 value = 1;
-  float max_value = 2;
-  float min_value = 3;
+  float min_range = 2;
+  float max_range = 3;
 }
 
 // Analog Writer
