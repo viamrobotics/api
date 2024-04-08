@@ -18,11 +18,6 @@ message ResourceName {
   optional string machine_part_id = 5;
 }
 
-message BoardStatus {
-  map<string, AnalogStatus> analogs = 1;
-  map<string, DigitalInterruptStatus> digital_interrupts = 2;
-}
-
 message AnalogStatus {
   // Current value of the analog reader of a robot's board
   int32 value = 1;
