@@ -18,15 +18,6 @@ message ResourceName {
   optional string machine_part_id = 5;
 }
 
-message AnalogStatus {
-  // Current value of the analog reader of a robot's board
-  int32 value = 1;
-}
-
-message DigitalInterruptStatus {
-  // Current value of the digital interrupt of a robot's board
-  int64 value = 1;
-}
 /* Pose is a combination of location and orientation.
 Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which
 is represented by o_x, o_y, o_z and theta. The o_x, o_y, o_z coordinates represent the point on the cartesian unit sphere that the end of
