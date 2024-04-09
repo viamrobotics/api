@@ -4,52 +4,12 @@ package viam.app.agent.v1;
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
-import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/app/agent/v1";
-
-// AgentService is used by viam-agent to retrieve update info for subsystems.
-service AgentAppService {
-  // GetAgentConfig is for retrieving config in App.
-  rpc GetAgentConfig(GetAgentConfigRequest) returns (GetAgentConfigResponse);
-
-  // UpdateAgentConfig is for editing config in App.
-  rpc UpdateAgentConfig(UpdateAgentConfigRequest) returns (UpdateAgentConfigResponse);
-}
 
 service AgentDeviceService {
   // DeviceAgentConfig is for retrieving config by the on-device agent.
   rpc DeviceAgentConfig(DeviceAgentConfigRequest) returns (DeviceAgentConfigResponse);
-}
-
-// App side
-message GetAgentConfigRequest {
-  string id = 1;
-}
-
-message GetAgentConfigResponse {
-  AppAgentConfig agent_config = 1;
-}
-
-message UpdateAgentConfigRequest {
-  string id = 1;
-  AppAgentConfig agent_config = 2;
-}
-
-message UpdateAgentConfigResponse {
-  AppAgentConfig agent_config = 1;
-}
-
-message AppAgentConfig {
-  map<string, AppSubsystemConfig> subsystem_configs = 1 [(tagger.v1.tags) = "bson:\"subsystem_configs\" json:\"subsystem_configs\""];
-}
-
-message AppSubsystemConfig {
-  string release_channel = 1 [(tagger.v1.tags) = "bson:\"release_channel\" json:\"release_channel\""];
-  string pin_version = 2 [(tagger.v1.tags) = "bson:\"pin_version\" json:\"pin_version\""];
-  string pin_url = 3 [(tagger.v1.tags) = "bson:\"pin_url\" json:\"pin_url\""];
-  bool disable_subsystem = 4 [(tagger.v1.tags) = "bson:\"disable_subsystem\" json:\"disable_subsystem\""];
-  google.protobuf.Struct attributes = 5 [(tagger.v1.tags) = "bson:\"attributes\" json:\"attributes\""];
 }
 
 // Device side
