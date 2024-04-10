@@ -348,7 +348,7 @@ message RestartModuleRequest {
   int32 timeout_seconds = 4;
 }
 
-message RestartModuleRequest {
+message RestartModuleResponse {
   bool module_found = 1;
   bool timed_out = 2;
   int32 exit_code = 3;
