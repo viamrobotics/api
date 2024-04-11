@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package viam.app.v1;
 
-import "app/packages/v1/packages.proto";
 import "app/mltraining/v1/ml_training.proto";
+import "app/packages/v1/packages.proto";
 import "common/v1/common.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
