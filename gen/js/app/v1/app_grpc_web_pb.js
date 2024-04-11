@@ -20,6 +20,8 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 
+var app_mltraining_v1_ml_training_pb = require('../../app/mltraining/v1/ml_training_pb.js')
+
 var app_packages_v1_packages_pb = require('../../app/packages/v1/packages_pb.js')
 
 var common_v1_common_pb = require('../../common/v1/common_pb.js')
