@@ -259,5 +259,66 @@ proto.viam.app.v1.EndUserServicePromiseClient.prototype.registerAuthApplication 
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.UpdateAuthApplicationRequest,
+ *   !proto.viam.app.v1.UpdateAuthApplicationResponse>}
+ */
+const methodDescriptor_EndUserService_UpdateAuthApplication = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.EndUserService/UpdateAuthApplication',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.UpdateAuthApplicationRequest,
+  proto.viam.app.v1.UpdateAuthApplicationResponse,
+  /**
+   * @param {!proto.viam.app.v1.UpdateAuthApplicationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.UpdateAuthApplicationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateAuthApplicationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.UpdateAuthApplicationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.UpdateAuthApplicationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.EndUserServiceClient.prototype.updateAuthApplication =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.EndUserService/UpdateAuthApplication',
+      request,
+      metadata || {},
+      methodDescriptor_EndUserService_UpdateAuthApplication,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateAuthApplicationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.UpdateAuthApplicationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.EndUserServicePromiseClient.prototype.updateAuthApplication =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.EndUserService/UpdateAuthApplication',
+      request,
+      metadata || {},
+      methodDescriptor_EndUserService_UpdateAuthApplication);
+};
+
+
 module.exports = proto.viam.app.v1;
 

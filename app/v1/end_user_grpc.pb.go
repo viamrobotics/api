@@ -27,8 +27,10 @@ type EndUserServiceClient interface {
 	IsLegalAccepted(ctx context.Context, in *IsLegalAcceptedRequest, opts ...grpc.CallOption) (*IsLegalAcceptedResponse, error)
 	// Marks that the specified user has accepted end user license agreements.
 	AcceptLegal(ctx context.Context, in *AcceptLegalRequest, opts ...grpc.CallOption) (*AcceptLegalResponse, error)
-	// Allows users to register third party applications using Viam linked to the indicated organization
+	// Allows users to register third party auth applications using Viam linked to the indicated organization
 	RegisterAuthApplication(ctx context.Context, in *RegisterAuthApplicationRequest, opts ...grpc.CallOption) (*RegisterAuthApplicationResponse, error)
+	// Allows users to update their third party auth applications
+	UpdateAuthApplication(ctx context.Context, in *UpdateAuthApplicationRequest, opts ...grpc.CallOption) (*UpdateAuthApplicationResponse, error)
 }
 
 type endUserServiceClient struct {
@@ -66,6 +68,15 @@ func (c *endUserServiceClient) RegisterAuthApplication(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *endUserServiceClient) UpdateAuthApplication(ctx context.Context, in *UpdateAuthApplicationRequest, opts ...grpc.CallOption) (*UpdateAuthApplicationResponse, error) {
+	out := new(UpdateAuthApplicationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.EndUserService/UpdateAuthApplication", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // EndUserServiceServer is the server API for EndUserService service.
 // All implementations must embed UnimplementedEndUserServiceServer
 // for forward compatibility
@@ -75,8 +86,10 @@ type EndUserServiceServer interface {
 	IsLegalAccepted(context.Context, *IsLegalAcceptedRequest) (*IsLegalAcceptedResponse, error)
 	// Marks that the specified user has accepted end user license agreements.
 	AcceptLegal(context.Context, *AcceptLegalRequest) (*AcceptLegalResponse, error)
-	// Allows users to register third party applications using Viam linked to the indicated organization
+	// Allows users to register third party auth applications using Viam linked to the indicated organization
 	RegisterAuthApplication(context.Context, *RegisterAuthApplicationRequest) (*RegisterAuthApplicationResponse, error)
+	// Allows users to update their third party auth applications
+	UpdateAuthApplication(context.Context, *UpdateAuthApplicationRequest) (*UpdateAuthApplicationResponse, error)
 	mustEmbedUnimplementedEndUserServiceServer()
 }
 
@@ -92,6 +105,9 @@ func (UnimplementedEndUserServiceServer) AcceptLegal(context.Context, *AcceptLeg
 }
 func (UnimplementedEndUserServiceServer) RegisterAuthApplication(context.Context, *RegisterAuthApplicationRequest) (*RegisterAuthApplicationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterAuthApplication not implemented")
+}
+func (UnimplementedEndUserServiceServer) UpdateAuthApplication(context.Context, *UpdateAuthApplicationRequest) (*UpdateAuthApplicationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAuthApplication not implemented")
 }
 func (UnimplementedEndUserServiceServer) mustEmbedUnimplementedEndUserServiceServer() {}
 
@@ -160,6 +176,24 @@ func _EndUserService_RegisterAuthApplication_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EndUserService_UpdateAuthApplication_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAuthApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EndUserServiceServer).UpdateAuthApplication(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.EndUserService/UpdateAuthApplication",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EndUserServiceServer).UpdateAuthApplication(ctx, req.(*UpdateAuthApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // EndUserService_ServiceDesc is the grpc.ServiceDesc for EndUserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -178,6 +212,10 @@ var EndUserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RegisterAuthApplication",
 			Handler:    _EndUserService_RegisterAuthApplication_Handler,
+		},
+		{
+			MethodName: "UpdateAuthApplication",
+			Handler:    _EndUserService_UpdateAuthApplication_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
