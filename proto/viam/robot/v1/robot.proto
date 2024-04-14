@@ -343,13 +343,6 @@ message RestartModuleRequest {
     string module_id = 1;
     string module_name = 2;
   }
-  // optional process shutdown params
-  int32 signal = 3;
-  int32 timeout_seconds = 4;
 }
 
-message RestartModuleResponse {
-  bool module_found = 1;
-  bool timed_out = 2;
-  int32 exit_code = 3;
-}
+message RestartModuleResponse {}
