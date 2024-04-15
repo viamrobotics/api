@@ -22,10 +22,30 @@ type EndUserServiceAcceptLegal = {
   readonly responseType: typeof app_v1_end_user_pb.AcceptLegalResponse;
 };
 
+type EndUserServiceRegisterAuthApplication = {
+  readonly methodName: string;
+  readonly service: typeof EndUserService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_end_user_pb.RegisterAuthApplicationRequest;
+  readonly responseType: typeof app_v1_end_user_pb.RegisterAuthApplicationResponse;
+};
+
+type EndUserServiceUpdateAuthApplication = {
+  readonly methodName: string;
+  readonly service: typeof EndUserService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_end_user_pb.UpdateAuthApplicationRequest;
+  readonly responseType: typeof app_v1_end_user_pb.UpdateAuthApplicationResponse;
+};
+
 export class EndUserService {
   static readonly serviceName: string;
   static readonly IsLegalAccepted: EndUserServiceIsLegalAccepted;
   static readonly AcceptLegal: EndUserServiceAcceptLegal;
+  static readonly RegisterAuthApplication: EndUserServiceRegisterAuthApplication;
+  static readonly UpdateAuthApplication: EndUserServiceUpdateAuthApplication;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -77,6 +97,24 @@ export class EndUserServiceClient {
   acceptLegal(
     requestMessage: app_v1_end_user_pb.AcceptLegalRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_end_user_pb.AcceptLegalResponse|null) => void
+  ): UnaryResponse;
+  registerAuthApplication(
+    requestMessage: app_v1_end_user_pb.RegisterAuthApplicationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_end_user_pb.RegisterAuthApplicationResponse|null) => void
+  ): UnaryResponse;
+  registerAuthApplication(
+    requestMessage: app_v1_end_user_pb.RegisterAuthApplicationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_end_user_pb.RegisterAuthApplicationResponse|null) => void
+  ): UnaryResponse;
+  updateAuthApplication(
+    requestMessage: app_v1_end_user_pb.UpdateAuthApplicationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_end_user_pb.UpdateAuthApplicationResponse|null) => void
+  ): UnaryResponse;
+  updateAuthApplication(
+    requestMessage: app_v1_end_user_pb.UpdateAuthApplicationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_end_user_pb.UpdateAuthApplicationResponse|null) => void
   ): UnaryResponse;
 }
 
