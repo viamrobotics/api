@@ -1,21 +1,21 @@
 name: Compile Protos
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.event.pull_request.id }}
   cancel-in-progress: true
 
 on:
-  workflow_run:
-    workflows: ["On PR Approved"]
-    types:
-      - completed
+  pull_request:
+
+env:
+  # guards against running this action on its own previous commit
+  is-auto-commit: false
+  commit-message: ""
+  commit-author: ""
 
 jobs:
   compile-protos:
-    if: >
-      github.event.workflow_run.event == 'pull_request_review' &&
-      github.event.workflow_run.conclusion == 'success'
-    runs-on: [self-hosted, x64]
+    runs-on: ubuntu-latest
     container:
       image: ghcr.io/viamrobotics/canon:amd64-cache
       options: --platform linux/amd64
