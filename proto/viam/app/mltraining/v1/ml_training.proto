@@ -64,7 +64,7 @@ message SubmitCustomTrainingJobRequest {
   string registry_item_id = 2 [(tagger.v1.tags) = "bson:\"registry_item_id\" json:\"registry_item_id\""];
   string organization_id = 3 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
   string model_name = 4 [(tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
-  string model_version = 5 [(tagger.v1.tags) = "bson:\"model_type\" json:\"model_type\""];
+  string model_version = 5 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
 }
 
 message SubmitCustomTrainingJobResponse {
