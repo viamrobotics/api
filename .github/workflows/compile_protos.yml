@@ -5,7 +5,9 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  pull_request:
+  pull_request_target:
+    branches:
+    - main
 
 env:
   # guards against running this action on its own previous commit
@@ -24,43 +26,9 @@ jobs:
       CI_COMMIT_AUTHOR: github-actions
       LABEL_NAME: protos-compiled
     steps:
-      # Download PR info from approval workflow and checkout branch
-      - name: Download artifact
-        uses: dawidd6/action-download-artifact@v2
+      - uses: actions/checkout@v4
         with:
-          run_id: ${{github.event.workflow_run.id }}
-      - name: Get PR Repo
-        id: get-pr-repo
-        uses: actions/github-script@v6
-        with:
-          result-encoding: string
-          script: |
-            var fs = require('fs');
-            var repo = String(fs.readFileSync('./pr/repo')).trim();
-            return repo
-      - name: Get PR Ref
-        id: get-pr-ref
-        uses: actions/github-script@v6
-        with:
-          result-encoding: string
-          script: |
-            var fs = require('fs');
-            var ref = String(fs.readFileSync('./pr/ref')).trim();
-            return ref
-      - name: Get PR Number
-        id: get-pr-number
-        uses: actions/github-script@v6
-        with:
-          script: |
-            var fs = require('fs');
-            var number = Number(String(fs.readFileSync('./pr/number')).trim());
-            return number
-      - uses: actions/checkout@v3
-        with:
-          repository: ${{ steps.get-pr-repo.outputs.result }}
-          ref: ${{ steps.get-pr-ref.outputs.result }}
-          token: ${{ secrets.REPO_READ_TOKEN }}
-
+          ref: ${{ github.event.pull_request.head.sha }}
       # Set environment variables based on the last commit
       - name: Set environment variable "commit-message"
         run: echo "commit-message=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
