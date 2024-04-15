@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.app.v1;
 
+import "app/mltraining/v1/ml_training.proto";
 import "app/packages/v1/packages.proto";
 import "common/v1/common.proto";
 import "google/protobuf/struct.proto";
@@ -878,6 +879,14 @@ message MLModelMetadata {
   repeated string versions = 1;
 }
 
+message MLTrainingMetadata {
+  // A list of package versions for ML training source distribution
+  repeated string versions = 1;
+  viam.app.mltraining.v1.ModelType model_type = 2;
+  viam.app.mltraining.v1.ModelFramework model_framework = 3;
+  bool draft = 4;
+}
+
 message RegistryItem {
   // The id of the item, containing either:
   // namespace:item_name when a namespace exists on the org.
@@ -911,6 +920,7 @@ message RegistryItem {
   oneof metadata {
     ModuleMetadata module_metadata = 11;
     MLModelMetadata ml_model_metadata = 12;
+    MLTrainingMetadata ml_training_metadata = 18;
   }
 
   // When the item was created
