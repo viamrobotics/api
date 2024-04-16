@@ -26,6 +26,7 @@ jobs:
     - name: remove label
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_REPO: ${{ github.repository }}
       run: gh pr edit ${{ github.event.pull_request.number }} --remove-label protos-compiled
 
   compile-protos:
