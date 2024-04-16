@@ -1,8 +1,7 @@
 name: Check Requirements for Merge
 
 on:
-  pull_request:
-  # pull_request_target:
+  pull_request_target:
     branches:
       - main
     types:
