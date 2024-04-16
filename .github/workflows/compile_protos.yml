@@ -1,7 +1,7 @@
 name: Compile Protos
 
 concurrency:
-  group: ${{ github.event.pull_request.id }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 on:
