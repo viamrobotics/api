@@ -24,6 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 type MLTrainingServiceClient interface {
 	// SubmitTrainingJob submits a training job request.
 	SubmitTrainingJob(ctx context.Context, in *SubmitTrainingJobRequest, opts ...grpc.CallOption) (*SubmitTrainingJobResponse, error)
+	// SubmitCustomTrainingJob submits a custom training job request.
+	SubmitCustomTrainingJob(ctx context.Context, in *SubmitCustomTrainingJobRequest, opts ...grpc.CallOption) (*SubmitCustomTrainingJobResponse, error)
 	// GetTrainingJob retrieves a training job by its ID.
 	GetTrainingJob(ctx context.Context, in *GetTrainingJobRequest, opts ...grpc.CallOption) (*GetTrainingJobResponse, error)
 	// ListTrainingJobs lists training jobs for a given organization ID and training status.
@@ -45,6 +47,15 @@ func NewMLTrainingServiceClient(cc grpc.ClientConnInterface) MLTrainingServiceCl
 func (c *mLTrainingServiceClient) SubmitTrainingJob(ctx context.Context, in *SubmitTrainingJobRequest, opts ...grpc.CallOption) (*SubmitTrainingJobResponse, error) {
 	out := new(SubmitTrainingJobResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.mltraining.v1.MLTrainingService/SubmitTrainingJob", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mLTrainingServiceClient) SubmitCustomTrainingJob(ctx context.Context, in *SubmitCustomTrainingJobRequest, opts ...grpc.CallOption) (*SubmitCustomTrainingJobResponse, error) {
+	out := new(SubmitCustomTrainingJobResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.mltraining.v1.MLTrainingService/SubmitCustomTrainingJob", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -93,6 +104,8 @@ func (c *mLTrainingServiceClient) DeleteCompletedTrainingJob(ctx context.Context
 type MLTrainingServiceServer interface {
 	// SubmitTrainingJob submits a training job request.
 	SubmitTrainingJob(context.Context, *SubmitTrainingJobRequest) (*SubmitTrainingJobResponse, error)
+	// SubmitCustomTrainingJob submits a custom training job request.
+	SubmitCustomTrainingJob(context.Context, *SubmitCustomTrainingJobRequest) (*SubmitCustomTrainingJobResponse, error)
 	// GetTrainingJob retrieves a training job by its ID.
 	GetTrainingJob(context.Context, *GetTrainingJobRequest) (*GetTrainingJobResponse, error)
 	// ListTrainingJobs lists training jobs for a given organization ID and training status.
@@ -110,6 +123,9 @@ type UnimplementedMLTrainingServiceServer struct {
 
 func (UnimplementedMLTrainingServiceServer) SubmitTrainingJob(context.Context, *SubmitTrainingJobRequest) (*SubmitTrainingJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitTrainingJob not implemented")
+}
+func (UnimplementedMLTrainingServiceServer) SubmitCustomTrainingJob(context.Context, *SubmitCustomTrainingJobRequest) (*SubmitCustomTrainingJobResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubmitCustomTrainingJob not implemented")
 }
 func (UnimplementedMLTrainingServiceServer) GetTrainingJob(context.Context, *GetTrainingJobRequest) (*GetTrainingJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTrainingJob not implemented")
@@ -150,6 +166,24 @@ func _MLTrainingService_SubmitTrainingJob_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MLTrainingServiceServer).SubmitTrainingJob(ctx, req.(*SubmitTrainingJobRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MLTrainingService_SubmitCustomTrainingJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SubmitCustomTrainingJobRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MLTrainingServiceServer).SubmitCustomTrainingJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.mltraining.v1.MLTrainingService/SubmitCustomTrainingJob",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MLTrainingServiceServer).SubmitCustomTrainingJob(ctx, req.(*SubmitCustomTrainingJobRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -236,6 +270,10 @@ var MLTrainingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SubmitTrainingJob",
 			Handler:    _MLTrainingService_SubmitTrainingJob_Handler,
+		},
+		{
+			MethodName: "SubmitCustomTrainingJob",
+			Handler:    _MLTrainingService_SubmitCustomTrainingJob_Handler,
 		},
 		{
 			MethodName: "GetTrainingJob",
