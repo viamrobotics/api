@@ -1,13 +1,16 @@
 name: Check Requirements for Merge
 
 on:
-  # note: this workflow does not use secrets and therefore does not check 'safe to test'
-  pull_request_target:
+  # note: this workflow does not use secrets or check out code, does not need to be pull_request_target
+  pull_request:
     branches:
       - main
     types:
       - labeled
       - unlabeled
+
+env:
+  label-checks-pass:
 
 jobs:
   check_requirements:
