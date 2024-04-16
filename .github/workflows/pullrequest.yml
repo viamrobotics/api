@@ -6,6 +6,7 @@ concurrency:
 
 on:
   workflow_dispatch:
+  # this uses no secrets so it can be a normal pull_request
   pull_request:
     branches: [ 'main' ]
     types: [opened, synchronize, reopened, unlabeled]
@@ -17,7 +18,6 @@ jobs:
     name: Test For Lint and Breaking Changes
     timeout-minutes: 5
     runs-on: ubuntu-latest
-    # container: ghcr.io/viamrobotics/canon:amd64-cache
     steps:
     - uses: actions/checkout@v4
       with:
