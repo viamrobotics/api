@@ -6,8 +6,7 @@ concurrency:
 
 on:
   workflow_dispatch:
-  # this uses no secrets so it can be a normal pull_request
-  pull_request:
+  pull_request_target:
     branches: [ 'main' ]
     types: [opened, synchronize, reopened, unlabeled]
   push:
@@ -16,6 +15,7 @@ on:
 jobs:
   test:
     name: Test For Lint and Breaking Changes
+    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
