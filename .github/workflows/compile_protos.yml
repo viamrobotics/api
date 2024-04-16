@@ -29,26 +29,22 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          depth: 2
       # Set environment variables based on the last commit
       - name: Set environment variable "commit-message"
-        run: echo "commit-message=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
-      - name: Set environment variable "commit-author"
-        run: echo "commit-author=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV
-
+        run: |
+          echo "commit-message=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
+          echo "commit-author=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV
       # If the last commit is an auto-generated commit from this workflow, we can exit early
       - name: Set environment variable "is-auto-commit"
         if: startsWith(env.commit-message, env.CI_COMMIT_MESSAGE_PREFIX) && env.commit-author == env.CI_COMMIT_AUTHOR
         run: echo "is-auto-commit=true" >> $GITHUB_ENV
-
       # Remove label if exists, since we're about to compile again
-      - name: Remove label
+      - name: remove label
         if: env.is-auto-commit == false
-        uses: andymckay/labeler@1.0.4
-        with:
-          repo-token: ${{ secrets.REPO_READ_TOKEN }}
-          remove-labels: ${{ env.LABEL_NAME }}
-          issue-number: ${{ steps.get-pr-number.outputs.result }}
-
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr edit ${{ github.event.pull_request.number }} --remove-label ${{ env.LABEL_NAME }}
       # Build and push
       - uses: bufbuild/buf-setup-action@v1
         if: env.is-auto-commit == false
@@ -74,10 +70,8 @@ jobs:
           message: ${{ env.CI_COMMIT_MESSAGE_PREFIX }} ${{ steps.short_sha.outputs.short_sha }}
           push: true
 
-      - name: Add label
+      - name: add back label
         if: env.is-auto-commit == false
-        uses: andymckay/labeler@1.0.4
-        with:
-          repo-token: ${{ secrets.REPO_READ_TOKEN }}
-          add-labels: ${{ env.LABEL_NAME }}
-          issue-number:  ${{ steps.get-pr-number.outputs.result }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr edit ${{ github.event.pull_request.number }} --add-label ${{ env.LABEL_NAME }}
