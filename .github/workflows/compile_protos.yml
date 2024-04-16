@@ -19,8 +19,7 @@ env:
 
 jobs:
   compile-protos:
-    if: contains(github.event.pull_request.labels, 'safe to test')
-    # if: contains(github.event.pull_request.labels, 'safe to test') && contains(github.event.pull_request.labels, 'ready-for-protos')
+    if: contains(github.event.pull_request.labels.*.name, 'safe to test') && contains(github.event.pull_request.labels.*.name, 'ready-for-protos')
     runs-on: ubuntu-latest
     env:
       CI_COMMIT_MESSAGE_PREFIX: Built new protos from
