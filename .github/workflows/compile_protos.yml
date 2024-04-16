@@ -18,6 +18,16 @@ env:
   GRPC_WEB_VERSION: '1.5.0'
 
 jobs:
+  unlabel:
+    # unlabel job runs on manual commits only
+    # (because commits generated with GITHUB_TOKEN don't rerun workflow per https://docs.github.com/en/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow)
+    runs-on: ubuntu-latest
+    steps:
+    - name: remove label
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh pr edit ${{ github.event.pull_request.number }} --remove-label protos-compiled
+
   compile-protos:
     if: contains(github.event.pull_request.labels.*.name, 'safe to test') && contains(github.event.pull_request.labels.*.name, 'ready-for-protos')
     runs-on: ubuntu-latest
@@ -73,3 +83,7 @@ jobs:
           git config user.name github-actions
           git commit -a -m "${{ env.CI_COMMIT_MESSAGE_PREFIX }} $(git rev-parse --short HEAD)"
           git push -u origin ${{ github.event.pull_request.head.ref }}
+      - name: add label
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr edit ${{ github.event.pull_request.number }} --add-label protos-compiled
