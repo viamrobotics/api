@@ -22,7 +22,6 @@ jobs:
     env:
       CI_COMMIT_MESSAGE_PREFIX: Built new protos from
       CI_COMMIT_AUTHOR: github-actions
-      LABEL_NAME: protos-compiled
     steps:
       - uses: actions/checkout@v4
         with:
@@ -72,17 +71,3 @@ jobs:
           git config user.name github-actions
           git commit -a -m "${{ env.CI_COMMIT_MESSAGE_PREFIX }} $(git rev-parse --short HEAD)"
           git push -u origin ${{ github.event.pull_request.head.ref }}
-
-      # - name: Commit + Push
-      #   if: ${{ !env.is-auto-commit }}
-      #   uses: EndBug/add-and-commit@v9.0.0
-      #   with:
-      #     default_author: github_actions
-      #     message: ${{ env.CI_COMMIT_MESSAGE_PREFIX }} ${{ steps.short_sha.outputs.short_sha }}
-      #     push: true
-
-      # - name: add back label
-      #   if: ${{ !env.is-auto-commit }}
-      #   env:
-      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: gh pr edit ${{ github.event.pull_request.number }} --add-label ${{ env.LABEL_NAME }}
