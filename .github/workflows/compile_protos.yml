@@ -19,8 +19,9 @@ env:
 
 jobs:
   unlabel:
-    # unlabel job runs on manual commits only
+    # This unlabel job runs on manual commits only.
     # (because commits generated with GITHUB_TOKEN don't rerun workflow per https://docs.github.com/en/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow)
+    # note: this job doesn't need a 'safe to test' label because it doesn't check out code
     runs-on: ubuntu-latest
     steps:
     - name: remove label
@@ -47,7 +48,6 @@ jobs:
         with:
           go-version: '1.21'
       # todo: cache download
-      # todo: make sure there's nothing special about the grpc-web .deb in canon
       - name: grpc-web
         run: |
           wget --quiet https://github.com/grpc/grpc-web/releases/download/${{ env.GRPC_WEB_VERSION }}/protoc-gen-grpc-web-${{ env.GRPC_WEB_VERSION }}-linux-x86_64 -O protoc-gen-grpc-web

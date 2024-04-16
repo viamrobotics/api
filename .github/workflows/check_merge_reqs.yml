@@ -1,6 +1,7 @@
 name: Check Requirements for Merge
 
 on:
+  # note: this workflow does not use secrets and therefore does not check 'safe to test'
   pull_request_target:
     branches:
       - main
