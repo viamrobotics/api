@@ -24,6 +24,10 @@ jobs:
       CI_COMMIT_AUTHOR: github-actions
       LABEL_NAME: protos-compiled
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 2
       - uses: actions/setup-node@v4
       - uses: actions/setup-go@v5
         with:
@@ -36,10 +40,6 @@ jobs:
           chmod +x protoc-gen-grpc-web
           sudo mv protoc-gen-grpc-web /usr/local/bin
           which protoc-gen-grpc-web
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 2
       # Set environment variables based on the last commit
       - name: Set environment variable "commit-message"
         run: |
@@ -70,7 +70,7 @@ jobs:
           git config user.email github-actions@github.com
           git config user.name github-actions
           git commit -a -m "${{ env.CI_COMMIT_MESSAGE_PREFIX }} $(git rev-parse --short HEAD)"
-          git push
+          git push -u origin ${{ github.event.pull_request.head.ref }}
 
       # - name: Commit + Push
       #   if: ${{ !env.is-auto-commit }}
