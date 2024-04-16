@@ -87,6 +87,7 @@ jobs:
           git commit -a -m "${{ env.CI_COMMIT_MESSAGE_PREFIX }} $(git rev-parse --short HEAD)"
           git push -u origin ${{ github.event.pull_request.head.ref }}
       - name: add label
+        if: ${{ !env.is-auto-commit }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh pr edit ${{ github.event.pull_request.number }} --add-label protos-compiled
