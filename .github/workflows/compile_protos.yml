@@ -63,10 +63,13 @@ jobs:
       - name: commit + push
         if: ${{ !env.is-auto-commit }}
         run: |
-          # todo: do I need `git add .`
+          git add .
           git branch
           git status
-          git commit -a -m "${{ env.CI_COMMIT_MESSAGE_PREFIX }} inspect output"
+          git switch ${{ github.event.pull_request.head.ref }}
+          git status
+          git rev-parse --short HEAD
+          git commit -a -m "${{ env.CI_COMMIT_MESSAGE_PREFIX }} inspect output" --author "github-actions <github-actions@github.com>"
 
       # - name: Commit + Push
       #   if: ${{ !env.is-auto-commit }}
