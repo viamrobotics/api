@@ -11,7 +11,7 @@ on:
 
 env:
   # guards against running this action on its own previous commit
-  is-auto-commit: false
+  is-auto-commit: ${{ false }}
   commit-message: ""
   commit-author: ""
 
