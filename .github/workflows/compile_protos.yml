@@ -18,12 +18,16 @@ env:
 jobs:
   compile-protos:
     runs-on: ubuntu-latest
-    container: ghcr.io/viamrobotics/canon:amd64-cache
+    # container: ghcr.io/viamrobotics/canon:amd64-cache
     env:
       CI_COMMIT_MESSAGE_PREFIX: Built new protos from
       CI_COMMIT_AUTHOR: github-actions
       LABEL_NAME: protos-compiled
     steps:
+      - uses: actions/setup-node@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
@@ -67,11 +71,14 @@ jobs:
           git branch
           git status
           git remote -v
-          # note: `branch` instead of `switch` because the workflow runs with a sha and we have a shallow checkout
+          # note: `branch` because the workflow runs with a sha and we have a shallow checkout
           git branch ${{ github.event.pull_request.head.ref }}
+          git switch ${{ github.event.pull_request.head.ref }}
           git status
           git rev-parse --short HEAD
-          git commit -a -m "${{ env.CI_COMMIT_MESSAGE_PREFIX }} inspect output" --author "github-actions <github-actions@github.com>"
+          git config user.email github-actions@github.com
+          git config user.name github-actions
+          git commit -a -m "${{ env.CI_COMMIT_MESSAGE_PREFIX }} inspect output"
 
       # - name: Commit + Push
       #   if: ${{ !env.is-auto-commit }}
