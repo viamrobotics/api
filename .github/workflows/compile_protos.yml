@@ -30,6 +30,8 @@ jobs:
       run: gh pr edit ${{ github.event.pull_request.number }} --remove-label protos-compiled
 
   compile-protos:
+    # run after unlabel so that ordering of remove-label, add-label is consistent
+    needs: unlabel
     if: contains(github.event.pull_request.labels.*.name, 'safe to test') && contains(github.event.pull_request.labels.*.name, 'ready-for-protos')
     runs-on: ubuntu-latest
     env:
