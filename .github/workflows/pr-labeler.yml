@@ -27,16 +27,12 @@ jobs:
               owner: "viamrobotics",
               repo: "${{ github.event.repository.name }}",
             };
-            try {
-              await github.rest.issues.removeLabel({...ownerAndRepo, issue_number: prNumber, name: "safe to test"});
-            } catch (err) {
-              core.info(`Non-fatal error ${err}, while trying to remove 'safe to test' label.`);
-            }
             let orgResp = await github.rest.orgs.checkMembershipForUser({org: ownerAndRepo.owner, username: context.payload.sender.login});
             if (orgResp.status === 204) {
-              // order of labeling events must be preserved, so two seperate calls
               await github.rest.issues.addLabels({...ownerAndRepo, issue_number: prNumber, labels: ["safe to test"]});
               return true;
+            } else {
+              await github.rest.issues.removeLabel({...ownerAndRepo, issue_number: prNumber, name: "safe to test"});
             }
             return false;
 
