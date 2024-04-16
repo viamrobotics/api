@@ -14,6 +14,7 @@ env:
   is-auto-commit:
   commit-message:
   commit-author:
+  GRPC_WEB_VERSION: '1.5.0'
 
 jobs:
   compile-protos:
@@ -28,6 +29,12 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.21'
+      - name: grpc-web
+        run: |
+          wget https://github.com/grpc/grpc-web/releases/download/${{ env.GRPC_WEB_VERSION }}/protoc-gen-grpc-web-${{ env.GRPC_WEB_VERSION }}-linux-x86_64 -O protoc-gen-grpc-web
+          chmod +x protoc-gen-grpc-web
+          sudo mv protoc-gen-grpc-web /usr/local/bin
+          which protoc-gen-grpc-web
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
