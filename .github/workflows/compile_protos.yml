@@ -19,7 +19,6 @@ env:
 jobs:
   compile-protos:
     runs-on: ubuntu-latest
-    # container: ghcr.io/viamrobotics/canon:amd64-cache
     env:
       CI_COMMIT_MESSAGE_PREFIX: Built new protos from
       CI_COMMIT_AUTHOR: github-actions
@@ -29,9 +28,11 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.21'
+      # todo: cache download
+      # todo: make sure there's nothing special about the grpc-web .deb in canon
       - name: grpc-web
         run: |
-          wget https://github.com/grpc/grpc-web/releases/download/${{ env.GRPC_WEB_VERSION }}/protoc-gen-grpc-web-${{ env.GRPC_WEB_VERSION }}-linux-x86_64 -O protoc-gen-grpc-web
+          wget --quiet https://github.com/grpc/grpc-web/releases/download/${{ env.GRPC_WEB_VERSION }}/protoc-gen-grpc-web-${{ env.GRPC_WEB_VERSION }}-linux-x86_64 -O protoc-gen-grpc-web
           chmod +x protoc-gen-grpc-web
           sudo mv protoc-gen-grpc-web /usr/local/bin
           which protoc-gen-grpc-web
@@ -48,13 +49,7 @@ jobs:
       - name: Set environment variable "is-auto-commit"
         if: startsWith(env.commit-message, env.CI_COMMIT_MESSAGE_PREFIX) && env.commit-author == env.CI_COMMIT_AUTHOR
         run: echo "is-auto-commit=true" >> $GITHUB_ENV
-      # Remove label if exists, since we're about to compile again
-      # - name: remove label
-      #   if: ${{ !env.is-auto-commit }}
-      #   env:
-      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: gh pr edit ${{ github.event.pull_request.number }} --remove-label ${{ env.LABEL_NAME }}
-      # Build and push
+
       - uses: bufbuild/buf-setup-action@v1
         if: ${{ !env.is-auto-commit }}
         with:
@@ -66,26 +61,16 @@ jobs:
         if: ${{ !env.is-auto-commit }}
         run: make dist/buf
 
-      - name: Add SHORT_SHA env property
-        if: ${{ !env.is-auto-commit }}
-        id: short_sha
-        run: echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-
       - name: commit + push
         if: ${{ !env.is-auto-commit }}
         run: |
           git add .
-          git branch
+          git checkout -b ${{ github.event.pull_request.head.ref }}
           git status
-          git remote -v
-          # note: `branch` because the workflow runs with a sha and we have a shallow checkout
-          git branch ${{ github.event.pull_request.head.ref }}
-          git switch ${{ github.event.pull_request.head.ref }}
-          git status
-          git rev-parse --short HEAD
           git config user.email github-actions@github.com
           git config user.name github-actions
-          git commit -a -m "${{ env.CI_COMMIT_MESSAGE_PREFIX }} inspect output"
+          git commit -a -m "${{ env.CI_COMMIT_MESSAGE_PREFIX }} $(git rev-parse --short HEAD)"
+          git push
 
       # - name: Commit + Push
       #   if: ${{ !env.is-auto-commit }}
