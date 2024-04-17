@@ -157,6 +157,15 @@ type RobotServiceGetCloudMetadata = {
   readonly responseType: typeof robot_v1_robot_pb.GetCloudMetadataResponse;
 };
 
+type RobotServiceRestartModule = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.RestartModuleRequest;
+  readonly responseType: typeof robot_v1_robot_pb.RestartModuleResponse;
+};
+
 export class RobotService {
   static readonly serviceName: string;
   static readonly GetOperations: RobotServiceGetOperations;
@@ -176,6 +185,7 @@ export class RobotService {
   static readonly SendSessionHeartbeat: RobotServiceSendSessionHeartbeat;
   static readonly Log: RobotServiceLog;
   static readonly GetCloudMetadata: RobotServiceGetCloudMetadata;
+  static readonly RestartModule: RobotServiceRestartModule;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -354,6 +364,15 @@ export class RobotServiceClient {
   getCloudMetadata(
     requestMessage: robot_v1_robot_pb.GetCloudMetadataRequest,
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetCloudMetadataResponse|null) => void
+  ): UnaryResponse;
+  restartModule(
+    requestMessage: robot_v1_robot_pb.RestartModuleRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.RestartModuleResponse|null) => void
+  ): UnaryResponse;
+  restartModule(
+    requestMessage: robot_v1_robot_pb.RestartModuleRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.RestartModuleResponse|null) => void
   ): UnaryResponse;
 }
 

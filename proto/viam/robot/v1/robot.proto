@@ -127,6 +127,12 @@ service RobotService {
       get: "/viam/api/v1/cloud_metadata"
     };
   }
+
+  rpc RestartModule(RestartModuleRequest) returns (RestartModuleResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/restart_module"
+    };
+  }
 }
 
 message FrameSystemConfig {
@@ -330,3 +336,13 @@ message GetCloudMetadataResponse {
   string machine_id = 4;
   string machine_part_id = 5;
 }
+
+message RestartModuleRequest {
+  oneof id_or_name {
+    // ID is for registry modules, name for local modules
+    string module_id = 1;
+    string module_name = 2;
+  }
+}
+
+message RestartModuleResponse {}
