@@ -43,7 +43,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           # note: check out fork because we will need it when we push below
-          repository: ${{ github.event.pull_request.head.repo.forks_url }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
       - uses: actions/setup-node@v4
       - uses: actions/setup-go@v5
         with:
