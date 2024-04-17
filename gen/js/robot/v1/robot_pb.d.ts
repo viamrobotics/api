@@ -998,6 +998,57 @@ export namespace GetCloudMetadataResponse {
   }
 }
 
+export class RestartModuleRequest extends jspb.Message {
+  hasModuleId(): boolean;
+  clearModuleId(): void;
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  hasModuleName(): boolean;
+  clearModuleName(): void;
+  getModuleName(): string;
+  setModuleName(value: string): void;
+
+  getIdOrNameCase(): RestartModuleRequest.IdOrNameCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RestartModuleRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RestartModuleRequest): RestartModuleRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RestartModuleRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RestartModuleRequest;
+  static deserializeBinaryFromReader(message: RestartModuleRequest, reader: jspb.BinaryReader): RestartModuleRequest;
+}
+
+export namespace RestartModuleRequest {
+  export type AsObject = {
+    moduleId: string,
+    moduleName: string,
+  }
+
+  export enum IdOrNameCase {
+    ID_OR_NAME_NOT_SET = 0,
+    MODULE_ID = 1,
+    MODULE_NAME = 2,
+  }
+}
+
+export class RestartModuleResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RestartModuleResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RestartModuleResponse): RestartModuleResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RestartModuleResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RestartModuleResponse;
+  static deserializeBinaryFromReader(message: RestartModuleResponse, reader: jspb.BinaryReader): RestartModuleResponse;
+}
+
+export namespace RestartModuleResponse {
+  export type AsObject = {
+  }
+}
+
 export interface PeerConnectionTypeMap {
   PEER_CONNECTION_TYPE_UNSPECIFIED: 0;
   PEER_CONNECTION_TYPE_GRPC: 1;

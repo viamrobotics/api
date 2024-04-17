@@ -42,6 +42,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          # note: check out fork because we will need it when we push below
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
       - uses: actions/setup-node@v4
       - uses: actions/setup-go@v5
         with:
@@ -88,4 +90,5 @@ jobs:
         if: ${{ !env.is-auto-commit }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
         run: gh pr edit ${{ github.event.pull_request.number }} --add-label protos-compiled
