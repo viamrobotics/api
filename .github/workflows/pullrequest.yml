@@ -6,22 +6,18 @@ concurrency:
 
 on:
   workflow_dispatch:
-  pull_request:
+  pull_request_target:
     branches: [ 'main' ]
-    types: [opened, synchronize, reopened]
-  push:
-    branches: [ '!main' ]
+    types: [opened, synchronize, reopened, unlabeled]
 
 jobs:
   test:
     name: Test For Lint and Breaking Changes
+    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
     timeout-minutes: 5
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64-cache
-      options: --platform linux/amd64
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: bufbuild/buf-setup-action@v1
     # Run all Lint runs
     - uses: bufbuild/buf-lint-action@v1
