@@ -90,4 +90,5 @@ jobs:
         if: ${{ !env.is-auto-commit }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
         run: gh pr edit ${{ github.event.pull_request.number }} --add-label protos-compiled
