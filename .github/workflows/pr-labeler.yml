@@ -1,13 +1,13 @@
 name: PR Test Label Manager
 
 on:
-  pull_request:
+  pull_request_target:
     branches: [ main ]
     types: [ opened, synchronize, reopened ]
 
 jobs:
   pr_test_label_manager:
-    # note: this doesn't check 'safe to test' label because it doesn't check out code
+    # note: this doesn't gate on 'safe to test' label because it doesn't check out code
     name: PR Test Label Manager
     runs-on: ubuntu-latest
     steps:
