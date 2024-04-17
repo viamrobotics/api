@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        ref: ${{ github.head_ref }}
+        ref: ${{ github.event.pull_request.head.sha }}
     - uses: bufbuild/buf-setup-action@v1
     # Run all Lint runs
     - uses: bufbuild/buf-lint-action@v1
