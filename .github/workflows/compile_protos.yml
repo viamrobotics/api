@@ -53,8 +53,7 @@ jobs:
           chmod +x protoc-gen-grpc-web
           sudo mv protoc-gen-grpc-web /usr/local/bin
           which protoc-gen-grpc-web
-      # Set environment variables based on the last commit
-      - name: Set environment variable "commit-message"
+      - name: Set environment variables for previous commit
         run: |
           echo "commit-message=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
           echo "commit-author=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV

@@ -18,7 +18,8 @@ Please only edit `.proto` files. The generated interfaces build in CI.
 To build protos for a PR:
 - add the `ready-for-protos` label
 - adding the label will compile your protos, and commit the compiled changes to your PR branch from the github-actions bot
-- when you're ready to merge, remove the `ready-for-protos` label; that will trigger lint and merge checks
+    - the bot commit will also add a `protos-compiled` label which is checked to merge. subsequent manual commits remove this label
+- when you're ready to merge, **remove** the `ready-for-protos` label; that will trigger lint and merge checks
 - in order to merge, the last commit to your PR must be a bot commit. (this is enforced through labeling)
 
 Other guidelines:
