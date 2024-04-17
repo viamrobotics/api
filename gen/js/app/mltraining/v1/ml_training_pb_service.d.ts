@@ -13,15 +13,6 @@ type MLTrainingServiceSubmitTrainingJob = {
   readonly responseType: typeof app_mltraining_v1_ml_training_pb.SubmitTrainingJobResponse;
 };
 
-type MLTrainingServiceSubmitCustomTrainingJob = {
-  readonly methodName: string;
-  readonly service: typeof MLTrainingService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof app_mltraining_v1_ml_training_pb.SubmitCustomTrainingJobRequest;
-  readonly responseType: typeof app_mltraining_v1_ml_training_pb.SubmitCustomTrainingJobResponse;
-};
-
 type MLTrainingServiceGetTrainingJob = {
   readonly methodName: string;
   readonly service: typeof MLTrainingService;
@@ -61,7 +52,6 @@ type MLTrainingServiceDeleteCompletedTrainingJob = {
 export class MLTrainingService {
   static readonly serviceName: string;
   static readonly SubmitTrainingJob: MLTrainingServiceSubmitTrainingJob;
-  static readonly SubmitCustomTrainingJob: MLTrainingServiceSubmitCustomTrainingJob;
   static readonly GetTrainingJob: MLTrainingServiceGetTrainingJob;
   static readonly ListTrainingJobs: MLTrainingServiceListTrainingJobs;
   static readonly CancelTrainingJob: MLTrainingServiceCancelTrainingJob;
@@ -108,15 +98,6 @@ export class MLTrainingServiceClient {
   submitTrainingJob(
     requestMessage: app_mltraining_v1_ml_training_pb.SubmitTrainingJobRequest,
     callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.SubmitTrainingJobResponse|null) => void
-  ): UnaryResponse;
-  submitCustomTrainingJob(
-    requestMessage: app_mltraining_v1_ml_training_pb.SubmitCustomTrainingJobRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.SubmitCustomTrainingJobResponse|null) => void
-  ): UnaryResponse;
-  submitCustomTrainingJob(
-    requestMessage: app_mltraining_v1_ml_training_pb.SubmitCustomTrainingJobRequest,
-    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.SubmitCustomTrainingJobResponse|null) => void
   ): UnaryResponse;
   getTrainingJob(
     requestMessage: app_mltraining_v1_ml_training_pb.GetTrainingJobRequest,

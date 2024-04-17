@@ -147,67 +147,6 @@ proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.submitTrai
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest,
- *   !proto.viam.app.mltraining.v1.SubmitCustomTrainingJobResponse>}
- */
-const methodDescriptor_MLTrainingService_SubmitCustomTrainingJob = new grpc.web.MethodDescriptor(
-  '/viam.app.mltraining.v1.MLTrainingService/SubmitCustomTrainingJob',
-  grpc.web.MethodType.UNARY,
-  proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest,
-  proto.viam.app.mltraining.v1.SubmitCustomTrainingJobResponse,
-  /**
-   * @param {!proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.app.mltraining.v1.SubmitCustomTrainingJobResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.mltraining.v1.SubmitCustomTrainingJobResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.mltraining.v1.SubmitCustomTrainingJobResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.app.mltraining.v1.MLTrainingServiceClient.prototype.submitCustomTrainingJob =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.mltraining.v1.MLTrainingService/SubmitCustomTrainingJob',
-      request,
-      metadata || {},
-      methodDescriptor_MLTrainingService_SubmitCustomTrainingJob,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.app.mltraining.v1.SubmitCustomTrainingJobResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.submitCustomTrainingJob =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.mltraining.v1.MLTrainingService/SubmitCustomTrainingJob',
-      request,
-      metadata || {},
-      methodDescriptor_MLTrainingService_SubmitCustomTrainingJob);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.mltraining.v1.GetTrainingJobRequest,
  *   !proto.viam.app.mltraining.v1.GetTrainingJobResponse>}
  */
