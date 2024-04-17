@@ -24,7 +24,7 @@ jobs:
         run: echo "label-checks-pass=true" >> $GITHUB_ENV
 
       - name: Final Checks
-        if: env.label-checks-pass == false
+        if: ${{ !env.label-checks-pass }}
         uses: actions/github-script@v6
         with:
           script: core.setFailed('Merge requirements not met.\n\tLabel checks - ${{ env.label-checks-pass }}')
