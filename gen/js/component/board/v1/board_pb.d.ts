@@ -7,51 +7,25 @@ import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
-export class StatusRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  hasExtra(): boolean;
-  clearExtra(): void;
-  getExtra(): google_protobuf_struct_pb.Struct | undefined;
-  setExtra(value?: google_protobuf_struct_pb.Struct): void;
-
+export class Status extends jspb.Message {
+  getAnalogsMap(): jspb.Map<string, number>;
+  clearAnalogsMap(): void;
+  getDigitalInterruptsMap(): jspb.Map<string, number>;
+  clearDigitalInterruptsMap(): void;
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): StatusRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: StatusRequest): StatusRequest.AsObject;
+  toObject(includeInstance?: boolean): Status.AsObject;
+  static toObject(includeInstance: boolean, msg: Status): Status.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: StatusRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): StatusRequest;
-  static deserializeBinaryFromReader(message: StatusRequest, reader: jspb.BinaryReader): StatusRequest;
+  static serializeBinaryToWriter(message: Status, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Status;
+  static deserializeBinaryFromReader(message: Status, reader: jspb.BinaryReader): Status;
 }
 
-export namespace StatusRequest {
+export namespace Status {
   export type AsObject = {
-    name: string,
-    extra?: google_protobuf_struct_pb.Struct.AsObject,
-  }
-}
-
-export class StatusResponse extends jspb.Message {
-  hasStatus(): boolean;
-  clearStatus(): void;
-  getStatus(): common_v1_common_pb.BoardStatus | undefined;
-  setStatus(value?: common_v1_common_pb.BoardStatus): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): StatusResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: StatusResponse): StatusResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: StatusResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): StatusResponse;
-  static deserializeBinaryFromReader(message: StatusResponse, reader: jspb.BinaryReader): StatusResponse;
-}
-
-export namespace StatusResponse {
-  export type AsObject = {
-    status?: common_v1_common_pb.BoardStatus.AsObject,
+    analogsMap: Array<[string, number]>,
+    digitalInterruptsMap: Array<[string, number]>,
   }
 }
 

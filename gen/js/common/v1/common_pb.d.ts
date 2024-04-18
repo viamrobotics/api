@@ -38,68 +38,6 @@ export namespace ResourceName {
   }
 }
 
-export class BoardStatus extends jspb.Message {
-  getAnalogsMap(): jspb.Map<string, AnalogStatus>;
-  clearAnalogsMap(): void;
-  getDigitalInterruptsMap(): jspb.Map<string, DigitalInterruptStatus>;
-  clearDigitalInterruptsMap(): void;
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BoardStatus.AsObject;
-  static toObject(includeInstance: boolean, msg: BoardStatus): BoardStatus.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: BoardStatus, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BoardStatus;
-  static deserializeBinaryFromReader(message: BoardStatus, reader: jspb.BinaryReader): BoardStatus;
-}
-
-export namespace BoardStatus {
-  export type AsObject = {
-    analogsMap: Array<[string, AnalogStatus.AsObject]>,
-    digitalInterruptsMap: Array<[string, DigitalInterruptStatus.AsObject]>,
-  }
-}
-
-export class AnalogStatus extends jspb.Message {
-  getValue(): number;
-  setValue(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AnalogStatus.AsObject;
-  static toObject(includeInstance: boolean, msg: AnalogStatus): AnalogStatus.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AnalogStatus, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AnalogStatus;
-  static deserializeBinaryFromReader(message: AnalogStatus, reader: jspb.BinaryReader): AnalogStatus;
-}
-
-export namespace AnalogStatus {
-  export type AsObject = {
-    value: number,
-  }
-}
-
-export class DigitalInterruptStatus extends jspb.Message {
-  getValue(): number;
-  setValue(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DigitalInterruptStatus.AsObject;
-  static toObject(includeInstance: boolean, msg: DigitalInterruptStatus): DigitalInterruptStatus.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DigitalInterruptStatus, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DigitalInterruptStatus;
-  static deserializeBinaryFromReader(message: DigitalInterruptStatus, reader: jspb.BinaryReader): DigitalInterruptStatus;
-}
-
-export namespace DigitalInterruptStatus {
-  export type AsObject = {
-    value: number,
-  }
-}
-
 export class Pose extends jspb.Message {
   getX(): number;
   setX(value: number): void;
