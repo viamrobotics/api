@@ -1,17 +1,21 @@
 name: Check Requirements for Merge
 
 on:
-  pull_request_target:
+  # note: this workflow does not use secrets or check out code, does not need to be pull_request_target
+  pull_request:
     branches:
       - main
     types:
       - labeled
       - unlabeled
 
+env:
+  label-checks-pass:
+
 jobs:
   check_requirements:
     name: Check Merge Requirements
-    runs-on: [self-hosted, x64]
+    runs-on: ubuntu-latest
     if: github.repository_owner == 'viamrobotics'
     steps:
       - name: Check Labels
@@ -20,8 +24,7 @@ jobs:
         run: echo "label-checks-pass=true" >> $GITHUB_ENV
 
       - name: Final Checks
-        if: >
-          env.label-checks-pass == false
+        if: ${{ !env.label-checks-pass }}
         uses: actions/github-script@v6
         with:
           script: core.setFailed('Merge requirements not met.\n\tLabel checks - ${{ env.label-checks-pass }}')
