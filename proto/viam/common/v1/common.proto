@@ -15,7 +15,6 @@ message ResourceName {
   string type = 2;
   string subtype = 3;
   string name = 4;
-  optional string machine_part_id = 5;
 }
 
 message BoardStatus {
