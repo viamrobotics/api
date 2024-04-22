@@ -12,12 +12,6 @@ option java_package = "com.viam.component.board.v1";
 
 // BoardService services all Boards associated with a robot
 service BoardService {
-  rpc Status(StatusRequest) returns (StatusResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/board/{name}/status"
-    };
-  }
-
   rpc SetGPIO(SetGPIORequest) returns (SetGPIOResponse) {
     option (google.api.http) = {
       put: "/viam/api/v1/component/board/{name}/gpio"
@@ -117,14 +111,9 @@ service BoardService {
   }
 }
 
-message StatusRequest {
-  string name = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message StatusResponse {
-  common.v1.BoardStatus status = 1;
+message Status {
+  map<string, viam.common.v1.AnalogStatus> analogs = 1;
+  map<string, viam.common.v1.DigitalInterruptStatus> digital_interrupts = 2;
 }
 
 message SetGPIORequest {

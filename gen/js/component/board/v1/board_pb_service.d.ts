@@ -5,15 +5,6 @@ import * as component_board_v1_board_pb from "../../../component/board/v1/board_
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type BoardServiceStatus = {
-  readonly methodName: string;
-  readonly service: typeof BoardService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof component_board_v1_board_pb.StatusRequest;
-  readonly responseType: typeof component_board_v1_board_pb.StatusResponse;
-};
-
 type BoardServiceSetGPIO = {
   readonly methodName: string;
   readonly service: typeof BoardService;
@@ -133,7 +124,6 @@ type BoardServiceGetGeometries = {
 
 export class BoardService {
   static readonly serviceName: string;
-  static readonly Status: BoardServiceStatus;
   static readonly SetGPIO: BoardServiceSetGPIO;
   static readonly GetGPIO: BoardServiceGetGPIO;
   static readonly PWM: BoardServicePWM;
@@ -181,15 +171,6 @@ export class BoardServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  status(
-    requestMessage: component_board_v1_board_pb.StatusRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: component_board_v1_board_pb.StatusResponse|null) => void
-  ): UnaryResponse;
-  status(
-    requestMessage: component_board_v1_board_pb.StatusRequest,
-    callback: (error: ServiceError|null, responseMessage: component_board_v1_board_pb.StatusResponse|null) => void
-  ): UnaryResponse;
   setGPIO(
     requestMessage: component_board_v1_board_pb.SetGPIORequest,
     metadata: grpc.Metadata,
