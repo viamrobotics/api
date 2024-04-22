@@ -71,8 +71,7 @@ message GetCurrentMonthUsageResponse {
   double discount_amount = 8;
   double total_usage_with_discount = 9;
   double total_usage_without_discount = 10;
-  double monthly_machines_usage_cost = 11;
-  double cost_per_machine_per_month = 12;
+  double per_machine_usage_cost = 11;
 }
 
 message GetOrgBillingInformationRequest {
