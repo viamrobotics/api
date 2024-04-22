@@ -19,11 +19,6 @@ export class ResourceName extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  hasMachinePartId(): boolean;
-  clearMachinePartId(): void;
-  getMachinePartId(): string;
-  setMachinePartId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResourceName.AsObject;
   static toObject(includeInstance: boolean, msg: ResourceName): ResourceName.AsObject;
@@ -40,7 +35,6 @@ export namespace ResourceName {
     type: string,
     subtype: string,
     name: string,
-    machinePartId: string,
   }
 }
 

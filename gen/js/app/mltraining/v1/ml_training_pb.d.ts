@@ -68,6 +68,62 @@ export namespace SubmitTrainingJobResponse {
   }
 }
 
+export class SubmitCustomTrainingJobRequest extends jspb.Message {
+  getDatasetId(): string;
+  setDatasetId(value: string): void;
+
+  getRegistryItemId(): string;
+  setRegistryItemId(value: string): void;
+
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getModelName(): string;
+  setModelName(value: string): void;
+
+  getModelVersion(): string;
+  setModelVersion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SubmitCustomTrainingJobRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SubmitCustomTrainingJobRequest): SubmitCustomTrainingJobRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SubmitCustomTrainingJobRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SubmitCustomTrainingJobRequest;
+  static deserializeBinaryFromReader(message: SubmitCustomTrainingJobRequest, reader: jspb.BinaryReader): SubmitCustomTrainingJobRequest;
+}
+
+export namespace SubmitCustomTrainingJobRequest {
+  export type AsObject = {
+    datasetId: string,
+    registryItemId: string,
+    organizationId: string,
+    modelName: string,
+    modelVersion: string,
+  }
+}
+
+export class SubmitCustomTrainingJobResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SubmitCustomTrainingJobResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SubmitCustomTrainingJobResponse): SubmitCustomTrainingJobResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SubmitCustomTrainingJobResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SubmitCustomTrainingJobResponse;
+  static deserializeBinaryFromReader(message: SubmitCustomTrainingJobResponse, reader: jspb.BinaryReader): SubmitCustomTrainingJobResponse;
+}
+
+export namespace SubmitCustomTrainingJobResponse {
+  export type AsObject = {
+    id: string,
+  }
+}
+
 export class GetTrainingJobRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
@@ -180,6 +236,15 @@ export class TrainingJobMetadata extends jspb.Message {
   getModelType(): ModelTypeMap[keyof ModelTypeMap];
   setModelType(value: ModelTypeMap[keyof ModelTypeMap]): void;
 
+  getModelFramework(): ModelFrameworkMap[keyof ModelFrameworkMap];
+  setModelFramework(value: ModelFrameworkMap[keyof ModelFrameworkMap]): void;
+
+  getIsCustomJob(): boolean;
+  setIsCustomJob(value: boolean): void;
+
+  getRegistryItemId(): string;
+  setRegistryItemId(value: string): void;
+
   getStatus(): TrainingStatusMap[keyof TrainingStatusMap];
   setStatus(value: TrainingStatusMap[keyof TrainingStatusMap]): void;
 
@@ -235,6 +300,9 @@ export namespace TrainingJobMetadata {
     modelName: string,
     modelVersion: string,
     modelType: ModelTypeMap[keyof ModelTypeMap],
+    modelFramework: ModelFrameworkMap[keyof ModelFrameworkMap],
+    isCustomJob: boolean,
+    registryItemId: string,
     status: TrainingStatusMap[keyof TrainingStatusMap],
     errorStatus?: google_rpc_status_pb.Status.AsObject,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
