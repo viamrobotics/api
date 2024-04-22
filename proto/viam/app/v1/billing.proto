@@ -71,6 +71,8 @@ message GetCurrentMonthUsageResponse {
   double discount_amount = 8;
   double total_usage_with_discount = 9;
   double total_usage_without_discount = 10;
+  double image_data_cloud_storage_usage_cost = 11;
+  double general_data_cloud_storage_usage_cost = 12;
 }
 
 message GetOrgBillingInformationRequest {
