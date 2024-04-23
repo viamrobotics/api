@@ -225,6 +225,9 @@ export class GetCurrentMonthUsageResponse extends jspb.Message {
   getTotalUsageWithoutDiscount(): number;
   setTotalUsageWithoutDiscount(value: number): void;
 
+  getPerMachineUsageCost(): number;
+  setPerMachineUsageCost(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetCurrentMonthUsageResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetCurrentMonthUsageResponse): GetCurrentMonthUsageResponse.AsObject;
@@ -247,6 +250,7 @@ export namespace GetCurrentMonthUsageResponse {
     discountAmount: number,
     totalUsageWithDiscount: number,
     totalUsageWithoutDiscount: number,
+    perMachineUsageCost: number,
   }
 }
 

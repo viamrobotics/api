@@ -1669,7 +1669,8 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.toObject = function(includeInstan
     standardComputeUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
     discountAmount: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
     totalUsageWithDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
-    totalUsageWithoutDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0)
+    totalUsageWithoutDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
+    perMachineUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0)
   };
 
   if (includeInstance) {
@@ -1747,6 +1748,10 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.deserializeBinaryFromReader = fun
     case 10:
       var value = /** @type {number} */ (reader.readDouble());
       msg.setTotalUsageWithoutDiscount(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setPerMachineUsageCost(value);
       break;
     default:
       reader.skipField();
@@ -1846,6 +1851,13 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.serializeBinaryToWriter = functio
   if (f !== 0.0) {
     writer.writeDouble(
       10,
+      f
+    );
+  }
+  f = message.getPerMachineUsageCost();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      11,
       f
     );
   }
@@ -2067,6 +2079,24 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getTotalUsageWithoutDis
  */
 proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setTotalUsageWithoutDiscount = function(value) {
   return jspb.Message.setProto3FloatField(this, 10, value);
+};
+
+
+/**
+ * optional double per_machine_usage_cost = 11;
+ * @return {number}
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getPerMachineUsageCost = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 11, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.GetCurrentMonthUsageResponse} returns this
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setPerMachineUsageCost = function(value) {
+  return jspb.Message.setProto3FloatField(this, 11, value);
 };
 
 
