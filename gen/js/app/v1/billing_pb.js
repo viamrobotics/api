@@ -1670,7 +1670,9 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.toObject = function(includeInstan
     discountAmount: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
     totalUsageWithDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
     totalUsageWithoutDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
-    perMachineUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0)
+    perMachineUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0),
+    binaryDataCloudStorageUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 12, 0.0),
+    otherCloudStorageUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 13, 0.0)
   };
 
   if (includeInstance) {
@@ -1752,6 +1754,14 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.deserializeBinaryFromReader = fun
     case 11:
       var value = /** @type {number} */ (reader.readDouble());
       msg.setPerMachineUsageCost(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setBinaryDataCloudStorageUsageCost(value);
+      break;
+    case 13:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setOtherCloudStorageUsageCost(value);
       break;
     default:
       reader.skipField();
@@ -1858,6 +1868,20 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.serializeBinaryToWriter = functio
   if (f !== 0.0) {
     writer.writeDouble(
       11,
+      f
+    );
+  }
+  f = message.getBinaryDataCloudStorageUsageCost();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      12,
+      f
+    );
+  }
+  f = message.getOtherCloudStorageUsageCost();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      13,
       f
     );
   }
@@ -2097,6 +2121,42 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getPerMachineUsageCost 
  */
 proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setPerMachineUsageCost = function(value) {
   return jspb.Message.setProto3FloatField(this, 11, value);
+};
+
+
+/**
+ * optional double binary_data_cloud_storage_usage_cost = 12;
+ * @return {number}
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getBinaryDataCloudStorageUsageCost = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 12, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.GetCurrentMonthUsageResponse} returns this
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setBinaryDataCloudStorageUsageCost = function(value) {
+  return jspb.Message.setProto3FloatField(this, 12, value);
+};
+
+
+/**
+ * optional double other_cloud_storage_usage_cost = 13;
+ * @return {number}
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getOtherCloudStorageUsageCost = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 13, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.GetCurrentMonthUsageResponse} returns this
+ */
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setOtherCloudStorageUsageCost = function(value) {
+  return jspb.Message.setProto3FloatField(this, 13, value);
 };
 
 
