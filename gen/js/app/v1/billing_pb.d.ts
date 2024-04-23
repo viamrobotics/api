@@ -228,6 +228,12 @@ export class GetCurrentMonthUsageResponse extends jspb.Message {
   getPerMachineUsageCost(): number;
   setPerMachineUsageCost(value: number): void;
 
+  getBinaryDataCloudStorageUsageCost(): number;
+  setBinaryDataCloudStorageUsageCost(value: number): void;
+
+  getOtherCloudStorageUsageCost(): number;
+  setOtherCloudStorageUsageCost(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetCurrentMonthUsageResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetCurrentMonthUsageResponse): GetCurrentMonthUsageResponse.AsObject;
@@ -251,6 +257,8 @@ export namespace GetCurrentMonthUsageResponse {
     totalUsageWithDiscount: number,
     totalUsageWithoutDiscount: number,
     perMachineUsageCost: number,
+    binaryDataCloudStorageUsageCost: number,
+    otherCloudStorageUsageCost: number,
   }
 }
 
