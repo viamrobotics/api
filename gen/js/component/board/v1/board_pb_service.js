@@ -11,15 +11,6 @@ var BoardService = (function () {
   return BoardService;
 }());
 
-BoardService.Status = {
-  methodName: "Status",
-  service: BoardService,
-  requestStream: false,
-  responseStream: false,
-  requestType: component_board_v1_board_pb.StatusRequest,
-  responseType: component_board_v1_board_pb.StatusResponse
-};
-
 BoardService.SetGPIO = {
   methodName: "SetGPIO",
   service: BoardService,
@@ -143,37 +134,6 @@ function BoardServiceClient(serviceHost, options) {
   this.serviceHost = serviceHost;
   this.options = options || {};
 }
-
-BoardServiceClient.prototype.status = function status(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(BoardService.Status, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
 
 BoardServiceClient.prototype.setGPIO = function setGPIO(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
