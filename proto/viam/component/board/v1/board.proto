@@ -112,8 +112,8 @@ service BoardService {
 }
 
 message Status {
-  map<string, viam.common.v1.AnalogStatus> analogs = 1;
-  map<string, viam.common.v1.DigitalInterruptStatus> digital_interrupts = 2;
+  map<string, int32> analogs = 1;
+  map<string, int64> digital_interrupts = 2;
 }
 
 message SetGPIORequest {
