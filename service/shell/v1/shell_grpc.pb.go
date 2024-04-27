@@ -25,6 +25,23 @@ const _ = grpc.SupportPackageIsVersion7
 type ShellServiceClient interface {
 	// Shell starts a shell with an input and output pipe.
 	Shell(ctx context.Context, opts ...grpc.CallOption) (ShellService_ShellClient, error)
+	// CopyFilesToMachines copies a stream of files from a client to the connected-to machine.
+	// Initially, metadata is sent to describe the destination in the filesystem in addition
+	// to what kind of file(s) are being sent.
+	// Once metadata is sent, the file transfer can proceed where one-by-one, file data is sent
+	// until EOF per file.
+	// After each file is sent, the machine must respond with an ACK before the next file can
+	// be sent. This provides back-pressure and ordering.
+	// The order in which individual files are sent does not matter; that is, if traversing a
+	// directory, copying depth-first, breadth-first, or any other algorithm does not matter.
+	// Permissions and metadata on files copied are only preserved if the preserve option is
+	// set in the initial request metadata.
+	CopyFilesToMachine(ctx context.Context, opts ...grpc.CallOption) (ShellService_CopyFilesToMachineClient, error)
+	// CopyFilesFromMachine copies a stream of files from a connected-to machine to the calling client.
+	// Essentially, it is the inverse of CopyFilesToMachine with the same ACK mechanism in reverse.
+	// The initial metadata request will request the paths to copy along with if permissions should
+	// be preserved (and consequently sent over the wire).
+	CopyFilesFromMachine(ctx context.Context, opts ...grpc.CallOption) (ShellService_CopyFilesFromMachineClient, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
@@ -68,6 +85,68 @@ func (x *shellServiceShellClient) Recv() (*ShellResponse, error) {
 	return m, nil
 }
 
+func (c *shellServiceClient) CopyFilesToMachine(ctx context.Context, opts ...grpc.CallOption) (ShellService_CopyFilesToMachineClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ShellService_ServiceDesc.Streams[1], "/viam.service.shell.v1.ShellService/CopyFilesToMachine", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &shellServiceCopyFilesToMachineClient{stream}
+	return x, nil
+}
+
+type ShellService_CopyFilesToMachineClient interface {
+	Send(*CopyFilesToMachineRequest) error
+	Recv() (*CopyFilesToMachineResponse, error)
+	grpc.ClientStream
+}
+
+type shellServiceCopyFilesToMachineClient struct {
+	grpc.ClientStream
+}
+
+func (x *shellServiceCopyFilesToMachineClient) Send(m *CopyFilesToMachineRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *shellServiceCopyFilesToMachineClient) Recv() (*CopyFilesToMachineResponse, error) {
+	m := new(CopyFilesToMachineResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *shellServiceClient) CopyFilesFromMachine(ctx context.Context, opts ...grpc.CallOption) (ShellService_CopyFilesFromMachineClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ShellService_ServiceDesc.Streams[2], "/viam.service.shell.v1.ShellService/CopyFilesFromMachine", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &shellServiceCopyFilesFromMachineClient{stream}
+	return x, nil
+}
+
+type ShellService_CopyFilesFromMachineClient interface {
+	Send(*CopyFilesFromMachineRequest) error
+	Recv() (*CopyFilesFromMachineResponse, error)
+	grpc.ClientStream
+}
+
+type shellServiceCopyFilesFromMachineClient struct {
+	grpc.ClientStream
+}
+
+func (x *shellServiceCopyFilesFromMachineClient) Send(m *CopyFilesFromMachineRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *shellServiceCopyFilesFromMachineClient) Recv() (*CopyFilesFromMachineResponse, error) {
+	m := new(CopyFilesFromMachineResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *shellServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.shell.v1.ShellService/DoCommand", in, out, opts...)
@@ -83,6 +162,23 @@ func (c *shellServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequ
 type ShellServiceServer interface {
 	// Shell starts a shell with an input and output pipe.
 	Shell(ShellService_ShellServer) error
+	// CopyFilesToMachines copies a stream of files from a client to the connected-to machine.
+	// Initially, metadata is sent to describe the destination in the filesystem in addition
+	// to what kind of file(s) are being sent.
+	// Once metadata is sent, the file transfer can proceed where one-by-one, file data is sent
+	// until EOF per file.
+	// After each file is sent, the machine must respond with an ACK before the next file can
+	// be sent. This provides back-pressure and ordering.
+	// The order in which individual files are sent does not matter; that is, if traversing a
+	// directory, copying depth-first, breadth-first, or any other algorithm does not matter.
+	// Permissions and metadata on files copied are only preserved if the preserve option is
+	// set in the initial request metadata.
+	CopyFilesToMachine(ShellService_CopyFilesToMachineServer) error
+	// CopyFilesFromMachine copies a stream of files from a connected-to machine to the calling client.
+	// Essentially, it is the inverse of CopyFilesToMachine with the same ACK mechanism in reverse.
+	// The initial metadata request will request the paths to copy along with if permissions should
+	// be preserved (and consequently sent over the wire).
+	CopyFilesFromMachine(ShellService_CopyFilesFromMachineServer) error
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedShellServiceServer()
@@ -94,6 +190,12 @@ type UnimplementedShellServiceServer struct {
 
 func (UnimplementedShellServiceServer) Shell(ShellService_ShellServer) error {
 	return status.Errorf(codes.Unimplemented, "method Shell not implemented")
+}
+func (UnimplementedShellServiceServer) CopyFilesToMachine(ShellService_CopyFilesToMachineServer) error {
+	return status.Errorf(codes.Unimplemented, "method CopyFilesToMachine not implemented")
+}
+func (UnimplementedShellServiceServer) CopyFilesFromMachine(ShellService_CopyFilesFromMachineServer) error {
+	return status.Errorf(codes.Unimplemented, "method CopyFilesFromMachine not implemented")
 }
 func (UnimplementedShellServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -137,6 +239,58 @@ func (x *shellServiceShellServer) Recv() (*ShellRequest, error) {
 	return m, nil
 }
 
+func _ShellService_CopyFilesToMachine_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ShellServiceServer).CopyFilesToMachine(&shellServiceCopyFilesToMachineServer{stream})
+}
+
+type ShellService_CopyFilesToMachineServer interface {
+	Send(*CopyFilesToMachineResponse) error
+	Recv() (*CopyFilesToMachineRequest, error)
+	grpc.ServerStream
+}
+
+type shellServiceCopyFilesToMachineServer struct {
+	grpc.ServerStream
+}
+
+func (x *shellServiceCopyFilesToMachineServer) Send(m *CopyFilesToMachineResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *shellServiceCopyFilesToMachineServer) Recv() (*CopyFilesToMachineRequest, error) {
+	m := new(CopyFilesToMachineRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func _ShellService_CopyFilesFromMachine_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ShellServiceServer).CopyFilesFromMachine(&shellServiceCopyFilesFromMachineServer{stream})
+}
+
+type ShellService_CopyFilesFromMachineServer interface {
+	Send(*CopyFilesFromMachineResponse) error
+	Recv() (*CopyFilesFromMachineRequest, error)
+	grpc.ServerStream
+}
+
+type shellServiceCopyFilesFromMachineServer struct {
+	grpc.ServerStream
+}
+
+func (x *shellServiceCopyFilesFromMachineServer) Send(m *CopyFilesFromMachineResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *shellServiceCopyFilesFromMachineServer) Recv() (*CopyFilesFromMachineRequest, error) {
+	m := new(CopyFilesFromMachineRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func _ShellService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DoCommandRequest)
 	if err := dec(in); err != nil {
@@ -171,6 +325,18 @@ var ShellService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "Shell",
 			Handler:       _ShellService_Shell_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "CopyFilesToMachine",
+			Handler:       _ShellService_CopyFilesToMachine_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "CopyFilesFromMachine",
+			Handler:       _ShellService_CopyFilesFromMachine_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},

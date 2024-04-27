@@ -5,14 +5,35 @@ package viam.service.shell.v1;
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/service/shell/v1";
 option java_package = "com.viam.service.shell.v1";
 
-// A ShellService service allows access to an interactive shell experience.
+// A ShellService service allows access to an interactive shell experience, including
+// utilities commonly found in tandem with other secure shells.
 service ShellService {
   // Shell starts a shell with an input and output pipe.
   rpc Shell(stream ShellRequest) returns (stream ShellResponse);
+
+  // CopyFilesToMachines copies a stream of files from a client to the connected-to machine.
+  // Initially, metadata is sent to describe the destination in the filesystem in addition
+  // to what kind of file(s) are being sent.
+  // Once metadata is sent, the file transfer can proceed where one-by-one, file data is sent
+  // until EOF per file.
+  // After each file is sent, the machine must respond with an ACK before the next file can
+  // be sent. This provides back-pressure and ordering.
+  // The order in which individual files are sent does not matter; that is, if traversing a
+  // directory, copying depth-first, breadth-first, or any other algorithm does not matter.
+  // Permissions and metadata on files copied are only preserved if the preserve option is
+  // set in the initial request metadata.
+  rpc CopyFilesToMachine(stream CopyFilesToMachineRequest) returns (stream CopyFilesToMachineResponse);
+
+  // CopyFilesFromMachine copies a stream of files from a connected-to machine to the calling client.
+  // Essentially, it is the inverse of CopyFilesToMachine with the same ACK mechanism in reverse.
+  // The initial metadata request will request the paths to copy along with if permissions should
+  // be preserved (and consequently sent over the wire).
+  rpc CopyFilesFromMachine(stream CopyFilesFromMachineRequest) returns (stream CopyFilesFromMachineResponse);
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
@@ -33,4 +54,110 @@ message ShellResponse {
   string data_out = 1;
   string data_err = 2;
   bool eof = 3;
+}
+
+// FileData contains partial (sometimes complete) information about a File.
+// When transmitting FileData with CopyFilesToMachine and CopyFilesFromMachine,
+// it MUST initially contain its name, size, and is_dir. Depending on whether
+// preservation is in use, the mod_time and mode fields may be initially set
+// as well. On all transmissions, data and eof must be set. Because files are
+// sent one-by-one, it is currently permitted to exclude the initially set fields.
+// If this ever changes, a new scheme should be used for identifying files (like a number)
+// in order to reduce data transmission while allowing out-of-order transfers.
+// eof must be true and its own message once no more data is to be sent for this file.
+message FileData {
+  string name = 1;
+  int64 size = 2;
+  bool is_dir = 3;
+  bytes data = 4;
+  bool eof = 5;
+
+  // Note(erd): maybe support access time in the future if needed
+  optional google.protobuf.Timestamp mod_time = 6;
+  optional uint32 mode = 7;
+}
+
+// CopyFilesSourceType indicates what will be copied. It's important
+// to disambiguate the single directory case from the multiple files
+// case in order to indicate that the user's intent is to copy a directory
+// into a single location which may result in a new top-level directory versus
+// the cause of multiples files that always go into the existing target destination.
+enum CopyFilesSourceType {
+  COPY_FILES_SOURCE_TYPE_UNSPECIFIED = 0;
+  COPY_FILES_SOURCE_TYPE_SINGLE_FILE = 1;
+  COPY_FILES_SOURCE_TYPE_SINGLE_DIRECTORY = 2;
+  COPY_FILES_SOURCE_TYPE_MULTIPLE_FILES = 3;
+}
+
+message CopyFilesToMachineRequestMetadata {
+  // name is the service name.
+  string name = 1;
+  // source_type is the type of files that will be transmitted in this request stream.
+  CopyFilesSourceType source_type = 2;
+  // destination is where the files should be placed. The receiver can choose to
+  // reasonably modify this destination based on its implementation semantics.
+  string destination = 3;
+  // preserve indicates the the receiver should use the metadata in the file to reflect
+  // the same state in its filesystem as applicable.
+  bool preserve = 4;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message CopyFilesToMachineRequest {
+  oneof request {
+    // metadata is sent first and only once.
+    CopyFilesToMachineRequestMetadata metadata = 1;
+    // file_data is sent only after metadata. All data MUST be sent
+    // in order per-file.
+    FileData file_data = 2;
+  }
+}
+
+message CopyFilesToMachineResponse {
+  // value does not matter here but responses must be sent after every
+  // file has been received.
+  bool ack_last_file = 1;
+}
+
+message CopyFilesFromMachineRequestMetadata {
+  // name is the service name.
+  string name = 1;
+  // paths are the paths to copy from and send back over the wire.
+  repeated string paths = 2;
+  // allow_recursion indicates if directories should be recursed into. If
+  // a directory is encountered and this is false, an error MUST occur.
+  bool allow_recursion = 3;
+  // preserve indicates the the receiver should provide the metadata in the file
+  // to reflect the same state in the sender's filesystem as applicable.
+  bool preserve = 4;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message CopyFilesFromMachineRequest {
+  oneof request {
+    // metadata is sent first and only once.
+    CopyFilesFromMachineRequestMetadata metadata = 1;
+    // ack_last_file is sent only after metadata and after each file has been received.
+    // The value does not matter.
+    bool ack_last_file = 2;
+  }
+}
+
+message CopyFilesFromMachineResponseMetadata {
+  // source_type is the type of files that will be transmitted in this response stream.
+  CopyFilesSourceType source_type = 1;
+}
+
+message CopyFilesFromMachineResponse {
+  oneof response {
+    // metadata is sent first and only once.
+    CopyFilesFromMachineResponseMetadata metadata = 1;
+    // file_data is sent only after metadata. All data MUST be sent
+    // in order per-file.
+    FileData file_data = 2;
+  }
 }
