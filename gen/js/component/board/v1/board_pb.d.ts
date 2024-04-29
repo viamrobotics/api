@@ -8,9 +8,9 @@ import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/du
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
 export class Status extends jspb.Message {
-  getAnalogsMap(): jspb.Map<string, common_v1_common_pb.AnalogStatus>;
+  getAnalogsMap(): jspb.Map<string, number>;
   clearAnalogsMap(): void;
-  getDigitalInterruptsMap(): jspb.Map<string, common_v1_common_pb.DigitalInterruptStatus>;
+  getDigitalInterruptsMap(): jspb.Map<string, number>;
   clearDigitalInterruptsMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Status.AsObject;
@@ -24,8 +24,8 @@ export class Status extends jspb.Message {
 
 export namespace Status {
   export type AsObject = {
-    analogsMap: Array<[string, common_v1_common_pb.AnalogStatus.AsObject]>,
-    digitalInterruptsMap: Array<[string, common_v1_common_pb.DigitalInterruptStatus.AsObject]>,
+    analogsMap: Array<[string, number]>,
+    digitalInterruptsMap: Array<[string, number]>,
   }
 }
 
