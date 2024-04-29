@@ -562,8 +562,8 @@ proto.viam.component.board.v1.Status.prototype.toObject = function(opt_includeIn
  */
 proto.viam.component.board.v1.Status.toObject = function(includeInstance, msg) {
   var f, obj = {
-    analogsMap: (f = msg.getAnalogsMap()) ? f.toObject(includeInstance, proto.viam.common.v1.AnalogStatus.toObject) : [],
-    digitalInterruptsMap: (f = msg.getDigitalInterruptsMap()) ? f.toObject(includeInstance, proto.viam.common.v1.DigitalInterruptStatus.toObject) : []
+    analogsMap: (f = msg.getAnalogsMap()) ? f.toObject(includeInstance, undefined) : [],
+    digitalInterruptsMap: (f = msg.getDigitalInterruptsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -603,13 +603,13 @@ proto.viam.component.board.v1.Status.deserializeBinaryFromReader = function(msg,
     case 1:
       var value = msg.getAnalogsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.viam.common.v1.AnalogStatus.deserializeBinaryFromReader, "", new proto.viam.common.v1.AnalogStatus());
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readInt32, null, "", 0);
          });
       break;
     case 2:
       var value = msg.getDigitalInterruptsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.viam.common.v1.DigitalInterruptStatus.deserializeBinaryFromReader, "", new proto.viam.common.v1.DigitalInterruptStatus());
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readInt64, null, "", 0);
          });
       break;
     default:
@@ -643,25 +643,25 @@ proto.viam.component.board.v1.Status.serializeBinaryToWriter = function(message,
   var f = undefined;
   f = message.getAnalogsMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(1, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.viam.common.v1.AnalogStatus.serializeBinaryToWriter);
+    f.serializeBinary(1, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeInt32);
   }
   f = message.getDigitalInterruptsMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.viam.common.v1.DigitalInterruptStatus.serializeBinaryToWriter);
+    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeInt64);
   }
 };
 
 
 /**
- * map<string, viam.common.v1.AnalogStatus> analogs = 1;
+ * map<string, int32> analogs = 1;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.viam.common.v1.AnalogStatus>}
+ * @return {!jspb.Map<string,number>}
  */
 proto.viam.component.board.v1.Status.prototype.getAnalogsMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.viam.common.v1.AnalogStatus>} */ (
+  return /** @type {!jspb.Map<string,number>} */ (
       jspb.Message.getMapField(this, 1, opt_noLazyCreate,
-      proto.viam.common.v1.AnalogStatus));
+      null));
 };
 
 
@@ -675,15 +675,15 @@ proto.viam.component.board.v1.Status.prototype.clearAnalogsMap = function() {
 
 
 /**
- * map<string, viam.common.v1.DigitalInterruptStatus> digital_interrupts = 2;
+ * map<string, int64> digital_interrupts = 2;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.viam.common.v1.DigitalInterruptStatus>}
+ * @return {!jspb.Map<string,number>}
  */
 proto.viam.component.board.v1.Status.prototype.getDigitalInterruptsMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.viam.common.v1.DigitalInterruptStatus>} */ (
+  return /** @type {!jspb.Map<string,number>} */ (
       jspb.Message.getMapField(this, 2, opt_noLazyCreate,
-      proto.viam.common.v1.DigitalInterruptStatus));
+      null));
 };
 
 
