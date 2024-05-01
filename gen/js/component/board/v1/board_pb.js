@@ -3176,7 +3176,10 @@ proto.viam.component.board.v1.ReadAnalogReaderResponse.prototype.toObject = func
  */
 proto.viam.component.board.v1.ReadAnalogReaderResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    value: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    value: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    minRange: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    maxRange: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    stepSize: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -3217,6 +3220,18 @@ proto.viam.component.board.v1.ReadAnalogReaderResponse.deserializeBinaryFromRead
       var value = /** @type {number} */ (reader.readInt32());
       msg.setValue(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setMinRange(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setMaxRange(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setStepSize(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3253,6 +3268,27 @@ proto.viam.component.board.v1.ReadAnalogReaderResponse.serializeBinaryToWriter =
       f
     );
   }
+  f = message.getMinRange();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      2,
+      f
+    );
+  }
+  f = message.getMaxRange();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      3,
+      f
+    );
+  }
+  f = message.getStepSize();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      4,
+      f
+    );
+  }
 };
 
 
@@ -3271,6 +3307,60 @@ proto.viam.component.board.v1.ReadAnalogReaderResponse.prototype.getValue = func
  */
 proto.viam.component.board.v1.ReadAnalogReaderResponse.prototype.setValue = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional float min_range = 2;
+ * @return {number}
+ */
+proto.viam.component.board.v1.ReadAnalogReaderResponse.prototype.getMinRange = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 2, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.component.board.v1.ReadAnalogReaderResponse} returns this
+ */
+proto.viam.component.board.v1.ReadAnalogReaderResponse.prototype.setMinRange = function(value) {
+  return jspb.Message.setProto3FloatField(this, 2, value);
+};
+
+
+/**
+ * optional float max_range = 3;
+ * @return {number}
+ */
+proto.viam.component.board.v1.ReadAnalogReaderResponse.prototype.getMaxRange = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 3, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.component.board.v1.ReadAnalogReaderResponse} returns this
+ */
+proto.viam.component.board.v1.ReadAnalogReaderResponse.prototype.setMaxRange = function(value) {
+  return jspb.Message.setProto3FloatField(this, 3, value);
+};
+
+
+/**
+ * optional float step_size = 4;
+ * @return {number}
+ */
+proto.viam.component.board.v1.ReadAnalogReaderResponse.prototype.getStepSize = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 4, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.component.board.v1.ReadAnalogReaderResponse} returns this
+ */
+proto.viam.component.board.v1.ReadAnalogReaderResponse.prototype.setStepSize = function(value) {
+  return jspb.Message.setProto3FloatField(this, 4, value);
 };
 
 

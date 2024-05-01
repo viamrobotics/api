@@ -389,6 +389,15 @@ export class ReadAnalogReaderResponse extends jspb.Message {
   getValue(): number;
   setValue(value: number): void;
 
+  getMinRange(): number;
+  setMinRange(value: number): void;
+
+  getMaxRange(): number;
+  setMaxRange(value: number): void;
+
+  getStepSize(): number;
+  setStepSize(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ReadAnalogReaderResponse.AsObject;
   static toObject(includeInstance: boolean, msg: ReadAnalogReaderResponse): ReadAnalogReaderResponse.AsObject;
@@ -402,6 +411,9 @@ export class ReadAnalogReaderResponse extends jspb.Message {
 export namespace ReadAnalogReaderResponse {
   export type AsObject = {
     value: number,
+    minRange: number,
+    maxRange: number,
+    stepSize: number,
   }
 }
 
