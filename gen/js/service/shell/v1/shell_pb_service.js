@@ -20,6 +20,24 @@ ShellService.Shell = {
   responseType: service_shell_v1_shell_pb.ShellResponse
 };
 
+ShellService.CopyFilesToMachine = {
+  methodName: "CopyFilesToMachine",
+  service: ShellService,
+  requestStream: true,
+  responseStream: true,
+  requestType: service_shell_v1_shell_pb.CopyFilesToMachineRequest,
+  responseType: service_shell_v1_shell_pb.CopyFilesToMachineResponse
+};
+
+ShellService.CopyFilesFromMachine = {
+  methodName: "CopyFilesFromMachine",
+  service: ShellService,
+  requestStream: true,
+  responseStream: true,
+  requestType: service_shell_v1_shell_pb.CopyFilesFromMachineRequest,
+  responseType: service_shell_v1_shell_pb.CopyFilesFromMachineResponse
+};
+
 ShellService.DoCommand = {
   methodName: "DoCommand",
   service: ShellService,
@@ -43,6 +61,96 @@ ShellServiceClient.prototype.shell = function shell(metadata) {
     status: []
   };
   var client = grpc.client(ShellService.Shell, {
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport
+  });
+  client.onEnd(function (status, statusMessage, trailers) {
+    listeners.status.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners.end.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners = null;
+  });
+  client.onMessage(function (message) {
+    listeners.data.forEach(function (handler) {
+      handler(message);
+    })
+  });
+  client.start(metadata);
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    write: function (requestMessage) {
+      client.send(requestMessage);
+      return this;
+    },
+    end: function () {
+      client.finishSend();
+    },
+    cancel: function () {
+      listeners = null;
+      client.close();
+    }
+  };
+};
+
+ShellServiceClient.prototype.copyFilesToMachine = function copyFilesToMachine(metadata) {
+  var listeners = {
+    data: [],
+    end: [],
+    status: []
+  };
+  var client = grpc.client(ShellService.CopyFilesToMachine, {
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport
+  });
+  client.onEnd(function (status, statusMessage, trailers) {
+    listeners.status.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners.end.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners = null;
+  });
+  client.onMessage(function (message) {
+    listeners.data.forEach(function (handler) {
+      handler(message);
+    })
+  });
+  client.start(metadata);
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    write: function (requestMessage) {
+      client.send(requestMessage);
+      return this;
+    },
+    end: function () {
+      client.finishSend();
+    },
+    cancel: function () {
+      listeners = null;
+      client.close();
+    }
+  };
+};
+
+ShellServiceClient.prototype.copyFilesFromMachine = function copyFilesFromMachine(metadata) {
+  var listeners = {
+    data: [],
+    end: [],
+    status: []
+  };
+  var client = grpc.client(ShellService.CopyFilesFromMachine, {
     host: this.serviceHost,
     metadata: metadata,
     transport: this.options.transport

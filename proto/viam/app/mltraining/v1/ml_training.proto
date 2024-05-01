@@ -12,6 +12,9 @@ service MLTrainingService {
   // SubmitTrainingJob submits a training job request.
   rpc SubmitTrainingJob(SubmitTrainingJobRequest) returns (SubmitTrainingJobResponse);
 
+  // SubmitCustomTrainingJob submits a custom training job request.
+  rpc SubmitCustomTrainingJob(SubmitCustomTrainingJobRequest) returns (SubmitCustomTrainingJobResponse);
+
   // GetTrainingJob retrieves a training job by its ID.
   rpc GetTrainingJob(GetTrainingJobRequest) returns (GetTrainingJobResponse);
 
@@ -32,6 +35,14 @@ enum ModelType {
   MODEL_TYPE_OBJECT_DETECTION = 3;
 }
 
+enum ModelFramework {
+  MODEL_FRAMEWORK_UNSPECIFIED = 0;
+  MODEL_FRAMEWORK_TFLITE = 1;
+  MODEL_FRAMEWORK_TENSORFLOW = 2;
+  MODEL_FRAMEWORK_PYTORCH = 3;
+  MODEL_FRAMEWORK_ONNX = 4;
+}
+
 message SubmitTrainingJobRequest {
   string dataset_id = 7 [(tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
   string organization_id = 2 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
@@ -45,6 +56,18 @@ message SubmitTrainingJobRequest {
 }
 
 message SubmitTrainingJobResponse {
+  string id = 1;
+}
+
+message SubmitCustomTrainingJobRequest {
+  string dataset_id = 1 [(tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
+  string registry_item_id = 2 [(tagger.v1.tags) = "bson:\"registry_item_id\" json:\"registry_item_id\""];
+  string organization_id = 3 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
+  string model_name = 4 [(tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
+  string model_version = 5 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
+}
+
+message SubmitCustomTrainingJobResponse {
   string id = 1;
 }
 
@@ -83,6 +106,9 @@ message TrainingJobMetadata {
   string model_name = 13 [(tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
   string model_version = 14 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
   ModelType model_type = 15 [(tagger.v1.tags) = "bson:\"model_type\" json:\"model_type\""];
+  ModelFramework model_framework = 17 [(tagger.v1.tags) = "bson:\"model_framework\" json:\"model_framework\""];
+  bool is_custom_job = 18 [(tagger.v1.tags) = "bson:\"is_custom_job\" json:\"is_custom_job\""];
+  string registry_item_id = 19 [(tagger.v1.tags) = "bson:\"registry_item_id\" json:\"registry_item_id\""];
   TrainingStatus status = 2 [(tagger.v1.tags) = "bson:\"status\" json:\"status\""];
   google.rpc.Status error_status = 8 [(tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
   google.protobuf.Timestamp created_on = 3 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];

@@ -8,15 +8,12 @@ on:
 jobs:
   license_finder:
     name: Audit 3rd-Party Licenses
-    runs-on: [x64, qemu-host]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64-cache
-      options: --platform linux/amd64
+    runs-on: ubuntu-latest
+    container: ghcr.io/viamrobotics/canon:amd64
     timeout-minutes: 30
 
     steps:
-      - name: Check out code in rdk directory
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
