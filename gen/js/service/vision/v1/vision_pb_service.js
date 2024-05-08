@@ -56,6 +56,15 @@ VisionService.GetObjectPointClouds = {
   responseType: service_vision_v1_vision_pb.GetObjectPointCloudsResponse
 };
 
+VisionService.GetProperties = {
+  methodName: "GetProperties",
+  service: VisionService,
+  requestStream: false,
+  responseStream: false,
+  requestType: service_vision_v1_vision_pb.GetPropertiesRequest,
+  responseType: service_vision_v1_vision_pb.GetPropertiesResponse
+};
+
 VisionService.DoCommand = {
   methodName: "DoCommand",
   service: VisionService,
@@ -201,6 +210,37 @@ VisionServiceClient.prototype.getObjectPointClouds = function getObjectPointClou
     callback = arguments[1];
   }
   var client = grpc.unary(VisionService.GetObjectPointClouds, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+VisionServiceClient.prototype.getProperties = function getProperties(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(VisionService.GetProperties, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
