@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_api_launch_stage_pb = require('../../google/api/launch_stage_pb.js');
 goog.object.extend(proto, google_api_launch_stage_pb);
@@ -1781,8 +1775,7 @@ proto.google.api.JavaSettings.prototype.getServiceClassNamesMap = function(opt_n
  */
 proto.google.api.JavaSettings.prototype.clearServiceClassNamesMap = function() {
   this.getServiceClassNamesMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -2661,8 +2654,7 @@ proto.google.api.DotnetSettings.prototype.getRenamedServicesMap = function(opt_n
  */
 proto.google.api.DotnetSettings.prototype.clearRenamedServicesMap = function() {
   this.getRenamedServicesMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -2684,8 +2676,7 @@ proto.google.api.DotnetSettings.prototype.getRenamedResourcesMap = function(opt_
  */
 proto.google.api.DotnetSettings.prototype.clearRenamedResourcesMap = function() {
   this.getRenamedResourcesMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
