@@ -188,10 +188,13 @@ message CaptureAllFromCameraRequest {
   string name = 1;
   // name of camera source to use as input
   string camera_name = 2;
-  // flags to enable for the response
+  // whether or not including the image in the response
   bool return_image = 3;
+  // whether or not including classifications in the response
   bool return_classifications = 4;
+  // whether or not including detections in the response
   bool return_detections = 5;
+  // whether or not including pcd in the response
   bool return_object_point_clouds = 6;
 
   google.protobuf.Struct extra = 99;
