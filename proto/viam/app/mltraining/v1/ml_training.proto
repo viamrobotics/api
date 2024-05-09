@@ -147,6 +147,7 @@ message TrainingJobLogEntry {
 message GetTrainingJobLogsRequest {
   string id = 1;
   optional string page_token = 2;
+  string org_id = 3;
 }
 
 message GetTrainingJobLogsResponse {
