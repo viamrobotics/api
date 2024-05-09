@@ -889,8 +889,11 @@ type GetPropertiesResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ClassificationsSupported   bool `protobuf:"varint,1,opt,name=classifications_supported,json=classificationsSupported,proto3" json:"classifications_supported,omitempty"`
-	DetectionsSupported        bool `protobuf:"varint,2,opt,name=detections_supported,json=detectionsSupported,proto3" json:"detections_supported,omitempty"`
+	// whether or not classifactions are supported by the vision service
+	ClassificationsSupported bool `protobuf:"varint,1,opt,name=classifications_supported,json=classificationsSupported,proto3" json:"classifications_supported,omitempty"`
+	// whether or not detections are supported by the vision service
+	DetectionsSupported bool `protobuf:"varint,2,opt,name=detections_supported,json=detectionsSupported,proto3" json:"detections_supported,omitempty"`
+	// whether or not 3d segmentation is supported by the vision service
 	ObjectPointCloudsSupported bool `protobuf:"varint,3,opt,name=object_point_clouds_supported,json=objectPointCloudsSupported,proto3" json:"object_point_clouds_supported,omitempty"`
 }
 
