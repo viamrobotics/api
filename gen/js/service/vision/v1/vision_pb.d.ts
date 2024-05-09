@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
+import * as component_camera_v1_camera_pb from "../../../component/camera/v1/camera_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
@@ -404,6 +405,98 @@ export class GetPropertiesRequest extends jspb.Message {
 export namespace GetPropertiesRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class CaptureAllFromCameraRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getCameraName(): string;
+  setCameraName(value: string): void;
+
+  getReturnImage(): boolean;
+  setReturnImage(value: boolean): void;
+
+  getReturnClassifications(): boolean;
+  setReturnClassifications(value: boolean): void;
+
+  getReturnDetections(): boolean;
+  setReturnDetections(value: boolean): void;
+
+  getReturnObjectPointClouds(): boolean;
+  setReturnObjectPointClouds(value: boolean): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CaptureAllFromCameraRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CaptureAllFromCameraRequest): CaptureAllFromCameraRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CaptureAllFromCameraRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CaptureAllFromCameraRequest;
+  static deserializeBinaryFromReader(message: CaptureAllFromCameraRequest, reader: jspb.BinaryReader): CaptureAllFromCameraRequest;
+}
+
+export namespace CaptureAllFromCameraRequest {
+  export type AsObject = {
+    name: string,
+    cameraName: string,
+    returnImage: boolean,
+    returnClassifications: boolean,
+    returnDetections: boolean,
+    returnObjectPointClouds: boolean,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class CaptureAllFromCameraResponse extends jspb.Message {
+  hasImage(): boolean;
+  clearImage(): void;
+  getImage(): component_camera_v1_camera_pb.Image | undefined;
+  setImage(value?: component_camera_v1_camera_pb.Image): void;
+
+  clearDetectionsList(): void;
+  getDetectionsList(): Array<Detection>;
+  setDetectionsList(value: Array<Detection>): void;
+  addDetections(value?: Detection, index?: number): Detection;
+
+  clearClassificationsList(): void;
+  getClassificationsList(): Array<Classification>;
+  setClassificationsList(value: Array<Classification>): void;
+  addClassifications(value?: Classification, index?: number): Classification;
+
+  clearObjectsList(): void;
+  getObjectsList(): Array<common_v1_common_pb.PointCloudObject>;
+  setObjectsList(value: Array<common_v1_common_pb.PointCloudObject>): void;
+  addObjects(value?: common_v1_common_pb.PointCloudObject, index?: number): common_v1_common_pb.PointCloudObject;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CaptureAllFromCameraResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CaptureAllFromCameraResponse): CaptureAllFromCameraResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CaptureAllFromCameraResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CaptureAllFromCameraResponse;
+  static deserializeBinaryFromReader(message: CaptureAllFromCameraResponse, reader: jspb.BinaryReader): CaptureAllFromCameraResponse;
+}
+
+export namespace CaptureAllFromCameraResponse {
+  export type AsObject = {
+    image?: component_camera_v1_camera_pb.Image.AsObject,
+    detectionsList: Array<Detection.AsObject>,
+    classificationsList: Array<Classification.AsObject>,
+    objectsList: Array<common_v1_common_pb.PointCloudObject.AsObject>,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
