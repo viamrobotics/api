@@ -177,7 +177,10 @@ message GetPropertiesRequest {
 }
 
 message GetPropertiesResponse {
+  // whether or not classifactions are supported by the vision service
   bool classifications_supported = 1;
+  // whether or not detections are supported by the vision service
   bool detections_supported = 2;
+  // whether or not 3d segmentation is supported by the vision service
   bool object_point_clouds_supported = 3;
 }
