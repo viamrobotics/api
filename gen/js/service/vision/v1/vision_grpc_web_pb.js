@@ -391,6 +391,67 @@ proto.viam.service.vision.v1.VisionServicePromiseClient.prototype.getObjectPoint
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.vision.v1.GetPropertiesRequest,
+ *   !proto.viam.service.vision.v1.GetPropertiesResponse>}
+ */
+const methodDescriptor_VisionService_GetProperties = new grpc.web.MethodDescriptor(
+  '/viam.service.vision.v1.VisionService/GetProperties',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.vision.v1.GetPropertiesRequest,
+  proto.viam.service.vision.v1.GetPropertiesResponse,
+  /**
+   * @param {!proto.viam.service.vision.v1.GetPropertiesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.vision.v1.GetPropertiesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.vision.v1.GetPropertiesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.vision.v1.GetPropertiesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.vision.v1.GetPropertiesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.vision.v1.VisionServiceClient.prototype.getProperties =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.vision.v1.VisionService/GetProperties',
+      request,
+      metadata || {},
+      methodDescriptor_VisionService_GetProperties,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.vision.v1.GetPropertiesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.vision.v1.GetPropertiesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.vision.v1.VisionServicePromiseClient.prototype.getProperties =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.vision.v1.VisionService/GetProperties',
+      request,
+      metadata || {},
+      methodDescriptor_VisionService_GetProperties);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.common.v1.DoCommandRequest,
  *   !proto.viam.common.v1.DoCommandResponse>}
  */
