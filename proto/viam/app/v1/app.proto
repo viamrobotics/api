@@ -211,6 +211,8 @@ service AppService {
 
   rpc ListKeys(ListKeysRequest) returns (ListKeysResponse);
 
+  rpc RenameKey(RenameKeyRequest) returns (RenameKeyResponse);
+
   rpc RotateKey(RotateKeyRequest) returns (RotateKeyResponse);
 
   rpc CreateKeyFromExistingKeyAuthorizations(CreateKeyFromExistingKeyAuthorizationsRequest) returns (CreateKeyFromExistingKeyAuthorizationsResponse);
@@ -1161,6 +1163,16 @@ message DeleteKeyRequest {
 }
 
 message DeleteKeyResponse {}
+
+message RenameKeyRequest {
+  string id = 1;
+  string name = 2;
+}
+
+message RenameKeyResponse {
+  string id = 1;
+  string name = 2;
+}
 
 message AuthorizationDetails {
   string authorization_type = 1;
