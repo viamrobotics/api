@@ -918,7 +918,8 @@ proto.viam.app.v1.RobotConfig.toObject = function(includeInstance, msg) {
     packagesList: jspb.Message.toObjectList(msg.getPackagesList(),
     proto.viam.app.v1.PackageConfig.toObject, includeInstance),
     overwriteFragmentStatusList: jspb.Message.toObjectList(msg.getOverwriteFragmentStatusList(),
-    proto.viam.app.v1.AppValidationStatus.toObject, includeInstance)
+    proto.viam.app.v1.AppValidationStatus.toObject, includeInstance),
+    enableWebProfile: jspb.Message.getBooleanFieldWithDefault(msg, 13, false)
   };
 
   if (includeInstance) {
@@ -1012,6 +1013,10 @@ proto.viam.app.v1.RobotConfig.deserializeBinaryFromReader = function(msg, reader
       var value = new proto.viam.app.v1.AppValidationStatus;
       reader.readMessage(value,proto.viam.app.v1.AppValidationStatus.deserializeBinaryFromReader);
       msg.addOverwriteFragmentStatus(value);
+      break;
+    case 13:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setEnableWebProfile(value);
       break;
     default:
       reader.skipField();
@@ -1134,6 +1139,13 @@ proto.viam.app.v1.RobotConfig.serializeBinaryToWriter = function(message, writer
       12,
       f,
       proto.viam.app.v1.AppValidationStatus.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 13));
+  if (f != null) {
+    writer.writeBool(
+      13,
+      f
     );
   }
 };
@@ -1585,6 +1597,42 @@ proto.viam.app.v1.RobotConfig.prototype.addOverwriteFragmentStatus = function(op
  */
 proto.viam.app.v1.RobotConfig.prototype.clearOverwriteFragmentStatusList = function() {
   return this.setOverwriteFragmentStatusList([]);
+};
+
+
+/**
+ * optional bool enable_web_profile = 13;
+ * @return {boolean}
+ */
+proto.viam.app.v1.RobotConfig.prototype.getEnableWebProfile = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 13, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.RobotConfig} returns this
+ */
+proto.viam.app.v1.RobotConfig.prototype.setEnableWebProfile = function(value) {
+  return jspb.Message.setField(this, 13, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.RobotConfig} returns this
+ */
+proto.viam.app.v1.RobotConfig.prototype.clearEnableWebProfile = function() {
+  return jspb.Message.setField(this, 13, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.RobotConfig.prototype.hasEnableWebProfile = function() {
+  return jspb.Message.getField(this, 13) != null;
 };
 
 

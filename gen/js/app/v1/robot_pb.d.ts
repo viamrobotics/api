@@ -68,6 +68,11 @@ export class RobotConfig extends jspb.Message {
   setOverwriteFragmentStatusList(value: Array<AppValidationStatus>): void;
   addOverwriteFragmentStatus(value?: AppValidationStatus, index?: number): AppValidationStatus;
 
+  hasEnableWebProfile(): boolean;
+  clearEnableWebProfile(): void;
+  getEnableWebProfile(): boolean;
+  setEnableWebProfile(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -92,6 +97,7 @@ export namespace RobotConfig {
     disablePartialStart: boolean,
     packagesList: Array<PackageConfig.AsObject>,
     overwriteFragmentStatusList: Array<AppValidationStatus.AsObject>,
+    enableWebProfile: boolean,
   }
 }
 
