@@ -2316,7 +2316,7 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.hasAngularDegsPerSec 
  * @private {!Array<number>}
  * @const
  */
-proto.viam.service.motion.v1.MoveOnGlobeRequest.repeatedFields_ = [6];
+proto.viam.service.motion.v1.MoveOnGlobeRequest.repeatedFields_ = [6,8];
 
 
 
@@ -2355,8 +2355,10 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.toObject = function(includeInsta
     componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     movementSensorName: (f = msg.getMovementSensorName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
-    common_v1_common_pb.GeoObstacle.toObject, includeInstance),
+    common_v1_common_pb.GeoGeometry.toObject, includeInstance),
     motionConfiguration: (f = msg.getMotionConfiguration()) && proto.viam.service.motion.v1.MotionConfiguration.toObject(includeInstance, f),
+    boundingRegionsList: jspb.Message.toObjectList(msg.getBoundingRegionsList(),
+    common_v1_common_pb.GeoGeometry.toObject, includeInstance),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -2418,14 +2420,19 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.deserializeBinaryFromReader = fu
       msg.setMovementSensorName(value);
       break;
     case 6:
-      var value = new common_v1_common_pb.GeoObstacle;
-      reader.readMessage(value,common_v1_common_pb.GeoObstacle.deserializeBinaryFromReader);
+      var value = new common_v1_common_pb.GeoGeometry;
+      reader.readMessage(value,common_v1_common_pb.GeoGeometry.deserializeBinaryFromReader);
       msg.addObstacles(value);
       break;
     case 7:
       var value = new proto.viam.service.motion.v1.MotionConfiguration;
       reader.readMessage(value,proto.viam.service.motion.v1.MotionConfiguration.deserializeBinaryFromReader);
       msg.setMotionConfiguration(value);
+      break;
+    case 8:
+      var value = new common_v1_common_pb.GeoGeometry;
+      reader.readMessage(value,common_v1_common_pb.GeoGeometry.deserializeBinaryFromReader);
+      msg.addBoundingRegions(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -2504,7 +2511,7 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.serializeBinaryToWriter = functi
     writer.writeRepeatedMessage(
       6,
       f,
-      common_v1_common_pb.GeoObstacle.serializeBinaryToWriter
+      common_v1_common_pb.GeoGeometry.serializeBinaryToWriter
     );
   }
   f = message.getMotionConfiguration();
@@ -2513,6 +2520,14 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.serializeBinaryToWriter = functi
       7,
       f,
       proto.viam.service.motion.v1.MotionConfiguration.serializeBinaryToWriter
+    );
+  }
+  f = message.getBoundingRegionsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      8,
+      f,
+      common_v1_common_pb.GeoGeometry.serializeBinaryToWriter
     );
   }
   f = message.getExtra();
@@ -2692,17 +2707,17 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.hasMovementSensorName 
 
 
 /**
- * repeated viam.common.v1.GeoObstacle obstacles = 6;
- * @return {!Array<!proto.viam.common.v1.GeoObstacle>}
+ * repeated viam.common.v1.GeoGeometry obstacles = 6;
+ * @return {!Array<!proto.viam.common.v1.GeoGeometry>}
  */
 proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.getObstaclesList = function() {
-  return /** @type{!Array<!proto.viam.common.v1.GeoObstacle>} */ (
-    jspb.Message.getRepeatedWrapperField(this, common_v1_common_pb.GeoObstacle, 6));
+  return /** @type{!Array<!proto.viam.common.v1.GeoGeometry>} */ (
+    jspb.Message.getRepeatedWrapperField(this, common_v1_common_pb.GeoGeometry, 6));
 };
 
 
 /**
- * @param {!Array<!proto.viam.common.v1.GeoObstacle>} value
+ * @param {!Array<!proto.viam.common.v1.GeoGeometry>} value
  * @return {!proto.viam.service.motion.v1.MoveOnGlobeRequest} returns this
 */
 proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.setObstaclesList = function(value) {
@@ -2711,12 +2726,12 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.setObstaclesList = fun
 
 
 /**
- * @param {!proto.viam.common.v1.GeoObstacle=} opt_value
+ * @param {!proto.viam.common.v1.GeoGeometry=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.common.v1.GeoObstacle}
+ * @return {!proto.viam.common.v1.GeoGeometry}
  */
 proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.addObstacles = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.viam.common.v1.GeoObstacle, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.viam.common.v1.GeoGeometry, opt_index);
 };
 
 
@@ -2763,6 +2778,44 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.clearMotionConfigurati
  */
 proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.hasMotionConfiguration = function() {
   return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * repeated viam.common.v1.GeoGeometry bounding_regions = 8;
+ * @return {!Array<!proto.viam.common.v1.GeoGeometry>}
+ */
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.getBoundingRegionsList = function() {
+  return /** @type{!Array<!proto.viam.common.v1.GeoGeometry>} */ (
+    jspb.Message.getRepeatedWrapperField(this, common_v1_common_pb.GeoGeometry, 8));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.common.v1.GeoGeometry>} value
+ * @return {!proto.viam.service.motion.v1.MoveOnGlobeRequest} returns this
+*/
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.setBoundingRegionsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 8, value);
+};
+
+
+/**
+ * @param {!proto.viam.common.v1.GeoGeometry=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.viam.common.v1.GeoGeometry}
+ */
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.addBoundingRegions = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 8, opt_value, proto.viam.common.v1.GeoGeometry, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.service.motion.v1.MoveOnGlobeRequest} returns this
+ */
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.clearBoundingRegionsList = function() {
+  return this.setBoundingRegionsList([]);
 };
 
 
