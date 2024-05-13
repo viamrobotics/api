@@ -50,6 +50,24 @@ type VisionServiceGetObjectPointClouds = {
   readonly responseType: typeof service_vision_v1_vision_pb.GetObjectPointCloudsResponse;
 };
 
+type VisionServiceGetProperties = {
+  readonly methodName: string;
+  readonly service: typeof VisionService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_vision_v1_vision_pb.GetPropertiesRequest;
+  readonly responseType: typeof service_vision_v1_vision_pb.GetPropertiesResponse;
+};
+
+type VisionServiceCaptureAllFromCamera = {
+  readonly methodName: string;
+  readonly service: typeof VisionService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_vision_v1_vision_pb.CaptureAllFromCameraRequest;
+  readonly responseType: typeof service_vision_v1_vision_pb.CaptureAllFromCameraResponse;
+};
+
 type VisionServiceDoCommand = {
   readonly methodName: string;
   readonly service: typeof VisionService;
@@ -66,6 +84,8 @@ export class VisionService {
   static readonly GetClassificationsFromCamera: VisionServiceGetClassificationsFromCamera;
   static readonly GetClassifications: VisionServiceGetClassifications;
   static readonly GetObjectPointClouds: VisionServiceGetObjectPointClouds;
+  static readonly GetProperties: VisionServiceGetProperties;
+  static readonly CaptureAllFromCamera: VisionServiceCaptureAllFromCamera;
   static readonly DoCommand: VisionServiceDoCommand;
 }
 
@@ -145,6 +165,24 @@ export class VisionServiceClient {
   getObjectPointClouds(
     requestMessage: service_vision_v1_vision_pb.GetObjectPointCloudsRequest,
     callback: (error: ServiceError|null, responseMessage: service_vision_v1_vision_pb.GetObjectPointCloudsResponse|null) => void
+  ): UnaryResponse;
+  getProperties(
+    requestMessage: service_vision_v1_vision_pb.GetPropertiesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_vision_v1_vision_pb.GetPropertiesResponse|null) => void
+  ): UnaryResponse;
+  getProperties(
+    requestMessage: service_vision_v1_vision_pb.GetPropertiesRequest,
+    callback: (error: ServiceError|null, responseMessage: service_vision_v1_vision_pb.GetPropertiesResponse|null) => void
+  ): UnaryResponse;
+  captureAllFromCamera(
+    requestMessage: service_vision_v1_vision_pb.CaptureAllFromCameraRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_vision_v1_vision_pb.CaptureAllFromCameraResponse|null) => void
+  ): UnaryResponse;
+  captureAllFromCamera(
+    requestMessage: service_vision_v1_vision_pb.CaptureAllFromCameraRequest,
+    callback: (error: ServiceError|null, responseMessage: service_vision_v1_vision_pb.CaptureAllFromCameraResponse|null) => void
   ): UnaryResponse;
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,

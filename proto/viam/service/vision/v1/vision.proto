@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.service.vision.v1;
 
 import "common/v1/common.proto";
+import "component/camera/v1/camera.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
@@ -48,6 +49,19 @@ service VisionService {
     };
   }
 
+  // GetProperties will return the properties as booleans given the name of the vision service
+  rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/vision/{name}/get_properties"
+    };
+  }
+
+  rpc CaptureAllFromCamera(CaptureAllFromCameraRequest) returns (CaptureAllFromCameraResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/vision/{name}/capture_all"
+    };
+  }
+
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {
@@ -55,6 +69,7 @@ service VisionService {
     };
   }
 }
+
 message GetDetectionsRequest {
   // name of the vision service
   string name = 1;
@@ -159,4 +174,45 @@ message GetObjectPointCloudsResponse {
   string mime_type = 1;
   // List of objects in the scene
   repeated common.v1.PointCloudObject objects = 2;
+}
+
+message GetPropertiesRequest {
+  // name of the vision service
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message CaptureAllFromCameraRequest {
+  // name of the vision service
+  string name = 1;
+  // name of camera source to use as input
+  string camera_name = 2;
+  // whether or not including the image in the response
+  bool return_image = 3;
+  // whether or not including classifications in the response
+  bool return_classifications = 4;
+  // whether or not including detections in the response
+  bool return_detections = 5;
+  // whether or not including pcd in the response
+  bool return_object_point_clouds = 6;
+
+  google.protobuf.Struct extra = 99;
+}
+
+message CaptureAllFromCameraResponse {
+  component.camera.v1.Image image = 1;
+  repeated Detection detections = 2;
+  repeated Classification classifications = 3;
+  repeated common.v1.PointCloudObject objects = 4;
+  google.protobuf.Struct extra = 99;
+}
+
+message GetPropertiesResponse {
+  // whether or not classifactions are supported by the vision service
+  bool classifications_supported = 1;
+  // whether or not detections are supported by the vision service
+  bool detections_supported = 2;
+  // whether or not 3d segmentation is supported by the vision service
+  bool object_point_clouds_supported = 3;
 }
