@@ -26930,7 +26930,7 @@ proto.viam.app.v1.UpdateRegistryItemResponse.serializeBinaryToWriter = function(
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.ListRegistryItemsRequest.repeatedFields_ = [2,3,4,5];
+proto.viam.app.v1.ListRegistryItemsRequest.repeatedFields_ = [2,3,4,5,8];
 
 
 
@@ -26969,7 +26969,8 @@ proto.viam.app.v1.ListRegistryItemsRequest.toObject = function(includeInstance, 
     platformsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
     statusesList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
     searchTerm: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 7, "")
+    pageToken: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    publicNamespacesList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -27039,6 +27040,10 @@ proto.viam.app.v1.ListRegistryItemsRequest.deserializeBinaryFromReader = functio
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addPublicNamespaces(value);
       break;
     default:
       reader.skipField();
@@ -27115,6 +27120,13 @@ proto.viam.app.v1.ListRegistryItemsRequest.serializeBinaryToWriter = function(me
   if (f != null) {
     writer.writeString(
       7,
+      f
+    );
+  }
+  f = message.getPublicNamespacesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      8,
       f
     );
   }
@@ -27374,6 +27386,43 @@ proto.viam.app.v1.ListRegistryItemsRequest.prototype.clearPageToken = function()
  */
 proto.viam.app.v1.ListRegistryItemsRequest.prototype.hasPageToken = function() {
   return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * repeated string public_namespaces = 8;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.getPublicNamespacesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 8));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.setPublicNamespacesList = function(value) {
+  return jspb.Message.setField(this, 8, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.addPublicNamespaces = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 8, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.clearPublicNamespacesList = function() {
+  return this.setPublicNamespacesList([]);
 };
 
 
