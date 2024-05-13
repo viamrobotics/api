@@ -35,6 +35,9 @@ type VisionServiceClient interface {
 	// as well as the 3-vector center of each of the found objects.
 	// A specific MIME type can be requested but may not necessarily be the same one returned.
 	GetObjectPointClouds(ctx context.Context, in *GetObjectPointCloudsRequest, opts ...grpc.CallOption) (*GetObjectPointCloudsResponse, error)
+	// GetProperties will return the properties as booleans given the name of the vision service
+	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
+	CaptureAllFromCamera(ctx context.Context, in *CaptureAllFromCameraRequest, opts ...grpc.CallOption) (*CaptureAllFromCameraResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
@@ -92,6 +95,24 @@ func (c *visionServiceClient) GetObjectPointClouds(ctx context.Context, in *GetO
 	return out, nil
 }
 
+func (c *visionServiceClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error) {
+	out := new(GetPropertiesResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.vision.v1.VisionService/GetProperties", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *visionServiceClient) CaptureAllFromCamera(ctx context.Context, in *CaptureAllFromCameraRequest, opts ...grpc.CallOption) (*CaptureAllFromCameraResponse, error) {
+	out := new(CaptureAllFromCameraResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.vision.v1.VisionService/CaptureAllFromCamera", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *visionServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.vision.v1.VisionService/DoCommand", in, out, opts...)
@@ -117,6 +138,9 @@ type VisionServiceServer interface {
 	// as well as the 3-vector center of each of the found objects.
 	// A specific MIME type can be requested but may not necessarily be the same one returned.
 	GetObjectPointClouds(context.Context, *GetObjectPointCloudsRequest) (*GetObjectPointCloudsResponse, error)
+	// GetProperties will return the properties as booleans given the name of the vision service
+	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
+	CaptureAllFromCamera(context.Context, *CaptureAllFromCameraRequest) (*CaptureAllFromCameraResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedVisionServiceServer()
@@ -140,6 +164,12 @@ func (UnimplementedVisionServiceServer) GetClassifications(context.Context, *Get
 }
 func (UnimplementedVisionServiceServer) GetObjectPointClouds(context.Context, *GetObjectPointCloudsRequest) (*GetObjectPointCloudsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObjectPointClouds not implemented")
+}
+func (UnimplementedVisionServiceServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProperties not implemented")
+}
+func (UnimplementedVisionServiceServer) CaptureAllFromCamera(context.Context, *CaptureAllFromCameraRequest) (*CaptureAllFromCameraResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CaptureAllFromCamera not implemented")
 }
 func (UnimplementedVisionServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -247,6 +277,42 @@ func _VisionService_GetObjectPointClouds_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _VisionService_GetProperties_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPropertiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VisionServiceServer).GetProperties(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.vision.v1.VisionService/GetProperties",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VisionServiceServer).GetProperties(ctx, req.(*GetPropertiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VisionService_CaptureAllFromCamera_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CaptureAllFromCameraRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VisionServiceServer).CaptureAllFromCamera(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.vision.v1.VisionService/CaptureAllFromCamera",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VisionServiceServer).CaptureAllFromCamera(ctx, req.(*CaptureAllFromCameraRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _VisionService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DoCommandRequest)
 	if err := dec(in); err != nil {
@@ -291,6 +357,14 @@ var VisionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetObjectPointClouds",
 			Handler:    _VisionService_GetObjectPointClouds_Handler,
+		},
+		{
+			MethodName: "GetProperties",
+			Handler:    _VisionService_GetProperties_Handler,
+		},
+		{
+			MethodName: "CaptureAllFromCamera",
+			Handler:    _VisionService_CaptureAllFromCamera_Handler,
 		},
 		{
 			MethodName: "DoCommand",

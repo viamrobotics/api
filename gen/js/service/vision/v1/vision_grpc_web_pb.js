@@ -22,6 +22,8 @@ grpc.web = require('grpc-web');
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js')
 
+var component_camera_v1_camera_pb = require('../../../component/camera/v1/camera_pb.js')
+
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
 
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
@@ -385,6 +387,128 @@ proto.viam.service.vision.v1.VisionServicePromiseClient.prototype.getObjectPoint
       request,
       metadata || {},
       methodDescriptor_VisionService_GetObjectPointClouds);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.vision.v1.GetPropertiesRequest,
+ *   !proto.viam.service.vision.v1.GetPropertiesResponse>}
+ */
+const methodDescriptor_VisionService_GetProperties = new grpc.web.MethodDescriptor(
+  '/viam.service.vision.v1.VisionService/GetProperties',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.vision.v1.GetPropertiesRequest,
+  proto.viam.service.vision.v1.GetPropertiesResponse,
+  /**
+   * @param {!proto.viam.service.vision.v1.GetPropertiesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.vision.v1.GetPropertiesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.vision.v1.GetPropertiesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.vision.v1.GetPropertiesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.vision.v1.GetPropertiesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.vision.v1.VisionServiceClient.prototype.getProperties =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.vision.v1.VisionService/GetProperties',
+      request,
+      metadata || {},
+      methodDescriptor_VisionService_GetProperties,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.vision.v1.GetPropertiesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.vision.v1.GetPropertiesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.vision.v1.VisionServicePromiseClient.prototype.getProperties =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.vision.v1.VisionService/GetProperties',
+      request,
+      metadata || {},
+      methodDescriptor_VisionService_GetProperties);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.vision.v1.CaptureAllFromCameraRequest,
+ *   !proto.viam.service.vision.v1.CaptureAllFromCameraResponse>}
+ */
+const methodDescriptor_VisionService_CaptureAllFromCamera = new grpc.web.MethodDescriptor(
+  '/viam.service.vision.v1.VisionService/CaptureAllFromCamera',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.vision.v1.CaptureAllFromCameraRequest,
+  proto.viam.service.vision.v1.CaptureAllFromCameraResponse,
+  /**
+   * @param {!proto.viam.service.vision.v1.CaptureAllFromCameraRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.vision.v1.CaptureAllFromCameraResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.vision.v1.CaptureAllFromCameraRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.vision.v1.CaptureAllFromCameraResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.vision.v1.CaptureAllFromCameraResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.vision.v1.VisionServiceClient.prototype.captureAllFromCamera =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.vision.v1.VisionService/CaptureAllFromCamera',
+      request,
+      metadata || {},
+      methodDescriptor_VisionService_CaptureAllFromCamera,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.vision.v1.CaptureAllFromCameraRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.vision.v1.CaptureAllFromCameraResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.vision.v1.VisionServicePromiseClient.prototype.captureAllFromCamera =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.vision.v1.VisionService/CaptureAllFromCamera',
+      request,
+      metadata || {},
+      methodDescriptor_VisionService_CaptureAllFromCamera);
 };
 
 
