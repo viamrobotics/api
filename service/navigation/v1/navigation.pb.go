@@ -871,7 +871,7 @@ type GetObstaclesResponse struct {
 	unknownFields protoimpl.UnknownFields
 
 	// List of all known geometries
-	Obstacles []*v1.GeoObstacle `protobuf:"bytes,1,rep,name=obstacles,proto3" json:"obstacles,omitempty"`
+	Obstacles []*v1.GeoGeometry `protobuf:"bytes,1,rep,name=obstacles,proto3" json:"obstacles,omitempty"`
 }
 
 func (x *GetObstaclesResponse) Reset() {
@@ -906,7 +906,7 @@ func (*GetObstaclesResponse) Descriptor() ([]byte, []int) {
 	return file_service_navigation_v1_navigation_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *GetObstaclesResponse) GetObstacles() []*v1.GeoObstacle {
+func (x *GetObstaclesResponse) GetObstacles() []*v1.GeoGeometry {
 	if x != nil {
 		return x.Obstacles
 	}
@@ -1263,7 +1263,7 @@ var file_service_navigation_v1_navigation_proto_rawDesc = []byte{
 	0x6c, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x09, 0x6f,
 	0x62, 0x73, 0x74, 0x61, 0x63, 0x6c, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b,
 	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e,
-	0x47, 0x65, 0x6f, 0x4f, 0x62, 0x73, 0x74, 0x61, 0x63, 0x6c, 0x65, 0x52, 0x09, 0x6f, 0x62, 0x73,
+	0x47, 0x65, 0x6f, 0x47, 0x65, 0x6f, 0x6d, 0x65, 0x74, 0x72, 0x79, 0x52, 0x09, 0x6f, 0x62, 0x73,
 	0x74, 0x61, 0x63, 0x6c, 0x65, 0x73, 0x22, 0x76, 0x0a, 0x04, 0x50, 0x61, 0x74, 0x68, 0x12, 0x36,
 	0x0a, 0x17, 0x64, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x77, 0x61,
 	0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
@@ -1452,7 +1452,7 @@ var file_service_navigation_v1_navigation_proto_goTypes = []interface{}{
 	(*GetPropertiesResponse)(nil),  // 21: viam.service.navigation.v1.GetPropertiesResponse
 	(*structpb.Struct)(nil),        // 22: google.protobuf.Struct
 	(*v1.GeoPoint)(nil),            // 23: viam.common.v1.GeoPoint
-	(*v1.GeoObstacle)(nil),         // 24: viam.common.v1.GeoObstacle
+	(*v1.GeoGeometry)(nil),         // 24: viam.common.v1.GeoGeometry
 	(*v1.DoCommandRequest)(nil),    // 25: viam.common.v1.DoCommandRequest
 	(*v1.DoCommandResponse)(nil),   // 26: viam.common.v1.DoCommandResponse
 }
@@ -1470,7 +1470,7 @@ var file_service_navigation_v1_navigation_proto_depIdxs = []int32{
 	22, // 10: viam.service.navigation.v1.AddWaypointRequest.extra:type_name -> google.protobuf.Struct
 	22, // 11: viam.service.navigation.v1.RemoveWaypointRequest.extra:type_name -> google.protobuf.Struct
 	22, // 12: viam.service.navigation.v1.GetObstaclesRequest.extra:type_name -> google.protobuf.Struct
-	24, // 13: viam.service.navigation.v1.GetObstaclesResponse.obstacles:type_name -> viam.common.v1.GeoObstacle
+	24, // 13: viam.service.navigation.v1.GetObstaclesResponse.obstacles:type_name -> viam.common.v1.GeoGeometry
 	23, // 14: viam.service.navigation.v1.Path.geopoints:type_name -> viam.common.v1.GeoPoint
 	22, // 15: viam.service.navigation.v1.GetPathsRequest.extra:type_name -> google.protobuf.Struct
 	17, // 16: viam.service.navigation.v1.GetPathsResponse.paths:type_name -> viam.service.navigation.v1.Path
