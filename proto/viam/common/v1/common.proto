@@ -117,12 +117,11 @@ message GeoPoint {
   double longitude = 2;
 }
 
-// GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,
-// captured in latitude and longitude.
-message GeoObstacle {
-  // Location of the obstacle
+// GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
+message GeoGeometry {
+  // Location of the geometry
   GeoPoint location = 1;
-  // Geometries that describe the obstacle, where embedded Pose data is with respect to the specified location
+  // Geometries associated with the location, where embedded Pose data is with respect to the specified location
   repeated Geometry geometries = 2;
 }
 
@@ -143,7 +142,8 @@ message Transform {
 message WorldState {
   // a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
   repeated GeometriesInFrame obstacles = 1;
-  // a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional
+  // a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to
+  // another, or to attach moving geometries to the frame system. This field is optional
   repeated Transform transforms = 3;
 }
 

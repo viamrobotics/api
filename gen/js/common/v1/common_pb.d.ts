@@ -364,7 +364,7 @@ export namespace GeoPoint {
   }
 }
 
-export class GeoObstacle extends jspb.Message {
+export class GeoGeometry extends jspb.Message {
   hasLocation(): boolean;
   clearLocation(): void;
   getLocation(): GeoPoint | undefined;
@@ -376,16 +376,16 @@ export class GeoObstacle extends jspb.Message {
   addGeometries(value?: Geometry, index?: number): Geometry;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GeoObstacle.AsObject;
-  static toObject(includeInstance: boolean, msg: GeoObstacle): GeoObstacle.AsObject;
+  toObject(includeInstance?: boolean): GeoGeometry.AsObject;
+  static toObject(includeInstance: boolean, msg: GeoGeometry): GeoGeometry.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GeoObstacle, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GeoObstacle;
-  static deserializeBinaryFromReader(message: GeoObstacle, reader: jspb.BinaryReader): GeoObstacle;
+  static serializeBinaryToWriter(message: GeoGeometry, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GeoGeometry;
+  static deserializeBinaryFromReader(message: GeoGeometry, reader: jspb.BinaryReader): GeoGeometry;
 }
 
-export namespace GeoObstacle {
+export namespace GeoGeometry {
   export type AsObject = {
     location?: GeoPoint.AsObject,
     geometriesList: Array<Geometry.AsObject>,
