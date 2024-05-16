@@ -889,21 +889,20 @@ func (x *GeoPoint) GetLongitude() float64 {
 	return 0
 }
 
-// GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,
-// captured in latitude and longitude.
-type GeoObstacle struct {
+// GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
+type GeoGeometry struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Location of the obstacle
+	// Location of the geometry
 	Location *GeoPoint `protobuf:"bytes,1,opt,name=location,proto3" json:"location,omitempty"`
-	// Geometries that describe the obstacle, where embedded Pose data is with respect to the specified location
+	// Geometries associated with the location, where embedded Pose data is with respect to the specified location
 	Geometries []*Geometry `protobuf:"bytes,2,rep,name=geometries,proto3" json:"geometries,omitempty"`
 }
 
-func (x *GeoObstacle) Reset() {
-	*x = GeoObstacle{}
+func (x *GeoGeometry) Reset() {
+	*x = GeoGeometry{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_common_v1_common_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -911,13 +910,13 @@ func (x *GeoObstacle) Reset() {
 	}
 }
 
-func (x *GeoObstacle) String() string {
+func (x *GeoGeometry) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GeoObstacle) ProtoMessage() {}
+func (*GeoGeometry) ProtoMessage() {}
 
-func (x *GeoObstacle) ProtoReflect() protoreflect.Message {
+func (x *GeoGeometry) ProtoReflect() protoreflect.Message {
 	mi := &file_common_v1_common_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -929,19 +928,19 @@ func (x *GeoObstacle) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GeoObstacle.ProtoReflect.Descriptor instead.
-func (*GeoObstacle) Descriptor() ([]byte, []int) {
+// Deprecated: Use GeoGeometry.ProtoReflect.Descriptor instead.
+func (*GeoGeometry) Descriptor() ([]byte, []int) {
 	return file_common_v1_common_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *GeoObstacle) GetLocation() *GeoPoint {
+func (x *GeoGeometry) GetLocation() *GeoPoint {
 	if x != nil {
 		return x.Location
 	}
 	return nil
 }
 
-func (x *GeoObstacle) GetGeometries() []*Geometry {
+func (x *GeoGeometry) GetGeometries() []*Geometry {
 	if x != nil {
 		return x.Geometries
 	}
@@ -1026,7 +1025,8 @@ type WorldState struct {
 
 	// a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
 	Obstacles []*GeometriesInFrame `protobuf:"bytes,1,rep,name=obstacles,proto3" json:"obstacles,omitempty"`
-	// a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional
+	// a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to
+	// another, or to attach moving geometries to the frame system. This field is optional
 	Transforms []*Transform `protobuf:"bytes,3,rep,name=transforms,proto3" json:"transforms,omitempty"`
 }
 
@@ -1815,7 +1815,7 @@ var file_common_v1_common_proto_rawDesc = []byte{
 	0x28, 0x01, 0x52, 0x08, 0x6c, 0x61, 0x74, 0x69, 0x74, 0x75, 0x64, 0x65, 0x12, 0x1c, 0x0a, 0x09,
 	0x6c, 0x6f, 0x6e, 0x67, 0x69, 0x74, 0x75, 0x64, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x01, 0x52,
 	0x09, 0x6c, 0x6f, 0x6e, 0x67, 0x69, 0x74, 0x75, 0x64, 0x65, 0x22, 0x7d, 0x0a, 0x0b, 0x47, 0x65,
-	0x6f, 0x4f, 0x62, 0x73, 0x74, 0x61, 0x63, 0x6c, 0x65, 0x12, 0x34, 0x0a, 0x08, 0x6c, 0x6f, 0x63,
+	0x6f, 0x47, 0x65, 0x6f, 0x6d, 0x65, 0x74, 0x72, 0x79, 0x12, 0x34, 0x0a, 0x08, 0x6c, 0x6f, 0x63,
 	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x76, 0x69,
 	0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x6f,
 	0x50, 0x6f, 0x69, 0x6e, 0x74, 0x52, 0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12,
@@ -1973,7 +1973,7 @@ var file_common_v1_common_proto_goTypes = []interface{}{
 	(*GeometriesInFrame)(nil),          // 10: viam.common.v1.GeometriesInFrame
 	(*PointCloudObject)(nil),           // 11: viam.common.v1.PointCloudObject
 	(*GeoPoint)(nil),                   // 12: viam.common.v1.GeoPoint
-	(*GeoObstacle)(nil),                // 13: viam.common.v1.GeoObstacle
+	(*GeoGeometry)(nil),                // 13: viam.common.v1.GeoGeometry
 	(*Transform)(nil),                  // 14: viam.common.v1.Transform
 	(*WorldState)(nil),                 // 15: viam.common.v1.WorldState
 	(*ActuatorStatus)(nil),             // 16: viam.common.v1.ActuatorStatus
@@ -2002,8 +2002,8 @@ var file_common_v1_common_proto_depIdxs = []int32{
 	7,  // 5: viam.common.v1.Geometry.capsule:type_name -> viam.common.v1.Capsule
 	9,  // 6: viam.common.v1.GeometriesInFrame.geometries:type_name -> viam.common.v1.Geometry
 	10, // 7: viam.common.v1.PointCloudObject.geometries:type_name -> viam.common.v1.GeometriesInFrame
-	12, // 8: viam.common.v1.GeoObstacle.location:type_name -> viam.common.v1.GeoPoint
-	9,  // 9: viam.common.v1.GeoObstacle.geometries:type_name -> viam.common.v1.Geometry
+	12, // 8: viam.common.v1.GeoGeometry.location:type_name -> viam.common.v1.GeoPoint
+	9,  // 9: viam.common.v1.GeoGeometry.geometries:type_name -> viam.common.v1.Geometry
 	4,  // 10: viam.common.v1.Transform.pose_in_observer_frame:type_name -> viam.common.v1.PoseInFrame
 	9,  // 11: viam.common.v1.Transform.physical_object:type_name -> viam.common.v1.Geometry
 	10, // 12: viam.common.v1.WorldState.obstacles:type_name -> viam.common.v1.GeometriesInFrame
@@ -2180,7 +2180,7 @@ func file_common_v1_common_proto_init() {
 			}
 		}
 		file_common_v1_common_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GeoObstacle); i {
+			switch v := v.(*GeoGeometry); i {
 			case 0:
 				return &v.state
 			case 1:

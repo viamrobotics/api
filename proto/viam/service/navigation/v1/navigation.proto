@@ -166,7 +166,7 @@ message GetObstaclesRequest {
 
 message GetObstaclesResponse {
   // List of all known geometries
-  repeated common.v1.GeoObstacle obstacles = 1;
+  repeated common.v1.GeoGeometry obstacles = 1;
 }
 
 // A user provided destination and the set of geopoints that

@@ -346,9 +346,9 @@ export namespace GetObstaclesRequest {
 
 export class GetObstaclesResponse extends jspb.Message {
   clearObstaclesList(): void;
-  getObstaclesList(): Array<common_v1_common_pb.GeoObstacle>;
-  setObstaclesList(value: Array<common_v1_common_pb.GeoObstacle>): void;
-  addObstacles(value?: common_v1_common_pb.GeoObstacle, index?: number): common_v1_common_pb.GeoObstacle;
+  getObstaclesList(): Array<common_v1_common_pb.GeoGeometry>;
+  setObstaclesList(value: Array<common_v1_common_pb.GeoGeometry>): void;
+  addObstacles(value?: common_v1_common_pb.GeoGeometry, index?: number): common_v1_common_pb.GeoGeometry;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetObstaclesResponse.AsObject;
@@ -362,7 +362,7 @@ export class GetObstaclesResponse extends jspb.Message {
 
 export namespace GetObstaclesResponse {
   export type AsObject = {
-    obstaclesList: Array<common_v1_common_pb.GeoObstacle.AsObject>,
+    obstaclesList: Array<common_v1_common_pb.GeoGeometry.AsObject>,
   }
 }
 

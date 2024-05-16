@@ -258,14 +258,19 @@ export class MoveOnGlobeRequest extends jspb.Message {
   setMovementSensorName(value?: common_v1_common_pb.ResourceName): void;
 
   clearObstaclesList(): void;
-  getObstaclesList(): Array<common_v1_common_pb.GeoObstacle>;
-  setObstaclesList(value: Array<common_v1_common_pb.GeoObstacle>): void;
-  addObstacles(value?: common_v1_common_pb.GeoObstacle, index?: number): common_v1_common_pb.GeoObstacle;
+  getObstaclesList(): Array<common_v1_common_pb.GeoGeometry>;
+  setObstaclesList(value: Array<common_v1_common_pb.GeoGeometry>): void;
+  addObstacles(value?: common_v1_common_pb.GeoGeometry, index?: number): common_v1_common_pb.GeoGeometry;
 
   hasMotionConfiguration(): boolean;
   clearMotionConfiguration(): void;
   getMotionConfiguration(): MotionConfiguration | undefined;
   setMotionConfiguration(value?: MotionConfiguration): void;
+
+  clearBoundingRegionsList(): void;
+  getBoundingRegionsList(): Array<common_v1_common_pb.GeoGeometry>;
+  setBoundingRegionsList(value: Array<common_v1_common_pb.GeoGeometry>): void;
+  addBoundingRegions(value?: common_v1_common_pb.GeoGeometry, index?: number): common_v1_common_pb.GeoGeometry;
 
   hasExtra(): boolean;
   clearExtra(): void;
@@ -289,8 +294,9 @@ export namespace MoveOnGlobeRequest {
     heading: number,
     componentName?: common_v1_common_pb.ResourceName.AsObject,
     movementSensorName?: common_v1_common_pb.ResourceName.AsObject,
-    obstaclesList: Array<common_v1_common_pb.GeoObstacle.AsObject>,
+    obstaclesList: Array<common_v1_common_pb.GeoGeometry.AsObject>,
     motionConfiguration?: MotionConfiguration.AsObject,
+    boundingRegionsList: Array<common_v1_common_pb.GeoGeometry.AsObject>,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
