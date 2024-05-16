@@ -75,9 +75,6 @@ export class SubmitCustomTrainingJobRequest extends jspb.Message {
   getRegistryItemId(): string;
   setRegistryItemId(value: string): void;
 
-  getRegistryItemVersion(): string;
-  setRegistryItemVersion(value: string): void;
-
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
@@ -101,7 +98,6 @@ export namespace SubmitCustomTrainingJobRequest {
   export type AsObject = {
     datasetId: string,
     registryItemId: string,
-    registryItemVersion: string,
     organizationId: string,
     modelName: string,
     modelVersion: string,
@@ -249,9 +245,6 @@ export class TrainingJobMetadata extends jspb.Message {
   getRegistryItemId(): string;
   setRegistryItemId(value: string): void;
 
-  getRegistryItemVersion(): string;
-  setRegistryItemVersion(value: string): void;
-
   getStatus(): TrainingStatusMap[keyof TrainingStatusMap];
   setStatus(value: TrainingStatusMap[keyof TrainingStatusMap]): void;
 
@@ -310,7 +303,6 @@ export namespace TrainingJobMetadata {
     modelFramework: ModelFrameworkMap[keyof ModelFrameworkMap],
     isCustomJob: boolean,
     registryItemId: string,
-    registryItemVersion: string,
     status: TrainingStatusMap[keyof TrainingStatusMap],
     errorStatus?: google_rpc_status_pb.Status.AsObject,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
