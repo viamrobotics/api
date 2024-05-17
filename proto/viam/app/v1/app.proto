@@ -885,7 +885,7 @@ message MLTrainingVersion {
 }
 message MLTrainingMetadata {
   // A list of package versions for ML training source distribution
-  repeated MLTrainingVersion versions = 5;
+  repeated MLTrainingVersion training_versions = 5;
   viam.app.mltraining.v1.ModelType model_type = 2;
   viam.app.mltraining.v1.ModelFramework model_framework = 3;
   bool draft = 4;
