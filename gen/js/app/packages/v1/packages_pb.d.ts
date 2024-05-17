@@ -13,6 +13,11 @@ export class FileInfo extends jspb.Message {
   getSize(): number;
   setSize(value: number): void;
 
+  hasIsDirectory(): boolean;
+  clearIsDirectory(): void;
+  getIsDirectory(): boolean;
+  setIsDirectory(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FileInfo.AsObject;
   static toObject(includeInstance: boolean, msg: FileInfo): FileInfo.AsObject;
@@ -27,6 +32,7 @@ export namespace FileInfo {
   export type AsObject = {
     name: string,
     size: number,
+    isDirectory: boolean,
   }
 }
 
