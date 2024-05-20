@@ -891,7 +891,7 @@ message MLTrainingMetadata {
   bool draft = 4;
 
   reserved 1;
-  reserved "versions"
+  reserved "versions";
 }
 
 message RegistryItem {
