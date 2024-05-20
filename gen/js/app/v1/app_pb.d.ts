@@ -3087,11 +3087,37 @@ export namespace MLModelMetadata {
   }
 }
 
+export class MLTrainingVersion extends jspb.Message {
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MLTrainingVersion.AsObject;
+  static toObject(includeInstance: boolean, msg: MLTrainingVersion): MLTrainingVersion.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MLTrainingVersion, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MLTrainingVersion;
+  static deserializeBinaryFromReader(message: MLTrainingVersion, reader: jspb.BinaryReader): MLTrainingVersion;
+}
+
+export namespace MLTrainingVersion {
+  export type AsObject = {
+    version: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
 export class MLTrainingMetadata extends jspb.Message {
-  clearVersionsList(): void;
-  getVersionsList(): Array<string>;
-  setVersionsList(value: Array<string>): void;
-  addVersions(value: string, index?: number): string;
+  clearTrainingVersionsList(): void;
+  getTrainingVersionsList(): Array<MLTrainingVersion>;
+  setTrainingVersionsList(value: Array<MLTrainingVersion>): void;
+  addTrainingVersions(value?: MLTrainingVersion, index?: number): MLTrainingVersion;
 
   getModelType(): app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap];
   setModelType(value: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap]): void;
@@ -3114,7 +3140,7 @@ export class MLTrainingMetadata extends jspb.Message {
 
 export namespace MLTrainingMetadata {
   export type AsObject = {
-    versionsList: Array<string>,
+    trainingVersionsList: Array<MLTrainingVersion.AsObject>,
     modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
     modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
     draft: boolean,
