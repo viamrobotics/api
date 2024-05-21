@@ -53,6 +53,7 @@ enum PackageType {
 message FileInfo {
   string name = 1;
   uint64 size = 2;
+  optional bool is_directory = 3;
 }
 
 message PackageInfo {

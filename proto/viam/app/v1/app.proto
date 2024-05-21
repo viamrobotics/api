@@ -974,6 +974,8 @@ message ListRegistryItemsRequest {
   repeated RegistryItemStatus statuses = 5;
   optional string search_term = 6;
   optional string page_token = 7;
+  // One or more public namespaces to return results for.
+  repeated string public_namespaces = 8;
 }
 
 message ListRegistryItemsResponse {

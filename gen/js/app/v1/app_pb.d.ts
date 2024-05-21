@@ -3393,6 +3393,11 @@ export class ListRegistryItemsRequest extends jspb.Message {
   getPageToken(): string;
   setPageToken(value: string): void;
 
+  clearPublicNamespacesList(): void;
+  getPublicNamespacesList(): Array<string>;
+  setPublicNamespacesList(value: Array<string>): void;
+  addPublicNamespaces(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListRegistryItemsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListRegistryItemsRequest): ListRegistryItemsRequest.AsObject;
@@ -3412,6 +3417,7 @@ export namespace ListRegistryItemsRequest {
     statusesList: Array<RegistryItemStatusMap[keyof RegistryItemStatusMap]>,
     searchTerm: string,
     pageToken: string,
+    publicNamespacesList: Array<string>,
   }
 }
 

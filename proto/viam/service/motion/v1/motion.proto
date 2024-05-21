@@ -159,9 +159,11 @@ message MoveOnGlobeRequest {
   // Name of the movement sensor which will be used to check robot location
   common.v1.ResourceName movement_sensor_name = 5;
   // Obstacles to be considered for motion planning
-  repeated common.v1.GeoObstacle obstacles = 6;
+  repeated common.v1.GeoGeometry obstacles = 6;
   // Optional set of motion configuration options
   optional MotionConfiguration motion_configuration = 7;
+  // Set of obstacles which the robot must remain within while navigating
+  repeated common.v1.GeoGeometry bounding_regions = 8;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
