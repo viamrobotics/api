@@ -17,6 +17,9 @@ service EndUserService {
 
   // Allows users to update their third party auth applications
   rpc UpdateAuthApplication(UpdateAuthApplicationRequest) returns (UpdateAuthApplicationResponse);
+
+  // Allows users to get their third party auth applications
+  rpc GetAuthApplication(UpdateAuthApplicationRequest) returns (UpdateAuthApplicationResponse);
 }
 
 message IsLegalAcceptedRequest {}
