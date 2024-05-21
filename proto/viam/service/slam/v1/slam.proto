@@ -71,10 +71,6 @@ message GetPositionRequest {
 message GetPositionResponse {
   // Current position of the specified component in the SLAM Map
   common.v1.Pose pose = 1;
-  // This is usually the name of the camera that is in the SLAM config
-  string component_reference = 2;
-  // Additional information in the response
-  google.protobuf.Struct extra = 99;
 }
 
 message GetPointCloudMapRequest {
