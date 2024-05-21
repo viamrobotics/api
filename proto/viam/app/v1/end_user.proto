@@ -17,6 +17,9 @@ service EndUserService {
 
   // Allows users to update their third party auth applications
   rpc UpdateAuthApplication(UpdateAuthApplicationRequest) returns (UpdateAuthApplicationResponse);
+
+  // Allows users to get the config for their third party auth applications
+  rpc GetAuthApplication(GetAuthApplicationRequest) returns (GetAuthApplicationResponse);
 }
 
 message IsLegalAcceptedRequest {}
@@ -56,4 +59,18 @@ message UpdateAuthApplicationRequest {
 message UpdateAuthApplicationResponse {
   string application_id = 1;
   string application_name = 2;
+}
+
+message GetAuthApplicationRequest {
+  string org_id = 1;
+  string application_id = 2;
+}
+
+message GetAuthApplicationResponse {
+  string application_id = 1;
+  string application_name = 2;
+  string secret = 3;
+  repeated string origin_uris = 4;
+  repeated string redirect_uris = 5;
+  string logout_uri = 6;
 }
