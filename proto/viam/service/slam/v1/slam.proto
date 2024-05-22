@@ -4,7 +4,6 @@ package viam.service.slam.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/service/slam/v1";
 option java_package = "com.viam.service.slam.v1";
@@ -71,10 +70,6 @@ message GetPositionRequest {
 message GetPositionResponse {
   // Current position of the specified component in the SLAM Map
   common.v1.Pose pose = 1;
-  // This is usually the name of the camera that is in the SLAM config
-  string component_reference = 2;
-  // Additional information in the response
-  google.protobuf.Struct extra = 99;
 }
 
 message GetPointCloudMapRequest {
