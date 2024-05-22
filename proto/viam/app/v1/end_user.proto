@@ -44,7 +44,7 @@ message RegisterAuthApplicationRequest {
 message RegisterAuthApplicationResponse {
   string application_id = 1;
   string application_name = 2;
-  string secret = 3;
+  string client_secret = 3;
 }
 
 message UpdateAuthApplicationRequest {
@@ -69,7 +69,7 @@ message GetAuthApplicationRequest {
 message GetAuthApplicationResponse {
   string application_id = 1;
   string application_name = 2;
-  string secret = 3;
+  string client_secret = 3;
   repeated string origin_uris = 4;
   repeated string redirect_uris = 5;
   string logout_uri = 6;
