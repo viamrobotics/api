@@ -146,6 +146,7 @@ type AppServiceClient interface {
 	CreateKey(ctx context.Context, in *CreateKeyRequest, opts ...grpc.CallOption) (*CreateKeyResponse, error)
 	DeleteKey(ctx context.Context, in *DeleteKeyRequest, opts ...grpc.CallOption) (*DeleteKeyResponse, error)
 	ListKeys(ctx context.Context, in *ListKeysRequest, opts ...grpc.CallOption) (*ListKeysResponse, error)
+	RenameKey(ctx context.Context, in *RenameKeyRequest, opts ...grpc.CallOption) (*RenameKeyResponse, error)
 	RotateKey(ctx context.Context, in *RotateKeyRequest, opts ...grpc.CallOption) (*RotateKeyResponse, error)
 	CreateKeyFromExistingKeyAuthorizations(ctx context.Context, in *CreateKeyFromExistingKeyAuthorizationsRequest, opts ...grpc.CallOption) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
 }
@@ -809,6 +810,15 @@ func (c *appServiceClient) ListKeys(ctx context.Context, in *ListKeysRequest, op
 	return out, nil
 }
 
+func (c *appServiceClient) RenameKey(ctx context.Context, in *RenameKeyRequest, opts ...grpc.CallOption) (*RenameKeyResponse, error) {
+	out := new(RenameKeyResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/RenameKey", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) RotateKey(ctx context.Context, in *RotateKeyRequest, opts ...grpc.CallOption) (*RotateKeyResponse, error) {
 	out := new(RotateKeyResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/RotateKey", in, out, opts...)
@@ -955,6 +965,7 @@ type AppServiceServer interface {
 	CreateKey(context.Context, *CreateKeyRequest) (*CreateKeyResponse, error)
 	DeleteKey(context.Context, *DeleteKeyRequest) (*DeleteKeyResponse, error)
 	ListKeys(context.Context, *ListKeysRequest) (*ListKeysResponse, error)
+	RenameKey(context.Context, *RenameKeyRequest) (*RenameKeyResponse, error)
 	RotateKey(context.Context, *RotateKeyRequest) (*RotateKeyResponse, error)
 	CreateKeyFromExistingKeyAuthorizations(context.Context, *CreateKeyFromExistingKeyAuthorizationsRequest) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
@@ -1164,6 +1175,9 @@ func (UnimplementedAppServiceServer) DeleteKey(context.Context, *DeleteKeyReques
 }
 func (UnimplementedAppServiceServer) ListKeys(context.Context, *ListKeysRequest) (*ListKeysResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListKeys not implemented")
+}
+func (UnimplementedAppServiceServer) RenameKey(context.Context, *RenameKeyRequest) (*RenameKeyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameKey not implemented")
 }
 func (UnimplementedAppServiceServer) RotateKey(context.Context, *RotateKeyRequest) (*RotateKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RotateKey not implemented")
@@ -2401,6 +2415,24 @@ func _AppService_ListKeys_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_RenameKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameKeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).RenameKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/RenameKey",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).RenameKey(ctx, req.(*RenameKeyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_RotateKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RotateKeyRequest)
 	if err := dec(in); err != nil {
@@ -2703,6 +2735,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListKeys",
 			Handler:    _AppService_ListKeys_Handler,
+		},
+		{
+			MethodName: "RenameKey",
+			Handler:    _AppService_RenameKey_Handler,
 		},
 		{
 			MethodName: "RotateKey",
