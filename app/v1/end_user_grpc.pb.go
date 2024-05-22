@@ -31,6 +31,8 @@ type EndUserServiceClient interface {
 	RegisterAuthApplication(ctx context.Context, in *RegisterAuthApplicationRequest, opts ...grpc.CallOption) (*RegisterAuthApplicationResponse, error)
 	// Allows users to update their third party auth applications
 	UpdateAuthApplication(ctx context.Context, in *UpdateAuthApplicationRequest, opts ...grpc.CallOption) (*UpdateAuthApplicationResponse, error)
+	// Allows users to get the config for their third party auth applications
+	GetAuthApplication(ctx context.Context, in *GetAuthApplicationRequest, opts ...grpc.CallOption) (*GetAuthApplicationResponse, error)
 }
 
 type endUserServiceClient struct {
@@ -77,6 +79,15 @@ func (c *endUserServiceClient) UpdateAuthApplication(ctx context.Context, in *Up
 	return out, nil
 }
 
+func (c *endUserServiceClient) GetAuthApplication(ctx context.Context, in *GetAuthApplicationRequest, opts ...grpc.CallOption) (*GetAuthApplicationResponse, error) {
+	out := new(GetAuthApplicationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.EndUserService/GetAuthApplication", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // EndUserServiceServer is the server API for EndUserService service.
 // All implementations must embed UnimplementedEndUserServiceServer
 // for forward compatibility
@@ -90,6 +101,8 @@ type EndUserServiceServer interface {
 	RegisterAuthApplication(context.Context, *RegisterAuthApplicationRequest) (*RegisterAuthApplicationResponse, error)
 	// Allows users to update their third party auth applications
 	UpdateAuthApplication(context.Context, *UpdateAuthApplicationRequest) (*UpdateAuthApplicationResponse, error)
+	// Allows users to get the config for their third party auth applications
+	GetAuthApplication(context.Context, *GetAuthApplicationRequest) (*GetAuthApplicationResponse, error)
 	mustEmbedUnimplementedEndUserServiceServer()
 }
 
@@ -108,6 +121,9 @@ func (UnimplementedEndUserServiceServer) RegisterAuthApplication(context.Context
 }
 func (UnimplementedEndUserServiceServer) UpdateAuthApplication(context.Context, *UpdateAuthApplicationRequest) (*UpdateAuthApplicationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAuthApplication not implemented")
+}
+func (UnimplementedEndUserServiceServer) GetAuthApplication(context.Context, *GetAuthApplicationRequest) (*GetAuthApplicationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthApplication not implemented")
 }
 func (UnimplementedEndUserServiceServer) mustEmbedUnimplementedEndUserServiceServer() {}
 
@@ -194,6 +210,24 @@ func _EndUserService_UpdateAuthApplication_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EndUserService_GetAuthApplication_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAuthApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EndUserServiceServer).GetAuthApplication(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.EndUserService/GetAuthApplication",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EndUserServiceServer).GetAuthApplication(ctx, req.(*GetAuthApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // EndUserService_ServiceDesc is the grpc.ServiceDesc for EndUserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -216,6 +250,10 @@ var EndUserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateAuthApplication",
 			Handler:    _EndUserService_UpdateAuthApplication_Handler,
+		},
+		{
+			MethodName: "GetAuthApplication",
+			Handler:    _EndUserService_GetAuthApplication_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
