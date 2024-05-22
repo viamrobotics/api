@@ -881,12 +881,19 @@ message MLModelMetadata {
   repeated string versions = 1;
 }
 
+message MLTrainingVersion {
+  string version = 1;
+  google.protobuf.Timestamp created_on = 2;
+}
+
 message MLTrainingMetadata {
   // A list of package versions for ML training source distribution
-  repeated string versions = 1;
+  repeated MLTrainingVersion versions = 5;
   viam.app.mltraining.v1.ModelType model_type = 2;
   viam.app.mltraining.v1.ModelFramework model_framework = 3;
   bool draft = 4;
+
+  reserved 1;
 }
 
 message RegistryItem {
