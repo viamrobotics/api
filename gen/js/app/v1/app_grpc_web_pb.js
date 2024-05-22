@@ -4112,6 +4112,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listKeys =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.RenameKeyRequest,
+ *   !proto.viam.app.v1.RenameKeyResponse>}
+ */
+const methodDescriptor_AppService_RenameKey = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/RenameKey',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.RenameKeyRequest,
+  proto.viam.app.v1.RenameKeyResponse,
+  /**
+   * @param {!proto.viam.app.v1.RenameKeyRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.RenameKeyResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.RenameKeyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.RenameKeyResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.RenameKeyResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.renameKey =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/RenameKey',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_RenameKey,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.RenameKeyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.RenameKeyResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.renameKey =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/RenameKey',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_RenameKey);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.RotateKeyRequest,
  *   !proto.viam.app.v1.RotateKeyResponse>}
  */

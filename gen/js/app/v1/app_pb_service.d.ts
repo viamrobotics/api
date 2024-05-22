@@ -607,6 +607,15 @@ type AppServiceListKeys = {
   readonly responseType: typeof app_v1_app_pb.ListKeysResponse;
 };
 
+type AppServiceRenameKey = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.RenameKeyRequest;
+  readonly responseType: typeof app_v1_app_pb.RenameKeyResponse;
+};
+
 type AppServiceRotateKey = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -694,6 +703,7 @@ export class AppService {
   static readonly CreateKey: AppServiceCreateKey;
   static readonly DeleteKey: AppServiceDeleteKey;
   static readonly ListKeys: AppServiceListKeys;
+  static readonly RenameKey: AppServiceRenameKey;
   static readonly RotateKey: AppServiceRotateKey;
   static readonly CreateKeyFromExistingKeyAuthorizations: AppServiceCreateKeyFromExistingKeyAuthorizations;
 }
@@ -1316,6 +1326,15 @@ export class AppServiceClient {
   listKeys(
     requestMessage: app_v1_app_pb.ListKeysRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListKeysResponse|null) => void
+  ): UnaryResponse;
+  renameKey(
+    requestMessage: app_v1_app_pb.RenameKeyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RenameKeyResponse|null) => void
+  ): UnaryResponse;
+  renameKey(
+    requestMessage: app_v1_app_pb.RenameKeyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RenameKeyResponse|null) => void
   ): UnaryResponse;
   rotateKey(
     requestMessage: app_v1_app_pb.RotateKeyRequest,
