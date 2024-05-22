@@ -4132,6 +4132,54 @@ export namespace DeleteKeyResponse {
   }
 }
 
+export class RenameKeyRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RenameKeyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RenameKeyRequest): RenameKeyRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RenameKeyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RenameKeyRequest;
+  static deserializeBinaryFromReader(message: RenameKeyRequest, reader: jspb.BinaryReader): RenameKeyRequest;
+}
+
+export namespace RenameKeyRequest {
+  export type AsObject = {
+    id: string,
+    name: string,
+  }
+}
+
+export class RenameKeyResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RenameKeyResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RenameKeyResponse): RenameKeyResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RenameKeyResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RenameKeyResponse;
+  static deserializeBinaryFromReader(message: RenameKeyResponse, reader: jspb.BinaryReader): RenameKeyResponse;
+}
+
+export namespace RenameKeyResponse {
+  export type AsObject = {
+    id: string,
+    name: string,
+  }
+}
+
 export class AuthorizationDetails extends jspb.Message {
   getAuthorizationType(): string;
   setAuthorizationType(value: string): void;
