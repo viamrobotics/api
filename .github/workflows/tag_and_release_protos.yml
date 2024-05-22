@@ -70,4 +70,4 @@ jobs:
           token: ${{ secrets.REPO_READ_TOKEN }}
           repository: ${{ matrix.repo }}
           event-type: protos-updated
-          client-payload: toJSON({repo_name: github.repository, sha: github.sha, tag: needs.bump-tag.outputs.new_tag})
+          client-payload: '{"repo_name": "${{github.repository}}", "sha": "${{github.sha}}", "tag": "${{needs.bump-tag.outputs.new_tag}}"}'
