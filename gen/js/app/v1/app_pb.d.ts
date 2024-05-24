@@ -2126,6 +2126,9 @@ export class Fragment extends jspb.Message {
   getOnlyUsedByOwner(): boolean;
   setOnlyUsedByOwner(value: boolean): void;
 
+  getVisibility(): FragmentVisibilityMap[keyof FragmentVisibilityMap];
+  setVisibility(value: FragmentVisibilityMap[keyof FragmentVisibilityMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Fragment.AsObject;
   static toObject(includeInstance: boolean, msg: Fragment): Fragment.AsObject;
@@ -2148,6 +2151,7 @@ export namespace Fragment {
     robotPartCount: number,
     organizationCount: number,
     onlyUsedByOwner: boolean,
+    visibility: FragmentVisibilityMap[keyof FragmentVisibilityMap],
   }
 }
 
@@ -2308,6 +2312,11 @@ export class UpdateFragmentRequest extends jspb.Message {
   getPublic(): boolean;
   setPublic(value: boolean): void;
 
+  hasVisibility(): boolean;
+  clearVisibility(): void;
+  getVisibility(): FragmentVisibilityMap[keyof FragmentVisibilityMap];
+  setVisibility(value: FragmentVisibilityMap[keyof FragmentVisibilityMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateFragmentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateFragmentRequest): UpdateFragmentRequest.AsObject;
@@ -2324,6 +2333,7 @@ export namespace UpdateFragmentRequest {
     name: string,
     config?: google_protobuf_struct_pb.Struct.AsObject,
     pb_public: boolean,
+    visibility: FragmentVisibilityMap[keyof FragmentVisibilityMap],
   }
 }
 
@@ -4373,6 +4383,15 @@ export namespace CreateKeyFromExistingKeyAuthorizationsResponse {
     key: string,
   }
 }
+
+export interface FragmentVisibilityMap {
+  FRAGMENT_VISIBILITY_UNSPECIFIED: 0;
+  FRAGMENT_VISIBILITY_PRIVATE: 1;
+  FRAGMENT_VISIBILITY_PUBLIC: 2;
+  FRAGMENT_VISIBILITY_PUBLIC_UNLISTED: 3;
+}
+
+export const FragmentVisibility: FragmentVisibilityMap;
 
 export interface RegistryItemStatusMap {
   REGISTRY_ITEM_STATUS_UNSPECIFIED: 0;

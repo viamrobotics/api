@@ -687,7 +687,10 @@ message Fragment {
   string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
   google.protobuf.Struct fragment = 3 [(tagger.v1.tags) = "bson:\"fragment\" json:\"fragment\""];
   string organization_owner = 4 [(tagger.v1.tags) = "bson:\"organization_owner\" json:\"owner\""];
-  bool public = 5 [(tagger.v1.tags) = "bson:\"public\" json:\"public\""];
+  bool public = 5 [
+    deprecated = true,
+    (tagger.v1.tags) = "bson:\"public\" json:\"public\""
+  ];
   google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
   string organization_name = 7;
   // number of robot parts using this fragment
@@ -696,6 +699,15 @@ message Fragment {
   int32 organization_count = 10;
   // whether the organization(s) using this fragment is the same as the fragment org
   bool only_used_by_owner = 11;
+  // the visibility of a fragment; public, private or unlisted
+  FragmentVisibility visibility = 12;
+}
+
+enum FragmentVisibility {
+  FRAGMENT_VISIBILITY_UNSPECIFIED = 0;
+  FRAGMENT_VISIBILITY_PRIVATE = 1;
+  FRAGMENT_VISIBILITY_PUBLIC = 2;
+  FRAGMENT_VISIBILITY_PUBLIC_UNLISTED = 3;
 }
 
 message ListFragmentsRequest {
@@ -729,7 +741,8 @@ message UpdateFragmentRequest {
   string id = 1;
   string name = 2;
   google.protobuf.Struct config = 3;
-  optional bool public = 4;
+  optional bool public = 4 [deprecated = true];
+  optional FragmentVisibility visibility = 5;
 }
 
 message UpdateFragmentResponse {
