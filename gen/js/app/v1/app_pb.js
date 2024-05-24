@@ -81,6 +81,7 @@ goog.exportSymbol('proto.viam.app.v1.DeleteRobotPartSecretResponse', null, globa
 goog.exportSymbol('proto.viam.app.v1.DeleteRobotRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.DeleteRobotResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.Fragment', null, global);
+goog.exportSymbol('proto.viam.app.v1.FragmentVisibility', null, global);
 goog.exportSymbol('proto.viam.app.v1.GetFragmentRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.GetFragmentResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.GetLocationRequest', null, global);
@@ -18277,7 +18278,8 @@ proto.viam.app.v1.Fragment.toObject = function(includeInstance, msg) {
     organizationName: jspb.Message.getFieldWithDefault(msg, 7, ""),
     robotPartCount: jspb.Message.getFieldWithDefault(msg, 9, 0),
     organizationCount: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    onlyUsedByOwner: jspb.Message.getBooleanFieldWithDefault(msg, 11, false)
+    onlyUsedByOwner: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
+    visibility: jspb.Message.getFieldWithDefault(msg, 12, 0)
   };
 
   if (includeInstance) {
@@ -18355,6 +18357,10 @@ proto.viam.app.v1.Fragment.deserializeBinaryFromReader = function(msg, reader) {
     case 11:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setOnlyUsedByOwner(value);
+      break;
+    case 12:
+      var value = /** @type {!proto.viam.app.v1.FragmentVisibility} */ (reader.readEnum());
+      msg.setVisibility(value);
       break;
     default:
       reader.skipField();
@@ -18454,6 +18460,13 @@ proto.viam.app.v1.Fragment.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       11,
+      f
+    );
+  }
+  f = message.getVisibility();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      12,
       f
     );
   }
@@ -18675,6 +18688,24 @@ proto.viam.app.v1.Fragment.prototype.getOnlyUsedByOwner = function() {
  */
 proto.viam.app.v1.Fragment.prototype.setOnlyUsedByOwner = function(value) {
   return jspb.Message.setProto3BooleanField(this, 11, value);
+};
+
+
+/**
+ * optional FragmentVisibility visibility = 12;
+ * @return {!proto.viam.app.v1.FragmentVisibility}
+ */
+proto.viam.app.v1.Fragment.prototype.getVisibility = function() {
+  return /** @type {!proto.viam.app.v1.FragmentVisibility} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.FragmentVisibility} value
+ * @return {!proto.viam.app.v1.Fragment} returns this
+ */
+proto.viam.app.v1.Fragment.prototype.setVisibility = function(value) {
+  return jspb.Message.setProto3EnumField(this, 12, value);
 };
 
 
@@ -19676,7 +19707,8 @@ proto.viam.app.v1.UpdateFragmentRequest.toObject = function(includeInstance, msg
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+    pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    visibility: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -19729,6 +19761,10 @@ proto.viam.app.v1.UpdateFragmentRequest.deserializeBinaryFromReader = function(m
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setPublic(value);
+      break;
+    case 5:
+      var value = /** @type {!proto.viam.app.v1.FragmentVisibility} */ (reader.readEnum());
+      msg.setVisibility(value);
       break;
     default:
       reader.skipField();
@@ -19785,6 +19821,13 @@ proto.viam.app.v1.UpdateFragmentRequest.serializeBinaryToWriter = function(messa
   if (f != null) {
     writer.writeBool(
       4,
+      f
+    );
+  }
+  f = /** @type {!proto.viam.app.v1.FragmentVisibility} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeEnum(
+      5,
       f
     );
   }
@@ -19897,6 +19940,42 @@ proto.viam.app.v1.UpdateFragmentRequest.prototype.clearPublic = function() {
  */
 proto.viam.app.v1.UpdateFragmentRequest.prototype.hasPublic = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional FragmentVisibility visibility = 5;
+ * @return {!proto.viam.app.v1.FragmentVisibility}
+ */
+proto.viam.app.v1.UpdateFragmentRequest.prototype.getVisibility = function() {
+  return /** @type {!proto.viam.app.v1.FragmentVisibility} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.FragmentVisibility} value
+ * @return {!proto.viam.app.v1.UpdateFragmentRequest} returns this
+ */
+proto.viam.app.v1.UpdateFragmentRequest.prototype.setVisibility = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateFragmentRequest} returns this
+ */
+proto.viam.app.v1.UpdateFragmentRequest.prototype.clearVisibility = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateFragmentRequest.prototype.hasVisibility = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -34054,6 +34133,16 @@ proto.viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse.prototype.setKe
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.v1.FragmentVisibility = {
+  FRAGMENT_VISIBILITY_UNSPECIFIED: 0,
+  FRAGMENT_VISIBILITY_PRIVATE: 1,
+  FRAGMENT_VISIBILITY_PUBLIC: 2,
+  FRAGMENT_VISIBILITY_PUBLIC_UNLISTED: 3
+};
 
 /**
  * @enum {number}
