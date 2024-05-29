@@ -30,13 +30,15 @@ type MotorServiceClient interface {
 	// GoFor instructs the motor to turn at a specified speed, which is expressed in RPM,
 	// for a specified number of rotations relative to its starting position
 	// This method will return an error if position reporting is not supported
-	// If revolutions is 0, this will run the motor at rpm indefinitely
 	// If revolutions != 0, this will block until the number of revolutions has been completed or another operation comes in.
+	// Deprecated: If revolutions is 0, this will run the motor at rpm indefinitely.
 	GoFor(ctx context.Context, in *GoForRequest, opts ...grpc.CallOption) (*GoForResponse, error)
 	// GoTo requests the robot's motor to move to a specific position that
 	// is relative to its home position at a specified speed which is expressed in RPM
 	// This method will return an error if position reporting is not supported
 	GoTo(ctx context.Context, in *GoToRequest, opts ...grpc.CallOption) (*GoToResponse, error)
+	// SetRPM instructs the motor to move at the specified RPM indefinitely.
+	SetRPM(ctx context.Context, in *SetRPMRequest, opts ...grpc.CallOption) (*SetRPMResponse, error)
 	// ResetZeroPosition sets the current position of the motor as the new zero position
 	// This method will return an error if position reporting is not supported
 	ResetZeroPosition(ctx context.Context, in *ResetZeroPositionRequest, opts ...grpc.CallOption) (*ResetZeroPositionResponse, error)
@@ -86,6 +88,15 @@ func (c *motorServiceClient) GoFor(ctx context.Context, in *GoForRequest, opts .
 func (c *motorServiceClient) GoTo(ctx context.Context, in *GoToRequest, opts ...grpc.CallOption) (*GoToResponse, error) {
 	out := new(GoToResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.motor.v1.MotorService/GoTo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *motorServiceClient) SetRPM(ctx context.Context, in *SetRPMRequest, opts ...grpc.CallOption) (*SetRPMResponse, error) {
+	out := new(SetRPMResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.motor.v1.MotorService/SetRPM", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -175,13 +186,15 @@ type MotorServiceServer interface {
 	// GoFor instructs the motor to turn at a specified speed, which is expressed in RPM,
 	// for a specified number of rotations relative to its starting position
 	// This method will return an error if position reporting is not supported
-	// If revolutions is 0, this will run the motor at rpm indefinitely
 	// If revolutions != 0, this will block until the number of revolutions has been completed or another operation comes in.
+	// Deprecated: If revolutions is 0, this will run the motor at rpm indefinitely.
 	GoFor(context.Context, *GoForRequest) (*GoForResponse, error)
 	// GoTo requests the robot's motor to move to a specific position that
 	// is relative to its home position at a specified speed which is expressed in RPM
 	// This method will return an error if position reporting is not supported
 	GoTo(context.Context, *GoToRequest) (*GoToResponse, error)
+	// SetRPM instructs the motor to move at the specified RPM indefinitely.
+	SetRPM(context.Context, *SetRPMRequest) (*SetRPMResponse, error)
 	// ResetZeroPosition sets the current position of the motor as the new zero position
 	// This method will return an error if position reporting is not supported
 	ResetZeroPosition(context.Context, *ResetZeroPositionRequest) (*ResetZeroPositionResponse, error)
@@ -215,6 +228,9 @@ func (UnimplementedMotorServiceServer) GoFor(context.Context, *GoForRequest) (*G
 }
 func (UnimplementedMotorServiceServer) GoTo(context.Context, *GoToRequest) (*GoToResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GoTo not implemented")
+}
+func (UnimplementedMotorServiceServer) SetRPM(context.Context, *SetRPMRequest) (*SetRPMResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetRPM not implemented")
 }
 func (UnimplementedMotorServiceServer) ResetZeroPosition(context.Context, *ResetZeroPositionRequest) (*ResetZeroPositionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetZeroPosition not implemented")
@@ -303,6 +319,24 @@ func _MotorService_GoTo_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MotorServiceServer).GoTo(ctx, req.(*GoToRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MotorService_SetRPM_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetRPMRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MotorServiceServer).SetRPM(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.motor.v1.MotorService/SetRPM",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MotorServiceServer).SetRPM(ctx, req.(*SetRPMRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -469,6 +503,10 @@ var MotorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GoTo",
 			Handler:    _MotorService_GoTo_Handler,
+		},
+		{
+			MethodName: "SetRPM",
+			Handler:    _MotorService_SetRPM_Handler,
 		},
 		{
 			MethodName: "ResetZeroPosition",
