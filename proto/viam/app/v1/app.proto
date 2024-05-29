@@ -688,7 +688,6 @@ message Fragment {
   google.protobuf.Struct fragment = 3 [(tagger.v1.tags) = "bson:\"fragment\" json:\"fragment\""];
   string organization_owner = 4 [(tagger.v1.tags) = "bson:\"organization_owner\" json:\"owner\""];
   bool public = 5 [
-    deprecated = true,
     (tagger.v1.tags) = "bson:\"public\" json:\"public\""
   ];
   google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
@@ -713,6 +712,7 @@ enum FragmentVisibility {
 message ListFragmentsRequest {
   string organization_id = 1;
   bool show_public = 2;
+  repeated FragmentVisibility fragment_visibility = 3;
 }
 
 message ListFragmentsResponse {
@@ -741,7 +741,7 @@ message UpdateFragmentRequest {
   string id = 1;
   string name = 2;
   google.protobuf.Struct config = 3;
-  optional bool public = 4 [deprecated = true];
+  optional bool public = 4;
   optional FragmentVisibility visibility = 5;
 }
 
