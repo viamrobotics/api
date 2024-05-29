@@ -1958,7 +1958,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.ListFragmentsRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.ListFragmentsRequest.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.v1.ListFragmentsRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -18710,6 +18710,13 @@ proto.viam.app.v1.Fragment.prototype.setVisibility = function(value) {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.ListFragmentsRequest.repeatedFields_ = [3];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -18742,7 +18749,8 @@ proto.viam.app.v1.ListFragmentsRequest.prototype.toObject = function(opt_include
 proto.viam.app.v1.ListFragmentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    showPublic: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+    showPublic: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    fragmentVisibilityList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -18787,6 +18795,12 @@ proto.viam.app.v1.ListFragmentsRequest.deserializeBinaryFromReader = function(ms
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setShowPublic(value);
       break;
+    case 3:
+      var values = /** @type {!Array<!proto.viam.app.v1.FragmentVisibility>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addFragmentVisibility(values[i]);
+      }
+      break;
     default:
       reader.skipField();
       break;
@@ -18830,6 +18844,13 @@ proto.viam.app.v1.ListFragmentsRequest.serializeBinaryToWriter = function(messag
       f
     );
   }
+  f = message.getFragmentVisibilityList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -18866,6 +18887,43 @@ proto.viam.app.v1.ListFragmentsRequest.prototype.getShowPublic = function() {
  */
 proto.viam.app.v1.ListFragmentsRequest.prototype.setShowPublic = function(value) {
   return jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
+
+/**
+ * repeated FragmentVisibility fragment_visibility = 3;
+ * @return {!Array<!proto.viam.app.v1.FragmentVisibility>}
+ */
+proto.viam.app.v1.ListFragmentsRequest.prototype.getFragmentVisibilityList = function() {
+  return /** @type {!Array<!proto.viam.app.v1.FragmentVisibility>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.app.v1.FragmentVisibility>} value
+ * @return {!proto.viam.app.v1.ListFragmentsRequest} returns this
+ */
+proto.viam.app.v1.ListFragmentsRequest.prototype.setFragmentVisibilityList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.FragmentVisibility} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.ListFragmentsRequest} returns this
+ */
+proto.viam.app.v1.ListFragmentsRequest.prototype.addFragmentVisibility = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.ListFragmentsRequest} returns this
+ */
+proto.viam.app.v1.ListFragmentsRequest.prototype.clearFragmentVisibilityList = function() {
+  return this.setFragmentVisibilityList([]);
 };
 
 

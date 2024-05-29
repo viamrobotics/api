@@ -2162,6 +2162,11 @@ export class ListFragmentsRequest extends jspb.Message {
   getShowPublic(): boolean;
   setShowPublic(value: boolean): void;
 
+  clearFragmentVisibilityList(): void;
+  getFragmentVisibilityList(): Array<FragmentVisibilityMap[keyof FragmentVisibilityMap]>;
+  setFragmentVisibilityList(value: Array<FragmentVisibilityMap[keyof FragmentVisibilityMap]>): void;
+  addFragmentVisibility(value: FragmentVisibilityMap[keyof FragmentVisibilityMap], index?: number): FragmentVisibilityMap[keyof FragmentVisibilityMap];
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListFragmentsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListFragmentsRequest): ListFragmentsRequest.AsObject;
@@ -2176,6 +2181,7 @@ export namespace ListFragmentsRequest {
   export type AsObject = {
     organizationId: string,
     showPublic: boolean,
+    fragmentVisibilityList: Array<FragmentVisibilityMap[keyof FragmentVisibilityMap]>,
   }
 }
 
