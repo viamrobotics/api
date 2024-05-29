@@ -24,8 +24,8 @@ service MotorService {
   // GoFor instructs the motor to turn at a specified speed, which is expressed in RPM,
   // for a specified number of rotations relative to its starting position
   // This method will return an error if position reporting is not supported
-  // If revolutions is 0, this will run the motor at rpm indefinitely
   // If revolutions != 0, this will block until the number of revolutions has been completed or another operation comes in.
+  // Deprecated: If revolutions is 0, this will run the motor at rpm indefinitely.
   rpc GoFor(GoForRequest) returns (GoForResponse) {
     option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
@@ -40,6 +40,14 @@ service MotorService {
     option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
       put: "/viam/api/v1/component/motor/{name}/go_to"
+    };
+  }
+
+  // SetRPM instructs the motor to move at the specified RPM indefinitely.
+  rpc SetRPM(SetRPMRequest) returns (SetRPMResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
+    option (google.api.http) = {
+      put: "/viam/api/v1/component/motor/{name}/set_rpm"
     };
   }
 
@@ -138,6 +146,17 @@ message GoToRequest {
 }
 
 message GoToResponse {}
+
+message SetRPMRequest {
+  // Name of a motor
+  string name = 1;
+  // Speed of motor travel in rotations per minute
+  double rpm = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message SetRPMResponse {}
 
 message ResetZeroPositionRequest {
   // Name of a motor
