@@ -48,9 +48,8 @@ service MotorService {
     option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
       put: "/viam/api/v1/component/motor/{name}/set_rpm"
-    }; 
+    };
   }
-
 
   // ResetZeroPosition sets the current position of the motor as the new zero position
   // This method will return an error if position reporting is not supported
@@ -152,7 +151,7 @@ message SetRPMRequest {
   // Name of a motor
   string name = 1;
   // Speed of motor travel in rotations per minute
-  double rpm = 2
+  double rpm = 2;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
