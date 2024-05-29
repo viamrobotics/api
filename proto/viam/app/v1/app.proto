@@ -710,7 +710,6 @@ enum FragmentVisibility {
 message ListFragmentsRequest {
   string organization_id = 1;
   bool show_public = 2;
-  repeated FragmentVisibility fragment_visibility = 3;
 }
 
 message ListFragmentsResponse {
