@@ -68,8 +68,6 @@ export class RobotConfig extends jspb.Message {
   setOverwriteFragmentStatusList(value: Array<AppValidationStatus>): void;
   addOverwriteFragmentStatus(value?: AppValidationStatus, index?: number): AppValidationStatus;
 
-  hasEnableWebProfile(): boolean;
-  clearEnableWebProfile(): void;
   getEnableWebProfile(): boolean;
   setEnableWebProfile(value: boolean): void;
 

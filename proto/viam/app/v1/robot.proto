@@ -39,7 +39,7 @@ message RobotConfig {
   repeated PackageConfig packages = 11;
   repeated AppValidationStatus overwrite_fragment_status = 12;
   // Turns on pprof http server on localhost. By default false.
-  optional bool enable_web_profile = 13;
+  bool enable_web_profile = 13;
 }
 
 // Valid location secret that can be used for authentication to the robot.
