@@ -1141,8 +1141,8 @@ proto.viam.app.v1.RobotConfig.serializeBinaryToWriter = function(message, writer
       proto.viam.app.v1.AppValidationStatus.serializeBinaryToWriter
     );
   }
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 13));
-  if (f != null) {
+  f = message.getEnableWebProfile();
+  if (f) {
     writer.writeBool(
       13,
       f
@@ -1614,25 +1614,7 @@ proto.viam.app.v1.RobotConfig.prototype.getEnableWebProfile = function() {
  * @return {!proto.viam.app.v1.RobotConfig} returns this
  */
 proto.viam.app.v1.RobotConfig.prototype.setEnableWebProfile = function(value) {
-  return jspb.Message.setField(this, 13, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.viam.app.v1.RobotConfig} returns this
- */
-proto.viam.app.v1.RobotConfig.prototype.clearEnableWebProfile = function() {
-  return jspb.Message.setField(this, 13, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.v1.RobotConfig.prototype.hasEnableWebProfile = function() {
-  return jspb.Message.getField(this, 13) != null;
+  return jspb.Message.setProto3BooleanField(this, 13, value);
 };
 
 
