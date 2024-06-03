@@ -1061,7 +1061,7 @@ func RegisterRobotServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.robot.v1.RobotService/Shutdown", runtime.WithHTTPPathPattern("/viam/api/vi/shutdown"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.robot.v1.RobotService/Shutdown", runtime.WithHTTPPathPattern("/viam/api/v1/shutdown"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1521,7 +1521,7 @@ func RegisterRobotServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.robot.v1.RobotService/Shutdown", runtime.WithHTTPPathPattern("/viam/api/vi/shutdown"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.robot.v1.RobotService/Shutdown", runtime.WithHTTPPathPattern("/viam/api/v1/shutdown"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1577,7 +1577,7 @@ var (
 
 	pattern_RobotService_RestartModule_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"viam", "api", "v1", "restart_module"}, ""))
 
-	pattern_RobotService_Shutdown_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"viam", "api", "vi", "shutdown"}, ""))
+	pattern_RobotService_Shutdown_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"viam", "api", "v1", "shutdown"}, ""))
 )
 
 var (
