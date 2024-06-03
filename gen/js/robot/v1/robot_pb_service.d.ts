@@ -166,6 +166,15 @@ type RobotServiceRestartModule = {
   readonly responseType: typeof robot_v1_robot_pb.RestartModuleResponse;
 };
 
+type RobotServiceShutdown = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.ShutdownRequest;
+  readonly responseType: typeof robot_v1_robot_pb.ShutdownResponse;
+};
+
 export class RobotService {
   static readonly serviceName: string;
   static readonly GetOperations: RobotServiceGetOperations;
@@ -186,6 +195,7 @@ export class RobotService {
   static readonly Log: RobotServiceLog;
   static readonly GetCloudMetadata: RobotServiceGetCloudMetadata;
   static readonly RestartModule: RobotServiceRestartModule;
+  static readonly Shutdown: RobotServiceShutdown;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -373,6 +383,15 @@ export class RobotServiceClient {
   restartModule(
     requestMessage: robot_v1_robot_pb.RestartModuleRequest,
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.RestartModuleResponse|null) => void
+  ): UnaryResponse;
+  shutdown(
+    requestMessage: robot_v1_robot_pb.ShutdownRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.ShutdownResponse|null) => void
+  ): UnaryResponse;
+  shutdown(
+    requestMessage: robot_v1_robot_pb.ShutdownRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.ShutdownResponse|null) => void
   ): UnaryResponse;
 }
 
