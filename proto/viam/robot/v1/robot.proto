@@ -137,7 +137,7 @@ service RobotService {
   // Shutdown shuts down the robot.
   rpc Shutdown(ShutdownRequest) returns (ShutdownResponse){
     option (google.api.http) = {
-      post: "viam/api/vi/shutdown"
+      post: "/viam/api/vi/shutdown"
     };
   }
 }
