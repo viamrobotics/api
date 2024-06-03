@@ -133,6 +133,13 @@ service RobotService {
       post: "/viam/api/v1/restart_module"
     };
   }
+
+  // Shutdown shuts down the robot.
+  rpc Shutdown(ShutdownRequest) returns (ShutdownResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/shutdown"
+    };
+  }
 }
 
 message FrameSystemConfig {
@@ -347,3 +354,7 @@ message RestartModuleRequest {
 }
 
 message RestartModuleResponse {}
+
+message ShutdownRequest {}
+
+message ShutdownResponse {}

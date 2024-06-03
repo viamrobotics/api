@@ -172,6 +172,15 @@ RobotService.RestartModule = {
   responseType: robot_v1_robot_pb.RestartModuleResponse
 };
 
+RobotService.Shutdown = {
+  methodName: "Shutdown",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.ShutdownRequest,
+  responseType: robot_v1_robot_pb.ShutdownResponse
+};
+
 exports.RobotService = RobotService;
 
 function RobotServiceClient(serviceHost, options) {
@@ -719,6 +728,37 @@ RobotServiceClient.prototype.restartModule = function restartModule(requestMessa
     callback = arguments[1];
   }
   var client = grpc.unary(RobotService.RestartModule, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.shutdown = function shutdown(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.Shutdown, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
