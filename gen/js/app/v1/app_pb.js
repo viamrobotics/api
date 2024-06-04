@@ -25129,7 +25129,9 @@ proto.viam.app.v1.MLModelMetadata.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.app.v1.MLModelMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    versionsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    versionsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+    modelType: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    modelFramework: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -25170,6 +25172,14 @@ proto.viam.app.v1.MLModelMetadata.deserializeBinaryFromReader = function(msg, re
       var value = /** @type {string} */ (reader.readString());
       msg.addVersions(value);
       break;
+    case 2:
+      var value = /** @type {!proto.viam.app.mltraining.v1.ModelType} */ (reader.readEnum());
+      msg.setModelType(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.viam.app.mltraining.v1.ModelFramework} */ (reader.readEnum());
+      msg.setModelFramework(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -25203,6 +25213,20 @@ proto.viam.app.v1.MLModelMetadata.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeRepeatedString(
       1,
+      f
+    );
+  }
+  f = message.getModelType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
+  f = message.getModelFramework();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
       f
     );
   }
@@ -25243,6 +25267,42 @@ proto.viam.app.v1.MLModelMetadata.prototype.addVersions = function(value, opt_in
  */
 proto.viam.app.v1.MLModelMetadata.prototype.clearVersionsList = function() {
   return this.setVersionsList([]);
+};
+
+
+/**
+ * optional viam.app.mltraining.v1.ModelType model_type = 2;
+ * @return {!proto.viam.app.mltraining.v1.ModelType}
+ */
+proto.viam.app.v1.MLModelMetadata.prototype.getModelType = function() {
+  return /** @type {!proto.viam.app.mltraining.v1.ModelType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.ModelType} value
+ * @return {!proto.viam.app.v1.MLModelMetadata} returns this
+ */
+proto.viam.app.v1.MLModelMetadata.prototype.setModelType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional viam.app.mltraining.v1.ModelFramework model_framework = 3;
+ * @return {!proto.viam.app.mltraining.v1.ModelFramework}
+ */
+proto.viam.app.v1.MLModelMetadata.prototype.getModelFramework = function() {
+  return /** @type {!proto.viam.app.mltraining.v1.ModelFramework} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.ModelFramework} value
+ * @return {!proto.viam.app.v1.MLModelMetadata} returns this
+ */
+proto.viam.app.v1.MLModelMetadata.prototype.setModelFramework = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 

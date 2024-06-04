@@ -3087,6 +3087,12 @@ export class MLModelMetadata extends jspb.Message {
   setVersionsList(value: Array<string>): void;
   addVersions(value: string, index?: number): string;
 
+  getModelType(): app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap];
+  setModelType(value: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap]): void;
+
+  getModelFramework(): app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap];
+  setModelFramework(value: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MLModelMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: MLModelMetadata): MLModelMetadata.AsObject;
@@ -3100,6 +3106,8 @@ export class MLModelMetadata extends jspb.Message {
 export namespace MLModelMetadata {
   export type AsObject = {
     versionsList: Array<string>,
+    modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
+    modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
   }
 }
 
