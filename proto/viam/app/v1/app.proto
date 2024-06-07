@@ -195,7 +195,7 @@ service AppService {
 
   rpc DeleteRegistryItem(DeleteRegistryItemRequest) returns (DeleteRegistryItemResponse);
 
-  rpc TransferRegistryItem (TransferRegistryItemRequest) returns (TransferRegistryItemResponse);
+  rpc TransferRegistryItem(TransferRegistryItemRequest) returns (TransferRegistryItemResponse);
 
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
 

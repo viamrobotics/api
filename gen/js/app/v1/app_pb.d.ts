@@ -3521,6 +3521,46 @@ export namespace DeleteRegistryItemResponse {
   }
 }
 
+export class TransferRegistryItemRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  getNewPublicNamespace(): string;
+  setNewPublicNamespace(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransferRegistryItemRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TransferRegistryItemRequest): TransferRegistryItemRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransferRegistryItemRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransferRegistryItemRequest;
+  static deserializeBinaryFromReader(message: TransferRegistryItemRequest, reader: jspb.BinaryReader): TransferRegistryItemRequest;
+}
+
+export namespace TransferRegistryItemRequest {
+  export type AsObject = {
+    itemId: string,
+    newPublicNamespace: string,
+  }
+}
+
+export class TransferRegistryItemResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TransferRegistryItemResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TransferRegistryItemResponse): TransferRegistryItemResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TransferRegistryItemResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TransferRegistryItemResponse;
+  static deserializeBinaryFromReader(message: TransferRegistryItemResponse, reader: jspb.BinaryReader): TransferRegistryItemResponse;
+}
+
+export namespace TransferRegistryItemResponse {
+  export type AsObject = {
+  }
+}
+
 export class CreateModuleRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
