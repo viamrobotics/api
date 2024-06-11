@@ -195,6 +195,8 @@ service AppService {
 
   rpc DeleteRegistryItem(DeleteRegistryItemRequest) returns (DeleteRegistryItemResponse);
 
+  rpc TransferRegistryItem(TransferRegistryItemRequest) returns (TransferRegistryItemResponse);
+
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
 
   rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
@@ -1008,6 +1010,13 @@ message DeleteRegistryItemRequest {
 }
 
 message DeleteRegistryItemResponse {}
+
+message TransferRegistryItemRequest {
+  string item_id = 1;
+  string new_public_namespace = 2;
+}
+
+message TransferRegistryItemResponse {}
 
 // Modules
 message CreateModuleRequest {
