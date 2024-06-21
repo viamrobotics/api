@@ -81,6 +81,7 @@ service RobotService {
     option (google.api.http) = {
       get: "/viam/api/v1/status"
     };
+    option deprecated = true;
   }
 
   // StreamStatus periodically sends the status of all statuses requested. An empty request signifies all resources.
@@ -88,6 +89,7 @@ service RobotService {
     option (google.api.http) = {
       get: "/viam/api/v1/status/stream"
     };
+    option deprecated = true;
   }
 
   // StopAll will stop all current and outstanding operations for the robot and stops all actuators and movement
