@@ -148,6 +148,11 @@ export class RobotPartHistoryEntry extends jspb.Message {
   getOld(): RobotPart | undefined;
   setOld(value?: RobotPart): void;
 
+  hasWho(): boolean;
+  clearWho(): void;
+  getWho(): AuthenticatorInfo | undefined;
+  setWho(value?: AuthenticatorInfo): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotPartHistoryEntry.AsObject;
   static toObject(includeInstance: boolean, msg: RobotPartHistoryEntry): RobotPartHistoryEntry.AsObject;
@@ -164,6 +169,35 @@ export namespace RobotPartHistoryEntry {
     robot: string,
     when?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     old?: RobotPart.AsObject,
+    who?: AuthenticatorInfo.AsObject,
+  }
+}
+
+export class AuthenticatorInfo extends jspb.Message {
+  getType(): AuthenticationTypeMap[keyof AuthenticationTypeMap];
+  setType(value: AuthenticationTypeMap[keyof AuthenticationTypeMap]): void;
+
+  getValue(): string;
+  setValue(value: string): void;
+
+  getIsDeactivated(): boolean;
+  setIsDeactivated(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AuthenticatorInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: AuthenticatorInfo): AuthenticatorInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AuthenticatorInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AuthenticatorInfo;
+  static deserializeBinaryFromReader(message: AuthenticatorInfo, reader: jspb.BinaryReader): AuthenticatorInfo;
+}
+
+export namespace AuthenticatorInfo {
+  export type AsObject = {
+    type: AuthenticationTypeMap[keyof AuthenticationTypeMap],
+    value: string,
+    isDeactivated: boolean,
   }
 }
 
@@ -4437,6 +4471,16 @@ export namespace CreateKeyFromExistingKeyAuthorizationsResponse {
     key: string,
   }
 }
+
+export interface AuthenticationTypeMap {
+  AUTHENTICATION_TYPE_UNSPECIFIED: 0;
+  AUTHENTICATION_TYPE_WEB_OAUTH: 1;
+  AUTHENTICATION_TYPE_API_KEY: 2;
+  AUTHENTICATION_TYPE_ROBOT_PART_SECRET: 3;
+  AUTHENTICATION_TYPE_LOCATION_SECRET: 4;
+}
+
+export const AuthenticationType: AuthenticationTypeMap;
 
 export interface FragmentVisibilityMap {
   FRAGMENT_VISIBILITY_UNSPECIFIED: 0;
