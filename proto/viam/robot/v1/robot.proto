@@ -77,7 +77,6 @@ service RobotService {
   }
 
   // GetStatus returns the list of all statuses requested. An empty request signifies all resources.
-  // This service is deprecated
   rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/status"
@@ -86,7 +85,6 @@ service RobotService {
   }
 
   // StreamStatus periodically sends the status of all statuses requested. An empty request signifies all resources.
-  // This service is deprecated
   rpc StreamStatus(StreamStatusRequest) returns (stream StreamStatusResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/status/stream"
