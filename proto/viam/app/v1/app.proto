@@ -255,7 +255,7 @@ message RobotPartHistoryEntry {
   string robot = 2 [(tagger.v1.tags) = "bson:\"robot\" json:\"robot\""];
   google.protobuf.Timestamp when = 3 [(tagger.v1.tags) = "bson:\"when\" json:\"when\""];
   RobotPart old = 4 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
-  AuthenticatorInfo who = 5 [(tagger.v1.tags) = "bson:\"who\" json:\"who\""];
+  AuthenticatorInfo edited_by = 5 [(tagger.v1.tags) = "bson:\"edited_by\" json:\"edited_by\""];
 }
 
 message AuthenticatorInfo {
