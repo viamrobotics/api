@@ -4824,7 +4824,7 @@ proto.viam.app.v1.RobotPartHistoryEntry.toObject = function(includeInstance, msg
     robot: jspb.Message.getFieldWithDefault(msg, 2, ""),
     when: (f = msg.getWhen()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     old: (f = msg.getOld()) && proto.viam.app.v1.RobotPart.toObject(includeInstance, f),
-    who: (f = msg.getWho()) && proto.viam.app.v1.AuthenticatorInfo.toObject(includeInstance, f)
+    editedBy: (f = msg.getEditedBy()) && proto.viam.app.v1.AuthenticatorInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4882,7 +4882,7 @@ proto.viam.app.v1.RobotPartHistoryEntry.deserializeBinaryFromReader = function(m
     case 5:
       var value = new proto.viam.app.v1.AuthenticatorInfo;
       reader.readMessage(value,proto.viam.app.v1.AuthenticatorInfo.deserializeBinaryFromReader);
-      msg.setWho(value);
+      msg.setEditedBy(value);
       break;
     default:
       reader.skipField();
@@ -4943,7 +4943,7 @@ proto.viam.app.v1.RobotPartHistoryEntry.serializeBinaryToWriter = function(messa
       proto.viam.app.v1.RobotPart.serializeBinaryToWriter
     );
   }
-  f = message.getWho();
+  f = message.getEditedBy();
   if (f != null) {
     writer.writeMessage(
       5,
@@ -5065,10 +5065,10 @@ proto.viam.app.v1.RobotPartHistoryEntry.prototype.hasOld = function() {
 
 
 /**
- * optional AuthenticatorInfo who = 5;
+ * optional AuthenticatorInfo edited_by = 5;
  * @return {?proto.viam.app.v1.AuthenticatorInfo}
  */
-proto.viam.app.v1.RobotPartHistoryEntry.prototype.getWho = function() {
+proto.viam.app.v1.RobotPartHistoryEntry.prototype.getEditedBy = function() {
   return /** @type{?proto.viam.app.v1.AuthenticatorInfo} */ (
     jspb.Message.getWrapperField(this, proto.viam.app.v1.AuthenticatorInfo, 5));
 };
@@ -5078,7 +5078,7 @@ proto.viam.app.v1.RobotPartHistoryEntry.prototype.getWho = function() {
  * @param {?proto.viam.app.v1.AuthenticatorInfo|undefined} value
  * @return {!proto.viam.app.v1.RobotPartHistoryEntry} returns this
 */
-proto.viam.app.v1.RobotPartHistoryEntry.prototype.setWho = function(value) {
+proto.viam.app.v1.RobotPartHistoryEntry.prototype.setEditedBy = function(value) {
   return jspb.Message.setWrapperField(this, 5, value);
 };
 
@@ -5087,8 +5087,8 @@ proto.viam.app.v1.RobotPartHistoryEntry.prototype.setWho = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.viam.app.v1.RobotPartHistoryEntry} returns this
  */
-proto.viam.app.v1.RobotPartHistoryEntry.prototype.clearWho = function() {
-  return this.setWho(undefined);
+proto.viam.app.v1.RobotPartHistoryEntry.prototype.clearEditedBy = function() {
+  return this.setEditedBy(undefined);
 };
 
 
@@ -5096,7 +5096,7 @@ proto.viam.app.v1.RobotPartHistoryEntry.prototype.clearWho = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.app.v1.RobotPartHistoryEntry.prototype.hasWho = function() {
+proto.viam.app.v1.RobotPartHistoryEntry.prototype.hasEditedBy = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 

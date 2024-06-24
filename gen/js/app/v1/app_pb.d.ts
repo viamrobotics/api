@@ -148,10 +148,10 @@ export class RobotPartHistoryEntry extends jspb.Message {
   getOld(): RobotPart | undefined;
   setOld(value?: RobotPart): void;
 
-  hasWho(): boolean;
-  clearWho(): void;
-  getWho(): AuthenticatorInfo | undefined;
-  setWho(value?: AuthenticatorInfo): void;
+  hasEditedBy(): boolean;
+  clearEditedBy(): void;
+  getEditedBy(): AuthenticatorInfo | undefined;
+  setEditedBy(value?: AuthenticatorInfo): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotPartHistoryEntry.AsObject;
@@ -169,7 +169,7 @@ export namespace RobotPartHistoryEntry {
     robot: string,
     when?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     old?: RobotPart.AsObject,
-    who?: AuthenticatorInfo.AsObject,
+    editedBy?: AuthenticatorInfo.AsObject,
   }
 }
 
