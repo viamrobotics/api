@@ -387,6 +387,11 @@ export class ServiceConfig extends jspb.Message {
   setServiceConfigsList(value: Array<ResourceLevelServiceConfig>): void;
   addServiceConfigs(value?: ResourceLevelServiceConfig, index?: number): ResourceLevelServiceConfig;
 
+  hasLogConfiguration(): boolean;
+  clearLogConfiguration(): void;
+  getLogConfiguration(): LogConfiguration | undefined;
+  setLogConfiguration(value?: LogConfiguration): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ServiceConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ServiceConfig): ServiceConfig.AsObject;
@@ -407,6 +412,7 @@ export namespace ServiceConfig {
     model: string,
     api: string,
     serviceConfigsList: Array<ResourceLevelServiceConfig.AsObject>,
+    logConfiguration?: LogConfiguration.AsObject,
   }
 }
 

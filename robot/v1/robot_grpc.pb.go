@@ -35,8 +35,10 @@ type RobotServiceClient interface {
 	FrameSystemConfig(ctx context.Context, in *FrameSystemConfigRequest, opts ...grpc.CallOption) (*FrameSystemConfigResponse, error)
 	TransformPose(ctx context.Context, in *TransformPoseRequest, opts ...grpc.CallOption) (*TransformPoseResponse, error)
 	TransformPCD(ctx context.Context, in *TransformPCDRequest, opts ...grpc.CallOption) (*TransformPCDResponse, error)
+	// Deprecated: Do not use.
 	// GetStatus returns the list of all statuses requested. An empty request signifies all resources.
 	GetStatus(ctx context.Context, in *GetStatusRequest, opts ...grpc.CallOption) (*GetStatusResponse, error)
+	// Deprecated: Do not use.
 	// StreamStatus periodically sends the status of all statuses requested. An empty request signifies all resources.
 	StreamStatus(ctx context.Context, in *StreamStatusRequest, opts ...grpc.CallOption) (RobotService_StreamStatusClient, error)
 	// StopAll will stop all current and outstanding operations for the robot and stops all actuators and movement
@@ -155,6 +157,7 @@ func (c *robotServiceClient) TransformPCD(ctx context.Context, in *TransformPCDR
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *robotServiceClient) GetStatus(ctx context.Context, in *GetStatusRequest, opts ...grpc.CallOption) (*GetStatusResponse, error) {
 	out := new(GetStatusResponse)
 	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetStatus", in, out, opts...)
@@ -164,6 +167,7 @@ func (c *robotServiceClient) GetStatus(ctx context.Context, in *GetStatusRequest
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *robotServiceClient) StreamStatus(ctx context.Context, in *StreamStatusRequest, opts ...grpc.CallOption) (RobotService_StreamStatusClient, error) {
 	stream, err := c.cc.NewStream(ctx, &RobotService_ServiceDesc.Streams[0], "/viam.robot.v1.RobotService/StreamStatus", opts...)
 	if err != nil {
@@ -276,8 +280,10 @@ type RobotServiceServer interface {
 	FrameSystemConfig(context.Context, *FrameSystemConfigRequest) (*FrameSystemConfigResponse, error)
 	TransformPose(context.Context, *TransformPoseRequest) (*TransformPoseResponse, error)
 	TransformPCD(context.Context, *TransformPCDRequest) (*TransformPCDResponse, error)
+	// Deprecated: Do not use.
 	// GetStatus returns the list of all statuses requested. An empty request signifies all resources.
 	GetStatus(context.Context, *GetStatusRequest) (*GetStatusResponse, error)
+	// Deprecated: Do not use.
 	// StreamStatus periodically sends the status of all statuses requested. An empty request signifies all resources.
 	StreamStatus(*StreamStatusRequest, RobotService_StreamStatusServer) error
 	// StopAll will stop all current and outstanding operations for the robot and stops all actuators and movement

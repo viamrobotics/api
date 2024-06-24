@@ -3558,7 +3558,8 @@ proto.viam.app.v1.ServiceConfig.toObject = function(includeInstance, msg) {
     model: jspb.Message.getFieldWithDefault(msg, 6, ""),
     api: jspb.Message.getFieldWithDefault(msg, 9, ""),
     serviceConfigsList: jspb.Message.toObjectList(msg.getServiceConfigsList(),
-    proto.viam.app.v1.ResourceLevelServiceConfig.toObject, includeInstance)
+    proto.viam.app.v1.ResourceLevelServiceConfig.toObject, includeInstance),
+    logConfiguration: (f = msg.getLogConfiguration()) && proto.viam.app.v1.LogConfiguration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3628,6 +3629,11 @@ proto.viam.app.v1.ServiceConfig.deserializeBinaryFromReader = function(msg, read
       var value = new proto.viam.app.v1.ResourceLevelServiceConfig;
       reader.readMessage(value,proto.viam.app.v1.ResourceLevelServiceConfig.deserializeBinaryFromReader);
       msg.addServiceConfigs(value);
+      break;
+    case 11:
+      var value = new proto.viam.app.v1.LogConfiguration;
+      reader.readMessage(value,proto.viam.app.v1.LogConfiguration.deserializeBinaryFromReader);
+      msg.setLogConfiguration(value);
       break;
     default:
       reader.skipField();
@@ -3714,6 +3720,14 @@ proto.viam.app.v1.ServiceConfig.serializeBinaryToWriter = function(message, writ
       10,
       f,
       proto.viam.app.v1.ResourceLevelServiceConfig.serializeBinaryToWriter
+    );
+  }
+  f = message.getLogConfiguration();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      proto.viam.app.v1.LogConfiguration.serializeBinaryToWriter
     );
   }
 };
@@ -3918,6 +3932,43 @@ proto.viam.app.v1.ServiceConfig.prototype.addServiceConfigs = function(opt_value
  */
 proto.viam.app.v1.ServiceConfig.prototype.clearServiceConfigsList = function() {
   return this.setServiceConfigsList([]);
+};
+
+
+/**
+ * optional LogConfiguration log_configuration = 11;
+ * @return {?proto.viam.app.v1.LogConfiguration}
+ */
+proto.viam.app.v1.ServiceConfig.prototype.getLogConfiguration = function() {
+  return /** @type{?proto.viam.app.v1.LogConfiguration} */ (
+    jspb.Message.getWrapperField(this, proto.viam.app.v1.LogConfiguration, 11));
+};
+
+
+/**
+ * @param {?proto.viam.app.v1.LogConfiguration|undefined} value
+ * @return {!proto.viam.app.v1.ServiceConfig} returns this
+*/
+proto.viam.app.v1.ServiceConfig.prototype.setLogConfiguration = function(value) {
+  return jspb.Message.setWrapperField(this, 11, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.ServiceConfig} returns this
+ */
+proto.viam.app.v1.ServiceConfig.prototype.clearLogConfiguration = function() {
+  return this.setLogConfiguration(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ServiceConfig.prototype.hasLogConfiguration = function() {
+  return jspb.Message.getField(this, 11) != null;
 };
 
 

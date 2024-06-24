@@ -115,6 +115,7 @@ message ServiceConfig {
   string model = 6;
   string api = 9;
   repeated ResourceLevelServiceConfig service_configs = 10 [(tagger.v1.tags) = "json:\"service_config\""];
+  LogConfiguration log_configuration = 11;
 }
 
 message NetworkConfig {
