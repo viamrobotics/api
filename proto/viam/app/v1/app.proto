@@ -255,6 +255,21 @@ message RobotPartHistoryEntry {
   string robot = 2 [(tagger.v1.tags) = "bson:\"robot\" json:\"robot\""];
   google.protobuf.Timestamp when = 3 [(tagger.v1.tags) = "bson:\"when\" json:\"when\""];
   RobotPart old = 4 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
+  AuthenticatorInfo edited_by = 5 [(tagger.v1.tags) = "bson:\"edited_by\" json:\"edited_by\""];
+}
+
+message AuthenticatorInfo {
+  AuthenticationType type = 1;
+  string value = 2;
+  bool is_deactivated = 3;
+}
+
+enum AuthenticationType {
+  AUTHENTICATION_TYPE_UNSPECIFIED = 0;
+  AUTHENTICATION_TYPE_WEB_OAUTH = 1;
+  AUTHENTICATION_TYPE_API_KEY = 2;
+  AUTHENTICATION_TYPE_ROBOT_PART_SECRET = 3;
+  AUTHENTICATION_TYPE_LOCATION_SECRET = 4;
 }
 
 message ListOrganizationsRequest {}
