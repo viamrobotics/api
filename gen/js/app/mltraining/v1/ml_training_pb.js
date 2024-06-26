@@ -1796,7 +1796,6 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.toObject = function(o
  */
 proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    request: (f = msg.getRequest()) && proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.toObject(includeInstance, f),
     id: jspb.Message.getFieldWithDefault(msg, 7, ""),
     datasetId: jspb.Message.getFieldWithDefault(msg, 11, ""),
     organizationId: jspb.Message.getFieldWithDefault(msg, 12, ""),
@@ -1851,11 +1850,6 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto.viam.app.mltraining.v1.SubmitTrainingJobRequest;
-      reader.readMessage(value,proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.deserializeBinaryFromReader);
-      msg.setRequest(value);
-      break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
@@ -1962,14 +1956,6 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.serializeBinary = fun
  */
 proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getId();
   if (f.length > 0) {
     writer.writeString(
@@ -2101,43 +2087,6 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
       f
     );
   }
-};
-
-
-/**
- * optional SubmitTrainingJobRequest request = 1;
- * @return {?proto.viam.app.mltraining.v1.SubmitTrainingJobRequest}
- */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getRequest = function() {
-  return /** @type{?proto.viam.app.mltraining.v1.SubmitTrainingJobRequest} */ (
-    jspb.Message.getWrapperField(this, proto.viam.app.mltraining.v1.SubmitTrainingJobRequest, 1));
-};
-
-
-/**
- * @param {?proto.viam.app.mltraining.v1.SubmitTrainingJobRequest|undefined} value
- * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
-*/
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
- */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.clearRequest = function() {
-  return this.setRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.hasRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
