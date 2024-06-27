@@ -21,6 +21,8 @@ var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_
 goog.object.extend(proto, google_protobuf_struct_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
+var tagger_v1_tagger_pb = require('../../tagger/v1/tagger_pb.js');
+goog.object.extend(proto, tagger_v1_tagger_pb);
 goog.exportSymbol('proto.viam.common.v1.ActuatorStatus', null, global);
 goog.exportSymbol('proto.viam.common.v1.Capsule', null, global);
 goog.exportSymbol('proto.viam.common.v1.DoCommandRequest', null, global);

@@ -5,6 +5,7 @@ import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
+import * as tagger_v1_tagger_pb from "../../../tagger/v1/tagger_pb";
 
 export class MoveRequest extends jspb.Message {
   getName(): string;
