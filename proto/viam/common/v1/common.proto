@@ -6,6 +6,7 @@ package viam.common.v1;
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
+import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/common/v1";
 option java_package = "com.viam.common.v1";
@@ -27,30 +28,30 @@ second being defined by the origin, the rx, ry, rz point and the local Z axis. T
 is circled, the Roll will correct itself to remain in-line. */
 message Pose {
   // millimeters from the origin
-  double x = 1;
+  double x = 1 [(tagger.v1.tags) = "bson:\"x\" json:\"x\""];
   // millimeters from the origin
-  double y = 2;
+  double y = 2 [(tagger.v1.tags) = "bson:\"y\" json:\"y\""];
   // millimeters from the origin
-  double z = 3;
+  double z = 3 [(tagger.v1.tags) = "bson:\"z\" json:\"z\""];
   // z component of a vector defining axis of rotation
-  double o_x = 4;
+  double o_x = 4 [(tagger.v1.tags) = "bson:\"o_x\" json:\"o_x\""];
   // x component of a vector defining axis of rotation
-  double o_y = 5;
+  double o_y = 5 [(tagger.v1.tags) = "bson:\"o_y\" json:\"o_y\""];
   // y component of a vector defining axis of rotation
-  double o_z = 6;
+  double o_z = 6 [(tagger.v1.tags) = "bson:\"o_z\" json:\"o_z\""];
   // degrees
-  double theta = 7;
+  double theta = 7 [(tagger.v1.tags) = "bson:\"theta\" json:\"theta\""];
 }
 
 message Orientation {
   // x component of a vector defining axis of rotation
-  double o_x = 1;
+  double o_x = 1 [(tagger.v1.tags) = "bson:\"o_x\" json:\"o_x\""];
   // y component of a vector defining axis of rotation
-  double o_y = 2;
+  double o_y = 2 [(tagger.v1.tags) = "bson:\"o_y\" json:\"o_y\""];
   // z component of a vector defining axis of rotation
-  double o_z = 3;
+  double o_z = 3 [(tagger.v1.tags) = "bson:\"o_z\" json:\"o_z\""];
   // degrees
-  double theta = 4;
+  double theta = 4 [(tagger.v1.tags) = "bson:\"theta\" json:\"theta\""];
 }
 
 // PoseInFrame contains a pose and the and the reference frame in which it was observed
@@ -60,9 +61,9 @@ message PoseInFrame {
 }
 
 message Vector3 {
-  double x = 1;
-  double y = 2;
-  double z = 3;
+  double x = 1 [(tagger.v1.tags) = "bson:\"x\" json:\"x\""];
+  double y = 2 [(tagger.v1.tags) = "bson:\"y\" json:\"y\""];
+  double z = 3 [(tagger.v1.tags) = "bson:\"z\" json:\"z\""];
 }
 
 message Sphere {
@@ -113,8 +114,8 @@ message PointCloudObject {
 }
 
 message GeoPoint {
-  double latitude = 1;
-  double longitude = 2;
+  double latitude = 1 [(tagger.v1.tags) = "bson:\"latitude\" json:\"latitude\""];
+  double longitude = 2 [(tagger.v1.tags) = "bson:\"longitude\" json:\"longitude\""];
 }
 
 // GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
@@ -219,7 +220,7 @@ message GetReadingsRequest {
 }
 
 message GetReadingsResponse {
-  map<string, google.protobuf.Value> readings = 1;
+  map<string, google.protobuf.Value> readings = 1 [(tagger.v1.tags) = "bson:\"readings\" json:\"readings\""];
 }
 
 message LogEntry {

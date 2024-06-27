@@ -5,6 +5,7 @@ package viam.component.encoder.v1;
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/component/encoder/v1";
 option java_package = "com.viam.component.encoder.v1";
@@ -70,8 +71,8 @@ message GetPositionRequest {
 }
 
 message GetPositionResponse {
-  float value = 1;
-  PositionType position_type = 2;
+  float value = 1 [(tagger.v1.tags) = "bson:\"value\" json:\"value\""];
+  PositionType position_type = 2 [(tagger.v1.tags) = "bson:\"position_type\" json:\"position_type\""];
 }
 
 message ResetPositionRequest {

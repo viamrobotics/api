@@ -5,6 +5,7 @@ package viam.component.movementsensor.v1;
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/component/movementsensor/v1";
 option java_package = "com.viam.component.movementsensor.v1";
@@ -88,7 +89,7 @@ message GetLinearVelocityRequest {
 
 message GetLinearVelocityResponse {
   // Linear velocity in m/s across x/y/z axes
-  common.v1.Vector3 linear_velocity = 1;
+  common.v1.Vector3 linear_velocity = 1 [(tagger.v1.tags) = "bson:\"linear_velocity\" json:\"linear_velocity\""];
 }
 
 message GetAngularVelocityRequest {
@@ -100,7 +101,7 @@ message GetAngularVelocityRequest {
 
 message GetAngularVelocityResponse {
   // Angular velocity in degrees/s across x/y/z axes
-  common.v1.Vector3 angular_velocity = 1;
+  common.v1.Vector3 angular_velocity = 1 [(tagger.v1.tags) = "bson:\"angular_velocity\" json:\"angular_velocity\""];
 }
 
 message GetCompassHeadingRequest {
@@ -113,7 +114,7 @@ message GetCompassHeadingRequest {
 message GetCompassHeadingResponse {
   // A number from 0-359 in degrees where
   // 0 is North, 90 is East, 180 is South, and 270 is   West
-  double value = 1;
+  double value = 1 [(tagger.v1.tags) = "bson:\"compass_heading\" json:\"compass_heading\""];
 }
 
 message GetOrientationRequest {
@@ -126,7 +127,7 @@ message GetOrientationRequest {
 message GetOrientationResponse {
   // Orientation is returned as an orientation message with
   // OX OY OZ as unit-normalized components of the axis of the vector, and Theta in degrees
-  common.v1.Orientation orientation = 1;
+  common.v1.Orientation orientation = 1 [(tagger.v1.tags) = "bson:\"orientation\" json:\"orientation\""];
 }
 
 message GetPositionRequest {
@@ -139,8 +140,8 @@ message GetPositionRequest {
 message GetPositionResponse {
   // Position is returned in a coordinate of latitute and longitude
   // and an altidue in meters
-  common.v1.GeoPoint coordinate = 1;
-  float altitude_m = 2;
+  common.v1.GeoPoint coordinate = 1 [(tagger.v1.tags) = "bson:\"coordinate\" json:\"coordinate\""];
+  float altitude_m = 2 [(tagger.v1.tags) = "bson:\"altitude_m\" json:\"altitude_m\""];
 }
 
 message GetPropertiesRequest {
@@ -183,5 +184,5 @@ message GetLinearAccelerationRequest {
 
 message GetLinearAccelerationResponse {
   // Linear acceleration in m/s across x/y/z axes
-  common.v1.Vector3 linear_acceleration = 1;
+  common.v1.Vector3 linear_acceleration = 1 [(tagger.v1.tags) = "bson:\"linear_acceleration\" json:\"linear_acceleration\""];
 }

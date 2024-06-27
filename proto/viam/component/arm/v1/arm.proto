@@ -6,6 +6,8 @@ import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
+import "tagger/v1/tagger.proto";
+
 option go_package = "go.viam.com/api/component/arm/v1";
 option java_package = "com.viam.component.arm.v1";
 
@@ -89,14 +91,14 @@ message GetEndPositionRequest {
 message GetEndPositionResponse {
   // Returns 6d pose of the end effector relative to the base, represented by X,Y,Z coordinates which express
   // millimeters and theta, ox, oy, oz coordinates which express an orientation vector
-  common.v1.Pose pose = 1;
+  common.v1.Pose pose = 1 [(tagger.v1.tags) = "bson:\"pose\" json:\"pose\""];
 }
 
 message JointPositions {
   // A list of joint positions. Rotations values are in degrees, translational values in mm.
   // The numbers are ordered spatially from the base toward the end effector
   // This is used in GetJointPositionsResponse and MoveToJointPositionsRequest
-  repeated double values = 1;
+  repeated double values = 1 [(tagger.v1.tags) = "bson:\"values\" json:\"values\""];
 }
 
 message GetJointPositionsRequest {
@@ -108,7 +110,7 @@ message GetJointPositionsRequest {
 
 message GetJointPositionsResponse {
   //a list JointPositions
-  JointPositions positions = 1;
+  JointPositions positions = 1 [(tagger.v1.tags) = "bson:\"positions\" json:\"positions\""];
 }
 
 // Moves an arm to the specified pose that is within the reference frame of the arm.

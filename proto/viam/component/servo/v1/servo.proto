@@ -5,6 +5,7 @@ package viam.component.servo.v1;
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/component/servo/v1";
 option java_package = "com.viam.component.servo.v1";
@@ -76,7 +77,7 @@ message GetPositionRequest {
 
 message GetPositionResponse {
   // the degrees from neutral by which the servo is currently rotated.
-  uint32 position_deg = 1;
+  uint32 position_deg = 1 [(tagger.v1.tags) = "bson:\"position_deg\" json:\"position_deg\""];
 }
 
 message StopRequest {
