@@ -114,7 +114,7 @@ message GetCompassHeadingRequest {
 message GetCompassHeadingResponse {
   // A number from 0-359 in degrees where
   // 0 is North, 90 is East, 180 is South, and 270 is   West
-  double value = 1 [(tagger.v1.tags) = "bson:\"compass_heading\" json:\"compass_heading\""];
+  double value = 1 [(tagger.v1.tags) = "bson:\"value\" json:\"value\""];
 }
 
 message GetOrientationRequest {
