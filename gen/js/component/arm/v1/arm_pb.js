@@ -21,8 +21,6 @@ var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
 goog.object.extend(proto, google_api_annotations_pb);
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
 goog.object.extend(proto, google_protobuf_struct_pb);
-var tagger_v1_tagger_pb = require('../../../tagger/v1/tagger_pb.js');
-goog.object.extend(proto, tagger_v1_tagger_pb);
 goog.exportSymbol('proto.viam.component.arm.v1.GetEndPositionRequest', null, global);
 goog.exportSymbol('proto.viam.component.arm.v1.GetEndPositionResponse', null, global);
 goog.exportSymbol('proto.viam.component.arm.v1.GetJointPositionsRequest', null, global);

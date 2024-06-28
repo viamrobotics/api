@@ -5,7 +5,6 @@ import * as jspb from "google-protobuf";
 import * as google_protobuf_descriptor_pb from "google-protobuf/google/protobuf/descriptor_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
-import * as tagger_v1_tagger_pb from "../../tagger/v1/tagger_pb";
 
 export class ResourceName extends jspb.Message {
   getNamespace(): string;
