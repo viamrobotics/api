@@ -23,8 +23,6 @@ var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/durat
 goog.object.extend(proto, google_protobuf_duration_pb);
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
 goog.object.extend(proto, google_protobuf_struct_pb);
-var tagger_v1_tagger_pb = require('../../../tagger/v1/tagger_pb.js');
-goog.object.extend(proto, tagger_v1_tagger_pb);
 goog.exportSymbol('proto.viam.component.board.v1.GetDigitalInterruptValueRequest', null, global);
 goog.exportSymbol('proto.viam.component.board.v1.GetDigitalInterruptValueResponse', null, global);
 goog.exportSymbol('proto.viam.component.board.v1.GetGPIORequest', null, global);

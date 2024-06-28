@@ -5,6 +5,7 @@ package viam.component.arm.v1;
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+
 import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/component/arm/v1";
