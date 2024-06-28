@@ -77,7 +77,7 @@ message GetPositionRequest {
 }
 
 message GetPositionResponse {
-  repeated double positions_mm = 1 [(tagger.v1.tags) = "bson:\"positions_mm\" json:\"positions_mm\""];
+  repeated double positions_mm = 1 [(tagger.v1.tags) = "bson:\"positions_mm\""];
 }
 
 message MoveToPositionRequest {
@@ -110,7 +110,7 @@ message GetLengthsRequest {
 }
 
 message GetLengthsResponse {
-  repeated double lengths_mm = 1 [(tagger.v1.tags) = "bson:\"lengths_mm\" json:\"lengths_mm\""];
+  repeated double lengths_mm = 1 [(tagger.v1.tags) = "bson:\"lengths_mm\""];
 }
 
 message StopRequest {

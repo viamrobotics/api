@@ -71,8 +71,8 @@ message GetPositionRequest {
 }
 
 message GetPositionResponse {
-  float value = 1 [(tagger.v1.tags) = "bson:\"value\" json:\"value\""];
-  PositionType position_type = 2 [(tagger.v1.tags) = "bson:\"position_type\" json:\"position_type\""];
+  float value = 1 [(tagger.v1.tags) = "bson:\"value\""];
+  PositionType position_type = 2 [(tagger.v1.tags) = "bson:\"position_type\""];
 }
 
 message ResetPositionRequest {

@@ -135,7 +135,7 @@ message GetGPIORequest {
 }
 
 message GetGPIOResponse {
-  bool high = 1 [(tagger.v1.tags) = "bson:\"high\" json:\"high\""];
+  bool high = 1 [(tagger.v1.tags) = "bson:\"high\""];
 }
 
 message PWMRequest {
@@ -190,10 +190,10 @@ message ReadAnalogReaderRequest {
 }
 
 message ReadAnalogReaderResponse {
-  int32 value = 1 [(tagger.v1.tags) = "bson:\"value\" json:\"value\""];
-  float min_range = 2 [(tagger.v1.tags) = "bson:\"min_range\" json:\"min_range\""];
-  float max_range = 3 [(tagger.v1.tags) = "bson:\"max_range\" json:\"max_range\""];
-  float step_size = 4 [(tagger.v1.tags) = "bson:\"step_size\" json:\"step_size\""];
+  int32 value = 1 [(tagger.v1.tags) = "bson:\"value\""];
+  float min_range = 2 [(tagger.v1.tags) = "bson:\"min_range\""];
+  float max_range = 3 [(tagger.v1.tags) = "bson:\"max_range\""];
+  float step_size = 4 [(tagger.v1.tags) = "bson:\"step_size\""];
 }
 
 // Analog Writer

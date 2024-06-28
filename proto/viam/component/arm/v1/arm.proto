@@ -91,14 +91,14 @@ message GetEndPositionRequest {
 message GetEndPositionResponse {
   // Returns 6d pose of the end effector relative to the base, represented by X,Y,Z coordinates which express
   // millimeters and theta, ox, oy, oz coordinates which express an orientation vector
-  common.v1.Pose pose = 1 [(tagger.v1.tags) = "bson:\"pose\" json:\"pose\""];
+  common.v1.Pose pose = 1 [(tagger.v1.tags) = "bson:\"pose\""];
 }
 
 message JointPositions {
   // A list of joint positions. Rotations values are in degrees, translational values in mm.
   // The numbers are ordered spatially from the base toward the end effector
   // This is used in GetJointPositionsResponse and MoveToJointPositionsRequest
-  repeated double values = 1 [(tagger.v1.tags) = "bson:\"values\" json:\"values\""];
+  repeated double values = 1 [(tagger.v1.tags) = "bson:\"values\""];
 }
 
 message GetJointPositionsRequest {
@@ -110,7 +110,7 @@ message GetJointPositionsRequest {
 
 message GetJointPositionsResponse {
   //a list JointPositions
-  JointPositions positions = 1 [(tagger.v1.tags) = "bson:\"positions\" json:\"positions\""];
+  JointPositions positions = 1 [(tagger.v1.tags) = "bson:\"positions\""];
 }
 
 // Moves an arm to the specified pose that is within the reference frame of the arm.

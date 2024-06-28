@@ -179,7 +179,7 @@ message GetPositionRequest {
 
 message GetPositionResponse {
   // Current position of the motor relative to its home
-  double position = 1 [(tagger.v1.tags) = "bson:\"position\" json:\"position\""];
+  double position = 1 [(tagger.v1.tags) = "bson:\"position\""];
 }
 
 message StopRequest {
@@ -200,11 +200,11 @@ message IsPoweredRequest {
 
 message IsPoweredResponse {
   // Returns true if the motor is on
-  bool is_on = 1 [(tagger.v1.tags) = "bson:\"is_on\" json:\"is_on\""];
+  bool is_on = 1 [(tagger.v1.tags) = "bson:\"is_on\""];
   // Returns power percent (from 0 to 1, or from -1 to 1 for motors that support negative power),
   // based on the last command sent to motor. If the last command was a stop command, this value
   // will be 0.
-  double power_pct = 2 [(tagger.v1.tags) = "bson:\"power_pct\" json:\"power_pct\""];
+  double power_pct = 2 [(tagger.v1.tags) = "bson:\"power_pct\""];
 }
 
 message GetPropertiesRequest {

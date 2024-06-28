@@ -77,7 +77,7 @@ message GetPositionRequest {
 
 message GetPositionResponse {
   // the degrees from neutral by which the servo is currently rotated.
-  uint32 position_deg = 1 [(tagger.v1.tags) = "bson:\"position_deg\" json:\"position_deg\""];
+  uint32 position_deg = 1 [(tagger.v1.tags) = "bson:\"position_deg\""];
 }
 
 message StopRequest {

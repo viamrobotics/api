@@ -57,9 +57,9 @@ message GetVoltageRequest {
 
 message GetVoltageResponse {
   // Voltage in volts
-  double volts = 1 [(tagger.v1.tags) = "bson:\"volts\" json:\"volts\""];
+  double volts = 1 [(tagger.v1.tags) = "bson:\"volts\""];
   // Bool describing whether the voltage is DC or AC
-  bool is_ac = 2 [(tagger.v1.tags) = "bson:\"is_ac\" json:\"is_ac\""];
+  bool is_ac = 2 [(tagger.v1.tags) = "bson:\"is_ac\""];
 }
 
 message GetCurrentRequest {
@@ -71,9 +71,9 @@ message GetCurrentRequest {
 
 message GetCurrentResponse {
   // Current in amperes
-  double amperes = 1 [(tagger.v1.tags) = "bson:\"amperes\" json:\"amperes\""];
+  double amperes = 1 [(tagger.v1.tags) = "bson:\"amperes\""];
   // Bool descibing whether the current is DC or AC
-  bool is_ac = 2 [(tagger.v1.tags) = "bson:\"is_ac\" json:\"is_ac\""];
+  bool is_ac = 2 [(tagger.v1.tags) = "bson:\"is_ac\""];
 }
 message GetPowerRequest {
   // Name of a power sensor
@@ -84,5 +84,5 @@ message GetPowerRequest {
 
 message GetPowerResponse {
   // Power in watts
-  double watts = 1 [(tagger.v1.tags) = "bson:\"watts\" json:\"watts\""];
+  double watts = 1 [(tagger.v1.tags) = "bson:\"watts\""];
 }

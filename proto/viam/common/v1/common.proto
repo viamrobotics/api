@@ -28,30 +28,30 @@ second being defined by the origin, the rx, ry, rz point and the local Z axis. T
 is circled, the Roll will correct itself to remain in-line. */
 message Pose {
   // millimeters from the origin
-  double x = 1 [(tagger.v1.tags) = "bson:\"x\" json:\"x\""];
+  double x = 1 [(tagger.v1.tags) = "bson:\"x\""];
   // millimeters from the origin
-  double y = 2 [(tagger.v1.tags) = "bson:\"y\" json:\"y\""];
+  double y = 2 [(tagger.v1.tags) = "bson:\"y\""];
   // millimeters from the origin
-  double z = 3 [(tagger.v1.tags) = "bson:\"z\" json:\"z\""];
+  double z = 3 [(tagger.v1.tags) = "bson:\"z\""];
   // z component of a vector defining axis of rotation
-  double o_x = 4 [(tagger.v1.tags) = "bson:\"o_x\" json:\"o_x\""];
+  double o_x = 4 [(tagger.v1.tags) = "bson:\"o_x\""];
   // x component of a vector defining axis of rotation
-  double o_y = 5 [(tagger.v1.tags) = "bson:\"o_y\" json:\"o_y\""];
+  double o_y = 5 [(tagger.v1.tags) = "bson:\"o_y\""];
   // y component of a vector defining axis of rotation
-  double o_z = 6 [(tagger.v1.tags) = "bson:\"o_z\" json:\"o_z\""];
+  double o_z = 6 [(tagger.v1.tags) = "bson:\"o_z\""];
   // degrees
-  double theta = 7 [(tagger.v1.tags) = "bson:\"theta\" json:\"theta\""];
+  double theta = 7 [(tagger.v1.tags) = "bson:\"theta\""];
 }
 
 message Orientation {
   // x component of a vector defining axis of rotation
-  double o_x = 1 [(tagger.v1.tags) = "bson:\"o_x\" json:\"o_x\""];
+  double o_x = 1 [(tagger.v1.tags) = "bson:\"o_x\""];
   // y component of a vector defining axis of rotation
-  double o_y = 2 [(tagger.v1.tags) = "bson:\"o_y\" json:\"o_y\""];
+  double o_y = 2 [(tagger.v1.tags) = "bson:\"o_y\""];
   // z component of a vector defining axis of rotation
-  double o_z = 3 [(tagger.v1.tags) = "bson:\"o_z\" json:\"o_z\""];
+  double o_z = 3 [(tagger.v1.tags) = "bson:\"o_z\""];
   // degrees
-  double theta = 4 [(tagger.v1.tags) = "bson:\"theta\" json:\"theta\""];
+  double theta = 4 [(tagger.v1.tags) = "bson:\"theta\""];
 }
 
 // PoseInFrame contains a pose and the and the reference frame in which it was observed
@@ -61,9 +61,9 @@ message PoseInFrame {
 }
 
 message Vector3 {
-  double x = 1 [(tagger.v1.tags) = "bson:\"x\" json:\"x\""];
-  double y = 2 [(tagger.v1.tags) = "bson:\"y\" json:\"y\""];
-  double z = 3 [(tagger.v1.tags) = "bson:\"z\" json:\"z\""];
+  double x = 1 [(tagger.v1.tags) = "bson:\"x\""];
+  double y = 2 [(tagger.v1.tags) = "bson:\"y\""];
+  double z = 3 [(tagger.v1.tags) = "bson:\"z\""];
 }
 
 message Sphere {
@@ -114,8 +114,8 @@ message PointCloudObject {
 }
 
 message GeoPoint {
-  double latitude = 1 [(tagger.v1.tags) = "bson:\"latitude\" json:\"latitude\""];
-  double longitude = 2 [(tagger.v1.tags) = "bson:\"longitude\" json:\"longitude\""];
+  double latitude = 1 [(tagger.v1.tags) = "bson:\"latitude\""];
+  double longitude = 2 [(tagger.v1.tags) = "bson:\"longitude\""];
 }
 
 // GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
@@ -220,7 +220,7 @@ message GetReadingsRequest {
 }
 
 message GetReadingsResponse {
-  map<string, google.protobuf.Value> readings = 1 [(tagger.v1.tags) = "bson:\"readings\" json:\"readings\""];
+  map<string, google.protobuf.Value> readings = 1 [(tagger.v1.tags) = "bson:\"readings\""];
 }
 
 message LogEntry {
