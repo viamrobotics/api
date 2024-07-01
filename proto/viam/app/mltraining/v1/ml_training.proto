@@ -100,7 +100,6 @@ enum TrainingStatus {
 }
 
 message TrainingJobMetadata {
-  SubmitTrainingJobRequest request = 1 [(tagger.v1.tags) = "bson:\"request\" json:\"request\""];
   string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
   string dataset_id = 11 [(tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
   string organization_id = 12 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
@@ -120,8 +119,8 @@ message TrainingJobMetadata {
   string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
   repeated string tags = 16 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
 
-  reserved 6;
-  reserved "user_email";
+  reserved 1, 6;
+  reserved "request", "user_email";
 }
 
 message CancelTrainingJobRequest {

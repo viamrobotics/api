@@ -217,11 +217,6 @@ export namespace ListTrainingJobsResponse {
 }
 
 export class TrainingJobMetadata extends jspb.Message {
-  hasRequest(): boolean;
-  clearRequest(): void;
-  getRequest(): SubmitTrainingJobRequest | undefined;
-  setRequest(value?: SubmitTrainingJobRequest): void;
-
   getId(): string;
   setId(value: string): void;
 
@@ -300,7 +295,6 @@ export class TrainingJobMetadata extends jspb.Message {
 
 export namespace TrainingJobMetadata {
   export type AsObject = {
-    request?: SubmitTrainingJobRequest.AsObject,
     id: string,
     datasetId: string,
     organizationId: string,
