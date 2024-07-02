@@ -783,7 +783,7 @@ message DeleteFragmentResponse {}
 message GetFragmentHistoryRequest {
   string id = 1;
   optional string page_token = 2;
-  uint64 page_limit = 3;
+  optional uint64 page_limit = 3;
 }
 
 message GetFragmentHistoryResponse {
