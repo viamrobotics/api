@@ -170,6 +170,9 @@ service AppService {
   // Deletes a fragment
   rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
 
+  // Gets fragment history
+  rpc GetFragmentHistory(GetFragmentHistoryRequest) returns (GetFragmentHistoryResponse);
+
   // Creates an IdentityAuthorization
   rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
 
@@ -717,6 +720,13 @@ message Fragment {
   FragmentVisibility visibility = 12;
 }
 
+message FragmentHistoryEntry {
+  string fragment = 1 [(tagger.v1.tags) = "bson:\"fragment\" json:\"fragment\""];
+  google.protobuf.Timestamp edited_on = 2 [(tagger.v1.tags) = "bson:\"edited_on\" json:\"edited_on\""];
+  Fragment old = 3 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
+  AuthenticatorInfo edited_by = 4 [(tagger.v1.tags) = "bson:\"edited_by\" json:\"edited_by\""];
+}
+
 enum FragmentVisibility {
   FRAGMENT_VISIBILITY_UNSPECIFIED = 0;
   FRAGMENT_VISIBILITY_PRIVATE = 1;
@@ -769,6 +779,16 @@ message DeleteFragmentRequest {
 }
 
 message DeleteFragmentResponse {}
+
+message GetFragmentHistoryRequest {
+  string id = 1;
+  optional string page_token = 2;
+}
+
+message GetFragmentHistoryResponse {
+  repeated FragmentHistoryEntry history = 1;
+  string next_page_token = 2;
+}
 
 message ListRobotsRequest {
   string location_id = 1;
