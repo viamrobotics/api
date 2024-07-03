@@ -144,7 +144,7 @@ service RobotService {
   }
 
   // MachineStatus the current status of the robot.
-  rpc MachineStatus(GetMachineRequest) returns (GetMachineStatusResponse) {
+  rpc MachineStatus(GetMachineStatusRequest) returns (GetMachineStatusResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/machine_status"
     };
