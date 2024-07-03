@@ -376,6 +376,7 @@ message GetMachineStatusResponse {
 
 message ResourceStatus {
   enum State {
+    STATE_UNSPECIFIED = 0;
     // a newly created resource.
     STATE_UNCONFIGURED = 1;
     // a resource that is being configured.
