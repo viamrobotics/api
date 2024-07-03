@@ -170,6 +170,9 @@ service AppService {
   // Deletes a fragment
   rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
 
+  // Gets top level and nested fragments for a robot
+  rpc GetTopLevelAndNestedFragments(GetTopLevelAndNestedFragmentsRequest)GetTopLevelAndNestedFragmentsResponse
+
   // Creates an IdentityAuthorization
   rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
 
@@ -772,6 +775,14 @@ message DeleteFragmentResponse {}
 
 message ListRobotsRequest {
   string location_id = 1;
+}
+
+message GetTopLevelAndNestedFragmentsRequest {
+  string part_id = 1;
+}
+
+message GetTopLevelAndNestedFragmentsResponse{
+  repeated Fragment fragments = 1;
 }
 
 message ListRobotsResponse {
