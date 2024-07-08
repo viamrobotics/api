@@ -3502,6 +3502,9 @@ export class UpdateRegistryItemRequest extends jspb.Message {
   getVisibility(): VisibilityMap[keyof VisibilityMap];
   setVisibility(value: VisibilityMap[keyof VisibilityMap]): void;
 
+  getUrl(): string;
+  setUrl(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRegistryItemRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateRegistryItemRequest): UpdateRegistryItemRequest.AsObject;
@@ -3518,6 +3521,7 @@ export namespace UpdateRegistryItemRequest {
     type: app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap],
     description: string,
     visibility: VisibilityMap[keyof VisibilityMap],
+    url: string,
   }
 }
 
