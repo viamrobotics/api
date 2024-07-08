@@ -57,6 +57,8 @@ type RobotServiceClient interface {
 	RestartModule(ctx context.Context, in *RestartModuleRequest, opts ...grpc.CallOption) (*RestartModuleResponse, error)
 	// Shutdown shuts down the robot.
 	Shutdown(ctx context.Context, in *ShutdownRequest, opts ...grpc.CallOption) (*ShutdownResponse, error)
+	// GetMachineStatus returns the current status of the robot.
+	GetMachineStatus(ctx context.Context, in *GetMachineStatusRequest, opts ...grpc.CallOption) (*GetMachineStatusResponse, error)
 }
 
 type robotServiceClient struct {
@@ -263,6 +265,15 @@ func (c *robotServiceClient) Shutdown(ctx context.Context, in *ShutdownRequest, 
 	return out, nil
 }
 
+func (c *robotServiceClient) GetMachineStatus(ctx context.Context, in *GetMachineStatusRequest, opts ...grpc.CallOption) (*GetMachineStatusResponse, error) {
+	out := new(GetMachineStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetMachineStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RobotServiceServer is the server API for RobotService service.
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
@@ -302,6 +313,8 @@ type RobotServiceServer interface {
 	RestartModule(context.Context, *RestartModuleRequest) (*RestartModuleResponse, error)
 	// Shutdown shuts down the robot.
 	Shutdown(context.Context, *ShutdownRequest) (*ShutdownResponse, error)
+	// GetMachineStatus returns the current status of the robot.
+	GetMachineStatus(context.Context, *GetMachineStatusRequest) (*GetMachineStatusResponse, error)
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -365,6 +378,9 @@ func (UnimplementedRobotServiceServer) RestartModule(context.Context, *RestartMo
 }
 func (UnimplementedRobotServiceServer) Shutdown(context.Context, *ShutdownRequest) (*ShutdownResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Shutdown not implemented")
+}
+func (UnimplementedRobotServiceServer) GetMachineStatus(context.Context, *GetMachineStatusRequest) (*GetMachineStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMachineStatus not implemented")
 }
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
@@ -724,6 +740,24 @@ func _RobotService_Shutdown_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_GetMachineStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMachineStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).GetMachineStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/GetMachineStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).GetMachineStatus(ctx, req.(*GetMachineStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RobotService_ServiceDesc is the grpc.ServiceDesc for RobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -802,6 +836,10 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Shutdown",
 			Handler:    _RobotService_Shutdown_Handler,
+		},
+		{
+			MethodName: "GetMachineStatus",
+			Handler:    _RobotService_GetMachineStatus_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

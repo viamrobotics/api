@@ -1240,5 +1240,66 @@ proto.viam.robot.v1.RobotServicePromiseClient.prototype.shutdown =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.GetMachineStatusRequest,
+ *   !proto.viam.robot.v1.GetMachineStatusResponse>}
+ */
+const methodDescriptor_RobotService_GetMachineStatus = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/GetMachineStatus',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.GetMachineStatusRequest,
+  proto.viam.robot.v1.GetMachineStatusResponse,
+  /**
+   * @param {!proto.viam.robot.v1.GetMachineStatusRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.GetMachineStatusResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.GetMachineStatusRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.GetMachineStatusResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.GetMachineStatusResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.getMachineStatus =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/GetMachineStatus',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_GetMachineStatus,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.GetMachineStatusRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.GetMachineStatusResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.getMachineStatus =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/GetMachineStatus',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_GetMachineStatus);
+};
+
+
 module.exports = proto.viam.robot.v1;
 
