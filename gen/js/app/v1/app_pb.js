@@ -28159,7 +28159,8 @@ proto.viam.app.v1.UpdateRegistryItemRequest.toObject = function(includeInstance,
     itemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     type: jspb.Message.getFieldWithDefault(msg, 2, 0),
     description: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    visibility: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    visibility: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    url: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -28211,6 +28212,10 @@ proto.viam.app.v1.UpdateRegistryItemRequest.deserializeBinaryFromReader = functi
     case 4:
       var value = /** @type {!proto.viam.app.v1.Visibility} */ (reader.readEnum());
       msg.setVisibility(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUrl(value);
       break;
     default:
       reader.skipField();
@@ -28266,6 +28271,13 @@ proto.viam.app.v1.UpdateRegistryItemRequest.serializeBinaryToWriter = function(m
   if (f !== 0.0) {
     writer.writeEnum(
       4,
+      f
+    );
+  }
+  f = message.getUrl();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -28341,6 +28353,24 @@ proto.viam.app.v1.UpdateRegistryItemRequest.prototype.getVisibility = function()
  */
 proto.viam.app.v1.UpdateRegistryItemRequest.prototype.setVisibility = function(value) {
   return jspb.Message.setProto3EnumField(this, 4, value);
+};
+
+
+/**
+ * optional string url = 5;
+ * @return {string}
+ */
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.getUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UpdateRegistryItemRequest} returns this
+ */
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.setUrl = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
