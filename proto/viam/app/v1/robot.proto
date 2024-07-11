@@ -41,6 +41,8 @@ message RobotConfig {
   // Turns on pprof http server on localhost. By default false.
   bool enable_web_profile = 13;
   repeated LogPatternConfig log = 14;
+  // Attributes a particular revision to the config.
+  string revision = 15;
 }
 
 // LogPatternConfig allows you to specify a 2-tuple consisting
