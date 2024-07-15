@@ -943,7 +943,8 @@ proto.viam.app.v1.RobotConfig.toObject = function(includeInstance, msg) {
     proto.viam.app.v1.AppValidationStatus.toObject, includeInstance),
     enableWebProfile: jspb.Message.getBooleanFieldWithDefault(msg, 13, false),
     logList: jspb.Message.toObjectList(msg.getLogList(),
-    proto.viam.app.v1.LogPatternConfig.toObject, includeInstance)
+    proto.viam.app.v1.LogPatternConfig.toObject, includeInstance),
+    revision: jspb.Message.getFieldWithDefault(msg, 15, "")
   };
 
   if (includeInstance) {
@@ -1046,6 +1047,10 @@ proto.viam.app.v1.RobotConfig.deserializeBinaryFromReader = function(msg, reader
       var value = new proto.viam.app.v1.LogPatternConfig;
       reader.readMessage(value,proto.viam.app.v1.LogPatternConfig.deserializeBinaryFromReader);
       msg.addLog(value);
+      break;
+    case 15:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRevision(value);
       break;
     default:
       reader.skipField();
@@ -1183,6 +1188,13 @@ proto.viam.app.v1.RobotConfig.serializeBinaryToWriter = function(message, writer
       14,
       f,
       proto.viam.app.v1.LogPatternConfig.serializeBinaryToWriter
+    );
+  }
+  f = message.getRevision();
+  if (f.length > 0) {
+    writer.writeString(
+      15,
+      f
     );
   }
 };
@@ -1690,6 +1702,24 @@ proto.viam.app.v1.RobotConfig.prototype.addLog = function(opt_value, opt_index) 
  */
 proto.viam.app.v1.RobotConfig.prototype.clearLogList = function() {
   return this.setLogList([]);
+};
+
+
+/**
+ * optional string revision = 15;
+ * @return {string}
+ */
+proto.viam.app.v1.RobotConfig.prototype.getRevision = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.RobotConfig} returns this
+ */
+proto.viam.app.v1.RobotConfig.prototype.setRevision = function(value) {
+  return jspb.Message.setProto3StringField(this, 15, value);
 };
 
 
