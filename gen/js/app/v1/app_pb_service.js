@@ -451,6 +451,15 @@ AppService.DeleteFragment = {
   responseType: app_v1_app_pb.DeleteFragmentResponse
 };
 
+AppService.ListMachineFragments = {
+  methodName: "ListMachineFragments",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListMachineFragmentsRequest,
+  responseType: app_v1_app_pb.ListMachineFragmentsResponse
+};
+
 AppService.GetFragmentHistory = {
   methodName: "GetFragmentHistory",
   service: AppService,
@@ -2166,6 +2175,37 @@ AppServiceClient.prototype.deleteFragment = function deleteFragment(requestMessa
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.DeleteFragment, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listMachineFragments = function listMachineFragments(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListMachineFragments, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -170,6 +170,9 @@ service AppService {
   // Deletes a fragment
   rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
 
+  // Gets top level and nested fragments for a machine, as well as any other specified fragment ids
+  rpc ListMachineFragments(ListMachineFragmentsRequest) returns (ListMachineFragmentsResponse);
+
   // Gets fragment history
   rpc GetFragmentHistory(GetFragmentHistoryRequest) returns (GetFragmentHistoryResponse);
 
@@ -793,6 +796,19 @@ message GetFragmentHistoryResponse {
 
 message ListRobotsRequest {
   string location_id = 1;
+}
+
+message ListMachineFragmentsRequest {
+  // the machine_id used to filter fragments defined in a machine's parts.
+  // Also returns any fragments nested within the fragments defined in parts.
+  string machine_id = 1;
+  // additional fragment_ids to append to the response. useful when needing to view fragments that will be
+  // provisionally added to the machine alongside existing fragments.
+  repeated string additional_fragment_ids = 2;
+}
+
+message ListMachineFragmentsResponse {
+  repeated Fragment fragments = 1;
 }
 
 message ListRobotsResponse {
