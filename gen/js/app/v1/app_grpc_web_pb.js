@@ -3075,6 +3075,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.deleteFragment =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.ListMachineFragmentsRequest,
+ *   !proto.viam.app.v1.ListMachineFragmentsResponse>}
+ */
+const methodDescriptor_AppService_ListMachineFragments = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/ListMachineFragments',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.ListMachineFragmentsRequest,
+  proto.viam.app.v1.ListMachineFragmentsResponse,
+  /**
+   * @param {!proto.viam.app.v1.ListMachineFragmentsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.ListMachineFragmentsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.ListMachineFragmentsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ListMachineFragmentsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ListMachineFragmentsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.listMachineFragments =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListMachineFragments',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListMachineFragments,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ListMachineFragmentsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.ListMachineFragmentsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.listMachineFragments =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListMachineFragments',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListMachineFragments);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.GetFragmentHistoryRequest,
  *   !proto.viam.app.v1.GetFragmentHistoryResponse>}
  */

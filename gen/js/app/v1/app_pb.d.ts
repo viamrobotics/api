@@ -2551,6 +2551,54 @@ export namespace ListRobotsRequest {
   }
 }
 
+export class ListMachineFragmentsRequest extends jspb.Message {
+  getMachineId(): string;
+  setMachineId(value: string): void;
+
+  clearAdditionalFragmentIdsList(): void;
+  getAdditionalFragmentIdsList(): Array<string>;
+  setAdditionalFragmentIdsList(value: Array<string>): void;
+  addAdditionalFragmentIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListMachineFragmentsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListMachineFragmentsRequest): ListMachineFragmentsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListMachineFragmentsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListMachineFragmentsRequest;
+  static deserializeBinaryFromReader(message: ListMachineFragmentsRequest, reader: jspb.BinaryReader): ListMachineFragmentsRequest;
+}
+
+export namespace ListMachineFragmentsRequest {
+  export type AsObject = {
+    machineId: string,
+    additionalFragmentIdsList: Array<string>,
+  }
+}
+
+export class ListMachineFragmentsResponse extends jspb.Message {
+  clearFragmentsList(): void;
+  getFragmentsList(): Array<Fragment>;
+  setFragmentsList(value: Array<Fragment>): void;
+  addFragments(value?: Fragment, index?: number): Fragment;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListMachineFragmentsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListMachineFragmentsResponse): ListMachineFragmentsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListMachineFragmentsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListMachineFragmentsResponse;
+  static deserializeBinaryFromReader(message: ListMachineFragmentsResponse, reader: jspb.BinaryReader): ListMachineFragmentsResponse;
+}
+
+export namespace ListMachineFragmentsResponse {
+  export type AsObject = {
+    fragmentsList: Array<Fragment.AsObject>,
+  }
+}
+
 export class ListRobotsResponse extends jspb.Message {
   clearRobotsList(): void;
   getRobotsList(): Array<Robot>;

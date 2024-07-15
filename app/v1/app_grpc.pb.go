@@ -123,6 +123,8 @@ type AppServiceClient interface {
 	UpdateFragment(ctx context.Context, in *UpdateFragmentRequest, opts ...grpc.CallOption) (*UpdateFragmentResponse, error)
 	// Deletes a fragment
 	DeleteFragment(ctx context.Context, in *DeleteFragmentRequest, opts ...grpc.CallOption) (*DeleteFragmentResponse, error)
+	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
+	ListMachineFragments(ctx context.Context, in *ListMachineFragmentsRequest, opts ...grpc.CallOption) (*ListMachineFragmentsResponse, error)
 	// Gets fragment history
 	GetFragmentHistory(ctx context.Context, in *GetFragmentHistoryRequest, opts ...grpc.CallOption) (*GetFragmentHistoryResponse, error)
 	// Creates an IdentityAuthorization
@@ -626,6 +628,15 @@ func (c *appServiceClient) DeleteFragment(ctx context.Context, in *DeleteFragmen
 	return out, nil
 }
 
+func (c *appServiceClient) ListMachineFragments(ctx context.Context, in *ListMachineFragmentsRequest, opts ...grpc.CallOption) (*ListMachineFragmentsResponse, error) {
+	out := new(ListMachineFragmentsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListMachineFragments", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) GetFragmentHistory(ctx context.Context, in *GetFragmentHistoryRequest, opts ...grpc.CallOption) (*GetFragmentHistoryResponse, error) {
 	out := new(GetFragmentHistoryResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetFragmentHistory", in, out, opts...)
@@ -963,6 +974,8 @@ type AppServiceServer interface {
 	UpdateFragment(context.Context, *UpdateFragmentRequest) (*UpdateFragmentResponse, error)
 	// Deletes a fragment
 	DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error)
+	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
+	ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error)
 	// Gets fragment history
 	GetFragmentHistory(context.Context, *GetFragmentHistoryRequest) (*GetFragmentHistoryResponse, error)
 	// Creates an IdentityAuthorization
@@ -1145,6 +1158,9 @@ func (UnimplementedAppServiceServer) UpdateFragment(context.Context, *UpdateFrag
 }
 func (UnimplementedAppServiceServer) DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFragment not implemented")
+}
+func (UnimplementedAppServiceServer) ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMachineFragments not implemented")
 }
 func (UnimplementedAppServiceServer) GetFragmentHistory(context.Context, *GetFragmentHistoryRequest) (*GetFragmentHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFragmentHistory not implemented")
@@ -2113,6 +2129,24 @@ func _AppService_DeleteFragment_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_ListMachineFragments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMachineFragmentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListMachineFragments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListMachineFragments",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListMachineFragments(ctx, req.(*ListMachineFragmentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_GetFragmentHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetFragmentHistoryRequest)
 	if err := dec(in); err != nil {
@@ -2733,6 +2767,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteFragment",
 			Handler:    _AppService_DeleteFragment_Handler,
+		},
+		{
+			MethodName: "ListMachineFragments",
+			Handler:    _AppService_ListMachineFragments_Handler,
 		},
 		{
 			MethodName: "GetFragmentHistory",
