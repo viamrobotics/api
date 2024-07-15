@@ -2189,6 +2189,44 @@ export namespace Fragment {
   }
 }
 
+export class FragmentHistoryEntry extends jspb.Message {
+  getFragment(): string;
+  setFragment(value: string): void;
+
+  hasEditedOn(): boolean;
+  clearEditedOn(): void;
+  getEditedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setEditedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasOld(): boolean;
+  clearOld(): void;
+  getOld(): Fragment | undefined;
+  setOld(value?: Fragment): void;
+
+  hasEditedBy(): boolean;
+  clearEditedBy(): void;
+  getEditedBy(): AuthenticatorInfo | undefined;
+  setEditedBy(value?: AuthenticatorInfo): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FragmentHistoryEntry.AsObject;
+  static toObject(includeInstance: boolean, msg: FragmentHistoryEntry): FragmentHistoryEntry.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FragmentHistoryEntry, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FragmentHistoryEntry;
+  static deserializeBinaryFromReader(message: FragmentHistoryEntry, reader: jspb.BinaryReader): FragmentHistoryEntry;
+}
+
+export namespace FragmentHistoryEntry {
+  export type AsObject = {
+    fragment: string,
+    editedOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    old?: Fragment.AsObject,
+    editedBy?: AuthenticatorInfo.AsObject,
+  }
+}
+
 export class ListFragmentsRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
@@ -2432,6 +2470,64 @@ export class DeleteFragmentResponse extends jspb.Message {
 
 export namespace DeleteFragmentResponse {
   export type AsObject = {
+  }
+}
+
+export class GetFragmentHistoryRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  hasPageToken(): boolean;
+  clearPageToken(): void;
+  getPageToken(): string;
+  setPageToken(value: string): void;
+
+  hasPageLimit(): boolean;
+  clearPageLimit(): void;
+  getPageLimit(): number;
+  setPageLimit(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetFragmentHistoryRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetFragmentHistoryRequest): GetFragmentHistoryRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetFragmentHistoryRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetFragmentHistoryRequest;
+  static deserializeBinaryFromReader(message: GetFragmentHistoryRequest, reader: jspb.BinaryReader): GetFragmentHistoryRequest;
+}
+
+export namespace GetFragmentHistoryRequest {
+  export type AsObject = {
+    id: string,
+    pageToken: string,
+    pageLimit: number,
+  }
+}
+
+export class GetFragmentHistoryResponse extends jspb.Message {
+  clearHistoryList(): void;
+  getHistoryList(): Array<FragmentHistoryEntry>;
+  setHistoryList(value: Array<FragmentHistoryEntry>): void;
+  addHistory(value?: FragmentHistoryEntry, index?: number): FragmentHistoryEntry;
+
+  getNextPageToken(): string;
+  setNextPageToken(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetFragmentHistoryResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetFragmentHistoryResponse): GetFragmentHistoryResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetFragmentHistoryResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetFragmentHistoryResponse;
+  static deserializeBinaryFromReader(message: GetFragmentHistoryResponse, reader: jspb.BinaryReader): GetFragmentHistoryResponse;
+}
+
+export namespace GetFragmentHistoryResponse {
+  export type AsObject = {
+    historyList: Array<FragmentHistoryEntry.AsObject>,
+    nextPageToken: string,
   }
 }
 

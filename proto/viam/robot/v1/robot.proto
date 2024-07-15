@@ -142,6 +142,13 @@ service RobotService {
       post: "/viam/api/v1/shutdown"
     };
   }
+
+  // GetMachineStatus returns the current status of the robot.
+  rpc GetMachineStatus(GetMachineStatusRequest) returns (GetMachineStatusResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/machine_status"
+    };
+  }
 }
 
 message FrameSystemConfig {
@@ -360,3 +367,33 @@ message RestartModuleResponse {}
 message ShutdownRequest {}
 
 message ShutdownResponse {}
+
+message GetMachineStatusRequest {}
+
+message GetMachineStatusResponse {
+  repeated ResourceStatus resources = 1;
+}
+
+message ResourceStatus {
+  enum State {
+    STATE_UNSPECIFIED = 0;
+    // a newly created resource.
+    STATE_UNCONFIGURED = 1;
+    // a resource that is being configured.
+    STATE_CONFIGURING = 2;
+    // a resource that has been successfully configured once and is not being
+    // re-configured or removed.
+    STATE_READY = 3;
+    // a resource that is being removed from the robot.
+    STATE_REMOVING = 4;
+  }
+
+  // resource name.
+  common.v1.ResourceName name = 1;
+
+  // current state.
+  State state = 2;
+
+  // state transition timestamp.
+  google.protobuf.Timestamp last_updated = 3;
+}

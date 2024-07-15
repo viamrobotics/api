@@ -451,6 +451,15 @@ AppService.DeleteFragment = {
   responseType: app_v1_app_pb.DeleteFragmentResponse
 };
 
+AppService.GetFragmentHistory = {
+  methodName: "GetFragmentHistory",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetFragmentHistoryRequest,
+  responseType: app_v1_app_pb.GetFragmentHistoryResponse
+};
+
 AppService.AddRole = {
   methodName: "AddRole",
   service: AppService,
@@ -2157,6 +2166,37 @@ AppServiceClient.prototype.deleteFragment = function deleteFragment(requestMessa
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.DeleteFragment, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getFragmentHistory = function getFragmentHistory(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetFragmentHistory, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
