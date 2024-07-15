@@ -76,6 +76,9 @@ export class RobotConfig extends jspb.Message {
   setLogList(value: Array<LogPatternConfig>): void;
   addLog(value?: LogPatternConfig, index?: number): LogPatternConfig;
 
+  getRevision(): string;
+  setRevision(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -102,6 +105,7 @@ export namespace RobotConfig {
     overwriteFragmentStatusList: Array<AppValidationStatus.AsObject>,
     enableWebProfile: boolean,
     logList: Array<LogPatternConfig.AsObject>,
+    revision: string,
   }
 }
 
