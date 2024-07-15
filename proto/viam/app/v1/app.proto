@@ -807,7 +807,7 @@ message ListMachineFragmentsRequest {
   repeated string additional_fragment_ids = 2;
 }
 
-message ListMachineFragmentsResponse{
+message ListMachineFragmentsResponse {
   repeated Fragment fragments = 1;
 }
 
