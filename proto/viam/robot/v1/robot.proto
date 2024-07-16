@@ -396,7 +396,7 @@ message ResourceStatus {
   State state = 2;
 
   // state transition timestamp.
-  google.protobuf.Timestamp updated_at = 3;
+  google.protobuf.Timestamp last_updated = 3;
 
   // revision of the last config that successfully updated this resource.
   string revision = 4;
@@ -407,5 +407,5 @@ message ConfigStatus {
   string revision = 1;
 
   // config ingestion timestamp.
-  google.protobuf.Timestamp updated_at = 2;
+  google.protobuf.Timestamp last_updated = 2;
 }
