@@ -399,7 +399,7 @@ message ResourceStatus {
   google.protobuf.Timestamp updated_at = 3;
 
   // revision of the last config that successfully updated this resource.
-  string configRevision = 4;
+  string revision = 4;
 }
 
 message ConfigStatus {
