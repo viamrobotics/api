@@ -118,8 +118,8 @@ export class RegisterAuthApplicationResponse extends jspb.Message {
   getApplicationName(): string;
   setApplicationName(value: string): void;
 
-  getSecret(): string;
-  setSecret(value: string): void;
+  getClientSecret(): string;
+  setClientSecret(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RegisterAuthApplicationResponse.AsObject;
@@ -135,7 +135,7 @@ export namespace RegisterAuthApplicationResponse {
   export type AsObject = {
     applicationId: string,
     applicationName: string,
-    secret: string,
+    clientSecret: string,
   }
 }
 
@@ -204,6 +204,74 @@ export namespace UpdateAuthApplicationResponse {
   export type AsObject = {
     applicationId: string,
     applicationName: string,
+  }
+}
+
+export class GetAuthApplicationRequest extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getApplicationId(): string;
+  setApplicationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAuthApplicationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAuthApplicationRequest): GetAuthApplicationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetAuthApplicationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAuthApplicationRequest;
+  static deserializeBinaryFromReader(message: GetAuthApplicationRequest, reader: jspb.BinaryReader): GetAuthApplicationRequest;
+}
+
+export namespace GetAuthApplicationRequest {
+  export type AsObject = {
+    orgId: string,
+    applicationId: string,
+  }
+}
+
+export class GetAuthApplicationResponse extends jspb.Message {
+  getApplicationId(): string;
+  setApplicationId(value: string): void;
+
+  getApplicationName(): string;
+  setApplicationName(value: string): void;
+
+  getClientSecret(): string;
+  setClientSecret(value: string): void;
+
+  clearOriginUrisList(): void;
+  getOriginUrisList(): Array<string>;
+  setOriginUrisList(value: Array<string>): void;
+  addOriginUris(value: string, index?: number): string;
+
+  clearRedirectUrisList(): void;
+  getRedirectUrisList(): Array<string>;
+  setRedirectUrisList(value: Array<string>): void;
+  addRedirectUris(value: string, index?: number): string;
+
+  getLogoutUri(): string;
+  setLogoutUri(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAuthApplicationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAuthApplicationResponse): GetAuthApplicationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetAuthApplicationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAuthApplicationResponse;
+  static deserializeBinaryFromReader(message: GetAuthApplicationResponse, reader: jspb.BinaryReader): GetAuthApplicationResponse;
+}
+
+export namespace GetAuthApplicationResponse {
+  export type AsObject = {
+    applicationId: string,
+    applicationName: string,
+    clientSecret: string,
+    originUrisList: Array<string>,
+    redirectUrisList: Array<string>,
+    logoutUri: string,
   }
 }
 

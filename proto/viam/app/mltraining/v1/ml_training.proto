@@ -62,6 +62,7 @@ message SubmitTrainingJobResponse {
 message SubmitCustomTrainingJobRequest {
   string dataset_id = 1 [(tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
   string registry_item_id = 2 [(tagger.v1.tags) = "bson:\"registry_item_id\" json:\"registry_item_id\""];
+  string registry_item_version = 6 [(tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
   string organization_id = 3 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
   string model_name = 4 [(tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
   string model_version = 5 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
@@ -99,7 +100,6 @@ enum TrainingStatus {
 }
 
 message TrainingJobMetadata {
-  SubmitTrainingJobRequest request = 1 [(tagger.v1.tags) = "bson:\"request\" json:\"request\""];
   string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
   string dataset_id = 11 [(tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
   string organization_id = 12 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
@@ -109,6 +109,7 @@ message TrainingJobMetadata {
   ModelFramework model_framework = 17 [(tagger.v1.tags) = "bson:\"model_framework\" json:\"model_framework\""];
   bool is_custom_job = 18 [(tagger.v1.tags) = "bson:\"is_custom_job\" json:\"is_custom_job\""];
   string registry_item_id = 19 [(tagger.v1.tags) = "bson:\"registry_item_id\" json:\"registry_item_id\""];
+  string registry_item_version = 20 [(tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
   TrainingStatus status = 2 [(tagger.v1.tags) = "bson:\"status\" json:\"status\""];
   google.rpc.Status error_status = 8 [(tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
   google.protobuf.Timestamp created_on = 3 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
@@ -118,8 +119,8 @@ message TrainingJobMetadata {
   string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
   repeated string tags = 16 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
 
-  reserved 6;
-  reserved "user_email";
+  reserved 1, 6;
+  reserved "request", "user_email";
 }
 
 message CancelTrainingJobRequest {

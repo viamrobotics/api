@@ -445,6 +445,24 @@ type AppServiceDeleteFragment = {
   readonly responseType: typeof app_v1_app_pb.DeleteFragmentResponse;
 };
 
+type AppServiceListMachineFragments = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListMachineFragmentsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListMachineFragmentsResponse;
+};
+
+type AppServiceGetFragmentHistory = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetFragmentHistoryRequest;
+  readonly responseType: typeof app_v1_app_pb.GetFragmentHistoryResponse;
+};
+
 type AppServiceAddRole = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -535,6 +553,15 @@ type AppServiceDeleteRegistryItem = {
   readonly responseType: typeof app_v1_app_pb.DeleteRegistryItemResponse;
 };
 
+type AppServiceTransferRegistryItem = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.TransferRegistryItemRequest;
+  readonly responseType: typeof app_v1_app_pb.TransferRegistryItemResponse;
+};
+
 type AppServiceCreateModule = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -607,6 +634,15 @@ type AppServiceListKeys = {
   readonly responseType: typeof app_v1_app_pb.ListKeysResponse;
 };
 
+type AppServiceRenameKey = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.RenameKeyRequest;
+  readonly responseType: typeof app_v1_app_pb.RenameKeyResponse;
+};
+
 type AppServiceRotateKey = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -676,6 +712,8 @@ export class AppService {
   static readonly CreateFragment: AppServiceCreateFragment;
   static readonly UpdateFragment: AppServiceUpdateFragment;
   static readonly DeleteFragment: AppServiceDeleteFragment;
+  static readonly ListMachineFragments: AppServiceListMachineFragments;
+  static readonly GetFragmentHistory: AppServiceGetFragmentHistory;
   static readonly AddRole: AppServiceAddRole;
   static readonly RemoveRole: AppServiceRemoveRole;
   static readonly ChangeRole: AppServiceChangeRole;
@@ -686,6 +724,7 @@ export class AppService {
   static readonly UpdateRegistryItem: AppServiceUpdateRegistryItem;
   static readonly ListRegistryItems: AppServiceListRegistryItems;
   static readonly DeleteRegistryItem: AppServiceDeleteRegistryItem;
+  static readonly TransferRegistryItem: AppServiceTransferRegistryItem;
   static readonly CreateModule: AppServiceCreateModule;
   static readonly UpdateModule: AppServiceUpdateModule;
   static readonly UploadModuleFile: AppServiceUploadModuleFile;
@@ -694,6 +733,7 @@ export class AppService {
   static readonly CreateKey: AppServiceCreateKey;
   static readonly DeleteKey: AppServiceDeleteKey;
   static readonly ListKeys: AppServiceListKeys;
+  static readonly RenameKey: AppServiceRenameKey;
   static readonly RotateKey: AppServiceRotateKey;
   static readonly CreateKeyFromExistingKeyAuthorizations: AppServiceCreateKeyFromExistingKeyAuthorizations;
 }
@@ -1163,6 +1203,24 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.DeleteFragmentRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteFragmentResponse|null) => void
   ): UnaryResponse;
+  listMachineFragments(
+    requestMessage: app_v1_app_pb.ListMachineFragmentsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListMachineFragmentsResponse|null) => void
+  ): UnaryResponse;
+  listMachineFragments(
+    requestMessage: app_v1_app_pb.ListMachineFragmentsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListMachineFragmentsResponse|null) => void
+  ): UnaryResponse;
+  getFragmentHistory(
+    requestMessage: app_v1_app_pb.GetFragmentHistoryRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFragmentHistoryResponse|null) => void
+  ): UnaryResponse;
+  getFragmentHistory(
+    requestMessage: app_v1_app_pb.GetFragmentHistoryRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFragmentHistoryResponse|null) => void
+  ): UnaryResponse;
   addRole(
     requestMessage: app_v1_app_pb.AddRoleRequest,
     metadata: grpc.Metadata,
@@ -1252,6 +1310,15 @@ export class AppServiceClient {
   deleteRegistryItem(
     requestMessage: app_v1_app_pb.DeleteRegistryItemRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  transferRegistryItem(
+    requestMessage: app_v1_app_pb.TransferRegistryItemRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.TransferRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  transferRegistryItem(
+    requestMessage: app_v1_app_pb.TransferRegistryItemRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.TransferRegistryItemResponse|null) => void
   ): UnaryResponse;
   createModule(
     requestMessage: app_v1_app_pb.CreateModuleRequest,
@@ -1316,6 +1383,15 @@ export class AppServiceClient {
   listKeys(
     requestMessage: app_v1_app_pb.ListKeysRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListKeysResponse|null) => void
+  ): UnaryResponse;
+  renameKey(
+    requestMessage: app_v1_app_pb.RenameKeyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RenameKeyResponse|null) => void
+  ): UnaryResponse;
+  renameKey(
+    requestMessage: app_v1_app_pb.RenameKeyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RenameKeyResponse|null) => void
   ): UnaryResponse;
   rotateKey(
     requestMessage: app_v1_app_pb.RotateKeyRequest,

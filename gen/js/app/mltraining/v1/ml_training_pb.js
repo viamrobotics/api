@@ -780,6 +780,7 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.toObject = function(
   var f, obj = {
     datasetId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     registryItemId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    registryItemVersion: jspb.Message.getFieldWithDefault(msg, 6, ""),
     organizationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     modelName: jspb.Message.getFieldWithDefault(msg, 4, ""),
     modelVersion: jspb.Message.getFieldWithDefault(msg, 5, "")
@@ -826,6 +827,10 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.deserializeBinaryFro
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setRegistryItemId(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRegistryItemVersion(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -879,6 +884,13 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.serializeBinaryToWri
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getRegistryItemVersion();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -939,6 +951,24 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getRegistr
  */
 proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.setRegistryItemId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string registry_item_version = 6;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getRegistryItemVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest} returns this
+ */
+proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.setRegistryItemVersion = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -1766,7 +1796,6 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.toObject = function(o
  */
 proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    request: (f = msg.getRequest()) && proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.toObject(includeInstance, f),
     id: jspb.Message.getFieldWithDefault(msg, 7, ""),
     datasetId: jspb.Message.getFieldWithDefault(msg, 11, ""),
     organizationId: jspb.Message.getFieldWithDefault(msg, 12, ""),
@@ -1776,6 +1805,7 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInst
     modelFramework: jspb.Message.getFieldWithDefault(msg, 17, 0),
     isCustomJob: jspb.Message.getBooleanFieldWithDefault(msg, 18, false),
     registryItemId: jspb.Message.getFieldWithDefault(msg, 19, ""),
+    registryItemVersion: jspb.Message.getFieldWithDefault(msg, 20, ""),
     status: jspb.Message.getFieldWithDefault(msg, 2, 0),
     errorStatus: (f = msg.getErrorStatus()) && google_rpc_status_pb.Status.toObject(includeInstance, f),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
@@ -1820,11 +1850,6 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto.viam.app.mltraining.v1.SubmitTrainingJobRequest;
-      reader.readMessage(value,proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.deserializeBinaryFromReader);
-      msg.setRequest(value);
-      break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
@@ -1860,6 +1885,10 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
     case 19:
       var value = /** @type {string} */ (reader.readString());
       msg.setRegistryItemId(value);
+      break;
+    case 20:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRegistryItemVersion(value);
       break;
     case 2:
       var value = /** @type {!proto.viam.app.mltraining.v1.TrainingStatus} */ (reader.readEnum());
@@ -1927,14 +1956,6 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.serializeBinary = fun
  */
 proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getId();
   if (f.length > 0) {
     writer.writeString(
@@ -1995,6 +2016,13 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
   if (f.length > 0) {
     writer.writeString(
       19,
+      f
+    );
+  }
+  f = message.getRegistryItemVersion();
+  if (f.length > 0) {
+    writer.writeString(
+      20,
       f
     );
   }
@@ -2059,43 +2087,6 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
       f
     );
   }
-};
-
-
-/**
- * optional SubmitTrainingJobRequest request = 1;
- * @return {?proto.viam.app.mltraining.v1.SubmitTrainingJobRequest}
- */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getRequest = function() {
-  return /** @type{?proto.viam.app.mltraining.v1.SubmitTrainingJobRequest} */ (
-    jspb.Message.getWrapperField(this, proto.viam.app.mltraining.v1.SubmitTrainingJobRequest, 1));
-};
-
-
-/**
- * @param {?proto.viam.app.mltraining.v1.SubmitTrainingJobRequest|undefined} value
- * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
-*/
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
- */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.clearRequest = function() {
-  return this.setRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.hasRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -2258,6 +2249,24 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getRegistryItemId = f
  */
 proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setRegistryItemId = function(value) {
   return jspb.Message.setProto3StringField(this, 19, value);
+};
+
+
+/**
+ * optional string registry_item_version = 20;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getRegistryItemVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setRegistryItemVersion = function(value) {
+  return jspb.Message.setProto3StringField(this, 20, value);
 };
 
 

@@ -170,6 +170,12 @@ service AppService {
   // Deletes a fragment
   rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
 
+  // Gets top level and nested fragments for a machine, as well as any other specified fragment ids
+  rpc ListMachineFragments(ListMachineFragmentsRequest) returns (ListMachineFragmentsResponse);
+
+  // Gets fragment history
+  rpc GetFragmentHistory(GetFragmentHistoryRequest) returns (GetFragmentHistoryResponse);
+
   // Creates an IdentityAuthorization
   rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
 
@@ -195,6 +201,8 @@ service AppService {
 
   rpc DeleteRegistryItem(DeleteRegistryItemRequest) returns (DeleteRegistryItemResponse);
 
+  rpc TransferRegistryItem(TransferRegistryItemRequest) returns (TransferRegistryItemResponse);
+
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
 
   rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
@@ -210,6 +218,8 @@ service AppService {
   rpc DeleteKey(DeleteKeyRequest) returns (DeleteKeyResponse);
 
   rpc ListKeys(ListKeysRequest) returns (ListKeysResponse);
+
+  rpc RenameKey(RenameKeyRequest) returns (RenameKeyResponse);
 
   rpc RotateKey(RotateKeyRequest) returns (RotateKeyResponse);
 
@@ -251,6 +261,21 @@ message RobotPartHistoryEntry {
   string robot = 2 [(tagger.v1.tags) = "bson:\"robot\" json:\"robot\""];
   google.protobuf.Timestamp when = 3 [(tagger.v1.tags) = "bson:\"when\" json:\"when\""];
   RobotPart old = 4 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
+  AuthenticatorInfo edited_by = 5 [(tagger.v1.tags) = "bson:\"edited_by\" json:\"edited_by\""];
+}
+
+message AuthenticatorInfo {
+  AuthenticationType type = 1;
+  string value = 2;
+  bool is_deactivated = 3;
+}
+
+enum AuthenticationType {
+  AUTHENTICATION_TYPE_UNSPECIFIED = 0;
+  AUTHENTICATION_TYPE_WEB_OAUTH = 1;
+  AUTHENTICATION_TYPE_API_KEY = 2;
+  AUTHENTICATION_TYPE_ROBOT_PART_SECRET = 3;
+  AUTHENTICATION_TYPE_LOCATION_SECRET = 4;
 }
 
 message ListOrganizationsRequest {}
@@ -694,11 +719,28 @@ message Fragment {
   int32 organization_count = 10;
   // whether the organization(s) using this fragment is the same as the fragment org
   bool only_used_by_owner = 11;
+  // the visibility of a fragment; public, private or unlisted
+  FragmentVisibility visibility = 12;
+}
+
+message FragmentHistoryEntry {
+  string fragment = 1 [(tagger.v1.tags) = "bson:\"fragment\" json:\"fragment\""];
+  google.protobuf.Timestamp edited_on = 2 [(tagger.v1.tags) = "bson:\"edited_on\" json:\"edited_on\""];
+  Fragment old = 3 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
+  AuthenticatorInfo edited_by = 4 [(tagger.v1.tags) = "bson:\"edited_by\" json:\"edited_by\""];
+}
+
+enum FragmentVisibility {
+  FRAGMENT_VISIBILITY_UNSPECIFIED = 0;
+  FRAGMENT_VISIBILITY_PRIVATE = 1;
+  FRAGMENT_VISIBILITY_PUBLIC = 2;
+  FRAGMENT_VISIBILITY_PUBLIC_UNLISTED = 3;
 }
 
 message ListFragmentsRequest {
   string organization_id = 1;
   bool show_public = 2;
+  repeated FragmentVisibility fragment_visibility = 3;
 }
 
 message ListFragmentsResponse {
@@ -728,6 +770,7 @@ message UpdateFragmentRequest {
   string name = 2;
   google.protobuf.Struct config = 3;
   optional bool public = 4;
+  optional FragmentVisibility visibility = 5;
 }
 
 message UpdateFragmentResponse {
@@ -740,8 +783,32 @@ message DeleteFragmentRequest {
 
 message DeleteFragmentResponse {}
 
+message GetFragmentHistoryRequest {
+  string id = 1;
+  optional string page_token = 2;
+  optional int64 page_limit = 3;
+}
+
+message GetFragmentHistoryResponse {
+  repeated FragmentHistoryEntry history = 1;
+  string next_page_token = 2;
+}
+
 message ListRobotsRequest {
   string location_id = 1;
+}
+
+message ListMachineFragmentsRequest {
+  // the machine_id used to filter fragments defined in a machine's parts.
+  // Also returns any fragments nested within the fragments defined in parts.
+  string machine_id = 1;
+  // additional fragment_ids to append to the response. useful when needing to view fragments that will be
+  // provisionally added to the machine alongside existing fragments.
+  repeated string additional_fragment_ids = 2;
+}
+
+message ListMachineFragmentsResponse {
+  repeated Fragment fragments = 1;
 }
 
 message ListRobotsResponse {
@@ -877,14 +944,23 @@ message ModuleMetadata {
 message MLModelMetadata {
   // A list of package versions for a ML model
   repeated string versions = 1;
+  viam.app.mltraining.v1.ModelType model_type = 2;
+  viam.app.mltraining.v1.ModelFramework model_framework = 3;
+}
+
+message MLTrainingVersion {
+  string version = 1;
+  google.protobuf.Timestamp created_on = 2;
 }
 
 message MLTrainingMetadata {
   // A list of package versions for ML training source distribution
-  repeated string versions = 1;
+  repeated MLTrainingVersion versions = 5;
   viam.app.mltraining.v1.ModelType model_type = 2;
   viam.app.mltraining.v1.ModelFramework model_framework = 3;
   bool draft = 4;
+
+  reserved 1;
 }
 
 message RegistryItem {
@@ -972,6 +1048,8 @@ message ListRegistryItemsRequest {
   repeated RegistryItemStatus statuses = 5;
   optional string search_term = 6;
   optional string page_token = 7;
+  // One or more public namespaces to return results for.
+  repeated string public_namespaces = 8;
 }
 
 message ListRegistryItemsResponse {
@@ -984,6 +1062,13 @@ message DeleteRegistryItemRequest {
 }
 
 message DeleteRegistryItemResponse {}
+
+message TransferRegistryItemRequest {
+  string item_id = 1;
+  string new_public_namespace = 2;
+}
+
+message TransferRegistryItemResponse {}
 
 // Modules
 message CreateModuleRequest {
@@ -1161,6 +1246,16 @@ message DeleteKeyRequest {
 }
 
 message DeleteKeyResponse {}
+
+message RenameKeyRequest {
+  string id = 1;
+  string name = 2;
+}
+
+message RenameKeyResponse {
+  string id = 1;
+  string name = 2;
+}
 
 message AuthorizationDetails {
   string authorization_type = 1;

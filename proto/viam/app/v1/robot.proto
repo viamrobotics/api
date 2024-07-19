@@ -39,7 +39,17 @@ message RobotConfig {
   repeated PackageConfig packages = 11;
   repeated AppValidationStatus overwrite_fragment_status = 12;
   // Turns on pprof http server on localhost. By default false.
-  optional bool enable_web_profile = 13;
+  bool enable_web_profile = 13;
+  repeated LogPatternConfig log = 14;
+  // Attributes a particular revision to the config.
+  string revision = 15;
+}
+
+// LogPatternConfig allows you to specify a 2-tuple consisting
+// of a logger name and its corresponding log level.
+message LogPatternConfig {
+  string pattern = 1;
+  string level = 2;
 }
 
 // Valid location secret that can be used for authentication to the robot.
@@ -115,6 +125,7 @@ message ServiceConfig {
   string model = 6;
   string api = 9;
   repeated ResourceLevelServiceConfig service_configs = 10 [(tagger.v1.tags) = "json:\"service_config\""];
+  LogConfiguration log_configuration = 11;
 }
 
 message NetworkConfig {

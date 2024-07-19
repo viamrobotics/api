@@ -59,7 +59,7 @@ service ServoService {
 message MoveRequest {
   // the name of the servo, as registered
   string name = 1;
-  // the degrees by which to rotate the servo. Accepted values are between 0 and 180
+  // the degrees by which to rotate the servo.
   uint32 angle_deg = 2;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
@@ -75,7 +75,7 @@ message GetPositionRequest {
 }
 
 message GetPositionResponse {
-  // the degrees from neutral by which the servo is currently rotated. Values are between 0 and 180
+  // the degrees from neutral by which the servo is currently rotated.
   uint32 position_deg = 1;
 }
 

@@ -298,7 +298,8 @@ proto.viam.app.packages.v1.FileInfo.prototype.toObject = function(opt_includeIns
 proto.viam.app.packages.v1.FileInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    size: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    size: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    isDirectory: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -343,6 +344,10 @@ proto.viam.app.packages.v1.FileInfo.deserializeBinaryFromReader = function(msg, 
       var value = /** @type {number} */ (reader.readUint64());
       msg.setSize(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsDirectory(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -386,6 +391,13 @@ proto.viam.app.packages.v1.FileInfo.serializeBinaryToWriter = function(message, 
       f
     );
   }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -422,6 +434,42 @@ proto.viam.app.packages.v1.FileInfo.prototype.getSize = function() {
  */
 proto.viam.app.packages.v1.FileInfo.prototype.setSize = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional bool is_directory = 3;
+ * @return {boolean}
+ */
+proto.viam.app.packages.v1.FileInfo.prototype.getIsDirectory = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.packages.v1.FileInfo} returns this
+ */
+proto.viam.app.packages.v1.FileInfo.prototype.setIsDirectory = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.packages.v1.FileInfo} returns this
+ */
+proto.viam.app.packages.v1.FileInfo.prototype.clearIsDirectory = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.packages.v1.FileInfo.prototype.hasIsDirectory = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 

@@ -152,6 +152,52 @@ export namespace GoToResponse {
   }
 }
 
+export class SetRPMRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getRpm(): number;
+  setRpm(value: number): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetRPMRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SetRPMRequest): SetRPMRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetRPMRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetRPMRequest;
+  static deserializeBinaryFromReader(message: SetRPMRequest, reader: jspb.BinaryReader): SetRPMRequest;
+}
+
+export namespace SetRPMRequest {
+  export type AsObject = {
+    name: string,
+    rpm: number,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class SetRPMResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetRPMResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SetRPMResponse): SetRPMResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetRPMResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetRPMResponse;
+  static deserializeBinaryFromReader(message: SetRPMResponse, reader: jspb.BinaryReader): SetRPMResponse;
+}
+
+export namespace SetRPMResponse {
+  export type AsObject = {
+  }
+}
+
 export class ResetZeroPositionRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;

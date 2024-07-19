@@ -30,7 +30,7 @@ type MoveRequest struct {
 
 	// the name of the servo, as registered
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// the degrees by which to rotate the servo. Accepted values are between 0 and 180
+	// the degrees by which to rotate the servo.
 	AngleDeg uint32 `protobuf:"varint,2,opt,name=angle_deg,json=angleDeg,proto3" json:"angle_deg,omitempty"`
 	// Additional arguments to the method
 	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
@@ -189,7 +189,7 @@ type GetPositionResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// the degrees from neutral by which the servo is currently rotated. Values are between 0 and 180
+	// the degrees from neutral by which the servo is currently rotated.
 	PositionDeg uint32 `protobuf:"varint,1,opt,name=position_deg,json=positionDeg,proto3" json:"position_deg,omitempty"`
 }
 

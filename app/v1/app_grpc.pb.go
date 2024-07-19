@@ -123,6 +123,10 @@ type AppServiceClient interface {
 	UpdateFragment(ctx context.Context, in *UpdateFragmentRequest, opts ...grpc.CallOption) (*UpdateFragmentResponse, error)
 	// Deletes a fragment
 	DeleteFragment(ctx context.Context, in *DeleteFragmentRequest, opts ...grpc.CallOption) (*DeleteFragmentResponse, error)
+	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
+	ListMachineFragments(ctx context.Context, in *ListMachineFragmentsRequest, opts ...grpc.CallOption) (*ListMachineFragmentsResponse, error)
+	// Gets fragment history
+	GetFragmentHistory(ctx context.Context, in *GetFragmentHistoryRequest, opts ...grpc.CallOption) (*GetFragmentHistoryResponse, error)
 	// Creates an IdentityAuthorization
 	AddRole(ctx context.Context, in *AddRoleRequest, opts ...grpc.CallOption) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
@@ -138,6 +142,7 @@ type AppServiceClient interface {
 	UpdateRegistryItem(ctx context.Context, in *UpdateRegistryItemRequest, opts ...grpc.CallOption) (*UpdateRegistryItemResponse, error)
 	ListRegistryItems(ctx context.Context, in *ListRegistryItemsRequest, opts ...grpc.CallOption) (*ListRegistryItemsResponse, error)
 	DeleteRegistryItem(ctx context.Context, in *DeleteRegistryItemRequest, opts ...grpc.CallOption) (*DeleteRegistryItemResponse, error)
+	TransferRegistryItem(ctx context.Context, in *TransferRegistryItemRequest, opts ...grpc.CallOption) (*TransferRegistryItemResponse, error)
 	CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error)
 	UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error)
 	UploadModuleFile(ctx context.Context, opts ...grpc.CallOption) (AppService_UploadModuleFileClient, error)
@@ -146,6 +151,7 @@ type AppServiceClient interface {
 	CreateKey(ctx context.Context, in *CreateKeyRequest, opts ...grpc.CallOption) (*CreateKeyResponse, error)
 	DeleteKey(ctx context.Context, in *DeleteKeyRequest, opts ...grpc.CallOption) (*DeleteKeyResponse, error)
 	ListKeys(ctx context.Context, in *ListKeysRequest, opts ...grpc.CallOption) (*ListKeysResponse, error)
+	RenameKey(ctx context.Context, in *RenameKeyRequest, opts ...grpc.CallOption) (*RenameKeyResponse, error)
 	RotateKey(ctx context.Context, in *RotateKeyRequest, opts ...grpc.CallOption) (*RotateKeyResponse, error)
 	CreateKeyFromExistingKeyAuthorizations(ctx context.Context, in *CreateKeyFromExistingKeyAuthorizationsRequest, opts ...grpc.CallOption) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
 }
@@ -622,6 +628,24 @@ func (c *appServiceClient) DeleteFragment(ctx context.Context, in *DeleteFragmen
 	return out, nil
 }
 
+func (c *appServiceClient) ListMachineFragments(ctx context.Context, in *ListMachineFragmentsRequest, opts ...grpc.CallOption) (*ListMachineFragmentsResponse, error) {
+	out := new(ListMachineFragmentsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListMachineFragments", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetFragmentHistory(ctx context.Context, in *GetFragmentHistoryRequest, opts ...grpc.CallOption) (*GetFragmentHistoryResponse, error) {
+	out := new(GetFragmentHistoryResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetFragmentHistory", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) AddRole(ctx context.Context, in *AddRoleRequest, opts ...grpc.CallOption) (*AddRoleResponse, error) {
 	out := new(AddRoleResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/AddRole", in, out, opts...)
@@ -706,6 +730,15 @@ func (c *appServiceClient) ListRegistryItems(ctx context.Context, in *ListRegist
 func (c *appServiceClient) DeleteRegistryItem(ctx context.Context, in *DeleteRegistryItemRequest, opts ...grpc.CallOption) (*DeleteRegistryItemResponse, error) {
 	out := new(DeleteRegistryItemResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteRegistryItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) TransferRegistryItem(ctx context.Context, in *TransferRegistryItemRequest, opts ...grpc.CallOption) (*TransferRegistryItemResponse, error) {
+	out := new(TransferRegistryItemResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/TransferRegistryItem", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -803,6 +836,15 @@ func (c *appServiceClient) DeleteKey(ctx context.Context, in *DeleteKeyRequest, 
 func (c *appServiceClient) ListKeys(ctx context.Context, in *ListKeysRequest, opts ...grpc.CallOption) (*ListKeysResponse, error) {
 	out := new(ListKeysResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListKeys", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) RenameKey(ctx context.Context, in *RenameKeyRequest, opts ...grpc.CallOption) (*RenameKeyResponse, error) {
+	out := new(RenameKeyResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/RenameKey", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -932,6 +974,10 @@ type AppServiceServer interface {
 	UpdateFragment(context.Context, *UpdateFragmentRequest) (*UpdateFragmentResponse, error)
 	// Deletes a fragment
 	DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error)
+	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
+	ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error)
+	// Gets fragment history
+	GetFragmentHistory(context.Context, *GetFragmentHistoryRequest) (*GetFragmentHistoryResponse, error)
 	// Creates an IdentityAuthorization
 	AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
@@ -947,6 +993,7 @@ type AppServiceServer interface {
 	UpdateRegistryItem(context.Context, *UpdateRegistryItemRequest) (*UpdateRegistryItemResponse, error)
 	ListRegistryItems(context.Context, *ListRegistryItemsRequest) (*ListRegistryItemsResponse, error)
 	DeleteRegistryItem(context.Context, *DeleteRegistryItemRequest) (*DeleteRegistryItemResponse, error)
+	TransferRegistryItem(context.Context, *TransferRegistryItemRequest) (*TransferRegistryItemResponse, error)
 	CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error)
 	UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error)
 	UploadModuleFile(AppService_UploadModuleFileServer) error
@@ -955,6 +1002,7 @@ type AppServiceServer interface {
 	CreateKey(context.Context, *CreateKeyRequest) (*CreateKeyResponse, error)
 	DeleteKey(context.Context, *DeleteKeyRequest) (*DeleteKeyResponse, error)
 	ListKeys(context.Context, *ListKeysRequest) (*ListKeysResponse, error)
+	RenameKey(context.Context, *RenameKeyRequest) (*RenameKeyResponse, error)
 	RotateKey(context.Context, *RotateKeyRequest) (*RotateKeyResponse, error)
 	CreateKeyFromExistingKeyAuthorizations(context.Context, *CreateKeyFromExistingKeyAuthorizationsRequest) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
@@ -1111,6 +1159,12 @@ func (UnimplementedAppServiceServer) UpdateFragment(context.Context, *UpdateFrag
 func (UnimplementedAppServiceServer) DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFragment not implemented")
 }
+func (UnimplementedAppServiceServer) ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMachineFragments not implemented")
+}
+func (UnimplementedAppServiceServer) GetFragmentHistory(context.Context, *GetFragmentHistoryRequest) (*GetFragmentHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFragmentHistory not implemented")
+}
 func (UnimplementedAppServiceServer) AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddRole not implemented")
 }
@@ -1141,6 +1195,9 @@ func (UnimplementedAppServiceServer) ListRegistryItems(context.Context, *ListReg
 func (UnimplementedAppServiceServer) DeleteRegistryItem(context.Context, *DeleteRegistryItemRequest) (*DeleteRegistryItemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRegistryItem not implemented")
 }
+func (UnimplementedAppServiceServer) TransferRegistryItem(context.Context, *TransferRegistryItemRequest) (*TransferRegistryItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TransferRegistryItem not implemented")
+}
 func (UnimplementedAppServiceServer) CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateModule not implemented")
 }
@@ -1164,6 +1221,9 @@ func (UnimplementedAppServiceServer) DeleteKey(context.Context, *DeleteKeyReques
 }
 func (UnimplementedAppServiceServer) ListKeys(context.Context, *ListKeysRequest) (*ListKeysResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListKeys not implemented")
+}
+func (UnimplementedAppServiceServer) RenameKey(context.Context, *RenameKeyRequest) (*RenameKeyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameKey not implemented")
 }
 func (UnimplementedAppServiceServer) RotateKey(context.Context, *RotateKeyRequest) (*RotateKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RotateKey not implemented")
@@ -2069,6 +2129,42 @@ func _AppService_DeleteFragment_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_ListMachineFragments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMachineFragmentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListMachineFragments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListMachineFragments",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListMachineFragments(ctx, req.(*ListMachineFragmentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetFragmentHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFragmentHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetFragmentHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetFragmentHistory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetFragmentHistory(ctx, req.(*GetFragmentHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_AddRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddRoleRequest)
 	if err := dec(in); err != nil {
@@ -2249,6 +2345,24 @@ func _AppService_DeleteRegistryItem_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_TransferRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransferRegistryItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).TransferRegistryItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/TransferRegistryItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).TransferRegistryItem(ctx, req.(*TransferRegistryItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_CreateModule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateModuleRequest)
 	if err := dec(in); err != nil {
@@ -2397,6 +2511,24 @@ func _AppService_ListKeys_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).ListKeys(ctx, req.(*ListKeysRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_RenameKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameKeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).RenameKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/RenameKey",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).RenameKey(ctx, req.(*RenameKeyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2637,6 +2769,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_DeleteFragment_Handler,
 		},
 		{
+			MethodName: "ListMachineFragments",
+			Handler:    _AppService_ListMachineFragments_Handler,
+		},
+		{
+			MethodName: "GetFragmentHistory",
+			Handler:    _AppService_GetFragmentHistory_Handler,
+		},
+		{
 			MethodName: "AddRole",
 			Handler:    _AppService_AddRole_Handler,
 		},
@@ -2677,6 +2817,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_DeleteRegistryItem_Handler,
 		},
 		{
+			MethodName: "TransferRegistryItem",
+			Handler:    _AppService_TransferRegistryItem_Handler,
+		},
+		{
 			MethodName: "CreateModule",
 			Handler:    _AppService_CreateModule_Handler,
 		},
@@ -2703,6 +2847,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListKeys",
 			Handler:    _AppService_ListKeys_Handler,
+		},
+		{
+			MethodName: "RenameKey",
+			Handler:    _AppService_RenameKey_Handler,
 		},
 		{
 			MethodName: "RotateKey",
