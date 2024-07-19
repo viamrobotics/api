@@ -320,5 +320,66 @@ proto.viam.app.v1.EndUserServicePromiseClient.prototype.updateAuthApplication =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetAuthApplicationRequest,
+ *   !proto.viam.app.v1.GetAuthApplicationResponse>}
+ */
+const methodDescriptor_EndUserService_GetAuthApplication = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.EndUserService/GetAuthApplication',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetAuthApplicationRequest,
+  proto.viam.app.v1.GetAuthApplicationResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetAuthApplicationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetAuthApplicationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetAuthApplicationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetAuthApplicationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetAuthApplicationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.EndUserServiceClient.prototype.getAuthApplication =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.EndUserService/GetAuthApplication',
+      request,
+      metadata || {},
+      methodDescriptor_EndUserService_GetAuthApplication,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetAuthApplicationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetAuthApplicationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.EndUserServicePromiseClient.prototype.getAuthApplication =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.EndUserService/GetAuthApplication',
+      request,
+      metadata || {},
+      methodDescriptor_EndUserService_GetAuthApplication);
+};
+
+
 module.exports = proto.viam.app.v1;
 

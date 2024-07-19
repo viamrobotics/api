@@ -1049,6 +1049,154 @@ export namespace RestartModuleResponse {
   }
 }
 
+export class ShutdownRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ShutdownRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ShutdownRequest): ShutdownRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ShutdownRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ShutdownRequest;
+  static deserializeBinaryFromReader(message: ShutdownRequest, reader: jspb.BinaryReader): ShutdownRequest;
+}
+
+export namespace ShutdownRequest {
+  export type AsObject = {
+  }
+}
+
+export class ShutdownResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ShutdownResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ShutdownResponse): ShutdownResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ShutdownResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ShutdownResponse;
+  static deserializeBinaryFromReader(message: ShutdownResponse, reader: jspb.BinaryReader): ShutdownResponse;
+}
+
+export namespace ShutdownResponse {
+  export type AsObject = {
+  }
+}
+
+export class GetMachineStatusRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetMachineStatusRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetMachineStatusRequest): GetMachineStatusRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetMachineStatusRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetMachineStatusRequest;
+  static deserializeBinaryFromReader(message: GetMachineStatusRequest, reader: jspb.BinaryReader): GetMachineStatusRequest;
+}
+
+export namespace GetMachineStatusRequest {
+  export type AsObject = {
+  }
+}
+
+export class GetMachineStatusResponse extends jspb.Message {
+  clearResourcesList(): void;
+  getResourcesList(): Array<ResourceStatus>;
+  setResourcesList(value: Array<ResourceStatus>): void;
+  addResources(value?: ResourceStatus, index?: number): ResourceStatus;
+
+  hasConfig(): boolean;
+  clearConfig(): void;
+  getConfig(): ConfigStatus | undefined;
+  setConfig(value?: ConfigStatus): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetMachineStatusResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetMachineStatusResponse): GetMachineStatusResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetMachineStatusResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetMachineStatusResponse;
+  static deserializeBinaryFromReader(message: GetMachineStatusResponse, reader: jspb.BinaryReader): GetMachineStatusResponse;
+}
+
+export namespace GetMachineStatusResponse {
+  export type AsObject = {
+    resourcesList: Array<ResourceStatus.AsObject>,
+    config?: ConfigStatus.AsObject,
+  }
+}
+
+export class ResourceStatus extends jspb.Message {
+  hasName(): boolean;
+  clearName(): void;
+  getName(): common_v1_common_pb.ResourceName | undefined;
+  setName(value?: common_v1_common_pb.ResourceName): void;
+
+  getState(): ResourceStatus.StateMap[keyof ResourceStatus.StateMap];
+  setState(value: ResourceStatus.StateMap[keyof ResourceStatus.StateMap]): void;
+
+  hasLastUpdated(): boolean;
+  clearLastUpdated(): void;
+  getLastUpdated(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastUpdated(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getRevision(): string;
+  setRevision(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ResourceStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: ResourceStatus): ResourceStatus.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ResourceStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ResourceStatus;
+  static deserializeBinaryFromReader(message: ResourceStatus, reader: jspb.BinaryReader): ResourceStatus;
+}
+
+export namespace ResourceStatus {
+  export type AsObject = {
+    name?: common_v1_common_pb.ResourceName.AsObject,
+    state: ResourceStatus.StateMap[keyof ResourceStatus.StateMap],
+    lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    revision: string,
+  }
+
+  export interface StateMap {
+    STATE_UNSPECIFIED: 0;
+    STATE_UNCONFIGURED: 1;
+    STATE_CONFIGURING: 2;
+    STATE_READY: 3;
+    STATE_REMOVING: 4;
+  }
+
+  export const State: StateMap;
+}
+
+export class ConfigStatus extends jspb.Message {
+  getRevision(): string;
+  setRevision(value: string): void;
+
+  hasLastUpdated(): boolean;
+  clearLastUpdated(): void;
+  getLastUpdated(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastUpdated(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ConfigStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: ConfigStatus): ConfigStatus.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ConfigStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ConfigStatus;
+  static deserializeBinaryFromReader(message: ConfigStatus, reader: jspb.BinaryReader): ConfigStatus;
+}
+
+export namespace ConfigStatus {
+  export type AsObject = {
+    revision: string,
+    lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
 export interface PeerConnectionTypeMap {
   PEER_CONNECTION_TYPE_UNSPECIFIED: 0;
   PEER_CONNECTION_TYPE_GRPC: 1;

@@ -35,8 +35,10 @@ type RobotServiceClient interface {
 	FrameSystemConfig(ctx context.Context, in *FrameSystemConfigRequest, opts ...grpc.CallOption) (*FrameSystemConfigResponse, error)
 	TransformPose(ctx context.Context, in *TransformPoseRequest, opts ...grpc.CallOption) (*TransformPoseResponse, error)
 	TransformPCD(ctx context.Context, in *TransformPCDRequest, opts ...grpc.CallOption) (*TransformPCDResponse, error)
+	// Deprecated: Do not use.
 	// GetStatus returns the list of all statuses requested. An empty request signifies all resources.
 	GetStatus(ctx context.Context, in *GetStatusRequest, opts ...grpc.CallOption) (*GetStatusResponse, error)
+	// Deprecated: Do not use.
 	// StreamStatus periodically sends the status of all statuses requested. An empty request signifies all resources.
 	StreamStatus(ctx context.Context, in *StreamStatusRequest, opts ...grpc.CallOption) (RobotService_StreamStatusClient, error)
 	// StopAll will stop all current and outstanding operations for the robot and stops all actuators and movement
@@ -53,6 +55,10 @@ type RobotServiceClient interface {
 	// GetCloudMetadata returns app-related information about the robot.
 	GetCloudMetadata(ctx context.Context, in *GetCloudMetadataRequest, opts ...grpc.CallOption) (*GetCloudMetadataResponse, error)
 	RestartModule(ctx context.Context, in *RestartModuleRequest, opts ...grpc.CallOption) (*RestartModuleResponse, error)
+	// Shutdown shuts down the robot.
+	Shutdown(ctx context.Context, in *ShutdownRequest, opts ...grpc.CallOption) (*ShutdownResponse, error)
+	// GetMachineStatus returns the current status of the robot.
+	GetMachineStatus(ctx context.Context, in *GetMachineStatusRequest, opts ...grpc.CallOption) (*GetMachineStatusResponse, error)
 }
 
 type robotServiceClient struct {
@@ -153,6 +159,7 @@ func (c *robotServiceClient) TransformPCD(ctx context.Context, in *TransformPCDR
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *robotServiceClient) GetStatus(ctx context.Context, in *GetStatusRequest, opts ...grpc.CallOption) (*GetStatusResponse, error) {
 	out := new(GetStatusResponse)
 	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetStatus", in, out, opts...)
@@ -162,6 +169,7 @@ func (c *robotServiceClient) GetStatus(ctx context.Context, in *GetStatusRequest
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *robotServiceClient) StreamStatus(ctx context.Context, in *StreamStatusRequest, opts ...grpc.CallOption) (RobotService_StreamStatusClient, error) {
 	stream, err := c.cc.NewStream(ctx, &RobotService_ServiceDesc.Streams[0], "/viam.robot.v1.RobotService/StreamStatus", opts...)
 	if err != nil {
@@ -248,6 +256,24 @@ func (c *robotServiceClient) RestartModule(ctx context.Context, in *RestartModul
 	return out, nil
 }
 
+func (c *robotServiceClient) Shutdown(ctx context.Context, in *ShutdownRequest, opts ...grpc.CallOption) (*ShutdownResponse, error) {
+	out := new(ShutdownResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/Shutdown", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *robotServiceClient) GetMachineStatus(ctx context.Context, in *GetMachineStatusRequest, opts ...grpc.CallOption) (*GetMachineStatusResponse, error) {
+	out := new(GetMachineStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetMachineStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RobotServiceServer is the server API for RobotService service.
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
@@ -265,8 +291,10 @@ type RobotServiceServer interface {
 	FrameSystemConfig(context.Context, *FrameSystemConfigRequest) (*FrameSystemConfigResponse, error)
 	TransformPose(context.Context, *TransformPoseRequest) (*TransformPoseResponse, error)
 	TransformPCD(context.Context, *TransformPCDRequest) (*TransformPCDResponse, error)
+	// Deprecated: Do not use.
 	// GetStatus returns the list of all statuses requested. An empty request signifies all resources.
 	GetStatus(context.Context, *GetStatusRequest) (*GetStatusResponse, error)
+	// Deprecated: Do not use.
 	// StreamStatus periodically sends the status of all statuses requested. An empty request signifies all resources.
 	StreamStatus(*StreamStatusRequest, RobotService_StreamStatusServer) error
 	// StopAll will stop all current and outstanding operations for the robot and stops all actuators and movement
@@ -283,6 +311,10 @@ type RobotServiceServer interface {
 	// GetCloudMetadata returns app-related information about the robot.
 	GetCloudMetadata(context.Context, *GetCloudMetadataRequest) (*GetCloudMetadataResponse, error)
 	RestartModule(context.Context, *RestartModuleRequest) (*RestartModuleResponse, error)
+	// Shutdown shuts down the robot.
+	Shutdown(context.Context, *ShutdownRequest) (*ShutdownResponse, error)
+	// GetMachineStatus returns the current status of the robot.
+	GetMachineStatus(context.Context, *GetMachineStatusRequest) (*GetMachineStatusResponse, error)
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -343,6 +375,12 @@ func (UnimplementedRobotServiceServer) GetCloudMetadata(context.Context, *GetClo
 }
 func (UnimplementedRobotServiceServer) RestartModule(context.Context, *RestartModuleRequest) (*RestartModuleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RestartModule not implemented")
+}
+func (UnimplementedRobotServiceServer) Shutdown(context.Context, *ShutdownRequest) (*ShutdownResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Shutdown not implemented")
+}
+func (UnimplementedRobotServiceServer) GetMachineStatus(context.Context, *GetMachineStatusRequest) (*GetMachineStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMachineStatus not implemented")
 }
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
@@ -684,6 +722,42 @@ func _RobotService_RestartModule_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_Shutdown_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShutdownRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).Shutdown(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/Shutdown",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).Shutdown(ctx, req.(*ShutdownRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RobotService_GetMachineStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMachineStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).GetMachineStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/GetMachineStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).GetMachineStatus(ctx, req.(*GetMachineStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RobotService_ServiceDesc is the grpc.ServiceDesc for RobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -758,6 +832,14 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RestartModule",
 			Handler:    _RobotService_RestartModule_Handler,
+		},
+		{
+			MethodName: "Shutdown",
+			Handler:    _RobotService_Shutdown_Handler,
+		},
+		{
+			MethodName: "GetMachineStatus",
+			Handler:    _RobotService_GetMachineStatus_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

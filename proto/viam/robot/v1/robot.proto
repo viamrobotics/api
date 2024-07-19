@@ -81,6 +81,7 @@ service RobotService {
     option (google.api.http) = {
       get: "/viam/api/v1/status"
     };
+    option deprecated = true;
   }
 
   // StreamStatus periodically sends the status of all statuses requested. An empty request signifies all resources.
@@ -88,6 +89,7 @@ service RobotService {
     option (google.api.http) = {
       get: "/viam/api/v1/status/stream"
     };
+    option deprecated = true;
   }
 
   // StopAll will stop all current and outstanding operations for the robot and stops all actuators and movement
@@ -131,6 +133,20 @@ service RobotService {
   rpc RestartModule(RestartModuleRequest) returns (RestartModuleResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/restart_module"
+    };
+  }
+
+  // Shutdown shuts down the robot.
+  rpc Shutdown(ShutdownRequest) returns (ShutdownResponse) {
+    option (google.api.http) = {
+      post: "/viam/api/v1/shutdown"
+    };
+  }
+
+  // GetMachineStatus returns the current status of the robot.
+  rpc GetMachineStatus(GetMachineStatusRequest) returns (GetMachineStatusResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/machine_status"
     };
   }
 }
@@ -347,3 +363,49 @@ message RestartModuleRequest {
 }
 
 message RestartModuleResponse {}
+
+message ShutdownRequest {}
+
+message ShutdownResponse {}
+
+message GetMachineStatusRequest {}
+
+message GetMachineStatusResponse {
+  repeated ResourceStatus resources = 1;
+  ConfigStatus config = 2;
+}
+
+message ResourceStatus {
+  enum State {
+    STATE_UNSPECIFIED = 0;
+    // a newly created resource.
+    STATE_UNCONFIGURED = 1;
+    // a resource that is being configured.
+    STATE_CONFIGURING = 2;
+    // a resource that has been successfully configured once and is not being
+    // re-configured or removed.
+    STATE_READY = 3;
+    // a resource that is being removed from the robot.
+    STATE_REMOVING = 4;
+  }
+
+  // resource name.
+  common.v1.ResourceName name = 1;
+
+  // current state.
+  State state = 2;
+
+  // state transition timestamp.
+  google.protobuf.Timestamp last_updated = 3;
+
+  // revision of the last config that successfully updated this resource.
+  string revision = 4;
+}
+
+message ConfigStatus {
+  // revision of the last config that the machine successfully ingested.
+  string revision = 1;
+
+  // config ingestion timestamp.
+  google.protobuf.Timestamp last_updated = 2;
+}

@@ -38,6 +38,15 @@ MotorService.GoTo = {
   responseType: component_motor_v1_motor_pb.GoToResponse
 };
 
+MotorService.SetRPM = {
+  methodName: "SetRPM",
+  service: MotorService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_motor_v1_motor_pb.SetRPMRequest,
+  responseType: component_motor_v1_motor_pb.SetRPMResponse
+};
+
 MotorService.ResetZeroPosition = {
   methodName: "ResetZeroPosition",
   service: MotorService,
@@ -184,6 +193,37 @@ MotorServiceClient.prototype.goTo = function goTo(requestMessage, metadata, call
     callback = arguments[1];
   }
   var client = grpc.unary(MotorService.GoTo, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MotorServiceClient.prototype.setRPM = function setRPM(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MotorService.SetRPM, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

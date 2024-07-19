@@ -451,6 +451,24 @@ AppService.DeleteFragment = {
   responseType: app_v1_app_pb.DeleteFragmentResponse
 };
 
+AppService.ListMachineFragments = {
+  methodName: "ListMachineFragments",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListMachineFragmentsRequest,
+  responseType: app_v1_app_pb.ListMachineFragmentsResponse
+};
+
+AppService.GetFragmentHistory = {
+  methodName: "GetFragmentHistory",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetFragmentHistoryRequest,
+  responseType: app_v1_app_pb.GetFragmentHistoryResponse
+};
+
 AppService.AddRole = {
   methodName: "AddRole",
   service: AppService,
@@ -541,6 +559,15 @@ AppService.DeleteRegistryItem = {
   responseType: app_v1_app_pb.DeleteRegistryItemResponse
 };
 
+AppService.TransferRegistryItem = {
+  methodName: "TransferRegistryItem",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.TransferRegistryItemRequest,
+  responseType: app_v1_app_pb.TransferRegistryItemResponse
+};
+
 AppService.CreateModule = {
   methodName: "CreateModule",
   service: AppService,
@@ -611,6 +638,15 @@ AppService.ListKeys = {
   responseStream: false,
   requestType: app_v1_app_pb.ListKeysRequest,
   responseType: app_v1_app_pb.ListKeysResponse
+};
+
+AppService.RenameKey = {
+  methodName: "RenameKey",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.RenameKeyRequest,
+  responseType: app_v1_app_pb.RenameKeyResponse
 };
 
 AppService.RotateKey = {
@@ -2165,6 +2201,68 @@ AppServiceClient.prototype.deleteFragment = function deleteFragment(requestMessa
   };
 };
 
+AppServiceClient.prototype.listMachineFragments = function listMachineFragments(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListMachineFragments, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getFragmentHistory = function getFragmentHistory(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetFragmentHistory, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.addRole = function addRole(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -2475,6 +2573,37 @@ AppServiceClient.prototype.deleteRegistryItem = function deleteRegistryItem(requ
   };
 };
 
+AppServiceClient.prototype.transferRegistryItem = function transferRegistryItem(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.TransferRegistryItem, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.createModule = function createModule(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -2707,6 +2836,37 @@ AppServiceClient.prototype.listKeys = function listKeys(requestMessage, metadata
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListKeys, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.renameKey = function renameKey(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.RenameKey, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
