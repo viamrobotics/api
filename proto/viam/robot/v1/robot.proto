@@ -372,6 +372,7 @@ message GetMachineStatusRequest {}
 
 message GetMachineStatusResponse {
   repeated ResourceStatus resources = 1;
+  ConfigStatus config = 2;
 }
 
 message ResourceStatus {
@@ -396,4 +397,15 @@ message ResourceStatus {
 
   // state transition timestamp.
   google.protobuf.Timestamp last_updated = 3;
+
+  // revision of the last config that successfully updated this resource.
+  string revision = 4;
+}
+
+message ConfigStatus {
+  // revision of the last config that the machine successfully ingested.
+  string revision = 1;
+
+  // config ingestion timestamp.
+  google.protobuf.Timestamp last_updated = 2;
 }
