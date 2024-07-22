@@ -1029,6 +1029,7 @@ message UpdateRegistryItemRequest {
   viam.app.packages.v1.PackageType type = 2;
   string description = 3;
   Visibility visibility = 4;
+  optional string url = 5;
 }
 
 message UpdateRegistryItemResponse {}
