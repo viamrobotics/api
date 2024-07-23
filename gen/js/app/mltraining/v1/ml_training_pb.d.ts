@@ -388,6 +388,88 @@ export namespace DeleteCompletedTrainingJobResponse {
   }
 }
 
+export class TrainingJobLogEntry extends jspb.Message {
+  getLevel(): string;
+  setLevel(value: string): void;
+
+  hasTime(): boolean;
+  clearTime(): void;
+  getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TrainingJobLogEntry.AsObject;
+  static toObject(includeInstance: boolean, msg: TrainingJobLogEntry): TrainingJobLogEntry.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TrainingJobLogEntry, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TrainingJobLogEntry;
+  static deserializeBinaryFromReader(message: TrainingJobLogEntry, reader: jspb.BinaryReader): TrainingJobLogEntry;
+}
+
+export namespace TrainingJobLogEntry {
+  export type AsObject = {
+    level: string,
+    time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    message: string,
+  }
+}
+
+export class GetTrainingJobLogsRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  hasPageToken(): boolean;
+  clearPageToken(): void;
+  getPageToken(): string;
+  setPageToken(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetTrainingJobLogsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetTrainingJobLogsRequest): GetTrainingJobLogsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetTrainingJobLogsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetTrainingJobLogsRequest;
+  static deserializeBinaryFromReader(message: GetTrainingJobLogsRequest, reader: jspb.BinaryReader): GetTrainingJobLogsRequest;
+}
+
+export namespace GetTrainingJobLogsRequest {
+  export type AsObject = {
+    id: string,
+    pageToken: string,
+  }
+}
+
+export class GetTrainingJobLogsResponse extends jspb.Message {
+  clearLogsList(): void;
+  getLogsList(): Array<TrainingJobLogEntry>;
+  setLogsList(value: Array<TrainingJobLogEntry>): void;
+  addLogs(value?: TrainingJobLogEntry, index?: number): TrainingJobLogEntry;
+
+  getNextPageToken(): string;
+  setNextPageToken(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetTrainingJobLogsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetTrainingJobLogsResponse): GetTrainingJobLogsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetTrainingJobLogsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetTrainingJobLogsResponse;
+  static deserializeBinaryFromReader(message: GetTrainingJobLogsResponse, reader: jspb.BinaryReader): GetTrainingJobLogsResponse;
+}
+
+export namespace GetTrainingJobLogsResponse {
+  export type AsObject = {
+    logsList: Array<TrainingJobLogEntry.AsObject>,
+    nextPageToken: string,
+  }
+}
+
 export interface ModelTypeMap {
   MODEL_TYPE_UNSPECIFIED: 0;
   MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION: 1;

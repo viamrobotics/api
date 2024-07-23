@@ -58,6 +58,15 @@ type MLTrainingServiceDeleteCompletedTrainingJob = {
   readonly responseType: typeof app_mltraining_v1_ml_training_pb.DeleteCompletedTrainingJobResponse;
 };
 
+type MLTrainingServiceGetTrainingJobLogs = {
+  readonly methodName: string;
+  readonly service: typeof MLTrainingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_mltraining_v1_ml_training_pb.GetTrainingJobLogsRequest;
+  readonly responseType: typeof app_mltraining_v1_ml_training_pb.GetTrainingJobLogsResponse;
+};
+
 export class MLTrainingService {
   static readonly serviceName: string;
   static readonly SubmitTrainingJob: MLTrainingServiceSubmitTrainingJob;
@@ -66,6 +75,7 @@ export class MLTrainingService {
   static readonly ListTrainingJobs: MLTrainingServiceListTrainingJobs;
   static readonly CancelTrainingJob: MLTrainingServiceCancelTrainingJob;
   static readonly DeleteCompletedTrainingJob: MLTrainingServiceDeleteCompletedTrainingJob;
+  static readonly GetTrainingJobLogs: MLTrainingServiceGetTrainingJobLogs;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -153,6 +163,15 @@ export class MLTrainingServiceClient {
   deleteCompletedTrainingJob(
     requestMessage: app_mltraining_v1_ml_training_pb.DeleteCompletedTrainingJobRequest,
     callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.DeleteCompletedTrainingJobResponse|null) => void
+  ): UnaryResponse;
+  getTrainingJobLogs(
+    requestMessage: app_mltraining_v1_ml_training_pb.GetTrainingJobLogsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.GetTrainingJobLogsResponse|null) => void
+  ): UnaryResponse;
+  getTrainingJobLogs(
+    requestMessage: app_mltraining_v1_ml_training_pb.GetTrainingJobLogsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.GetTrainingJobLogsResponse|null) => void
   ): UnaryResponse;
 }
 

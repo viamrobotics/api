@@ -64,6 +64,15 @@ MLTrainingService.DeleteCompletedTrainingJob = {
   responseType: app_mltraining_v1_ml_training_pb.DeleteCompletedTrainingJobResponse
 };
 
+MLTrainingService.GetTrainingJobLogs = {
+  methodName: "GetTrainingJobLogs",
+  service: MLTrainingService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_mltraining_v1_ml_training_pb.GetTrainingJobLogsRequest,
+  responseType: app_mltraining_v1_ml_training_pb.GetTrainingJobLogsResponse
+};
+
 exports.MLTrainingService = MLTrainingService;
 
 function MLTrainingServiceClient(serviceHost, options) {
@@ -231,6 +240,37 @@ MLTrainingServiceClient.prototype.deleteCompletedTrainingJob = function deleteCo
     callback = arguments[1];
   }
   var client = grpc.unary(MLTrainingService.DeleteCompletedTrainingJob, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MLTrainingServiceClient.prototype.getTrainingJobLogs = function getTrainingJobLogs(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MLTrainingService.GetTrainingJobLogs, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

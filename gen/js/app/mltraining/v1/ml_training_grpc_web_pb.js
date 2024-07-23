@@ -449,5 +449,66 @@ proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.deleteComp
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest,
+ *   !proto.viam.app.mltraining.v1.GetTrainingJobLogsResponse>}
+ */
+const methodDescriptor_MLTrainingService_GetTrainingJobLogs = new grpc.web.MethodDescriptor(
+  '/viam.app.mltraining.v1.MLTrainingService/GetTrainingJobLogs',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest,
+  proto.viam.app.mltraining.v1.GetTrainingJobLogsResponse,
+  /**
+   * @param {!proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.mltraining.v1.GetTrainingJobLogsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.mltraining.v1.GetTrainingJobLogsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.mltraining.v1.GetTrainingJobLogsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.mltraining.v1.MLTrainingServiceClient.prototype.getTrainingJobLogs =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/GetTrainingJobLogs',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_GetTrainingJobLogs,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.mltraining.v1.GetTrainingJobLogsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.getTrainingJobLogs =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/GetTrainingJobLogs',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_GetTrainingJobLogs);
+};
+
+
 module.exports = proto.viam.app.mltraining.v1;
 
