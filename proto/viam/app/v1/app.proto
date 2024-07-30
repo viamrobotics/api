@@ -659,13 +659,10 @@ message TailRobotPartLogsResponse {
 
 message GetRobotPartHistoryRequest {
   string id = 1;
-  optional string page_token = 2;
-  optional int64 page_limit = 3;
 }
 
 message GetRobotPartHistoryResponse {
   repeated RobotPartHistoryEntry history = 1;
-  string next_page_token = 2;
 }
 
 message UpdateRobotPartRequest {
