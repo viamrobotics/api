@@ -1879,16 +1879,6 @@ export class GetRobotPartHistoryRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  hasPageToken(): boolean;
-  clearPageToken(): void;
-  getPageToken(): string;
-  setPageToken(value: string): void;
-
-  hasPageLimit(): boolean;
-  clearPageLimit(): void;
-  getPageLimit(): number;
-  setPageLimit(value: number): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartHistoryRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartHistoryRequest): GetRobotPartHistoryRequest.AsObject;
@@ -1902,8 +1892,6 @@ export class GetRobotPartHistoryRequest extends jspb.Message {
 export namespace GetRobotPartHistoryRequest {
   export type AsObject = {
     id: string,
-    pageToken: string,
-    pageLimit: number,
   }
 }
 
@@ -1912,9 +1900,6 @@ export class GetRobotPartHistoryResponse extends jspb.Message {
   getHistoryList(): Array<RobotPartHistoryEntry>;
   setHistoryList(value: Array<RobotPartHistoryEntry>): void;
   addHistory(value?: RobotPartHistoryEntry, index?: number): RobotPartHistoryEntry;
-
-  getNextPageToken(): string;
-  setNextPageToken(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartHistoryResponse.AsObject;
@@ -1929,7 +1914,6 @@ export class GetRobotPartHistoryResponse extends jspb.Message {
 export namespace GetRobotPartHistoryResponse {
   export type AsObject = {
     historyList: Array<RobotPartHistoryEntry.AsObject>,
-    nextPageToken: string,
   }
 }
 
