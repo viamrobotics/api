@@ -1197,6 +1197,50 @@ export namespace ConfigStatus {
   }
 }
 
+export class GetVersionRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetVersionRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetVersionRequest): GetVersionRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetVersionRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetVersionRequest;
+  static deserializeBinaryFromReader(message: GetVersionRequest, reader: jspb.BinaryReader): GetVersionRequest;
+}
+
+export namespace GetVersionRequest {
+  export type AsObject = {
+  }
+}
+
+export class GetVersionResponse extends jspb.Message {
+  getPlatform(): string;
+  setPlatform(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  getApiVersion(): string;
+  setApiVersion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetVersionResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetVersionResponse): GetVersionResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetVersionResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetVersionResponse;
+  static deserializeBinaryFromReader(message: GetVersionResponse, reader: jspb.BinaryReader): GetVersionResponse;
+}
+
+export namespace GetVersionResponse {
+  export type AsObject = {
+    platform: string,
+    version: string,
+    apiVersion: string,
+  }
+}
+
 export interface PeerConnectionTypeMap {
   PEER_CONNECTION_TYPE_UNSPECIFIED: 0;
   PEER_CONNECTION_TYPE_GRPC: 1;
