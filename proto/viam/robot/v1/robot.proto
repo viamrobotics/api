@@ -149,6 +149,13 @@ service RobotService {
       get: "/viam/api/v1/machine_status"
     };
   }
+
+  // GetVersion returns version information about the robot.
+  rpc GetVersion(GetVersionRequest) returns (GetVersionResponse) {
+    option (google.api.http) = {
+      get: "/viam/api/v1/version"
+    };
+  }
 }
 
 message FrameSystemConfig {
@@ -408,4 +415,16 @@ message ConfigStatus {
 
   // config ingestion timestamp.
   google.protobuf.Timestamp last_updated = 2;
+}
+
+message GetVersionRequest {}
+
+message GetVersionResponse {
+  // platform type of viam-server (ie. `rdk` or `micro-rdk`).
+  string platform = 1;
+
+  // version of viam-server. If built without a version, it will be dev-<git hash>.
+  string version = 2;
+
+  string api_version = 3;
 }
