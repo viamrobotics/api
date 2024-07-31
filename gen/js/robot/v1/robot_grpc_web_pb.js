@@ -1301,5 +1301,66 @@ proto.viam.robot.v1.RobotServicePromiseClient.prototype.getMachineStatus =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.GetVersionRequest,
+ *   !proto.viam.robot.v1.GetVersionResponse>}
+ */
+const methodDescriptor_RobotService_GetVersion = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/GetVersion',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.GetVersionRequest,
+  proto.viam.robot.v1.GetVersionResponse,
+  /**
+   * @param {!proto.viam.robot.v1.GetVersionRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.GetVersionResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.GetVersionRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.GetVersionResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.GetVersionResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.getVersion =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/GetVersion',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_GetVersion,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.GetVersionRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.GetVersionResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.getVersion =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/GetVersion',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_GetVersion);
+};
+
+
 module.exports = proto.viam.robot.v1;
 
