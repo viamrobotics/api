@@ -8995,7 +8995,8 @@ proto.viam.robot.v1.ResourceStatus.toObject = function(includeInstance, msg) {
     name: (f = msg.getName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     state: jspb.Message.getFieldWithDefault(msg, 2, 0),
     lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    revision: jspb.Message.getFieldWithDefault(msg, 4, "")
+    revision: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    error: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -9049,6 +9050,10 @@ proto.viam.robot.v1.ResourceStatus.deserializeBinaryFromReader = function(msg, r
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setRevision(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setError(value);
       break;
     default:
       reader.skipField();
@@ -9109,6 +9114,13 @@ proto.viam.robot.v1.ResourceStatus.serializeBinaryToWriter = function(message, w
       f
     );
   }
+  f = message.getError();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
 };
 
 
@@ -9120,7 +9132,8 @@ proto.viam.robot.v1.ResourceStatus.State = {
   STATE_UNCONFIGURED: 1,
   STATE_CONFIGURING: 2,
   STATE_READY: 3,
-  STATE_REMOVING: 4
+  STATE_REMOVING: 4,
+  STATE_UNHEALTHY: 5
 };
 
 /**
@@ -9230,6 +9243,24 @@ proto.viam.robot.v1.ResourceStatus.prototype.getRevision = function() {
  */
 proto.viam.robot.v1.ResourceStatus.prototype.setRevision = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string error = 5;
+ * @return {string}
+ */
+proto.viam.robot.v1.ResourceStatus.prototype.getError = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.robot.v1.ResourceStatus} returns this
+ */
+proto.viam.robot.v1.ResourceStatus.prototype.setError = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 

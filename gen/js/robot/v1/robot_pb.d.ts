@@ -1142,6 +1142,9 @@ export class ResourceStatus extends jspb.Message {
   getRevision(): string;
   setRevision(value: string): void;
 
+  getError(): string;
+  setError(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResourceStatus.AsObject;
   static toObject(includeInstance: boolean, msg: ResourceStatus): ResourceStatus.AsObject;
@@ -1158,6 +1161,7 @@ export namespace ResourceStatus {
     state: ResourceStatus.StateMap[keyof ResourceStatus.StateMap],
     lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     revision: string,
+    error: string,
   }
 
   export interface StateMap {
@@ -1166,6 +1170,7 @@ export namespace ResourceStatus {
     STATE_CONFIGURING: 2;
     STATE_READY: 3;
     STATE_REMOVING: 4;
+    STATE_UNHEALTHY: 5;
   }
 
   export const State: StateMap;
