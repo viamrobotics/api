@@ -389,8 +389,8 @@ message ResourceStatus {
     STATE_UNCONFIGURED = 1;
     // a resource that is being configured.
     STATE_CONFIGURING = 2;
-    // a resource that has been successfully configured once, is healthy, and is not being
-    // re-configured or removed.
+    // a resource that has been successfully configured once, and is not re-configuring,
+    // being removed, or unhealthy.
     STATE_READY = 3;
     // a resource that is being removed from the robot.
     STATE_REMOVING = 4;
