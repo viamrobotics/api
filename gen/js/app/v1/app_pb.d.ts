@@ -2163,6 +2163,11 @@ export class Fragment extends jspb.Message {
   getVisibility(): FragmentVisibilityMap[keyof FragmentVisibilityMap];
   setVisibility(value: FragmentVisibilityMap[keyof FragmentVisibilityMap]): void;
 
+  hasLastUpdated(): boolean;
+  clearLastUpdated(): void;
+  getLastUpdated(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastUpdated(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Fragment.AsObject;
   static toObject(includeInstance: boolean, msg: Fragment): Fragment.AsObject;
@@ -2186,6 +2191,7 @@ export namespace Fragment {
     organizationCount: number,
     onlyUsedByOwner: boolean,
     visibility: FragmentVisibilityMap[keyof FragmentVisibilityMap],
+    lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 

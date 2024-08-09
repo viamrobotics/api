@@ -721,6 +721,8 @@ message Fragment {
   bool only_used_by_owner = 11;
   // the visibility of a fragment; public, private or unlisted
   FragmentVisibility visibility = 12;
+  // revision timestamp
+  google.protobuf.Timestamp last_updated = 13 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
 }
 
 message FragmentHistoryEntry {
