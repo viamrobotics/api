@@ -47,7 +47,7 @@ service AppService {
   rpc ListOrganizationMembers(ListOrganizationMembersRequest) returns (ListOrganizationMembersResponse);
 
   // List information regarding all parts owned by an organization
-  rpc GetOrganizationSummary (GetOrganizationSummaryRequest) returns (GetOrganizationSummaryResponse);
+  rpc GetOrganizationSummary(GetOrganizationSummaryRequest) returns (GetOrganizationSummaryResponse);
 
   // Create an organization invite to an organization
   rpc CreateOrganizationInvite(CreateOrganizationInviteRequest) returns (CreateOrganizationInviteResponse);

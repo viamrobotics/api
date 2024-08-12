@@ -635,6 +635,90 @@ export namespace ListOrganizationMembersResponse {
   }
 }
 
+export class GetOrganizationSummaryRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetOrganizationSummaryRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetOrganizationSummaryRequest): GetOrganizationSummaryRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetOrganizationSummaryRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetOrganizationSummaryRequest;
+  static deserializeBinaryFromReader(message: GetOrganizationSummaryRequest, reader: jspb.BinaryReader): GetOrganizationSummaryRequest;
+}
+
+export namespace GetOrganizationSummaryRequest {
+  export type AsObject = {
+    organizationId: string,
+  }
+}
+
+export class GetOrganizationSummaryResponse extends jspb.Message {
+  getTotalParts(): number;
+  setTotalParts(value: number): void;
+
+  getTotalPartsOnline(): number;
+  setTotalPartsOnline(value: number): void;
+
+  getTotalPartsAwaitingSetup(): number;
+  setTotalPartsAwaitingSetup(value: number): void;
+
+  clearHourlyList(): void;
+  getHourlyList(): Array<AggregatedSummary>;
+  setHourlyList(value: Array<AggregatedSummary>): void;
+  addHourly(value?: AggregatedSummary, index?: number): AggregatedSummary;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetOrganizationSummaryResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetOrganizationSummaryResponse): GetOrganizationSummaryResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetOrganizationSummaryResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetOrganizationSummaryResponse;
+  static deserializeBinaryFromReader(message: GetOrganizationSummaryResponse, reader: jspb.BinaryReader): GetOrganizationSummaryResponse;
+}
+
+export namespace GetOrganizationSummaryResponse {
+  export type AsObject = {
+    totalParts: number,
+    totalPartsOnline: number,
+    totalPartsAwaitingSetup: number,
+    hourlyList: Array<AggregatedSummary.AsObject>,
+  }
+}
+
+export class AggregatedSummary extends jspb.Message {
+  hasWhen(): boolean;
+  clearWhen(): void;
+  getWhen(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setWhen(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getTotalBinaryDataSynced(): number;
+  setTotalBinaryDataSynced(value: number): void;
+
+  getTotalTabularDataSynced(): number;
+  setTotalTabularDataSynced(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AggregatedSummary.AsObject;
+  static toObject(includeInstance: boolean, msg: AggregatedSummary): AggregatedSummary.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AggregatedSummary, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AggregatedSummary;
+  static deserializeBinaryFromReader(message: AggregatedSummary, reader: jspb.BinaryReader): AggregatedSummary;
+}
+
+export namespace AggregatedSummary {
+  export type AsObject = {
+    when?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    totalBinaryDataSynced: number,
+    totalTabularDataSynced: number,
+  }
+}
+
 export class CreateOrganizationInviteRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;

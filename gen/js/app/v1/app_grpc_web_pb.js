@@ -701,6 +701,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listOrganizationMembers =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetOrganizationSummaryRequest,
+ *   !proto.viam.app.v1.GetOrganizationSummaryResponse>}
+ */
+const methodDescriptor_AppService_GetOrganizationSummary = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetOrganizationSummary',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetOrganizationSummaryRequest,
+  proto.viam.app.v1.GetOrganizationSummaryResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetOrganizationSummaryRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetOrganizationSummaryResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetOrganizationSummaryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetOrganizationSummaryResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetOrganizationSummaryResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getOrganizationSummary =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetOrganizationSummary',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetOrganizationSummary,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetOrganizationSummaryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetOrganizationSummaryResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getOrganizationSummary =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetOrganizationSummary',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetOrganizationSummary);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.CreateOrganizationInviteRequest,
  *   !proto.viam.app.v1.CreateOrganizationInviteResponse>}
  */

@@ -94,6 +94,15 @@ type AppServiceListOrganizationMembers = {
   readonly responseType: typeof app_v1_app_pb.ListOrganizationMembersResponse;
 };
 
+type AppServiceGetOrganizationSummary = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetOrganizationSummaryRequest;
+  readonly responseType: typeof app_v1_app_pb.GetOrganizationSummaryResponse;
+};
+
 type AppServiceCreateOrganizationInvite = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -673,6 +682,7 @@ export class AppService {
   static readonly UpdateOrganization: AppServiceUpdateOrganization;
   static readonly DeleteOrganization: AppServiceDeleteOrganization;
   static readonly ListOrganizationMembers: AppServiceListOrganizationMembers;
+  static readonly GetOrganizationSummary: AppServiceGetOrganizationSummary;
   static readonly CreateOrganizationInvite: AppServiceCreateOrganizationInvite;
   static readonly UpdateOrganizationInviteAuthorizations: AppServiceUpdateOrganizationInviteAuthorizations;
   static readonly DeleteOrganizationMember: AppServiceDeleteOrganizationMember;
@@ -859,6 +869,15 @@ export class AppServiceClient {
   listOrganizationMembers(
     requestMessage: app_v1_app_pb.ListOrganizationMembersRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationMembersResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationSummary(
+    requestMessage: app_v1_app_pb.GetOrganizationSummaryRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationSummaryResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationSummary(
+    requestMessage: app_v1_app_pb.GetOrganizationSummaryRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationSummaryResponse|null) => void
   ): UnaryResponse;
   createOrganizationInvite(
     requestMessage: app_v1_app_pb.CreateOrganizationInviteRequest,
