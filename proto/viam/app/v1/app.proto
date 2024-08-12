@@ -46,6 +46,8 @@ service AppService {
   // List all members of an organization and all invited members to the organization.
   rpc ListOrganizationMembers(ListOrganizationMembersRequest) returns (ListOrganizationMembersResponse);
 
+  rpc GetOrganizationSummary (GetOrganizationSummaryRequest) returns (GetOrganizationSummaryResponse);
+
   // Create an organization invite to an organization
   rpc CreateOrganizationInvite(CreateOrganizationInviteRequest) returns (CreateOrganizationInviteResponse);
 
@@ -350,7 +352,7 @@ message DeleteOrganizationRequest {
   string organization_id = 1;
 }
 
-message DeleteOrganizationResponse {}
+message DeleteOrganizationResponse {} 
 
 message ListOrganizationMembersRequest {
   string organization_id = 1;
@@ -360,6 +362,23 @@ message ListOrganizationMembersResponse {
   string organization_id = 1;
   repeated OrganizationMember members = 2;
   repeated OrganizationInvite invites = 3;
+}
+
+message GetOrganizationSummaryRequest {
+  string organization_id = 1;
+}
+
+message GetOrganizationSummaryResponse {
+  int64 total_parts = 1;
+  int64 total_parts_online = 2;
+  int64 total_parts_awaiting_setup = 3;
+  repeated AggregatedSummary hourly = 4;
+}
+
+message AggregatedSummary {
+  google.protobuf.Timestamp when = 1;
+  int64 total_binary_data_synced = 2;
+  int64 total_tabular_data_synced = 3;
 }
 
 message CreateOrganizationInviteRequest {
