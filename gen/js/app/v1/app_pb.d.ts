@@ -635,6 +635,122 @@ export namespace ListOrganizationMembersResponse {
   }
 }
 
+export class ListMachineSummariesRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListMachineSummariesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListMachineSummariesRequest): ListMachineSummariesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListMachineSummariesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListMachineSummariesRequest;
+  static deserializeBinaryFromReader(message: ListMachineSummariesRequest, reader: jspb.BinaryReader): ListMachineSummariesRequest;
+}
+
+export namespace ListMachineSummariesRequest {
+  export type AsObject = {
+    organizationId: string,
+  }
+}
+
+export class ListMachineSummariesResponse extends jspb.Message {
+  clearPartSummariesList(): void;
+  getPartSummariesList(): Array<PartSummary>;
+  setPartSummariesList(value: Array<PartSummary>): void;
+  addPartSummaries(value?: PartSummary, index?: number): PartSummary;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListMachineSummariesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListMachineSummariesResponse): ListMachineSummariesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListMachineSummariesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListMachineSummariesResponse;
+  static deserializeBinaryFromReader(message: ListMachineSummariesResponse, reader: jspb.BinaryReader): ListMachineSummariesResponse;
+}
+
+export namespace ListMachineSummariesResponse {
+  export type AsObject = {
+    partSummariesList: Array<PartSummary.AsObject>,
+  }
+}
+
+export class PartSummary extends jspb.Message {
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  getPartName(): string;
+  setPartName(value: string): void;
+
+  getMachineId(): string;
+  setMachineId(value: string): void;
+
+  getMachineName(): string;
+  setMachineName(value: string): void;
+
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  getLocationName(): string;
+  setLocationName(value: string): void;
+
+  hasLastOnline(): boolean;
+  clearLastOnline(): void;
+  getLastOnline(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastOnline(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getViamServerVersion(): string;
+  setViamServerVersion(value: string): void;
+
+  getViamAgentVersion(): string;
+  setViamAgentVersion(value: string): void;
+
+  getOs(): string;
+  setOs(value: string): void;
+
+  getPublicIpAddress(): string;
+  setPublicIpAddress(value: string): void;
+
+  hasLastTabularDataSync(): boolean;
+  clearLastTabularDataSync(): void;
+  getLastTabularDataSync(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastTabularDataSync(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasLastBinaryDataSync(): boolean;
+  clearLastBinaryDataSync(): void;
+  getLastBinaryDataSync(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastBinaryDataSync(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PartSummary.AsObject;
+  static toObject(includeInstance: boolean, msg: PartSummary): PartSummary.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PartSummary, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PartSummary;
+  static deserializeBinaryFromReader(message: PartSummary, reader: jspb.BinaryReader): PartSummary;
+}
+
+export namespace PartSummary {
+  export type AsObject = {
+    partId: string,
+    partName: string,
+    machineId: string,
+    machineName: string,
+    locationId: string,
+    locationName: string,
+    lastOnline?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    viamServerVersion: string,
+    viamAgentVersion: string,
+    os: string,
+    publicIpAddress: string,
+    lastTabularDataSync?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    lastBinaryDataSync?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
 export class CreateOrganizationInviteRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
