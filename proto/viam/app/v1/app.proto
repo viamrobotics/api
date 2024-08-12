@@ -362,6 +362,30 @@ message ListOrganizationMembersResponse {
   repeated OrganizationInvite invites = 3;
 }
 
+message ListMachineSummariesRequest {
+  string organization_id = 1;
+}
+
+message ListMachineSummariesResponse {
+  repeated PartSummary part_summaries = 1;
+}
+
+message PartSummary {
+  string part_id = 1;
+  string part_name = 2;
+  string machine_id = 3;
+  string machine_name = 4;
+  string location_id = 5;
+  string location_name = 6;
+  google.protobuf.Timestamp last_online = 7;
+  string viam_server_version = 8;
+  string viam_agent_version = 9;
+  string os = 10;
+  string public_ip_address = 11;
+  google.protobuf.Timestamp last_tabular_data_sync = 12;
+  google.protobuf.Timestamp last_binary_data_sync = 13;
+}
+
 message CreateOrganizationInviteRequest {
   string organization_id = 1;
   string email = 2;
