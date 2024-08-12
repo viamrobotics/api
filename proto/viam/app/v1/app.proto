@@ -642,8 +642,8 @@ message GetRobotPartLogsRequest {
   repeated string levels = 5;
   optional google.protobuf.Timestamp start = 6;
   optional google.protobuf.Timestamp end = 7;
-  optional int64 limit = 8;  
-  optional string source = 9; 
+  optional int64 limit = 8;
+  optional string source = 9;
 }
 
 message GetRobotPartLogsResponse {
