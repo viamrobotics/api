@@ -46,6 +46,7 @@ service AppService {
   // List all members of an organization and all invited members to the organization.
   rpc ListOrganizationMembers(ListOrganizationMembersRequest) returns (ListOrganizationMembersResponse);
 
+  // List information regarding all parts owned by an organization
   rpc GetOrganizationSummary (GetOrganizationSummaryRequest) returns (GetOrganizationSummaryResponse);
 
   // Create an organization invite to an organization
@@ -352,7 +353,7 @@ message DeleteOrganizationRequest {
   string organization_id = 1;
 }
 
-message DeleteOrganizationResponse {} 
+message DeleteOrganizationResponse {}
 
 message ListOrganizationMembersRequest {
   string organization_id = 1;
