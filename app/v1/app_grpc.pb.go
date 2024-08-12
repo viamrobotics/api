@@ -42,6 +42,8 @@ type AppServiceClient interface {
 	DeleteOrganization(ctx context.Context, in *DeleteOrganizationRequest, opts ...grpc.CallOption) (*DeleteOrganizationResponse, error)
 	// List all members of an organization and all invited members to the organization.
 	ListOrganizationMembers(ctx context.Context, in *ListOrganizationMembersRequest, opts ...grpc.CallOption) (*ListOrganizationMembersResponse, error)
+	// List all machines owned by an organization
+	ListMachineSummaries(ctx context.Context, in *ListMachineSummariesRequest, opts ...grpc.CallOption) (*ListMachineSummariesResponse, error)
 	// Create an organization invite to an organization
 	CreateOrganizationInvite(ctx context.Context, in *CreateOrganizationInviteRequest, opts ...grpc.CallOption) (*CreateOrganizationInviteResponse, error)
 	// Update the authorizations attached to an organization invite
@@ -248,6 +250,15 @@ func (c *appServiceClient) DeleteOrganization(ctx context.Context, in *DeleteOrg
 func (c *appServiceClient) ListOrganizationMembers(ctx context.Context, in *ListOrganizationMembersRequest, opts ...grpc.CallOption) (*ListOrganizationMembersResponse, error) {
 	out := new(ListOrganizationMembersResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListOrganizationMembers", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListMachineSummaries(ctx context.Context, in *ListMachineSummariesRequest, opts ...grpc.CallOption) (*ListMachineSummariesResponse, error) {
+	out := new(ListMachineSummariesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListMachineSummaries", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -893,6 +904,8 @@ type AppServiceServer interface {
 	DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error)
 	// List all members of an organization and all invited members to the organization.
 	ListOrganizationMembers(context.Context, *ListOrganizationMembersRequest) (*ListOrganizationMembersResponse, error)
+	// List all machines owned by an organization
+	ListMachineSummaries(context.Context, *ListMachineSummariesRequest) (*ListMachineSummariesResponse, error)
 	// Create an organization invite to an organization
 	CreateOrganizationInvite(context.Context, *CreateOrganizationInviteRequest) (*CreateOrganizationInviteResponse, error)
 	// Update the authorizations attached to an organization invite
@@ -1041,6 +1054,9 @@ func (UnimplementedAppServiceServer) DeleteOrganization(context.Context, *Delete
 }
 func (UnimplementedAppServiceServer) ListOrganizationMembers(context.Context, *ListOrganizationMembersRequest) (*ListOrganizationMembersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationMembers not implemented")
+}
+func (UnimplementedAppServiceServer) ListMachineSummaries(context.Context, *ListMachineSummariesRequest) (*ListMachineSummariesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMachineSummaries not implemented")
 }
 func (UnimplementedAppServiceServer) CreateOrganizationInvite(context.Context, *CreateOrganizationInviteRequest) (*CreateOrganizationInviteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganizationInvite not implemented")
@@ -1420,6 +1436,24 @@ func _AppService_ListOrganizationMembers_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).ListOrganizationMembers(ctx, req.(*ListOrganizationMembersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListMachineSummaries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMachineSummariesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListMachineSummaries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListMachineSummaries",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListMachineSummaries(ctx, req.(*ListMachineSummariesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2615,6 +2649,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListOrganizationMembers",
 			Handler:    _AppService_ListOrganizationMembers_Handler,
+		},
+		{
+			MethodName: "ListMachineSummaries",
+			Handler:    _AppService_ListMachineSummaries_Handler,
 		},
 		{
 			MethodName: "CreateOrganizationInvite",

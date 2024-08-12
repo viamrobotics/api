@@ -94,6 +94,15 @@ type AppServiceListOrganizationMembers = {
   readonly responseType: typeof app_v1_app_pb.ListOrganizationMembersResponse;
 };
 
+type AppServiceListMachineSummaries = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListMachineSummariesRequest;
+  readonly responseType: typeof app_v1_app_pb.ListMachineSummariesResponse;
+};
+
 type AppServiceCreateOrganizationInvite = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -673,6 +682,7 @@ export class AppService {
   static readonly UpdateOrganization: AppServiceUpdateOrganization;
   static readonly DeleteOrganization: AppServiceDeleteOrganization;
   static readonly ListOrganizationMembers: AppServiceListOrganizationMembers;
+  static readonly ListMachineSummaries: AppServiceListMachineSummaries;
   static readonly CreateOrganizationInvite: AppServiceCreateOrganizationInvite;
   static readonly UpdateOrganizationInviteAuthorizations: AppServiceUpdateOrganizationInviteAuthorizations;
   static readonly DeleteOrganizationMember: AppServiceDeleteOrganizationMember;
@@ -859,6 +869,15 @@ export class AppServiceClient {
   listOrganizationMembers(
     requestMessage: app_v1_app_pb.ListOrganizationMembersRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationMembersResponse|null) => void
+  ): UnaryResponse;
+  listMachineSummaries(
+    requestMessage: app_v1_app_pb.ListMachineSummariesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListMachineSummariesResponse|null) => void
+  ): UnaryResponse;
+  listMachineSummaries(
+    requestMessage: app_v1_app_pb.ListMachineSummariesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListMachineSummariesResponse|null) => void
   ): UnaryResponse;
   createOrganizationInvite(
     requestMessage: app_v1_app_pb.CreateOrganizationInviteRequest,

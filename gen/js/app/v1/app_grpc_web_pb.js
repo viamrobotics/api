@@ -701,6 +701,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listOrganizationMembers =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.ListMachineSummariesRequest,
+ *   !proto.viam.app.v1.ListMachineSummariesResponse>}
+ */
+const methodDescriptor_AppService_ListMachineSummaries = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/ListMachineSummaries',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.ListMachineSummariesRequest,
+  proto.viam.app.v1.ListMachineSummariesResponse,
+  /**
+   * @param {!proto.viam.app.v1.ListMachineSummariesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.ListMachineSummariesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.ListMachineSummariesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ListMachineSummariesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ListMachineSummariesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.listMachineSummaries =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListMachineSummaries',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListMachineSummaries,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ListMachineSummariesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.ListMachineSummariesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.listMachineSummaries =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListMachineSummaries',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListMachineSummaries);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.CreateOrganizationInviteRequest,
  *   !proto.viam.app.v1.CreateOrganizationInviteResponse>}
  */
