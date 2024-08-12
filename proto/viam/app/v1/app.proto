@@ -46,6 +46,9 @@ service AppService {
   // List all members of an organization and all invited members to the organization.
   rpc ListOrganizationMembers(ListOrganizationMembersRequest) returns (ListOrganizationMembersResponse);
 
+  // List all machines owned by an organization
+  rpc ListMachineSummaries (ListMachineSummariesRequest) returns (ListMachineSummariesResponse); 
+
   // Create an organization invite to an organization
   rpc CreateOrganizationInvite(CreateOrganizationInviteRequest) returns (CreateOrganizationInviteResponse);
 
