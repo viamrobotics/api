@@ -24,13 +24,14 @@ service BuildService {
   rpc UnlinkRepo(UnlinkRepoRequest) returns (UnlinkRepoResponse);
   // list module-repo links owned by user (directly or through orgs).
   rpc ListRepoLinks(ListRepoLinksRequest) returns (ListRepoLinksResponse);
-  // list app links owned by user (directly or through orgs).
+
+  // list external oauth apps owned by user (directly or through orgs).
   rpc ListAppLinks(ListAppLinksRequest) returns (ListAppLinksResponse);
   // delete a viam-app link.
   rpc RemoveAppLink(RemoveAppLinkRequest) returns (RemoveAppLinkResponse);
-  // add an org to an app link.
+  // add an org to an oauth app link.
   rpc LinkOrg(LinkOrgRequest) returns (LinkOrgResponse);
-  // remove an org from an app link.
+  // remove an org from an oauth app link.
   rpc UnlinkOrg(UnlinkOrgRequest) returns (UnlinkOrgResponse);
 }
 
