@@ -763,6 +763,7 @@ message CreateFragmentRequest {
   string name = 1;
   google.protobuf.Struct config = 2;
   string organization_id = 3;
+  optional FragmentVisibility visibility = 4;
 }
 
 message CreateFragmentResponse {
