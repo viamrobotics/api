@@ -17,6 +17,21 @@ service BuildService {
   rpc GetLogs(GetLogsRequest) returns (stream GetLogsResponse);
   // List the jobs for a module ordered by (build start time, alphabetical platform).
   rpc ListJobs(ListJobsRequest) returns (ListJobsResponse);
+
+  // link a git repo to a module.
+  rpc LinkRepo(LinkRepoRequest) returns (LinkRepoResponse);
+  // delete a module-repo link.
+  rpc UnlinkRepo(UnlinkRepoRequest) returns (UnlinkRepoResponse);
+  // list module-repo links owned by user (directly or through orgs).
+  rpc ListRepoLinks(ListRepoLinksRequest) returns (ListRepoLinksResponse);
+  // list app links owned by user (directly or through orgs).
+  rpc ListAppLinks(ListAppLinksRequest) returns (ListAppLinksResponse);
+  // delete a viam-app link.
+  rpc RemoveAppLink(RemoveAppLinkRequest) returns (RemoveAppLinkResponse);
+  // add an org to an app link.
+  rpc LinkOrg(LinkOrgRequest) returns (LinkOrgResponse);
+  // remove an org from an app link.
+  rpc UnlinkOrg(UnlinkOrgRequest) returns (UnlinkOrgResponse);
 }
 
 message StartBuildRequest {
