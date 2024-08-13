@@ -2357,6 +2357,11 @@ export class CreateFragmentRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
+  hasVisibility(): boolean;
+  clearVisibility(): void;
+  getVisibility(): FragmentVisibilityMap[keyof FragmentVisibilityMap];
+  setVisibility(value: FragmentVisibilityMap[keyof FragmentVisibilityMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateFragmentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateFragmentRequest): CreateFragmentRequest.AsObject;
@@ -2372,6 +2377,7 @@ export namespace CreateFragmentRequest {
     name: string,
     config?: google_protobuf_struct_pb.Struct.AsObject,
     organizationId: string,
+    visibility: FragmentVisibilityMap[keyof FragmentVisibilityMap],
   }
 }
 
