@@ -110,6 +110,8 @@ message RepoLink {
   string module_id = 4;
   // git repo in owner/repository form
   string repo = 5;
+  // email of the viam user who created this
+  string viam_user = 6;
 }
 
 message LinkRepoRequest {
@@ -139,8 +141,10 @@ message AppLink {
   string app_link_id = 1;
   // email of the viam user that owns this
   string viam_user = 2;
+  // username of the external user who created this
+  string external_user = 3;
   // list of org public namespace (where available) or org UUIDs attached to the external app
-  repeated string org_id_or_ns = 3;
+  repeated string org_id_or_ns = 4;
 }
 
 message ListAppLinksResponse {
