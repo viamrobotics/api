@@ -98,3 +98,70 @@ message ListJobsResponse {
   // jobs is ordered by (build start time, alphabetical platform).
   repeated JobInfo jobs = 1;
 }
+
+message RepoLink {
+  string app_link_id = 1;
+  // OrgID of the module
+  string org_id = 2;
+  // public namespace of the module
+  optional string namespace = 3;
+  // ID of the module (just the name, not the dotted org:module form)
+  string module_id = 4;
+  // git repo in owner/repository form
+  string repo = 5;
+}
+
+message LinkRepoRequest {
+  RepoLink link = 1;
+}
+
+message LinkRepoResponse {
+  string repo_link_id = 1;
+}
+
+message UnlinkRepoRequest {
+  string repo_link_id = 1;
+}
+
+message UnlinkRepoResponse {}
+
+message ListRepoLinksRequest {}
+
+message ListRepoLinksResponse {
+  repeated RepoLink links = 1;
+}
+
+message ListAppLinksRequest {}
+
+// represents a link between viam users / orgs and an external oauth app
+message AppLink {
+  string app_link_id = 1;
+  // email of the viam user that owns this
+  string viam_user = 2;
+  // list of org public namespace (where available) or org UUIDs attached to the external app
+  repeated string org_id_or_ns = 3;
+}
+
+message ListAppLinksResponse {
+  repeated AppLink links = 1;
+}
+
+message RemoveAppLinkRequest {
+  string app_link_id = 1;
+}
+
+message RemoveAppLinkResponse {}
+
+message LinkOrgRequest {
+  string app_link_id = 1;
+  string org_id = 2;
+}
+
+message LinkOrgResponse {}
+
+message UnlinkOrgRequest {
+  string app_link_id = 1;
+  string org_id = 2;
+}
+
+message UnlinkOrgResponse {}
