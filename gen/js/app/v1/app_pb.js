@@ -20301,7 +20301,8 @@ proto.viam.app.v1.CreateFragmentRequest.toObject = function(includeInstance, msg
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 3, "")
+    organizationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    visibility: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -20351,6 +20352,10 @@ proto.viam.app.v1.CreateFragmentRequest.deserializeBinaryFromReader = function(m
       var value = /** @type {string} */ (reader.readString());
       msg.setOrganizationId(value);
       break;
+    case 4:
+      var value = /** @type {!proto.viam.app.v1.FragmentVisibility} */ (reader.readEnum());
+      msg.setVisibility(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -20399,6 +20404,13 @@ proto.viam.app.v1.CreateFragmentRequest.serializeBinaryToWriter = function(messa
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = /** @type {!proto.viam.app.v1.FragmentVisibility} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeEnum(
+      4,
       f
     );
   }
@@ -20475,6 +20487,42 @@ proto.viam.app.v1.CreateFragmentRequest.prototype.getOrganizationId = function()
  */
 proto.viam.app.v1.CreateFragmentRequest.prototype.setOrganizationId = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional FragmentVisibility visibility = 4;
+ * @return {!proto.viam.app.v1.FragmentVisibility}
+ */
+proto.viam.app.v1.CreateFragmentRequest.prototype.getVisibility = function() {
+  return /** @type {!proto.viam.app.v1.FragmentVisibility} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.FragmentVisibility} value
+ * @return {!proto.viam.app.v1.CreateFragmentRequest} returns this
+ */
+proto.viam.app.v1.CreateFragmentRequest.prototype.setVisibility = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.CreateFragmentRequest} returns this
+ */
+proto.viam.app.v1.CreateFragmentRequest.prototype.clearVisibility = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.CreateFragmentRequest.prototype.hasVisibility = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
