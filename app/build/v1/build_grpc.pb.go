@@ -28,6 +28,20 @@ type BuildServiceClient interface {
 	GetLogs(ctx context.Context, in *GetLogsRequest, opts ...grpc.CallOption) (BuildService_GetLogsClient, error)
 	// List the jobs for a module ordered by (build start time, alphabetical platform).
 	ListJobs(ctx context.Context, in *ListJobsRequest, opts ...grpc.CallOption) (*ListJobsResponse, error)
+	// link a git repo to a module.
+	LinkRepo(ctx context.Context, in *LinkRepoRequest, opts ...grpc.CallOption) (*LinkRepoResponse, error)
+	// delete a module-repo link.
+	UnlinkRepo(ctx context.Context, in *UnlinkRepoRequest, opts ...grpc.CallOption) (*UnlinkRepoResponse, error)
+	// list module-repo links owned by user (directly or through orgs).
+	ListRepoLinks(ctx context.Context, in *ListRepoLinksRequest, opts ...grpc.CallOption) (*ListRepoLinksResponse, error)
+	// list external oauth apps owned by user (directly or through orgs).
+	ListAppLinks(ctx context.Context, in *ListAppLinksRequest, opts ...grpc.CallOption) (*ListAppLinksResponse, error)
+	// delete a viam-app link.
+	RemoveAppLink(ctx context.Context, in *RemoveAppLinkRequest, opts ...grpc.CallOption) (*RemoveAppLinkResponse, error)
+	// add an org to an oauth app link.
+	LinkOrg(ctx context.Context, in *LinkOrgRequest, opts ...grpc.CallOption) (*LinkOrgResponse, error)
+	// remove an org from an oauth app link.
+	UnlinkOrg(ctx context.Context, in *UnlinkOrgRequest, opts ...grpc.CallOption) (*UnlinkOrgResponse, error)
 }
 
 type buildServiceClient struct {
@@ -88,6 +102,69 @@ func (c *buildServiceClient) ListJobs(ctx context.Context, in *ListJobsRequest, 
 	return out, nil
 }
 
+func (c *buildServiceClient) LinkRepo(ctx context.Context, in *LinkRepoRequest, opts ...grpc.CallOption) (*LinkRepoResponse, error) {
+	out := new(LinkRepoResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.build.v1.BuildService/LinkRepo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *buildServiceClient) UnlinkRepo(ctx context.Context, in *UnlinkRepoRequest, opts ...grpc.CallOption) (*UnlinkRepoResponse, error) {
+	out := new(UnlinkRepoResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.build.v1.BuildService/UnlinkRepo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *buildServiceClient) ListRepoLinks(ctx context.Context, in *ListRepoLinksRequest, opts ...grpc.CallOption) (*ListRepoLinksResponse, error) {
+	out := new(ListRepoLinksResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.build.v1.BuildService/ListRepoLinks", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *buildServiceClient) ListAppLinks(ctx context.Context, in *ListAppLinksRequest, opts ...grpc.CallOption) (*ListAppLinksResponse, error) {
+	out := new(ListAppLinksResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.build.v1.BuildService/ListAppLinks", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *buildServiceClient) RemoveAppLink(ctx context.Context, in *RemoveAppLinkRequest, opts ...grpc.CallOption) (*RemoveAppLinkResponse, error) {
+	out := new(RemoveAppLinkResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.build.v1.BuildService/RemoveAppLink", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *buildServiceClient) LinkOrg(ctx context.Context, in *LinkOrgRequest, opts ...grpc.CallOption) (*LinkOrgResponse, error) {
+	out := new(LinkOrgResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.build.v1.BuildService/LinkOrg", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *buildServiceClient) UnlinkOrg(ctx context.Context, in *UnlinkOrgRequest, opts ...grpc.CallOption) (*UnlinkOrgResponse, error) {
+	out := new(UnlinkOrgResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.build.v1.BuildService/UnlinkOrg", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BuildServiceServer is the server API for BuildService service.
 // All implementations must embed UnimplementedBuildServiceServer
 // for forward compatibility
@@ -98,6 +175,20 @@ type BuildServiceServer interface {
 	GetLogs(*GetLogsRequest, BuildService_GetLogsServer) error
 	// List the jobs for a module ordered by (build start time, alphabetical platform).
 	ListJobs(context.Context, *ListJobsRequest) (*ListJobsResponse, error)
+	// link a git repo to a module.
+	LinkRepo(context.Context, *LinkRepoRequest) (*LinkRepoResponse, error)
+	// delete a module-repo link.
+	UnlinkRepo(context.Context, *UnlinkRepoRequest) (*UnlinkRepoResponse, error)
+	// list module-repo links owned by user (directly or through orgs).
+	ListRepoLinks(context.Context, *ListRepoLinksRequest) (*ListRepoLinksResponse, error)
+	// list external oauth apps owned by user (directly or through orgs).
+	ListAppLinks(context.Context, *ListAppLinksRequest) (*ListAppLinksResponse, error)
+	// delete a viam-app link.
+	RemoveAppLink(context.Context, *RemoveAppLinkRequest) (*RemoveAppLinkResponse, error)
+	// add an org to an oauth app link.
+	LinkOrg(context.Context, *LinkOrgRequest) (*LinkOrgResponse, error)
+	// remove an org from an oauth app link.
+	UnlinkOrg(context.Context, *UnlinkOrgRequest) (*UnlinkOrgResponse, error)
 	mustEmbedUnimplementedBuildServiceServer()
 }
 
@@ -113,6 +204,27 @@ func (UnimplementedBuildServiceServer) GetLogs(*GetLogsRequest, BuildService_Get
 }
 func (UnimplementedBuildServiceServer) ListJobs(context.Context, *ListJobsRequest) (*ListJobsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListJobs not implemented")
+}
+func (UnimplementedBuildServiceServer) LinkRepo(context.Context, *LinkRepoRequest) (*LinkRepoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LinkRepo not implemented")
+}
+func (UnimplementedBuildServiceServer) UnlinkRepo(context.Context, *UnlinkRepoRequest) (*UnlinkRepoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnlinkRepo not implemented")
+}
+func (UnimplementedBuildServiceServer) ListRepoLinks(context.Context, *ListRepoLinksRequest) (*ListRepoLinksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRepoLinks not implemented")
+}
+func (UnimplementedBuildServiceServer) ListAppLinks(context.Context, *ListAppLinksRequest) (*ListAppLinksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAppLinks not implemented")
+}
+func (UnimplementedBuildServiceServer) RemoveAppLink(context.Context, *RemoveAppLinkRequest) (*RemoveAppLinkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveAppLink not implemented")
+}
+func (UnimplementedBuildServiceServer) LinkOrg(context.Context, *LinkOrgRequest) (*LinkOrgResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LinkOrg not implemented")
+}
+func (UnimplementedBuildServiceServer) UnlinkOrg(context.Context, *UnlinkOrgRequest) (*UnlinkOrgResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnlinkOrg not implemented")
 }
 func (UnimplementedBuildServiceServer) mustEmbedUnimplementedBuildServiceServer() {}
 
@@ -184,6 +296,132 @@ func _BuildService_ListJobs_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BuildService_LinkRepo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LinkRepoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BuildServiceServer).LinkRepo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.build.v1.BuildService/LinkRepo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BuildServiceServer).LinkRepo(ctx, req.(*LinkRepoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BuildService_UnlinkRepo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnlinkRepoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BuildServiceServer).UnlinkRepo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.build.v1.BuildService/UnlinkRepo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BuildServiceServer).UnlinkRepo(ctx, req.(*UnlinkRepoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BuildService_ListRepoLinks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRepoLinksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BuildServiceServer).ListRepoLinks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.build.v1.BuildService/ListRepoLinks",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BuildServiceServer).ListRepoLinks(ctx, req.(*ListRepoLinksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BuildService_ListAppLinks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAppLinksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BuildServiceServer).ListAppLinks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.build.v1.BuildService/ListAppLinks",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BuildServiceServer).ListAppLinks(ctx, req.(*ListAppLinksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BuildService_RemoveAppLink_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveAppLinkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BuildServiceServer).RemoveAppLink(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.build.v1.BuildService/RemoveAppLink",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BuildServiceServer).RemoveAppLink(ctx, req.(*RemoveAppLinkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BuildService_LinkOrg_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LinkOrgRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BuildServiceServer).LinkOrg(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.build.v1.BuildService/LinkOrg",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BuildServiceServer).LinkOrg(ctx, req.(*LinkOrgRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BuildService_UnlinkOrg_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnlinkOrgRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BuildServiceServer).UnlinkOrg(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.build.v1.BuildService/UnlinkOrg",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BuildServiceServer).UnlinkOrg(ctx, req.(*UnlinkOrgRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BuildService_ServiceDesc is the grpc.ServiceDesc for BuildService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -198,6 +436,34 @@ var BuildService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListJobs",
 			Handler:    _BuildService_ListJobs_Handler,
+		},
+		{
+			MethodName: "LinkRepo",
+			Handler:    _BuildService_LinkRepo_Handler,
+		},
+		{
+			MethodName: "UnlinkRepo",
+			Handler:    _BuildService_UnlinkRepo_Handler,
+		},
+		{
+			MethodName: "ListRepoLinks",
+			Handler:    _BuildService_ListRepoLinks_Handler,
+		},
+		{
+			MethodName: "ListAppLinks",
+			Handler:    _BuildService_ListAppLinks_Handler,
+		},
+		{
+			MethodName: "RemoveAppLink",
+			Handler:    _BuildService_RemoveAppLink_Handler,
+		},
+		{
+			MethodName: "LinkOrg",
+			Handler:    _BuildService_LinkOrg_Handler,
+		},
+		{
+			MethodName: "UnlinkOrg",
+			Handler:    _BuildService_UnlinkOrg_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
