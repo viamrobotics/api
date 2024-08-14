@@ -385,7 +385,8 @@ type RobotPart struct {
 	LocalFqdn        string                 `protobuf:"bytes,11,opt,name=local_fqdn,json=localFqdn,proto3" json:"local_fqdn,omitempty"`
 	CreatedOn        *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=created_on,json=createdOn,proto3" json:"created_on,omitempty" bson:"created_on"`
 	// List of secrets allowed for authentication.
-	Secrets     []*SharedSecret        `protobuf:"bytes,14,rep,name=secrets,proto3" json:"secrets,omitempty" bson:"secrets"`
+	Secrets []*SharedSecret `protobuf:"bytes,14,rep,name=secrets,proto3" json:"secrets,omitempty" bson:"secrets"`
+	// latest timestamp when a robot part was updated
 	LastUpdated *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=last_updated,json=lastUpdated,proto3" json:"last_updated,omitempty" bson:"last_updated_at"`
 }
 
