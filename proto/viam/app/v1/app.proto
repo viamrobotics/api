@@ -254,7 +254,7 @@ message RobotPart {
 
   // List of secrets allowed for authentication.
   repeated SharedSecret secrets = 14 [(tagger.v1.tags) = "bson:\"secrets\""];
-  latest timestamp when a robot part was updated
+  // latest timestamp when a robot part was updated
   google.protobuf.Timestamp last_updated = 15 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
 }
 
