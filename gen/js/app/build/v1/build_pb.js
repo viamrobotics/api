@@ -2011,7 +2011,7 @@ proto.viam.app.build.v1.RepoLink.toObject = function(includeInstance, msg) {
     oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     orgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     namespace: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    moduleId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    moduleName: jspb.Message.getFieldWithDefault(msg, 4, ""),
     repo: jspb.Message.getFieldWithDefault(msg, 5, ""),
     viamUser: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
@@ -2064,7 +2064,7 @@ proto.viam.app.build.v1.RepoLink.deserializeBinaryFromReader = function(msg, rea
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setModuleId(value);
+      msg.setModuleName(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -2124,7 +2124,7 @@ proto.viam.app.build.v1.RepoLink.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getModuleId();
+  f = message.getModuleName();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -2221,10 +2221,10 @@ proto.viam.app.build.v1.RepoLink.prototype.hasNamespace = function() {
 
 
 /**
- * optional string module_id = 4;
+ * optional string module_name = 4;
  * @return {string}
  */
-proto.viam.app.build.v1.RepoLink.prototype.getModuleId = function() {
+proto.viam.app.build.v1.RepoLink.prototype.getModuleName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -2233,7 +2233,7 @@ proto.viam.app.build.v1.RepoLink.prototype.getModuleId = function() {
  * @param {string} value
  * @return {!proto.viam.app.build.v1.RepoLink} returns this
  */
-proto.viam.app.build.v1.RepoLink.prototype.setModuleId = function(value) {
+proto.viam.app.build.v1.RepoLink.prototype.setModuleName = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 

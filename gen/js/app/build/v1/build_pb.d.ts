@@ -222,8 +222,8 @@ export class RepoLink extends jspb.Message {
   getNamespace(): string;
   setNamespace(value: string): void;
 
-  getModuleId(): string;
-  setModuleId(value: string): void;
+  getModuleName(): string;
+  setModuleName(value: string): void;
 
   getRepo(): string;
   setRepo(value: string): void;
@@ -246,7 +246,7 @@ export namespace RepoLink {
     oauthAppLinkId: string,
     orgId: string,
     namespace: string,
-    moduleId: string,
+    moduleName: string,
     repo: string,
     viamUser: string,
   }
