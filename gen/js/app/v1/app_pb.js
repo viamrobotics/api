@@ -4317,7 +4317,8 @@ proto.viam.app.v1.RobotPart.toObject = function(includeInstance, msg) {
     localFqdn: jspb.Message.getFieldWithDefault(msg, 11, ""),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     secretsList: jspb.Message.toObjectList(msg.getSecretsList(),
-    proto.viam.app.v1.SharedSecret.toObject, includeInstance)
+    proto.viam.app.v1.SharedSecret.toObject, includeInstance),
+    lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4414,6 +4415,11 @@ proto.viam.app.v1.RobotPart.deserializeBinaryFromReader = function(msg, reader) 
       var value = new proto.viam.app.v1.SharedSecret;
       reader.readMessage(value,proto.viam.app.v1.SharedSecret.deserializeBinaryFromReader);
       msg.addSecrets(value);
+      break;
+    case 15:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastUpdated(value);
       break;
     default:
       reader.skipField();
@@ -4545,6 +4551,14 @@ proto.viam.app.v1.RobotPart.serializeBinaryToWriter = function(message, writer) 
       14,
       f,
       proto.viam.app.v1.SharedSecret.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastUpdated();
+  if (f != null) {
+    writer.writeMessage(
+      15,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -4895,6 +4909,43 @@ proto.viam.app.v1.RobotPart.prototype.addSecrets = function(opt_value, opt_index
  */
 proto.viam.app.v1.RobotPart.prototype.clearSecretsList = function() {
   return this.setSecretsList([]);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_updated = 15;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.RobotPart.prototype.getLastUpdated = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 15));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+*/
+proto.viam.app.v1.RobotPart.prototype.setLastUpdated = function(value) {
+  return jspb.Message.setWrapperField(this, 15, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+ */
+proto.viam.app.v1.RobotPart.prototype.clearLastUpdated = function() {
+  return this.setLastUpdated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.RobotPart.prototype.hasLastUpdated = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 
@@ -18895,7 +18946,8 @@ proto.viam.app.v1.Fragment.toObject = function(includeInstance, msg) {
     robotPartCount: jspb.Message.getFieldWithDefault(msg, 9, 0),
     organizationCount: jspb.Message.getFieldWithDefault(msg, 10, 0),
     onlyUsedByOwner: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
-    visibility: jspb.Message.getFieldWithDefault(msg, 12, 0)
+    visibility: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -18977,6 +19029,11 @@ proto.viam.app.v1.Fragment.deserializeBinaryFromReader = function(msg, reader) {
     case 12:
       var value = /** @type {!proto.viam.app.v1.FragmentVisibility} */ (reader.readEnum());
       msg.setVisibility(value);
+      break;
+    case 13:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastUpdated(value);
       break;
     default:
       reader.skipField();
@@ -19084,6 +19141,14 @@ proto.viam.app.v1.Fragment.serializeBinaryToWriter = function(message, writer) {
     writer.writeEnum(
       12,
       f
+    );
+  }
+  f = message.getLastUpdated();
+  if (f != null) {
+    writer.writeMessage(
+      13,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -19322,6 +19387,43 @@ proto.viam.app.v1.Fragment.prototype.getVisibility = function() {
  */
 proto.viam.app.v1.Fragment.prototype.setVisibility = function(value) {
   return jspb.Message.setProto3EnumField(this, 12, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_updated = 13;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.Fragment.prototype.getLastUpdated = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 13));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.Fragment} returns this
+*/
+proto.viam.app.v1.Fragment.prototype.setLastUpdated = function(value) {
+  return jspb.Message.setWrapperField(this, 13, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.Fragment} returns this
+ */
+proto.viam.app.v1.Fragment.prototype.clearLastUpdated = function() {
+  return this.setLastUpdated(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Fragment.prototype.hasLastUpdated = function() {
+  return jspb.Message.getField(this, 13) != null;
 };
 
 
