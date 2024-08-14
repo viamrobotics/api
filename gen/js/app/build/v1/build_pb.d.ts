@@ -211,8 +211,8 @@ export namespace ListJobsResponse {
 }
 
 export class RepoLink extends jspb.Message {
-  getAppLinkId(): string;
-  setAppLinkId(value: string): void;
+  getOauthAppLinkId(): string;
+  setOauthAppLinkId(value: string): void;
 
   getOrgId(): string;
   setOrgId(value: string): void;
@@ -243,7 +243,7 @@ export class RepoLink extends jspb.Message {
 
 export namespace RepoLink {
   export type AsObject = {
-    appLinkId: string,
+    oauthAppLinkId: string,
     orgId: string,
     namespace: string,
     moduleId: string,
@@ -385,8 +385,8 @@ export namespace ListAppLinksRequest {
 }
 
 export class AppLink extends jspb.Message {
-  getAppLinkId(): string;
-  setAppLinkId(value: string): void;
+  getOauthAppLinkId(): string;
+  setOauthAppLinkId(value: string): void;
 
   getViamUser(): string;
   setViamUser(value: string): void;
@@ -411,7 +411,7 @@ export class AppLink extends jspb.Message {
 
 export namespace AppLink {
   export type AsObject = {
-    appLinkId: string,
+    oauthAppLinkId: string,
     viamUser: string,
     externalUser: string,
     orgIdOrNsList: Array<string>,
@@ -441,8 +441,8 @@ export namespace ListAppLinksResponse {
 }
 
 export class RemoveAppLinkRequest extends jspb.Message {
-  getAppLinkId(): string;
-  setAppLinkId(value: string): void;
+  getOauthAppLinkId(): string;
+  setOauthAppLinkId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveAppLinkRequest.AsObject;
@@ -456,7 +456,7 @@ export class RemoveAppLinkRequest extends jspb.Message {
 
 export namespace RemoveAppLinkRequest {
   export type AsObject = {
-    appLinkId: string,
+    oauthAppLinkId: string,
   }
 }
 
@@ -477,8 +477,8 @@ export namespace RemoveAppLinkResponse {
 }
 
 export class LinkOrgRequest extends jspb.Message {
-  getAppLinkId(): string;
-  setAppLinkId(value: string): void;
+  getOauthAppLinkId(): string;
+  setOauthAppLinkId(value: string): void;
 
   getOrgId(): string;
   setOrgId(value: string): void;
@@ -495,7 +495,7 @@ export class LinkOrgRequest extends jspb.Message {
 
 export namespace LinkOrgRequest {
   export type AsObject = {
-    appLinkId: string,
+    oauthAppLinkId: string,
     orgId: string,
   }
 }
@@ -517,8 +517,8 @@ export namespace LinkOrgResponse {
 }
 
 export class UnlinkOrgRequest extends jspb.Message {
-  getAppLinkId(): string;
-  setAppLinkId(value: string): void;
+  getOauthAppLinkId(): string;
+  setOauthAppLinkId(value: string): void;
 
   getOrgId(): string;
   setOrgId(value: string): void;
@@ -535,7 +535,7 @@ export class UnlinkOrgRequest extends jspb.Message {
 
 export namespace UnlinkOrgRequest {
   export type AsObject = {
-    appLinkId: string,
+    oauthAppLinkId: string,
     orgId: string,
   }
 }

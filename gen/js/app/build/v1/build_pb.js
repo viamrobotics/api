@@ -2008,7 +2008,7 @@ proto.viam.app.build.v1.RepoLink.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.build.v1.RepoLink.toObject = function(includeInstance, msg) {
   var f, obj = {
-    appLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     orgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     namespace: jspb.Message.getFieldWithDefault(msg, 3, ""),
     moduleId: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -2052,7 +2052,7 @@ proto.viam.app.build.v1.RepoLink.deserializeBinaryFromReader = function(msg, rea
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAppLinkId(value);
+      msg.setOauthAppLinkId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -2103,7 +2103,7 @@ proto.viam.app.build.v1.RepoLink.prototype.serializeBinary = function() {
  */
 proto.viam.app.build.v1.RepoLink.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAppLinkId();
+  f = message.getOauthAppLinkId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -2149,10 +2149,10 @@ proto.viam.app.build.v1.RepoLink.serializeBinaryToWriter = function(message, wri
 
 
 /**
- * optional string app_link_id = 1;
+ * optional string oauth_app_link_id = 1;
  * @return {string}
  */
-proto.viam.app.build.v1.RepoLink.prototype.getAppLinkId = function() {
+proto.viam.app.build.v1.RepoLink.prototype.getOauthAppLinkId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -2161,7 +2161,7 @@ proto.viam.app.build.v1.RepoLink.prototype.getAppLinkId = function() {
  * @param {string} value
  * @return {!proto.viam.app.build.v1.RepoLink} returns this
  */
-proto.viam.app.build.v1.RepoLink.prototype.setAppLinkId = function(value) {
+proto.viam.app.build.v1.RepoLink.prototype.setOauthAppLinkId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -3187,7 +3187,7 @@ proto.viam.app.build.v1.AppLink.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.build.v1.AppLink.toObject = function(includeInstance, msg) {
   var f, obj = {
-    appLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     viamUser: jspb.Message.getFieldWithDefault(msg, 2, ""),
     externalUser: jspb.Message.getFieldWithDefault(msg, 3, ""),
     orgIdOrNsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
@@ -3229,7 +3229,7 @@ proto.viam.app.build.v1.AppLink.deserializeBinaryFromReader = function(msg, read
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAppLinkId(value);
+      msg.setOauthAppLinkId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -3272,7 +3272,7 @@ proto.viam.app.build.v1.AppLink.prototype.serializeBinary = function() {
  */
 proto.viam.app.build.v1.AppLink.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAppLinkId();
+  f = message.getOauthAppLinkId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -3304,10 +3304,10 @@ proto.viam.app.build.v1.AppLink.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional string app_link_id = 1;
+ * optional string oauth_app_link_id = 1;
  * @return {string}
  */
-proto.viam.app.build.v1.AppLink.prototype.getAppLinkId = function() {
+proto.viam.app.build.v1.AppLink.prototype.getOauthAppLinkId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -3316,7 +3316,7 @@ proto.viam.app.build.v1.AppLink.prototype.getAppLinkId = function() {
  * @param {string} value
  * @return {!proto.viam.app.build.v1.AppLink} returns this
  */
-proto.viam.app.build.v1.AppLink.prototype.setAppLinkId = function(value) {
+proto.viam.app.build.v1.AppLink.prototype.setOauthAppLinkId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -3586,7 +3586,7 @@ proto.viam.app.build.v1.RemoveAppLinkRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.build.v1.RemoveAppLinkRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    appLinkId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -3625,7 +3625,7 @@ proto.viam.app.build.v1.RemoveAppLinkRequest.deserializeBinaryFromReader = funct
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAppLinkId(value);
+      msg.setOauthAppLinkId(value);
       break;
     default:
       reader.skipField();
@@ -3656,7 +3656,7 @@ proto.viam.app.build.v1.RemoveAppLinkRequest.prototype.serializeBinary = functio
  */
 proto.viam.app.build.v1.RemoveAppLinkRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAppLinkId();
+  f = message.getOauthAppLinkId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -3667,10 +3667,10 @@ proto.viam.app.build.v1.RemoveAppLinkRequest.serializeBinaryToWriter = function(
 
 
 /**
- * optional string app_link_id = 1;
+ * optional string oauth_app_link_id = 1;
  * @return {string}
  */
-proto.viam.app.build.v1.RemoveAppLinkRequest.prototype.getAppLinkId = function() {
+proto.viam.app.build.v1.RemoveAppLinkRequest.prototype.getOauthAppLinkId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -3679,7 +3679,7 @@ proto.viam.app.build.v1.RemoveAppLinkRequest.prototype.getAppLinkId = function()
  * @param {string} value
  * @return {!proto.viam.app.build.v1.RemoveAppLinkRequest} returns this
  */
-proto.viam.app.build.v1.RemoveAppLinkRequest.prototype.setAppLinkId = function(value) {
+proto.viam.app.build.v1.RemoveAppLinkRequest.prototype.setOauthAppLinkId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -3817,7 +3817,7 @@ proto.viam.app.build.v1.LinkOrgRequest.prototype.toObject = function(opt_include
  */
 proto.viam.app.build.v1.LinkOrgRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    appLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     orgId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -3857,7 +3857,7 @@ proto.viam.app.build.v1.LinkOrgRequest.deserializeBinaryFromReader = function(ms
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAppLinkId(value);
+      msg.setOauthAppLinkId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -3892,7 +3892,7 @@ proto.viam.app.build.v1.LinkOrgRequest.prototype.serializeBinary = function() {
  */
 proto.viam.app.build.v1.LinkOrgRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAppLinkId();
+  f = message.getOauthAppLinkId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -3910,10 +3910,10 @@ proto.viam.app.build.v1.LinkOrgRequest.serializeBinaryToWriter = function(messag
 
 
 /**
- * optional string app_link_id = 1;
+ * optional string oauth_app_link_id = 1;
  * @return {string}
  */
-proto.viam.app.build.v1.LinkOrgRequest.prototype.getAppLinkId = function() {
+proto.viam.app.build.v1.LinkOrgRequest.prototype.getOauthAppLinkId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -3922,7 +3922,7 @@ proto.viam.app.build.v1.LinkOrgRequest.prototype.getAppLinkId = function() {
  * @param {string} value
  * @return {!proto.viam.app.build.v1.LinkOrgRequest} returns this
  */
-proto.viam.app.build.v1.LinkOrgRequest.prototype.setAppLinkId = function(value) {
+proto.viam.app.build.v1.LinkOrgRequest.prototype.setOauthAppLinkId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -4078,7 +4078,7 @@ proto.viam.app.build.v1.UnlinkOrgRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.build.v1.UnlinkOrgRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    appLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     orgId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -4118,7 +4118,7 @@ proto.viam.app.build.v1.UnlinkOrgRequest.deserializeBinaryFromReader = function(
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAppLinkId(value);
+      msg.setOauthAppLinkId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -4153,7 +4153,7 @@ proto.viam.app.build.v1.UnlinkOrgRequest.prototype.serializeBinary = function() 
  */
 proto.viam.app.build.v1.UnlinkOrgRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAppLinkId();
+  f = message.getOauthAppLinkId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -4171,10 +4171,10 @@ proto.viam.app.build.v1.UnlinkOrgRequest.serializeBinaryToWriter = function(mess
 
 
 /**
- * optional string app_link_id = 1;
+ * optional string oauth_app_link_id = 1;
  * @return {string}
  */
-proto.viam.app.build.v1.UnlinkOrgRequest.prototype.getAppLinkId = function() {
+proto.viam.app.build.v1.UnlinkOrgRequest.prototype.getOauthAppLinkId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -4183,7 +4183,7 @@ proto.viam.app.build.v1.UnlinkOrgRequest.prototype.getAppLinkId = function() {
  * @param {string} value
  * @return {!proto.viam.app.build.v1.UnlinkOrgRequest} returns this
  */
-proto.viam.app.build.v1.UnlinkOrgRequest.prototype.setAppLinkId = function(value) {
+proto.viam.app.build.v1.UnlinkOrgRequest.prototype.setOauthAppLinkId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
