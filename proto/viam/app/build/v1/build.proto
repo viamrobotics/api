@@ -105,10 +105,11 @@ message RepoLink {
   string oauth_app_link_id = 1;
   // OrgID of the module
   string org_id = 2;
-  // public namespace of the module
+  // Public namespace of the module. This is for user display in ListRepoLinksResponse.
+  // It is ignored in LinkRepoRequest.
   optional string namespace = 3;
-  // ID of the module (just the name, not the dotted org:module form)
-  string module_id = 4;
+  // name of the module (just the name, not the dotted org:name form)
+  string module_name = 4;
   // git repo in owner/repository form
   string repo = 5;
   // email of the viam user who created this
