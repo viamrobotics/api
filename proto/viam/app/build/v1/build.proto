@@ -101,7 +101,8 @@ message ListJobsResponse {
 }
 
 message RepoLink {
-  string app_link_id = 1;
+  // viam internal ID which maps to an external oauth app
+  string oauth_app_link_id = 1;
   // OrgID of the module
   string org_id = 2;
   // public namespace of the module
@@ -138,7 +139,8 @@ message ListAppLinksRequest {}
 
 // represents a link between viam users / orgs and an external oauth app
 message AppLink {
-  string app_link_id = 1;
+  // viam internal ID which maps to an external oauth app
+  string oauth_app_link_id = 1;
   // email of the viam user that owns this
   string viam_user = 2;
   // username of the external user who created this
@@ -152,20 +154,23 @@ message ListAppLinksResponse {
 }
 
 message RemoveAppLinkRequest {
-  string app_link_id = 1;
+  // viam internal ID which maps to an external oauth app
+  string oauth_app_link_id = 1;
 }
 
 message RemoveAppLinkResponse {}
 
 message LinkOrgRequest {
-  string app_link_id = 1;
+  // viam internal ID which maps to an external oauth app
+  string oauth_app_link_id = 1;
   string org_id = 2;
 }
 
 message LinkOrgResponse {}
 
 message UnlinkOrgRequest {
-  string app_link_id = 1;
+  // viam internal ID which maps to an external oauth app
+  string oauth_app_link_id = 1;
   string org_id = 2;
 }
 
