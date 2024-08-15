@@ -3300,7 +3300,8 @@ proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest.prototype.toObject = func
 proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+    pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    orgId: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -3345,6 +3346,10 @@ proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest.deserializeBinaryFromRead
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrgId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3385,6 +3390,13 @@ proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest.serializeBinaryToWriter =
   if (f != null) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getOrgId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -3442,6 +3454,24 @@ proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest.prototype.clearPageToken 
  */
 proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest.prototype.hasPageToken = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional string org_id = 3;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest.prototype.getOrgId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest} returns this
+ */
+proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest.prototype.setOrgId = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

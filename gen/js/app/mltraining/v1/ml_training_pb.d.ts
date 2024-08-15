@@ -427,6 +427,9 @@ export class GetTrainingJobLogsRequest extends jspb.Message {
   getPageToken(): string;
   setPageToken(value: string): void;
 
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetTrainingJobLogsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetTrainingJobLogsRequest): GetTrainingJobLogsRequest.AsObject;
@@ -441,6 +444,7 @@ export namespace GetTrainingJobLogsRequest {
   export type AsObject = {
     id: string,
     pageToken: string,
+    orgId: string,
   }
 }
 
