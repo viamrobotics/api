@@ -1142,6 +1142,9 @@ export class ResourceStatus extends jspb.Message {
   getRevision(): string;
   setRevision(value: string): void;
 
+  getError(): string;
+  setError(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResourceStatus.AsObject;
   static toObject(includeInstance: boolean, msg: ResourceStatus): ResourceStatus.AsObject;
@@ -1158,6 +1161,7 @@ export namespace ResourceStatus {
     state: ResourceStatus.StateMap[keyof ResourceStatus.StateMap],
     lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     revision: string,
+    error: string,
   }
 
   export interface StateMap {
@@ -1166,6 +1170,7 @@ export namespace ResourceStatus {
     STATE_CONFIGURING: 2;
     STATE_READY: 3;
     STATE_REMOVING: 4;
+    STATE_UNHEALTHY: 5;
   }
 
   export const State: StateMap;
@@ -1194,6 +1199,50 @@ export namespace ConfigStatus {
   export type AsObject = {
     revision: string,
     lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class GetVersionRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetVersionRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetVersionRequest): GetVersionRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetVersionRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetVersionRequest;
+  static deserializeBinaryFromReader(message: GetVersionRequest, reader: jspb.BinaryReader): GetVersionRequest;
+}
+
+export namespace GetVersionRequest {
+  export type AsObject = {
+  }
+}
+
+export class GetVersionResponse extends jspb.Message {
+  getPlatform(): string;
+  setPlatform(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  getApiVersion(): string;
+  setApiVersion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetVersionResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetVersionResponse): GetVersionResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetVersionResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetVersionResponse;
+  static deserializeBinaryFromReader(message: GetVersionResponse, reader: jspb.BinaryReader): GetVersionResponse;
+}
+
+export namespace GetVersionResponse {
+  export type AsObject = {
+    platform: string,
+    version: string,
+    apiVersion: string,
   }
 }
 

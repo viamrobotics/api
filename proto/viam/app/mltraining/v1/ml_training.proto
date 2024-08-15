@@ -26,6 +26,9 @@ service MLTrainingService {
 
   // DeleteCompletedTrainingJob removes a completed training job from the database, whether the job succeeded or failed.
   rpc DeleteCompletedTrainingJob(DeleteCompletedTrainingJobRequest) returns (DeleteCompletedTrainingJobResponse);
+
+  // GetTrainingJobLogs gets the logs for a given custom training job.
+  rpc GetTrainingJobLogs(GetTrainingJobLogsRequest) returns (GetTrainingJobLogsResponse);
 }
 
 enum ModelType {
@@ -134,3 +137,19 @@ message DeleteCompletedTrainingJobRequest {
 }
 
 message DeleteCompletedTrainingJobResponse {}
+
+message TrainingJobLogEntry {
+  string level = 1;
+  google.protobuf.Timestamp time = 2;
+  string message = 3;
+}
+
+message GetTrainingJobLogsRequest {
+  string id = 1;
+  optional string page_token = 2;
+}
+
+message GetTrainingJobLogsResponse {
+  repeated TrainingJobLogEntry logs = 1;
+  string next_page_token = 2;
+}

@@ -2128,6 +2128,7 @@ proto.google.api.expr.v1alpha1.Expr.Comprehension.prototype.toObject = function(
 proto.google.api.expr.v1alpha1.Expr.Comprehension.toObject = function(includeInstance, msg) {
   var f, obj = {
     iterVar: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    iterVar2: jspb.Message.getFieldWithDefault(msg, 8, ""),
     iterRange: (f = msg.getIterRange()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
     accuVar: jspb.Message.getFieldWithDefault(msg, 3, ""),
     accuInit: (f = msg.getAccuInit()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
@@ -2173,6 +2174,10 @@ proto.google.api.expr.v1alpha1.Expr.Comprehension.deserializeBinaryFromReader = 
     case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.setIterVar(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIterVar2(value);
       break;
     case 2:
       var value = new proto.google.api.expr.v1alpha1.Expr;
@@ -2236,6 +2241,13 @@ proto.google.api.expr.v1alpha1.Expr.Comprehension.serializeBinaryToWriter = func
   if (f.length > 0) {
     writer.writeString(
       1,
+      f
+    );
+  }
+  f = message.getIterVar2();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -2304,6 +2316,24 @@ proto.google.api.expr.v1alpha1.Expr.Comprehension.prototype.getIterVar = functio
  */
 proto.google.api.expr.v1alpha1.Expr.Comprehension.prototype.setIterVar = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string iter_var2 = 8;
+ * @return {string}
+ */
+proto.google.api.expr.v1alpha1.Expr.Comprehension.prototype.getIterVar2 = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.google.api.expr.v1alpha1.Expr.Comprehension} returns this
+ */
+proto.google.api.expr.v1alpha1.Expr.Comprehension.prototype.setIterVar2 = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 

@@ -102,6 +102,11 @@ export class RobotPart extends jspb.Message {
   setSecretsList(value: Array<SharedSecret>): void;
   addSecrets(value?: SharedSecret, index?: number): SharedSecret;
 
+  hasLastUpdated(): boolean;
+  clearLastUpdated(): void;
+  getLastUpdated(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastUpdated(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotPart.AsObject;
   static toObject(includeInstance: boolean, msg: RobotPart): RobotPart.AsObject;
@@ -128,6 +133,7 @@ export namespace RobotPart {
     localFqdn: string,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     secretsList: Array<SharedSecret.AsObject>,
+    lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -1777,6 +1783,26 @@ export class GetRobotPartLogsRequest extends jspb.Message {
   setLevelsList(value: Array<string>): void;
   addLevels(value: string, index?: number): string;
 
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStart(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setEnd(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasLimit(): boolean;
+  clearLimit(): void;
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  hasSource(): boolean;
+  clearSource(): void;
+  getSource(): string;
+  setSource(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartLogsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartLogsRequest): GetRobotPartLogsRequest.AsObject;
@@ -1794,6 +1820,10 @@ export namespace GetRobotPartLogsRequest {
     filter: string,
     pageToken: string,
     levelsList: Array<string>,
+    start?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    end?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    limit: number,
+    source: string,
   }
 }
 
@@ -2163,6 +2193,11 @@ export class Fragment extends jspb.Message {
   getVisibility(): FragmentVisibilityMap[keyof FragmentVisibilityMap];
   setVisibility(value: FragmentVisibilityMap[keyof FragmentVisibilityMap]): void;
 
+  hasLastUpdated(): boolean;
+  clearLastUpdated(): void;
+  getLastUpdated(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastUpdated(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Fragment.AsObject;
   static toObject(includeInstance: boolean, msg: Fragment): Fragment.AsObject;
@@ -2186,6 +2221,7 @@ export namespace Fragment {
     organizationCount: number,
     onlyUsedByOwner: boolean,
     visibility: FragmentVisibilityMap[keyof FragmentVisibilityMap],
+    lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -2333,6 +2369,11 @@ export class CreateFragmentRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
+  hasVisibility(): boolean;
+  clearVisibility(): void;
+  getVisibility(): FragmentVisibilityMap[keyof FragmentVisibilityMap];
+  setVisibility(value: FragmentVisibilityMap[keyof FragmentVisibilityMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateFragmentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateFragmentRequest): CreateFragmentRequest.AsObject;
@@ -2348,6 +2389,7 @@ export namespace CreateFragmentRequest {
     name: string,
     config?: google_protobuf_struct_pb.Struct.AsObject,
     organizationId: string,
+    visibility: FragmentVisibilityMap[keyof FragmentVisibilityMap],
   }
 }
 
@@ -3550,6 +3592,11 @@ export class UpdateRegistryItemRequest extends jspb.Message {
   getVisibility(): VisibilityMap[keyof VisibilityMap];
   setVisibility(value: VisibilityMap[keyof VisibilityMap]): void;
 
+  hasUrl(): boolean;
+  clearUrl(): void;
+  getUrl(): string;
+  setUrl(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRegistryItemRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateRegistryItemRequest): UpdateRegistryItemRequest.AsObject;
@@ -3566,6 +3613,7 @@ export namespace UpdateRegistryItemRequest {
     type: app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap],
     description: string,
     visibility: VisibilityMap[keyof VisibilityMap],
+    url: string,
   }
 }
 
