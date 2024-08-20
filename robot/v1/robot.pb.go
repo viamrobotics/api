@@ -2583,7 +2583,8 @@ type ResourceStatus struct {
 	LastUpdated *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=last_updated,json=lastUpdated,proto3" json:"last_updated,omitempty"`
 	// revision of the last config that successfully updated this resource.
 	Revision string `protobuf:"bytes,4,opt,name=revision,proto3" json:"revision,omitempty"`
-	// error details for a resource that is in an unhealthy state.
+	// error details for a resource. This is guaranteed to be null if the
+	// resource is ready and non-null if the resource unhealthy.
 	Error string `protobuf:"bytes,5,opt,name=error,proto3" json:"error,omitempty"`
 }
 
