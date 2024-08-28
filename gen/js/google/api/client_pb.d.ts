@@ -253,6 +253,11 @@ export class PythonSettings extends jspb.Message {
   getCommon(): CommonLanguageSettings | undefined;
   setCommon(value?: CommonLanguageSettings): void;
 
+  hasExperimentalFeatures(): boolean;
+  clearExperimentalFeatures(): void;
+  getExperimentalFeatures(): PythonSettings.ExperimentalFeatures | undefined;
+  setExperimentalFeatures(value?: PythonSettings.ExperimentalFeatures): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PythonSettings.AsObject;
   static toObject(includeInstance: boolean, msg: PythonSettings): PythonSettings.AsObject;
@@ -266,6 +271,27 @@ export class PythonSettings extends jspb.Message {
 export namespace PythonSettings {
   export type AsObject = {
     common?: CommonLanguageSettings.AsObject,
+    experimentalFeatures?: PythonSettings.ExperimentalFeatures.AsObject,
+  }
+
+  export class ExperimentalFeatures extends jspb.Message {
+    getRestAsyncIoEnabled(): boolean;
+    setRestAsyncIoEnabled(value: boolean): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ExperimentalFeatures.AsObject;
+    static toObject(includeInstance: boolean, msg: ExperimentalFeatures): ExperimentalFeatures.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ExperimentalFeatures, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ExperimentalFeatures;
+    static deserializeBinaryFromReader(message: ExperimentalFeatures, reader: jspb.BinaryReader): ExperimentalFeatures;
+  }
+
+  export namespace ExperimentalFeatures {
+    export type AsObject = {
+      restAsyncIoEnabled: boolean,
+    }
   }
 }
 
