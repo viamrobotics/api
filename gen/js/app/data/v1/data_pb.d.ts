@@ -1211,6 +1211,78 @@ export namespace RemoveBoundingBoxFromImageByIDResponse {
   }
 }
 
+export class UpdateBoundingBoxRequest extends jspb.Message {
+  hasBinaryId(): boolean;
+  clearBinaryId(): void;
+  getBinaryId(): BinaryID | undefined;
+  setBinaryId(value?: BinaryID): void;
+
+  getBboxId(): string;
+  setBboxId(value: string): void;
+
+  hasLabel(): boolean;
+  clearLabel(): void;
+  getLabel(): string;
+  setLabel(value: string): void;
+
+  hasXMinNormalized(): boolean;
+  clearXMinNormalized(): void;
+  getXMinNormalized(): number;
+  setXMinNormalized(value: number): void;
+
+  hasYMinNormalized(): boolean;
+  clearYMinNormalized(): void;
+  getYMinNormalized(): number;
+  setYMinNormalized(value: number): void;
+
+  hasXMaxNormalized(): boolean;
+  clearXMaxNormalized(): void;
+  getXMaxNormalized(): number;
+  setXMaxNormalized(value: number): void;
+
+  hasYMaxNormalized(): boolean;
+  clearYMaxNormalized(): void;
+  getYMaxNormalized(): number;
+  setYMaxNormalized(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateBoundingBoxRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateBoundingBoxRequest): UpdateBoundingBoxRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateBoundingBoxRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateBoundingBoxRequest;
+  static deserializeBinaryFromReader(message: UpdateBoundingBoxRequest, reader: jspb.BinaryReader): UpdateBoundingBoxRequest;
+}
+
+export namespace UpdateBoundingBoxRequest {
+  export type AsObject = {
+    binaryId?: BinaryID.AsObject,
+    bboxId: string,
+    label: string,
+    xMinNormalized: number,
+    yMinNormalized: number,
+    xMaxNormalized: number,
+    yMaxNormalized: number,
+  }
+}
+
+export class UpdateBoundingBoxResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateBoundingBoxResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateBoundingBoxResponse): UpdateBoundingBoxResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateBoundingBoxResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateBoundingBoxResponse;
+  static deserializeBinaryFromReader(message: UpdateBoundingBoxResponse, reader: jspb.BinaryReader): UpdateBoundingBoxResponse;
+}
+
+export namespace UpdateBoundingBoxResponse {
+  export type AsObject = {
+  }
+}
+
 export class BoundingBoxLabelsByFilterRequest extends jspb.Message {
   hasFilter(): boolean;
   clearFilter(): void;

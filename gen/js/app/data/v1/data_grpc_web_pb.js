@@ -1062,6 +1062,67 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.boundingBoxLabelsByFil
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.UpdateBoundingBoxRequest,
+ *   !proto.viam.app.data.v1.UpdateBoundingBoxResponse>}
+ */
+const methodDescriptor_DataService_UpdateBoundingBox = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/UpdateBoundingBox',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.UpdateBoundingBoxRequest,
+  proto.viam.app.data.v1.UpdateBoundingBoxResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.UpdateBoundingBoxRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.UpdateBoundingBoxResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.UpdateBoundingBoxRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.UpdateBoundingBoxResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.UpdateBoundingBoxResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.updateBoundingBox =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/UpdateBoundingBox',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_UpdateBoundingBox,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.UpdateBoundingBoxRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.UpdateBoundingBoxResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.updateBoundingBox =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/UpdateBoundingBox',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_UpdateBoundingBox);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.data.v1.GetDatabaseConnectionRequest,
  *   !proto.viam.app.data.v1.GetDatabaseConnectionResponse>}
  */
