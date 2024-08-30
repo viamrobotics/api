@@ -54,7 +54,7 @@ type DataServiceClient interface {
 	RemoveBoundingBoxFromImageByID(ctx context.Context, in *RemoveBoundingBoxFromImageByIDRequest, opts ...grpc.CallOption) (*RemoveBoundingBoxFromImageByIDResponse, error)
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(ctx context.Context, in *BoundingBoxLabelsByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxLabelsByFilterResponse, error)
-	// UpdateBoundingBox updates the bounding box with the given image and bounding box ID.
+	// UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
 	UpdateBoundingBox(ctx context.Context, in *UpdateBoundingBoxRequest, opts ...grpc.CallOption) (*UpdateBoundingBoxResponse, error)
 	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
 	// returns the hostname of the federated database.
@@ -301,7 +301,7 @@ type DataServiceServer interface {
 	RemoveBoundingBoxFromImageByID(context.Context, *RemoveBoundingBoxFromImageByIDRequest) (*RemoveBoundingBoxFromImageByIDResponse, error)
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error)
-	// UpdateBoundingBox updates the bounding box with the given image and bounding box ID.
+	// UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
 	UpdateBoundingBox(context.Context, *UpdateBoundingBoxRequest) (*UpdateBoundingBoxResponse, error)
 	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
 	// returns the hostname of the federated database.

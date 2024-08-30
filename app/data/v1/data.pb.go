@@ -2605,7 +2605,7 @@ func (x *AddBoundingBoxToImageByIDResponse) GetBboxId() string {
 	return ""
 }
 
-// RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bbox ID for the file represented by the binary id.
+// RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID.
 type RemoveBoundingBoxFromImageByIDRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2699,7 +2699,7 @@ func (*RemoveBoundingBoxFromImageByIDResponse) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{40}
 }
 
-// UpdateBoundingBoxRequest updates the bounding box with specified bbox ID for the file represented by the binary id.
+// UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID.
 type UpdateBoundingBoxRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
