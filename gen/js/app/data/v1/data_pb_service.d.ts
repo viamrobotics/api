@@ -148,6 +148,15 @@ type DataServiceBoundingBoxLabelsByFilter = {
   readonly responseType: typeof app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse;
 };
 
+type DataServiceUpdateBoundingBox = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.UpdateBoundingBoxRequest;
+  readonly responseType: typeof app_data_v1_data_pb.UpdateBoundingBoxResponse;
+};
+
 type DataServiceGetDatabaseConnection = {
   readonly methodName: string;
   readonly service: typeof DataService;
@@ -202,6 +211,7 @@ export class DataService {
   static readonly AddBoundingBoxToImageByID: DataServiceAddBoundingBoxToImageByID;
   static readonly RemoveBoundingBoxFromImageByID: DataServiceRemoveBoundingBoxFromImageByID;
   static readonly BoundingBoxLabelsByFilter: DataServiceBoundingBoxLabelsByFilter;
+  static readonly UpdateBoundingBox: DataServiceUpdateBoundingBox;
   static readonly GetDatabaseConnection: DataServiceGetDatabaseConnection;
   static readonly ConfigureDatabaseUser: DataServiceConfigureDatabaseUser;
   static readonly AddBinaryDataToDatasetByIDs: DataServiceAddBinaryDataToDatasetByIDs;
@@ -383,6 +393,15 @@ export class DataServiceClient {
   boundingBoxLabelsByFilter(
     requestMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse|null) => void
+  ): UnaryResponse;
+  updateBoundingBox(
+    requestMessage: app_data_v1_data_pb.UpdateBoundingBoxRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.UpdateBoundingBoxResponse|null) => void
+  ): UnaryResponse;
+  updateBoundingBox(
+    requestMessage: app_data_v1_data_pb.UpdateBoundingBoxRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.UpdateBoundingBoxResponse|null) => void
   ): UnaryResponse;
   getDatabaseConnection(
     requestMessage: app_data_v1_data_pb.GetDatabaseConnectionRequest,
