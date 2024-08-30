@@ -58,7 +58,7 @@ service DataService {
   // BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
   rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse);
 
-  // UpdateBoundingBox updates the bounding box with the given image and bounding box ID.
+  // UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
   rpc UpdateBoundingBox(UpdateBoundingBoxRequest) returns (UpdateBoundingBoxResponse);
 
   // GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
@@ -412,7 +412,7 @@ message AddBoundingBoxToImageByIDResponse {
   string bbox_id = 1;
 }
 
-// RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bbox ID for the file represented by the binary id.
+// RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID.
 message RemoveBoundingBoxFromImageByIDRequest {
   BinaryID binary_id = 3;
   string bbox_id = 2;
@@ -423,7 +423,7 @@ message RemoveBoundingBoxFromImageByIDRequest {
 
 message RemoveBoundingBoxFromImageByIDResponse {}
 
-// UpdateBoundingBoxRequest updates the bounding box with specified bbox ID for the file represented by the binary id.
+// UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID.
 message UpdateBoundingBoxRequest {
   BinaryID binary_id = 1;
   string bbox_id = 2;
