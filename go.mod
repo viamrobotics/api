@@ -1,6 +1,6 @@
 module go.viam.com/api
 
-go 1.19
+go 1.21.13
 
 require (
 	github.com/bufbuild/buf v1.6.0
