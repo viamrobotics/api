@@ -651,7 +651,7 @@ message GetRobotPartLogsRequest {
 message GetRobotPartLogsResponse {
   repeated common.v1.LogEntry logs = 1;
   string next_page_token = 2;
-  optional string previous_page_token = 3;
+  string previous_page_token = 3;
 }
 
 message TailRobotPartLogsRequest {
