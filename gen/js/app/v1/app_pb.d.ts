@@ -1836,6 +1836,11 @@ export class GetRobotPartLogsResponse extends jspb.Message {
   getNextPageToken(): string;
   setNextPageToken(value: string): void;
 
+  hasPreviousPageToken(): boolean;
+  clearPreviousPageToken(): void;
+  getPreviousPageToken(): string;
+  setPreviousPageToken(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartLogsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartLogsResponse): GetRobotPartLogsResponse.AsObject;
@@ -1850,6 +1855,7 @@ export namespace GetRobotPartLogsResponse {
   export type AsObject = {
     logsList: Array<common_v1_common_pb.LogEntry.AsObject>,
     nextPageToken: string,
+    previousPageToken: string,
   }
 }
 

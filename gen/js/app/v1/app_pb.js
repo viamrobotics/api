@@ -16683,7 +16683,8 @@ proto.viam.app.v1.GetRobotPartLogsResponse.toObject = function(includeInstance, 
   var f, obj = {
     logsList: jspb.Message.toObjectList(msg.getLogsList(),
     common_v1_common_pb.LogEntry.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    previousPageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -16729,6 +16730,10 @@ proto.viam.app.v1.GetRobotPartLogsResponse.deserializeBinaryFromReader = functio
       var value = /** @type {string} */ (reader.readString());
       msg.setNextPageToken(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPreviousPageToken(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -16770,6 +16775,13 @@ proto.viam.app.v1.GetRobotPartLogsResponse.serializeBinaryToWriter = function(me
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -16829,6 +16841,42 @@ proto.viam.app.v1.GetRobotPartLogsResponse.prototype.getNextPageToken = function
  */
 proto.viam.app.v1.GetRobotPartLogsResponse.prototype.setNextPageToken = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string previous_page_token = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.GetRobotPartLogsResponse.prototype.getPreviousPageToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetRobotPartLogsResponse} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsResponse.prototype.setPreviousPageToken = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartLogsResponse} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsResponse.prototype.clearPreviousPageToken = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartLogsResponse.prototype.hasPreviousPageToken = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
