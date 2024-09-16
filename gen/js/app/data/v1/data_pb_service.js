@@ -154,6 +154,15 @@ DataService.BoundingBoxLabelsByFilter = {
   responseType: app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse
 };
 
+DataService.UpdateBoundingBox = {
+  methodName: "UpdateBoundingBox",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.UpdateBoundingBoxRequest,
+  responseType: app_data_v1_data_pb.UpdateBoundingBoxResponse
+};
+
 DataService.GetDatabaseConnection = {
   methodName: "GetDatabaseConnection",
   service: DataService,
@@ -667,6 +676,37 @@ DataServiceClient.prototype.boundingBoxLabelsByFilter = function boundingBoxLabe
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.BoundingBoxLabelsByFilter, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.updateBoundingBox = function updateBoundingBox(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.UpdateBoundingBox, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

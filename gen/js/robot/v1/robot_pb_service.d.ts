@@ -175,6 +175,24 @@ type RobotServiceShutdown = {
   readonly responseType: typeof robot_v1_robot_pb.ShutdownResponse;
 };
 
+type RobotServiceGetMachineStatus = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.GetMachineStatusRequest;
+  readonly responseType: typeof robot_v1_robot_pb.GetMachineStatusResponse;
+};
+
+type RobotServiceGetVersion = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.GetVersionRequest;
+  readonly responseType: typeof robot_v1_robot_pb.GetVersionResponse;
+};
+
 export class RobotService {
   static readonly serviceName: string;
   static readonly GetOperations: RobotServiceGetOperations;
@@ -196,6 +214,8 @@ export class RobotService {
   static readonly GetCloudMetadata: RobotServiceGetCloudMetadata;
   static readonly RestartModule: RobotServiceRestartModule;
   static readonly Shutdown: RobotServiceShutdown;
+  static readonly GetMachineStatus: RobotServiceGetMachineStatus;
+  static readonly GetVersion: RobotServiceGetVersion;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -392,6 +412,24 @@ export class RobotServiceClient {
   shutdown(
     requestMessage: robot_v1_robot_pb.ShutdownRequest,
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.ShutdownResponse|null) => void
+  ): UnaryResponse;
+  getMachineStatus(
+    requestMessage: robot_v1_robot_pb.GetMachineStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetMachineStatusResponse|null) => void
+  ): UnaryResponse;
+  getMachineStatus(
+    requestMessage: robot_v1_robot_pb.GetMachineStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetMachineStatusResponse|null) => void
+  ): UnaryResponse;
+  getVersion(
+    requestMessage: robot_v1_robot_pb.GetVersionRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetVersionResponse|null) => void
+  ): UnaryResponse;
+  getVersion(
+    requestMessage: robot_v1_robot_pb.GetVersionRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetVersionResponse|null) => void
   ): UnaryResponse;
 }
 

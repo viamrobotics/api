@@ -17,6 +17,22 @@ service BuildService {
   rpc GetLogs(GetLogsRequest) returns (stream GetLogsResponse);
   // List the jobs for a module ordered by (build start time, alphabetical platform).
   rpc ListJobs(ListJobsRequest) returns (ListJobsResponse);
+
+  // link a git repo to a module.
+  rpc LinkRepo(LinkRepoRequest) returns (LinkRepoResponse);
+  // delete a module-repo link.
+  rpc UnlinkRepo(UnlinkRepoRequest) returns (UnlinkRepoResponse);
+  // list module-repo links owned by user (directly or through orgs).
+  rpc ListRepoLinks(ListRepoLinksRequest) returns (ListRepoLinksResponse);
+
+  // list external oauth apps owned by user (directly or through orgs).
+  rpc ListAppLinks(ListAppLinksRequest) returns (ListAppLinksResponse);
+  // delete a viam-app link.
+  rpc RemoveAppLink(RemoveAppLinkRequest) returns (RemoveAppLinkResponse);
+  // add an org to an oauth app link.
+  rpc LinkOrg(LinkOrgRequest) returns (LinkOrgResponse);
+  // remove an org from an oauth app link.
+  rpc UnlinkOrg(UnlinkOrgRequest) returns (UnlinkOrgResponse);
 }
 
 message StartBuildRequest {
@@ -83,3 +99,80 @@ message ListJobsResponse {
   // jobs is ordered by (build start time, alphabetical platform).
   repeated JobInfo jobs = 1;
 }
+
+message RepoLink {
+  // viam internal ID which maps to an external oauth app
+  string oauth_app_link_id = 1;
+  // OrgID of the module
+  string org_id = 2;
+  // Public namespace of the module. This is for user display in ListRepoLinksResponse.
+  // It is ignored in LinkRepoRequest.
+  optional string namespace = 3;
+  // name of the module (just the name, not the dotted org:name form)
+  string module_name = 4;
+  // git repo in owner/repository form
+  string repo = 5;
+  // email of the viam user who created this
+  string viam_user = 6;
+}
+
+message LinkRepoRequest {
+  RepoLink link = 1;
+}
+
+message LinkRepoResponse {
+  string repo_link_id = 1;
+}
+
+message UnlinkRepoRequest {
+  string repo_link_id = 1;
+}
+
+message UnlinkRepoResponse {}
+
+message ListRepoLinksRequest {}
+
+message ListRepoLinksResponse {
+  repeated RepoLink links = 1;
+}
+
+message ListAppLinksRequest {}
+
+// represents a link between viam users / orgs and an external oauth app
+message AppLink {
+  // viam internal ID which maps to an external oauth app
+  string oauth_app_link_id = 1;
+  // email of the viam user that owns this
+  string viam_user = 2;
+  // username of the external user who created this
+  string external_user = 3;
+  // list of org public namespace (where available) or org UUIDs attached to the external app
+  repeated string org_id_or_ns = 4;
+}
+
+message ListAppLinksResponse {
+  repeated AppLink links = 1;
+}
+
+message RemoveAppLinkRequest {
+  // viam internal ID which maps to an external oauth app
+  string oauth_app_link_id = 1;
+}
+
+message RemoveAppLinkResponse {}
+
+message LinkOrgRequest {
+  // viam internal ID which maps to an external oauth app
+  string oauth_app_link_id = 1;
+  string org_id = 2;
+}
+
+message LinkOrgResponse {}
+
+message UnlinkOrgRequest {
+  // viam internal ID which maps to an external oauth app
+  string oauth_app_link_id = 1;
+  string org_id = 2;
+}
+
+message UnlinkOrgResponse {}

@@ -9,7 +9,7 @@ jobs:
   license_finder:
     name: Audit 3rd-Party Licenses
     runs-on: ubuntu-latest
-    container: ghcr.io/viamrobotics/canon:amd64
+    container: ghcr.io/viamrobotics/rdk-devenv:amd64
     timeout-minutes: 30
 
     steps:

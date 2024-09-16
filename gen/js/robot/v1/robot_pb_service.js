@@ -181,6 +181,24 @@ RobotService.Shutdown = {
   responseType: robot_v1_robot_pb.ShutdownResponse
 };
 
+RobotService.GetMachineStatus = {
+  methodName: "GetMachineStatus",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.GetMachineStatusRequest,
+  responseType: robot_v1_robot_pb.GetMachineStatusResponse
+};
+
+RobotService.GetVersion = {
+  methodName: "GetVersion",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.GetVersionRequest,
+  responseType: robot_v1_robot_pb.GetVersionResponse
+};
+
 exports.RobotService = RobotService;
 
 function RobotServiceClient(serviceHost, options) {
@@ -759,6 +777,68 @@ RobotServiceClient.prototype.shutdown = function shutdown(requestMessage, metada
     callback = arguments[1];
   }
   var client = grpc.unary(RobotService.Shutdown, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.getMachineStatus = function getMachineStatus(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.GetMachineStatus, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.getVersion = function getVersion(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.GetVersion, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

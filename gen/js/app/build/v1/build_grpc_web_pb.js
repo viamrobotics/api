@@ -257,5 +257,432 @@ proto.viam.app.build.v1.BuildServicePromiseClient.prototype.listJobs =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.build.v1.LinkRepoRequest,
+ *   !proto.viam.app.build.v1.LinkRepoResponse>}
+ */
+const methodDescriptor_BuildService_LinkRepo = new grpc.web.MethodDescriptor(
+  '/viam.app.build.v1.BuildService/LinkRepo',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.build.v1.LinkRepoRequest,
+  proto.viam.app.build.v1.LinkRepoResponse,
+  /**
+   * @param {!proto.viam.app.build.v1.LinkRepoRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.build.v1.LinkRepoResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.build.v1.LinkRepoRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.build.v1.LinkRepoResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.build.v1.LinkRepoResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.build.v1.BuildServiceClient.prototype.linkRepo =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/LinkRepo',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_LinkRepo,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.build.v1.LinkRepoRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.build.v1.LinkRepoResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.build.v1.BuildServicePromiseClient.prototype.linkRepo =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/LinkRepo',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_LinkRepo);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.build.v1.UnlinkRepoRequest,
+ *   !proto.viam.app.build.v1.UnlinkRepoResponse>}
+ */
+const methodDescriptor_BuildService_UnlinkRepo = new grpc.web.MethodDescriptor(
+  '/viam.app.build.v1.BuildService/UnlinkRepo',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.build.v1.UnlinkRepoRequest,
+  proto.viam.app.build.v1.UnlinkRepoResponse,
+  /**
+   * @param {!proto.viam.app.build.v1.UnlinkRepoRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.build.v1.UnlinkRepoResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.build.v1.UnlinkRepoRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.build.v1.UnlinkRepoResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.build.v1.UnlinkRepoResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.build.v1.BuildServiceClient.prototype.unlinkRepo =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/UnlinkRepo',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_UnlinkRepo,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.build.v1.UnlinkRepoRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.build.v1.UnlinkRepoResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.build.v1.BuildServicePromiseClient.prototype.unlinkRepo =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/UnlinkRepo',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_UnlinkRepo);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.build.v1.ListRepoLinksRequest,
+ *   !proto.viam.app.build.v1.ListRepoLinksResponse>}
+ */
+const methodDescriptor_BuildService_ListRepoLinks = new grpc.web.MethodDescriptor(
+  '/viam.app.build.v1.BuildService/ListRepoLinks',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.build.v1.ListRepoLinksRequest,
+  proto.viam.app.build.v1.ListRepoLinksResponse,
+  /**
+   * @param {!proto.viam.app.build.v1.ListRepoLinksRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.build.v1.ListRepoLinksResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.build.v1.ListRepoLinksRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.build.v1.ListRepoLinksResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.build.v1.ListRepoLinksResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.build.v1.BuildServiceClient.prototype.listRepoLinks =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/ListRepoLinks',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_ListRepoLinks,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.build.v1.ListRepoLinksRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.build.v1.ListRepoLinksResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.build.v1.BuildServicePromiseClient.prototype.listRepoLinks =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/ListRepoLinks',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_ListRepoLinks);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.build.v1.ListAppLinksRequest,
+ *   !proto.viam.app.build.v1.ListAppLinksResponse>}
+ */
+const methodDescriptor_BuildService_ListAppLinks = new grpc.web.MethodDescriptor(
+  '/viam.app.build.v1.BuildService/ListAppLinks',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.build.v1.ListAppLinksRequest,
+  proto.viam.app.build.v1.ListAppLinksResponse,
+  /**
+   * @param {!proto.viam.app.build.v1.ListAppLinksRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.build.v1.ListAppLinksResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.build.v1.ListAppLinksRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.build.v1.ListAppLinksResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.build.v1.ListAppLinksResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.build.v1.BuildServiceClient.prototype.listAppLinks =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/ListAppLinks',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_ListAppLinks,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.build.v1.ListAppLinksRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.build.v1.ListAppLinksResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.build.v1.BuildServicePromiseClient.prototype.listAppLinks =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/ListAppLinks',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_ListAppLinks);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.build.v1.RemoveAppLinkRequest,
+ *   !proto.viam.app.build.v1.RemoveAppLinkResponse>}
+ */
+const methodDescriptor_BuildService_RemoveAppLink = new grpc.web.MethodDescriptor(
+  '/viam.app.build.v1.BuildService/RemoveAppLink',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.build.v1.RemoveAppLinkRequest,
+  proto.viam.app.build.v1.RemoveAppLinkResponse,
+  /**
+   * @param {!proto.viam.app.build.v1.RemoveAppLinkRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.build.v1.RemoveAppLinkResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.build.v1.RemoveAppLinkRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.build.v1.RemoveAppLinkResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.build.v1.RemoveAppLinkResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.build.v1.BuildServiceClient.prototype.removeAppLink =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/RemoveAppLink',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_RemoveAppLink,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.build.v1.RemoveAppLinkRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.build.v1.RemoveAppLinkResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.build.v1.BuildServicePromiseClient.prototype.removeAppLink =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/RemoveAppLink',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_RemoveAppLink);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.build.v1.LinkOrgRequest,
+ *   !proto.viam.app.build.v1.LinkOrgResponse>}
+ */
+const methodDescriptor_BuildService_LinkOrg = new grpc.web.MethodDescriptor(
+  '/viam.app.build.v1.BuildService/LinkOrg',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.build.v1.LinkOrgRequest,
+  proto.viam.app.build.v1.LinkOrgResponse,
+  /**
+   * @param {!proto.viam.app.build.v1.LinkOrgRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.build.v1.LinkOrgResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.build.v1.LinkOrgRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.build.v1.LinkOrgResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.build.v1.LinkOrgResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.build.v1.BuildServiceClient.prototype.linkOrg =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/LinkOrg',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_LinkOrg,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.build.v1.LinkOrgRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.build.v1.LinkOrgResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.build.v1.BuildServicePromiseClient.prototype.linkOrg =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/LinkOrg',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_LinkOrg);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.build.v1.UnlinkOrgRequest,
+ *   !proto.viam.app.build.v1.UnlinkOrgResponse>}
+ */
+const methodDescriptor_BuildService_UnlinkOrg = new grpc.web.MethodDescriptor(
+  '/viam.app.build.v1.BuildService/UnlinkOrg',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.build.v1.UnlinkOrgRequest,
+  proto.viam.app.build.v1.UnlinkOrgResponse,
+  /**
+   * @param {!proto.viam.app.build.v1.UnlinkOrgRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.build.v1.UnlinkOrgResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.build.v1.UnlinkOrgRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.build.v1.UnlinkOrgResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.build.v1.UnlinkOrgResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.build.v1.BuildServiceClient.prototype.unlinkOrg =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/UnlinkOrg',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_UnlinkOrg,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.build.v1.UnlinkOrgRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.build.v1.UnlinkOrgResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.build.v1.BuildServicePromiseClient.prototype.unlinkOrg =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/UnlinkOrg',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_UnlinkOrg);
+};
+
+
 module.exports = proto.viam.app.build.v1;
 

@@ -8,6 +8,11 @@ export class FieldInfo extends jspb.Message {
   getFormat(): FieldInfo.FormatMap[keyof FieldInfo.FormatMap];
   setFormat(value: FieldInfo.FormatMap[keyof FieldInfo.FormatMap]): void;
 
+  clearReferencedTypesList(): void;
+  getReferencedTypesList(): Array<TypeReference>;
+  setReferencedTypesList(value: Array<TypeReference>): void;
+  addReferencedTypes(value?: TypeReference, index?: number): TypeReference;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FieldInfo.AsObject;
   static toObject(includeInstance: boolean, msg: FieldInfo): FieldInfo.AsObject;
@@ -21,6 +26,7 @@ export class FieldInfo extends jspb.Message {
 export namespace FieldInfo {
   export type AsObject = {
     format: FieldInfo.FormatMap[keyof FieldInfo.FormatMap],
+    referencedTypesList: Array<TypeReference.AsObject>,
   }
 
   export interface FormatMap {
@@ -32,6 +38,26 @@ export namespace FieldInfo {
   }
 
   export const Format: FormatMap;
+}
+
+export class TypeReference extends jspb.Message {
+  getTypeName(): string;
+  setTypeName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TypeReference.AsObject;
+  static toObject(includeInstance: boolean, msg: TypeReference): TypeReference.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TypeReference, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TypeReference;
+  static deserializeBinaryFromReader(message: TypeReference, reader: jspb.BinaryReader): TypeReference;
+}
+
+export namespace TypeReference {
+  export type AsObject = {
+    typeName: string,
+  }
 }
 
   export const fieldInfo: jspb.ExtensionFieldInfo<FieldInfo>;

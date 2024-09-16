@@ -71,6 +71,14 @@ export class RobotConfig extends jspb.Message {
   getEnableWebProfile(): boolean;
   setEnableWebProfile(value: boolean): void;
 
+  clearLogList(): void;
+  getLogList(): Array<LogPatternConfig>;
+  setLogList(value: Array<LogPatternConfig>): void;
+  addLog(value?: LogPatternConfig, index?: number): LogPatternConfig;
+
+  getRevision(): string;
+  setRevision(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -96,6 +104,32 @@ export namespace RobotConfig {
     packagesList: Array<PackageConfig.AsObject>,
     overwriteFragmentStatusList: Array<AppValidationStatus.AsObject>,
     enableWebProfile: boolean,
+    logList: Array<LogPatternConfig.AsObject>,
+    revision: string,
+  }
+}
+
+export class LogPatternConfig extends jspb.Message {
+  getPattern(): string;
+  setPattern(value: string): void;
+
+  getLevel(): string;
+  setLevel(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LogPatternConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: LogPatternConfig): LogPatternConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: LogPatternConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LogPatternConfig;
+  static deserializeBinaryFromReader(message: LogPatternConfig, reader: jspb.BinaryReader): LogPatternConfig;
+}
+
+export namespace LogPatternConfig {
+  export type AsObject = {
+    pattern: string,
+    level: string,
   }
 }
 

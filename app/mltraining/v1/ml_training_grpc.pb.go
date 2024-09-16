@@ -34,6 +34,8 @@ type MLTrainingServiceClient interface {
 	CancelTrainingJob(ctx context.Context, in *CancelTrainingJobRequest, opts ...grpc.CallOption) (*CancelTrainingJobResponse, error)
 	// DeleteCompletedTrainingJob removes a completed training job from the database, whether the job succeeded or failed.
 	DeleteCompletedTrainingJob(ctx context.Context, in *DeleteCompletedTrainingJobRequest, opts ...grpc.CallOption) (*DeleteCompletedTrainingJobResponse, error)
+	// GetTrainingJobLogs gets the logs for a given custom training job.
+	GetTrainingJobLogs(ctx context.Context, in *GetTrainingJobLogsRequest, opts ...grpc.CallOption) (*GetTrainingJobLogsResponse, error)
 }
 
 type mLTrainingServiceClient struct {
@@ -98,6 +100,15 @@ func (c *mLTrainingServiceClient) DeleteCompletedTrainingJob(ctx context.Context
 	return out, nil
 }
 
+func (c *mLTrainingServiceClient) GetTrainingJobLogs(ctx context.Context, in *GetTrainingJobLogsRequest, opts ...grpc.CallOption) (*GetTrainingJobLogsResponse, error) {
+	out := new(GetTrainingJobLogsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.mltraining.v1.MLTrainingService/GetTrainingJobLogs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MLTrainingServiceServer is the server API for MLTrainingService service.
 // All implementations must embed UnimplementedMLTrainingServiceServer
 // for forward compatibility
@@ -114,6 +125,8 @@ type MLTrainingServiceServer interface {
 	CancelTrainingJob(context.Context, *CancelTrainingJobRequest) (*CancelTrainingJobResponse, error)
 	// DeleteCompletedTrainingJob removes a completed training job from the database, whether the job succeeded or failed.
 	DeleteCompletedTrainingJob(context.Context, *DeleteCompletedTrainingJobRequest) (*DeleteCompletedTrainingJobResponse, error)
+	// GetTrainingJobLogs gets the logs for a given custom training job.
+	GetTrainingJobLogs(context.Context, *GetTrainingJobLogsRequest) (*GetTrainingJobLogsResponse, error)
 	mustEmbedUnimplementedMLTrainingServiceServer()
 }
 
@@ -138,6 +151,9 @@ func (UnimplementedMLTrainingServiceServer) CancelTrainingJob(context.Context, *
 }
 func (UnimplementedMLTrainingServiceServer) DeleteCompletedTrainingJob(context.Context, *DeleteCompletedTrainingJobRequest) (*DeleteCompletedTrainingJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCompletedTrainingJob not implemented")
+}
+func (UnimplementedMLTrainingServiceServer) GetTrainingJobLogs(context.Context, *GetTrainingJobLogsRequest) (*GetTrainingJobLogsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTrainingJobLogs not implemented")
 }
 func (UnimplementedMLTrainingServiceServer) mustEmbedUnimplementedMLTrainingServiceServer() {}
 
@@ -260,6 +276,24 @@ func _MLTrainingService_DeleteCompletedTrainingJob_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MLTrainingService_GetTrainingJobLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTrainingJobLogsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MLTrainingServiceServer).GetTrainingJobLogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.mltraining.v1.MLTrainingService/GetTrainingJobLogs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MLTrainingServiceServer).GetTrainingJobLogs(ctx, req.(*GetTrainingJobLogsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MLTrainingService_ServiceDesc is the grpc.ServiceDesc for MLTrainingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -290,6 +324,10 @@ var MLTrainingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteCompletedTrainingJob",
 			Handler:    _MLTrainingService_DeleteCompletedTrainingJob_Handler,
+		},
+		{
+			MethodName: "GetTrainingJobLogs",
+			Handler:    _MLTrainingService_GetTrainingJobLogs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
