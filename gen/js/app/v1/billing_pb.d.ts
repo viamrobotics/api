@@ -410,6 +410,46 @@ export namespace GetInvoicePdfResponse {
   }
 }
 
+export class SendPaymentRequiredEmailRequest extends jspb.Message {
+  getCustomerOrgId(): string;
+  setCustomerOrgId(value: string): void;
+
+  getBillingOwnerOrgId(): string;
+  setBillingOwnerOrgId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SendPaymentRequiredEmailRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SendPaymentRequiredEmailRequest): SendPaymentRequiredEmailRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SendPaymentRequiredEmailRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SendPaymentRequiredEmailRequest;
+  static deserializeBinaryFromReader(message: SendPaymentRequiredEmailRequest, reader: jspb.BinaryReader): SendPaymentRequiredEmailRequest;
+}
+
+export namespace SendPaymentRequiredEmailRequest {
+  export type AsObject = {
+    customerOrgId: string,
+    billingOwnerOrgId: string,
+  }
+}
+
+export class SendPaymentRequiredEmailResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SendPaymentRequiredEmailResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SendPaymentRequiredEmailResponse): SendPaymentRequiredEmailResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SendPaymentRequiredEmailResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SendPaymentRequiredEmailResponse;
+  static deserializeBinaryFromReader(message: SendPaymentRequiredEmailResponse, reader: jspb.BinaryReader): SendPaymentRequiredEmailResponse;
+}
+
+export namespace SendPaymentRequiredEmailResponse {
+  export type AsObject = {
+  }
+}
+
 export interface PaymentMethodTypeMap {
   PAYMENT_METHOD_TYPE_UNSPECIFIED: 0;
   PAYMENT_METHOD_TYPE_CARD: 1;
