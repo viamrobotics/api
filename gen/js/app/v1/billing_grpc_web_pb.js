@@ -317,5 +317,66 @@ proto.viam.app.v1.BillingServicePromiseClient.prototype.getInvoicePdf =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.SendPaymentRequiredEmailRequest,
+ *   !proto.viam.app.v1.SendPaymentRequiredEmailResponse>}
+ */
+const methodDescriptor_BillingService_SendPaymentRequiredEmail = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/SendPaymentRequiredEmail',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.SendPaymentRequiredEmailRequest,
+  proto.viam.app.v1.SendPaymentRequiredEmailResponse,
+  /**
+   * @param {!proto.viam.app.v1.SendPaymentRequiredEmailRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.SendPaymentRequiredEmailResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.SendPaymentRequiredEmailRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.SendPaymentRequiredEmailResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.SendPaymentRequiredEmailResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.sendPaymentRequiredEmail =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/SendPaymentRequiredEmail',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_SendPaymentRequiredEmail,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.SendPaymentRequiredEmailRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.SendPaymentRequiredEmailResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.sendPaymentRequiredEmail =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/SendPaymentRequiredEmail',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_SendPaymentRequiredEmail);
+};
+
+
 module.exports = proto.viam.app.v1;
 

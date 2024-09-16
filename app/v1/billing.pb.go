@@ -915,6 +915,99 @@ func (x *GetInvoicePdfResponse) GetChunk() []byte {
 	return nil
 }
 
+type SendPaymentRequiredEmailRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CustomerOrgId     string `protobuf:"bytes,1,opt,name=customer_org_id,json=customerOrgId,proto3" json:"customer_org_id,omitempty"`
+	BillingOwnerOrgId string `protobuf:"bytes,2,opt,name=billing_owner_org_id,json=billingOwnerOrgId,proto3" json:"billing_owner_org_id,omitempty"`
+}
+
+func (x *SendPaymentRequiredEmailRequest) Reset() {
+	*x = SendPaymentRequiredEmailRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_v1_billing_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SendPaymentRequiredEmailRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SendPaymentRequiredEmailRequest) ProtoMessage() {}
+
+func (x *SendPaymentRequiredEmailRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_billing_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SendPaymentRequiredEmailRequest.ProtoReflect.Descriptor instead.
+func (*SendPaymentRequiredEmailRequest) Descriptor() ([]byte, []int) {
+	return file_app_v1_billing_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *SendPaymentRequiredEmailRequest) GetCustomerOrgId() string {
+	if x != nil {
+		return x.CustomerOrgId
+	}
+	return ""
+}
+
+func (x *SendPaymentRequiredEmailRequest) GetBillingOwnerOrgId() string {
+	if x != nil {
+		return x.BillingOwnerOrgId
+	}
+	return ""
+}
+
+type SendPaymentRequiredEmailResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *SendPaymentRequiredEmailResponse) Reset() {
+	*x = SendPaymentRequiredEmailResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_v1_billing_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SendPaymentRequiredEmailResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SendPaymentRequiredEmailResponse) ProtoMessage() {}
+
+func (x *SendPaymentRequiredEmailResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_billing_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SendPaymentRequiredEmailResponse.ProtoReflect.Descriptor instead.
+func (*SendPaymentRequiredEmailResponse) Descriptor() ([]byte, []int) {
+	return file_app_v1_billing_proto_rawDescGZIP(), []int{13}
+}
+
 var File_app_v1_billing_proto protoreflect.FileDescriptor
 
 var file_app_v1_billing_proto_rawDesc = []byte{
@@ -1071,13 +1164,23 @@ var file_app_v1_billing_proto_rawDesc = []byte{
 	0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x22, 0x2d, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x49,
 	0x6e, 0x76, 0x6f, 0x69, 0x63, 0x65, 0x50, 0x64, 0x66, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
 	0x65, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c,
-	0x52, 0x05, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x2a, 0x56, 0x0a, 0x11, 0x50, 0x61, 0x79, 0x6d, 0x65,
+	0x52, 0x05, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x22, 0x7a, 0x0a, 0x1f, 0x53, 0x65, 0x6e, 0x64, 0x50,
+	0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x64, 0x45, 0x6d,
+	0x61, 0x69, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x26, 0x0a, 0x0f, 0x63, 0x75,
+	0x73, 0x74, 0x6f, 0x6d, 0x65, 0x72, 0x5f, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x0d, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x65, 0x72, 0x4f, 0x72, 0x67,
+	0x49, 0x64, 0x12, 0x2f, 0x0a, 0x14, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x5f, 0x6f, 0x77,
+	0x6e, 0x65, 0x72, 0x5f, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x11, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x4f, 0x72,
+	0x67, 0x49, 0x64, 0x22, 0x22, 0x0a, 0x20, 0x53, 0x65, 0x6e, 0x64, 0x50, 0x61, 0x79, 0x6d, 0x65,
+	0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x64, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2a, 0x56, 0x0a, 0x11, 0x50, 0x61, 0x79, 0x6d, 0x65,
 	0x6e, 0x74, 0x4d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x54, 0x79, 0x70, 0x65, 0x12, 0x23, 0x0a, 0x1f,
 	0x50, 0x41, 0x59, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x4d, 0x45, 0x54, 0x48, 0x4f, 0x44, 0x5f, 0x54,
 	0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10,
 	0x00, 0x12, 0x1c, 0x0a, 0x18, 0x50, 0x41, 0x59, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x4d, 0x45, 0x54,
 	0x48, 0x4f, 0x44, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x43, 0x41, 0x52, 0x44, 0x10, 0x01, 0x32,
-	0xb7, 0x03, 0x0a, 0x0e, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0xb0, 0x04, 0x0a, 0x0e, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x53, 0x65, 0x72, 0x76, 0x69,
 	0x63, 0x65, 0x12, 0x6b, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74,
 	0x4d, 0x6f, 0x6e, 0x74, 0x68, 0x55, 0x73, 0x61, 0x67, 0x65, 0x12, 0x28, 0x2e, 0x76, 0x69, 0x61,
 	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x75, 0x72, 0x72,
@@ -1104,9 +1207,17 @@ var file_app_v1_billing_proto_rawDesc = []byte{
 	0x65, 0x74, 0x49, 0x6e, 0x76, 0x6f, 0x69, 0x63, 0x65, 0x50, 0x64, 0x66, 0x52, 0x65, 0x71, 0x75,
 	0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76,
 	0x31, 0x2e, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x76, 0x6f, 0x69, 0x63, 0x65, 0x50, 0x64, 0x66, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x30, 0x01, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x6f, 0x2e,
-	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x70, 0x70,
-	0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x30, 0x01, 0x12, 0x77, 0x0a, 0x18, 0x53, 0x65, 0x6e,
+	0x64, 0x50, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x64,
+	0x45, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x2c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
+	0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x6e, 0x64, 0x50, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x52,
+	0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x64, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x2d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76,
+	0x31, 0x2e, 0x53, 0x65, 0x6e, 0x64, 0x50, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71,
+	0x75, 0x69, 0x72, 0x65, 0x64, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1122,7 +1233,7 @@ func file_app_v1_billing_proto_rawDescGZIP() []byte {
 }
 
 var file_app_v1_billing_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_app_v1_billing_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_app_v1_billing_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_app_v1_billing_proto_goTypes = []interface{}{
 	(PaymentMethodType)(0),                   // 0: viam.app.v1.PaymentMethodType
 	(*InvoiceSummary)(nil),                   // 1: viam.app.v1.InvoiceSummary
@@ -1137,18 +1248,20 @@ var file_app_v1_billing_proto_goTypes = []interface{}{
 	(*GetInvoicesSummaryResponse)(nil),       // 10: viam.app.v1.GetInvoicesSummaryResponse
 	(*GetInvoicePdfRequest)(nil),             // 11: viam.app.v1.GetInvoicePdfRequest
 	(*GetInvoicePdfResponse)(nil),            // 12: viam.app.v1.GetInvoicePdfResponse
-	(*timestamppb.Timestamp)(nil),            // 13: google.protobuf.Timestamp
+	(*SendPaymentRequiredEmailRequest)(nil),  // 13: viam.app.v1.SendPaymentRequiredEmailRequest
+	(*SendPaymentRequiredEmailResponse)(nil), // 14: viam.app.v1.SendPaymentRequiredEmailResponse
+	(*timestamppb.Timestamp)(nil),            // 15: google.protobuf.Timestamp
 }
 var file_app_v1_billing_proto_depIdxs = []int32{
-	13, // 0: viam.app.v1.InvoiceSummary.invoice_date:type_name -> google.protobuf.Timestamp
-	13, // 1: viam.app.v1.InvoiceSummary.due_date:type_name -> google.protobuf.Timestamp
-	13, // 2: viam.app.v1.InvoiceSummary.paid_date:type_name -> google.protobuf.Timestamp
-	13, // 3: viam.app.v1.BillableResourceEvent.occurred_at:type_name -> google.protobuf.Timestamp
-	13, // 4: viam.app.v1.Invoice.invoice_date:type_name -> google.protobuf.Timestamp
-	13, // 5: viam.app.v1.Invoice.due_date:type_name -> google.protobuf.Timestamp
+	15, // 0: viam.app.v1.InvoiceSummary.invoice_date:type_name -> google.protobuf.Timestamp
+	15, // 1: viam.app.v1.InvoiceSummary.due_date:type_name -> google.protobuf.Timestamp
+	15, // 2: viam.app.v1.InvoiceSummary.paid_date:type_name -> google.protobuf.Timestamp
+	15, // 3: viam.app.v1.BillableResourceEvent.occurred_at:type_name -> google.protobuf.Timestamp
+	15, // 4: viam.app.v1.Invoice.invoice_date:type_name -> google.protobuf.Timestamp
+	15, // 5: viam.app.v1.Invoice.due_date:type_name -> google.protobuf.Timestamp
 	2,  // 6: viam.app.v1.Invoice.items:type_name -> viam.app.v1.BillableResourceEvent
-	13, // 7: viam.app.v1.GetCurrentMonthUsageResponse.start_date:type_name -> google.protobuf.Timestamp
-	13, // 8: viam.app.v1.GetCurrentMonthUsageResponse.end_date:type_name -> google.protobuf.Timestamp
+	15, // 7: viam.app.v1.GetCurrentMonthUsageResponse.start_date:type_name -> google.protobuf.Timestamp
+	15, // 8: viam.app.v1.GetCurrentMonthUsageResponse.end_date:type_name -> google.protobuf.Timestamp
 	0,  // 9: viam.app.v1.GetOrgBillingInformationResponse.type:type_name -> viam.app.v1.PaymentMethodType
 	4,  // 10: viam.app.v1.GetOrgBillingInformationResponse.method:type_name -> viam.app.v1.PaymentMethodCard
 	1,  // 11: viam.app.v1.GetInvoicesSummaryResponse.invoices:type_name -> viam.app.v1.InvoiceSummary
@@ -1156,12 +1269,14 @@ var file_app_v1_billing_proto_depIdxs = []int32{
 	7,  // 13: viam.app.v1.BillingService.GetOrgBillingInformation:input_type -> viam.app.v1.GetOrgBillingInformationRequest
 	9,  // 14: viam.app.v1.BillingService.GetInvoicesSummary:input_type -> viam.app.v1.GetInvoicesSummaryRequest
 	11, // 15: viam.app.v1.BillingService.GetInvoicePdf:input_type -> viam.app.v1.GetInvoicePdfRequest
-	6,  // 16: viam.app.v1.BillingService.GetCurrentMonthUsage:output_type -> viam.app.v1.GetCurrentMonthUsageResponse
-	8,  // 17: viam.app.v1.BillingService.GetOrgBillingInformation:output_type -> viam.app.v1.GetOrgBillingInformationResponse
-	10, // 18: viam.app.v1.BillingService.GetInvoicesSummary:output_type -> viam.app.v1.GetInvoicesSummaryResponse
-	12, // 19: viam.app.v1.BillingService.GetInvoicePdf:output_type -> viam.app.v1.GetInvoicePdfResponse
-	16, // [16:20] is the sub-list for method output_type
-	12, // [12:16] is the sub-list for method input_type
+	13, // 16: viam.app.v1.BillingService.SendPaymentRequiredEmail:input_type -> viam.app.v1.SendPaymentRequiredEmailRequest
+	6,  // 17: viam.app.v1.BillingService.GetCurrentMonthUsage:output_type -> viam.app.v1.GetCurrentMonthUsageResponse
+	8,  // 18: viam.app.v1.BillingService.GetOrgBillingInformation:output_type -> viam.app.v1.GetOrgBillingInformationResponse
+	10, // 19: viam.app.v1.BillingService.GetInvoicesSummary:output_type -> viam.app.v1.GetInvoicesSummaryResponse
+	12, // 20: viam.app.v1.BillingService.GetInvoicePdf:output_type -> viam.app.v1.GetInvoicePdfResponse
+	14, // 21: viam.app.v1.BillingService.SendPaymentRequiredEmail:output_type -> viam.app.v1.SendPaymentRequiredEmailResponse
+	17, // [17:22] is the sub-list for method output_type
+	12, // [12:17] is the sub-list for method input_type
 	12, // [12:12] is the sub-list for extension type_name
 	12, // [12:12] is the sub-list for extension extendee
 	0,  // [0:12] is the sub-list for field type_name
@@ -1317,6 +1432,30 @@ func file_app_v1_billing_proto_init() {
 				return nil
 			}
 		}
+		file_app_v1_billing_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SendPaymentRequiredEmailRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_app_v1_billing_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SendPaymentRequiredEmailResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_app_v1_billing_proto_msgTypes[7].OneofWrappers = []interface{}{}
 	type x struct{}
@@ -1325,7 +1464,7 @@ func file_app_v1_billing_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_app_v1_billing_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   12,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
