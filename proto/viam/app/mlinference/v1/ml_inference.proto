@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package viam.app.mlinference.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/rpc/status.proto";
+import "tagger/v1/tagger.proto";
+
+option go_package = "go.viam.com/api/app/mlinference/v1";
+
+service MLInference {
+  rpc GetInference(GetInferenceRequest) returns (GetInferenceResponse);
+}
+
+message GetInferenceRequest {
+  string registry_item_id = 1;
+  string registry_item_version = 2;
+}
+
+message GetInferenceResponse {
+    string response = 1;
+}
