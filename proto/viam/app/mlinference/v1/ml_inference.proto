@@ -14,5 +14,5 @@ message GetInferenceRequest {
 }
 
 message GetInferenceResponse {
-    string response = 1;
+  string response = 1;
 }
