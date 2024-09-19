@@ -40,12 +40,22 @@ type BillingServiceGetInvoicePdf = {
   readonly responseType: typeof app_v1_billing_pb.GetInvoicePdfResponse;
 };
 
+type BillingServiceSendPaymentRequiredEmail = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.SendPaymentRequiredEmailRequest;
+  readonly responseType: typeof app_v1_billing_pb.SendPaymentRequiredEmailResponse;
+};
+
 export class BillingService {
   static readonly serviceName: string;
   static readonly GetCurrentMonthUsage: BillingServiceGetCurrentMonthUsage;
   static readonly GetOrgBillingInformation: BillingServiceGetOrgBillingInformation;
   static readonly GetInvoicesSummary: BillingServiceGetInvoicesSummary;
   static readonly GetInvoicePdf: BillingServiceGetInvoicePdf;
+  static readonly SendPaymentRequiredEmail: BillingServiceSendPaymentRequiredEmail;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -108,5 +118,14 @@ export class BillingServiceClient {
     callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetInvoicesSummaryResponse|null) => void
   ): UnaryResponse;
   getInvoicePdf(requestMessage: app_v1_billing_pb.GetInvoicePdfRequest, metadata?: grpc.Metadata): ResponseStream<app_v1_billing_pb.GetInvoicePdfResponse>;
+  sendPaymentRequiredEmail(
+    requestMessage: app_v1_billing_pb.SendPaymentRequiredEmailRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.SendPaymentRequiredEmailResponse|null) => void
+  ): UnaryResponse;
+  sendPaymentRequiredEmail(
+    requestMessage: app_v1_billing_pb.SendPaymentRequiredEmailRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.SendPaymentRequiredEmailResponse|null) => void
+  ): UnaryResponse;
 }
 

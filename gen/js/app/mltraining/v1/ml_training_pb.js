@@ -849,7 +849,8 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.toObject = function(
     registryItemVersion: jspb.Message.getFieldWithDefault(msg, 6, ""),
     organizationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     modelName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    modelVersion: jspb.Message.getFieldWithDefault(msg, 5, "")
+    modelVersion: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -909,6 +910,12 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.deserializeBinaryFro
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setModelVersion(value);
+      break;
+    case 7:
+      var value = msg.getArgumentsMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
       break;
     default:
       reader.skipField();
@@ -980,6 +987,10 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.serializeBinaryToWri
       5,
       f
     );
+  }
+  f = message.getArgumentsMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(7, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
 };
 
@@ -1090,6 +1101,28 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getModelVe
 proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.setModelVersion = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
+
+
+/**
+ * map<string, string> arguments = 7;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getArgumentsMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 7, opt_noLazyCreate,
+      null));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest} returns this
+ */
+proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.clearArgumentsMap = function() {
+  this.getArgumentsMap().clear();
+  return this;};
 
 
 
