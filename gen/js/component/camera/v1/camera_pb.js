@@ -2082,7 +2082,8 @@ proto.viam.component.camera.v1.GetPropertiesResponse.toObject = function(include
     supportsPcd: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
     intrinsicParameters: (f = msg.getIntrinsicParameters()) && proto.viam.component.camera.v1.IntrinsicParameters.toObject(includeInstance, f),
     distortionParameters: (f = msg.getDistortionParameters()) && proto.viam.component.camera.v1.DistortionParameters.toObject(includeInstance, f),
-    mimeTypesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+    mimeTypesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+    frameRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0)
   };
 
   if (includeInstance) {
@@ -2136,6 +2137,10 @@ proto.viam.component.camera.v1.GetPropertiesResponse.deserializeBinaryFromReader
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.addMimeTypes(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setFrameRate(value);
       break;
     default:
       reader.skipField();
@@ -2193,6 +2198,13 @@ proto.viam.component.camera.v1.GetPropertiesResponse.serializeBinaryToWriter = f
   if (f.length > 0) {
     writer.writeRepeatedString(
       4,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeFloat(
+      5,
       f
     );
   }
@@ -2325,6 +2337,42 @@ proto.viam.component.camera.v1.GetPropertiesResponse.prototype.addMimeTypes = fu
  */
 proto.viam.component.camera.v1.GetPropertiesResponse.prototype.clearMimeTypesList = function() {
   return this.setMimeTypesList([]);
+};
+
+
+/**
+ * optional float frame_rate = 5;
+ * @return {number}
+ */
+proto.viam.component.camera.v1.GetPropertiesResponse.prototype.getFrameRate = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 5, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.component.camera.v1.GetPropertiesResponse} returns this
+ */
+proto.viam.component.camera.v1.GetPropertiesResponse.prototype.setFrameRate = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.component.camera.v1.GetPropertiesResponse} returns this
+ */
+proto.viam.component.camera.v1.GetPropertiesResponse.prototype.clearFrameRate = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.camera.v1.GetPropertiesResponse.prototype.hasFrameRate = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
