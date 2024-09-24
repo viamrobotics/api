@@ -43,6 +43,7 @@ message RobotConfig {
   repeated LogPatternConfig log = 14;
   // Attributes a particular revision to the config.
   string revision = 15;
+  optional MaintenanceConfig maintenance = 16;
 }
 
 // LogPatternConfig allows you to specify a 2-tuple consisting
@@ -375,4 +376,9 @@ message PackageConfig {
   string type = 4;
   // info about the validity of the package
   AppValidationStatus status = 5;
+}
+
+message MaintenanceConfig {
+  common.v1.ResourceName sensor_name = 1;
+  string maintenance_allowed_key = 2;
 }
