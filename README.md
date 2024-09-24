@@ -34,3 +34,4 @@ Other guidelines:
 Copyright 2023 Viam Inc.
 
 Apache 2.0 - See [LICENSE](https://github.com/viamrobotics/api/blob/main/LICENSE) file
+
