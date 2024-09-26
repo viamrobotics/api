@@ -1097,10 +1097,9 @@ message CreateModuleResponse {
 
 enum Visibility {
   VISIBILITY_UNSPECIFIED = 0;
-  // Private modules are visible only within your org
   VISIBILITY_PRIVATE = 1;
-  // Public modules are visible to everyone
   VISIBILITY_PUBLIC = 2;
+  VISIBILITY_PUBLIC_UNLISTED = 3;
 }
 
 message UpdateModuleRequest {
