@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package viam.app.mlinference.v1;
+
+import "data/v1/data.proto";
+
+option go_package = "go.viam.com/api/app/mlinference/v1";
+
+service MLInferenceService {
+  rpc GetInference(GetInferenceRequest) returns (GetInferenceResponse);
+}
+
+message GetInferenceRequest {
+  // The model framework and model type are inferred from the ML model registry item;
+  // For valid model types (classification, detections) we will return the formatted
+  // labels or annotations from the associated inference outputs. 
+  string registry_item_id = 1;
+  string registry_item_version = 2;
+  data.v1.BinaryID binary_id = 3;
+  string organization_id = 4;
+}
+
+
+message GetInferenceResponse{
+
+}
