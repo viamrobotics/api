@@ -4695,6 +4695,7 @@ export interface VisibilityMap {
   VISIBILITY_UNSPECIFIED: 0;
   VISIBILITY_PRIVATE: 1;
   VISIBILITY_PUBLIC: 2;
+  VISIBILITY_PUBLIC_UNLISTED: 3;
 }
 
 export const Visibility: VisibilityMap;
