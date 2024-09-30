@@ -1097,10 +1097,12 @@ message CreateModuleResponse {
 
 enum Visibility {
   VISIBILITY_UNSPECIFIED = 0;
-  // Private modules are visible only within your org
+  // Private registry items are visible only within the owning org
   VISIBILITY_PRIVATE = 1;
-  // Public modules are visible to everyone
+  // Public registry items are visible to everyone
   VISIBILITY_PUBLIC = 2;
+  // Public Unlisted registry items are usable in everyone's robot but are hidden from the registry page as if they are private
+  VISIBILITY_PUBLIC_UNLISTED = 3;
 }
 
 message UpdateModuleRequest {

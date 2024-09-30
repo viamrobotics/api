@@ -36408,7 +36408,8 @@ proto.viam.app.v1.RegistryItemStatus = {
 proto.viam.app.v1.Visibility = {
   VISIBILITY_UNSPECIFIED: 0,
   VISIBILITY_PRIVATE: 1,
-  VISIBILITY_PUBLIC: 2
+  VISIBILITY_PUBLIC: 2,
+  VISIBILITY_PUBLIC_UNLISTED: 3
 };
 
 goog.object.extend(exports, proto.viam.app.v1);
