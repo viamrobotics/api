@@ -1312,6 +1312,11 @@ export class ModuleConfig extends jspb.Message {
   getStatus(): AppValidationStatus | undefined;
   setStatus(value?: AppValidationStatus): void;
 
+  hasFirstRunTimeout(): boolean;
+  clearFirstRunTimeout(): void;
+  getFirstRunTimeout(): google_protobuf_duration_pb.Duration | undefined;
+  setFirstRunTimeout(value?: google_protobuf_duration_pb.Duration): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
@@ -1331,6 +1336,7 @@ export namespace ModuleConfig {
     moduleId: string,
     envMap: Array<[string, string]>,
     status?: AppValidationStatus.AsObject,
+    firstRunTimeout?: google_protobuf_duration_pb.Duration.AsObject,
   }
 }
 

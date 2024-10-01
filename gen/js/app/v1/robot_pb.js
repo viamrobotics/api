@@ -10186,7 +10186,8 @@ proto.viam.app.v1.ModuleConfig.toObject = function(includeInstance, msg) {
     type: jspb.Message.getFieldWithDefault(msg, 4, ""),
     moduleId: jspb.Message.getFieldWithDefault(msg, 5, ""),
     envMap: (f = msg.getEnvMap()) ? f.toObject(includeInstance, undefined) : [],
-    status: (f = msg.getStatus()) && proto.viam.app.v1.AppValidationStatus.toObject(includeInstance, f)
+    status: (f = msg.getStatus()) && proto.viam.app.v1.AppValidationStatus.toObject(includeInstance, f),
+    firstRunTimeout: (f = msg.getFirstRunTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10253,6 +10254,11 @@ proto.viam.app.v1.ModuleConfig.deserializeBinaryFromReader = function(msg, reade
       var value = new proto.viam.app.v1.AppValidationStatus;
       reader.readMessage(value,proto.viam.app.v1.AppValidationStatus.deserializeBinaryFromReader);
       msg.setStatus(value);
+      break;
+    case 8:
+      var value = new google_protobuf_duration_pb.Duration;
+      reader.readMessage(value,google_protobuf_duration_pb.Duration.deserializeBinaryFromReader);
+      msg.setFirstRunTimeout(value);
       break;
     default:
       reader.skipField();
@@ -10328,6 +10334,14 @@ proto.viam.app.v1.ModuleConfig.serializeBinaryToWriter = function(message, write
       7,
       f,
       proto.viam.app.v1.AppValidationStatus.serializeBinaryToWriter
+    );
+  }
+  f = message.getFirstRunTimeout();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      google_protobuf_duration_pb.Duration.serializeBinaryToWriter
     );
   }
 };
@@ -10479,6 +10493,43 @@ proto.viam.app.v1.ModuleConfig.prototype.clearStatus = function() {
  */
 proto.viam.app.v1.ModuleConfig.prototype.hasStatus = function() {
   return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional google.protobuf.Duration first_run_timeout = 8;
+ * @return {?proto.google.protobuf.Duration}
+ */
+proto.viam.app.v1.ModuleConfig.prototype.getFirstRunTimeout = function() {
+  return /** @type{?proto.google.protobuf.Duration} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_duration_pb.Duration, 8));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Duration|undefined} value
+ * @return {!proto.viam.app.v1.ModuleConfig} returns this
+*/
+proto.viam.app.v1.ModuleConfig.prototype.setFirstRunTimeout = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.ModuleConfig} returns this
+ */
+proto.viam.app.v1.ModuleConfig.prototype.clearFirstRunTimeout = function() {
+  return this.setFirstRunTimeout(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ModuleConfig.prototype.hasFirstRunTimeout = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
