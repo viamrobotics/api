@@ -938,6 +938,8 @@ message ModuleVersion {
   repeated Model models = 3;
   // The entrypoint for this version of the module
   string entrypoint = 4;
+  // The path to a setup script that is run before a newly downloaded module starts.
+  optional string first_run = 5;
 }
 
 message ModuleMetadata {
@@ -948,6 +950,8 @@ message ModuleMetadata {
   repeated ModuleVersion versions = 2;
   // The executable to run to start the module program
   string entrypoint = 3;
+  // The path to a setup script that is run before a newly downloaded module starts.
+  optional string first_run = 4;
 }
 
 message MLModelMetadata {
@@ -1118,6 +1122,8 @@ message UpdateModuleRequest {
   repeated Model models = 5;
   // The executable to run to start the module program
   string entrypoint = 6;
+  // The path to a setup script that is run before a newly downloaded module starts.
+  optional string first_run = 7;
 }
 
 message UpdateModuleResponse {
@@ -1192,6 +1198,8 @@ message Module {
   // The public namespace of the organization that owns the module
   // This is empty if no public namespace is set
   string public_namespace = 12;
+  // The path to a setup script that is run before a newly downloaded module starts.
+  optional string first_run = 13;
 }
 
 message VersionHistory {
@@ -1203,6 +1211,8 @@ message VersionHistory {
   repeated Model models = 3;
   // The entrypoint for this version of the module
   string entrypoint = 4;
+  // The path to a setup script that is run before a newly downloaded module starts.
+  optional string first_run = 5;
 }
 
 message Uploads {
