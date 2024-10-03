@@ -47,6 +47,8 @@ message StartBuildRequest {
   // version of the module to publish
   // must be valid semver2.0 string (ex: 1.2.3-rc0)
   string module_version = 5;
+  // checkout token. provide this for private repos
+  optional string token = 6;
 }
 
 message StartBuildResponse {

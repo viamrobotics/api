@@ -24,6 +24,11 @@ export class StartBuildRequest extends jspb.Message {
   getModuleVersion(): string;
   setModuleVersion(value: string): void;
 
+  hasToken(): boolean;
+  clearToken(): void;
+  getToken(): string;
+  setToken(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartBuildRequest.AsObject;
   static toObject(includeInstance: boolean, msg: StartBuildRequest): StartBuildRequest.AsObject;
@@ -41,6 +46,7 @@ export namespace StartBuildRequest {
     platformsList: Array<string>,
     moduleId: string,
     moduleVersion: string,
+    token: string,
   }
 }
 

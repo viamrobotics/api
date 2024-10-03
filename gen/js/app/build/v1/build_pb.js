@@ -567,7 +567,8 @@ proto.viam.app.build.v1.StartBuildRequest.toObject = function(includeInstance, m
     ref: jspb.Message.getFieldWithDefault(msg, 2, ""),
     platformsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
     moduleId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    moduleVersion: jspb.Message.getFieldWithDefault(msg, 5, "")
+    moduleVersion: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    token: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -623,6 +624,10 @@ proto.viam.app.build.v1.StartBuildRequest.deserializeBinaryFromReader = function
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setModuleVersion(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setToken(value);
       break;
     default:
       reader.skipField();
@@ -685,6 +690,13 @@ proto.viam.app.build.v1.StartBuildRequest.serializeBinaryToWriter = function(mes
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -815,6 +827,42 @@ proto.viam.app.build.v1.StartBuildRequest.prototype.getModuleVersion = function(
  */
 proto.viam.app.build.v1.StartBuildRequest.prototype.setModuleVersion = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string token = 6;
+ * @return {string}
+ */
+proto.viam.app.build.v1.StartBuildRequest.prototype.getToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.build.v1.StartBuildRequest} returns this
+ */
+proto.viam.app.build.v1.StartBuildRequest.prototype.setToken = function(value) {
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.build.v1.StartBuildRequest} returns this
+ */
+proto.viam.app.build.v1.StartBuildRequest.prototype.clearToken = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.build.v1.StartBuildRequest.prototype.hasToken = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
