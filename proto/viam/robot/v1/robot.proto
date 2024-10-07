@@ -278,6 +278,7 @@ message GetSessionsResponse {
 message DiscoveryQuery {
   string subtype = 1;
   string model = 2;
+  google.protobuf.Struct extra = 99;
 }
 
 message Discovery {
