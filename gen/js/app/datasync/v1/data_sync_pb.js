@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
@@ -352,8 +358,8 @@ proto.viam.app.datasync.v1.DataCaptureUploadRequest.prototype.toObject = functio
  */
 proto.viam.app.datasync.v1.DataCaptureUploadRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    metadata: (f = msg.getMetadata()) && proto.viam.app.datasync.v1.UploadMetadata.toObject(includeInstance, f),
-    sensorContentsList: jspb.Message.toObjectList(msg.getSensorContentsList(),
+metadata: (f = msg.getMetadata()) && proto.viam.app.datasync.v1.UploadMetadata.toObject(includeInstance, f),
+sensorContentsList: jspb.Message.toObjectList(msg.getSensorContentsList(),
     proto.viam.app.datasync.v1.SensorData.toObject, includeInstance)
   };
 
@@ -556,7 +562,7 @@ proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.toObject = functi
  */
 proto.viam.app.datasync.v1.DataCaptureUploadResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fileId: jspb.Message.getFieldWithDefault(msg, 1, "")
+fileId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -712,8 +718,8 @@ proto.viam.app.datasync.v1.FileUploadRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.datasync.v1.FileUploadRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    metadata: (f = msg.getMetadata()) && proto.viam.app.datasync.v1.UploadMetadata.toObject(includeInstance, f),
-    fileContents: (f = msg.getFileContents()) && proto.viam.app.datasync.v1.FileData.toObject(includeInstance, f)
+metadata: (f = msg.getMetadata()) && proto.viam.app.datasync.v1.UploadMetadata.toObject(includeInstance, f),
+fileContents: (f = msg.getFileContents()) && proto.viam.app.datasync.v1.FileData.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -914,7 +920,7 @@ proto.viam.app.datasync.v1.FileUploadResponse.prototype.toObject = function(opt_
  */
 proto.viam.app.datasync.v1.FileUploadResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fileId: jspb.Message.getFieldWithDefault(msg, 1, "")
+fileId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1070,8 +1076,8 @@ proto.viam.app.datasync.v1.StreamingDataCaptureUploadRequest.prototype.toObject 
  */
 proto.viam.app.datasync.v1.StreamingDataCaptureUploadRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    metadata: (f = msg.getMetadata()) && proto.viam.app.datasync.v1.DataCaptureUploadMetadata.toObject(includeInstance, f),
-    data: msg.getData_asB64()
+metadata: (f = msg.getMetadata()) && proto.viam.app.datasync.v1.DataCaptureUploadMetadata.toObject(includeInstance, f),
+data: msg.getData_asB64()
   };
 
   if (includeInstance) {
@@ -1293,7 +1299,7 @@ proto.viam.app.datasync.v1.StreamingDataCaptureUploadResponse.prototype.toObject
  */
 proto.viam.app.datasync.v1.StreamingDataCaptureUploadResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fileId: jspb.Message.getFieldWithDefault(msg, 1, "")
+fileId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1423,8 +1429,8 @@ proto.viam.app.datasync.v1.SensorMetadata.prototype.toObject = function(opt_incl
  */
 proto.viam.app.datasync.v1.SensorMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1651,9 +1657,9 @@ proto.viam.app.datasync.v1.SensorData.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.datasync.v1.SensorData.toObject = function(includeInstance, msg) {
   var f, obj = {
-    metadata: (f = msg.getMetadata()) && proto.viam.app.datasync.v1.SensorMetadata.toObject(includeInstance, f),
-    struct: (f = msg.getStruct()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    binary: msg.getBinary_asB64()
+metadata: (f = msg.getMetadata()) && proto.viam.app.datasync.v1.SensorMetadata.toObject(includeInstance, f),
+struct: (f = msg.getStruct()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+binary: msg.getBinary_asB64()
   };
 
   if (includeInstance) {
@@ -1925,7 +1931,7 @@ proto.viam.app.datasync.v1.FileData.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.datasync.v1.FileData.toObject = function(includeInstance, msg) {
   var f, obj = {
-    data: msg.getData_asB64()
+data: msg.getData_asB64()
   };
 
   if (includeInstance) {
@@ -2086,15 +2092,15 @@ proto.viam.app.datasync.v1.UploadMetadata.prototype.toObject = function(opt_incl
  */
 proto.viam.app.datasync.v1.UploadMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    componentType: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    componentName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    methodName: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    fileName: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
-    fileExtension: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f
+partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+componentType: jspb.Message.getFieldWithDefault(msg, 2, ""),
+componentName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+methodName: jspb.Message.getFieldWithDefault(msg, 5, ""),
+type: jspb.Message.getFieldWithDefault(msg, 6, 0),
+fileName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
+fileExtension: jspb.Message.getFieldWithDefault(msg, 9, ""),
+tagsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2388,7 +2394,8 @@ proto.viam.app.datasync.v1.UploadMetadata.prototype.getMethodParametersMap = fun
  */
 proto.viam.app.datasync.v1.UploadMetadata.prototype.clearMethodParametersMap = function() {
   this.getMethodParametersMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -2478,8 +2485,8 @@ proto.viam.app.datasync.v1.CaptureInterval.prototype.toObject = function(opt_inc
  */
 proto.viam.app.datasync.v1.CaptureInterval.toObject = function(includeInstance, msg) {
   var f, obj = {
-    start: (f = msg.getStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+start: (f = msg.getStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2687,13 +2694,13 @@ proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.toObject = function(opt
  */
 proto.viam.app.datasync.v1.DataCaptureMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    componentType: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    componentName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    methodName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
-    fileExtension: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f
+componentType: jspb.Message.getFieldWithDefault(msg, 1, ""),
+componentName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+methodName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+type: jspb.Message.getFieldWithDefault(msg, 5, 0),
+methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
+fileExtension: jspb.Message.getFieldWithDefault(msg, 7, ""),
+tagsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2929,7 +2936,8 @@ proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.getMethodParametersMap 
  */
 proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.clearMethodParametersMap = function() {
   this.getMethodParametersMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -3019,8 +3027,8 @@ proto.viam.app.datasync.v1.DataCaptureUploadMetadata.prototype.toObject = functi
  */
 proto.viam.app.datasync.v1.DataCaptureUploadMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    uploadMetadata: (f = msg.getUploadMetadata()) && proto.viam.app.datasync.v1.UploadMetadata.toObject(includeInstance, f),
-    sensorMetadata: (f = msg.getSensorMetadata()) && proto.viam.app.datasync.v1.SensorMetadata.toObject(includeInstance, f)
+uploadMetadata: (f = msg.getUploadMetadata()) && proto.viam.app.datasync.v1.UploadMetadata.toObject(includeInstance, f),
+sensorMetadata: (f = msg.getSensorMetadata()) && proto.viam.app.datasync.v1.SensorMetadata.toObject(includeInstance, f)
   };
 
   if (includeInstance) {

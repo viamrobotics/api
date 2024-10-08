@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 goog.exportSymbol('proto.google.type.Fraction', null, global);
 /**
@@ -69,8 +75,8 @@ proto.google.type.Fraction.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.Fraction.toObject = function(includeInstance, msg) {
   var f, obj = {
-    numerator: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    denominator: jspb.Message.getFieldWithDefault(msg, 2, 0)
+numerator: jspb.Message.getFieldWithDefault(msg, 1, 0),
+denominator: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
