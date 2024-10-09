@@ -38,16 +38,6 @@ message BillableResourceEvent {
   string user_name = 7;
 }
 
-message Invoice {
-  string id = 1;
-  google.protobuf.Timestamp invoice_date = 2;
-  double invoice_amount = 3;
-  string status = 4;
-  google.protobuf.Timestamp due_date = 5;
-  repeated BillableResourceEvent items = 6;
-  string emailed_to = 7;
-}
-
 enum PaymentMethodType {
   PAYMENT_METHOD_TYPE_UNSPECIFIED = 0;
   PAYMENT_METHOD_TYPE_CARD = 1;
@@ -74,9 +64,21 @@ enum UsageCostType {
   USAGE_COST_TYPE_PER_MACHINE = 8;
 }
 
+enum SourceType {
+  SOURCE_TYPE_UNSPECIFIED = 0;
+  SOURCE_TYPE_ORG = 1;
+  SOURCE_TYPE_FRAGMENT = 2;
+}
+
 message UsageCost {
   UsageCostType resource_type = 1;
   double cost = 2;
+}
+
+message ResourceUsageCostsBySource {
+  SourceType source_type = 1;
+  ResourceUsageCosts resource_usage_costs = 2;
+  string tier_name = 3;
 }
 
 message ResourceUsageCosts {
@@ -86,18 +88,11 @@ message ResourceUsageCosts {
   double total_without_discount = 4;
 }
 
-message FragmentUsageCosts {
-  string fragment_id = 1;
-  ResourceUsageCosts resource_usage_costs = 2;
-}
-
 message GetCurrentMonthUsageResponse {
   google.protobuf.Timestamp start_date = 1;
   google.protobuf.Timestamp end_date = 2;
-
-  ResourceUsageCosts org_usage = 14;
-  repeated FragmentUsageCosts fragment_usage_costs = 15;
-  double subtotal = 16;
+  repeated ResourceUsageCostsBySource resource_usage_costs_by_source = 3;
+  double subtotal = 4;
 }
 
 message GetOrgBillingInformationRequest {
