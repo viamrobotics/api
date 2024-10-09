@@ -63,29 +63,30 @@ message GetCurrentMonthUsageRequest {
 }
 
 enum UsageCostType {
-  CLOUD_STORAGE = 1; 
-  DATA_UPLOAD = 2; 
-  DATA_EGRESS = 3;
-  REMOTE_CONTROL = 4; 
-  STANDARD_COMPUTE = 5; 
-  BINARY_DATA_CLOUD_STORAGE = 6; 
-  OTHER_CLOUD_STORAGE = 7;
-  PER_MACHINE = 8;
+  USAGE_COST_TYPE_UNSPECIFIED = 0;
+  USAGE_COST_TYPE_DATA_UPLOAD = 1;
+  USAGE_COST_TYPE_DATA_EGRESS = 2;
+  USAGE_COST_TYPE_REMOTE_CONTROL = 3;
+  USAGE_COST_TYPE_STANDARD_COMPUTE = 4;
+  USAGE_COST_TYPE_CLOUD_STORAGE = 5;
+  USAGE_COST_TYPE_BINARY_DATA_CLOUD_STORAGE = 6;
+  USAGE_COST_TYPE_OTHER_CLOUD_STORAGE = 7;
+  USAGE_COST_TYPE_PER_MACHINE = 8;
 }
 
 message UsageCost {
-  UsageCostType resource_type = 1; 
+  UsageCostType resource_type = 1;
   double cost = 2;
 }
 
 message GroupedCosts {
   repeated UsageCost usage_costs = 1;
-  double subtotal = 2; 
+  double subtotal = 2;
   double discount = 3;
 }
 
 message FragmentCosts {
-  string fragmentID = 1; 
+  string fragment_id = 1;
   GroupedCosts breakdown = 2;
 }
 
@@ -93,7 +94,7 @@ message GetCurrentMonthUsageResponse {
   google.protobuf.Timestamp start_date = 1;
   google.protobuf.Timestamp end_date = 2;
 
-  // This will be deprecated soon as it no longer 
+  // This will be deprecated soon as it no longer
   // reflects fragment cost structure
   double cloud_storage_usage_cost = 3;
   double data_upload_usage_cost = 4;
@@ -106,10 +107,10 @@ message GetCurrentMonthUsageResponse {
   double per_machine_usage_cost = 11;
   double binary_data_cloud_storage_usage_cost = 12;
   double other_cloud_storage_usage_cost = 13;
- 
-  repeated GroupedCosts OrgBreakdown = 14;
-  repeated FragmentCosts FragmentsBreakdown = 15;
-  double subtotal = 16; // total for all org + fragment costs 
+
+  repeated GroupedCosts org_breakdown = 14;
+  repeated FragmentCosts fragment_breakdown = 15;
+  double subtotal = 16; // total for all org + fragment costs
 }
 
 message GetOrgBillingInformationRequest {
