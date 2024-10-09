@@ -28,16 +28,6 @@ message InvoiceSummary {
   google.protobuf.Timestamp paid_date = 6;
 }
 
-message BillableResourceEvent {
-  string id = 1;
-  string type = 2;
-  double usage_quantity = 3;
-  string usage_quantity_unit = 4;
-  string usage_cost = 5;
-  google.protobuf.Timestamp occurred_at = 6;
-  string user_name = 7;
-}
-
 enum PaymentMethodType {
   PAYMENT_METHOD_TYPE_UNSPECIFIED = 0;
   PAYMENT_METHOD_TYPE_CARD = 1;
