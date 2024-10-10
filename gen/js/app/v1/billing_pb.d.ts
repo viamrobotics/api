@@ -50,102 +50,6 @@ export namespace InvoiceSummary {
   }
 }
 
-export class BillableResourceEvent extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
-  getType(): string;
-  setType(value: string): void;
-
-  getUsageQuantity(): number;
-  setUsageQuantity(value: number): void;
-
-  getUsageQuantityUnit(): string;
-  setUsageQuantityUnit(value: string): void;
-
-  getUsageCost(): string;
-  setUsageCost(value: string): void;
-
-  hasOccurredAt(): boolean;
-  clearOccurredAt(): void;
-  getOccurredAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setOccurredAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
-  getUserName(): string;
-  setUserName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BillableResourceEvent.AsObject;
-  static toObject(includeInstance: boolean, msg: BillableResourceEvent): BillableResourceEvent.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: BillableResourceEvent, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BillableResourceEvent;
-  static deserializeBinaryFromReader(message: BillableResourceEvent, reader: jspb.BinaryReader): BillableResourceEvent;
-}
-
-export namespace BillableResourceEvent {
-  export type AsObject = {
-    id: string,
-    type: string,
-    usageQuantity: number,
-    usageQuantityUnit: string,
-    usageCost: string,
-    occurredAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    userName: string,
-  }
-}
-
-export class Invoice extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
-  hasInvoiceDate(): boolean;
-  clearInvoiceDate(): void;
-  getInvoiceDate(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setInvoiceDate(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
-  getInvoiceAmount(): number;
-  setInvoiceAmount(value: number): void;
-
-  getStatus(): string;
-  setStatus(value: string): void;
-
-  hasDueDate(): boolean;
-  clearDueDate(): void;
-  getDueDate(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setDueDate(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
-  clearItemsList(): void;
-  getItemsList(): Array<BillableResourceEvent>;
-  setItemsList(value: Array<BillableResourceEvent>): void;
-  addItems(value?: BillableResourceEvent, index?: number): BillableResourceEvent;
-
-  getEmailedTo(): string;
-  setEmailedTo(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Invoice.AsObject;
-  static toObject(includeInstance: boolean, msg: Invoice): Invoice.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Invoice, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Invoice;
-  static deserializeBinaryFromReader(message: Invoice, reader: jspb.BinaryReader): Invoice;
-}
-
-export namespace Invoice {
-  export type AsObject = {
-    id: string,
-    invoiceDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    invoiceAmount: number,
-    status: string,
-    dueDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    itemsList: Array<BillableResourceEvent.AsObject>,
-    emailedTo: string,
-  }
-}
-
 export class PaymentMethodCard extends jspb.Message {
   getBrand(): string;
   setBrand(value: string): void;
@@ -190,6 +94,94 @@ export namespace GetCurrentMonthUsageRequest {
   }
 }
 
+export class UsageCost extends jspb.Message {
+  getResourceType(): UsageCostTypeMap[keyof UsageCostTypeMap];
+  setResourceType(value: UsageCostTypeMap[keyof UsageCostTypeMap]): void;
+
+  getCost(): number;
+  setCost(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UsageCost.AsObject;
+  static toObject(includeInstance: boolean, msg: UsageCost): UsageCost.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UsageCost, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UsageCost;
+  static deserializeBinaryFromReader(message: UsageCost, reader: jspb.BinaryReader): UsageCost;
+}
+
+export namespace UsageCost {
+  export type AsObject = {
+    resourceType: UsageCostTypeMap[keyof UsageCostTypeMap],
+    cost: number,
+  }
+}
+
+export class ResourceUsageCostsBySource extends jspb.Message {
+  getSourceType(): SourceTypeMap[keyof SourceTypeMap];
+  setSourceType(value: SourceTypeMap[keyof SourceTypeMap]): void;
+
+  hasResourceUsageCosts(): boolean;
+  clearResourceUsageCosts(): void;
+  getResourceUsageCosts(): ResourceUsageCosts | undefined;
+  setResourceUsageCosts(value?: ResourceUsageCosts): void;
+
+  getTierName(): string;
+  setTierName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ResourceUsageCostsBySource.AsObject;
+  static toObject(includeInstance: boolean, msg: ResourceUsageCostsBySource): ResourceUsageCostsBySource.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ResourceUsageCostsBySource, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ResourceUsageCostsBySource;
+  static deserializeBinaryFromReader(message: ResourceUsageCostsBySource, reader: jspb.BinaryReader): ResourceUsageCostsBySource;
+}
+
+export namespace ResourceUsageCostsBySource {
+  export type AsObject = {
+    sourceType: SourceTypeMap[keyof SourceTypeMap],
+    resourceUsageCosts?: ResourceUsageCosts.AsObject,
+    tierName: string,
+  }
+}
+
+export class ResourceUsageCosts extends jspb.Message {
+  clearUsageCostsList(): void;
+  getUsageCostsList(): Array<UsageCost>;
+  setUsageCostsList(value: Array<UsageCost>): void;
+  addUsageCosts(value?: UsageCost, index?: number): UsageCost;
+
+  getDiscount(): number;
+  setDiscount(value: number): void;
+
+  getTotalWithDiscount(): number;
+  setTotalWithDiscount(value: number): void;
+
+  getTotalWithoutDiscount(): number;
+  setTotalWithoutDiscount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ResourceUsageCosts.AsObject;
+  static toObject(includeInstance: boolean, msg: ResourceUsageCosts): ResourceUsageCosts.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ResourceUsageCosts, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ResourceUsageCosts;
+  static deserializeBinaryFromReader(message: ResourceUsageCosts, reader: jspb.BinaryReader): ResourceUsageCosts;
+}
+
+export namespace ResourceUsageCosts {
+  export type AsObject = {
+    usageCostsList: Array<UsageCost.AsObject>,
+    discount: number,
+    totalWithDiscount: number,
+    totalWithoutDiscount: number,
+  }
+}
+
 export class GetCurrentMonthUsageResponse extends jspb.Message {
   hasStartDate(): boolean;
   clearStartDate(): void;
@@ -200,6 +192,14 @@ export class GetCurrentMonthUsageResponse extends jspb.Message {
   clearEndDate(): void;
   getEndDate(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setEndDate(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  clearResourceUsageCostsBySourceList(): void;
+  getResourceUsageCostsBySourceList(): Array<ResourceUsageCostsBySource>;
+  setResourceUsageCostsBySourceList(value: Array<ResourceUsageCostsBySource>): void;
+  addResourceUsageCostsBySource(value?: ResourceUsageCostsBySource, index?: number): ResourceUsageCostsBySource;
+
+  getSubtotal(): number;
+  setSubtotal(value: number): void;
 
   getCloudStorageUsageCost(): number;
   setCloudStorageUsageCost(value: number): void;
@@ -248,6 +248,8 @@ export namespace GetCurrentMonthUsageResponse {
   export type AsObject = {
     startDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     endDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    resourceUsageCostsBySourceList: Array<ResourceUsageCostsBySource.AsObject>,
+    subtotal: number,
     cloudStorageUsageCost: number,
     dataUploadUsageCost: number,
     dataEgresUsageCost: number,
@@ -456,4 +458,26 @@ export interface PaymentMethodTypeMap {
 }
 
 export const PaymentMethodType: PaymentMethodTypeMap;
+
+export interface UsageCostTypeMap {
+  USAGE_COST_TYPE_UNSPECIFIED: 0;
+  USAGE_COST_TYPE_DATA_UPLOAD: 1;
+  USAGE_COST_TYPE_DATA_EGRESS: 2;
+  USAGE_COST_TYPE_REMOTE_CONTROL: 3;
+  USAGE_COST_TYPE_STANDARD_COMPUTE: 4;
+  USAGE_COST_TYPE_CLOUD_STORAGE: 5;
+  USAGE_COST_TYPE_BINARY_DATA_CLOUD_STORAGE: 6;
+  USAGE_COST_TYPE_OTHER_CLOUD_STORAGE: 7;
+  USAGE_COST_TYPE_PER_MACHINE: 8;
+}
+
+export const UsageCostType: UsageCostTypeMap;
+
+export interface SourceTypeMap {
+  SOURCE_TYPE_UNSPECIFIED: 0;
+  SOURCE_TYPE_ORG: 1;
+  SOURCE_TYPE_FRAGMENT: 2;
+}
+
+export const SourceType: SourceTypeMap;
 
