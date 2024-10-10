@@ -81,8 +81,21 @@ message ResourceUsageCosts {
 message GetCurrentMonthUsageResponse {
   google.protobuf.Timestamp start_date = 1;
   google.protobuf.Timestamp end_date = 2;
-  repeated ResourceUsageCostsBySource resource_usage_costs_by_source = 3;
-  double subtotal = 4;
+  repeated ResourceUsageCostsBySource resource_usage_costs_by_source = 14;
+  double subtotal = 15;
+
+  // all fields below are deprecated
+  double cloud_storage_usage_cost = 3 [deprecated = true];
+  double data_upload_usage_cost = 4 [deprecated = true];
+  double data_egres_usage_cost = 5 [deprecated = true];
+  double remote_control_usage_cost = 6 [deprecated = true];
+  double standard_compute_usage_cost = 7 [deprecated = true];
+  double discount_amount = 8 [deprecated = true];
+  double total_usage_with_discount = 9 [deprecated = true];
+  double total_usage_without_discount = 10 [deprecated = true];
+  double per_machine_usage_cost = 11 [deprecated = true];
+  double binary_data_cloud_storage_usage_cost = 12 [deprecated = true];
+  double other_cloud_storage_usage_cost = 13 [deprecated = true];
 }
 
 message GetOrgBillingInformationRequest {
