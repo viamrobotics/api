@@ -49,6 +49,8 @@ message StartBuildRequest {
   string module_version = 5;
   // checkout token. provide this for private repos
   optional string token = 6;
+  // optional working directory. defaults to repo root.
+  optional string workdir = 7;
 }
 
 message StartBuildResponse {
