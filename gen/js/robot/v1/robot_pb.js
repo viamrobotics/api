@@ -4913,7 +4913,8 @@ proto.viam.robot.v1.DiscoveryQuery.prototype.toObject = function(opt_includeInst
 proto.viam.robot.v1.DiscoveryQuery.toObject = function(includeInstance, msg) {
   var f, obj = {
     subtype: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    model: jspb.Message.getFieldWithDefault(msg, 2, "")
+    model: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4958,6 +4959,11 @@ proto.viam.robot.v1.DiscoveryQuery.deserializeBinaryFromReader = function(msg, r
       var value = /** @type {string} */ (reader.readString());
       msg.setModel(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -5001,6 +5007,14 @@ proto.viam.robot.v1.DiscoveryQuery.serializeBinaryToWriter = function(message, w
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -5037,6 +5051,43 @@ proto.viam.robot.v1.DiscoveryQuery.prototype.getModel = function() {
  */
 proto.viam.robot.v1.DiscoveryQuery.prototype.setModel = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.robot.v1.DiscoveryQuery.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.robot.v1.DiscoveryQuery} returns this
+*/
+proto.viam.robot.v1.DiscoveryQuery.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.robot.v1.DiscoveryQuery} returns this
+ */
+proto.viam.robot.v1.DiscoveryQuery.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.robot.v1.DiscoveryQuery.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
