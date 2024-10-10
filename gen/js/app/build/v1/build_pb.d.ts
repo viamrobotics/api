@@ -29,6 +29,11 @@ export class StartBuildRequest extends jspb.Message {
   getToken(): string;
   setToken(value: string): void;
 
+  hasWorkdir(): boolean;
+  clearWorkdir(): void;
+  getWorkdir(): string;
+  setWorkdir(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartBuildRequest.AsObject;
   static toObject(includeInstance: boolean, msg: StartBuildRequest): StartBuildRequest.AsObject;
@@ -47,6 +52,7 @@ export namespace StartBuildRequest {
     moduleId: string,
     moduleVersion: string,
     token: string,
+    workdir: string,
   }
 }
 
