@@ -568,7 +568,8 @@ proto.viam.app.build.v1.StartBuildRequest.toObject = function(includeInstance, m
     platformsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
     moduleId: jspb.Message.getFieldWithDefault(msg, 4, ""),
     moduleVersion: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    token: jspb.Message.getFieldWithDefault(msg, 6, "")
+    token: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    workdir: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -628,6 +629,10 @@ proto.viam.app.build.v1.StartBuildRequest.deserializeBinaryFromReader = function
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setToken(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWorkdir(value);
       break;
     default:
       reader.skipField();
@@ -697,6 +702,13 @@ proto.viam.app.build.v1.StartBuildRequest.serializeBinaryToWriter = function(mes
   if (f != null) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 7));
+  if (f != null) {
+    writer.writeString(
+      7,
       f
     );
   }
@@ -863,6 +875,42 @@ proto.viam.app.build.v1.StartBuildRequest.prototype.clearToken = function() {
  */
 proto.viam.app.build.v1.StartBuildRequest.prototype.hasToken = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional string workdir = 7;
+ * @return {string}
+ */
+proto.viam.app.build.v1.StartBuildRequest.prototype.getWorkdir = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.build.v1.StartBuildRequest} returns this
+ */
+proto.viam.app.build.v1.StartBuildRequest.prototype.setWorkdir = function(value) {
+  return jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.build.v1.StartBuildRequest} returns this
+ */
+proto.viam.app.build.v1.StartBuildRequest.prototype.clearWorkdir = function() {
+  return jspb.Message.setField(this, 7, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.build.v1.StartBuildRequest.prototype.hasWorkdir = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
