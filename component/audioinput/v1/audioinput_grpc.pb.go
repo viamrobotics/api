@@ -24,11 +24,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AudioInputServiceClient interface {
-	// Chunks returns audio chunks forever from an audio input of the underlying robot.
+	// Chunks returns audio chunks forever from an audio input of the underlying physicalDevice.
 	Chunks(ctx context.Context, in *ChunksRequest, opts ...grpc.CallOption) (AudioInputService_ChunksClient, error)
-	// Properties returns properties of an audio input of the underlying robot.
+	// Properties returns properties of an audio input of the underlying physicalDevice.
 	Properties(ctx context.Context, in *PropertiesRequest, opts ...grpc.CallOption) (*PropertiesResponse, error)
-	// Record records audio from an audio input of the underlying robot
+	// Record records audio from an audio input of the underlying physicalDevice
 	// to an HTTP response. A specific MIME type cannot be requested and may not necessarily
 	// be the same one returned each time.
 	Record(ctx context.Context, in *RecordRequest, opts ...grpc.CallOption) (*httpbody.HttpBody, error)
@@ -118,11 +118,11 @@ func (c *audioInputServiceClient) GetGeometries(ctx context.Context, in *v1.GetG
 // All implementations must embed UnimplementedAudioInputServiceServer
 // for forward compatibility
 type AudioInputServiceServer interface {
-	// Chunks returns audio chunks forever from an audio input of the underlying robot.
+	// Chunks returns audio chunks forever from an audio input of the underlying physicalDevice.
 	Chunks(*ChunksRequest, AudioInputService_ChunksServer) error
-	// Properties returns properties of an audio input of the underlying robot.
+	// Properties returns properties of an audio input of the underlying physicalDevice.
 	Properties(context.Context, *PropertiesRequest) (*PropertiesResponse, error)
-	// Record records audio from an audio input of the underlying robot
+	// Record records audio from an audio input of the underlying physicalDevice
 	// to an HTTP response. A specific MIME type cannot be requested and may not necessarily
 	// be the same one returned each time.
 	Record(context.Context, *RecordRequest) (*httpbody.HttpBody, error)

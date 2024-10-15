@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package viam.module.v1;
 
-import "app/v1/robot.proto";
-import "robot/v1/robot.proto";
+import "app/v1/physicalDevice.proto";
+import "physicalDevice/v1/physicalDevice.proto";
 
 option go_package = "go.viam.com/api/module/v1";
 
@@ -44,7 +44,7 @@ message RemoveResourceRequest {
 message RemoveResourceResponse {}
 
 message HandlerDefinition {
-  viam.robot.v1.ResourceRPCSubtype subtype = 1;
+  viam.physicalDevice.v1.ResourceRPCSubtype subtype = 1;
   repeated string models = 2;
 }
 message HandlerMap {

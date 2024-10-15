@@ -9,7 +9,7 @@ import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/stru
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as tagger_v1_tagger_pb from "../../tagger/v1/tagger_pb";
 
-export class Robot extends jspb.Message {
+export class physicalDevice extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
@@ -30,16 +30,16 @@ export class Robot extends jspb.Message {
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Robot.AsObject;
-  static toObject(includeInstance: boolean, msg: Robot): Robot.AsObject;
+  toObject(includeInstance?: boolean): physicalDevice.AsObject;
+  static toObject(includeInstance: boolean, msg: physicalDevice): physicalDevice.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Robot, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Robot;
-  static deserializeBinaryFromReader(message: Robot, reader: jspb.BinaryReader): Robot;
+  static serializeBinaryToWriter(message: physicalDevice, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): physicalDevice;
+  static deserializeBinaryFromReader(message: physicalDevice, reader: jspb.BinaryReader): physicalDevice;
 }
 
-export namespace Robot {
+export namespace physicalDevice {
   export type AsObject = {
     id: string,
     name: string,
@@ -49,7 +49,7 @@ export namespace Robot {
   }
 }
 
-export class RobotPart extends jspb.Message {
+export class physicalDevicePart extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
@@ -62,16 +62,16 @@ export class RobotPart extends jspb.Message {
   getSecret(): string;
   setSecret(value: string): void;
 
-  getRobot(): string;
-  setRobot(value: string): void;
+  getphysicalDevice(): string;
+  setphysicalDevice(value: string): void;
 
   getLocationId(): string;
   setLocationId(value: string): void;
 
-  hasRobotConfig(): boolean;
-  clearRobotConfig(): void;
-  getRobotConfig(): google_protobuf_struct_pb.Struct | undefined;
-  setRobotConfig(value?: google_protobuf_struct_pb.Struct): void;
+  hasphysicalDeviceConfig(): boolean;
+  clearphysicalDeviceConfig(): void;
+  getphysicalDeviceConfig(): google_protobuf_struct_pb.Struct | undefined;
+  setphysicalDeviceConfig(value?: google_protobuf_struct_pb.Struct): void;
 
   hasLastAccess(): boolean;
   clearLastAccess(): void;
@@ -103,24 +103,24 @@ export class RobotPart extends jspb.Message {
   addSecrets(value?: SharedSecret, index?: number): SharedSecret;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RobotPart.AsObject;
-  static toObject(includeInstance: boolean, msg: RobotPart): RobotPart.AsObject;
+  toObject(includeInstance?: boolean): physicalDevicePart.AsObject;
+  static toObject(includeInstance: boolean, msg: physicalDevicePart): physicalDevicePart.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RobotPart, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RobotPart;
-  static deserializeBinaryFromReader(message: RobotPart, reader: jspb.BinaryReader): RobotPart;
+  static serializeBinaryToWriter(message: physicalDevicePart, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): physicalDevicePart;
+  static deserializeBinaryFromReader(message: physicalDevicePart, reader: jspb.BinaryReader): physicalDevicePart;
 }
 
-export namespace RobotPart {
+export namespace physicalDevicePart {
   export type AsObject = {
     id: string,
     name: string,
     dnsName: string,
     secret: string,
-    robot: string,
+    physicalDevice: string,
     locationId: string,
-    robotConfig?: google_protobuf_struct_pb.Struct.AsObject,
+    physicalDeviceConfig?: google_protobuf_struct_pb.Struct.AsObject,
     lastAccess?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     userSuppliedInfo?: google_protobuf_struct_pb.Struct.AsObject,
     mainPart: boolean,
@@ -131,12 +131,12 @@ export namespace RobotPart {
   }
 }
 
-export class RobotPartHistoryEntry extends jspb.Message {
+export class physicalDevicePartHistoryEntry extends jspb.Message {
   getPart(): string;
   setPart(value: string): void;
 
-  getRobot(): string;
-  setRobot(value: string): void;
+  getphysicalDevice(): string;
+  setphysicalDevice(value: string): void;
 
   hasWhen(): boolean;
   clearWhen(): void;
@@ -145,25 +145,25 @@ export class RobotPartHistoryEntry extends jspb.Message {
 
   hasOld(): boolean;
   clearOld(): void;
-  getOld(): RobotPart | undefined;
-  setOld(value?: RobotPart): void;
+  getOld(): physicalDevicePart | undefined;
+  setOld(value?: physicalDevicePart): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RobotPartHistoryEntry.AsObject;
-  static toObject(includeInstance: boolean, msg: RobotPartHistoryEntry): RobotPartHistoryEntry.AsObject;
+  toObject(includeInstance?: boolean): physicalDevicePartHistoryEntry.AsObject;
+  static toObject(includeInstance: boolean, msg: physicalDevicePartHistoryEntry): physicalDevicePartHistoryEntry.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RobotPartHistoryEntry, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RobotPartHistoryEntry;
-  static deserializeBinaryFromReader(message: RobotPartHistoryEntry, reader: jspb.BinaryReader): RobotPartHistoryEntry;
+  static serializeBinaryToWriter(message: physicalDevicePartHistoryEntry, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): physicalDevicePartHistoryEntry;
+  static deserializeBinaryFromReader(message: physicalDevicePartHistoryEntry, reader: jspb.BinaryReader): physicalDevicePartHistoryEntry;
 }
 
-export namespace RobotPartHistoryEntry {
+export namespace physicalDevicePartHistoryEntry {
   export type AsObject = {
     part: string,
-    robot: string,
+    physicalDevice: string,
     when?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    old?: RobotPart.AsObject,
+    old?: physicalDevicePart.AsObject,
   }
 }
 
@@ -966,8 +966,8 @@ export class Location extends jspb.Message {
   getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  getRobotCount(): number;
-  setRobotCount(value: number): void;
+  getphysicalDeviceCount(): number;
+  setphysicalDeviceCount(value: number): void;
 
   hasConfig(): boolean;
   clearConfig(): void;
@@ -992,7 +992,7 @@ export namespace Location {
     auth?: LocationAuth.AsObject,
     organizationsList: Array<LocationOrganization.AsObject>,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    robotCount: number,
+    physicalDeviceCount: number,
     config?: StorageConfig.AsObject,
   }
 }
@@ -1517,211 +1517,211 @@ export namespace LocationAuthResponse {
   }
 }
 
-export class GetRobotRequest extends jspb.Message {
+export class GetphysicalDeviceRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRobotRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRobotRequest): GetRobotRequest.AsObject;
+  toObject(includeInstance?: boolean): GetphysicalDeviceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetphysicalDeviceRequest): GetphysicalDeviceRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRobotRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRobotRequest;
-  static deserializeBinaryFromReader(message: GetRobotRequest, reader: jspb.BinaryReader): GetRobotRequest;
+  static serializeBinaryToWriter(message: GetphysicalDeviceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetphysicalDeviceRequest;
+  static deserializeBinaryFromReader(message: GetphysicalDeviceRequest, reader: jspb.BinaryReader): GetphysicalDeviceRequest;
 }
 
-export namespace GetRobotRequest {
+export namespace GetphysicalDeviceRequest {
   export type AsObject = {
     id: string,
   }
 }
 
-export class GetRoverRentalRobotsRequest extends jspb.Message {
+export class GetRoverRentalphysicalDevicesRequest extends jspb.Message {
   getOrgId(): string;
   setOrgId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRoverRentalRobotsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRoverRentalRobotsRequest): GetRoverRentalRobotsRequest.AsObject;
+  toObject(includeInstance?: boolean): GetRoverRentalphysicalDevicesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRoverRentalphysicalDevicesRequest): GetRoverRentalphysicalDevicesRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRoverRentalRobotsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRoverRentalRobotsRequest;
-  static deserializeBinaryFromReader(message: GetRoverRentalRobotsRequest, reader: jspb.BinaryReader): GetRoverRentalRobotsRequest;
+  static serializeBinaryToWriter(message: GetRoverRentalphysicalDevicesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRoverRentalphysicalDevicesRequest;
+  static deserializeBinaryFromReader(message: GetRoverRentalphysicalDevicesRequest, reader: jspb.BinaryReader): GetRoverRentalphysicalDevicesRequest;
 }
 
-export namespace GetRoverRentalRobotsRequest {
+export namespace GetRoverRentalphysicalDevicesRequest {
   export type AsObject = {
     orgId: string,
   }
 }
 
-export class RoverRentalRobot extends jspb.Message {
-  getRobotId(): string;
-  setRobotId(value: string): void;
+export class RoverRentalphysicalDevice extends jspb.Message {
+  getphysicalDeviceId(): string;
+  setphysicalDeviceId(value: string): void;
 
   getLocationId(): string;
   setLocationId(value: string): void;
 
-  getRobotName(): string;
-  setRobotName(value: string): void;
+  getphysicalDeviceName(): string;
+  setphysicalDeviceName(value: string): void;
 
-  getRobotMainPartId(): string;
-  setRobotMainPartId(value: string): void;
+  getphysicalDeviceMainPartId(): string;
+  setphysicalDeviceMainPartId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RoverRentalRobot.AsObject;
-  static toObject(includeInstance: boolean, msg: RoverRentalRobot): RoverRentalRobot.AsObject;
+  toObject(includeInstance?: boolean): RoverRentalphysicalDevice.AsObject;
+  static toObject(includeInstance: boolean, msg: RoverRentalphysicalDevice): RoverRentalphysicalDevice.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RoverRentalRobot, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RoverRentalRobot;
-  static deserializeBinaryFromReader(message: RoverRentalRobot, reader: jspb.BinaryReader): RoverRentalRobot;
+  static serializeBinaryToWriter(message: RoverRentalphysicalDevice, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RoverRentalphysicalDevice;
+  static deserializeBinaryFromReader(message: RoverRentalphysicalDevice, reader: jspb.BinaryReader): RoverRentalphysicalDevice;
 }
 
-export namespace RoverRentalRobot {
+export namespace RoverRentalphysicalDevice {
   export type AsObject = {
-    robotId: string,
+    physicalDeviceId: string,
     locationId: string,
-    robotName: string,
-    robotMainPartId: string,
+    physicalDeviceName: string,
+    physicalDeviceMainPartId: string,
   }
 }
 
-export class GetRoverRentalRobotsResponse extends jspb.Message {
-  clearRobotsList(): void;
-  getRobotsList(): Array<RoverRentalRobot>;
-  setRobotsList(value: Array<RoverRentalRobot>): void;
-  addRobots(value?: RoverRentalRobot, index?: number): RoverRentalRobot;
+export class GetRoverRentalphysicalDevicesResponse extends jspb.Message {
+  clearphysicalDevicesList(): void;
+  getphysicalDevicesList(): Array<RoverRentalphysicalDevice>;
+  setphysicalDevicesList(value: Array<RoverRentalphysicalDevice>): void;
+  addphysicalDevices(value?: RoverRentalphysicalDevice, index?: number): RoverRentalphysicalDevice;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRoverRentalRobotsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRoverRentalRobotsResponse): GetRoverRentalRobotsResponse.AsObject;
+  toObject(includeInstance?: boolean): GetRoverRentalphysicalDevicesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRoverRentalphysicalDevicesResponse): GetRoverRentalphysicalDevicesResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRoverRentalRobotsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRoverRentalRobotsResponse;
-  static deserializeBinaryFromReader(message: GetRoverRentalRobotsResponse, reader: jspb.BinaryReader): GetRoverRentalRobotsResponse;
+  static serializeBinaryToWriter(message: GetRoverRentalphysicalDevicesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRoverRentalphysicalDevicesResponse;
+  static deserializeBinaryFromReader(message: GetRoverRentalphysicalDevicesResponse, reader: jspb.BinaryReader): GetRoverRentalphysicalDevicesResponse;
 }
 
-export namespace GetRoverRentalRobotsResponse {
+export namespace GetRoverRentalphysicalDevicesResponse {
   export type AsObject = {
-    robotsList: Array<RoverRentalRobot.AsObject>,
+    physicalDevicesList: Array<RoverRentalphysicalDevice.AsObject>,
   }
 }
 
-export class GetRobotResponse extends jspb.Message {
-  hasRobot(): boolean;
-  clearRobot(): void;
-  getRobot(): Robot | undefined;
-  setRobot(value?: Robot): void;
+export class GetphysicalDeviceResponse extends jspb.Message {
+  hasphysicalDevice(): boolean;
+  clearphysicalDevice(): void;
+  getphysicalDevice(): physicalDevice | undefined;
+  setphysicalDevice(value?: physicalDevice): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRobotResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRobotResponse): GetRobotResponse.AsObject;
+  toObject(includeInstance?: boolean): GetphysicalDeviceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetphysicalDeviceResponse): GetphysicalDeviceResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRobotResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRobotResponse;
-  static deserializeBinaryFromReader(message: GetRobotResponse, reader: jspb.BinaryReader): GetRobotResponse;
+  static serializeBinaryToWriter(message: GetphysicalDeviceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetphysicalDeviceResponse;
+  static deserializeBinaryFromReader(message: GetphysicalDeviceResponse, reader: jspb.BinaryReader): GetphysicalDeviceResponse;
 }
 
-export namespace GetRobotResponse {
+export namespace GetphysicalDeviceResponse {
   export type AsObject = {
-    robot?: Robot.AsObject,
+    physicalDevice?: physicalDevice.AsObject,
   }
 }
 
-export class GetRobotPartsRequest extends jspb.Message {
-  getRobotId(): string;
-  setRobotId(value: string): void;
+export class GetphysicalDevicePartsRequest extends jspb.Message {
+  getphysicalDeviceId(): string;
+  setphysicalDeviceId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRobotPartsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRobotPartsRequest): GetRobotPartsRequest.AsObject;
+  toObject(includeInstance?: boolean): GetphysicalDevicePartsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetphysicalDevicePartsRequest): GetphysicalDevicePartsRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRobotPartsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRobotPartsRequest;
-  static deserializeBinaryFromReader(message: GetRobotPartsRequest, reader: jspb.BinaryReader): GetRobotPartsRequest;
+  static serializeBinaryToWriter(message: GetphysicalDevicePartsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetphysicalDevicePartsRequest;
+  static deserializeBinaryFromReader(message: GetphysicalDevicePartsRequest, reader: jspb.BinaryReader): GetphysicalDevicePartsRequest;
 }
 
-export namespace GetRobotPartsRequest {
+export namespace GetphysicalDevicePartsRequest {
   export type AsObject = {
-    robotId: string,
+    physicalDeviceId: string,
   }
 }
 
-export class GetRobotPartsResponse extends jspb.Message {
+export class GetphysicalDevicePartsResponse extends jspb.Message {
   clearPartsList(): void;
-  getPartsList(): Array<RobotPart>;
-  setPartsList(value: Array<RobotPart>): void;
-  addParts(value?: RobotPart, index?: number): RobotPart;
+  getPartsList(): Array<physicalDevicePart>;
+  setPartsList(value: Array<physicalDevicePart>): void;
+  addParts(value?: physicalDevicePart, index?: number): physicalDevicePart;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRobotPartsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRobotPartsResponse): GetRobotPartsResponse.AsObject;
+  toObject(includeInstance?: boolean): GetphysicalDevicePartsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetphysicalDevicePartsResponse): GetphysicalDevicePartsResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRobotPartsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRobotPartsResponse;
-  static deserializeBinaryFromReader(message: GetRobotPartsResponse, reader: jspb.BinaryReader): GetRobotPartsResponse;
+  static serializeBinaryToWriter(message: GetphysicalDevicePartsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetphysicalDevicePartsResponse;
+  static deserializeBinaryFromReader(message: GetphysicalDevicePartsResponse, reader: jspb.BinaryReader): GetphysicalDevicePartsResponse;
 }
 
-export namespace GetRobotPartsResponse {
+export namespace GetphysicalDevicePartsResponse {
   export type AsObject = {
-    partsList: Array<RobotPart.AsObject>,
+    partsList: Array<physicalDevicePart.AsObject>,
   }
 }
 
-export class GetRobotPartRequest extends jspb.Message {
+export class GetphysicalDevicePartRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRobotPartRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRobotPartRequest): GetRobotPartRequest.AsObject;
+  toObject(includeInstance?: boolean): GetphysicalDevicePartRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetphysicalDevicePartRequest): GetphysicalDevicePartRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRobotPartRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRobotPartRequest;
-  static deserializeBinaryFromReader(message: GetRobotPartRequest, reader: jspb.BinaryReader): GetRobotPartRequest;
+  static serializeBinaryToWriter(message: GetphysicalDevicePartRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetphysicalDevicePartRequest;
+  static deserializeBinaryFromReader(message: GetphysicalDevicePartRequest, reader: jspb.BinaryReader): GetphysicalDevicePartRequest;
 }
 
-export namespace GetRobotPartRequest {
+export namespace GetphysicalDevicePartRequest {
   export type AsObject = {
     id: string,
   }
 }
 
-export class GetRobotPartResponse extends jspb.Message {
+export class GetphysicalDevicePartResponse extends jspb.Message {
   hasPart(): boolean;
   clearPart(): void;
-  getPart(): RobotPart | undefined;
-  setPart(value?: RobotPart): void;
+  getPart(): physicalDevicePart | undefined;
+  setPart(value?: physicalDevicePart): void;
 
   getConfigJson(): string;
   setConfigJson(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRobotPartResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRobotPartResponse): GetRobotPartResponse.AsObject;
+  toObject(includeInstance?: boolean): GetphysicalDevicePartResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetphysicalDevicePartResponse): GetphysicalDevicePartResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRobotPartResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRobotPartResponse;
-  static deserializeBinaryFromReader(message: GetRobotPartResponse, reader: jspb.BinaryReader): GetRobotPartResponse;
+  static serializeBinaryToWriter(message: GetphysicalDevicePartResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetphysicalDevicePartResponse;
+  static deserializeBinaryFromReader(message: GetphysicalDevicePartResponse, reader: jspb.BinaryReader): GetphysicalDevicePartResponse;
 }
 
-export namespace GetRobotPartResponse {
+export namespace GetphysicalDevicePartResponse {
   export type AsObject = {
-    part?: RobotPart.AsObject,
+    part?: physicalDevicePart.AsObject,
     configJson: string,
   }
 }
 
-export class GetRobotPartLogsRequest extends jspb.Message {
+export class GetphysicalDevicePartLogsRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
@@ -1744,16 +1744,16 @@ export class GetRobotPartLogsRequest extends jspb.Message {
   addLevels(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRobotPartLogsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRobotPartLogsRequest): GetRobotPartLogsRequest.AsObject;
+  toObject(includeInstance?: boolean): GetphysicalDevicePartLogsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetphysicalDevicePartLogsRequest): GetphysicalDevicePartLogsRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRobotPartLogsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRobotPartLogsRequest;
-  static deserializeBinaryFromReader(message: GetRobotPartLogsRequest, reader: jspb.BinaryReader): GetRobotPartLogsRequest;
+  static serializeBinaryToWriter(message: GetphysicalDevicePartLogsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetphysicalDevicePartLogsRequest;
+  static deserializeBinaryFromReader(message: GetphysicalDevicePartLogsRequest, reader: jspb.BinaryReader): GetphysicalDevicePartLogsRequest;
 }
 
-export namespace GetRobotPartLogsRequest {
+export namespace GetphysicalDevicePartLogsRequest {
   export type AsObject = {
     id: string,
     errorsOnly: boolean,
@@ -1763,7 +1763,7 @@ export namespace GetRobotPartLogsRequest {
   }
 }
 
-export class GetRobotPartLogsResponse extends jspb.Message {
+export class GetphysicalDevicePartLogsResponse extends jspb.Message {
   clearLogsList(): void;
   getLogsList(): Array<common_v1_common_pb.LogEntry>;
   setLogsList(value: Array<common_v1_common_pb.LogEntry>): void;
@@ -1773,23 +1773,23 @@ export class GetRobotPartLogsResponse extends jspb.Message {
   setNextPageToken(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRobotPartLogsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRobotPartLogsResponse): GetRobotPartLogsResponse.AsObject;
+  toObject(includeInstance?: boolean): GetphysicalDevicePartLogsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetphysicalDevicePartLogsResponse): GetphysicalDevicePartLogsResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRobotPartLogsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRobotPartLogsResponse;
-  static deserializeBinaryFromReader(message: GetRobotPartLogsResponse, reader: jspb.BinaryReader): GetRobotPartLogsResponse;
+  static serializeBinaryToWriter(message: GetphysicalDevicePartLogsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetphysicalDevicePartLogsResponse;
+  static deserializeBinaryFromReader(message: GetphysicalDevicePartLogsResponse, reader: jspb.BinaryReader): GetphysicalDevicePartLogsResponse;
 }
 
-export namespace GetRobotPartLogsResponse {
+export namespace GetphysicalDevicePartLogsResponse {
   export type AsObject = {
     logsList: Array<common_v1_common_pb.LogEntry.AsObject>,
     nextPageToken: string,
   }
 }
 
-export class TailRobotPartLogsRequest extends jspb.Message {
+export class TailphysicalDevicePartLogsRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
@@ -1802,16 +1802,16 @@ export class TailRobotPartLogsRequest extends jspb.Message {
   setFilter(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TailRobotPartLogsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: TailRobotPartLogsRequest): TailRobotPartLogsRequest.AsObject;
+  toObject(includeInstance?: boolean): TailphysicalDevicePartLogsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TailphysicalDevicePartLogsRequest): TailphysicalDevicePartLogsRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TailRobotPartLogsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TailRobotPartLogsRequest;
-  static deserializeBinaryFromReader(message: TailRobotPartLogsRequest, reader: jspb.BinaryReader): TailRobotPartLogsRequest;
+  static serializeBinaryToWriter(message: TailphysicalDevicePartLogsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TailphysicalDevicePartLogsRequest;
+  static deserializeBinaryFromReader(message: TailphysicalDevicePartLogsRequest, reader: jspb.BinaryReader): TailphysicalDevicePartLogsRequest;
 }
 
-export namespace TailRobotPartLogsRequest {
+export namespace TailphysicalDevicePartLogsRequest {
   export type AsObject = {
     id: string,
     errorsOnly: boolean,
@@ -1819,203 +1819,203 @@ export namespace TailRobotPartLogsRequest {
   }
 }
 
-export class TailRobotPartLogsResponse extends jspb.Message {
+export class TailphysicalDevicePartLogsResponse extends jspb.Message {
   clearLogsList(): void;
   getLogsList(): Array<common_v1_common_pb.LogEntry>;
   setLogsList(value: Array<common_v1_common_pb.LogEntry>): void;
   addLogs(value?: common_v1_common_pb.LogEntry, index?: number): common_v1_common_pb.LogEntry;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TailRobotPartLogsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: TailRobotPartLogsResponse): TailRobotPartLogsResponse.AsObject;
+  toObject(includeInstance?: boolean): TailphysicalDevicePartLogsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TailphysicalDevicePartLogsResponse): TailphysicalDevicePartLogsResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TailRobotPartLogsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TailRobotPartLogsResponse;
-  static deserializeBinaryFromReader(message: TailRobotPartLogsResponse, reader: jspb.BinaryReader): TailRobotPartLogsResponse;
+  static serializeBinaryToWriter(message: TailphysicalDevicePartLogsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TailphysicalDevicePartLogsResponse;
+  static deserializeBinaryFromReader(message: TailphysicalDevicePartLogsResponse, reader: jspb.BinaryReader): TailphysicalDevicePartLogsResponse;
 }
 
-export namespace TailRobotPartLogsResponse {
+export namespace TailphysicalDevicePartLogsResponse {
   export type AsObject = {
     logsList: Array<common_v1_common_pb.LogEntry.AsObject>,
   }
 }
 
-export class GetRobotPartHistoryRequest extends jspb.Message {
+export class GetphysicalDevicePartHistoryRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRobotPartHistoryRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRobotPartHistoryRequest): GetRobotPartHistoryRequest.AsObject;
+  toObject(includeInstance?: boolean): GetphysicalDevicePartHistoryRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetphysicalDevicePartHistoryRequest): GetphysicalDevicePartHistoryRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRobotPartHistoryRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRobotPartHistoryRequest;
-  static deserializeBinaryFromReader(message: GetRobotPartHistoryRequest, reader: jspb.BinaryReader): GetRobotPartHistoryRequest;
+  static serializeBinaryToWriter(message: GetphysicalDevicePartHistoryRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetphysicalDevicePartHistoryRequest;
+  static deserializeBinaryFromReader(message: GetphysicalDevicePartHistoryRequest, reader: jspb.BinaryReader): GetphysicalDevicePartHistoryRequest;
 }
 
-export namespace GetRobotPartHistoryRequest {
+export namespace GetphysicalDevicePartHistoryRequest {
   export type AsObject = {
     id: string,
   }
 }
 
-export class GetRobotPartHistoryResponse extends jspb.Message {
+export class GetphysicalDevicePartHistoryResponse extends jspb.Message {
   clearHistoryList(): void;
-  getHistoryList(): Array<RobotPartHistoryEntry>;
-  setHistoryList(value: Array<RobotPartHistoryEntry>): void;
-  addHistory(value?: RobotPartHistoryEntry, index?: number): RobotPartHistoryEntry;
+  getHistoryList(): Array<physicalDevicePartHistoryEntry>;
+  setHistoryList(value: Array<physicalDevicePartHistoryEntry>): void;
+  addHistory(value?: physicalDevicePartHistoryEntry, index?: number): physicalDevicePartHistoryEntry;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRobotPartHistoryResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRobotPartHistoryResponse): GetRobotPartHistoryResponse.AsObject;
+  toObject(includeInstance?: boolean): GetphysicalDevicePartHistoryResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetphysicalDevicePartHistoryResponse): GetphysicalDevicePartHistoryResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRobotPartHistoryResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRobotPartHistoryResponse;
-  static deserializeBinaryFromReader(message: GetRobotPartHistoryResponse, reader: jspb.BinaryReader): GetRobotPartHistoryResponse;
+  static serializeBinaryToWriter(message: GetphysicalDevicePartHistoryResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetphysicalDevicePartHistoryResponse;
+  static deserializeBinaryFromReader(message: GetphysicalDevicePartHistoryResponse, reader: jspb.BinaryReader): GetphysicalDevicePartHistoryResponse;
 }
 
-export namespace GetRobotPartHistoryResponse {
+export namespace GetphysicalDevicePartHistoryResponse {
   export type AsObject = {
-    historyList: Array<RobotPartHistoryEntry.AsObject>,
+    historyList: Array<physicalDevicePartHistoryEntry.AsObject>,
   }
 }
 
-export class UpdateRobotPartRequest extends jspb.Message {
+export class UpdatephysicalDevicePartRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   getName(): string;
   setName(value: string): void;
 
-  hasRobotConfig(): boolean;
-  clearRobotConfig(): void;
-  getRobotConfig(): google_protobuf_struct_pb.Struct | undefined;
-  setRobotConfig(value?: google_protobuf_struct_pb.Struct): void;
+  hasphysicalDeviceConfig(): boolean;
+  clearphysicalDeviceConfig(): void;
+  getphysicalDeviceConfig(): google_protobuf_struct_pb.Struct | undefined;
+  setphysicalDeviceConfig(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateRobotPartRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateRobotPartRequest): UpdateRobotPartRequest.AsObject;
+  toObject(includeInstance?: boolean): UpdatephysicalDevicePartRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdatephysicalDevicePartRequest): UpdatephysicalDevicePartRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateRobotPartRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateRobotPartRequest;
-  static deserializeBinaryFromReader(message: UpdateRobotPartRequest, reader: jspb.BinaryReader): UpdateRobotPartRequest;
+  static serializeBinaryToWriter(message: UpdatephysicalDevicePartRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdatephysicalDevicePartRequest;
+  static deserializeBinaryFromReader(message: UpdatephysicalDevicePartRequest, reader: jspb.BinaryReader): UpdatephysicalDevicePartRequest;
 }
 
-export namespace UpdateRobotPartRequest {
+export namespace UpdatephysicalDevicePartRequest {
   export type AsObject = {
     id: string,
     name: string,
-    robotConfig?: google_protobuf_struct_pb.Struct.AsObject,
+    physicalDeviceConfig?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
-export class UpdateRobotPartResponse extends jspb.Message {
+export class UpdatephysicalDevicePartResponse extends jspb.Message {
   hasPart(): boolean;
   clearPart(): void;
-  getPart(): RobotPart | undefined;
-  setPart(value?: RobotPart): void;
+  getPart(): physicalDevicePart | undefined;
+  setPart(value?: physicalDevicePart): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateRobotPartResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateRobotPartResponse): UpdateRobotPartResponse.AsObject;
+  toObject(includeInstance?: boolean): UpdatephysicalDevicePartResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdatephysicalDevicePartResponse): UpdatephysicalDevicePartResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateRobotPartResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateRobotPartResponse;
-  static deserializeBinaryFromReader(message: UpdateRobotPartResponse, reader: jspb.BinaryReader): UpdateRobotPartResponse;
+  static serializeBinaryToWriter(message: UpdatephysicalDevicePartResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdatephysicalDevicePartResponse;
+  static deserializeBinaryFromReader(message: UpdatephysicalDevicePartResponse, reader: jspb.BinaryReader): UpdatephysicalDevicePartResponse;
 }
 
-export namespace UpdateRobotPartResponse {
+export namespace UpdatephysicalDevicePartResponse {
   export type AsObject = {
-    part?: RobotPart.AsObject,
+    part?: physicalDevicePart.AsObject,
   }
 }
 
-export class NewRobotPartRequest extends jspb.Message {
-  getRobotId(): string;
-  setRobotId(value: string): void;
+export class NewphysicalDevicePartRequest extends jspb.Message {
+  getphysicalDeviceId(): string;
+  setphysicalDeviceId(value: string): void;
 
   getPartName(): string;
   setPartName(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): NewRobotPartRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: NewRobotPartRequest): NewRobotPartRequest.AsObject;
+  toObject(includeInstance?: boolean): NewphysicalDevicePartRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: NewphysicalDevicePartRequest): NewphysicalDevicePartRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: NewRobotPartRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): NewRobotPartRequest;
-  static deserializeBinaryFromReader(message: NewRobotPartRequest, reader: jspb.BinaryReader): NewRobotPartRequest;
+  static serializeBinaryToWriter(message: NewphysicalDevicePartRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): NewphysicalDevicePartRequest;
+  static deserializeBinaryFromReader(message: NewphysicalDevicePartRequest, reader: jspb.BinaryReader): NewphysicalDevicePartRequest;
 }
 
-export namespace NewRobotPartRequest {
+export namespace NewphysicalDevicePartRequest {
   export type AsObject = {
-    robotId: string,
+    physicalDeviceId: string,
     partName: string,
   }
 }
 
-export class NewRobotPartResponse extends jspb.Message {
+export class NewphysicalDevicePartResponse extends jspb.Message {
   getPartId(): string;
   setPartId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): NewRobotPartResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: NewRobotPartResponse): NewRobotPartResponse.AsObject;
+  toObject(includeInstance?: boolean): NewphysicalDevicePartResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: NewphysicalDevicePartResponse): NewphysicalDevicePartResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: NewRobotPartResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): NewRobotPartResponse;
-  static deserializeBinaryFromReader(message: NewRobotPartResponse, reader: jspb.BinaryReader): NewRobotPartResponse;
+  static serializeBinaryToWriter(message: NewphysicalDevicePartResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): NewphysicalDevicePartResponse;
+  static deserializeBinaryFromReader(message: NewphysicalDevicePartResponse, reader: jspb.BinaryReader): NewphysicalDevicePartResponse;
 }
 
-export namespace NewRobotPartResponse {
+export namespace NewphysicalDevicePartResponse {
   export type AsObject = {
     partId: string,
   }
 }
 
-export class DeleteRobotPartRequest extends jspb.Message {
+export class DeletephysicalDevicePartRequest extends jspb.Message {
   getPartId(): string;
   setPartId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteRobotPartRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteRobotPartRequest): DeleteRobotPartRequest.AsObject;
+  toObject(includeInstance?: boolean): DeletephysicalDevicePartRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeletephysicalDevicePartRequest): DeletephysicalDevicePartRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeleteRobotPartRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteRobotPartRequest;
-  static deserializeBinaryFromReader(message: DeleteRobotPartRequest, reader: jspb.BinaryReader): DeleteRobotPartRequest;
+  static serializeBinaryToWriter(message: DeletephysicalDevicePartRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeletephysicalDevicePartRequest;
+  static deserializeBinaryFromReader(message: DeletephysicalDevicePartRequest, reader: jspb.BinaryReader): DeletephysicalDevicePartRequest;
 }
 
-export namespace DeleteRobotPartRequest {
+export namespace DeletephysicalDevicePartRequest {
   export type AsObject = {
     partId: string,
   }
 }
 
-export class GetRobotAPIKeysRequest extends jspb.Message {
-  getRobotId(): string;
-  setRobotId(value: string): void;
+export class GetphysicalDeviceAPIKeysRequest extends jspb.Message {
+  getphysicalDeviceId(): string;
+  setphysicalDeviceId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRobotAPIKeysRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRobotAPIKeysRequest): GetRobotAPIKeysRequest.AsObject;
+  toObject(includeInstance?: boolean): GetphysicalDeviceAPIKeysRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetphysicalDeviceAPIKeysRequest): GetphysicalDeviceAPIKeysRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRobotAPIKeysRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRobotAPIKeysRequest;
-  static deserializeBinaryFromReader(message: GetRobotAPIKeysRequest, reader: jspb.BinaryReader): GetRobotAPIKeysRequest;
+  static serializeBinaryToWriter(message: GetphysicalDeviceAPIKeysRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetphysicalDeviceAPIKeysRequest;
+  static deserializeBinaryFromReader(message: GetphysicalDeviceAPIKeysRequest, reader: jspb.BinaryReader): GetphysicalDeviceAPIKeysRequest;
 }
 
-export namespace GetRobotAPIKeysRequest {
+export namespace GetphysicalDeviceAPIKeysRequest {
   export type AsObject = {
-    robotId: string,
+    physicalDeviceId: string,
   }
 }
 
@@ -2053,40 +2053,40 @@ export namespace APIKey {
   }
 }
 
-export class GetRobotAPIKeysResponse extends jspb.Message {
+export class GetphysicalDeviceAPIKeysResponse extends jspb.Message {
   clearApiKeysList(): void;
   getApiKeysList(): Array<APIKeyWithAuthorizations>;
   setApiKeysList(value: Array<APIKeyWithAuthorizations>): void;
   addApiKeys(value?: APIKeyWithAuthorizations, index?: number): APIKeyWithAuthorizations;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetRobotAPIKeysResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetRobotAPIKeysResponse): GetRobotAPIKeysResponse.AsObject;
+  toObject(includeInstance?: boolean): GetphysicalDeviceAPIKeysResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetphysicalDeviceAPIKeysResponse): GetphysicalDeviceAPIKeysResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetRobotAPIKeysResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetRobotAPIKeysResponse;
-  static deserializeBinaryFromReader(message: GetRobotAPIKeysResponse, reader: jspb.BinaryReader): GetRobotAPIKeysResponse;
+  static serializeBinaryToWriter(message: GetphysicalDeviceAPIKeysResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetphysicalDeviceAPIKeysResponse;
+  static deserializeBinaryFromReader(message: GetphysicalDeviceAPIKeysResponse, reader: jspb.BinaryReader): GetphysicalDeviceAPIKeysResponse;
 }
 
-export namespace GetRobotAPIKeysResponse {
+export namespace GetphysicalDeviceAPIKeysResponse {
   export type AsObject = {
     apiKeysList: Array<APIKeyWithAuthorizations.AsObject>,
   }
 }
 
-export class DeleteRobotPartResponse extends jspb.Message {
+export class DeletephysicalDevicePartResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteRobotPartResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteRobotPartResponse): DeleteRobotPartResponse.AsObject;
+  toObject(includeInstance?: boolean): DeletephysicalDevicePartResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeletephysicalDevicePartResponse): DeletephysicalDevicePartResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeleteRobotPartResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteRobotPartResponse;
-  static deserializeBinaryFromReader(message: DeleteRobotPartResponse, reader: jspb.BinaryReader): DeleteRobotPartResponse;
+  static serializeBinaryToWriter(message: DeletephysicalDevicePartResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeletephysicalDevicePartResponse;
+  static deserializeBinaryFromReader(message: DeletephysicalDevicePartResponse, reader: jspb.BinaryReader): DeletephysicalDevicePartResponse;
 }
 
-export namespace DeleteRobotPartResponse {
+export namespace DeletephysicalDevicePartResponse {
   export type AsObject = {
   }
 }
@@ -2117,8 +2117,8 @@ export class Fragment extends jspb.Message {
   getOrganizationName(): string;
   setOrganizationName(value: string): void;
 
-  getRobotPartCount(): number;
-  setRobotPartCount(value: number): void;
+  getphysicalDevicePartCount(): number;
+  setphysicalDevicePartCount(value: number): void;
 
   getOrganizationCount(): number;
   setOrganizationCount(value: number): void;
@@ -2148,7 +2148,7 @@ export namespace Fragment {
     pb_public: boolean,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     organizationName: string,
-    robotPartCount: number,
+    physicalDevicePartCount: number,
     organizationCount: number,
     onlyUsedByOwner: boolean,
     visibility: FragmentVisibilityMap[keyof FragmentVisibilityMap],
@@ -2401,49 +2401,49 @@ export namespace DeleteFragmentResponse {
   }
 }
 
-export class ListRobotsRequest extends jspb.Message {
+export class ListphysicalDevicesRequest extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ListRobotsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: ListRobotsRequest): ListRobotsRequest.AsObject;
+  toObject(includeInstance?: boolean): ListphysicalDevicesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListphysicalDevicesRequest): ListphysicalDevicesRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ListRobotsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ListRobotsRequest;
-  static deserializeBinaryFromReader(message: ListRobotsRequest, reader: jspb.BinaryReader): ListRobotsRequest;
+  static serializeBinaryToWriter(message: ListphysicalDevicesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListphysicalDevicesRequest;
+  static deserializeBinaryFromReader(message: ListphysicalDevicesRequest, reader: jspb.BinaryReader): ListphysicalDevicesRequest;
 }
 
-export namespace ListRobotsRequest {
+export namespace ListphysicalDevicesRequest {
   export type AsObject = {
     locationId: string,
   }
 }
 
-export class ListRobotsResponse extends jspb.Message {
-  clearRobotsList(): void;
-  getRobotsList(): Array<Robot>;
-  setRobotsList(value: Array<Robot>): void;
-  addRobots(value?: Robot, index?: number): Robot;
+export class ListphysicalDevicesResponse extends jspb.Message {
+  clearphysicalDevicesList(): void;
+  getphysicalDevicesList(): Array<physicalDevice>;
+  setphysicalDevicesList(value: Array<physicalDevice>): void;
+  addphysicalDevices(value?: physicalDevice, index?: number): physicalDevice;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ListRobotsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: ListRobotsResponse): ListRobotsResponse.AsObject;
+  toObject(includeInstance?: boolean): ListphysicalDevicesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListphysicalDevicesResponse): ListphysicalDevicesResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ListRobotsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ListRobotsResponse;
-  static deserializeBinaryFromReader(message: ListRobotsResponse, reader: jspb.BinaryReader): ListRobotsResponse;
+  static serializeBinaryToWriter(message: ListphysicalDevicesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListphysicalDevicesResponse;
+  static deserializeBinaryFromReader(message: ListphysicalDevicesResponse, reader: jspb.BinaryReader): ListphysicalDevicesResponse;
 }
 
-export namespace ListRobotsResponse {
+export namespace ListphysicalDevicesResponse {
   export type AsObject = {
-    robotsList: Array<Robot.AsObject>,
+    physicalDevicesList: Array<physicalDevice.AsObject>,
   }
 }
 
-export class NewRobotRequest extends jspb.Message {
+export class NewphysicalDeviceRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
@@ -2451,43 +2451,43 @@ export class NewRobotRequest extends jspb.Message {
   setLocation(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): NewRobotRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: NewRobotRequest): NewRobotRequest.AsObject;
+  toObject(includeInstance?: boolean): NewphysicalDeviceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: NewphysicalDeviceRequest): NewphysicalDeviceRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: NewRobotRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): NewRobotRequest;
-  static deserializeBinaryFromReader(message: NewRobotRequest, reader: jspb.BinaryReader): NewRobotRequest;
+  static serializeBinaryToWriter(message: NewphysicalDeviceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): NewphysicalDeviceRequest;
+  static deserializeBinaryFromReader(message: NewphysicalDeviceRequest, reader: jspb.BinaryReader): NewphysicalDeviceRequest;
 }
 
-export namespace NewRobotRequest {
+export namespace NewphysicalDeviceRequest {
   export type AsObject = {
     name: string,
     location: string,
   }
 }
 
-export class NewRobotResponse extends jspb.Message {
+export class NewphysicalDeviceResponse extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): NewRobotResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: NewRobotResponse): NewRobotResponse.AsObject;
+  toObject(includeInstance?: boolean): NewphysicalDeviceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: NewphysicalDeviceResponse): NewphysicalDeviceResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: NewRobotResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): NewRobotResponse;
-  static deserializeBinaryFromReader(message: NewRobotResponse, reader: jspb.BinaryReader): NewRobotResponse;
+  static serializeBinaryToWriter(message: NewphysicalDeviceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): NewphysicalDeviceResponse;
+  static deserializeBinaryFromReader(message: NewphysicalDeviceResponse, reader: jspb.BinaryReader): NewphysicalDeviceResponse;
 }
 
-export namespace NewRobotResponse {
+export namespace NewphysicalDeviceResponse {
   export type AsObject = {
     id: string,
   }
 }
 
-export class UpdateRobotRequest extends jspb.Message {
+export class UpdatephysicalDeviceRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
@@ -2498,16 +2498,16 @@ export class UpdateRobotRequest extends jspb.Message {
   setLocation(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateRobotRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateRobotRequest): UpdateRobotRequest.AsObject;
+  toObject(includeInstance?: boolean): UpdatephysicalDeviceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdatephysicalDeviceRequest): UpdatephysicalDeviceRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateRobotRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateRobotRequest;
-  static deserializeBinaryFromReader(message: UpdateRobotRequest, reader: jspb.BinaryReader): UpdateRobotRequest;
+  static serializeBinaryToWriter(message: UpdatephysicalDeviceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdatephysicalDeviceRequest;
+  static deserializeBinaryFromReader(message: UpdatephysicalDeviceRequest, reader: jspb.BinaryReader): UpdatephysicalDeviceRequest;
 }
 
-export namespace UpdateRobotRequest {
+export namespace UpdatephysicalDeviceRequest {
   export type AsObject = {
     id: string,
     name: string,
@@ -2515,60 +2515,60 @@ export namespace UpdateRobotRequest {
   }
 }
 
-export class UpdateRobotResponse extends jspb.Message {
-  hasRobot(): boolean;
-  clearRobot(): void;
-  getRobot(): Robot | undefined;
-  setRobot(value?: Robot): void;
+export class UpdatephysicalDeviceResponse extends jspb.Message {
+  hasphysicalDevice(): boolean;
+  clearphysicalDevice(): void;
+  getphysicalDevice(): physicalDevice | undefined;
+  setphysicalDevice(value?: physicalDevice): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateRobotResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateRobotResponse): UpdateRobotResponse.AsObject;
+  toObject(includeInstance?: boolean): UpdatephysicalDeviceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdatephysicalDeviceResponse): UpdatephysicalDeviceResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateRobotResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateRobotResponse;
-  static deserializeBinaryFromReader(message: UpdateRobotResponse, reader: jspb.BinaryReader): UpdateRobotResponse;
+  static serializeBinaryToWriter(message: UpdatephysicalDeviceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdatephysicalDeviceResponse;
+  static deserializeBinaryFromReader(message: UpdatephysicalDeviceResponse, reader: jspb.BinaryReader): UpdatephysicalDeviceResponse;
 }
 
-export namespace UpdateRobotResponse {
+export namespace UpdatephysicalDeviceResponse {
   export type AsObject = {
-    robot?: Robot.AsObject,
+    physicalDevice?: physicalDevice.AsObject,
   }
 }
 
-export class DeleteRobotRequest extends jspb.Message {
+export class DeletephysicalDeviceRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteRobotRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteRobotRequest): DeleteRobotRequest.AsObject;
+  toObject(includeInstance?: boolean): DeletephysicalDeviceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeletephysicalDeviceRequest): DeletephysicalDeviceRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeleteRobotRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteRobotRequest;
-  static deserializeBinaryFromReader(message: DeleteRobotRequest, reader: jspb.BinaryReader): DeleteRobotRequest;
+  static serializeBinaryToWriter(message: DeletephysicalDeviceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeletephysicalDeviceRequest;
+  static deserializeBinaryFromReader(message: DeletephysicalDeviceRequest, reader: jspb.BinaryReader): DeletephysicalDeviceRequest;
 }
 
-export namespace DeleteRobotRequest {
+export namespace DeletephysicalDeviceRequest {
   export type AsObject = {
     id: string,
   }
 }
 
-export class DeleteRobotResponse extends jspb.Message {
+export class DeletephysicalDeviceResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteRobotResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteRobotResponse): DeleteRobotResponse.AsObject;
+  toObject(includeInstance?: boolean): DeletephysicalDeviceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeletephysicalDeviceResponse): DeletephysicalDeviceResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeleteRobotResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteRobotResponse;
-  static deserializeBinaryFromReader(message: DeleteRobotResponse, reader: jspb.BinaryReader): DeleteRobotResponse;
+  static serializeBinaryToWriter(message: DeletephysicalDeviceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeletephysicalDeviceResponse;
+  static deserializeBinaryFromReader(message: DeletephysicalDeviceResponse, reader: jspb.BinaryReader): DeletephysicalDeviceResponse;
 }
 
-export namespace DeleteRobotResponse {
+export namespace DeletephysicalDeviceResponse {
   export type AsObject = {
   }
 }
@@ -2645,49 +2645,49 @@ export namespace MarkPartForRestartResponse {
   }
 }
 
-export class CreateRobotPartSecretRequest extends jspb.Message {
+export class CreatephysicalDevicePartSecretRequest extends jspb.Message {
   getPartId(): string;
   setPartId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CreateRobotPartSecretRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: CreateRobotPartSecretRequest): CreateRobotPartSecretRequest.AsObject;
+  toObject(includeInstance?: boolean): CreatephysicalDevicePartSecretRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreatephysicalDevicePartSecretRequest): CreatephysicalDevicePartSecretRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CreateRobotPartSecretRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CreateRobotPartSecretRequest;
-  static deserializeBinaryFromReader(message: CreateRobotPartSecretRequest, reader: jspb.BinaryReader): CreateRobotPartSecretRequest;
+  static serializeBinaryToWriter(message: CreatephysicalDevicePartSecretRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreatephysicalDevicePartSecretRequest;
+  static deserializeBinaryFromReader(message: CreatephysicalDevicePartSecretRequest, reader: jspb.BinaryReader): CreatephysicalDevicePartSecretRequest;
 }
 
-export namespace CreateRobotPartSecretRequest {
+export namespace CreatephysicalDevicePartSecretRequest {
   export type AsObject = {
     partId: string,
   }
 }
 
-export class CreateRobotPartSecretResponse extends jspb.Message {
+export class CreatephysicalDevicePartSecretResponse extends jspb.Message {
   hasPart(): boolean;
   clearPart(): void;
-  getPart(): RobotPart | undefined;
-  setPart(value?: RobotPart): void;
+  getPart(): physicalDevicePart | undefined;
+  setPart(value?: physicalDevicePart): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CreateRobotPartSecretResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: CreateRobotPartSecretResponse): CreateRobotPartSecretResponse.AsObject;
+  toObject(includeInstance?: boolean): CreatephysicalDevicePartSecretResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreatephysicalDevicePartSecretResponse): CreatephysicalDevicePartSecretResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CreateRobotPartSecretResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CreateRobotPartSecretResponse;
-  static deserializeBinaryFromReader(message: CreateRobotPartSecretResponse, reader: jspb.BinaryReader): CreateRobotPartSecretResponse;
+  static serializeBinaryToWriter(message: CreatephysicalDevicePartSecretResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreatephysicalDevicePartSecretResponse;
+  static deserializeBinaryFromReader(message: CreatephysicalDevicePartSecretResponse, reader: jspb.BinaryReader): CreatephysicalDevicePartSecretResponse;
 }
 
-export namespace CreateRobotPartSecretResponse {
+export namespace CreatephysicalDevicePartSecretResponse {
   export type AsObject = {
-    part?: RobotPart.AsObject,
+    part?: physicalDevicePart.AsObject,
   }
 }
 
-export class DeleteRobotPartSecretRequest extends jspb.Message {
+export class DeletephysicalDevicePartSecretRequest extends jspb.Message {
   getPartId(): string;
   setPartId(value: string): void;
 
@@ -2695,34 +2695,34 @@ export class DeleteRobotPartSecretRequest extends jspb.Message {
   setSecretId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteRobotPartSecretRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteRobotPartSecretRequest): DeleteRobotPartSecretRequest.AsObject;
+  toObject(includeInstance?: boolean): DeletephysicalDevicePartSecretRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeletephysicalDevicePartSecretRequest): DeletephysicalDevicePartSecretRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeleteRobotPartSecretRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteRobotPartSecretRequest;
-  static deserializeBinaryFromReader(message: DeleteRobotPartSecretRequest, reader: jspb.BinaryReader): DeleteRobotPartSecretRequest;
+  static serializeBinaryToWriter(message: DeletephysicalDevicePartSecretRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeletephysicalDevicePartSecretRequest;
+  static deserializeBinaryFromReader(message: DeletephysicalDevicePartSecretRequest, reader: jspb.BinaryReader): DeletephysicalDevicePartSecretRequest;
 }
 
-export namespace DeleteRobotPartSecretRequest {
+export namespace DeletephysicalDevicePartSecretRequest {
   export type AsObject = {
     partId: string,
     secretId: string,
   }
 }
 
-export class DeleteRobotPartSecretResponse extends jspb.Message {
+export class DeletephysicalDevicePartSecretResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteRobotPartSecretResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteRobotPartSecretResponse): DeleteRobotPartSecretResponse.AsObject;
+  toObject(includeInstance?: boolean): DeletephysicalDevicePartSecretResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeletephysicalDevicePartSecretResponse): DeletephysicalDevicePartSecretResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeleteRobotPartSecretResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteRobotPartSecretResponse;
-  static deserializeBinaryFromReader(message: DeleteRobotPartSecretResponse, reader: jspb.BinaryReader): DeleteRobotPartSecretResponse;
+  static serializeBinaryToWriter(message: DeletephysicalDevicePartSecretResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeletephysicalDevicePartSecretResponse;
+  static deserializeBinaryFromReader(message: DeletephysicalDevicePartSecretResponse, reader: jspb.BinaryReader): DeletephysicalDevicePartSecretResponse;
 }
 
-export namespace DeleteRobotPartSecretResponse {
+export namespace DeletephysicalDevicePartSecretResponse {
   export type AsObject = {
   }
 }
@@ -3188,11 +3188,11 @@ export class RegistryItem extends jspb.Message {
   getDescription(): string;
   setDescription(value: string): void;
 
-  getTotalRobotUsage(): number;
-  setTotalRobotUsage(value: number): void;
+  getTotalphysicalDeviceUsage(): number;
+  setTotalphysicalDeviceUsage(value: number): void;
 
-  getTotalExternalRobotUsage(): number;
-  setTotalExternalRobotUsage(value: number): void;
+  getTotalExternalphysicalDeviceUsage(): number;
+  setTotalExternalphysicalDeviceUsage(value: number): void;
 
   getTotalOrganizationUsage(): number;
   setTotalOrganizationUsage(value: number): void;
@@ -3246,8 +3246,8 @@ export namespace RegistryItem {
     visibility: VisibilityMap[keyof VisibilityMap],
     url: string,
     description: string,
-    totalRobotUsage: number,
-    totalExternalRobotUsage: number,
+    totalphysicalDeviceUsage: number,
+    totalExternalphysicalDeviceUsage: number,
     totalOrganizationUsage: number,
     totalExternalOrganizationUsage: number,
     moduleMetadata?: ModuleMetadata.AsObject,
@@ -3808,8 +3808,8 @@ export class Module extends jspb.Message {
   setModelsList(value: Array<Model>): void;
   addModels(value?: Model, index?: number): Model;
 
-  getTotalRobotUsage(): number;
-  setTotalRobotUsage(value: number): void;
+  getTotalphysicalDeviceUsage(): number;
+  setTotalphysicalDeviceUsage(value: number): void;
 
   getTotalOrganizationUsage(): number;
   setTotalOrganizationUsage(value: number): void;
@@ -3842,7 +3842,7 @@ export namespace Module {
     url: string,
     description: string,
     modelsList: Array<Model.AsObject>,
-    totalRobotUsage: number,
+    totalphysicalDeviceUsage: number,
     totalOrganizationUsage: number,
     organizationId: string,
     entrypoint: string,

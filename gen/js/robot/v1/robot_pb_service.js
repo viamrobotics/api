@@ -1,198 +1,198 @@
-// package: viam.robot.v1
-// file: robot/v1/robot.proto
+// package: viam.physicalDevice.v1
+// file: physicalDevice/v1/physicalDevice.proto
 
-var robot_v1_robot_pb = require("../../robot/v1/robot_pb");
+var physicalDevice_v1_physicalDevice_pb = require("../../physicalDevice/v1/physicalDevice_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
-var RobotService = (function () {
-  function RobotService() {}
-  RobotService.serviceName = "viam.robot.v1.RobotService";
-  return RobotService;
+var physicalDeviceService = (function () {
+  function physicalDeviceService() {}
+  physicalDeviceService.serviceName = "viam.physicalDevice.v1.physicalDeviceService";
+  return physicalDeviceService;
 }());
 
-RobotService.GetOperations = {
+physicalDeviceService.GetOperations = {
   methodName: "GetOperations",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.GetOperationsRequest,
-  responseType: robot_v1_robot_pb.GetOperationsResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.GetOperationsRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.GetOperationsResponse
 };
 
-RobotService.GetSessions = {
+physicalDeviceService.GetSessions = {
   methodName: "GetSessions",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.GetSessionsRequest,
-  responseType: robot_v1_robot_pb.GetSessionsResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.GetSessionsRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.GetSessionsResponse
 };
 
-RobotService.ResourceNames = {
+physicalDeviceService.ResourceNames = {
   methodName: "ResourceNames",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.ResourceNamesRequest,
-  responseType: robot_v1_robot_pb.ResourceNamesResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.ResourceNamesRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.ResourceNamesResponse
 };
 
-RobotService.ResourceRPCSubtypes = {
+physicalDeviceService.ResourceRPCSubtypes = {
   methodName: "ResourceRPCSubtypes",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.ResourceRPCSubtypesRequest,
-  responseType: robot_v1_robot_pb.ResourceRPCSubtypesResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.ResourceRPCSubtypesRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.ResourceRPCSubtypesResponse
 };
 
-RobotService.CancelOperation = {
+physicalDeviceService.CancelOperation = {
   methodName: "CancelOperation",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.CancelOperationRequest,
-  responseType: robot_v1_robot_pb.CancelOperationResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.CancelOperationRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.CancelOperationResponse
 };
 
-RobotService.BlockForOperation = {
+physicalDeviceService.BlockForOperation = {
   methodName: "BlockForOperation",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.BlockForOperationRequest,
-  responseType: robot_v1_robot_pb.BlockForOperationResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.BlockForOperationRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.BlockForOperationResponse
 };
 
-RobotService.DiscoverComponents = {
+physicalDeviceService.DiscoverComponents = {
   methodName: "DiscoverComponents",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.DiscoverComponentsRequest,
-  responseType: robot_v1_robot_pb.DiscoverComponentsResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.DiscoverComponentsRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.DiscoverComponentsResponse
 };
 
-RobotService.FrameSystemConfig = {
+physicalDeviceService.FrameSystemConfig = {
   methodName: "FrameSystemConfig",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.FrameSystemConfigRequest,
-  responseType: robot_v1_robot_pb.FrameSystemConfigResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.FrameSystemConfigRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.FrameSystemConfigResponse
 };
 
-RobotService.TransformPose = {
+physicalDeviceService.TransformPose = {
   methodName: "TransformPose",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.TransformPoseRequest,
-  responseType: robot_v1_robot_pb.TransformPoseResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.TransformPoseRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.TransformPoseResponse
 };
 
-RobotService.TransformPCD = {
+physicalDeviceService.TransformPCD = {
   methodName: "TransformPCD",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.TransformPCDRequest,
-  responseType: robot_v1_robot_pb.TransformPCDResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.TransformPCDRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.TransformPCDResponse
 };
 
-RobotService.GetStatus = {
+physicalDeviceService.GetStatus = {
   methodName: "GetStatus",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.GetStatusRequest,
-  responseType: robot_v1_robot_pb.GetStatusResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.GetStatusRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.GetStatusResponse
 };
 
-RobotService.StreamStatus = {
+physicalDeviceService.StreamStatus = {
   methodName: "StreamStatus",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: true,
-  requestType: robot_v1_robot_pb.StreamStatusRequest,
-  responseType: robot_v1_robot_pb.StreamStatusResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.StreamStatusRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.StreamStatusResponse
 };
 
-RobotService.StopAll = {
+physicalDeviceService.StopAll = {
   methodName: "StopAll",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.StopAllRequest,
-  responseType: robot_v1_robot_pb.StopAllResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.StopAllRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.StopAllResponse
 };
 
-RobotService.StartSession = {
+physicalDeviceService.StartSession = {
   methodName: "StartSession",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.StartSessionRequest,
-  responseType: robot_v1_robot_pb.StartSessionResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.StartSessionRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.StartSessionResponse
 };
 
-RobotService.SendSessionHeartbeat = {
+physicalDeviceService.SendSessionHeartbeat = {
   methodName: "SendSessionHeartbeat",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.SendSessionHeartbeatRequest,
-  responseType: robot_v1_robot_pb.SendSessionHeartbeatResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.SendSessionHeartbeatRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.SendSessionHeartbeatResponse
 };
 
-RobotService.Log = {
+physicalDeviceService.Log = {
   methodName: "Log",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.LogRequest,
-  responseType: robot_v1_robot_pb.LogResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.LogRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.LogResponse
 };
 
-RobotService.GetCloudMetadata = {
+physicalDeviceService.GetCloudMetadata = {
   methodName: "GetCloudMetadata",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.GetCloudMetadataRequest,
-  responseType: robot_v1_robot_pb.GetCloudMetadataResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.GetCloudMetadataRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.GetCloudMetadataResponse
 };
 
-RobotService.RestartModule = {
+physicalDeviceService.RestartModule = {
   methodName: "RestartModule",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.RestartModuleRequest,
-  responseType: robot_v1_robot_pb.RestartModuleResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.RestartModuleRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.RestartModuleResponse
 };
 
-RobotService.Shutdown = {
+physicalDeviceService.Shutdown = {
   methodName: "Shutdown",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: robot_v1_robot_pb.ShutdownRequest,
-  responseType: robot_v1_robot_pb.ShutdownResponse
+  requestType: physicalDevice_v1_physicalDevice_pb.ShutdownRequest,
+  responseType: physicalDevice_v1_physicalDevice_pb.ShutdownResponse
 };
 
-exports.RobotService = RobotService;
+exports.physicalDeviceService = physicalDeviceService;
 
-function RobotServiceClient(serviceHost, options) {
+function physicalDeviceServiceClient(serviceHost, options) {
   this.serviceHost = serviceHost;
   this.options = options || {};
 }
 
-RobotServiceClient.prototype.getOperations = function getOperations(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.getOperations = function getOperations(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.GetOperations, {
+  var client = grpc.unary(physicalDeviceService.GetOperations, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -219,11 +219,11 @@ RobotServiceClient.prototype.getOperations = function getOperations(requestMessa
   };
 };
 
-RobotServiceClient.prototype.getSessions = function getSessions(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.getSessions = function getSessions(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.GetSessions, {
+  var client = grpc.unary(physicalDeviceService.GetSessions, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -250,11 +250,11 @@ RobotServiceClient.prototype.getSessions = function getSessions(requestMessage, 
   };
 };
 
-RobotServiceClient.prototype.resourceNames = function resourceNames(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.resourceNames = function resourceNames(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.ResourceNames, {
+  var client = grpc.unary(physicalDeviceService.ResourceNames, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -281,11 +281,11 @@ RobotServiceClient.prototype.resourceNames = function resourceNames(requestMessa
   };
 };
 
-RobotServiceClient.prototype.resourceRPCSubtypes = function resourceRPCSubtypes(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.resourceRPCSubtypes = function resourceRPCSubtypes(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.ResourceRPCSubtypes, {
+  var client = grpc.unary(physicalDeviceService.ResourceRPCSubtypes, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -312,11 +312,11 @@ RobotServiceClient.prototype.resourceRPCSubtypes = function resourceRPCSubtypes(
   };
 };
 
-RobotServiceClient.prototype.cancelOperation = function cancelOperation(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.cancelOperation = function cancelOperation(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.CancelOperation, {
+  var client = grpc.unary(physicalDeviceService.CancelOperation, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -343,11 +343,11 @@ RobotServiceClient.prototype.cancelOperation = function cancelOperation(requestM
   };
 };
 
-RobotServiceClient.prototype.blockForOperation = function blockForOperation(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.blockForOperation = function blockForOperation(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.BlockForOperation, {
+  var client = grpc.unary(physicalDeviceService.BlockForOperation, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -374,11 +374,11 @@ RobotServiceClient.prototype.blockForOperation = function blockForOperation(requ
   };
 };
 
-RobotServiceClient.prototype.discoverComponents = function discoverComponents(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.discoverComponents = function discoverComponents(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.DiscoverComponents, {
+  var client = grpc.unary(physicalDeviceService.DiscoverComponents, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -405,11 +405,11 @@ RobotServiceClient.prototype.discoverComponents = function discoverComponents(re
   };
 };
 
-RobotServiceClient.prototype.frameSystemConfig = function frameSystemConfig(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.frameSystemConfig = function frameSystemConfig(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.FrameSystemConfig, {
+  var client = grpc.unary(physicalDeviceService.FrameSystemConfig, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -436,11 +436,11 @@ RobotServiceClient.prototype.frameSystemConfig = function frameSystemConfig(requ
   };
 };
 
-RobotServiceClient.prototype.transformPose = function transformPose(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.transformPose = function transformPose(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.TransformPose, {
+  var client = grpc.unary(physicalDeviceService.TransformPose, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -467,11 +467,11 @@ RobotServiceClient.prototype.transformPose = function transformPose(requestMessa
   };
 };
 
-RobotServiceClient.prototype.transformPCD = function transformPCD(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.transformPCD = function transformPCD(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.TransformPCD, {
+  var client = grpc.unary(physicalDeviceService.TransformPCD, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -498,11 +498,11 @@ RobotServiceClient.prototype.transformPCD = function transformPCD(requestMessage
   };
 };
 
-RobotServiceClient.prototype.getStatus = function getStatus(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.getStatus = function getStatus(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.GetStatus, {
+  var client = grpc.unary(physicalDeviceService.GetStatus, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -529,13 +529,13 @@ RobotServiceClient.prototype.getStatus = function getStatus(requestMessage, meta
   };
 };
 
-RobotServiceClient.prototype.streamStatus = function streamStatus(requestMessage, metadata) {
+physicalDeviceServiceClient.prototype.streamStatus = function streamStatus(requestMessage, metadata) {
   var listeners = {
     data: [],
     end: [],
     status: []
   };
-  var client = grpc.invoke(RobotService.StreamStatus, {
+  var client = grpc.invoke(physicalDeviceService.StreamStatus, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -568,11 +568,11 @@ RobotServiceClient.prototype.streamStatus = function streamStatus(requestMessage
   };
 };
 
-RobotServiceClient.prototype.stopAll = function stopAll(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.stopAll = function stopAll(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.StopAll, {
+  var client = grpc.unary(physicalDeviceService.StopAll, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -599,11 +599,11 @@ RobotServiceClient.prototype.stopAll = function stopAll(requestMessage, metadata
   };
 };
 
-RobotServiceClient.prototype.startSession = function startSession(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.startSession = function startSession(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.StartSession, {
+  var client = grpc.unary(physicalDeviceService.StartSession, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -630,11 +630,11 @@ RobotServiceClient.prototype.startSession = function startSession(requestMessage
   };
 };
 
-RobotServiceClient.prototype.sendSessionHeartbeat = function sendSessionHeartbeat(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.sendSessionHeartbeat = function sendSessionHeartbeat(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.SendSessionHeartbeat, {
+  var client = grpc.unary(physicalDeviceService.SendSessionHeartbeat, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -661,11 +661,11 @@ RobotServiceClient.prototype.sendSessionHeartbeat = function sendSessionHeartbea
   };
 };
 
-RobotServiceClient.prototype.log = function log(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.log = function log(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.Log, {
+  var client = grpc.unary(physicalDeviceService.Log, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -692,11 +692,11 @@ RobotServiceClient.prototype.log = function log(requestMessage, metadata, callba
   };
 };
 
-RobotServiceClient.prototype.getCloudMetadata = function getCloudMetadata(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.getCloudMetadata = function getCloudMetadata(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.GetCloudMetadata, {
+  var client = grpc.unary(physicalDeviceService.GetCloudMetadata, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -723,11 +723,11 @@ RobotServiceClient.prototype.getCloudMetadata = function getCloudMetadata(reques
   };
 };
 
-RobotServiceClient.prototype.restartModule = function restartModule(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.restartModule = function restartModule(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.RestartModule, {
+  var client = grpc.unary(physicalDeviceService.RestartModule, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -754,11 +754,11 @@ RobotServiceClient.prototype.restartModule = function restartModule(requestMessa
   };
 };
 
-RobotServiceClient.prototype.shutdown = function shutdown(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.shutdown = function shutdown(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.Shutdown, {
+  var client = grpc.unary(physicalDeviceService.Shutdown, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -785,5 +785,5 @@ RobotServiceClient.prototype.shutdown = function shutdown(requestMessage, metada
   };
 };
 
-exports.RobotServiceClient = RobotServiceClient;
+exports.physicalDeviceServiceClient = physicalDeviceServiceClient;
 

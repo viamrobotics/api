@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.5.0
 // 	protoc              v0.0.0
-// source: app/v1/robot.proto
+// source: app/v1/physicalDevice.proto
 
 
 /* eslint-disable */
@@ -30,7 +30,7 @@ var tagger_v1_tagger_pb = require('../../tagger/v1/tagger_pb.js')
 const proto = {};
 proto.viam = {};
 proto.viam.app = {};
-proto.viam.app.v1 = require('./robot_pb.js');
+proto.viam.app.v1 = require('./physicalDevice_pb.js');
 
 /**
  * @param {string} hostname
@@ -40,7 +40,7 @@ proto.viam.app.v1 = require('./robot_pb.js');
  * @struct
  * @final
  */
-proto.viam.app.v1.RobotServiceClient =
+proto.viam.app.v1.physicalDeviceServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -66,7 +66,7 @@ proto.viam.app.v1.RobotServiceClient =
  * @struct
  * @final
  */
-proto.viam.app.v1.RobotServicePromiseClient =
+proto.viam.app.v1.physicalDeviceServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -90,8 +90,8 @@ proto.viam.app.v1.RobotServicePromiseClient =
  *   !proto.viam.app.v1.ConfigRequest,
  *   !proto.viam.app.v1.ConfigResponse>}
  */
-const methodDescriptor_RobotService_Config = new grpc.web.MethodDescriptor(
-  '/viam.app.v1.RobotService/Config',
+const methodDescriptor_physicalDeviceService_Config = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.physicalDeviceService/Config',
   grpc.web.MethodType.UNARY,
   proto.viam.app.v1.ConfigRequest,
   proto.viam.app.v1.ConfigResponse,
@@ -116,13 +116,13 @@ const methodDescriptor_RobotService_Config = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ConfigResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.v1.RobotServiceClient.prototype.config =
+proto.viam.app.v1.physicalDeviceServiceClient.prototype.config =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.v1.RobotService/Config',
+      '/viam.app.v1.physicalDeviceService/Config',
       request,
       metadata || {},
-      methodDescriptor_RobotService_Config,
+      methodDescriptor_physicalDeviceService_Config,
       callback);
 };
 
@@ -135,13 +135,13 @@ proto.viam.app.v1.RobotServiceClient.prototype.config =
  * @return {!Promise<!proto.viam.app.v1.ConfigResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.v1.RobotServicePromiseClient.prototype.config =
+proto.viam.app.v1.physicalDeviceServicePromiseClient.prototype.config =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.v1.RobotService/Config',
+      '/viam.app.v1.physicalDeviceService/Config',
       request,
       metadata || {},
-      methodDescriptor_RobotService_Config);
+      methodDescriptor_physicalDeviceService_Config);
 };
 
 
@@ -151,8 +151,8 @@ proto.viam.app.v1.RobotServicePromiseClient.prototype.config =
  *   !proto.viam.app.v1.CertificateRequest,
  *   !proto.viam.app.v1.CertificateResponse>}
  */
-const methodDescriptor_RobotService_Certificate = new grpc.web.MethodDescriptor(
-  '/viam.app.v1.RobotService/Certificate',
+const methodDescriptor_physicalDeviceService_Certificate = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.physicalDeviceService/Certificate',
   grpc.web.MethodType.UNARY,
   proto.viam.app.v1.CertificateRequest,
   proto.viam.app.v1.CertificateResponse,
@@ -177,13 +177,13 @@ const methodDescriptor_RobotService_Certificate = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.CertificateResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.v1.RobotServiceClient.prototype.certificate =
+proto.viam.app.v1.physicalDeviceServiceClient.prototype.certificate =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.v1.RobotService/Certificate',
+      '/viam.app.v1.physicalDeviceService/Certificate',
       request,
       metadata || {},
-      methodDescriptor_RobotService_Certificate,
+      methodDescriptor_physicalDeviceService_Certificate,
       callback);
 };
 
@@ -196,13 +196,13 @@ proto.viam.app.v1.RobotServiceClient.prototype.certificate =
  * @return {!Promise<!proto.viam.app.v1.CertificateResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.v1.RobotServicePromiseClient.prototype.certificate =
+proto.viam.app.v1.physicalDeviceServicePromiseClient.prototype.certificate =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.v1.RobotService/Certificate',
+      '/viam.app.v1.physicalDeviceService/Certificate',
       request,
       metadata || {},
-      methodDescriptor_RobotService_Certificate);
+      methodDescriptor_physicalDeviceService_Certificate);
 };
 
 
@@ -212,8 +212,8 @@ proto.viam.app.v1.RobotServicePromiseClient.prototype.certificate =
  *   !proto.viam.app.v1.LogRequest,
  *   !proto.viam.app.v1.LogResponse>}
  */
-const methodDescriptor_RobotService_Log = new grpc.web.MethodDescriptor(
-  '/viam.app.v1.RobotService/Log',
+const methodDescriptor_physicalDeviceService_Log = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.physicalDeviceService/Log',
   grpc.web.MethodType.UNARY,
   proto.viam.app.v1.LogRequest,
   proto.viam.app.v1.LogResponse,
@@ -238,13 +238,13 @@ const methodDescriptor_RobotService_Log = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.LogResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.v1.RobotServiceClient.prototype.log =
+proto.viam.app.v1.physicalDeviceServiceClient.prototype.log =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.v1.RobotService/Log',
+      '/viam.app.v1.physicalDeviceService/Log',
       request,
       metadata || {},
-      methodDescriptor_RobotService_Log,
+      methodDescriptor_physicalDeviceService_Log,
       callback);
 };
 
@@ -257,13 +257,13 @@ proto.viam.app.v1.RobotServiceClient.prototype.log =
  * @return {!Promise<!proto.viam.app.v1.LogResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.v1.RobotServicePromiseClient.prototype.log =
+proto.viam.app.v1.physicalDeviceServicePromiseClient.prototype.log =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.v1.RobotService/Log',
+      '/viam.app.v1.physicalDeviceService/Log',
       request,
       metadata || {},
-      methodDescriptor_RobotService_Log);
+      methodDescriptor_physicalDeviceService_Log);
 };
 
 
@@ -273,8 +273,8 @@ proto.viam.app.v1.RobotServicePromiseClient.prototype.log =
  *   !proto.viam.app.v1.NeedsRestartRequest,
  *   !proto.viam.app.v1.NeedsRestartResponse>}
  */
-const methodDescriptor_RobotService_NeedsRestart = new grpc.web.MethodDescriptor(
-  '/viam.app.v1.RobotService/NeedsRestart',
+const methodDescriptor_physicalDeviceService_NeedsRestart = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.physicalDeviceService/NeedsRestart',
   grpc.web.MethodType.UNARY,
   proto.viam.app.v1.NeedsRestartRequest,
   proto.viam.app.v1.NeedsRestartResponse,
@@ -299,13 +299,13 @@ const methodDescriptor_RobotService_NeedsRestart = new grpc.web.MethodDescriptor
  * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.NeedsRestartResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.v1.RobotServiceClient.prototype.needsRestart =
+proto.viam.app.v1.physicalDeviceServiceClient.prototype.needsRestart =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.v1.RobotService/NeedsRestart',
+      '/viam.app.v1.physicalDeviceService/NeedsRestart',
       request,
       metadata || {},
-      methodDescriptor_RobotService_NeedsRestart,
+      methodDescriptor_physicalDeviceService_NeedsRestart,
       callback);
 };
 
@@ -318,13 +318,13 @@ proto.viam.app.v1.RobotServiceClient.prototype.needsRestart =
  * @return {!Promise<!proto.viam.app.v1.NeedsRestartResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.v1.RobotServicePromiseClient.prototype.needsRestart =
+proto.viam.app.v1.physicalDeviceServicePromiseClient.prototype.needsRestart =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.v1.RobotService/NeedsRestart',
+      '/viam.app.v1.physicalDeviceService/NeedsRestart',
       request,
       metadata || {},
-      methodDescriptor_RobotService_NeedsRestart);
+      methodDescriptor_physicalDeviceService_NeedsRestart);
 };
 
 

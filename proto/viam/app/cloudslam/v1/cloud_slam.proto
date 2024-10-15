@@ -10,7 +10,7 @@ option go_package = "go.viam.com/api/app/cloudslam/v1";
 
 service CloudSLAMService {
   rpc StartMappingSession(StartMappingSessionRequest) returns (StartMappingSessionResponse);
-  rpc GetActiveMappingSessionsForRobot(GetActiveMappingSessionsForRobotRequest) returns (GetActiveMappingSessionsForRobotResponse);
+  rpc GetActiveMappingSessionsForphysicalDevice(GetActiveMappingSessionsForphysicalDeviceRequest) returns (GetActiveMappingSessionsForphysicalDeviceResponse);
   rpc GetMappingSessionPointCloud(GetMappingSessionPointCloudRequest) returns (GetMappingSessionPointCloudResponse);
   rpc ListMappingSessions(ListMappingSessionsRequest) returns (ListMappingSessionsResponse);
   rpc StopMappingSession(StopMappingSessionRequest) returns (StopMappingSessionResponse);
@@ -27,7 +27,7 @@ message StartMappingSessionRequest {
   string map_name = 3;
   string organization_id = 4;
   string location_id = 5;
-  string robot_id = 6;
+  string physicalDevice_id = 6;
   CaptureInterval capture_interval = 7;
   repeated SensorInfo sensors = 8;
   google.protobuf.Struct slam_config = 10;
@@ -58,14 +58,14 @@ message StartMappingSessionResponse {
   string session_id = 1;
 }
 
-// GetActiveMappingSessionsForRobot
+// GetActiveMappingSessionsForphysicalDevice
 
-message GetActiveMappingSessionsForRobotRequest {
-  // assumes only one active mapping session on a robot
-  string robot_id = 1;
+message GetActiveMappingSessionsForphysicalDeviceRequest {
+  // assumes only one active mapping session on a physicalDevice
+  string physicalDevice_id = 1;
 }
 
-message GetActiveMappingSessionsForRobotResponse {
+message GetActiveMappingSessionsForphysicalDeviceResponse {
   string session_id = 1;
 }
 
@@ -117,7 +117,7 @@ message GetMappingSessionMetadataByIDResponse {
 message MappingMetadata {
   string org_id = 1; // org associated with the slam session
   string location_id = 2; // location associated with the slam session
-  string robot_id = 3; // robot associated with slam session
+  string physicalDevice_id = 3; // physicalDevice associated with slam session
   google.protobuf.Timestamp time_start_submitted = 4; // time this document was created
   google.protobuf.Timestamp time_cloud_run_job_started = 5; // time the cloud run job started
   google.protobuf.Timestamp time_end_submitted = 6; // time StopSlamSession was called
@@ -127,7 +127,7 @@ message MappingMetadata {
   string viam_server_version = 10; // version tag from request, defaults to stable
   string map_name = 11; // name of the map package
   string slam_version = 12; // version tag from request, defaults to stable
-  string config = 13; // a robot config for a slam session
+  string config = 13; // a physicalDevice config for a slam session
   string error_msg = 14; // additional details on the end status if needed, such as errors
 }
 

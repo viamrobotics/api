@@ -23,11 +23,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GripperServiceClient interface {
-	// Open opens a gripper of the underlying robot.
+	// Open opens a gripper of the underlying physicalDevice.
 	Open(ctx context.Context, in *OpenRequest, opts ...grpc.CallOption) (*OpenResponse, error)
-	// Grab requests a gripper of the underlying robot to grab.
+	// Grab requests a gripper of the underlying physicalDevice to grab.
 	Grab(ctx context.Context, in *GrabRequest, opts ...grpc.CallOption) (*GrabResponse, error)
-	// Stop stops a robot's gripper
+	// Stop stops a physicalDevice's gripper
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
@@ -103,11 +103,11 @@ func (c *gripperServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeom
 // All implementations must embed UnimplementedGripperServiceServer
 // for forward compatibility
 type GripperServiceServer interface {
-	// Open opens a gripper of the underlying robot.
+	// Open opens a gripper of the underlying physicalDevice.
 	Open(context.Context, *OpenRequest) (*OpenResponse, error)
-	// Grab requests a gripper of the underlying robot to grab.
+	// Grab requests a gripper of the underlying physicalDevice to grab.
 	Grab(context.Context, *GrabRequest) (*GrabResponse, error)
-	// Stop stops a robot's gripper
+	// Stop stops a physicalDevice's gripper
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)

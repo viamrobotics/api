@@ -2,14 +2,14 @@
 // file: module/v1/module.proto
 
 import * as jspb from "google-protobuf";
-import * as app_v1_robot_pb from "../../app/v1/robot_pb";
-import * as robot_v1_robot_pb from "../../robot/v1/robot_pb";
+import * as app_v1_physicalDevice_pb from "../../app/v1/physicalDevice_pb";
+import * as physicalDevice_v1_physicalDevice_pb from "../../physicalDevice/v1/physicalDevice_pb";
 
 export class AddResourceRequest extends jspb.Message {
   hasConfig(): boolean;
   clearConfig(): void;
-  getConfig(): app_v1_robot_pb.ComponentConfig | undefined;
-  setConfig(value?: app_v1_robot_pb.ComponentConfig): void;
+  getConfig(): app_v1_physicalDevice_pb.ComponentConfig | undefined;
+  setConfig(value?: app_v1_physicalDevice_pb.ComponentConfig): void;
 
   clearDependenciesList(): void;
   getDependenciesList(): Array<string>;
@@ -28,7 +28,7 @@ export class AddResourceRequest extends jspb.Message {
 
 export namespace AddResourceRequest {
   export type AsObject = {
-    config?: app_v1_robot_pb.ComponentConfig.AsObject,
+    config?: app_v1_physicalDevice_pb.ComponentConfig.AsObject,
     dependenciesList: Array<string>,
   }
 }
@@ -52,8 +52,8 @@ export namespace AddResourceResponse {
 export class ReconfigureResourceRequest extends jspb.Message {
   hasConfig(): boolean;
   clearConfig(): void;
-  getConfig(): app_v1_robot_pb.ComponentConfig | undefined;
-  setConfig(value?: app_v1_robot_pb.ComponentConfig): void;
+  getConfig(): app_v1_physicalDevice_pb.ComponentConfig | undefined;
+  setConfig(value?: app_v1_physicalDevice_pb.ComponentConfig): void;
 
   clearDependenciesList(): void;
   getDependenciesList(): Array<string>;
@@ -72,7 +72,7 @@ export class ReconfigureResourceRequest extends jspb.Message {
 
 export namespace ReconfigureResourceRequest {
   export type AsObject = {
-    config?: app_v1_robot_pb.ComponentConfig.AsObject,
+    config?: app_v1_physicalDevice_pb.ComponentConfig.AsObject,
     dependenciesList: Array<string>,
   }
 }
@@ -132,8 +132,8 @@ export namespace RemoveResourceResponse {
 export class HandlerDefinition extends jspb.Message {
   hasSubtype(): boolean;
   clearSubtype(): void;
-  getSubtype(): robot_v1_robot_pb.ResourceRPCSubtype | undefined;
-  setSubtype(value?: robot_v1_robot_pb.ResourceRPCSubtype): void;
+  getSubtype(): physicalDevice_v1_physicalDevice_pb.ResourceRPCSubtype | undefined;
+  setSubtype(value?: physicalDevice_v1_physicalDevice_pb.ResourceRPCSubtype): void;
 
   clearModelsList(): void;
   getModelsList(): Array<string>;
@@ -152,7 +152,7 @@ export class HandlerDefinition extends jspb.Message {
 
 export namespace HandlerDefinition {
   export type AsObject = {
-    subtype?: robot_v1_robot_pb.ResourceRPCSubtype.AsObject,
+    subtype?: physicalDevice_v1_physicalDevice_pb.ResourceRPCSubtype.AsObject,
     modelsList: Array<string>,
   }
 }
@@ -236,8 +236,8 @@ export namespace ReadyResponse {
 export class ValidateConfigRequest extends jspb.Message {
   hasConfig(): boolean;
   clearConfig(): void;
-  getConfig(): app_v1_robot_pb.ComponentConfig | undefined;
-  setConfig(value?: app_v1_robot_pb.ComponentConfig): void;
+  getConfig(): app_v1_physicalDevice_pb.ComponentConfig | undefined;
+  setConfig(value?: app_v1_physicalDevice_pb.ComponentConfig): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ValidateConfigRequest.AsObject;
@@ -251,7 +251,7 @@ export class ValidateConfigRequest extends jspb.Message {
 
 export namespace ValidateConfigRequest {
   export type AsObject = {
-    config?: app_v1_robot_pb.ComponentConfig.AsObject,
+    config?: app_v1_physicalDevice_pb.ComponentConfig.AsObject,
   }
 }
 

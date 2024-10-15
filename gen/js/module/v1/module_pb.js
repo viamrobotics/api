@@ -15,10 +15,10 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
-var app_v1_robot_pb = require('../../app/v1/robot_pb.js');
-goog.object.extend(proto, app_v1_robot_pb);
-var robot_v1_robot_pb = require('../../robot/v1/robot_pb.js');
-goog.object.extend(proto, robot_v1_robot_pb);
+var app_v1_physicalDevice_pb = require('../../app/v1/physicalDevice_pb.js');
+goog.object.extend(proto, app_v1_physicalDevice_pb);
+var physicalDevice_v1_physicalDevice_pb = require('../../physicalDevice/v1/physicalDevice_pb.js');
+goog.object.extend(proto, physicalDevice_v1_physicalDevice_pb);
 goog.exportSymbol('proto.viam.module.v1.AddResourceRequest', null, global);
 goog.exportSymbol('proto.viam.module.v1.AddResourceResponse', null, global);
 goog.exportSymbol('proto.viam.module.v1.HandlerDefinition', null, global);
@@ -322,7 +322,7 @@ proto.viam.module.v1.AddResourceRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.module.v1.AddResourceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    config: (f = msg.getConfig()) && app_v1_robot_pb.ComponentConfig.toObject(includeInstance, f),
+    config: (f = msg.getConfig()) && app_v1_physicalDevice_pb.ComponentConfig.toObject(includeInstance, f),
     dependenciesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
@@ -361,8 +361,8 @@ proto.viam.module.v1.AddResourceRequest.deserializeBinaryFromReader = function(m
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new app_v1_robot_pb.ComponentConfig;
-      reader.readMessage(value,app_v1_robot_pb.ComponentConfig.deserializeBinaryFromReader);
+      var value = new app_v1_physicalDevice_pb.ComponentConfig;
+      reader.readMessage(value,app_v1_physicalDevice_pb.ComponentConfig.deserializeBinaryFromReader);
       msg.setConfig(value);
       break;
     case 2:
@@ -403,7 +403,7 @@ proto.viam.module.v1.AddResourceRequest.serializeBinaryToWriter = function(messa
     writer.writeMessage(
       1,
       f,
-      app_v1_robot_pb.ComponentConfig.serializeBinaryToWriter
+      app_v1_physicalDevice_pb.ComponentConfig.serializeBinaryToWriter
     );
   }
   f = message.getDependenciesList();
@@ -422,7 +422,7 @@ proto.viam.module.v1.AddResourceRequest.serializeBinaryToWriter = function(messa
  */
 proto.viam.module.v1.AddResourceRequest.prototype.getConfig = function() {
   return /** @type{?proto.viam.app.v1.ComponentConfig} */ (
-    jspb.Message.getWrapperField(this, app_v1_robot_pb.ComponentConfig, 1));
+    jspb.Message.getWrapperField(this, app_v1_physicalDevice_pb.ComponentConfig, 1));
 };
 
 
@@ -630,7 +630,7 @@ proto.viam.module.v1.ReconfigureResourceRequest.prototype.toObject = function(op
  */
 proto.viam.module.v1.ReconfigureResourceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    config: (f = msg.getConfig()) && app_v1_robot_pb.ComponentConfig.toObject(includeInstance, f),
+    config: (f = msg.getConfig()) && app_v1_physicalDevice_pb.ComponentConfig.toObject(includeInstance, f),
     dependenciesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
@@ -669,8 +669,8 @@ proto.viam.module.v1.ReconfigureResourceRequest.deserializeBinaryFromReader = fu
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new app_v1_robot_pb.ComponentConfig;
-      reader.readMessage(value,app_v1_robot_pb.ComponentConfig.deserializeBinaryFromReader);
+      var value = new app_v1_physicalDevice_pb.ComponentConfig;
+      reader.readMessage(value,app_v1_physicalDevice_pb.ComponentConfig.deserializeBinaryFromReader);
       msg.setConfig(value);
       break;
     case 2:
@@ -711,7 +711,7 @@ proto.viam.module.v1.ReconfigureResourceRequest.serializeBinaryToWriter = functi
     writer.writeMessage(
       1,
       f,
-      app_v1_robot_pb.ComponentConfig.serializeBinaryToWriter
+      app_v1_physicalDevice_pb.ComponentConfig.serializeBinaryToWriter
     );
   }
   f = message.getDependenciesList();
@@ -730,7 +730,7 @@ proto.viam.module.v1.ReconfigureResourceRequest.serializeBinaryToWriter = functi
  */
 proto.viam.module.v1.ReconfigureResourceRequest.prototype.getConfig = function() {
   return /** @type{?proto.viam.app.v1.ComponentConfig} */ (
-    jspb.Message.getWrapperField(this, app_v1_robot_pb.ComponentConfig, 1));
+    jspb.Message.getWrapperField(this, app_v1_physicalDevice_pb.ComponentConfig, 1));
 };
 
 
@@ -1169,7 +1169,7 @@ proto.viam.module.v1.HandlerDefinition.prototype.toObject = function(opt_include
  */
 proto.viam.module.v1.HandlerDefinition.toObject = function(includeInstance, msg) {
   var f, obj = {
-    subtype: (f = msg.getSubtype()) && robot_v1_robot_pb.ResourceRPCSubtype.toObject(includeInstance, f),
+    subtype: (f = msg.getSubtype()) && physicalDevice_v1_physicalDevice_pb.ResourceRPCSubtype.toObject(includeInstance, f),
     modelsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
@@ -1208,8 +1208,8 @@ proto.viam.module.v1.HandlerDefinition.deserializeBinaryFromReader = function(ms
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new robot_v1_robot_pb.ResourceRPCSubtype;
-      reader.readMessage(value,robot_v1_robot_pb.ResourceRPCSubtype.deserializeBinaryFromReader);
+      var value = new physicalDevice_v1_physicalDevice_pb.ResourceRPCSubtype;
+      reader.readMessage(value,physicalDevice_v1_physicalDevice_pb.ResourceRPCSubtype.deserializeBinaryFromReader);
       msg.setSubtype(value);
       break;
     case 2:
@@ -1250,7 +1250,7 @@ proto.viam.module.v1.HandlerDefinition.serializeBinaryToWriter = function(messag
     writer.writeMessage(
       1,
       f,
-      robot_v1_robot_pb.ResourceRPCSubtype.serializeBinaryToWriter
+      physicalDevice_v1_physicalDevice_pb.ResourceRPCSubtype.serializeBinaryToWriter
     );
   }
   f = message.getModelsList();
@@ -1264,17 +1264,17 @@ proto.viam.module.v1.HandlerDefinition.serializeBinaryToWriter = function(messag
 
 
 /**
- * optional viam.robot.v1.ResourceRPCSubtype subtype = 1;
- * @return {?proto.viam.robot.v1.ResourceRPCSubtype}
+ * optional viam.physicalDevice.v1.ResourceRPCSubtype subtype = 1;
+ * @return {?proto.viam.physicalDevice.v1.ResourceRPCSubtype}
  */
 proto.viam.module.v1.HandlerDefinition.prototype.getSubtype = function() {
-  return /** @type{?proto.viam.robot.v1.ResourceRPCSubtype} */ (
-    jspb.Message.getWrapperField(this, robot_v1_robot_pb.ResourceRPCSubtype, 1));
+  return /** @type{?proto.viam.physicalDevice.v1.ResourceRPCSubtype} */ (
+    jspb.Message.getWrapperField(this, physicalDevice_v1_physicalDevice_pb.ResourceRPCSubtype, 1));
 };
 
 
 /**
- * @param {?proto.viam.robot.v1.ResourceRPCSubtype|undefined} value
+ * @param {?proto.viam.physicalDevice.v1.ResourceRPCSubtype|undefined} value
  * @return {!proto.viam.module.v1.HandlerDefinition} returns this
 */
 proto.viam.module.v1.HandlerDefinition.prototype.setSubtype = function(value) {
@@ -1900,7 +1900,7 @@ proto.viam.module.v1.ValidateConfigRequest.prototype.toObject = function(opt_inc
  */
 proto.viam.module.v1.ValidateConfigRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    config: (f = msg.getConfig()) && app_v1_robot_pb.ComponentConfig.toObject(includeInstance, f)
+    config: (f = msg.getConfig()) && app_v1_physicalDevice_pb.ComponentConfig.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1938,8 +1938,8 @@ proto.viam.module.v1.ValidateConfigRequest.deserializeBinaryFromReader = functio
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new app_v1_robot_pb.ComponentConfig;
-      reader.readMessage(value,app_v1_robot_pb.ComponentConfig.deserializeBinaryFromReader);
+      var value = new app_v1_physicalDevice_pb.ComponentConfig;
+      reader.readMessage(value,app_v1_physicalDevice_pb.ComponentConfig.deserializeBinaryFromReader);
       msg.setConfig(value);
       break;
     default:
@@ -1976,7 +1976,7 @@ proto.viam.module.v1.ValidateConfigRequest.serializeBinaryToWriter = function(me
     writer.writeMessage(
       1,
       f,
-      app_v1_robot_pb.ComponentConfig.serializeBinaryToWriter
+      app_v1_physicalDevice_pb.ComponentConfig.serializeBinaryToWriter
     );
   }
 };
@@ -1988,7 +1988,7 @@ proto.viam.module.v1.ValidateConfigRequest.serializeBinaryToWriter = function(me
  */
 proto.viam.module.v1.ValidateConfigRequest.prototype.getConfig = function() {
   return /** @type{?proto.viam.app.v1.ComponentConfig} */ (
-    jspb.Message.getWrapperField(this, app_v1_robot_pb.ComponentConfig, 1));
+    jspb.Message.getWrapperField(this, app_v1_physicalDevice_pb.ComponentConfig, 1));
 };
 
 

@@ -52,7 +52,7 @@ service MotionService {
 
   // Returns the status of plans created by requests to move components
   // that are executing OR are part of an execution which changed it state
-  // within the a 24HR TTL OR until the robot reinitializes.
+  // within the a 24HR TTL OR until the physicalDevice reinitializes.
   // This currently only returns plans for MoveOnGlobe and MoveOnMap.
   rpc ListPlanStatuses(ListPlanStatusesRequest) returns (ListPlanStatusesResponse) {
     option (google.api.http) = {
@@ -62,7 +62,7 @@ service MotionService {
 
   // Returns the plan(s) & state history of the most recent execution to move a
   // component. Returns a result if the last execution is still executing OR
-  // changed state within the last 24 hours AND the robot has not reinitialized.
+  // changed state within the last 24 hours AND the physicalDevice has not reinitialized.
   // Plans are never mutated.
   // Replans always create new plans.
   // Replans share the execution_id of the previously executing plan.
@@ -81,18 +81,18 @@ service MotionService {
   }
 }
 
-// Moves any component on the robot to a specified destination which can be from the reference frame of any other component on the robot.
+// Moves any component on the physicalDevice to a specified destination which can be from the reference frame of any other component on the physicalDevice.
 message MoveRequest {
   // Name of the motion service
   string name = 1;
-  // Destination to move to, which can a pose in the reference frame of any frame in the robot's frame system
+  // Destination to move to, which can a pose in the reference frame of any frame in the physicalDevice's frame system
   common.v1.PoseInFrame destination = 2;
-  // Component on the robot to move to the specified destination
+  // Component on the physicalDevice to move to the specified destination
   common.v1.ResourceName component_name = 3;
   // Avoid obstacles by specifying their geometries in the world state
-  // Augment the frame system of the robot by specifying additional transforms to add to it for the duration of the Move
+  // Augment the frame system of the physicalDevice by specifying additional transforms to add to it for the duration of the Move
   optional common.v1.WorldState world_state = 4;
-  // Constrain the way the robot will move
+  // Constrain the way the physicalDevice will move
   optional Constraints constraints = 5;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
@@ -107,7 +107,7 @@ message MoveOnMapRequest {
   string name = 1;
   // Specify a destination to, which can be any pose with respect to the SLAM map's origin
   common.v1.Pose destination = 2;
-  // Component on the robot to move to the specified destination
+  // Component on the physicalDevice to move to the specified destination
   common.v1.ResourceName component_name = 3;
   // Name of the slam service from which the SLAM map is requested
   common.v1.ResourceName slam_service_name = 4;
@@ -135,11 +135,11 @@ message ObstacleDetector {
 message MotionConfiguration {
   // The ObstacleDetectors that will be used for transient obstacle avoidance
   repeated ObstacleDetector obstacle_detectors = 1;
-  // Sets the frequency to poll for the position of the robot
+  // Sets the frequency to poll for the position of the physicalDevice
   optional double position_polling_frequency_hz = 2;
   // Sets the frequency to poll the vision service(s) for new obstacles
   optional double obstacle_polling_frequency_hz = 3;
-  // Sets the distance in meters that a robot is allowed to deviate from the motion plan
+  // Sets the distance in meters that a physicalDevice is allowed to deviate from the motion plan
   optional double plan_deviation_m = 4;
   // Optional linear velocity to target when moving
   optional double linear_m_per_sec = 5;
@@ -154,15 +154,15 @@ message MoveOnGlobeRequest {
   common.v1.GeoPoint destination = 2;
   // Optional compass heading to achieve at the destination, in degrees [0-360)
   optional double heading = 3;
-  // Component on the robot to move to the specified destination
+  // Component on the physicalDevice to move to the specified destination
   common.v1.ResourceName component_name = 4;
-  // Name of the movement sensor which will be used to check robot location
+  // Name of the movement sensor which will be used to check physicalDevice location
   common.v1.ResourceName movement_sensor_name = 5;
   // Obstacles to be considered for motion planning
   repeated common.v1.GeoGeometry obstacles = 6;
   // Optional set of motion configuration options
   optional MotionConfiguration motion_configuration = 7;
-  // Set of obstacles which the robot must remain within while navigating
+  // Set of obstacles which the physicalDevice must remain within while navigating
   repeated common.v1.GeoGeometry bounding_regions = 8;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
@@ -278,7 +278,7 @@ message OrientationConstraint {
   optional float orientation_tolerance_degs = 1;
 }
 
-// CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot
+// CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the physicalDevice
 message CollisionSpecification {
   message AllowedFrameCollisions {
     string frame1 = 1;
@@ -341,8 +341,8 @@ message PlanStatus {
 // The states that a plan can be in.
 // InProgress if the plan is executing.
 // Stopped if the plan was stopped.
-// Suceeded if the robot reached its destination successfully.
-// Failed if the robot did not reach its destination.
+// Suceeded if the physicalDevice reached its destination successfully.
+// Failed if the physicalDevice did not reach its destination.
 enum PlanState {
   PLAN_STATE_UNSPECIFIED = 0;
   PLAN_STATE_IN_PROGRESS = 1;

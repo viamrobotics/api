@@ -79,61 +79,61 @@ proto.viam.provisioning.v1.ProvisioningServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.provisioning.v1.GetSmartMachineStatusRequest,
- *   !proto.viam.provisioning.v1.GetSmartMachineStatusResponse>}
+ *   !proto.viam.provisioning.v1.GetSmartphysicalDeviceStatusRequest,
+ *   !proto.viam.provisioning.v1.GetSmartphysicalDeviceStatusResponse>}
  */
-const methodDescriptor_ProvisioningService_GetSmartMachineStatus = new grpc.web.MethodDescriptor(
-  '/viam.provisioning.v1.ProvisioningService/GetSmartMachineStatus',
+const methodDescriptor_ProvisioningService_GetSmartphysicalDeviceStatus = new grpc.web.MethodDescriptor(
+  '/viam.provisioning.v1.ProvisioningService/GetSmartphysicalDeviceStatus',
   grpc.web.MethodType.UNARY,
-  proto.viam.provisioning.v1.GetSmartMachineStatusRequest,
-  proto.viam.provisioning.v1.GetSmartMachineStatusResponse,
+  proto.viam.provisioning.v1.GetSmartphysicalDeviceStatusRequest,
+  proto.viam.provisioning.v1.GetSmartphysicalDeviceStatusResponse,
   /**
-   * @param {!proto.viam.provisioning.v1.GetSmartMachineStatusRequest} request
+   * @param {!proto.viam.provisioning.v1.GetSmartphysicalDeviceStatusRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.provisioning.v1.GetSmartMachineStatusResponse.deserializeBinary
+  proto.viam.provisioning.v1.GetSmartphysicalDeviceStatusResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.provisioning.v1.GetSmartMachineStatusRequest} request The
+ * @param {!proto.viam.provisioning.v1.GetSmartphysicalDeviceStatusRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.provisioning.v1.GetSmartMachineStatusResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.provisioning.v1.GetSmartphysicalDeviceStatusResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.provisioning.v1.GetSmartMachineStatusResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.provisioning.v1.GetSmartphysicalDeviceStatusResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.provisioning.v1.ProvisioningServiceClient.prototype.getSmartMachineStatus =
+proto.viam.provisioning.v1.ProvisioningServiceClient.prototype.getSmartphysicalDeviceStatus =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.provisioning.v1.ProvisioningService/GetSmartMachineStatus',
+      '/viam.provisioning.v1.ProvisioningService/GetSmartphysicalDeviceStatus',
       request,
       metadata || {},
-      methodDescriptor_ProvisioningService_GetSmartMachineStatus,
+      methodDescriptor_ProvisioningService_GetSmartphysicalDeviceStatus,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.provisioning.v1.GetSmartMachineStatusRequest} request The
+ * @param {!proto.viam.provisioning.v1.GetSmartphysicalDeviceStatusRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.provisioning.v1.GetSmartMachineStatusResponse>}
+ * @return {!Promise<!proto.viam.provisioning.v1.GetSmartphysicalDeviceStatusResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.provisioning.v1.ProvisioningServicePromiseClient.prototype.getSmartMachineStatus =
+proto.viam.provisioning.v1.ProvisioningServicePromiseClient.prototype.getSmartphysicalDeviceStatus =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.provisioning.v1.ProvisioningService/GetSmartMachineStatus',
+      '/viam.provisioning.v1.ProvisioningService/GetSmartphysicalDeviceStatus',
       request,
       metadata || {},
-      methodDescriptor_ProvisioningService_GetSmartMachineStatus);
+      methodDescriptor_ProvisioningService_GetSmartphysicalDeviceStatus);
 };
 
 
@@ -201,61 +201,61 @@ proto.viam.provisioning.v1.ProvisioningServicePromiseClient.prototype.setNetwork
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.provisioning.v1.SetSmartMachineCredentialsRequest,
- *   !proto.viam.provisioning.v1.SetSmartMachineCredentialsResponse>}
+ *   !proto.viam.provisioning.v1.SetSmartphysicalDeviceCredentialsRequest,
+ *   !proto.viam.provisioning.v1.SetSmartphysicalDeviceCredentialsResponse>}
  */
-const methodDescriptor_ProvisioningService_SetSmartMachineCredentials = new grpc.web.MethodDescriptor(
-  '/viam.provisioning.v1.ProvisioningService/SetSmartMachineCredentials',
+const methodDescriptor_ProvisioningService_SetSmartphysicalDeviceCredentials = new grpc.web.MethodDescriptor(
+  '/viam.provisioning.v1.ProvisioningService/SetSmartphysicalDeviceCredentials',
   grpc.web.MethodType.UNARY,
-  proto.viam.provisioning.v1.SetSmartMachineCredentialsRequest,
-  proto.viam.provisioning.v1.SetSmartMachineCredentialsResponse,
+  proto.viam.provisioning.v1.SetSmartphysicalDeviceCredentialsRequest,
+  proto.viam.provisioning.v1.SetSmartphysicalDeviceCredentialsResponse,
   /**
-   * @param {!proto.viam.provisioning.v1.SetSmartMachineCredentialsRequest} request
+   * @param {!proto.viam.provisioning.v1.SetSmartphysicalDeviceCredentialsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.provisioning.v1.SetSmartMachineCredentialsResponse.deserializeBinary
+  proto.viam.provisioning.v1.SetSmartphysicalDeviceCredentialsResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.provisioning.v1.SetSmartMachineCredentialsRequest} request The
+ * @param {!proto.viam.provisioning.v1.SetSmartphysicalDeviceCredentialsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.provisioning.v1.SetSmartMachineCredentialsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.provisioning.v1.SetSmartphysicalDeviceCredentialsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.provisioning.v1.SetSmartMachineCredentialsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.provisioning.v1.SetSmartphysicalDeviceCredentialsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.provisioning.v1.ProvisioningServiceClient.prototype.setSmartMachineCredentials =
+proto.viam.provisioning.v1.ProvisioningServiceClient.prototype.setSmartphysicalDeviceCredentials =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.provisioning.v1.ProvisioningService/SetSmartMachineCredentials',
+      '/viam.provisioning.v1.ProvisioningService/SetSmartphysicalDeviceCredentials',
       request,
       metadata || {},
-      methodDescriptor_ProvisioningService_SetSmartMachineCredentials,
+      methodDescriptor_ProvisioningService_SetSmartphysicalDeviceCredentials,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.provisioning.v1.SetSmartMachineCredentialsRequest} request The
+ * @param {!proto.viam.provisioning.v1.SetSmartphysicalDeviceCredentialsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.provisioning.v1.SetSmartMachineCredentialsResponse>}
+ * @return {!Promise<!proto.viam.provisioning.v1.SetSmartphysicalDeviceCredentialsResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.provisioning.v1.ProvisioningServicePromiseClient.prototype.setSmartMachineCredentials =
+proto.viam.provisioning.v1.ProvisioningServicePromiseClient.prototype.setSmartphysicalDeviceCredentials =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.provisioning.v1.ProvisioningService/SetSmartMachineCredentials',
+      '/viam.provisioning.v1.ProvisioningService/SetSmartphysicalDeviceCredentials',
       request,
       metadata || {},
-      methodDescriptor_ProvisioningService_SetSmartMachineCredentials);
+      methodDescriptor_ProvisioningService_SetSmartphysicalDeviceCredentials);
 };
 
 

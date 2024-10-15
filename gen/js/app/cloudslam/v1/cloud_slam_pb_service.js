@@ -19,13 +19,13 @@ CloudSLAMService.StartMappingSession = {
   responseType: app_cloudslam_v1_cloud_slam_pb.StartMappingSessionResponse
 };
 
-CloudSLAMService.GetActiveMappingSessionsForRobot = {
-  methodName: "GetActiveMappingSessionsForRobot",
+CloudSLAMService.GetActiveMappingSessionsForphysicalDevice = {
+  methodName: "GetActiveMappingSessionsForphysicalDevice",
   service: CloudSLAMService,
   requestStream: false,
   responseStream: false,
-  requestType: app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForRobotRequest,
-  responseType: app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForRobotResponse
+  requestType: app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForphysicalDeviceRequest,
+  responseType: app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForphysicalDeviceResponse
 };
 
 CloudSLAMService.GetMappingSessionPointCloud = {
@@ -102,11 +102,11 @@ CloudSLAMServiceClient.prototype.startMappingSession = function startMappingSess
   };
 };
 
-CloudSLAMServiceClient.prototype.getActiveMappingSessionsForRobot = function getActiveMappingSessionsForRobot(requestMessage, metadata, callback) {
+CloudSLAMServiceClient.prototype.getActiveMappingSessionsForphysicalDevice = function getActiveMappingSessionsForphysicalDevice(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(CloudSLAMService.GetActiveMappingSessionsForRobot, {
+  var client = grpc.unary(CloudSLAMService.GetActiveMappingSessionsForphysicalDevice, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

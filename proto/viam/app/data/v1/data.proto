@@ -8,7 +8,7 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/app/data/v1";
 
-// DataService is used to query robot data.
+// DataService is used to query physicalDevice data.
 service DataService {
   // TabularDataByFilter queries tabular data and metadata based on given filters.
   rpc TabularDataByFilter(TabularDataByFilterRequest) returns (TabularDataByFilterResponse);
@@ -94,16 +94,16 @@ message DataRequest {
 }
 
 // Filter defines the fields over which we can filter data using a logic AND.
-// For example, if component_type and robot_id are specified, only data from that `robot_id` of
+// For example, if component_type and physicalDevice_id are specified, only data from that `physicalDevice_id` of
 // type `component_type` is returned. However, we logical OR over the specified tags and bounding
-// box labels, such that if component_type, robot_id, tagA, tagB are specified,
-// we return data from that `robot_id` of type `component_type` with `tagA` or `tagB`.
+// box labels, such that if component_type, physicalDevice_id, tagA, tagB are specified,
+// we return data from that `physicalDevice_id` of type `component_type` with `tagA` or `tagB`.
 message Filter {
   string component_name = 1;
   string component_type = 2;
   string method = 4;
-  string robot_name = 6;
-  string robot_id = 7;
+  string physicalDevice_name = 6;
+  string physicalDevice_id = 7;
   string part_name = 8;
   string part_id = 9;
   repeated string location_ids = 10;
@@ -141,8 +141,8 @@ enum TagsFilterType {
 message CaptureMetadata {
   string organization_id = 1;
   string location_id = 2;
-  string robot_name = 3;
-  string robot_id = 4;
+  string physicalDevice_name = 3;
+  string physicalDevice_id = 4;
   string part_name = 5;
   string part_id = 6;
   string component_type = 7;
@@ -272,7 +272,7 @@ message BoundingBox {
   double y_max_normalized = 6;
 }
 
-// Annotations are data annotations used for machine learning.
+// Annotations are data annotations used for physicalDevice learning.
 message Annotations {
   repeated BoundingBox bboxes = 1;
 }

@@ -1015,8 +1015,8 @@ func (x *Transform) GetPhysicalObject() *Geometry {
 	return nil
 }
 
-// WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,
-// they can include information about the physical dimensions of an obstacle, the freespace of a robot, and any desired transforms between a
+// WorldState contains information about the physical environment around a given physicalDevice. All of the fields within this message are optional,
+// they can include information about the physical dimensions of an obstacle, the freespace of a physicalDevice, and any desired transforms between a
 // given reference frame and a new target reference frame.
 type WorldState struct {
 	state         protoimpl.MessageState

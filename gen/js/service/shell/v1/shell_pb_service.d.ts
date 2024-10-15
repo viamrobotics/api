@@ -14,22 +14,22 @@ type ShellServiceShell = {
   readonly responseType: typeof service_shell_v1_shell_pb.ShellResponse;
 };
 
-type ShellServiceCopyFilesToMachine = {
+type ShellServiceCopyFilesTophysicalDevice = {
   readonly methodName: string;
   readonly service: typeof ShellService;
   readonly requestStream: true;
   readonly responseStream: true;
-  readonly requestType: typeof service_shell_v1_shell_pb.CopyFilesToMachineRequest;
-  readonly responseType: typeof service_shell_v1_shell_pb.CopyFilesToMachineResponse;
+  readonly requestType: typeof service_shell_v1_shell_pb.CopyFilesTophysicalDeviceRequest;
+  readonly responseType: typeof service_shell_v1_shell_pb.CopyFilesTophysicalDeviceResponse;
 };
 
-type ShellServiceCopyFilesFromMachine = {
+type ShellServiceCopyFilesFromphysicalDevice = {
   readonly methodName: string;
   readonly service: typeof ShellService;
   readonly requestStream: true;
   readonly responseStream: true;
-  readonly requestType: typeof service_shell_v1_shell_pb.CopyFilesFromMachineRequest;
-  readonly responseType: typeof service_shell_v1_shell_pb.CopyFilesFromMachineResponse;
+  readonly requestType: typeof service_shell_v1_shell_pb.CopyFilesFromphysicalDeviceRequest;
+  readonly responseType: typeof service_shell_v1_shell_pb.CopyFilesFromphysicalDeviceResponse;
 };
 
 type ShellServiceDoCommand = {
@@ -44,8 +44,8 @@ type ShellServiceDoCommand = {
 export class ShellService {
   static readonly serviceName: string;
   static readonly Shell: ShellServiceShell;
-  static readonly CopyFilesToMachine: ShellServiceCopyFilesToMachine;
-  static readonly CopyFilesFromMachine: ShellServiceCopyFilesFromMachine;
+  static readonly CopyFilesTophysicalDevice: ShellServiceCopyFilesTophysicalDevice;
+  static readonly CopyFilesFromphysicalDevice: ShellServiceCopyFilesFromphysicalDevice;
   static readonly DoCommand: ShellServiceDoCommand;
 }
 
@@ -82,8 +82,8 @@ export class ShellServiceClient {
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
   shell(metadata?: grpc.Metadata): BidirectionalStream<service_shell_v1_shell_pb.ShellRequest, service_shell_v1_shell_pb.ShellResponse>;
-  copyFilesToMachine(metadata?: grpc.Metadata): BidirectionalStream<service_shell_v1_shell_pb.CopyFilesToMachineRequest, service_shell_v1_shell_pb.CopyFilesToMachineResponse>;
-  copyFilesFromMachine(metadata?: grpc.Metadata): BidirectionalStream<service_shell_v1_shell_pb.CopyFilesFromMachineRequest, service_shell_v1_shell_pb.CopyFilesFromMachineResponse>;
+  copyFilesTophysicalDevice(metadata?: grpc.Metadata): BidirectionalStream<service_shell_v1_shell_pb.CopyFilesTophysicalDeviceRequest, service_shell_v1_shell_pb.CopyFilesTophysicalDeviceResponse>;
+  copyFilesFromphysicalDevice(metadata?: grpc.Metadata): BidirectionalStream<service_shell_v1_shell_pb.CopyFilesFromphysicalDeviceRequest, service_shell_v1_shell_pb.CopyFilesFromphysicalDeviceResponse>;
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     metadata: grpc.Metadata,

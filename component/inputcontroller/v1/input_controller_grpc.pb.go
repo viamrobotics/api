@@ -27,7 +27,7 @@ type InputControllerServiceClient interface {
 	GetControls(ctx context.Context, in *GetControlsRequest, opts ...grpc.CallOption) (*GetControlsResponse, error)
 	// GetEvents returns a list of events representing the last event on each control of a give Input Controller
 	GetEvents(ctx context.Context, in *GetEventsRequest, opts ...grpc.CallOption) (*GetEventsResponse, error)
-	// StreamEvents starts a stream of InputControllerEvents for the given controls (buttons/axes) on a robot's input controller
+	// StreamEvents starts a stream of InputControllerEvents for the given controls (buttons/axes) on a physicalDevice's input controller
 	StreamEvents(ctx context.Context, in *StreamEventsRequest, opts ...grpc.CallOption) (InputControllerService_StreamEventsClient, error)
 	// TriggerEvent, where supported, injects an InputControllerEvent into an input controller to (virtually) generate events
 	// like button presses or axis movements
@@ -131,7 +131,7 @@ type InputControllerServiceServer interface {
 	GetControls(context.Context, *GetControlsRequest) (*GetControlsResponse, error)
 	// GetEvents returns a list of events representing the last event on each control of a give Input Controller
 	GetEvents(context.Context, *GetEventsRequest) (*GetEventsResponse, error)
-	// StreamEvents starts a stream of InputControllerEvents for the given controls (buttons/axes) on a robot's input controller
+	// StreamEvents starts a stream of InputControllerEvents for the given controls (buttons/axes) on a physicalDevice's input controller
 	StreamEvents(*StreamEventsRequest, InputControllerService_StreamEventsServer) error
 	// TriggerEvent, where supported, injects an InputControllerEvent into an input controller to (virtually) generate events
 	// like button presses or axis movements

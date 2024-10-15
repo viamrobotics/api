@@ -50,11 +50,11 @@ export class Filter extends jspb.Message {
   getMethod(): string;
   setMethod(value: string): void;
 
-  getRobotName(): string;
-  setRobotName(value: string): void;
+  getphysicalDeviceName(): string;
+  setphysicalDeviceName(value: string): void;
 
-  getRobotId(): string;
-  setRobotId(value: string): void;
+  getphysicalDeviceId(): string;
+  setphysicalDeviceId(value: string): void;
 
   getPartName(): string;
   setPartName(value: string): void;
@@ -110,8 +110,8 @@ export namespace Filter {
     componentName: string,
     componentType: string,
     method: string,
-    robotName: string,
-    robotId: string,
+    physicalDeviceName: string,
+    physicalDeviceId: string,
     partName: string,
     partId: string,
     locationIdsList: Array<string>,
@@ -157,11 +157,11 @@ export class CaptureMetadata extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;
 
-  getRobotName(): string;
-  setRobotName(value: string): void;
+  getphysicalDeviceName(): string;
+  setphysicalDeviceName(value: string): void;
 
-  getRobotId(): string;
-  setRobotId(value: string): void;
+  getphysicalDeviceId(): string;
+  setphysicalDeviceId(value: string): void;
 
   getPartName(): string;
   setPartName(value: string): void;
@@ -202,8 +202,8 @@ export namespace CaptureMetadata {
   export type AsObject = {
     organizationId: string,
     locationId: string,
-    robotName: string,
-    robotId: string,
+    physicalDeviceName: string,
+    physicalDeviceId: string,
     partName: string,
     partId: string,
     componentType: string,

@@ -1,51 +1,51 @@
 // package: viam.app.v1
-// file: app/v1/robot.proto
+// file: app/v1/physicalDevice.proto
 
-import * as app_v1_robot_pb from "../../app/v1/robot_pb";
+import * as app_v1_physicalDevice_pb from "../../app/v1/physicalDevice_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type RobotServiceConfig = {
+type physicalDeviceServiceConfig = {
   readonly methodName: string;
-  readonly service: typeof RobotService;
+  readonly service: typeof physicalDeviceService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_robot_pb.ConfigRequest;
-  readonly responseType: typeof app_v1_robot_pb.ConfigResponse;
+  readonly requestType: typeof app_v1_physicalDevice_pb.ConfigRequest;
+  readonly responseType: typeof app_v1_physicalDevice_pb.ConfigResponse;
 };
 
-type RobotServiceCertificate = {
+type physicalDeviceServiceCertificate = {
   readonly methodName: string;
-  readonly service: typeof RobotService;
+  readonly service: typeof physicalDeviceService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_robot_pb.CertificateRequest;
-  readonly responseType: typeof app_v1_robot_pb.CertificateResponse;
+  readonly requestType: typeof app_v1_physicalDevice_pb.CertificateRequest;
+  readonly responseType: typeof app_v1_physicalDevice_pb.CertificateResponse;
 };
 
-type RobotServiceLog = {
+type physicalDeviceServiceLog = {
   readonly methodName: string;
-  readonly service: typeof RobotService;
+  readonly service: typeof physicalDeviceService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_robot_pb.LogRequest;
-  readonly responseType: typeof app_v1_robot_pb.LogResponse;
+  readonly requestType: typeof app_v1_physicalDevice_pb.LogRequest;
+  readonly responseType: typeof app_v1_physicalDevice_pb.LogResponse;
 };
 
-type RobotServiceNeedsRestart = {
+type physicalDeviceServiceNeedsRestart = {
   readonly methodName: string;
-  readonly service: typeof RobotService;
+  readonly service: typeof physicalDeviceService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_robot_pb.NeedsRestartRequest;
-  readonly responseType: typeof app_v1_robot_pb.NeedsRestartResponse;
+  readonly requestType: typeof app_v1_physicalDevice_pb.NeedsRestartRequest;
+  readonly responseType: typeof app_v1_physicalDevice_pb.NeedsRestartResponse;
 };
 
-export class RobotService {
+export class physicalDeviceService {
   static readonly serviceName: string;
-  static readonly Config: RobotServiceConfig;
-  static readonly Certificate: RobotServiceCertificate;
-  static readonly Log: RobotServiceLog;
-  static readonly NeedsRestart: RobotServiceNeedsRestart;
+  static readonly Config: physicalDeviceServiceConfig;
+  static readonly Certificate: physicalDeviceServiceCertificate;
+  static readonly Log: physicalDeviceServiceLog;
+  static readonly NeedsRestart: physicalDeviceServiceNeedsRestart;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -76,45 +76,45 @@ interface BidirectionalStream<ReqT, ResT> {
   on(type: 'status', handler: (status: Status) => void): BidirectionalStream<ReqT, ResT>;
 }
 
-export class RobotServiceClient {
+export class physicalDeviceServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
   config(
-    requestMessage: app_v1_robot_pb.ConfigRequest,
+    requestMessage: app_v1_physicalDevice_pb.ConfigRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_robot_pb.ConfigResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_physicalDevice_pb.ConfigResponse|null) => void
   ): UnaryResponse;
   config(
-    requestMessage: app_v1_robot_pb.ConfigRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_robot_pb.ConfigResponse|null) => void
+    requestMessage: app_v1_physicalDevice_pb.ConfigRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_physicalDevice_pb.ConfigResponse|null) => void
   ): UnaryResponse;
   certificate(
-    requestMessage: app_v1_robot_pb.CertificateRequest,
+    requestMessage: app_v1_physicalDevice_pb.CertificateRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_robot_pb.CertificateResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_physicalDevice_pb.CertificateResponse|null) => void
   ): UnaryResponse;
   certificate(
-    requestMessage: app_v1_robot_pb.CertificateRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_robot_pb.CertificateResponse|null) => void
+    requestMessage: app_v1_physicalDevice_pb.CertificateRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_physicalDevice_pb.CertificateResponse|null) => void
   ): UnaryResponse;
   log(
-    requestMessage: app_v1_robot_pb.LogRequest,
+    requestMessage: app_v1_physicalDevice_pb.LogRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_robot_pb.LogResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_physicalDevice_pb.LogResponse|null) => void
   ): UnaryResponse;
   log(
-    requestMessage: app_v1_robot_pb.LogRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_robot_pb.LogResponse|null) => void
+    requestMessage: app_v1_physicalDevice_pb.LogRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_physicalDevice_pb.LogResponse|null) => void
   ): UnaryResponse;
   needsRestart(
-    requestMessage: app_v1_robot_pb.NeedsRestartRequest,
+    requestMessage: app_v1_physicalDevice_pb.NeedsRestartRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_robot_pb.NeedsRestartResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_physicalDevice_pb.NeedsRestartResponse|null) => void
   ): UnaryResponse;
   needsRestart(
-    requestMessage: app_v1_robot_pb.NeedsRestartRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_robot_pb.NeedsRestartResponse|null) => void
+    requestMessage: app_v1_physicalDevice_pb.NeedsRestartRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_physicalDevice_pb.NeedsRestartResponse|null) => void
   ): UnaryResponse;
 }
 

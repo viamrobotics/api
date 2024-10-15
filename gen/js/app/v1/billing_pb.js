@@ -1670,7 +1670,7 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.toObject = function(includeInstan
     discountAmount: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
     totalUsageWithDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
     totalUsageWithoutDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
-    perMachineUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0),
+    perphysicalDeviceUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0),
     binaryDataCloudStorageUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 12, 0.0),
     otherCloudStorageUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 13, 0.0)
   };
@@ -1753,7 +1753,7 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.deserializeBinaryFromReader = fun
       break;
     case 11:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setPerMachineUsageCost(value);
+      msg.setPerphysicalDeviceUsageCost(value);
       break;
     case 12:
       var value = /** @type {number} */ (reader.readDouble());
@@ -1864,7 +1864,7 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.serializeBinaryToWriter = functio
       f
     );
   }
-  f = message.getPerMachineUsageCost();
+  f = message.getPerphysicalDeviceUsageCost();
   if (f !== 0.0) {
     writer.writeDouble(
       11,
@@ -2107,10 +2107,10 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setTotalUsageWithoutDis
 
 
 /**
- * optional double per_machine_usage_cost = 11;
+ * optional double per_physicalDevice_usage_cost = 11;
  * @return {number}
  */
-proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getPerMachineUsageCost = function() {
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getPerphysicalDeviceUsageCost = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 11, 0.0));
 };
 
@@ -2119,7 +2119,7 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.getPerMachineUsageCost 
  * @param {number} value
  * @return {!proto.viam.app.v1.GetCurrentMonthUsageResponse} returns this
  */
-proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setPerMachineUsageCost = function(value) {
+proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.setPerphysicalDeviceUsageCost = function(value) {
   return jspb.Message.setProto3FloatField(this, 11, value);
 };
 

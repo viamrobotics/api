@@ -24,19 +24,19 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BoardServiceClient interface {
 	SetGPIO(ctx context.Context, in *SetGPIORequest, opts ...grpc.CallOption) (*SetGPIOResponse, error)
-	// GetGPIO gets the high/low state of the given pin of a board of the underlying robot.
+	// GetGPIO gets the high/low state of the given pin of a board of the underlying physicalDevice.
 	GetGPIO(ctx context.Context, in *GetGPIORequest, opts ...grpc.CallOption) (*GetGPIOResponse, error)
-	// PWM gets the duty cycle of the given pin of a board of the underlying robot.
+	// PWM gets the duty cycle of the given pin of a board of the underlying physicalDevice.
 	PWM(ctx context.Context, in *PWMRequest, opts ...grpc.CallOption) (*PWMResponse, error)
-	// SetPWM sets the given pin of a board of the underlying robot to the given duty cycle.
+	// SetPWM sets the given pin of a board of the underlying physicalDevice to the given duty cycle.
 	SetPWM(ctx context.Context, in *SetPWMRequest, opts ...grpc.CallOption) (*SetPWMResponse, error)
-	// PWMFrequency gets the PWM frequency of the given pin of a board of the underlying robot.
+	// PWMFrequency gets the PWM frequency of the given pin of a board of the underlying physicalDevice.
 	PWMFrequency(ctx context.Context, in *PWMFrequencyRequest, opts ...grpc.CallOption) (*PWMFrequencyResponse, error)
-	// SetPWMFrequency sets the given pin of a board of the underlying robot to the given PWM frequency. 0 will use the board's default PWM frequency.
+	// SetPWMFrequency sets the given pin of a board of the underlying physicalDevice to the given PWM frequency. 0 will use the board's default PWM frequency.
 	SetPWMFrequency(ctx context.Context, in *SetPWMFrequencyRequest, opts ...grpc.CallOption) (*SetPWMFrequencyResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
-	// ReadAnalogReader reads off the current value of an analog reader of a board of the underlying robot.
+	// ReadAnalogReader reads off the current value of an analog reader of a board of the underlying physicalDevice.
 	ReadAnalogReader(ctx context.Context, in *ReadAnalogReaderRequest, opts ...grpc.CallOption) (*ReadAnalogReaderResponse, error)
 	// WriteAnalog writes the value to the analog writer of the board.
 	WriteAnalog(ctx context.Context, in *WriteAnalogRequest, opts ...grpc.CallOption) (*WriteAnalogResponse, error)
@@ -203,19 +203,19 @@ func (c *boardServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeomet
 // for forward compatibility
 type BoardServiceServer interface {
 	SetGPIO(context.Context, *SetGPIORequest) (*SetGPIOResponse, error)
-	// GetGPIO gets the high/low state of the given pin of a board of the underlying robot.
+	// GetGPIO gets the high/low state of the given pin of a board of the underlying physicalDevice.
 	GetGPIO(context.Context, *GetGPIORequest) (*GetGPIOResponse, error)
-	// PWM gets the duty cycle of the given pin of a board of the underlying robot.
+	// PWM gets the duty cycle of the given pin of a board of the underlying physicalDevice.
 	PWM(context.Context, *PWMRequest) (*PWMResponse, error)
-	// SetPWM sets the given pin of a board of the underlying robot to the given duty cycle.
+	// SetPWM sets the given pin of a board of the underlying physicalDevice to the given duty cycle.
 	SetPWM(context.Context, *SetPWMRequest) (*SetPWMResponse, error)
-	// PWMFrequency gets the PWM frequency of the given pin of a board of the underlying robot.
+	// PWMFrequency gets the PWM frequency of the given pin of a board of the underlying physicalDevice.
 	PWMFrequency(context.Context, *PWMFrequencyRequest) (*PWMFrequencyResponse, error)
-	// SetPWMFrequency sets the given pin of a board of the underlying robot to the given PWM frequency. 0 will use the board's default PWM frequency.
+	// SetPWMFrequency sets the given pin of a board of the underlying physicalDevice to the given PWM frequency. 0 will use the board's default PWM frequency.
 	SetPWMFrequency(context.Context, *SetPWMFrequencyRequest) (*SetPWMFrequencyResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
-	// ReadAnalogReader reads off the current value of an analog reader of a board of the underlying robot.
+	// ReadAnalogReader reads off the current value of an analog reader of a board of the underlying physicalDevice.
 	ReadAnalogReader(context.Context, *ReadAnalogReaderRequest) (*ReadAnalogReaderResponse, error)
 	// WriteAnalog writes the value to the analog writer of the board.
 	WriteAnalog(context.Context, *WriteAnalogRequest) (*WriteAnalogResponse, error)

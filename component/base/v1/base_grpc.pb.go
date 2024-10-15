@@ -23,11 +23,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BaseServiceClient interface {
-	// MoveStraight moves a robot's base in a straight line by a given distance, expressed in millimeters
+	// MoveStraight moves a physicalDevice's base in a straight line by a given distance, expressed in millimeters
 	// and a given speed, expressed in millimeters per second
 	// This method blocks until completed or cancelled
 	MoveStraight(ctx context.Context, in *MoveStraightRequest, opts ...grpc.CallOption) (*MoveStraightResponse, error)
-	// Spin spins a robot's base by an given angle, expressed in degrees, and a given
+	// Spin spins a physicalDevice's base by an given angle, expressed in degrees, and a given
 	// angular speed, expressed in degrees per second
 	// This method blocks until completed or cancelled
 	Spin(ctx context.Context, in *SpinRequest, opts ...grpc.CallOption) (*SpinResponse, error)
@@ -36,7 +36,7 @@ type BaseServiceClient interface {
 	SetPower(ctx context.Context, in *SetPowerRequest, opts ...grpc.CallOption) (*SetPowerResponse, error)
 	// SetVelocity sets the linear and angular velocity of a base
 	SetVelocity(ctx context.Context, in *SetVelocityRequest, opts ...grpc.CallOption) (*SetVelocityResponse, error)
-	// Stop stops a robot's base
+	// Stop stops a physicalDevice's base
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
@@ -141,11 +141,11 @@ func (c *baseServiceClient) GetProperties(ctx context.Context, in *GetProperties
 // All implementations must embed UnimplementedBaseServiceServer
 // for forward compatibility
 type BaseServiceServer interface {
-	// MoveStraight moves a robot's base in a straight line by a given distance, expressed in millimeters
+	// MoveStraight moves a physicalDevice's base in a straight line by a given distance, expressed in millimeters
 	// and a given speed, expressed in millimeters per second
 	// This method blocks until completed or cancelled
 	MoveStraight(context.Context, *MoveStraightRequest) (*MoveStraightResponse, error)
-	// Spin spins a robot's base by an given angle, expressed in degrees, and a given
+	// Spin spins a physicalDevice's base by an given angle, expressed in degrees, and a given
 	// angular speed, expressed in degrees per second
 	// This method blocks until completed or cancelled
 	Spin(context.Context, *SpinRequest) (*SpinResponse, error)
@@ -154,7 +154,7 @@ type BaseServiceServer interface {
 	SetPower(context.Context, *SetPowerRequest) (*SetPowerResponse, error)
 	// SetVelocity sets the linear and angular velocity of a base
 	SetVelocity(context.Context, *SetVelocityRequest) (*SetVelocityResponse, error)
-	// Stop stops a robot's base
+	// Stop stops a physicalDevice's base
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)

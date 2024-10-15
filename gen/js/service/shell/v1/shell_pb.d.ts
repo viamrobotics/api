@@ -115,7 +115,7 @@ export namespace FileData {
   }
 }
 
-export class CopyFilesToMachineRequestMetadata extends jspb.Message {
+export class CopyFilesTophysicalDeviceRequestMetadata extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
@@ -134,16 +134,16 @@ export class CopyFilesToMachineRequestMetadata extends jspb.Message {
   setExtra(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CopyFilesToMachineRequestMetadata.AsObject;
-  static toObject(includeInstance: boolean, msg: CopyFilesToMachineRequestMetadata): CopyFilesToMachineRequestMetadata.AsObject;
+  toObject(includeInstance?: boolean): CopyFilesTophysicalDeviceRequestMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: CopyFilesTophysicalDeviceRequestMetadata): CopyFilesTophysicalDeviceRequestMetadata.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CopyFilesToMachineRequestMetadata, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CopyFilesToMachineRequestMetadata;
-  static deserializeBinaryFromReader(message: CopyFilesToMachineRequestMetadata, reader: jspb.BinaryReader): CopyFilesToMachineRequestMetadata;
+  static serializeBinaryToWriter(message: CopyFilesTophysicalDeviceRequestMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CopyFilesTophysicalDeviceRequestMetadata;
+  static deserializeBinaryFromReader(message: CopyFilesTophysicalDeviceRequestMetadata, reader: jspb.BinaryReader): CopyFilesTophysicalDeviceRequestMetadata;
 }
 
-export namespace CopyFilesToMachineRequestMetadata {
+export namespace CopyFilesTophysicalDeviceRequestMetadata {
   export type AsObject = {
     name: string,
     sourceType: CopyFilesSourceTypeMap[keyof CopyFilesSourceTypeMap],
@@ -153,31 +153,31 @@ export namespace CopyFilesToMachineRequestMetadata {
   }
 }
 
-export class CopyFilesToMachineRequest extends jspb.Message {
+export class CopyFilesTophysicalDeviceRequest extends jspb.Message {
   hasMetadata(): boolean;
   clearMetadata(): void;
-  getMetadata(): CopyFilesToMachineRequestMetadata | undefined;
-  setMetadata(value?: CopyFilesToMachineRequestMetadata): void;
+  getMetadata(): CopyFilesTophysicalDeviceRequestMetadata | undefined;
+  setMetadata(value?: CopyFilesTophysicalDeviceRequestMetadata): void;
 
   hasFileData(): boolean;
   clearFileData(): void;
   getFileData(): FileData | undefined;
   setFileData(value?: FileData): void;
 
-  getRequestCase(): CopyFilesToMachineRequest.RequestCase;
+  getRequestCase(): CopyFilesTophysicalDeviceRequest.RequestCase;
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CopyFilesToMachineRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: CopyFilesToMachineRequest): CopyFilesToMachineRequest.AsObject;
+  toObject(includeInstance?: boolean): CopyFilesTophysicalDeviceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CopyFilesTophysicalDeviceRequest): CopyFilesTophysicalDeviceRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CopyFilesToMachineRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CopyFilesToMachineRequest;
-  static deserializeBinaryFromReader(message: CopyFilesToMachineRequest, reader: jspb.BinaryReader): CopyFilesToMachineRequest;
+  static serializeBinaryToWriter(message: CopyFilesTophysicalDeviceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CopyFilesTophysicalDeviceRequest;
+  static deserializeBinaryFromReader(message: CopyFilesTophysicalDeviceRequest, reader: jspb.BinaryReader): CopyFilesTophysicalDeviceRequest;
 }
 
-export namespace CopyFilesToMachineRequest {
+export namespace CopyFilesTophysicalDeviceRequest {
   export type AsObject = {
-    metadata?: CopyFilesToMachineRequestMetadata.AsObject,
+    metadata?: CopyFilesTophysicalDeviceRequestMetadata.AsObject,
     fileData?: FileData.AsObject,
   }
 
@@ -188,27 +188,27 @@ export namespace CopyFilesToMachineRequest {
   }
 }
 
-export class CopyFilesToMachineResponse extends jspb.Message {
+export class CopyFilesTophysicalDeviceResponse extends jspb.Message {
   getAckLastFile(): boolean;
   setAckLastFile(value: boolean): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CopyFilesToMachineResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: CopyFilesToMachineResponse): CopyFilesToMachineResponse.AsObject;
+  toObject(includeInstance?: boolean): CopyFilesTophysicalDeviceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CopyFilesTophysicalDeviceResponse): CopyFilesTophysicalDeviceResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CopyFilesToMachineResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CopyFilesToMachineResponse;
-  static deserializeBinaryFromReader(message: CopyFilesToMachineResponse, reader: jspb.BinaryReader): CopyFilesToMachineResponse;
+  static serializeBinaryToWriter(message: CopyFilesTophysicalDeviceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CopyFilesTophysicalDeviceResponse;
+  static deserializeBinaryFromReader(message: CopyFilesTophysicalDeviceResponse, reader: jspb.BinaryReader): CopyFilesTophysicalDeviceResponse;
 }
 
-export namespace CopyFilesToMachineResponse {
+export namespace CopyFilesTophysicalDeviceResponse {
   export type AsObject = {
     ackLastFile: boolean,
   }
 }
 
-export class CopyFilesFromMachineRequestMetadata extends jspb.Message {
+export class CopyFilesFromphysicalDeviceRequestMetadata extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
@@ -229,16 +229,16 @@ export class CopyFilesFromMachineRequestMetadata extends jspb.Message {
   setExtra(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CopyFilesFromMachineRequestMetadata.AsObject;
-  static toObject(includeInstance: boolean, msg: CopyFilesFromMachineRequestMetadata): CopyFilesFromMachineRequestMetadata.AsObject;
+  toObject(includeInstance?: boolean): CopyFilesFromphysicalDeviceRequestMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: CopyFilesFromphysicalDeviceRequestMetadata): CopyFilesFromphysicalDeviceRequestMetadata.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CopyFilesFromMachineRequestMetadata, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CopyFilesFromMachineRequestMetadata;
-  static deserializeBinaryFromReader(message: CopyFilesFromMachineRequestMetadata, reader: jspb.BinaryReader): CopyFilesFromMachineRequestMetadata;
+  static serializeBinaryToWriter(message: CopyFilesFromphysicalDeviceRequestMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CopyFilesFromphysicalDeviceRequestMetadata;
+  static deserializeBinaryFromReader(message: CopyFilesFromphysicalDeviceRequestMetadata, reader: jspb.BinaryReader): CopyFilesFromphysicalDeviceRequestMetadata;
 }
 
-export namespace CopyFilesFromMachineRequestMetadata {
+export namespace CopyFilesFromphysicalDeviceRequestMetadata {
   export type AsObject = {
     name: string,
     pathsList: Array<string>,
@@ -248,31 +248,31 @@ export namespace CopyFilesFromMachineRequestMetadata {
   }
 }
 
-export class CopyFilesFromMachineRequest extends jspb.Message {
+export class CopyFilesFromphysicalDeviceRequest extends jspb.Message {
   hasMetadata(): boolean;
   clearMetadata(): void;
-  getMetadata(): CopyFilesFromMachineRequestMetadata | undefined;
-  setMetadata(value?: CopyFilesFromMachineRequestMetadata): void;
+  getMetadata(): CopyFilesFromphysicalDeviceRequestMetadata | undefined;
+  setMetadata(value?: CopyFilesFromphysicalDeviceRequestMetadata): void;
 
   hasAckLastFile(): boolean;
   clearAckLastFile(): void;
   getAckLastFile(): boolean;
   setAckLastFile(value: boolean): void;
 
-  getRequestCase(): CopyFilesFromMachineRequest.RequestCase;
+  getRequestCase(): CopyFilesFromphysicalDeviceRequest.RequestCase;
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CopyFilesFromMachineRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: CopyFilesFromMachineRequest): CopyFilesFromMachineRequest.AsObject;
+  toObject(includeInstance?: boolean): CopyFilesFromphysicalDeviceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CopyFilesFromphysicalDeviceRequest): CopyFilesFromphysicalDeviceRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CopyFilesFromMachineRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CopyFilesFromMachineRequest;
-  static deserializeBinaryFromReader(message: CopyFilesFromMachineRequest, reader: jspb.BinaryReader): CopyFilesFromMachineRequest;
+  static serializeBinaryToWriter(message: CopyFilesFromphysicalDeviceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CopyFilesFromphysicalDeviceRequest;
+  static deserializeBinaryFromReader(message: CopyFilesFromphysicalDeviceRequest, reader: jspb.BinaryReader): CopyFilesFromphysicalDeviceRequest;
 }
 
-export namespace CopyFilesFromMachineRequest {
+export namespace CopyFilesFromphysicalDeviceRequest {
   export type AsObject = {
-    metadata?: CopyFilesFromMachineRequestMetadata.AsObject,
+    metadata?: CopyFilesFromphysicalDeviceRequestMetadata.AsObject,
     ackLastFile: boolean,
   }
 
@@ -283,51 +283,51 @@ export namespace CopyFilesFromMachineRequest {
   }
 }
 
-export class CopyFilesFromMachineResponseMetadata extends jspb.Message {
+export class CopyFilesFromphysicalDeviceResponseMetadata extends jspb.Message {
   getSourceType(): CopyFilesSourceTypeMap[keyof CopyFilesSourceTypeMap];
   setSourceType(value: CopyFilesSourceTypeMap[keyof CopyFilesSourceTypeMap]): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CopyFilesFromMachineResponseMetadata.AsObject;
-  static toObject(includeInstance: boolean, msg: CopyFilesFromMachineResponseMetadata): CopyFilesFromMachineResponseMetadata.AsObject;
+  toObject(includeInstance?: boolean): CopyFilesFromphysicalDeviceResponseMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: CopyFilesFromphysicalDeviceResponseMetadata): CopyFilesFromphysicalDeviceResponseMetadata.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CopyFilesFromMachineResponseMetadata, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CopyFilesFromMachineResponseMetadata;
-  static deserializeBinaryFromReader(message: CopyFilesFromMachineResponseMetadata, reader: jspb.BinaryReader): CopyFilesFromMachineResponseMetadata;
+  static serializeBinaryToWriter(message: CopyFilesFromphysicalDeviceResponseMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CopyFilesFromphysicalDeviceResponseMetadata;
+  static deserializeBinaryFromReader(message: CopyFilesFromphysicalDeviceResponseMetadata, reader: jspb.BinaryReader): CopyFilesFromphysicalDeviceResponseMetadata;
 }
 
-export namespace CopyFilesFromMachineResponseMetadata {
+export namespace CopyFilesFromphysicalDeviceResponseMetadata {
   export type AsObject = {
     sourceType: CopyFilesSourceTypeMap[keyof CopyFilesSourceTypeMap],
   }
 }
 
-export class CopyFilesFromMachineResponse extends jspb.Message {
+export class CopyFilesFromphysicalDeviceResponse extends jspb.Message {
   hasMetadata(): boolean;
   clearMetadata(): void;
-  getMetadata(): CopyFilesFromMachineResponseMetadata | undefined;
-  setMetadata(value?: CopyFilesFromMachineResponseMetadata): void;
+  getMetadata(): CopyFilesFromphysicalDeviceResponseMetadata | undefined;
+  setMetadata(value?: CopyFilesFromphysicalDeviceResponseMetadata): void;
 
   hasFileData(): boolean;
   clearFileData(): void;
   getFileData(): FileData | undefined;
   setFileData(value?: FileData): void;
 
-  getResponseCase(): CopyFilesFromMachineResponse.ResponseCase;
+  getResponseCase(): CopyFilesFromphysicalDeviceResponse.ResponseCase;
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CopyFilesFromMachineResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: CopyFilesFromMachineResponse): CopyFilesFromMachineResponse.AsObject;
+  toObject(includeInstance?: boolean): CopyFilesFromphysicalDeviceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CopyFilesFromphysicalDeviceResponse): CopyFilesFromphysicalDeviceResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CopyFilesFromMachineResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CopyFilesFromMachineResponse;
-  static deserializeBinaryFromReader(message: CopyFilesFromMachineResponse, reader: jspb.BinaryReader): CopyFilesFromMachineResponse;
+  static serializeBinaryToWriter(message: CopyFilesFromphysicalDeviceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CopyFilesFromphysicalDeviceResponse;
+  static deserializeBinaryFromReader(message: CopyFilesFromphysicalDeviceResponse, reader: jspb.BinaryReader): CopyFilesFromphysicalDeviceResponse;
 }
 
-export namespace CopyFilesFromMachineResponse {
+export namespace CopyFilesFromphysicalDeviceResponse {
   export type AsObject = {
-    metadata?: CopyFilesFromMachineResponseMetadata.AsObject,
+    metadata?: CopyFilesFromphysicalDeviceResponseMetadata.AsObject,
     fileData?: FileData.AsObject,
   }
 

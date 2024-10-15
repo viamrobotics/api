@@ -87,7 +87,7 @@ type StartMappingSessionRequest struct {
 	MapName            string           `protobuf:"bytes,3,opt,name=map_name,json=mapName,proto3" json:"map_name,omitempty"`
 	OrganizationId     string           `protobuf:"bytes,4,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
 	LocationId         string           `protobuf:"bytes,5,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
-	RobotId            string           `protobuf:"bytes,6,opt,name=robot_id,json=robotId,proto3" json:"robot_id,omitempty"`
+	physicalDeviceId            string           `protobuf:"bytes,6,opt,name=physicalDevice_id,json=physicalDeviceId,proto3" json:"physicalDevice_id,omitempty"`
 	CaptureInterval    *CaptureInterval `protobuf:"bytes,7,opt,name=capture_interval,json=captureInterval,proto3" json:"capture_interval,omitempty"`
 	Sensors            []*SensorInfo    `protobuf:"bytes,8,rep,name=sensors,proto3" json:"sensors,omitempty"`
 	SlamConfig         *structpb.Struct `protobuf:"bytes,10,opt,name=slam_config,json=slamConfig,proto3" json:"slam_config,omitempty"`
@@ -162,9 +162,9 @@ func (x *StartMappingSessionRequest) GetLocationId() string {
 	return ""
 }
 
-func (x *StartMappingSessionRequest) GetRobotId() string {
+func (x *StartMappingSessionRequest) GetphysicalDeviceId() string {
 	if x != nil {
-		return x.RobotId
+		return x.physicalDeviceId
 	}
 	return ""
 }
@@ -434,17 +434,17 @@ func (x *StartMappingSessionResponse) GetSessionId() string {
 	return ""
 }
 
-type GetActiveMappingSessionsForRobotRequest struct {
+type GetActiveMappingSessionsForphysicalDeviceRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// assumes only one active mapping session on a robot
-	RobotId string `protobuf:"bytes,1,opt,name=robot_id,json=robotId,proto3" json:"robot_id,omitempty"`
+	// assumes only one active mapping session on a physicalDevice
+	physicalDeviceId string `protobuf:"bytes,1,opt,name=physicalDevice_id,json=physicalDeviceId,proto3" json:"physicalDevice_id,omitempty"`
 }
 
-func (x *GetActiveMappingSessionsForRobotRequest) Reset() {
-	*x = GetActiveMappingSessionsForRobotRequest{}
+func (x *GetActiveMappingSessionsForphysicalDeviceRequest) Reset() {
+	*x = GetActiveMappingSessionsForphysicalDeviceRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_cloudslam_v1_cloud_slam_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -452,13 +452,13 @@ func (x *GetActiveMappingSessionsForRobotRequest) Reset() {
 	}
 }
 
-func (x *GetActiveMappingSessionsForRobotRequest) String() string {
+func (x *GetActiveMappingSessionsForphysicalDeviceRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetActiveMappingSessionsForRobotRequest) ProtoMessage() {}
+func (*GetActiveMappingSessionsForphysicalDeviceRequest) ProtoMessage() {}
 
-func (x *GetActiveMappingSessionsForRobotRequest) ProtoReflect() protoreflect.Message {
+func (x *GetActiveMappingSessionsForphysicalDeviceRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_cloudslam_v1_cloud_slam_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -470,19 +470,19 @@ func (x *GetActiveMappingSessionsForRobotRequest) ProtoReflect() protoreflect.Me
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetActiveMappingSessionsForRobotRequest.ProtoReflect.Descriptor instead.
-func (*GetActiveMappingSessionsForRobotRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetActiveMappingSessionsForphysicalDeviceRequest.ProtoReflect.Descriptor instead.
+func (*GetActiveMappingSessionsForphysicalDeviceRequest) Descriptor() ([]byte, []int) {
 	return file_app_cloudslam_v1_cloud_slam_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetActiveMappingSessionsForRobotRequest) GetRobotId() string {
+func (x *GetActiveMappingSessionsForphysicalDeviceRequest) GetphysicalDeviceId() string {
 	if x != nil {
-		return x.RobotId
+		return x.physicalDeviceId
 	}
 	return ""
 }
 
-type GetActiveMappingSessionsForRobotResponse struct {
+type GetActiveMappingSessionsForphysicalDeviceResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -490,8 +490,8 @@ type GetActiveMappingSessionsForRobotResponse struct {
 	SessionId string `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 }
 
-func (x *GetActiveMappingSessionsForRobotResponse) Reset() {
-	*x = GetActiveMappingSessionsForRobotResponse{}
+func (x *GetActiveMappingSessionsForphysicalDeviceResponse) Reset() {
+	*x = GetActiveMappingSessionsForphysicalDeviceResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_cloudslam_v1_cloud_slam_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -499,13 +499,13 @@ func (x *GetActiveMappingSessionsForRobotResponse) Reset() {
 	}
 }
 
-func (x *GetActiveMappingSessionsForRobotResponse) String() string {
+func (x *GetActiveMappingSessionsForphysicalDeviceResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetActiveMappingSessionsForRobotResponse) ProtoMessage() {}
+func (*GetActiveMappingSessionsForphysicalDeviceResponse) ProtoMessage() {}
 
-func (x *GetActiveMappingSessionsForRobotResponse) ProtoReflect() protoreflect.Message {
+func (x *GetActiveMappingSessionsForphysicalDeviceResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_cloudslam_v1_cloud_slam_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -517,12 +517,12 @@ func (x *GetActiveMappingSessionsForRobotResponse) ProtoReflect() protoreflect.M
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetActiveMappingSessionsForRobotResponse.ProtoReflect.Descriptor instead.
-func (*GetActiveMappingSessionsForRobotResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetActiveMappingSessionsForphysicalDeviceResponse.ProtoReflect.Descriptor instead.
+func (*GetActiveMappingSessionsForphysicalDeviceResponse) Descriptor() ([]byte, []int) {
 	return file_app_cloudslam_v1_cloud_slam_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *GetActiveMappingSessionsForRobotResponse) GetSessionId() string {
+func (x *GetActiveMappingSessionsForphysicalDeviceResponse) GetSessionId() string {
 	if x != nil {
 		return x.SessionId
 	}
@@ -938,7 +938,7 @@ type MappingMetadata struct {
 
 	OrgId                  string                 `protobuf:"bytes,1,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`                                                          // org associated with the slam session
 	LocationId             string                 `protobuf:"bytes,2,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`                                           // location associated with the slam session
-	RobotId                string                 `protobuf:"bytes,3,opt,name=robot_id,json=robotId,proto3" json:"robot_id,omitempty"`                                                    // robot associated with slam session
+	physicalDeviceId                string                 `protobuf:"bytes,3,opt,name=physicalDevice_id,json=physicalDeviceId,proto3" json:"physicalDevice_id,omitempty"`                                                    // physicalDevice associated with slam session
 	TimeStartSubmitted     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=time_start_submitted,json=timeStartSubmitted,proto3" json:"time_start_submitted,omitempty"`                 // time this document was created
 	TimeCloudRunJobStarted *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=time_cloud_run_job_started,json=timeCloudRunJobStarted,proto3" json:"time_cloud_run_job_started,omitempty"` // time the cloud run job started
 	TimeEndSubmitted       *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=time_end_submitted,json=timeEndSubmitted,proto3" json:"time_end_submitted,omitempty"`                       // time StopSlamSession was called
@@ -948,7 +948,7 @@ type MappingMetadata struct {
 	ViamServerVersion      string                 `protobuf:"bytes,10,opt,name=viam_server_version,json=viamServerVersion,proto3" json:"viam_server_version,omitempty"`                   // version tag from request, defaults to stable
 	MapName                string                 `protobuf:"bytes,11,opt,name=map_name,json=mapName,proto3" json:"map_name,omitempty"`                                                   // name of the map package
 	SlamVersion            string                 `protobuf:"bytes,12,opt,name=slam_version,json=slamVersion,proto3" json:"slam_version,omitempty"`                                       // version tag from request, defaults to stable
-	Config                 string                 `protobuf:"bytes,13,opt,name=config,proto3" json:"config,omitempty"`                                                                    // a robot config for a slam session
+	Config                 string                 `protobuf:"bytes,13,opt,name=config,proto3" json:"config,omitempty"`                                                                    // a physicalDevice config for a slam session
 	ErrorMsg               string                 `protobuf:"bytes,14,opt,name=error_msg,json=errorMsg,proto3" json:"error_msg,omitempty"`                                                // additional details on the end status if needed, such as errors
 }
 
@@ -998,9 +998,9 @@ func (x *MappingMetadata) GetLocationId() string {
 	return ""
 }
 
-func (x *MappingMetadata) GetRobotId() string {
+func (x *MappingMetadata) GetphysicalDeviceId() string {
 	if x != nil {
-		return x.RobotId
+		return x.physicalDeviceId
 	}
 	return ""
 }
@@ -1339,8 +1339,8 @@ var file_app_cloudslam_v1_cloud_slam_proto_goTypes = []interface{}{
 	(*SensorInfo)(nil),                               // 3: viam.app.cloudslam.v1.SensorInfo
 	(*CaptureInterval)(nil),                          // 4: viam.app.cloudslam.v1.CaptureInterval
 	(*StartMappingSessionResponse)(nil),              // 5: viam.app.cloudslam.v1.StartMappingSessionResponse
-	(*GetActiveMappingSessionsForRobotRequest)(nil),  // 6: viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotRequest
-	(*GetActiveMappingSessionsForRobotResponse)(nil), // 7: viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotResponse
+	(*GetActiveMappingSessionsForphysicalDeviceRequest)(nil),  // 6: viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceRequest
+	(*GetActiveMappingSessionsForphysicalDeviceResponse)(nil), // 7: viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceResponse
 	(*GetMappingSessionPointCloudRequest)(nil),       // 8: viam.app.cloudslam.v1.GetMappingSessionPointCloudRequest
 	(*GetMappingSessionPointCloudResponse)(nil),      // 9: viam.app.cloudslam.v1.GetMappingSessionPointCloudResponse
 	(*ListMappingSessionsRequest)(nil),               // 10: viam.app.cloudslam.v1.ListMappingSessionsRequest
@@ -1370,13 +1370,13 @@ var file_app_cloudslam_v1_cloud_slam_proto_depIdxs = []int32{
 	18, // 12: viam.app.cloudslam.v1.MappingMetadata.time_cloud_run_job_ended:type_name -> google.protobuf.Timestamp
 	0,  // 13: viam.app.cloudslam.v1.MappingMetadata.end_status:type_name -> viam.app.cloudslam.v1.EndStatus
 	1,  // 14: viam.app.cloudslam.v1.CloudSLAMService.StartMappingSession:input_type -> viam.app.cloudslam.v1.StartMappingSessionRequest
-	6,  // 15: viam.app.cloudslam.v1.CloudSLAMService.GetActiveMappingSessionsForRobot:input_type -> viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotRequest
+	6,  // 15: viam.app.cloudslam.v1.CloudSLAMService.GetActiveMappingSessionsForphysicalDevice:input_type -> viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceRequest
 	8,  // 16: viam.app.cloudslam.v1.CloudSLAMService.GetMappingSessionPointCloud:input_type -> viam.app.cloudslam.v1.GetMappingSessionPointCloudRequest
 	10, // 17: viam.app.cloudslam.v1.CloudSLAMService.ListMappingSessions:input_type -> viam.app.cloudslam.v1.ListMappingSessionsRequest
 	12, // 18: viam.app.cloudslam.v1.CloudSLAMService.StopMappingSession:input_type -> viam.app.cloudslam.v1.StopMappingSessionRequest
 	14, // 19: viam.app.cloudslam.v1.CloudSLAMService.GetMappingSessionMetadataByID:input_type -> viam.app.cloudslam.v1.GetMappingSessionMetadataByIDRequest
 	5,  // 20: viam.app.cloudslam.v1.CloudSLAMService.StartMappingSession:output_type -> viam.app.cloudslam.v1.StartMappingSessionResponse
-	7,  // 21: viam.app.cloudslam.v1.CloudSLAMService.GetActiveMappingSessionsForRobot:output_type -> viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotResponse
+	7,  // 21: viam.app.cloudslam.v1.CloudSLAMService.GetActiveMappingSessionsForphysicalDevice:output_type -> viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceResponse
 	9,  // 22: viam.app.cloudslam.v1.CloudSLAMService.GetMappingSessionPointCloud:output_type -> viam.app.cloudslam.v1.GetMappingSessionPointCloudResponse
 	11, // 23: viam.app.cloudslam.v1.CloudSLAMService.ListMappingSessions:output_type -> viam.app.cloudslam.v1.ListMappingSessionsResponse
 	13, // 24: viam.app.cloudslam.v1.CloudSLAMService.StopMappingSession:output_type -> viam.app.cloudslam.v1.StopMappingSessionResponse
@@ -1455,7 +1455,7 @@ func file_app_cloudslam_v1_cloud_slam_proto_init() {
 			}
 		}
 		file_app_cloudslam_v1_cloud_slam_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetActiveMappingSessionsForRobotRequest); i {
+			switch v := v.(*GetActiveMappingSessionsForphysicalDeviceRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1467,7 +1467,7 @@ func file_app_cloudslam_v1_cloud_slam_proto_init() {
 			}
 		}
 		file_app_cloudslam_v1_cloud_slam_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetActiveMappingSessionsForRobotResponse); i {
+			switch v := v.(*GetActiveMappingSessionsForphysicalDeviceResponse); i {
 			case 0:
 				return &v.state
 			case 1:

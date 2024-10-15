@@ -13,13 +13,13 @@ type CloudSLAMServiceStartMappingSession = {
   readonly responseType: typeof app_cloudslam_v1_cloud_slam_pb.StartMappingSessionResponse;
 };
 
-type CloudSLAMServiceGetActiveMappingSessionsForRobot = {
+type CloudSLAMServiceGetActiveMappingSessionsForphysicalDevice = {
   readonly methodName: string;
   readonly service: typeof CloudSLAMService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForRobotRequest;
-  readonly responseType: typeof app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForRobotResponse;
+  readonly requestType: typeof app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForphysicalDeviceRequest;
+  readonly responseType: typeof app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForphysicalDeviceResponse;
 };
 
 type CloudSLAMServiceGetMappingSessionPointCloud = {
@@ -61,7 +61,7 @@ type CloudSLAMServiceGetMappingSessionMetadataByID = {
 export class CloudSLAMService {
   static readonly serviceName: string;
   static readonly StartMappingSession: CloudSLAMServiceStartMappingSession;
-  static readonly GetActiveMappingSessionsForRobot: CloudSLAMServiceGetActiveMappingSessionsForRobot;
+  static readonly GetActiveMappingSessionsForphysicalDevice: CloudSLAMServiceGetActiveMappingSessionsForphysicalDevice;
   static readonly GetMappingSessionPointCloud: CloudSLAMServiceGetMappingSessionPointCloud;
   static readonly ListMappingSessions: CloudSLAMServiceListMappingSessions;
   static readonly StopMappingSession: CloudSLAMServiceStopMappingSession;
@@ -109,14 +109,14 @@ export class CloudSLAMServiceClient {
     requestMessage: app_cloudslam_v1_cloud_slam_pb.StartMappingSessionRequest,
     callback: (error: ServiceError|null, responseMessage: app_cloudslam_v1_cloud_slam_pb.StartMappingSessionResponse|null) => void
   ): UnaryResponse;
-  getActiveMappingSessionsForRobot(
-    requestMessage: app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForRobotRequest,
+  getActiveMappingSessionsForphysicalDevice(
+    requestMessage: app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForphysicalDeviceRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForRobotResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForphysicalDeviceResponse|null) => void
   ): UnaryResponse;
-  getActiveMappingSessionsForRobot(
-    requestMessage: app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForRobotRequest,
-    callback: (error: ServiceError|null, responseMessage: app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForRobotResponse|null) => void
+  getActiveMappingSessionsForphysicalDevice(
+    requestMessage: app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForphysicalDeviceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_cloudslam_v1_cloud_slam_pb.GetActiveMappingSessionsForphysicalDeviceResponse|null) => void
   ): UnaryResponse;
   getMappingSessionPointCloud(
     requestMessage: app_cloudslam_v1_cloud_slam_pb.GetMappingSessionPointCloudRequest,

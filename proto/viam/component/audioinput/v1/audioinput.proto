@@ -10,19 +10,19 @@ import "google/protobuf/duration.proto";
 option go_package = "go.viam.com/api/component/audioinput/v1";
 option java_package = "com.viam.component.audioinput.v1";
 
-// An AudioInputService services all audio inputs associated with a robot
+// An AudioInputService services all audio inputs associated with a physicalDevice
 service AudioInputService {
-  // Chunks returns audio chunks forever from an audio input of the underlying robot.
+  // Chunks returns audio chunks forever from an audio input of the underlying physicalDevice.
   rpc Chunks(ChunksRequest) returns (stream ChunksResponse);
 
-  // Properties returns properties of an audio input of the underlying robot.
+  // Properties returns properties of an audio input of the underlying physicalDevice.
   rpc Properties(PropertiesRequest) returns (PropertiesResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/audioinput/{name}/properties"
     };
   }
 
-  // Record records audio from an audio input of the underlying robot
+  // Record records audio from an audio input of the underlying physicalDevice
   // to an HTTP response. A specific MIME type cannot be requested and may not necessarily
   // be the same one returned each time.
   rpc Record(RecordRequest) returns (google.api.HttpBody) {

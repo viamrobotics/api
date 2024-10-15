@@ -22,8 +22,8 @@ export class StartMappingSessionRequest extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;
 
-  getRobotId(): string;
-  setRobotId(value: string): void;
+  getphysicalDeviceId(): string;
+  setphysicalDeviceId(value: string): void;
 
   hasCaptureInterval(): boolean;
   clearCaptureInterval(): void;
@@ -65,7 +65,7 @@ export namespace StartMappingSessionRequest {
     mapName: string,
     organizationId: string,
     locationId: string,
-    robotId: string,
+    physicalDeviceId: string,
     captureInterval?: CaptureInterval.AsObject,
     sensorsList: Array<SensorInfo.AsObject>,
     slamConfig?: google_protobuf_struct_pb.Struct.AsObject,
@@ -178,41 +178,41 @@ export namespace StartMappingSessionResponse {
   }
 }
 
-export class GetActiveMappingSessionsForRobotRequest extends jspb.Message {
-  getRobotId(): string;
-  setRobotId(value: string): void;
+export class GetActiveMappingSessionsForphysicalDeviceRequest extends jspb.Message {
+  getphysicalDeviceId(): string;
+  setphysicalDeviceId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetActiveMappingSessionsForRobotRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetActiveMappingSessionsForRobotRequest): GetActiveMappingSessionsForRobotRequest.AsObject;
+  toObject(includeInstance?: boolean): GetActiveMappingSessionsForphysicalDeviceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetActiveMappingSessionsForphysicalDeviceRequest): GetActiveMappingSessionsForphysicalDeviceRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetActiveMappingSessionsForRobotRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetActiveMappingSessionsForRobotRequest;
-  static deserializeBinaryFromReader(message: GetActiveMappingSessionsForRobotRequest, reader: jspb.BinaryReader): GetActiveMappingSessionsForRobotRequest;
+  static serializeBinaryToWriter(message: GetActiveMappingSessionsForphysicalDeviceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetActiveMappingSessionsForphysicalDeviceRequest;
+  static deserializeBinaryFromReader(message: GetActiveMappingSessionsForphysicalDeviceRequest, reader: jspb.BinaryReader): GetActiveMappingSessionsForphysicalDeviceRequest;
 }
 
-export namespace GetActiveMappingSessionsForRobotRequest {
+export namespace GetActiveMappingSessionsForphysicalDeviceRequest {
   export type AsObject = {
-    robotId: string,
+    physicalDeviceId: string,
   }
 }
 
-export class GetActiveMappingSessionsForRobotResponse extends jspb.Message {
+export class GetActiveMappingSessionsForphysicalDeviceResponse extends jspb.Message {
   getSessionId(): string;
   setSessionId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetActiveMappingSessionsForRobotResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetActiveMappingSessionsForRobotResponse): GetActiveMappingSessionsForRobotResponse.AsObject;
+  toObject(includeInstance?: boolean): GetActiveMappingSessionsForphysicalDeviceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetActiveMappingSessionsForphysicalDeviceResponse): GetActiveMappingSessionsForphysicalDeviceResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetActiveMappingSessionsForRobotResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetActiveMappingSessionsForRobotResponse;
-  static deserializeBinaryFromReader(message: GetActiveMappingSessionsForRobotResponse, reader: jspb.BinaryReader): GetActiveMappingSessionsForRobotResponse;
+  static serializeBinaryToWriter(message: GetActiveMappingSessionsForphysicalDeviceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetActiveMappingSessionsForphysicalDeviceResponse;
+  static deserializeBinaryFromReader(message: GetActiveMappingSessionsForphysicalDeviceResponse, reader: jspb.BinaryReader): GetActiveMappingSessionsForphysicalDeviceResponse;
 }
 
-export namespace GetActiveMappingSessionsForRobotResponse {
+export namespace GetActiveMappingSessionsForphysicalDeviceResponse {
   export type AsObject = {
     sessionId: string,
   }
@@ -403,8 +403,8 @@ export class MappingMetadata extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;
 
-  getRobotId(): string;
-  setRobotId(value: string): void;
+  getphysicalDeviceId(): string;
+  setphysicalDeviceId(value: string): void;
 
   hasTimeStartSubmitted(): boolean;
   clearTimeStartSubmitted(): void;
@@ -461,7 +461,7 @@ export namespace MappingMetadata {
   export type AsObject = {
     orgId: string,
     locationId: string,
-    robotId: string,
+    physicalDeviceId: string,
     timeStartSubmitted?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     timeCloudRunJobStarted?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     timeEndSubmitted?: google_protobuf_timestamp_pb.Timestamp.AsObject,

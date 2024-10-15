@@ -209,7 +209,7 @@ func (x *ShellResponse) GetEof() bool {
 }
 
 // FileData contains partial (sometimes complete) information about a File.
-// When transmitting FileData with CopyFilesToMachine and CopyFilesFromMachine,
+// When transmitting FileData with CopyFilesTophysicalDevice and CopyFilesFromphysicalDevice,
 // it MUST initially contain its name, size, and is_dir. Depending on whether
 // preservation is in use, the mod_time and mode fields may be initially set
 // as well. On all transmissions, data and eof must be set. Because files are
@@ -313,7 +313,7 @@ func (x *FileData) GetMode() uint32 {
 	return 0
 }
 
-type CopyFilesToMachineRequestMetadata struct {
+type CopyFilesTophysicalDeviceRequestMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -332,8 +332,8 @@ type CopyFilesToMachineRequestMetadata struct {
 	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
 }
 
-func (x *CopyFilesToMachineRequestMetadata) Reset() {
-	*x = CopyFilesToMachineRequestMetadata{}
+func (x *CopyFilesTophysicalDeviceRequestMetadata) Reset() {
+	*x = CopyFilesTophysicalDeviceRequestMetadata{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_shell_v1_shell_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -341,13 +341,13 @@ func (x *CopyFilesToMachineRequestMetadata) Reset() {
 	}
 }
 
-func (x *CopyFilesToMachineRequestMetadata) String() string {
+func (x *CopyFilesTophysicalDeviceRequestMetadata) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CopyFilesToMachineRequestMetadata) ProtoMessage() {}
+func (*CopyFilesTophysicalDeviceRequestMetadata) ProtoMessage() {}
 
-func (x *CopyFilesToMachineRequestMetadata) ProtoReflect() protoreflect.Message {
+func (x *CopyFilesTophysicalDeviceRequestMetadata) ProtoReflect() protoreflect.Message {
 	mi := &file_service_shell_v1_shell_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -359,60 +359,60 @@ func (x *CopyFilesToMachineRequestMetadata) ProtoReflect() protoreflect.Message 
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CopyFilesToMachineRequestMetadata.ProtoReflect.Descriptor instead.
-func (*CopyFilesToMachineRequestMetadata) Descriptor() ([]byte, []int) {
+// Deprecated: Use CopyFilesTophysicalDeviceRequestMetadata.ProtoReflect.Descriptor instead.
+func (*CopyFilesTophysicalDeviceRequestMetadata) Descriptor() ([]byte, []int) {
 	return file_service_shell_v1_shell_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *CopyFilesToMachineRequestMetadata) GetName() string {
+func (x *CopyFilesTophysicalDeviceRequestMetadata) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *CopyFilesToMachineRequestMetadata) GetSourceType() CopyFilesSourceType {
+func (x *CopyFilesTophysicalDeviceRequestMetadata) GetSourceType() CopyFilesSourceType {
 	if x != nil {
 		return x.SourceType
 	}
 	return CopyFilesSourceType_COPY_FILES_SOURCE_TYPE_UNSPECIFIED
 }
 
-func (x *CopyFilesToMachineRequestMetadata) GetDestination() string {
+func (x *CopyFilesTophysicalDeviceRequestMetadata) GetDestination() string {
 	if x != nil {
 		return x.Destination
 	}
 	return ""
 }
 
-func (x *CopyFilesToMachineRequestMetadata) GetPreserve() bool {
+func (x *CopyFilesTophysicalDeviceRequestMetadata) GetPreserve() bool {
 	if x != nil {
 		return x.Preserve
 	}
 	return false
 }
 
-func (x *CopyFilesToMachineRequestMetadata) GetExtra() *structpb.Struct {
+func (x *CopyFilesTophysicalDeviceRequestMetadata) GetExtra() *structpb.Struct {
 	if x != nil {
 		return x.Extra
 	}
 	return nil
 }
 
-type CopyFilesToMachineRequest struct {
+type CopyFilesTophysicalDeviceRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Request:
 	//
-	//	*CopyFilesToMachineRequest_Metadata
-	//	*CopyFilesToMachineRequest_FileData
-	Request isCopyFilesToMachineRequest_Request `protobuf_oneof:"request"`
+	//	*CopyFilesTophysicalDeviceRequest_Metadata
+	//	*CopyFilesTophysicalDeviceRequest_FileData
+	Request isCopyFilesTophysicalDeviceRequest_Request `protobuf_oneof:"request"`
 }
 
-func (x *CopyFilesToMachineRequest) Reset() {
-	*x = CopyFilesToMachineRequest{}
+func (x *CopyFilesTophysicalDeviceRequest) Reset() {
+	*x = CopyFilesTophysicalDeviceRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_shell_v1_shell_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -420,13 +420,13 @@ func (x *CopyFilesToMachineRequest) Reset() {
 	}
 }
 
-func (x *CopyFilesToMachineRequest) String() string {
+func (x *CopyFilesTophysicalDeviceRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CopyFilesToMachineRequest) ProtoMessage() {}
+func (*CopyFilesTophysicalDeviceRequest) ProtoMessage() {}
 
-func (x *CopyFilesToMachineRequest) ProtoReflect() protoreflect.Message {
+func (x *CopyFilesTophysicalDeviceRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_service_shell_v1_shell_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -438,52 +438,52 @@ func (x *CopyFilesToMachineRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CopyFilesToMachineRequest.ProtoReflect.Descriptor instead.
-func (*CopyFilesToMachineRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CopyFilesTophysicalDeviceRequest.ProtoReflect.Descriptor instead.
+func (*CopyFilesTophysicalDeviceRequest) Descriptor() ([]byte, []int) {
 	return file_service_shell_v1_shell_proto_rawDescGZIP(), []int{4}
 }
 
-func (m *CopyFilesToMachineRequest) GetRequest() isCopyFilesToMachineRequest_Request {
+func (m *CopyFilesTophysicalDeviceRequest) GetRequest() isCopyFilesTophysicalDeviceRequest_Request {
 	if m != nil {
 		return m.Request
 	}
 	return nil
 }
 
-func (x *CopyFilesToMachineRequest) GetMetadata() *CopyFilesToMachineRequestMetadata {
-	if x, ok := x.GetRequest().(*CopyFilesToMachineRequest_Metadata); ok {
+func (x *CopyFilesTophysicalDeviceRequest) GetMetadata() *CopyFilesTophysicalDeviceRequestMetadata {
+	if x, ok := x.GetRequest().(*CopyFilesTophysicalDeviceRequest_Metadata); ok {
 		return x.Metadata
 	}
 	return nil
 }
 
-func (x *CopyFilesToMachineRequest) GetFileData() *FileData {
-	if x, ok := x.GetRequest().(*CopyFilesToMachineRequest_FileData); ok {
+func (x *CopyFilesTophysicalDeviceRequest) GetFileData() *FileData {
+	if x, ok := x.GetRequest().(*CopyFilesTophysicalDeviceRequest_FileData); ok {
 		return x.FileData
 	}
 	return nil
 }
 
-type isCopyFilesToMachineRequest_Request interface {
-	isCopyFilesToMachineRequest_Request()
+type isCopyFilesTophysicalDeviceRequest_Request interface {
+	isCopyFilesTophysicalDeviceRequest_Request()
 }
 
-type CopyFilesToMachineRequest_Metadata struct {
+type CopyFilesTophysicalDeviceRequest_Metadata struct {
 	// metadata is sent first and only once.
-	Metadata *CopyFilesToMachineRequestMetadata `protobuf:"bytes,1,opt,name=metadata,proto3,oneof"`
+	Metadata *CopyFilesTophysicalDeviceRequestMetadata `protobuf:"bytes,1,opt,name=metadata,proto3,oneof"`
 }
 
-type CopyFilesToMachineRequest_FileData struct {
+type CopyFilesTophysicalDeviceRequest_FileData struct {
 	// file_data is sent only after metadata. All data MUST be sent
 	// in order per-file.
 	FileData *FileData `protobuf:"bytes,2,opt,name=file_data,json=fileData,proto3,oneof"`
 }
 
-func (*CopyFilesToMachineRequest_Metadata) isCopyFilesToMachineRequest_Request() {}
+func (*CopyFilesTophysicalDeviceRequest_Metadata) isCopyFilesTophysicalDeviceRequest_Request() {}
 
-func (*CopyFilesToMachineRequest_FileData) isCopyFilesToMachineRequest_Request() {}
+func (*CopyFilesTophysicalDeviceRequest_FileData) isCopyFilesTophysicalDeviceRequest_Request() {}
 
-type CopyFilesToMachineResponse struct {
+type CopyFilesTophysicalDeviceResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -493,8 +493,8 @@ type CopyFilesToMachineResponse struct {
 	AckLastFile bool `protobuf:"varint,1,opt,name=ack_last_file,json=ackLastFile,proto3" json:"ack_last_file,omitempty"`
 }
 
-func (x *CopyFilesToMachineResponse) Reset() {
-	*x = CopyFilesToMachineResponse{}
+func (x *CopyFilesTophysicalDeviceResponse) Reset() {
+	*x = CopyFilesTophysicalDeviceResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_shell_v1_shell_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -502,13 +502,13 @@ func (x *CopyFilesToMachineResponse) Reset() {
 	}
 }
 
-func (x *CopyFilesToMachineResponse) String() string {
+func (x *CopyFilesTophysicalDeviceResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CopyFilesToMachineResponse) ProtoMessage() {}
+func (*CopyFilesTophysicalDeviceResponse) ProtoMessage() {}
 
-func (x *CopyFilesToMachineResponse) ProtoReflect() protoreflect.Message {
+func (x *CopyFilesTophysicalDeviceResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_service_shell_v1_shell_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -520,19 +520,19 @@ func (x *CopyFilesToMachineResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CopyFilesToMachineResponse.ProtoReflect.Descriptor instead.
-func (*CopyFilesToMachineResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CopyFilesTophysicalDeviceResponse.ProtoReflect.Descriptor instead.
+func (*CopyFilesTophysicalDeviceResponse) Descriptor() ([]byte, []int) {
 	return file_service_shell_v1_shell_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *CopyFilesToMachineResponse) GetAckLastFile() bool {
+func (x *CopyFilesTophysicalDeviceResponse) GetAckLastFile() bool {
 	if x != nil {
 		return x.AckLastFile
 	}
 	return false
 }
 
-type CopyFilesFromMachineRequestMetadata struct {
+type CopyFilesFromphysicalDeviceRequestMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -551,8 +551,8 @@ type CopyFilesFromMachineRequestMetadata struct {
 	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
 }
 
-func (x *CopyFilesFromMachineRequestMetadata) Reset() {
-	*x = CopyFilesFromMachineRequestMetadata{}
+func (x *CopyFilesFromphysicalDeviceRequestMetadata) Reset() {
+	*x = CopyFilesFromphysicalDeviceRequestMetadata{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_shell_v1_shell_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -560,13 +560,13 @@ func (x *CopyFilesFromMachineRequestMetadata) Reset() {
 	}
 }
 
-func (x *CopyFilesFromMachineRequestMetadata) String() string {
+func (x *CopyFilesFromphysicalDeviceRequestMetadata) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CopyFilesFromMachineRequestMetadata) ProtoMessage() {}
+func (*CopyFilesFromphysicalDeviceRequestMetadata) ProtoMessage() {}
 
-func (x *CopyFilesFromMachineRequestMetadata) ProtoReflect() protoreflect.Message {
+func (x *CopyFilesFromphysicalDeviceRequestMetadata) ProtoReflect() protoreflect.Message {
 	mi := &file_service_shell_v1_shell_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -578,60 +578,60 @@ func (x *CopyFilesFromMachineRequestMetadata) ProtoReflect() protoreflect.Messag
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CopyFilesFromMachineRequestMetadata.ProtoReflect.Descriptor instead.
-func (*CopyFilesFromMachineRequestMetadata) Descriptor() ([]byte, []int) {
+// Deprecated: Use CopyFilesFromphysicalDeviceRequestMetadata.ProtoReflect.Descriptor instead.
+func (*CopyFilesFromphysicalDeviceRequestMetadata) Descriptor() ([]byte, []int) {
 	return file_service_shell_v1_shell_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *CopyFilesFromMachineRequestMetadata) GetName() string {
+func (x *CopyFilesFromphysicalDeviceRequestMetadata) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *CopyFilesFromMachineRequestMetadata) GetPaths() []string {
+func (x *CopyFilesFromphysicalDeviceRequestMetadata) GetPaths() []string {
 	if x != nil {
 		return x.Paths
 	}
 	return nil
 }
 
-func (x *CopyFilesFromMachineRequestMetadata) GetAllowRecursion() bool {
+func (x *CopyFilesFromphysicalDeviceRequestMetadata) GetAllowRecursion() bool {
 	if x != nil {
 		return x.AllowRecursion
 	}
 	return false
 }
 
-func (x *CopyFilesFromMachineRequestMetadata) GetPreserve() bool {
+func (x *CopyFilesFromphysicalDeviceRequestMetadata) GetPreserve() bool {
 	if x != nil {
 		return x.Preserve
 	}
 	return false
 }
 
-func (x *CopyFilesFromMachineRequestMetadata) GetExtra() *structpb.Struct {
+func (x *CopyFilesFromphysicalDeviceRequestMetadata) GetExtra() *structpb.Struct {
 	if x != nil {
 		return x.Extra
 	}
 	return nil
 }
 
-type CopyFilesFromMachineRequest struct {
+type CopyFilesFromphysicalDeviceRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Request:
 	//
-	//	*CopyFilesFromMachineRequest_Metadata
-	//	*CopyFilesFromMachineRequest_AckLastFile
-	Request isCopyFilesFromMachineRequest_Request `protobuf_oneof:"request"`
+	//	*CopyFilesFromphysicalDeviceRequest_Metadata
+	//	*CopyFilesFromphysicalDeviceRequest_AckLastFile
+	Request isCopyFilesFromphysicalDeviceRequest_Request `protobuf_oneof:"request"`
 }
 
-func (x *CopyFilesFromMachineRequest) Reset() {
-	*x = CopyFilesFromMachineRequest{}
+func (x *CopyFilesFromphysicalDeviceRequest) Reset() {
+	*x = CopyFilesFromphysicalDeviceRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_shell_v1_shell_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -639,13 +639,13 @@ func (x *CopyFilesFromMachineRequest) Reset() {
 	}
 }
 
-func (x *CopyFilesFromMachineRequest) String() string {
+func (x *CopyFilesFromphysicalDeviceRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CopyFilesFromMachineRequest) ProtoMessage() {}
+func (*CopyFilesFromphysicalDeviceRequest) ProtoMessage() {}
 
-func (x *CopyFilesFromMachineRequest) ProtoReflect() protoreflect.Message {
+func (x *CopyFilesFromphysicalDeviceRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_service_shell_v1_shell_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -657,52 +657,52 @@ func (x *CopyFilesFromMachineRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CopyFilesFromMachineRequest.ProtoReflect.Descriptor instead.
-func (*CopyFilesFromMachineRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CopyFilesFromphysicalDeviceRequest.ProtoReflect.Descriptor instead.
+func (*CopyFilesFromphysicalDeviceRequest) Descriptor() ([]byte, []int) {
 	return file_service_shell_v1_shell_proto_rawDescGZIP(), []int{7}
 }
 
-func (m *CopyFilesFromMachineRequest) GetRequest() isCopyFilesFromMachineRequest_Request {
+func (m *CopyFilesFromphysicalDeviceRequest) GetRequest() isCopyFilesFromphysicalDeviceRequest_Request {
 	if m != nil {
 		return m.Request
 	}
 	return nil
 }
 
-func (x *CopyFilesFromMachineRequest) GetMetadata() *CopyFilesFromMachineRequestMetadata {
-	if x, ok := x.GetRequest().(*CopyFilesFromMachineRequest_Metadata); ok {
+func (x *CopyFilesFromphysicalDeviceRequest) GetMetadata() *CopyFilesFromphysicalDeviceRequestMetadata {
+	if x, ok := x.GetRequest().(*CopyFilesFromphysicalDeviceRequest_Metadata); ok {
 		return x.Metadata
 	}
 	return nil
 }
 
-func (x *CopyFilesFromMachineRequest) GetAckLastFile() bool {
-	if x, ok := x.GetRequest().(*CopyFilesFromMachineRequest_AckLastFile); ok {
+func (x *CopyFilesFromphysicalDeviceRequest) GetAckLastFile() bool {
+	if x, ok := x.GetRequest().(*CopyFilesFromphysicalDeviceRequest_AckLastFile); ok {
 		return x.AckLastFile
 	}
 	return false
 }
 
-type isCopyFilesFromMachineRequest_Request interface {
-	isCopyFilesFromMachineRequest_Request()
+type isCopyFilesFromphysicalDeviceRequest_Request interface {
+	isCopyFilesFromphysicalDeviceRequest_Request()
 }
 
-type CopyFilesFromMachineRequest_Metadata struct {
+type CopyFilesFromphysicalDeviceRequest_Metadata struct {
 	// metadata is sent first and only once.
-	Metadata *CopyFilesFromMachineRequestMetadata `protobuf:"bytes,1,opt,name=metadata,proto3,oneof"`
+	Metadata *CopyFilesFromphysicalDeviceRequestMetadata `protobuf:"bytes,1,opt,name=metadata,proto3,oneof"`
 }
 
-type CopyFilesFromMachineRequest_AckLastFile struct {
+type CopyFilesFromphysicalDeviceRequest_AckLastFile struct {
 	// ack_last_file is sent only after metadata and after each file has been received.
 	// The value does not matter.
 	AckLastFile bool `protobuf:"varint,2,opt,name=ack_last_file,json=ackLastFile,proto3,oneof"`
 }
 
-func (*CopyFilesFromMachineRequest_Metadata) isCopyFilesFromMachineRequest_Request() {}
+func (*CopyFilesFromphysicalDeviceRequest_Metadata) isCopyFilesFromphysicalDeviceRequest_Request() {}
 
-func (*CopyFilesFromMachineRequest_AckLastFile) isCopyFilesFromMachineRequest_Request() {}
+func (*CopyFilesFromphysicalDeviceRequest_AckLastFile) isCopyFilesFromphysicalDeviceRequest_Request() {}
 
-type CopyFilesFromMachineResponseMetadata struct {
+type CopyFilesFromphysicalDeviceResponseMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -711,8 +711,8 @@ type CopyFilesFromMachineResponseMetadata struct {
 	SourceType CopyFilesSourceType `protobuf:"varint,1,opt,name=source_type,json=sourceType,proto3,enum=viam.service.shell.v1.CopyFilesSourceType" json:"source_type,omitempty"`
 }
 
-func (x *CopyFilesFromMachineResponseMetadata) Reset() {
-	*x = CopyFilesFromMachineResponseMetadata{}
+func (x *CopyFilesFromphysicalDeviceResponseMetadata) Reset() {
+	*x = CopyFilesFromphysicalDeviceResponseMetadata{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_shell_v1_shell_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -720,13 +720,13 @@ func (x *CopyFilesFromMachineResponseMetadata) Reset() {
 	}
 }
 
-func (x *CopyFilesFromMachineResponseMetadata) String() string {
+func (x *CopyFilesFromphysicalDeviceResponseMetadata) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CopyFilesFromMachineResponseMetadata) ProtoMessage() {}
+func (*CopyFilesFromphysicalDeviceResponseMetadata) ProtoMessage() {}
 
-func (x *CopyFilesFromMachineResponseMetadata) ProtoReflect() protoreflect.Message {
+func (x *CopyFilesFromphysicalDeviceResponseMetadata) ProtoReflect() protoreflect.Message {
 	mi := &file_service_shell_v1_shell_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -738,32 +738,32 @@ func (x *CopyFilesFromMachineResponseMetadata) ProtoReflect() protoreflect.Messa
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CopyFilesFromMachineResponseMetadata.ProtoReflect.Descriptor instead.
-func (*CopyFilesFromMachineResponseMetadata) Descriptor() ([]byte, []int) {
+// Deprecated: Use CopyFilesFromphysicalDeviceResponseMetadata.ProtoReflect.Descriptor instead.
+func (*CopyFilesFromphysicalDeviceResponseMetadata) Descriptor() ([]byte, []int) {
 	return file_service_shell_v1_shell_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *CopyFilesFromMachineResponseMetadata) GetSourceType() CopyFilesSourceType {
+func (x *CopyFilesFromphysicalDeviceResponseMetadata) GetSourceType() CopyFilesSourceType {
 	if x != nil {
 		return x.SourceType
 	}
 	return CopyFilesSourceType_COPY_FILES_SOURCE_TYPE_UNSPECIFIED
 }
 
-type CopyFilesFromMachineResponse struct {
+type CopyFilesFromphysicalDeviceResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Response:
 	//
-	//	*CopyFilesFromMachineResponse_Metadata
-	//	*CopyFilesFromMachineResponse_FileData
-	Response isCopyFilesFromMachineResponse_Response `protobuf_oneof:"response"`
+	//	*CopyFilesFromphysicalDeviceResponse_Metadata
+	//	*CopyFilesFromphysicalDeviceResponse_FileData
+	Response isCopyFilesFromphysicalDeviceResponse_Response `protobuf_oneof:"response"`
 }
 
-func (x *CopyFilesFromMachineResponse) Reset() {
-	*x = CopyFilesFromMachineResponse{}
+func (x *CopyFilesFromphysicalDeviceResponse) Reset() {
+	*x = CopyFilesFromphysicalDeviceResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_shell_v1_shell_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -771,13 +771,13 @@ func (x *CopyFilesFromMachineResponse) Reset() {
 	}
 }
 
-func (x *CopyFilesFromMachineResponse) String() string {
+func (x *CopyFilesFromphysicalDeviceResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CopyFilesFromMachineResponse) ProtoMessage() {}
+func (*CopyFilesFromphysicalDeviceResponse) ProtoMessage() {}
 
-func (x *CopyFilesFromMachineResponse) ProtoReflect() protoreflect.Message {
+func (x *CopyFilesFromphysicalDeviceResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_service_shell_v1_shell_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -789,50 +789,50 @@ func (x *CopyFilesFromMachineResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CopyFilesFromMachineResponse.ProtoReflect.Descriptor instead.
-func (*CopyFilesFromMachineResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CopyFilesFromphysicalDeviceResponse.ProtoReflect.Descriptor instead.
+func (*CopyFilesFromphysicalDeviceResponse) Descriptor() ([]byte, []int) {
 	return file_service_shell_v1_shell_proto_rawDescGZIP(), []int{9}
 }
 
-func (m *CopyFilesFromMachineResponse) GetResponse() isCopyFilesFromMachineResponse_Response {
+func (m *CopyFilesFromphysicalDeviceResponse) GetResponse() isCopyFilesFromphysicalDeviceResponse_Response {
 	if m != nil {
 		return m.Response
 	}
 	return nil
 }
 
-func (x *CopyFilesFromMachineResponse) GetMetadata() *CopyFilesFromMachineResponseMetadata {
-	if x, ok := x.GetResponse().(*CopyFilesFromMachineResponse_Metadata); ok {
+func (x *CopyFilesFromphysicalDeviceResponse) GetMetadata() *CopyFilesFromphysicalDeviceResponseMetadata {
+	if x, ok := x.GetResponse().(*CopyFilesFromphysicalDeviceResponse_Metadata); ok {
 		return x.Metadata
 	}
 	return nil
 }
 
-func (x *CopyFilesFromMachineResponse) GetFileData() *FileData {
-	if x, ok := x.GetResponse().(*CopyFilesFromMachineResponse_FileData); ok {
+func (x *CopyFilesFromphysicalDeviceResponse) GetFileData() *FileData {
+	if x, ok := x.GetResponse().(*CopyFilesFromphysicalDeviceResponse_FileData); ok {
 		return x.FileData
 	}
 	return nil
 }
 
-type isCopyFilesFromMachineResponse_Response interface {
-	isCopyFilesFromMachineResponse_Response()
+type isCopyFilesFromphysicalDeviceResponse_Response interface {
+	isCopyFilesFromphysicalDeviceResponse_Response()
 }
 
-type CopyFilesFromMachineResponse_Metadata struct {
+type CopyFilesFromphysicalDeviceResponse_Metadata struct {
 	// metadata is sent first and only once.
-	Metadata *CopyFilesFromMachineResponseMetadata `protobuf:"bytes,1,opt,name=metadata,proto3,oneof"`
+	Metadata *CopyFilesFromphysicalDeviceResponseMetadata `protobuf:"bytes,1,opt,name=metadata,proto3,oneof"`
 }
 
-type CopyFilesFromMachineResponse_FileData struct {
+type CopyFilesFromphysicalDeviceResponse_FileData struct {
 	// file_data is sent only after metadata. All data MUST be sent
 	// in order per-file.
 	FileData *FileData `protobuf:"bytes,2,opt,name=file_data,json=fileData,proto3,oneof"`
 }
 
-func (*CopyFilesFromMachineResponse_Metadata) isCopyFilesFromMachineResponse_Response() {}
+func (*CopyFilesFromphysicalDeviceResponse_Metadata) isCopyFilesFromphysicalDeviceResponse_Response() {}
 
-func (*CopyFilesFromMachineResponse_FileData) isCopyFilesFromMachineResponse_Response() {}
+func (*CopyFilesFromphysicalDeviceResponse_FileData) isCopyFilesFromphysicalDeviceResponse_Response() {}
 
 var File_service_shell_v1_shell_proto protoreflect.FileDescriptor
 
@@ -1017,13 +1017,13 @@ var file_service_shell_v1_shell_proto_goTypes = []interface{}{
 	(*ShellRequest)(nil),                         // 1: viam.service.shell.v1.ShellRequest
 	(*ShellResponse)(nil),                        // 2: viam.service.shell.v1.ShellResponse
 	(*FileData)(nil),                             // 3: viam.service.shell.v1.FileData
-	(*CopyFilesToMachineRequestMetadata)(nil),    // 4: viam.service.shell.v1.CopyFilesToMachineRequestMetadata
-	(*CopyFilesToMachineRequest)(nil),            // 5: viam.service.shell.v1.CopyFilesToMachineRequest
-	(*CopyFilesToMachineResponse)(nil),           // 6: viam.service.shell.v1.CopyFilesToMachineResponse
-	(*CopyFilesFromMachineRequestMetadata)(nil),  // 7: viam.service.shell.v1.CopyFilesFromMachineRequestMetadata
-	(*CopyFilesFromMachineRequest)(nil),          // 8: viam.service.shell.v1.CopyFilesFromMachineRequest
-	(*CopyFilesFromMachineResponseMetadata)(nil), // 9: viam.service.shell.v1.CopyFilesFromMachineResponseMetadata
-	(*CopyFilesFromMachineResponse)(nil),         // 10: viam.service.shell.v1.CopyFilesFromMachineResponse
+	(*CopyFilesTophysicalDeviceRequestMetadata)(nil),    // 4: viam.service.shell.v1.CopyFilesTophysicalDeviceRequestMetadata
+	(*CopyFilesTophysicalDeviceRequest)(nil),            // 5: viam.service.shell.v1.CopyFilesTophysicalDeviceRequest
+	(*CopyFilesTophysicalDeviceResponse)(nil),           // 6: viam.service.shell.v1.CopyFilesTophysicalDeviceResponse
+	(*CopyFilesFromphysicalDeviceRequestMetadata)(nil),  // 7: viam.service.shell.v1.CopyFilesFromphysicalDeviceRequestMetadata
+	(*CopyFilesFromphysicalDeviceRequest)(nil),          // 8: viam.service.shell.v1.CopyFilesFromphysicalDeviceRequest
+	(*CopyFilesFromphysicalDeviceResponseMetadata)(nil), // 9: viam.service.shell.v1.CopyFilesFromphysicalDeviceResponseMetadata
+	(*CopyFilesFromphysicalDeviceResponse)(nil),         // 10: viam.service.shell.v1.CopyFilesFromphysicalDeviceResponse
 	(*structpb.Struct)(nil),                      // 11: google.protobuf.Struct
 	(*timestamppb.Timestamp)(nil),                // 12: google.protobuf.Timestamp
 	(*v1.DoCommandRequest)(nil),                  // 13: viam.common.v1.DoCommandRequest
@@ -1032,22 +1032,22 @@ var file_service_shell_v1_shell_proto_goTypes = []interface{}{
 var file_service_shell_v1_shell_proto_depIdxs = []int32{
 	11, // 0: viam.service.shell.v1.ShellRequest.extra:type_name -> google.protobuf.Struct
 	12, // 1: viam.service.shell.v1.FileData.mod_time:type_name -> google.protobuf.Timestamp
-	0,  // 2: viam.service.shell.v1.CopyFilesToMachineRequestMetadata.source_type:type_name -> viam.service.shell.v1.CopyFilesSourceType
-	11, // 3: viam.service.shell.v1.CopyFilesToMachineRequestMetadata.extra:type_name -> google.protobuf.Struct
-	4,  // 4: viam.service.shell.v1.CopyFilesToMachineRequest.metadata:type_name -> viam.service.shell.v1.CopyFilesToMachineRequestMetadata
-	3,  // 5: viam.service.shell.v1.CopyFilesToMachineRequest.file_data:type_name -> viam.service.shell.v1.FileData
-	11, // 6: viam.service.shell.v1.CopyFilesFromMachineRequestMetadata.extra:type_name -> google.protobuf.Struct
-	7,  // 7: viam.service.shell.v1.CopyFilesFromMachineRequest.metadata:type_name -> viam.service.shell.v1.CopyFilesFromMachineRequestMetadata
-	0,  // 8: viam.service.shell.v1.CopyFilesFromMachineResponseMetadata.source_type:type_name -> viam.service.shell.v1.CopyFilesSourceType
-	9,  // 9: viam.service.shell.v1.CopyFilesFromMachineResponse.metadata:type_name -> viam.service.shell.v1.CopyFilesFromMachineResponseMetadata
-	3,  // 10: viam.service.shell.v1.CopyFilesFromMachineResponse.file_data:type_name -> viam.service.shell.v1.FileData
+	0,  // 2: viam.service.shell.v1.CopyFilesTophysicalDeviceRequestMetadata.source_type:type_name -> viam.service.shell.v1.CopyFilesSourceType
+	11, // 3: viam.service.shell.v1.CopyFilesTophysicalDeviceRequestMetadata.extra:type_name -> google.protobuf.Struct
+	4,  // 4: viam.service.shell.v1.CopyFilesTophysicalDeviceRequest.metadata:type_name -> viam.service.shell.v1.CopyFilesTophysicalDeviceRequestMetadata
+	3,  // 5: viam.service.shell.v1.CopyFilesTophysicalDeviceRequest.file_data:type_name -> viam.service.shell.v1.FileData
+	11, // 6: viam.service.shell.v1.CopyFilesFromphysicalDeviceRequestMetadata.extra:type_name -> google.protobuf.Struct
+	7,  // 7: viam.service.shell.v1.CopyFilesFromphysicalDeviceRequest.metadata:type_name -> viam.service.shell.v1.CopyFilesFromphysicalDeviceRequestMetadata
+	0,  // 8: viam.service.shell.v1.CopyFilesFromphysicalDeviceResponseMetadata.source_type:type_name -> viam.service.shell.v1.CopyFilesSourceType
+	9,  // 9: viam.service.shell.v1.CopyFilesFromphysicalDeviceResponse.metadata:type_name -> viam.service.shell.v1.CopyFilesFromphysicalDeviceResponseMetadata
+	3,  // 10: viam.service.shell.v1.CopyFilesFromphysicalDeviceResponse.file_data:type_name -> viam.service.shell.v1.FileData
 	1,  // 11: viam.service.shell.v1.ShellService.Shell:input_type -> viam.service.shell.v1.ShellRequest
-	5,  // 12: viam.service.shell.v1.ShellService.CopyFilesToMachine:input_type -> viam.service.shell.v1.CopyFilesToMachineRequest
-	8,  // 13: viam.service.shell.v1.ShellService.CopyFilesFromMachine:input_type -> viam.service.shell.v1.CopyFilesFromMachineRequest
+	5,  // 12: viam.service.shell.v1.ShellService.CopyFilesTophysicalDevice:input_type -> viam.service.shell.v1.CopyFilesTophysicalDeviceRequest
+	8,  // 13: viam.service.shell.v1.ShellService.CopyFilesFromphysicalDevice:input_type -> viam.service.shell.v1.CopyFilesFromphysicalDeviceRequest
 	13, // 14: viam.service.shell.v1.ShellService.DoCommand:input_type -> viam.common.v1.DoCommandRequest
 	2,  // 15: viam.service.shell.v1.ShellService.Shell:output_type -> viam.service.shell.v1.ShellResponse
-	6,  // 16: viam.service.shell.v1.ShellService.CopyFilesToMachine:output_type -> viam.service.shell.v1.CopyFilesToMachineResponse
-	10, // 17: viam.service.shell.v1.ShellService.CopyFilesFromMachine:output_type -> viam.service.shell.v1.CopyFilesFromMachineResponse
+	6,  // 16: viam.service.shell.v1.ShellService.CopyFilesTophysicalDevice:output_type -> viam.service.shell.v1.CopyFilesTophysicalDeviceResponse
+	10, // 17: viam.service.shell.v1.ShellService.CopyFilesFromphysicalDevice:output_type -> viam.service.shell.v1.CopyFilesFromphysicalDeviceResponse
 	14, // 18: viam.service.shell.v1.ShellService.DoCommand:output_type -> viam.common.v1.DoCommandResponse
 	15, // [15:19] is the sub-list for method output_type
 	11, // [11:15] is the sub-list for method input_type
@@ -1099,7 +1099,7 @@ func file_service_shell_v1_shell_proto_init() {
 			}
 		}
 		file_service_shell_v1_shell_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CopyFilesToMachineRequestMetadata); i {
+			switch v := v.(*CopyFilesTophysicalDeviceRequestMetadata); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1111,7 +1111,7 @@ func file_service_shell_v1_shell_proto_init() {
 			}
 		}
 		file_service_shell_v1_shell_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CopyFilesToMachineRequest); i {
+			switch v := v.(*CopyFilesTophysicalDeviceRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1123,7 +1123,7 @@ func file_service_shell_v1_shell_proto_init() {
 			}
 		}
 		file_service_shell_v1_shell_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CopyFilesToMachineResponse); i {
+			switch v := v.(*CopyFilesTophysicalDeviceResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1135,7 +1135,7 @@ func file_service_shell_v1_shell_proto_init() {
 			}
 		}
 		file_service_shell_v1_shell_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CopyFilesFromMachineRequestMetadata); i {
+			switch v := v.(*CopyFilesFromphysicalDeviceRequestMetadata); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1147,7 +1147,7 @@ func file_service_shell_v1_shell_proto_init() {
 			}
 		}
 		file_service_shell_v1_shell_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CopyFilesFromMachineRequest); i {
+			switch v := v.(*CopyFilesFromphysicalDeviceRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1159,7 +1159,7 @@ func file_service_shell_v1_shell_proto_init() {
 			}
 		}
 		file_service_shell_v1_shell_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CopyFilesFromMachineResponseMetadata); i {
+			switch v := v.(*CopyFilesFromphysicalDeviceResponseMetadata); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1171,7 +1171,7 @@ func file_service_shell_v1_shell_proto_init() {
 			}
 		}
 		file_service_shell_v1_shell_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CopyFilesFromMachineResponse); i {
+			switch v := v.(*CopyFilesFromphysicalDeviceResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1185,16 +1185,16 @@ func file_service_shell_v1_shell_proto_init() {
 	}
 	file_service_shell_v1_shell_proto_msgTypes[2].OneofWrappers = []interface{}{}
 	file_service_shell_v1_shell_proto_msgTypes[4].OneofWrappers = []interface{}{
-		(*CopyFilesToMachineRequest_Metadata)(nil),
-		(*CopyFilesToMachineRequest_FileData)(nil),
+		(*CopyFilesTophysicalDeviceRequest_Metadata)(nil),
+		(*CopyFilesTophysicalDeviceRequest_FileData)(nil),
 	}
 	file_service_shell_v1_shell_proto_msgTypes[7].OneofWrappers = []interface{}{
-		(*CopyFilesFromMachineRequest_Metadata)(nil),
-		(*CopyFilesFromMachineRequest_AckLastFile)(nil),
+		(*CopyFilesFromphysicalDeviceRequest_Metadata)(nil),
+		(*CopyFilesFromphysicalDeviceRequest_AckLastFile)(nil),
 	}
 	file_service_shell_v1_shell_proto_msgTypes[9].OneofWrappers = []interface{}{
-		(*CopyFilesFromMachineResponse_Metadata)(nil),
-		(*CopyFilesFromMachineResponse_FileData)(nil),
+		(*CopyFilesFromphysicalDeviceResponse_Metadata)(nil),
+		(*CopyFilesFromphysicalDeviceResponse_FileData)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

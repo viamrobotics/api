@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for viam.robot.v1
+ * @fileoverview gRPC-Web generated client stub for viam.physicalDevice.v1
  * @enhanceable
  * @public
  */
@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.5.0
 // 	protoc              v0.0.0
-// source: robot/v1/robot.proto
+// source: physicalDevice/v1/physicalDevice.proto
 
 
 /* eslint-disable */
@@ -31,8 +31,8 @@ var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 const proto = {};
 proto.viam = {};
-proto.viam.robot = {};
-proto.viam.robot.v1 = require('./robot_pb.js');
+proto.viam.physicalDevice = {};
+proto.viam.physicalDevice.v1 = require('./physicalDevice_pb.js');
 
 /**
  * @param {string} hostname
@@ -42,7 +42,7 @@ proto.viam.robot.v1 = require('./robot_pb.js');
  * @struct
  * @final
  */
-proto.viam.robot.v1.RobotServiceClient =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -68,7 +68,7 @@ proto.viam.robot.v1.RobotServiceClient =
  * @struct
  * @final
  */
-proto.viam.robot.v1.RobotServicePromiseClient =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -89,1156 +89,1156 @@ proto.viam.robot.v1.RobotServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.GetOperationsRequest,
- *   !proto.viam.robot.v1.GetOperationsResponse>}
+ *   !proto.viam.physicalDevice.v1.GetOperationsRequest,
+ *   !proto.viam.physicalDevice.v1.GetOperationsResponse>}
  */
-const methodDescriptor_RobotService_GetOperations = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/GetOperations',
+const methodDescriptor_physicalDeviceService_GetOperations = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/GetOperations',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.GetOperationsRequest,
-  proto.viam.robot.v1.GetOperationsResponse,
+  proto.viam.physicalDevice.v1.GetOperationsRequest,
+  proto.viam.physicalDevice.v1.GetOperationsResponse,
   /**
-   * @param {!proto.viam.robot.v1.GetOperationsRequest} request
+   * @param {!proto.viam.physicalDevice.v1.GetOperationsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.GetOperationsResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.GetOperationsResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.GetOperationsRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.GetOperationsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.GetOperationsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.GetOperationsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.GetOperationsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.GetOperationsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.getOperations =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.getOperations =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/GetOperations',
+      '/viam.physicalDevice.v1.physicalDeviceService/GetOperations',
       request,
       metadata || {},
-      methodDescriptor_RobotService_GetOperations,
+      methodDescriptor_physicalDeviceService_GetOperations,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.GetOperationsRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.GetOperationsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.GetOperationsResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.GetOperationsResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.getOperations =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.getOperations =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/GetOperations',
+      '/viam.physicalDevice.v1.physicalDeviceService/GetOperations',
       request,
       metadata || {},
-      methodDescriptor_RobotService_GetOperations);
+      methodDescriptor_physicalDeviceService_GetOperations);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.GetSessionsRequest,
- *   !proto.viam.robot.v1.GetSessionsResponse>}
+ *   !proto.viam.physicalDevice.v1.GetSessionsRequest,
+ *   !proto.viam.physicalDevice.v1.GetSessionsResponse>}
  */
-const methodDescriptor_RobotService_GetSessions = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/GetSessions',
+const methodDescriptor_physicalDeviceService_GetSessions = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/GetSessions',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.GetSessionsRequest,
-  proto.viam.robot.v1.GetSessionsResponse,
+  proto.viam.physicalDevice.v1.GetSessionsRequest,
+  proto.viam.physicalDevice.v1.GetSessionsResponse,
   /**
-   * @param {!proto.viam.robot.v1.GetSessionsRequest} request
+   * @param {!proto.viam.physicalDevice.v1.GetSessionsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.GetSessionsResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.GetSessionsResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.GetSessionsRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.GetSessionsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.GetSessionsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.GetSessionsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.GetSessionsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.GetSessionsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.getSessions =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.getSessions =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/GetSessions',
+      '/viam.physicalDevice.v1.physicalDeviceService/GetSessions',
       request,
       metadata || {},
-      methodDescriptor_RobotService_GetSessions,
+      methodDescriptor_physicalDeviceService_GetSessions,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.GetSessionsRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.GetSessionsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.GetSessionsResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.GetSessionsResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.getSessions =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.getSessions =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/GetSessions',
+      '/viam.physicalDevice.v1.physicalDeviceService/GetSessions',
       request,
       metadata || {},
-      methodDescriptor_RobotService_GetSessions);
+      methodDescriptor_physicalDeviceService_GetSessions);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.ResourceNamesRequest,
- *   !proto.viam.robot.v1.ResourceNamesResponse>}
+ *   !proto.viam.physicalDevice.v1.ResourceNamesRequest,
+ *   !proto.viam.physicalDevice.v1.ResourceNamesResponse>}
  */
-const methodDescriptor_RobotService_ResourceNames = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/ResourceNames',
+const methodDescriptor_physicalDeviceService_ResourceNames = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/ResourceNames',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.ResourceNamesRequest,
-  proto.viam.robot.v1.ResourceNamesResponse,
+  proto.viam.physicalDevice.v1.ResourceNamesRequest,
+  proto.viam.physicalDevice.v1.ResourceNamesResponse,
   /**
-   * @param {!proto.viam.robot.v1.ResourceNamesRequest} request
+   * @param {!proto.viam.physicalDevice.v1.ResourceNamesRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.ResourceNamesResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.ResourceNamesResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.ResourceNamesRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.ResourceNamesRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.ResourceNamesResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.ResourceNamesResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.ResourceNamesResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.ResourceNamesResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.resourceNames =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.resourceNames =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/ResourceNames',
+      '/viam.physicalDevice.v1.physicalDeviceService/ResourceNames',
       request,
       metadata || {},
-      methodDescriptor_RobotService_ResourceNames,
+      methodDescriptor_physicalDeviceService_ResourceNames,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.ResourceNamesRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.ResourceNamesRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.ResourceNamesResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.ResourceNamesResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.resourceNames =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.resourceNames =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/ResourceNames',
+      '/viam.physicalDevice.v1.physicalDeviceService/ResourceNames',
       request,
       metadata || {},
-      methodDescriptor_RobotService_ResourceNames);
+      methodDescriptor_physicalDeviceService_ResourceNames);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.ResourceRPCSubtypesRequest,
- *   !proto.viam.robot.v1.ResourceRPCSubtypesResponse>}
+ *   !proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest,
+ *   !proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse>}
  */
-const methodDescriptor_RobotService_ResourceRPCSubtypes = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/ResourceRPCSubtypes',
+const methodDescriptor_physicalDeviceService_ResourceRPCSubtypes = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/ResourceRPCSubtypes',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.ResourceRPCSubtypesRequest,
-  proto.viam.robot.v1.ResourceRPCSubtypesResponse,
+  proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest,
+  proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse,
   /**
-   * @param {!proto.viam.robot.v1.ResourceRPCSubtypesRequest} request
+   * @param {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.ResourceRPCSubtypesResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.ResourceRPCSubtypesRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.ResourceRPCSubtypesResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.ResourceRPCSubtypesResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.resourceRPCSubtypes =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.resourceRPCSubtypes =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/ResourceRPCSubtypes',
+      '/viam.physicalDevice.v1.physicalDeviceService/ResourceRPCSubtypes',
       request,
       metadata || {},
-      methodDescriptor_RobotService_ResourceRPCSubtypes,
+      methodDescriptor_physicalDeviceService_ResourceRPCSubtypes,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.ResourceRPCSubtypesRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.ResourceRPCSubtypesResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.resourceRPCSubtypes =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.resourceRPCSubtypes =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/ResourceRPCSubtypes',
+      '/viam.physicalDevice.v1.physicalDeviceService/ResourceRPCSubtypes',
       request,
       metadata || {},
-      methodDescriptor_RobotService_ResourceRPCSubtypes);
+      methodDescriptor_physicalDeviceService_ResourceRPCSubtypes);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.CancelOperationRequest,
- *   !proto.viam.robot.v1.CancelOperationResponse>}
+ *   !proto.viam.physicalDevice.v1.CancelOperationRequest,
+ *   !proto.viam.physicalDevice.v1.CancelOperationResponse>}
  */
-const methodDescriptor_RobotService_CancelOperation = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/CancelOperation',
+const methodDescriptor_physicalDeviceService_CancelOperation = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/CancelOperation',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.CancelOperationRequest,
-  proto.viam.robot.v1.CancelOperationResponse,
+  proto.viam.physicalDevice.v1.CancelOperationRequest,
+  proto.viam.physicalDevice.v1.CancelOperationResponse,
   /**
-   * @param {!proto.viam.robot.v1.CancelOperationRequest} request
+   * @param {!proto.viam.physicalDevice.v1.CancelOperationRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.CancelOperationResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.CancelOperationResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.CancelOperationRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.CancelOperationRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.CancelOperationResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.CancelOperationResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.CancelOperationResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.CancelOperationResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.cancelOperation =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.cancelOperation =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/CancelOperation',
+      '/viam.physicalDevice.v1.physicalDeviceService/CancelOperation',
       request,
       metadata || {},
-      methodDescriptor_RobotService_CancelOperation,
+      methodDescriptor_physicalDeviceService_CancelOperation,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.CancelOperationRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.CancelOperationRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.CancelOperationResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.CancelOperationResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.cancelOperation =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.cancelOperation =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/CancelOperation',
+      '/viam.physicalDevice.v1.physicalDeviceService/CancelOperation',
       request,
       metadata || {},
-      methodDescriptor_RobotService_CancelOperation);
+      methodDescriptor_physicalDeviceService_CancelOperation);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.BlockForOperationRequest,
- *   !proto.viam.robot.v1.BlockForOperationResponse>}
+ *   !proto.viam.physicalDevice.v1.BlockForOperationRequest,
+ *   !proto.viam.physicalDevice.v1.BlockForOperationResponse>}
  */
-const methodDescriptor_RobotService_BlockForOperation = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/BlockForOperation',
+const methodDescriptor_physicalDeviceService_BlockForOperation = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/BlockForOperation',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.BlockForOperationRequest,
-  proto.viam.robot.v1.BlockForOperationResponse,
+  proto.viam.physicalDevice.v1.BlockForOperationRequest,
+  proto.viam.physicalDevice.v1.BlockForOperationResponse,
   /**
-   * @param {!proto.viam.robot.v1.BlockForOperationRequest} request
+   * @param {!proto.viam.physicalDevice.v1.BlockForOperationRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.BlockForOperationResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.BlockForOperationResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.BlockForOperationRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.BlockForOperationRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.BlockForOperationResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.BlockForOperationResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.BlockForOperationResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.BlockForOperationResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.blockForOperation =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.blockForOperation =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/BlockForOperation',
+      '/viam.physicalDevice.v1.physicalDeviceService/BlockForOperation',
       request,
       metadata || {},
-      methodDescriptor_RobotService_BlockForOperation,
+      methodDescriptor_physicalDeviceService_BlockForOperation,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.BlockForOperationRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.BlockForOperationRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.BlockForOperationResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.BlockForOperationResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.blockForOperation =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.blockForOperation =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/BlockForOperation',
+      '/viam.physicalDevice.v1.physicalDeviceService/BlockForOperation',
       request,
       metadata || {},
-      methodDescriptor_RobotService_BlockForOperation);
+      methodDescriptor_physicalDeviceService_BlockForOperation);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.DiscoverComponentsRequest,
- *   !proto.viam.robot.v1.DiscoverComponentsResponse>}
+ *   !proto.viam.physicalDevice.v1.DiscoverComponentsRequest,
+ *   !proto.viam.physicalDevice.v1.DiscoverComponentsResponse>}
  */
-const methodDescriptor_RobotService_DiscoverComponents = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/DiscoverComponents',
+const methodDescriptor_physicalDeviceService_DiscoverComponents = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/DiscoverComponents',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.DiscoverComponentsRequest,
-  proto.viam.robot.v1.DiscoverComponentsResponse,
+  proto.viam.physicalDevice.v1.DiscoverComponentsRequest,
+  proto.viam.physicalDevice.v1.DiscoverComponentsResponse,
   /**
-   * @param {!proto.viam.robot.v1.DiscoverComponentsRequest} request
+   * @param {!proto.viam.physicalDevice.v1.DiscoverComponentsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.DiscoverComponentsResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.DiscoverComponentsResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.DiscoverComponentsRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.DiscoverComponentsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.DiscoverComponentsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.DiscoverComponentsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.DiscoverComponentsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.DiscoverComponentsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.discoverComponents =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.discoverComponents =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/DiscoverComponents',
+      '/viam.physicalDevice.v1.physicalDeviceService/DiscoverComponents',
       request,
       metadata || {},
-      methodDescriptor_RobotService_DiscoverComponents,
+      methodDescriptor_physicalDeviceService_DiscoverComponents,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.DiscoverComponentsRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.DiscoverComponentsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.DiscoverComponentsResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.DiscoverComponentsResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.discoverComponents =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.discoverComponents =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/DiscoverComponents',
+      '/viam.physicalDevice.v1.physicalDeviceService/DiscoverComponents',
       request,
       metadata || {},
-      methodDescriptor_RobotService_DiscoverComponents);
+      methodDescriptor_physicalDeviceService_DiscoverComponents);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.FrameSystemConfigRequest,
- *   !proto.viam.robot.v1.FrameSystemConfigResponse>}
+ *   !proto.viam.physicalDevice.v1.FrameSystemConfigRequest,
+ *   !proto.viam.physicalDevice.v1.FrameSystemConfigResponse>}
  */
-const methodDescriptor_RobotService_FrameSystemConfig = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/FrameSystemConfig',
+const methodDescriptor_physicalDeviceService_FrameSystemConfig = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/FrameSystemConfig',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.FrameSystemConfigRequest,
-  proto.viam.robot.v1.FrameSystemConfigResponse,
+  proto.viam.physicalDevice.v1.FrameSystemConfigRequest,
+  proto.viam.physicalDevice.v1.FrameSystemConfigResponse,
   /**
-   * @param {!proto.viam.robot.v1.FrameSystemConfigRequest} request
+   * @param {!proto.viam.physicalDevice.v1.FrameSystemConfigRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.FrameSystemConfigResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.FrameSystemConfigResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.FrameSystemConfigRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.FrameSystemConfigRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.FrameSystemConfigResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.FrameSystemConfigResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.FrameSystemConfigResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.FrameSystemConfigResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.frameSystemConfig =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.frameSystemConfig =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/FrameSystemConfig',
+      '/viam.physicalDevice.v1.physicalDeviceService/FrameSystemConfig',
       request,
       metadata || {},
-      methodDescriptor_RobotService_FrameSystemConfig,
+      methodDescriptor_physicalDeviceService_FrameSystemConfig,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.FrameSystemConfigRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.FrameSystemConfigRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.FrameSystemConfigResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.FrameSystemConfigResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.frameSystemConfig =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.frameSystemConfig =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/FrameSystemConfig',
+      '/viam.physicalDevice.v1.physicalDeviceService/FrameSystemConfig',
       request,
       metadata || {},
-      methodDescriptor_RobotService_FrameSystemConfig);
+      methodDescriptor_physicalDeviceService_FrameSystemConfig);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.TransformPoseRequest,
- *   !proto.viam.robot.v1.TransformPoseResponse>}
+ *   !proto.viam.physicalDevice.v1.TransformPoseRequest,
+ *   !proto.viam.physicalDevice.v1.TransformPoseResponse>}
  */
-const methodDescriptor_RobotService_TransformPose = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/TransformPose',
+const methodDescriptor_physicalDeviceService_TransformPose = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/TransformPose',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.TransformPoseRequest,
-  proto.viam.robot.v1.TransformPoseResponse,
+  proto.viam.physicalDevice.v1.TransformPoseRequest,
+  proto.viam.physicalDevice.v1.TransformPoseResponse,
   /**
-   * @param {!proto.viam.robot.v1.TransformPoseRequest} request
+   * @param {!proto.viam.physicalDevice.v1.TransformPoseRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.TransformPoseResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.TransformPoseResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.TransformPoseRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.TransformPoseRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.TransformPoseResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.TransformPoseResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.TransformPoseResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.TransformPoseResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.transformPose =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.transformPose =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/TransformPose',
+      '/viam.physicalDevice.v1.physicalDeviceService/TransformPose',
       request,
       metadata || {},
-      methodDescriptor_RobotService_TransformPose,
+      methodDescriptor_physicalDeviceService_TransformPose,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.TransformPoseRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.TransformPoseRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.TransformPoseResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.TransformPoseResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.transformPose =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.transformPose =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/TransformPose',
+      '/viam.physicalDevice.v1.physicalDeviceService/TransformPose',
       request,
       metadata || {},
-      methodDescriptor_RobotService_TransformPose);
+      methodDescriptor_physicalDeviceService_TransformPose);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.TransformPCDRequest,
- *   !proto.viam.robot.v1.TransformPCDResponse>}
+ *   !proto.viam.physicalDevice.v1.TransformPCDRequest,
+ *   !proto.viam.physicalDevice.v1.TransformPCDResponse>}
  */
-const methodDescriptor_RobotService_TransformPCD = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/TransformPCD',
+const methodDescriptor_physicalDeviceService_TransformPCD = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/TransformPCD',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.TransformPCDRequest,
-  proto.viam.robot.v1.TransformPCDResponse,
+  proto.viam.physicalDevice.v1.TransformPCDRequest,
+  proto.viam.physicalDevice.v1.TransformPCDResponse,
   /**
-   * @param {!proto.viam.robot.v1.TransformPCDRequest} request
+   * @param {!proto.viam.physicalDevice.v1.TransformPCDRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.TransformPCDResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.TransformPCDResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.TransformPCDRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.TransformPCDRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.TransformPCDResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.TransformPCDResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.TransformPCDResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.TransformPCDResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.transformPCD =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.transformPCD =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/TransformPCD',
+      '/viam.physicalDevice.v1.physicalDeviceService/TransformPCD',
       request,
       metadata || {},
-      methodDescriptor_RobotService_TransformPCD,
+      methodDescriptor_physicalDeviceService_TransformPCD,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.TransformPCDRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.TransformPCDRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.TransformPCDResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.TransformPCDResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.transformPCD =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.transformPCD =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/TransformPCD',
+      '/viam.physicalDevice.v1.physicalDeviceService/TransformPCD',
       request,
       metadata || {},
-      methodDescriptor_RobotService_TransformPCD);
+      methodDescriptor_physicalDeviceService_TransformPCD);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.GetStatusRequest,
- *   !proto.viam.robot.v1.GetStatusResponse>}
+ *   !proto.viam.physicalDevice.v1.GetStatusRequest,
+ *   !proto.viam.physicalDevice.v1.GetStatusResponse>}
  */
-const methodDescriptor_RobotService_GetStatus = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/GetStatus',
+const methodDescriptor_physicalDeviceService_GetStatus = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/GetStatus',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.GetStatusRequest,
-  proto.viam.robot.v1.GetStatusResponse,
+  proto.viam.physicalDevice.v1.GetStatusRequest,
+  proto.viam.physicalDevice.v1.GetStatusResponse,
   /**
-   * @param {!proto.viam.robot.v1.GetStatusRequest} request
+   * @param {!proto.viam.physicalDevice.v1.GetStatusRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.GetStatusResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.GetStatusResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.GetStatusRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.GetStatusRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.GetStatusResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.GetStatusResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.GetStatusResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.GetStatusResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.getStatus =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.getStatus =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/GetStatus',
+      '/viam.physicalDevice.v1.physicalDeviceService/GetStatus',
       request,
       metadata || {},
-      methodDescriptor_RobotService_GetStatus,
+      methodDescriptor_physicalDeviceService_GetStatus,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.GetStatusRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.GetStatusRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.GetStatusResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.GetStatusResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.getStatus =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.getStatus =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/GetStatus',
+      '/viam.physicalDevice.v1.physicalDeviceService/GetStatus',
       request,
       metadata || {},
-      methodDescriptor_RobotService_GetStatus);
+      methodDescriptor_physicalDeviceService_GetStatus);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.StreamStatusRequest,
- *   !proto.viam.robot.v1.StreamStatusResponse>}
+ *   !proto.viam.physicalDevice.v1.StreamStatusRequest,
+ *   !proto.viam.physicalDevice.v1.StreamStatusResponse>}
  */
-const methodDescriptor_RobotService_StreamStatus = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/StreamStatus',
+const methodDescriptor_physicalDeviceService_StreamStatus = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/StreamStatus',
   grpc.web.MethodType.SERVER_STREAMING,
-  proto.viam.robot.v1.StreamStatusRequest,
-  proto.viam.robot.v1.StreamStatusResponse,
+  proto.viam.physicalDevice.v1.StreamStatusRequest,
+  proto.viam.physicalDevice.v1.StreamStatusResponse,
   /**
-   * @param {!proto.viam.robot.v1.StreamStatusRequest} request
+   * @param {!proto.viam.physicalDevice.v1.StreamStatusRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.StreamStatusResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.StreamStatusResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.StreamStatusRequest} request The request proto
+ * @param {!proto.viam.physicalDevice.v1.StreamStatusRequest} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.StreamStatusResponse>}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.StreamStatusResponse>}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.streamStatus =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.streamStatus =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/viam.robot.v1.RobotService/StreamStatus',
+      '/viam.physicalDevice.v1.physicalDeviceService/StreamStatus',
       request,
       metadata || {},
-      methodDescriptor_RobotService_StreamStatus);
+      methodDescriptor_physicalDeviceService_StreamStatus);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.StreamStatusRequest} request The request proto
+ * @param {!proto.viam.physicalDevice.v1.StreamStatusRequest} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.StreamStatusResponse>}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.StreamStatusResponse>}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.streamStatus =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.streamStatus =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/viam.robot.v1.RobotService/StreamStatus',
+      '/viam.physicalDevice.v1.physicalDeviceService/StreamStatus',
       request,
       metadata || {},
-      methodDescriptor_RobotService_StreamStatus);
+      methodDescriptor_physicalDeviceService_StreamStatus);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.StopAllRequest,
- *   !proto.viam.robot.v1.StopAllResponse>}
+ *   !proto.viam.physicalDevice.v1.StopAllRequest,
+ *   !proto.viam.physicalDevice.v1.StopAllResponse>}
  */
-const methodDescriptor_RobotService_StopAll = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/StopAll',
+const methodDescriptor_physicalDeviceService_StopAll = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/StopAll',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.StopAllRequest,
-  proto.viam.robot.v1.StopAllResponse,
+  proto.viam.physicalDevice.v1.StopAllRequest,
+  proto.viam.physicalDevice.v1.StopAllResponse,
   /**
-   * @param {!proto.viam.robot.v1.StopAllRequest} request
+   * @param {!proto.viam.physicalDevice.v1.StopAllRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.StopAllResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.StopAllResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.StopAllRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.StopAllRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.StopAllResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.StopAllResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.StopAllResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.StopAllResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.stopAll =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.stopAll =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/StopAll',
+      '/viam.physicalDevice.v1.physicalDeviceService/StopAll',
       request,
       metadata || {},
-      methodDescriptor_RobotService_StopAll,
+      methodDescriptor_physicalDeviceService_StopAll,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.StopAllRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.StopAllRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.StopAllResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.StopAllResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.stopAll =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.stopAll =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/StopAll',
+      '/viam.physicalDevice.v1.physicalDeviceService/StopAll',
       request,
       metadata || {},
-      methodDescriptor_RobotService_StopAll);
+      methodDescriptor_physicalDeviceService_StopAll);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.StartSessionRequest,
- *   !proto.viam.robot.v1.StartSessionResponse>}
+ *   !proto.viam.physicalDevice.v1.StartSessionRequest,
+ *   !proto.viam.physicalDevice.v1.StartSessionResponse>}
  */
-const methodDescriptor_RobotService_StartSession = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/StartSession',
+const methodDescriptor_physicalDeviceService_StartSession = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/StartSession',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.StartSessionRequest,
-  proto.viam.robot.v1.StartSessionResponse,
+  proto.viam.physicalDevice.v1.StartSessionRequest,
+  proto.viam.physicalDevice.v1.StartSessionResponse,
   /**
-   * @param {!proto.viam.robot.v1.StartSessionRequest} request
+   * @param {!proto.viam.physicalDevice.v1.StartSessionRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.StartSessionResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.StartSessionResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.StartSessionRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.StartSessionRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.StartSessionResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.StartSessionResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.StartSessionResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.StartSessionResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.startSession =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.startSession =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/StartSession',
+      '/viam.physicalDevice.v1.physicalDeviceService/StartSession',
       request,
       metadata || {},
-      methodDescriptor_RobotService_StartSession,
+      methodDescriptor_physicalDeviceService_StartSession,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.StartSessionRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.StartSessionRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.StartSessionResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.StartSessionResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.startSession =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.startSession =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/StartSession',
+      '/viam.physicalDevice.v1.physicalDeviceService/StartSession',
       request,
       metadata || {},
-      methodDescriptor_RobotService_StartSession);
+      methodDescriptor_physicalDeviceService_StartSession);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.SendSessionHeartbeatRequest,
- *   !proto.viam.robot.v1.SendSessionHeartbeatResponse>}
+ *   !proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest,
+ *   !proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse>}
  */
-const methodDescriptor_RobotService_SendSessionHeartbeat = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/SendSessionHeartbeat',
+const methodDescriptor_physicalDeviceService_SendSessionHeartbeat = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/SendSessionHeartbeat',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.SendSessionHeartbeatRequest,
-  proto.viam.robot.v1.SendSessionHeartbeatResponse,
+  proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest,
+  proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse,
   /**
-   * @param {!proto.viam.robot.v1.SendSessionHeartbeatRequest} request
+   * @param {!proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.SendSessionHeartbeatResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.SendSessionHeartbeatRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.SendSessionHeartbeatResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.SendSessionHeartbeatResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.sendSessionHeartbeat =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.sendSessionHeartbeat =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/SendSessionHeartbeat',
+      '/viam.physicalDevice.v1.physicalDeviceService/SendSessionHeartbeat',
       request,
       metadata || {},
-      methodDescriptor_RobotService_SendSessionHeartbeat,
+      methodDescriptor_physicalDeviceService_SendSessionHeartbeat,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.SendSessionHeartbeatRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.SendSessionHeartbeatResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.sendSessionHeartbeat =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.sendSessionHeartbeat =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/SendSessionHeartbeat',
+      '/viam.physicalDevice.v1.physicalDeviceService/SendSessionHeartbeat',
       request,
       metadata || {},
-      methodDescriptor_RobotService_SendSessionHeartbeat);
+      methodDescriptor_physicalDeviceService_SendSessionHeartbeat);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.LogRequest,
- *   !proto.viam.robot.v1.LogResponse>}
+ *   !proto.viam.physicalDevice.v1.LogRequest,
+ *   !proto.viam.physicalDevice.v1.LogResponse>}
  */
-const methodDescriptor_RobotService_Log = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/Log',
+const methodDescriptor_physicalDeviceService_Log = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/Log',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.LogRequest,
-  proto.viam.robot.v1.LogResponse,
+  proto.viam.physicalDevice.v1.LogRequest,
+  proto.viam.physicalDevice.v1.LogResponse,
   /**
-   * @param {!proto.viam.robot.v1.LogRequest} request
+   * @param {!proto.viam.physicalDevice.v1.LogRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.LogResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.LogResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.LogRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.LogRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.LogResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.LogResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.LogResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.LogResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.log =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.log =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/Log',
+      '/viam.physicalDevice.v1.physicalDeviceService/Log',
       request,
       metadata || {},
-      methodDescriptor_RobotService_Log,
+      methodDescriptor_physicalDeviceService_Log,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.LogRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.LogRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.LogResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.LogResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.log =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.log =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/Log',
+      '/viam.physicalDevice.v1.physicalDeviceService/Log',
       request,
       metadata || {},
-      methodDescriptor_RobotService_Log);
+      methodDescriptor_physicalDeviceService_Log);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.GetCloudMetadataRequest,
- *   !proto.viam.robot.v1.GetCloudMetadataResponse>}
+ *   !proto.viam.physicalDevice.v1.GetCloudMetadataRequest,
+ *   !proto.viam.physicalDevice.v1.GetCloudMetadataResponse>}
  */
-const methodDescriptor_RobotService_GetCloudMetadata = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/GetCloudMetadata',
+const methodDescriptor_physicalDeviceService_GetCloudMetadata = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/GetCloudMetadata',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.GetCloudMetadataRequest,
-  proto.viam.robot.v1.GetCloudMetadataResponse,
+  proto.viam.physicalDevice.v1.GetCloudMetadataRequest,
+  proto.viam.physicalDevice.v1.GetCloudMetadataResponse,
   /**
-   * @param {!proto.viam.robot.v1.GetCloudMetadataRequest} request
+   * @param {!proto.viam.physicalDevice.v1.GetCloudMetadataRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.GetCloudMetadataResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.GetCloudMetadataResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.GetCloudMetadataRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.GetCloudMetadataRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.GetCloudMetadataResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.GetCloudMetadataResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.GetCloudMetadataResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.GetCloudMetadataResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.getCloudMetadata =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.getCloudMetadata =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/GetCloudMetadata',
+      '/viam.physicalDevice.v1.physicalDeviceService/GetCloudMetadata',
       request,
       metadata || {},
-      methodDescriptor_RobotService_GetCloudMetadata,
+      methodDescriptor_physicalDeviceService_GetCloudMetadata,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.GetCloudMetadataRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.GetCloudMetadataRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.GetCloudMetadataResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.GetCloudMetadataResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.getCloudMetadata =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.getCloudMetadata =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/GetCloudMetadata',
+      '/viam.physicalDevice.v1.physicalDeviceService/GetCloudMetadata',
       request,
       metadata || {},
-      methodDescriptor_RobotService_GetCloudMetadata);
+      methodDescriptor_physicalDeviceService_GetCloudMetadata);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.RestartModuleRequest,
- *   !proto.viam.robot.v1.RestartModuleResponse>}
+ *   !proto.viam.physicalDevice.v1.RestartModuleRequest,
+ *   !proto.viam.physicalDevice.v1.RestartModuleResponse>}
  */
-const methodDescriptor_RobotService_RestartModule = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/RestartModule',
+const methodDescriptor_physicalDeviceService_RestartModule = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/RestartModule',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.RestartModuleRequest,
-  proto.viam.robot.v1.RestartModuleResponse,
+  proto.viam.physicalDevice.v1.RestartModuleRequest,
+  proto.viam.physicalDevice.v1.RestartModuleResponse,
   /**
-   * @param {!proto.viam.robot.v1.RestartModuleRequest} request
+   * @param {!proto.viam.physicalDevice.v1.RestartModuleRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.RestartModuleResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.RestartModuleResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.RestartModuleRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.RestartModuleRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.RestartModuleResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.RestartModuleResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.RestartModuleResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.RestartModuleResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.restartModule =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.restartModule =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/RestartModule',
+      '/viam.physicalDevice.v1.physicalDeviceService/RestartModule',
       request,
       metadata || {},
-      methodDescriptor_RobotService_RestartModule,
+      methodDescriptor_physicalDeviceService_RestartModule,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.RestartModuleRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.RestartModuleRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.RestartModuleResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.RestartModuleResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.restartModule =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.restartModule =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/RestartModule',
+      '/viam.physicalDevice.v1.physicalDeviceService/RestartModule',
       request,
       metadata || {},
-      methodDescriptor_RobotService_RestartModule);
+      methodDescriptor_physicalDeviceService_RestartModule);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.ShutdownRequest,
- *   !proto.viam.robot.v1.ShutdownResponse>}
+ *   !proto.viam.physicalDevice.v1.ShutdownRequest,
+ *   !proto.viam.physicalDevice.v1.ShutdownResponse>}
  */
-const methodDescriptor_RobotService_Shutdown = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/Shutdown',
+const methodDescriptor_physicalDeviceService_Shutdown = new grpc.web.MethodDescriptor(
+  '/viam.physicalDevice.v1.physicalDeviceService/Shutdown',
   grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.ShutdownRequest,
-  proto.viam.robot.v1.ShutdownResponse,
+  proto.viam.physicalDevice.v1.ShutdownRequest,
+  proto.viam.physicalDevice.v1.ShutdownResponse,
   /**
-   * @param {!proto.viam.robot.v1.ShutdownRequest} request
+   * @param {!proto.viam.physicalDevice.v1.ShutdownRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.robot.v1.ShutdownResponse.deserializeBinary
+  proto.viam.physicalDevice.v1.ShutdownResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.robot.v1.ShutdownRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.ShutdownRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.ShutdownResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.physicalDevice.v1.ShutdownResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.ShutdownResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.physicalDevice.v1.ShutdownResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.robot.v1.RobotServiceClient.prototype.shutdown =
+proto.viam.physicalDevice.v1.physicalDeviceServiceClient.prototype.shutdown =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/Shutdown',
+      '/viam.physicalDevice.v1.physicalDeviceService/Shutdown',
       request,
       metadata || {},
-      methodDescriptor_RobotService_Shutdown,
+      methodDescriptor_physicalDeviceService_Shutdown,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.ShutdownRequest} request The
+ * @param {!proto.viam.physicalDevice.v1.ShutdownRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.ShutdownResponse>}
+ * @return {!Promise<!proto.viam.physicalDevice.v1.ShutdownResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.shutdown =
+proto.viam.physicalDevice.v1.physicalDeviceServicePromiseClient.prototype.shutdown =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/Shutdown',
+      '/viam.physicalDevice.v1.physicalDeviceService/Shutdown',
       request,
       metadata || {},
-      methodDescriptor_RobotService_Shutdown);
+      methodDescriptor_physicalDeviceService_Shutdown);
 };
 
 
-module.exports = proto.viam.robot.v1;
+module.exports = proto.viam.physicalDevice.v1;
 

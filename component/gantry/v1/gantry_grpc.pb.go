@@ -23,15 +23,15 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GantryServiceClient interface {
-	// GetPosition gets the current position of a gantry of the underlying robot.
+	// GetPosition gets the current position of a gantry of the underlying physicalDevice.
 	GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error)
-	// MoveToPosition moves a gantry of the underlying robot to the requested position.
+	// MoveToPosition moves a gantry of the underlying physicalDevice to the requested position.
 	MoveToPosition(ctx context.Context, in *MoveToPositionRequest, opts ...grpc.CallOption) (*MoveToPositionResponse, error)
 	// Home runs the homing sequence of a gantry and returns true once it's completed.
 	Home(ctx context.Context, in *HomeRequest, opts ...grpc.CallOption) (*HomeResponse, error)
-	// GetLengths gets the lengths of a gantry of the underlying robot.
+	// GetLengths gets the lengths of a gantry of the underlying physicalDevice.
 	GetLengths(ctx context.Context, in *GetLengthsRequest, opts ...grpc.CallOption) (*GetLengthsResponse, error)
-	// Stop stops a robot's gantry
+	// Stop stops a physicalDevice's gantry
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
@@ -125,15 +125,15 @@ func (c *gantryServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeome
 // All implementations must embed UnimplementedGantryServiceServer
 // for forward compatibility
 type GantryServiceServer interface {
-	// GetPosition gets the current position of a gantry of the underlying robot.
+	// GetPosition gets the current position of a gantry of the underlying physicalDevice.
 	GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error)
-	// MoveToPosition moves a gantry of the underlying robot to the requested position.
+	// MoveToPosition moves a gantry of the underlying physicalDevice to the requested position.
 	MoveToPosition(context.Context, *MoveToPositionRequest) (*MoveToPositionResponse, error)
 	// Home runs the homing sequence of a gantry and returns true once it's completed.
 	Home(context.Context, *HomeRequest) (*HomeResponse, error)
-	// GetLengths gets the lengths of a gantry of the underlying robot.
+	// GetLengths gets the lengths of a gantry of the underlying physicalDevice.
 	GetLengths(context.Context, *GetLengthsRequest) (*GetLengthsResponse, error)
-	// Stop stops a robot's gantry
+	// Stop stops a physicalDevice's gantry
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)

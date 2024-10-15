@@ -225,8 +225,8 @@ export class GetCurrentMonthUsageResponse extends jspb.Message {
   getTotalUsageWithoutDiscount(): number;
   setTotalUsageWithoutDiscount(value: number): void;
 
-  getPerMachineUsageCost(): number;
-  setPerMachineUsageCost(value: number): void;
+  getPerphysicalDeviceUsageCost(): number;
+  setPerphysicalDeviceUsageCost(value: number): void;
 
   getBinaryDataCloudStorageUsageCost(): number;
   setBinaryDataCloudStorageUsageCost(value: number): void;
@@ -256,7 +256,7 @@ export namespace GetCurrentMonthUsageResponse {
     discountAmount: number,
     totalUsageWithDiscount: number,
     totalUsageWithoutDiscount: number,
-    perMachineUsageCost: number,
+    perphysicalDeviceUsageCost: number,
     binaryDataCloudStorageUsageCost: number,
     otherCloudStorageUsageCost: number,
   }

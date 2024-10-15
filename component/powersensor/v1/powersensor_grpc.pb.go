@@ -29,7 +29,7 @@ type PowerSensorServiceClient interface {
 	GetCurrent(ctx context.Context, in *GetCurrentRequest, opts ...grpc.CallOption) (*GetCurrentResponse, error)
 	// GetPower returns the power reading of a power sensor in watts
 	GetPower(ctx context.Context, in *GetPowerRequest, opts ...grpc.CallOption) (*GetPowerResponse, error)
-	// GetReadings returns the readings of a sensor of the underlying robot.
+	// GetReadings returns the readings of a sensor of the underlying physicalDevice.
 	GetReadings(ctx context.Context, in *v1.GetReadingsRequest, opts ...grpc.CallOption) (*v1.GetReadingsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
@@ -98,7 +98,7 @@ type PowerSensorServiceServer interface {
 	GetCurrent(context.Context, *GetCurrentRequest) (*GetCurrentResponse, error)
 	// GetPower returns the power reading of a power sensor in watts
 	GetPower(context.Context, *GetPowerRequest) (*GetPowerResponse, error)
-	// GetReadings returns the readings of a sensor of the underlying robot.
+	// GetReadings returns the readings of a sensor of the underlying physicalDevice.
 	GetReadings(context.Context, *v1.GetReadingsRequest) (*v1.GetReadingsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)

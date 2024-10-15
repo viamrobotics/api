@@ -16,24 +16,24 @@ service ShellService {
   // Shell starts a shell with an input and output pipe.
   rpc Shell(stream ShellRequest) returns (stream ShellResponse);
 
-  // CopyFilesToMachines copies a stream of files from a client to the connected-to machine.
+  // CopyFilesTophysicalDevices copies a stream of files from a client to the connected-to physicalDevice.
   // Initially, metadata is sent to describe the destination in the filesystem in addition
   // to what kind of file(s) are being sent.
   // Once metadata is sent, the file transfer can proceed where one-by-one, file data is sent
   // until EOF per file.
-  // After each file is sent, the machine must respond with an ACK before the next file can
+  // After each file is sent, the physicalDevice must respond with an ACK before the next file can
   // be sent. This provides back-pressure and ordering.
   // The order in which individual files are sent does not matter; that is, if traversing a
   // directory, copying depth-first, breadth-first, or any other algorithm does not matter.
   // Permissions and metadata on files copied are only preserved if the preserve option is
   // set in the initial request metadata.
-  rpc CopyFilesToMachine(stream CopyFilesToMachineRequest) returns (stream CopyFilesToMachineResponse);
+  rpc CopyFilesTophysicalDevice(stream CopyFilesTophysicalDeviceRequest) returns (stream CopyFilesTophysicalDeviceResponse);
 
-  // CopyFilesFromMachine copies a stream of files from a connected-to machine to the calling client.
-  // Essentially, it is the inverse of CopyFilesToMachine with the same ACK mechanism in reverse.
+  // CopyFilesFromphysicalDevice copies a stream of files from a connected-to physicalDevice to the calling client.
+  // Essentially, it is the inverse of CopyFilesTophysicalDevice with the same ACK mechanism in reverse.
   // The initial metadata request will request the paths to copy along with if permissions should
   // be preserved (and consequently sent over the wire).
-  rpc CopyFilesFromMachine(stream CopyFilesFromMachineRequest) returns (stream CopyFilesFromMachineResponse);
+  rpc CopyFilesFromphysicalDevice(stream CopyFilesFromphysicalDeviceRequest) returns (stream CopyFilesFromphysicalDeviceResponse);
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
@@ -57,7 +57,7 @@ message ShellResponse {
 }
 
 // FileData contains partial (sometimes complete) information about a File.
-// When transmitting FileData with CopyFilesToMachine and CopyFilesFromMachine,
+// When transmitting FileData with CopyFilesTophysicalDevice and CopyFilesFromphysicalDevice,
 // it MUST initially contain its name, size, and is_dir. Depending on whether
 // preservation is in use, the mod_time and mode fields may be initially set
 // as well. On all transmissions, data and eof must be set. Because files are
@@ -89,7 +89,7 @@ enum CopyFilesSourceType {
   COPY_FILES_SOURCE_TYPE_MULTIPLE_FILES = 3;
 }
 
-message CopyFilesToMachineRequestMetadata {
+message CopyFilesTophysicalDeviceRequestMetadata {
   // name is the service name.
   string name = 1;
   // source_type is the type of files that will be transmitted in this request stream.
@@ -105,23 +105,23 @@ message CopyFilesToMachineRequestMetadata {
   google.protobuf.Struct extra = 99;
 }
 
-message CopyFilesToMachineRequest {
+message CopyFilesTophysicalDeviceRequest {
   oneof request {
     // metadata is sent first and only once.
-    CopyFilesToMachineRequestMetadata metadata = 1;
+    CopyFilesTophysicalDeviceRequestMetadata metadata = 1;
     // file_data is sent only after metadata. All data MUST be sent
     // in order per-file.
     FileData file_data = 2;
   }
 }
 
-message CopyFilesToMachineResponse {
+message CopyFilesTophysicalDeviceResponse {
   // value does not matter here but responses must be sent after every
   // file has been received.
   bool ack_last_file = 1;
 }
 
-message CopyFilesFromMachineRequestMetadata {
+message CopyFilesFromphysicalDeviceRequestMetadata {
   // name is the service name.
   string name = 1;
   // paths are the paths to copy from and send back over the wire.
@@ -137,25 +137,25 @@ message CopyFilesFromMachineRequestMetadata {
   google.protobuf.Struct extra = 99;
 }
 
-message CopyFilesFromMachineRequest {
+message CopyFilesFromphysicalDeviceRequest {
   oneof request {
     // metadata is sent first and only once.
-    CopyFilesFromMachineRequestMetadata metadata = 1;
+    CopyFilesFromphysicalDeviceRequestMetadata metadata = 1;
     // ack_last_file is sent only after metadata and after each file has been received.
     // The value does not matter.
     bool ack_last_file = 2;
   }
 }
 
-message CopyFilesFromMachineResponseMetadata {
+message CopyFilesFromphysicalDeviceResponseMetadata {
   // source_type is the type of files that will be transmitted in this response stream.
   CopyFilesSourceType source_type = 1;
 }
 
-message CopyFilesFromMachineResponse {
+message CopyFilesFromphysicalDeviceResponse {
   oneof response {
     // metadata is sent first and only once.
-    CopyFilesFromMachineResponseMetadata metadata = 1;
+    CopyFilesFromphysicalDeviceResponseMetadata metadata = 1;
     // file_data is sent only after metadata. All data MUST be sent
     // in order per-file.
     FileData file_data = 2;

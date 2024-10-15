@@ -8,7 +8,7 @@ package v1
 
 import (
 	v1 "go.viam.com/api/app/v1"
-	v11 "go.viam.com/api/robot/v1"
+	v11 "go.viam.com/api/physicalDevice/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -734,12 +734,12 @@ var file_module_v1_module_proto_goTypes = []interface{}{
 	(*ValidateConfigRequest)(nil),       // 10: viam.module.v1.ValidateConfigRequest
 	(*ValidateConfigResponse)(nil),      // 11: viam.module.v1.ValidateConfigResponse
 	(*v1.ComponentConfig)(nil),          // 12: viam.app.v1.ComponentConfig
-	(*v11.ResourceRPCSubtype)(nil),      // 13: viam.robot.v1.ResourceRPCSubtype
+	(*v11.ResourceRPCSubtype)(nil),      // 13: viam.physicalDevice.v1.ResourceRPCSubtype
 }
 var file_module_v1_module_proto_depIdxs = []int32{
 	12, // 0: viam.module.v1.AddResourceRequest.config:type_name -> viam.app.v1.ComponentConfig
 	12, // 1: viam.module.v1.ReconfigureResourceRequest.config:type_name -> viam.app.v1.ComponentConfig
-	13, // 2: viam.module.v1.HandlerDefinition.subtype:type_name -> viam.robot.v1.ResourceRPCSubtype
+	13, // 2: viam.module.v1.HandlerDefinition.subtype:type_name -> viam.physicalDevice.v1.ResourceRPCSubtype
 	6,  // 3: viam.module.v1.HandlerMap.handlers:type_name -> viam.module.v1.HandlerDefinition
 	7,  // 4: viam.module.v1.ReadyResponse.handlermap:type_name -> viam.module.v1.HandlerMap
 	12, // 5: viam.module.v1.ValidateConfigRequest.config:type_name -> viam.app.v1.ComponentConfig

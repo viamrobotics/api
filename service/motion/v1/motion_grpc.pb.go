@@ -38,12 +38,12 @@ type MotionServiceClient interface {
 	StopPlan(ctx context.Context, in *StopPlanRequest, opts ...grpc.CallOption) (*StopPlanResponse, error)
 	// Returns the status of plans created by requests to move components
 	// that are executing OR are part of an execution which changed it state
-	// within the a 24HR TTL OR until the robot reinitializes.
+	// within the a 24HR TTL OR until the physicalDevice reinitializes.
 	// This currently only returns plans for MoveOnGlobe and MoveOnMap.
 	ListPlanStatuses(ctx context.Context, in *ListPlanStatusesRequest, opts ...grpc.CallOption) (*ListPlanStatusesResponse, error)
 	// Returns the plan(s) & state history of the most recent execution to move a
 	// component. Returns a result if the last execution is still executing OR
-	// changed state within the last 24 hours AND the robot has not reinitialized.
+	// changed state within the last 24 hours AND the physicalDevice has not reinitialized.
 	// Plans are never mutated.
 	// Replans always create new plans.
 	// Replans share the execution_id of the previously executing plan.
@@ -152,12 +152,12 @@ type MotionServiceServer interface {
 	StopPlan(context.Context, *StopPlanRequest) (*StopPlanResponse, error)
 	// Returns the status of plans created by requests to move components
 	// that are executing OR are part of an execution which changed it state
-	// within the a 24HR TTL OR until the robot reinitializes.
+	// within the a 24HR TTL OR until the physicalDevice reinitializes.
 	// This currently only returns plans for MoveOnGlobe and MoveOnMap.
 	ListPlanStatuses(context.Context, *ListPlanStatusesRequest) (*ListPlanStatusesResponse, error)
 	// Returns the plan(s) & state history of the most recent execution to move a
 	// component. Returns a result if the last execution is still executing OR
-	// changed state within the last 24 hours AND the robot has not reinitialized.
+	// changed state within the last 24 hours AND the physicalDevice has not reinitialized.
 	// Plans are never mutated.
 	// Replans always create new plans.
 	// Replans share the execution_id of the previously executing plan.

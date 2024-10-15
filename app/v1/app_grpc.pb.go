@@ -73,46 +73,46 @@ type AppServiceClient interface {
 	CreateLocationSecret(ctx context.Context, in *CreateLocationSecretRequest, opts ...grpc.CallOption) (*CreateLocationSecretResponse, error)
 	// Delete a Secret from the Location.
 	DeleteLocationSecret(ctx context.Context, in *DeleteLocationSecretRequest, opts ...grpc.CallOption) (*DeleteLocationSecretResponse, error)
-	// Get a specific robot by ID
-	GetRobot(ctx context.Context, in *GetRobotRequest, opts ...grpc.CallOption) (*GetRobotResponse, error)
-	// Get Rover Rental Location Robots
-	GetRoverRentalRobots(ctx context.Context, in *GetRoverRentalRobotsRequest, opts ...grpc.CallOption) (*GetRoverRentalRobotsResponse, error)
-	GetRobotParts(ctx context.Context, in *GetRobotPartsRequest, opts ...grpc.CallOption) (*GetRobotPartsResponse, error)
-	// Get a specific robot part by ID
-	GetRobotPart(ctx context.Context, in *GetRobotPartRequest, opts ...grpc.CallOption) (*GetRobotPartResponse, error)
-	GetRobotPartLogs(ctx context.Context, in *GetRobotPartLogsRequest, opts ...grpc.CallOption) (*GetRobotPartLogsResponse, error)
-	TailRobotPartLogs(ctx context.Context, in *TailRobotPartLogsRequest, opts ...grpc.CallOption) (AppService_TailRobotPartLogsClient, error)
-	// Get a specific robot part histy by ID
-	GetRobotPartHistory(ctx context.Context, in *GetRobotPartHistoryRequest, opts ...grpc.CallOption) (*GetRobotPartHistoryResponse, error)
-	// Update a robot
-	UpdateRobotPart(ctx context.Context, in *UpdateRobotPartRequest, opts ...grpc.CallOption) (*UpdateRobotPartResponse, error)
-	// Create a new robot part
-	NewRobotPart(ctx context.Context, in *NewRobotPartRequest, opts ...grpc.CallOption) (*NewRobotPartResponse, error)
-	// Delete a robot part
-	DeleteRobotPart(ctx context.Context, in *DeleteRobotPartRequest, opts ...grpc.CallOption) (*DeleteRobotPartResponse, error)
-	// Gets the Robot API Keys for the robot
-	GetRobotAPIKeys(ctx context.Context, in *GetRobotAPIKeysRequest, opts ...grpc.CallOption) (*GetRobotAPIKeysResponse, error)
+	// Get a specific physicalDevice by ID
+	GetphysicalDevice(ctx context.Context, in *GetphysicalDeviceRequest, opts ...grpc.CallOption) (*GetphysicalDeviceResponse, error)
+	// Get Rover Rental Location physicalDevices
+	GetRoverRentalphysicalDevices(ctx context.Context, in *GetRoverRentalphysicalDevicesRequest, opts ...grpc.CallOption) (*GetRoverRentalphysicalDevicesResponse, error)
+	GetphysicalDeviceParts(ctx context.Context, in *GetphysicalDevicePartsRequest, opts ...grpc.CallOption) (*GetphysicalDevicePartsResponse, error)
+	// Get a specific physicalDevice part by ID
+	GetphysicalDevicePart(ctx context.Context, in *GetphysicalDevicePartRequest, opts ...grpc.CallOption) (*GetphysicalDevicePartResponse, error)
+	GetphysicalDevicePartLogs(ctx context.Context, in *GetphysicalDevicePartLogsRequest, opts ...grpc.CallOption) (*GetphysicalDevicePartLogsResponse, error)
+	TailphysicalDevicePartLogs(ctx context.Context, in *TailphysicalDevicePartLogsRequest, opts ...grpc.CallOption) (AppService_TailphysicalDevicePartLogsClient, error)
+	// Get a specific physicalDevice part histy by ID
+	GetphysicalDevicePartHistory(ctx context.Context, in *GetphysicalDevicePartHistoryRequest, opts ...grpc.CallOption) (*GetphysicalDevicePartHistoryResponse, error)
+	// Update a physicalDevice
+	UpdatephysicalDevicePart(ctx context.Context, in *UpdatephysicalDevicePartRequest, opts ...grpc.CallOption) (*UpdatephysicalDevicePartResponse, error)
+	// Create a new physicalDevice part
+	NewphysicalDevicePart(ctx context.Context, in *NewphysicalDevicePartRequest, opts ...grpc.CallOption) (*NewphysicalDevicePartResponse, error)
+	// Delete a physicalDevice part
+	DeletephysicalDevicePart(ctx context.Context, in *DeletephysicalDevicePartRequest, opts ...grpc.CallOption) (*DeletephysicalDevicePartResponse, error)
+	// Gets the physicalDevice API Keys for the physicalDevice
+	GetphysicalDeviceAPIKeys(ctx context.Context, in *GetphysicalDeviceAPIKeysRequest, opts ...grpc.CallOption) (*GetphysicalDeviceAPIKeysResponse, error)
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(ctx context.Context, in *MarkPartAsMainRequest, opts ...grpc.CallOption) (*MarkPartAsMainResponse, error)
-	// Marks part for restart. Once the robot part checks-in with the app the flag
-	// is reset on the robot part. Calling this multiple times before a robot part
+	// Marks part for restart. Once the physicalDevice part checks-in with the app the flag
+	// is reset on the physicalDevice part. Calling this multiple times before a physicalDevice part
 	// checks-in has no affect.
 	// Note: This API may be removed in the near future.
 	// TODO(APP-388): Remove
 	MarkPartForRestart(ctx context.Context, in *MarkPartForRestartRequest, opts ...grpc.CallOption) (*MarkPartForRestartResponse, error)
-	// Create a new generated Secret in the Robot Part.
+	// Create a new generated Secret in the physicalDevice Part.
 	//   - Succeeds if there are no more than 2 active secrets after creation.
-	CreateRobotPartSecret(ctx context.Context, in *CreateRobotPartSecretRequest, opts ...grpc.CallOption) (*CreateRobotPartSecretResponse, error)
-	// Delete a Secret from the RobotPart.
-	DeleteRobotPartSecret(ctx context.Context, in *DeleteRobotPartSecretRequest, opts ...grpc.CallOption) (*DeleteRobotPartSecretResponse, error)
-	// Get a list of robots
-	ListRobots(ctx context.Context, in *ListRobotsRequest, opts ...grpc.CallOption) (*ListRobotsResponse, error)
-	// NewRobot creates a new robot
-	NewRobot(ctx context.Context, in *NewRobotRequest, opts ...grpc.CallOption) (*NewRobotResponse, error)
-	// UpdateRobot updates a robot
-	UpdateRobot(ctx context.Context, in *UpdateRobotRequest, opts ...grpc.CallOption) (*UpdateRobotResponse, error)
-	// DeleteRobot deletes a robot
-	DeleteRobot(ctx context.Context, in *DeleteRobotRequest, opts ...grpc.CallOption) (*DeleteRobotResponse, error)
+	CreatephysicalDevicePartSecret(ctx context.Context, in *CreatephysicalDevicePartSecretRequest, opts ...grpc.CallOption) (*CreatephysicalDevicePartSecretResponse, error)
+	// Delete a Secret from the physicalDevicePart.
+	DeletephysicalDevicePartSecret(ctx context.Context, in *DeletephysicalDevicePartSecretRequest, opts ...grpc.CallOption) (*DeletephysicalDevicePartSecretResponse, error)
+	// Get a list of physicalDevices
+	ListphysicalDevices(ctx context.Context, in *ListphysicalDevicesRequest, opts ...grpc.CallOption) (*ListphysicalDevicesResponse, error)
+	// NewphysicalDevice creates a new physicalDevice
+	NewphysicalDevice(ctx context.Context, in *NewphysicalDeviceRequest, opts ...grpc.CallOption) (*NewphysicalDeviceResponse, error)
+	// UpdatephysicalDevice updates a physicalDevice
+	UpdatephysicalDevice(ctx context.Context, in *UpdatephysicalDeviceRequest, opts ...grpc.CallOption) (*UpdatephysicalDeviceResponse, error)
+	// DeletephysicalDevice deletes a physicalDevice
+	DeletephysicalDevice(ctx context.Context, in *DeletephysicalDeviceRequest, opts ...grpc.CallOption) (*DeletephysicalDeviceResponse, error)
 	// Gets a list of fragments
 	ListFragments(ctx context.Context, in *ListFragmentsRequest, opts ...grpc.CallOption) (*ListFragmentsResponse, error)
 	// Gets a single fragment
@@ -384,57 +384,57 @@ func (c *appServiceClient) DeleteLocationSecret(ctx context.Context, in *DeleteL
 	return out, nil
 }
 
-func (c *appServiceClient) GetRobot(ctx context.Context, in *GetRobotRequest, opts ...grpc.CallOption) (*GetRobotResponse, error) {
-	out := new(GetRobotResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobot", in, out, opts...)
+func (c *appServiceClient) GetphysicalDevice(ctx context.Context, in *GetphysicalDeviceRequest, opts ...grpc.CallOption) (*GetphysicalDeviceResponse, error) {
+	out := new(GetphysicalDeviceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetphysicalDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) GetRoverRentalRobots(ctx context.Context, in *GetRoverRentalRobotsRequest, opts ...grpc.CallOption) (*GetRoverRentalRobotsResponse, error) {
-	out := new(GetRoverRentalRobotsResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRoverRentalRobots", in, out, opts...)
+func (c *appServiceClient) GetRoverRentalphysicalDevices(ctx context.Context, in *GetRoverRentalphysicalDevicesRequest, opts ...grpc.CallOption) (*GetRoverRentalphysicalDevicesResponse, error) {
+	out := new(GetRoverRentalphysicalDevicesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRoverRentalphysicalDevices", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) GetRobotParts(ctx context.Context, in *GetRobotPartsRequest, opts ...grpc.CallOption) (*GetRobotPartsResponse, error) {
-	out := new(GetRobotPartsResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotParts", in, out, opts...)
+func (c *appServiceClient) GetphysicalDeviceParts(ctx context.Context, in *GetphysicalDevicePartsRequest, opts ...grpc.CallOption) (*GetphysicalDevicePartsResponse, error) {
+	out := new(GetphysicalDevicePartsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetphysicalDeviceParts", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) GetRobotPart(ctx context.Context, in *GetRobotPartRequest, opts ...grpc.CallOption) (*GetRobotPartResponse, error) {
-	out := new(GetRobotPartResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotPart", in, out, opts...)
+func (c *appServiceClient) GetphysicalDevicePart(ctx context.Context, in *GetphysicalDevicePartRequest, opts ...grpc.CallOption) (*GetphysicalDevicePartResponse, error) {
+	out := new(GetphysicalDevicePartResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetphysicalDevicePart", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) GetRobotPartLogs(ctx context.Context, in *GetRobotPartLogsRequest, opts ...grpc.CallOption) (*GetRobotPartLogsResponse, error) {
-	out := new(GetRobotPartLogsResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotPartLogs", in, out, opts...)
+func (c *appServiceClient) GetphysicalDevicePartLogs(ctx context.Context, in *GetphysicalDevicePartLogsRequest, opts ...grpc.CallOption) (*GetphysicalDevicePartLogsResponse, error) {
+	out := new(GetphysicalDevicePartLogsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetphysicalDevicePartLogs", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) TailRobotPartLogs(ctx context.Context, in *TailRobotPartLogsRequest, opts ...grpc.CallOption) (AppService_TailRobotPartLogsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &AppService_ServiceDesc.Streams[0], "/viam.app.v1.AppService/TailRobotPartLogs", opts...)
+func (c *appServiceClient) TailphysicalDevicePartLogs(ctx context.Context, in *TailphysicalDevicePartLogsRequest, opts ...grpc.CallOption) (AppService_TailphysicalDevicePartLogsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &AppService_ServiceDesc.Streams[0], "/viam.app.v1.AppService/TailphysicalDevicePartLogs", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &appServiceTailRobotPartLogsClient{stream}
+	x := &appServiceTailphysicalDevicePartLogsClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -444,62 +444,62 @@ func (c *appServiceClient) TailRobotPartLogs(ctx context.Context, in *TailRobotP
 	return x, nil
 }
 
-type AppService_TailRobotPartLogsClient interface {
-	Recv() (*TailRobotPartLogsResponse, error)
+type AppService_TailphysicalDevicePartLogsClient interface {
+	Recv() (*TailphysicalDevicePartLogsResponse, error)
 	grpc.ClientStream
 }
 
-type appServiceTailRobotPartLogsClient struct {
+type appServiceTailphysicalDevicePartLogsClient struct {
 	grpc.ClientStream
 }
 
-func (x *appServiceTailRobotPartLogsClient) Recv() (*TailRobotPartLogsResponse, error) {
-	m := new(TailRobotPartLogsResponse)
+func (x *appServiceTailphysicalDevicePartLogsClient) Recv() (*TailphysicalDevicePartLogsResponse, error) {
+	m := new(TailphysicalDevicePartLogsResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *appServiceClient) GetRobotPartHistory(ctx context.Context, in *GetRobotPartHistoryRequest, opts ...grpc.CallOption) (*GetRobotPartHistoryResponse, error) {
-	out := new(GetRobotPartHistoryResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotPartHistory", in, out, opts...)
+func (c *appServiceClient) GetphysicalDevicePartHistory(ctx context.Context, in *GetphysicalDevicePartHistoryRequest, opts ...grpc.CallOption) (*GetphysicalDevicePartHistoryResponse, error) {
+	out := new(GetphysicalDevicePartHistoryResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetphysicalDevicePartHistory", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) UpdateRobotPart(ctx context.Context, in *UpdateRobotPartRequest, opts ...grpc.CallOption) (*UpdateRobotPartResponse, error) {
-	out := new(UpdateRobotPartResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateRobotPart", in, out, opts...)
+func (c *appServiceClient) UpdatephysicalDevicePart(ctx context.Context, in *UpdatephysicalDevicePartRequest, opts ...grpc.CallOption) (*UpdatephysicalDevicePartResponse, error) {
+	out := new(UpdatephysicalDevicePartResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdatephysicalDevicePart", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) NewRobotPart(ctx context.Context, in *NewRobotPartRequest, opts ...grpc.CallOption) (*NewRobotPartResponse, error) {
-	out := new(NewRobotPartResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/NewRobotPart", in, out, opts...)
+func (c *appServiceClient) NewphysicalDevicePart(ctx context.Context, in *NewphysicalDevicePartRequest, opts ...grpc.CallOption) (*NewphysicalDevicePartResponse, error) {
+	out := new(NewphysicalDevicePartResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/NewphysicalDevicePart", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) DeleteRobotPart(ctx context.Context, in *DeleteRobotPartRequest, opts ...grpc.CallOption) (*DeleteRobotPartResponse, error) {
-	out := new(DeleteRobotPartResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteRobotPart", in, out, opts...)
+func (c *appServiceClient) DeletephysicalDevicePart(ctx context.Context, in *DeletephysicalDevicePartRequest, opts ...grpc.CallOption) (*DeletephysicalDevicePartResponse, error) {
+	out := new(DeletephysicalDevicePartResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeletephysicalDevicePart", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) GetRobotAPIKeys(ctx context.Context, in *GetRobotAPIKeysRequest, opts ...grpc.CallOption) (*GetRobotAPIKeysResponse, error) {
-	out := new(GetRobotAPIKeysResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotAPIKeys", in, out, opts...)
+func (c *appServiceClient) GetphysicalDeviceAPIKeys(ctx context.Context, in *GetphysicalDeviceAPIKeysRequest, opts ...grpc.CallOption) (*GetphysicalDeviceAPIKeysResponse, error) {
+	out := new(GetphysicalDeviceAPIKeysResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetphysicalDeviceAPIKeys", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -524,54 +524,54 @@ func (c *appServiceClient) MarkPartForRestart(ctx context.Context, in *MarkPartF
 	return out, nil
 }
 
-func (c *appServiceClient) CreateRobotPartSecret(ctx context.Context, in *CreateRobotPartSecretRequest, opts ...grpc.CallOption) (*CreateRobotPartSecretResponse, error) {
-	out := new(CreateRobotPartSecretResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateRobotPartSecret", in, out, opts...)
+func (c *appServiceClient) CreatephysicalDevicePartSecret(ctx context.Context, in *CreatephysicalDevicePartSecretRequest, opts ...grpc.CallOption) (*CreatephysicalDevicePartSecretResponse, error) {
+	out := new(CreatephysicalDevicePartSecretResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreatephysicalDevicePartSecret", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) DeleteRobotPartSecret(ctx context.Context, in *DeleteRobotPartSecretRequest, opts ...grpc.CallOption) (*DeleteRobotPartSecretResponse, error) {
-	out := new(DeleteRobotPartSecretResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteRobotPartSecret", in, out, opts...)
+func (c *appServiceClient) DeletephysicalDevicePartSecret(ctx context.Context, in *DeletephysicalDevicePartSecretRequest, opts ...grpc.CallOption) (*DeletephysicalDevicePartSecretResponse, error) {
+	out := new(DeletephysicalDevicePartSecretResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeletephysicalDevicePartSecret", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) ListRobots(ctx context.Context, in *ListRobotsRequest, opts ...grpc.CallOption) (*ListRobotsResponse, error) {
-	out := new(ListRobotsResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListRobots", in, out, opts...)
+func (c *appServiceClient) ListphysicalDevices(ctx context.Context, in *ListphysicalDevicesRequest, opts ...grpc.CallOption) (*ListphysicalDevicesResponse, error) {
+	out := new(ListphysicalDevicesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListphysicalDevices", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) NewRobot(ctx context.Context, in *NewRobotRequest, opts ...grpc.CallOption) (*NewRobotResponse, error) {
-	out := new(NewRobotResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/NewRobot", in, out, opts...)
+func (c *appServiceClient) NewphysicalDevice(ctx context.Context, in *NewphysicalDeviceRequest, opts ...grpc.CallOption) (*NewphysicalDeviceResponse, error) {
+	out := new(NewphysicalDeviceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/NewphysicalDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) UpdateRobot(ctx context.Context, in *UpdateRobotRequest, opts ...grpc.CallOption) (*UpdateRobotResponse, error) {
-	out := new(UpdateRobotResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateRobot", in, out, opts...)
+func (c *appServiceClient) UpdatephysicalDevice(ctx context.Context, in *UpdatephysicalDeviceRequest, opts ...grpc.CallOption) (*UpdatephysicalDeviceResponse, error) {
+	out := new(UpdatephysicalDeviceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdatephysicalDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appServiceClient) DeleteRobot(ctx context.Context, in *DeleteRobotRequest, opts ...grpc.CallOption) (*DeleteRobotResponse, error) {
-	out := new(DeleteRobotResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteRobot", in, out, opts...)
+func (c *appServiceClient) DeletephysicalDevice(ctx context.Context, in *DeletephysicalDeviceRequest, opts ...grpc.CallOption) (*DeletephysicalDeviceResponse, error) {
+	out := new(DeletephysicalDeviceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeletephysicalDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -892,46 +892,46 @@ type AppServiceServer interface {
 	CreateLocationSecret(context.Context, *CreateLocationSecretRequest) (*CreateLocationSecretResponse, error)
 	// Delete a Secret from the Location.
 	DeleteLocationSecret(context.Context, *DeleteLocationSecretRequest) (*DeleteLocationSecretResponse, error)
-	// Get a specific robot by ID
-	GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error)
-	// Get Rover Rental Location Robots
-	GetRoverRentalRobots(context.Context, *GetRoverRentalRobotsRequest) (*GetRoverRentalRobotsResponse, error)
-	GetRobotParts(context.Context, *GetRobotPartsRequest) (*GetRobotPartsResponse, error)
-	// Get a specific robot part by ID
-	GetRobotPart(context.Context, *GetRobotPartRequest) (*GetRobotPartResponse, error)
-	GetRobotPartLogs(context.Context, *GetRobotPartLogsRequest) (*GetRobotPartLogsResponse, error)
-	TailRobotPartLogs(*TailRobotPartLogsRequest, AppService_TailRobotPartLogsServer) error
-	// Get a specific robot part histy by ID
-	GetRobotPartHistory(context.Context, *GetRobotPartHistoryRequest) (*GetRobotPartHistoryResponse, error)
-	// Update a robot
-	UpdateRobotPart(context.Context, *UpdateRobotPartRequest) (*UpdateRobotPartResponse, error)
-	// Create a new robot part
-	NewRobotPart(context.Context, *NewRobotPartRequest) (*NewRobotPartResponse, error)
-	// Delete a robot part
-	DeleteRobotPart(context.Context, *DeleteRobotPartRequest) (*DeleteRobotPartResponse, error)
-	// Gets the Robot API Keys for the robot
-	GetRobotAPIKeys(context.Context, *GetRobotAPIKeysRequest) (*GetRobotAPIKeysResponse, error)
+	// Get a specific physicalDevice by ID
+	GetphysicalDevice(context.Context, *GetphysicalDeviceRequest) (*GetphysicalDeviceResponse, error)
+	// Get Rover Rental Location physicalDevices
+	GetRoverRentalphysicalDevices(context.Context, *GetRoverRentalphysicalDevicesRequest) (*GetRoverRentalphysicalDevicesResponse, error)
+	GetphysicalDeviceParts(context.Context, *GetphysicalDevicePartsRequest) (*GetphysicalDevicePartsResponse, error)
+	// Get a specific physicalDevice part by ID
+	GetphysicalDevicePart(context.Context, *GetphysicalDevicePartRequest) (*GetphysicalDevicePartResponse, error)
+	GetphysicalDevicePartLogs(context.Context, *GetphysicalDevicePartLogsRequest) (*GetphysicalDevicePartLogsResponse, error)
+	TailphysicalDevicePartLogs(*TailphysicalDevicePartLogsRequest, AppService_TailphysicalDevicePartLogsServer) error
+	// Get a specific physicalDevice part histy by ID
+	GetphysicalDevicePartHistory(context.Context, *GetphysicalDevicePartHistoryRequest) (*GetphysicalDevicePartHistoryResponse, error)
+	// Update a physicalDevice
+	UpdatephysicalDevicePart(context.Context, *UpdatephysicalDevicePartRequest) (*UpdatephysicalDevicePartResponse, error)
+	// Create a new physicalDevice part
+	NewphysicalDevicePart(context.Context, *NewphysicalDevicePartRequest) (*NewphysicalDevicePartResponse, error)
+	// Delete a physicalDevice part
+	DeletephysicalDevicePart(context.Context, *DeletephysicalDevicePartRequest) (*DeletephysicalDevicePartResponse, error)
+	// Gets the physicalDevice API Keys for the physicalDevice
+	GetphysicalDeviceAPIKeys(context.Context, *GetphysicalDeviceAPIKeysRequest) (*GetphysicalDeviceAPIKeysResponse, error)
 	// Marks the given part as the main part, and all the others as not
 	MarkPartAsMain(context.Context, *MarkPartAsMainRequest) (*MarkPartAsMainResponse, error)
-	// Marks part for restart. Once the robot part checks-in with the app the flag
-	// is reset on the robot part. Calling this multiple times before a robot part
+	// Marks part for restart. Once the physicalDevice part checks-in with the app the flag
+	// is reset on the physicalDevice part. Calling this multiple times before a physicalDevice part
 	// checks-in has no affect.
 	// Note: This API may be removed in the near future.
 	// TODO(APP-388): Remove
 	MarkPartForRestart(context.Context, *MarkPartForRestartRequest) (*MarkPartForRestartResponse, error)
-	// Create a new generated Secret in the Robot Part.
+	// Create a new generated Secret in the physicalDevice Part.
 	//   - Succeeds if there are no more than 2 active secrets after creation.
-	CreateRobotPartSecret(context.Context, *CreateRobotPartSecretRequest) (*CreateRobotPartSecretResponse, error)
-	// Delete a Secret from the RobotPart.
-	DeleteRobotPartSecret(context.Context, *DeleteRobotPartSecretRequest) (*DeleteRobotPartSecretResponse, error)
-	// Get a list of robots
-	ListRobots(context.Context, *ListRobotsRequest) (*ListRobotsResponse, error)
-	// NewRobot creates a new robot
-	NewRobot(context.Context, *NewRobotRequest) (*NewRobotResponse, error)
-	// UpdateRobot updates a robot
-	UpdateRobot(context.Context, *UpdateRobotRequest) (*UpdateRobotResponse, error)
-	// DeleteRobot deletes a robot
-	DeleteRobot(context.Context, *DeleteRobotRequest) (*DeleteRobotResponse, error)
+	CreatephysicalDevicePartSecret(context.Context, *CreatephysicalDevicePartSecretRequest) (*CreatephysicalDevicePartSecretResponse, error)
+	// Delete a Secret from the physicalDevicePart.
+	DeletephysicalDevicePartSecret(context.Context, *DeletephysicalDevicePartSecretRequest) (*DeletephysicalDevicePartSecretResponse, error)
+	// Get a list of physicalDevices
+	ListphysicalDevices(context.Context, *ListphysicalDevicesRequest) (*ListphysicalDevicesResponse, error)
+	// NewphysicalDevice creates a new physicalDevice
+	NewphysicalDevice(context.Context, *NewphysicalDeviceRequest) (*NewphysicalDeviceResponse, error)
+	// UpdatephysicalDevice updates a physicalDevice
+	UpdatephysicalDevice(context.Context, *UpdatephysicalDeviceRequest) (*UpdatephysicalDeviceResponse, error)
+	// DeletephysicalDevice deletes a physicalDevice
+	DeletephysicalDevice(context.Context, *DeletephysicalDeviceRequest) (*DeletephysicalDeviceResponse, error)
 	// Gets a list of fragments
 	ListFragments(context.Context, *ListFragmentsRequest) (*ListFragmentsResponse, error)
 	// Gets a single fragment
@@ -1050,38 +1050,38 @@ func (UnimplementedAppServiceServer) CreateLocationSecret(context.Context, *Crea
 func (UnimplementedAppServiceServer) DeleteLocationSecret(context.Context, *DeleteLocationSecretRequest) (*DeleteLocationSecretResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteLocationSecret not implemented")
 }
-func (UnimplementedAppServiceServer) GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRobot not implemented")
+func (UnimplementedAppServiceServer) GetphysicalDevice(context.Context, *GetphysicalDeviceRequest) (*GetphysicalDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetphysicalDevice not implemented")
 }
-func (UnimplementedAppServiceServer) GetRoverRentalRobots(context.Context, *GetRoverRentalRobotsRequest) (*GetRoverRentalRobotsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRoverRentalRobots not implemented")
+func (UnimplementedAppServiceServer) GetRoverRentalphysicalDevices(context.Context, *GetRoverRentalphysicalDevicesRequest) (*GetRoverRentalphysicalDevicesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRoverRentalphysicalDevices not implemented")
 }
-func (UnimplementedAppServiceServer) GetRobotParts(context.Context, *GetRobotPartsRequest) (*GetRobotPartsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRobotParts not implemented")
+func (UnimplementedAppServiceServer) GetphysicalDeviceParts(context.Context, *GetphysicalDevicePartsRequest) (*GetphysicalDevicePartsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetphysicalDeviceParts not implemented")
 }
-func (UnimplementedAppServiceServer) GetRobotPart(context.Context, *GetRobotPartRequest) (*GetRobotPartResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPart not implemented")
+func (UnimplementedAppServiceServer) GetphysicalDevicePart(context.Context, *GetphysicalDevicePartRequest) (*GetphysicalDevicePartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetphysicalDevicePart not implemented")
 }
-func (UnimplementedAppServiceServer) GetRobotPartLogs(context.Context, *GetRobotPartLogsRequest) (*GetRobotPartLogsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPartLogs not implemented")
+func (UnimplementedAppServiceServer) GetphysicalDevicePartLogs(context.Context, *GetphysicalDevicePartLogsRequest) (*GetphysicalDevicePartLogsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetphysicalDevicePartLogs not implemented")
 }
-func (UnimplementedAppServiceServer) TailRobotPartLogs(*TailRobotPartLogsRequest, AppService_TailRobotPartLogsServer) error {
-	return status.Errorf(codes.Unimplemented, "method TailRobotPartLogs not implemented")
+func (UnimplementedAppServiceServer) TailphysicalDevicePartLogs(*TailphysicalDevicePartLogsRequest, AppService_TailphysicalDevicePartLogsServer) error {
+	return status.Errorf(codes.Unimplemented, "method TailphysicalDevicePartLogs not implemented")
 }
-func (UnimplementedAppServiceServer) GetRobotPartHistory(context.Context, *GetRobotPartHistoryRequest) (*GetRobotPartHistoryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPartHistory not implemented")
+func (UnimplementedAppServiceServer) GetphysicalDevicePartHistory(context.Context, *GetphysicalDevicePartHistoryRequest) (*GetphysicalDevicePartHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetphysicalDevicePartHistory not implemented")
 }
-func (UnimplementedAppServiceServer) UpdateRobotPart(context.Context, *UpdateRobotPartRequest) (*UpdateRobotPartResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateRobotPart not implemented")
+func (UnimplementedAppServiceServer) UpdatephysicalDevicePart(context.Context, *UpdatephysicalDevicePartRequest) (*UpdatephysicalDevicePartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatephysicalDevicePart not implemented")
 }
-func (UnimplementedAppServiceServer) NewRobotPart(context.Context, *NewRobotPartRequest) (*NewRobotPartResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method NewRobotPart not implemented")
+func (UnimplementedAppServiceServer) NewphysicalDevicePart(context.Context, *NewphysicalDevicePartRequest) (*NewphysicalDevicePartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NewphysicalDevicePart not implemented")
 }
-func (UnimplementedAppServiceServer) DeleteRobotPart(context.Context, *DeleteRobotPartRequest) (*DeleteRobotPartResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteRobotPart not implemented")
+func (UnimplementedAppServiceServer) DeletephysicalDevicePart(context.Context, *DeletephysicalDevicePartRequest) (*DeletephysicalDevicePartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletephysicalDevicePart not implemented")
 }
-func (UnimplementedAppServiceServer) GetRobotAPIKeys(context.Context, *GetRobotAPIKeysRequest) (*GetRobotAPIKeysResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRobotAPIKeys not implemented")
+func (UnimplementedAppServiceServer) GetphysicalDeviceAPIKeys(context.Context, *GetphysicalDeviceAPIKeysRequest) (*GetphysicalDeviceAPIKeysResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetphysicalDeviceAPIKeys not implemented")
 }
 func (UnimplementedAppServiceServer) MarkPartAsMain(context.Context, *MarkPartAsMainRequest) (*MarkPartAsMainResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MarkPartAsMain not implemented")
@@ -1089,23 +1089,23 @@ func (UnimplementedAppServiceServer) MarkPartAsMain(context.Context, *MarkPartAs
 func (UnimplementedAppServiceServer) MarkPartForRestart(context.Context, *MarkPartForRestartRequest) (*MarkPartForRestartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MarkPartForRestart not implemented")
 }
-func (UnimplementedAppServiceServer) CreateRobotPartSecret(context.Context, *CreateRobotPartSecretRequest) (*CreateRobotPartSecretResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateRobotPartSecret not implemented")
+func (UnimplementedAppServiceServer) CreatephysicalDevicePartSecret(context.Context, *CreatephysicalDevicePartSecretRequest) (*CreatephysicalDevicePartSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatephysicalDevicePartSecret not implemented")
 }
-func (UnimplementedAppServiceServer) DeleteRobotPartSecret(context.Context, *DeleteRobotPartSecretRequest) (*DeleteRobotPartSecretResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteRobotPartSecret not implemented")
+func (UnimplementedAppServiceServer) DeletephysicalDevicePartSecret(context.Context, *DeletephysicalDevicePartSecretRequest) (*DeletephysicalDevicePartSecretResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletephysicalDevicePartSecret not implemented")
 }
-func (UnimplementedAppServiceServer) ListRobots(context.Context, *ListRobotsRequest) (*ListRobotsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListRobots not implemented")
+func (UnimplementedAppServiceServer) ListphysicalDevices(context.Context, *ListphysicalDevicesRequest) (*ListphysicalDevicesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListphysicalDevices not implemented")
 }
-func (UnimplementedAppServiceServer) NewRobot(context.Context, *NewRobotRequest) (*NewRobotResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method NewRobot not implemented")
+func (UnimplementedAppServiceServer) NewphysicalDevice(context.Context, *NewphysicalDeviceRequest) (*NewphysicalDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NewphysicalDevice not implemented")
 }
-func (UnimplementedAppServiceServer) UpdateRobot(context.Context, *UpdateRobotRequest) (*UpdateRobotResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateRobot not implemented")
+func (UnimplementedAppServiceServer) UpdatephysicalDevice(context.Context, *UpdatephysicalDeviceRequest) (*UpdatephysicalDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatephysicalDevice not implemented")
 }
-func (UnimplementedAppServiceServer) DeleteRobot(context.Context, *DeleteRobotRequest) (*DeleteRobotResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteRobot not implemented")
+func (UnimplementedAppServiceServer) DeletephysicalDevice(context.Context, *DeletephysicalDeviceRequest) (*DeletephysicalDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletephysicalDevice not implemented")
 }
 func (UnimplementedAppServiceServer) ListFragments(context.Context, *ListFragmentsRequest) (*ListFragmentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFragments not implemented")
@@ -1648,203 +1648,203 @@ func _AppService_DeleteLocationSecret_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_GetRobot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRobotRequest)
+func _AppService_GetphysicalDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetphysicalDeviceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).GetRobot(ctx, in)
+		return srv.(AppServiceServer).GetphysicalDevice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/GetRobot",
+		FullMethod: "/viam.app.v1.AppService/GetphysicalDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).GetRobot(ctx, req.(*GetRobotRequest))
+		return srv.(AppServiceServer).GetphysicalDevice(ctx, req.(*GetphysicalDeviceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_GetRoverRentalRobots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRoverRentalRobotsRequest)
+func _AppService_GetRoverRentalphysicalDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRoverRentalphysicalDevicesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).GetRoverRentalRobots(ctx, in)
+		return srv.(AppServiceServer).GetRoverRentalphysicalDevices(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/GetRoverRentalRobots",
+		FullMethod: "/viam.app.v1.AppService/GetRoverRentalphysicalDevices",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).GetRoverRentalRobots(ctx, req.(*GetRoverRentalRobotsRequest))
+		return srv.(AppServiceServer).GetRoverRentalphysicalDevices(ctx, req.(*GetRoverRentalphysicalDevicesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_GetRobotParts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRobotPartsRequest)
+func _AppService_GetphysicalDeviceParts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetphysicalDevicePartsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).GetRobotParts(ctx, in)
+		return srv.(AppServiceServer).GetphysicalDeviceParts(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/GetRobotParts",
+		FullMethod: "/viam.app.v1.AppService/GetphysicalDeviceParts",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).GetRobotParts(ctx, req.(*GetRobotPartsRequest))
+		return srv.(AppServiceServer).GetphysicalDeviceParts(ctx, req.(*GetphysicalDevicePartsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_GetRobotPart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRobotPartRequest)
+func _AppService_GetphysicalDevicePart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetphysicalDevicePartRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).GetRobotPart(ctx, in)
+		return srv.(AppServiceServer).GetphysicalDevicePart(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/GetRobotPart",
+		FullMethod: "/viam.app.v1.AppService/GetphysicalDevicePart",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).GetRobotPart(ctx, req.(*GetRobotPartRequest))
+		return srv.(AppServiceServer).GetphysicalDevicePart(ctx, req.(*GetphysicalDevicePartRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_GetRobotPartLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRobotPartLogsRequest)
+func _AppService_GetphysicalDevicePartLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetphysicalDevicePartLogsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).GetRobotPartLogs(ctx, in)
+		return srv.(AppServiceServer).GetphysicalDevicePartLogs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/GetRobotPartLogs",
+		FullMethod: "/viam.app.v1.AppService/GetphysicalDevicePartLogs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).GetRobotPartLogs(ctx, req.(*GetRobotPartLogsRequest))
+		return srv.(AppServiceServer).GetphysicalDevicePartLogs(ctx, req.(*GetphysicalDevicePartLogsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_TailRobotPartLogs_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(TailRobotPartLogsRequest)
+func _AppService_TailphysicalDevicePartLogs_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(TailphysicalDevicePartLogsRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(AppServiceServer).TailRobotPartLogs(m, &appServiceTailRobotPartLogsServer{stream})
+	return srv.(AppServiceServer).TailphysicalDevicePartLogs(m, &appServiceTailphysicalDevicePartLogsServer{stream})
 }
 
-type AppService_TailRobotPartLogsServer interface {
-	Send(*TailRobotPartLogsResponse) error
+type AppService_TailphysicalDevicePartLogsServer interface {
+	Send(*TailphysicalDevicePartLogsResponse) error
 	grpc.ServerStream
 }
 
-type appServiceTailRobotPartLogsServer struct {
+type appServiceTailphysicalDevicePartLogsServer struct {
 	grpc.ServerStream
 }
 
-func (x *appServiceTailRobotPartLogsServer) Send(m *TailRobotPartLogsResponse) error {
+func (x *appServiceTailphysicalDevicePartLogsServer) Send(m *TailphysicalDevicePartLogsResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _AppService_GetRobotPartHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRobotPartHistoryRequest)
+func _AppService_GetphysicalDevicePartHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetphysicalDevicePartHistoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).GetRobotPartHistory(ctx, in)
+		return srv.(AppServiceServer).GetphysicalDevicePartHistory(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/GetRobotPartHistory",
+		FullMethod: "/viam.app.v1.AppService/GetphysicalDevicePartHistory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).GetRobotPartHistory(ctx, req.(*GetRobotPartHistoryRequest))
+		return srv.(AppServiceServer).GetphysicalDevicePartHistory(ctx, req.(*GetphysicalDevicePartHistoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_UpdateRobotPart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateRobotPartRequest)
+func _AppService_UpdatephysicalDevicePart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatephysicalDevicePartRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).UpdateRobotPart(ctx, in)
+		return srv.(AppServiceServer).UpdatephysicalDevicePart(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/UpdateRobotPart",
+		FullMethod: "/viam.app.v1.AppService/UpdatephysicalDevicePart",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).UpdateRobotPart(ctx, req.(*UpdateRobotPartRequest))
+		return srv.(AppServiceServer).UpdatephysicalDevicePart(ctx, req.(*UpdatephysicalDevicePartRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_NewRobotPart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(NewRobotPartRequest)
+func _AppService_NewphysicalDevicePart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NewphysicalDevicePartRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).NewRobotPart(ctx, in)
+		return srv.(AppServiceServer).NewphysicalDevicePart(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/NewRobotPart",
+		FullMethod: "/viam.app.v1.AppService/NewphysicalDevicePart",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).NewRobotPart(ctx, req.(*NewRobotPartRequest))
+		return srv.(AppServiceServer).NewphysicalDevicePart(ctx, req.(*NewphysicalDevicePartRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_DeleteRobotPart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRobotPartRequest)
+func _AppService_DeletephysicalDevicePart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletephysicalDevicePartRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).DeleteRobotPart(ctx, in)
+		return srv.(AppServiceServer).DeletephysicalDevicePart(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/DeleteRobotPart",
+		FullMethod: "/viam.app.v1.AppService/DeletephysicalDevicePart",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).DeleteRobotPart(ctx, req.(*DeleteRobotPartRequest))
+		return srv.(AppServiceServer).DeletephysicalDevicePart(ctx, req.(*DeletephysicalDevicePartRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_GetRobotAPIKeys_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRobotAPIKeysRequest)
+func _AppService_GetphysicalDeviceAPIKeys_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetphysicalDeviceAPIKeysRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).GetRobotAPIKeys(ctx, in)
+		return srv.(AppServiceServer).GetphysicalDeviceAPIKeys(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/GetRobotAPIKeys",
+		FullMethod: "/viam.app.v1.AppService/GetphysicalDeviceAPIKeys",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).GetRobotAPIKeys(ctx, req.(*GetRobotAPIKeysRequest))
+		return srv.(AppServiceServer).GetphysicalDeviceAPIKeys(ctx, req.(*GetphysicalDeviceAPIKeysRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1885,110 +1885,110 @@ func _AppService_MarkPartForRestart_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_CreateRobotPartSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateRobotPartSecretRequest)
+func _AppService_CreatephysicalDevicePartSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatephysicalDevicePartSecretRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).CreateRobotPartSecret(ctx, in)
+		return srv.(AppServiceServer).CreatephysicalDevicePartSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/CreateRobotPartSecret",
+		FullMethod: "/viam.app.v1.AppService/CreatephysicalDevicePartSecret",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).CreateRobotPartSecret(ctx, req.(*CreateRobotPartSecretRequest))
+		return srv.(AppServiceServer).CreatephysicalDevicePartSecret(ctx, req.(*CreatephysicalDevicePartSecretRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_DeleteRobotPartSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRobotPartSecretRequest)
+func _AppService_DeletephysicalDevicePartSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletephysicalDevicePartSecretRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).DeleteRobotPartSecret(ctx, in)
+		return srv.(AppServiceServer).DeletephysicalDevicePartSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/DeleteRobotPartSecret",
+		FullMethod: "/viam.app.v1.AppService/DeletephysicalDevicePartSecret",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).DeleteRobotPartSecret(ctx, req.(*DeleteRobotPartSecretRequest))
+		return srv.(AppServiceServer).DeletephysicalDevicePartSecret(ctx, req.(*DeletephysicalDevicePartSecretRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_ListRobots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListRobotsRequest)
+func _AppService_ListphysicalDevices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListphysicalDevicesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).ListRobots(ctx, in)
+		return srv.(AppServiceServer).ListphysicalDevices(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/ListRobots",
+		FullMethod: "/viam.app.v1.AppService/ListphysicalDevices",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).ListRobots(ctx, req.(*ListRobotsRequest))
+		return srv.(AppServiceServer).ListphysicalDevices(ctx, req.(*ListphysicalDevicesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_NewRobot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(NewRobotRequest)
+func _AppService_NewphysicalDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NewphysicalDeviceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).NewRobot(ctx, in)
+		return srv.(AppServiceServer).NewphysicalDevice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/NewRobot",
+		FullMethod: "/viam.app.v1.AppService/NewphysicalDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).NewRobot(ctx, req.(*NewRobotRequest))
+		return srv.(AppServiceServer).NewphysicalDevice(ctx, req.(*NewphysicalDeviceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_UpdateRobot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateRobotRequest)
+func _AppService_UpdatephysicalDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatephysicalDeviceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).UpdateRobot(ctx, in)
+		return srv.(AppServiceServer).UpdatephysicalDevice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/UpdateRobot",
+		FullMethod: "/viam.app.v1.AppService/UpdatephysicalDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).UpdateRobot(ctx, req.(*UpdateRobotRequest))
+		return srv.(AppServiceServer).UpdatephysicalDevice(ctx, req.(*UpdatephysicalDeviceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppService_DeleteRobot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRobotRequest)
+func _AppService_DeletephysicalDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletephysicalDeviceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServiceServer).DeleteRobot(ctx, in)
+		return srv.(AppServiceServer).DeletephysicalDevice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/DeleteRobot",
+		FullMethod: "/viam.app.v1.AppService/DeletephysicalDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).DeleteRobot(ctx, req.(*DeleteRobotRequest))
+		return srv.(AppServiceServer).DeletephysicalDevice(ctx, req.(*DeletephysicalDeviceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2577,44 +2577,44 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_DeleteLocationSecret_Handler,
 		},
 		{
-			MethodName: "GetRobot",
-			Handler:    _AppService_GetRobot_Handler,
+			MethodName: "GetphysicalDevice",
+			Handler:    _AppService_GetphysicalDevice_Handler,
 		},
 		{
-			MethodName: "GetRoverRentalRobots",
-			Handler:    _AppService_GetRoverRentalRobots_Handler,
+			MethodName: "GetRoverRentalphysicalDevices",
+			Handler:    _AppService_GetRoverRentalphysicalDevices_Handler,
 		},
 		{
-			MethodName: "GetRobotParts",
-			Handler:    _AppService_GetRobotParts_Handler,
+			MethodName: "GetphysicalDeviceParts",
+			Handler:    _AppService_GetphysicalDeviceParts_Handler,
 		},
 		{
-			MethodName: "GetRobotPart",
-			Handler:    _AppService_GetRobotPart_Handler,
+			MethodName: "GetphysicalDevicePart",
+			Handler:    _AppService_GetphysicalDevicePart_Handler,
 		},
 		{
-			MethodName: "GetRobotPartLogs",
-			Handler:    _AppService_GetRobotPartLogs_Handler,
+			MethodName: "GetphysicalDevicePartLogs",
+			Handler:    _AppService_GetphysicalDevicePartLogs_Handler,
 		},
 		{
-			MethodName: "GetRobotPartHistory",
-			Handler:    _AppService_GetRobotPartHistory_Handler,
+			MethodName: "GetphysicalDevicePartHistory",
+			Handler:    _AppService_GetphysicalDevicePartHistory_Handler,
 		},
 		{
-			MethodName: "UpdateRobotPart",
-			Handler:    _AppService_UpdateRobotPart_Handler,
+			MethodName: "UpdatephysicalDevicePart",
+			Handler:    _AppService_UpdatephysicalDevicePart_Handler,
 		},
 		{
-			MethodName: "NewRobotPart",
-			Handler:    _AppService_NewRobotPart_Handler,
+			MethodName: "NewphysicalDevicePart",
+			Handler:    _AppService_NewphysicalDevicePart_Handler,
 		},
 		{
-			MethodName: "DeleteRobotPart",
-			Handler:    _AppService_DeleteRobotPart_Handler,
+			MethodName: "DeletephysicalDevicePart",
+			Handler:    _AppService_DeletephysicalDevicePart_Handler,
 		},
 		{
-			MethodName: "GetRobotAPIKeys",
-			Handler:    _AppService_GetRobotAPIKeys_Handler,
+			MethodName: "GetphysicalDeviceAPIKeys",
+			Handler:    _AppService_GetphysicalDeviceAPIKeys_Handler,
 		},
 		{
 			MethodName: "MarkPartAsMain",
@@ -2625,28 +2625,28 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_MarkPartForRestart_Handler,
 		},
 		{
-			MethodName: "CreateRobotPartSecret",
-			Handler:    _AppService_CreateRobotPartSecret_Handler,
+			MethodName: "CreatephysicalDevicePartSecret",
+			Handler:    _AppService_CreatephysicalDevicePartSecret_Handler,
 		},
 		{
-			MethodName: "DeleteRobotPartSecret",
-			Handler:    _AppService_DeleteRobotPartSecret_Handler,
+			MethodName: "DeletephysicalDevicePartSecret",
+			Handler:    _AppService_DeletephysicalDevicePartSecret_Handler,
 		},
 		{
-			MethodName: "ListRobots",
-			Handler:    _AppService_ListRobots_Handler,
+			MethodName: "ListphysicalDevices",
+			Handler:    _AppService_ListphysicalDevices_Handler,
 		},
 		{
-			MethodName: "NewRobot",
-			Handler:    _AppService_NewRobot_Handler,
+			MethodName: "NewphysicalDevice",
+			Handler:    _AppService_NewphysicalDevice_Handler,
 		},
 		{
-			MethodName: "UpdateRobot",
-			Handler:    _AppService_UpdateRobot_Handler,
+			MethodName: "UpdatephysicalDevice",
+			Handler:    _AppService_UpdatephysicalDevice_Handler,
 		},
 		{
-			MethodName: "DeleteRobot",
-			Handler:    _AppService_DeleteRobot_Handler,
+			MethodName: "DeletephysicalDevice",
+			Handler:    _AppService_DeletephysicalDevice_Handler,
 		},
 		{
 			MethodName: "ListFragments",
@@ -2751,8 +2751,8 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "TailRobotPartLogs",
-			Handler:       _AppService_TailRobotPartLogs_Handler,
+			StreamName:    "TailphysicalDevicePartLogs",
+			Handler:       _AppService_TailphysicalDevicePartLogs_Handler,
 			ServerStreams: true,
 		},
 		{

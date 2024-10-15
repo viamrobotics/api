@@ -24,17 +24,17 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CameraServiceClient interface {
-	// GetImage returns a frame from a camera of the underlying robot. A specific MIME type
+	// GetImage returns a frame from a camera of the underlying physicalDevice. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
 	GetImage(ctx context.Context, in *GetImageRequest, opts ...grpc.CallOption) (*GetImageResponse, error)
 	GetImages(ctx context.Context, in *GetImagesRequest, opts ...grpc.CallOption) (*GetImagesResponse, error)
-	// RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
+	// RenderFrame renders a frame from a camera of the underlying physicalDevice to an HTTP response. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
 	RenderFrame(ctx context.Context, in *RenderFrameRequest, opts ...grpc.CallOption) (*httpbody.HttpBody, error)
-	// GetPointCloud returns a point cloud from a camera of the underlying robot. A specific MIME type
+	// GetPointCloud returns a point cloud from a camera of the underlying physicalDevice. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
 	GetPointCloud(ctx context.Context, in *GetPointCloudRequest, opts ...grpc.CallOption) (*GetPointCloudResponse, error)
-	// GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying robot, if available.
+	// GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying physicalDevice, if available.
 	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
@@ -117,17 +117,17 @@ func (c *cameraServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeome
 // All implementations must embed UnimplementedCameraServiceServer
 // for forward compatibility
 type CameraServiceServer interface {
-	// GetImage returns a frame from a camera of the underlying robot. A specific MIME type
+	// GetImage returns a frame from a camera of the underlying physicalDevice. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
 	GetImage(context.Context, *GetImageRequest) (*GetImageResponse, error)
 	GetImages(context.Context, *GetImagesRequest) (*GetImagesResponse, error)
-	// RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
+	// RenderFrame renders a frame from a camera of the underlying physicalDevice to an HTTP response. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
 	RenderFrame(context.Context, *RenderFrameRequest) (*httpbody.HttpBody, error)
-	// GetPointCloud returns a point cloud from a camera of the underlying robot. A specific MIME type
+	// GetPointCloud returns a point cloud from a camera of the underlying physicalDevice. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
 	GetPointCloud(context.Context, *GetPointCloudRequest) (*GetPointCloudResponse, error)
-	// GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying robot, if available.
+	// GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying physicalDevice, if available.
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)

@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SensorServiceClient interface {
-	// GetReadings returns the readings of a sensor of the underlying robot.
+	// GetReadings returns the readings of a sensor of the underlying physicalDevice.
 	GetReadings(ctx context.Context, in *v1.GetReadingsRequest, opts ...grpc.CallOption) (*v1.GetReadingsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
@@ -70,7 +70,7 @@ func (c *sensorServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeome
 // All implementations must embed UnimplementedSensorServiceServer
 // for forward compatibility
 type SensorServiceServer interface {
-	// GetReadings returns the readings of a sensor of the underlying robot.
+	// GetReadings returns the readings of a sensor of the underlying physicalDevice.
 	GetReadings(context.Context, *v1.GetReadingsRequest) (*v1.GetReadingsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)

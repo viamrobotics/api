@@ -71,7 +71,7 @@ message GetCurrentMonthUsageResponse {
   double discount_amount = 8;
   double total_usage_with_discount = 9;
   double total_usage_without_discount = 10;
-  double per_machine_usage_cost = 11;
+  double per_physicalDevice_usage_cost = 11;
   double binary_data_cloud_storage_usage_cost = 12;
   double other_cloud_storage_usage_cost = 13;
 }

@@ -229,103 +229,103 @@ type AppServiceDeleteLocationSecret = {
   readonly responseType: typeof app_v1_app_pb.DeleteLocationSecretResponse;
 };
 
-type AppServiceGetRobot = {
+type AppServiceGetphysicalDevice = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.GetRobotRequest;
-  readonly responseType: typeof app_v1_app_pb.GetRobotResponse;
+  readonly requestType: typeof app_v1_app_pb.GetphysicalDeviceRequest;
+  readonly responseType: typeof app_v1_app_pb.GetphysicalDeviceResponse;
 };
 
-type AppServiceGetRoverRentalRobots = {
+type AppServiceGetRoverRentalphysicalDevices = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.GetRoverRentalRobotsRequest;
-  readonly responseType: typeof app_v1_app_pb.GetRoverRentalRobotsResponse;
+  readonly requestType: typeof app_v1_app_pb.GetRoverRentalphysicalDevicesRequest;
+  readonly responseType: typeof app_v1_app_pb.GetRoverRentalphysicalDevicesResponse;
 };
 
-type AppServiceGetRobotParts = {
+type AppServiceGetphysicalDeviceParts = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.GetRobotPartsRequest;
-  readonly responseType: typeof app_v1_app_pb.GetRobotPartsResponse;
+  readonly requestType: typeof app_v1_app_pb.GetphysicalDevicePartsRequest;
+  readonly responseType: typeof app_v1_app_pb.GetphysicalDevicePartsResponse;
 };
 
-type AppServiceGetRobotPart = {
+type AppServiceGetphysicalDevicePart = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.GetRobotPartRequest;
-  readonly responseType: typeof app_v1_app_pb.GetRobotPartResponse;
+  readonly requestType: typeof app_v1_app_pb.GetphysicalDevicePartRequest;
+  readonly responseType: typeof app_v1_app_pb.GetphysicalDevicePartResponse;
 };
 
-type AppServiceGetRobotPartLogs = {
+type AppServiceGetphysicalDevicePartLogs = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.GetRobotPartLogsRequest;
-  readonly responseType: typeof app_v1_app_pb.GetRobotPartLogsResponse;
+  readonly requestType: typeof app_v1_app_pb.GetphysicalDevicePartLogsRequest;
+  readonly responseType: typeof app_v1_app_pb.GetphysicalDevicePartLogsResponse;
 };
 
-type AppServiceTailRobotPartLogs = {
+type AppServiceTailphysicalDevicePartLogs = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: true;
-  readonly requestType: typeof app_v1_app_pb.TailRobotPartLogsRequest;
-  readonly responseType: typeof app_v1_app_pb.TailRobotPartLogsResponse;
+  readonly requestType: typeof app_v1_app_pb.TailphysicalDevicePartLogsRequest;
+  readonly responseType: typeof app_v1_app_pb.TailphysicalDevicePartLogsResponse;
 };
 
-type AppServiceGetRobotPartHistory = {
+type AppServiceGetphysicalDevicePartHistory = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.GetRobotPartHistoryRequest;
-  readonly responseType: typeof app_v1_app_pb.GetRobotPartHistoryResponse;
+  readonly requestType: typeof app_v1_app_pb.GetphysicalDevicePartHistoryRequest;
+  readonly responseType: typeof app_v1_app_pb.GetphysicalDevicePartHistoryResponse;
 };
 
-type AppServiceUpdateRobotPart = {
+type AppServiceUpdatephysicalDevicePart = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.UpdateRobotPartRequest;
-  readonly responseType: typeof app_v1_app_pb.UpdateRobotPartResponse;
+  readonly requestType: typeof app_v1_app_pb.UpdatephysicalDevicePartRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdatephysicalDevicePartResponse;
 };
 
-type AppServiceNewRobotPart = {
+type AppServiceNewphysicalDevicePart = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.NewRobotPartRequest;
-  readonly responseType: typeof app_v1_app_pb.NewRobotPartResponse;
+  readonly requestType: typeof app_v1_app_pb.NewphysicalDevicePartRequest;
+  readonly responseType: typeof app_v1_app_pb.NewphysicalDevicePartResponse;
 };
 
-type AppServiceDeleteRobotPart = {
+type AppServiceDeletephysicalDevicePart = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.DeleteRobotPartRequest;
-  readonly responseType: typeof app_v1_app_pb.DeleteRobotPartResponse;
+  readonly requestType: typeof app_v1_app_pb.DeletephysicalDevicePartRequest;
+  readonly responseType: typeof app_v1_app_pb.DeletephysicalDevicePartResponse;
 };
 
-type AppServiceGetRobotAPIKeys = {
+type AppServiceGetphysicalDeviceAPIKeys = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.GetRobotAPIKeysRequest;
-  readonly responseType: typeof app_v1_app_pb.GetRobotAPIKeysResponse;
+  readonly requestType: typeof app_v1_app_pb.GetphysicalDeviceAPIKeysRequest;
+  readonly responseType: typeof app_v1_app_pb.GetphysicalDeviceAPIKeysResponse;
 };
 
 type AppServiceMarkPartAsMain = {
@@ -346,58 +346,58 @@ type AppServiceMarkPartForRestart = {
   readonly responseType: typeof app_v1_app_pb.MarkPartForRestartResponse;
 };
 
-type AppServiceCreateRobotPartSecret = {
+type AppServiceCreatephysicalDevicePartSecret = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.CreateRobotPartSecretRequest;
-  readonly responseType: typeof app_v1_app_pb.CreateRobotPartSecretResponse;
+  readonly requestType: typeof app_v1_app_pb.CreatephysicalDevicePartSecretRequest;
+  readonly responseType: typeof app_v1_app_pb.CreatephysicalDevicePartSecretResponse;
 };
 
-type AppServiceDeleteRobotPartSecret = {
+type AppServiceDeletephysicalDevicePartSecret = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.DeleteRobotPartSecretRequest;
-  readonly responseType: typeof app_v1_app_pb.DeleteRobotPartSecretResponse;
+  readonly requestType: typeof app_v1_app_pb.DeletephysicalDevicePartSecretRequest;
+  readonly responseType: typeof app_v1_app_pb.DeletephysicalDevicePartSecretResponse;
 };
 
-type AppServiceListRobots = {
+type AppServiceListphysicalDevices = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.ListRobotsRequest;
-  readonly responseType: typeof app_v1_app_pb.ListRobotsResponse;
+  readonly requestType: typeof app_v1_app_pb.ListphysicalDevicesRequest;
+  readonly responseType: typeof app_v1_app_pb.ListphysicalDevicesResponse;
 };
 
-type AppServiceNewRobot = {
+type AppServiceNewphysicalDevice = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.NewRobotRequest;
-  readonly responseType: typeof app_v1_app_pb.NewRobotResponse;
+  readonly requestType: typeof app_v1_app_pb.NewphysicalDeviceRequest;
+  readonly responseType: typeof app_v1_app_pb.NewphysicalDeviceResponse;
 };
 
-type AppServiceUpdateRobot = {
+type AppServiceUpdatephysicalDevice = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.UpdateRobotRequest;
-  readonly responseType: typeof app_v1_app_pb.UpdateRobotResponse;
+  readonly requestType: typeof app_v1_app_pb.UpdatephysicalDeviceRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdatephysicalDeviceResponse;
 };
 
-type AppServiceDeleteRobot = {
+type AppServiceDeletephysicalDevice = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.DeleteRobotRequest;
-  readonly responseType: typeof app_v1_app_pb.DeleteRobotResponse;
+  readonly requestType: typeof app_v1_app_pb.DeletephysicalDeviceRequest;
+  readonly responseType: typeof app_v1_app_pb.DeletephysicalDeviceResponse;
 };
 
 type AppServiceListFragments = {
@@ -661,25 +661,25 @@ export class AppService {
   static readonly LocationAuth: AppServiceLocationAuth;
   static readonly CreateLocationSecret: AppServiceCreateLocationSecret;
   static readonly DeleteLocationSecret: AppServiceDeleteLocationSecret;
-  static readonly GetRobot: AppServiceGetRobot;
-  static readonly GetRoverRentalRobots: AppServiceGetRoverRentalRobots;
-  static readonly GetRobotParts: AppServiceGetRobotParts;
-  static readonly GetRobotPart: AppServiceGetRobotPart;
-  static readonly GetRobotPartLogs: AppServiceGetRobotPartLogs;
-  static readonly TailRobotPartLogs: AppServiceTailRobotPartLogs;
-  static readonly GetRobotPartHistory: AppServiceGetRobotPartHistory;
-  static readonly UpdateRobotPart: AppServiceUpdateRobotPart;
-  static readonly NewRobotPart: AppServiceNewRobotPart;
-  static readonly DeleteRobotPart: AppServiceDeleteRobotPart;
-  static readonly GetRobotAPIKeys: AppServiceGetRobotAPIKeys;
+  static readonly GetphysicalDevice: AppServiceGetphysicalDevice;
+  static readonly GetRoverRentalphysicalDevices: AppServiceGetRoverRentalphysicalDevices;
+  static readonly GetphysicalDeviceParts: AppServiceGetphysicalDeviceParts;
+  static readonly GetphysicalDevicePart: AppServiceGetphysicalDevicePart;
+  static readonly GetphysicalDevicePartLogs: AppServiceGetphysicalDevicePartLogs;
+  static readonly TailphysicalDevicePartLogs: AppServiceTailphysicalDevicePartLogs;
+  static readonly GetphysicalDevicePartHistory: AppServiceGetphysicalDevicePartHistory;
+  static readonly UpdatephysicalDevicePart: AppServiceUpdatephysicalDevicePart;
+  static readonly NewphysicalDevicePart: AppServiceNewphysicalDevicePart;
+  static readonly DeletephysicalDevicePart: AppServiceDeletephysicalDevicePart;
+  static readonly GetphysicalDeviceAPIKeys: AppServiceGetphysicalDeviceAPIKeys;
   static readonly MarkPartAsMain: AppServiceMarkPartAsMain;
   static readonly MarkPartForRestart: AppServiceMarkPartForRestart;
-  static readonly CreateRobotPartSecret: AppServiceCreateRobotPartSecret;
-  static readonly DeleteRobotPartSecret: AppServiceDeleteRobotPartSecret;
-  static readonly ListRobots: AppServiceListRobots;
-  static readonly NewRobot: AppServiceNewRobot;
-  static readonly UpdateRobot: AppServiceUpdateRobot;
-  static readonly DeleteRobot: AppServiceDeleteRobot;
+  static readonly CreatephysicalDevicePartSecret: AppServiceCreatephysicalDevicePartSecret;
+  static readonly DeletephysicalDevicePartSecret: AppServiceDeletephysicalDevicePartSecret;
+  static readonly ListphysicalDevices: AppServiceListphysicalDevices;
+  static readonly NewphysicalDevice: AppServiceNewphysicalDevice;
+  static readonly UpdatephysicalDevice: AppServiceUpdatephysicalDevice;
+  static readonly DeletephysicalDevice: AppServiceDeletephysicalDevice;
   static readonly ListFragments: AppServiceListFragments;
   static readonly GetFragment: AppServiceGetFragment;
   static readonly CreateFragment: AppServiceCreateFragment;
@@ -965,96 +965,96 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.DeleteLocationSecretRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteLocationSecretResponse|null) => void
   ): UnaryResponse;
-  getRobot(
-    requestMessage: app_v1_app_pb.GetRobotRequest,
+  getphysicalDevice(
+    requestMessage: app_v1_app_pb.GetphysicalDeviceRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetphysicalDeviceResponse|null) => void
   ): UnaryResponse;
-  getRobot(
-    requestMessage: app_v1_app_pb.GetRobotRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotResponse|null) => void
+  getphysicalDevice(
+    requestMessage: app_v1_app_pb.GetphysicalDeviceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetphysicalDeviceResponse|null) => void
   ): UnaryResponse;
-  getRoverRentalRobots(
-    requestMessage: app_v1_app_pb.GetRoverRentalRobotsRequest,
+  getRoverRentalphysicalDevices(
+    requestMessage: app_v1_app_pb.GetRoverRentalphysicalDevicesRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRoverRentalRobotsResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRoverRentalphysicalDevicesResponse|null) => void
   ): UnaryResponse;
-  getRoverRentalRobots(
-    requestMessage: app_v1_app_pb.GetRoverRentalRobotsRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRoverRentalRobotsResponse|null) => void
+  getRoverRentalphysicalDevices(
+    requestMessage: app_v1_app_pb.GetRoverRentalphysicalDevicesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRoverRentalphysicalDevicesResponse|null) => void
   ): UnaryResponse;
-  getRobotParts(
-    requestMessage: app_v1_app_pb.GetRobotPartsRequest,
+  getphysicalDeviceParts(
+    requestMessage: app_v1_app_pb.GetphysicalDevicePartsRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotPartsResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetphysicalDevicePartsResponse|null) => void
   ): UnaryResponse;
-  getRobotParts(
-    requestMessage: app_v1_app_pb.GetRobotPartsRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotPartsResponse|null) => void
+  getphysicalDeviceParts(
+    requestMessage: app_v1_app_pb.GetphysicalDevicePartsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetphysicalDevicePartsResponse|null) => void
   ): UnaryResponse;
-  getRobotPart(
-    requestMessage: app_v1_app_pb.GetRobotPartRequest,
+  getphysicalDevicePart(
+    requestMessage: app_v1_app_pb.GetphysicalDevicePartRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotPartResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetphysicalDevicePartResponse|null) => void
   ): UnaryResponse;
-  getRobotPart(
-    requestMessage: app_v1_app_pb.GetRobotPartRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotPartResponse|null) => void
+  getphysicalDevicePart(
+    requestMessage: app_v1_app_pb.GetphysicalDevicePartRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetphysicalDevicePartResponse|null) => void
   ): UnaryResponse;
-  getRobotPartLogs(
-    requestMessage: app_v1_app_pb.GetRobotPartLogsRequest,
+  getphysicalDevicePartLogs(
+    requestMessage: app_v1_app_pb.GetphysicalDevicePartLogsRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotPartLogsResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetphysicalDevicePartLogsResponse|null) => void
   ): UnaryResponse;
-  getRobotPartLogs(
-    requestMessage: app_v1_app_pb.GetRobotPartLogsRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotPartLogsResponse|null) => void
+  getphysicalDevicePartLogs(
+    requestMessage: app_v1_app_pb.GetphysicalDevicePartLogsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetphysicalDevicePartLogsResponse|null) => void
   ): UnaryResponse;
-  tailRobotPartLogs(requestMessage: app_v1_app_pb.TailRobotPartLogsRequest, metadata?: grpc.Metadata): ResponseStream<app_v1_app_pb.TailRobotPartLogsResponse>;
-  getRobotPartHistory(
-    requestMessage: app_v1_app_pb.GetRobotPartHistoryRequest,
+  tailphysicalDevicePartLogs(requestMessage: app_v1_app_pb.TailphysicalDevicePartLogsRequest, metadata?: grpc.Metadata): ResponseStream<app_v1_app_pb.TailphysicalDevicePartLogsResponse>;
+  getphysicalDevicePartHistory(
+    requestMessage: app_v1_app_pb.GetphysicalDevicePartHistoryRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotPartHistoryResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetphysicalDevicePartHistoryResponse|null) => void
   ): UnaryResponse;
-  getRobotPartHistory(
-    requestMessage: app_v1_app_pb.GetRobotPartHistoryRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotPartHistoryResponse|null) => void
+  getphysicalDevicePartHistory(
+    requestMessage: app_v1_app_pb.GetphysicalDevicePartHistoryRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetphysicalDevicePartHistoryResponse|null) => void
   ): UnaryResponse;
-  updateRobotPart(
-    requestMessage: app_v1_app_pb.UpdateRobotPartRequest,
+  updatephysicalDevicePart(
+    requestMessage: app_v1_app_pb.UpdatephysicalDevicePartRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateRobotPartResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdatephysicalDevicePartResponse|null) => void
   ): UnaryResponse;
-  updateRobotPart(
-    requestMessage: app_v1_app_pb.UpdateRobotPartRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateRobotPartResponse|null) => void
+  updatephysicalDevicePart(
+    requestMessage: app_v1_app_pb.UpdatephysicalDevicePartRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdatephysicalDevicePartResponse|null) => void
   ): UnaryResponse;
-  newRobotPart(
-    requestMessage: app_v1_app_pb.NewRobotPartRequest,
+  newphysicalDevicePart(
+    requestMessage: app_v1_app_pb.NewphysicalDevicePartRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.NewRobotPartResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.NewphysicalDevicePartResponse|null) => void
   ): UnaryResponse;
-  newRobotPart(
-    requestMessage: app_v1_app_pb.NewRobotPartRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.NewRobotPartResponse|null) => void
+  newphysicalDevicePart(
+    requestMessage: app_v1_app_pb.NewphysicalDevicePartRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.NewphysicalDevicePartResponse|null) => void
   ): UnaryResponse;
-  deleteRobotPart(
-    requestMessage: app_v1_app_pb.DeleteRobotPartRequest,
+  deletephysicalDevicePart(
+    requestMessage: app_v1_app_pb.DeletephysicalDevicePartRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotPartResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeletephysicalDevicePartResponse|null) => void
   ): UnaryResponse;
-  deleteRobotPart(
-    requestMessage: app_v1_app_pb.DeleteRobotPartRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotPartResponse|null) => void
+  deletephysicalDevicePart(
+    requestMessage: app_v1_app_pb.DeletephysicalDevicePartRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeletephysicalDevicePartResponse|null) => void
   ): UnaryResponse;
-  getRobotAPIKeys(
-    requestMessage: app_v1_app_pb.GetRobotAPIKeysRequest,
+  getphysicalDeviceAPIKeys(
+    requestMessage: app_v1_app_pb.GetphysicalDeviceAPIKeysRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotAPIKeysResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetphysicalDeviceAPIKeysResponse|null) => void
   ): UnaryResponse;
-  getRobotAPIKeys(
-    requestMessage: app_v1_app_pb.GetRobotAPIKeysRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotAPIKeysResponse|null) => void
+  getphysicalDeviceAPIKeys(
+    requestMessage: app_v1_app_pb.GetphysicalDeviceAPIKeysRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetphysicalDeviceAPIKeysResponse|null) => void
   ): UnaryResponse;
   markPartAsMain(
     requestMessage: app_v1_app_pb.MarkPartAsMainRequest,
@@ -1074,59 +1074,59 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.MarkPartForRestartRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.MarkPartForRestartResponse|null) => void
   ): UnaryResponse;
-  createRobotPartSecret(
-    requestMessage: app_v1_app_pb.CreateRobotPartSecretRequest,
+  createphysicalDevicePartSecret(
+    requestMessage: app_v1_app_pb.CreatephysicalDevicePartSecretRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateRobotPartSecretResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreatephysicalDevicePartSecretResponse|null) => void
   ): UnaryResponse;
-  createRobotPartSecret(
-    requestMessage: app_v1_app_pb.CreateRobotPartSecretRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateRobotPartSecretResponse|null) => void
+  createphysicalDevicePartSecret(
+    requestMessage: app_v1_app_pb.CreatephysicalDevicePartSecretRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreatephysicalDevicePartSecretResponse|null) => void
   ): UnaryResponse;
-  deleteRobotPartSecret(
-    requestMessage: app_v1_app_pb.DeleteRobotPartSecretRequest,
+  deletephysicalDevicePartSecret(
+    requestMessage: app_v1_app_pb.DeletephysicalDevicePartSecretRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotPartSecretResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeletephysicalDevicePartSecretResponse|null) => void
   ): UnaryResponse;
-  deleteRobotPartSecret(
-    requestMessage: app_v1_app_pb.DeleteRobotPartSecretRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotPartSecretResponse|null) => void
+  deletephysicalDevicePartSecret(
+    requestMessage: app_v1_app_pb.DeletephysicalDevicePartSecretRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeletephysicalDevicePartSecretResponse|null) => void
   ): UnaryResponse;
-  listRobots(
-    requestMessage: app_v1_app_pb.ListRobotsRequest,
+  listphysicalDevices(
+    requestMessage: app_v1_app_pb.ListphysicalDevicesRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListphysicalDevicesResponse|null) => void
   ): UnaryResponse;
-  listRobots(
-    requestMessage: app_v1_app_pb.ListRobotsRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsResponse|null) => void
+  listphysicalDevices(
+    requestMessage: app_v1_app_pb.ListphysicalDevicesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListphysicalDevicesResponse|null) => void
   ): UnaryResponse;
-  newRobot(
-    requestMessage: app_v1_app_pb.NewRobotRequest,
+  newphysicalDevice(
+    requestMessage: app_v1_app_pb.NewphysicalDeviceRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.NewRobotResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.NewphysicalDeviceResponse|null) => void
   ): UnaryResponse;
-  newRobot(
-    requestMessage: app_v1_app_pb.NewRobotRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.NewRobotResponse|null) => void
+  newphysicalDevice(
+    requestMessage: app_v1_app_pb.NewphysicalDeviceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.NewphysicalDeviceResponse|null) => void
   ): UnaryResponse;
-  updateRobot(
-    requestMessage: app_v1_app_pb.UpdateRobotRequest,
+  updatephysicalDevice(
+    requestMessage: app_v1_app_pb.UpdatephysicalDeviceRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateRobotResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdatephysicalDeviceResponse|null) => void
   ): UnaryResponse;
-  updateRobot(
-    requestMessage: app_v1_app_pb.UpdateRobotRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateRobotResponse|null) => void
+  updatephysicalDevice(
+    requestMessage: app_v1_app_pb.UpdatephysicalDeviceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdatephysicalDeviceResponse|null) => void
   ): UnaryResponse;
-  deleteRobot(
-    requestMessage: app_v1_app_pb.DeleteRobotRequest,
+  deletephysicalDevice(
+    requestMessage: app_v1_app_pb.DeletephysicalDeviceRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeletephysicalDeviceResponse|null) => void
   ): UnaryResponse;
-  deleteRobot(
-    requestMessage: app_v1_app_pb.DeleteRobotRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotResponse|null) => void
+  deletephysicalDevice(
+    requestMessage: app_v1_app_pb.DeletephysicalDeviceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeletephysicalDeviceResponse|null) => void
   ): UnaryResponse;
   listFragments(
     requestMessage: app_v1_app_pb.ListFragmentsRequest,

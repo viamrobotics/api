@@ -1,5 +1,5 @@
-// package: viam.robot.v1
-// file: robot/v1/robot.proto
+// package: viam.physicalDevice.v1
+// file: physicalDevice/v1/physicalDevice.proto
 
 import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../common/v1/common_pb";
@@ -963,8 +963,8 @@ export namespace GetCloudMetadataRequest {
 }
 
 export class GetCloudMetadataResponse extends jspb.Message {
-  getRobotPartId(): string;
-  setRobotPartId(value: string): void;
+  getphysicalDevicePartId(): string;
+  setphysicalDevicePartId(value: string): void;
 
   getPrimaryOrgId(): string;
   setPrimaryOrgId(value: string): void;
@@ -972,11 +972,11 @@ export class GetCloudMetadataResponse extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;
 
-  getMachineId(): string;
-  setMachineId(value: string): void;
+  getphysicalDeviceId(): string;
+  setphysicalDeviceId(value: string): void;
 
-  getMachinePartId(): string;
-  setMachinePartId(value: string): void;
+  getphysicalDevicePartId(): string;
+  setphysicalDevicePartId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetCloudMetadataResponse.AsObject;
@@ -990,11 +990,11 @@ export class GetCloudMetadataResponse extends jspb.Message {
 
 export namespace GetCloudMetadataResponse {
   export type AsObject = {
-    robotPartId: string,
+    physicalDevicePartId: string,
     primaryOrgId: string,
     locationId: string,
-    machineId: string,
-    machinePartId: string,
+    physicalDeviceId: string,
+    physicalDevicePartId: string,
   }
 }
 

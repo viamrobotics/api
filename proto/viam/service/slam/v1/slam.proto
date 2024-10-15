@@ -10,7 +10,7 @@ option java_package = "com.viam.service.slam.v1";
 
 // A SlamService declares the gRPC contract for a slam service
 service SLAMService {
-  // GetPosition returns the current estimated position of the robot with
+  // GetPosition returns the current estimated position of the physicalDevice with
   // respect to a returned component reference.
   rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {
     option (google.api.http) = {

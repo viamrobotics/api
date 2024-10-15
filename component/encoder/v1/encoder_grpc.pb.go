@@ -28,7 +28,7 @@ type EncoderServiceClient interface {
 	GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error)
 	ResetPosition(ctx context.Context, in *ResetPositionRequest, opts ...grpc.CallOption) (*ResetPositionResponse, error)
 	// Returns a list of all the methods that are
-	// supported by a given robot.
+	// supported by a given physicalDevice.
 	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
@@ -97,7 +97,7 @@ type EncoderServiceServer interface {
 	GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error)
 	ResetPosition(context.Context, *ResetPositionRequest) (*ResetPositionResponse, error)
 	// Returns a list of all the methods that are
-	// supported by a given robot.
+	// supported by a given physicalDevice.
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration

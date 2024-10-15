@@ -9,7 +9,7 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/component/motor/v1";
 option java_package = "com.viam.component.motor.v1";
 
-// A MotorService maintains all motors associated with a robot
+// A MotorService maintains all motors associated with a physicalDevice
 service MotorService {
   // SetPower sets the percentage of the motor's total power that should be employed
   // expressed a value between -1 and 1 where negative values indicate a backwards
@@ -33,7 +33,7 @@ service MotorService {
     };
   }
 
-  // GoTo requests the robot's motor to move to a specific position that
+  // GoTo requests the physicalDevice's motor to move to a specific position that
   // is relative to its home position at a specified speed which is expressed in RPM
   // This method will return an error if position reporting is not supported
   rpc GoTo(GoToRequest) returns (GoToResponse) {
@@ -59,7 +59,7 @@ service MotorService {
     };
   }
 
-  // Position reports the position of the robot's motor relative to its zero position
+  // Position reports the position of the physicalDevice's motor relative to its zero position
   // This method will return an error if position reporting is not supported
   rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {
     option (google.api.http) = {
@@ -67,21 +67,21 @@ service MotorService {
     };
   }
 
-  // GetProperties returns a message of booleans indicating which optional features the robot's motor supports
+  // GetProperties returns a message of booleans indicating which optional features the physicalDevice's motor supports
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/motor/{name}/features"
     };
   }
 
-  // Stop turns the robot's motor off
+  // Stop turns the physicalDevice's motor off
   rpc Stop(StopRequest) returns (StopResponse) {
     option (google.api.http) = {
       put: "/viam/api/v1/component/motor/{name}/stop"
     };
   }
 
-  // IsPowered returns true if the robot's motor is on
+  // IsPowered returns true if the physicalDevice's motor is on
   rpc IsPowered(IsPoweredRequest) returns (IsPoweredResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/motor/{name}/powered"

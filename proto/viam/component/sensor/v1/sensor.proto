@@ -8,9 +8,9 @@ import "google/api/annotations.proto";
 option go_package = "go.viam.com/api/component/sensor/v1";
 option java_package = "com.viam.component.sensor.v1";
 
-// SensorService services all generic sensors associated with a robot
+// SensorService services all generic sensors associated with a physicalDevice
 service SensorService {
-  // GetReadings returns the readings of a sensor of the underlying robot.
+  // GetReadings returns the readings of a sensor of the underlying physicalDevice.
   rpc GetReadings(common.v1.GetReadingsRequest) returns (common.v1.GetReadingsResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/sensor/{name}/readings"

@@ -1,63 +1,63 @@
 // package: viam.app.v1
-// file: app/v1/robot.proto
+// file: app/v1/physicalDevice.proto
 
-var app_v1_robot_pb = require("../../app/v1/robot_pb");
+var app_v1_physicalDevice_pb = require("../../app/v1/physicalDevice_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
-var RobotService = (function () {
-  function RobotService() {}
-  RobotService.serviceName = "viam.app.v1.RobotService";
-  return RobotService;
+var physicalDeviceService = (function () {
+  function physicalDeviceService() {}
+  physicalDeviceService.serviceName = "viam.app.v1.physicalDeviceService";
+  return physicalDeviceService;
 }());
 
-RobotService.Config = {
+physicalDeviceService.Config = {
   methodName: "Config",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_robot_pb.ConfigRequest,
-  responseType: app_v1_robot_pb.ConfigResponse
+  requestType: app_v1_physicalDevice_pb.ConfigRequest,
+  responseType: app_v1_physicalDevice_pb.ConfigResponse
 };
 
-RobotService.Certificate = {
+physicalDeviceService.Certificate = {
   methodName: "Certificate",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_robot_pb.CertificateRequest,
-  responseType: app_v1_robot_pb.CertificateResponse
+  requestType: app_v1_physicalDevice_pb.CertificateRequest,
+  responseType: app_v1_physicalDevice_pb.CertificateResponse
 };
 
-RobotService.Log = {
+physicalDeviceService.Log = {
   methodName: "Log",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_robot_pb.LogRequest,
-  responseType: app_v1_robot_pb.LogResponse
+  requestType: app_v1_physicalDevice_pb.LogRequest,
+  responseType: app_v1_physicalDevice_pb.LogResponse
 };
 
-RobotService.NeedsRestart = {
+physicalDeviceService.NeedsRestart = {
   methodName: "NeedsRestart",
-  service: RobotService,
+  service: physicalDeviceService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_robot_pb.NeedsRestartRequest,
-  responseType: app_v1_robot_pb.NeedsRestartResponse
+  requestType: app_v1_physicalDevice_pb.NeedsRestartRequest,
+  responseType: app_v1_physicalDevice_pb.NeedsRestartResponse
 };
 
-exports.RobotService = RobotService;
+exports.physicalDeviceService = physicalDeviceService;
 
-function RobotServiceClient(serviceHost, options) {
+function physicalDeviceServiceClient(serviceHost, options) {
   this.serviceHost = serviceHost;
   this.options = options || {};
 }
 
-RobotServiceClient.prototype.config = function config(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.config = function config(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.Config, {
+  var client = grpc.unary(physicalDeviceService.Config, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -84,11 +84,11 @@ RobotServiceClient.prototype.config = function config(requestMessage, metadata, 
   };
 };
 
-RobotServiceClient.prototype.certificate = function certificate(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.certificate = function certificate(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.Certificate, {
+  var client = grpc.unary(physicalDeviceService.Certificate, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -115,11 +115,11 @@ RobotServiceClient.prototype.certificate = function certificate(requestMessage, 
   };
 };
 
-RobotServiceClient.prototype.log = function log(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.log = function log(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.Log, {
+  var client = grpc.unary(physicalDeviceService.Log, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -146,11 +146,11 @@ RobotServiceClient.prototype.log = function log(requestMessage, metadata, callba
   };
 };
 
-RobotServiceClient.prototype.needsRestart = function needsRestart(requestMessage, metadata, callback) {
+physicalDeviceServiceClient.prototype.needsRestart = function needsRestart(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(RobotService.NeedsRestart, {
+  var client = grpc.unary(physicalDeviceService.NeedsRestart, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -177,5 +177,5 @@ RobotServiceClient.prototype.needsRestart = function needsRestart(requestMessage
   };
 };
 
-exports.RobotServiceClient = RobotServiceClient;
+exports.physicalDeviceServiceClient = physicalDeviceServiceClient;
 

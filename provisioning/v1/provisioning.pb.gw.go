@@ -31,8 +31,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_ProvisioningService_GetSmartMachineStatus_0(ctx context.Context, marshaler runtime.Marshaler, client ProvisioningServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSmartMachineStatusRequest
+func request_ProvisioningService_GetSmartphysicalDeviceStatus_0(ctx context.Context, marshaler runtime.Marshaler, client ProvisioningServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetSmartphysicalDeviceStatusRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -43,13 +43,13 @@ func request_ProvisioningService_GetSmartMachineStatus_0(ctx context.Context, ma
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetSmartMachineStatus(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetSmartphysicalDeviceStatus(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ProvisioningService_GetSmartMachineStatus_0(ctx context.Context, marshaler runtime.Marshaler, server ProvisioningServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSmartMachineStatusRequest
+func local_request_ProvisioningService_GetSmartphysicalDeviceStatus_0(ctx context.Context, marshaler runtime.Marshaler, server ProvisioningServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetSmartphysicalDeviceStatusRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -60,7 +60,7 @@ func local_request_ProvisioningService_GetSmartMachineStatus_0(ctx context.Conte
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetSmartMachineStatus(ctx, &protoReq)
+	msg, err := server.GetSmartphysicalDeviceStatus(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -99,8 +99,8 @@ func local_request_ProvisioningService_SetNetworkCredentials_0(ctx context.Conte
 
 }
 
-func request_ProvisioningService_SetSmartMachineCredentials_0(ctx context.Context, marshaler runtime.Marshaler, client ProvisioningServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SetSmartMachineCredentialsRequest
+func request_ProvisioningService_SetSmartphysicalDeviceCredentials_0(ctx context.Context, marshaler runtime.Marshaler, client ProvisioningServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SetSmartphysicalDeviceCredentialsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -111,13 +111,13 @@ func request_ProvisioningService_SetSmartMachineCredentials_0(ctx context.Contex
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.SetSmartMachineCredentials(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.SetSmartphysicalDeviceCredentials(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ProvisioningService_SetSmartMachineCredentials_0(ctx context.Context, marshaler runtime.Marshaler, server ProvisioningServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SetSmartMachineCredentialsRequest
+func local_request_ProvisioningService_SetSmartphysicalDeviceCredentials_0(ctx context.Context, marshaler runtime.Marshaler, server ProvisioningServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SetSmartphysicalDeviceCredentialsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -128,7 +128,7 @@ func local_request_ProvisioningService_SetSmartMachineCredentials_0(ctx context.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.SetSmartMachineCredentials(ctx, &protoReq)
+	msg, err := server.SetSmartphysicalDeviceCredentials(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -173,7 +173,7 @@ func local_request_ProvisioningService_GetNetworkList_0(ctx context.Context, mar
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterProvisioningServiceHandlerFromEndpoint instead.
 func RegisterProvisioningServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ProvisioningServiceServer) error {
 
-	mux.Handle("POST", pattern_ProvisioningService_GetSmartMachineStatus_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ProvisioningService_GetSmartphysicalDeviceStatus_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -181,12 +181,12 @@ func RegisterProvisioningServiceHandlerServer(ctx context.Context, mux *runtime.
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.provisioning.v1.ProvisioningService/GetSmartMachineStatus", runtime.WithHTTPPathPattern("/viam.provisioning.v1.ProvisioningService/GetSmartMachineStatus"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.provisioning.v1.ProvisioningService/GetSmartphysicalDeviceStatus", runtime.WithHTTPPathPattern("/viam.provisioning.v1.ProvisioningService/GetSmartphysicalDeviceStatus"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ProvisioningService_GetSmartMachineStatus_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ProvisioningService_GetSmartphysicalDeviceStatus_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -194,7 +194,7 @@ func RegisterProvisioningServiceHandlerServer(ctx context.Context, mux *runtime.
 			return
 		}
 
-		forward_ProvisioningService_GetSmartMachineStatus_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ProvisioningService_GetSmartphysicalDeviceStatus_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -223,7 +223,7 @@ func RegisterProvisioningServiceHandlerServer(ctx context.Context, mux *runtime.
 
 	})
 
-	mux.Handle("POST", pattern_ProvisioningService_SetSmartMachineCredentials_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ProvisioningService_SetSmartphysicalDeviceCredentials_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -231,12 +231,12 @@ func RegisterProvisioningServiceHandlerServer(ctx context.Context, mux *runtime.
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.provisioning.v1.ProvisioningService/SetSmartMachineCredentials", runtime.WithHTTPPathPattern("/viam.provisioning.v1.ProvisioningService/SetSmartMachineCredentials"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.provisioning.v1.ProvisioningService/SetSmartphysicalDeviceCredentials", runtime.WithHTTPPathPattern("/viam.provisioning.v1.ProvisioningService/SetSmartphysicalDeviceCredentials"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ProvisioningService_SetSmartMachineCredentials_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ProvisioningService_SetSmartphysicalDeviceCredentials_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -244,7 +244,7 @@ func RegisterProvisioningServiceHandlerServer(ctx context.Context, mux *runtime.
 			return
 		}
 
-		forward_ProvisioningService_SetSmartMachineCredentials_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ProvisioningService_SetSmartphysicalDeviceCredentials_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -314,25 +314,25 @@ func RegisterProvisioningServiceHandler(ctx context.Context, mux *runtime.ServeM
 // "ProvisioningServiceClient" to call the correct interceptors.
 func RegisterProvisioningServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ProvisioningServiceClient) error {
 
-	mux.Handle("POST", pattern_ProvisioningService_GetSmartMachineStatus_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ProvisioningService_GetSmartphysicalDeviceStatus_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.provisioning.v1.ProvisioningService/GetSmartMachineStatus", runtime.WithHTTPPathPattern("/viam.provisioning.v1.ProvisioningService/GetSmartMachineStatus"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.provisioning.v1.ProvisioningService/GetSmartphysicalDeviceStatus", runtime.WithHTTPPathPattern("/viam.provisioning.v1.ProvisioningService/GetSmartphysicalDeviceStatus"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ProvisioningService_GetSmartMachineStatus_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ProvisioningService_GetSmartphysicalDeviceStatus_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ProvisioningService_GetSmartMachineStatus_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ProvisioningService_GetSmartphysicalDeviceStatus_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -358,25 +358,25 @@ func RegisterProvisioningServiceHandlerClient(ctx context.Context, mux *runtime.
 
 	})
 
-	mux.Handle("POST", pattern_ProvisioningService_SetSmartMachineCredentials_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ProvisioningService_SetSmartphysicalDeviceCredentials_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.provisioning.v1.ProvisioningService/SetSmartMachineCredentials", runtime.WithHTTPPathPattern("/viam.provisioning.v1.ProvisioningService/SetSmartMachineCredentials"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.provisioning.v1.ProvisioningService/SetSmartphysicalDeviceCredentials", runtime.WithHTTPPathPattern("/viam.provisioning.v1.ProvisioningService/SetSmartphysicalDeviceCredentials"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ProvisioningService_SetSmartMachineCredentials_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ProvisioningService_SetSmartphysicalDeviceCredentials_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ProvisioningService_SetSmartMachineCredentials_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ProvisioningService_SetSmartphysicalDeviceCredentials_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -406,21 +406,21 @@ func RegisterProvisioningServiceHandlerClient(ctx context.Context, mux *runtime.
 }
 
 var (
-	pattern_ProvisioningService_GetSmartMachineStatus_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.provisioning.v1.ProvisioningService", "GetSmartMachineStatus"}, ""))
+	pattern_ProvisioningService_GetSmartphysicalDeviceStatus_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.provisioning.v1.ProvisioningService", "GetSmartphysicalDeviceStatus"}, ""))
 
 	pattern_ProvisioningService_SetNetworkCredentials_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.provisioning.v1.ProvisioningService", "SetNetworkCredentials"}, ""))
 
-	pattern_ProvisioningService_SetSmartMachineCredentials_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.provisioning.v1.ProvisioningService", "SetSmartMachineCredentials"}, ""))
+	pattern_ProvisioningService_SetSmartphysicalDeviceCredentials_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.provisioning.v1.ProvisioningService", "SetSmartphysicalDeviceCredentials"}, ""))
 
 	pattern_ProvisioningService_GetNetworkList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.provisioning.v1.ProvisioningService", "GetNetworkList"}, ""))
 )
 
 var (
-	forward_ProvisioningService_GetSmartMachineStatus_0 = runtime.ForwardResponseMessage
+	forward_ProvisioningService_GetSmartphysicalDeviceStatus_0 = runtime.ForwardResponseMessage
 
 	forward_ProvisioningService_SetNetworkCredentials_0 = runtime.ForwardResponseMessage
 
-	forward_ProvisioningService_SetSmartMachineCredentials_0 = runtime.ForwardResponseMessage
+	forward_ProvisioningService_SetSmartphysicalDeviceCredentials_0 = runtime.ForwardResponseMessage
 
 	forward_ProvisioningService_GetNetworkList_0 = runtime.ForwardResponseMessage
 )

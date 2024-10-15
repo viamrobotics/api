@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: app/v1/robot.proto
+// source: app/v1/physicalDevice.proto
 
 package v1
 
@@ -30,8 +30,8 @@ const (
 	CredentialsType_CREDENTIALS_TYPE_UNSPECIFIED           CredentialsType = 0
 	CredentialsType_CREDENTIALS_TYPE_INTERNAL              CredentialsType = 1
 	CredentialsType_CREDENTIALS_TYPE_API_KEY               CredentialsType = 2
-	CredentialsType_CREDENTIALS_TYPE_ROBOT_SECRET          CredentialsType = 3
-	CredentialsType_CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET CredentialsType = 4
+	CredentialsType_CREDENTIALS_TYPE_physicalDevice_SECRET          CredentialsType = 3
+	CredentialsType_CREDENTIALS_TYPE_physicalDevice_LOCATION_SECRET CredentialsType = 4
 )
 
 // Enum value maps for CredentialsType.
@@ -40,15 +40,15 @@ var (
 		0: "CREDENTIALS_TYPE_UNSPECIFIED",
 		1: "CREDENTIALS_TYPE_INTERNAL",
 		2: "CREDENTIALS_TYPE_API_KEY",
-		3: "CREDENTIALS_TYPE_ROBOT_SECRET",
-		4: "CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET",
+		3: "CREDENTIALS_TYPE_physicalDevice_SECRET",
+		4: "CREDENTIALS_TYPE_physicalDevice_LOCATION_SECRET",
 	}
 	CredentialsType_value = map[string]int32{
 		"CREDENTIALS_TYPE_UNSPECIFIED":           0,
 		"CREDENTIALS_TYPE_INTERNAL":              1,
 		"CREDENTIALS_TYPE_API_KEY":               2,
-		"CREDENTIALS_TYPE_ROBOT_SECRET":          3,
-		"CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET": 4,
+		"CREDENTIALS_TYPE_physicalDevice_SECRET":          3,
+		"CREDENTIALS_TYPE_physicalDevice_LOCATION_SECRET": 4,
 	}
 )
 
@@ -63,11 +63,11 @@ func (x CredentialsType) String() string {
 }
 
 func (CredentialsType) Descriptor() protoreflect.EnumDescriptor {
-	return file_app_v1_robot_proto_enumTypes[0].Descriptor()
+	return file_app_v1_physicalDevice_proto_enumTypes[0].Descriptor()
 }
 
 func (CredentialsType) Type() protoreflect.EnumType {
-	return &file_app_v1_robot_proto_enumTypes[0]
+	return &file_app_v1_physicalDevice_proto_enumTypes[0]
 }
 
 func (x CredentialsType) Number() protoreflect.EnumNumber {
@@ -76,10 +76,10 @@ func (x CredentialsType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use CredentialsType.Descriptor instead.
 func (CredentialsType) EnumDescriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{0}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{0}
 }
 
-type RobotConfig struct {
+type physicalDeviceConfig struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -91,7 +91,7 @@ type RobotConfig struct {
 	Services   []*ServiceConfig   `protobuf:"bytes,5,rep,name=services,proto3" json:"services,omitempty"`
 	Network    *NetworkConfig     `protobuf:"bytes,6,opt,name=network,proto3,oneof" json:"network,omitempty"`
 	Auth       *AuthConfig        `protobuf:"bytes,7,opt,name=auth,proto3,oneof" json:"auth,omitempty"`
-	// Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart
+	// Turns on debug mode for physicalDevice, adding an echo server and more logging and tracing. Only works after restart
 	Debug                   *bool                  `protobuf:"varint,8,opt,name=debug,proto3,oneof" json:"debug,omitempty"`
 	Modules                 []*ModuleConfig        `protobuf:"bytes,9,rep,name=modules,proto3" json:"modules,omitempty"`
 	DisablePartialStart     *bool                  `protobuf:"varint,10,opt,name=disable_partial_start,json=disablePartialStart,proto3,oneof" json:"disable_partial_start,omitempty"`
@@ -101,23 +101,23 @@ type RobotConfig struct {
 	EnableWebProfile bool `protobuf:"varint,13,opt,name=enable_web_profile,json=enableWebProfile,proto3" json:"enable_web_profile,omitempty"`
 }
 
-func (x *RobotConfig) Reset() {
-	*x = RobotConfig{}
+func (x *physicalDeviceConfig) Reset() {
+	*x = physicalDeviceConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[0]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *RobotConfig) String() string {
+func (x *physicalDeviceConfig) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RobotConfig) ProtoMessage() {}
+func (*physicalDeviceConfig) ProtoMessage() {}
 
-func (x *RobotConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[0]
+func (x *physicalDeviceConfig) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -128,103 +128,103 @@ func (x *RobotConfig) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RobotConfig.ProtoReflect.Descriptor instead.
-func (*RobotConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use physicalDeviceConfig.ProtoReflect.Descriptor instead.
+func (*physicalDeviceConfig) Descriptor() ([]byte, []int) {
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *RobotConfig) GetCloud() *CloudConfig {
+func (x *physicalDeviceConfig) GetCloud() *CloudConfig {
 	if x != nil {
 		return x.Cloud
 	}
 	return nil
 }
 
-func (x *RobotConfig) GetRemotes() []*RemoteConfig {
+func (x *physicalDeviceConfig) GetRemotes() []*RemoteConfig {
 	if x != nil {
 		return x.Remotes
 	}
 	return nil
 }
 
-func (x *RobotConfig) GetComponents() []*ComponentConfig {
+func (x *physicalDeviceConfig) GetComponents() []*ComponentConfig {
 	if x != nil {
 		return x.Components
 	}
 	return nil
 }
 
-func (x *RobotConfig) GetProcesses() []*ProcessConfig {
+func (x *physicalDeviceConfig) GetProcesses() []*ProcessConfig {
 	if x != nil {
 		return x.Processes
 	}
 	return nil
 }
 
-func (x *RobotConfig) GetServices() []*ServiceConfig {
+func (x *physicalDeviceConfig) GetServices() []*ServiceConfig {
 	if x != nil {
 		return x.Services
 	}
 	return nil
 }
 
-func (x *RobotConfig) GetNetwork() *NetworkConfig {
+func (x *physicalDeviceConfig) GetNetwork() *NetworkConfig {
 	if x != nil {
 		return x.Network
 	}
 	return nil
 }
 
-func (x *RobotConfig) GetAuth() *AuthConfig {
+func (x *physicalDeviceConfig) GetAuth() *AuthConfig {
 	if x != nil {
 		return x.Auth
 	}
 	return nil
 }
 
-func (x *RobotConfig) GetDebug() bool {
+func (x *physicalDeviceConfig) GetDebug() bool {
 	if x != nil && x.Debug != nil {
 		return *x.Debug
 	}
 	return false
 }
 
-func (x *RobotConfig) GetModules() []*ModuleConfig {
+func (x *physicalDeviceConfig) GetModules() []*ModuleConfig {
 	if x != nil {
 		return x.Modules
 	}
 	return nil
 }
 
-func (x *RobotConfig) GetDisablePartialStart() bool {
+func (x *physicalDeviceConfig) GetDisablePartialStart() bool {
 	if x != nil && x.DisablePartialStart != nil {
 		return *x.DisablePartialStart
 	}
 	return false
 }
 
-func (x *RobotConfig) GetPackages() []*PackageConfig {
+func (x *physicalDeviceConfig) GetPackages() []*PackageConfig {
 	if x != nil {
 		return x.Packages
 	}
 	return nil
 }
 
-func (x *RobotConfig) GetOverwriteFragmentStatus() []*AppValidationStatus {
+func (x *physicalDeviceConfig) GetOverwriteFragmentStatus() []*AppValidationStatus {
 	if x != nil {
 		return x.OverwriteFragmentStatus
 	}
 	return nil
 }
 
-func (x *RobotConfig) GetEnableWebProfile() bool {
+func (x *physicalDeviceConfig) GetEnableWebProfile() bool {
 	if x != nil {
 		return x.EnableWebProfile
 	}
 	return false
 }
 
-// Valid location secret that can be used for authentication to the robot.
+// Valid location secret that can be used for authentication to the physicalDevice.
 type LocationSecret struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -238,7 +238,7 @@ type LocationSecret struct {
 func (x *LocationSecret) Reset() {
 	*x = LocationSecret{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[1]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -251,7 +251,7 @@ func (x *LocationSecret) String() string {
 func (*LocationSecret) ProtoMessage() {}
 
 func (x *LocationSecret) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[1]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -264,7 +264,7 @@ func (x *LocationSecret) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LocationSecret.ProtoReflect.Descriptor instead.
 func (*LocationSecret) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{1}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *LocationSecret) GetId() string {
@@ -292,7 +292,7 @@ type AppValidationStatus struct {
 func (x *AppValidationStatus) Reset() {
 	*x = AppValidationStatus{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[2]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -305,7 +305,7 @@ func (x *AppValidationStatus) String() string {
 func (*AppValidationStatus) ProtoMessage() {}
 
 func (x *AppValidationStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[2]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -318,7 +318,7 @@ func (x *AppValidationStatus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AppValidationStatus.ProtoReflect.Descriptor instead.
 func (*AppValidationStatus) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{2}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *AppValidationStatus) GetError() string {
@@ -333,7 +333,7 @@ type CloudConfig struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Robot part id.
+	// physicalDevice part id.
 	Id                string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Fqdn              string `protobuf:"bytes,2,opt,name=fqdn,proto3" json:"fqdn,omitempty"`
 	LocalFqdn         string `protobuf:"bytes,3,opt,name=local_fqdn,json=localFqdn,proto3" json:"local_fqdn,omitempty"`
@@ -342,21 +342,21 @@ type CloudConfig struct {
 	SignalingInsecure bool   `protobuf:"varint,6,opt,name=signaling_insecure,json=signalingInsecure,proto3" json:"signaling_insecure,omitempty"`
 	// Deprecated use location_secrets
 	//
-	// Deprecated: Marked as deprecated in app/v1/robot.proto.
+	// Deprecated: Marked as deprecated in app/v1/physicalDevice.proto.
 	LocationSecret string `protobuf:"bytes,7,opt,name=location_secret,json=locationSecret,proto3" json:"location_secret,omitempty"`
-	// Robot part secret
+	// physicalDevice part secret
 	Secret string `protobuf:"bytes,8,opt,name=secret,proto3" json:"secret,omitempty"`
 	// All valid location secrets.
 	LocationSecrets []*LocationSecret `protobuf:"bytes,9,rep,name=location_secrets,json=locationSecrets,proto3" json:"location_secrets,omitempty"`
 	PrimaryOrgId    string            `protobuf:"bytes,10,opt,name=primary_org_id,json=primaryOrgId,proto3" json:"primary_org_id,omitempty"`
 	LocationId      string            `protobuf:"bytes,11,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
-	MachineId       string            `protobuf:"bytes,12,opt,name=machine_id,json=machineId,proto3" json:"machine_id,omitempty"`
+	physicalDeviceId       string            `protobuf:"bytes,12,opt,name=physicalDevice_id,json=physicalDeviceId,proto3" json:"physicalDevice_id,omitempty"`
 }
 
 func (x *CloudConfig) Reset() {
 	*x = CloudConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[3]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -369,7 +369,7 @@ func (x *CloudConfig) String() string {
 func (*CloudConfig) ProtoMessage() {}
 
 func (x *CloudConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[3]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -382,7 +382,7 @@ func (x *CloudConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CloudConfig.ProtoReflect.Descriptor instead.
 func (*CloudConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{3}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CloudConfig) GetId() string {
@@ -427,7 +427,7 @@ func (x *CloudConfig) GetSignalingInsecure() bool {
 	return false
 }
 
-// Deprecated: Marked as deprecated in app/v1/robot.proto.
+// Deprecated: Marked as deprecated in app/v1/physicalDevice.proto.
 func (x *CloudConfig) GetLocationSecret() string {
 	if x != nil {
 		return x.LocationSecret
@@ -463,9 +463,9 @@ func (x *CloudConfig) GetLocationId() string {
 	return ""
 }
 
-func (x *CloudConfig) GetMachineId() string {
+func (x *CloudConfig) GetphysicalDeviceId() string {
 	if x != nil {
-		return x.MachineId
+		return x.physicalDeviceId
 	}
 	return ""
 }
@@ -490,7 +490,7 @@ type ComponentConfig struct {
 func (x *ComponentConfig) Reset() {
 	*x = ComponentConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[4]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -503,7 +503,7 @@ func (x *ComponentConfig) String() string {
 func (*ComponentConfig) ProtoMessage() {}
 
 func (x *ComponentConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[4]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -516,7 +516,7 @@ func (x *ComponentConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ComponentConfig.ProtoReflect.Descriptor instead.
 func (*ComponentConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{4}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ComponentConfig) GetName() string {
@@ -603,7 +603,7 @@ type ResourceLevelServiceConfig struct {
 func (x *ResourceLevelServiceConfig) Reset() {
 	*x = ResourceLevelServiceConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[5]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -616,7 +616,7 @@ func (x *ResourceLevelServiceConfig) String() string {
 func (*ResourceLevelServiceConfig) ProtoMessage() {}
 
 func (x *ResourceLevelServiceConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[5]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -629,7 +629,7 @@ func (x *ResourceLevelServiceConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceLevelServiceConfig.ProtoReflect.Descriptor instead.
 func (*ResourceLevelServiceConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{5}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ResourceLevelServiceConfig) GetType() string {
@@ -667,7 +667,7 @@ type ProcessConfig struct {
 func (x *ProcessConfig) Reset() {
 	*x = ProcessConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[6]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -680,7 +680,7 @@ func (x *ProcessConfig) String() string {
 func (*ProcessConfig) ProtoMessage() {}
 
 func (x *ProcessConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[6]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -693,7 +693,7 @@ func (x *ProcessConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProcessConfig.ProtoReflect.Descriptor instead.
 func (*ProcessConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{6}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ProcessConfig) GetId() string {
@@ -777,7 +777,7 @@ type ServiceConfig struct {
 func (x *ServiceConfig) Reset() {
 	*x = ServiceConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[7]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -790,7 +790,7 @@ func (x *ServiceConfig) String() string {
 func (*ServiceConfig) ProtoMessage() {}
 
 func (x *ServiceConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[7]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -803,7 +803,7 @@ func (x *ServiceConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ServiceConfig.ProtoReflect.Descriptor instead.
 func (*ServiceConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{7}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ServiceConfig) GetName() string {
@@ -877,7 +877,7 @@ type NetworkConfig struct {
 func (x *NetworkConfig) Reset() {
 	*x = NetworkConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[8]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -890,7 +890,7 @@ func (x *NetworkConfig) String() string {
 func (*NetworkConfig) ProtoMessage() {}
 
 func (x *NetworkConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[8]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -903,7 +903,7 @@ func (x *NetworkConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NetworkConfig.ProtoReflect.Descriptor instead.
 func (*NetworkConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{8}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *NetworkConfig) GetFqdn() string {
@@ -952,7 +952,7 @@ type SessionsConfig struct {
 func (x *SessionsConfig) Reset() {
 	*x = SessionsConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[9]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -965,7 +965,7 @@ func (x *SessionsConfig) String() string {
 func (*SessionsConfig) ProtoMessage() {}
 
 func (x *SessionsConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[9]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -978,7 +978,7 @@ func (x *SessionsConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SessionsConfig.ProtoReflect.Descriptor instead.
 func (*SessionsConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{9}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *SessionsConfig) GetHeartbeatWindow() *durationpb.Duration {
@@ -1001,7 +1001,7 @@ type AuthConfig struct {
 func (x *AuthConfig) Reset() {
 	*x = AuthConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[10]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1014,7 +1014,7 @@ func (x *AuthConfig) String() string {
 func (*AuthConfig) ProtoMessage() {}
 
 func (x *AuthConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[10]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1027,7 +1027,7 @@ func (x *AuthConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthConfig.ProtoReflect.Descriptor instead.
 func (*AuthConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{10}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *AuthConfig) GetHandlers() []*AuthHandlerConfig {
@@ -1064,7 +1064,7 @@ type JWKSFile struct {
 func (x *JWKSFile) Reset() {
 	*x = JWKSFile{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[11]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1077,7 +1077,7 @@ func (x *JWKSFile) String() string {
 func (*JWKSFile) ProtoMessage() {}
 
 func (x *JWKSFile) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[11]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1090,7 +1090,7 @@ func (x *JWKSFile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JWKSFile.ProtoReflect.Descriptor instead.
 func (*JWKSFile) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{11}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *JWKSFile) GetJson() *structpb.Struct {
@@ -1100,7 +1100,7 @@ func (x *JWKSFile) GetJson() *structpb.Struct {
 	return nil
 }
 
-// ExternalAuthConfig describes how a viam managed robot can accept
+// ExternalAuthConfig describes how a viam managed physicalDevice can accept
 // credentials signed by the cloud app.
 type ExternalAuthConfig struct {
 	state         protoimpl.MessageState
@@ -1113,7 +1113,7 @@ type ExternalAuthConfig struct {
 func (x *ExternalAuthConfig) Reset() {
 	*x = ExternalAuthConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[12]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1126,7 +1126,7 @@ func (x *ExternalAuthConfig) String() string {
 func (*ExternalAuthConfig) ProtoMessage() {}
 
 func (x *ExternalAuthConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[12]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1139,7 +1139,7 @@ func (x *ExternalAuthConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExternalAuthConfig.ProtoReflect.Descriptor instead.
 func (*ExternalAuthConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{12}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ExternalAuthConfig) GetJwks() *JWKSFile {
@@ -1161,7 +1161,7 @@ type AuthHandlerConfig struct {
 func (x *AuthHandlerConfig) Reset() {
 	*x = AuthHandlerConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[13]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1174,7 +1174,7 @@ func (x *AuthHandlerConfig) String() string {
 func (*AuthHandlerConfig) ProtoMessage() {}
 
 func (x *AuthHandlerConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[13]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1187,7 +1187,7 @@ func (x *AuthHandlerConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthHandlerConfig.ProtoReflect.Descriptor instead.
 func (*AuthHandlerConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{13}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *AuthHandlerConfig) GetType() CredentialsType {
@@ -1218,7 +1218,7 @@ type Frame struct {
 func (x *Frame) Reset() {
 	*x = Frame{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[14]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1231,7 +1231,7 @@ func (x *Frame) String() string {
 func (*Frame) ProtoMessage() {}
 
 func (x *Frame) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[14]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1244,7 +1244,7 @@ func (x *Frame) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Frame.ProtoReflect.Descriptor instead.
 func (*Frame) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{14}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *Frame) GetParent() string {
@@ -1286,7 +1286,7 @@ type LogConfiguration struct {
 func (x *LogConfiguration) Reset() {
 	*x = LogConfiguration{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[15]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1299,7 +1299,7 @@ func (x *LogConfiguration) String() string {
 func (*LogConfiguration) ProtoMessage() {}
 
 func (x *LogConfiguration) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[15]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1312,7 +1312,7 @@ func (x *LogConfiguration) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogConfiguration.ProtoReflect.Descriptor instead.
 func (*LogConfiguration) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{15}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *LogConfiguration) GetLevel() string {
@@ -1335,7 +1335,7 @@ type Translation struct {
 func (x *Translation) Reset() {
 	*x = Translation{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[16]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1348,7 +1348,7 @@ func (x *Translation) String() string {
 func (*Translation) ProtoMessage() {}
 
 func (x *Translation) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[16]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1361,7 +1361,7 @@ func (x *Translation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Translation.ProtoReflect.Descriptor instead.
 func (*Translation) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{16}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *Translation) GetX() float64 {
@@ -1404,7 +1404,7 @@ type Orientation struct {
 func (x *Orientation) Reset() {
 	*x = Orientation{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[17]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1417,7 +1417,7 @@ func (x *Orientation) String() string {
 func (*Orientation) ProtoMessage() {}
 
 func (x *Orientation) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[17]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1430,7 +1430,7 @@ func (x *Orientation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Orientation.ProtoReflect.Descriptor instead.
 func (*Orientation) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{17}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{17}
 }
 
 func (m *Orientation) GetType() isOrientation_Type {
@@ -1522,9 +1522,9 @@ func (*Orientation_AxisAngles_) isOrientation_Type() {}
 
 func (*Orientation_Quaternion_) isOrientation_Type() {}
 
-// A RemoteConfig describes a remote robot that should be integrated.
-// The Frame field defines how the "world" node of the remote robot should be reconciled with the "world" node of the
-// the current robot. All components of the remote robot who have Parent as "world" will be attached to the parent defined
+// A RemoteConfig describes a remote physicalDevice that should be integrated.
+// The Frame field defines how the "world" node of the remote physicalDevice should be reconciled with the "world" node of the
+// the current physicalDevice. All components of the remote physicalDevice who have Parent as "world" will be attached to the parent defined
 // in Frame, and with the given offset as well.
 type RemoteConfig struct {
 	state         protoimpl.MessageState
@@ -1540,14 +1540,14 @@ type RemoteConfig struct {
 	ConnectionCheckInterval *durationpb.Duration          `protobuf:"bytes,7,opt,name=connection_check_interval,json=connectionCheckInterval,proto3" json:"connection_check_interval,omitempty"`
 	ReconnectInterval       *durationpb.Duration          `protobuf:"bytes,8,opt,name=reconnect_interval,json=reconnectInterval,proto3" json:"reconnect_interval,omitempty"`
 	ServiceConfigs          []*ResourceLevelServiceConfig `protobuf:"bytes,9,rep,name=service_configs,json=serviceConfigs,proto3" json:"service_config"`
-	// Secret is a helper for a robot location secret.
+	// Secret is a helper for a physicalDevice location secret.
 	Secret string `protobuf:"bytes,10,opt,name=secret,proto3" json:"secret,omitempty"`
 }
 
 func (x *RemoteConfig) Reset() {
 	*x = RemoteConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[18]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1560,7 +1560,7 @@ func (x *RemoteConfig) String() string {
 func (*RemoteConfig) ProtoMessage() {}
 
 func (x *RemoteConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[18]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1573,7 +1573,7 @@ func (x *RemoteConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoteConfig.ProtoReflect.Descriptor instead.
 func (*RemoteConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{18}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *RemoteConfig) GetName() string {
@@ -1661,7 +1661,7 @@ type RemoteAuth struct {
 func (x *RemoteAuth) Reset() {
 	*x = RemoteAuth{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[19]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1674,7 +1674,7 @@ func (x *RemoteAuth) String() string {
 func (*RemoteAuth) ProtoMessage() {}
 
 func (x *RemoteAuth) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[19]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1687,7 +1687,7 @@ func (x *RemoteAuth) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoteAuth.ProtoReflect.Descriptor instead.
 func (*RemoteAuth) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{19}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *RemoteAuth) GetCredentials() *RemoteAuth_Credentials {
@@ -1723,7 +1723,7 @@ type AgentInfo struct {
 func (x *AgentInfo) Reset() {
 	*x = AgentInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[20]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1736,7 +1736,7 @@ func (x *AgentInfo) String() string {
 func (*AgentInfo) ProtoMessage() {}
 
 func (x *AgentInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[20]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1749,7 +1749,7 @@ func (x *AgentInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AgentInfo.ProtoReflect.Descriptor instead.
 func (*AgentInfo) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{20}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *AgentInfo) GetHost() string {
@@ -1799,7 +1799,7 @@ type ConfigRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Robot part id.
+	// physicalDevice part id.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// Details about the RDK (os, version) are updated during this request.
 	AgentInfo *AgentInfo `protobuf:"bytes,2,opt,name=agent_info,json=agentInfo,proto3,oneof" json:"agent_info,omitempty"`
@@ -1808,7 +1808,7 @@ type ConfigRequest struct {
 func (x *ConfigRequest) Reset() {
 	*x = ConfigRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[21]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1821,7 +1821,7 @@ func (x *ConfigRequest) String() string {
 func (*ConfigRequest) ProtoMessage() {}
 
 func (x *ConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[21]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1834,7 +1834,7 @@ func (x *ConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigRequest.ProtoReflect.Descriptor instead.
 func (*ConfigRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{21}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ConfigRequest) GetId() string {
@@ -1856,13 +1856,13 @@ type ConfigResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Config *RobotConfig `protobuf:"bytes,1,opt,name=config,proto3" json:"config,omitempty"`
+	Config *physicalDeviceConfig `protobuf:"bytes,1,opt,name=config,proto3" json:"config,omitempty"`
 }
 
 func (x *ConfigResponse) Reset() {
 	*x = ConfigResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[22]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1875,7 +1875,7 @@ func (x *ConfigResponse) String() string {
 func (*ConfigResponse) ProtoMessage() {}
 
 func (x *ConfigResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[22]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1888,10 +1888,10 @@ func (x *ConfigResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigResponse.ProtoReflect.Descriptor instead.
 func (*ConfigResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{22}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{22}
 }
 
-func (x *ConfigResponse) GetConfig() *RobotConfig {
+func (x *ConfigResponse) GetConfig() *physicalDeviceConfig {
 	if x != nil {
 		return x.Config
 	}
@@ -1903,14 +1903,14 @@ type CertificateRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Robot part id.
+	// physicalDevice part id.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
 func (x *CertificateRequest) Reset() {
 	*x = CertificateRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[23]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1923,7 +1923,7 @@ func (x *CertificateRequest) String() string {
 func (*CertificateRequest) ProtoMessage() {}
 
 func (x *CertificateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[23]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1936,7 +1936,7 @@ func (x *CertificateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CertificateRequest.ProtoReflect.Descriptor instead.
 func (*CertificateRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{23}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *CertificateRequest) GetId() string {
@@ -1951,7 +1951,7 @@ type CertificateResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Robot part id.
+	// physicalDevice part id.
 	Id             string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	TlsCertificate string `protobuf:"bytes,2,opt,name=tls_certificate,json=tlsCertificate,proto3" json:"tls_certificate,omitempty"`
 	TlsPrivateKey  string `protobuf:"bytes,3,opt,name=tls_private_key,json=tlsPrivateKey,proto3" json:"tls_private_key,omitempty"`
@@ -1960,7 +1960,7 @@ type CertificateResponse struct {
 func (x *CertificateResponse) Reset() {
 	*x = CertificateResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[24]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1973,7 +1973,7 @@ func (x *CertificateResponse) String() string {
 func (*CertificateResponse) ProtoMessage() {}
 
 func (x *CertificateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[24]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1986,7 +1986,7 @@ func (x *CertificateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CertificateResponse.ProtoReflect.Descriptor instead.
 func (*CertificateResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{24}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *CertificateResponse) GetId() string {
@@ -2015,7 +2015,7 @@ type LogRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Robot part id.
+	// physicalDevice part id.
 	Id   string         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Logs []*v1.LogEntry `protobuf:"bytes,2,rep,name=logs,proto3" json:"logs,omitempty"`
 }
@@ -2023,7 +2023,7 @@ type LogRequest struct {
 func (x *LogRequest) Reset() {
 	*x = LogRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[25]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2036,7 +2036,7 @@ func (x *LogRequest) String() string {
 func (*LogRequest) ProtoMessage() {}
 
 func (x *LogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[25]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2049,7 +2049,7 @@ func (x *LogRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogRequest.ProtoReflect.Descriptor instead.
 func (*LogRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{25}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *LogRequest) GetId() string {
@@ -2075,7 +2075,7 @@ type LogResponse struct {
 func (x *LogResponse) Reset() {
 	*x = LogResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[26]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2088,7 +2088,7 @@ func (x *LogResponse) String() string {
 func (*LogResponse) ProtoMessage() {}
 
 func (x *LogResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[26]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2101,7 +2101,7 @@ func (x *LogResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogResponse.ProtoReflect.Descriptor instead.
 func (*LogResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{26}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{26}
 }
 
 type NeedsRestartRequest struct {
@@ -2109,14 +2109,14 @@ type NeedsRestartRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Robot part id.
+	// physicalDevice part id.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
 func (x *NeedsRestartRequest) Reset() {
 	*x = NeedsRestartRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[27]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2129,7 +2129,7 @@ func (x *NeedsRestartRequest) String() string {
 func (*NeedsRestartRequest) ProtoMessage() {}
 
 func (x *NeedsRestartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[27]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2142,7 +2142,7 @@ func (x *NeedsRestartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NeedsRestartRequest.ProtoReflect.Descriptor instead.
 func (*NeedsRestartRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{27}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *NeedsRestartRequest) GetId() string {
@@ -2157,7 +2157,7 @@ type NeedsRestartResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Robot part id.
+	// physicalDevice part id.
 	Id                   string               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	MustRestart          bool                 `protobuf:"varint,2,opt,name=must_restart,json=mustRestart,proto3" json:"must_restart,omitempty"`
 	RestartCheckInterval *durationpb.Duration `protobuf:"bytes,3,opt,name=restart_check_interval,json=restartCheckInterval,proto3" json:"restart_check_interval,omitempty"`
@@ -2166,7 +2166,7 @@ type NeedsRestartResponse struct {
 func (x *NeedsRestartResponse) Reset() {
 	*x = NeedsRestartResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[28]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2179,7 +2179,7 @@ func (x *NeedsRestartResponse) String() string {
 func (*NeedsRestartResponse) ProtoMessage() {}
 
 func (x *NeedsRestartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[28]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2192,7 +2192,7 @@ func (x *NeedsRestartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NeedsRestartResponse.ProtoReflect.Descriptor instead.
 func (*NeedsRestartResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{28}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *NeedsRestartResponse) GetId() string {
@@ -2240,7 +2240,7 @@ type ModuleConfig struct {
 func (x *ModuleConfig) Reset() {
 	*x = ModuleConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[29]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2253,7 +2253,7 @@ func (x *ModuleConfig) String() string {
 func (*ModuleConfig) ProtoMessage() {}
 
 func (x *ModuleConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[29]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2266,7 +2266,7 @@ func (x *ModuleConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ModuleConfig.ProtoReflect.Descriptor instead.
 func (*ModuleConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{29}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *ModuleConfig) GetName() string {
@@ -2339,7 +2339,7 @@ type PackageConfig struct {
 func (x *PackageConfig) Reset() {
 	*x = PackageConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[30]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2352,7 +2352,7 @@ func (x *PackageConfig) String() string {
 func (*PackageConfig) ProtoMessage() {}
 
 func (x *PackageConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[30]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2365,7 +2365,7 @@ func (x *PackageConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PackageConfig.ProtoReflect.Descriptor instead.
 func (*PackageConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{30}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *PackageConfig) GetName() string {
@@ -2412,7 +2412,7 @@ type Orientation_NoOrientation struct {
 func (x *Orientation_NoOrientation) Reset() {
 	*x = Orientation_NoOrientation{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[32]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2425,7 +2425,7 @@ func (x *Orientation_NoOrientation) String() string {
 func (*Orientation_NoOrientation) ProtoMessage() {}
 
 func (x *Orientation_NoOrientation) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[32]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2438,7 +2438,7 @@ func (x *Orientation_NoOrientation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Orientation_NoOrientation.ProtoReflect.Descriptor instead.
 func (*Orientation_NoOrientation) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{17, 0}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{17, 0}
 }
 
 // OrientationVector containing ox, oy, oz, theta represents an orientation vector
@@ -2464,7 +2464,7 @@ type Orientation_OrientationVectorRadians struct {
 func (x *Orientation_OrientationVectorRadians) Reset() {
 	*x = Orientation_OrientationVectorRadians{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[33]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2477,7 +2477,7 @@ func (x *Orientation_OrientationVectorRadians) String() string {
 func (*Orientation_OrientationVectorRadians) ProtoMessage() {}
 
 func (x *Orientation_OrientationVectorRadians) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[33]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2490,7 +2490,7 @@ func (x *Orientation_OrientationVectorRadians) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use Orientation_OrientationVectorRadians.ProtoReflect.Descriptor instead.
 func (*Orientation_OrientationVectorRadians) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{17, 1}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{17, 1}
 }
 
 func (x *Orientation_OrientationVectorRadians) GetTheta() float64 {
@@ -2537,7 +2537,7 @@ type Orientation_OrientationVectorDegrees struct {
 func (x *Orientation_OrientationVectorDegrees) Reset() {
 	*x = Orientation_OrientationVectorDegrees{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[34]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2550,7 +2550,7 @@ func (x *Orientation_OrientationVectorDegrees) String() string {
 func (*Orientation_OrientationVectorDegrees) ProtoMessage() {}
 
 func (x *Orientation_OrientationVectorDegrees) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[34]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2563,7 +2563,7 @@ func (x *Orientation_OrientationVectorDegrees) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use Orientation_OrientationVectorDegrees.ProtoReflect.Descriptor instead.
 func (*Orientation_OrientationVectorDegrees) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{17, 2}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{17, 2}
 }
 
 func (x *Orientation_OrientationVectorDegrees) GetTheta() float64 {
@@ -2609,7 +2609,7 @@ type Orientation_EulerAngles struct {
 func (x *Orientation_EulerAngles) Reset() {
 	*x = Orientation_EulerAngles{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[35]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2622,7 +2622,7 @@ func (x *Orientation_EulerAngles) String() string {
 func (*Orientation_EulerAngles) ProtoMessage() {}
 
 func (x *Orientation_EulerAngles) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[35]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2635,7 +2635,7 @@ func (x *Orientation_EulerAngles) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Orientation_EulerAngles.ProtoReflect.Descriptor instead.
 func (*Orientation_EulerAngles) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{17, 3}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{17, 3}
 }
 
 func (x *Orientation_EulerAngles) GetRoll() float64 {
@@ -2680,7 +2680,7 @@ type Orientation_AxisAngles struct {
 func (x *Orientation_AxisAngles) Reset() {
 	*x = Orientation_AxisAngles{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[36]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2693,7 +2693,7 @@ func (x *Orientation_AxisAngles) String() string {
 func (*Orientation_AxisAngles) ProtoMessage() {}
 
 func (x *Orientation_AxisAngles) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[36]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2706,7 +2706,7 @@ func (x *Orientation_AxisAngles) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Orientation_AxisAngles.ProtoReflect.Descriptor instead.
 func (*Orientation_AxisAngles) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{17, 4}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{17, 4}
 }
 
 func (x *Orientation_AxisAngles) GetTheta() float64 {
@@ -2752,7 +2752,7 @@ type Orientation_Quaternion struct {
 func (x *Orientation_Quaternion) Reset() {
 	*x = Orientation_Quaternion{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[37]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2765,7 +2765,7 @@ func (x *Orientation_Quaternion) String() string {
 func (*Orientation_Quaternion) ProtoMessage() {}
 
 func (x *Orientation_Quaternion) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[37]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2778,7 +2778,7 @@ func (x *Orientation_Quaternion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Orientation_Quaternion.ProtoReflect.Descriptor instead.
 func (*Orientation_Quaternion) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{17, 5}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{17, 5}
 }
 
 func (x *Orientation_Quaternion) GetW() float64 {
@@ -2823,7 +2823,7 @@ type RemoteAuth_Credentials struct {
 func (x *RemoteAuth_Credentials) Reset() {
 	*x = RemoteAuth_Credentials{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_app_v1_robot_proto_msgTypes[38]
+		mi := &file_app_v1_physicalDevice_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2836,7 +2836,7 @@ func (x *RemoteAuth_Credentials) String() string {
 func (*RemoteAuth_Credentials) ProtoMessage() {}
 
 func (x *RemoteAuth_Credentials) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[38]
+	mi := &file_app_v1_physicalDevice_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2849,7 +2849,7 @@ func (x *RemoteAuth_Credentials) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoteAuth_Credentials.ProtoReflect.Descriptor instead.
 func (*RemoteAuth_Credentials) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{19, 0}
+	return file_app_v1_physicalDevice_proto_rawDescGZIP(), []int{19, 0}
 }
 
 func (x *RemoteAuth_Credentials) GetType() CredentialsType {
@@ -2866,9 +2866,9 @@ func (x *RemoteAuth_Credentials) GetPayload() string {
 	return ""
 }
 
-var File_app_v1_robot_proto protoreflect.FileDescriptor
+var File_app_v1_physicalDevice_proto protoreflect.FileDescriptor
 
-var file_app_v1_robot_proto_rawDesc = []byte{
+var file_app_v1_physicalDevice_proto_rawDesc = []byte{
 	0x0a, 0x12, 0x61, 0x70, 0x70, 0x2f, 0x76, 0x31, 0x2f, 0x72, 0x6f, 0x62, 0x6f, 0x74, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0b, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76,
 	0x31, 0x1a, 0x16, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x6d,
@@ -3327,22 +3327,22 @@ var file_app_v1_robot_proto_rawDesc = []byte{
 }
 
 var (
-	file_app_v1_robot_proto_rawDescOnce sync.Once
-	file_app_v1_robot_proto_rawDescData = file_app_v1_robot_proto_rawDesc
+	file_app_v1_physicalDevice_proto_rawDescOnce sync.Once
+	file_app_v1_physicalDevice_proto_rawDescData = file_app_v1_physicalDevice_proto_rawDesc
 )
 
-func file_app_v1_robot_proto_rawDescGZIP() []byte {
-	file_app_v1_robot_proto_rawDescOnce.Do(func() {
-		file_app_v1_robot_proto_rawDescData = protoimpl.X.CompressGZIP(file_app_v1_robot_proto_rawDescData)
+func file_app_v1_physicalDevice_proto_rawDescGZIP() []byte {
+	file_app_v1_physicalDevice_proto_rawDescOnce.Do(func() {
+		file_app_v1_physicalDevice_proto_rawDescData = protoimpl.X.CompressGZIP(file_app_v1_physicalDevice_proto_rawDescData)
 	})
-	return file_app_v1_robot_proto_rawDescData
+	return file_app_v1_physicalDevice_proto_rawDescData
 }
 
-var file_app_v1_robot_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_app_v1_robot_proto_msgTypes = make([]protoimpl.MessageInfo, 40)
-var file_app_v1_robot_proto_goTypes = []interface{}{
+var file_app_v1_physicalDevice_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_app_v1_physicalDevice_proto_msgTypes = make([]protoimpl.MessageInfo, 40)
+var file_app_v1_physicalDevice_proto_goTypes = []interface{}{
 	(CredentialsType)(0),                         // 0: viam.app.v1.CredentialsType
-	(*RobotConfig)(nil),                          // 1: viam.app.v1.RobotConfig
+	(*physicalDeviceConfig)(nil),                          // 1: viam.app.v1.physicalDeviceConfig
 	(*LocationSecret)(nil),                       // 2: viam.app.v1.LocationSecret
 	(*AppValidationStatus)(nil),                  // 3: viam.app.v1.AppValidationStatus
 	(*CloudConfig)(nil),                          // 4: viam.app.v1.CloudConfig
@@ -3387,17 +3387,17 @@ var file_app_v1_robot_proto_goTypes = []interface{}{
 	(*v1.Geometry)(nil),                          // 43: viam.common.v1.Geometry
 	(*v1.LogEntry)(nil),                          // 44: viam.common.v1.LogEntry
 }
-var file_app_v1_robot_proto_depIdxs = []int32{
-	4,  // 0: viam.app.v1.RobotConfig.cloud:type_name -> viam.app.v1.CloudConfig
-	19, // 1: viam.app.v1.RobotConfig.remotes:type_name -> viam.app.v1.RemoteConfig
-	5,  // 2: viam.app.v1.RobotConfig.components:type_name -> viam.app.v1.ComponentConfig
-	7,  // 3: viam.app.v1.RobotConfig.processes:type_name -> viam.app.v1.ProcessConfig
-	8,  // 4: viam.app.v1.RobotConfig.services:type_name -> viam.app.v1.ServiceConfig
-	9,  // 5: viam.app.v1.RobotConfig.network:type_name -> viam.app.v1.NetworkConfig
-	11, // 6: viam.app.v1.RobotConfig.auth:type_name -> viam.app.v1.AuthConfig
-	30, // 7: viam.app.v1.RobotConfig.modules:type_name -> viam.app.v1.ModuleConfig
-	31, // 8: viam.app.v1.RobotConfig.packages:type_name -> viam.app.v1.PackageConfig
-	3,  // 9: viam.app.v1.RobotConfig.overwrite_fragment_status:type_name -> viam.app.v1.AppValidationStatus
+var file_app_v1_physicalDevice_proto_depIdxs = []int32{
+	4,  // 0: viam.app.v1.physicalDeviceConfig.cloud:type_name -> viam.app.v1.CloudConfig
+	19, // 1: viam.app.v1.physicalDeviceConfig.remotes:type_name -> viam.app.v1.RemoteConfig
+	5,  // 2: viam.app.v1.physicalDeviceConfig.components:type_name -> viam.app.v1.ComponentConfig
+	7,  // 3: viam.app.v1.physicalDeviceConfig.processes:type_name -> viam.app.v1.ProcessConfig
+	8,  // 4: viam.app.v1.physicalDeviceConfig.services:type_name -> viam.app.v1.ServiceConfig
+	9,  // 5: viam.app.v1.physicalDeviceConfig.network:type_name -> viam.app.v1.NetworkConfig
+	11, // 6: viam.app.v1.physicalDeviceConfig.auth:type_name -> viam.app.v1.AuthConfig
+	30, // 7: viam.app.v1.physicalDeviceConfig.modules:type_name -> viam.app.v1.ModuleConfig
+	31, // 8: viam.app.v1.physicalDeviceConfig.packages:type_name -> viam.app.v1.PackageConfig
+	3,  // 9: viam.app.v1.physicalDeviceConfig.overwrite_fragment_status:type_name -> viam.app.v1.AppValidationStatus
 	2,  // 10: viam.app.v1.CloudConfig.location_secrets:type_name -> viam.app.v1.LocationSecret
 	15, // 11: viam.app.v1.ComponentConfig.frame:type_name -> viam.app.v1.Frame
 	6,  // 12: viam.app.v1.ComponentConfig.service_configs:type_name -> viam.app.v1.ResourceLevelServiceConfig
@@ -3432,21 +3432,21 @@ var file_app_v1_robot_proto_depIdxs = []int32{
 	6,  // 41: viam.app.v1.RemoteConfig.service_configs:type_name -> viam.app.v1.ResourceLevelServiceConfig
 	39, // 42: viam.app.v1.RemoteAuth.credentials:type_name -> viam.app.v1.RemoteAuth.Credentials
 	21, // 43: viam.app.v1.ConfigRequest.agent_info:type_name -> viam.app.v1.AgentInfo
-	1,  // 44: viam.app.v1.ConfigResponse.config:type_name -> viam.app.v1.RobotConfig
+	1,  // 44: viam.app.v1.ConfigResponse.config:type_name -> viam.app.v1.physicalDeviceConfig
 	44, // 45: viam.app.v1.LogRequest.logs:type_name -> viam.common.v1.LogEntry
 	42, // 46: viam.app.v1.NeedsRestartResponse.restart_check_interval:type_name -> google.protobuf.Duration
 	40, // 47: viam.app.v1.ModuleConfig.env:type_name -> viam.app.v1.ModuleConfig.EnvEntry
 	3,  // 48: viam.app.v1.ModuleConfig.status:type_name -> viam.app.v1.AppValidationStatus
 	3,  // 49: viam.app.v1.PackageConfig.status:type_name -> viam.app.v1.AppValidationStatus
 	0,  // 50: viam.app.v1.RemoteAuth.Credentials.type:type_name -> viam.app.v1.CredentialsType
-	22, // 51: viam.app.v1.RobotService.Config:input_type -> viam.app.v1.ConfigRequest
-	24, // 52: viam.app.v1.RobotService.Certificate:input_type -> viam.app.v1.CertificateRequest
-	26, // 53: viam.app.v1.RobotService.Log:input_type -> viam.app.v1.LogRequest
-	28, // 54: viam.app.v1.RobotService.NeedsRestart:input_type -> viam.app.v1.NeedsRestartRequest
-	23, // 55: viam.app.v1.RobotService.Config:output_type -> viam.app.v1.ConfigResponse
-	25, // 56: viam.app.v1.RobotService.Certificate:output_type -> viam.app.v1.CertificateResponse
-	27, // 57: viam.app.v1.RobotService.Log:output_type -> viam.app.v1.LogResponse
-	29, // 58: viam.app.v1.RobotService.NeedsRestart:output_type -> viam.app.v1.NeedsRestartResponse
+	22, // 51: viam.app.v1.physicalDeviceService.Config:input_type -> viam.app.v1.ConfigRequest
+	24, // 52: viam.app.v1.physicalDeviceService.Certificate:input_type -> viam.app.v1.CertificateRequest
+	26, // 53: viam.app.v1.physicalDeviceService.Log:input_type -> viam.app.v1.LogRequest
+	28, // 54: viam.app.v1.physicalDeviceService.NeedsRestart:input_type -> viam.app.v1.NeedsRestartRequest
+	23, // 55: viam.app.v1.physicalDeviceService.Config:output_type -> viam.app.v1.ConfigResponse
+	25, // 56: viam.app.v1.physicalDeviceService.Certificate:output_type -> viam.app.v1.CertificateResponse
+	27, // 57: viam.app.v1.physicalDeviceService.Log:output_type -> viam.app.v1.LogResponse
+	29, // 58: viam.app.v1.physicalDeviceService.NeedsRestart:output_type -> viam.app.v1.NeedsRestartResponse
 	55, // [55:59] is the sub-list for method output_type
 	51, // [51:55] is the sub-list for method input_type
 	51, // [51:51] is the sub-list for extension type_name
@@ -3454,14 +3454,14 @@ var file_app_v1_robot_proto_depIdxs = []int32{
 	0,  // [0:51] is the sub-list for field type_name
 }
 
-func init() { file_app_v1_robot_proto_init() }
-func file_app_v1_robot_proto_init() {
-	if File_app_v1_robot_proto != nil {
+func init() { file_app_v1_physicalDevice_proto_init() }
+func file_app_v1_physicalDevice_proto_init() {
+	if File_app_v1_physicalDevice_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_app_v1_robot_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RobotConfig); i {
+		file_app_v1_physicalDevice_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*physicalDeviceConfig); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3472,7 +3472,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LocationSecret); i {
 			case 0:
 				return &v.state
@@ -3484,7 +3484,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AppValidationStatus); i {
 			case 0:
 				return &v.state
@@ -3496,7 +3496,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CloudConfig); i {
 			case 0:
 				return &v.state
@@ -3508,7 +3508,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ComponentConfig); i {
 			case 0:
 				return &v.state
@@ -3520,7 +3520,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResourceLevelServiceConfig); i {
 			case 0:
 				return &v.state
@@ -3532,7 +3532,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ProcessConfig); i {
 			case 0:
 				return &v.state
@@ -3544,7 +3544,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ServiceConfig); i {
 			case 0:
 				return &v.state
@@ -3556,7 +3556,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*NetworkConfig); i {
 			case 0:
 				return &v.state
@@ -3568,7 +3568,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SessionsConfig); i {
 			case 0:
 				return &v.state
@@ -3580,7 +3580,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AuthConfig); i {
 			case 0:
 				return &v.state
@@ -3592,7 +3592,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*JWKSFile); i {
 			case 0:
 				return &v.state
@@ -3604,7 +3604,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ExternalAuthConfig); i {
 			case 0:
 				return &v.state
@@ -3616,7 +3616,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AuthHandlerConfig); i {
 			case 0:
 				return &v.state
@@ -3628,7 +3628,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Frame); i {
 			case 0:
 				return &v.state
@@ -3640,7 +3640,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogConfiguration); i {
 			case 0:
 				return &v.state
@@ -3652,7 +3652,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Translation); i {
 			case 0:
 				return &v.state
@@ -3664,7 +3664,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Orientation); i {
 			case 0:
 				return &v.state
@@ -3676,7 +3676,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RemoteConfig); i {
 			case 0:
 				return &v.state
@@ -3688,7 +3688,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RemoteAuth); i {
 			case 0:
 				return &v.state
@@ -3700,7 +3700,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AgentInfo); i {
 			case 0:
 				return &v.state
@@ -3712,7 +3712,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigRequest); i {
 			case 0:
 				return &v.state
@@ -3724,7 +3724,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigResponse); i {
 			case 0:
 				return &v.state
@@ -3736,7 +3736,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CertificateRequest); i {
 			case 0:
 				return &v.state
@@ -3748,7 +3748,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CertificateResponse); i {
 			case 0:
 				return &v.state
@@ -3760,7 +3760,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogRequest); i {
 			case 0:
 				return &v.state
@@ -3772,7 +3772,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogResponse); i {
 			case 0:
 				return &v.state
@@ -3784,7 +3784,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*NeedsRestartRequest); i {
 			case 0:
 				return &v.state
@@ -3796,7 +3796,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*NeedsRestartResponse); i {
 			case 0:
 				return &v.state
@@ -3808,7 +3808,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ModuleConfig); i {
 			case 0:
 				return &v.state
@@ -3820,7 +3820,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PackageConfig); i {
 			case 0:
 				return &v.state
@@ -3832,7 +3832,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Orientation_NoOrientation); i {
 			case 0:
 				return &v.state
@@ -3844,7 +3844,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Orientation_OrientationVectorRadians); i {
 			case 0:
 				return &v.state
@@ -3856,7 +3856,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Orientation_OrientationVectorDegrees); i {
 			case 0:
 				return &v.state
@@ -3868,7 +3868,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Orientation_EulerAngles); i {
 			case 0:
 				return &v.state
@@ -3880,7 +3880,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Orientation_AxisAngles); i {
 			case 0:
 				return &v.state
@@ -3892,7 +3892,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Orientation_Quaternion); i {
 			case 0:
 				return &v.state
@@ -3904,7 +3904,7 @@ func file_app_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_app_v1_robot_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
+		file_app_v1_physicalDevice_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RemoteAuth_Credentials); i {
 			case 0:
 				return &v.state
@@ -3917,9 +3917,9 @@ func file_app_v1_robot_proto_init() {
 			}
 		}
 	}
-	file_app_v1_robot_proto_msgTypes[0].OneofWrappers = []interface{}{}
-	file_app_v1_robot_proto_msgTypes[10].OneofWrappers = []interface{}{}
-	file_app_v1_robot_proto_msgTypes[17].OneofWrappers = []interface{}{
+	file_app_v1_physicalDevice_proto_msgTypes[0].OneofWrappers = []interface{}{}
+	file_app_v1_physicalDevice_proto_msgTypes[10].OneofWrappers = []interface{}{}
+	file_app_v1_physicalDevice_proto_msgTypes[17].OneofWrappers = []interface{}{
 		(*Orientation_NoOrientation_)(nil),
 		(*Orientation_VectorRadians)(nil),
 		(*Orientation_VectorDegrees)(nil),
@@ -3927,25 +3927,25 @@ func file_app_v1_robot_proto_init() {
 		(*Orientation_AxisAngles_)(nil),
 		(*Orientation_Quaternion_)(nil),
 	}
-	file_app_v1_robot_proto_msgTypes[20].OneofWrappers = []interface{}{}
-	file_app_v1_robot_proto_msgTypes[21].OneofWrappers = []interface{}{}
+	file_app_v1_physicalDevice_proto_msgTypes[20].OneofWrappers = []interface{}{}
+	file_app_v1_physicalDevice_proto_msgTypes[21].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_app_v1_robot_proto_rawDesc,
+			RawDescriptor: file_app_v1_physicalDevice_proto_rawDesc,
 			NumEnums:      1,
 			NumMessages:   40,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_app_v1_robot_proto_goTypes,
-		DependencyIndexes: file_app_v1_robot_proto_depIdxs,
-		EnumInfos:         file_app_v1_robot_proto_enumTypes,
-		MessageInfos:      file_app_v1_robot_proto_msgTypes,
+		GoTypes:           file_app_v1_physicalDevice_proto_goTypes,
+		DependencyIndexes: file_app_v1_physicalDevice_proto_depIdxs,
+		EnumInfos:         file_app_v1_physicalDevice_proto_enumTypes,
+		MessageInfos:      file_app_v1_physicalDevice_proto_msgTypes,
 	}.Build()
-	File_app_v1_robot_proto = out.File
-	file_app_v1_robot_proto_rawDesc = nil
-	file_app_v1_robot_proto_goTypes = nil
-	file_app_v1_robot_proto_depIdxs = nil
+	File_app_v1_physicalDevice_proto = out.File
+	file_app_v1_physicalDevice_proto_rawDesc = nil
+	file_app_v1_physicalDevice_proto_goTypes = nil
+	file_app_v1_physicalDevice_proto_depIdxs = nil
 }

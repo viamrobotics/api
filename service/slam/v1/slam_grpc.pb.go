@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SLAMServiceClient interface {
-	// GetPosition returns the current estimated position of the robot with
+	// GetPosition returns the current estimated position of the physicalDevice with
 	// respect to a returned component reference.
 	GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error)
 	// GetPointCloudMap returns the latest pointcloud map available where XY is the ground
@@ -144,7 +144,7 @@ func (c *sLAMServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandReque
 // All implementations must embed UnimplementedSLAMServiceServer
 // for forward compatibility
 type SLAMServiceServer interface {
-	// GetPosition returns the current estimated position of the robot with
+	// GetPosition returns the current estimated position of the physicalDevice with
 	// respect to a returned component reference.
 	GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error)
 	// GetPointCloudMap returns the latest pointcloud map available where XY is the ground

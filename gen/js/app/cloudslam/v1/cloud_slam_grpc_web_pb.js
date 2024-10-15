@@ -147,61 +147,61 @@ proto.viam.app.cloudslam.v1.CloudSLAMServicePromiseClient.prototype.startMapping
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotRequest,
- *   !proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotResponse>}
+ *   !proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceRequest,
+ *   !proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceResponse>}
  */
-const methodDescriptor_CloudSLAMService_GetActiveMappingSessionsForRobot = new grpc.web.MethodDescriptor(
-  '/viam.app.cloudslam.v1.CloudSLAMService/GetActiveMappingSessionsForRobot',
+const methodDescriptor_CloudSLAMService_GetActiveMappingSessionsForphysicalDevice = new grpc.web.MethodDescriptor(
+  '/viam.app.cloudslam.v1.CloudSLAMService/GetActiveMappingSessionsForphysicalDevice',
   grpc.web.MethodType.UNARY,
-  proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotRequest,
-  proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotResponse,
+  proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceRequest,
+  proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceResponse,
   /**
-   * @param {!proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotRequest} request
+   * @param {!proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotResponse.deserializeBinary
+  proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotRequest} request The
+ * @param {!proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.cloudslam.v1.CloudSLAMServiceClient.prototype.getActiveMappingSessionsForRobot =
+proto.viam.app.cloudslam.v1.CloudSLAMServiceClient.prototype.getActiveMappingSessionsForphysicalDevice =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.cloudslam.v1.CloudSLAMService/GetActiveMappingSessionsForRobot',
+      '/viam.app.cloudslam.v1.CloudSLAMService/GetActiveMappingSessionsForphysicalDevice',
       request,
       metadata || {},
-      methodDescriptor_CloudSLAMService_GetActiveMappingSessionsForRobot,
+      methodDescriptor_CloudSLAMService_GetActiveMappingSessionsForphysicalDevice,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotRequest} request The
+ * @param {!proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotResponse>}
+ * @return {!Promise<!proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForphysicalDeviceResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.cloudslam.v1.CloudSLAMServicePromiseClient.prototype.getActiveMappingSessionsForRobot =
+proto.viam.app.cloudslam.v1.CloudSLAMServicePromiseClient.prototype.getActiveMappingSessionsForphysicalDevice =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.cloudslam.v1.CloudSLAMService/GetActiveMappingSessionsForRobot',
+      '/viam.app.cloudslam.v1.CloudSLAMService/GetActiveMappingSessionsForphysicalDevice',
       request,
       metadata || {},
-      methodDescriptor_CloudSLAMService_GetActiveMappingSessionsForRobot);
+      methodDescriptor_CloudSLAMService_GetActiveMappingSessionsForphysicalDevice);
 };
 
 

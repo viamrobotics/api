@@ -94,64 +94,64 @@ service AppService {
   // Delete a Secret from the Location.
   rpc DeleteLocationSecret(DeleteLocationSecretRequest) returns (DeleteLocationSecretResponse);
 
-  // Get a specific robot by ID
-  rpc GetRobot(GetRobotRequest) returns (GetRobotResponse);
+  // Get a specific physicalDevice by ID
+  rpc GetphysicalDevice(GetphysicalDeviceRequest) returns (GetphysicalDeviceResponse);
 
-  // Get Rover Rental Location Robots
-  rpc GetRoverRentalRobots(GetRoverRentalRobotsRequest) returns (GetRoverRentalRobotsResponse);
+  // Get Rover Rental Location physicalDevices
+  rpc GetRoverRentalphysicalDevices(GetRoverRentalphysicalDevicesRequest) returns (GetRoverRentalphysicalDevicesResponse);
 
-  rpc GetRobotParts(GetRobotPartsRequest) returns (GetRobotPartsResponse);
+  rpc GetphysicalDeviceParts(GetphysicalDevicePartsRequest) returns (GetphysicalDevicePartsResponse);
 
-  // Get a specific robot part by ID
-  rpc GetRobotPart(GetRobotPartRequest) returns (GetRobotPartResponse);
+  // Get a specific physicalDevice part by ID
+  rpc GetphysicalDevicePart(GetphysicalDevicePartRequest) returns (GetphysicalDevicePartResponse);
 
-  rpc GetRobotPartLogs(GetRobotPartLogsRequest) returns (GetRobotPartLogsResponse);
+  rpc GetphysicalDevicePartLogs(GetphysicalDevicePartLogsRequest) returns (GetphysicalDevicePartLogsResponse);
 
-  rpc TailRobotPartLogs(TailRobotPartLogsRequest) returns (stream TailRobotPartLogsResponse);
+  rpc TailphysicalDevicePartLogs(TailphysicalDevicePartLogsRequest) returns (stream TailphysicalDevicePartLogsResponse);
 
-  // Get a specific robot part histy by ID
-  rpc GetRobotPartHistory(GetRobotPartHistoryRequest) returns (GetRobotPartHistoryResponse);
+  // Get a specific physicalDevice part histy by ID
+  rpc GetphysicalDevicePartHistory(GetphysicalDevicePartHistoryRequest) returns (GetphysicalDevicePartHistoryResponse);
 
-  // Update a robot
-  rpc UpdateRobotPart(UpdateRobotPartRequest) returns (UpdateRobotPartResponse);
+  // Update a physicalDevice
+  rpc UpdatephysicalDevicePart(UpdatephysicalDevicePartRequest) returns (UpdatephysicalDevicePartResponse);
 
-  // Create a new robot part
-  rpc NewRobotPart(NewRobotPartRequest) returns (NewRobotPartResponse);
+  // Create a new physicalDevice part
+  rpc NewphysicalDevicePart(NewphysicalDevicePartRequest) returns (NewphysicalDevicePartResponse);
 
-  // Delete a robot part
-  rpc DeleteRobotPart(DeleteRobotPartRequest) returns (DeleteRobotPartResponse);
+  // Delete a physicalDevice part
+  rpc DeletephysicalDevicePart(DeletephysicalDevicePartRequest) returns (DeletephysicalDevicePartResponse);
 
-  // Gets the Robot API Keys for the robot
-  rpc GetRobotAPIKeys(GetRobotAPIKeysRequest) returns (GetRobotAPIKeysResponse);
+  // Gets the physicalDevice API Keys for the physicalDevice
+  rpc GetphysicalDeviceAPIKeys(GetphysicalDeviceAPIKeysRequest) returns (GetphysicalDeviceAPIKeysResponse);
 
   // Marks the given part as the main part, and all the others as not
   rpc MarkPartAsMain(MarkPartAsMainRequest) returns (MarkPartAsMainResponse);
 
-  // Marks part for restart. Once the robot part checks-in with the app the flag
-  // is reset on the robot part. Calling this multiple times before a robot part
+  // Marks part for restart. Once the physicalDevice part checks-in with the app the flag
+  // is reset on the physicalDevice part. Calling this multiple times before a physicalDevice part
   // checks-in has no affect.
   // Note: This API may be removed in the near future.
   // TODO(APP-388): Remove
   rpc MarkPartForRestart(MarkPartForRestartRequest) returns (MarkPartForRestartResponse);
 
-  // Create a new generated Secret in the Robot Part.
+  // Create a new generated Secret in the physicalDevice Part.
   //  - Succeeds if there are no more than 2 active secrets after creation.
-  rpc CreateRobotPartSecret(CreateRobotPartSecretRequest) returns (CreateRobotPartSecretResponse);
+  rpc CreatephysicalDevicePartSecret(CreatephysicalDevicePartSecretRequest) returns (CreatephysicalDevicePartSecretResponse);
 
-  // Delete a Secret from the RobotPart.
-  rpc DeleteRobotPartSecret(DeleteRobotPartSecretRequest) returns (DeleteRobotPartSecretResponse);
+  // Delete a Secret from the physicalDevicePart.
+  rpc DeletephysicalDevicePartSecret(DeletephysicalDevicePartSecretRequest) returns (DeletephysicalDevicePartSecretResponse);
 
-  // Get a list of robots
-  rpc ListRobots(ListRobotsRequest) returns (ListRobotsResponse);
+  // Get a list of physicalDevices
+  rpc ListphysicalDevices(ListphysicalDevicesRequest) returns (ListphysicalDevicesResponse);
 
-  // NewRobot creates a new robot
-  rpc NewRobot(NewRobotRequest) returns (NewRobotResponse);
+  // NewphysicalDevice creates a new physicalDevice
+  rpc NewphysicalDevice(NewphysicalDeviceRequest) returns (NewphysicalDeviceResponse);
 
-  // UpdateRobot updates a robot
-  rpc UpdateRobot(UpdateRobotRequest) returns (UpdateRobotResponse);
+  // UpdatephysicalDevice updates a physicalDevice
+  rpc UpdatephysicalDevice(UpdatephysicalDeviceRequest) returns (UpdatephysicalDeviceResponse);
 
-  // DeleteRobot deletes a robot
-  rpc DeleteRobot(DeleteRobotRequest) returns (DeleteRobotResponse);
+  // DeletephysicalDevice deletes a physicalDevice
+  rpc DeletephysicalDevice(DeletephysicalDeviceRequest) returns (DeletephysicalDeviceResponse);
 
   // Fragments
 
@@ -218,7 +218,7 @@ service AppService {
   rpc CreateKeyFromExistingKeyAuthorizations(CreateKeyFromExistingKeyAuthorizationsRequest) returns (CreateKeyFromExistingKeyAuthorizationsResponse);
 }
 
-message Robot {
+message physicalDevice {
   string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
   string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
   string location = 3 [(tagger.v1.tags) = "bson:\"location\" json:\"location\""];
@@ -226,17 +226,17 @@ message Robot {
   google.protobuf.Timestamp created_on = 5 [(tagger.v1.tags) = "bson:\"created_on\""];
 }
 
-message RobotPart {
+message physicalDevicePart {
   string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
   string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
   // dns_name part name used for fqdn and local fqdn. Anytime the Name is updated this should be sanitized and updated as well.
   string dns_name = 10 [(tagger.v1.tags) = "bson:\"dns_name\" json:\"dns_name\""];
   string secret = 3 [(tagger.v1.tags) = "bson:\"secret\" json:\"secret,omitempty\""];
-  string robot = 4 [(tagger.v1.tags) = "bson:\"robot\" json:\"robot\""];
-  // Store the location_id to allow for unique indexes across parts and locations. This filed MUST be updated each time the robots location
+  string physicalDevice = 4 [(tagger.v1.tags) = "bson:\"physicalDevice\" json:\"physicalDevice\""];
+  // Store the location_id to allow for unique indexes across parts and locations. This filed MUST be updated each time the physicalDevices location
   // changes.
   string location_id = 12 [(tagger.v1.tags) = "bson:\"location_id\" json:\"-\""];
-  google.protobuf.Struct robot_config = 5 [(tagger.v1.tags) = "bson:\"config\" json:\"robot_config\""];
+  google.protobuf.Struct physicalDevice_config = 5 [(tagger.v1.tags) = "bson:\"config\" json:\"physicalDevice_config\""];
   google.protobuf.Timestamp last_access = 6 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
   google.protobuf.Struct user_supplied_info = 7 [(tagger.v1.tags) = "bson:\"user_supplied_info\" json:\"user_supplied_info\""];
   bool main_part = 8 [(tagger.v1.tags) = "bson:\"main_part\" json:\"main_part\""];
@@ -248,11 +248,11 @@ message RobotPart {
   repeated SharedSecret secrets = 14 [(tagger.v1.tags) = "bson:\"secrets\""];
 }
 
-message RobotPartHistoryEntry {
+message physicalDevicePartHistoryEntry {
   string part = 1 [(tagger.v1.tags) = "bson:\"part\" json:\"part\""];
-  string robot = 2 [(tagger.v1.tags) = "bson:\"robot\" json:\"robot\""];
+  string physicalDevice = 2 [(tagger.v1.tags) = "bson:\"physicalDevice\" json:\"physicalDevice\""];
   google.protobuf.Timestamp when = 3 [(tagger.v1.tags) = "bson:\"when\" json:\"when\""];
-  RobotPart old = 4 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
+  physicalDevicePart old = 4 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
 }
 
 message ListOrganizationsRequest {}
@@ -435,12 +435,12 @@ message Location {
   // Location creation timestamp.
   google.protobuf.Timestamp created_on = 3;
   //
-  int32 robot_count = 7;
+  int32 physicalDevice_count = 7;
   // Config for how data in this location is stored.
   StorageConfig config = 8;
 }
 
-// SharedSecret is a secret used for LocationAuth and RobotParts.
+// SharedSecret is a secret used for LocationAuth and physicalDeviceParts.
 message SharedSecret {
   enum State {
     STATE_UNSPECIFIED = 0;
@@ -569,47 +569,47 @@ message LocationAuthResponse {
   LocationAuth auth = 1;
 }
 
-message GetRobotRequest {
+message GetphysicalDeviceRequest {
   string id = 1;
 }
 
-message GetRoverRentalRobotsRequest {
+message GetRoverRentalphysicalDevicesRequest {
   string org_id = 1;
 }
 
-message RoverRentalRobot {
-  string robot_id = 1;
+message RoverRentalphysicalDevice {
+  string physicalDevice_id = 1;
   string location_id = 2;
-  string robot_name = 3;
-  string robot_main_part_id = 4;
+  string physicalDevice_name = 3;
+  string physicalDevice_main_part_id = 4;
 }
 
-message GetRoverRentalRobotsResponse {
-  repeated RoverRentalRobot robots = 1;
+message GetRoverRentalphysicalDevicesResponse {
+  repeated RoverRentalphysicalDevice physicalDevices = 1;
 }
 
-message GetRobotResponse {
-  Robot robot = 1;
+message GetphysicalDeviceResponse {
+  physicalDevice physicalDevice = 1;
 }
 
-message GetRobotPartsRequest {
-  string robot_id = 1;
+message GetphysicalDevicePartsRequest {
+  string physicalDevice_id = 1;
 }
 
-message GetRobotPartsResponse {
-  repeated RobotPart parts = 1;
+message GetphysicalDevicePartsResponse {
+  repeated physicalDevicePart parts = 1;
 }
 
-message GetRobotPartRequest {
+message GetphysicalDevicePartRequest {
   string id = 1;
 }
 
-message GetRobotPartResponse {
-  RobotPart part = 1;
+message GetphysicalDevicePartResponse {
+  physicalDevicePart part = 1;
   string config_json = 2;
 }
 
-message GetRobotPartLogsRequest {
+message GetphysicalDevicePartLogsRequest {
   string id = 1;
   // TODO(https://viam.atlassian.net/browse/APP-3877): Remove this field
   bool errors_only = 2 [deprecated = true];
@@ -619,54 +619,54 @@ message GetRobotPartLogsRequest {
   repeated string levels = 5;
 }
 
-message GetRobotPartLogsResponse {
+message GetphysicalDevicePartLogsResponse {
   repeated common.v1.LogEntry logs = 1;
   string next_page_token = 2;
 }
 
-message TailRobotPartLogsRequest {
+message TailphysicalDevicePartLogsRequest {
   string id = 1;
   bool errors_only = 2;
   optional string filter = 3;
 }
 
-message TailRobotPartLogsResponse {
+message TailphysicalDevicePartLogsResponse {
   repeated common.v1.LogEntry logs = 1;
 }
 
-message GetRobotPartHistoryRequest {
+message GetphysicalDevicePartHistoryRequest {
   string id = 1;
 }
 
-message GetRobotPartHistoryResponse {
-  repeated RobotPartHistoryEntry history = 1;
+message GetphysicalDevicePartHistoryResponse {
+  repeated physicalDevicePartHistoryEntry history = 1;
 }
 
-message UpdateRobotPartRequest {
+message UpdatephysicalDevicePartRequest {
   string id = 1;
   string name = 2;
-  google.protobuf.Struct robot_config = 3;
+  google.protobuf.Struct physicalDevice_config = 3;
 }
 
-message UpdateRobotPartResponse {
-  RobotPart part = 1;
+message UpdatephysicalDevicePartResponse {
+  physicalDevicePart part = 1;
 }
 
-message NewRobotPartRequest {
-  string robot_id = 1;
+message NewphysicalDevicePartRequest {
+  string physicalDevice_id = 1;
   string part_name = 2;
 }
 
-message NewRobotPartResponse {
+message NewphysicalDevicePartResponse {
   string part_id = 1;
 }
 
-message DeleteRobotPartRequest {
+message DeletephysicalDevicePartRequest {
   string part_id = 1;
 }
 
-message GetRobotAPIKeysRequest {
-  string robot_id = 1;
+message GetphysicalDeviceAPIKeysRequest {
+  string physicalDevice_id = 1;
 }
 
 message APIKey {
@@ -676,11 +676,11 @@ message APIKey {
   google.protobuf.Timestamp created_on = 4;
 }
 
-message GetRobotAPIKeysResponse {
+message GetphysicalDeviceAPIKeysResponse {
   repeated APIKeyWithAuthorizations api_keys = 1;
 }
 
-message DeleteRobotPartResponse {}
+message DeletephysicalDevicePartResponse {}
 
 message Fragment {
   string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
@@ -690,8 +690,8 @@ message Fragment {
   bool public = 5 [(tagger.v1.tags) = "bson:\"public\" json:\"public\""];
   google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
   string organization_name = 7;
-  // number of robot parts using this fragment
-  int32 robot_part_count = 9;
+  // number of physicalDevice parts using this fragment
+  int32 physicalDevice_part_count = 9;
   // number of organizations using this fragment
   int32 organization_count = 10;
   // whether the organization(s) using this fragment is the same as the fragment org
@@ -753,38 +753,38 @@ message DeleteFragmentRequest {
 
 message DeleteFragmentResponse {}
 
-message ListRobotsRequest {
+message ListphysicalDevicesRequest {
   string location_id = 1;
 }
 
-message ListRobotsResponse {
-  repeated Robot robots = 1;
+message ListphysicalDevicesResponse {
+  repeated physicalDevice physicalDevices = 1;
 }
 
-message NewRobotRequest {
+message NewphysicalDeviceRequest {
   string name = 1;
   string location = 2;
 }
 
-message NewRobotResponse {
+message NewphysicalDeviceResponse {
   string id = 1;
 }
 
-message UpdateRobotRequest {
+message UpdatephysicalDeviceRequest {
   string id = 1;
   string name = 2;
   string location = 3;
 }
 
-message UpdateRobotResponse {
-  Robot robot = 1;
+message UpdatephysicalDeviceResponse {
+  physicalDevice physicalDevice = 1;
 }
 
-message DeleteRobotRequest {
+message DeletephysicalDeviceRequest {
   string id = 1;
 }
 
-message DeleteRobotResponse {}
+message DeletephysicalDeviceResponse {}
 
 message MarkPartAsMainRequest {
   string part_id = 1;
@@ -797,22 +797,22 @@ message MarkPartForRestartRequest {
 }
 message MarkPartForRestartResponse {}
 
-message CreateRobotPartSecretRequest {
-  // Robot Part ID to create the secret in.
+message CreatephysicalDevicePartSecretRequest {
+  // physicalDevice Part ID to create the secret in.
   string part_id = 1;
 }
 
-message CreateRobotPartSecretResponse {
+message CreatephysicalDevicePartSecretResponse {
   // Location's auth after updates.
-  RobotPart part = 1;
+  physicalDevicePart part = 1;
 }
 
-message DeleteRobotPartSecretRequest {
+message DeletephysicalDevicePartSecretRequest {
   string part_id = 1;
   string secret_id = 2;
 }
 
-message DeleteRobotPartSecretResponse {}
+message DeletephysicalDevicePartSecretResponse {}
 
 message Authorization {
   string authorization_type = 1;
@@ -927,10 +927,10 @@ message RegistryItem {
   string url = 7;
   // A short description of the item that explains its purpose
   string description = 8;
-  // The total number of robots using this item
-  int64 total_robot_usage = 9;
-  // The total number of robots using this item outside of the owning org
-  int64 total_external_robot_usage = 13;
+  // The total number of physicalDevices using this item
+  int64 total_physicalDevice_usage = 9;
+  // The total number of physicalDevices using this item outside of the owning org
+  int64 total_external_physicalDevice_usage = 13;
   // The total number of organizations using this item
   int64 total_organization_usage = 10;
   // The total number of organizations using this item outside of the owning org
@@ -1106,8 +1106,8 @@ message Module {
   string description = 6;
   // A list of models that are available in the module
   repeated Model models = 7;
-  // The total number of robots using this module
-  int64 total_robot_usage = 8;
+  // The total number of physicalDevices using this module
+  int64 total_physicalDevice_usage = 8;
   // The total number of organizations using this module
   int64 total_organization_usage = 9;
   // The id of the organization that owns the module

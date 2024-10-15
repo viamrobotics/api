@@ -235,103 +235,103 @@ AppService.DeleteLocationSecret = {
   responseType: app_v1_app_pb.DeleteLocationSecretResponse
 };
 
-AppService.GetRobot = {
-  methodName: "GetRobot",
+AppService.GetphysicalDevice = {
+  methodName: "GetphysicalDevice",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.GetRobotRequest,
-  responseType: app_v1_app_pb.GetRobotResponse
+  requestType: app_v1_app_pb.GetphysicalDeviceRequest,
+  responseType: app_v1_app_pb.GetphysicalDeviceResponse
 };
 
-AppService.GetRoverRentalRobots = {
-  methodName: "GetRoverRentalRobots",
+AppService.GetRoverRentalphysicalDevices = {
+  methodName: "GetRoverRentalphysicalDevices",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.GetRoverRentalRobotsRequest,
-  responseType: app_v1_app_pb.GetRoverRentalRobotsResponse
+  requestType: app_v1_app_pb.GetRoverRentalphysicalDevicesRequest,
+  responseType: app_v1_app_pb.GetRoverRentalphysicalDevicesResponse
 };
 
-AppService.GetRobotParts = {
-  methodName: "GetRobotParts",
+AppService.GetphysicalDeviceParts = {
+  methodName: "GetphysicalDeviceParts",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.GetRobotPartsRequest,
-  responseType: app_v1_app_pb.GetRobotPartsResponse
+  requestType: app_v1_app_pb.GetphysicalDevicePartsRequest,
+  responseType: app_v1_app_pb.GetphysicalDevicePartsResponse
 };
 
-AppService.GetRobotPart = {
-  methodName: "GetRobotPart",
+AppService.GetphysicalDevicePart = {
+  methodName: "GetphysicalDevicePart",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.GetRobotPartRequest,
-  responseType: app_v1_app_pb.GetRobotPartResponse
+  requestType: app_v1_app_pb.GetphysicalDevicePartRequest,
+  responseType: app_v1_app_pb.GetphysicalDevicePartResponse
 };
 
-AppService.GetRobotPartLogs = {
-  methodName: "GetRobotPartLogs",
+AppService.GetphysicalDevicePartLogs = {
+  methodName: "GetphysicalDevicePartLogs",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.GetRobotPartLogsRequest,
-  responseType: app_v1_app_pb.GetRobotPartLogsResponse
+  requestType: app_v1_app_pb.GetphysicalDevicePartLogsRequest,
+  responseType: app_v1_app_pb.GetphysicalDevicePartLogsResponse
 };
 
-AppService.TailRobotPartLogs = {
-  methodName: "TailRobotPartLogs",
+AppService.TailphysicalDevicePartLogs = {
+  methodName: "TailphysicalDevicePartLogs",
   service: AppService,
   requestStream: false,
   responseStream: true,
-  requestType: app_v1_app_pb.TailRobotPartLogsRequest,
-  responseType: app_v1_app_pb.TailRobotPartLogsResponse
+  requestType: app_v1_app_pb.TailphysicalDevicePartLogsRequest,
+  responseType: app_v1_app_pb.TailphysicalDevicePartLogsResponse
 };
 
-AppService.GetRobotPartHistory = {
-  methodName: "GetRobotPartHistory",
+AppService.GetphysicalDevicePartHistory = {
+  methodName: "GetphysicalDevicePartHistory",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.GetRobotPartHistoryRequest,
-  responseType: app_v1_app_pb.GetRobotPartHistoryResponse
+  requestType: app_v1_app_pb.GetphysicalDevicePartHistoryRequest,
+  responseType: app_v1_app_pb.GetphysicalDevicePartHistoryResponse
 };
 
-AppService.UpdateRobotPart = {
-  methodName: "UpdateRobotPart",
+AppService.UpdatephysicalDevicePart = {
+  methodName: "UpdatephysicalDevicePart",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.UpdateRobotPartRequest,
-  responseType: app_v1_app_pb.UpdateRobotPartResponse
+  requestType: app_v1_app_pb.UpdatephysicalDevicePartRequest,
+  responseType: app_v1_app_pb.UpdatephysicalDevicePartResponse
 };
 
-AppService.NewRobotPart = {
-  methodName: "NewRobotPart",
+AppService.NewphysicalDevicePart = {
+  methodName: "NewphysicalDevicePart",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.NewRobotPartRequest,
-  responseType: app_v1_app_pb.NewRobotPartResponse
+  requestType: app_v1_app_pb.NewphysicalDevicePartRequest,
+  responseType: app_v1_app_pb.NewphysicalDevicePartResponse
 };
 
-AppService.DeleteRobotPart = {
-  methodName: "DeleteRobotPart",
+AppService.DeletephysicalDevicePart = {
+  methodName: "DeletephysicalDevicePart",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.DeleteRobotPartRequest,
-  responseType: app_v1_app_pb.DeleteRobotPartResponse
+  requestType: app_v1_app_pb.DeletephysicalDevicePartRequest,
+  responseType: app_v1_app_pb.DeletephysicalDevicePartResponse
 };
 
-AppService.GetRobotAPIKeys = {
-  methodName: "GetRobotAPIKeys",
+AppService.GetphysicalDeviceAPIKeys = {
+  methodName: "GetphysicalDeviceAPIKeys",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.GetRobotAPIKeysRequest,
-  responseType: app_v1_app_pb.GetRobotAPIKeysResponse
+  requestType: app_v1_app_pb.GetphysicalDeviceAPIKeysRequest,
+  responseType: app_v1_app_pb.GetphysicalDeviceAPIKeysResponse
 };
 
 AppService.MarkPartAsMain = {
@@ -352,58 +352,58 @@ AppService.MarkPartForRestart = {
   responseType: app_v1_app_pb.MarkPartForRestartResponse
 };
 
-AppService.CreateRobotPartSecret = {
-  methodName: "CreateRobotPartSecret",
+AppService.CreatephysicalDevicePartSecret = {
+  methodName: "CreatephysicalDevicePartSecret",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.CreateRobotPartSecretRequest,
-  responseType: app_v1_app_pb.CreateRobotPartSecretResponse
+  requestType: app_v1_app_pb.CreatephysicalDevicePartSecretRequest,
+  responseType: app_v1_app_pb.CreatephysicalDevicePartSecretResponse
 };
 
-AppService.DeleteRobotPartSecret = {
-  methodName: "DeleteRobotPartSecret",
+AppService.DeletephysicalDevicePartSecret = {
+  methodName: "DeletephysicalDevicePartSecret",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.DeleteRobotPartSecretRequest,
-  responseType: app_v1_app_pb.DeleteRobotPartSecretResponse
+  requestType: app_v1_app_pb.DeletephysicalDevicePartSecretRequest,
+  responseType: app_v1_app_pb.DeletephysicalDevicePartSecretResponse
 };
 
-AppService.ListRobots = {
-  methodName: "ListRobots",
+AppService.ListphysicalDevices = {
+  methodName: "ListphysicalDevices",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.ListRobotsRequest,
-  responseType: app_v1_app_pb.ListRobotsResponse
+  requestType: app_v1_app_pb.ListphysicalDevicesRequest,
+  responseType: app_v1_app_pb.ListphysicalDevicesResponse
 };
 
-AppService.NewRobot = {
-  methodName: "NewRobot",
+AppService.NewphysicalDevice = {
+  methodName: "NewphysicalDevice",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.NewRobotRequest,
-  responseType: app_v1_app_pb.NewRobotResponse
+  requestType: app_v1_app_pb.NewphysicalDeviceRequest,
+  responseType: app_v1_app_pb.NewphysicalDeviceResponse
 };
 
-AppService.UpdateRobot = {
-  methodName: "UpdateRobot",
+AppService.UpdatephysicalDevice = {
+  methodName: "UpdatephysicalDevice",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.UpdateRobotRequest,
-  responseType: app_v1_app_pb.UpdateRobotResponse
+  requestType: app_v1_app_pb.UpdatephysicalDeviceRequest,
+  responseType: app_v1_app_pb.UpdatephysicalDeviceResponse
 };
 
-AppService.DeleteRobot = {
-  methodName: "DeleteRobot",
+AppService.DeletephysicalDevice = {
+  methodName: "DeletephysicalDevice",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.DeleteRobotRequest,
-  responseType: app_v1_app_pb.DeleteRobotResponse
+  requestType: app_v1_app_pb.DeletephysicalDeviceRequest,
+  responseType: app_v1_app_pb.DeletephysicalDeviceResponse
 };
 
 AppService.ListFragments = {
@@ -1422,11 +1422,11 @@ AppServiceClient.prototype.deleteLocationSecret = function deleteLocationSecret(
   };
 };
 
-AppServiceClient.prototype.getRobot = function getRobot(requestMessage, metadata, callback) {
+AppServiceClient.prototype.getphysicalDevice = function getphysicalDevice(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.GetRobot, {
+  var client = grpc.unary(AppService.GetphysicalDevice, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1453,11 +1453,11 @@ AppServiceClient.prototype.getRobot = function getRobot(requestMessage, metadata
   };
 };
 
-AppServiceClient.prototype.getRoverRentalRobots = function getRoverRentalRobots(requestMessage, metadata, callback) {
+AppServiceClient.prototype.getRoverRentalphysicalDevices = function getRoverRentalphysicalDevices(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.GetRoverRentalRobots, {
+  var client = grpc.unary(AppService.GetRoverRentalphysicalDevices, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1484,11 +1484,11 @@ AppServiceClient.prototype.getRoverRentalRobots = function getRoverRentalRobots(
   };
 };
 
-AppServiceClient.prototype.getRobotParts = function getRobotParts(requestMessage, metadata, callback) {
+AppServiceClient.prototype.getphysicalDeviceParts = function getphysicalDeviceParts(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.GetRobotParts, {
+  var client = grpc.unary(AppService.GetphysicalDeviceParts, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1515,11 +1515,11 @@ AppServiceClient.prototype.getRobotParts = function getRobotParts(requestMessage
   };
 };
 
-AppServiceClient.prototype.getRobotPart = function getRobotPart(requestMessage, metadata, callback) {
+AppServiceClient.prototype.getphysicalDevicePart = function getphysicalDevicePart(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.GetRobotPart, {
+  var client = grpc.unary(AppService.GetphysicalDevicePart, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1546,11 +1546,11 @@ AppServiceClient.prototype.getRobotPart = function getRobotPart(requestMessage, 
   };
 };
 
-AppServiceClient.prototype.getRobotPartLogs = function getRobotPartLogs(requestMessage, metadata, callback) {
+AppServiceClient.prototype.getphysicalDevicePartLogs = function getphysicalDevicePartLogs(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.GetRobotPartLogs, {
+  var client = grpc.unary(AppService.GetphysicalDevicePartLogs, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1577,13 +1577,13 @@ AppServiceClient.prototype.getRobotPartLogs = function getRobotPartLogs(requestM
   };
 };
 
-AppServiceClient.prototype.tailRobotPartLogs = function tailRobotPartLogs(requestMessage, metadata) {
+AppServiceClient.prototype.tailphysicalDevicePartLogs = function tailphysicalDevicePartLogs(requestMessage, metadata) {
   var listeners = {
     data: [],
     end: [],
     status: []
   };
-  var client = grpc.invoke(AppService.TailRobotPartLogs, {
+  var client = grpc.invoke(AppService.TailphysicalDevicePartLogs, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1616,11 +1616,11 @@ AppServiceClient.prototype.tailRobotPartLogs = function tailRobotPartLogs(reques
   };
 };
 
-AppServiceClient.prototype.getRobotPartHistory = function getRobotPartHistory(requestMessage, metadata, callback) {
+AppServiceClient.prototype.getphysicalDevicePartHistory = function getphysicalDevicePartHistory(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.GetRobotPartHistory, {
+  var client = grpc.unary(AppService.GetphysicalDevicePartHistory, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1647,11 +1647,11 @@ AppServiceClient.prototype.getRobotPartHistory = function getRobotPartHistory(re
   };
 };
 
-AppServiceClient.prototype.updateRobotPart = function updateRobotPart(requestMessage, metadata, callback) {
+AppServiceClient.prototype.updatephysicalDevicePart = function updatephysicalDevicePart(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.UpdateRobotPart, {
+  var client = grpc.unary(AppService.UpdatephysicalDevicePart, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1678,11 +1678,11 @@ AppServiceClient.prototype.updateRobotPart = function updateRobotPart(requestMes
   };
 };
 
-AppServiceClient.prototype.newRobotPart = function newRobotPart(requestMessage, metadata, callback) {
+AppServiceClient.prototype.newphysicalDevicePart = function newphysicalDevicePart(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.NewRobotPart, {
+  var client = grpc.unary(AppService.NewphysicalDevicePart, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1709,11 +1709,11 @@ AppServiceClient.prototype.newRobotPart = function newRobotPart(requestMessage, 
   };
 };
 
-AppServiceClient.prototype.deleteRobotPart = function deleteRobotPart(requestMessage, metadata, callback) {
+AppServiceClient.prototype.deletephysicalDevicePart = function deletephysicalDevicePart(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.DeleteRobotPart, {
+  var client = grpc.unary(AppService.DeletephysicalDevicePart, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1740,11 +1740,11 @@ AppServiceClient.prototype.deleteRobotPart = function deleteRobotPart(requestMes
   };
 };
 
-AppServiceClient.prototype.getRobotAPIKeys = function getRobotAPIKeys(requestMessage, metadata, callback) {
+AppServiceClient.prototype.getphysicalDeviceAPIKeys = function getphysicalDeviceAPIKeys(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.GetRobotAPIKeys, {
+  var client = grpc.unary(AppService.GetphysicalDeviceAPIKeys, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1833,11 +1833,11 @@ AppServiceClient.prototype.markPartForRestart = function markPartForRestart(requ
   };
 };
 
-AppServiceClient.prototype.createRobotPartSecret = function createRobotPartSecret(requestMessage, metadata, callback) {
+AppServiceClient.prototype.createphysicalDevicePartSecret = function createphysicalDevicePartSecret(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.CreateRobotPartSecret, {
+  var client = grpc.unary(AppService.CreatephysicalDevicePartSecret, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1864,11 +1864,11 @@ AppServiceClient.prototype.createRobotPartSecret = function createRobotPartSecre
   };
 };
 
-AppServiceClient.prototype.deleteRobotPartSecret = function deleteRobotPartSecret(requestMessage, metadata, callback) {
+AppServiceClient.prototype.deletephysicalDevicePartSecret = function deletephysicalDevicePartSecret(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.DeleteRobotPartSecret, {
+  var client = grpc.unary(AppService.DeletephysicalDevicePartSecret, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1895,11 +1895,11 @@ AppServiceClient.prototype.deleteRobotPartSecret = function deleteRobotPartSecre
   };
 };
 
-AppServiceClient.prototype.listRobots = function listRobots(requestMessage, metadata, callback) {
+AppServiceClient.prototype.listphysicalDevices = function listphysicalDevices(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.ListRobots, {
+  var client = grpc.unary(AppService.ListphysicalDevices, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1926,11 +1926,11 @@ AppServiceClient.prototype.listRobots = function listRobots(requestMessage, meta
   };
 };
 
-AppServiceClient.prototype.newRobot = function newRobot(requestMessage, metadata, callback) {
+AppServiceClient.prototype.newphysicalDevice = function newphysicalDevice(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.NewRobot, {
+  var client = grpc.unary(AppService.NewphysicalDevice, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1957,11 +1957,11 @@ AppServiceClient.prototype.newRobot = function newRobot(requestMessage, metadata
   };
 };
 
-AppServiceClient.prototype.updateRobot = function updateRobot(requestMessage, metadata, callback) {
+AppServiceClient.prototype.updatephysicalDevice = function updatephysicalDevice(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.UpdateRobot, {
+  var client = grpc.unary(AppService.UpdatephysicalDevice, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1988,11 +1988,11 @@ AppServiceClient.prototype.updateRobot = function updateRobot(requestMessage, me
   };
 };
 
-AppServiceClient.prototype.deleteRobot = function deleteRobot(requestMessage, metadata, callback) {
+AppServiceClient.prototype.deletephysicalDevice = function deletephysicalDevice(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.DeleteRobot, {
+  var client = grpc.unary(AppService.DeletephysicalDevice, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

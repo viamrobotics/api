@@ -808,7 +808,7 @@ func (*RemoveWaypointResponse) Descriptor() ([]byte, []int) {
 // GetObstacles will return the geopoint location and geometry of all
 // known obstacles on the navigation map. Obstacles that are detected
 // through the vision service will only be returned if this endpoint is called
-// when the robot is sensing the obstacle
+// when the physicalDevice is sensing the obstacle
 type GetObstaclesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -914,7 +914,7 @@ func (x *GetObstaclesResponse) GetObstacles() []*v1.GeoGeometry {
 }
 
 // A user provided destination and the set of geopoints that
-// the robot is expected to take to get there
+// the physicalDevice is expected to take to get there
 type Path struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -923,7 +923,7 @@ type Path struct {
 	// The id of the user specified waypoint
 	DestinationWaypointId string `protobuf:"bytes,1,opt,name=destination_waypoint_id,json=destinationWaypointId,proto3" json:"destination_waypoint_id,omitempty"`
 	// List of geopoints that the motion planner output to reach the destination
-	// The first geopoint is the starting position of the robot for that path
+	// The first geopoint is the starting position of the physicalDevice for that path
 	Geopoints []*v1.GeoPoint `protobuf:"bytes,2,rep,name=geopoints,proto3" json:"geopoints,omitempty"`
 }
 

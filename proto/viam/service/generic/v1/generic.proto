@@ -8,7 +8,7 @@ import "google/api/annotations.proto";
 option go_package = "go.viam.com/api/service/generic/v1";
 option java_package = "com.viam.service.generic.v1";
 
-// GenericService services all generic services associated with a robot
+// GenericService services all generic services associated with a physicalDevice
 service GenericService {
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {

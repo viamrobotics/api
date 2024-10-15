@@ -9,7 +9,7 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/component/powersensor/v1";
 option java_package = "com.viam.component.powersensor.v1";
 
-// PowerSensorService services all power sensors associated with a robot
+// PowerSensorService services all power sensors associated with a physicalDevice
 service PowerSensorService {
   // GetVoltage returns the voltage reading of a power sensor in volts
   rpc GetVoltage(GetVoltageRequest) returns (GetVoltageResponse) {
@@ -32,7 +32,7 @@ service PowerSensorService {
     };
   }
 
-  // GetReadings returns the readings of a sensor of the underlying robot.
+  // GetReadings returns the readings of a sensor of the underlying physicalDevice.
   rpc GetReadings(common.v1.GetReadingsRequest) returns (common.v1.GetReadingsResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/power_sensor/{name}/readings"

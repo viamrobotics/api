@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CloudSLAMServiceClient interface {
 	StartMappingSession(ctx context.Context, in *StartMappingSessionRequest, opts ...grpc.CallOption) (*StartMappingSessionResponse, error)
-	GetActiveMappingSessionsForRobot(ctx context.Context, in *GetActiveMappingSessionsForRobotRequest, opts ...grpc.CallOption) (*GetActiveMappingSessionsForRobotResponse, error)
+	GetActiveMappingSessionsForphysicalDevice(ctx context.Context, in *GetActiveMappingSessionsForphysicalDeviceRequest, opts ...grpc.CallOption) (*GetActiveMappingSessionsForphysicalDeviceResponse, error)
 	GetMappingSessionPointCloud(ctx context.Context, in *GetMappingSessionPointCloudRequest, opts ...grpc.CallOption) (*GetMappingSessionPointCloudResponse, error)
 	ListMappingSessions(ctx context.Context, in *ListMappingSessionsRequest, opts ...grpc.CallOption) (*ListMappingSessionsResponse, error)
 	StopMappingSession(ctx context.Context, in *StopMappingSessionRequest, opts ...grpc.CallOption) (*StopMappingSessionResponse, error)
@@ -47,9 +47,9 @@ func (c *cloudSLAMServiceClient) StartMappingSession(ctx context.Context, in *St
 	return out, nil
 }
 
-func (c *cloudSLAMServiceClient) GetActiveMappingSessionsForRobot(ctx context.Context, in *GetActiveMappingSessionsForRobotRequest, opts ...grpc.CallOption) (*GetActiveMappingSessionsForRobotResponse, error) {
-	out := new(GetActiveMappingSessionsForRobotResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.cloudslam.v1.CloudSLAMService/GetActiveMappingSessionsForRobot", in, out, opts...)
+func (c *cloudSLAMServiceClient) GetActiveMappingSessionsForphysicalDevice(ctx context.Context, in *GetActiveMappingSessionsForphysicalDeviceRequest, opts ...grpc.CallOption) (*GetActiveMappingSessionsForphysicalDeviceResponse, error) {
+	out := new(GetActiveMappingSessionsForphysicalDeviceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.cloudslam.v1.CloudSLAMService/GetActiveMappingSessionsForphysicalDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -97,7 +97,7 @@ func (c *cloudSLAMServiceClient) GetMappingSessionMetadataByID(ctx context.Conte
 // for forward compatibility
 type CloudSLAMServiceServer interface {
 	StartMappingSession(context.Context, *StartMappingSessionRequest) (*StartMappingSessionResponse, error)
-	GetActiveMappingSessionsForRobot(context.Context, *GetActiveMappingSessionsForRobotRequest) (*GetActiveMappingSessionsForRobotResponse, error)
+	GetActiveMappingSessionsForphysicalDevice(context.Context, *GetActiveMappingSessionsForphysicalDeviceRequest) (*GetActiveMappingSessionsForphysicalDeviceResponse, error)
 	GetMappingSessionPointCloud(context.Context, *GetMappingSessionPointCloudRequest) (*GetMappingSessionPointCloudResponse, error)
 	ListMappingSessions(context.Context, *ListMappingSessionsRequest) (*ListMappingSessionsResponse, error)
 	StopMappingSession(context.Context, *StopMappingSessionRequest) (*StopMappingSessionResponse, error)
@@ -112,8 +112,8 @@ type UnimplementedCloudSLAMServiceServer struct {
 func (UnimplementedCloudSLAMServiceServer) StartMappingSession(context.Context, *StartMappingSessionRequest) (*StartMappingSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartMappingSession not implemented")
 }
-func (UnimplementedCloudSLAMServiceServer) GetActiveMappingSessionsForRobot(context.Context, *GetActiveMappingSessionsForRobotRequest) (*GetActiveMappingSessionsForRobotResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetActiveMappingSessionsForRobot not implemented")
+func (UnimplementedCloudSLAMServiceServer) GetActiveMappingSessionsForphysicalDevice(context.Context, *GetActiveMappingSessionsForphysicalDeviceRequest) (*GetActiveMappingSessionsForphysicalDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetActiveMappingSessionsForphysicalDevice not implemented")
 }
 func (UnimplementedCloudSLAMServiceServer) GetMappingSessionPointCloud(context.Context, *GetMappingSessionPointCloudRequest) (*GetMappingSessionPointCloudResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMappingSessionPointCloud not implemented")
@@ -158,20 +158,20 @@ func _CloudSLAMService_StartMappingSession_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CloudSLAMService_GetActiveMappingSessionsForRobot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetActiveMappingSessionsForRobotRequest)
+func _CloudSLAMService_GetActiveMappingSessionsForphysicalDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetActiveMappingSessionsForphysicalDeviceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CloudSLAMServiceServer).GetActiveMappingSessionsForRobot(ctx, in)
+		return srv.(CloudSLAMServiceServer).GetActiveMappingSessionsForphysicalDevice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.cloudslam.v1.CloudSLAMService/GetActiveMappingSessionsForRobot",
+		FullMethod: "/viam.app.cloudslam.v1.CloudSLAMService/GetActiveMappingSessionsForphysicalDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudSLAMServiceServer).GetActiveMappingSessionsForRobot(ctx, req.(*GetActiveMappingSessionsForRobotRequest))
+		return srv.(CloudSLAMServiceServer).GetActiveMappingSessionsForphysicalDevice(ctx, req.(*GetActiveMappingSessionsForphysicalDeviceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -260,8 +260,8 @@ var CloudSLAMService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CloudSLAMService_StartMappingSession_Handler,
 		},
 		{
-			MethodName: "GetActiveMappingSessionsForRobot",
-			Handler:    _CloudSLAMService_GetActiveMappingSessionsForRobot_Handler,
+			MethodName: "GetActiveMappingSessionsForphysicalDevice",
+			Handler:    _CloudSLAMService_GetActiveMappingSessionsForphysicalDevice_Handler,
 		},
 		{
 			MethodName: "GetMappingSessionPointCloud",

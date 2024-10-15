@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: robot/v1/robot.proto
+// source: physicalDevice/v1/physicalDevice.proto
 
 package v1
 
@@ -58,11 +58,11 @@ func (x PeerConnectionType) String() string {
 }
 
 func (PeerConnectionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_robot_v1_robot_proto_enumTypes[0].Descriptor()
+	return file_physicalDevice_v1_physicalDevice_proto_enumTypes[0].Descriptor()
 }
 
 func (PeerConnectionType) Type() protoreflect.EnumType {
-	return &file_robot_v1_robot_proto_enumTypes[0]
+	return &file_physicalDevice_v1_physicalDevice_proto_enumTypes[0]
 }
 
 func (x PeerConnectionType) Number() protoreflect.EnumNumber {
@@ -71,7 +71,7 @@ func (x PeerConnectionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PeerConnectionType.Descriptor instead.
 func (PeerConnectionType) EnumDescriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{0}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{0}
 }
 
 type FrameSystemConfig struct {
@@ -86,7 +86,7 @@ type FrameSystemConfig struct {
 func (x *FrameSystemConfig) Reset() {
 	*x = FrameSystemConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[0]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -99,7 +99,7 @@ func (x *FrameSystemConfig) String() string {
 func (*FrameSystemConfig) ProtoMessage() {}
 
 func (x *FrameSystemConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[0]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112,7 +112,7 @@ func (x *FrameSystemConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FrameSystemConfig.ProtoReflect.Descriptor instead.
 func (*FrameSystemConfig) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{0}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *FrameSystemConfig) GetFrame() *v1.Transform {
@@ -135,14 +135,14 @@ type FrameSystemConfigRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// pose information on any additional reference frames that are needed
-	// to supplement the robot's frame system
+	// to supplement the physicalDevice's frame system
 	SupplementalTransforms []*v1.Transform `protobuf:"bytes,1,rep,name=supplemental_transforms,json=supplementalTransforms,proto3" json:"supplemental_transforms,omitempty"`
 }
 
 func (x *FrameSystemConfigRequest) Reset() {
 	*x = FrameSystemConfigRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[1]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -155,7 +155,7 @@ func (x *FrameSystemConfigRequest) String() string {
 func (*FrameSystemConfigRequest) ProtoMessage() {}
 
 func (x *FrameSystemConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[1]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -168,7 +168,7 @@ func (x *FrameSystemConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FrameSystemConfigRequest.ProtoReflect.Descriptor instead.
 func (*FrameSystemConfigRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{1}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *FrameSystemConfigRequest) GetSupplementalTransforms() []*v1.Transform {
@@ -189,7 +189,7 @@ type FrameSystemConfigResponse struct {
 func (x *FrameSystemConfigResponse) Reset() {
 	*x = FrameSystemConfigResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[2]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -202,7 +202,7 @@ func (x *FrameSystemConfigResponse) String() string {
 func (*FrameSystemConfigResponse) ProtoMessage() {}
 
 func (x *FrameSystemConfigResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[2]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -215,7 +215,7 @@ func (x *FrameSystemConfigResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FrameSystemConfigResponse.ProtoReflect.Descriptor instead.
 func (*FrameSystemConfigResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{2}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *FrameSystemConfigResponse) GetFrameSystemConfigs() []*FrameSystemConfig {
@@ -244,7 +244,7 @@ type TransformPoseRequest struct {
 func (x *TransformPoseRequest) Reset() {
 	*x = TransformPoseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[3]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -257,7 +257,7 @@ func (x *TransformPoseRequest) String() string {
 func (*TransformPoseRequest) ProtoMessage() {}
 
 func (x *TransformPoseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[3]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -270,7 +270,7 @@ func (x *TransformPoseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransformPoseRequest.ProtoReflect.Descriptor instead.
 func (*TransformPoseRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{3}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *TransformPoseRequest) GetSource() *v1.PoseInFrame {
@@ -305,7 +305,7 @@ type TransformPoseResponse struct {
 func (x *TransformPoseResponse) Reset() {
 	*x = TransformPoseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[4]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -318,7 +318,7 @@ func (x *TransformPoseResponse) String() string {
 func (*TransformPoseResponse) ProtoMessage() {}
 
 func (x *TransformPoseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[4]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -331,7 +331,7 @@ func (x *TransformPoseResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransformPoseResponse.ProtoReflect.Descriptor instead.
 func (*TransformPoseResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{4}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *TransformPoseResponse) GetPose() *v1.PoseInFrame {
@@ -352,7 +352,7 @@ type TransformPCDRequest struct {
 	// the reference frame of the point cloud.
 	Source string `protobuf:"bytes,2,opt,name=source,proto3" json:"source,omitempty"`
 	// the reference frame into which the source data should be transformed, if unset this defaults to the "world" reference frame.
-	// Do not move the robot between the generation of the initial pointcloud and the receipt
+	// Do not move the physicalDevice between the generation of the initial pointcloud and the receipt
 	// of the transformed pointcloud because that will make the transformations inaccurate
 	Destination string `protobuf:"bytes,3,opt,name=destination,proto3" json:"destination,omitempty"`
 }
@@ -360,7 +360,7 @@ type TransformPCDRequest struct {
 func (x *TransformPCDRequest) Reset() {
 	*x = TransformPCDRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[5]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -373,7 +373,7 @@ func (x *TransformPCDRequest) String() string {
 func (*TransformPCDRequest) ProtoMessage() {}
 
 func (x *TransformPCDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[5]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -386,7 +386,7 @@ func (x *TransformPCDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransformPCDRequest.ProtoReflect.Descriptor instead.
 func (*TransformPCDRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{5}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *TransformPCDRequest) GetPointCloudPcd() []byte {
@@ -421,7 +421,7 @@ type TransformPCDResponse struct {
 func (x *TransformPCDResponse) Reset() {
 	*x = TransformPCDResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[6]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -434,7 +434,7 @@ func (x *TransformPCDResponse) String() string {
 func (*TransformPCDResponse) ProtoMessage() {}
 
 func (x *TransformPCDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[6]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -447,7 +447,7 @@ func (x *TransformPCDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransformPCDResponse.ProtoReflect.Descriptor instead.
 func (*TransformPCDResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{6}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *TransformPCDResponse) GetPointCloudPcd() []byte {
@@ -466,7 +466,7 @@ type ResourceNamesRequest struct {
 func (x *ResourceNamesRequest) Reset() {
 	*x = ResourceNamesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[7]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -479,7 +479,7 @@ func (x *ResourceNamesRequest) String() string {
 func (*ResourceNamesRequest) ProtoMessage() {}
 
 func (x *ResourceNamesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[7]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -492,7 +492,7 @@ func (x *ResourceNamesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceNamesRequest.ProtoReflect.Descriptor instead.
 func (*ResourceNamesRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{7}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{7}
 }
 
 type ResourceNamesResponse struct {
@@ -506,7 +506,7 @@ type ResourceNamesResponse struct {
 func (x *ResourceNamesResponse) Reset() {
 	*x = ResourceNamesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[8]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -519,7 +519,7 @@ func (x *ResourceNamesResponse) String() string {
 func (*ResourceNamesResponse) ProtoMessage() {}
 
 func (x *ResourceNamesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[8]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -532,7 +532,7 @@ func (x *ResourceNamesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceNamesResponse.ProtoReflect.Descriptor instead.
 func (*ResourceNamesResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{8}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ResourceNamesResponse) GetResources() []*v1.ResourceName {
@@ -554,7 +554,7 @@ type ResourceRPCSubtype struct {
 func (x *ResourceRPCSubtype) Reset() {
 	*x = ResourceRPCSubtype{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[9]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -567,7 +567,7 @@ func (x *ResourceRPCSubtype) String() string {
 func (*ResourceRPCSubtype) ProtoMessage() {}
 
 func (x *ResourceRPCSubtype) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[9]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -580,7 +580,7 @@ func (x *ResourceRPCSubtype) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceRPCSubtype.ProtoReflect.Descriptor instead.
 func (*ResourceRPCSubtype) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{9}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ResourceRPCSubtype) GetSubtype() *v1.ResourceName {
@@ -606,7 +606,7 @@ type ResourceRPCSubtypesRequest struct {
 func (x *ResourceRPCSubtypesRequest) Reset() {
 	*x = ResourceRPCSubtypesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[10]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -619,7 +619,7 @@ func (x *ResourceRPCSubtypesRequest) String() string {
 func (*ResourceRPCSubtypesRequest) ProtoMessage() {}
 
 func (x *ResourceRPCSubtypesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[10]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -632,7 +632,7 @@ func (x *ResourceRPCSubtypesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceRPCSubtypesRequest.ProtoReflect.Descriptor instead.
 func (*ResourceRPCSubtypesRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{10}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{10}
 }
 
 type ResourceRPCSubtypesResponse struct {
@@ -646,7 +646,7 @@ type ResourceRPCSubtypesResponse struct {
 func (x *ResourceRPCSubtypesResponse) Reset() {
 	*x = ResourceRPCSubtypesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[11]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -659,7 +659,7 @@ func (x *ResourceRPCSubtypesResponse) String() string {
 func (*ResourceRPCSubtypesResponse) ProtoMessage() {}
 
 func (x *ResourceRPCSubtypesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[11]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -672,7 +672,7 @@ func (x *ResourceRPCSubtypesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceRPCSubtypesResponse.ProtoReflect.Descriptor instead.
 func (*ResourceRPCSubtypesResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{11}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ResourceRPCSubtypesResponse) GetResourceRpcSubtypes() []*ResourceRPCSubtype {
@@ -697,7 +697,7 @@ type Operation struct {
 func (x *Operation) Reset() {
 	*x = Operation{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[12]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -710,7 +710,7 @@ func (x *Operation) String() string {
 func (*Operation) ProtoMessage() {}
 
 func (x *Operation) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[12]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -723,7 +723,7 @@ func (x *Operation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Operation.ProtoReflect.Descriptor instead.
 func (*Operation) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{12}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *Operation) GetId() string {
@@ -770,7 +770,7 @@ type GetOperationsRequest struct {
 func (x *GetOperationsRequest) Reset() {
 	*x = GetOperationsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[13]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -783,7 +783,7 @@ func (x *GetOperationsRequest) String() string {
 func (*GetOperationsRequest) ProtoMessage() {}
 
 func (x *GetOperationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[13]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -796,7 +796,7 @@ func (x *GetOperationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOperationsRequest.ProtoReflect.Descriptor instead.
 func (*GetOperationsRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{13}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{13}
 }
 
 type GetOperationsResponse struct {
@@ -810,7 +810,7 @@ type GetOperationsResponse struct {
 func (x *GetOperationsResponse) Reset() {
 	*x = GetOperationsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[14]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -823,7 +823,7 @@ func (x *GetOperationsResponse) String() string {
 func (*GetOperationsResponse) ProtoMessage() {}
 
 func (x *GetOperationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[14]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -836,7 +836,7 @@ func (x *GetOperationsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOperationsResponse.ProtoReflect.Descriptor instead.
 func (*GetOperationsResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{14}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *GetOperationsResponse) GetOperations() []*Operation {
@@ -857,7 +857,7 @@ type CancelOperationRequest struct {
 func (x *CancelOperationRequest) Reset() {
 	*x = CancelOperationRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[15]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -870,7 +870,7 @@ func (x *CancelOperationRequest) String() string {
 func (*CancelOperationRequest) ProtoMessage() {}
 
 func (x *CancelOperationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[15]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -883,7 +883,7 @@ func (x *CancelOperationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CancelOperationRequest.ProtoReflect.Descriptor instead.
 func (*CancelOperationRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{15}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *CancelOperationRequest) GetId() string {
@@ -902,7 +902,7 @@ type CancelOperationResponse struct {
 func (x *CancelOperationResponse) Reset() {
 	*x = CancelOperationResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[16]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -915,7 +915,7 @@ func (x *CancelOperationResponse) String() string {
 func (*CancelOperationResponse) ProtoMessage() {}
 
 func (x *CancelOperationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[16]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -928,7 +928,7 @@ func (x *CancelOperationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CancelOperationResponse.ProtoReflect.Descriptor instead.
 func (*CancelOperationResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{16}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{16}
 }
 
 type BlockForOperationRequest struct {
@@ -942,7 +942,7 @@ type BlockForOperationRequest struct {
 func (x *BlockForOperationRequest) Reset() {
 	*x = BlockForOperationRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[17]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -955,7 +955,7 @@ func (x *BlockForOperationRequest) String() string {
 func (*BlockForOperationRequest) ProtoMessage() {}
 
 func (x *BlockForOperationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[17]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -968,7 +968,7 @@ func (x *BlockForOperationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlockForOperationRequest.ProtoReflect.Descriptor instead.
 func (*BlockForOperationRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{17}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *BlockForOperationRequest) GetId() string {
@@ -987,7 +987,7 @@ type BlockForOperationResponse struct {
 func (x *BlockForOperationResponse) Reset() {
 	*x = BlockForOperationResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[18]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1000,7 +1000,7 @@ func (x *BlockForOperationResponse) String() string {
 func (*BlockForOperationResponse) ProtoMessage() {}
 
 func (x *BlockForOperationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[18]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1013,7 +1013,7 @@ func (x *BlockForOperationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlockForOperationResponse.ProtoReflect.Descriptor instead.
 func (*BlockForOperationResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{18}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{18}
 }
 
 type PeerConnectionInfo struct {
@@ -1021,7 +1021,7 @@ type PeerConnectionInfo struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Type          PeerConnectionType `protobuf:"varint,1,opt,name=type,proto3,enum=viam.robot.v1.PeerConnectionType" json:"type,omitempty"`
+	Type          PeerConnectionType `protobuf:"varint,1,opt,name=type,proto3,enum=viam.physicalDevice.v1.PeerConnectionType" json:"type,omitempty"`
 	RemoteAddress *string            `protobuf:"bytes,2,opt,name=remote_address,json=remoteAddress,proto3,oneof" json:"remote_address,omitempty"`
 	LocalAddress  *string            `protobuf:"bytes,3,opt,name=local_address,json=localAddress,proto3,oneof" json:"local_address,omitempty"`
 }
@@ -1029,7 +1029,7 @@ type PeerConnectionInfo struct {
 func (x *PeerConnectionInfo) Reset() {
 	*x = PeerConnectionInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[19]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1042,7 +1042,7 @@ func (x *PeerConnectionInfo) String() string {
 func (*PeerConnectionInfo) ProtoMessage() {}
 
 func (x *PeerConnectionInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[19]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1055,7 +1055,7 @@ func (x *PeerConnectionInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PeerConnectionInfo.ProtoReflect.Descriptor instead.
 func (*PeerConnectionInfo) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{19}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *PeerConnectionInfo) GetType() PeerConnectionType {
@@ -1091,7 +1091,7 @@ type Session struct {
 func (x *Session) Reset() {
 	*x = Session{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[20]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1104,7 +1104,7 @@ func (x *Session) String() string {
 func (*Session) ProtoMessage() {}
 
 func (x *Session) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[20]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1117,7 +1117,7 @@ func (x *Session) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session.ProtoReflect.Descriptor instead.
 func (*Session) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{20}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *Session) GetId() string {
@@ -1143,7 +1143,7 @@ type GetSessionsRequest struct {
 func (x *GetSessionsRequest) Reset() {
 	*x = GetSessionsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[21]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1156,7 +1156,7 @@ func (x *GetSessionsRequest) String() string {
 func (*GetSessionsRequest) ProtoMessage() {}
 
 func (x *GetSessionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[21]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1169,7 +1169,7 @@ func (x *GetSessionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSessionsRequest.ProtoReflect.Descriptor instead.
 func (*GetSessionsRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{21}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{21}
 }
 
 type GetSessionsResponse struct {
@@ -1183,7 +1183,7 @@ type GetSessionsResponse struct {
 func (x *GetSessionsResponse) Reset() {
 	*x = GetSessionsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[22]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1196,7 +1196,7 @@ func (x *GetSessionsResponse) String() string {
 func (*GetSessionsResponse) ProtoMessage() {}
 
 func (x *GetSessionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[22]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1209,7 +1209,7 @@ func (x *GetSessionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSessionsResponse.ProtoReflect.Descriptor instead.
 func (*GetSessionsResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{22}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *GetSessionsResponse) GetSessions() []*Session {
@@ -1231,7 +1231,7 @@ type DiscoveryQuery struct {
 func (x *DiscoveryQuery) Reset() {
 	*x = DiscoveryQuery{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[23]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1244,7 +1244,7 @@ func (x *DiscoveryQuery) String() string {
 func (*DiscoveryQuery) ProtoMessage() {}
 
 func (x *DiscoveryQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[23]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1257,7 +1257,7 @@ func (x *DiscoveryQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiscoveryQuery.ProtoReflect.Descriptor instead.
 func (*DiscoveryQuery) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{23}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *DiscoveryQuery) GetSubtype() string {
@@ -1286,7 +1286,7 @@ type Discovery struct {
 func (x *Discovery) Reset() {
 	*x = Discovery{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[24]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1299,7 +1299,7 @@ func (x *Discovery) String() string {
 func (*Discovery) ProtoMessage() {}
 
 func (x *Discovery) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[24]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1312,7 +1312,7 @@ func (x *Discovery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Discovery.ProtoReflect.Descriptor instead.
 func (*Discovery) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{24}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *Discovery) GetQuery() *DiscoveryQuery {
@@ -1340,7 +1340,7 @@ type DiscoverComponentsRequest struct {
 func (x *DiscoverComponentsRequest) Reset() {
 	*x = DiscoverComponentsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[25]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1353,7 +1353,7 @@ func (x *DiscoverComponentsRequest) String() string {
 func (*DiscoverComponentsRequest) ProtoMessage() {}
 
 func (x *DiscoverComponentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[25]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1366,7 +1366,7 @@ func (x *DiscoverComponentsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiscoverComponentsRequest.ProtoReflect.Descriptor instead.
 func (*DiscoverComponentsRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{25}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *DiscoverComponentsRequest) GetQueries() []*DiscoveryQuery {
@@ -1387,7 +1387,7 @@ type DiscoverComponentsResponse struct {
 func (x *DiscoverComponentsResponse) Reset() {
 	*x = DiscoverComponentsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[26]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1400,7 +1400,7 @@ func (x *DiscoverComponentsResponse) String() string {
 func (*DiscoverComponentsResponse) ProtoMessage() {}
 
 func (x *DiscoverComponentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[26]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1413,7 +1413,7 @@ func (x *DiscoverComponentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiscoverComponentsResponse.ProtoReflect.Descriptor instead.
 func (*DiscoverComponentsResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{26}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *DiscoverComponentsResponse) GetDiscovery() []*Discovery {
@@ -1436,7 +1436,7 @@ type Status struct {
 func (x *Status) Reset() {
 	*x = Status{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[27]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1449,7 +1449,7 @@ func (x *Status) String() string {
 func (*Status) ProtoMessage() {}
 
 func (x *Status) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[27]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1462,7 +1462,7 @@ func (x *Status) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Status.ProtoReflect.Descriptor instead.
 func (*Status) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{27}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *Status) GetName() *v1.ResourceName {
@@ -1497,7 +1497,7 @@ type GetStatusRequest struct {
 func (x *GetStatusRequest) Reset() {
 	*x = GetStatusRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[28]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1510,7 +1510,7 @@ func (x *GetStatusRequest) String() string {
 func (*GetStatusRequest) ProtoMessage() {}
 
 func (x *GetStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[28]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1523,7 +1523,7 @@ func (x *GetStatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStatusRequest.ProtoReflect.Descriptor instead.
 func (*GetStatusRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{28}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *GetStatusRequest) GetResourceNames() []*v1.ResourceName {
@@ -1544,7 +1544,7 @@ type GetStatusResponse struct {
 func (x *GetStatusResponse) Reset() {
 	*x = GetStatusResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[29]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1557,7 +1557,7 @@ func (x *GetStatusResponse) String() string {
 func (*GetStatusResponse) ProtoMessage() {}
 
 func (x *GetStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[29]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1570,7 +1570,7 @@ func (x *GetStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStatusResponse.ProtoReflect.Descriptor instead.
 func (*GetStatusResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{29}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *GetStatusResponse) GetStatus() []*Status {
@@ -1592,7 +1592,7 @@ type StreamStatusRequest struct {
 func (x *StreamStatusRequest) Reset() {
 	*x = StreamStatusRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[30]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1605,7 +1605,7 @@ func (x *StreamStatusRequest) String() string {
 func (*StreamStatusRequest) ProtoMessage() {}
 
 func (x *StreamStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[30]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1618,7 +1618,7 @@ func (x *StreamStatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamStatusRequest.ProtoReflect.Descriptor instead.
 func (*StreamStatusRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{30}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *StreamStatusRequest) GetResourceNames() []*v1.ResourceName {
@@ -1646,7 +1646,7 @@ type StreamStatusResponse struct {
 func (x *StreamStatusResponse) Reset() {
 	*x = StreamStatusResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[31]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1659,7 +1659,7 @@ func (x *StreamStatusResponse) String() string {
 func (*StreamStatusResponse) ProtoMessage() {}
 
 func (x *StreamStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[31]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1672,7 +1672,7 @@ func (x *StreamStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamStatusResponse.ProtoReflect.Descriptor instead.
 func (*StreamStatusResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{31}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *StreamStatusResponse) GetStatus() []*Status {
@@ -1694,7 +1694,7 @@ type StopExtraParameters struct {
 func (x *StopExtraParameters) Reset() {
 	*x = StopExtraParameters{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[32]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1707,7 +1707,7 @@ func (x *StopExtraParameters) String() string {
 func (*StopExtraParameters) ProtoMessage() {}
 
 func (x *StopExtraParameters) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[32]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1720,7 +1720,7 @@ func (x *StopExtraParameters) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StopExtraParameters.ProtoReflect.Descriptor instead.
 func (*StopExtraParameters) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{32}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *StopExtraParameters) GetName() *v1.ResourceName {
@@ -1748,7 +1748,7 @@ type StopAllRequest struct {
 func (x *StopAllRequest) Reset() {
 	*x = StopAllRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[33]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1761,7 +1761,7 @@ func (x *StopAllRequest) String() string {
 func (*StopAllRequest) ProtoMessage() {}
 
 func (x *StopAllRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[33]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1774,7 +1774,7 @@ func (x *StopAllRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StopAllRequest.ProtoReflect.Descriptor instead.
 func (*StopAllRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{33}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *StopAllRequest) GetExtra() []*StopExtraParameters {
@@ -1793,7 +1793,7 @@ type StopAllResponse struct {
 func (x *StopAllResponse) Reset() {
 	*x = StopAllResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[34]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1806,7 +1806,7 @@ func (x *StopAllResponse) String() string {
 func (*StopAllResponse) ProtoMessage() {}
 
 func (x *StopAllResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[34]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1819,7 +1819,7 @@ func (x *StopAllResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StopAllResponse.ProtoReflect.Descriptor instead.
 func (*StopAllResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{34}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{34}
 }
 
 type StartSessionRequest struct {
@@ -1835,7 +1835,7 @@ type StartSessionRequest struct {
 func (x *StartSessionRequest) Reset() {
 	*x = StartSessionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[35]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1848,7 +1848,7 @@ func (x *StartSessionRequest) String() string {
 func (*StartSessionRequest) ProtoMessage() {}
 
 func (x *StartSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[35]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1861,7 +1861,7 @@ func (x *StartSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StartSessionRequest.ProtoReflect.Descriptor instead.
 func (*StartSessionRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{35}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *StartSessionRequest) GetResume() string {
@@ -1883,7 +1883,7 @@ type StartSessionResponse struct {
 func (x *StartSessionResponse) Reset() {
 	*x = StartSessionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[36]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1896,7 +1896,7 @@ func (x *StartSessionResponse) String() string {
 func (*StartSessionResponse) ProtoMessage() {}
 
 func (x *StartSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[36]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1909,7 +1909,7 @@ func (x *StartSessionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StartSessionResponse.ProtoReflect.Descriptor instead.
 func (*StartSessionResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{36}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *StartSessionResponse) GetId() string {
@@ -1937,7 +1937,7 @@ type SendSessionHeartbeatRequest struct {
 func (x *SendSessionHeartbeatRequest) Reset() {
 	*x = SendSessionHeartbeatRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[37]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1950,7 +1950,7 @@ func (x *SendSessionHeartbeatRequest) String() string {
 func (*SendSessionHeartbeatRequest) ProtoMessage() {}
 
 func (x *SendSessionHeartbeatRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[37]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1963,7 +1963,7 @@ func (x *SendSessionHeartbeatRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendSessionHeartbeatRequest.ProtoReflect.Descriptor instead.
 func (*SendSessionHeartbeatRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{37}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *SendSessionHeartbeatRequest) GetId() string {
@@ -1982,7 +1982,7 @@ type SendSessionHeartbeatResponse struct {
 func (x *SendSessionHeartbeatResponse) Reset() {
 	*x = SendSessionHeartbeatResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[38]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1995,7 +1995,7 @@ func (x *SendSessionHeartbeatResponse) String() string {
 func (*SendSessionHeartbeatResponse) ProtoMessage() {}
 
 func (x *SendSessionHeartbeatResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[38]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2008,7 +2008,7 @@ func (x *SendSessionHeartbeatResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendSessionHeartbeatResponse.ProtoReflect.Descriptor instead.
 func (*SendSessionHeartbeatResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{38}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{38}
 }
 
 type LogRequest struct {
@@ -2022,7 +2022,7 @@ type LogRequest struct {
 func (x *LogRequest) Reset() {
 	*x = LogRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[39]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[39]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2035,7 +2035,7 @@ func (x *LogRequest) String() string {
 func (*LogRequest) ProtoMessage() {}
 
 func (x *LogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[39]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2048,7 +2048,7 @@ func (x *LogRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogRequest.ProtoReflect.Descriptor instead.
 func (*LogRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{39}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *LogRequest) GetLogs() []*v1.LogEntry {
@@ -2067,7 +2067,7 @@ type LogResponse struct {
 func (x *LogResponse) Reset() {
 	*x = LogResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[40]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[40]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2080,7 +2080,7 @@ func (x *LogResponse) String() string {
 func (*LogResponse) ProtoMessage() {}
 
 func (x *LogResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[40]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[40]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2093,7 +2093,7 @@ func (x *LogResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogResponse.ProtoReflect.Descriptor instead.
 func (*LogResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{40}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{40}
 }
 
 type GetCloudMetadataRequest struct {
@@ -2105,7 +2105,7 @@ type GetCloudMetadataRequest struct {
 func (x *GetCloudMetadataRequest) Reset() {
 	*x = GetCloudMetadataRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[41]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2118,7 +2118,7 @@ func (x *GetCloudMetadataRequest) String() string {
 func (*GetCloudMetadataRequest) ProtoMessage() {}
 
 func (x *GetCloudMetadataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[41]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2131,7 +2131,7 @@ func (x *GetCloudMetadataRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCloudMetadataRequest.ProtoReflect.Descriptor instead.
 func (*GetCloudMetadataRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{41}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{41}
 }
 
 type GetCloudMetadataResponse struct {
@@ -2139,20 +2139,20 @@ type GetCloudMetadataResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Deprecated: use machine_part_id field.
+	// Deprecated: use physicalDevice_part_id field.
 	//
-	// Deprecated: Marked as deprecated in robot/v1/robot.proto.
-	RobotPartId   string `protobuf:"bytes,1,opt,name=robot_part_id,json=robotPartId,proto3" json:"robot_part_id,omitempty"`
+	// Deprecated: Marked as deprecated in physicalDevice/v1/physicalDevice.proto.
+	physicalDevicePartId   string `protobuf:"bytes,1,opt,name=physicalDevice_part_id,json=physicalDevicePartId,proto3" json:"physicalDevice_part_id,omitempty"`
 	PrimaryOrgId  string `protobuf:"bytes,2,opt,name=primary_org_id,json=primaryOrgId,proto3" json:"primary_org_id,omitempty"`
 	LocationId    string `protobuf:"bytes,3,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
-	MachineId     string `protobuf:"bytes,4,opt,name=machine_id,json=machineId,proto3" json:"machine_id,omitempty"`
-	MachinePartId string `protobuf:"bytes,5,opt,name=machine_part_id,json=machinePartId,proto3" json:"machine_part_id,omitempty"`
+	physicalDeviceId     string `protobuf:"bytes,4,opt,name=physicalDevice_id,json=physicalDeviceId,proto3" json:"physicalDevice_id,omitempty"`
+	physicalDevicePartId string `protobuf:"bytes,5,opt,name=physicalDevice_part_id,json=physicalDevicePartId,proto3" json:"physicalDevice_part_id,omitempty"`
 }
 
 func (x *GetCloudMetadataResponse) Reset() {
 	*x = GetCloudMetadataResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[42]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2165,7 +2165,7 @@ func (x *GetCloudMetadataResponse) String() string {
 func (*GetCloudMetadataResponse) ProtoMessage() {}
 
 func (x *GetCloudMetadataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[42]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2178,13 +2178,13 @@ func (x *GetCloudMetadataResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCloudMetadataResponse.ProtoReflect.Descriptor instead.
 func (*GetCloudMetadataResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{42}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{42}
 }
 
-// Deprecated: Marked as deprecated in robot/v1/robot.proto.
-func (x *GetCloudMetadataResponse) GetRobotPartId() string {
+// Deprecated: Marked as deprecated in physicalDevice/v1/physicalDevice.proto.
+func (x *GetCloudMetadataResponse) GetphysicalDevicePartId() string {
 	if x != nil {
-		return x.RobotPartId
+		return x.physicalDevicePartId
 	}
 	return ""
 }
@@ -2203,16 +2203,16 @@ func (x *GetCloudMetadataResponse) GetLocationId() string {
 	return ""
 }
 
-func (x *GetCloudMetadataResponse) GetMachineId() string {
+func (x *GetCloudMetadataResponse) GetphysicalDeviceId() string {
 	if x != nil {
-		return x.MachineId
+		return x.physicalDeviceId
 	}
 	return ""
 }
 
-func (x *GetCloudMetadataResponse) GetMachinePartId() string {
+func (x *GetCloudMetadataResponse) GetphysicalDevicePartId() string {
 	if x != nil {
-		return x.MachinePartId
+		return x.physicalDevicePartId
 	}
 	return ""
 }
@@ -2232,7 +2232,7 @@ type RestartModuleRequest struct {
 func (x *RestartModuleRequest) Reset() {
 	*x = RestartModuleRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[43]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[43]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2245,7 +2245,7 @@ func (x *RestartModuleRequest) String() string {
 func (*RestartModuleRequest) ProtoMessage() {}
 
 func (x *RestartModuleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[43]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2258,7 +2258,7 @@ func (x *RestartModuleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestartModuleRequest.ProtoReflect.Descriptor instead.
 func (*RestartModuleRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{43}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{43}
 }
 
 func (m *RestartModuleRequest) GetIdOrName() isRestartModuleRequest_IdOrName {
@@ -2308,7 +2308,7 @@ type RestartModuleResponse struct {
 func (x *RestartModuleResponse) Reset() {
 	*x = RestartModuleResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[44]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[44]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2321,7 +2321,7 @@ func (x *RestartModuleResponse) String() string {
 func (*RestartModuleResponse) ProtoMessage() {}
 
 func (x *RestartModuleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[44]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[44]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2334,7 +2334,7 @@ func (x *RestartModuleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestartModuleResponse.ProtoReflect.Descriptor instead.
 func (*RestartModuleResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{44}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{44}
 }
 
 type ShutdownRequest struct {
@@ -2346,7 +2346,7 @@ type ShutdownRequest struct {
 func (x *ShutdownRequest) Reset() {
 	*x = ShutdownRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[45]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[45]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2359,7 +2359,7 @@ func (x *ShutdownRequest) String() string {
 func (*ShutdownRequest) ProtoMessage() {}
 
 func (x *ShutdownRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[45]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[45]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2372,7 +2372,7 @@ func (x *ShutdownRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShutdownRequest.ProtoReflect.Descriptor instead.
 func (*ShutdownRequest) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{45}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{45}
 }
 
 type ShutdownResponse struct {
@@ -2384,7 +2384,7 @@ type ShutdownResponse struct {
 func (x *ShutdownResponse) Reset() {
 	*x = ShutdownResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_robot_v1_robot_proto_msgTypes[46]
+		mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[46]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2397,7 +2397,7 @@ func (x *ShutdownResponse) String() string {
 func (*ShutdownResponse) ProtoMessage() {}
 
 func (x *ShutdownResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_robot_v1_robot_proto_msgTypes[46]
+	mi := &file_physicalDevice_v1_physicalDevice_proto_msgTypes[46]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2410,12 +2410,12 @@ func (x *ShutdownResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShutdownResponse.ProtoReflect.Descriptor instead.
 func (*ShutdownResponse) Descriptor() ([]byte, []int) {
-	return file_robot_v1_robot_proto_rawDescGZIP(), []int{46}
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP(), []int{46}
 }
 
-var File_robot_v1_robot_proto protoreflect.FileDescriptor
+var File_physicalDevice_v1_physicalDevice_proto protoreflect.FileDescriptor
 
-var file_robot_v1_robot_proto_rawDesc = []byte{
+var file_physicalDevice_v1_physicalDevice_proto_rawDesc = []byte{
 	0x0a, 0x14, 0x72, 0x6f, 0x62, 0x6f, 0x74, 0x2f, 0x76, 0x31, 0x2f, 0x72, 0x6f, 0x62, 0x6f, 0x74,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0d, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x72, 0x6f, 0x62,
 	0x6f, 0x74, 0x2e, 0x76, 0x31, 0x1a, 0x16, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x76, 0x31,
@@ -2844,68 +2844,68 @@ var file_robot_v1_robot_proto_rawDesc = []byte{
 }
 
 var (
-	file_robot_v1_robot_proto_rawDescOnce sync.Once
-	file_robot_v1_robot_proto_rawDescData = file_robot_v1_robot_proto_rawDesc
+	file_physicalDevice_v1_physicalDevice_proto_rawDescOnce sync.Once
+	file_physicalDevice_v1_physicalDevice_proto_rawDescData = file_physicalDevice_v1_physicalDevice_proto_rawDesc
 )
 
-func file_robot_v1_robot_proto_rawDescGZIP() []byte {
-	file_robot_v1_robot_proto_rawDescOnce.Do(func() {
-		file_robot_v1_robot_proto_rawDescData = protoimpl.X.CompressGZIP(file_robot_v1_robot_proto_rawDescData)
+func file_physicalDevice_v1_physicalDevice_proto_rawDescGZIP() []byte {
+	file_physicalDevice_v1_physicalDevice_proto_rawDescOnce.Do(func() {
+		file_physicalDevice_v1_physicalDevice_proto_rawDescData = protoimpl.X.CompressGZIP(file_physicalDevice_v1_physicalDevice_proto_rawDescData)
 	})
-	return file_robot_v1_robot_proto_rawDescData
+	return file_physicalDevice_v1_physicalDevice_proto_rawDescData
 }
 
-var file_robot_v1_robot_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_robot_v1_robot_proto_msgTypes = make([]protoimpl.MessageInfo, 47)
-var file_robot_v1_robot_proto_goTypes = []interface{}{
-	(PeerConnectionType)(0),              // 0: viam.robot.v1.PeerConnectionType
-	(*FrameSystemConfig)(nil),            // 1: viam.robot.v1.FrameSystemConfig
-	(*FrameSystemConfigRequest)(nil),     // 2: viam.robot.v1.FrameSystemConfigRequest
-	(*FrameSystemConfigResponse)(nil),    // 3: viam.robot.v1.FrameSystemConfigResponse
-	(*TransformPoseRequest)(nil),         // 4: viam.robot.v1.TransformPoseRequest
-	(*TransformPoseResponse)(nil),        // 5: viam.robot.v1.TransformPoseResponse
-	(*TransformPCDRequest)(nil),          // 6: viam.robot.v1.TransformPCDRequest
-	(*TransformPCDResponse)(nil),         // 7: viam.robot.v1.TransformPCDResponse
-	(*ResourceNamesRequest)(nil),         // 8: viam.robot.v1.ResourceNamesRequest
-	(*ResourceNamesResponse)(nil),        // 9: viam.robot.v1.ResourceNamesResponse
-	(*ResourceRPCSubtype)(nil),           // 10: viam.robot.v1.ResourceRPCSubtype
-	(*ResourceRPCSubtypesRequest)(nil),   // 11: viam.robot.v1.ResourceRPCSubtypesRequest
-	(*ResourceRPCSubtypesResponse)(nil),  // 12: viam.robot.v1.ResourceRPCSubtypesResponse
-	(*Operation)(nil),                    // 13: viam.robot.v1.Operation
-	(*GetOperationsRequest)(nil),         // 14: viam.robot.v1.GetOperationsRequest
-	(*GetOperationsResponse)(nil),        // 15: viam.robot.v1.GetOperationsResponse
-	(*CancelOperationRequest)(nil),       // 16: viam.robot.v1.CancelOperationRequest
-	(*CancelOperationResponse)(nil),      // 17: viam.robot.v1.CancelOperationResponse
-	(*BlockForOperationRequest)(nil),     // 18: viam.robot.v1.BlockForOperationRequest
-	(*BlockForOperationResponse)(nil),    // 19: viam.robot.v1.BlockForOperationResponse
-	(*PeerConnectionInfo)(nil),           // 20: viam.robot.v1.PeerConnectionInfo
-	(*Session)(nil),                      // 21: viam.robot.v1.Session
-	(*GetSessionsRequest)(nil),           // 22: viam.robot.v1.GetSessionsRequest
-	(*GetSessionsResponse)(nil),          // 23: viam.robot.v1.GetSessionsResponse
-	(*DiscoveryQuery)(nil),               // 24: viam.robot.v1.DiscoveryQuery
-	(*Discovery)(nil),                    // 25: viam.robot.v1.Discovery
-	(*DiscoverComponentsRequest)(nil),    // 26: viam.robot.v1.DiscoverComponentsRequest
-	(*DiscoverComponentsResponse)(nil),   // 27: viam.robot.v1.DiscoverComponentsResponse
-	(*Status)(nil),                       // 28: viam.robot.v1.Status
-	(*GetStatusRequest)(nil),             // 29: viam.robot.v1.GetStatusRequest
-	(*GetStatusResponse)(nil),            // 30: viam.robot.v1.GetStatusResponse
-	(*StreamStatusRequest)(nil),          // 31: viam.robot.v1.StreamStatusRequest
-	(*StreamStatusResponse)(nil),         // 32: viam.robot.v1.StreamStatusResponse
-	(*StopExtraParameters)(nil),          // 33: viam.robot.v1.StopExtraParameters
-	(*StopAllRequest)(nil),               // 34: viam.robot.v1.StopAllRequest
-	(*StopAllResponse)(nil),              // 35: viam.robot.v1.StopAllResponse
-	(*StartSessionRequest)(nil),          // 36: viam.robot.v1.StartSessionRequest
-	(*StartSessionResponse)(nil),         // 37: viam.robot.v1.StartSessionResponse
-	(*SendSessionHeartbeatRequest)(nil),  // 38: viam.robot.v1.SendSessionHeartbeatRequest
-	(*SendSessionHeartbeatResponse)(nil), // 39: viam.robot.v1.SendSessionHeartbeatResponse
-	(*LogRequest)(nil),                   // 40: viam.robot.v1.LogRequest
-	(*LogResponse)(nil),                  // 41: viam.robot.v1.LogResponse
-	(*GetCloudMetadataRequest)(nil),      // 42: viam.robot.v1.GetCloudMetadataRequest
-	(*GetCloudMetadataResponse)(nil),     // 43: viam.robot.v1.GetCloudMetadataResponse
-	(*RestartModuleRequest)(nil),         // 44: viam.robot.v1.RestartModuleRequest
-	(*RestartModuleResponse)(nil),        // 45: viam.robot.v1.RestartModuleResponse
-	(*ShutdownRequest)(nil),              // 46: viam.robot.v1.ShutdownRequest
-	(*ShutdownResponse)(nil),             // 47: viam.robot.v1.ShutdownResponse
+var file_physicalDevice_v1_physicalDevice_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_physicalDevice_v1_physicalDevice_proto_msgTypes = make([]protoimpl.MessageInfo, 47)
+var file_physicalDevice_v1_physicalDevice_proto_goTypes = []interface{}{
+	(PeerConnectionType)(0),              // 0: viam.physicalDevice.v1.PeerConnectionType
+	(*FrameSystemConfig)(nil),            // 1: viam.physicalDevice.v1.FrameSystemConfig
+	(*FrameSystemConfigRequest)(nil),     // 2: viam.physicalDevice.v1.FrameSystemConfigRequest
+	(*FrameSystemConfigResponse)(nil),    // 3: viam.physicalDevice.v1.FrameSystemConfigResponse
+	(*TransformPoseRequest)(nil),         // 4: viam.physicalDevice.v1.TransformPoseRequest
+	(*TransformPoseResponse)(nil),        // 5: viam.physicalDevice.v1.TransformPoseResponse
+	(*TransformPCDRequest)(nil),          // 6: viam.physicalDevice.v1.TransformPCDRequest
+	(*TransformPCDResponse)(nil),         // 7: viam.physicalDevice.v1.TransformPCDResponse
+	(*ResourceNamesRequest)(nil),         // 8: viam.physicalDevice.v1.ResourceNamesRequest
+	(*ResourceNamesResponse)(nil),        // 9: viam.physicalDevice.v1.ResourceNamesResponse
+	(*ResourceRPCSubtype)(nil),           // 10: viam.physicalDevice.v1.ResourceRPCSubtype
+	(*ResourceRPCSubtypesRequest)(nil),   // 11: viam.physicalDevice.v1.ResourceRPCSubtypesRequest
+	(*ResourceRPCSubtypesResponse)(nil),  // 12: viam.physicalDevice.v1.ResourceRPCSubtypesResponse
+	(*Operation)(nil),                    // 13: viam.physicalDevice.v1.Operation
+	(*GetOperationsRequest)(nil),         // 14: viam.physicalDevice.v1.GetOperationsRequest
+	(*GetOperationsResponse)(nil),        // 15: viam.physicalDevice.v1.GetOperationsResponse
+	(*CancelOperationRequest)(nil),       // 16: viam.physicalDevice.v1.CancelOperationRequest
+	(*CancelOperationResponse)(nil),      // 17: viam.physicalDevice.v1.CancelOperationResponse
+	(*BlockForOperationRequest)(nil),     // 18: viam.physicalDevice.v1.BlockForOperationRequest
+	(*BlockForOperationResponse)(nil),    // 19: viam.physicalDevice.v1.BlockForOperationResponse
+	(*PeerConnectionInfo)(nil),           // 20: viam.physicalDevice.v1.PeerConnectionInfo
+	(*Session)(nil),                      // 21: viam.physicalDevice.v1.Session
+	(*GetSessionsRequest)(nil),           // 22: viam.physicalDevice.v1.GetSessionsRequest
+	(*GetSessionsResponse)(nil),          // 23: viam.physicalDevice.v1.GetSessionsResponse
+	(*DiscoveryQuery)(nil),               // 24: viam.physicalDevice.v1.DiscoveryQuery
+	(*Discovery)(nil),                    // 25: viam.physicalDevice.v1.Discovery
+	(*DiscoverComponentsRequest)(nil),    // 26: viam.physicalDevice.v1.DiscoverComponentsRequest
+	(*DiscoverComponentsResponse)(nil),   // 27: viam.physicalDevice.v1.DiscoverComponentsResponse
+	(*Status)(nil),                       // 28: viam.physicalDevice.v1.Status
+	(*GetStatusRequest)(nil),             // 29: viam.physicalDevice.v1.GetStatusRequest
+	(*GetStatusResponse)(nil),            // 30: viam.physicalDevice.v1.GetStatusResponse
+	(*StreamStatusRequest)(nil),          // 31: viam.physicalDevice.v1.StreamStatusRequest
+	(*StreamStatusResponse)(nil),         // 32: viam.physicalDevice.v1.StreamStatusResponse
+	(*StopExtraParameters)(nil),          // 33: viam.physicalDevice.v1.StopExtraParameters
+	(*StopAllRequest)(nil),               // 34: viam.physicalDevice.v1.StopAllRequest
+	(*StopAllResponse)(nil),              // 35: viam.physicalDevice.v1.StopAllResponse
+	(*StartSessionRequest)(nil),          // 36: viam.physicalDevice.v1.StartSessionRequest
+	(*StartSessionResponse)(nil),         // 37: viam.physicalDevice.v1.StartSessionResponse
+	(*SendSessionHeartbeatRequest)(nil),  // 38: viam.physicalDevice.v1.SendSessionHeartbeatRequest
+	(*SendSessionHeartbeatResponse)(nil), // 39: viam.physicalDevice.v1.SendSessionHeartbeatResponse
+	(*LogRequest)(nil),                   // 40: viam.physicalDevice.v1.LogRequest
+	(*LogResponse)(nil),                  // 41: viam.physicalDevice.v1.LogResponse
+	(*GetCloudMetadataRequest)(nil),      // 42: viam.physicalDevice.v1.GetCloudMetadataRequest
+	(*GetCloudMetadataResponse)(nil),     // 43: viam.physicalDevice.v1.GetCloudMetadataResponse
+	(*RestartModuleRequest)(nil),         // 44: viam.physicalDevice.v1.RestartModuleRequest
+	(*RestartModuleResponse)(nil),        // 45: viam.physicalDevice.v1.RestartModuleResponse
+	(*ShutdownRequest)(nil),              // 46: viam.physicalDevice.v1.ShutdownRequest
+	(*ShutdownResponse)(nil),             // 47: viam.physicalDevice.v1.ShutdownResponse
 	(*v1.Transform)(nil),                 // 48: viam.common.v1.Transform
 	(*structpb.Struct)(nil),              // 49: google.protobuf.Struct
 	(*v1.PoseInFrame)(nil),               // 50: viam.common.v1.PoseInFrame
@@ -2914,78 +2914,78 @@ var file_robot_v1_robot_proto_goTypes = []interface{}{
 	(*durationpb.Duration)(nil),          // 53: google.protobuf.Duration
 	(*v1.LogEntry)(nil),                  // 54: viam.common.v1.LogEntry
 }
-var file_robot_v1_robot_proto_depIdxs = []int32{
-	48, // 0: viam.robot.v1.FrameSystemConfig.frame:type_name -> viam.common.v1.Transform
-	49, // 1: viam.robot.v1.FrameSystemConfig.kinematics:type_name -> google.protobuf.Struct
-	48, // 2: viam.robot.v1.FrameSystemConfigRequest.supplemental_transforms:type_name -> viam.common.v1.Transform
-	1,  // 3: viam.robot.v1.FrameSystemConfigResponse.frame_system_configs:type_name -> viam.robot.v1.FrameSystemConfig
-	50, // 4: viam.robot.v1.TransformPoseRequest.source:type_name -> viam.common.v1.PoseInFrame
-	48, // 5: viam.robot.v1.TransformPoseRequest.supplemental_transforms:type_name -> viam.common.v1.Transform
-	50, // 6: viam.robot.v1.TransformPoseResponse.pose:type_name -> viam.common.v1.PoseInFrame
-	51, // 7: viam.robot.v1.ResourceNamesResponse.resources:type_name -> viam.common.v1.ResourceName
-	51, // 8: viam.robot.v1.ResourceRPCSubtype.subtype:type_name -> viam.common.v1.ResourceName
-	10, // 9: viam.robot.v1.ResourceRPCSubtypesResponse.resource_rpc_subtypes:type_name -> viam.robot.v1.ResourceRPCSubtype
-	49, // 10: viam.robot.v1.Operation.arguments:type_name -> google.protobuf.Struct
-	52, // 11: viam.robot.v1.Operation.started:type_name -> google.protobuf.Timestamp
-	13, // 12: viam.robot.v1.GetOperationsResponse.operations:type_name -> viam.robot.v1.Operation
-	0,  // 13: viam.robot.v1.PeerConnectionInfo.type:type_name -> viam.robot.v1.PeerConnectionType
-	20, // 14: viam.robot.v1.Session.peer_connection_info:type_name -> viam.robot.v1.PeerConnectionInfo
-	21, // 15: viam.robot.v1.GetSessionsResponse.sessions:type_name -> viam.robot.v1.Session
-	24, // 16: viam.robot.v1.Discovery.query:type_name -> viam.robot.v1.DiscoveryQuery
-	49, // 17: viam.robot.v1.Discovery.results:type_name -> google.protobuf.Struct
-	24, // 18: viam.robot.v1.DiscoverComponentsRequest.queries:type_name -> viam.robot.v1.DiscoveryQuery
-	25, // 19: viam.robot.v1.DiscoverComponentsResponse.discovery:type_name -> viam.robot.v1.Discovery
-	51, // 20: viam.robot.v1.Status.name:type_name -> viam.common.v1.ResourceName
-	49, // 21: viam.robot.v1.Status.status:type_name -> google.protobuf.Struct
-	52, // 22: viam.robot.v1.Status.last_reconfigured:type_name -> google.protobuf.Timestamp
-	51, // 23: viam.robot.v1.GetStatusRequest.resource_names:type_name -> viam.common.v1.ResourceName
-	28, // 24: viam.robot.v1.GetStatusResponse.status:type_name -> viam.robot.v1.Status
-	51, // 25: viam.robot.v1.StreamStatusRequest.resource_names:type_name -> viam.common.v1.ResourceName
-	53, // 26: viam.robot.v1.StreamStatusRequest.every:type_name -> google.protobuf.Duration
-	28, // 27: viam.robot.v1.StreamStatusResponse.status:type_name -> viam.robot.v1.Status
-	51, // 28: viam.robot.v1.StopExtraParameters.name:type_name -> viam.common.v1.ResourceName
-	49, // 29: viam.robot.v1.StopExtraParameters.params:type_name -> google.protobuf.Struct
-	33, // 30: viam.robot.v1.StopAllRequest.extra:type_name -> viam.robot.v1.StopExtraParameters
-	53, // 31: viam.robot.v1.StartSessionResponse.heartbeat_window:type_name -> google.protobuf.Duration
-	54, // 32: viam.robot.v1.LogRequest.logs:type_name -> viam.common.v1.LogEntry
-	14, // 33: viam.robot.v1.RobotService.GetOperations:input_type -> viam.robot.v1.GetOperationsRequest
-	22, // 34: viam.robot.v1.RobotService.GetSessions:input_type -> viam.robot.v1.GetSessionsRequest
-	8,  // 35: viam.robot.v1.RobotService.ResourceNames:input_type -> viam.robot.v1.ResourceNamesRequest
-	11, // 36: viam.robot.v1.RobotService.ResourceRPCSubtypes:input_type -> viam.robot.v1.ResourceRPCSubtypesRequest
-	16, // 37: viam.robot.v1.RobotService.CancelOperation:input_type -> viam.robot.v1.CancelOperationRequest
-	18, // 38: viam.robot.v1.RobotService.BlockForOperation:input_type -> viam.robot.v1.BlockForOperationRequest
-	26, // 39: viam.robot.v1.RobotService.DiscoverComponents:input_type -> viam.robot.v1.DiscoverComponentsRequest
-	2,  // 40: viam.robot.v1.RobotService.FrameSystemConfig:input_type -> viam.robot.v1.FrameSystemConfigRequest
-	4,  // 41: viam.robot.v1.RobotService.TransformPose:input_type -> viam.robot.v1.TransformPoseRequest
-	6,  // 42: viam.robot.v1.RobotService.TransformPCD:input_type -> viam.robot.v1.TransformPCDRequest
-	29, // 43: viam.robot.v1.RobotService.GetStatus:input_type -> viam.robot.v1.GetStatusRequest
-	31, // 44: viam.robot.v1.RobotService.StreamStatus:input_type -> viam.robot.v1.StreamStatusRequest
-	34, // 45: viam.robot.v1.RobotService.StopAll:input_type -> viam.robot.v1.StopAllRequest
-	36, // 46: viam.robot.v1.RobotService.StartSession:input_type -> viam.robot.v1.StartSessionRequest
-	38, // 47: viam.robot.v1.RobotService.SendSessionHeartbeat:input_type -> viam.robot.v1.SendSessionHeartbeatRequest
-	40, // 48: viam.robot.v1.RobotService.Log:input_type -> viam.robot.v1.LogRequest
-	42, // 49: viam.robot.v1.RobotService.GetCloudMetadata:input_type -> viam.robot.v1.GetCloudMetadataRequest
-	44, // 50: viam.robot.v1.RobotService.RestartModule:input_type -> viam.robot.v1.RestartModuleRequest
-	46, // 51: viam.robot.v1.RobotService.Shutdown:input_type -> viam.robot.v1.ShutdownRequest
-	15, // 52: viam.robot.v1.RobotService.GetOperations:output_type -> viam.robot.v1.GetOperationsResponse
-	23, // 53: viam.robot.v1.RobotService.GetSessions:output_type -> viam.robot.v1.GetSessionsResponse
-	9,  // 54: viam.robot.v1.RobotService.ResourceNames:output_type -> viam.robot.v1.ResourceNamesResponse
-	12, // 55: viam.robot.v1.RobotService.ResourceRPCSubtypes:output_type -> viam.robot.v1.ResourceRPCSubtypesResponse
-	17, // 56: viam.robot.v1.RobotService.CancelOperation:output_type -> viam.robot.v1.CancelOperationResponse
-	19, // 57: viam.robot.v1.RobotService.BlockForOperation:output_type -> viam.robot.v1.BlockForOperationResponse
-	27, // 58: viam.robot.v1.RobotService.DiscoverComponents:output_type -> viam.robot.v1.DiscoverComponentsResponse
-	3,  // 59: viam.robot.v1.RobotService.FrameSystemConfig:output_type -> viam.robot.v1.FrameSystemConfigResponse
-	5,  // 60: viam.robot.v1.RobotService.TransformPose:output_type -> viam.robot.v1.TransformPoseResponse
-	7,  // 61: viam.robot.v1.RobotService.TransformPCD:output_type -> viam.robot.v1.TransformPCDResponse
-	30, // 62: viam.robot.v1.RobotService.GetStatus:output_type -> viam.robot.v1.GetStatusResponse
-	32, // 63: viam.robot.v1.RobotService.StreamStatus:output_type -> viam.robot.v1.StreamStatusResponse
-	35, // 64: viam.robot.v1.RobotService.StopAll:output_type -> viam.robot.v1.StopAllResponse
-	37, // 65: viam.robot.v1.RobotService.StartSession:output_type -> viam.robot.v1.StartSessionResponse
-	39, // 66: viam.robot.v1.RobotService.SendSessionHeartbeat:output_type -> viam.robot.v1.SendSessionHeartbeatResponse
-	41, // 67: viam.robot.v1.RobotService.Log:output_type -> viam.robot.v1.LogResponse
-	43, // 68: viam.robot.v1.RobotService.GetCloudMetadata:output_type -> viam.robot.v1.GetCloudMetadataResponse
-	45, // 69: viam.robot.v1.RobotService.RestartModule:output_type -> viam.robot.v1.RestartModuleResponse
-	47, // 70: viam.robot.v1.RobotService.Shutdown:output_type -> viam.robot.v1.ShutdownResponse
+var file_physicalDevice_v1_physicalDevice_proto_depIdxs = []int32{
+	48, // 0: viam.physicalDevice.v1.FrameSystemConfig.frame:type_name -> viam.common.v1.Transform
+	49, // 1: viam.physicalDevice.v1.FrameSystemConfig.kinematics:type_name -> google.protobuf.Struct
+	48, // 2: viam.physicalDevice.v1.FrameSystemConfigRequest.supplemental_transforms:type_name -> viam.common.v1.Transform
+	1,  // 3: viam.physicalDevice.v1.FrameSystemConfigResponse.frame_system_configs:type_name -> viam.physicalDevice.v1.FrameSystemConfig
+	50, // 4: viam.physicalDevice.v1.TransformPoseRequest.source:type_name -> viam.common.v1.PoseInFrame
+	48, // 5: viam.physicalDevice.v1.TransformPoseRequest.supplemental_transforms:type_name -> viam.common.v1.Transform
+	50, // 6: viam.physicalDevice.v1.TransformPoseResponse.pose:type_name -> viam.common.v1.PoseInFrame
+	51, // 7: viam.physicalDevice.v1.ResourceNamesResponse.resources:type_name -> viam.common.v1.ResourceName
+	51, // 8: viam.physicalDevice.v1.ResourceRPCSubtype.subtype:type_name -> viam.common.v1.ResourceName
+	10, // 9: viam.physicalDevice.v1.ResourceRPCSubtypesResponse.resource_rpc_subtypes:type_name -> viam.physicalDevice.v1.ResourceRPCSubtype
+	49, // 10: viam.physicalDevice.v1.Operation.arguments:type_name -> google.protobuf.Struct
+	52, // 11: viam.physicalDevice.v1.Operation.started:type_name -> google.protobuf.Timestamp
+	13, // 12: viam.physicalDevice.v1.GetOperationsResponse.operations:type_name -> viam.physicalDevice.v1.Operation
+	0,  // 13: viam.physicalDevice.v1.PeerConnectionInfo.type:type_name -> viam.physicalDevice.v1.PeerConnectionType
+	20, // 14: viam.physicalDevice.v1.Session.peer_connection_info:type_name -> viam.physicalDevice.v1.PeerConnectionInfo
+	21, // 15: viam.physicalDevice.v1.GetSessionsResponse.sessions:type_name -> viam.physicalDevice.v1.Session
+	24, // 16: viam.physicalDevice.v1.Discovery.query:type_name -> viam.physicalDevice.v1.DiscoveryQuery
+	49, // 17: viam.physicalDevice.v1.Discovery.results:type_name -> google.protobuf.Struct
+	24, // 18: viam.physicalDevice.v1.DiscoverComponentsRequest.queries:type_name -> viam.physicalDevice.v1.DiscoveryQuery
+	25, // 19: viam.physicalDevice.v1.DiscoverComponentsResponse.discovery:type_name -> viam.physicalDevice.v1.Discovery
+	51, // 20: viam.physicalDevice.v1.Status.name:type_name -> viam.common.v1.ResourceName
+	49, // 21: viam.physicalDevice.v1.Status.status:type_name -> google.protobuf.Struct
+	52, // 22: viam.physicalDevice.v1.Status.last_reconfigured:type_name -> google.protobuf.Timestamp
+	51, // 23: viam.physicalDevice.v1.GetStatusRequest.resource_names:type_name -> viam.common.v1.ResourceName
+	28, // 24: viam.physicalDevice.v1.GetStatusResponse.status:type_name -> viam.physicalDevice.v1.Status
+	51, // 25: viam.physicalDevice.v1.StreamStatusRequest.resource_names:type_name -> viam.common.v1.ResourceName
+	53, // 26: viam.physicalDevice.v1.StreamStatusRequest.every:type_name -> google.protobuf.Duration
+	28, // 27: viam.physicalDevice.v1.StreamStatusResponse.status:type_name -> viam.physicalDevice.v1.Status
+	51, // 28: viam.physicalDevice.v1.StopExtraParameters.name:type_name -> viam.common.v1.ResourceName
+	49, // 29: viam.physicalDevice.v1.StopExtraParameters.params:type_name -> google.protobuf.Struct
+	33, // 30: viam.physicalDevice.v1.StopAllRequest.extra:type_name -> viam.physicalDevice.v1.StopExtraParameters
+	53, // 31: viam.physicalDevice.v1.StartSessionResponse.heartbeat_window:type_name -> google.protobuf.Duration
+	54, // 32: viam.physicalDevice.v1.LogRequest.logs:type_name -> viam.common.v1.LogEntry
+	14, // 33: viam.physicalDevice.v1.physicalDeviceService.GetOperations:input_type -> viam.physicalDevice.v1.GetOperationsRequest
+	22, // 34: viam.physicalDevice.v1.physicalDeviceService.GetSessions:input_type -> viam.physicalDevice.v1.GetSessionsRequest
+	8,  // 35: viam.physicalDevice.v1.physicalDeviceService.ResourceNames:input_type -> viam.physicalDevice.v1.ResourceNamesRequest
+	11, // 36: viam.physicalDevice.v1.physicalDeviceService.ResourceRPCSubtypes:input_type -> viam.physicalDevice.v1.ResourceRPCSubtypesRequest
+	16, // 37: viam.physicalDevice.v1.physicalDeviceService.CancelOperation:input_type -> viam.physicalDevice.v1.CancelOperationRequest
+	18, // 38: viam.physicalDevice.v1.physicalDeviceService.BlockForOperation:input_type -> viam.physicalDevice.v1.BlockForOperationRequest
+	26, // 39: viam.physicalDevice.v1.physicalDeviceService.DiscoverComponents:input_type -> viam.physicalDevice.v1.DiscoverComponentsRequest
+	2,  // 40: viam.physicalDevice.v1.physicalDeviceService.FrameSystemConfig:input_type -> viam.physicalDevice.v1.FrameSystemConfigRequest
+	4,  // 41: viam.physicalDevice.v1.physicalDeviceService.TransformPose:input_type -> viam.physicalDevice.v1.TransformPoseRequest
+	6,  // 42: viam.physicalDevice.v1.physicalDeviceService.TransformPCD:input_type -> viam.physicalDevice.v1.TransformPCDRequest
+	29, // 43: viam.physicalDevice.v1.physicalDeviceService.GetStatus:input_type -> viam.physicalDevice.v1.GetStatusRequest
+	31, // 44: viam.physicalDevice.v1.physicalDeviceService.StreamStatus:input_type -> viam.physicalDevice.v1.StreamStatusRequest
+	34, // 45: viam.physicalDevice.v1.physicalDeviceService.StopAll:input_type -> viam.physicalDevice.v1.StopAllRequest
+	36, // 46: viam.physicalDevice.v1.physicalDeviceService.StartSession:input_type -> viam.physicalDevice.v1.StartSessionRequest
+	38, // 47: viam.physicalDevice.v1.physicalDeviceService.SendSessionHeartbeat:input_type -> viam.physicalDevice.v1.SendSessionHeartbeatRequest
+	40, // 48: viam.physicalDevice.v1.physicalDeviceService.Log:input_type -> viam.physicalDevice.v1.LogRequest
+	42, // 49: viam.physicalDevice.v1.physicalDeviceService.GetCloudMetadata:input_type -> viam.physicalDevice.v1.GetCloudMetadataRequest
+	44, // 50: viam.physicalDevice.v1.physicalDeviceService.RestartModule:input_type -> viam.physicalDevice.v1.RestartModuleRequest
+	46, // 51: viam.physicalDevice.v1.physicalDeviceService.Shutdown:input_type -> viam.physicalDevice.v1.ShutdownRequest
+	15, // 52: viam.physicalDevice.v1.physicalDeviceService.GetOperations:output_type -> viam.physicalDevice.v1.GetOperationsResponse
+	23, // 53: viam.physicalDevice.v1.physicalDeviceService.GetSessions:output_type -> viam.physicalDevice.v1.GetSessionsResponse
+	9,  // 54: viam.physicalDevice.v1.physicalDeviceService.ResourceNames:output_type -> viam.physicalDevice.v1.ResourceNamesResponse
+	12, // 55: viam.physicalDevice.v1.physicalDeviceService.ResourceRPCSubtypes:output_type -> viam.physicalDevice.v1.ResourceRPCSubtypesResponse
+	17, // 56: viam.physicalDevice.v1.physicalDeviceService.CancelOperation:output_type -> viam.physicalDevice.v1.CancelOperationResponse
+	19, // 57: viam.physicalDevice.v1.physicalDeviceService.BlockForOperation:output_type -> viam.physicalDevice.v1.BlockForOperationResponse
+	27, // 58: viam.physicalDevice.v1.physicalDeviceService.DiscoverComponents:output_type -> viam.physicalDevice.v1.DiscoverComponentsResponse
+	3,  // 59: viam.physicalDevice.v1.physicalDeviceService.FrameSystemConfig:output_type -> viam.physicalDevice.v1.FrameSystemConfigResponse
+	5,  // 60: viam.physicalDevice.v1.physicalDeviceService.TransformPose:output_type -> viam.physicalDevice.v1.TransformPoseResponse
+	7,  // 61: viam.physicalDevice.v1.physicalDeviceService.TransformPCD:output_type -> viam.physicalDevice.v1.TransformPCDResponse
+	30, // 62: viam.physicalDevice.v1.physicalDeviceService.GetStatus:output_type -> viam.physicalDevice.v1.GetStatusResponse
+	32, // 63: viam.physicalDevice.v1.physicalDeviceService.StreamStatus:output_type -> viam.physicalDevice.v1.StreamStatusResponse
+	35, // 64: viam.physicalDevice.v1.physicalDeviceService.StopAll:output_type -> viam.physicalDevice.v1.StopAllResponse
+	37, // 65: viam.physicalDevice.v1.physicalDeviceService.StartSession:output_type -> viam.physicalDevice.v1.StartSessionResponse
+	39, // 66: viam.physicalDevice.v1.physicalDeviceService.SendSessionHeartbeat:output_type -> viam.physicalDevice.v1.SendSessionHeartbeatResponse
+	41, // 67: viam.physicalDevice.v1.physicalDeviceService.Log:output_type -> viam.physicalDevice.v1.LogResponse
+	43, // 68: viam.physicalDevice.v1.physicalDeviceService.GetCloudMetadata:output_type -> viam.physicalDevice.v1.GetCloudMetadataResponse
+	45, // 69: viam.physicalDevice.v1.physicalDeviceService.RestartModule:output_type -> viam.physicalDevice.v1.RestartModuleResponse
+	47, // 70: viam.physicalDevice.v1.physicalDeviceService.Shutdown:output_type -> viam.physicalDevice.v1.ShutdownResponse
 	52, // [52:71] is the sub-list for method output_type
 	33, // [33:52] is the sub-list for method input_type
 	33, // [33:33] is the sub-list for extension type_name
@@ -2993,13 +2993,13 @@ var file_robot_v1_robot_proto_depIdxs = []int32{
 	0,  // [0:33] is the sub-list for field type_name
 }
 
-func init() { file_robot_v1_robot_proto_init() }
-func file_robot_v1_robot_proto_init() {
-	if File_robot_v1_robot_proto != nil {
+func init() { file_physicalDevice_v1_physicalDevice_proto_init() }
+func file_physicalDevice_v1_physicalDevice_proto_init() {
+	if File_physicalDevice_v1_physicalDevice_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_robot_v1_robot_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FrameSystemConfig); i {
 			case 0:
 				return &v.state
@@ -3011,7 +3011,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FrameSystemConfigRequest); i {
 			case 0:
 				return &v.state
@@ -3023,7 +3023,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FrameSystemConfigResponse); i {
 			case 0:
 				return &v.state
@@ -3035,7 +3035,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TransformPoseRequest); i {
 			case 0:
 				return &v.state
@@ -3047,7 +3047,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TransformPoseResponse); i {
 			case 0:
 				return &v.state
@@ -3059,7 +3059,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TransformPCDRequest); i {
 			case 0:
 				return &v.state
@@ -3071,7 +3071,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TransformPCDResponse); i {
 			case 0:
 				return &v.state
@@ -3083,7 +3083,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResourceNamesRequest); i {
 			case 0:
 				return &v.state
@@ -3095,7 +3095,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResourceNamesResponse); i {
 			case 0:
 				return &v.state
@@ -3107,7 +3107,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResourceRPCSubtype); i {
 			case 0:
 				return &v.state
@@ -3119,7 +3119,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResourceRPCSubtypesRequest); i {
 			case 0:
 				return &v.state
@@ -3131,7 +3131,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResourceRPCSubtypesResponse); i {
 			case 0:
 				return &v.state
@@ -3143,7 +3143,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Operation); i {
 			case 0:
 				return &v.state
@@ -3155,7 +3155,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetOperationsRequest); i {
 			case 0:
 				return &v.state
@@ -3167,7 +3167,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetOperationsResponse); i {
 			case 0:
 				return &v.state
@@ -3179,7 +3179,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CancelOperationRequest); i {
 			case 0:
 				return &v.state
@@ -3191,7 +3191,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CancelOperationResponse); i {
 			case 0:
 				return &v.state
@@ -3203,7 +3203,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*BlockForOperationRequest); i {
 			case 0:
 				return &v.state
@@ -3215,7 +3215,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*BlockForOperationResponse); i {
 			case 0:
 				return &v.state
@@ -3227,7 +3227,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PeerConnectionInfo); i {
 			case 0:
 				return &v.state
@@ -3239,7 +3239,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session); i {
 			case 0:
 				return &v.state
@@ -3251,7 +3251,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetSessionsRequest); i {
 			case 0:
 				return &v.state
@@ -3263,7 +3263,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetSessionsResponse); i {
 			case 0:
 				return &v.state
@@ -3275,7 +3275,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DiscoveryQuery); i {
 			case 0:
 				return &v.state
@@ -3287,7 +3287,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Discovery); i {
 			case 0:
 				return &v.state
@@ -3299,7 +3299,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DiscoverComponentsRequest); i {
 			case 0:
 				return &v.state
@@ -3311,7 +3311,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DiscoverComponentsResponse); i {
 			case 0:
 				return &v.state
@@ -3323,7 +3323,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Status); i {
 			case 0:
 				return &v.state
@@ -3335,7 +3335,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetStatusRequest); i {
 			case 0:
 				return &v.state
@@ -3347,7 +3347,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetStatusResponse); i {
 			case 0:
 				return &v.state
@@ -3359,7 +3359,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StreamStatusRequest); i {
 			case 0:
 				return &v.state
@@ -3371,7 +3371,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StreamStatusResponse); i {
 			case 0:
 				return &v.state
@@ -3383,7 +3383,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StopExtraParameters); i {
 			case 0:
 				return &v.state
@@ -3395,7 +3395,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StopAllRequest); i {
 			case 0:
 				return &v.state
@@ -3407,7 +3407,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StopAllResponse); i {
 			case 0:
 				return &v.state
@@ -3419,7 +3419,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StartSessionRequest); i {
 			case 0:
 				return &v.state
@@ -3431,7 +3431,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StartSessionResponse); i {
 			case 0:
 				return &v.state
@@ -3443,7 +3443,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SendSessionHeartbeatRequest); i {
 			case 0:
 				return &v.state
@@ -3455,7 +3455,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SendSessionHeartbeatResponse); i {
 			case 0:
 				return &v.state
@@ -3467,7 +3467,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogRequest); i {
 			case 0:
 				return &v.state
@@ -3479,7 +3479,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogResponse); i {
 			case 0:
 				return &v.state
@@ -3491,7 +3491,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetCloudMetadataRequest); i {
 			case 0:
 				return &v.state
@@ -3503,7 +3503,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetCloudMetadataResponse); i {
 			case 0:
 				return &v.state
@@ -3515,7 +3515,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RestartModuleRequest); i {
 			case 0:
 				return &v.state
@@ -3527,7 +3527,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RestartModuleResponse); i {
 			case 0:
 				return &v.state
@@ -3539,7 +3539,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ShutdownRequest); i {
 			case 0:
 				return &v.state
@@ -3551,7 +3551,7 @@ func file_robot_v1_robot_proto_init() {
 				return nil
 			}
 		}
-		file_robot_v1_robot_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
+		file_physicalDevice_v1_physicalDevice_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ShutdownResponse); i {
 			case 0:
 				return &v.state
@@ -3564,10 +3564,10 @@ func file_robot_v1_robot_proto_init() {
 			}
 		}
 	}
-	file_robot_v1_robot_proto_msgTypes[12].OneofWrappers = []interface{}{}
-	file_robot_v1_robot_proto_msgTypes[19].OneofWrappers = []interface{}{}
-	file_robot_v1_robot_proto_msgTypes[20].OneofWrappers = []interface{}{}
-	file_robot_v1_robot_proto_msgTypes[43].OneofWrappers = []interface{}{
+	file_physicalDevice_v1_physicalDevice_proto_msgTypes[12].OneofWrappers = []interface{}{}
+	file_physicalDevice_v1_physicalDevice_proto_msgTypes[19].OneofWrappers = []interface{}{}
+	file_physicalDevice_v1_physicalDevice_proto_msgTypes[20].OneofWrappers = []interface{}{}
+	file_physicalDevice_v1_physicalDevice_proto_msgTypes[43].OneofWrappers = []interface{}{
 		(*RestartModuleRequest_ModuleId)(nil),
 		(*RestartModuleRequest_ModuleName)(nil),
 	}
@@ -3575,19 +3575,19 @@ func file_robot_v1_robot_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_robot_v1_robot_proto_rawDesc,
+			RawDescriptor: file_physicalDevice_v1_physicalDevice_proto_rawDesc,
 			NumEnums:      1,
 			NumMessages:   47,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_robot_v1_robot_proto_goTypes,
-		DependencyIndexes: file_robot_v1_robot_proto_depIdxs,
-		EnumInfos:         file_robot_v1_robot_proto_enumTypes,
-		MessageInfos:      file_robot_v1_robot_proto_msgTypes,
+		GoTypes:           file_physicalDevice_v1_physicalDevice_proto_goTypes,
+		DependencyIndexes: file_physicalDevice_v1_physicalDevice_proto_depIdxs,
+		EnumInfos:         file_physicalDevice_v1_physicalDevice_proto_enumTypes,
+		MessageInfos:      file_physicalDevice_v1_physicalDevice_proto_msgTypes,
 	}.Build()
-	File_robot_v1_robot_proto = out.File
-	file_robot_v1_robot_proto_rawDesc = nil
-	file_robot_v1_robot_proto_goTypes = nil
-	file_robot_v1_robot_proto_depIdxs = nil
+	File_physicalDevice_v1_physicalDevice_proto = out.File
+	file_physicalDevice_v1_physicalDevice_proto_rawDesc = nil
+	file_physicalDevice_v1_physicalDevice_proto_goTypes = nil
+	file_physicalDevice_v1_physicalDevice_proto_depIdxs = nil
 }

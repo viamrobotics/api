@@ -10,9 +10,9 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/component/camera/v1";
 option java_package = "com.viam.component.camera.v1";
 
-// A CameraService services all cameras associated with a robot
+// A CameraService services all cameras associated with a physicalDevice
 service CameraService {
-  // GetImage returns a frame from a camera of the underlying robot. A specific MIME type
+  // GetImage returns a frame from a camera of the underlying physicalDevice. A specific MIME type
   // can be requested but may not necessarily be the same one returned.
   rpc GetImage(GetImageRequest) returns (GetImageResponse) {
     option (google.api.http) = {
@@ -26,7 +26,7 @@ service CameraService {
     };
   }
 
-  // RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
+  // RenderFrame renders a frame from a camera of the underlying physicalDevice to an HTTP response. A specific MIME type
   // can be requested but may not necessarily be the same one returned.
   rpc RenderFrame(RenderFrameRequest) returns (google.api.HttpBody) {
     option (google.api.http) = {
@@ -34,7 +34,7 @@ service CameraService {
     };
   }
 
-  // GetPointCloud returns a point cloud from a camera of the underlying robot. A specific MIME type
+  // GetPointCloud returns a point cloud from a camera of the underlying physicalDevice. A specific MIME type
   // can be requested but may not necessarily be the same one returned.
   rpc GetPointCloud(GetPointCloudRequest) returns (GetPointCloudResponse) {
     option (google.api.http) = {
@@ -42,7 +42,7 @@ service CameraService {
     };
   }
 
-  // GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying robot, if available.
+  // GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying physicalDevice, if available.
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/camera/{name}/properties"

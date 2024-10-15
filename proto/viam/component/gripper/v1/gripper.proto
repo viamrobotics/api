@@ -9,9 +9,9 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/component/gripper/v1";
 option java_package = "com.viam.component.gripper.v1";
 
-// An GripperService services all grippers associated with a robot
+// An GripperService services all grippers associated with a physicalDevice
 service GripperService {
-  // Open opens a gripper of the underlying robot.
+  // Open opens a gripper of the underlying physicalDevice.
   rpc Open(OpenRequest) returns (OpenResponse) {
     option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
@@ -19,7 +19,7 @@ service GripperService {
     };
   }
 
-  // Grab requests a gripper of the underlying robot to grab.
+  // Grab requests a gripper of the underlying physicalDevice to grab.
   rpc Grab(GrabRequest) returns (GrabResponse) {
     option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {
@@ -27,7 +27,7 @@ service GripperService {
     };
   }
 
-  // Stop stops a robot's gripper
+  // Stop stops a physicalDevice's gripper
   rpc Stop(StopRequest) returns (StopResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/component/gripper/{name}/stop"

@@ -25,23 +25,23 @@ const _ = grpc.SupportPackageIsVersion7
 type ShellServiceClient interface {
 	// Shell starts a shell with an input and output pipe.
 	Shell(ctx context.Context, opts ...grpc.CallOption) (ShellService_ShellClient, error)
-	// CopyFilesToMachines copies a stream of files from a client to the connected-to machine.
+	// CopyFilesTophysicalDevices copies a stream of files from a client to the connected-to physicalDevice.
 	// Initially, metadata is sent to describe the destination in the filesystem in addition
 	// to what kind of file(s) are being sent.
 	// Once metadata is sent, the file transfer can proceed where one-by-one, file data is sent
 	// until EOF per file.
-	// After each file is sent, the machine must respond with an ACK before the next file can
+	// After each file is sent, the physicalDevice must respond with an ACK before the next file can
 	// be sent. This provides back-pressure and ordering.
 	// The order in which individual files are sent does not matter; that is, if traversing a
 	// directory, copying depth-first, breadth-first, or any other algorithm does not matter.
 	// Permissions and metadata on files copied are only preserved if the preserve option is
 	// set in the initial request metadata.
-	CopyFilesToMachine(ctx context.Context, opts ...grpc.CallOption) (ShellService_CopyFilesToMachineClient, error)
-	// CopyFilesFromMachine copies a stream of files from a connected-to machine to the calling client.
-	// Essentially, it is the inverse of CopyFilesToMachine with the same ACK mechanism in reverse.
+	CopyFilesTophysicalDevice(ctx context.Context, opts ...grpc.CallOption) (ShellService_CopyFilesTophysicalDeviceClient, error)
+	// CopyFilesFromphysicalDevice copies a stream of files from a connected-to physicalDevice to the calling client.
+	// Essentially, it is the inverse of CopyFilesTophysicalDevice with the same ACK mechanism in reverse.
 	// The initial metadata request will request the paths to copy along with if permissions should
 	// be preserved (and consequently sent over the wire).
-	CopyFilesFromMachine(ctx context.Context, opts ...grpc.CallOption) (ShellService_CopyFilesFromMachineClient, error)
+	CopyFilesFromphysicalDevice(ctx context.Context, opts ...grpc.CallOption) (ShellService_CopyFilesFromphysicalDeviceClient, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
@@ -85,62 +85,62 @@ func (x *shellServiceShellClient) Recv() (*ShellResponse, error) {
 	return m, nil
 }
 
-func (c *shellServiceClient) CopyFilesToMachine(ctx context.Context, opts ...grpc.CallOption) (ShellService_CopyFilesToMachineClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ShellService_ServiceDesc.Streams[1], "/viam.service.shell.v1.ShellService/CopyFilesToMachine", opts...)
+func (c *shellServiceClient) CopyFilesTophysicalDevice(ctx context.Context, opts ...grpc.CallOption) (ShellService_CopyFilesTophysicalDeviceClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ShellService_ServiceDesc.Streams[1], "/viam.service.shell.v1.ShellService/CopyFilesTophysicalDevice", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &shellServiceCopyFilesToMachineClient{stream}
+	x := &shellServiceCopyFilesTophysicalDeviceClient{stream}
 	return x, nil
 }
 
-type ShellService_CopyFilesToMachineClient interface {
-	Send(*CopyFilesToMachineRequest) error
-	Recv() (*CopyFilesToMachineResponse, error)
+type ShellService_CopyFilesTophysicalDeviceClient interface {
+	Send(*CopyFilesTophysicalDeviceRequest) error
+	Recv() (*CopyFilesTophysicalDeviceResponse, error)
 	grpc.ClientStream
 }
 
-type shellServiceCopyFilesToMachineClient struct {
+type shellServiceCopyFilesTophysicalDeviceClient struct {
 	grpc.ClientStream
 }
 
-func (x *shellServiceCopyFilesToMachineClient) Send(m *CopyFilesToMachineRequest) error {
+func (x *shellServiceCopyFilesTophysicalDeviceClient) Send(m *CopyFilesTophysicalDeviceRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *shellServiceCopyFilesToMachineClient) Recv() (*CopyFilesToMachineResponse, error) {
-	m := new(CopyFilesToMachineResponse)
+func (x *shellServiceCopyFilesTophysicalDeviceClient) Recv() (*CopyFilesTophysicalDeviceResponse, error) {
+	m := new(CopyFilesTophysicalDeviceResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *shellServiceClient) CopyFilesFromMachine(ctx context.Context, opts ...grpc.CallOption) (ShellService_CopyFilesFromMachineClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ShellService_ServiceDesc.Streams[2], "/viam.service.shell.v1.ShellService/CopyFilesFromMachine", opts...)
+func (c *shellServiceClient) CopyFilesFromphysicalDevice(ctx context.Context, opts ...grpc.CallOption) (ShellService_CopyFilesFromphysicalDeviceClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ShellService_ServiceDesc.Streams[2], "/viam.service.shell.v1.ShellService/CopyFilesFromphysicalDevice", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &shellServiceCopyFilesFromMachineClient{stream}
+	x := &shellServiceCopyFilesFromphysicalDeviceClient{stream}
 	return x, nil
 }
 
-type ShellService_CopyFilesFromMachineClient interface {
-	Send(*CopyFilesFromMachineRequest) error
-	Recv() (*CopyFilesFromMachineResponse, error)
+type ShellService_CopyFilesFromphysicalDeviceClient interface {
+	Send(*CopyFilesFromphysicalDeviceRequest) error
+	Recv() (*CopyFilesFromphysicalDeviceResponse, error)
 	grpc.ClientStream
 }
 
-type shellServiceCopyFilesFromMachineClient struct {
+type shellServiceCopyFilesFromphysicalDeviceClient struct {
 	grpc.ClientStream
 }
 
-func (x *shellServiceCopyFilesFromMachineClient) Send(m *CopyFilesFromMachineRequest) error {
+func (x *shellServiceCopyFilesFromphysicalDeviceClient) Send(m *CopyFilesFromphysicalDeviceRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *shellServiceCopyFilesFromMachineClient) Recv() (*CopyFilesFromMachineResponse, error) {
-	m := new(CopyFilesFromMachineResponse)
+func (x *shellServiceCopyFilesFromphysicalDeviceClient) Recv() (*CopyFilesFromphysicalDeviceResponse, error) {
+	m := new(CopyFilesFromphysicalDeviceResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -162,23 +162,23 @@ func (c *shellServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequ
 type ShellServiceServer interface {
 	// Shell starts a shell with an input and output pipe.
 	Shell(ShellService_ShellServer) error
-	// CopyFilesToMachines copies a stream of files from a client to the connected-to machine.
+	// CopyFilesTophysicalDevices copies a stream of files from a client to the connected-to physicalDevice.
 	// Initially, metadata is sent to describe the destination in the filesystem in addition
 	// to what kind of file(s) are being sent.
 	// Once metadata is sent, the file transfer can proceed where one-by-one, file data is sent
 	// until EOF per file.
-	// After each file is sent, the machine must respond with an ACK before the next file can
+	// After each file is sent, the physicalDevice must respond with an ACK before the next file can
 	// be sent. This provides back-pressure and ordering.
 	// The order in which individual files are sent does not matter; that is, if traversing a
 	// directory, copying depth-first, breadth-first, or any other algorithm does not matter.
 	// Permissions and metadata on files copied are only preserved if the preserve option is
 	// set in the initial request metadata.
-	CopyFilesToMachine(ShellService_CopyFilesToMachineServer) error
-	// CopyFilesFromMachine copies a stream of files from a connected-to machine to the calling client.
-	// Essentially, it is the inverse of CopyFilesToMachine with the same ACK mechanism in reverse.
+	CopyFilesTophysicalDevice(ShellService_CopyFilesTophysicalDeviceServer) error
+	// CopyFilesFromphysicalDevice copies a stream of files from a connected-to physicalDevice to the calling client.
+	// Essentially, it is the inverse of CopyFilesTophysicalDevice with the same ACK mechanism in reverse.
 	// The initial metadata request will request the paths to copy along with if permissions should
 	// be preserved (and consequently sent over the wire).
-	CopyFilesFromMachine(ShellService_CopyFilesFromMachineServer) error
+	CopyFilesFromphysicalDevice(ShellService_CopyFilesFromphysicalDeviceServer) error
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedShellServiceServer()
@@ -191,11 +191,11 @@ type UnimplementedShellServiceServer struct {
 func (UnimplementedShellServiceServer) Shell(ShellService_ShellServer) error {
 	return status.Errorf(codes.Unimplemented, "method Shell not implemented")
 }
-func (UnimplementedShellServiceServer) CopyFilesToMachine(ShellService_CopyFilesToMachineServer) error {
-	return status.Errorf(codes.Unimplemented, "method CopyFilesToMachine not implemented")
+func (UnimplementedShellServiceServer) CopyFilesTophysicalDevice(ShellService_CopyFilesTophysicalDeviceServer) error {
+	return status.Errorf(codes.Unimplemented, "method CopyFilesTophysicalDevice not implemented")
 }
-func (UnimplementedShellServiceServer) CopyFilesFromMachine(ShellService_CopyFilesFromMachineServer) error {
-	return status.Errorf(codes.Unimplemented, "method CopyFilesFromMachine not implemented")
+func (UnimplementedShellServiceServer) CopyFilesFromphysicalDevice(ShellService_CopyFilesFromphysicalDeviceServer) error {
+	return status.Errorf(codes.Unimplemented, "method CopyFilesFromphysicalDevice not implemented")
 }
 func (UnimplementedShellServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -239,52 +239,52 @@ func (x *shellServiceShellServer) Recv() (*ShellRequest, error) {
 	return m, nil
 }
 
-func _ShellService_CopyFilesToMachine_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ShellServiceServer).CopyFilesToMachine(&shellServiceCopyFilesToMachineServer{stream})
+func _ShellService_CopyFilesTophysicalDevice_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ShellServiceServer).CopyFilesTophysicalDevice(&shellServiceCopyFilesTophysicalDeviceServer{stream})
 }
 
-type ShellService_CopyFilesToMachineServer interface {
-	Send(*CopyFilesToMachineResponse) error
-	Recv() (*CopyFilesToMachineRequest, error)
+type ShellService_CopyFilesTophysicalDeviceServer interface {
+	Send(*CopyFilesTophysicalDeviceResponse) error
+	Recv() (*CopyFilesTophysicalDeviceRequest, error)
 	grpc.ServerStream
 }
 
-type shellServiceCopyFilesToMachineServer struct {
+type shellServiceCopyFilesTophysicalDeviceServer struct {
 	grpc.ServerStream
 }
 
-func (x *shellServiceCopyFilesToMachineServer) Send(m *CopyFilesToMachineResponse) error {
+func (x *shellServiceCopyFilesTophysicalDeviceServer) Send(m *CopyFilesTophysicalDeviceResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *shellServiceCopyFilesToMachineServer) Recv() (*CopyFilesToMachineRequest, error) {
-	m := new(CopyFilesToMachineRequest)
+func (x *shellServiceCopyFilesTophysicalDeviceServer) Recv() (*CopyFilesTophysicalDeviceRequest, error) {
+	m := new(CopyFilesTophysicalDeviceRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func _ShellService_CopyFilesFromMachine_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ShellServiceServer).CopyFilesFromMachine(&shellServiceCopyFilesFromMachineServer{stream})
+func _ShellService_CopyFilesFromphysicalDevice_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ShellServiceServer).CopyFilesFromphysicalDevice(&shellServiceCopyFilesFromphysicalDeviceServer{stream})
 }
 
-type ShellService_CopyFilesFromMachineServer interface {
-	Send(*CopyFilesFromMachineResponse) error
-	Recv() (*CopyFilesFromMachineRequest, error)
+type ShellService_CopyFilesFromphysicalDeviceServer interface {
+	Send(*CopyFilesFromphysicalDeviceResponse) error
+	Recv() (*CopyFilesFromphysicalDeviceRequest, error)
 	grpc.ServerStream
 }
 
-type shellServiceCopyFilesFromMachineServer struct {
+type shellServiceCopyFilesFromphysicalDeviceServer struct {
 	grpc.ServerStream
 }
 
-func (x *shellServiceCopyFilesFromMachineServer) Send(m *CopyFilesFromMachineResponse) error {
+func (x *shellServiceCopyFilesFromphysicalDeviceServer) Send(m *CopyFilesFromphysicalDeviceResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *shellServiceCopyFilesFromMachineServer) Recv() (*CopyFilesFromMachineRequest, error) {
-	m := new(CopyFilesFromMachineRequest)
+func (x *shellServiceCopyFilesFromphysicalDeviceServer) Recv() (*CopyFilesFromphysicalDeviceRequest, error) {
+	m := new(CopyFilesFromphysicalDeviceRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -329,14 +329,14 @@ var ShellService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 		{
-			StreamName:    "CopyFilesToMachine",
-			Handler:       _ShellService_CopyFilesToMachine_Handler,
+			StreamName:    "CopyFilesTophysicalDevice",
+			Handler:       _ShellService_CopyFilesTophysicalDevice_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},
 		{
-			StreamName:    "CopyFilesFromMachine",
-			Handler:       _ShellService_CopyFilesFromMachine_Handler,
+			StreamName:    "CopyFilesFromphysicalDevice",
+			Handler:       _ShellService_CopyFilesFromphysicalDevice_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},

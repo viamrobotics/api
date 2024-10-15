@@ -31,7 +31,7 @@ type VisionServiceClient interface {
 	GetClassificationsFromCamera(ctx context.Context, in *GetClassificationsFromCameraRequest, opts ...grpc.CallOption) (*GetClassificationsFromCameraResponse, error)
 	// GetClassifications will return a list of classifications in the next image given the image bytes and a classifier
 	GetClassifications(ctx context.Context, in *GetClassificationsRequest, opts ...grpc.CallOption) (*GetClassificationsResponse, error)
-	// GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying robot,
+	// GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying physicalDevice,
 	// as well as the 3-vector center of each of the found objects.
 	// A specific MIME type can be requested but may not necessarily be the same one returned.
 	GetObjectPointClouds(ctx context.Context, in *GetObjectPointCloudsRequest, opts ...grpc.CallOption) (*GetObjectPointCloudsResponse, error)
@@ -134,7 +134,7 @@ type VisionServiceServer interface {
 	GetClassificationsFromCamera(context.Context, *GetClassificationsFromCameraRequest) (*GetClassificationsFromCameraResponse, error)
 	// GetClassifications will return a list of classifications in the next image given the image bytes and a classifier
 	GetClassifications(context.Context, *GetClassificationsRequest) (*GetClassificationsResponse, error)
-	// GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying robot,
+	// GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying physicalDevice,
 	// as well as the 3-vector center of each of the found objects.
 	// A specific MIME type can be requested but may not necessarily be the same one returned.
 	GetObjectPointClouds(context.Context, *GetObjectPointCloudsRequest) (*GetObjectPointCloudsResponse, error)

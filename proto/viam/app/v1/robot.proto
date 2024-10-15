@@ -9,22 +9,22 @@ import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/app/v1";
 
-// RobotService is used by robots to retrieve configs, report logs, etc...
-service RobotService {
-  // Config requests the current robot config
+// physicalDeviceService is used by physicalDevices to retrieve configs, report logs, etc...
+service physicalDeviceService {
+  // Config requests the current physicalDevice config
   rpc Config(ConfigRequest) returns (ConfigResponse);
 
-  // Certificate requests the current robot certificate
+  // Certificate requests the current physicalDevice certificate
   rpc Certificate(CertificateRequest) returns (CertificateResponse);
 
-  // Log insert log entries associated with the robot. Allows up to 1000 entries to be added in one request.
+  // Log insert log entries associated with the physicalDevice. Allows up to 1000 entries to be added in one request.
   rpc Log(LogRequest) returns (LogResponse);
 
-  // NeedsRestart returns if the robot should restart and the interval it should check to restart.
+  // NeedsRestart returns if the physicalDevice should restart and the interval it should check to restart.
   rpc NeedsRestart(NeedsRestartRequest) returns (NeedsRestartResponse);
 }
 
-message RobotConfig {
+message physicalDeviceConfig {
   CloudConfig cloud = 1;
   repeated RemoteConfig remotes = 2;
   repeated ComponentConfig components = 3;
@@ -32,7 +32,7 @@ message RobotConfig {
   repeated ServiceConfig services = 5;
   optional NetworkConfig network = 6;
   optional AuthConfig auth = 7;
-  // Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart
+  // Turns on debug mode for physicalDevice, adding an echo server and more logging and tracing. Only works after restart
   optional bool debug = 8;
   repeated ModuleConfig modules = 9;
   optional bool disable_partial_start = 10;
@@ -42,7 +42,7 @@ message RobotConfig {
   bool enable_web_profile = 13;
 }
 
-// Valid location secret that can be used for authentication to the robot.
+// Valid location secret that can be used for authentication to the physicalDevice.
 message LocationSecret {
   string id = 1;
   // secret payload
@@ -54,7 +54,7 @@ message AppValidationStatus {
 }
 
 message CloudConfig {
-  // Robot part id.
+  // physicalDevice part id.
   string id = 1;
   string fqdn = 2;
   string local_fqdn = 3;
@@ -63,13 +63,13 @@ message CloudConfig {
   bool signaling_insecure = 6;
   // Deprecated use location_secrets
   string location_secret = 7 [deprecated = true];
-  // Robot part secret
+  // physicalDevice part secret
   string secret = 8;
   // All valid location secrets.
   repeated LocationSecret location_secrets = 9;
   string primary_org_id = 10;
   string location_id = 11;
-  string machine_id = 12;
+  string physicalDevice_id = 12;
 }
 
 message ComponentConfig {
@@ -141,7 +141,7 @@ message JWKSFile {
   google.protobuf.Struct json = 1;
 }
 
-// ExternalAuthConfig describes how a viam managed robot can accept
+// ExternalAuthConfig describes how a viam managed physicalDevice can accept
 // credentials signed by the cloud app.
 message ExternalAuthConfig {
   JWKSFile jwks = 1;
@@ -237,9 +237,9 @@ message Orientation {
   }
 }
 
-// A RemoteConfig describes a remote robot that should be integrated.
-// The Frame field defines how the "world" node of the remote robot should be reconciled with the "world" node of the
-// the current robot. All components of the remote robot who have Parent as "world" will be attached to the parent defined
+// A RemoteConfig describes a remote physicalDevice that should be integrated.
+// The Frame field defines how the "world" node of the remote physicalDevice should be reconciled with the "world" node of the
+// the current physicalDevice. All components of the remote physicalDevice who have Parent as "world" will be attached to the parent defined
 // in Frame, and with the given offset as well.
 message RemoteConfig {
   string name = 1;
@@ -252,7 +252,7 @@ message RemoteConfig {
   google.protobuf.Duration reconnect_interval = 8;
   repeated ResourceLevelServiceConfig service_configs = 9 [(tagger.v1.tags) = "json:\"service_config\""];
 
-  // Secret is a helper for a robot location secret.
+  // Secret is a helper for a physicalDevice location secret.
   string secret = 10;
 }
 
@@ -287,12 +287,12 @@ enum CredentialsType {
   CREDENTIALS_TYPE_UNSPECIFIED = 0;
   CREDENTIALS_TYPE_INTERNAL = 1;
   CREDENTIALS_TYPE_API_KEY = 2;
-  CREDENTIALS_TYPE_ROBOT_SECRET = 3;
-  CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET = 4;
+  CREDENTIALS_TYPE_physicalDevice_SECRET = 3;
+  CREDENTIALS_TYPE_physicalDevice_LOCATION_SECRET = 4;
 }
 
 message ConfigRequest {
-  // Robot part id.
+  // physicalDevice part id.
   string id = 1;
 
   // Details about the RDK (os, version) are updated during this request.
@@ -300,23 +300,23 @@ message ConfigRequest {
 }
 
 message ConfigResponse {
-  RobotConfig config = 1;
+  physicalDeviceConfig config = 1;
 }
 
 message CertificateRequest {
-  // Robot part id.
+  // physicalDevice part id.
   string id = 1;
 }
 
 message CertificateResponse {
-  // Robot part id.
+  // physicalDevice part id.
   string id = 1;
   string tls_certificate = 2;
   string tls_private_key = 3;
 }
 
 message LogRequest {
-  // Robot part id.
+  // physicalDevice part id.
   string id = 1;
   repeated common.v1.LogEntry logs = 2;
 }
@@ -324,12 +324,12 @@ message LogRequest {
 message LogResponse {}
 
 message NeedsRestartRequest {
-  // Robot part id.
+  // physicalDevice part id.
   string id = 1;
 }
 
 message NeedsRestartResponse {
-  // Robot part id.
+  // physicalDevice part id.
   string id = 1;
   bool must_restart = 2;
   google.protobuf.Duration restart_check_interval = 3;

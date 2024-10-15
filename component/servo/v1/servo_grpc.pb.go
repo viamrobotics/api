@@ -23,12 +23,12 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServoServiceClient interface {
-	// Move requests the servo of the underlying robot to move.
+	// Move requests the servo of the underlying physicalDevice to move.
 	// This will block until done or a new operation cancels this one
 	Move(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveResponse, error)
-	// GetPosition returns the current set angle (degrees) of the servo of the underlying robot.
+	// GetPosition returns the current set angle (degrees) of the servo of the underlying physicalDevice.
 	GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error)
-	// Stop stops a robot's servo
+	// Stop stops a physicalDevice's servo
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
@@ -104,12 +104,12 @@ func (c *servoServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeomet
 // All implementations must embed UnimplementedServoServiceServer
 // for forward compatibility
 type ServoServiceServer interface {
-	// Move requests the servo of the underlying robot to move.
+	// Move requests the servo of the underlying physicalDevice to move.
 	// This will block until done or a new operation cancels this one
 	Move(context.Context, *MoveRequest) (*MoveResponse, error)
-	// GetPosition returns the current set angle (degrees) of the servo of the underlying robot.
+	// GetPosition returns the current set angle (degrees) of the servo of the underlying physicalDevice.
 	GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error)
-	// Stop stops a robot's servo
+	// Stop stops a physicalDevice's servo
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)

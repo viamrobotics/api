@@ -1,4 +1,4 @@
-// source: robot/v1/robot.proto
+// source: physicalDevice/v1/physicalDevice.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -25,55 +25,55 @@ var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_
 goog.object.extend(proto, google_protobuf_struct_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
-goog.exportSymbol('proto.viam.robot.v1.BlockForOperationRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.BlockForOperationResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.CancelOperationRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.CancelOperationResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.DiscoverComponentsRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.DiscoverComponentsResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.Discovery', null, global);
-goog.exportSymbol('proto.viam.robot.v1.DiscoveryQuery', null, global);
-goog.exportSymbol('proto.viam.robot.v1.FrameSystemConfig', null, global);
-goog.exportSymbol('proto.viam.robot.v1.FrameSystemConfigRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.FrameSystemConfigResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.GetCloudMetadataRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.GetCloudMetadataResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.GetOperationsRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.GetOperationsResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.GetSessionsRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.GetSessionsResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.GetStatusRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.GetStatusResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.LogRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.LogResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.Operation', null, global);
-goog.exportSymbol('proto.viam.robot.v1.PeerConnectionInfo', null, global);
-goog.exportSymbol('proto.viam.robot.v1.PeerConnectionType', null, global);
-goog.exportSymbol('proto.viam.robot.v1.ResourceNamesRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.ResourceNamesResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.ResourceRPCSubtype', null, global);
-goog.exportSymbol('proto.viam.robot.v1.ResourceRPCSubtypesRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.ResourceRPCSubtypesResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.RestartModuleRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.RestartModuleRequest.IdOrNameCase', null, global);
-goog.exportSymbol('proto.viam.robot.v1.RestartModuleResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.SendSessionHeartbeatRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.SendSessionHeartbeatResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.Session', null, global);
-goog.exportSymbol('proto.viam.robot.v1.ShutdownRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.ShutdownResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.StartSessionRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.StartSessionResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.Status', null, global);
-goog.exportSymbol('proto.viam.robot.v1.StopAllRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.StopAllResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.StopExtraParameters', null, global);
-goog.exportSymbol('proto.viam.robot.v1.StreamStatusRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.StreamStatusResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.TransformPCDRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.TransformPCDResponse', null, global);
-goog.exportSymbol('proto.viam.robot.v1.TransformPoseRequest', null, global);
-goog.exportSymbol('proto.viam.robot.v1.TransformPoseResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.BlockForOperationRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.BlockForOperationResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.CancelOperationRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.CancelOperationResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.DiscoverComponentsRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.DiscoverComponentsResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.Discovery', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.DiscoveryQuery', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.FrameSystemConfig', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.FrameSystemConfigRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.FrameSystemConfigResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.GetCloudMetadataRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.GetCloudMetadataResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.GetOperationsRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.GetOperationsResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.GetSessionsRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.GetSessionsResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.GetStatusRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.GetStatusResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.LogRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.LogResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.Operation', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.PeerConnectionInfo', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.PeerConnectionType', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.ResourceNamesRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.ResourceNamesResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.ResourceRPCSubtype', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.RestartModuleRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.RestartModuleRequest.IdOrNameCase', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.RestartModuleResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.Session', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.ShutdownRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.ShutdownResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.StartSessionRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.StartSessionResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.Status', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.StopAllRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.StopAllResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.StopExtraParameters', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.StreamStatusRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.StreamStatusResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.TransformPCDRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.TransformPCDResponse', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.TransformPoseRequest', null, global);
+goog.exportSymbol('proto.viam.physicalDevice.v1.TransformPoseResponse', null, global);
 /**
  * Generated by JsPbCodeGenerator.
  * @param {Array=} opt_data Optional initial data array, typically from a
@@ -84,16 +84,16 @@ goog.exportSymbol('proto.viam.robot.v1.TransformPoseResponse', null, global);
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.FrameSystemConfig = function(opt_data) {
+proto.viam.physicalDevice.v1.FrameSystemConfig = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.FrameSystemConfig, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.FrameSystemConfig, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.FrameSystemConfig.displayName = 'proto.viam.robot.v1.FrameSystemConfig';
+  proto.viam.physicalDevice.v1.FrameSystemConfig.displayName = 'proto.viam.physicalDevice.v1.FrameSystemConfig';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -105,16 +105,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.FrameSystemConfigRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.FrameSystemConfigRequest.repeatedFields_, null);
+proto.viam.physicalDevice.v1.FrameSystemConfigRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.FrameSystemConfigRequest.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.FrameSystemConfigRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.FrameSystemConfigRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.FrameSystemConfigRequest.displayName = 'proto.viam.robot.v1.FrameSystemConfigRequest';
+  proto.viam.physicalDevice.v1.FrameSystemConfigRequest.displayName = 'proto.viam.physicalDevice.v1.FrameSystemConfigRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -126,16 +126,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.FrameSystemConfigResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.FrameSystemConfigResponse.repeatedFields_, null);
+proto.viam.physicalDevice.v1.FrameSystemConfigResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.FrameSystemConfigResponse.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.FrameSystemConfigResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.FrameSystemConfigResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.FrameSystemConfigResponse.displayName = 'proto.viam.robot.v1.FrameSystemConfigResponse';
+  proto.viam.physicalDevice.v1.FrameSystemConfigResponse.displayName = 'proto.viam.physicalDevice.v1.FrameSystemConfigResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -147,16 +147,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.TransformPoseRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.TransformPoseRequest.repeatedFields_, null);
+proto.viam.physicalDevice.v1.TransformPoseRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.TransformPoseRequest.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.TransformPoseRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.TransformPoseRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.TransformPoseRequest.displayName = 'proto.viam.robot.v1.TransformPoseRequest';
+  proto.viam.physicalDevice.v1.TransformPoseRequest.displayName = 'proto.viam.physicalDevice.v1.TransformPoseRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -168,16 +168,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.TransformPoseResponse = function(opt_data) {
+proto.viam.physicalDevice.v1.TransformPoseResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.TransformPoseResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.TransformPoseResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.TransformPoseResponse.displayName = 'proto.viam.robot.v1.TransformPoseResponse';
+  proto.viam.physicalDevice.v1.TransformPoseResponse.displayName = 'proto.viam.physicalDevice.v1.TransformPoseResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -189,16 +189,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.TransformPCDRequest = function(opt_data) {
+proto.viam.physicalDevice.v1.TransformPCDRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.TransformPCDRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.TransformPCDRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.TransformPCDRequest.displayName = 'proto.viam.robot.v1.TransformPCDRequest';
+  proto.viam.physicalDevice.v1.TransformPCDRequest.displayName = 'proto.viam.physicalDevice.v1.TransformPCDRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -210,16 +210,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.TransformPCDResponse = function(opt_data) {
+proto.viam.physicalDevice.v1.TransformPCDResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.TransformPCDResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.TransformPCDResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.TransformPCDResponse.displayName = 'proto.viam.robot.v1.TransformPCDResponse';
+  proto.viam.physicalDevice.v1.TransformPCDResponse.displayName = 'proto.viam.physicalDevice.v1.TransformPCDResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -231,16 +231,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.ResourceNamesRequest = function(opt_data) {
+proto.viam.physicalDevice.v1.ResourceNamesRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.ResourceNamesRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.ResourceNamesRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.ResourceNamesRequest.displayName = 'proto.viam.robot.v1.ResourceNamesRequest';
+  proto.viam.physicalDevice.v1.ResourceNamesRequest.displayName = 'proto.viam.physicalDevice.v1.ResourceNamesRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -252,16 +252,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.ResourceNamesResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.ResourceNamesResponse.repeatedFields_, null);
+proto.viam.physicalDevice.v1.ResourceNamesResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.ResourceNamesResponse.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.ResourceNamesResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.ResourceNamesResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.ResourceNamesResponse.displayName = 'proto.viam.robot.v1.ResourceNamesResponse';
+  proto.viam.physicalDevice.v1.ResourceNamesResponse.displayName = 'proto.viam.physicalDevice.v1.ResourceNamesResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -273,16 +273,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.ResourceRPCSubtype = function(opt_data) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtype = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.ResourceRPCSubtype, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.ResourceRPCSubtype, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.ResourceRPCSubtype.displayName = 'proto.viam.robot.v1.ResourceRPCSubtype';
+  proto.viam.physicalDevice.v1.ResourceRPCSubtype.displayName = 'proto.viam.physicalDevice.v1.ResourceRPCSubtype';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -294,16 +294,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.ResourceRPCSubtypesRequest = function(opt_data) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.ResourceRPCSubtypesRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.ResourceRPCSubtypesRequest.displayName = 'proto.viam.robot.v1.ResourceRPCSubtypesRequest';
+  proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest.displayName = 'proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -315,16 +315,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.ResourceRPCSubtypesResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.ResourceRPCSubtypesResponse.repeatedFields_, null);
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.ResourceRPCSubtypesResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.ResourceRPCSubtypesResponse.displayName = 'proto.viam.robot.v1.ResourceRPCSubtypesResponse';
+  proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.displayName = 'proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -336,16 +336,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.Operation = function(opt_data) {
+proto.viam.physicalDevice.v1.Operation = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.Operation, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.Operation, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.Operation.displayName = 'proto.viam.robot.v1.Operation';
+  proto.viam.physicalDevice.v1.Operation.displayName = 'proto.viam.physicalDevice.v1.Operation';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -357,16 +357,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.GetOperationsRequest = function(opt_data) {
+proto.viam.physicalDevice.v1.GetOperationsRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.GetOperationsRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.GetOperationsRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.GetOperationsRequest.displayName = 'proto.viam.robot.v1.GetOperationsRequest';
+  proto.viam.physicalDevice.v1.GetOperationsRequest.displayName = 'proto.viam.physicalDevice.v1.GetOperationsRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -378,16 +378,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.GetOperationsResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.GetOperationsResponse.repeatedFields_, null);
+proto.viam.physicalDevice.v1.GetOperationsResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.GetOperationsResponse.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.GetOperationsResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.GetOperationsResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.GetOperationsResponse.displayName = 'proto.viam.robot.v1.GetOperationsResponse';
+  proto.viam.physicalDevice.v1.GetOperationsResponse.displayName = 'proto.viam.physicalDevice.v1.GetOperationsResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -399,16 +399,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.CancelOperationRequest = function(opt_data) {
+proto.viam.physicalDevice.v1.CancelOperationRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.CancelOperationRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.CancelOperationRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.CancelOperationRequest.displayName = 'proto.viam.robot.v1.CancelOperationRequest';
+  proto.viam.physicalDevice.v1.CancelOperationRequest.displayName = 'proto.viam.physicalDevice.v1.CancelOperationRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -420,16 +420,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.CancelOperationResponse = function(opt_data) {
+proto.viam.physicalDevice.v1.CancelOperationResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.CancelOperationResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.CancelOperationResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.CancelOperationResponse.displayName = 'proto.viam.robot.v1.CancelOperationResponse';
+  proto.viam.physicalDevice.v1.CancelOperationResponse.displayName = 'proto.viam.physicalDevice.v1.CancelOperationResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -441,16 +441,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.BlockForOperationRequest = function(opt_data) {
+proto.viam.physicalDevice.v1.BlockForOperationRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.BlockForOperationRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.BlockForOperationRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.BlockForOperationRequest.displayName = 'proto.viam.robot.v1.BlockForOperationRequest';
+  proto.viam.physicalDevice.v1.BlockForOperationRequest.displayName = 'proto.viam.physicalDevice.v1.BlockForOperationRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -462,16 +462,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.BlockForOperationResponse = function(opt_data) {
+proto.viam.physicalDevice.v1.BlockForOperationResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.BlockForOperationResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.BlockForOperationResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.BlockForOperationResponse.displayName = 'proto.viam.robot.v1.BlockForOperationResponse';
+  proto.viam.physicalDevice.v1.BlockForOperationResponse.displayName = 'proto.viam.physicalDevice.v1.BlockForOperationResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -483,16 +483,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.PeerConnectionInfo = function(opt_data) {
+proto.viam.physicalDevice.v1.PeerConnectionInfo = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.PeerConnectionInfo, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.PeerConnectionInfo, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.PeerConnectionInfo.displayName = 'proto.viam.robot.v1.PeerConnectionInfo';
+  proto.viam.physicalDevice.v1.PeerConnectionInfo.displayName = 'proto.viam.physicalDevice.v1.PeerConnectionInfo';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -504,16 +504,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.Session = function(opt_data) {
+proto.viam.physicalDevice.v1.Session = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.Session, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.Session, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.Session.displayName = 'proto.viam.robot.v1.Session';
+  proto.viam.physicalDevice.v1.Session.displayName = 'proto.viam.physicalDevice.v1.Session';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -525,16 +525,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.GetSessionsRequest = function(opt_data) {
+proto.viam.physicalDevice.v1.GetSessionsRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.GetSessionsRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.GetSessionsRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.GetSessionsRequest.displayName = 'proto.viam.robot.v1.GetSessionsRequest';
+  proto.viam.physicalDevice.v1.GetSessionsRequest.displayName = 'proto.viam.physicalDevice.v1.GetSessionsRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -546,16 +546,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.GetSessionsResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.GetSessionsResponse.repeatedFields_, null);
+proto.viam.physicalDevice.v1.GetSessionsResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.GetSessionsResponse.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.GetSessionsResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.GetSessionsResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.GetSessionsResponse.displayName = 'proto.viam.robot.v1.GetSessionsResponse';
+  proto.viam.physicalDevice.v1.GetSessionsResponse.displayName = 'proto.viam.physicalDevice.v1.GetSessionsResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -567,16 +567,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.DiscoveryQuery = function(opt_data) {
+proto.viam.physicalDevice.v1.DiscoveryQuery = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.DiscoveryQuery, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.DiscoveryQuery, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.DiscoveryQuery.displayName = 'proto.viam.robot.v1.DiscoveryQuery';
+  proto.viam.physicalDevice.v1.DiscoveryQuery.displayName = 'proto.viam.physicalDevice.v1.DiscoveryQuery';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -588,16 +588,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.Discovery = function(opt_data) {
+proto.viam.physicalDevice.v1.Discovery = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.Discovery, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.Discovery, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.Discovery.displayName = 'proto.viam.robot.v1.Discovery';
+  proto.viam.physicalDevice.v1.Discovery.displayName = 'proto.viam.physicalDevice.v1.Discovery';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -609,16 +609,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.DiscoverComponentsRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.DiscoverComponentsRequest.repeatedFields_, null);
+proto.viam.physicalDevice.v1.DiscoverComponentsRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.DiscoverComponentsRequest.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.DiscoverComponentsRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.DiscoverComponentsRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.DiscoverComponentsRequest.displayName = 'proto.viam.robot.v1.DiscoverComponentsRequest';
+  proto.viam.physicalDevice.v1.DiscoverComponentsRequest.displayName = 'proto.viam.physicalDevice.v1.DiscoverComponentsRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -630,16 +630,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.DiscoverComponentsResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.DiscoverComponentsResponse.repeatedFields_, null);
+proto.viam.physicalDevice.v1.DiscoverComponentsResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.DiscoverComponentsResponse.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.DiscoverComponentsResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.DiscoverComponentsResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.DiscoverComponentsResponse.displayName = 'proto.viam.robot.v1.DiscoverComponentsResponse';
+  proto.viam.physicalDevice.v1.DiscoverComponentsResponse.displayName = 'proto.viam.physicalDevice.v1.DiscoverComponentsResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -651,16 +651,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.Status = function(opt_data) {
+proto.viam.physicalDevice.v1.Status = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.Status, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.Status, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.Status.displayName = 'proto.viam.robot.v1.Status';
+  proto.viam.physicalDevice.v1.Status.displayName = 'proto.viam.physicalDevice.v1.Status';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -672,16 +672,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.GetStatusRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.GetStatusRequest.repeatedFields_, null);
+proto.viam.physicalDevice.v1.GetStatusRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.GetStatusRequest.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.GetStatusRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.GetStatusRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.GetStatusRequest.displayName = 'proto.viam.robot.v1.GetStatusRequest';
+  proto.viam.physicalDevice.v1.GetStatusRequest.displayName = 'proto.viam.physicalDevice.v1.GetStatusRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -693,16 +693,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.GetStatusResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.GetStatusResponse.repeatedFields_, null);
+proto.viam.physicalDevice.v1.GetStatusResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.GetStatusResponse.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.GetStatusResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.GetStatusResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.GetStatusResponse.displayName = 'proto.viam.robot.v1.GetStatusResponse';
+  proto.viam.physicalDevice.v1.GetStatusResponse.displayName = 'proto.viam.physicalDevice.v1.GetStatusResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -714,16 +714,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.StreamStatusRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.StreamStatusRequest.repeatedFields_, null);
+proto.viam.physicalDevice.v1.StreamStatusRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.StreamStatusRequest.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.StreamStatusRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.StreamStatusRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.StreamStatusRequest.displayName = 'proto.viam.robot.v1.StreamStatusRequest';
+  proto.viam.physicalDevice.v1.StreamStatusRequest.displayName = 'proto.viam.physicalDevice.v1.StreamStatusRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -735,16 +735,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.StreamStatusResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.StreamStatusResponse.repeatedFields_, null);
+proto.viam.physicalDevice.v1.StreamStatusResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.StreamStatusResponse.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.StreamStatusResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.StreamStatusResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.StreamStatusResponse.displayName = 'proto.viam.robot.v1.StreamStatusResponse';
+  proto.viam.physicalDevice.v1.StreamStatusResponse.displayName = 'proto.viam.physicalDevice.v1.StreamStatusResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -756,16 +756,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.StopExtraParameters = function(opt_data) {
+proto.viam.physicalDevice.v1.StopExtraParameters = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.StopExtraParameters, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.StopExtraParameters, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.StopExtraParameters.displayName = 'proto.viam.robot.v1.StopExtraParameters';
+  proto.viam.physicalDevice.v1.StopExtraParameters.displayName = 'proto.viam.physicalDevice.v1.StopExtraParameters';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -777,16 +777,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.StopAllRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.StopAllRequest.repeatedFields_, null);
+proto.viam.physicalDevice.v1.StopAllRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.StopAllRequest.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.StopAllRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.StopAllRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.StopAllRequest.displayName = 'proto.viam.robot.v1.StopAllRequest';
+  proto.viam.physicalDevice.v1.StopAllRequest.displayName = 'proto.viam.physicalDevice.v1.StopAllRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -798,16 +798,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.StopAllResponse = function(opt_data) {
+proto.viam.physicalDevice.v1.StopAllResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.StopAllResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.StopAllResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.StopAllResponse.displayName = 'proto.viam.robot.v1.StopAllResponse';
+  proto.viam.physicalDevice.v1.StopAllResponse.displayName = 'proto.viam.physicalDevice.v1.StopAllResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -819,16 +819,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.StartSessionRequest = function(opt_data) {
+proto.viam.physicalDevice.v1.StartSessionRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.StartSessionRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.StartSessionRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.StartSessionRequest.displayName = 'proto.viam.robot.v1.StartSessionRequest';
+  proto.viam.physicalDevice.v1.StartSessionRequest.displayName = 'proto.viam.physicalDevice.v1.StartSessionRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -840,16 +840,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.StartSessionResponse = function(opt_data) {
+proto.viam.physicalDevice.v1.StartSessionResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.StartSessionResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.StartSessionResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.StartSessionResponse.displayName = 'proto.viam.robot.v1.StartSessionResponse';
+  proto.viam.physicalDevice.v1.StartSessionResponse.displayName = 'proto.viam.physicalDevice.v1.StartSessionResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -861,16 +861,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.SendSessionHeartbeatRequest = function(opt_data) {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.SendSessionHeartbeatRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.SendSessionHeartbeatRequest.displayName = 'proto.viam.robot.v1.SendSessionHeartbeatRequest';
+  proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest.displayName = 'proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -882,16 +882,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.SendSessionHeartbeatResponse = function(opt_data) {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.SendSessionHeartbeatResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.SendSessionHeartbeatResponse.displayName = 'proto.viam.robot.v1.SendSessionHeartbeatResponse';
+  proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse.displayName = 'proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -903,16 +903,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.LogRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.robot.v1.LogRequest.repeatedFields_, null);
+proto.viam.physicalDevice.v1.LogRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.physicalDevice.v1.LogRequest.repeatedFields_, null);
 };
-goog.inherits(proto.viam.robot.v1.LogRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.LogRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.LogRequest.displayName = 'proto.viam.robot.v1.LogRequest';
+  proto.viam.physicalDevice.v1.LogRequest.displayName = 'proto.viam.physicalDevice.v1.LogRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -924,16 +924,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.LogResponse = function(opt_data) {
+proto.viam.physicalDevice.v1.LogResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.LogResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.LogResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.LogResponse.displayName = 'proto.viam.robot.v1.LogResponse';
+  proto.viam.physicalDevice.v1.LogResponse.displayName = 'proto.viam.physicalDevice.v1.LogResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -945,16 +945,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.GetCloudMetadataRequest = function(opt_data) {
+proto.viam.physicalDevice.v1.GetCloudMetadataRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.GetCloudMetadataRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.GetCloudMetadataRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.GetCloudMetadataRequest.displayName = 'proto.viam.robot.v1.GetCloudMetadataRequest';
+  proto.viam.physicalDevice.v1.GetCloudMetadataRequest.displayName = 'proto.viam.physicalDevice.v1.GetCloudMetadataRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -966,16 +966,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.GetCloudMetadataResponse = function(opt_data) {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.GetCloudMetadataResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.GetCloudMetadataResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.GetCloudMetadataResponse.displayName = 'proto.viam.robot.v1.GetCloudMetadataResponse';
+  proto.viam.physicalDevice.v1.GetCloudMetadataResponse.displayName = 'proto.viam.physicalDevice.v1.GetCloudMetadataResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -987,16 +987,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.RestartModuleRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.viam.robot.v1.RestartModuleRequest.oneofGroups_);
+proto.viam.physicalDevice.v1.RestartModuleRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.viam.physicalDevice.v1.RestartModuleRequest.oneofGroups_);
 };
-goog.inherits(proto.viam.robot.v1.RestartModuleRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.RestartModuleRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.RestartModuleRequest.displayName = 'proto.viam.robot.v1.RestartModuleRequest';
+  proto.viam.physicalDevice.v1.RestartModuleRequest.displayName = 'proto.viam.physicalDevice.v1.RestartModuleRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1008,16 +1008,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.RestartModuleResponse = function(opt_data) {
+proto.viam.physicalDevice.v1.RestartModuleResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.RestartModuleResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.RestartModuleResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.RestartModuleResponse.displayName = 'proto.viam.robot.v1.RestartModuleResponse';
+  proto.viam.physicalDevice.v1.RestartModuleResponse.displayName = 'proto.viam.physicalDevice.v1.RestartModuleResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1029,16 +1029,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.ShutdownRequest = function(opt_data) {
+proto.viam.physicalDevice.v1.ShutdownRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.ShutdownRequest, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.ShutdownRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.ShutdownRequest.displayName = 'proto.viam.robot.v1.ShutdownRequest';
+  proto.viam.physicalDevice.v1.ShutdownRequest.displayName = 'proto.viam.physicalDevice.v1.ShutdownRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1050,16 +1050,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.viam.robot.v1.ShutdownResponse = function(opt_data) {
+proto.viam.physicalDevice.v1.ShutdownResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.viam.robot.v1.ShutdownResponse, jspb.Message);
+goog.inherits(proto.viam.physicalDevice.v1.ShutdownResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.viam.robot.v1.ShutdownResponse.displayName = 'proto.viam.robot.v1.ShutdownResponse';
+  proto.viam.physicalDevice.v1.ShutdownResponse.displayName = 'proto.viam.physicalDevice.v1.ShutdownResponse';
 }
 
 
@@ -1077,8 +1077,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.FrameSystemConfig.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.FrameSystemConfig.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.FrameSystemConfig.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.FrameSystemConfig.toObject(opt_includeInstance, this);
 };
 
 
@@ -1087,11 +1087,11 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.toObject = function(opt_includeI
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.FrameSystemConfig} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.FrameSystemConfig} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.FrameSystemConfig.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.FrameSystemConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
     frame: (f = msg.getFrame()) && common_v1_common_pb.Transform.toObject(includeInstance, f),
     kinematics: (f = msg.getKinematics()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
@@ -1108,23 +1108,23 @@ proto.viam.robot.v1.FrameSystemConfig.toObject = function(includeInstance, msg) 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.FrameSystemConfig}
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfig}
  */
-proto.viam.robot.v1.FrameSystemConfig.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.FrameSystemConfig.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.FrameSystemConfig;
-  return proto.viam.robot.v1.FrameSystemConfig.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.FrameSystemConfig;
+  return proto.viam.physicalDevice.v1.FrameSystemConfig.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.FrameSystemConfig} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.FrameSystemConfig} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.FrameSystemConfig}
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfig}
  */
-proto.viam.robot.v1.FrameSystemConfig.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.FrameSystemConfig.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1154,9 +1154,9 @@ proto.viam.robot.v1.FrameSystemConfig.deserializeBinaryFromReader = function(msg
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.FrameSystemConfig.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.FrameSystemConfig.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.FrameSystemConfig.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.FrameSystemConfig.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1164,11 +1164,11 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.FrameSystemConfig} message
+ * @param {!proto.viam.physicalDevice.v1.FrameSystemConfig} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.FrameSystemConfig.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.FrameSystemConfig.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getFrame();
   if (f != null) {
@@ -1193,7 +1193,7 @@ proto.viam.robot.v1.FrameSystemConfig.serializeBinaryToWriter = function(message
  * optional viam.common.v1.Transform frame = 1;
  * @return {?proto.viam.common.v1.Transform}
  */
-proto.viam.robot.v1.FrameSystemConfig.prototype.getFrame = function() {
+proto.viam.physicalDevice.v1.FrameSystemConfig.prototype.getFrame = function() {
   return /** @type{?proto.viam.common.v1.Transform} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.Transform, 1));
 };
@@ -1201,18 +1201,18 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.getFrame = function() {
 
 /**
  * @param {?proto.viam.common.v1.Transform|undefined} value
- * @return {!proto.viam.robot.v1.FrameSystemConfig} returns this
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfig} returns this
 */
-proto.viam.robot.v1.FrameSystemConfig.prototype.setFrame = function(value) {
+proto.viam.physicalDevice.v1.FrameSystemConfig.prototype.setFrame = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.FrameSystemConfig} returns this
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfig} returns this
  */
-proto.viam.robot.v1.FrameSystemConfig.prototype.clearFrame = function() {
+proto.viam.physicalDevice.v1.FrameSystemConfig.prototype.clearFrame = function() {
   return this.setFrame(undefined);
 };
 
@@ -1221,7 +1221,7 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.clearFrame = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.FrameSystemConfig.prototype.hasFrame = function() {
+proto.viam.physicalDevice.v1.FrameSystemConfig.prototype.hasFrame = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -1230,7 +1230,7 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.hasFrame = function() {
  * optional google.protobuf.Struct kinematics = 2;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.robot.v1.FrameSystemConfig.prototype.getKinematics = function() {
+proto.viam.physicalDevice.v1.FrameSystemConfig.prototype.getKinematics = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
@@ -1238,18 +1238,18 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.getKinematics = function() {
 
 /**
  * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.viam.robot.v1.FrameSystemConfig} returns this
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfig} returns this
 */
-proto.viam.robot.v1.FrameSystemConfig.prototype.setKinematics = function(value) {
+proto.viam.physicalDevice.v1.FrameSystemConfig.prototype.setKinematics = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.FrameSystemConfig} returns this
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfig} returns this
  */
-proto.viam.robot.v1.FrameSystemConfig.prototype.clearKinematics = function() {
+proto.viam.physicalDevice.v1.FrameSystemConfig.prototype.clearKinematics = function() {
   return this.setKinematics(undefined);
 };
 
@@ -1258,7 +1258,7 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.clearKinematics = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.FrameSystemConfig.prototype.hasKinematics = function() {
+proto.viam.physicalDevice.v1.FrameSystemConfig.prototype.hasKinematics = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -1269,7 +1269,7 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.hasKinematics = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.FrameSystemConfigRequest.repeatedFields_ = [1];
+proto.viam.physicalDevice.v1.FrameSystemConfigRequest.repeatedFields_ = [1];
 
 
 
@@ -1286,8 +1286,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.FrameSystemConfigRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.FrameSystemConfigRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.FrameSystemConfigRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.FrameSystemConfigRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -1296,11 +1296,11 @@ proto.viam.robot.v1.FrameSystemConfigRequest.prototype.toObject = function(opt_i
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.FrameSystemConfigRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.FrameSystemConfigRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.FrameSystemConfigRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.FrameSystemConfigRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     supplementalTransformsList: jspb.Message.toObjectList(msg.getSupplementalTransformsList(),
     common_v1_common_pb.Transform.toObject, includeInstance)
@@ -1317,23 +1317,23 @@ proto.viam.robot.v1.FrameSystemConfigRequest.toObject = function(includeInstance
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.FrameSystemConfigRequest}
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfigRequest}
  */
-proto.viam.robot.v1.FrameSystemConfigRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.FrameSystemConfigRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.FrameSystemConfigRequest;
-  return proto.viam.robot.v1.FrameSystemConfigRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.FrameSystemConfigRequest;
+  return proto.viam.physicalDevice.v1.FrameSystemConfigRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.FrameSystemConfigRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.FrameSystemConfigRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.FrameSystemConfigRequest}
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfigRequest}
  */
-proto.viam.robot.v1.FrameSystemConfigRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.FrameSystemConfigRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1358,9 +1358,9 @@ proto.viam.robot.v1.FrameSystemConfigRequest.deserializeBinaryFromReader = funct
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.FrameSystemConfigRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.FrameSystemConfigRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.FrameSystemConfigRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.FrameSystemConfigRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1368,11 +1368,11 @@ proto.viam.robot.v1.FrameSystemConfigRequest.prototype.serializeBinary = functio
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.FrameSystemConfigRequest} message
+ * @param {!proto.viam.physicalDevice.v1.FrameSystemConfigRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.FrameSystemConfigRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.FrameSystemConfigRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getSupplementalTransformsList();
   if (f.length > 0) {
@@ -1389,7 +1389,7 @@ proto.viam.robot.v1.FrameSystemConfigRequest.serializeBinaryToWriter = function(
  * repeated viam.common.v1.Transform supplemental_transforms = 1;
  * @return {!Array<!proto.viam.common.v1.Transform>}
  */
-proto.viam.robot.v1.FrameSystemConfigRequest.prototype.getSupplementalTransformsList = function() {
+proto.viam.physicalDevice.v1.FrameSystemConfigRequest.prototype.getSupplementalTransformsList = function() {
   return /** @type{!Array<!proto.viam.common.v1.Transform>} */ (
     jspb.Message.getRepeatedWrapperField(this, common_v1_common_pb.Transform, 1));
 };
@@ -1397,9 +1397,9 @@ proto.viam.robot.v1.FrameSystemConfigRequest.prototype.getSupplementalTransforms
 
 /**
  * @param {!Array<!proto.viam.common.v1.Transform>} value
- * @return {!proto.viam.robot.v1.FrameSystemConfigRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfigRequest} returns this
 */
-proto.viam.robot.v1.FrameSystemConfigRequest.prototype.setSupplementalTransformsList = function(value) {
+proto.viam.physicalDevice.v1.FrameSystemConfigRequest.prototype.setSupplementalTransformsList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -1409,16 +1409,16 @@ proto.viam.robot.v1.FrameSystemConfigRequest.prototype.setSupplementalTransforms
  * @param {number=} opt_index
  * @return {!proto.viam.common.v1.Transform}
  */
-proto.viam.robot.v1.FrameSystemConfigRequest.prototype.addSupplementalTransforms = function(opt_value, opt_index) {
+proto.viam.physicalDevice.v1.FrameSystemConfigRequest.prototype.addSupplementalTransforms = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.common.v1.Transform, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.FrameSystemConfigRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfigRequest} returns this
  */
-proto.viam.robot.v1.FrameSystemConfigRequest.prototype.clearSupplementalTransformsList = function() {
+proto.viam.physicalDevice.v1.FrameSystemConfigRequest.prototype.clearSupplementalTransformsList = function() {
   return this.setSupplementalTransformsList([]);
 };
 
@@ -1429,7 +1429,7 @@ proto.viam.robot.v1.FrameSystemConfigRequest.prototype.clearSupplementalTransfor
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.FrameSystemConfigResponse.repeatedFields_ = [1];
+proto.viam.physicalDevice.v1.FrameSystemConfigResponse.repeatedFields_ = [1];
 
 
 
@@ -1446,8 +1446,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.FrameSystemConfigResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.FrameSystemConfigResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.FrameSystemConfigResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.FrameSystemConfigResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -1456,14 +1456,14 @@ proto.viam.robot.v1.FrameSystemConfigResponse.prototype.toObject = function(opt_
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.FrameSystemConfigResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.FrameSystemConfigResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.FrameSystemConfigResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.FrameSystemConfigResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     frameSystemConfigsList: jspb.Message.toObjectList(msg.getFrameSystemConfigsList(),
-    proto.viam.robot.v1.FrameSystemConfig.toObject, includeInstance)
+    proto.viam.physicalDevice.v1.FrameSystemConfig.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -1477,23 +1477,23 @@ proto.viam.robot.v1.FrameSystemConfigResponse.toObject = function(includeInstanc
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.FrameSystemConfigResponse}
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfigResponse}
  */
-proto.viam.robot.v1.FrameSystemConfigResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.FrameSystemConfigResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.FrameSystemConfigResponse;
-  return proto.viam.robot.v1.FrameSystemConfigResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.FrameSystemConfigResponse;
+  return proto.viam.physicalDevice.v1.FrameSystemConfigResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.FrameSystemConfigResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.FrameSystemConfigResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.FrameSystemConfigResponse}
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfigResponse}
  */
-proto.viam.robot.v1.FrameSystemConfigResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.FrameSystemConfigResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1501,8 +1501,8 @@ proto.viam.robot.v1.FrameSystemConfigResponse.deserializeBinaryFromReader = func
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.viam.robot.v1.FrameSystemConfig;
-      reader.readMessage(value,proto.viam.robot.v1.FrameSystemConfig.deserializeBinaryFromReader);
+      var value = new proto.viam.physicalDevice.v1.FrameSystemConfig;
+      reader.readMessage(value,proto.viam.physicalDevice.v1.FrameSystemConfig.deserializeBinaryFromReader);
       msg.addFrameSystemConfigs(value);
       break;
     default:
@@ -1518,9 +1518,9 @@ proto.viam.robot.v1.FrameSystemConfigResponse.deserializeBinaryFromReader = func
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.FrameSystemConfigResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.FrameSystemConfigResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.FrameSystemConfigResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.FrameSystemConfigResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1528,18 +1528,18 @@ proto.viam.robot.v1.FrameSystemConfigResponse.prototype.serializeBinary = functi
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.FrameSystemConfigResponse} message
+ * @param {!proto.viam.physicalDevice.v1.FrameSystemConfigResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.FrameSystemConfigResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.FrameSystemConfigResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getFrameSystemConfigsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.viam.robot.v1.FrameSystemConfig.serializeBinaryToWriter
+      proto.viam.physicalDevice.v1.FrameSystemConfig.serializeBinaryToWriter
     );
   }
 };
@@ -1547,38 +1547,38 @@ proto.viam.robot.v1.FrameSystemConfigResponse.serializeBinaryToWriter = function
 
 /**
  * repeated FrameSystemConfig frame_system_configs = 1;
- * @return {!Array<!proto.viam.robot.v1.FrameSystemConfig>}
+ * @return {!Array<!proto.viam.physicalDevice.v1.FrameSystemConfig>}
  */
-proto.viam.robot.v1.FrameSystemConfigResponse.prototype.getFrameSystemConfigsList = function() {
-  return /** @type{!Array<!proto.viam.robot.v1.FrameSystemConfig>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.robot.v1.FrameSystemConfig, 1));
+proto.viam.physicalDevice.v1.FrameSystemConfigResponse.prototype.getFrameSystemConfigsList = function() {
+  return /** @type{!Array<!proto.viam.physicalDevice.v1.FrameSystemConfig>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.physicalDevice.v1.FrameSystemConfig, 1));
 };
 
 
 /**
- * @param {!Array<!proto.viam.robot.v1.FrameSystemConfig>} value
- * @return {!proto.viam.robot.v1.FrameSystemConfigResponse} returns this
+ * @param {!Array<!proto.viam.physicalDevice.v1.FrameSystemConfig>} value
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfigResponse} returns this
 */
-proto.viam.robot.v1.FrameSystemConfigResponse.prototype.setFrameSystemConfigsList = function(value) {
+proto.viam.physicalDevice.v1.FrameSystemConfigResponse.prototype.setFrameSystemConfigsList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.FrameSystemConfig=} opt_value
+ * @param {!proto.viam.physicalDevice.v1.FrameSystemConfig=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.robot.v1.FrameSystemConfig}
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfig}
  */
-proto.viam.robot.v1.FrameSystemConfigResponse.prototype.addFrameSystemConfigs = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.robot.v1.FrameSystemConfig, opt_index);
+proto.viam.physicalDevice.v1.FrameSystemConfigResponse.prototype.addFrameSystemConfigs = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.physicalDevice.v1.FrameSystemConfig, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.FrameSystemConfigResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.FrameSystemConfigResponse} returns this
  */
-proto.viam.robot.v1.FrameSystemConfigResponse.prototype.clearFrameSystemConfigsList = function() {
+proto.viam.physicalDevice.v1.FrameSystemConfigResponse.prototype.clearFrameSystemConfigsList = function() {
   return this.setFrameSystemConfigsList([]);
 };
 
@@ -1589,7 +1589,7 @@ proto.viam.robot.v1.FrameSystemConfigResponse.prototype.clearFrameSystemConfigsL
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.TransformPoseRequest.repeatedFields_ = [3];
+proto.viam.physicalDevice.v1.TransformPoseRequest.repeatedFields_ = [3];
 
 
 
@@ -1606,8 +1606,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.TransformPoseRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.TransformPoseRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.TransformPoseRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.TransformPoseRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -1616,11 +1616,11 @@ proto.viam.robot.v1.TransformPoseRequest.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.TransformPoseRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.TransformPoseRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.TransformPoseRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.TransformPoseRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     source: (f = msg.getSource()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f),
     destination: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -1639,23 +1639,23 @@ proto.viam.robot.v1.TransformPoseRequest.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.TransformPoseRequest}
+ * @return {!proto.viam.physicalDevice.v1.TransformPoseRequest}
  */
-proto.viam.robot.v1.TransformPoseRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.TransformPoseRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.TransformPoseRequest;
-  return proto.viam.robot.v1.TransformPoseRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.TransformPoseRequest;
+  return proto.viam.physicalDevice.v1.TransformPoseRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.TransformPoseRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.TransformPoseRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.TransformPoseRequest}
+ * @return {!proto.viam.physicalDevice.v1.TransformPoseRequest}
  */
-proto.viam.robot.v1.TransformPoseRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.TransformPoseRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1689,9 +1689,9 @@ proto.viam.robot.v1.TransformPoseRequest.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.TransformPoseRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.TransformPoseRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.TransformPoseRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.TransformPoseRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1699,11 +1699,11 @@ proto.viam.robot.v1.TransformPoseRequest.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.TransformPoseRequest} message
+ * @param {!proto.viam.physicalDevice.v1.TransformPoseRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.TransformPoseRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.TransformPoseRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getSource();
   if (f != null) {
@@ -1735,7 +1735,7 @@ proto.viam.robot.v1.TransformPoseRequest.serializeBinaryToWriter = function(mess
  * optional viam.common.v1.PoseInFrame source = 1;
  * @return {?proto.viam.common.v1.PoseInFrame}
  */
-proto.viam.robot.v1.TransformPoseRequest.prototype.getSource = function() {
+proto.viam.physicalDevice.v1.TransformPoseRequest.prototype.getSource = function() {
   return /** @type{?proto.viam.common.v1.PoseInFrame} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.PoseInFrame, 1));
 };
@@ -1743,18 +1743,18 @@ proto.viam.robot.v1.TransformPoseRequest.prototype.getSource = function() {
 
 /**
  * @param {?proto.viam.common.v1.PoseInFrame|undefined} value
- * @return {!proto.viam.robot.v1.TransformPoseRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.TransformPoseRequest} returns this
 */
-proto.viam.robot.v1.TransformPoseRequest.prototype.setSource = function(value) {
+proto.viam.physicalDevice.v1.TransformPoseRequest.prototype.setSource = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.TransformPoseRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.TransformPoseRequest} returns this
  */
-proto.viam.robot.v1.TransformPoseRequest.prototype.clearSource = function() {
+proto.viam.physicalDevice.v1.TransformPoseRequest.prototype.clearSource = function() {
   return this.setSource(undefined);
 };
 
@@ -1763,7 +1763,7 @@ proto.viam.robot.v1.TransformPoseRequest.prototype.clearSource = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.TransformPoseRequest.prototype.hasSource = function() {
+proto.viam.physicalDevice.v1.TransformPoseRequest.prototype.hasSource = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -1772,16 +1772,16 @@ proto.viam.robot.v1.TransformPoseRequest.prototype.hasSource = function() {
  * optional string destination = 2;
  * @return {string}
  */
-proto.viam.robot.v1.TransformPoseRequest.prototype.getDestination = function() {
+proto.viam.physicalDevice.v1.TransformPoseRequest.prototype.getDestination = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.TransformPoseRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.TransformPoseRequest} returns this
  */
-proto.viam.robot.v1.TransformPoseRequest.prototype.setDestination = function(value) {
+proto.viam.physicalDevice.v1.TransformPoseRequest.prototype.setDestination = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -1790,7 +1790,7 @@ proto.viam.robot.v1.TransformPoseRequest.prototype.setDestination = function(val
  * repeated viam.common.v1.Transform supplemental_transforms = 3;
  * @return {!Array<!proto.viam.common.v1.Transform>}
  */
-proto.viam.robot.v1.TransformPoseRequest.prototype.getSupplementalTransformsList = function() {
+proto.viam.physicalDevice.v1.TransformPoseRequest.prototype.getSupplementalTransformsList = function() {
   return /** @type{!Array<!proto.viam.common.v1.Transform>} */ (
     jspb.Message.getRepeatedWrapperField(this, common_v1_common_pb.Transform, 3));
 };
@@ -1798,9 +1798,9 @@ proto.viam.robot.v1.TransformPoseRequest.prototype.getSupplementalTransformsList
 
 /**
  * @param {!Array<!proto.viam.common.v1.Transform>} value
- * @return {!proto.viam.robot.v1.TransformPoseRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.TransformPoseRequest} returns this
 */
-proto.viam.robot.v1.TransformPoseRequest.prototype.setSupplementalTransformsList = function(value) {
+proto.viam.physicalDevice.v1.TransformPoseRequest.prototype.setSupplementalTransformsList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
@@ -1810,16 +1810,16 @@ proto.viam.robot.v1.TransformPoseRequest.prototype.setSupplementalTransformsList
  * @param {number=} opt_index
  * @return {!proto.viam.common.v1.Transform}
  */
-proto.viam.robot.v1.TransformPoseRequest.prototype.addSupplementalTransforms = function(opt_value, opt_index) {
+proto.viam.physicalDevice.v1.TransformPoseRequest.prototype.addSupplementalTransforms = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.viam.common.v1.Transform, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.TransformPoseRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.TransformPoseRequest} returns this
  */
-proto.viam.robot.v1.TransformPoseRequest.prototype.clearSupplementalTransformsList = function() {
+proto.viam.physicalDevice.v1.TransformPoseRequest.prototype.clearSupplementalTransformsList = function() {
   return this.setSupplementalTransformsList([]);
 };
 
@@ -1840,8 +1840,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.TransformPoseResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.TransformPoseResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.TransformPoseResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.TransformPoseResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -1850,11 +1850,11 @@ proto.viam.robot.v1.TransformPoseResponse.prototype.toObject = function(opt_incl
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.TransformPoseResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.TransformPoseResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.TransformPoseResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.TransformPoseResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     pose: (f = msg.getPose()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f)
   };
@@ -1870,23 +1870,23 @@ proto.viam.robot.v1.TransformPoseResponse.toObject = function(includeInstance, m
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.TransformPoseResponse}
+ * @return {!proto.viam.physicalDevice.v1.TransformPoseResponse}
  */
-proto.viam.robot.v1.TransformPoseResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.TransformPoseResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.TransformPoseResponse;
-  return proto.viam.robot.v1.TransformPoseResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.TransformPoseResponse;
+  return proto.viam.physicalDevice.v1.TransformPoseResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.TransformPoseResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.TransformPoseResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.TransformPoseResponse}
+ * @return {!proto.viam.physicalDevice.v1.TransformPoseResponse}
  */
-proto.viam.robot.v1.TransformPoseResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.TransformPoseResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1911,9 +1911,9 @@ proto.viam.robot.v1.TransformPoseResponse.deserializeBinaryFromReader = function
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.TransformPoseResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.TransformPoseResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.TransformPoseResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.TransformPoseResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1921,11 +1921,11 @@ proto.viam.robot.v1.TransformPoseResponse.prototype.serializeBinary = function()
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.TransformPoseResponse} message
+ * @param {!proto.viam.physicalDevice.v1.TransformPoseResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.TransformPoseResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.TransformPoseResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getPose();
   if (f != null) {
@@ -1942,7 +1942,7 @@ proto.viam.robot.v1.TransformPoseResponse.serializeBinaryToWriter = function(mes
  * optional viam.common.v1.PoseInFrame pose = 1;
  * @return {?proto.viam.common.v1.PoseInFrame}
  */
-proto.viam.robot.v1.TransformPoseResponse.prototype.getPose = function() {
+proto.viam.physicalDevice.v1.TransformPoseResponse.prototype.getPose = function() {
   return /** @type{?proto.viam.common.v1.PoseInFrame} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.PoseInFrame, 1));
 };
@@ -1950,18 +1950,18 @@ proto.viam.robot.v1.TransformPoseResponse.prototype.getPose = function() {
 
 /**
  * @param {?proto.viam.common.v1.PoseInFrame|undefined} value
- * @return {!proto.viam.robot.v1.TransformPoseResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.TransformPoseResponse} returns this
 */
-proto.viam.robot.v1.TransformPoseResponse.prototype.setPose = function(value) {
+proto.viam.physicalDevice.v1.TransformPoseResponse.prototype.setPose = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.TransformPoseResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.TransformPoseResponse} returns this
  */
-proto.viam.robot.v1.TransformPoseResponse.prototype.clearPose = function() {
+proto.viam.physicalDevice.v1.TransformPoseResponse.prototype.clearPose = function() {
   return this.setPose(undefined);
 };
 
@@ -1970,7 +1970,7 @@ proto.viam.robot.v1.TransformPoseResponse.prototype.clearPose = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.TransformPoseResponse.prototype.hasPose = function() {
+proto.viam.physicalDevice.v1.TransformPoseResponse.prototype.hasPose = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -1991,8 +1991,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.TransformPCDRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.TransformPCDRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.TransformPCDRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.TransformPCDRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -2001,11 +2001,11 @@ proto.viam.robot.v1.TransformPCDRequest.prototype.toObject = function(opt_includ
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.TransformPCDRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.TransformPCDRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.TransformPCDRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.TransformPCDRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     pointCloudPcd: msg.getPointCloudPcd_asB64(),
     source: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -2023,23 +2023,23 @@ proto.viam.robot.v1.TransformPCDRequest.toObject = function(includeInstance, msg
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.TransformPCDRequest}
+ * @return {!proto.viam.physicalDevice.v1.TransformPCDRequest}
  */
-proto.viam.robot.v1.TransformPCDRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.TransformPCDRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.TransformPCDRequest;
-  return proto.viam.robot.v1.TransformPCDRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.TransformPCDRequest;
+  return proto.viam.physicalDevice.v1.TransformPCDRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.TransformPCDRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.TransformPCDRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.TransformPCDRequest}
+ * @return {!proto.viam.physicalDevice.v1.TransformPCDRequest}
  */
-proto.viam.robot.v1.TransformPCDRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.TransformPCDRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2071,9 +2071,9 @@ proto.viam.robot.v1.TransformPCDRequest.deserializeBinaryFromReader = function(m
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.TransformPCDRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.TransformPCDRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.TransformPCDRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.TransformPCDRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2081,11 +2081,11 @@ proto.viam.robot.v1.TransformPCDRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.TransformPCDRequest} message
+ * @param {!proto.viam.physicalDevice.v1.TransformPCDRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.TransformPCDRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.TransformPCDRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getPointCloudPcd_asU8();
   if (f.length > 0) {
@@ -2115,7 +2115,7 @@ proto.viam.robot.v1.TransformPCDRequest.serializeBinaryToWriter = function(messa
  * optional bytes point_cloud_pcd = 1;
  * @return {string}
  */
-proto.viam.robot.v1.TransformPCDRequest.prototype.getPointCloudPcd = function() {
+proto.viam.physicalDevice.v1.TransformPCDRequest.prototype.getPointCloudPcd = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -2125,7 +2125,7 @@ proto.viam.robot.v1.TransformPCDRequest.prototype.getPointCloudPcd = function() 
  * This is a type-conversion wrapper around `getPointCloudPcd()`
  * @return {string}
  */
-proto.viam.robot.v1.TransformPCDRequest.prototype.getPointCloudPcd_asB64 = function() {
+proto.viam.physicalDevice.v1.TransformPCDRequest.prototype.getPointCloudPcd_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
       this.getPointCloudPcd()));
 };
@@ -2138,7 +2138,7 @@ proto.viam.robot.v1.TransformPCDRequest.prototype.getPointCloudPcd_asB64 = funct
  * This is a type-conversion wrapper around `getPointCloudPcd()`
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.TransformPCDRequest.prototype.getPointCloudPcd_asU8 = function() {
+proto.viam.physicalDevice.v1.TransformPCDRequest.prototype.getPointCloudPcd_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
       this.getPointCloudPcd()));
 };
@@ -2146,9 +2146,9 @@ proto.viam.robot.v1.TransformPCDRequest.prototype.getPointCloudPcd_asU8 = functi
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.viam.robot.v1.TransformPCDRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.TransformPCDRequest} returns this
  */
-proto.viam.robot.v1.TransformPCDRequest.prototype.setPointCloudPcd = function(value) {
+proto.viam.physicalDevice.v1.TransformPCDRequest.prototype.setPointCloudPcd = function(value) {
   return jspb.Message.setProto3BytesField(this, 1, value);
 };
 
@@ -2157,16 +2157,16 @@ proto.viam.robot.v1.TransformPCDRequest.prototype.setPointCloudPcd = function(va
  * optional string source = 2;
  * @return {string}
  */
-proto.viam.robot.v1.TransformPCDRequest.prototype.getSource = function() {
+proto.viam.physicalDevice.v1.TransformPCDRequest.prototype.getSource = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.TransformPCDRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.TransformPCDRequest} returns this
  */
-proto.viam.robot.v1.TransformPCDRequest.prototype.setSource = function(value) {
+proto.viam.physicalDevice.v1.TransformPCDRequest.prototype.setSource = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -2175,16 +2175,16 @@ proto.viam.robot.v1.TransformPCDRequest.prototype.setSource = function(value) {
  * optional string destination = 3;
  * @return {string}
  */
-proto.viam.robot.v1.TransformPCDRequest.prototype.getDestination = function() {
+proto.viam.physicalDevice.v1.TransformPCDRequest.prototype.getDestination = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.TransformPCDRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.TransformPCDRequest} returns this
  */
-proto.viam.robot.v1.TransformPCDRequest.prototype.setDestination = function(value) {
+proto.viam.physicalDevice.v1.TransformPCDRequest.prototype.setDestination = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -2205,8 +2205,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.TransformPCDResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.TransformPCDResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.TransformPCDResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.TransformPCDResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -2215,11 +2215,11 @@ proto.viam.robot.v1.TransformPCDResponse.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.TransformPCDResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.TransformPCDResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.TransformPCDResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.TransformPCDResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     pointCloudPcd: msg.getPointCloudPcd_asB64()
   };
@@ -2235,23 +2235,23 @@ proto.viam.robot.v1.TransformPCDResponse.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.TransformPCDResponse}
+ * @return {!proto.viam.physicalDevice.v1.TransformPCDResponse}
  */
-proto.viam.robot.v1.TransformPCDResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.TransformPCDResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.TransformPCDResponse;
-  return proto.viam.robot.v1.TransformPCDResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.TransformPCDResponse;
+  return proto.viam.physicalDevice.v1.TransformPCDResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.TransformPCDResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.TransformPCDResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.TransformPCDResponse}
+ * @return {!proto.viam.physicalDevice.v1.TransformPCDResponse}
  */
-proto.viam.robot.v1.TransformPCDResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.TransformPCDResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2275,9 +2275,9 @@ proto.viam.robot.v1.TransformPCDResponse.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.TransformPCDResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.TransformPCDResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.TransformPCDResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.TransformPCDResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2285,11 +2285,11 @@ proto.viam.robot.v1.TransformPCDResponse.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.TransformPCDResponse} message
+ * @param {!proto.viam.physicalDevice.v1.TransformPCDResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.TransformPCDResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.TransformPCDResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getPointCloudPcd_asU8();
   if (f.length > 0) {
@@ -2305,7 +2305,7 @@ proto.viam.robot.v1.TransformPCDResponse.serializeBinaryToWriter = function(mess
  * optional bytes point_cloud_pcd = 1;
  * @return {string}
  */
-proto.viam.robot.v1.TransformPCDResponse.prototype.getPointCloudPcd = function() {
+proto.viam.physicalDevice.v1.TransformPCDResponse.prototype.getPointCloudPcd = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -2315,7 +2315,7 @@ proto.viam.robot.v1.TransformPCDResponse.prototype.getPointCloudPcd = function()
  * This is a type-conversion wrapper around `getPointCloudPcd()`
  * @return {string}
  */
-proto.viam.robot.v1.TransformPCDResponse.prototype.getPointCloudPcd_asB64 = function() {
+proto.viam.physicalDevice.v1.TransformPCDResponse.prototype.getPointCloudPcd_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
       this.getPointCloudPcd()));
 };
@@ -2328,7 +2328,7 @@ proto.viam.robot.v1.TransformPCDResponse.prototype.getPointCloudPcd_asB64 = func
  * This is a type-conversion wrapper around `getPointCloudPcd()`
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.TransformPCDResponse.prototype.getPointCloudPcd_asU8 = function() {
+proto.viam.physicalDevice.v1.TransformPCDResponse.prototype.getPointCloudPcd_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
       this.getPointCloudPcd()));
 };
@@ -2336,9 +2336,9 @@ proto.viam.robot.v1.TransformPCDResponse.prototype.getPointCloudPcd_asU8 = funct
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.viam.robot.v1.TransformPCDResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.TransformPCDResponse} returns this
  */
-proto.viam.robot.v1.TransformPCDResponse.prototype.setPointCloudPcd = function(value) {
+proto.viam.physicalDevice.v1.TransformPCDResponse.prototype.setPointCloudPcd = function(value) {
   return jspb.Message.setProto3BytesField(this, 1, value);
 };
 
@@ -2359,8 +2359,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.ResourceNamesRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.ResourceNamesRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.ResourceNamesRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.ResourceNamesRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -2369,11 +2369,11 @@ proto.viam.robot.v1.ResourceNamesRequest.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.ResourceNamesRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.ResourceNamesRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ResourceNamesRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.ResourceNamesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -2389,23 +2389,23 @@ proto.viam.robot.v1.ResourceNamesRequest.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.ResourceNamesRequest}
+ * @return {!proto.viam.physicalDevice.v1.ResourceNamesRequest}
  */
-proto.viam.robot.v1.ResourceNamesRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.ResourceNamesRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.ResourceNamesRequest;
-  return proto.viam.robot.v1.ResourceNamesRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.ResourceNamesRequest;
+  return proto.viam.physicalDevice.v1.ResourceNamesRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.ResourceNamesRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.ResourceNamesRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.ResourceNamesRequest}
+ * @return {!proto.viam.physicalDevice.v1.ResourceNamesRequest}
  */
-proto.viam.robot.v1.ResourceNamesRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.ResourceNamesRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2425,9 +2425,9 @@ proto.viam.robot.v1.ResourceNamesRequest.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.ResourceNamesRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.ResourceNamesRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.ResourceNamesRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.ResourceNamesRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2435,11 +2435,11 @@ proto.viam.robot.v1.ResourceNamesRequest.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.ResourceNamesRequest} message
+ * @param {!proto.viam.physicalDevice.v1.ResourceNamesRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ResourceNamesRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.ResourceNamesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -2450,7 +2450,7 @@ proto.viam.robot.v1.ResourceNamesRequest.serializeBinaryToWriter = function(mess
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.ResourceNamesResponse.repeatedFields_ = [1];
+proto.viam.physicalDevice.v1.ResourceNamesResponse.repeatedFields_ = [1];
 
 
 
@@ -2467,8 +2467,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.ResourceNamesResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.ResourceNamesResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.ResourceNamesResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.ResourceNamesResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -2477,11 +2477,11 @@ proto.viam.robot.v1.ResourceNamesResponse.prototype.toObject = function(opt_incl
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.ResourceNamesResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.ResourceNamesResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ResourceNamesResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.ResourceNamesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     resourcesList: jspb.Message.toObjectList(msg.getResourcesList(),
     common_v1_common_pb.ResourceName.toObject, includeInstance)
@@ -2498,23 +2498,23 @@ proto.viam.robot.v1.ResourceNamesResponse.toObject = function(includeInstance, m
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.ResourceNamesResponse}
+ * @return {!proto.viam.physicalDevice.v1.ResourceNamesResponse}
  */
-proto.viam.robot.v1.ResourceNamesResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.ResourceNamesResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.ResourceNamesResponse;
-  return proto.viam.robot.v1.ResourceNamesResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.ResourceNamesResponse;
+  return proto.viam.physicalDevice.v1.ResourceNamesResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.ResourceNamesResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.ResourceNamesResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.ResourceNamesResponse}
+ * @return {!proto.viam.physicalDevice.v1.ResourceNamesResponse}
  */
-proto.viam.robot.v1.ResourceNamesResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.ResourceNamesResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2539,9 +2539,9 @@ proto.viam.robot.v1.ResourceNamesResponse.deserializeBinaryFromReader = function
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.ResourceNamesResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.ResourceNamesResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.ResourceNamesResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.ResourceNamesResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2549,11 +2549,11 @@ proto.viam.robot.v1.ResourceNamesResponse.prototype.serializeBinary = function()
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.ResourceNamesResponse} message
+ * @param {!proto.viam.physicalDevice.v1.ResourceNamesResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ResourceNamesResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.ResourceNamesResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getResourcesList();
   if (f.length > 0) {
@@ -2570,7 +2570,7 @@ proto.viam.robot.v1.ResourceNamesResponse.serializeBinaryToWriter = function(mes
  * repeated viam.common.v1.ResourceName resources = 1;
  * @return {!Array<!proto.viam.common.v1.ResourceName>}
  */
-proto.viam.robot.v1.ResourceNamesResponse.prototype.getResourcesList = function() {
+proto.viam.physicalDevice.v1.ResourceNamesResponse.prototype.getResourcesList = function() {
   return /** @type{!Array<!proto.viam.common.v1.ResourceName>} */ (
     jspb.Message.getRepeatedWrapperField(this, common_v1_common_pb.ResourceName, 1));
 };
@@ -2578,9 +2578,9 @@ proto.viam.robot.v1.ResourceNamesResponse.prototype.getResourcesList = function(
 
 /**
  * @param {!Array<!proto.viam.common.v1.ResourceName>} value
- * @return {!proto.viam.robot.v1.ResourceNamesResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.ResourceNamesResponse} returns this
 */
-proto.viam.robot.v1.ResourceNamesResponse.prototype.setResourcesList = function(value) {
+proto.viam.physicalDevice.v1.ResourceNamesResponse.prototype.setResourcesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -2590,16 +2590,16 @@ proto.viam.robot.v1.ResourceNamesResponse.prototype.setResourcesList = function(
  * @param {number=} opt_index
  * @return {!proto.viam.common.v1.ResourceName}
  */
-proto.viam.robot.v1.ResourceNamesResponse.prototype.addResources = function(opt_value, opt_index) {
+proto.viam.physicalDevice.v1.ResourceNamesResponse.prototype.addResources = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.common.v1.ResourceName, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.ResourceNamesResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.ResourceNamesResponse} returns this
  */
-proto.viam.robot.v1.ResourceNamesResponse.prototype.clearResourcesList = function() {
+proto.viam.physicalDevice.v1.ResourceNamesResponse.prototype.clearResourcesList = function() {
   return this.setResourcesList([]);
 };
 
@@ -2620,8 +2620,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.ResourceRPCSubtype.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.ResourceRPCSubtype.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.ResourceRPCSubtype.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.ResourceRPCSubtype.toObject(opt_includeInstance, this);
 };
 
 
@@ -2630,11 +2630,11 @@ proto.viam.robot.v1.ResourceRPCSubtype.prototype.toObject = function(opt_include
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.ResourceRPCSubtype} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.ResourceRPCSubtype} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ResourceRPCSubtype.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtype.toObject = function(includeInstance, msg) {
   var f, obj = {
     subtype: (f = msg.getSubtype()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     protoService: jspb.Message.getFieldWithDefault(msg, 2, "")
@@ -2651,23 +2651,23 @@ proto.viam.robot.v1.ResourceRPCSubtype.toObject = function(includeInstance, msg)
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.ResourceRPCSubtype}
+ * @return {!proto.viam.physicalDevice.v1.ResourceRPCSubtype}
  */
-proto.viam.robot.v1.ResourceRPCSubtype.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtype.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.ResourceRPCSubtype;
-  return proto.viam.robot.v1.ResourceRPCSubtype.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.ResourceRPCSubtype;
+  return proto.viam.physicalDevice.v1.ResourceRPCSubtype.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.ResourceRPCSubtype} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.ResourceRPCSubtype} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.ResourceRPCSubtype}
+ * @return {!proto.viam.physicalDevice.v1.ResourceRPCSubtype}
  */
-proto.viam.robot.v1.ResourceRPCSubtype.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtype.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2696,9 +2696,9 @@ proto.viam.robot.v1.ResourceRPCSubtype.deserializeBinaryFromReader = function(ms
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.ResourceRPCSubtype.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.ResourceRPCSubtype.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.ResourceRPCSubtype.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.ResourceRPCSubtype.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2706,11 +2706,11 @@ proto.viam.robot.v1.ResourceRPCSubtype.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.ResourceRPCSubtype} message
+ * @param {!proto.viam.physicalDevice.v1.ResourceRPCSubtype} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ResourceRPCSubtype.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtype.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getSubtype();
   if (f != null) {
@@ -2734,7 +2734,7 @@ proto.viam.robot.v1.ResourceRPCSubtype.serializeBinaryToWriter = function(messag
  * optional viam.common.v1.ResourceName subtype = 1;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.robot.v1.ResourceRPCSubtype.prototype.getSubtype = function() {
+proto.viam.physicalDevice.v1.ResourceRPCSubtype.prototype.getSubtype = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 1));
 };
@@ -2742,18 +2742,18 @@ proto.viam.robot.v1.ResourceRPCSubtype.prototype.getSubtype = function() {
 
 /**
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
- * @return {!proto.viam.robot.v1.ResourceRPCSubtype} returns this
+ * @return {!proto.viam.physicalDevice.v1.ResourceRPCSubtype} returns this
 */
-proto.viam.robot.v1.ResourceRPCSubtype.prototype.setSubtype = function(value) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtype.prototype.setSubtype = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.ResourceRPCSubtype} returns this
+ * @return {!proto.viam.physicalDevice.v1.ResourceRPCSubtype} returns this
  */
-proto.viam.robot.v1.ResourceRPCSubtype.prototype.clearSubtype = function() {
+proto.viam.physicalDevice.v1.ResourceRPCSubtype.prototype.clearSubtype = function() {
   return this.setSubtype(undefined);
 };
 
@@ -2762,7 +2762,7 @@ proto.viam.robot.v1.ResourceRPCSubtype.prototype.clearSubtype = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.ResourceRPCSubtype.prototype.hasSubtype = function() {
+proto.viam.physicalDevice.v1.ResourceRPCSubtype.prototype.hasSubtype = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -2771,16 +2771,16 @@ proto.viam.robot.v1.ResourceRPCSubtype.prototype.hasSubtype = function() {
  * optional string proto_service = 2;
  * @return {string}
  */
-proto.viam.robot.v1.ResourceRPCSubtype.prototype.getProtoService = function() {
+proto.viam.physicalDevice.v1.ResourceRPCSubtype.prototype.getProtoService = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.ResourceRPCSubtype} returns this
+ * @return {!proto.viam.physicalDevice.v1.ResourceRPCSubtype} returns this
  */
-proto.viam.robot.v1.ResourceRPCSubtype.prototype.setProtoService = function(value) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtype.prototype.setProtoService = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -2801,8 +2801,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.ResourceRPCSubtypesRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.ResourceRPCSubtypesRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -2811,11 +2811,11 @@ proto.viam.robot.v1.ResourceRPCSubtypesRequest.prototype.toObject = function(opt
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.ResourceRPCSubtypesRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ResourceRPCSubtypesRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -2831,23 +2831,23 @@ proto.viam.robot.v1.ResourceRPCSubtypesRequest.toObject = function(includeInstan
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.ResourceRPCSubtypesRequest}
+ * @return {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest}
  */
-proto.viam.robot.v1.ResourceRPCSubtypesRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.ResourceRPCSubtypesRequest;
-  return proto.viam.robot.v1.ResourceRPCSubtypesRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest;
+  return proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.ResourceRPCSubtypesRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.ResourceRPCSubtypesRequest}
+ * @return {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest}
  */
-proto.viam.robot.v1.ResourceRPCSubtypesRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2867,9 +2867,9 @@ proto.viam.robot.v1.ResourceRPCSubtypesRequest.deserializeBinaryFromReader = fun
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.ResourceRPCSubtypesRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.ResourceRPCSubtypesRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2877,11 +2877,11 @@ proto.viam.robot.v1.ResourceRPCSubtypesRequest.prototype.serializeBinary = funct
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.ResourceRPCSubtypesRequest} message
+ * @param {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ResourceRPCSubtypesRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -2892,7 +2892,7 @@ proto.viam.robot.v1.ResourceRPCSubtypesRequest.serializeBinaryToWriter = functio
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.ResourceRPCSubtypesResponse.repeatedFields_ = [1];
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.repeatedFields_ = [1];
 
 
 
@@ -2909,8 +2909,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.ResourceRPCSubtypesResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.ResourceRPCSubtypesResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -2919,14 +2919,14 @@ proto.viam.robot.v1.ResourceRPCSubtypesResponse.prototype.toObject = function(op
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.ResourceRPCSubtypesResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ResourceRPCSubtypesResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     resourceRpcSubtypesList: jspb.Message.toObjectList(msg.getResourceRpcSubtypesList(),
-    proto.viam.robot.v1.ResourceRPCSubtype.toObject, includeInstance)
+    proto.viam.physicalDevice.v1.ResourceRPCSubtype.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -2940,23 +2940,23 @@ proto.viam.robot.v1.ResourceRPCSubtypesResponse.toObject = function(includeInsta
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.ResourceRPCSubtypesResponse}
+ * @return {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse}
  */
-proto.viam.robot.v1.ResourceRPCSubtypesResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.ResourceRPCSubtypesResponse;
-  return proto.viam.robot.v1.ResourceRPCSubtypesResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse;
+  return proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.ResourceRPCSubtypesResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.ResourceRPCSubtypesResponse}
+ * @return {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse}
  */
-proto.viam.robot.v1.ResourceRPCSubtypesResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2964,8 +2964,8 @@ proto.viam.robot.v1.ResourceRPCSubtypesResponse.deserializeBinaryFromReader = fu
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.viam.robot.v1.ResourceRPCSubtype;
-      reader.readMessage(value,proto.viam.robot.v1.ResourceRPCSubtype.deserializeBinaryFromReader);
+      var value = new proto.viam.physicalDevice.v1.ResourceRPCSubtype;
+      reader.readMessage(value,proto.viam.physicalDevice.v1.ResourceRPCSubtype.deserializeBinaryFromReader);
       msg.addResourceRpcSubtypes(value);
       break;
     default:
@@ -2981,9 +2981,9 @@ proto.viam.robot.v1.ResourceRPCSubtypesResponse.deserializeBinaryFromReader = fu
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.ResourceRPCSubtypesResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.ResourceRPCSubtypesResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2991,18 +2991,18 @@ proto.viam.robot.v1.ResourceRPCSubtypesResponse.prototype.serializeBinary = func
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.ResourceRPCSubtypesResponse} message
+ * @param {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ResourceRPCSubtypesResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getResourceRpcSubtypesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.viam.robot.v1.ResourceRPCSubtype.serializeBinaryToWriter
+      proto.viam.physicalDevice.v1.ResourceRPCSubtype.serializeBinaryToWriter
     );
   }
 };
@@ -3010,38 +3010,38 @@ proto.viam.robot.v1.ResourceRPCSubtypesResponse.serializeBinaryToWriter = functi
 
 /**
  * repeated ResourceRPCSubtype resource_rpc_subtypes = 1;
- * @return {!Array<!proto.viam.robot.v1.ResourceRPCSubtype>}
+ * @return {!Array<!proto.viam.physicalDevice.v1.ResourceRPCSubtype>}
  */
-proto.viam.robot.v1.ResourceRPCSubtypesResponse.prototype.getResourceRpcSubtypesList = function() {
-  return /** @type{!Array<!proto.viam.robot.v1.ResourceRPCSubtype>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.robot.v1.ResourceRPCSubtype, 1));
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.prototype.getResourceRpcSubtypesList = function() {
+  return /** @type{!Array<!proto.viam.physicalDevice.v1.ResourceRPCSubtype>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.physicalDevice.v1.ResourceRPCSubtype, 1));
 };
 
 
 /**
- * @param {!Array<!proto.viam.robot.v1.ResourceRPCSubtype>} value
- * @return {!proto.viam.robot.v1.ResourceRPCSubtypesResponse} returns this
+ * @param {!Array<!proto.viam.physicalDevice.v1.ResourceRPCSubtype>} value
+ * @return {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse} returns this
 */
-proto.viam.robot.v1.ResourceRPCSubtypesResponse.prototype.setResourceRpcSubtypesList = function(value) {
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.prototype.setResourceRpcSubtypesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.ResourceRPCSubtype=} opt_value
+ * @param {!proto.viam.physicalDevice.v1.ResourceRPCSubtype=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.robot.v1.ResourceRPCSubtype}
+ * @return {!proto.viam.physicalDevice.v1.ResourceRPCSubtype}
  */
-proto.viam.robot.v1.ResourceRPCSubtypesResponse.prototype.addResourceRpcSubtypes = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.robot.v1.ResourceRPCSubtype, opt_index);
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.prototype.addResourceRpcSubtypes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.physicalDevice.v1.ResourceRPCSubtype, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.ResourceRPCSubtypesResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse} returns this
  */
-proto.viam.robot.v1.ResourceRPCSubtypesResponse.prototype.clearResourceRpcSubtypesList = function() {
+proto.viam.physicalDevice.v1.ResourceRPCSubtypesResponse.prototype.clearResourceRpcSubtypesList = function() {
   return this.setResourceRpcSubtypesList([]);
 };
 
@@ -3062,8 +3062,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.Operation.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.Operation.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.Operation.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.Operation.toObject(opt_includeInstance, this);
 };
 
 
@@ -3072,11 +3072,11 @@ proto.viam.robot.v1.Operation.prototype.toObject = function(opt_includeInstance)
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.Operation} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.Operation} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.Operation.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.Operation.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     method: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -3096,23 +3096,23 @@ proto.viam.robot.v1.Operation.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.Operation}
+ * @return {!proto.viam.physicalDevice.v1.Operation}
  */
-proto.viam.robot.v1.Operation.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.Operation.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.Operation;
-  return proto.viam.robot.v1.Operation.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.Operation;
+  return proto.viam.physicalDevice.v1.Operation.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.Operation} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.Operation} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.Operation}
+ * @return {!proto.viam.physicalDevice.v1.Operation}
  */
-proto.viam.robot.v1.Operation.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.Operation.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3154,9 +3154,9 @@ proto.viam.robot.v1.Operation.deserializeBinaryFromReader = function(msg, reader
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.Operation.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.Operation.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.Operation.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.Operation.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3164,11 +3164,11 @@ proto.viam.robot.v1.Operation.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.Operation} message
+ * @param {!proto.viam.physicalDevice.v1.Operation} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.Operation.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.Operation.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
@@ -3214,16 +3214,16 @@ proto.viam.robot.v1.Operation.serializeBinaryToWriter = function(message, writer
  * optional string id = 1;
  * @return {string}
  */
-proto.viam.robot.v1.Operation.prototype.getId = function() {
+proto.viam.physicalDevice.v1.Operation.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.Operation} returns this
+ * @return {!proto.viam.physicalDevice.v1.Operation} returns this
  */
-proto.viam.robot.v1.Operation.prototype.setId = function(value) {
+proto.viam.physicalDevice.v1.Operation.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -3232,16 +3232,16 @@ proto.viam.robot.v1.Operation.prototype.setId = function(value) {
  * optional string method = 2;
  * @return {string}
  */
-proto.viam.robot.v1.Operation.prototype.getMethod = function() {
+proto.viam.physicalDevice.v1.Operation.prototype.getMethod = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.Operation} returns this
+ * @return {!proto.viam.physicalDevice.v1.Operation} returns this
  */
-proto.viam.robot.v1.Operation.prototype.setMethod = function(value) {
+proto.viam.physicalDevice.v1.Operation.prototype.setMethod = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -3250,7 +3250,7 @@ proto.viam.robot.v1.Operation.prototype.setMethod = function(value) {
  * optional google.protobuf.Struct arguments = 3;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.robot.v1.Operation.prototype.getArguments = function() {
+proto.viam.physicalDevice.v1.Operation.prototype.getArguments = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 3));
 };
@@ -3258,18 +3258,18 @@ proto.viam.robot.v1.Operation.prototype.getArguments = function() {
 
 /**
  * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.viam.robot.v1.Operation} returns this
+ * @return {!proto.viam.physicalDevice.v1.Operation} returns this
 */
-proto.viam.robot.v1.Operation.prototype.setArguments = function(value) {
+proto.viam.physicalDevice.v1.Operation.prototype.setArguments = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.Operation} returns this
+ * @return {!proto.viam.physicalDevice.v1.Operation} returns this
  */
-proto.viam.robot.v1.Operation.prototype.clearArguments = function() {
+proto.viam.physicalDevice.v1.Operation.prototype.clearArguments = function() {
   return this.setArguments(undefined);
 };
 
@@ -3278,7 +3278,7 @@ proto.viam.robot.v1.Operation.prototype.clearArguments = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.Operation.prototype.hasArguments = function() {
+proto.viam.physicalDevice.v1.Operation.prototype.hasArguments = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -3287,7 +3287,7 @@ proto.viam.robot.v1.Operation.prototype.hasArguments = function() {
  * optional google.protobuf.Timestamp started = 4;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.viam.robot.v1.Operation.prototype.getStarted = function() {
+proto.viam.physicalDevice.v1.Operation.prototype.getStarted = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
 };
@@ -3295,18 +3295,18 @@ proto.viam.robot.v1.Operation.prototype.getStarted = function() {
 
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.viam.robot.v1.Operation} returns this
+ * @return {!proto.viam.physicalDevice.v1.Operation} returns this
 */
-proto.viam.robot.v1.Operation.prototype.setStarted = function(value) {
+proto.viam.physicalDevice.v1.Operation.prototype.setStarted = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.Operation} returns this
+ * @return {!proto.viam.physicalDevice.v1.Operation} returns this
  */
-proto.viam.robot.v1.Operation.prototype.clearStarted = function() {
+proto.viam.physicalDevice.v1.Operation.prototype.clearStarted = function() {
   return this.setStarted(undefined);
 };
 
@@ -3315,7 +3315,7 @@ proto.viam.robot.v1.Operation.prototype.clearStarted = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.Operation.prototype.hasStarted = function() {
+proto.viam.physicalDevice.v1.Operation.prototype.hasStarted = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -3324,25 +3324,25 @@ proto.viam.robot.v1.Operation.prototype.hasStarted = function() {
  * optional string session_id = 5;
  * @return {string}
  */
-proto.viam.robot.v1.Operation.prototype.getSessionId = function() {
+proto.viam.physicalDevice.v1.Operation.prototype.getSessionId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.Operation} returns this
+ * @return {!proto.viam.physicalDevice.v1.Operation} returns this
  */
-proto.viam.robot.v1.Operation.prototype.setSessionId = function(value) {
+proto.viam.physicalDevice.v1.Operation.prototype.setSessionId = function(value) {
   return jspb.Message.setField(this, 5, value);
 };
 
 
 /**
  * Clears the field making it undefined.
- * @return {!proto.viam.robot.v1.Operation} returns this
+ * @return {!proto.viam.physicalDevice.v1.Operation} returns this
  */
-proto.viam.robot.v1.Operation.prototype.clearSessionId = function() {
+proto.viam.physicalDevice.v1.Operation.prototype.clearSessionId = function() {
   return jspb.Message.setField(this, 5, undefined);
 };
 
@@ -3351,7 +3351,7 @@ proto.viam.robot.v1.Operation.prototype.clearSessionId = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.Operation.prototype.hasSessionId = function() {
+proto.viam.physicalDevice.v1.Operation.prototype.hasSessionId = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
@@ -3372,8 +3372,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.GetOperationsRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.GetOperationsRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.GetOperationsRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.GetOperationsRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -3382,11 +3382,11 @@ proto.viam.robot.v1.GetOperationsRequest.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.GetOperationsRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.GetOperationsRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetOperationsRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.GetOperationsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -3402,23 +3402,23 @@ proto.viam.robot.v1.GetOperationsRequest.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.GetOperationsRequest}
+ * @return {!proto.viam.physicalDevice.v1.GetOperationsRequest}
  */
-proto.viam.robot.v1.GetOperationsRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.GetOperationsRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.GetOperationsRequest;
-  return proto.viam.robot.v1.GetOperationsRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.GetOperationsRequest;
+  return proto.viam.physicalDevice.v1.GetOperationsRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.GetOperationsRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.GetOperationsRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.GetOperationsRequest}
+ * @return {!proto.viam.physicalDevice.v1.GetOperationsRequest}
  */
-proto.viam.robot.v1.GetOperationsRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.GetOperationsRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3438,9 +3438,9 @@ proto.viam.robot.v1.GetOperationsRequest.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.GetOperationsRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.GetOperationsRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.GetOperationsRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.GetOperationsRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3448,11 +3448,11 @@ proto.viam.robot.v1.GetOperationsRequest.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.GetOperationsRequest} message
+ * @param {!proto.viam.physicalDevice.v1.GetOperationsRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetOperationsRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.GetOperationsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -3463,7 +3463,7 @@ proto.viam.robot.v1.GetOperationsRequest.serializeBinaryToWriter = function(mess
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.GetOperationsResponse.repeatedFields_ = [1];
+proto.viam.physicalDevice.v1.GetOperationsResponse.repeatedFields_ = [1];
 
 
 
@@ -3480,8 +3480,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.GetOperationsResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.GetOperationsResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.GetOperationsResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.GetOperationsResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -3490,14 +3490,14 @@ proto.viam.robot.v1.GetOperationsResponse.prototype.toObject = function(opt_incl
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.GetOperationsResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.GetOperationsResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetOperationsResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.GetOperationsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     operationsList: jspb.Message.toObjectList(msg.getOperationsList(),
-    proto.viam.robot.v1.Operation.toObject, includeInstance)
+    proto.viam.physicalDevice.v1.Operation.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -3511,23 +3511,23 @@ proto.viam.robot.v1.GetOperationsResponse.toObject = function(includeInstance, m
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.GetOperationsResponse}
+ * @return {!proto.viam.physicalDevice.v1.GetOperationsResponse}
  */
-proto.viam.robot.v1.GetOperationsResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.GetOperationsResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.GetOperationsResponse;
-  return proto.viam.robot.v1.GetOperationsResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.GetOperationsResponse;
+  return proto.viam.physicalDevice.v1.GetOperationsResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.GetOperationsResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.GetOperationsResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.GetOperationsResponse}
+ * @return {!proto.viam.physicalDevice.v1.GetOperationsResponse}
  */
-proto.viam.robot.v1.GetOperationsResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.GetOperationsResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3535,8 +3535,8 @@ proto.viam.robot.v1.GetOperationsResponse.deserializeBinaryFromReader = function
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.viam.robot.v1.Operation;
-      reader.readMessage(value,proto.viam.robot.v1.Operation.deserializeBinaryFromReader);
+      var value = new proto.viam.physicalDevice.v1.Operation;
+      reader.readMessage(value,proto.viam.physicalDevice.v1.Operation.deserializeBinaryFromReader);
       msg.addOperations(value);
       break;
     default:
@@ -3552,9 +3552,9 @@ proto.viam.robot.v1.GetOperationsResponse.deserializeBinaryFromReader = function
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.GetOperationsResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.GetOperationsResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.GetOperationsResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.GetOperationsResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3562,18 +3562,18 @@ proto.viam.robot.v1.GetOperationsResponse.prototype.serializeBinary = function()
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.GetOperationsResponse} message
+ * @param {!proto.viam.physicalDevice.v1.GetOperationsResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetOperationsResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.GetOperationsResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getOperationsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.viam.robot.v1.Operation.serializeBinaryToWriter
+      proto.viam.physicalDevice.v1.Operation.serializeBinaryToWriter
     );
   }
 };
@@ -3581,38 +3581,38 @@ proto.viam.robot.v1.GetOperationsResponse.serializeBinaryToWriter = function(mes
 
 /**
  * repeated Operation operations = 1;
- * @return {!Array<!proto.viam.robot.v1.Operation>}
+ * @return {!Array<!proto.viam.physicalDevice.v1.Operation>}
  */
-proto.viam.robot.v1.GetOperationsResponse.prototype.getOperationsList = function() {
-  return /** @type{!Array<!proto.viam.robot.v1.Operation>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.robot.v1.Operation, 1));
+proto.viam.physicalDevice.v1.GetOperationsResponse.prototype.getOperationsList = function() {
+  return /** @type{!Array<!proto.viam.physicalDevice.v1.Operation>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.physicalDevice.v1.Operation, 1));
 };
 
 
 /**
- * @param {!Array<!proto.viam.robot.v1.Operation>} value
- * @return {!proto.viam.robot.v1.GetOperationsResponse} returns this
+ * @param {!Array<!proto.viam.physicalDevice.v1.Operation>} value
+ * @return {!proto.viam.physicalDevice.v1.GetOperationsResponse} returns this
 */
-proto.viam.robot.v1.GetOperationsResponse.prototype.setOperationsList = function(value) {
+proto.viam.physicalDevice.v1.GetOperationsResponse.prototype.setOperationsList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.Operation=} opt_value
+ * @param {!proto.viam.physicalDevice.v1.Operation=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.robot.v1.Operation}
+ * @return {!proto.viam.physicalDevice.v1.Operation}
  */
-proto.viam.robot.v1.GetOperationsResponse.prototype.addOperations = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.robot.v1.Operation, opt_index);
+proto.viam.physicalDevice.v1.GetOperationsResponse.prototype.addOperations = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.physicalDevice.v1.Operation, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.GetOperationsResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.GetOperationsResponse} returns this
  */
-proto.viam.robot.v1.GetOperationsResponse.prototype.clearOperationsList = function() {
+proto.viam.physicalDevice.v1.GetOperationsResponse.prototype.clearOperationsList = function() {
   return this.setOperationsList([]);
 };
 
@@ -3633,8 +3633,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.CancelOperationRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.CancelOperationRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.CancelOperationRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.CancelOperationRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -3643,11 +3643,11 @@ proto.viam.robot.v1.CancelOperationRequest.prototype.toObject = function(opt_inc
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.CancelOperationRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.CancelOperationRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.CancelOperationRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.CancelOperationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
@@ -3663,23 +3663,23 @@ proto.viam.robot.v1.CancelOperationRequest.toObject = function(includeInstance, 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.CancelOperationRequest}
+ * @return {!proto.viam.physicalDevice.v1.CancelOperationRequest}
  */
-proto.viam.robot.v1.CancelOperationRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.CancelOperationRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.CancelOperationRequest;
-  return proto.viam.robot.v1.CancelOperationRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.CancelOperationRequest;
+  return proto.viam.physicalDevice.v1.CancelOperationRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.CancelOperationRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.CancelOperationRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.CancelOperationRequest}
+ * @return {!proto.viam.physicalDevice.v1.CancelOperationRequest}
  */
-proto.viam.robot.v1.CancelOperationRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.CancelOperationRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3703,9 +3703,9 @@ proto.viam.robot.v1.CancelOperationRequest.deserializeBinaryFromReader = functio
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.CancelOperationRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.CancelOperationRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.CancelOperationRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.CancelOperationRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3713,11 +3713,11 @@ proto.viam.robot.v1.CancelOperationRequest.prototype.serializeBinary = function(
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.CancelOperationRequest} message
+ * @param {!proto.viam.physicalDevice.v1.CancelOperationRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.CancelOperationRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.CancelOperationRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
@@ -3733,16 +3733,16 @@ proto.viam.robot.v1.CancelOperationRequest.serializeBinaryToWriter = function(me
  * optional string id = 1;
  * @return {string}
  */
-proto.viam.robot.v1.CancelOperationRequest.prototype.getId = function() {
+proto.viam.physicalDevice.v1.CancelOperationRequest.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.CancelOperationRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.CancelOperationRequest} returns this
  */
-proto.viam.robot.v1.CancelOperationRequest.prototype.setId = function(value) {
+proto.viam.physicalDevice.v1.CancelOperationRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -3763,8 +3763,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.CancelOperationResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.CancelOperationResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.CancelOperationResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.CancelOperationResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -3773,11 +3773,11 @@ proto.viam.robot.v1.CancelOperationResponse.prototype.toObject = function(opt_in
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.CancelOperationResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.CancelOperationResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.CancelOperationResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.CancelOperationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -3793,23 +3793,23 @@ proto.viam.robot.v1.CancelOperationResponse.toObject = function(includeInstance,
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.CancelOperationResponse}
+ * @return {!proto.viam.physicalDevice.v1.CancelOperationResponse}
  */
-proto.viam.robot.v1.CancelOperationResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.CancelOperationResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.CancelOperationResponse;
-  return proto.viam.robot.v1.CancelOperationResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.CancelOperationResponse;
+  return proto.viam.physicalDevice.v1.CancelOperationResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.CancelOperationResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.CancelOperationResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.CancelOperationResponse}
+ * @return {!proto.viam.physicalDevice.v1.CancelOperationResponse}
  */
-proto.viam.robot.v1.CancelOperationResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.CancelOperationResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3829,9 +3829,9 @@ proto.viam.robot.v1.CancelOperationResponse.deserializeBinaryFromReader = functi
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.CancelOperationResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.CancelOperationResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.CancelOperationResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.CancelOperationResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3839,11 +3839,11 @@ proto.viam.robot.v1.CancelOperationResponse.prototype.serializeBinary = function
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.CancelOperationResponse} message
+ * @param {!proto.viam.physicalDevice.v1.CancelOperationResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.CancelOperationResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.CancelOperationResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -3864,8 +3864,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.BlockForOperationRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.BlockForOperationRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.BlockForOperationRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.BlockForOperationRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -3874,11 +3874,11 @@ proto.viam.robot.v1.BlockForOperationRequest.prototype.toObject = function(opt_i
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.BlockForOperationRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.BlockForOperationRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.BlockForOperationRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.BlockForOperationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
@@ -3894,23 +3894,23 @@ proto.viam.robot.v1.BlockForOperationRequest.toObject = function(includeInstance
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.BlockForOperationRequest}
+ * @return {!proto.viam.physicalDevice.v1.BlockForOperationRequest}
  */
-proto.viam.robot.v1.BlockForOperationRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.BlockForOperationRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.BlockForOperationRequest;
-  return proto.viam.robot.v1.BlockForOperationRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.BlockForOperationRequest;
+  return proto.viam.physicalDevice.v1.BlockForOperationRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.BlockForOperationRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.BlockForOperationRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.BlockForOperationRequest}
+ * @return {!proto.viam.physicalDevice.v1.BlockForOperationRequest}
  */
-proto.viam.robot.v1.BlockForOperationRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.BlockForOperationRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3934,9 +3934,9 @@ proto.viam.robot.v1.BlockForOperationRequest.deserializeBinaryFromReader = funct
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.BlockForOperationRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.BlockForOperationRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.BlockForOperationRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.BlockForOperationRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3944,11 +3944,11 @@ proto.viam.robot.v1.BlockForOperationRequest.prototype.serializeBinary = functio
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.BlockForOperationRequest} message
+ * @param {!proto.viam.physicalDevice.v1.BlockForOperationRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.BlockForOperationRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.BlockForOperationRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
@@ -3964,16 +3964,16 @@ proto.viam.robot.v1.BlockForOperationRequest.serializeBinaryToWriter = function(
  * optional string id = 1;
  * @return {string}
  */
-proto.viam.robot.v1.BlockForOperationRequest.prototype.getId = function() {
+proto.viam.physicalDevice.v1.BlockForOperationRequest.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.BlockForOperationRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.BlockForOperationRequest} returns this
  */
-proto.viam.robot.v1.BlockForOperationRequest.prototype.setId = function(value) {
+proto.viam.physicalDevice.v1.BlockForOperationRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -3994,8 +3994,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.BlockForOperationResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.BlockForOperationResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.BlockForOperationResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.BlockForOperationResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -4004,11 +4004,11 @@ proto.viam.robot.v1.BlockForOperationResponse.prototype.toObject = function(opt_
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.BlockForOperationResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.BlockForOperationResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.BlockForOperationResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.BlockForOperationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -4024,23 +4024,23 @@ proto.viam.robot.v1.BlockForOperationResponse.toObject = function(includeInstanc
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.BlockForOperationResponse}
+ * @return {!proto.viam.physicalDevice.v1.BlockForOperationResponse}
  */
-proto.viam.robot.v1.BlockForOperationResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.BlockForOperationResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.BlockForOperationResponse;
-  return proto.viam.robot.v1.BlockForOperationResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.BlockForOperationResponse;
+  return proto.viam.physicalDevice.v1.BlockForOperationResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.BlockForOperationResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.BlockForOperationResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.BlockForOperationResponse}
+ * @return {!proto.viam.physicalDevice.v1.BlockForOperationResponse}
  */
-proto.viam.robot.v1.BlockForOperationResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.BlockForOperationResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4060,9 +4060,9 @@ proto.viam.robot.v1.BlockForOperationResponse.deserializeBinaryFromReader = func
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.BlockForOperationResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.BlockForOperationResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.BlockForOperationResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.BlockForOperationResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4070,11 +4070,11 @@ proto.viam.robot.v1.BlockForOperationResponse.prototype.serializeBinary = functi
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.BlockForOperationResponse} message
+ * @param {!proto.viam.physicalDevice.v1.BlockForOperationResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.BlockForOperationResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.BlockForOperationResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -4095,8 +4095,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.PeerConnectionInfo.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.PeerConnectionInfo.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.PeerConnectionInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.PeerConnectionInfo.toObject(opt_includeInstance, this);
 };
 
 
@@ -4105,11 +4105,11 @@ proto.viam.robot.v1.PeerConnectionInfo.prototype.toObject = function(opt_include
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.PeerConnectionInfo} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.PeerConnectionInfo} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.PeerConnectionInfo.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, 0),
     remoteAddress: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -4127,23 +4127,23 @@ proto.viam.robot.v1.PeerConnectionInfo.toObject = function(includeInstance, msg)
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.PeerConnectionInfo}
+ * @return {!proto.viam.physicalDevice.v1.PeerConnectionInfo}
  */
-proto.viam.robot.v1.PeerConnectionInfo.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.PeerConnectionInfo;
-  return proto.viam.robot.v1.PeerConnectionInfo.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.PeerConnectionInfo;
+  return proto.viam.physicalDevice.v1.PeerConnectionInfo.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.PeerConnectionInfo} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.PeerConnectionInfo} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.PeerConnectionInfo}
+ * @return {!proto.viam.physicalDevice.v1.PeerConnectionInfo}
  */
-proto.viam.robot.v1.PeerConnectionInfo.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4151,7 +4151,7 @@ proto.viam.robot.v1.PeerConnectionInfo.deserializeBinaryFromReader = function(ms
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!proto.viam.robot.v1.PeerConnectionType} */ (reader.readEnum());
+      var value = /** @type {!proto.viam.physicalDevice.v1.PeerConnectionType} */ (reader.readEnum());
       msg.setType(value);
       break;
     case 2:
@@ -4175,9 +4175,9 @@ proto.viam.robot.v1.PeerConnectionInfo.deserializeBinaryFromReader = function(ms
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.PeerConnectionInfo.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.PeerConnectionInfo.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.PeerConnectionInfo.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4185,11 +4185,11 @@ proto.viam.robot.v1.PeerConnectionInfo.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.PeerConnectionInfo} message
+ * @param {!proto.viam.physicalDevice.v1.PeerConnectionInfo} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.PeerConnectionInfo.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getType();
   if (f !== 0.0) {
@@ -4217,18 +4217,18 @@ proto.viam.robot.v1.PeerConnectionInfo.serializeBinaryToWriter = function(messag
 
 /**
  * optional PeerConnectionType type = 1;
- * @return {!proto.viam.robot.v1.PeerConnectionType}
+ * @return {!proto.viam.physicalDevice.v1.PeerConnectionType}
  */
-proto.viam.robot.v1.PeerConnectionInfo.prototype.getType = function() {
-  return /** @type {!proto.viam.robot.v1.PeerConnectionType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.viam.physicalDevice.v1.PeerConnectionInfo.prototype.getType = function() {
+  return /** @type {!proto.viam.physicalDevice.v1.PeerConnectionType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.PeerConnectionType} value
- * @return {!proto.viam.robot.v1.PeerConnectionInfo} returns this
+ * @param {!proto.viam.physicalDevice.v1.PeerConnectionType} value
+ * @return {!proto.viam.physicalDevice.v1.PeerConnectionInfo} returns this
  */
-proto.viam.robot.v1.PeerConnectionInfo.prototype.setType = function(value) {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.prototype.setType = function(value) {
   return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
@@ -4237,25 +4237,25 @@ proto.viam.robot.v1.PeerConnectionInfo.prototype.setType = function(value) {
  * optional string remote_address = 2;
  * @return {string}
  */
-proto.viam.robot.v1.PeerConnectionInfo.prototype.getRemoteAddress = function() {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.prototype.getRemoteAddress = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.PeerConnectionInfo} returns this
+ * @return {!proto.viam.physicalDevice.v1.PeerConnectionInfo} returns this
  */
-proto.viam.robot.v1.PeerConnectionInfo.prototype.setRemoteAddress = function(value) {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.prototype.setRemoteAddress = function(value) {
   return jspb.Message.setField(this, 2, value);
 };
 
 
 /**
  * Clears the field making it undefined.
- * @return {!proto.viam.robot.v1.PeerConnectionInfo} returns this
+ * @return {!proto.viam.physicalDevice.v1.PeerConnectionInfo} returns this
  */
-proto.viam.robot.v1.PeerConnectionInfo.prototype.clearRemoteAddress = function() {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.prototype.clearRemoteAddress = function() {
   return jspb.Message.setField(this, 2, undefined);
 };
 
@@ -4264,7 +4264,7 @@ proto.viam.robot.v1.PeerConnectionInfo.prototype.clearRemoteAddress = function()
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.PeerConnectionInfo.prototype.hasRemoteAddress = function() {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.prototype.hasRemoteAddress = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -4273,25 +4273,25 @@ proto.viam.robot.v1.PeerConnectionInfo.prototype.hasRemoteAddress = function() {
  * optional string local_address = 3;
  * @return {string}
  */
-proto.viam.robot.v1.PeerConnectionInfo.prototype.getLocalAddress = function() {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.prototype.getLocalAddress = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.PeerConnectionInfo} returns this
+ * @return {!proto.viam.physicalDevice.v1.PeerConnectionInfo} returns this
  */
-proto.viam.robot.v1.PeerConnectionInfo.prototype.setLocalAddress = function(value) {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.prototype.setLocalAddress = function(value) {
   return jspb.Message.setField(this, 3, value);
 };
 
 
 /**
  * Clears the field making it undefined.
- * @return {!proto.viam.robot.v1.PeerConnectionInfo} returns this
+ * @return {!proto.viam.physicalDevice.v1.PeerConnectionInfo} returns this
  */
-proto.viam.robot.v1.PeerConnectionInfo.prototype.clearLocalAddress = function() {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.prototype.clearLocalAddress = function() {
   return jspb.Message.setField(this, 3, undefined);
 };
 
@@ -4300,7 +4300,7 @@ proto.viam.robot.v1.PeerConnectionInfo.prototype.clearLocalAddress = function() 
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.PeerConnectionInfo.prototype.hasLocalAddress = function() {
+proto.viam.physicalDevice.v1.PeerConnectionInfo.prototype.hasLocalAddress = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -4321,8 +4321,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.Session.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.Session.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.Session.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.Session.toObject(opt_includeInstance, this);
 };
 
 
@@ -4331,14 +4331,14 @@ proto.viam.robot.v1.Session.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.Session} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.Session} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.Session.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.Session.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    peerConnectionInfo: (f = msg.getPeerConnectionInfo()) && proto.viam.robot.v1.PeerConnectionInfo.toObject(includeInstance, f)
+    peerConnectionInfo: (f = msg.getPeerConnectionInfo()) && proto.viam.physicalDevice.v1.PeerConnectionInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4352,23 +4352,23 @@ proto.viam.robot.v1.Session.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.Session}
+ * @return {!proto.viam.physicalDevice.v1.Session}
  */
-proto.viam.robot.v1.Session.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.Session.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.Session;
-  return proto.viam.robot.v1.Session.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.Session;
+  return proto.viam.physicalDevice.v1.Session.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.Session} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.Session} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.Session}
+ * @return {!proto.viam.physicalDevice.v1.Session}
  */
-proto.viam.robot.v1.Session.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.Session.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4380,8 +4380,8 @@ proto.viam.robot.v1.Session.deserializeBinaryFromReader = function(msg, reader) 
       msg.setId(value);
       break;
     case 2:
-      var value = new proto.viam.robot.v1.PeerConnectionInfo;
-      reader.readMessage(value,proto.viam.robot.v1.PeerConnectionInfo.deserializeBinaryFromReader);
+      var value = new proto.viam.physicalDevice.v1.PeerConnectionInfo;
+      reader.readMessage(value,proto.viam.physicalDevice.v1.PeerConnectionInfo.deserializeBinaryFromReader);
       msg.setPeerConnectionInfo(value);
       break;
     default:
@@ -4397,9 +4397,9 @@ proto.viam.robot.v1.Session.deserializeBinaryFromReader = function(msg, reader) 
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.Session.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.Session.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.Session.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.Session.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4407,11 +4407,11 @@ proto.viam.robot.v1.Session.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.Session} message
+ * @param {!proto.viam.physicalDevice.v1.Session} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.Session.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.Session.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
@@ -4425,7 +4425,7 @@ proto.viam.robot.v1.Session.serializeBinaryToWriter = function(message, writer) 
     writer.writeMessage(
       2,
       f,
-      proto.viam.robot.v1.PeerConnectionInfo.serializeBinaryToWriter
+      proto.viam.physicalDevice.v1.PeerConnectionInfo.serializeBinaryToWriter
     );
   }
 };
@@ -4435,44 +4435,44 @@ proto.viam.robot.v1.Session.serializeBinaryToWriter = function(message, writer) 
  * optional string id = 1;
  * @return {string}
  */
-proto.viam.robot.v1.Session.prototype.getId = function() {
+proto.viam.physicalDevice.v1.Session.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.Session} returns this
+ * @return {!proto.viam.physicalDevice.v1.Session} returns this
  */
-proto.viam.robot.v1.Session.prototype.setId = function(value) {
+proto.viam.physicalDevice.v1.Session.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * optional PeerConnectionInfo peer_connection_info = 2;
- * @return {?proto.viam.robot.v1.PeerConnectionInfo}
+ * @return {?proto.viam.physicalDevice.v1.PeerConnectionInfo}
  */
-proto.viam.robot.v1.Session.prototype.getPeerConnectionInfo = function() {
-  return /** @type{?proto.viam.robot.v1.PeerConnectionInfo} */ (
-    jspb.Message.getWrapperField(this, proto.viam.robot.v1.PeerConnectionInfo, 2));
+proto.viam.physicalDevice.v1.Session.prototype.getPeerConnectionInfo = function() {
+  return /** @type{?proto.viam.physicalDevice.v1.PeerConnectionInfo} */ (
+    jspb.Message.getWrapperField(this, proto.viam.physicalDevice.v1.PeerConnectionInfo, 2));
 };
 
 
 /**
- * @param {?proto.viam.robot.v1.PeerConnectionInfo|undefined} value
- * @return {!proto.viam.robot.v1.Session} returns this
+ * @param {?proto.viam.physicalDevice.v1.PeerConnectionInfo|undefined} value
+ * @return {!proto.viam.physicalDevice.v1.Session} returns this
 */
-proto.viam.robot.v1.Session.prototype.setPeerConnectionInfo = function(value) {
+proto.viam.physicalDevice.v1.Session.prototype.setPeerConnectionInfo = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.Session} returns this
+ * @return {!proto.viam.physicalDevice.v1.Session} returns this
  */
-proto.viam.robot.v1.Session.prototype.clearPeerConnectionInfo = function() {
+proto.viam.physicalDevice.v1.Session.prototype.clearPeerConnectionInfo = function() {
   return this.setPeerConnectionInfo(undefined);
 };
 
@@ -4481,7 +4481,7 @@ proto.viam.robot.v1.Session.prototype.clearPeerConnectionInfo = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.Session.prototype.hasPeerConnectionInfo = function() {
+proto.viam.physicalDevice.v1.Session.prototype.hasPeerConnectionInfo = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -4502,8 +4502,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.GetSessionsRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.GetSessionsRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.GetSessionsRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.GetSessionsRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -4512,11 +4512,11 @@ proto.viam.robot.v1.GetSessionsRequest.prototype.toObject = function(opt_include
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.GetSessionsRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.GetSessionsRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetSessionsRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.GetSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -4532,23 +4532,23 @@ proto.viam.robot.v1.GetSessionsRequest.toObject = function(includeInstance, msg)
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.GetSessionsRequest}
+ * @return {!proto.viam.physicalDevice.v1.GetSessionsRequest}
  */
-proto.viam.robot.v1.GetSessionsRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.GetSessionsRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.GetSessionsRequest;
-  return proto.viam.robot.v1.GetSessionsRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.GetSessionsRequest;
+  return proto.viam.physicalDevice.v1.GetSessionsRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.GetSessionsRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.GetSessionsRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.GetSessionsRequest}
+ * @return {!proto.viam.physicalDevice.v1.GetSessionsRequest}
  */
-proto.viam.robot.v1.GetSessionsRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.GetSessionsRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4568,9 +4568,9 @@ proto.viam.robot.v1.GetSessionsRequest.deserializeBinaryFromReader = function(ms
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.GetSessionsRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.GetSessionsRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.GetSessionsRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.GetSessionsRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4578,11 +4578,11 @@ proto.viam.robot.v1.GetSessionsRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.GetSessionsRequest} message
+ * @param {!proto.viam.physicalDevice.v1.GetSessionsRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetSessionsRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.GetSessionsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -4593,7 +4593,7 @@ proto.viam.robot.v1.GetSessionsRequest.serializeBinaryToWriter = function(messag
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.GetSessionsResponse.repeatedFields_ = [1];
+proto.viam.physicalDevice.v1.GetSessionsResponse.repeatedFields_ = [1];
 
 
 
@@ -4610,8 +4610,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.GetSessionsResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.GetSessionsResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.GetSessionsResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.GetSessionsResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -4620,14 +4620,14 @@ proto.viam.robot.v1.GetSessionsResponse.prototype.toObject = function(opt_includ
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.GetSessionsResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.GetSessionsResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetSessionsResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.GetSessionsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     sessionsList: jspb.Message.toObjectList(msg.getSessionsList(),
-    proto.viam.robot.v1.Session.toObject, includeInstance)
+    proto.viam.physicalDevice.v1.Session.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -4641,23 +4641,23 @@ proto.viam.robot.v1.GetSessionsResponse.toObject = function(includeInstance, msg
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.GetSessionsResponse}
+ * @return {!proto.viam.physicalDevice.v1.GetSessionsResponse}
  */
-proto.viam.robot.v1.GetSessionsResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.GetSessionsResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.GetSessionsResponse;
-  return proto.viam.robot.v1.GetSessionsResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.GetSessionsResponse;
+  return proto.viam.physicalDevice.v1.GetSessionsResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.GetSessionsResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.GetSessionsResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.GetSessionsResponse}
+ * @return {!proto.viam.physicalDevice.v1.GetSessionsResponse}
  */
-proto.viam.robot.v1.GetSessionsResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.GetSessionsResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4665,8 +4665,8 @@ proto.viam.robot.v1.GetSessionsResponse.deserializeBinaryFromReader = function(m
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.viam.robot.v1.Session;
-      reader.readMessage(value,proto.viam.robot.v1.Session.deserializeBinaryFromReader);
+      var value = new proto.viam.physicalDevice.v1.Session;
+      reader.readMessage(value,proto.viam.physicalDevice.v1.Session.deserializeBinaryFromReader);
       msg.addSessions(value);
       break;
     default:
@@ -4682,9 +4682,9 @@ proto.viam.robot.v1.GetSessionsResponse.deserializeBinaryFromReader = function(m
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.GetSessionsResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.GetSessionsResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.GetSessionsResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.GetSessionsResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4692,18 +4692,18 @@ proto.viam.robot.v1.GetSessionsResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.GetSessionsResponse} message
+ * @param {!proto.viam.physicalDevice.v1.GetSessionsResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetSessionsResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.GetSessionsResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getSessionsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.viam.robot.v1.Session.serializeBinaryToWriter
+      proto.viam.physicalDevice.v1.Session.serializeBinaryToWriter
     );
   }
 };
@@ -4711,38 +4711,38 @@ proto.viam.robot.v1.GetSessionsResponse.serializeBinaryToWriter = function(messa
 
 /**
  * repeated Session sessions = 1;
- * @return {!Array<!proto.viam.robot.v1.Session>}
+ * @return {!Array<!proto.viam.physicalDevice.v1.Session>}
  */
-proto.viam.robot.v1.GetSessionsResponse.prototype.getSessionsList = function() {
-  return /** @type{!Array<!proto.viam.robot.v1.Session>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.robot.v1.Session, 1));
+proto.viam.physicalDevice.v1.GetSessionsResponse.prototype.getSessionsList = function() {
+  return /** @type{!Array<!proto.viam.physicalDevice.v1.Session>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.physicalDevice.v1.Session, 1));
 };
 
 
 /**
- * @param {!Array<!proto.viam.robot.v1.Session>} value
- * @return {!proto.viam.robot.v1.GetSessionsResponse} returns this
+ * @param {!Array<!proto.viam.physicalDevice.v1.Session>} value
+ * @return {!proto.viam.physicalDevice.v1.GetSessionsResponse} returns this
 */
-proto.viam.robot.v1.GetSessionsResponse.prototype.setSessionsList = function(value) {
+proto.viam.physicalDevice.v1.GetSessionsResponse.prototype.setSessionsList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.Session=} opt_value
+ * @param {!proto.viam.physicalDevice.v1.Session=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.robot.v1.Session}
+ * @return {!proto.viam.physicalDevice.v1.Session}
  */
-proto.viam.robot.v1.GetSessionsResponse.prototype.addSessions = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.robot.v1.Session, opt_index);
+proto.viam.physicalDevice.v1.GetSessionsResponse.prototype.addSessions = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.physicalDevice.v1.Session, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.GetSessionsResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.GetSessionsResponse} returns this
  */
-proto.viam.robot.v1.GetSessionsResponse.prototype.clearSessionsList = function() {
+proto.viam.physicalDevice.v1.GetSessionsResponse.prototype.clearSessionsList = function() {
   return this.setSessionsList([]);
 };
 
@@ -4763,8 +4763,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.DiscoveryQuery.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.DiscoveryQuery.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.DiscoveryQuery.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.DiscoveryQuery.toObject(opt_includeInstance, this);
 };
 
 
@@ -4773,11 +4773,11 @@ proto.viam.robot.v1.DiscoveryQuery.prototype.toObject = function(opt_includeInst
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.DiscoveryQuery} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.DiscoveryQuery} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.DiscoveryQuery.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.DiscoveryQuery.toObject = function(includeInstance, msg) {
   var f, obj = {
     subtype: jspb.Message.getFieldWithDefault(msg, 1, ""),
     model: jspb.Message.getFieldWithDefault(msg, 2, "")
@@ -4794,23 +4794,23 @@ proto.viam.robot.v1.DiscoveryQuery.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.DiscoveryQuery}
+ * @return {!proto.viam.physicalDevice.v1.DiscoveryQuery}
  */
-proto.viam.robot.v1.DiscoveryQuery.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.DiscoveryQuery.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.DiscoveryQuery;
-  return proto.viam.robot.v1.DiscoveryQuery.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.DiscoveryQuery;
+  return proto.viam.physicalDevice.v1.DiscoveryQuery.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.DiscoveryQuery} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.DiscoveryQuery} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.DiscoveryQuery}
+ * @return {!proto.viam.physicalDevice.v1.DiscoveryQuery}
  */
-proto.viam.robot.v1.DiscoveryQuery.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.DiscoveryQuery.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4838,9 +4838,9 @@ proto.viam.robot.v1.DiscoveryQuery.deserializeBinaryFromReader = function(msg, r
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.DiscoveryQuery.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.DiscoveryQuery.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.DiscoveryQuery.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.DiscoveryQuery.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4848,11 +4848,11 @@ proto.viam.robot.v1.DiscoveryQuery.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.DiscoveryQuery} message
+ * @param {!proto.viam.physicalDevice.v1.DiscoveryQuery} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.DiscoveryQuery.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.DiscoveryQuery.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getSubtype();
   if (f.length > 0) {
@@ -4875,16 +4875,16 @@ proto.viam.robot.v1.DiscoveryQuery.serializeBinaryToWriter = function(message, w
  * optional string subtype = 1;
  * @return {string}
  */
-proto.viam.robot.v1.DiscoveryQuery.prototype.getSubtype = function() {
+proto.viam.physicalDevice.v1.DiscoveryQuery.prototype.getSubtype = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.DiscoveryQuery} returns this
+ * @return {!proto.viam.physicalDevice.v1.DiscoveryQuery} returns this
  */
-proto.viam.robot.v1.DiscoveryQuery.prototype.setSubtype = function(value) {
+proto.viam.physicalDevice.v1.DiscoveryQuery.prototype.setSubtype = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -4893,16 +4893,16 @@ proto.viam.robot.v1.DiscoveryQuery.prototype.setSubtype = function(value) {
  * optional string model = 2;
  * @return {string}
  */
-proto.viam.robot.v1.DiscoveryQuery.prototype.getModel = function() {
+proto.viam.physicalDevice.v1.DiscoveryQuery.prototype.getModel = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.DiscoveryQuery} returns this
+ * @return {!proto.viam.physicalDevice.v1.DiscoveryQuery} returns this
  */
-proto.viam.robot.v1.DiscoveryQuery.prototype.setModel = function(value) {
+proto.viam.physicalDevice.v1.DiscoveryQuery.prototype.setModel = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -4923,8 +4923,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.Discovery.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.Discovery.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.Discovery.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.Discovery.toObject(opt_includeInstance, this);
 };
 
 
@@ -4933,13 +4933,13 @@ proto.viam.robot.v1.Discovery.prototype.toObject = function(opt_includeInstance)
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.Discovery} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.Discovery} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.Discovery.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.Discovery.toObject = function(includeInstance, msg) {
   var f, obj = {
-    query: (f = msg.getQuery()) && proto.viam.robot.v1.DiscoveryQuery.toObject(includeInstance, f),
+    query: (f = msg.getQuery()) && proto.viam.physicalDevice.v1.DiscoveryQuery.toObject(includeInstance, f),
     results: (f = msg.getResults()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -4954,23 +4954,23 @@ proto.viam.robot.v1.Discovery.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.Discovery}
+ * @return {!proto.viam.physicalDevice.v1.Discovery}
  */
-proto.viam.robot.v1.Discovery.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.Discovery.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.Discovery;
-  return proto.viam.robot.v1.Discovery.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.Discovery;
+  return proto.viam.physicalDevice.v1.Discovery.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.Discovery} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.Discovery} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.Discovery}
+ * @return {!proto.viam.physicalDevice.v1.Discovery}
  */
-proto.viam.robot.v1.Discovery.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.Discovery.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4978,8 +4978,8 @@ proto.viam.robot.v1.Discovery.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.viam.robot.v1.DiscoveryQuery;
-      reader.readMessage(value,proto.viam.robot.v1.DiscoveryQuery.deserializeBinaryFromReader);
+      var value = new proto.viam.physicalDevice.v1.DiscoveryQuery;
+      reader.readMessage(value,proto.viam.physicalDevice.v1.DiscoveryQuery.deserializeBinaryFromReader);
       msg.setQuery(value);
       break;
     case 2:
@@ -5000,9 +5000,9 @@ proto.viam.robot.v1.Discovery.deserializeBinaryFromReader = function(msg, reader
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.Discovery.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.Discovery.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.Discovery.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.Discovery.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5010,18 +5010,18 @@ proto.viam.robot.v1.Discovery.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.Discovery} message
+ * @param {!proto.viam.physicalDevice.v1.Discovery} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.Discovery.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.Discovery.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getQuery();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.viam.robot.v1.DiscoveryQuery.serializeBinaryToWriter
+      proto.viam.physicalDevice.v1.DiscoveryQuery.serializeBinaryToWriter
     );
   }
   f = message.getResults();
@@ -5037,28 +5037,28 @@ proto.viam.robot.v1.Discovery.serializeBinaryToWriter = function(message, writer
 
 /**
  * optional DiscoveryQuery query = 1;
- * @return {?proto.viam.robot.v1.DiscoveryQuery}
+ * @return {?proto.viam.physicalDevice.v1.DiscoveryQuery}
  */
-proto.viam.robot.v1.Discovery.prototype.getQuery = function() {
-  return /** @type{?proto.viam.robot.v1.DiscoveryQuery} */ (
-    jspb.Message.getWrapperField(this, proto.viam.robot.v1.DiscoveryQuery, 1));
+proto.viam.physicalDevice.v1.Discovery.prototype.getQuery = function() {
+  return /** @type{?proto.viam.physicalDevice.v1.DiscoveryQuery} */ (
+    jspb.Message.getWrapperField(this, proto.viam.physicalDevice.v1.DiscoveryQuery, 1));
 };
 
 
 /**
- * @param {?proto.viam.robot.v1.DiscoveryQuery|undefined} value
- * @return {!proto.viam.robot.v1.Discovery} returns this
+ * @param {?proto.viam.physicalDevice.v1.DiscoveryQuery|undefined} value
+ * @return {!proto.viam.physicalDevice.v1.Discovery} returns this
 */
-proto.viam.robot.v1.Discovery.prototype.setQuery = function(value) {
+proto.viam.physicalDevice.v1.Discovery.prototype.setQuery = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.Discovery} returns this
+ * @return {!proto.viam.physicalDevice.v1.Discovery} returns this
  */
-proto.viam.robot.v1.Discovery.prototype.clearQuery = function() {
+proto.viam.physicalDevice.v1.Discovery.prototype.clearQuery = function() {
   return this.setQuery(undefined);
 };
 
@@ -5067,7 +5067,7 @@ proto.viam.robot.v1.Discovery.prototype.clearQuery = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.Discovery.prototype.hasQuery = function() {
+proto.viam.physicalDevice.v1.Discovery.prototype.hasQuery = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -5076,7 +5076,7 @@ proto.viam.robot.v1.Discovery.prototype.hasQuery = function() {
  * optional google.protobuf.Struct results = 2;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.robot.v1.Discovery.prototype.getResults = function() {
+proto.viam.physicalDevice.v1.Discovery.prototype.getResults = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
@@ -5084,18 +5084,18 @@ proto.viam.robot.v1.Discovery.prototype.getResults = function() {
 
 /**
  * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.viam.robot.v1.Discovery} returns this
+ * @return {!proto.viam.physicalDevice.v1.Discovery} returns this
 */
-proto.viam.robot.v1.Discovery.prototype.setResults = function(value) {
+proto.viam.physicalDevice.v1.Discovery.prototype.setResults = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.Discovery} returns this
+ * @return {!proto.viam.physicalDevice.v1.Discovery} returns this
  */
-proto.viam.robot.v1.Discovery.prototype.clearResults = function() {
+proto.viam.physicalDevice.v1.Discovery.prototype.clearResults = function() {
   return this.setResults(undefined);
 };
 
@@ -5104,7 +5104,7 @@ proto.viam.robot.v1.Discovery.prototype.clearResults = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.Discovery.prototype.hasResults = function() {
+proto.viam.physicalDevice.v1.Discovery.prototype.hasResults = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -5115,7 +5115,7 @@ proto.viam.robot.v1.Discovery.prototype.hasResults = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.DiscoverComponentsRequest.repeatedFields_ = [1];
+proto.viam.physicalDevice.v1.DiscoverComponentsRequest.repeatedFields_ = [1];
 
 
 
@@ -5132,8 +5132,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.DiscoverComponentsRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.DiscoverComponentsRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.DiscoverComponentsRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.DiscoverComponentsRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -5142,14 +5142,14 @@ proto.viam.robot.v1.DiscoverComponentsRequest.prototype.toObject = function(opt_
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.DiscoverComponentsRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.DiscoverComponentsRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.DiscoverComponentsRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.DiscoverComponentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     queriesList: jspb.Message.toObjectList(msg.getQueriesList(),
-    proto.viam.robot.v1.DiscoveryQuery.toObject, includeInstance)
+    proto.viam.physicalDevice.v1.DiscoveryQuery.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -5163,23 +5163,23 @@ proto.viam.robot.v1.DiscoverComponentsRequest.toObject = function(includeInstanc
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.DiscoverComponentsRequest}
+ * @return {!proto.viam.physicalDevice.v1.DiscoverComponentsRequest}
  */
-proto.viam.robot.v1.DiscoverComponentsRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.DiscoverComponentsRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.DiscoverComponentsRequest;
-  return proto.viam.robot.v1.DiscoverComponentsRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.DiscoverComponentsRequest;
+  return proto.viam.physicalDevice.v1.DiscoverComponentsRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.DiscoverComponentsRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.DiscoverComponentsRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.DiscoverComponentsRequest}
+ * @return {!proto.viam.physicalDevice.v1.DiscoverComponentsRequest}
  */
-proto.viam.robot.v1.DiscoverComponentsRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.DiscoverComponentsRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5187,8 +5187,8 @@ proto.viam.robot.v1.DiscoverComponentsRequest.deserializeBinaryFromReader = func
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.viam.robot.v1.DiscoveryQuery;
-      reader.readMessage(value,proto.viam.robot.v1.DiscoveryQuery.deserializeBinaryFromReader);
+      var value = new proto.viam.physicalDevice.v1.DiscoveryQuery;
+      reader.readMessage(value,proto.viam.physicalDevice.v1.DiscoveryQuery.deserializeBinaryFromReader);
       msg.addQueries(value);
       break;
     default:
@@ -5204,9 +5204,9 @@ proto.viam.robot.v1.DiscoverComponentsRequest.deserializeBinaryFromReader = func
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.DiscoverComponentsRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.DiscoverComponentsRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.DiscoverComponentsRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.DiscoverComponentsRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5214,18 +5214,18 @@ proto.viam.robot.v1.DiscoverComponentsRequest.prototype.serializeBinary = functi
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.DiscoverComponentsRequest} message
+ * @param {!proto.viam.physicalDevice.v1.DiscoverComponentsRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.DiscoverComponentsRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.DiscoverComponentsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getQueriesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.viam.robot.v1.DiscoveryQuery.serializeBinaryToWriter
+      proto.viam.physicalDevice.v1.DiscoveryQuery.serializeBinaryToWriter
     );
   }
 };
@@ -5233,38 +5233,38 @@ proto.viam.robot.v1.DiscoverComponentsRequest.serializeBinaryToWriter = function
 
 /**
  * repeated DiscoveryQuery queries = 1;
- * @return {!Array<!proto.viam.robot.v1.DiscoveryQuery>}
+ * @return {!Array<!proto.viam.physicalDevice.v1.DiscoveryQuery>}
  */
-proto.viam.robot.v1.DiscoverComponentsRequest.prototype.getQueriesList = function() {
-  return /** @type{!Array<!proto.viam.robot.v1.DiscoveryQuery>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.robot.v1.DiscoveryQuery, 1));
+proto.viam.physicalDevice.v1.DiscoverComponentsRequest.prototype.getQueriesList = function() {
+  return /** @type{!Array<!proto.viam.physicalDevice.v1.DiscoveryQuery>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.physicalDevice.v1.DiscoveryQuery, 1));
 };
 
 
 /**
- * @param {!Array<!proto.viam.robot.v1.DiscoveryQuery>} value
- * @return {!proto.viam.robot.v1.DiscoverComponentsRequest} returns this
+ * @param {!Array<!proto.viam.physicalDevice.v1.DiscoveryQuery>} value
+ * @return {!proto.viam.physicalDevice.v1.DiscoverComponentsRequest} returns this
 */
-proto.viam.robot.v1.DiscoverComponentsRequest.prototype.setQueriesList = function(value) {
+proto.viam.physicalDevice.v1.DiscoverComponentsRequest.prototype.setQueriesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.DiscoveryQuery=} opt_value
+ * @param {!proto.viam.physicalDevice.v1.DiscoveryQuery=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.robot.v1.DiscoveryQuery}
+ * @return {!proto.viam.physicalDevice.v1.DiscoveryQuery}
  */
-proto.viam.robot.v1.DiscoverComponentsRequest.prototype.addQueries = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.robot.v1.DiscoveryQuery, opt_index);
+proto.viam.physicalDevice.v1.DiscoverComponentsRequest.prototype.addQueries = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.physicalDevice.v1.DiscoveryQuery, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.DiscoverComponentsRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.DiscoverComponentsRequest} returns this
  */
-proto.viam.robot.v1.DiscoverComponentsRequest.prototype.clearQueriesList = function() {
+proto.viam.physicalDevice.v1.DiscoverComponentsRequest.prototype.clearQueriesList = function() {
   return this.setQueriesList([]);
 };
 
@@ -5275,7 +5275,7 @@ proto.viam.robot.v1.DiscoverComponentsRequest.prototype.clearQueriesList = funct
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.DiscoverComponentsResponse.repeatedFields_ = [1];
+proto.viam.physicalDevice.v1.DiscoverComponentsResponse.repeatedFields_ = [1];
 
 
 
@@ -5292,8 +5292,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.DiscoverComponentsResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.DiscoverComponentsResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.DiscoverComponentsResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.DiscoverComponentsResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -5302,14 +5302,14 @@ proto.viam.robot.v1.DiscoverComponentsResponse.prototype.toObject = function(opt
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.DiscoverComponentsResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.DiscoverComponentsResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.DiscoverComponentsResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.DiscoverComponentsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     discoveryList: jspb.Message.toObjectList(msg.getDiscoveryList(),
-    proto.viam.robot.v1.Discovery.toObject, includeInstance)
+    proto.viam.physicalDevice.v1.Discovery.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -5323,23 +5323,23 @@ proto.viam.robot.v1.DiscoverComponentsResponse.toObject = function(includeInstan
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.DiscoverComponentsResponse}
+ * @return {!proto.viam.physicalDevice.v1.DiscoverComponentsResponse}
  */
-proto.viam.robot.v1.DiscoverComponentsResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.DiscoverComponentsResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.DiscoverComponentsResponse;
-  return proto.viam.robot.v1.DiscoverComponentsResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.DiscoverComponentsResponse;
+  return proto.viam.physicalDevice.v1.DiscoverComponentsResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.DiscoverComponentsResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.DiscoverComponentsResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.DiscoverComponentsResponse}
+ * @return {!proto.viam.physicalDevice.v1.DiscoverComponentsResponse}
  */
-proto.viam.robot.v1.DiscoverComponentsResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.DiscoverComponentsResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5347,8 +5347,8 @@ proto.viam.robot.v1.DiscoverComponentsResponse.deserializeBinaryFromReader = fun
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.viam.robot.v1.Discovery;
-      reader.readMessage(value,proto.viam.robot.v1.Discovery.deserializeBinaryFromReader);
+      var value = new proto.viam.physicalDevice.v1.Discovery;
+      reader.readMessage(value,proto.viam.physicalDevice.v1.Discovery.deserializeBinaryFromReader);
       msg.addDiscovery(value);
       break;
     default:
@@ -5364,9 +5364,9 @@ proto.viam.robot.v1.DiscoverComponentsResponse.deserializeBinaryFromReader = fun
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.DiscoverComponentsResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.DiscoverComponentsResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.DiscoverComponentsResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.DiscoverComponentsResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5374,18 +5374,18 @@ proto.viam.robot.v1.DiscoverComponentsResponse.prototype.serializeBinary = funct
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.DiscoverComponentsResponse} message
+ * @param {!proto.viam.physicalDevice.v1.DiscoverComponentsResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.DiscoverComponentsResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.DiscoverComponentsResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getDiscoveryList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.viam.robot.v1.Discovery.serializeBinaryToWriter
+      proto.viam.physicalDevice.v1.Discovery.serializeBinaryToWriter
     );
   }
 };
@@ -5393,38 +5393,38 @@ proto.viam.robot.v1.DiscoverComponentsResponse.serializeBinaryToWriter = functio
 
 /**
  * repeated Discovery discovery = 1;
- * @return {!Array<!proto.viam.robot.v1.Discovery>}
+ * @return {!Array<!proto.viam.physicalDevice.v1.Discovery>}
  */
-proto.viam.robot.v1.DiscoverComponentsResponse.prototype.getDiscoveryList = function() {
-  return /** @type{!Array<!proto.viam.robot.v1.Discovery>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.robot.v1.Discovery, 1));
+proto.viam.physicalDevice.v1.DiscoverComponentsResponse.prototype.getDiscoveryList = function() {
+  return /** @type{!Array<!proto.viam.physicalDevice.v1.Discovery>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.physicalDevice.v1.Discovery, 1));
 };
 
 
 /**
- * @param {!Array<!proto.viam.robot.v1.Discovery>} value
- * @return {!proto.viam.robot.v1.DiscoverComponentsResponse} returns this
+ * @param {!Array<!proto.viam.physicalDevice.v1.Discovery>} value
+ * @return {!proto.viam.physicalDevice.v1.DiscoverComponentsResponse} returns this
 */
-proto.viam.robot.v1.DiscoverComponentsResponse.prototype.setDiscoveryList = function(value) {
+proto.viam.physicalDevice.v1.DiscoverComponentsResponse.prototype.setDiscoveryList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.Discovery=} opt_value
+ * @param {!proto.viam.physicalDevice.v1.Discovery=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.robot.v1.Discovery}
+ * @return {!proto.viam.physicalDevice.v1.Discovery}
  */
-proto.viam.robot.v1.DiscoverComponentsResponse.prototype.addDiscovery = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.robot.v1.Discovery, opt_index);
+proto.viam.physicalDevice.v1.DiscoverComponentsResponse.prototype.addDiscovery = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.physicalDevice.v1.Discovery, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.DiscoverComponentsResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.DiscoverComponentsResponse} returns this
  */
-proto.viam.robot.v1.DiscoverComponentsResponse.prototype.clearDiscoveryList = function() {
+proto.viam.physicalDevice.v1.DiscoverComponentsResponse.prototype.clearDiscoveryList = function() {
   return this.setDiscoveryList([]);
 };
 
@@ -5445,8 +5445,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.Status.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.Status.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.Status.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.Status.toObject(opt_includeInstance, this);
 };
 
 
@@ -5455,11 +5455,11 @@ proto.viam.robot.v1.Status.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.Status} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.Status} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.Status.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.Status.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: (f = msg.getName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     status: (f = msg.getStatus()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
@@ -5477,23 +5477,23 @@ proto.viam.robot.v1.Status.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.Status}
+ * @return {!proto.viam.physicalDevice.v1.Status}
  */
-proto.viam.robot.v1.Status.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.Status.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.Status;
-  return proto.viam.robot.v1.Status.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.Status;
+  return proto.viam.physicalDevice.v1.Status.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.Status} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.Status} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.Status}
+ * @return {!proto.viam.physicalDevice.v1.Status}
  */
-proto.viam.robot.v1.Status.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.Status.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5528,9 +5528,9 @@ proto.viam.robot.v1.Status.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.Status.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.Status.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.Status.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.Status.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5538,11 +5538,11 @@ proto.viam.robot.v1.Status.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.Status} message
+ * @param {!proto.viam.physicalDevice.v1.Status} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.Status.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.Status.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getName();
   if (f != null) {
@@ -5575,7 +5575,7 @@ proto.viam.robot.v1.Status.serializeBinaryToWriter = function(message, writer) {
  * optional viam.common.v1.ResourceName name = 1;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.robot.v1.Status.prototype.getName = function() {
+proto.viam.physicalDevice.v1.Status.prototype.getName = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 1));
 };
@@ -5583,18 +5583,18 @@ proto.viam.robot.v1.Status.prototype.getName = function() {
 
 /**
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
- * @return {!proto.viam.robot.v1.Status} returns this
+ * @return {!proto.viam.physicalDevice.v1.Status} returns this
 */
-proto.viam.robot.v1.Status.prototype.setName = function(value) {
+proto.viam.physicalDevice.v1.Status.prototype.setName = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.Status} returns this
+ * @return {!proto.viam.physicalDevice.v1.Status} returns this
  */
-proto.viam.robot.v1.Status.prototype.clearName = function() {
+proto.viam.physicalDevice.v1.Status.prototype.clearName = function() {
   return this.setName(undefined);
 };
 
@@ -5603,7 +5603,7 @@ proto.viam.robot.v1.Status.prototype.clearName = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.Status.prototype.hasName = function() {
+proto.viam.physicalDevice.v1.Status.prototype.hasName = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -5612,7 +5612,7 @@ proto.viam.robot.v1.Status.prototype.hasName = function() {
  * optional google.protobuf.Struct status = 2;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.robot.v1.Status.prototype.getStatus = function() {
+proto.viam.physicalDevice.v1.Status.prototype.getStatus = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
@@ -5620,18 +5620,18 @@ proto.viam.robot.v1.Status.prototype.getStatus = function() {
 
 /**
  * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.viam.robot.v1.Status} returns this
+ * @return {!proto.viam.physicalDevice.v1.Status} returns this
 */
-proto.viam.robot.v1.Status.prototype.setStatus = function(value) {
+proto.viam.physicalDevice.v1.Status.prototype.setStatus = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.Status} returns this
+ * @return {!proto.viam.physicalDevice.v1.Status} returns this
  */
-proto.viam.robot.v1.Status.prototype.clearStatus = function() {
+proto.viam.physicalDevice.v1.Status.prototype.clearStatus = function() {
   return this.setStatus(undefined);
 };
 
@@ -5640,7 +5640,7 @@ proto.viam.robot.v1.Status.prototype.clearStatus = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.Status.prototype.hasStatus = function() {
+proto.viam.physicalDevice.v1.Status.prototype.hasStatus = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -5649,7 +5649,7 @@ proto.viam.robot.v1.Status.prototype.hasStatus = function() {
  * optional google.protobuf.Timestamp last_reconfigured = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.viam.robot.v1.Status.prototype.getLastReconfigured = function() {
+proto.viam.physicalDevice.v1.Status.prototype.getLastReconfigured = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
@@ -5657,18 +5657,18 @@ proto.viam.robot.v1.Status.prototype.getLastReconfigured = function() {
 
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.viam.robot.v1.Status} returns this
+ * @return {!proto.viam.physicalDevice.v1.Status} returns this
 */
-proto.viam.robot.v1.Status.prototype.setLastReconfigured = function(value) {
+proto.viam.physicalDevice.v1.Status.prototype.setLastReconfigured = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.Status} returns this
+ * @return {!proto.viam.physicalDevice.v1.Status} returns this
  */
-proto.viam.robot.v1.Status.prototype.clearLastReconfigured = function() {
+proto.viam.physicalDevice.v1.Status.prototype.clearLastReconfigured = function() {
   return this.setLastReconfigured(undefined);
 };
 
@@ -5677,7 +5677,7 @@ proto.viam.robot.v1.Status.prototype.clearLastReconfigured = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.Status.prototype.hasLastReconfigured = function() {
+proto.viam.physicalDevice.v1.Status.prototype.hasLastReconfigured = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -5688,7 +5688,7 @@ proto.viam.robot.v1.Status.prototype.hasLastReconfigured = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.GetStatusRequest.repeatedFields_ = [1];
+proto.viam.physicalDevice.v1.GetStatusRequest.repeatedFields_ = [1];
 
 
 
@@ -5705,8 +5705,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.GetStatusRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.GetStatusRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.GetStatusRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.GetStatusRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -5715,11 +5715,11 @@ proto.viam.robot.v1.GetStatusRequest.prototype.toObject = function(opt_includeIn
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.GetStatusRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.GetStatusRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetStatusRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.GetStatusRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     resourceNamesList: jspb.Message.toObjectList(msg.getResourceNamesList(),
     common_v1_common_pb.ResourceName.toObject, includeInstance)
@@ -5736,23 +5736,23 @@ proto.viam.robot.v1.GetStatusRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.GetStatusRequest}
+ * @return {!proto.viam.physicalDevice.v1.GetStatusRequest}
  */
-proto.viam.robot.v1.GetStatusRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.GetStatusRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.GetStatusRequest;
-  return proto.viam.robot.v1.GetStatusRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.GetStatusRequest;
+  return proto.viam.physicalDevice.v1.GetStatusRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.GetStatusRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.GetStatusRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.GetStatusRequest}
+ * @return {!proto.viam.physicalDevice.v1.GetStatusRequest}
  */
-proto.viam.robot.v1.GetStatusRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.GetStatusRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5777,9 +5777,9 @@ proto.viam.robot.v1.GetStatusRequest.deserializeBinaryFromReader = function(msg,
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.GetStatusRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.GetStatusRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.GetStatusRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.GetStatusRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5787,11 +5787,11 @@ proto.viam.robot.v1.GetStatusRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.GetStatusRequest} message
+ * @param {!proto.viam.physicalDevice.v1.GetStatusRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetStatusRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.GetStatusRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getResourceNamesList();
   if (f.length > 0) {
@@ -5808,7 +5808,7 @@ proto.viam.robot.v1.GetStatusRequest.serializeBinaryToWriter = function(message,
  * repeated viam.common.v1.ResourceName resource_names = 1;
  * @return {!Array<!proto.viam.common.v1.ResourceName>}
  */
-proto.viam.robot.v1.GetStatusRequest.prototype.getResourceNamesList = function() {
+proto.viam.physicalDevice.v1.GetStatusRequest.prototype.getResourceNamesList = function() {
   return /** @type{!Array<!proto.viam.common.v1.ResourceName>} */ (
     jspb.Message.getRepeatedWrapperField(this, common_v1_common_pb.ResourceName, 1));
 };
@@ -5816,9 +5816,9 @@ proto.viam.robot.v1.GetStatusRequest.prototype.getResourceNamesList = function()
 
 /**
  * @param {!Array<!proto.viam.common.v1.ResourceName>} value
- * @return {!proto.viam.robot.v1.GetStatusRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.GetStatusRequest} returns this
 */
-proto.viam.robot.v1.GetStatusRequest.prototype.setResourceNamesList = function(value) {
+proto.viam.physicalDevice.v1.GetStatusRequest.prototype.setResourceNamesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -5828,16 +5828,16 @@ proto.viam.robot.v1.GetStatusRequest.prototype.setResourceNamesList = function(v
  * @param {number=} opt_index
  * @return {!proto.viam.common.v1.ResourceName}
  */
-proto.viam.robot.v1.GetStatusRequest.prototype.addResourceNames = function(opt_value, opt_index) {
+proto.viam.physicalDevice.v1.GetStatusRequest.prototype.addResourceNames = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.common.v1.ResourceName, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.GetStatusRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.GetStatusRequest} returns this
  */
-proto.viam.robot.v1.GetStatusRequest.prototype.clearResourceNamesList = function() {
+proto.viam.physicalDevice.v1.GetStatusRequest.prototype.clearResourceNamesList = function() {
   return this.setResourceNamesList([]);
 };
 
@@ -5848,7 +5848,7 @@ proto.viam.robot.v1.GetStatusRequest.prototype.clearResourceNamesList = function
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.GetStatusResponse.repeatedFields_ = [1];
+proto.viam.physicalDevice.v1.GetStatusResponse.repeatedFields_ = [1];
 
 
 
@@ -5865,8 +5865,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.GetStatusResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.GetStatusResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.GetStatusResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.GetStatusResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -5875,14 +5875,14 @@ proto.viam.robot.v1.GetStatusResponse.prototype.toObject = function(opt_includeI
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.GetStatusResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.GetStatusResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetStatusResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.GetStatusResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     statusList: jspb.Message.toObjectList(msg.getStatusList(),
-    proto.viam.robot.v1.Status.toObject, includeInstance)
+    proto.viam.physicalDevice.v1.Status.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -5896,23 +5896,23 @@ proto.viam.robot.v1.GetStatusResponse.toObject = function(includeInstance, msg) 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.GetStatusResponse}
+ * @return {!proto.viam.physicalDevice.v1.GetStatusResponse}
  */
-proto.viam.robot.v1.GetStatusResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.GetStatusResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.GetStatusResponse;
-  return proto.viam.robot.v1.GetStatusResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.GetStatusResponse;
+  return proto.viam.physicalDevice.v1.GetStatusResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.GetStatusResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.GetStatusResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.GetStatusResponse}
+ * @return {!proto.viam.physicalDevice.v1.GetStatusResponse}
  */
-proto.viam.robot.v1.GetStatusResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.GetStatusResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5920,8 +5920,8 @@ proto.viam.robot.v1.GetStatusResponse.deserializeBinaryFromReader = function(msg
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.viam.robot.v1.Status;
-      reader.readMessage(value,proto.viam.robot.v1.Status.deserializeBinaryFromReader);
+      var value = new proto.viam.physicalDevice.v1.Status;
+      reader.readMessage(value,proto.viam.physicalDevice.v1.Status.deserializeBinaryFromReader);
       msg.addStatus(value);
       break;
     default:
@@ -5937,9 +5937,9 @@ proto.viam.robot.v1.GetStatusResponse.deserializeBinaryFromReader = function(msg
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.GetStatusResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.GetStatusResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.GetStatusResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.GetStatusResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5947,18 +5947,18 @@ proto.viam.robot.v1.GetStatusResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.GetStatusResponse} message
+ * @param {!proto.viam.physicalDevice.v1.GetStatusResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetStatusResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.GetStatusResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getStatusList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.viam.robot.v1.Status.serializeBinaryToWriter
+      proto.viam.physicalDevice.v1.Status.serializeBinaryToWriter
     );
   }
 };
@@ -5966,38 +5966,38 @@ proto.viam.robot.v1.GetStatusResponse.serializeBinaryToWriter = function(message
 
 /**
  * repeated Status status = 1;
- * @return {!Array<!proto.viam.robot.v1.Status>}
+ * @return {!Array<!proto.viam.physicalDevice.v1.Status>}
  */
-proto.viam.robot.v1.GetStatusResponse.prototype.getStatusList = function() {
-  return /** @type{!Array<!proto.viam.robot.v1.Status>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.robot.v1.Status, 1));
+proto.viam.physicalDevice.v1.GetStatusResponse.prototype.getStatusList = function() {
+  return /** @type{!Array<!proto.viam.physicalDevice.v1.Status>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.physicalDevice.v1.Status, 1));
 };
 
 
 /**
- * @param {!Array<!proto.viam.robot.v1.Status>} value
- * @return {!proto.viam.robot.v1.GetStatusResponse} returns this
+ * @param {!Array<!proto.viam.physicalDevice.v1.Status>} value
+ * @return {!proto.viam.physicalDevice.v1.GetStatusResponse} returns this
 */
-proto.viam.robot.v1.GetStatusResponse.prototype.setStatusList = function(value) {
+proto.viam.physicalDevice.v1.GetStatusResponse.prototype.setStatusList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.Status=} opt_value
+ * @param {!proto.viam.physicalDevice.v1.Status=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.robot.v1.Status}
+ * @return {!proto.viam.physicalDevice.v1.Status}
  */
-proto.viam.robot.v1.GetStatusResponse.prototype.addStatus = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.robot.v1.Status, opt_index);
+proto.viam.physicalDevice.v1.GetStatusResponse.prototype.addStatus = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.physicalDevice.v1.Status, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.GetStatusResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.GetStatusResponse} returns this
  */
-proto.viam.robot.v1.GetStatusResponse.prototype.clearStatusList = function() {
+proto.viam.physicalDevice.v1.GetStatusResponse.prototype.clearStatusList = function() {
   return this.setStatusList([]);
 };
 
@@ -6008,7 +6008,7 @@ proto.viam.robot.v1.GetStatusResponse.prototype.clearStatusList = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.StreamStatusRequest.repeatedFields_ = [1];
+proto.viam.physicalDevice.v1.StreamStatusRequest.repeatedFields_ = [1];
 
 
 
@@ -6025,8 +6025,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.StreamStatusRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.StreamStatusRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.StreamStatusRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.StreamStatusRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -6035,11 +6035,11 @@ proto.viam.robot.v1.StreamStatusRequest.prototype.toObject = function(opt_includ
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.StreamStatusRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.StreamStatusRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StreamStatusRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.StreamStatusRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     resourceNamesList: jspb.Message.toObjectList(msg.getResourceNamesList(),
     common_v1_common_pb.ResourceName.toObject, includeInstance),
@@ -6057,23 +6057,23 @@ proto.viam.robot.v1.StreamStatusRequest.toObject = function(includeInstance, msg
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.StreamStatusRequest}
+ * @return {!proto.viam.physicalDevice.v1.StreamStatusRequest}
  */
-proto.viam.robot.v1.StreamStatusRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.StreamStatusRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.StreamStatusRequest;
-  return proto.viam.robot.v1.StreamStatusRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.StreamStatusRequest;
+  return proto.viam.physicalDevice.v1.StreamStatusRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.StreamStatusRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.StreamStatusRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.StreamStatusRequest}
+ * @return {!proto.viam.physicalDevice.v1.StreamStatusRequest}
  */
-proto.viam.robot.v1.StreamStatusRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.StreamStatusRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6103,9 +6103,9 @@ proto.viam.robot.v1.StreamStatusRequest.deserializeBinaryFromReader = function(m
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.StreamStatusRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.StreamStatusRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.StreamStatusRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.StreamStatusRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6113,11 +6113,11 @@ proto.viam.robot.v1.StreamStatusRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.StreamStatusRequest} message
+ * @param {!proto.viam.physicalDevice.v1.StreamStatusRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StreamStatusRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.StreamStatusRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getResourceNamesList();
   if (f.length > 0) {
@@ -6142,7 +6142,7 @@ proto.viam.robot.v1.StreamStatusRequest.serializeBinaryToWriter = function(messa
  * repeated viam.common.v1.ResourceName resource_names = 1;
  * @return {!Array<!proto.viam.common.v1.ResourceName>}
  */
-proto.viam.robot.v1.StreamStatusRequest.prototype.getResourceNamesList = function() {
+proto.viam.physicalDevice.v1.StreamStatusRequest.prototype.getResourceNamesList = function() {
   return /** @type{!Array<!proto.viam.common.v1.ResourceName>} */ (
     jspb.Message.getRepeatedWrapperField(this, common_v1_common_pb.ResourceName, 1));
 };
@@ -6150,9 +6150,9 @@ proto.viam.robot.v1.StreamStatusRequest.prototype.getResourceNamesList = functio
 
 /**
  * @param {!Array<!proto.viam.common.v1.ResourceName>} value
- * @return {!proto.viam.robot.v1.StreamStatusRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.StreamStatusRequest} returns this
 */
-proto.viam.robot.v1.StreamStatusRequest.prototype.setResourceNamesList = function(value) {
+proto.viam.physicalDevice.v1.StreamStatusRequest.prototype.setResourceNamesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -6162,16 +6162,16 @@ proto.viam.robot.v1.StreamStatusRequest.prototype.setResourceNamesList = functio
  * @param {number=} opt_index
  * @return {!proto.viam.common.v1.ResourceName}
  */
-proto.viam.robot.v1.StreamStatusRequest.prototype.addResourceNames = function(opt_value, opt_index) {
+proto.viam.physicalDevice.v1.StreamStatusRequest.prototype.addResourceNames = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.common.v1.ResourceName, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.StreamStatusRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.StreamStatusRequest} returns this
  */
-proto.viam.robot.v1.StreamStatusRequest.prototype.clearResourceNamesList = function() {
+proto.viam.physicalDevice.v1.StreamStatusRequest.prototype.clearResourceNamesList = function() {
   return this.setResourceNamesList([]);
 };
 
@@ -6180,7 +6180,7 @@ proto.viam.robot.v1.StreamStatusRequest.prototype.clearResourceNamesList = funct
  * optional google.protobuf.Duration every = 2;
  * @return {?proto.google.protobuf.Duration}
  */
-proto.viam.robot.v1.StreamStatusRequest.prototype.getEvery = function() {
+proto.viam.physicalDevice.v1.StreamStatusRequest.prototype.getEvery = function() {
   return /** @type{?proto.google.protobuf.Duration} */ (
     jspb.Message.getWrapperField(this, google_protobuf_duration_pb.Duration, 2));
 };
@@ -6188,18 +6188,18 @@ proto.viam.robot.v1.StreamStatusRequest.prototype.getEvery = function() {
 
 /**
  * @param {?proto.google.protobuf.Duration|undefined} value
- * @return {!proto.viam.robot.v1.StreamStatusRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.StreamStatusRequest} returns this
 */
-proto.viam.robot.v1.StreamStatusRequest.prototype.setEvery = function(value) {
+proto.viam.physicalDevice.v1.StreamStatusRequest.prototype.setEvery = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.StreamStatusRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.StreamStatusRequest} returns this
  */
-proto.viam.robot.v1.StreamStatusRequest.prototype.clearEvery = function() {
+proto.viam.physicalDevice.v1.StreamStatusRequest.prototype.clearEvery = function() {
   return this.setEvery(undefined);
 };
 
@@ -6208,7 +6208,7 @@ proto.viam.robot.v1.StreamStatusRequest.prototype.clearEvery = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.StreamStatusRequest.prototype.hasEvery = function() {
+proto.viam.physicalDevice.v1.StreamStatusRequest.prototype.hasEvery = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -6219,7 +6219,7 @@ proto.viam.robot.v1.StreamStatusRequest.prototype.hasEvery = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.StreamStatusResponse.repeatedFields_ = [1];
+proto.viam.physicalDevice.v1.StreamStatusResponse.repeatedFields_ = [1];
 
 
 
@@ -6236,8 +6236,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.StreamStatusResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.StreamStatusResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.StreamStatusResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.StreamStatusResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -6246,14 +6246,14 @@ proto.viam.robot.v1.StreamStatusResponse.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.StreamStatusResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.StreamStatusResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StreamStatusResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.StreamStatusResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     statusList: jspb.Message.toObjectList(msg.getStatusList(),
-    proto.viam.robot.v1.Status.toObject, includeInstance)
+    proto.viam.physicalDevice.v1.Status.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -6267,23 +6267,23 @@ proto.viam.robot.v1.StreamStatusResponse.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.StreamStatusResponse}
+ * @return {!proto.viam.physicalDevice.v1.StreamStatusResponse}
  */
-proto.viam.robot.v1.StreamStatusResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.StreamStatusResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.StreamStatusResponse;
-  return proto.viam.robot.v1.StreamStatusResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.StreamStatusResponse;
+  return proto.viam.physicalDevice.v1.StreamStatusResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.StreamStatusResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.StreamStatusResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.StreamStatusResponse}
+ * @return {!proto.viam.physicalDevice.v1.StreamStatusResponse}
  */
-proto.viam.robot.v1.StreamStatusResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.StreamStatusResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6291,8 +6291,8 @@ proto.viam.robot.v1.StreamStatusResponse.deserializeBinaryFromReader = function(
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.viam.robot.v1.Status;
-      reader.readMessage(value,proto.viam.robot.v1.Status.deserializeBinaryFromReader);
+      var value = new proto.viam.physicalDevice.v1.Status;
+      reader.readMessage(value,proto.viam.physicalDevice.v1.Status.deserializeBinaryFromReader);
       msg.addStatus(value);
       break;
     default:
@@ -6308,9 +6308,9 @@ proto.viam.robot.v1.StreamStatusResponse.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.StreamStatusResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.StreamStatusResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.StreamStatusResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.StreamStatusResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6318,18 +6318,18 @@ proto.viam.robot.v1.StreamStatusResponse.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.StreamStatusResponse} message
+ * @param {!proto.viam.physicalDevice.v1.StreamStatusResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StreamStatusResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.StreamStatusResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getStatusList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.viam.robot.v1.Status.serializeBinaryToWriter
+      proto.viam.physicalDevice.v1.Status.serializeBinaryToWriter
     );
   }
 };
@@ -6337,38 +6337,38 @@ proto.viam.robot.v1.StreamStatusResponse.serializeBinaryToWriter = function(mess
 
 /**
  * repeated Status status = 1;
- * @return {!Array<!proto.viam.robot.v1.Status>}
+ * @return {!Array<!proto.viam.physicalDevice.v1.Status>}
  */
-proto.viam.robot.v1.StreamStatusResponse.prototype.getStatusList = function() {
-  return /** @type{!Array<!proto.viam.robot.v1.Status>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.robot.v1.Status, 1));
+proto.viam.physicalDevice.v1.StreamStatusResponse.prototype.getStatusList = function() {
+  return /** @type{!Array<!proto.viam.physicalDevice.v1.Status>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.physicalDevice.v1.Status, 1));
 };
 
 
 /**
- * @param {!Array<!proto.viam.robot.v1.Status>} value
- * @return {!proto.viam.robot.v1.StreamStatusResponse} returns this
+ * @param {!Array<!proto.viam.physicalDevice.v1.Status>} value
+ * @return {!proto.viam.physicalDevice.v1.StreamStatusResponse} returns this
 */
-proto.viam.robot.v1.StreamStatusResponse.prototype.setStatusList = function(value) {
+proto.viam.physicalDevice.v1.StreamStatusResponse.prototype.setStatusList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.Status=} opt_value
+ * @param {!proto.viam.physicalDevice.v1.Status=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.robot.v1.Status}
+ * @return {!proto.viam.physicalDevice.v1.Status}
  */
-proto.viam.robot.v1.StreamStatusResponse.prototype.addStatus = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.robot.v1.Status, opt_index);
+proto.viam.physicalDevice.v1.StreamStatusResponse.prototype.addStatus = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.physicalDevice.v1.Status, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.StreamStatusResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.StreamStatusResponse} returns this
  */
-proto.viam.robot.v1.StreamStatusResponse.prototype.clearStatusList = function() {
+proto.viam.physicalDevice.v1.StreamStatusResponse.prototype.clearStatusList = function() {
   return this.setStatusList([]);
 };
 
@@ -6389,8 +6389,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.StopExtraParameters.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.StopExtraParameters.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.StopExtraParameters.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.StopExtraParameters.toObject(opt_includeInstance, this);
 };
 
 
@@ -6399,11 +6399,11 @@ proto.viam.robot.v1.StopExtraParameters.prototype.toObject = function(opt_includ
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.StopExtraParameters} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.StopExtraParameters} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StopExtraParameters.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.StopExtraParameters.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: (f = msg.getName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     params: (f = msg.getParams()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
@@ -6420,23 +6420,23 @@ proto.viam.robot.v1.StopExtraParameters.toObject = function(includeInstance, msg
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.StopExtraParameters}
+ * @return {!proto.viam.physicalDevice.v1.StopExtraParameters}
  */
-proto.viam.robot.v1.StopExtraParameters.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.StopExtraParameters.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.StopExtraParameters;
-  return proto.viam.robot.v1.StopExtraParameters.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.StopExtraParameters;
+  return proto.viam.physicalDevice.v1.StopExtraParameters.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.StopExtraParameters} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.StopExtraParameters} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.StopExtraParameters}
+ * @return {!proto.viam.physicalDevice.v1.StopExtraParameters}
  */
-proto.viam.robot.v1.StopExtraParameters.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.StopExtraParameters.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6466,9 +6466,9 @@ proto.viam.robot.v1.StopExtraParameters.deserializeBinaryFromReader = function(m
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.StopExtraParameters.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.StopExtraParameters.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.StopExtraParameters.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.StopExtraParameters.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6476,11 +6476,11 @@ proto.viam.robot.v1.StopExtraParameters.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.StopExtraParameters} message
+ * @param {!proto.viam.physicalDevice.v1.StopExtraParameters} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StopExtraParameters.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.StopExtraParameters.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getName();
   if (f != null) {
@@ -6505,7 +6505,7 @@ proto.viam.robot.v1.StopExtraParameters.serializeBinaryToWriter = function(messa
  * optional viam.common.v1.ResourceName name = 1;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.robot.v1.StopExtraParameters.prototype.getName = function() {
+proto.viam.physicalDevice.v1.StopExtraParameters.prototype.getName = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 1));
 };
@@ -6513,18 +6513,18 @@ proto.viam.robot.v1.StopExtraParameters.prototype.getName = function() {
 
 /**
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
- * @return {!proto.viam.robot.v1.StopExtraParameters} returns this
+ * @return {!proto.viam.physicalDevice.v1.StopExtraParameters} returns this
 */
-proto.viam.robot.v1.StopExtraParameters.prototype.setName = function(value) {
+proto.viam.physicalDevice.v1.StopExtraParameters.prototype.setName = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.StopExtraParameters} returns this
+ * @return {!proto.viam.physicalDevice.v1.StopExtraParameters} returns this
  */
-proto.viam.robot.v1.StopExtraParameters.prototype.clearName = function() {
+proto.viam.physicalDevice.v1.StopExtraParameters.prototype.clearName = function() {
   return this.setName(undefined);
 };
 
@@ -6533,7 +6533,7 @@ proto.viam.robot.v1.StopExtraParameters.prototype.clearName = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.StopExtraParameters.prototype.hasName = function() {
+proto.viam.physicalDevice.v1.StopExtraParameters.prototype.hasName = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -6542,7 +6542,7 @@ proto.viam.robot.v1.StopExtraParameters.prototype.hasName = function() {
  * optional google.protobuf.Struct params = 2;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.robot.v1.StopExtraParameters.prototype.getParams = function() {
+proto.viam.physicalDevice.v1.StopExtraParameters.prototype.getParams = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
@@ -6550,18 +6550,18 @@ proto.viam.robot.v1.StopExtraParameters.prototype.getParams = function() {
 
 /**
  * @param {?proto.google.protobuf.Struct|undefined} value
- * @return {!proto.viam.robot.v1.StopExtraParameters} returns this
+ * @return {!proto.viam.physicalDevice.v1.StopExtraParameters} returns this
 */
-proto.viam.robot.v1.StopExtraParameters.prototype.setParams = function(value) {
+proto.viam.physicalDevice.v1.StopExtraParameters.prototype.setParams = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.StopExtraParameters} returns this
+ * @return {!proto.viam.physicalDevice.v1.StopExtraParameters} returns this
  */
-proto.viam.robot.v1.StopExtraParameters.prototype.clearParams = function() {
+proto.viam.physicalDevice.v1.StopExtraParameters.prototype.clearParams = function() {
   return this.setParams(undefined);
 };
 
@@ -6570,7 +6570,7 @@ proto.viam.robot.v1.StopExtraParameters.prototype.clearParams = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.StopExtraParameters.prototype.hasParams = function() {
+proto.viam.physicalDevice.v1.StopExtraParameters.prototype.hasParams = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -6581,7 +6581,7 @@ proto.viam.robot.v1.StopExtraParameters.prototype.hasParams = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.StopAllRequest.repeatedFields_ = [99];
+proto.viam.physicalDevice.v1.StopAllRequest.repeatedFields_ = [99];
 
 
 
@@ -6598,8 +6598,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.StopAllRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.StopAllRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.StopAllRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.StopAllRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -6608,14 +6608,14 @@ proto.viam.robot.v1.StopAllRequest.prototype.toObject = function(opt_includeInst
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.StopAllRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.StopAllRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StopAllRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.StopAllRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     extraList: jspb.Message.toObjectList(msg.getExtraList(),
-    proto.viam.robot.v1.StopExtraParameters.toObject, includeInstance)
+    proto.viam.physicalDevice.v1.StopExtraParameters.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -6629,23 +6629,23 @@ proto.viam.robot.v1.StopAllRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.StopAllRequest}
+ * @return {!proto.viam.physicalDevice.v1.StopAllRequest}
  */
-proto.viam.robot.v1.StopAllRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.StopAllRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.StopAllRequest;
-  return proto.viam.robot.v1.StopAllRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.StopAllRequest;
+  return proto.viam.physicalDevice.v1.StopAllRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.StopAllRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.StopAllRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.StopAllRequest}
+ * @return {!proto.viam.physicalDevice.v1.StopAllRequest}
  */
-proto.viam.robot.v1.StopAllRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.StopAllRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6653,8 +6653,8 @@ proto.viam.robot.v1.StopAllRequest.deserializeBinaryFromReader = function(msg, r
     var field = reader.getFieldNumber();
     switch (field) {
     case 99:
-      var value = new proto.viam.robot.v1.StopExtraParameters;
-      reader.readMessage(value,proto.viam.robot.v1.StopExtraParameters.deserializeBinaryFromReader);
+      var value = new proto.viam.physicalDevice.v1.StopExtraParameters;
+      reader.readMessage(value,proto.viam.physicalDevice.v1.StopExtraParameters.deserializeBinaryFromReader);
       msg.addExtra(value);
       break;
     default:
@@ -6670,9 +6670,9 @@ proto.viam.robot.v1.StopAllRequest.deserializeBinaryFromReader = function(msg, r
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.StopAllRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.StopAllRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.StopAllRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.StopAllRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6680,18 +6680,18 @@ proto.viam.robot.v1.StopAllRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.StopAllRequest} message
+ * @param {!proto.viam.physicalDevice.v1.StopAllRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StopAllRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.StopAllRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getExtraList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       99,
       f,
-      proto.viam.robot.v1.StopExtraParameters.serializeBinaryToWriter
+      proto.viam.physicalDevice.v1.StopExtraParameters.serializeBinaryToWriter
     );
   }
 };
@@ -6699,38 +6699,38 @@ proto.viam.robot.v1.StopAllRequest.serializeBinaryToWriter = function(message, w
 
 /**
  * repeated StopExtraParameters extra = 99;
- * @return {!Array<!proto.viam.robot.v1.StopExtraParameters>}
+ * @return {!Array<!proto.viam.physicalDevice.v1.StopExtraParameters>}
  */
-proto.viam.robot.v1.StopAllRequest.prototype.getExtraList = function() {
-  return /** @type{!Array<!proto.viam.robot.v1.StopExtraParameters>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.viam.robot.v1.StopExtraParameters, 99));
+proto.viam.physicalDevice.v1.StopAllRequest.prototype.getExtraList = function() {
+  return /** @type{!Array<!proto.viam.physicalDevice.v1.StopExtraParameters>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.physicalDevice.v1.StopExtraParameters, 99));
 };
 
 
 /**
- * @param {!Array<!proto.viam.robot.v1.StopExtraParameters>} value
- * @return {!proto.viam.robot.v1.StopAllRequest} returns this
+ * @param {!Array<!proto.viam.physicalDevice.v1.StopExtraParameters>} value
+ * @return {!proto.viam.physicalDevice.v1.StopAllRequest} returns this
 */
-proto.viam.robot.v1.StopAllRequest.prototype.setExtraList = function(value) {
+proto.viam.physicalDevice.v1.StopAllRequest.prototype.setExtraList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 99, value);
 };
 
 
 /**
- * @param {!proto.viam.robot.v1.StopExtraParameters=} opt_value
+ * @param {!proto.viam.physicalDevice.v1.StopExtraParameters=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.robot.v1.StopExtraParameters}
+ * @return {!proto.viam.physicalDevice.v1.StopExtraParameters}
  */
-proto.viam.robot.v1.StopAllRequest.prototype.addExtra = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 99, opt_value, proto.viam.robot.v1.StopExtraParameters, opt_index);
+proto.viam.physicalDevice.v1.StopAllRequest.prototype.addExtra = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 99, opt_value, proto.viam.physicalDevice.v1.StopExtraParameters, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.StopAllRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.StopAllRequest} returns this
  */
-proto.viam.robot.v1.StopAllRequest.prototype.clearExtraList = function() {
+proto.viam.physicalDevice.v1.StopAllRequest.prototype.clearExtraList = function() {
   return this.setExtraList([]);
 };
 
@@ -6751,8 +6751,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.StopAllResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.StopAllResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.StopAllResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.StopAllResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -6761,11 +6761,11 @@ proto.viam.robot.v1.StopAllResponse.prototype.toObject = function(opt_includeIns
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.StopAllResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.StopAllResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StopAllResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.StopAllResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -6781,23 +6781,23 @@ proto.viam.robot.v1.StopAllResponse.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.StopAllResponse}
+ * @return {!proto.viam.physicalDevice.v1.StopAllResponse}
  */
-proto.viam.robot.v1.StopAllResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.StopAllResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.StopAllResponse;
-  return proto.viam.robot.v1.StopAllResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.StopAllResponse;
+  return proto.viam.physicalDevice.v1.StopAllResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.StopAllResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.StopAllResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.StopAllResponse}
+ * @return {!proto.viam.physicalDevice.v1.StopAllResponse}
  */
-proto.viam.robot.v1.StopAllResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.StopAllResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6817,9 +6817,9 @@ proto.viam.robot.v1.StopAllResponse.deserializeBinaryFromReader = function(msg, 
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.StopAllResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.StopAllResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.StopAllResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.StopAllResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6827,11 +6827,11 @@ proto.viam.robot.v1.StopAllResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.StopAllResponse} message
+ * @param {!proto.viam.physicalDevice.v1.StopAllResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StopAllResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.StopAllResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -6852,8 +6852,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.StartSessionRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.StartSessionRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.StartSessionRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.StartSessionRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -6862,11 +6862,11 @@ proto.viam.robot.v1.StartSessionRequest.prototype.toObject = function(opt_includ
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.StartSessionRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.StartSessionRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StartSessionRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.StartSessionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     resume: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
@@ -6882,23 +6882,23 @@ proto.viam.robot.v1.StartSessionRequest.toObject = function(includeInstance, msg
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.StartSessionRequest}
+ * @return {!proto.viam.physicalDevice.v1.StartSessionRequest}
  */
-proto.viam.robot.v1.StartSessionRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.StartSessionRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.StartSessionRequest;
-  return proto.viam.robot.v1.StartSessionRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.StartSessionRequest;
+  return proto.viam.physicalDevice.v1.StartSessionRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.StartSessionRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.StartSessionRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.StartSessionRequest}
+ * @return {!proto.viam.physicalDevice.v1.StartSessionRequest}
  */
-proto.viam.robot.v1.StartSessionRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.StartSessionRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6922,9 +6922,9 @@ proto.viam.robot.v1.StartSessionRequest.deserializeBinaryFromReader = function(m
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.StartSessionRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.StartSessionRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.StartSessionRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.StartSessionRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6932,11 +6932,11 @@ proto.viam.robot.v1.StartSessionRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.StartSessionRequest} message
+ * @param {!proto.viam.physicalDevice.v1.StartSessionRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StartSessionRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.StartSessionRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getResume();
   if (f.length > 0) {
@@ -6952,16 +6952,16 @@ proto.viam.robot.v1.StartSessionRequest.serializeBinaryToWriter = function(messa
  * optional string resume = 1;
  * @return {string}
  */
-proto.viam.robot.v1.StartSessionRequest.prototype.getResume = function() {
+proto.viam.physicalDevice.v1.StartSessionRequest.prototype.getResume = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.StartSessionRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.StartSessionRequest} returns this
  */
-proto.viam.robot.v1.StartSessionRequest.prototype.setResume = function(value) {
+proto.viam.physicalDevice.v1.StartSessionRequest.prototype.setResume = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -6982,8 +6982,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.StartSessionResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.StartSessionResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.StartSessionResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.StartSessionResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -6992,11 +6992,11 @@ proto.viam.robot.v1.StartSessionResponse.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.StartSessionResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.StartSessionResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StartSessionResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.StartSessionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     heartbeatWindow: (f = msg.getHeartbeatWindow()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
@@ -7013,23 +7013,23 @@ proto.viam.robot.v1.StartSessionResponse.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.StartSessionResponse}
+ * @return {!proto.viam.physicalDevice.v1.StartSessionResponse}
  */
-proto.viam.robot.v1.StartSessionResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.StartSessionResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.StartSessionResponse;
-  return proto.viam.robot.v1.StartSessionResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.StartSessionResponse;
+  return proto.viam.physicalDevice.v1.StartSessionResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.StartSessionResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.StartSessionResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.StartSessionResponse}
+ * @return {!proto.viam.physicalDevice.v1.StartSessionResponse}
  */
-proto.viam.robot.v1.StartSessionResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.StartSessionResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7058,9 +7058,9 @@ proto.viam.robot.v1.StartSessionResponse.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.StartSessionResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.StartSessionResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.StartSessionResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.StartSessionResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7068,11 +7068,11 @@ proto.viam.robot.v1.StartSessionResponse.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.StartSessionResponse} message
+ * @param {!proto.viam.physicalDevice.v1.StartSessionResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.StartSessionResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.StartSessionResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
@@ -7096,16 +7096,16 @@ proto.viam.robot.v1.StartSessionResponse.serializeBinaryToWriter = function(mess
  * optional string id = 1;
  * @return {string}
  */
-proto.viam.robot.v1.StartSessionResponse.prototype.getId = function() {
+proto.viam.physicalDevice.v1.StartSessionResponse.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.StartSessionResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.StartSessionResponse} returns this
  */
-proto.viam.robot.v1.StartSessionResponse.prototype.setId = function(value) {
+proto.viam.physicalDevice.v1.StartSessionResponse.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -7114,7 +7114,7 @@ proto.viam.robot.v1.StartSessionResponse.prototype.setId = function(value) {
  * optional google.protobuf.Duration heartbeat_window = 2;
  * @return {?proto.google.protobuf.Duration}
  */
-proto.viam.robot.v1.StartSessionResponse.prototype.getHeartbeatWindow = function() {
+proto.viam.physicalDevice.v1.StartSessionResponse.prototype.getHeartbeatWindow = function() {
   return /** @type{?proto.google.protobuf.Duration} */ (
     jspb.Message.getWrapperField(this, google_protobuf_duration_pb.Duration, 2));
 };
@@ -7122,18 +7122,18 @@ proto.viam.robot.v1.StartSessionResponse.prototype.getHeartbeatWindow = function
 
 /**
  * @param {?proto.google.protobuf.Duration|undefined} value
- * @return {!proto.viam.robot.v1.StartSessionResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.StartSessionResponse} returns this
 */
-proto.viam.robot.v1.StartSessionResponse.prototype.setHeartbeatWindow = function(value) {
+proto.viam.physicalDevice.v1.StartSessionResponse.prototype.setHeartbeatWindow = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.StartSessionResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.StartSessionResponse} returns this
  */
-proto.viam.robot.v1.StartSessionResponse.prototype.clearHeartbeatWindow = function() {
+proto.viam.physicalDevice.v1.StartSessionResponse.prototype.clearHeartbeatWindow = function() {
   return this.setHeartbeatWindow(undefined);
 };
 
@@ -7142,7 +7142,7 @@ proto.viam.robot.v1.StartSessionResponse.prototype.clearHeartbeatWindow = functi
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.StartSessionResponse.prototype.hasHeartbeatWindow = function() {
+proto.viam.physicalDevice.v1.StartSessionResponse.prototype.hasHeartbeatWindow = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -7163,8 +7163,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.SendSessionHeartbeatRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.SendSessionHeartbeatRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -7173,11 +7173,11 @@ proto.viam.robot.v1.SendSessionHeartbeatRequest.prototype.toObject = function(op
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.SendSessionHeartbeatRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.SendSessionHeartbeatRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
@@ -7193,23 +7193,23 @@ proto.viam.robot.v1.SendSessionHeartbeatRequest.toObject = function(includeInsta
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.SendSessionHeartbeatRequest}
+ * @return {!proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest}
  */
-proto.viam.robot.v1.SendSessionHeartbeatRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.SendSessionHeartbeatRequest;
-  return proto.viam.robot.v1.SendSessionHeartbeatRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest;
+  return proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.SendSessionHeartbeatRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.SendSessionHeartbeatRequest}
+ * @return {!proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest}
  */
-proto.viam.robot.v1.SendSessionHeartbeatRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7233,9 +7233,9 @@ proto.viam.robot.v1.SendSessionHeartbeatRequest.deserializeBinaryFromReader = fu
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.SendSessionHeartbeatRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.SendSessionHeartbeatRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7243,11 +7243,11 @@ proto.viam.robot.v1.SendSessionHeartbeatRequest.prototype.serializeBinary = func
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.SendSessionHeartbeatRequest} message
+ * @param {!proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.SendSessionHeartbeatRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
@@ -7263,16 +7263,16 @@ proto.viam.robot.v1.SendSessionHeartbeatRequest.serializeBinaryToWriter = functi
  * optional string id = 1;
  * @return {string}
  */
-proto.viam.robot.v1.SendSessionHeartbeatRequest.prototype.getId = function() {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.SendSessionHeartbeatRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest} returns this
  */
-proto.viam.robot.v1.SendSessionHeartbeatRequest.prototype.setId = function(value) {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -7293,8 +7293,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.SendSessionHeartbeatResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.SendSessionHeartbeatResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -7303,11 +7303,11 @@ proto.viam.robot.v1.SendSessionHeartbeatResponse.prototype.toObject = function(o
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.SendSessionHeartbeatResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.SendSessionHeartbeatResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -7323,23 +7323,23 @@ proto.viam.robot.v1.SendSessionHeartbeatResponse.toObject = function(includeInst
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.SendSessionHeartbeatResponse}
+ * @return {!proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse}
  */
-proto.viam.robot.v1.SendSessionHeartbeatResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.SendSessionHeartbeatResponse;
-  return proto.viam.robot.v1.SendSessionHeartbeatResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse;
+  return proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.SendSessionHeartbeatResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.SendSessionHeartbeatResponse}
+ * @return {!proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse}
  */
-proto.viam.robot.v1.SendSessionHeartbeatResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7359,9 +7359,9 @@ proto.viam.robot.v1.SendSessionHeartbeatResponse.deserializeBinaryFromReader = f
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.SendSessionHeartbeatResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.SendSessionHeartbeatResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7369,11 +7369,11 @@ proto.viam.robot.v1.SendSessionHeartbeatResponse.prototype.serializeBinary = fun
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.SendSessionHeartbeatResponse} message
+ * @param {!proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.SendSessionHeartbeatResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.SendSessionHeartbeatResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -7384,7 +7384,7 @@ proto.viam.robot.v1.SendSessionHeartbeatResponse.serializeBinaryToWriter = funct
  * @private {!Array<number>}
  * @const
  */
-proto.viam.robot.v1.LogRequest.repeatedFields_ = [1];
+proto.viam.physicalDevice.v1.LogRequest.repeatedFields_ = [1];
 
 
 
@@ -7401,8 +7401,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.LogRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.LogRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.LogRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.LogRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -7411,11 +7411,11 @@ proto.viam.robot.v1.LogRequest.prototype.toObject = function(opt_includeInstance
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.LogRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.LogRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.LogRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.LogRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     logsList: jspb.Message.toObjectList(msg.getLogsList(),
     common_v1_common_pb.LogEntry.toObject, includeInstance)
@@ -7432,23 +7432,23 @@ proto.viam.robot.v1.LogRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.LogRequest}
+ * @return {!proto.viam.physicalDevice.v1.LogRequest}
  */
-proto.viam.robot.v1.LogRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.LogRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.LogRequest;
-  return proto.viam.robot.v1.LogRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.LogRequest;
+  return proto.viam.physicalDevice.v1.LogRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.LogRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.LogRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.LogRequest}
+ * @return {!proto.viam.physicalDevice.v1.LogRequest}
  */
-proto.viam.robot.v1.LogRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.LogRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7473,9 +7473,9 @@ proto.viam.robot.v1.LogRequest.deserializeBinaryFromReader = function(msg, reade
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.LogRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.LogRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.LogRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.LogRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7483,11 +7483,11 @@ proto.viam.robot.v1.LogRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.LogRequest} message
+ * @param {!proto.viam.physicalDevice.v1.LogRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.LogRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.LogRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getLogsList();
   if (f.length > 0) {
@@ -7504,7 +7504,7 @@ proto.viam.robot.v1.LogRequest.serializeBinaryToWriter = function(message, write
  * repeated viam.common.v1.LogEntry logs = 1;
  * @return {!Array<!proto.viam.common.v1.LogEntry>}
  */
-proto.viam.robot.v1.LogRequest.prototype.getLogsList = function() {
+proto.viam.physicalDevice.v1.LogRequest.prototype.getLogsList = function() {
   return /** @type{!Array<!proto.viam.common.v1.LogEntry>} */ (
     jspb.Message.getRepeatedWrapperField(this, common_v1_common_pb.LogEntry, 1));
 };
@@ -7512,9 +7512,9 @@ proto.viam.robot.v1.LogRequest.prototype.getLogsList = function() {
 
 /**
  * @param {!Array<!proto.viam.common.v1.LogEntry>} value
- * @return {!proto.viam.robot.v1.LogRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.LogRequest} returns this
 */
-proto.viam.robot.v1.LogRequest.prototype.setLogsList = function(value) {
+proto.viam.physicalDevice.v1.LogRequest.prototype.setLogsList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -7524,16 +7524,16 @@ proto.viam.robot.v1.LogRequest.prototype.setLogsList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.viam.common.v1.LogEntry}
  */
-proto.viam.robot.v1.LogRequest.prototype.addLogs = function(opt_value, opt_index) {
+proto.viam.physicalDevice.v1.LogRequest.prototype.addLogs = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.common.v1.LogEntry, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.viam.robot.v1.LogRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.LogRequest} returns this
  */
-proto.viam.robot.v1.LogRequest.prototype.clearLogsList = function() {
+proto.viam.physicalDevice.v1.LogRequest.prototype.clearLogsList = function() {
   return this.setLogsList([]);
 };
 
@@ -7554,8 +7554,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.LogResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.LogResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.LogResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.LogResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -7564,11 +7564,11 @@ proto.viam.robot.v1.LogResponse.prototype.toObject = function(opt_includeInstanc
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.LogResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.LogResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.LogResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.LogResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -7584,23 +7584,23 @@ proto.viam.robot.v1.LogResponse.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.LogResponse}
+ * @return {!proto.viam.physicalDevice.v1.LogResponse}
  */
-proto.viam.robot.v1.LogResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.LogResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.LogResponse;
-  return proto.viam.robot.v1.LogResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.LogResponse;
+  return proto.viam.physicalDevice.v1.LogResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.LogResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.LogResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.LogResponse}
+ * @return {!proto.viam.physicalDevice.v1.LogResponse}
  */
-proto.viam.robot.v1.LogResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.LogResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7620,9 +7620,9 @@ proto.viam.robot.v1.LogResponse.deserializeBinaryFromReader = function(msg, read
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.LogResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.LogResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.LogResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.LogResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7630,11 +7630,11 @@ proto.viam.robot.v1.LogResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.LogResponse} message
+ * @param {!proto.viam.physicalDevice.v1.LogResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.LogResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.LogResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -7655,8 +7655,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.GetCloudMetadataRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.GetCloudMetadataRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.GetCloudMetadataRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.GetCloudMetadataRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -7665,11 +7665,11 @@ proto.viam.robot.v1.GetCloudMetadataRequest.prototype.toObject = function(opt_in
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.GetCloudMetadataRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.GetCloudMetadataRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetCloudMetadataRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.GetCloudMetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -7685,23 +7685,23 @@ proto.viam.robot.v1.GetCloudMetadataRequest.toObject = function(includeInstance,
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.GetCloudMetadataRequest}
+ * @return {!proto.viam.physicalDevice.v1.GetCloudMetadataRequest}
  */
-proto.viam.robot.v1.GetCloudMetadataRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.GetCloudMetadataRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.GetCloudMetadataRequest;
-  return proto.viam.robot.v1.GetCloudMetadataRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.GetCloudMetadataRequest;
+  return proto.viam.physicalDevice.v1.GetCloudMetadataRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.GetCloudMetadataRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.GetCloudMetadataRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.GetCloudMetadataRequest}
+ * @return {!proto.viam.physicalDevice.v1.GetCloudMetadataRequest}
  */
-proto.viam.robot.v1.GetCloudMetadataRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.GetCloudMetadataRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7721,9 +7721,9 @@ proto.viam.robot.v1.GetCloudMetadataRequest.deserializeBinaryFromReader = functi
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.GetCloudMetadataRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.GetCloudMetadataRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.GetCloudMetadataRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.GetCloudMetadataRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7731,11 +7731,11 @@ proto.viam.robot.v1.GetCloudMetadataRequest.prototype.serializeBinary = function
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.GetCloudMetadataRequest} message
+ * @param {!proto.viam.physicalDevice.v1.GetCloudMetadataRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetCloudMetadataRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.GetCloudMetadataRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -7756,8 +7756,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.GetCloudMetadataResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.GetCloudMetadataResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -7766,17 +7766,17 @@ proto.viam.robot.v1.GetCloudMetadataResponse.prototype.toObject = function(opt_i
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.GetCloudMetadataResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.GetCloudMetadataResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    robotPartId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    physicalDevicePartId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     primaryOrgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     locationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    machineId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    machinePartId: jspb.Message.getFieldWithDefault(msg, 5, "")
+    physicalDeviceId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    physicalDevicePartId: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -7790,23 +7790,23 @@ proto.viam.robot.v1.GetCloudMetadataResponse.toObject = function(includeInstance
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.GetCloudMetadataResponse}
+ * @return {!proto.viam.physicalDevice.v1.GetCloudMetadataResponse}
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.GetCloudMetadataResponse;
-  return proto.viam.robot.v1.GetCloudMetadataResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.GetCloudMetadataResponse;
+  return proto.viam.physicalDevice.v1.GetCloudMetadataResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.GetCloudMetadataResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.GetCloudMetadataResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.GetCloudMetadataResponse}
+ * @return {!proto.viam.physicalDevice.v1.GetCloudMetadataResponse}
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7815,7 +7815,7 @@ proto.viam.robot.v1.GetCloudMetadataResponse.deserializeBinaryFromReader = funct
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRobotPartId(value);
+      msg.setphysicalDevicePartId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -7827,11 +7827,11 @@ proto.viam.robot.v1.GetCloudMetadataResponse.deserializeBinaryFromReader = funct
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setMachineId(value);
+      msg.setphysicalDeviceId(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setMachinePartId(value);
+      msg.setphysicalDevicePartId(value);
       break;
     default:
       reader.skipField();
@@ -7846,9 +7846,9 @@ proto.viam.robot.v1.GetCloudMetadataResponse.deserializeBinaryFromReader = funct
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.GetCloudMetadataResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.GetCloudMetadataResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7856,13 +7856,13 @@ proto.viam.robot.v1.GetCloudMetadataResponse.prototype.serializeBinary = functio
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.GetCloudMetadataResponse} message
+ * @param {!proto.viam.physicalDevice.v1.GetCloudMetadataResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRobotPartId();
+  f = message.getphysicalDevicePartId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -7883,14 +7883,14 @@ proto.viam.robot.v1.GetCloudMetadataResponse.serializeBinaryToWriter = function(
       f
     );
   }
-  f = message.getMachineId();
+  f = message.getphysicalDeviceId();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getMachinePartId();
+  f = message.getphysicalDevicePartId();
   if (f.length > 0) {
     writer.writeString(
       5,
@@ -7901,19 +7901,19 @@ proto.viam.robot.v1.GetCloudMetadataResponse.serializeBinaryToWriter = function(
 
 
 /**
- * optional string robot_part_id = 1;
+ * optional string physicalDevice_part_id = 1;
  * @return {string}
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.getRobotPartId = function() {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.prototype.getphysicalDevicePartId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.GetCloudMetadataResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.GetCloudMetadataResponse} returns this
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.setRobotPartId = function(value) {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.prototype.setphysicalDevicePartId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -7922,16 +7922,16 @@ proto.viam.robot.v1.GetCloudMetadataResponse.prototype.setRobotPartId = function
  * optional string primary_org_id = 2;
  * @return {string}
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.getPrimaryOrgId = function() {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.prototype.getPrimaryOrgId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.GetCloudMetadataResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.GetCloudMetadataResponse} returns this
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.setPrimaryOrgId = function(value) {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.prototype.setPrimaryOrgId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -7940,52 +7940,52 @@ proto.viam.robot.v1.GetCloudMetadataResponse.prototype.setPrimaryOrgId = functio
  * optional string location_id = 3;
  * @return {string}
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.getLocationId = function() {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.prototype.getLocationId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.GetCloudMetadataResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.GetCloudMetadataResponse} returns this
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.setLocationId = function(value) {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.prototype.setLocationId = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string machine_id = 4;
+ * optional string physicalDevice_id = 4;
  * @return {string}
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.getMachineId = function() {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.prototype.getphysicalDeviceId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.GetCloudMetadataResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.GetCloudMetadataResponse} returns this
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.setMachineId = function(value) {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.prototype.setphysicalDeviceId = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string machine_part_id = 5;
+ * optional string physicalDevice_part_id = 5;
  * @return {string}
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.getMachinePartId = function() {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.prototype.getphysicalDevicePartId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.GetCloudMetadataResponse} returns this
+ * @return {!proto.viam.physicalDevice.v1.GetCloudMetadataResponse} returns this
  */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.setMachinePartId = function(value) {
+proto.viam.physicalDevice.v1.GetCloudMetadataResponse.prototype.setphysicalDevicePartId = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -7999,22 +7999,22 @@ proto.viam.robot.v1.GetCloudMetadataResponse.prototype.setMachinePartId = functi
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.viam.robot.v1.RestartModuleRequest.oneofGroups_ = [[1,2]];
+proto.viam.physicalDevice.v1.RestartModuleRequest.oneofGroups_ = [[1,2]];
 
 /**
  * @enum {number}
  */
-proto.viam.robot.v1.RestartModuleRequest.IdOrNameCase = {
+proto.viam.physicalDevice.v1.RestartModuleRequest.IdOrNameCase = {
   ID_OR_NAME_NOT_SET: 0,
   MODULE_ID: 1,
   MODULE_NAME: 2
 };
 
 /**
- * @return {proto.viam.robot.v1.RestartModuleRequest.IdOrNameCase}
+ * @return {proto.viam.physicalDevice.v1.RestartModuleRequest.IdOrNameCase}
  */
-proto.viam.robot.v1.RestartModuleRequest.prototype.getIdOrNameCase = function() {
-  return /** @type {proto.viam.robot.v1.RestartModuleRequest.IdOrNameCase} */(jspb.Message.computeOneofCase(this, proto.viam.robot.v1.RestartModuleRequest.oneofGroups_[0]));
+proto.viam.physicalDevice.v1.RestartModuleRequest.prototype.getIdOrNameCase = function() {
+  return /** @type {proto.viam.physicalDevice.v1.RestartModuleRequest.IdOrNameCase} */(jspb.Message.computeOneofCase(this, proto.viam.physicalDevice.v1.RestartModuleRequest.oneofGroups_[0]));
 };
 
 
@@ -8032,8 +8032,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.RestartModuleRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.RestartModuleRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.RestartModuleRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.RestartModuleRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -8042,11 +8042,11 @@ proto.viam.robot.v1.RestartModuleRequest.prototype.toObject = function(opt_inclu
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.RestartModuleRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.RestartModuleRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.RestartModuleRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.RestartModuleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     moduleName: jspb.Message.getFieldWithDefault(msg, 2, "")
@@ -8063,23 +8063,23 @@ proto.viam.robot.v1.RestartModuleRequest.toObject = function(includeInstance, ms
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.RestartModuleRequest}
+ * @return {!proto.viam.physicalDevice.v1.RestartModuleRequest}
  */
-proto.viam.robot.v1.RestartModuleRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.RestartModuleRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.RestartModuleRequest;
-  return proto.viam.robot.v1.RestartModuleRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.RestartModuleRequest;
+  return proto.viam.physicalDevice.v1.RestartModuleRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.RestartModuleRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.RestartModuleRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.RestartModuleRequest}
+ * @return {!proto.viam.physicalDevice.v1.RestartModuleRequest}
  */
-proto.viam.robot.v1.RestartModuleRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.RestartModuleRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -8107,9 +8107,9 @@ proto.viam.robot.v1.RestartModuleRequest.deserializeBinaryFromReader = function(
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.RestartModuleRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.RestartModuleRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.RestartModuleRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.RestartModuleRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -8117,11 +8117,11 @@ proto.viam.robot.v1.RestartModuleRequest.prototype.serializeBinary = function() 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.RestartModuleRequest} message
+ * @param {!proto.viam.physicalDevice.v1.RestartModuleRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.RestartModuleRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.RestartModuleRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = /** @type {string} */ (jspb.Message.getField(message, 1));
   if (f != null) {
@@ -8144,26 +8144,26 @@ proto.viam.robot.v1.RestartModuleRequest.serializeBinaryToWriter = function(mess
  * optional string module_id = 1;
  * @return {string}
  */
-proto.viam.robot.v1.RestartModuleRequest.prototype.getModuleId = function() {
+proto.viam.physicalDevice.v1.RestartModuleRequest.prototype.getModuleId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.RestartModuleRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.RestartModuleRequest} returns this
  */
-proto.viam.robot.v1.RestartModuleRequest.prototype.setModuleId = function(value) {
-  return jspb.Message.setOneofField(this, 1, proto.viam.robot.v1.RestartModuleRequest.oneofGroups_[0], value);
+proto.viam.physicalDevice.v1.RestartModuleRequest.prototype.setModuleId = function(value) {
+  return jspb.Message.setOneofField(this, 1, proto.viam.physicalDevice.v1.RestartModuleRequest.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the field making it undefined.
- * @return {!proto.viam.robot.v1.RestartModuleRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.RestartModuleRequest} returns this
  */
-proto.viam.robot.v1.RestartModuleRequest.prototype.clearModuleId = function() {
-  return jspb.Message.setOneofField(this, 1, proto.viam.robot.v1.RestartModuleRequest.oneofGroups_[0], undefined);
+proto.viam.physicalDevice.v1.RestartModuleRequest.prototype.clearModuleId = function() {
+  return jspb.Message.setOneofField(this, 1, proto.viam.physicalDevice.v1.RestartModuleRequest.oneofGroups_[0], undefined);
 };
 
 
@@ -8171,7 +8171,7 @@ proto.viam.robot.v1.RestartModuleRequest.prototype.clearModuleId = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.RestartModuleRequest.prototype.hasModuleId = function() {
+proto.viam.physicalDevice.v1.RestartModuleRequest.prototype.hasModuleId = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -8180,26 +8180,26 @@ proto.viam.robot.v1.RestartModuleRequest.prototype.hasModuleId = function() {
  * optional string module_name = 2;
  * @return {string}
  */
-proto.viam.robot.v1.RestartModuleRequest.prototype.getModuleName = function() {
+proto.viam.physicalDevice.v1.RestartModuleRequest.prototype.getModuleName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.viam.robot.v1.RestartModuleRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.RestartModuleRequest} returns this
  */
-proto.viam.robot.v1.RestartModuleRequest.prototype.setModuleName = function(value) {
-  return jspb.Message.setOneofField(this, 2, proto.viam.robot.v1.RestartModuleRequest.oneofGroups_[0], value);
+proto.viam.physicalDevice.v1.RestartModuleRequest.prototype.setModuleName = function(value) {
+  return jspb.Message.setOneofField(this, 2, proto.viam.physicalDevice.v1.RestartModuleRequest.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the field making it undefined.
- * @return {!proto.viam.robot.v1.RestartModuleRequest} returns this
+ * @return {!proto.viam.physicalDevice.v1.RestartModuleRequest} returns this
  */
-proto.viam.robot.v1.RestartModuleRequest.prototype.clearModuleName = function() {
-  return jspb.Message.setOneofField(this, 2, proto.viam.robot.v1.RestartModuleRequest.oneofGroups_[0], undefined);
+proto.viam.physicalDevice.v1.RestartModuleRequest.prototype.clearModuleName = function() {
+  return jspb.Message.setOneofField(this, 2, proto.viam.physicalDevice.v1.RestartModuleRequest.oneofGroups_[0], undefined);
 };
 
 
@@ -8207,7 +8207,7 @@ proto.viam.robot.v1.RestartModuleRequest.prototype.clearModuleName = function() 
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.robot.v1.RestartModuleRequest.prototype.hasModuleName = function() {
+proto.viam.physicalDevice.v1.RestartModuleRequest.prototype.hasModuleName = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -8228,8 +8228,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.RestartModuleResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.RestartModuleResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.RestartModuleResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.RestartModuleResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -8238,11 +8238,11 @@ proto.viam.robot.v1.RestartModuleResponse.prototype.toObject = function(opt_incl
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.RestartModuleResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.RestartModuleResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.RestartModuleResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.RestartModuleResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -8258,23 +8258,23 @@ proto.viam.robot.v1.RestartModuleResponse.toObject = function(includeInstance, m
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.RestartModuleResponse}
+ * @return {!proto.viam.physicalDevice.v1.RestartModuleResponse}
  */
-proto.viam.robot.v1.RestartModuleResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.RestartModuleResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.RestartModuleResponse;
-  return proto.viam.robot.v1.RestartModuleResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.RestartModuleResponse;
+  return proto.viam.physicalDevice.v1.RestartModuleResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.RestartModuleResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.RestartModuleResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.RestartModuleResponse}
+ * @return {!proto.viam.physicalDevice.v1.RestartModuleResponse}
  */
-proto.viam.robot.v1.RestartModuleResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.RestartModuleResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -8294,9 +8294,9 @@ proto.viam.robot.v1.RestartModuleResponse.deserializeBinaryFromReader = function
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.RestartModuleResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.RestartModuleResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.RestartModuleResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.RestartModuleResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -8304,11 +8304,11 @@ proto.viam.robot.v1.RestartModuleResponse.prototype.serializeBinary = function()
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.RestartModuleResponse} message
+ * @param {!proto.viam.physicalDevice.v1.RestartModuleResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.RestartModuleResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.RestartModuleResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -8329,8 +8329,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.ShutdownRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.ShutdownRequest.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.ShutdownRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.ShutdownRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -8339,11 +8339,11 @@ proto.viam.robot.v1.ShutdownRequest.prototype.toObject = function(opt_includeIns
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.ShutdownRequest} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.ShutdownRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ShutdownRequest.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.ShutdownRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -8359,23 +8359,23 @@ proto.viam.robot.v1.ShutdownRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.ShutdownRequest}
+ * @return {!proto.viam.physicalDevice.v1.ShutdownRequest}
  */
-proto.viam.robot.v1.ShutdownRequest.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.ShutdownRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.ShutdownRequest;
-  return proto.viam.robot.v1.ShutdownRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.ShutdownRequest;
+  return proto.viam.physicalDevice.v1.ShutdownRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.ShutdownRequest} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.ShutdownRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.ShutdownRequest}
+ * @return {!proto.viam.physicalDevice.v1.ShutdownRequest}
  */
-proto.viam.robot.v1.ShutdownRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.ShutdownRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -8395,9 +8395,9 @@ proto.viam.robot.v1.ShutdownRequest.deserializeBinaryFromReader = function(msg, 
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.ShutdownRequest.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.ShutdownRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.ShutdownRequest.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.ShutdownRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -8405,11 +8405,11 @@ proto.viam.robot.v1.ShutdownRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.ShutdownRequest} message
+ * @param {!proto.viam.physicalDevice.v1.ShutdownRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ShutdownRequest.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.ShutdownRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -8430,8 +8430,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.viam.robot.v1.ShutdownResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.viam.robot.v1.ShutdownResponse.toObject(opt_includeInstance, this);
+proto.viam.physicalDevice.v1.ShutdownResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.physicalDevice.v1.ShutdownResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -8440,11 +8440,11 @@ proto.viam.robot.v1.ShutdownResponse.prototype.toObject = function(opt_includeIn
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.viam.robot.v1.ShutdownResponse} msg The msg instance to transform.
+ * @param {!proto.viam.physicalDevice.v1.ShutdownResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ShutdownResponse.toObject = function(includeInstance, msg) {
+proto.viam.physicalDevice.v1.ShutdownResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
 
   };
@@ -8460,23 +8460,23 @@ proto.viam.robot.v1.ShutdownResponse.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.viam.robot.v1.ShutdownResponse}
+ * @return {!proto.viam.physicalDevice.v1.ShutdownResponse}
  */
-proto.viam.robot.v1.ShutdownResponse.deserializeBinary = function(bytes) {
+proto.viam.physicalDevice.v1.ShutdownResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.viam.robot.v1.ShutdownResponse;
-  return proto.viam.robot.v1.ShutdownResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.viam.physicalDevice.v1.ShutdownResponse;
+  return proto.viam.physicalDevice.v1.ShutdownResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.viam.robot.v1.ShutdownResponse} msg The message object to deserialize into.
+ * @param {!proto.viam.physicalDevice.v1.ShutdownResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.viam.robot.v1.ShutdownResponse}
+ * @return {!proto.viam.physicalDevice.v1.ShutdownResponse}
  */
-proto.viam.robot.v1.ShutdownResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.viam.physicalDevice.v1.ShutdownResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -8496,9 +8496,9 @@ proto.viam.robot.v1.ShutdownResponse.deserializeBinaryFromReader = function(msg,
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.ShutdownResponse.prototype.serializeBinary = function() {
+proto.viam.physicalDevice.v1.ShutdownResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.viam.robot.v1.ShutdownResponse.serializeBinaryToWriter(this, writer);
+  proto.viam.physicalDevice.v1.ShutdownResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -8506,11 +8506,11 @@ proto.viam.robot.v1.ShutdownResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.viam.robot.v1.ShutdownResponse} message
+ * @param {!proto.viam.physicalDevice.v1.ShutdownResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.viam.robot.v1.ShutdownResponse.serializeBinaryToWriter = function(message, writer) {
+proto.viam.physicalDevice.v1.ShutdownResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -8518,10 +8518,10 @@ proto.viam.robot.v1.ShutdownResponse.serializeBinaryToWriter = function(message,
 /**
  * @enum {number}
  */
-proto.viam.robot.v1.PeerConnectionType = {
+proto.viam.physicalDevice.v1.PeerConnectionType = {
   PEER_CONNECTION_TYPE_UNSPECIFIED: 0,
   PEER_CONNECTION_TYPE_GRPC: 1,
   PEER_CONNECTION_TYPE_WEBRTC: 2
 };
 
-goog.object.extend(exports, proto.viam.robot.v1);
+goog.object.extend(exports, proto.viam.physicalDevice.v1);

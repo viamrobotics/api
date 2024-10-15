@@ -27,8 +27,8 @@ const (
 // The states that a plan can be in.
 // InProgress if the plan is executing.
 // Stopped if the plan was stopped.
-// Suceeded if the robot reached its destination successfully.
-// Failed if the robot did not reach its destination.
+// Suceeded if the physicalDevice reached its destination successfully.
+// Failed if the physicalDevice did not reach its destination.
 type PlanState int32
 
 const (
@@ -84,7 +84,7 @@ func (PlanState) EnumDescriptor() ([]byte, []int) {
 	return file_service_motion_v1_motion_proto_rawDescGZIP(), []int{0}
 }
 
-// Moves any component on the robot to a specified destination which can be from the reference frame of any other component on the robot.
+// Moves any component on the physicalDevice to a specified destination which can be from the reference frame of any other component on the physicalDevice.
 type MoveRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -92,14 +92,14 @@ type MoveRequest struct {
 
 	// Name of the motion service
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Destination to move to, which can a pose in the reference frame of any frame in the robot's frame system
+	// Destination to move to, which can a pose in the reference frame of any frame in the physicalDevice's frame system
 	Destination *v1.PoseInFrame `protobuf:"bytes,2,opt,name=destination,proto3" json:"destination,omitempty"`
-	// Component on the robot to move to the specified destination
+	// Component on the physicalDevice to move to the specified destination
 	ComponentName *v1.ResourceName `protobuf:"bytes,3,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
 	// Avoid obstacles by specifying their geometries in the world state
-	// Augment the frame system of the robot by specifying additional transforms to add to it for the duration of the Move
+	// Augment the frame system of the physicalDevice by specifying additional transforms to add to it for the duration of the Move
 	WorldState *v1.WorldState `protobuf:"bytes,4,opt,name=world_state,json=worldState,proto3,oneof" json:"world_state,omitempty"`
-	// Constrain the way the robot will move
+	// Constrain the way the physicalDevice will move
 	Constraints *Constraints `protobuf:"bytes,5,opt,name=constraints,proto3,oneof" json:"constraints,omitempty"`
 	// Additional arguments to the method
 	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
@@ -235,7 +235,7 @@ type MoveOnMapRequest struct {
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Specify a destination to, which can be any pose with respect to the SLAM map's origin
 	Destination *v1.Pose `protobuf:"bytes,2,opt,name=destination,proto3" json:"destination,omitempty"`
-	// Component on the robot to move to the specified destination
+	// Component on the physicalDevice to move to the specified destination
 	ComponentName *v1.ResourceName `protobuf:"bytes,3,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
 	// Name of the slam service from which the SLAM map is requested
 	SlamServiceName *v1.ResourceName `protobuf:"bytes,4,opt,name=slam_service_name,json=slamServiceName,proto3" json:"slam_service_name,omitempty"`
@@ -441,11 +441,11 @@ type MotionConfiguration struct {
 
 	// The ObstacleDetectors that will be used for transient obstacle avoidance
 	ObstacleDetectors []*ObstacleDetector `protobuf:"bytes,1,rep,name=obstacle_detectors,json=obstacleDetectors,proto3" json:"obstacle_detectors,omitempty"`
-	// Sets the frequency to poll for the position of the robot
+	// Sets the frequency to poll for the position of the physicalDevice
 	PositionPollingFrequencyHz *float64 `protobuf:"fixed64,2,opt,name=position_polling_frequency_hz,json=positionPollingFrequencyHz,proto3,oneof" json:"position_polling_frequency_hz,omitempty"`
 	// Sets the frequency to poll the vision service(s) for new obstacles
 	ObstaclePollingFrequencyHz *float64 `protobuf:"fixed64,3,opt,name=obstacle_polling_frequency_hz,json=obstaclePollingFrequencyHz,proto3,oneof" json:"obstacle_polling_frequency_hz,omitempty"`
-	// Sets the distance in meters that a robot is allowed to deviate from the motion plan
+	// Sets the distance in meters that a physicalDevice is allowed to deviate from the motion plan
 	PlanDeviationM *float64 `protobuf:"fixed64,4,opt,name=plan_deviation_m,json=planDeviationM,proto3,oneof" json:"plan_deviation_m,omitempty"`
 	// Optional linear velocity to target when moving
 	LinearMPerSec *float64 `protobuf:"fixed64,5,opt,name=linear_m_per_sec,json=linearMPerSec,proto3,oneof" json:"linear_m_per_sec,omitempty"`
@@ -538,15 +538,15 @@ type MoveOnGlobeRequest struct {
 	Destination *v1.GeoPoint `protobuf:"bytes,2,opt,name=destination,proto3" json:"destination,omitempty"`
 	// Optional compass heading to achieve at the destination, in degrees [0-360)
 	Heading *float64 `protobuf:"fixed64,3,opt,name=heading,proto3,oneof" json:"heading,omitempty"`
-	// Component on the robot to move to the specified destination
+	// Component on the physicalDevice to move to the specified destination
 	ComponentName *v1.ResourceName `protobuf:"bytes,4,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
-	// Name of the movement sensor which will be used to check robot location
+	// Name of the movement sensor which will be used to check physicalDevice location
 	MovementSensorName *v1.ResourceName `protobuf:"bytes,5,opt,name=movement_sensor_name,json=movementSensorName,proto3" json:"movement_sensor_name,omitempty"`
 	// Obstacles to be considered for motion planning
 	Obstacles []*v1.GeoGeometry `protobuf:"bytes,6,rep,name=obstacles,proto3" json:"obstacles,omitempty"`
 	// Optional set of motion configuration options
 	MotionConfiguration *MotionConfiguration `protobuf:"bytes,7,opt,name=motion_configuration,json=motionConfiguration,proto3,oneof" json:"motion_configuration,omitempty"`
-	// Set of obstacles which the robot must remain within while navigating
+	// Set of obstacles which the physicalDevice must remain within while navigating
 	BoundingRegions []*v1.GeoGeometry `protobuf:"bytes,8,rep,name=bounding_regions,json=boundingRegions,proto3" json:"bounding_regions,omitempty"`
 	// Additional arguments to the method
 	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
@@ -1369,7 +1369,7 @@ func (x *OrientationConstraint) GetOrientationToleranceDegs() float32 {
 	return 0
 }
 
-// CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot
+// CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the physicalDevice
 type CollisionSpecification struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

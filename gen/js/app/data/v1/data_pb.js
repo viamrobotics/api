@@ -1428,8 +1428,8 @@ proto.viam.app.data.v1.Filter.toObject = function(includeInstance, msg) {
     componentName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     componentType: jspb.Message.getFieldWithDefault(msg, 2, ""),
     method: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    robotName: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    robotId: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    physicalDeviceName: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    physicalDeviceId: jspb.Message.getFieldWithDefault(msg, 7, ""),
     partName: jspb.Message.getFieldWithDefault(msg, 8, ""),
     partId: jspb.Message.getFieldWithDefault(msg, 9, ""),
     locationIdsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
@@ -1489,11 +1489,11 @@ proto.viam.app.data.v1.Filter.deserializeBinaryFromReader = function(msg, reader
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRobotName(value);
+      msg.setphysicalDeviceName(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRobotId(value);
+      msg.setphysicalDeviceId(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
@@ -1583,14 +1583,14 @@ proto.viam.app.data.v1.Filter.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getRobotName();
+  f = message.getphysicalDeviceName();
   if (f.length > 0) {
     writer.writeString(
       6,
       f
     );
   }
-  f = message.getRobotId();
+  f = message.getphysicalDeviceId();
   if (f.length > 0) {
     writer.writeString(
       7,
@@ -1720,10 +1720,10 @@ proto.viam.app.data.v1.Filter.prototype.setMethod = function(value) {
 
 
 /**
- * optional string robot_name = 6;
+ * optional string physicalDevice_name = 6;
  * @return {string}
  */
-proto.viam.app.data.v1.Filter.prototype.getRobotName = function() {
+proto.viam.app.data.v1.Filter.prototype.getphysicalDeviceName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -1732,16 +1732,16 @@ proto.viam.app.data.v1.Filter.prototype.getRobotName = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.Filter} returns this
  */
-proto.viam.app.data.v1.Filter.prototype.setRobotName = function(value) {
+proto.viam.app.data.v1.Filter.prototype.setphysicalDeviceName = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional string robot_id = 7;
+ * optional string physicalDevice_id = 7;
  * @return {string}
  */
-proto.viam.app.data.v1.Filter.prototype.getRobotId = function() {
+proto.viam.app.data.v1.Filter.prototype.getphysicalDeviceId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -1750,7 +1750,7 @@ proto.viam.app.data.v1.Filter.prototype.getRobotId = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.Filter} returns this
  */
-proto.viam.app.data.v1.Filter.prototype.setRobotId = function(value) {
+proto.viam.app.data.v1.Filter.prototype.setphysicalDeviceId = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
@@ -2258,8 +2258,8 @@ proto.viam.app.data.v1.CaptureMetadata.toObject = function(includeInstance, msg)
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     locationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    robotName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    robotId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    physicalDeviceName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    physicalDeviceId: jspb.Message.getFieldWithDefault(msg, 4, ""),
     partName: jspb.Message.getFieldWithDefault(msg, 5, ""),
     partId: jspb.Message.getFieldWithDefault(msg, 6, ""),
     componentType: jspb.Message.getFieldWithDefault(msg, 7, ""),
@@ -2314,11 +2314,11 @@ proto.viam.app.data.v1.CaptureMetadata.deserializeBinaryFromReader = function(ms
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRobotName(value);
+      msg.setphysicalDeviceName(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRobotId(value);
+      msg.setphysicalDeviceId(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -2397,14 +2397,14 @@ proto.viam.app.data.v1.CaptureMetadata.serializeBinaryToWriter = function(messag
       f
     );
   }
-  f = message.getRobotName();
+  f = message.getphysicalDeviceName();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getRobotId();
+  f = message.getphysicalDeviceId();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -2504,10 +2504,10 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.setLocationId = function(value)
 
 
 /**
- * optional string robot_name = 3;
+ * optional string physicalDevice_name = 3;
  * @return {string}
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getRobotName = function() {
+proto.viam.app.data.v1.CaptureMetadata.prototype.getphysicalDeviceName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -2516,16 +2516,16 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getRobotName = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.setRobotName = function(value) {
+proto.viam.app.data.v1.CaptureMetadata.prototype.setphysicalDeviceName = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string robot_id = 4;
+ * optional string physicalDevice_id = 4;
  * @return {string}
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.getRobotId = function() {
+proto.viam.app.data.v1.CaptureMetadata.prototype.getphysicalDeviceId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -2534,7 +2534,7 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getRobotId = function() {
  * @param {string} value
  * @return {!proto.viam.app.data.v1.CaptureMetadata} returns this
  */
-proto.viam.app.data.v1.CaptureMetadata.prototype.setRobotId = function(value) {
+proto.viam.app.data.v1.CaptureMetadata.prototype.setphysicalDeviceId = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 

@@ -40,7 +40,7 @@ service VisionService {
     };
   }
 
-  // GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying robot,
+  // GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying physicalDevice,
   // as well as the 3-vector center of each of the found objects.
   // A specific MIME type can be requested but may not necessarily be the same one returned.
   rpc GetObjectPointClouds(GetObjectPointCloudsRequest) returns (GetObjectPointCloudsResponse) {

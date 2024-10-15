@@ -10,13 +10,13 @@ var ProvisioningService = (function () {
   return ProvisioningService;
 }());
 
-ProvisioningService.GetSmartMachineStatus = {
-  methodName: "GetSmartMachineStatus",
+ProvisioningService.GetSmartphysicalDeviceStatus = {
+  methodName: "GetSmartphysicalDeviceStatus",
   service: ProvisioningService,
   requestStream: false,
   responseStream: false,
-  requestType: provisioning_v1_provisioning_pb.GetSmartMachineStatusRequest,
-  responseType: provisioning_v1_provisioning_pb.GetSmartMachineStatusResponse
+  requestType: provisioning_v1_provisioning_pb.GetSmartphysicalDeviceStatusRequest,
+  responseType: provisioning_v1_provisioning_pb.GetSmartphysicalDeviceStatusResponse
 };
 
 ProvisioningService.SetNetworkCredentials = {
@@ -28,13 +28,13 @@ ProvisioningService.SetNetworkCredentials = {
   responseType: provisioning_v1_provisioning_pb.SetNetworkCredentialsResponse
 };
 
-ProvisioningService.SetSmartMachineCredentials = {
-  methodName: "SetSmartMachineCredentials",
+ProvisioningService.SetSmartphysicalDeviceCredentials = {
+  methodName: "SetSmartphysicalDeviceCredentials",
   service: ProvisioningService,
   requestStream: false,
   responseStream: false,
-  requestType: provisioning_v1_provisioning_pb.SetSmartMachineCredentialsRequest,
-  responseType: provisioning_v1_provisioning_pb.SetSmartMachineCredentialsResponse
+  requestType: provisioning_v1_provisioning_pb.SetSmartphysicalDeviceCredentialsRequest,
+  responseType: provisioning_v1_provisioning_pb.SetSmartphysicalDeviceCredentialsResponse
 };
 
 ProvisioningService.GetNetworkList = {
@@ -53,11 +53,11 @@ function ProvisioningServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
-ProvisioningServiceClient.prototype.getSmartMachineStatus = function getSmartMachineStatus(requestMessage, metadata, callback) {
+ProvisioningServiceClient.prototype.getSmartphysicalDeviceStatus = function getSmartphysicalDeviceStatus(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ProvisioningService.GetSmartMachineStatus, {
+  var client = grpc.unary(ProvisioningService.GetSmartphysicalDeviceStatus, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -115,11 +115,11 @@ ProvisioningServiceClient.prototype.setNetworkCredentials = function setNetworkC
   };
 };
 
-ProvisioningServiceClient.prototype.setSmartMachineCredentials = function setSmartMachineCredentials(requestMessage, metadata, callback) {
+ProvisioningServiceClient.prototype.setSmartphysicalDeviceCredentials = function setSmartphysicalDeviceCredentials(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ProvisioningService.SetSmartMachineCredentials, {
+  var client = grpc.unary(ProvisioningService.SetSmartphysicalDeviceCredentials, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

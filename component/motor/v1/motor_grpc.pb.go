@@ -33,7 +33,7 @@ type MotorServiceClient interface {
 	// If revolutions != 0, this will block until the number of revolutions has been completed or another operation comes in.
 	// Deprecated: If revolutions is 0, this will run the motor at rpm indefinitely.
 	GoFor(ctx context.Context, in *GoForRequest, opts ...grpc.CallOption) (*GoForResponse, error)
-	// GoTo requests the robot's motor to move to a specific position that
+	// GoTo requests the physicalDevice's motor to move to a specific position that
 	// is relative to its home position at a specified speed which is expressed in RPM
 	// This method will return an error if position reporting is not supported
 	GoTo(ctx context.Context, in *GoToRequest, opts ...grpc.CallOption) (*GoToResponse, error)
@@ -42,14 +42,14 @@ type MotorServiceClient interface {
 	// ResetZeroPosition sets the current position of the motor as the new zero position
 	// This method will return an error if position reporting is not supported
 	ResetZeroPosition(ctx context.Context, in *ResetZeroPositionRequest, opts ...grpc.CallOption) (*ResetZeroPositionResponse, error)
-	// Position reports the position of the robot's motor relative to its zero position
+	// Position reports the position of the physicalDevice's motor relative to its zero position
 	// This method will return an error if position reporting is not supported
 	GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error)
-	// GetProperties returns a message of booleans indicating which optional features the robot's motor supports
+	// GetProperties returns a message of booleans indicating which optional features the physicalDevice's motor supports
 	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
-	// Stop turns the robot's motor off
+	// Stop turns the physicalDevice's motor off
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
-	// IsPowered returns true if the robot's motor is on
+	// IsPowered returns true if the physicalDevice's motor is on
 	IsPowered(ctx context.Context, in *IsPoweredRequest, opts ...grpc.CallOption) (*IsPoweredResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
@@ -189,7 +189,7 @@ type MotorServiceServer interface {
 	// If revolutions != 0, this will block until the number of revolutions has been completed or another operation comes in.
 	// Deprecated: If revolutions is 0, this will run the motor at rpm indefinitely.
 	GoFor(context.Context, *GoForRequest) (*GoForResponse, error)
-	// GoTo requests the robot's motor to move to a specific position that
+	// GoTo requests the physicalDevice's motor to move to a specific position that
 	// is relative to its home position at a specified speed which is expressed in RPM
 	// This method will return an error if position reporting is not supported
 	GoTo(context.Context, *GoToRequest) (*GoToResponse, error)
@@ -198,14 +198,14 @@ type MotorServiceServer interface {
 	// ResetZeroPosition sets the current position of the motor as the new zero position
 	// This method will return an error if position reporting is not supported
 	ResetZeroPosition(context.Context, *ResetZeroPositionRequest) (*ResetZeroPositionResponse, error)
-	// Position reports the position of the robot's motor relative to its zero position
+	// Position reports the position of the physicalDevice's motor relative to its zero position
 	// This method will return an error if position reporting is not supported
 	GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error)
-	// GetProperties returns a message of booleans indicating which optional features the robot's motor supports
+	// GetProperties returns a message of booleans indicating which optional features the physicalDevice's motor supports
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
-	// Stop turns the robot's motor off
+	// Stop turns the physicalDevice's motor off
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
-	// IsPowered returns true if the robot's motor is on
+	// IsPowered returns true if the physicalDevice's motor is on
 	IsPowered(context.Context, *IsPoweredRequest) (*IsPoweredResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)

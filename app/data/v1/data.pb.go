@@ -207,10 +207,10 @@ func (x *DataRequest) GetSortOrder() Order {
 }
 
 // Filter defines the fields over which we can filter data using a logic AND.
-// For example, if component_type and robot_id are specified, only data from that `robot_id` of
+// For example, if component_type and physicalDevice_id are specified, only data from that `physicalDevice_id` of
 // type `component_type` is returned. However, we logical OR over the specified tags and bounding
-// box labels, such that if component_type, robot_id, tagA, tagB are specified,
-// we return data from that `robot_id` of type `component_type` with `tagA` or `tagB`.
+// box labels, such that if component_type, physicalDevice_id, tagA, tagB are specified,
+// we return data from that `physicalDevice_id` of type `component_type` with `tagA` or `tagB`.
 type Filter struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -219,8 +219,8 @@ type Filter struct {
 	ComponentName   string           `protobuf:"bytes,1,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
 	ComponentType   string           `protobuf:"bytes,2,opt,name=component_type,json=componentType,proto3" json:"component_type,omitempty"`
 	Method          string           `protobuf:"bytes,4,opt,name=method,proto3" json:"method,omitempty"`
-	RobotName       string           `protobuf:"bytes,6,opt,name=robot_name,json=robotName,proto3" json:"robot_name,omitempty"`
-	RobotId         string           `protobuf:"bytes,7,opt,name=robot_id,json=robotId,proto3" json:"robot_id,omitempty"`
+	physicalDeviceName       string           `protobuf:"bytes,6,opt,name=physicalDevice_name,json=physicalDeviceName,proto3" json:"physicalDevice_name,omitempty"`
+	physicalDeviceId         string           `protobuf:"bytes,7,opt,name=physicalDevice_id,json=physicalDeviceId,proto3" json:"physicalDevice_id,omitempty"`
 	PartName        string           `protobuf:"bytes,8,opt,name=part_name,json=partName,proto3" json:"part_name,omitempty"`
 	PartId          string           `protobuf:"bytes,9,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
 	LocationIds     []string         `protobuf:"bytes,10,rep,name=location_ids,json=locationIds,proto3" json:"location_ids,omitempty"`
@@ -286,16 +286,16 @@ func (x *Filter) GetMethod() string {
 	return ""
 }
 
-func (x *Filter) GetRobotName() string {
+func (x *Filter) GetphysicalDeviceName() string {
 	if x != nil {
-		return x.RobotName
+		return x.physicalDeviceName
 	}
 	return ""
 }
 
-func (x *Filter) GetRobotId() string {
+func (x *Filter) GetphysicalDeviceId() string {
 	if x != nil {
-		return x.RobotId
+		return x.physicalDeviceId
 	}
 	return ""
 }
@@ -428,8 +428,8 @@ type CaptureMetadata struct {
 
 	OrganizationId   string                `protobuf:"bytes,1,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
 	LocationId       string                `protobuf:"bytes,2,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
-	RobotName        string                `protobuf:"bytes,3,opt,name=robot_name,json=robotName,proto3" json:"robot_name,omitempty"`
-	RobotId          string                `protobuf:"bytes,4,opt,name=robot_id,json=robotId,proto3" json:"robot_id,omitempty"`
+	physicalDeviceName        string                `protobuf:"bytes,3,opt,name=physicalDevice_name,json=physicalDeviceName,proto3" json:"physicalDevice_name,omitempty"`
+	physicalDeviceId          string                `protobuf:"bytes,4,opt,name=physicalDevice_id,json=physicalDeviceId,proto3" json:"physicalDevice_id,omitempty"`
 	PartName         string                `protobuf:"bytes,5,opt,name=part_name,json=partName,proto3" json:"part_name,omitempty"`
 	PartId           string                `protobuf:"bytes,6,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
 	ComponentType    string                `protobuf:"bytes,7,opt,name=component_type,json=componentType,proto3" json:"component_type,omitempty"`
@@ -486,16 +486,16 @@ func (x *CaptureMetadata) GetLocationId() string {
 	return ""
 }
 
-func (x *CaptureMetadata) GetRobotName() string {
+func (x *CaptureMetadata) GetphysicalDeviceName() string {
 	if x != nil {
-		return x.RobotName
+		return x.physicalDeviceName
 	}
 	return ""
 }
 
-func (x *CaptureMetadata) GetRobotId() string {
+func (x *CaptureMetadata) GetphysicalDeviceId() string {
 	if x != nil {
-		return x.RobotId
+		return x.physicalDeviceId
 	}
 	return ""
 }
@@ -1507,7 +1507,7 @@ func (x *BoundingBox) GetYMaxNormalized() float64 {
 	return 0
 }
 
-// Annotations are data annotations used for machine learning.
+// Annotations are data annotations used for physicalDevice learning.
 type Annotations struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

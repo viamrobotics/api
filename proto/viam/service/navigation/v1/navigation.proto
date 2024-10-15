@@ -157,7 +157,7 @@ message RemoveWaypointResponse {}
 // GetObstacles will return the geopoint location and geometry of all
 // known obstacles on the navigation map. Obstacles that are detected
 // through the vision service will only be returned if this endpoint is called
-// when the robot is sensing the obstacle
+// when the physicalDevice is sensing the obstacle
 message GetObstaclesRequest {
   string name = 1;
   // Additional arguments to the method
@@ -170,12 +170,12 @@ message GetObstaclesResponse {
 }
 
 // A user provided destination and the set of geopoints that
-// the robot is expected to take to get there
+// the physicalDevice is expected to take to get there
 message Path {
   // The id of the user specified waypoint
   string destination_waypoint_id = 1;
   // List of geopoints that the motion planner output to reach the destination
-  // The first geopoint is the starting position of the robot for that path
+  // The first geopoint is the starting position of the physicalDevice for that path
   repeated common.v1.GeoPoint geopoints = 2;
 }
 

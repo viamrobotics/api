@@ -17,9 +17,9 @@ on:
 
 jobs:
   bump-tag:
-    if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamphysicalDeviceics'
     runs-on: ubuntu-latest
-    container: ghcr.io/viamrobotics/canon:amd64
+    container: ghcr.io/viamphysicalDeviceics/canon:amd64
     outputs:
       new_tag: ${{ steps.bump.outputs.new_tag }}
     steps:
@@ -34,9 +34,9 @@ jobs:
 
   buf-push:
     needs: bump-tag
-    if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamphysicalDeviceics'
     runs-on: ubuntu-latest
-    container: ghcr.io/viamrobotics/canon:amd64
+    container: ghcr.io/viamphysicalDeviceics/canon:amd64
     steps:
       - uses: actions/checkout@v3
       - uses: bufbuild/buf-setup-action@v1
@@ -48,21 +48,21 @@ jobs:
 
   dispatch:
     needs: [bump-tag, buf-push]
-    if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamphysicalDeviceics'
     runs-on: ubuntu-latest
-    container: ghcr.io/viamrobotics/canon:amd64
+    container: ghcr.io/viamphysicalDeviceics/canon:amd64
     strategy:
       matrix:
         repo:
-          - viamrobotics/rdk
-          - viamrobotics/app
-          - viamrobotics/viam-python-sdk
-          - viamrobotics/viam-rust-sdk
-          - viamrobotics/rust-utils
-          - viamrobotics/viam-cpp-sdk
-          - viamrobotics/viam-typescript-sdk
-          - viamrobotics/viam-flutter-sdk
-          - viamrobotics/viam-java-sdk
+          - viamphysicalDeviceics/rdk
+          - viamphysicalDeviceics/app
+          - viamphysicalDeviceics/viam-python-sdk
+          - viamphysicalDeviceics/viam-rust-sdk
+          - viamphysicalDeviceics/rust-utils
+          - viamphysicalDeviceics/viam-cpp-sdk
+          - viamphysicalDeviceics/viam-typescript-sdk
+          - viamphysicalDeviceics/viam-flutter-sdk
+          - viamphysicalDeviceics/viam-java-sdk
     steps:
       - name: Notify Proto Watchers
         uses: peter-evans/repository-dispatch@v2

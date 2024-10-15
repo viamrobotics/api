@@ -23,17 +23,17 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ArmServiceClient interface {
-	// GetEndPosition gets the current position the end of the robot's arm expressed as X,Y,Z,ox,oy,oz,theta
+	// GetEndPosition gets the current position the end of the physicalDevice's arm expressed as X,Y,Z,ox,oy,oz,theta
 	GetEndPosition(ctx context.Context, in *GetEndPositionRequest, opts ...grpc.CallOption) (*GetEndPositionResponse, error)
-	// MoveToPosition moves the mount point of the robot's end effector to the requested position.
+	// MoveToPosition moves the mount point of the physicalDevice's end effector to the requested position.
 	// This will block until done or a new operation cancels this one
 	MoveToPosition(ctx context.Context, in *MoveToPositionRequest, opts ...grpc.CallOption) (*MoveToPositionResponse, error)
-	// GetJointPositions lists the joint positions (in degrees) of every joint on a robot
+	// GetJointPositions lists the joint positions (in degrees) of every joint on a physicalDevice
 	GetJointPositions(ctx context.Context, in *GetJointPositionsRequest, opts ...grpc.CallOption) (*GetJointPositionsResponse, error)
-	// MoveToJointPositions moves every joint on a robot's arm to specified angles which are expressed in degrees
+	// MoveToJointPositions moves every joint on a physicalDevice's arm to specified angles which are expressed in degrees
 	// This will block until done or a new operation cancels this one
 	MoveToJointPositions(ctx context.Context, in *MoveToJointPositionsRequest, opts ...grpc.CallOption) (*MoveToJointPositionsResponse, error)
-	// Stop stops a robot's arm
+	// Stop stops a physicalDevice's arm
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
@@ -138,17 +138,17 @@ func (c *armServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometri
 // All implementations must embed UnimplementedArmServiceServer
 // for forward compatibility
 type ArmServiceServer interface {
-	// GetEndPosition gets the current position the end of the robot's arm expressed as X,Y,Z,ox,oy,oz,theta
+	// GetEndPosition gets the current position the end of the physicalDevice's arm expressed as X,Y,Z,ox,oy,oz,theta
 	GetEndPosition(context.Context, *GetEndPositionRequest) (*GetEndPositionResponse, error)
-	// MoveToPosition moves the mount point of the robot's end effector to the requested position.
+	// MoveToPosition moves the mount point of the physicalDevice's end effector to the requested position.
 	// This will block until done or a new operation cancels this one
 	MoveToPosition(context.Context, *MoveToPositionRequest) (*MoveToPositionResponse, error)
-	// GetJointPositions lists the joint positions (in degrees) of every joint on a robot
+	// GetJointPositions lists the joint positions (in degrees) of every joint on a physicalDevice
 	GetJointPositions(context.Context, *GetJointPositionsRequest) (*GetJointPositionsResponse, error)
-	// MoveToJointPositions moves every joint on a robot's arm to specified angles which are expressed in degrees
+	// MoveToJointPositions moves every joint on a physicalDevice's arm to specified angles which are expressed in degrees
 	// This will block until done or a new operation cancels this one
 	MoveToJointPositions(context.Context, *MoveToJointPositionsRequest) (*MoveToJointPositionsResponse, error)
-	// Stop stops a robot's arm
+	// Stop stops a physicalDevice's arm
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)

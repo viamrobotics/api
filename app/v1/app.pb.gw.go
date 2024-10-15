@@ -881,8 +881,8 @@ func local_request_AppService_DeleteLocationSecret_0(ctx context.Context, marsha
 
 }
 
-func request_AppService_GetRobot_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRobotRequest
+func request_AppService_GetphysicalDevice_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetphysicalDeviceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -893,13 +893,13 @@ func request_AppService_GetRobot_0(ctx context.Context, marshaler runtime.Marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetRobot(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetphysicalDevice(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_GetRobot_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRobotRequest
+func local_request_AppService_GetphysicalDevice_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetphysicalDeviceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -910,13 +910,13 @@ func local_request_AppService_GetRobot_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetRobot(ctx, &protoReq)
+	msg, err := server.GetphysicalDevice(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_GetRoverRentalRobots_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRoverRentalRobotsRequest
+func request_AppService_GetRoverRentalphysicalDevices_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetRoverRentalphysicalDevicesRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -927,13 +927,13 @@ func request_AppService_GetRoverRentalRobots_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetRoverRentalRobots(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetRoverRentalphysicalDevices(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_GetRoverRentalRobots_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRoverRentalRobotsRequest
+func local_request_AppService_GetRoverRentalphysicalDevices_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetRoverRentalphysicalDevicesRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -944,13 +944,13 @@ func local_request_AppService_GetRoverRentalRobots_0(ctx context.Context, marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetRoverRentalRobots(ctx, &protoReq)
+	msg, err := server.GetRoverRentalphysicalDevices(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_GetRobotParts_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRobotPartsRequest
+func request_AppService_GetphysicalDeviceParts_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetphysicalDevicePartsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -961,13 +961,13 @@ func request_AppService_GetRobotParts_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetRobotParts(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetphysicalDeviceParts(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_GetRobotParts_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRobotPartsRequest
+func local_request_AppService_GetphysicalDeviceParts_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetphysicalDevicePartsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -978,13 +978,13 @@ func local_request_AppService_GetRobotParts_0(ctx context.Context, marshaler run
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetRobotParts(ctx, &protoReq)
+	msg, err := server.GetphysicalDeviceParts(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_GetRobotPart_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRobotPartRequest
+func request_AppService_GetphysicalDevicePart_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetphysicalDevicePartRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -995,13 +995,13 @@ func request_AppService_GetRobotPart_0(ctx context.Context, marshaler runtime.Ma
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetRobotPart(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetphysicalDevicePart(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_GetRobotPart_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRobotPartRequest
+func local_request_AppService_GetphysicalDevicePart_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetphysicalDevicePartRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1012,13 +1012,13 @@ func local_request_AppService_GetRobotPart_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetRobotPart(ctx, &protoReq)
+	msg, err := server.GetphysicalDevicePart(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_GetRobotPartLogs_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRobotPartLogsRequest
+func request_AppService_GetphysicalDevicePartLogs_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetphysicalDevicePartLogsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1029,13 +1029,13 @@ func request_AppService_GetRobotPartLogs_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetRobotPartLogs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetphysicalDevicePartLogs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_GetRobotPartLogs_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRobotPartLogsRequest
+func local_request_AppService_GetphysicalDevicePartLogs_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetphysicalDevicePartLogsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1046,13 +1046,13 @@ func local_request_AppService_GetRobotPartLogs_0(ctx context.Context, marshaler 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetRobotPartLogs(ctx, &protoReq)
+	msg, err := server.GetphysicalDevicePartLogs(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_TailRobotPartLogs_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (AppService_TailRobotPartLogsClient, runtime.ServerMetadata, error) {
-	var protoReq TailRobotPartLogsRequest
+func request_AppService_TailphysicalDevicePartLogs_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (AppService_TailphysicalDevicePartLogsClient, runtime.ServerMetadata, error) {
+	var protoReq TailphysicalDevicePartLogsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1063,7 +1063,7 @@ func request_AppService_TailRobotPartLogs_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	stream, err := client.TailRobotPartLogs(ctx, &protoReq)
+	stream, err := client.TailphysicalDevicePartLogs(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
 	}
@@ -1076,8 +1076,8 @@ func request_AppService_TailRobotPartLogs_0(ctx context.Context, marshaler runti
 
 }
 
-func request_AppService_GetRobotPartHistory_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRobotPartHistoryRequest
+func request_AppService_GetphysicalDevicePartHistory_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetphysicalDevicePartHistoryRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1088,13 +1088,13 @@ func request_AppService_GetRobotPartHistory_0(ctx context.Context, marshaler run
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetRobotPartHistory(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetphysicalDevicePartHistory(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_GetRobotPartHistory_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRobotPartHistoryRequest
+func local_request_AppService_GetphysicalDevicePartHistory_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetphysicalDevicePartHistoryRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1105,13 +1105,13 @@ func local_request_AppService_GetRobotPartHistory_0(ctx context.Context, marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetRobotPartHistory(ctx, &protoReq)
+	msg, err := server.GetphysicalDevicePartHistory(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_UpdateRobotPart_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateRobotPartRequest
+func request_AppService_UpdatephysicalDevicePart_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdatephysicalDevicePartRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1122,13 +1122,13 @@ func request_AppService_UpdateRobotPart_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.UpdateRobotPart(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdatephysicalDevicePart(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_UpdateRobotPart_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateRobotPartRequest
+func local_request_AppService_UpdatephysicalDevicePart_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdatephysicalDevicePartRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1139,13 +1139,13 @@ func local_request_AppService_UpdateRobotPart_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.UpdateRobotPart(ctx, &protoReq)
+	msg, err := server.UpdatephysicalDevicePart(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_NewRobotPart_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq NewRobotPartRequest
+func request_AppService_NewphysicalDevicePart_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq NewphysicalDevicePartRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1156,13 +1156,13 @@ func request_AppService_NewRobotPart_0(ctx context.Context, marshaler runtime.Ma
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.NewRobotPart(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.NewphysicalDevicePart(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_NewRobotPart_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq NewRobotPartRequest
+func local_request_AppService_NewphysicalDevicePart_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq NewphysicalDevicePartRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1173,13 +1173,13 @@ func local_request_AppService_NewRobotPart_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.NewRobotPart(ctx, &protoReq)
+	msg, err := server.NewphysicalDevicePart(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_DeleteRobotPart_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteRobotPartRequest
+func request_AppService_DeletephysicalDevicePart_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeletephysicalDevicePartRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1190,13 +1190,13 @@ func request_AppService_DeleteRobotPart_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.DeleteRobotPart(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeletephysicalDevicePart(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_DeleteRobotPart_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteRobotPartRequest
+func local_request_AppService_DeletephysicalDevicePart_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeletephysicalDevicePartRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1207,13 +1207,13 @@ func local_request_AppService_DeleteRobotPart_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.DeleteRobotPart(ctx, &protoReq)
+	msg, err := server.DeletephysicalDevicePart(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_GetRobotAPIKeys_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRobotAPIKeysRequest
+func request_AppService_GetphysicalDeviceAPIKeys_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetphysicalDeviceAPIKeysRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1224,13 +1224,13 @@ func request_AppService_GetRobotAPIKeys_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetRobotAPIKeys(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetphysicalDeviceAPIKeys(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_GetRobotAPIKeys_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRobotAPIKeysRequest
+func local_request_AppService_GetphysicalDeviceAPIKeys_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetphysicalDeviceAPIKeysRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1241,7 +1241,7 @@ func local_request_AppService_GetRobotAPIKeys_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetRobotAPIKeys(ctx, &protoReq)
+	msg, err := server.GetphysicalDeviceAPIKeys(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -1314,8 +1314,8 @@ func local_request_AppService_MarkPartForRestart_0(ctx context.Context, marshale
 
 }
 
-func request_AppService_CreateRobotPartSecret_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateRobotPartSecretRequest
+func request_AppService_CreatephysicalDevicePartSecret_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreatephysicalDevicePartSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1326,13 +1326,13 @@ func request_AppService_CreateRobotPartSecret_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.CreateRobotPartSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreatephysicalDevicePartSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_CreateRobotPartSecret_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateRobotPartSecretRequest
+func local_request_AppService_CreatephysicalDevicePartSecret_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreatephysicalDevicePartSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1343,13 +1343,13 @@ func local_request_AppService_CreateRobotPartSecret_0(ctx context.Context, marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.CreateRobotPartSecret(ctx, &protoReq)
+	msg, err := server.CreatephysicalDevicePartSecret(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_DeleteRobotPartSecret_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteRobotPartSecretRequest
+func request_AppService_DeletephysicalDevicePartSecret_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeletephysicalDevicePartSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1360,13 +1360,13 @@ func request_AppService_DeleteRobotPartSecret_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.DeleteRobotPartSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeletephysicalDevicePartSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_DeleteRobotPartSecret_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteRobotPartSecretRequest
+func local_request_AppService_DeletephysicalDevicePartSecret_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeletephysicalDevicePartSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1377,13 +1377,13 @@ func local_request_AppService_DeleteRobotPartSecret_0(ctx context.Context, marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.DeleteRobotPartSecret(ctx, &protoReq)
+	msg, err := server.DeletephysicalDevicePartSecret(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_ListRobots_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListRobotsRequest
+func request_AppService_ListphysicalDevices_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListphysicalDevicesRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1394,13 +1394,13 @@ func request_AppService_ListRobots_0(ctx context.Context, marshaler runtime.Mars
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.ListRobots(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListphysicalDevices(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_ListRobots_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListRobotsRequest
+func local_request_AppService_ListphysicalDevices_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListphysicalDevicesRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1411,13 +1411,13 @@ func local_request_AppService_ListRobots_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.ListRobots(ctx, &protoReq)
+	msg, err := server.ListphysicalDevices(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_NewRobot_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq NewRobotRequest
+func request_AppService_NewphysicalDevice_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq NewphysicalDeviceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1428,13 +1428,13 @@ func request_AppService_NewRobot_0(ctx context.Context, marshaler runtime.Marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.NewRobot(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.NewphysicalDevice(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_NewRobot_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq NewRobotRequest
+func local_request_AppService_NewphysicalDevice_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq NewphysicalDeviceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1445,13 +1445,13 @@ func local_request_AppService_NewRobot_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.NewRobot(ctx, &protoReq)
+	msg, err := server.NewphysicalDevice(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_UpdateRobot_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateRobotRequest
+func request_AppService_UpdatephysicalDevice_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdatephysicalDeviceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1462,13 +1462,13 @@ func request_AppService_UpdateRobot_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.UpdateRobot(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdatephysicalDevice(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_UpdateRobot_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateRobotRequest
+func local_request_AppService_UpdatephysicalDevice_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdatephysicalDeviceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1479,13 +1479,13 @@ func local_request_AppService_UpdateRobot_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.UpdateRobot(ctx, &protoReq)
+	msg, err := server.UpdatephysicalDevice(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_AppService_DeleteRobot_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteRobotRequest
+func request_AppService_DeletephysicalDevice_0(ctx context.Context, marshaler runtime.Marshaler, client AppServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeletephysicalDeviceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1496,13 +1496,13 @@ func request_AppService_DeleteRobot_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.DeleteRobot(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeletephysicalDevice(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_AppService_DeleteRobot_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteRobotRequest
+func local_request_AppService_DeletephysicalDevice_0(ctx context.Context, marshaler runtime.Marshaler, server AppServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeletephysicalDeviceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -1513,7 +1513,7 @@ func local_request_AppService_DeleteRobot_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.DeleteRobot(ctx, &protoReq)
+	msg, err := server.DeletephysicalDevice(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -3043,7 +3043,7 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRobot_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetphysicalDevice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3051,12 +3051,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetRobot", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRobot"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetphysicalDevice", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetphysicalDevice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_GetRobot_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_GetphysicalDevice_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3064,11 +3064,11 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_GetRobot_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetphysicalDevice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRoverRentalRobots_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetRoverRentalphysicalDevices_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3076,12 +3076,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetRoverRentalRobots", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRoverRentalRobots"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetRoverRentalphysicalDevices", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRoverRentalphysicalDevices"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_GetRoverRentalRobots_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_GetRoverRentalphysicalDevices_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3089,11 +3089,11 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_GetRoverRentalRobots_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetRoverRentalphysicalDevices_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRobotParts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetphysicalDeviceParts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3101,12 +3101,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetRobotParts", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRobotParts"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetphysicalDeviceParts", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetphysicalDeviceParts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_GetRobotParts_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_GetphysicalDeviceParts_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3114,11 +3114,11 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_GetRobotParts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetphysicalDeviceParts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRobotPart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetphysicalDevicePart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3126,12 +3126,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetRobotPart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRobotPart"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetphysicalDevicePart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetphysicalDevicePart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_GetRobotPart_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_GetphysicalDevicePart_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3139,11 +3139,11 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_GetRobotPart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetphysicalDevicePart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRobotPartLogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetphysicalDevicePartLogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3151,12 +3151,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetRobotPartLogs", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRobotPartLogs"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetphysicalDevicePartLogs", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetphysicalDevicePartLogs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_GetRobotPartLogs_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_GetphysicalDevicePartLogs_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3164,18 +3164,18 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_GetRobotPartLogs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetphysicalDevicePartLogs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_TailRobotPartLogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_TailphysicalDevicePartLogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRobotPartHistory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetphysicalDevicePartHistory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3183,12 +3183,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetRobotPartHistory", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRobotPartHistory"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetphysicalDevicePartHistory", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetphysicalDevicePartHistory"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_GetRobotPartHistory_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_GetphysicalDevicePartHistory_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3196,11 +3196,11 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_GetRobotPartHistory_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetphysicalDevicePartHistory_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_UpdateRobotPart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_UpdatephysicalDevicePart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3208,12 +3208,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/UpdateRobotPart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/UpdateRobotPart"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/UpdatephysicalDevicePart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/UpdatephysicalDevicePart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_UpdateRobotPart_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_UpdatephysicalDevicePart_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3221,11 +3221,11 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_UpdateRobotPart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_UpdatephysicalDevicePart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_NewRobotPart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_NewphysicalDevicePart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3233,12 +3233,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/NewRobotPart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/NewRobotPart"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/NewphysicalDevicePart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/NewphysicalDevicePart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_NewRobotPart_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_NewphysicalDevicePart_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3246,11 +3246,11 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_NewRobotPart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_NewphysicalDevicePart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_DeleteRobotPart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_DeletephysicalDevicePart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3258,12 +3258,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/DeleteRobotPart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/DeleteRobotPart"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/DeletephysicalDevicePart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/DeletephysicalDevicePart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_DeleteRobotPart_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_DeletephysicalDevicePart_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3271,11 +3271,11 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_DeleteRobotPart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_DeletephysicalDevicePart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRobotAPIKeys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetphysicalDeviceAPIKeys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3283,12 +3283,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetRobotAPIKeys", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRobotAPIKeys"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/GetphysicalDeviceAPIKeys", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetphysicalDeviceAPIKeys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_GetRobotAPIKeys_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_GetphysicalDeviceAPIKeys_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3296,7 +3296,7 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_GetRobotAPIKeys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetphysicalDeviceAPIKeys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -3350,7 +3350,7 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_AppService_CreateRobotPartSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_CreatephysicalDevicePartSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3358,12 +3358,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/CreateRobotPartSecret", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/CreateRobotPartSecret"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/CreatephysicalDevicePartSecret", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/CreatephysicalDevicePartSecret"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_CreateRobotPartSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_CreatephysicalDevicePartSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3371,11 +3371,11 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_CreateRobotPartSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_CreatephysicalDevicePartSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_DeleteRobotPartSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_DeletephysicalDevicePartSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3383,12 +3383,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/DeleteRobotPartSecret", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/DeleteRobotPartSecret"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/DeletephysicalDevicePartSecret", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/DeletephysicalDevicePartSecret"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_DeleteRobotPartSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_DeletephysicalDevicePartSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3396,11 +3396,11 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_DeleteRobotPartSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_DeletephysicalDevicePartSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_ListRobots_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_ListphysicalDevices_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3408,12 +3408,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/ListRobots", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/ListRobots"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/ListphysicalDevices", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/ListphysicalDevices"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_ListRobots_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_ListphysicalDevices_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3421,11 +3421,11 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_ListRobots_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_ListphysicalDevices_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_NewRobot_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_NewphysicalDevice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3433,12 +3433,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/NewRobot", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/NewRobot"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/NewphysicalDevice", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/NewphysicalDevice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_NewRobot_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_NewphysicalDevice_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3446,11 +3446,11 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_NewRobot_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_NewphysicalDevice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_UpdateRobot_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_UpdatephysicalDevice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3458,12 +3458,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/UpdateRobot", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/UpdateRobot"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/UpdatephysicalDevice", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/UpdatephysicalDevice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_UpdateRobot_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_UpdatephysicalDevice_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3471,11 +3471,11 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_UpdateRobot_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_UpdatephysicalDevice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_DeleteRobot_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_DeletephysicalDevice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -3483,12 +3483,12 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/DeleteRobot", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/DeleteRobot"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.v1.AppService/DeletephysicalDevice", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/DeletephysicalDevice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_AppService_DeleteRobot_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AppService_DeletephysicalDevice_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -3496,7 +3496,7 @@ func RegisterAppServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 			return
 		}
 
-		forward_AppService_DeleteRobot_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_DeletephysicalDevice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -4723,245 +4723,245 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRobot_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetphysicalDevice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetRobot", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRobot"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetphysicalDevice", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetphysicalDevice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_GetRobot_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_GetphysicalDevice_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_GetRobot_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetphysicalDevice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRoverRentalRobots_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetRoverRentalphysicalDevices_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetRoverRentalRobots", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRoverRentalRobots"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetRoverRentalphysicalDevices", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRoverRentalphysicalDevices"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_GetRoverRentalRobots_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_GetRoverRentalphysicalDevices_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_GetRoverRentalRobots_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetRoverRentalphysicalDevices_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRobotParts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetphysicalDeviceParts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetRobotParts", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRobotParts"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetphysicalDeviceParts", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetphysicalDeviceParts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_GetRobotParts_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_GetphysicalDeviceParts_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_GetRobotParts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetphysicalDeviceParts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRobotPart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetphysicalDevicePart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetRobotPart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRobotPart"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetphysicalDevicePart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetphysicalDevicePart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_GetRobotPart_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_GetphysicalDevicePart_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_GetRobotPart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetphysicalDevicePart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRobotPartLogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetphysicalDevicePartLogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetRobotPartLogs", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRobotPartLogs"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetphysicalDevicePartLogs", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetphysicalDevicePartLogs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_GetRobotPartLogs_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_GetphysicalDevicePartLogs_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_GetRobotPartLogs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetphysicalDevicePartLogs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_TailRobotPartLogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_TailphysicalDevicePartLogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/TailRobotPartLogs", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/TailRobotPartLogs"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/TailphysicalDevicePartLogs", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/TailphysicalDevicePartLogs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_TailRobotPartLogs_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_TailphysicalDevicePartLogs_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_TailRobotPartLogs_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_AppService_TailphysicalDevicePartLogs_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRobotPartHistory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetphysicalDevicePartHistory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetRobotPartHistory", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRobotPartHistory"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetphysicalDevicePartHistory", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetphysicalDevicePartHistory"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_GetRobotPartHistory_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_GetphysicalDevicePartHistory_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_GetRobotPartHistory_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetphysicalDevicePartHistory_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_UpdateRobotPart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_UpdatephysicalDevicePart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/UpdateRobotPart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/UpdateRobotPart"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/UpdatephysicalDevicePart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/UpdatephysicalDevicePart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_UpdateRobotPart_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_UpdatephysicalDevicePart_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_UpdateRobotPart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_UpdatephysicalDevicePart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_NewRobotPart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_NewphysicalDevicePart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/NewRobotPart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/NewRobotPart"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/NewphysicalDevicePart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/NewphysicalDevicePart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_NewRobotPart_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_NewphysicalDevicePart_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_NewRobotPart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_NewphysicalDevicePart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_DeleteRobotPart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_DeletephysicalDevicePart_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/DeleteRobotPart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/DeleteRobotPart"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/DeletephysicalDevicePart", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/DeletephysicalDevicePart"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_DeleteRobotPart_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_DeletephysicalDevicePart_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_DeleteRobotPart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_DeletephysicalDevicePart_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_GetRobotAPIKeys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_GetphysicalDeviceAPIKeys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetRobotAPIKeys", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetRobotAPIKeys"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/GetphysicalDeviceAPIKeys", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/GetphysicalDeviceAPIKeys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_GetRobotAPIKeys_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_GetphysicalDeviceAPIKeys_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_GetRobotAPIKeys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_GetphysicalDeviceAPIKeys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -5009,135 +5009,135 @@ func RegisterAppServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("POST", pattern_AppService_CreateRobotPartSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_CreatephysicalDevicePartSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/CreateRobotPartSecret", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/CreateRobotPartSecret"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/CreatephysicalDevicePartSecret", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/CreatephysicalDevicePartSecret"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_CreateRobotPartSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_CreatephysicalDevicePartSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_CreateRobotPartSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_CreatephysicalDevicePartSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_DeleteRobotPartSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_DeletephysicalDevicePartSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/DeleteRobotPartSecret", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/DeleteRobotPartSecret"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/DeletephysicalDevicePartSecret", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/DeletephysicalDevicePartSecret"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_DeleteRobotPartSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_DeletephysicalDevicePartSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_DeleteRobotPartSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_DeletephysicalDevicePartSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_ListRobots_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_ListphysicalDevices_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/ListRobots", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/ListRobots"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/ListphysicalDevices", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/ListphysicalDevices"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_ListRobots_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_ListphysicalDevices_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_ListRobots_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_ListphysicalDevices_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_NewRobot_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_NewphysicalDevice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/NewRobot", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/NewRobot"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/NewphysicalDevice", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/NewphysicalDevice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_NewRobot_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_NewphysicalDevice_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_NewRobot_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_NewphysicalDevice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_UpdateRobot_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_UpdatephysicalDevice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/UpdateRobot", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/UpdateRobot"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/UpdatephysicalDevice", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/UpdatephysicalDevice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_UpdateRobot_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_UpdatephysicalDevice_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_UpdateRobot_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_UpdatephysicalDevice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_AppService_DeleteRobot_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AppService_DeletephysicalDevice_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/DeleteRobot", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/DeleteRobot"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.v1.AppService/DeletephysicalDevice", runtime.WithHTTPPathPattern("/viam.app.v1.AppService/DeletephysicalDevice"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_AppService_DeleteRobot_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AppService_DeletephysicalDevice_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_AppService_DeleteRobot_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AppService_DeletephysicalDevice_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -5767,43 +5767,43 @@ var (
 
 	pattern_AppService_DeleteLocationSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "DeleteLocationSecret"}, ""))
 
-	pattern_AppService_GetRobot_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetRobot"}, ""))
+	pattern_AppService_GetphysicalDevice_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetphysicalDevice"}, ""))
 
-	pattern_AppService_GetRoverRentalRobots_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetRoverRentalRobots"}, ""))
+	pattern_AppService_GetRoverRentalphysicalDevices_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetRoverRentalphysicalDevices"}, ""))
 
-	pattern_AppService_GetRobotParts_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetRobotParts"}, ""))
+	pattern_AppService_GetphysicalDeviceParts_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetphysicalDeviceParts"}, ""))
 
-	pattern_AppService_GetRobotPart_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetRobotPart"}, ""))
+	pattern_AppService_GetphysicalDevicePart_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetphysicalDevicePart"}, ""))
 
-	pattern_AppService_GetRobotPartLogs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetRobotPartLogs"}, ""))
+	pattern_AppService_GetphysicalDevicePartLogs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetphysicalDevicePartLogs"}, ""))
 
-	pattern_AppService_TailRobotPartLogs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "TailRobotPartLogs"}, ""))
+	pattern_AppService_TailphysicalDevicePartLogs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "TailphysicalDevicePartLogs"}, ""))
 
-	pattern_AppService_GetRobotPartHistory_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetRobotPartHistory"}, ""))
+	pattern_AppService_GetphysicalDevicePartHistory_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetphysicalDevicePartHistory"}, ""))
 
-	pattern_AppService_UpdateRobotPart_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "UpdateRobotPart"}, ""))
+	pattern_AppService_UpdatephysicalDevicePart_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "UpdatephysicalDevicePart"}, ""))
 
-	pattern_AppService_NewRobotPart_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "NewRobotPart"}, ""))
+	pattern_AppService_NewphysicalDevicePart_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "NewphysicalDevicePart"}, ""))
 
-	pattern_AppService_DeleteRobotPart_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "DeleteRobotPart"}, ""))
+	pattern_AppService_DeletephysicalDevicePart_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "DeletephysicalDevicePart"}, ""))
 
-	pattern_AppService_GetRobotAPIKeys_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetRobotAPIKeys"}, ""))
+	pattern_AppService_GetphysicalDeviceAPIKeys_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "GetphysicalDeviceAPIKeys"}, ""))
 
 	pattern_AppService_MarkPartAsMain_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "MarkPartAsMain"}, ""))
 
 	pattern_AppService_MarkPartForRestart_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "MarkPartForRestart"}, ""))
 
-	pattern_AppService_CreateRobotPartSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "CreateRobotPartSecret"}, ""))
+	pattern_AppService_CreatephysicalDevicePartSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "CreatephysicalDevicePartSecret"}, ""))
 
-	pattern_AppService_DeleteRobotPartSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "DeleteRobotPartSecret"}, ""))
+	pattern_AppService_DeletephysicalDevicePartSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "DeletephysicalDevicePartSecret"}, ""))
 
-	pattern_AppService_ListRobots_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "ListRobots"}, ""))
+	pattern_AppService_ListphysicalDevices_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "ListphysicalDevices"}, ""))
 
-	pattern_AppService_NewRobot_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "NewRobot"}, ""))
+	pattern_AppService_NewphysicalDevice_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "NewphysicalDevice"}, ""))
 
-	pattern_AppService_UpdateRobot_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "UpdateRobot"}, ""))
+	pattern_AppService_UpdatephysicalDevice_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "UpdatephysicalDevice"}, ""))
 
-	pattern_AppService_DeleteRobot_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "DeleteRobot"}, ""))
+	pattern_AppService_DeletephysicalDevice_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "DeletephysicalDevice"}, ""))
 
 	pattern_AppService_ListFragments_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.v1.AppService", "ListFragments"}, ""))
 
@@ -5909,43 +5909,43 @@ var (
 
 	forward_AppService_DeleteLocationSecret_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_GetRobot_0 = runtime.ForwardResponseMessage
+	forward_AppService_GetphysicalDevice_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_GetRoverRentalRobots_0 = runtime.ForwardResponseMessage
+	forward_AppService_GetRoverRentalphysicalDevices_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_GetRobotParts_0 = runtime.ForwardResponseMessage
+	forward_AppService_GetphysicalDeviceParts_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_GetRobotPart_0 = runtime.ForwardResponseMessage
+	forward_AppService_GetphysicalDevicePart_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_GetRobotPartLogs_0 = runtime.ForwardResponseMessage
+	forward_AppService_GetphysicalDevicePartLogs_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_TailRobotPartLogs_0 = runtime.ForwardResponseStream
+	forward_AppService_TailphysicalDevicePartLogs_0 = runtime.ForwardResponseStream
 
-	forward_AppService_GetRobotPartHistory_0 = runtime.ForwardResponseMessage
+	forward_AppService_GetphysicalDevicePartHistory_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_UpdateRobotPart_0 = runtime.ForwardResponseMessage
+	forward_AppService_UpdatephysicalDevicePart_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_NewRobotPart_0 = runtime.ForwardResponseMessage
+	forward_AppService_NewphysicalDevicePart_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_DeleteRobotPart_0 = runtime.ForwardResponseMessage
+	forward_AppService_DeletephysicalDevicePart_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_GetRobotAPIKeys_0 = runtime.ForwardResponseMessage
+	forward_AppService_GetphysicalDeviceAPIKeys_0 = runtime.ForwardResponseMessage
 
 	forward_AppService_MarkPartAsMain_0 = runtime.ForwardResponseMessage
 
 	forward_AppService_MarkPartForRestart_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_CreateRobotPartSecret_0 = runtime.ForwardResponseMessage
+	forward_AppService_CreatephysicalDevicePartSecret_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_DeleteRobotPartSecret_0 = runtime.ForwardResponseMessage
+	forward_AppService_DeletephysicalDevicePartSecret_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_ListRobots_0 = runtime.ForwardResponseMessage
+	forward_AppService_ListphysicalDevices_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_NewRobot_0 = runtime.ForwardResponseMessage
+	forward_AppService_NewphysicalDevice_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_UpdateRobot_0 = runtime.ForwardResponseMessage
+	forward_AppService_UpdatephysicalDevice_0 = runtime.ForwardResponseMessage
 
-	forward_AppService_DeleteRobot_0 = runtime.ForwardResponseMessage
+	forward_AppService_DeletephysicalDevice_0 = runtime.ForwardResponseMessage
 
 	forward_AppService_ListFragments_0 = runtime.ForwardResponseMessage
 

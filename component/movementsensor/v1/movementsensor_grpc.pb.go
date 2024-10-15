@@ -34,7 +34,7 @@ type MovementSensorServiceClient interface {
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
-	// GetReadings returns the readings of a sensor of the underlying robot.
+	// GetReadings returns the readings of a sensor of the underlying physicalDevice.
 	GetReadings(ctx context.Context, in *v1.GetReadingsRequest, opts ...grpc.CallOption) (*v1.GetReadingsResponse, error)
 }
 
@@ -160,7 +160,7 @@ type MovementSensorServiceServer interface {
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
-	// GetReadings returns the readings of a sensor of the underlying robot.
+	// GetReadings returns the readings of a sensor of the underlying physicalDevice.
 	GetReadings(context.Context, *v1.GetReadingsRequest) (*v1.GetReadingsResponse, error)
 	mustEmbedUnimplementedMovementSensorServiceServer()
 }

@@ -4,26 +4,26 @@ package viam.provisioning.v1;
 
 option go_package = "go.viam.com/api/provisioning/v1";
 
-// ProvisioningService is used by viam-agent to retrieve the smart machine info.
+// ProvisioningService is used by viam-agent to retrieve the smart physicalDevice info.
 service ProvisioningService {
-  // GetSmartMachineStatus is for retrieving the status of the smart machine including networking.
-  rpc GetSmartMachineStatus(GetSmartMachineStatusRequest) returns (GetSmartMachineStatusResponse);
+  // GetSmartphysicalDeviceStatus is for retrieving the status of the smart physicalDevice including networking.
+  rpc GetSmartphysicalDeviceStatus(GetSmartphysicalDeviceStatusRequest) returns (GetSmartphysicalDeviceStatusResponse);
 
   // SetNetworkCredentials is to set the wifi credentials.
   rpc SetNetworkCredentials(SetNetworkCredentialsRequest) returns (SetNetworkCredentialsResponse);
 
-  // SetSmartMachineCredentials is to set the smart machine credentials.
-  rpc SetSmartMachineCredentials(SetSmartMachineCredentialsRequest) returns (SetSmartMachineCredentialsResponse);
+  // SetSmartphysicalDeviceCredentials is to set the smart physicalDevice credentials.
+  rpc SetSmartphysicalDeviceCredentials(SetSmartphysicalDeviceCredentialsRequest) returns (SetSmartphysicalDeviceCredentialsResponse);
 
-  // GetNetworkList is to retrieve the list of networks that are visible to the smart machine.
+  // GetNetworkList is to retrieve the list of networks that are visible to the smart physicalDevice.
   rpc GetNetworkList(GetNetworkListRequest) returns (GetNetworkListResponse);
 }
 
-message GetSmartMachineStatusRequest {}
+message GetSmartphysicalDeviceStatusRequest {}
 
-message GetSmartMachineStatusResponse {
+message GetSmartphysicalDeviceStatusResponse {
   ProvisioningInfo provisioning_info = 1;
-  bool has_smart_machine_credentials = 2;
+  bool has_smart_physicalDevice_credentials = 2;
   bool is_online = 3;
   NetworkInfo latest_connection_attempt = 4;
   repeated string errors = 5;
@@ -37,11 +37,11 @@ message SetNetworkCredentialsRequest {
 
 message SetNetworkCredentialsResponse {}
 
-message SetSmartMachineCredentialsRequest {
+message SetSmartphysicalDeviceCredentialsRequest {
   CloudConfig cloud = 1;
 }
 
-message SetSmartMachineCredentialsResponse {}
+message SetSmartphysicalDeviceCredentialsResponse {}
 
 message GetNetworkListRequest {}
 
@@ -66,9 +66,9 @@ message NetworkInfo {
 
 // minimal CloudConfig to create /etc/viam.json
 message CloudConfig {
-  // SmartMachine part id
+  // SmartphysicalDevice part id
   string id = 1;
-  // SmartMachine part secret
+  // SmartphysicalDevice part secret
   string secret = 2;
   string app_address = 3;
 }

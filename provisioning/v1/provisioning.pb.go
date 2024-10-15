@@ -20,14 +20,14 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type GetSmartMachineStatusRequest struct {
+type GetSmartphysicalDeviceStatusRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *GetSmartMachineStatusRequest) Reset() {
-	*x = GetSmartMachineStatusRequest{}
+func (x *GetSmartphysicalDeviceStatusRequest) Reset() {
+	*x = GetSmartphysicalDeviceStatusRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_provisioning_v1_provisioning_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -35,13 +35,13 @@ func (x *GetSmartMachineStatusRequest) Reset() {
 	}
 }
 
-func (x *GetSmartMachineStatusRequest) String() string {
+func (x *GetSmartphysicalDeviceStatusRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetSmartMachineStatusRequest) ProtoMessage() {}
+func (*GetSmartphysicalDeviceStatusRequest) ProtoMessage() {}
 
-func (x *GetSmartMachineStatusRequest) ProtoReflect() protoreflect.Message {
+func (x *GetSmartphysicalDeviceStatusRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_provisioning_v1_provisioning_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -53,25 +53,25 @@ func (x *GetSmartMachineStatusRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetSmartMachineStatusRequest.ProtoReflect.Descriptor instead.
-func (*GetSmartMachineStatusRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetSmartphysicalDeviceStatusRequest.ProtoReflect.Descriptor instead.
+func (*GetSmartphysicalDeviceStatusRequest) Descriptor() ([]byte, []int) {
 	return file_provisioning_v1_provisioning_proto_rawDescGZIP(), []int{0}
 }
 
-type GetSmartMachineStatusResponse struct {
+type GetSmartphysicalDeviceStatusResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	ProvisioningInfo           *ProvisioningInfo `protobuf:"bytes,1,opt,name=provisioning_info,json=provisioningInfo,proto3" json:"provisioning_info,omitempty"`
-	HasSmartMachineCredentials bool              `protobuf:"varint,2,opt,name=has_smart_machine_credentials,json=hasSmartMachineCredentials,proto3" json:"has_smart_machine_credentials,omitempty"`
+	HasSmartphysicalDeviceCredentials bool              `protobuf:"varint,2,opt,name=has_smart_physicalDevice_credentials,json=hasSmartphysicalDeviceCredentials,proto3" json:"has_smart_physicalDevice_credentials,omitempty"`
 	IsOnline                   bool              `protobuf:"varint,3,opt,name=is_online,json=isOnline,proto3" json:"is_online,omitempty"`
 	LatestConnectionAttempt    *NetworkInfo      `protobuf:"bytes,4,opt,name=latest_connection_attempt,json=latestConnectionAttempt,proto3" json:"latest_connection_attempt,omitempty"`
 	Errors                     []string          `protobuf:"bytes,5,rep,name=errors,proto3" json:"errors,omitempty"`
 }
 
-func (x *GetSmartMachineStatusResponse) Reset() {
-	*x = GetSmartMachineStatusResponse{}
+func (x *GetSmartphysicalDeviceStatusResponse) Reset() {
+	*x = GetSmartphysicalDeviceStatusResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_provisioning_v1_provisioning_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -79,13 +79,13 @@ func (x *GetSmartMachineStatusResponse) Reset() {
 	}
 }
 
-func (x *GetSmartMachineStatusResponse) String() string {
+func (x *GetSmartphysicalDeviceStatusResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetSmartMachineStatusResponse) ProtoMessage() {}
+func (*GetSmartphysicalDeviceStatusResponse) ProtoMessage() {}
 
-func (x *GetSmartMachineStatusResponse) ProtoReflect() protoreflect.Message {
+func (x *GetSmartphysicalDeviceStatusResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_provisioning_v1_provisioning_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -97,40 +97,40 @@ func (x *GetSmartMachineStatusResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetSmartMachineStatusResponse.ProtoReflect.Descriptor instead.
-func (*GetSmartMachineStatusResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetSmartphysicalDeviceStatusResponse.ProtoReflect.Descriptor instead.
+func (*GetSmartphysicalDeviceStatusResponse) Descriptor() ([]byte, []int) {
 	return file_provisioning_v1_provisioning_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetSmartMachineStatusResponse) GetProvisioningInfo() *ProvisioningInfo {
+func (x *GetSmartphysicalDeviceStatusResponse) GetProvisioningInfo() *ProvisioningInfo {
 	if x != nil {
 		return x.ProvisioningInfo
 	}
 	return nil
 }
 
-func (x *GetSmartMachineStatusResponse) GetHasSmartMachineCredentials() bool {
+func (x *GetSmartphysicalDeviceStatusResponse) GetHasSmartphysicalDeviceCredentials() bool {
 	if x != nil {
-		return x.HasSmartMachineCredentials
+		return x.HasSmartphysicalDeviceCredentials
 	}
 	return false
 }
 
-func (x *GetSmartMachineStatusResponse) GetIsOnline() bool {
+func (x *GetSmartphysicalDeviceStatusResponse) GetIsOnline() bool {
 	if x != nil {
 		return x.IsOnline
 	}
 	return false
 }
 
-func (x *GetSmartMachineStatusResponse) GetLatestConnectionAttempt() *NetworkInfo {
+func (x *GetSmartphysicalDeviceStatusResponse) GetLatestConnectionAttempt() *NetworkInfo {
 	if x != nil {
 		return x.LatestConnectionAttempt
 	}
 	return nil
 }
 
-func (x *GetSmartMachineStatusResponse) GetErrors() []string {
+func (x *GetSmartphysicalDeviceStatusResponse) GetErrors() []string {
 	if x != nil {
 		return x.Errors
 	}
@@ -238,7 +238,7 @@ func (*SetNetworkCredentialsResponse) Descriptor() ([]byte, []int) {
 	return file_provisioning_v1_provisioning_proto_rawDescGZIP(), []int{3}
 }
 
-type SetSmartMachineCredentialsRequest struct {
+type SetSmartphysicalDeviceCredentialsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -246,8 +246,8 @@ type SetSmartMachineCredentialsRequest struct {
 	Cloud *CloudConfig `protobuf:"bytes,1,opt,name=cloud,proto3" json:"cloud,omitempty"`
 }
 
-func (x *SetSmartMachineCredentialsRequest) Reset() {
-	*x = SetSmartMachineCredentialsRequest{}
+func (x *SetSmartphysicalDeviceCredentialsRequest) Reset() {
+	*x = SetSmartphysicalDeviceCredentialsRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_provisioning_v1_provisioning_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -255,13 +255,13 @@ func (x *SetSmartMachineCredentialsRequest) Reset() {
 	}
 }
 
-func (x *SetSmartMachineCredentialsRequest) String() string {
+func (x *SetSmartphysicalDeviceCredentialsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SetSmartMachineCredentialsRequest) ProtoMessage() {}
+func (*SetSmartphysicalDeviceCredentialsRequest) ProtoMessage() {}
 
-func (x *SetSmartMachineCredentialsRequest) ProtoReflect() protoreflect.Message {
+func (x *SetSmartphysicalDeviceCredentialsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_provisioning_v1_provisioning_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -273,26 +273,26 @@ func (x *SetSmartMachineCredentialsRequest) ProtoReflect() protoreflect.Message 
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SetSmartMachineCredentialsRequest.ProtoReflect.Descriptor instead.
-func (*SetSmartMachineCredentialsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use SetSmartphysicalDeviceCredentialsRequest.ProtoReflect.Descriptor instead.
+func (*SetSmartphysicalDeviceCredentialsRequest) Descriptor() ([]byte, []int) {
 	return file_provisioning_v1_provisioning_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *SetSmartMachineCredentialsRequest) GetCloud() *CloudConfig {
+func (x *SetSmartphysicalDeviceCredentialsRequest) GetCloud() *CloudConfig {
 	if x != nil {
 		return x.Cloud
 	}
 	return nil
 }
 
-type SetSmartMachineCredentialsResponse struct {
+type SetSmartphysicalDeviceCredentialsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *SetSmartMachineCredentialsResponse) Reset() {
-	*x = SetSmartMachineCredentialsResponse{}
+func (x *SetSmartphysicalDeviceCredentialsResponse) Reset() {
+	*x = SetSmartphysicalDeviceCredentialsResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_provisioning_v1_provisioning_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -300,13 +300,13 @@ func (x *SetSmartMachineCredentialsResponse) Reset() {
 	}
 }
 
-func (x *SetSmartMachineCredentialsResponse) String() string {
+func (x *SetSmartphysicalDeviceCredentialsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SetSmartMachineCredentialsResponse) ProtoMessage() {}
+func (*SetSmartphysicalDeviceCredentialsResponse) ProtoMessage() {}
 
-func (x *SetSmartMachineCredentialsResponse) ProtoReflect() protoreflect.Message {
+func (x *SetSmartphysicalDeviceCredentialsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_provisioning_v1_provisioning_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -318,8 +318,8 @@ func (x *SetSmartMachineCredentialsResponse) ProtoReflect() protoreflect.Message
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SetSmartMachineCredentialsResponse.ProtoReflect.Descriptor instead.
-func (*SetSmartMachineCredentialsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use SetSmartphysicalDeviceCredentialsResponse.ProtoReflect.Descriptor instead.
+func (*SetSmartphysicalDeviceCredentialsResponse) Descriptor() ([]byte, []int) {
 	return file_provisioning_v1_provisioning_proto_rawDescGZIP(), []int{5}
 }
 
@@ -564,9 +564,9 @@ type CloudConfig struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// SmartMachine part id
+	// SmartphysicalDevice part id
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// SmartMachine part secret
+	// SmartphysicalDevice part secret
 	Secret     string `protobuf:"bytes,2,opt,name=secret,proto3" json:"secret,omitempty"`
 	AppAddress string `protobuf:"bytes,3,opt,name=app_address,json=appAddress,proto3" json:"app_address,omitempty"`
 }
@@ -753,12 +753,12 @@ func file_provisioning_v1_provisioning_proto_rawDescGZIP() []byte {
 
 var file_provisioning_v1_provisioning_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_provisioning_v1_provisioning_proto_goTypes = []interface{}{
-	(*GetSmartMachineStatusRequest)(nil),       // 0: viam.provisioning.v1.GetSmartMachineStatusRequest
-	(*GetSmartMachineStatusResponse)(nil),      // 1: viam.provisioning.v1.GetSmartMachineStatusResponse
+	(*GetSmartphysicalDeviceStatusRequest)(nil),       // 0: viam.provisioning.v1.GetSmartphysicalDeviceStatusRequest
+	(*GetSmartphysicalDeviceStatusResponse)(nil),      // 1: viam.provisioning.v1.GetSmartphysicalDeviceStatusResponse
 	(*SetNetworkCredentialsRequest)(nil),       // 2: viam.provisioning.v1.SetNetworkCredentialsRequest
 	(*SetNetworkCredentialsResponse)(nil),      // 3: viam.provisioning.v1.SetNetworkCredentialsResponse
-	(*SetSmartMachineCredentialsRequest)(nil),  // 4: viam.provisioning.v1.SetSmartMachineCredentialsRequest
-	(*SetSmartMachineCredentialsResponse)(nil), // 5: viam.provisioning.v1.SetSmartMachineCredentialsResponse
+	(*SetSmartphysicalDeviceCredentialsRequest)(nil),  // 4: viam.provisioning.v1.SetSmartphysicalDeviceCredentialsRequest
+	(*SetSmartphysicalDeviceCredentialsResponse)(nil), // 5: viam.provisioning.v1.SetSmartphysicalDeviceCredentialsResponse
 	(*GetNetworkListRequest)(nil),              // 6: viam.provisioning.v1.GetNetworkListRequest
 	(*GetNetworkListResponse)(nil),             // 7: viam.provisioning.v1.GetNetworkListResponse
 	(*ProvisioningInfo)(nil),                   // 8: viam.provisioning.v1.ProvisioningInfo
@@ -766,17 +766,17 @@ var file_provisioning_v1_provisioning_proto_goTypes = []interface{}{
 	(*CloudConfig)(nil),                        // 10: viam.provisioning.v1.CloudConfig
 }
 var file_provisioning_v1_provisioning_proto_depIdxs = []int32{
-	8,  // 0: viam.provisioning.v1.GetSmartMachineStatusResponse.provisioning_info:type_name -> viam.provisioning.v1.ProvisioningInfo
-	9,  // 1: viam.provisioning.v1.GetSmartMachineStatusResponse.latest_connection_attempt:type_name -> viam.provisioning.v1.NetworkInfo
-	10, // 2: viam.provisioning.v1.SetSmartMachineCredentialsRequest.cloud:type_name -> viam.provisioning.v1.CloudConfig
+	8,  // 0: viam.provisioning.v1.GetSmartphysicalDeviceStatusResponse.provisioning_info:type_name -> viam.provisioning.v1.ProvisioningInfo
+	9,  // 1: viam.provisioning.v1.GetSmartphysicalDeviceStatusResponse.latest_connection_attempt:type_name -> viam.provisioning.v1.NetworkInfo
+	10, // 2: viam.provisioning.v1.SetSmartphysicalDeviceCredentialsRequest.cloud:type_name -> viam.provisioning.v1.CloudConfig
 	9,  // 3: viam.provisioning.v1.GetNetworkListResponse.networks:type_name -> viam.provisioning.v1.NetworkInfo
-	0,  // 4: viam.provisioning.v1.ProvisioningService.GetSmartMachineStatus:input_type -> viam.provisioning.v1.GetSmartMachineStatusRequest
+	0,  // 4: viam.provisioning.v1.ProvisioningService.GetSmartphysicalDeviceStatus:input_type -> viam.provisioning.v1.GetSmartphysicalDeviceStatusRequest
 	2,  // 5: viam.provisioning.v1.ProvisioningService.SetNetworkCredentials:input_type -> viam.provisioning.v1.SetNetworkCredentialsRequest
-	4,  // 6: viam.provisioning.v1.ProvisioningService.SetSmartMachineCredentials:input_type -> viam.provisioning.v1.SetSmartMachineCredentialsRequest
+	4,  // 6: viam.provisioning.v1.ProvisioningService.SetSmartphysicalDeviceCredentials:input_type -> viam.provisioning.v1.SetSmartphysicalDeviceCredentialsRequest
 	6,  // 7: viam.provisioning.v1.ProvisioningService.GetNetworkList:input_type -> viam.provisioning.v1.GetNetworkListRequest
-	1,  // 8: viam.provisioning.v1.ProvisioningService.GetSmartMachineStatus:output_type -> viam.provisioning.v1.GetSmartMachineStatusResponse
+	1,  // 8: viam.provisioning.v1.ProvisioningService.GetSmartphysicalDeviceStatus:output_type -> viam.provisioning.v1.GetSmartphysicalDeviceStatusResponse
 	3,  // 9: viam.provisioning.v1.ProvisioningService.SetNetworkCredentials:output_type -> viam.provisioning.v1.SetNetworkCredentialsResponse
-	5,  // 10: viam.provisioning.v1.ProvisioningService.SetSmartMachineCredentials:output_type -> viam.provisioning.v1.SetSmartMachineCredentialsResponse
+	5,  // 10: viam.provisioning.v1.ProvisioningService.SetSmartphysicalDeviceCredentials:output_type -> viam.provisioning.v1.SetSmartphysicalDeviceCredentialsResponse
 	7,  // 11: viam.provisioning.v1.ProvisioningService.GetNetworkList:output_type -> viam.provisioning.v1.GetNetworkListResponse
 	8,  // [8:12] is the sub-list for method output_type
 	4,  // [4:8] is the sub-list for method input_type
@@ -792,7 +792,7 @@ func file_provisioning_v1_provisioning_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_provisioning_v1_provisioning_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSmartMachineStatusRequest); i {
+			switch v := v.(*GetSmartphysicalDeviceStatusRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -804,7 +804,7 @@ func file_provisioning_v1_provisioning_proto_init() {
 			}
 		}
 		file_provisioning_v1_provisioning_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSmartMachineStatusResponse); i {
+			switch v := v.(*GetSmartphysicalDeviceStatusResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -840,7 +840,7 @@ func file_provisioning_v1_provisioning_proto_init() {
 			}
 		}
 		file_provisioning_v1_provisioning_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SetSmartMachineCredentialsRequest); i {
+			switch v := v.(*SetSmartphysicalDeviceCredentialsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -852,7 +852,7 @@ func file_provisioning_v1_provisioning_proto_init() {
 			}
 		}
 		file_provisioning_v1_provisioning_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SetSmartMachineCredentialsResponse); i {
+			switch v := v.(*SetSmartphysicalDeviceCredentialsResponse); i {
 			case 0:
 				return &v.state
 			case 1:

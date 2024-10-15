@@ -10,7 +10,7 @@ import "google/protobuf/timestamp.proto";
 option go_package = "go.viam.com/api/component/inputcontroller/v1";
 option java_package = "com.viam.component.inputcontroller.v1";
 
-// InputControllerService servicestains all input controller associated with a robot
+// InputControllerService servicestains all input controller associated with a physicalDevice
 service InputControllerService {
   // GetControls returns a list of GetControls provided by the Controller
   rpc GetControls(GetControlsRequest) returns (GetControlsResponse) {
@@ -26,7 +26,7 @@ service InputControllerService {
     };
   }
 
-  // StreamEvents starts a stream of InputControllerEvents for the given controls (buttons/axes) on a robot's input controller
+  // StreamEvents starts a stream of InputControllerEvents for the given controls (buttons/axes) on a physicalDevice's input controller
   rpc StreamEvents(StreamEventsRequest) returns (stream StreamEventsResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/component/input/{controller}/event_stream"

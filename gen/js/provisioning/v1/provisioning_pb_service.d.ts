@@ -4,13 +4,13 @@
 import * as provisioning_v1_provisioning_pb from "../../provisioning/v1/provisioning_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type ProvisioningServiceGetSmartMachineStatus = {
+type ProvisioningServiceGetSmartphysicalDeviceStatus = {
   readonly methodName: string;
   readonly service: typeof ProvisioningService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof provisioning_v1_provisioning_pb.GetSmartMachineStatusRequest;
-  readonly responseType: typeof provisioning_v1_provisioning_pb.GetSmartMachineStatusResponse;
+  readonly requestType: typeof provisioning_v1_provisioning_pb.GetSmartphysicalDeviceStatusRequest;
+  readonly responseType: typeof provisioning_v1_provisioning_pb.GetSmartphysicalDeviceStatusResponse;
 };
 
 type ProvisioningServiceSetNetworkCredentials = {
@@ -22,13 +22,13 @@ type ProvisioningServiceSetNetworkCredentials = {
   readonly responseType: typeof provisioning_v1_provisioning_pb.SetNetworkCredentialsResponse;
 };
 
-type ProvisioningServiceSetSmartMachineCredentials = {
+type ProvisioningServiceSetSmartphysicalDeviceCredentials = {
   readonly methodName: string;
   readonly service: typeof ProvisioningService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof provisioning_v1_provisioning_pb.SetSmartMachineCredentialsRequest;
-  readonly responseType: typeof provisioning_v1_provisioning_pb.SetSmartMachineCredentialsResponse;
+  readonly requestType: typeof provisioning_v1_provisioning_pb.SetSmartphysicalDeviceCredentialsRequest;
+  readonly responseType: typeof provisioning_v1_provisioning_pb.SetSmartphysicalDeviceCredentialsResponse;
 };
 
 type ProvisioningServiceGetNetworkList = {
@@ -42,9 +42,9 @@ type ProvisioningServiceGetNetworkList = {
 
 export class ProvisioningService {
   static readonly serviceName: string;
-  static readonly GetSmartMachineStatus: ProvisioningServiceGetSmartMachineStatus;
+  static readonly GetSmartphysicalDeviceStatus: ProvisioningServiceGetSmartphysicalDeviceStatus;
   static readonly SetNetworkCredentials: ProvisioningServiceSetNetworkCredentials;
-  static readonly SetSmartMachineCredentials: ProvisioningServiceSetSmartMachineCredentials;
+  static readonly SetSmartphysicalDeviceCredentials: ProvisioningServiceSetSmartphysicalDeviceCredentials;
   static readonly GetNetworkList: ProvisioningServiceGetNetworkList;
 }
 
@@ -80,14 +80,14 @@ export class ProvisioningServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  getSmartMachineStatus(
-    requestMessage: provisioning_v1_provisioning_pb.GetSmartMachineStatusRequest,
+  getSmartphysicalDeviceStatus(
+    requestMessage: provisioning_v1_provisioning_pb.GetSmartphysicalDeviceStatusRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: provisioning_v1_provisioning_pb.GetSmartMachineStatusResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: provisioning_v1_provisioning_pb.GetSmartphysicalDeviceStatusResponse|null) => void
   ): UnaryResponse;
-  getSmartMachineStatus(
-    requestMessage: provisioning_v1_provisioning_pb.GetSmartMachineStatusRequest,
-    callback: (error: ServiceError|null, responseMessage: provisioning_v1_provisioning_pb.GetSmartMachineStatusResponse|null) => void
+  getSmartphysicalDeviceStatus(
+    requestMessage: provisioning_v1_provisioning_pb.GetSmartphysicalDeviceStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: provisioning_v1_provisioning_pb.GetSmartphysicalDeviceStatusResponse|null) => void
   ): UnaryResponse;
   setNetworkCredentials(
     requestMessage: provisioning_v1_provisioning_pb.SetNetworkCredentialsRequest,
@@ -98,14 +98,14 @@ export class ProvisioningServiceClient {
     requestMessage: provisioning_v1_provisioning_pb.SetNetworkCredentialsRequest,
     callback: (error: ServiceError|null, responseMessage: provisioning_v1_provisioning_pb.SetNetworkCredentialsResponse|null) => void
   ): UnaryResponse;
-  setSmartMachineCredentials(
-    requestMessage: provisioning_v1_provisioning_pb.SetSmartMachineCredentialsRequest,
+  setSmartphysicalDeviceCredentials(
+    requestMessage: provisioning_v1_provisioning_pb.SetSmartphysicalDeviceCredentialsRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: provisioning_v1_provisioning_pb.SetSmartMachineCredentialsResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: provisioning_v1_provisioning_pb.SetSmartphysicalDeviceCredentialsResponse|null) => void
   ): UnaryResponse;
-  setSmartMachineCredentials(
-    requestMessage: provisioning_v1_provisioning_pb.SetSmartMachineCredentialsRequest,
-    callback: (error: ServiceError|null, responseMessage: provisioning_v1_provisioning_pb.SetSmartMachineCredentialsResponse|null) => void
+  setSmartphysicalDeviceCredentials(
+    requestMessage: provisioning_v1_provisioning_pb.SetSmartphysicalDeviceCredentialsRequest,
+    callback: (error: ServiceError|null, responseMessage: provisioning_v1_provisioning_pb.SetSmartphysicalDeviceCredentialsResponse|null) => void
   ): UnaryResponse;
   getNetworkList(
     requestMessage: provisioning_v1_provisioning_pb.GetNetworkListRequest,

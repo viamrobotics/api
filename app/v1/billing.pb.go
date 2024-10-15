@@ -461,7 +461,7 @@ type GetCurrentMonthUsageResponse struct {
 	DiscountAmount                  float64                `protobuf:"fixed64,8,opt,name=discount_amount,json=discountAmount,proto3" json:"discount_amount,omitempty"`
 	TotalUsageWithDiscount          float64                `protobuf:"fixed64,9,opt,name=total_usage_with_discount,json=totalUsageWithDiscount,proto3" json:"total_usage_with_discount,omitempty"`
 	TotalUsageWithoutDiscount       float64                `protobuf:"fixed64,10,opt,name=total_usage_without_discount,json=totalUsageWithoutDiscount,proto3" json:"total_usage_without_discount,omitempty"`
-	PerMachineUsageCost             float64                `protobuf:"fixed64,11,opt,name=per_machine_usage_cost,json=perMachineUsageCost,proto3" json:"per_machine_usage_cost,omitempty"`
+	PerphysicalDeviceUsageCost             float64                `protobuf:"fixed64,11,opt,name=per_physicalDevice_usage_cost,json=perphysicalDeviceUsageCost,proto3" json:"per_physicalDevice_usage_cost,omitempty"`
 	BinaryDataCloudStorageUsageCost float64                `protobuf:"fixed64,12,opt,name=binary_data_cloud_storage_usage_cost,json=binaryDataCloudStorageUsageCost,proto3" json:"binary_data_cloud_storage_usage_cost,omitempty"`
 	OtherCloudStorageUsageCost      float64                `protobuf:"fixed64,13,opt,name=other_cloud_storage_usage_cost,json=otherCloudStorageUsageCost,proto3" json:"other_cloud_storage_usage_cost,omitempty"`
 }
@@ -568,9 +568,9 @@ func (x *GetCurrentMonthUsageResponse) GetTotalUsageWithoutDiscount() float64 {
 	return 0
 }
 
-func (x *GetCurrentMonthUsageResponse) GetPerMachineUsageCost() float64 {
+func (x *GetCurrentMonthUsageResponse) GetPerphysicalDeviceUsageCost() float64 {
 	if x != nil {
-		return x.PerMachineUsageCost
+		return x.PerphysicalDeviceUsageCost
 	}
 	return 0
 }

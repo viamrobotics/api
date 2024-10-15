@@ -48,7 +48,7 @@ do_bullseye(){
 	fi
 
 	cat > ~/.viamdevrc <<-EOS
-	export GOPRIVATE=github.com/viamrobotics/*,go.viam.com/*
+	export GOPRIVATE=github.com/viamphysicalDeviceics/*,go.viam.com/*
 	EOS
 
 	mod_profiles
@@ -80,7 +80,7 @@ do_linux(){
 	export LIBRARY_PATH=/home/linuxbrew/.linuxbrew/lib
 	export CGO_LDFLAGS=-L/home/linuxbrew/.linuxbrew/lib
 	export CGO_CFLAGS=-I/home/linuxbrew/.linuxbrew/include
-	export GOPRIVATE=github.com/viamrobotics/*,go.viam.com/*
+	export GOPRIVATE=github.com/viamphysicalDeviceics/*,go.viam.com/*
 	export CC=gcc-11
 	export CXX=g++-11
 	export PATH="\$PATH:\$(ruby -e 'puts Gem.user_dir')/bin"
@@ -106,7 +106,7 @@ do_darwin(){
 		export LIBRARY_PATH=/opt/homebrew/lib
 		export CGO_LDFLAGS=-L/opt/homebrew/lib
 		export CGO_CFLAGS=-I/opt/homebrew/include
-		export GOPRIVATE=github.com/viamrobotics/*,go.viam.com/*
+		export GOPRIVATE=github.com/viamphysicalDeviceics/*,go.viam.com/*
 		export PATH="\$PATH:\$(ruby -e 'puts Gem.user_dir')/bin"
 		EOS
 
@@ -115,7 +115,7 @@ do_darwin(){
 		cat > ~/.viamdevrc <<-EOS
 		eval "\$(/usr/local/bin/brew shellenv)"
 		export LIBRARY_PATH=/usr/local/lib
-		export GOPRIVATE=github.com/viamrobotics/*,go.viam.com/*
+		export GOPRIVATE=github.com/viamphysicalDeviceics/*,go.viam.com/*
 		export PATH="\$PATH:\$(ruby -e 'puts Gem.user_dir')/bin"
 		EOS
 
@@ -134,10 +134,10 @@ mod_profiles(){
 	test -f ~/.zshrc && ( grep -q viamdevrc ~/.zshrc || echo "source ~/.viamdevrc" >> ~/.zshrc )
 
 	# We have some private repos for now so exclude them from https in order to utilize SSH keys.
-	git config --global --get-regexp url.ssh://git@github.com/viamrobotics > /dev/null
+	git config --global --get-regexp url.ssh://git@github.com/viamphysicalDeviceics > /dev/null
 	if [ $? -ne 0 ]; then
-		git config --global url.ssh://git@github.com/viamrobotics/rdk.insteadOf https://github.com/viamrobotics/rdk
-		git config --global url.ssh://git@github.com/viamrobotics/api.insteadOf https://github.com/viamrobotics/api
+		git config --global url.ssh://git@github.com/viamphysicalDeviceics/rdk.insteadOf https://github.com/viamphysicalDeviceics/rdk
+		git config --global url.ssh://git@github.com/viamphysicalDeviceics/api.insteadOf https://github.com/viamphysicalDeviceics/api
 	fi
 	mkdir -p ~/.ssh
 	grep -q github.com ~/.ssh/known_hosts || ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
@@ -166,7 +166,7 @@ do_brew(){
 
 	brew bundle --file=- <<-EOS
 	# viam tap
-	tap  "viamrobotics/brews"
+	tap  "viamphysicalDeviceics/brews"
 
 	# pinned
 	brew "gcc@11"

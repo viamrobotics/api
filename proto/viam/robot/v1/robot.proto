@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package viam.robot.v1;
+package viam.physicalDevice.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
@@ -8,11 +8,11 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "go.viam.com/api/robot/v1";
-option java_package = "com.viam.robot.v1";
+option go_package = "go.viam.com/api/physicalDevice/v1";
+option java_package = "com.viam.physicalDevice.v1";
 
-// A RobotService encompasses all functionality of some robot comprised of parts, local and remote.
-service RobotService {
+// A physicalDeviceService encompasses all functionality of some physicalDevice comprised of parts, local and remote.
+service physicalDeviceService {
   rpc GetOperations(GetOperationsRequest) returns (GetOperationsResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/operations/list"
@@ -90,7 +90,7 @@ service RobotService {
     };
   }
 
-  // StopAll will stop all current and outstanding operations for the robot and stops all actuators and movement
+  // StopAll will stop all current and outstanding operations for the physicalDevice and stops all actuators and movement
   rpc StopAll(StopAllRequest) returns (StopAllResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/stop_all"
@@ -114,14 +114,14 @@ service RobotService {
     };
   }
 
-  // Log sends logs to be logged by this robot. Currently used for module logging.
+  // Log sends logs to be logged by this physicalDevice. Currently used for module logging.
   rpc Log(LogRequest) returns (LogResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/log"
     };
   }
 
-  // GetCloudMetadata returns app-related information about the robot.
+  // GetCloudMetadata returns app-related information about the physicalDevice.
   rpc GetCloudMetadata(GetCloudMetadataRequest) returns (GetCloudMetadataResponse) {
     option (google.api.http) = {
       get: "/viam/api/v1/cloud_metadata"
@@ -134,7 +134,7 @@ service RobotService {
     };
   }
 
-  // Shutdown shuts down the robot.
+  // Shutdown shuts down the physicalDevice.
   rpc Shutdown(ShutdownRequest) returns (ShutdownResponse) {
     option (google.api.http) = {
       post: "/viam/api/v1/shutdown"
@@ -151,7 +151,7 @@ message FrameSystemConfig {
 
 message FrameSystemConfigRequest {
   // pose information on any additional reference frames that are needed
-  // to supplement the robot's frame system
+  // to supplement the physicalDevice's frame system
   repeated common.v1.Transform supplemental_transforms = 1;
 }
 
@@ -182,7 +182,7 @@ message TransformPCDRequest {
   // the reference frame of the point cloud.
   string source = 2;
   // the reference frame into which the source data should be transformed, if unset this defaults to the "world" reference frame.
-  // Do not move the robot between the generation of the initial pointcloud and the receipt
+  // Do not move the physicalDevice between the generation of the initial pointcloud and the receipt
   // of the transformed pointcloud because that will make the transformations inaccurate
   string destination = 3;
 }
@@ -337,12 +337,12 @@ message LogResponse {}
 message GetCloudMetadataRequest {}
 
 message GetCloudMetadataResponse {
-  // Deprecated: use machine_part_id field.
-  string robot_part_id = 1 [deprecated = true];
+  // Deprecated: use physicalDevice_part_id field.
+  string physicalDevice_part_id = 1 [deprecated = true];
   string primary_org_id = 2;
   string location_id = 3;
-  string machine_id = 4;
-  string machine_part_id = 5;
+  string physicalDevice_id = 4;
+  string physicalDevice_part_id = 5;
 }
 
 message RestartModuleRequest {

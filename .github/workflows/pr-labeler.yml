@@ -20,7 +20,7 @@ jobs:
             let prNumber = context.payload.pull_request?.number;
             const ownerAndRepo = {
               // note: this is hardcoded because I'm not sure how it will vary in fork PRs
-              owner: "viamrobotics",
+              owner: "viamphysicalDeviceics",
               repo: "${{ github.event.repository.name }}",
             };
             let orgResp = await github.rest.orgs.checkMembershipForUser({org: ownerAndRepo.owner, username: context.payload.sender.login});

@@ -20,22 +20,22 @@ ShellService.Shell = {
   responseType: service_shell_v1_shell_pb.ShellResponse
 };
 
-ShellService.CopyFilesToMachine = {
-  methodName: "CopyFilesToMachine",
+ShellService.CopyFilesTophysicalDevice = {
+  methodName: "CopyFilesTophysicalDevice",
   service: ShellService,
   requestStream: true,
   responseStream: true,
-  requestType: service_shell_v1_shell_pb.CopyFilesToMachineRequest,
-  responseType: service_shell_v1_shell_pb.CopyFilesToMachineResponse
+  requestType: service_shell_v1_shell_pb.CopyFilesTophysicalDeviceRequest,
+  responseType: service_shell_v1_shell_pb.CopyFilesTophysicalDeviceResponse
 };
 
-ShellService.CopyFilesFromMachine = {
-  methodName: "CopyFilesFromMachine",
+ShellService.CopyFilesFromphysicalDevice = {
+  methodName: "CopyFilesFromphysicalDevice",
   service: ShellService,
   requestStream: true,
   responseStream: true,
-  requestType: service_shell_v1_shell_pb.CopyFilesFromMachineRequest,
-  responseType: service_shell_v1_shell_pb.CopyFilesFromMachineResponse
+  requestType: service_shell_v1_shell_pb.CopyFilesFromphysicalDeviceRequest,
+  responseType: service_shell_v1_shell_pb.CopyFilesFromphysicalDeviceResponse
 };
 
 ShellService.DoCommand = {
@@ -99,13 +99,13 @@ ShellServiceClient.prototype.shell = function shell(metadata) {
   };
 };
 
-ShellServiceClient.prototype.copyFilesToMachine = function copyFilesToMachine(metadata) {
+ShellServiceClient.prototype.copyFilesTophysicalDevice = function copyFilesTophysicalDevice(metadata) {
   var listeners = {
     data: [],
     end: [],
     status: []
   };
-  var client = grpc.client(ShellService.CopyFilesToMachine, {
+  var client = grpc.client(ShellService.CopyFilesTophysicalDevice, {
     host: this.serviceHost,
     metadata: metadata,
     transport: this.options.transport
@@ -144,13 +144,13 @@ ShellServiceClient.prototype.copyFilesToMachine = function copyFilesToMachine(me
   };
 };
 
-ShellServiceClient.prototype.copyFilesFromMachine = function copyFilesFromMachine(metadata) {
+ShellServiceClient.prototype.copyFilesFromphysicalDevice = function copyFilesFromphysicalDevice(metadata) {
   var listeners = {
     data: [],
     end: [],
     status: []
   };
-  var client = grpc.client(ShellService.CopyFilesFromMachine, {
+  var client = grpc.client(ShellService.CopyFilesFromphysicalDevice, {
     host: this.serviceHost,
     metadata: metadata,
     transport: this.options.transport

@@ -1,5 +1,5 @@
 // package: viam.app.v1
-// file: app/v1/robot.proto
+// file: app/v1/physicalDevice.proto
 
 import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../common/v1/common_pb";
@@ -7,7 +7,7 @@ import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/du
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as tagger_v1_tagger_pb from "../../tagger/v1/tagger_pb";
 
-export class RobotConfig extends jspb.Message {
+export class physicalDeviceConfig extends jspb.Message {
   hasCloud(): boolean;
   clearCloud(): void;
   getCloud(): CloudConfig | undefined;
@@ -72,16 +72,16 @@ export class RobotConfig extends jspb.Message {
   setEnableWebProfile(value: boolean): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RobotConfig.AsObject;
-  static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
+  toObject(includeInstance?: boolean): physicalDeviceConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: physicalDeviceConfig): physicalDeviceConfig.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RobotConfig, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RobotConfig;
-  static deserializeBinaryFromReader(message: RobotConfig, reader: jspb.BinaryReader): RobotConfig;
+  static serializeBinaryToWriter(message: physicalDeviceConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): physicalDeviceConfig;
+  static deserializeBinaryFromReader(message: physicalDeviceConfig, reader: jspb.BinaryReader): physicalDeviceConfig;
 }
 
-export namespace RobotConfig {
+export namespace physicalDeviceConfig {
   export type AsObject = {
     cloud?: CloudConfig.AsObject,
     remotesList: Array<RemoteConfig.AsObject>,
@@ -179,8 +179,8 @@ export class CloudConfig extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;
 
-  getMachineId(): string;
-  setMachineId(value: string): void;
+  getphysicalDeviceId(): string;
+  setphysicalDeviceId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CloudConfig.AsObject;
@@ -205,7 +205,7 @@ export namespace CloudConfig {
     locationSecretsList: Array<LocationSecret.AsObject>,
     primaryOrgId: string,
     locationId: string,
-    machineId: string,
+    physicalDeviceId: string,
   }
 }
 
@@ -1084,8 +1084,8 @@ export namespace ConfigRequest {
 export class ConfigResponse extends jspb.Message {
   hasConfig(): boolean;
   clearConfig(): void;
-  getConfig(): RobotConfig | undefined;
-  setConfig(value?: RobotConfig): void;
+  getConfig(): physicalDeviceConfig | undefined;
+  setConfig(value?: physicalDeviceConfig): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ConfigResponse.AsObject;
@@ -1099,7 +1099,7 @@ export class ConfigResponse extends jspb.Message {
 
 export namespace ConfigResponse {
   export type AsObject = {
-    config?: RobotConfig.AsObject,
+    config?: physicalDeviceConfig.AsObject,
   }
 }
 
@@ -1330,8 +1330,8 @@ export interface CredentialsTypeMap {
   CREDENTIALS_TYPE_UNSPECIFIED: 0;
   CREDENTIALS_TYPE_INTERNAL: 1;
   CREDENTIALS_TYPE_API_KEY: 2;
-  CREDENTIALS_TYPE_ROBOT_SECRET: 3;
-  CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET: 4;
+  CREDENTIALS_TYPE_physicalDevice_SECRET: 3;
+  CREDENTIALS_TYPE_physicalDevice_LOCATION_SECRET: 4;
 }
 
 export const CredentialsType: CredentialsTypeMap;

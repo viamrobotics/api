@@ -14,7 +14,7 @@ service AgentDeviceService {
 
 // Device side
 message DeviceAgentConfigRequest {
-  // robot partID
+  // physicalDevice partID
   string id = 1;
   // info about the host system
   HostInfo host_info = 2;

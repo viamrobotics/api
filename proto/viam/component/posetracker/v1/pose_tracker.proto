@@ -9,7 +9,7 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/component/v1";
 option java_package = "com.viam.component.v1";
 
-// A PoseTrackerService maintains all pose trackers associated with a robot
+// A PoseTrackerService maintains all pose trackers associated with a physicalDevice
 service PoseTrackerService {
   // GetPoses returns the current pose of each body tracked by the pose tracker
   rpc GetPoses(GetPosesRequest) returns (GetPosesResponse) {

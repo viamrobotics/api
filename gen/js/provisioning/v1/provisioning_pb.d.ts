@@ -3,30 +3,30 @@
 
 import * as jspb from "google-protobuf";
 
-export class GetSmartMachineStatusRequest extends jspb.Message {
+export class GetSmartphysicalDeviceStatusRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetSmartMachineStatusRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetSmartMachineStatusRequest): GetSmartMachineStatusRequest.AsObject;
+  toObject(includeInstance?: boolean): GetSmartphysicalDeviceStatusRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSmartphysicalDeviceStatusRequest): GetSmartphysicalDeviceStatusRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetSmartMachineStatusRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetSmartMachineStatusRequest;
-  static deserializeBinaryFromReader(message: GetSmartMachineStatusRequest, reader: jspb.BinaryReader): GetSmartMachineStatusRequest;
+  static serializeBinaryToWriter(message: GetSmartphysicalDeviceStatusRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSmartphysicalDeviceStatusRequest;
+  static deserializeBinaryFromReader(message: GetSmartphysicalDeviceStatusRequest, reader: jspb.BinaryReader): GetSmartphysicalDeviceStatusRequest;
 }
 
-export namespace GetSmartMachineStatusRequest {
+export namespace GetSmartphysicalDeviceStatusRequest {
   export type AsObject = {
   }
 }
 
-export class GetSmartMachineStatusResponse extends jspb.Message {
+export class GetSmartphysicalDeviceStatusResponse extends jspb.Message {
   hasProvisioningInfo(): boolean;
   clearProvisioningInfo(): void;
   getProvisioningInfo(): ProvisioningInfo | undefined;
   setProvisioningInfo(value?: ProvisioningInfo): void;
 
-  getHasSmartMachineCredentials(): boolean;
-  setHasSmartMachineCredentials(value: boolean): void;
+  getHasSmartphysicalDeviceCredentials(): boolean;
+  setHasSmartphysicalDeviceCredentials(value: boolean): void;
 
   getIsOnline(): boolean;
   setIsOnline(value: boolean): void;
@@ -42,19 +42,19 @@ export class GetSmartMachineStatusResponse extends jspb.Message {
   addErrors(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetSmartMachineStatusResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetSmartMachineStatusResponse): GetSmartMachineStatusResponse.AsObject;
+  toObject(includeInstance?: boolean): GetSmartphysicalDeviceStatusResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSmartphysicalDeviceStatusResponse): GetSmartphysicalDeviceStatusResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetSmartMachineStatusResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetSmartMachineStatusResponse;
-  static deserializeBinaryFromReader(message: GetSmartMachineStatusResponse, reader: jspb.BinaryReader): GetSmartMachineStatusResponse;
+  static serializeBinaryToWriter(message: GetSmartphysicalDeviceStatusResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSmartphysicalDeviceStatusResponse;
+  static deserializeBinaryFromReader(message: GetSmartphysicalDeviceStatusResponse, reader: jspb.BinaryReader): GetSmartphysicalDeviceStatusResponse;
 }
 
-export namespace GetSmartMachineStatusResponse {
+export namespace GetSmartphysicalDeviceStatusResponse {
   export type AsObject = {
     provisioningInfo?: ProvisioningInfo.AsObject,
-    hasSmartMachineCredentials: boolean,
+    hasSmartphysicalDeviceCredentials: boolean,
     isOnline: boolean,
     latestConnectionAttempt?: NetworkInfo.AsObject,
     errorsList: Array<string>,
@@ -105,40 +105,40 @@ export namespace SetNetworkCredentialsResponse {
   }
 }
 
-export class SetSmartMachineCredentialsRequest extends jspb.Message {
+export class SetSmartphysicalDeviceCredentialsRequest extends jspb.Message {
   hasCloud(): boolean;
   clearCloud(): void;
   getCloud(): CloudConfig | undefined;
   setCloud(value?: CloudConfig): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SetSmartMachineCredentialsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: SetSmartMachineCredentialsRequest): SetSmartMachineCredentialsRequest.AsObject;
+  toObject(includeInstance?: boolean): SetSmartphysicalDeviceCredentialsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SetSmartphysicalDeviceCredentialsRequest): SetSmartphysicalDeviceCredentialsRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: SetSmartMachineCredentialsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SetSmartMachineCredentialsRequest;
-  static deserializeBinaryFromReader(message: SetSmartMachineCredentialsRequest, reader: jspb.BinaryReader): SetSmartMachineCredentialsRequest;
+  static serializeBinaryToWriter(message: SetSmartphysicalDeviceCredentialsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetSmartphysicalDeviceCredentialsRequest;
+  static deserializeBinaryFromReader(message: SetSmartphysicalDeviceCredentialsRequest, reader: jspb.BinaryReader): SetSmartphysicalDeviceCredentialsRequest;
 }
 
-export namespace SetSmartMachineCredentialsRequest {
+export namespace SetSmartphysicalDeviceCredentialsRequest {
   export type AsObject = {
     cloud?: CloudConfig.AsObject,
   }
 }
 
-export class SetSmartMachineCredentialsResponse extends jspb.Message {
+export class SetSmartphysicalDeviceCredentialsResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SetSmartMachineCredentialsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: SetSmartMachineCredentialsResponse): SetSmartMachineCredentialsResponse.AsObject;
+  toObject(includeInstance?: boolean): SetSmartphysicalDeviceCredentialsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SetSmartphysicalDeviceCredentialsResponse): SetSmartphysicalDeviceCredentialsResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: SetSmartMachineCredentialsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SetSmartMachineCredentialsResponse;
-  static deserializeBinaryFromReader(message: SetSmartMachineCredentialsResponse, reader: jspb.BinaryReader): SetSmartMachineCredentialsResponse;
+  static serializeBinaryToWriter(message: SetSmartphysicalDeviceCredentialsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetSmartphysicalDeviceCredentialsResponse;
+  static deserializeBinaryFromReader(message: SetSmartphysicalDeviceCredentialsResponse, reader: jspb.BinaryReader): SetSmartphysicalDeviceCredentialsResponse;
 }
 
-export namespace SetSmartMachineCredentialsResponse {
+export namespace SetSmartphysicalDeviceCredentialsResponse {
   export type AsObject = {
   }
 }

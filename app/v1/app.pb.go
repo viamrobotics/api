@@ -229,7 +229,7 @@ func (SharedSecret_State) EnumDescriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{35, 0}
 }
 
-type Robot struct {
+type physicalDevice struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -241,8 +241,8 @@ type Robot struct {
 	CreatedOn  *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_on,json=createdOn,proto3" json:"created_on,omitempty" bson:"created_on"`
 }
 
-func (x *Robot) Reset() {
-	*x = Robot{}
+func (x *physicalDevice) Reset() {
+	*x = physicalDevice{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -250,13 +250,13 @@ func (x *Robot) Reset() {
 	}
 }
 
-func (x *Robot) String() string {
+func (x *physicalDevice) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Robot) ProtoMessage() {}
+func (*physicalDevice) ProtoMessage() {}
 
-func (x *Robot) ProtoReflect() protoreflect.Message {
+func (x *physicalDevice) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -268,47 +268,47 @@ func (x *Robot) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Robot.ProtoReflect.Descriptor instead.
-func (*Robot) Descriptor() ([]byte, []int) {
+// Deprecated: Use physicalDevice.ProtoReflect.Descriptor instead.
+func (*physicalDevice) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Robot) GetId() string {
+func (x *physicalDevice) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *Robot) GetName() string {
+func (x *physicalDevice) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *Robot) GetLocation() string {
+func (x *physicalDevice) GetLocation() string {
 	if x != nil {
 		return x.Location
 	}
 	return ""
 }
 
-func (x *Robot) GetLastAccess() *timestamppb.Timestamp {
+func (x *physicalDevice) GetLastAccess() *timestamppb.Timestamp {
 	if x != nil {
 		return x.LastAccess
 	}
 	return nil
 }
 
-func (x *Robot) GetCreatedOn() *timestamppb.Timestamp {
+func (x *physicalDevice) GetCreatedOn() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedOn
 	}
 	return nil
 }
 
-type RobotPart struct {
+type physicalDevicePart struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -318,11 +318,11 @@ type RobotPart struct {
 	// dns_name part name used for fqdn and local fqdn. Anytime the Name is updated this should be sanitized and updated as well.
 	DnsName string `protobuf:"bytes,10,opt,name=dns_name,json=dnsName,proto3" json:"dns_name" bson:"dns_name"`
 	Secret  string `protobuf:"bytes,3,opt,name=secret,proto3" json:"secret,omitempty" bson:"secret"`
-	Robot   string `protobuf:"bytes,4,opt,name=robot,proto3" json:"robot" bson:"robot"`
-	// Store the location_id to allow for unique indexes across parts and locations. This filed MUST be updated each time the robots location
+	physicalDevice   string `protobuf:"bytes,4,opt,name=physicalDevice,proto3" json:"physicalDevice" bson:"physicalDevice"`
+	// Store the location_id to allow for unique indexes across parts and locations. This filed MUST be updated each time the physicalDevices location
 	// changes.
 	LocationId       string                 `protobuf:"bytes,12,opt,name=location_id,json=locationId,proto3" json:"-" bson:"location_id"`
-	RobotConfig      *structpb.Struct       `protobuf:"bytes,5,opt,name=robot_config,json=robotConfig,proto3" json:"robot_config" bson:"config"`
+	physicalDeviceConfig      *structpb.Struct       `protobuf:"bytes,5,opt,name=physicalDevice_config,json=physicalDeviceConfig,proto3" json:"physicalDevice_config" bson:"config"`
 	LastAccess       *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=last_access,json=lastAccess,proto3" json:"last_access" bson:"last_access"`
 	UserSuppliedInfo *structpb.Struct       `protobuf:"bytes,7,opt,name=user_supplied_info,json=userSuppliedInfo,proto3" json:"user_supplied_info" bson:"user_supplied_info"`
 	MainPart         bool                   `protobuf:"varint,8,opt,name=main_part,json=mainPart,proto3" json:"main_part" bson:"main_part"`
@@ -333,8 +333,8 @@ type RobotPart struct {
 	Secrets []*SharedSecret `protobuf:"bytes,14,rep,name=secrets,proto3" json:"secrets,omitempty" bson:"secrets"`
 }
 
-func (x *RobotPart) Reset() {
-	*x = RobotPart{}
+func (x *physicalDevicePart) Reset() {
+	*x = physicalDevicePart{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -342,13 +342,13 @@ func (x *RobotPart) Reset() {
 	}
 }
 
-func (x *RobotPart) String() string {
+func (x *physicalDevicePart) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RobotPart) ProtoMessage() {}
+func (*physicalDevicePart) ProtoMessage() {}
 
-func (x *RobotPart) ProtoReflect() protoreflect.Message {
+func (x *physicalDevicePart) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -360,122 +360,122 @@ func (x *RobotPart) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RobotPart.ProtoReflect.Descriptor instead.
-func (*RobotPart) Descriptor() ([]byte, []int) {
+// Deprecated: Use physicalDevicePart.ProtoReflect.Descriptor instead.
+func (*physicalDevicePart) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *RobotPart) GetId() string {
+func (x *physicalDevicePart) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *RobotPart) GetName() string {
+func (x *physicalDevicePart) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *RobotPart) GetDnsName() string {
+func (x *physicalDevicePart) GetDnsName() string {
 	if x != nil {
 		return x.DnsName
 	}
 	return ""
 }
 
-func (x *RobotPart) GetSecret() string {
+func (x *physicalDevicePart) GetSecret() string {
 	if x != nil {
 		return x.Secret
 	}
 	return ""
 }
 
-func (x *RobotPart) GetRobot() string {
+func (x *physicalDevicePart) GetphysicalDevice() string {
 	if x != nil {
-		return x.Robot
+		return x.physicalDevice
 	}
 	return ""
 }
 
-func (x *RobotPart) GetLocationId() string {
+func (x *physicalDevicePart) GetLocationId() string {
 	if x != nil {
 		return x.LocationId
 	}
 	return ""
 }
 
-func (x *RobotPart) GetRobotConfig() *structpb.Struct {
+func (x *physicalDevicePart) GetphysicalDeviceConfig() *structpb.Struct {
 	if x != nil {
-		return x.RobotConfig
+		return x.physicalDeviceConfig
 	}
 	return nil
 }
 
-func (x *RobotPart) GetLastAccess() *timestamppb.Timestamp {
+func (x *physicalDevicePart) GetLastAccess() *timestamppb.Timestamp {
 	if x != nil {
 		return x.LastAccess
 	}
 	return nil
 }
 
-func (x *RobotPart) GetUserSuppliedInfo() *structpb.Struct {
+func (x *physicalDevicePart) GetUserSuppliedInfo() *structpb.Struct {
 	if x != nil {
 		return x.UserSuppliedInfo
 	}
 	return nil
 }
 
-func (x *RobotPart) GetMainPart() bool {
+func (x *physicalDevicePart) GetMainPart() bool {
 	if x != nil {
 		return x.MainPart
 	}
 	return false
 }
 
-func (x *RobotPart) GetFqdn() string {
+func (x *physicalDevicePart) GetFqdn() string {
 	if x != nil {
 		return x.Fqdn
 	}
 	return ""
 }
 
-func (x *RobotPart) GetLocalFqdn() string {
+func (x *physicalDevicePart) GetLocalFqdn() string {
 	if x != nil {
 		return x.LocalFqdn
 	}
 	return ""
 }
 
-func (x *RobotPart) GetCreatedOn() *timestamppb.Timestamp {
+func (x *physicalDevicePart) GetCreatedOn() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedOn
 	}
 	return nil
 }
 
-func (x *RobotPart) GetSecrets() []*SharedSecret {
+func (x *physicalDevicePart) GetSecrets() []*SharedSecret {
 	if x != nil {
 		return x.Secrets
 	}
 	return nil
 }
 
-type RobotPartHistoryEntry struct {
+type physicalDevicePartHistoryEntry struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	Part  string                 `protobuf:"bytes,1,opt,name=part,proto3" json:"part" bson:"part"`
-	Robot string                 `protobuf:"bytes,2,opt,name=robot,proto3" json:"robot" bson:"robot"`
+	physicalDevice string                 `protobuf:"bytes,2,opt,name=physicalDevice,proto3" json:"physicalDevice" bson:"physicalDevice"`
 	When  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=when,proto3" json:"when" bson:"when"`
-	Old   *RobotPart             `protobuf:"bytes,4,opt,name=old,proto3" json:"old" bson:"old"`
+	Old   *physicalDevicePart             `protobuf:"bytes,4,opt,name=old,proto3" json:"old" bson:"old"`
 }
 
-func (x *RobotPartHistoryEntry) Reset() {
-	*x = RobotPartHistoryEntry{}
+func (x *physicalDevicePartHistoryEntry) Reset() {
+	*x = physicalDevicePartHistoryEntry{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -483,13 +483,13 @@ func (x *RobotPartHistoryEntry) Reset() {
 	}
 }
 
-func (x *RobotPartHistoryEntry) String() string {
+func (x *physicalDevicePartHistoryEntry) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RobotPartHistoryEntry) ProtoMessage() {}
+func (*physicalDevicePartHistoryEntry) ProtoMessage() {}
 
-func (x *RobotPartHistoryEntry) ProtoReflect() protoreflect.Message {
+func (x *physicalDevicePartHistoryEntry) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -501,33 +501,33 @@ func (x *RobotPartHistoryEntry) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RobotPartHistoryEntry.ProtoReflect.Descriptor instead.
-func (*RobotPartHistoryEntry) Descriptor() ([]byte, []int) {
+// Deprecated: Use physicalDevicePartHistoryEntry.ProtoReflect.Descriptor instead.
+func (*physicalDevicePartHistoryEntry) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *RobotPartHistoryEntry) GetPart() string {
+func (x *physicalDevicePartHistoryEntry) GetPart() string {
 	if x != nil {
 		return x.Part
 	}
 	return ""
 }
 
-func (x *RobotPartHistoryEntry) GetRobot() string {
+func (x *physicalDevicePartHistoryEntry) GetphysicalDevice() string {
 	if x != nil {
-		return x.Robot
+		return x.physicalDevice
 	}
 	return ""
 }
 
-func (x *RobotPartHistoryEntry) GetWhen() *timestamppb.Timestamp {
+func (x *physicalDevicePartHistoryEntry) GetWhen() *timestamppb.Timestamp {
 	if x != nil {
 		return x.When
 	}
 	return nil
 }
 
-func (x *RobotPartHistoryEntry) GetOld() *RobotPart {
+func (x *physicalDevicePartHistoryEntry) GetOld() *physicalDevicePart {
 	if x != nil {
 		return x.Old
 	}
@@ -2230,7 +2230,7 @@ type Location struct {
 	Organizations []*LocationOrganization `protobuf:"bytes,6,rep,name=organizations,proto3" json:"organizations,omitempty"`
 	// Location creation timestamp.
 	CreatedOn  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created_on,json=createdOn,proto3" json:"created_on,omitempty"`
-	RobotCount int32                  `protobuf:"varint,7,opt,name=robot_count,json=robotCount,proto3" json:"robot_count,omitempty"`
+	physicalDeviceCount int32                  `protobuf:"varint,7,opt,name=physicalDevice_count,json=physicalDeviceCount,proto3" json:"physicalDevice_count,omitempty"`
 	// Config for how data in this location is stored.
 	Config *StorageConfig `protobuf:"bytes,8,opt,name=config,proto3" json:"config,omitempty"`
 }
@@ -2309,9 +2309,9 @@ func (x *Location) GetCreatedOn() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *Location) GetRobotCount() int32 {
+func (x *Location) GetphysicalDeviceCount() int32 {
 	if x != nil {
-		return x.RobotCount
+		return x.physicalDeviceCount
 	}
 	return 0
 }
@@ -2323,7 +2323,7 @@ func (x *Location) GetConfig() *StorageConfig {
 	return nil
 }
 
-// SharedSecret is a secret used for LocationAuth and RobotParts.
+// SharedSecret is a secret used for LocationAuth and physicalDeviceParts.
 type SharedSecret struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3480,7 +3480,7 @@ func (x *LocationAuthResponse) GetAuth() *LocationAuth {
 	return nil
 }
 
-type GetRobotRequest struct {
+type GetphysicalDeviceRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -3488,8 +3488,8 @@ type GetRobotRequest struct {
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *GetRobotRequest) Reset() {
-	*x = GetRobotRequest{}
+func (x *GetphysicalDeviceRequest) Reset() {
+	*x = GetphysicalDeviceRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[58]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3497,13 +3497,13 @@ func (x *GetRobotRequest) Reset() {
 	}
 }
 
-func (x *GetRobotRequest) String() string {
+func (x *GetphysicalDeviceRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRobotRequest) ProtoMessage() {}
+func (*GetphysicalDeviceRequest) ProtoMessage() {}
 
-func (x *GetRobotRequest) ProtoReflect() protoreflect.Message {
+func (x *GetphysicalDeviceRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[58]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3515,19 +3515,19 @@ func (x *GetRobotRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRobotRequest.ProtoReflect.Descriptor instead.
-func (*GetRobotRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetphysicalDeviceRequest.ProtoReflect.Descriptor instead.
+func (*GetphysicalDeviceRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{58}
 }
 
-func (x *GetRobotRequest) GetId() string {
+func (x *GetphysicalDeviceRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-type GetRoverRentalRobotsRequest struct {
+type GetRoverRentalphysicalDevicesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -3535,8 +3535,8 @@ type GetRoverRentalRobotsRequest struct {
 	OrgId string `protobuf:"bytes,1,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
 }
 
-func (x *GetRoverRentalRobotsRequest) Reset() {
-	*x = GetRoverRentalRobotsRequest{}
+func (x *GetRoverRentalphysicalDevicesRequest) Reset() {
+	*x = GetRoverRentalphysicalDevicesRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[59]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3544,13 +3544,13 @@ func (x *GetRoverRentalRobotsRequest) Reset() {
 	}
 }
 
-func (x *GetRoverRentalRobotsRequest) String() string {
+func (x *GetRoverRentalphysicalDevicesRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRoverRentalRobotsRequest) ProtoMessage() {}
+func (*GetRoverRentalphysicalDevicesRequest) ProtoMessage() {}
 
-func (x *GetRoverRentalRobotsRequest) ProtoReflect() protoreflect.Message {
+func (x *GetRoverRentalphysicalDevicesRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[59]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3562,31 +3562,31 @@ func (x *GetRoverRentalRobotsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRoverRentalRobotsRequest.ProtoReflect.Descriptor instead.
-func (*GetRoverRentalRobotsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetRoverRentalphysicalDevicesRequest.ProtoReflect.Descriptor instead.
+func (*GetRoverRentalphysicalDevicesRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{59}
 }
 
-func (x *GetRoverRentalRobotsRequest) GetOrgId() string {
+func (x *GetRoverRentalphysicalDevicesRequest) GetOrgId() string {
 	if x != nil {
 		return x.OrgId
 	}
 	return ""
 }
 
-type RoverRentalRobot struct {
+type RoverRentalphysicalDevice struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	RobotId         string `protobuf:"bytes,1,opt,name=robot_id,json=robotId,proto3" json:"robot_id,omitempty"`
+	physicalDeviceId         string `protobuf:"bytes,1,opt,name=physicalDevice_id,json=physicalDeviceId,proto3" json:"physicalDevice_id,omitempty"`
 	LocationId      string `protobuf:"bytes,2,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
-	RobotName       string `protobuf:"bytes,3,opt,name=robot_name,json=robotName,proto3" json:"robot_name,omitempty"`
-	RobotMainPartId string `protobuf:"bytes,4,opt,name=robot_main_part_id,json=robotMainPartId,proto3" json:"robot_main_part_id,omitempty"`
+	physicalDeviceName       string `protobuf:"bytes,3,opt,name=physicalDevice_name,json=physicalDeviceName,proto3" json:"physicalDevice_name,omitempty"`
+	physicalDeviceMainPartId string `protobuf:"bytes,4,opt,name=physicalDevice_main_part_id,json=physicalDeviceMainPartId,proto3" json:"physicalDevice_main_part_id,omitempty"`
 }
 
-func (x *RoverRentalRobot) Reset() {
-	*x = RoverRentalRobot{}
+func (x *RoverRentalphysicalDevice) Reset() {
+	*x = RoverRentalphysicalDevice{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[60]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3594,13 +3594,13 @@ func (x *RoverRentalRobot) Reset() {
 	}
 }
 
-func (x *RoverRentalRobot) String() string {
+func (x *RoverRentalphysicalDevice) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RoverRentalRobot) ProtoMessage() {}
+func (*RoverRentalphysicalDevice) ProtoMessage() {}
 
-func (x *RoverRentalRobot) ProtoReflect() protoreflect.Message {
+func (x *RoverRentalphysicalDevice) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[60]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3612,49 +3612,49 @@ func (x *RoverRentalRobot) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RoverRentalRobot.ProtoReflect.Descriptor instead.
-func (*RoverRentalRobot) Descriptor() ([]byte, []int) {
+// Deprecated: Use RoverRentalphysicalDevice.ProtoReflect.Descriptor instead.
+func (*RoverRentalphysicalDevice) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{60}
 }
 
-func (x *RoverRentalRobot) GetRobotId() string {
+func (x *RoverRentalphysicalDevice) GetphysicalDeviceId() string {
 	if x != nil {
-		return x.RobotId
+		return x.physicalDeviceId
 	}
 	return ""
 }
 
-func (x *RoverRentalRobot) GetLocationId() string {
+func (x *RoverRentalphysicalDevice) GetLocationId() string {
 	if x != nil {
 		return x.LocationId
 	}
 	return ""
 }
 
-func (x *RoverRentalRobot) GetRobotName() string {
+func (x *RoverRentalphysicalDevice) GetphysicalDeviceName() string {
 	if x != nil {
-		return x.RobotName
+		return x.physicalDeviceName
 	}
 	return ""
 }
 
-func (x *RoverRentalRobot) GetRobotMainPartId() string {
+func (x *RoverRentalphysicalDevice) GetphysicalDeviceMainPartId() string {
 	if x != nil {
-		return x.RobotMainPartId
+		return x.physicalDeviceMainPartId
 	}
 	return ""
 }
 
-type GetRoverRentalRobotsResponse struct {
+type GetRoverRentalphysicalDevicesResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Robots []*RoverRentalRobot `protobuf:"bytes,1,rep,name=robots,proto3" json:"robots,omitempty"`
+	physicalDevices []*RoverRentalphysicalDevice `protobuf:"bytes,1,rep,name=physicalDevices,proto3" json:"physicalDevices,omitempty"`
 }
 
-func (x *GetRoverRentalRobotsResponse) Reset() {
-	*x = GetRoverRentalRobotsResponse{}
+func (x *GetRoverRentalphysicalDevicesResponse) Reset() {
+	*x = GetRoverRentalphysicalDevicesResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[61]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3662,13 +3662,13 @@ func (x *GetRoverRentalRobotsResponse) Reset() {
 	}
 }
 
-func (x *GetRoverRentalRobotsResponse) String() string {
+func (x *GetRoverRentalphysicalDevicesResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRoverRentalRobotsResponse) ProtoMessage() {}
+func (*GetRoverRentalphysicalDevicesResponse) ProtoMessage() {}
 
-func (x *GetRoverRentalRobotsResponse) ProtoReflect() protoreflect.Message {
+func (x *GetRoverRentalphysicalDevicesResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[61]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3680,28 +3680,28 @@ func (x *GetRoverRentalRobotsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRoverRentalRobotsResponse.ProtoReflect.Descriptor instead.
-func (*GetRoverRentalRobotsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetRoverRentalphysicalDevicesResponse.ProtoReflect.Descriptor instead.
+func (*GetRoverRentalphysicalDevicesResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{61}
 }
 
-func (x *GetRoverRentalRobotsResponse) GetRobots() []*RoverRentalRobot {
+func (x *GetRoverRentalphysicalDevicesResponse) GetphysicalDevices() []*RoverRentalphysicalDevice {
 	if x != nil {
-		return x.Robots
+		return x.physicalDevices
 	}
 	return nil
 }
 
-type GetRobotResponse struct {
+type GetphysicalDeviceResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Robot *Robot `protobuf:"bytes,1,opt,name=robot,proto3" json:"robot,omitempty"`
+	physicalDevice *physicalDevice `protobuf:"bytes,1,opt,name=physicalDevice,proto3" json:"physicalDevice,omitempty"`
 }
 
-func (x *GetRobotResponse) Reset() {
-	*x = GetRobotResponse{}
+func (x *GetphysicalDeviceResponse) Reset() {
+	*x = GetphysicalDeviceResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[62]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3709,13 +3709,13 @@ func (x *GetRobotResponse) Reset() {
 	}
 }
 
-func (x *GetRobotResponse) String() string {
+func (x *GetphysicalDeviceResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRobotResponse) ProtoMessage() {}
+func (*GetphysicalDeviceResponse) ProtoMessage() {}
 
-func (x *GetRobotResponse) ProtoReflect() protoreflect.Message {
+func (x *GetphysicalDeviceResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[62]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3727,28 +3727,28 @@ func (x *GetRobotResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRobotResponse.ProtoReflect.Descriptor instead.
-func (*GetRobotResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetphysicalDeviceResponse.ProtoReflect.Descriptor instead.
+func (*GetphysicalDeviceResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{62}
 }
 
-func (x *GetRobotResponse) GetRobot() *Robot {
+func (x *GetphysicalDeviceResponse) GetphysicalDevice() *physicalDevice {
 	if x != nil {
-		return x.Robot
+		return x.physicalDevice
 	}
 	return nil
 }
 
-type GetRobotPartsRequest struct {
+type GetphysicalDevicePartsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	RobotId string `protobuf:"bytes,1,opt,name=robot_id,json=robotId,proto3" json:"robot_id,omitempty"`
+	physicalDeviceId string `protobuf:"bytes,1,opt,name=physicalDevice_id,json=physicalDeviceId,proto3" json:"physicalDevice_id,omitempty"`
 }
 
-func (x *GetRobotPartsRequest) Reset() {
-	*x = GetRobotPartsRequest{}
+func (x *GetphysicalDevicePartsRequest) Reset() {
+	*x = GetphysicalDevicePartsRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[63]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3756,13 +3756,13 @@ func (x *GetRobotPartsRequest) Reset() {
 	}
 }
 
-func (x *GetRobotPartsRequest) String() string {
+func (x *GetphysicalDevicePartsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRobotPartsRequest) ProtoMessage() {}
+func (*GetphysicalDevicePartsRequest) ProtoMessage() {}
 
-func (x *GetRobotPartsRequest) ProtoReflect() protoreflect.Message {
+func (x *GetphysicalDevicePartsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[63]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3774,28 +3774,28 @@ func (x *GetRobotPartsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRobotPartsRequest.ProtoReflect.Descriptor instead.
-func (*GetRobotPartsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetphysicalDevicePartsRequest.ProtoReflect.Descriptor instead.
+func (*GetphysicalDevicePartsRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{63}
 }
 
-func (x *GetRobotPartsRequest) GetRobotId() string {
+func (x *GetphysicalDevicePartsRequest) GetphysicalDeviceId() string {
 	if x != nil {
-		return x.RobotId
+		return x.physicalDeviceId
 	}
 	return ""
 }
 
-type GetRobotPartsResponse struct {
+type GetphysicalDevicePartsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Parts []*RobotPart `protobuf:"bytes,1,rep,name=parts,proto3" json:"parts,omitempty"`
+	Parts []*physicalDevicePart `protobuf:"bytes,1,rep,name=parts,proto3" json:"parts,omitempty"`
 }
 
-func (x *GetRobotPartsResponse) Reset() {
-	*x = GetRobotPartsResponse{}
+func (x *GetphysicalDevicePartsResponse) Reset() {
+	*x = GetphysicalDevicePartsResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[64]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3803,13 +3803,13 @@ func (x *GetRobotPartsResponse) Reset() {
 	}
 }
 
-func (x *GetRobotPartsResponse) String() string {
+func (x *GetphysicalDevicePartsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRobotPartsResponse) ProtoMessage() {}
+func (*GetphysicalDevicePartsResponse) ProtoMessage() {}
 
-func (x *GetRobotPartsResponse) ProtoReflect() protoreflect.Message {
+func (x *GetphysicalDevicePartsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[64]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3821,19 +3821,19 @@ func (x *GetRobotPartsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRobotPartsResponse.ProtoReflect.Descriptor instead.
-func (*GetRobotPartsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetphysicalDevicePartsResponse.ProtoReflect.Descriptor instead.
+func (*GetphysicalDevicePartsResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{64}
 }
 
-func (x *GetRobotPartsResponse) GetParts() []*RobotPart {
+func (x *GetphysicalDevicePartsResponse) GetParts() []*physicalDevicePart {
 	if x != nil {
 		return x.Parts
 	}
 	return nil
 }
 
-type GetRobotPartRequest struct {
+type GetphysicalDevicePartRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -3841,8 +3841,8 @@ type GetRobotPartRequest struct {
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *GetRobotPartRequest) Reset() {
-	*x = GetRobotPartRequest{}
+func (x *GetphysicalDevicePartRequest) Reset() {
+	*x = GetphysicalDevicePartRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[65]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3850,13 +3850,13 @@ func (x *GetRobotPartRequest) Reset() {
 	}
 }
 
-func (x *GetRobotPartRequest) String() string {
+func (x *GetphysicalDevicePartRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRobotPartRequest) ProtoMessage() {}
+func (*GetphysicalDevicePartRequest) ProtoMessage() {}
 
-func (x *GetRobotPartRequest) ProtoReflect() protoreflect.Message {
+func (x *GetphysicalDevicePartRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[65]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3868,29 +3868,29 @@ func (x *GetRobotPartRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRobotPartRequest.ProtoReflect.Descriptor instead.
-func (*GetRobotPartRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetphysicalDevicePartRequest.ProtoReflect.Descriptor instead.
+func (*GetphysicalDevicePartRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{65}
 }
 
-func (x *GetRobotPartRequest) GetId() string {
+func (x *GetphysicalDevicePartRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-type GetRobotPartResponse struct {
+type GetphysicalDevicePartResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Part       *RobotPart `protobuf:"bytes,1,opt,name=part,proto3" json:"part,omitempty"`
+	Part       *physicalDevicePart `protobuf:"bytes,1,opt,name=part,proto3" json:"part,omitempty"`
 	ConfigJson string     `protobuf:"bytes,2,opt,name=config_json,json=configJson,proto3" json:"config_json,omitempty"`
 }
 
-func (x *GetRobotPartResponse) Reset() {
-	*x = GetRobotPartResponse{}
+func (x *GetphysicalDevicePartResponse) Reset() {
+	*x = GetphysicalDevicePartResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[66]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3898,13 +3898,13 @@ func (x *GetRobotPartResponse) Reset() {
 	}
 }
 
-func (x *GetRobotPartResponse) String() string {
+func (x *GetphysicalDevicePartResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRobotPartResponse) ProtoMessage() {}
+func (*GetphysicalDevicePartResponse) ProtoMessage() {}
 
-func (x *GetRobotPartResponse) ProtoReflect() protoreflect.Message {
+func (x *GetphysicalDevicePartResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[66]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3916,26 +3916,26 @@ func (x *GetRobotPartResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRobotPartResponse.ProtoReflect.Descriptor instead.
-func (*GetRobotPartResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetphysicalDevicePartResponse.ProtoReflect.Descriptor instead.
+func (*GetphysicalDevicePartResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{66}
 }
 
-func (x *GetRobotPartResponse) GetPart() *RobotPart {
+func (x *GetphysicalDevicePartResponse) GetPart() *physicalDevicePart {
 	if x != nil {
 		return x.Part
 	}
 	return nil
 }
 
-func (x *GetRobotPartResponse) GetConfigJson() string {
+func (x *GetphysicalDevicePartResponse) GetConfigJson() string {
 	if x != nil {
 		return x.ConfigJson
 	}
 	return ""
 }
 
-type GetRobotPartLogsRequest struct {
+type GetphysicalDevicePartLogsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -3951,8 +3951,8 @@ type GetRobotPartLogsRequest struct {
 	Levels []string `protobuf:"bytes,5,rep,name=levels,proto3" json:"levels,omitempty"`
 }
 
-func (x *GetRobotPartLogsRequest) Reset() {
-	*x = GetRobotPartLogsRequest{}
+func (x *GetphysicalDevicePartLogsRequest) Reset() {
+	*x = GetphysicalDevicePartLogsRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[67]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3960,13 +3960,13 @@ func (x *GetRobotPartLogsRequest) Reset() {
 	}
 }
 
-func (x *GetRobotPartLogsRequest) String() string {
+func (x *GetphysicalDevicePartLogsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRobotPartLogsRequest) ProtoMessage() {}
+func (*GetphysicalDevicePartLogsRequest) ProtoMessage() {}
 
-func (x *GetRobotPartLogsRequest) ProtoReflect() protoreflect.Message {
+func (x *GetphysicalDevicePartLogsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[67]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3978,12 +3978,12 @@ func (x *GetRobotPartLogsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRobotPartLogsRequest.ProtoReflect.Descriptor instead.
-func (*GetRobotPartLogsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetphysicalDevicePartLogsRequest.ProtoReflect.Descriptor instead.
+func (*GetphysicalDevicePartLogsRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{67}
 }
 
-func (x *GetRobotPartLogsRequest) GetId() string {
+func (x *GetphysicalDevicePartLogsRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
@@ -3991,35 +3991,35 @@ func (x *GetRobotPartLogsRequest) GetId() string {
 }
 
 // Deprecated: Marked as deprecated in app/v1/app.proto.
-func (x *GetRobotPartLogsRequest) GetErrorsOnly() bool {
+func (x *GetphysicalDevicePartLogsRequest) GetErrorsOnly() bool {
 	if x != nil {
 		return x.ErrorsOnly
 	}
 	return false
 }
 
-func (x *GetRobotPartLogsRequest) GetFilter() string {
+func (x *GetphysicalDevicePartLogsRequest) GetFilter() string {
 	if x != nil && x.Filter != nil {
 		return *x.Filter
 	}
 	return ""
 }
 
-func (x *GetRobotPartLogsRequest) GetPageToken() string {
+func (x *GetphysicalDevicePartLogsRequest) GetPageToken() string {
 	if x != nil && x.PageToken != nil {
 		return *x.PageToken
 	}
 	return ""
 }
 
-func (x *GetRobotPartLogsRequest) GetLevels() []string {
+func (x *GetphysicalDevicePartLogsRequest) GetLevels() []string {
 	if x != nil {
 		return x.Levels
 	}
 	return nil
 }
 
-type GetRobotPartLogsResponse struct {
+type GetphysicalDevicePartLogsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -4028,8 +4028,8 @@ type GetRobotPartLogsResponse struct {
 	NextPageToken string         `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
 }
 
-func (x *GetRobotPartLogsResponse) Reset() {
-	*x = GetRobotPartLogsResponse{}
+func (x *GetphysicalDevicePartLogsResponse) Reset() {
+	*x = GetphysicalDevicePartLogsResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[68]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4037,13 +4037,13 @@ func (x *GetRobotPartLogsResponse) Reset() {
 	}
 }
 
-func (x *GetRobotPartLogsResponse) String() string {
+func (x *GetphysicalDevicePartLogsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRobotPartLogsResponse) ProtoMessage() {}
+func (*GetphysicalDevicePartLogsResponse) ProtoMessage() {}
 
-func (x *GetRobotPartLogsResponse) ProtoReflect() protoreflect.Message {
+func (x *GetphysicalDevicePartLogsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[68]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4055,26 +4055,26 @@ func (x *GetRobotPartLogsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRobotPartLogsResponse.ProtoReflect.Descriptor instead.
-func (*GetRobotPartLogsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetphysicalDevicePartLogsResponse.ProtoReflect.Descriptor instead.
+func (*GetphysicalDevicePartLogsResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{68}
 }
 
-func (x *GetRobotPartLogsResponse) GetLogs() []*v1.LogEntry {
+func (x *GetphysicalDevicePartLogsResponse) GetLogs() []*v1.LogEntry {
 	if x != nil {
 		return x.Logs
 	}
 	return nil
 }
 
-func (x *GetRobotPartLogsResponse) GetNextPageToken() string {
+func (x *GetphysicalDevicePartLogsResponse) GetNextPageToken() string {
 	if x != nil {
 		return x.NextPageToken
 	}
 	return ""
 }
 
-type TailRobotPartLogsRequest struct {
+type TailphysicalDevicePartLogsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -4084,8 +4084,8 @@ type TailRobotPartLogsRequest struct {
 	Filter     *string `protobuf:"bytes,3,opt,name=filter,proto3,oneof" json:"filter,omitempty"`
 }
 
-func (x *TailRobotPartLogsRequest) Reset() {
-	*x = TailRobotPartLogsRequest{}
+func (x *TailphysicalDevicePartLogsRequest) Reset() {
+	*x = TailphysicalDevicePartLogsRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[69]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4093,13 +4093,13 @@ func (x *TailRobotPartLogsRequest) Reset() {
 	}
 }
 
-func (x *TailRobotPartLogsRequest) String() string {
+func (x *TailphysicalDevicePartLogsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TailRobotPartLogsRequest) ProtoMessage() {}
+func (*TailphysicalDevicePartLogsRequest) ProtoMessage() {}
 
-func (x *TailRobotPartLogsRequest) ProtoReflect() protoreflect.Message {
+func (x *TailphysicalDevicePartLogsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[69]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4111,33 +4111,33 @@ func (x *TailRobotPartLogsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TailRobotPartLogsRequest.ProtoReflect.Descriptor instead.
-func (*TailRobotPartLogsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use TailphysicalDevicePartLogsRequest.ProtoReflect.Descriptor instead.
+func (*TailphysicalDevicePartLogsRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{69}
 }
 
-func (x *TailRobotPartLogsRequest) GetId() string {
+func (x *TailphysicalDevicePartLogsRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *TailRobotPartLogsRequest) GetErrorsOnly() bool {
+func (x *TailphysicalDevicePartLogsRequest) GetErrorsOnly() bool {
 	if x != nil {
 		return x.ErrorsOnly
 	}
 	return false
 }
 
-func (x *TailRobotPartLogsRequest) GetFilter() string {
+func (x *TailphysicalDevicePartLogsRequest) GetFilter() string {
 	if x != nil && x.Filter != nil {
 		return *x.Filter
 	}
 	return ""
 }
 
-type TailRobotPartLogsResponse struct {
+type TailphysicalDevicePartLogsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -4145,8 +4145,8 @@ type TailRobotPartLogsResponse struct {
 	Logs []*v1.LogEntry `protobuf:"bytes,1,rep,name=logs,proto3" json:"logs,omitempty"`
 }
 
-func (x *TailRobotPartLogsResponse) Reset() {
-	*x = TailRobotPartLogsResponse{}
+func (x *TailphysicalDevicePartLogsResponse) Reset() {
+	*x = TailphysicalDevicePartLogsResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[70]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4154,13 +4154,13 @@ func (x *TailRobotPartLogsResponse) Reset() {
 	}
 }
 
-func (x *TailRobotPartLogsResponse) String() string {
+func (x *TailphysicalDevicePartLogsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TailRobotPartLogsResponse) ProtoMessage() {}
+func (*TailphysicalDevicePartLogsResponse) ProtoMessage() {}
 
-func (x *TailRobotPartLogsResponse) ProtoReflect() protoreflect.Message {
+func (x *TailphysicalDevicePartLogsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[70]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4172,19 +4172,19 @@ func (x *TailRobotPartLogsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TailRobotPartLogsResponse.ProtoReflect.Descriptor instead.
-func (*TailRobotPartLogsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use TailphysicalDevicePartLogsResponse.ProtoReflect.Descriptor instead.
+func (*TailphysicalDevicePartLogsResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{70}
 }
 
-func (x *TailRobotPartLogsResponse) GetLogs() []*v1.LogEntry {
+func (x *TailphysicalDevicePartLogsResponse) GetLogs() []*v1.LogEntry {
 	if x != nil {
 		return x.Logs
 	}
 	return nil
 }
 
-type GetRobotPartHistoryRequest struct {
+type GetphysicalDevicePartHistoryRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -4192,8 +4192,8 @@ type GetRobotPartHistoryRequest struct {
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *GetRobotPartHistoryRequest) Reset() {
-	*x = GetRobotPartHistoryRequest{}
+func (x *GetphysicalDevicePartHistoryRequest) Reset() {
+	*x = GetphysicalDevicePartHistoryRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[71]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4201,13 +4201,13 @@ func (x *GetRobotPartHistoryRequest) Reset() {
 	}
 }
 
-func (x *GetRobotPartHistoryRequest) String() string {
+func (x *GetphysicalDevicePartHistoryRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRobotPartHistoryRequest) ProtoMessage() {}
+func (*GetphysicalDevicePartHistoryRequest) ProtoMessage() {}
 
-func (x *GetRobotPartHistoryRequest) ProtoReflect() protoreflect.Message {
+func (x *GetphysicalDevicePartHistoryRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[71]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4219,28 +4219,28 @@ func (x *GetRobotPartHistoryRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRobotPartHistoryRequest.ProtoReflect.Descriptor instead.
-func (*GetRobotPartHistoryRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetphysicalDevicePartHistoryRequest.ProtoReflect.Descriptor instead.
+func (*GetphysicalDevicePartHistoryRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{71}
 }
 
-func (x *GetRobotPartHistoryRequest) GetId() string {
+func (x *GetphysicalDevicePartHistoryRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-type GetRobotPartHistoryResponse struct {
+type GetphysicalDevicePartHistoryResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	History []*RobotPartHistoryEntry `protobuf:"bytes,1,rep,name=history,proto3" json:"history,omitempty"`
+	History []*physicalDevicePartHistoryEntry `protobuf:"bytes,1,rep,name=history,proto3" json:"history,omitempty"`
 }
 
-func (x *GetRobotPartHistoryResponse) Reset() {
-	*x = GetRobotPartHistoryResponse{}
+func (x *GetphysicalDevicePartHistoryResponse) Reset() {
+	*x = GetphysicalDevicePartHistoryResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[72]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4248,13 +4248,13 @@ func (x *GetRobotPartHistoryResponse) Reset() {
 	}
 }
 
-func (x *GetRobotPartHistoryResponse) String() string {
+func (x *GetphysicalDevicePartHistoryResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRobotPartHistoryResponse) ProtoMessage() {}
+func (*GetphysicalDevicePartHistoryResponse) ProtoMessage() {}
 
-func (x *GetRobotPartHistoryResponse) ProtoReflect() protoreflect.Message {
+func (x *GetphysicalDevicePartHistoryResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[72]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4266,30 +4266,30 @@ func (x *GetRobotPartHistoryResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRobotPartHistoryResponse.ProtoReflect.Descriptor instead.
-func (*GetRobotPartHistoryResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetphysicalDevicePartHistoryResponse.ProtoReflect.Descriptor instead.
+func (*GetphysicalDevicePartHistoryResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{72}
 }
 
-func (x *GetRobotPartHistoryResponse) GetHistory() []*RobotPartHistoryEntry {
+func (x *GetphysicalDevicePartHistoryResponse) GetHistory() []*physicalDevicePartHistoryEntry {
 	if x != nil {
 		return x.History
 	}
 	return nil
 }
 
-type UpdateRobotPartRequest struct {
+type UpdatephysicalDevicePartRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	Id          string           `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name        string           `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	RobotConfig *structpb.Struct `protobuf:"bytes,3,opt,name=robot_config,json=robotConfig,proto3" json:"robot_config,omitempty"`
+	physicalDeviceConfig *structpb.Struct `protobuf:"bytes,3,opt,name=physicalDevice_config,json=physicalDeviceConfig,proto3" json:"physicalDevice_config,omitempty"`
 }
 
-func (x *UpdateRobotPartRequest) Reset() {
-	*x = UpdateRobotPartRequest{}
+func (x *UpdatephysicalDevicePartRequest) Reset() {
+	*x = UpdatephysicalDevicePartRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[73]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4297,13 +4297,13 @@ func (x *UpdateRobotPartRequest) Reset() {
 	}
 }
 
-func (x *UpdateRobotPartRequest) String() string {
+func (x *UpdatephysicalDevicePartRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateRobotPartRequest) ProtoMessage() {}
+func (*UpdatephysicalDevicePartRequest) ProtoMessage() {}
 
-func (x *UpdateRobotPartRequest) ProtoReflect() protoreflect.Message {
+func (x *UpdatephysicalDevicePartRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[73]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4315,42 +4315,42 @@ func (x *UpdateRobotPartRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateRobotPartRequest.ProtoReflect.Descriptor instead.
-func (*UpdateRobotPartRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdatephysicalDevicePartRequest.ProtoReflect.Descriptor instead.
+func (*UpdatephysicalDevicePartRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{73}
 }
 
-func (x *UpdateRobotPartRequest) GetId() string {
+func (x *UpdatephysicalDevicePartRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *UpdateRobotPartRequest) GetName() string {
+func (x *UpdatephysicalDevicePartRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *UpdateRobotPartRequest) GetRobotConfig() *structpb.Struct {
+func (x *UpdatephysicalDevicePartRequest) GetphysicalDeviceConfig() *structpb.Struct {
 	if x != nil {
-		return x.RobotConfig
+		return x.physicalDeviceConfig
 	}
 	return nil
 }
 
-type UpdateRobotPartResponse struct {
+type UpdatephysicalDevicePartResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Part *RobotPart `protobuf:"bytes,1,opt,name=part,proto3" json:"part,omitempty"`
+	Part *physicalDevicePart `protobuf:"bytes,1,opt,name=part,proto3" json:"part,omitempty"`
 }
 
-func (x *UpdateRobotPartResponse) Reset() {
-	*x = UpdateRobotPartResponse{}
+func (x *UpdatephysicalDevicePartResponse) Reset() {
+	*x = UpdatephysicalDevicePartResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[74]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4358,13 +4358,13 @@ func (x *UpdateRobotPartResponse) Reset() {
 	}
 }
 
-func (x *UpdateRobotPartResponse) String() string {
+func (x *UpdatephysicalDevicePartResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateRobotPartResponse) ProtoMessage() {}
+func (*UpdatephysicalDevicePartResponse) ProtoMessage() {}
 
-func (x *UpdateRobotPartResponse) ProtoReflect() protoreflect.Message {
+func (x *UpdatephysicalDevicePartResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[74]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4376,29 +4376,29 @@ func (x *UpdateRobotPartResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateRobotPartResponse.ProtoReflect.Descriptor instead.
-func (*UpdateRobotPartResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdatephysicalDevicePartResponse.ProtoReflect.Descriptor instead.
+func (*UpdatephysicalDevicePartResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{74}
 }
 
-func (x *UpdateRobotPartResponse) GetPart() *RobotPart {
+func (x *UpdatephysicalDevicePartResponse) GetPart() *physicalDevicePart {
 	if x != nil {
 		return x.Part
 	}
 	return nil
 }
 
-type NewRobotPartRequest struct {
+type NewphysicalDevicePartRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	RobotId  string `protobuf:"bytes,1,opt,name=robot_id,json=robotId,proto3" json:"robot_id,omitempty"`
+	physicalDeviceId  string `protobuf:"bytes,1,opt,name=physicalDevice_id,json=physicalDeviceId,proto3" json:"physicalDevice_id,omitempty"`
 	PartName string `protobuf:"bytes,2,opt,name=part_name,json=partName,proto3" json:"part_name,omitempty"`
 }
 
-func (x *NewRobotPartRequest) Reset() {
-	*x = NewRobotPartRequest{}
+func (x *NewphysicalDevicePartRequest) Reset() {
+	*x = NewphysicalDevicePartRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[75]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4406,13 +4406,13 @@ func (x *NewRobotPartRequest) Reset() {
 	}
 }
 
-func (x *NewRobotPartRequest) String() string {
+func (x *NewphysicalDevicePartRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*NewRobotPartRequest) ProtoMessage() {}
+func (*NewphysicalDevicePartRequest) ProtoMessage() {}
 
-func (x *NewRobotPartRequest) ProtoReflect() protoreflect.Message {
+func (x *NewphysicalDevicePartRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[75]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4424,26 +4424,26 @@ func (x *NewRobotPartRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use NewRobotPartRequest.ProtoReflect.Descriptor instead.
-func (*NewRobotPartRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use NewphysicalDevicePartRequest.ProtoReflect.Descriptor instead.
+func (*NewphysicalDevicePartRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{75}
 }
 
-func (x *NewRobotPartRequest) GetRobotId() string {
+func (x *NewphysicalDevicePartRequest) GetphysicalDeviceId() string {
 	if x != nil {
-		return x.RobotId
+		return x.physicalDeviceId
 	}
 	return ""
 }
 
-func (x *NewRobotPartRequest) GetPartName() string {
+func (x *NewphysicalDevicePartRequest) GetPartName() string {
 	if x != nil {
 		return x.PartName
 	}
 	return ""
 }
 
-type NewRobotPartResponse struct {
+type NewphysicalDevicePartResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -4451,8 +4451,8 @@ type NewRobotPartResponse struct {
 	PartId string `protobuf:"bytes,1,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
 }
 
-func (x *NewRobotPartResponse) Reset() {
-	*x = NewRobotPartResponse{}
+func (x *NewphysicalDevicePartResponse) Reset() {
+	*x = NewphysicalDevicePartResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[76]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4460,13 +4460,13 @@ func (x *NewRobotPartResponse) Reset() {
 	}
 }
 
-func (x *NewRobotPartResponse) String() string {
+func (x *NewphysicalDevicePartResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*NewRobotPartResponse) ProtoMessage() {}
+func (*NewphysicalDevicePartResponse) ProtoMessage() {}
 
-func (x *NewRobotPartResponse) ProtoReflect() protoreflect.Message {
+func (x *NewphysicalDevicePartResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[76]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4478,19 +4478,19 @@ func (x *NewRobotPartResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use NewRobotPartResponse.ProtoReflect.Descriptor instead.
-func (*NewRobotPartResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use NewphysicalDevicePartResponse.ProtoReflect.Descriptor instead.
+func (*NewphysicalDevicePartResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{76}
 }
 
-func (x *NewRobotPartResponse) GetPartId() string {
+func (x *NewphysicalDevicePartResponse) GetPartId() string {
 	if x != nil {
 		return x.PartId
 	}
 	return ""
 }
 
-type DeleteRobotPartRequest struct {
+type DeletephysicalDevicePartRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -4498,8 +4498,8 @@ type DeleteRobotPartRequest struct {
 	PartId string `protobuf:"bytes,1,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
 }
 
-func (x *DeleteRobotPartRequest) Reset() {
-	*x = DeleteRobotPartRequest{}
+func (x *DeletephysicalDevicePartRequest) Reset() {
+	*x = DeletephysicalDevicePartRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[77]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4507,13 +4507,13 @@ func (x *DeleteRobotPartRequest) Reset() {
 	}
 }
 
-func (x *DeleteRobotPartRequest) String() string {
+func (x *DeletephysicalDevicePartRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteRobotPartRequest) ProtoMessage() {}
+func (*DeletephysicalDevicePartRequest) ProtoMessage() {}
 
-func (x *DeleteRobotPartRequest) ProtoReflect() protoreflect.Message {
+func (x *DeletephysicalDevicePartRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[77]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4525,28 +4525,28 @@ func (x *DeleteRobotPartRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteRobotPartRequest.ProtoReflect.Descriptor instead.
-func (*DeleteRobotPartRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeletephysicalDevicePartRequest.ProtoReflect.Descriptor instead.
+func (*DeletephysicalDevicePartRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{77}
 }
 
-func (x *DeleteRobotPartRequest) GetPartId() string {
+func (x *DeletephysicalDevicePartRequest) GetPartId() string {
 	if x != nil {
 		return x.PartId
 	}
 	return ""
 }
 
-type GetRobotAPIKeysRequest struct {
+type GetphysicalDeviceAPIKeysRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	RobotId string `protobuf:"bytes,1,opt,name=robot_id,json=robotId,proto3" json:"robot_id,omitempty"`
+	physicalDeviceId string `protobuf:"bytes,1,opt,name=physicalDevice_id,json=physicalDeviceId,proto3" json:"physicalDevice_id,omitempty"`
 }
 
-func (x *GetRobotAPIKeysRequest) Reset() {
-	*x = GetRobotAPIKeysRequest{}
+func (x *GetphysicalDeviceAPIKeysRequest) Reset() {
+	*x = GetphysicalDeviceAPIKeysRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[78]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4554,13 +4554,13 @@ func (x *GetRobotAPIKeysRequest) Reset() {
 	}
 }
 
-func (x *GetRobotAPIKeysRequest) String() string {
+func (x *GetphysicalDeviceAPIKeysRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRobotAPIKeysRequest) ProtoMessage() {}
+func (*GetphysicalDeviceAPIKeysRequest) ProtoMessage() {}
 
-func (x *GetRobotAPIKeysRequest) ProtoReflect() protoreflect.Message {
+func (x *GetphysicalDeviceAPIKeysRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[78]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4572,14 +4572,14 @@ func (x *GetRobotAPIKeysRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRobotAPIKeysRequest.ProtoReflect.Descriptor instead.
-func (*GetRobotAPIKeysRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetphysicalDeviceAPIKeysRequest.ProtoReflect.Descriptor instead.
+func (*GetphysicalDeviceAPIKeysRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{78}
 }
 
-func (x *GetRobotAPIKeysRequest) GetRobotId() string {
+func (x *GetphysicalDeviceAPIKeysRequest) GetphysicalDeviceId() string {
 	if x != nil {
-		return x.RobotId
+		return x.physicalDeviceId
 	}
 	return ""
 }
@@ -4655,7 +4655,7 @@ func (x *APIKey) GetCreatedOn() *timestamppb.Timestamp {
 	return nil
 }
 
-type GetRobotAPIKeysResponse struct {
+type GetphysicalDeviceAPIKeysResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -4663,8 +4663,8 @@ type GetRobotAPIKeysResponse struct {
 	ApiKeys []*APIKeyWithAuthorizations `protobuf:"bytes,1,rep,name=api_keys,json=apiKeys,proto3" json:"api_keys,omitempty"`
 }
 
-func (x *GetRobotAPIKeysResponse) Reset() {
-	*x = GetRobotAPIKeysResponse{}
+func (x *GetphysicalDeviceAPIKeysResponse) Reset() {
+	*x = GetphysicalDeviceAPIKeysResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[80]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4672,13 +4672,13 @@ func (x *GetRobotAPIKeysResponse) Reset() {
 	}
 }
 
-func (x *GetRobotAPIKeysResponse) String() string {
+func (x *GetphysicalDeviceAPIKeysResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRobotAPIKeysResponse) ProtoMessage() {}
+func (*GetphysicalDeviceAPIKeysResponse) ProtoMessage() {}
 
-func (x *GetRobotAPIKeysResponse) ProtoReflect() protoreflect.Message {
+func (x *GetphysicalDeviceAPIKeysResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[80]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4690,26 +4690,26 @@ func (x *GetRobotAPIKeysResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRobotAPIKeysResponse.ProtoReflect.Descriptor instead.
-func (*GetRobotAPIKeysResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetphysicalDeviceAPIKeysResponse.ProtoReflect.Descriptor instead.
+func (*GetphysicalDeviceAPIKeysResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{80}
 }
 
-func (x *GetRobotAPIKeysResponse) GetApiKeys() []*APIKeyWithAuthorizations {
+func (x *GetphysicalDeviceAPIKeysResponse) GetApiKeys() []*APIKeyWithAuthorizations {
 	if x != nil {
 		return x.ApiKeys
 	}
 	return nil
 }
 
-type DeleteRobotPartResponse struct {
+type DeletephysicalDevicePartResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *DeleteRobotPartResponse) Reset() {
-	*x = DeleteRobotPartResponse{}
+func (x *DeletephysicalDevicePartResponse) Reset() {
+	*x = DeletephysicalDevicePartResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[81]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4717,13 +4717,13 @@ func (x *DeleteRobotPartResponse) Reset() {
 	}
 }
 
-func (x *DeleteRobotPartResponse) String() string {
+func (x *DeletephysicalDevicePartResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteRobotPartResponse) ProtoMessage() {}
+func (*DeletephysicalDevicePartResponse) ProtoMessage() {}
 
-func (x *DeleteRobotPartResponse) ProtoReflect() protoreflect.Message {
+func (x *DeletephysicalDevicePartResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[81]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4735,8 +4735,8 @@ func (x *DeleteRobotPartResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteRobotPartResponse.ProtoReflect.Descriptor instead.
-func (*DeleteRobotPartResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeletephysicalDevicePartResponse.ProtoReflect.Descriptor instead.
+func (*DeletephysicalDevicePartResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{81}
 }
 
@@ -4752,8 +4752,8 @@ type Fragment struct {
 	Public            bool                   `protobuf:"varint,5,opt,name=public,proto3" json:"public" bson:"public"`
 	CreatedOn         *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_on,json=createdOn,proto3" json:"created_on,omitempty" bson:"created_on"`
 	OrganizationName  string                 `protobuf:"bytes,7,opt,name=organization_name,json=organizationName,proto3" json:"organization_name,omitempty"`
-	// number of robot parts using this fragment
-	RobotPartCount int32 `protobuf:"varint,9,opt,name=robot_part_count,json=robotPartCount,proto3" json:"robot_part_count,omitempty"`
+	// number of physicalDevice parts using this fragment
+	physicalDevicePartCount int32 `protobuf:"varint,9,opt,name=physicalDevice_part_count,json=physicalDevicePartCount,proto3" json:"physicalDevice_part_count,omitempty"`
 	// number of organizations using this fragment
 	OrganizationCount int32 `protobuf:"varint,10,opt,name=organization_count,json=organizationCount,proto3" json:"organization_count,omitempty"`
 	// whether the organization(s) using this fragment is the same as the fragment org
@@ -4843,9 +4843,9 @@ func (x *Fragment) GetOrganizationName() string {
 	return ""
 }
 
-func (x *Fragment) GetRobotPartCount() int32 {
+func (x *Fragment) GetphysicalDevicePartCount() int32 {
 	if x != nil {
-		return x.RobotPartCount
+		return x.physicalDevicePartCount
 	}
 	return 0
 }
@@ -5396,7 +5396,7 @@ func (*DeleteFragmentResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{92}
 }
 
-type ListRobotsRequest struct {
+type ListphysicalDevicesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -5404,8 +5404,8 @@ type ListRobotsRequest struct {
 	LocationId string `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
 }
 
-func (x *ListRobotsRequest) Reset() {
-	*x = ListRobotsRequest{}
+func (x *ListphysicalDevicesRequest) Reset() {
+	*x = ListphysicalDevicesRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[93]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5413,13 +5413,13 @@ func (x *ListRobotsRequest) Reset() {
 	}
 }
 
-func (x *ListRobotsRequest) String() string {
+func (x *ListphysicalDevicesRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListRobotsRequest) ProtoMessage() {}
+func (*ListphysicalDevicesRequest) ProtoMessage() {}
 
-func (x *ListRobotsRequest) ProtoReflect() protoreflect.Message {
+func (x *ListphysicalDevicesRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[93]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5431,28 +5431,28 @@ func (x *ListRobotsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListRobotsRequest.ProtoReflect.Descriptor instead.
-func (*ListRobotsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListphysicalDevicesRequest.ProtoReflect.Descriptor instead.
+func (*ListphysicalDevicesRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{93}
 }
 
-func (x *ListRobotsRequest) GetLocationId() string {
+func (x *ListphysicalDevicesRequest) GetLocationId() string {
 	if x != nil {
 		return x.LocationId
 	}
 	return ""
 }
 
-type ListRobotsResponse struct {
+type ListphysicalDevicesResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Robots []*Robot `protobuf:"bytes,1,rep,name=robots,proto3" json:"robots,omitempty"`
+	physicalDevices []*physicalDevice `protobuf:"bytes,1,rep,name=physicalDevices,proto3" json:"physicalDevices,omitempty"`
 }
 
-func (x *ListRobotsResponse) Reset() {
-	*x = ListRobotsResponse{}
+func (x *ListphysicalDevicesResponse) Reset() {
+	*x = ListphysicalDevicesResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[94]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5460,13 +5460,13 @@ func (x *ListRobotsResponse) Reset() {
 	}
 }
 
-func (x *ListRobotsResponse) String() string {
+func (x *ListphysicalDevicesResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListRobotsResponse) ProtoMessage() {}
+func (*ListphysicalDevicesResponse) ProtoMessage() {}
 
-func (x *ListRobotsResponse) ProtoReflect() protoreflect.Message {
+func (x *ListphysicalDevicesResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[94]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5478,19 +5478,19 @@ func (x *ListRobotsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListRobotsResponse.ProtoReflect.Descriptor instead.
-func (*ListRobotsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListphysicalDevicesResponse.ProtoReflect.Descriptor instead.
+func (*ListphysicalDevicesResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{94}
 }
 
-func (x *ListRobotsResponse) GetRobots() []*Robot {
+func (x *ListphysicalDevicesResponse) GetphysicalDevices() []*physicalDevice {
 	if x != nil {
-		return x.Robots
+		return x.physicalDevices
 	}
 	return nil
 }
 
-type NewRobotRequest struct {
+type NewphysicalDeviceRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -5499,8 +5499,8 @@ type NewRobotRequest struct {
 	Location string `protobuf:"bytes,2,opt,name=location,proto3" json:"location,omitempty"`
 }
 
-func (x *NewRobotRequest) Reset() {
-	*x = NewRobotRequest{}
+func (x *NewphysicalDeviceRequest) Reset() {
+	*x = NewphysicalDeviceRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[95]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5508,13 +5508,13 @@ func (x *NewRobotRequest) Reset() {
 	}
 }
 
-func (x *NewRobotRequest) String() string {
+func (x *NewphysicalDeviceRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*NewRobotRequest) ProtoMessage() {}
+func (*NewphysicalDeviceRequest) ProtoMessage() {}
 
-func (x *NewRobotRequest) ProtoReflect() protoreflect.Message {
+func (x *NewphysicalDeviceRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[95]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5526,26 +5526,26 @@ func (x *NewRobotRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use NewRobotRequest.ProtoReflect.Descriptor instead.
-func (*NewRobotRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use NewphysicalDeviceRequest.ProtoReflect.Descriptor instead.
+func (*NewphysicalDeviceRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{95}
 }
 
-func (x *NewRobotRequest) GetName() string {
+func (x *NewphysicalDeviceRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *NewRobotRequest) GetLocation() string {
+func (x *NewphysicalDeviceRequest) GetLocation() string {
 	if x != nil {
 		return x.Location
 	}
 	return ""
 }
 
-type NewRobotResponse struct {
+type NewphysicalDeviceResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -5553,8 +5553,8 @@ type NewRobotResponse struct {
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *NewRobotResponse) Reset() {
-	*x = NewRobotResponse{}
+func (x *NewphysicalDeviceResponse) Reset() {
+	*x = NewphysicalDeviceResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[96]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5562,13 +5562,13 @@ func (x *NewRobotResponse) Reset() {
 	}
 }
 
-func (x *NewRobotResponse) String() string {
+func (x *NewphysicalDeviceResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*NewRobotResponse) ProtoMessage() {}
+func (*NewphysicalDeviceResponse) ProtoMessage() {}
 
-func (x *NewRobotResponse) ProtoReflect() protoreflect.Message {
+func (x *NewphysicalDeviceResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[96]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5580,19 +5580,19 @@ func (x *NewRobotResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use NewRobotResponse.ProtoReflect.Descriptor instead.
-func (*NewRobotResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use NewphysicalDeviceResponse.ProtoReflect.Descriptor instead.
+func (*NewphysicalDeviceResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{96}
 }
 
-func (x *NewRobotResponse) GetId() string {
+func (x *NewphysicalDeviceResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-type UpdateRobotRequest struct {
+type UpdatephysicalDeviceRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -5602,8 +5602,8 @@ type UpdateRobotRequest struct {
 	Location string `protobuf:"bytes,3,opt,name=location,proto3" json:"location,omitempty"`
 }
 
-func (x *UpdateRobotRequest) Reset() {
-	*x = UpdateRobotRequest{}
+func (x *UpdatephysicalDeviceRequest) Reset() {
+	*x = UpdatephysicalDeviceRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[97]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5611,13 +5611,13 @@ func (x *UpdateRobotRequest) Reset() {
 	}
 }
 
-func (x *UpdateRobotRequest) String() string {
+func (x *UpdatephysicalDeviceRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateRobotRequest) ProtoMessage() {}
+func (*UpdatephysicalDeviceRequest) ProtoMessage() {}
 
-func (x *UpdateRobotRequest) ProtoReflect() protoreflect.Message {
+func (x *UpdatephysicalDeviceRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[97]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5629,42 +5629,42 @@ func (x *UpdateRobotRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateRobotRequest.ProtoReflect.Descriptor instead.
-func (*UpdateRobotRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdatephysicalDeviceRequest.ProtoReflect.Descriptor instead.
+func (*UpdatephysicalDeviceRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{97}
 }
 
-func (x *UpdateRobotRequest) GetId() string {
+func (x *UpdatephysicalDeviceRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *UpdateRobotRequest) GetName() string {
+func (x *UpdatephysicalDeviceRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *UpdateRobotRequest) GetLocation() string {
+func (x *UpdatephysicalDeviceRequest) GetLocation() string {
 	if x != nil {
 		return x.Location
 	}
 	return ""
 }
 
-type UpdateRobotResponse struct {
+type UpdatephysicalDeviceResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Robot *Robot `protobuf:"bytes,1,opt,name=robot,proto3" json:"robot,omitempty"`
+	physicalDevice *physicalDevice `protobuf:"bytes,1,opt,name=physicalDevice,proto3" json:"physicalDevice,omitempty"`
 }
 
-func (x *UpdateRobotResponse) Reset() {
-	*x = UpdateRobotResponse{}
+func (x *UpdatephysicalDeviceResponse) Reset() {
+	*x = UpdatephysicalDeviceResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[98]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5672,13 +5672,13 @@ func (x *UpdateRobotResponse) Reset() {
 	}
 }
 
-func (x *UpdateRobotResponse) String() string {
+func (x *UpdatephysicalDeviceResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateRobotResponse) ProtoMessage() {}
+func (*UpdatephysicalDeviceResponse) ProtoMessage() {}
 
-func (x *UpdateRobotResponse) ProtoReflect() protoreflect.Message {
+func (x *UpdatephysicalDeviceResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[98]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5690,19 +5690,19 @@ func (x *UpdateRobotResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateRobotResponse.ProtoReflect.Descriptor instead.
-func (*UpdateRobotResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdatephysicalDeviceResponse.ProtoReflect.Descriptor instead.
+func (*UpdatephysicalDeviceResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{98}
 }
 
-func (x *UpdateRobotResponse) GetRobot() *Robot {
+func (x *UpdatephysicalDeviceResponse) GetphysicalDevice() *physicalDevice {
 	if x != nil {
-		return x.Robot
+		return x.physicalDevice
 	}
 	return nil
 }
 
-type DeleteRobotRequest struct {
+type DeletephysicalDeviceRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -5710,8 +5710,8 @@ type DeleteRobotRequest struct {
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *DeleteRobotRequest) Reset() {
-	*x = DeleteRobotRequest{}
+func (x *DeletephysicalDeviceRequest) Reset() {
+	*x = DeletephysicalDeviceRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[99]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5719,13 +5719,13 @@ func (x *DeleteRobotRequest) Reset() {
 	}
 }
 
-func (x *DeleteRobotRequest) String() string {
+func (x *DeletephysicalDeviceRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteRobotRequest) ProtoMessage() {}
+func (*DeletephysicalDeviceRequest) ProtoMessage() {}
 
-func (x *DeleteRobotRequest) ProtoReflect() protoreflect.Message {
+func (x *DeletephysicalDeviceRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[99]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5737,26 +5737,26 @@ func (x *DeleteRobotRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteRobotRequest.ProtoReflect.Descriptor instead.
-func (*DeleteRobotRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeletephysicalDeviceRequest.ProtoReflect.Descriptor instead.
+func (*DeletephysicalDeviceRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{99}
 }
 
-func (x *DeleteRobotRequest) GetId() string {
+func (x *DeletephysicalDeviceRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-type DeleteRobotResponse struct {
+type DeletephysicalDeviceResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *DeleteRobotResponse) Reset() {
-	*x = DeleteRobotResponse{}
+func (x *DeletephysicalDeviceResponse) Reset() {
+	*x = DeletephysicalDeviceResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[100]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5764,13 +5764,13 @@ func (x *DeleteRobotResponse) Reset() {
 	}
 }
 
-func (x *DeleteRobotResponse) String() string {
+func (x *DeletephysicalDeviceResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteRobotResponse) ProtoMessage() {}
+func (*DeletephysicalDeviceResponse) ProtoMessage() {}
 
-func (x *DeleteRobotResponse) ProtoReflect() protoreflect.Message {
+func (x *DeletephysicalDeviceResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[100]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5782,8 +5782,8 @@ func (x *DeleteRobotResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteRobotResponse.ProtoReflect.Descriptor instead.
-func (*DeleteRobotResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeletephysicalDeviceResponse.ProtoReflect.Descriptor instead.
+func (*DeletephysicalDeviceResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{100}
 }
 
@@ -5957,17 +5957,17 @@ func (*MarkPartForRestartResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{104}
 }
 
-type CreateRobotPartSecretRequest struct {
+type CreatephysicalDevicePartSecretRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Robot Part ID to create the secret in.
+	// physicalDevice Part ID to create the secret in.
 	PartId string `protobuf:"bytes,1,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
 }
 
-func (x *CreateRobotPartSecretRequest) Reset() {
-	*x = CreateRobotPartSecretRequest{}
+func (x *CreatephysicalDevicePartSecretRequest) Reset() {
+	*x = CreatephysicalDevicePartSecretRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[105]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5975,13 +5975,13 @@ func (x *CreateRobotPartSecretRequest) Reset() {
 	}
 }
 
-func (x *CreateRobotPartSecretRequest) String() string {
+func (x *CreatephysicalDevicePartSecretRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateRobotPartSecretRequest) ProtoMessage() {}
+func (*CreatephysicalDevicePartSecretRequest) ProtoMessage() {}
 
-func (x *CreateRobotPartSecretRequest) ProtoReflect() protoreflect.Message {
+func (x *CreatephysicalDevicePartSecretRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[105]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5993,29 +5993,29 @@ func (x *CreateRobotPartSecretRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateRobotPartSecretRequest.ProtoReflect.Descriptor instead.
-func (*CreateRobotPartSecretRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreatephysicalDevicePartSecretRequest.ProtoReflect.Descriptor instead.
+func (*CreatephysicalDevicePartSecretRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{105}
 }
 
-func (x *CreateRobotPartSecretRequest) GetPartId() string {
+func (x *CreatephysicalDevicePartSecretRequest) GetPartId() string {
 	if x != nil {
 		return x.PartId
 	}
 	return ""
 }
 
-type CreateRobotPartSecretResponse struct {
+type CreatephysicalDevicePartSecretResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// Location's auth after updates.
-	Part *RobotPart `protobuf:"bytes,1,opt,name=part,proto3" json:"part,omitempty"`
+	Part *physicalDevicePart `protobuf:"bytes,1,opt,name=part,proto3" json:"part,omitempty"`
 }
 
-func (x *CreateRobotPartSecretResponse) Reset() {
-	*x = CreateRobotPartSecretResponse{}
+func (x *CreatephysicalDevicePartSecretResponse) Reset() {
+	*x = CreatephysicalDevicePartSecretResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[106]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6023,13 +6023,13 @@ func (x *CreateRobotPartSecretResponse) Reset() {
 	}
 }
 
-func (x *CreateRobotPartSecretResponse) String() string {
+func (x *CreatephysicalDevicePartSecretResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateRobotPartSecretResponse) ProtoMessage() {}
+func (*CreatephysicalDevicePartSecretResponse) ProtoMessage() {}
 
-func (x *CreateRobotPartSecretResponse) ProtoReflect() protoreflect.Message {
+func (x *CreatephysicalDevicePartSecretResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[106]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6041,19 +6041,19 @@ func (x *CreateRobotPartSecretResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateRobotPartSecretResponse.ProtoReflect.Descriptor instead.
-func (*CreateRobotPartSecretResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreatephysicalDevicePartSecretResponse.ProtoReflect.Descriptor instead.
+func (*CreatephysicalDevicePartSecretResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{106}
 }
 
-func (x *CreateRobotPartSecretResponse) GetPart() *RobotPart {
+func (x *CreatephysicalDevicePartSecretResponse) GetPart() *physicalDevicePart {
 	if x != nil {
 		return x.Part
 	}
 	return nil
 }
 
-type DeleteRobotPartSecretRequest struct {
+type DeletephysicalDevicePartSecretRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -6062,8 +6062,8 @@ type DeleteRobotPartSecretRequest struct {
 	SecretId string `protobuf:"bytes,2,opt,name=secret_id,json=secretId,proto3" json:"secret_id,omitempty"`
 }
 
-func (x *DeleteRobotPartSecretRequest) Reset() {
-	*x = DeleteRobotPartSecretRequest{}
+func (x *DeletephysicalDevicePartSecretRequest) Reset() {
+	*x = DeletephysicalDevicePartSecretRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[107]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6071,13 +6071,13 @@ func (x *DeleteRobotPartSecretRequest) Reset() {
 	}
 }
 
-func (x *DeleteRobotPartSecretRequest) String() string {
+func (x *DeletephysicalDevicePartSecretRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteRobotPartSecretRequest) ProtoMessage() {}
+func (*DeletephysicalDevicePartSecretRequest) ProtoMessage() {}
 
-func (x *DeleteRobotPartSecretRequest) ProtoReflect() protoreflect.Message {
+func (x *DeletephysicalDevicePartSecretRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[107]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6089,33 +6089,33 @@ func (x *DeleteRobotPartSecretRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteRobotPartSecretRequest.ProtoReflect.Descriptor instead.
-func (*DeleteRobotPartSecretRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeletephysicalDevicePartSecretRequest.ProtoReflect.Descriptor instead.
+func (*DeletephysicalDevicePartSecretRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{107}
 }
 
-func (x *DeleteRobotPartSecretRequest) GetPartId() string {
+func (x *DeletephysicalDevicePartSecretRequest) GetPartId() string {
 	if x != nil {
 		return x.PartId
 	}
 	return ""
 }
 
-func (x *DeleteRobotPartSecretRequest) GetSecretId() string {
+func (x *DeletephysicalDevicePartSecretRequest) GetSecretId() string {
 	if x != nil {
 		return x.SecretId
 	}
 	return ""
 }
 
-type DeleteRobotPartSecretResponse struct {
+type DeletephysicalDevicePartSecretResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *DeleteRobotPartSecretResponse) Reset() {
-	*x = DeleteRobotPartSecretResponse{}
+func (x *DeletephysicalDevicePartSecretResponse) Reset() {
+	*x = DeletephysicalDevicePartSecretResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_app_v1_app_proto_msgTypes[108]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6123,13 +6123,13 @@ func (x *DeleteRobotPartSecretResponse) Reset() {
 	}
 }
 
-func (x *DeleteRobotPartSecretResponse) String() string {
+func (x *DeletephysicalDevicePartSecretResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteRobotPartSecretResponse) ProtoMessage() {}
+func (*DeletephysicalDevicePartSecretResponse) ProtoMessage() {}
 
-func (x *DeleteRobotPartSecretResponse) ProtoReflect() protoreflect.Message {
+func (x *DeletephysicalDevicePartSecretResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_app_v1_app_proto_msgTypes[108]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6141,8 +6141,8 @@ func (x *DeleteRobotPartSecretResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteRobotPartSecretResponse.ProtoReflect.Descriptor instead.
-func (*DeleteRobotPartSecretResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeletephysicalDevicePartSecretResponse.ProtoReflect.Descriptor instead.
+func (*DeletephysicalDevicePartSecretResponse) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{108}
 }
 
@@ -7104,10 +7104,10 @@ type RegistryItem struct {
 	Url string `protobuf:"bytes,7,opt,name=url,proto3" json:"url,omitempty"`
 	// A short description of the item that explains its purpose
 	Description string `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
-	// The total number of robots using this item
-	TotalRobotUsage int64 `protobuf:"varint,9,opt,name=total_robot_usage,json=totalRobotUsage,proto3" json:"total_robot_usage,omitempty"`
-	// The total number of robots using this item outside of the owning org
-	TotalExternalRobotUsage int64 `protobuf:"varint,13,opt,name=total_external_robot_usage,json=totalExternalRobotUsage,proto3" json:"total_external_robot_usage,omitempty"`
+	// The total number of physicalDevices using this item
+	TotalphysicalDeviceUsage int64 `protobuf:"varint,9,opt,name=total_physicalDevice_usage,json=totalphysicalDeviceUsage,proto3" json:"total_physicalDevice_usage,omitempty"`
+	// The total number of physicalDevices using this item outside of the owning org
+	TotalExternalphysicalDeviceUsage int64 `protobuf:"varint,13,opt,name=total_external_physicalDevice_usage,json=totalExternalphysicalDeviceUsage,proto3" json:"total_external_physicalDevice_usage,omitempty"`
 	// The total number of organizations using this item
 	TotalOrganizationUsage int64 `protobuf:"varint,10,opt,name=total_organization_usage,json=totalOrganizationUsage,proto3" json:"total_organization_usage,omitempty"`
 	// The total number of organizations using this item outside of the owning org
@@ -7214,16 +7214,16 @@ func (x *RegistryItem) GetDescription() string {
 	return ""
 }
 
-func (x *RegistryItem) GetTotalRobotUsage() int64 {
+func (x *RegistryItem) GetTotalphysicalDeviceUsage() int64 {
 	if x != nil {
-		return x.TotalRobotUsage
+		return x.TotalphysicalDeviceUsage
 	}
 	return 0
 }
 
-func (x *RegistryItem) GetTotalExternalRobotUsage() int64 {
+func (x *RegistryItem) GetTotalExternalphysicalDeviceUsage() int64 {
 	if x != nil {
-		return x.TotalExternalRobotUsage
+		return x.TotalExternalphysicalDeviceUsage
 	}
 	return 0
 }
@@ -8477,8 +8477,8 @@ type Module struct {
 	Description string `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
 	// A list of models that are available in the module
 	Models []*Model `protobuf:"bytes,7,rep,name=models,proto3" json:"models,omitempty"`
-	// The total number of robots using this module
-	TotalRobotUsage int64 `protobuf:"varint,8,opt,name=total_robot_usage,json=totalRobotUsage,proto3" json:"total_robot_usage,omitempty"`
+	// The total number of physicalDevices using this module
+	TotalphysicalDeviceUsage int64 `protobuf:"varint,8,opt,name=total_physicalDevice_usage,json=totalphysicalDeviceUsage,proto3" json:"total_physicalDevice_usage,omitempty"`
 	// The total number of organizations using this module
 	TotalOrganizationUsage int64 `protobuf:"varint,9,opt,name=total_organization_usage,json=totalOrganizationUsage,proto3" json:"total_organization_usage,omitempty"`
 	// The id of the organization that owns the module
@@ -8571,9 +8571,9 @@ func (x *Module) GetModels() []*Model {
 	return nil
 }
 
-func (x *Module) GetTotalRobotUsage() int64 {
+func (x *Module) GetTotalphysicalDeviceUsage() int64 {
 	if x != nil {
-		return x.TotalRobotUsage
+		return x.TotalphysicalDeviceUsage
 	}
 	return 0
 }
@@ -11503,9 +11503,9 @@ var file_app_v1_app_proto_goTypes = []interface{}{
 	(RegistryItemStatus)(0),                                // 1: viam.app.v1.RegistryItemStatus
 	(Visibility)(0),                                        // 2: viam.app.v1.Visibility
 	(SharedSecret_State)(0),                                // 3: viam.app.v1.SharedSecret.State
-	(*Robot)(nil),                                          // 4: viam.app.v1.Robot
-	(*RobotPart)(nil),                                      // 5: viam.app.v1.RobotPart
-	(*RobotPartHistoryEntry)(nil),                          // 6: viam.app.v1.RobotPartHistoryEntry
+	(*physicalDevice)(nil),                                          // 4: viam.app.v1.physicalDevice
+	(*physicalDevicePart)(nil),                                      // 5: viam.app.v1.physicalDevicePart
+	(*physicalDevicePartHistoryEntry)(nil),                          // 6: viam.app.v1.physicalDevicePartHistoryEntry
 	(*ListOrganizationsRequest)(nil),                       // 7: viam.app.v1.ListOrganizationsRequest
 	(*Organization)(nil),                                   // 8: viam.app.v1.Organization
 	(*OrganizationMember)(nil),                             // 9: viam.app.v1.OrganizationMember
@@ -11561,30 +11561,30 @@ var file_app_v1_app_proto_goTypes = []interface{}{
 	(*DeleteLocationSecretResponse)(nil),                   // 59: viam.app.v1.DeleteLocationSecretResponse
 	(*LocationAuthRequest)(nil),                            // 60: viam.app.v1.LocationAuthRequest
 	(*LocationAuthResponse)(nil),                           // 61: viam.app.v1.LocationAuthResponse
-	(*GetRobotRequest)(nil),                                // 62: viam.app.v1.GetRobotRequest
-	(*GetRoverRentalRobotsRequest)(nil),                    // 63: viam.app.v1.GetRoverRentalRobotsRequest
-	(*RoverRentalRobot)(nil),                               // 64: viam.app.v1.RoverRentalRobot
-	(*GetRoverRentalRobotsResponse)(nil),                   // 65: viam.app.v1.GetRoverRentalRobotsResponse
-	(*GetRobotResponse)(nil),                               // 66: viam.app.v1.GetRobotResponse
-	(*GetRobotPartsRequest)(nil),                           // 67: viam.app.v1.GetRobotPartsRequest
-	(*GetRobotPartsResponse)(nil),                          // 68: viam.app.v1.GetRobotPartsResponse
-	(*GetRobotPartRequest)(nil),                            // 69: viam.app.v1.GetRobotPartRequest
-	(*GetRobotPartResponse)(nil),                           // 70: viam.app.v1.GetRobotPartResponse
-	(*GetRobotPartLogsRequest)(nil),                        // 71: viam.app.v1.GetRobotPartLogsRequest
-	(*GetRobotPartLogsResponse)(nil),                       // 72: viam.app.v1.GetRobotPartLogsResponse
-	(*TailRobotPartLogsRequest)(nil),                       // 73: viam.app.v1.TailRobotPartLogsRequest
-	(*TailRobotPartLogsResponse)(nil),                      // 74: viam.app.v1.TailRobotPartLogsResponse
-	(*GetRobotPartHistoryRequest)(nil),                     // 75: viam.app.v1.GetRobotPartHistoryRequest
-	(*GetRobotPartHistoryResponse)(nil),                    // 76: viam.app.v1.GetRobotPartHistoryResponse
-	(*UpdateRobotPartRequest)(nil),                         // 77: viam.app.v1.UpdateRobotPartRequest
-	(*UpdateRobotPartResponse)(nil),                        // 78: viam.app.v1.UpdateRobotPartResponse
-	(*NewRobotPartRequest)(nil),                            // 79: viam.app.v1.NewRobotPartRequest
-	(*NewRobotPartResponse)(nil),                           // 80: viam.app.v1.NewRobotPartResponse
-	(*DeleteRobotPartRequest)(nil),                         // 81: viam.app.v1.DeleteRobotPartRequest
-	(*GetRobotAPIKeysRequest)(nil),                         // 82: viam.app.v1.GetRobotAPIKeysRequest
+	(*GetphysicalDeviceRequest)(nil),                                // 62: viam.app.v1.GetphysicalDeviceRequest
+	(*GetRoverRentalphysicalDevicesRequest)(nil),                    // 63: viam.app.v1.GetRoverRentalphysicalDevicesRequest
+	(*RoverRentalphysicalDevice)(nil),                               // 64: viam.app.v1.RoverRentalphysicalDevice
+	(*GetRoverRentalphysicalDevicesResponse)(nil),                   // 65: viam.app.v1.GetRoverRentalphysicalDevicesResponse
+	(*GetphysicalDeviceResponse)(nil),                               // 66: viam.app.v1.GetphysicalDeviceResponse
+	(*GetphysicalDevicePartsRequest)(nil),                           // 67: viam.app.v1.GetphysicalDevicePartsRequest
+	(*GetphysicalDevicePartsResponse)(nil),                          // 68: viam.app.v1.GetphysicalDevicePartsResponse
+	(*GetphysicalDevicePartRequest)(nil),                            // 69: viam.app.v1.GetphysicalDevicePartRequest
+	(*GetphysicalDevicePartResponse)(nil),                           // 70: viam.app.v1.GetphysicalDevicePartResponse
+	(*GetphysicalDevicePartLogsRequest)(nil),                        // 71: viam.app.v1.GetphysicalDevicePartLogsRequest
+	(*GetphysicalDevicePartLogsResponse)(nil),                       // 72: viam.app.v1.GetphysicalDevicePartLogsResponse
+	(*TailphysicalDevicePartLogsRequest)(nil),                       // 73: viam.app.v1.TailphysicalDevicePartLogsRequest
+	(*TailphysicalDevicePartLogsResponse)(nil),                      // 74: viam.app.v1.TailphysicalDevicePartLogsResponse
+	(*GetphysicalDevicePartHistoryRequest)(nil),                     // 75: viam.app.v1.GetphysicalDevicePartHistoryRequest
+	(*GetphysicalDevicePartHistoryResponse)(nil),                    // 76: viam.app.v1.GetphysicalDevicePartHistoryResponse
+	(*UpdatephysicalDevicePartRequest)(nil),                         // 77: viam.app.v1.UpdatephysicalDevicePartRequest
+	(*UpdatephysicalDevicePartResponse)(nil),                        // 78: viam.app.v1.UpdatephysicalDevicePartResponse
+	(*NewphysicalDevicePartRequest)(nil),                            // 79: viam.app.v1.NewphysicalDevicePartRequest
+	(*NewphysicalDevicePartResponse)(nil),                           // 80: viam.app.v1.NewphysicalDevicePartResponse
+	(*DeletephysicalDevicePartRequest)(nil),                         // 81: viam.app.v1.DeletephysicalDevicePartRequest
+	(*GetphysicalDeviceAPIKeysRequest)(nil),                         // 82: viam.app.v1.GetphysicalDeviceAPIKeysRequest
 	(*APIKey)(nil),                                         // 83: viam.app.v1.APIKey
-	(*GetRobotAPIKeysResponse)(nil),                        // 84: viam.app.v1.GetRobotAPIKeysResponse
-	(*DeleteRobotPartResponse)(nil),                        // 85: viam.app.v1.DeleteRobotPartResponse
+	(*GetphysicalDeviceAPIKeysResponse)(nil),                        // 84: viam.app.v1.GetphysicalDeviceAPIKeysResponse
+	(*DeletephysicalDevicePartResponse)(nil),                        // 85: viam.app.v1.DeletephysicalDevicePartResponse
 	(*Fragment)(nil),                                       // 86: viam.app.v1.Fragment
 	(*ListFragmentsRequest)(nil),                           // 87: viam.app.v1.ListFragmentsRequest
 	(*ListFragmentsResponse)(nil),                          // 88: viam.app.v1.ListFragmentsResponse
@@ -11596,22 +11596,22 @@ var file_app_v1_app_proto_goTypes = []interface{}{
 	(*UpdateFragmentResponse)(nil),                         // 94: viam.app.v1.UpdateFragmentResponse
 	(*DeleteFragmentRequest)(nil),                          // 95: viam.app.v1.DeleteFragmentRequest
 	(*DeleteFragmentResponse)(nil),                         // 96: viam.app.v1.DeleteFragmentResponse
-	(*ListRobotsRequest)(nil),                              // 97: viam.app.v1.ListRobotsRequest
-	(*ListRobotsResponse)(nil),                             // 98: viam.app.v1.ListRobotsResponse
-	(*NewRobotRequest)(nil),                                // 99: viam.app.v1.NewRobotRequest
-	(*NewRobotResponse)(nil),                               // 100: viam.app.v1.NewRobotResponse
-	(*UpdateRobotRequest)(nil),                             // 101: viam.app.v1.UpdateRobotRequest
-	(*UpdateRobotResponse)(nil),                            // 102: viam.app.v1.UpdateRobotResponse
-	(*DeleteRobotRequest)(nil),                             // 103: viam.app.v1.DeleteRobotRequest
-	(*DeleteRobotResponse)(nil),                            // 104: viam.app.v1.DeleteRobotResponse
+	(*ListphysicalDevicesRequest)(nil),                              // 97: viam.app.v1.ListphysicalDevicesRequest
+	(*ListphysicalDevicesResponse)(nil),                             // 98: viam.app.v1.ListphysicalDevicesResponse
+	(*NewphysicalDeviceRequest)(nil),                                // 99: viam.app.v1.NewphysicalDeviceRequest
+	(*NewphysicalDeviceResponse)(nil),                               // 100: viam.app.v1.NewphysicalDeviceResponse
+	(*UpdatephysicalDeviceRequest)(nil),                             // 101: viam.app.v1.UpdatephysicalDeviceRequest
+	(*UpdatephysicalDeviceResponse)(nil),                            // 102: viam.app.v1.UpdatephysicalDeviceResponse
+	(*DeletephysicalDeviceRequest)(nil),                             // 103: viam.app.v1.DeletephysicalDeviceRequest
+	(*DeletephysicalDeviceResponse)(nil),                            // 104: viam.app.v1.DeletephysicalDeviceResponse
 	(*MarkPartAsMainRequest)(nil),                          // 105: viam.app.v1.MarkPartAsMainRequest
 	(*MarkPartAsMainResponse)(nil),                         // 106: viam.app.v1.MarkPartAsMainResponse
 	(*MarkPartForRestartRequest)(nil),                      // 107: viam.app.v1.MarkPartForRestartRequest
 	(*MarkPartForRestartResponse)(nil),                     // 108: viam.app.v1.MarkPartForRestartResponse
-	(*CreateRobotPartSecretRequest)(nil),                   // 109: viam.app.v1.CreateRobotPartSecretRequest
-	(*CreateRobotPartSecretResponse)(nil),                  // 110: viam.app.v1.CreateRobotPartSecretResponse
-	(*DeleteRobotPartSecretRequest)(nil),                   // 111: viam.app.v1.DeleteRobotPartSecretRequest
-	(*DeleteRobotPartSecretResponse)(nil),                  // 112: viam.app.v1.DeleteRobotPartSecretResponse
+	(*CreatephysicalDevicePartSecretRequest)(nil),                   // 109: viam.app.v1.CreatephysicalDevicePartSecretRequest
+	(*CreatephysicalDevicePartSecretResponse)(nil),                  // 110: viam.app.v1.CreatephysicalDevicePartSecretResponse
+	(*DeletephysicalDevicePartSecretRequest)(nil),                   // 111: viam.app.v1.DeletephysicalDevicePartSecretRequest
+	(*DeletephysicalDevicePartSecretResponse)(nil),                  // 112: viam.app.v1.DeletephysicalDevicePartSecretResponse
 	(*Authorization)(nil),                                  // 113: viam.app.v1.Authorization
 	(*AddRoleRequest)(nil),                                 // 114: viam.app.v1.AddRoleRequest
 	(*AddRoleResponse)(nil),                                // 115: viam.app.v1.AddRoleResponse
@@ -11682,15 +11682,15 @@ var file_app_v1_app_proto_goTypes = []interface{}{
 	(v12.PackageType)(0),                                   // 180: viam.app.packages.v1.PackageType
 }
 var file_app_v1_app_proto_depIdxs = []int32{
-	175, // 0: viam.app.v1.Robot.last_access:type_name -> google.protobuf.Timestamp
-	175, // 1: viam.app.v1.Robot.created_on:type_name -> google.protobuf.Timestamp
-	176, // 2: viam.app.v1.RobotPart.robot_config:type_name -> google.protobuf.Struct
-	175, // 3: viam.app.v1.RobotPart.last_access:type_name -> google.protobuf.Timestamp
-	176, // 4: viam.app.v1.RobotPart.user_supplied_info:type_name -> google.protobuf.Struct
-	175, // 5: viam.app.v1.RobotPart.created_on:type_name -> google.protobuf.Timestamp
-	39,  // 6: viam.app.v1.RobotPart.secrets:type_name -> viam.app.v1.SharedSecret
-	175, // 7: viam.app.v1.RobotPartHistoryEntry.when:type_name -> google.protobuf.Timestamp
-	5,   // 8: viam.app.v1.RobotPartHistoryEntry.old:type_name -> viam.app.v1.RobotPart
+	175, // 0: viam.app.v1.physicalDevice.last_access:type_name -> google.protobuf.Timestamp
+	175, // 1: viam.app.v1.physicalDevice.created_on:type_name -> google.protobuf.Timestamp
+	176, // 2: viam.app.v1.physicalDevicePart.physicalDevice_config:type_name -> google.protobuf.Struct
+	175, // 3: viam.app.v1.physicalDevicePart.last_access:type_name -> google.protobuf.Timestamp
+	176, // 4: viam.app.v1.physicalDevicePart.user_supplied_info:type_name -> google.protobuf.Struct
+	175, // 5: viam.app.v1.physicalDevicePart.created_on:type_name -> google.protobuf.Timestamp
+	39,  // 6: viam.app.v1.physicalDevicePart.secrets:type_name -> viam.app.v1.SharedSecret
+	175, // 7: viam.app.v1.physicalDevicePartHistoryEntry.when:type_name -> google.protobuf.Timestamp
+	5,   // 8: viam.app.v1.physicalDevicePartHistoryEntry.old:type_name -> viam.app.v1.physicalDevicePart
 	175, // 9: viam.app.v1.Organization.created_on:type_name -> google.protobuf.Timestamp
 	175, // 10: viam.app.v1.OrganizationMember.date_added:type_name -> google.protobuf.Timestamp
 	175, // 11: viam.app.v1.OrganizationMember.last_login:type_name -> google.protobuf.Timestamp
@@ -11722,17 +11722,17 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	38,  // 37: viam.app.v1.ListLocationsResponse.locations:type_name -> viam.app.v1.Location
 	36,  // 38: viam.app.v1.CreateLocationSecretResponse.auth:type_name -> viam.app.v1.LocationAuth
 	36,  // 39: viam.app.v1.LocationAuthResponse.auth:type_name -> viam.app.v1.LocationAuth
-	64,  // 40: viam.app.v1.GetRoverRentalRobotsResponse.robots:type_name -> viam.app.v1.RoverRentalRobot
-	4,   // 41: viam.app.v1.GetRobotResponse.robot:type_name -> viam.app.v1.Robot
-	5,   // 42: viam.app.v1.GetRobotPartsResponse.parts:type_name -> viam.app.v1.RobotPart
-	5,   // 43: viam.app.v1.GetRobotPartResponse.part:type_name -> viam.app.v1.RobotPart
-	177, // 44: viam.app.v1.GetRobotPartLogsResponse.logs:type_name -> viam.common.v1.LogEntry
-	177, // 45: viam.app.v1.TailRobotPartLogsResponse.logs:type_name -> viam.common.v1.LogEntry
-	6,   // 46: viam.app.v1.GetRobotPartHistoryResponse.history:type_name -> viam.app.v1.RobotPartHistoryEntry
-	176, // 47: viam.app.v1.UpdateRobotPartRequest.robot_config:type_name -> google.protobuf.Struct
-	5,   // 48: viam.app.v1.UpdateRobotPartResponse.part:type_name -> viam.app.v1.RobotPart
+	64,  // 40: viam.app.v1.GetRoverRentalphysicalDevicesResponse.physicalDevices:type_name -> viam.app.v1.RoverRentalphysicalDevice
+	4,   // 41: viam.app.v1.GetphysicalDeviceResponse.physicalDevice:type_name -> viam.app.v1.physicalDevice
+	5,   // 42: viam.app.v1.GetphysicalDevicePartsResponse.parts:type_name -> viam.app.v1.physicalDevicePart
+	5,   // 43: viam.app.v1.GetphysicalDevicePartResponse.part:type_name -> viam.app.v1.physicalDevicePart
+	177, // 44: viam.app.v1.GetphysicalDevicePartLogsResponse.logs:type_name -> viam.common.v1.LogEntry
+	177, // 45: viam.app.v1.TailphysicalDevicePartLogsResponse.logs:type_name -> viam.common.v1.LogEntry
+	6,   // 46: viam.app.v1.GetphysicalDevicePartHistoryResponse.history:type_name -> viam.app.v1.physicalDevicePartHistoryEntry
+	176, // 47: viam.app.v1.UpdatephysicalDevicePartRequest.physicalDevice_config:type_name -> google.protobuf.Struct
+	5,   // 48: viam.app.v1.UpdatephysicalDevicePartResponse.part:type_name -> viam.app.v1.physicalDevicePart
 	175, // 49: viam.app.v1.APIKey.created_on:type_name -> google.protobuf.Timestamp
-	168, // 50: viam.app.v1.GetRobotAPIKeysResponse.api_keys:type_name -> viam.app.v1.APIKeyWithAuthorizations
+	168, // 50: viam.app.v1.GetphysicalDeviceAPIKeysResponse.api_keys:type_name -> viam.app.v1.APIKeyWithAuthorizations
 	176, // 51: viam.app.v1.Fragment.fragment:type_name -> google.protobuf.Struct
 	175, // 52: viam.app.v1.Fragment.created_on:type_name -> google.protobuf.Timestamp
 	0,   // 53: viam.app.v1.Fragment.visibility:type_name -> viam.app.v1.FragmentVisibility
@@ -11744,9 +11744,9 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	176, // 59: viam.app.v1.UpdateFragmentRequest.config:type_name -> google.protobuf.Struct
 	0,   // 60: viam.app.v1.UpdateFragmentRequest.visibility:type_name -> viam.app.v1.FragmentVisibility
 	86,  // 61: viam.app.v1.UpdateFragmentResponse.fragment:type_name -> viam.app.v1.Fragment
-	4,   // 62: viam.app.v1.ListRobotsResponse.robots:type_name -> viam.app.v1.Robot
-	4,   // 63: viam.app.v1.UpdateRobotResponse.robot:type_name -> viam.app.v1.Robot
-	5,   // 64: viam.app.v1.CreateRobotPartSecretResponse.part:type_name -> viam.app.v1.RobotPart
+	4,   // 62: viam.app.v1.ListphysicalDevicesResponse.physicalDevices:type_name -> viam.app.v1.physicalDevice
+	4,   // 63: viam.app.v1.UpdatephysicalDeviceResponse.physicalDevice:type_name -> viam.app.v1.physicalDevice
+	5,   // 64: viam.app.v1.CreatephysicalDevicePartSecretResponse.part:type_name -> viam.app.v1.physicalDevicePart
 	113, // 65: viam.app.v1.AddRoleRequest.authorization:type_name -> viam.app.v1.Authorization
 	113, // 66: viam.app.v1.RemoveRoleRequest.authorization:type_name -> viam.app.v1.Authorization
 	113, // 67: viam.app.v1.ChangeRoleRequest.old_authorization:type_name -> viam.app.v1.Authorization
@@ -11818,25 +11818,25 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	60,  // 133: viam.app.v1.AppService.LocationAuth:input_type -> viam.app.v1.LocationAuthRequest
 	56,  // 134: viam.app.v1.AppService.CreateLocationSecret:input_type -> viam.app.v1.CreateLocationSecretRequest
 	58,  // 135: viam.app.v1.AppService.DeleteLocationSecret:input_type -> viam.app.v1.DeleteLocationSecretRequest
-	62,  // 136: viam.app.v1.AppService.GetRobot:input_type -> viam.app.v1.GetRobotRequest
-	63,  // 137: viam.app.v1.AppService.GetRoverRentalRobots:input_type -> viam.app.v1.GetRoverRentalRobotsRequest
-	67,  // 138: viam.app.v1.AppService.GetRobotParts:input_type -> viam.app.v1.GetRobotPartsRequest
-	69,  // 139: viam.app.v1.AppService.GetRobotPart:input_type -> viam.app.v1.GetRobotPartRequest
-	71,  // 140: viam.app.v1.AppService.GetRobotPartLogs:input_type -> viam.app.v1.GetRobotPartLogsRequest
-	73,  // 141: viam.app.v1.AppService.TailRobotPartLogs:input_type -> viam.app.v1.TailRobotPartLogsRequest
-	75,  // 142: viam.app.v1.AppService.GetRobotPartHistory:input_type -> viam.app.v1.GetRobotPartHistoryRequest
-	77,  // 143: viam.app.v1.AppService.UpdateRobotPart:input_type -> viam.app.v1.UpdateRobotPartRequest
-	79,  // 144: viam.app.v1.AppService.NewRobotPart:input_type -> viam.app.v1.NewRobotPartRequest
-	81,  // 145: viam.app.v1.AppService.DeleteRobotPart:input_type -> viam.app.v1.DeleteRobotPartRequest
-	82,  // 146: viam.app.v1.AppService.GetRobotAPIKeys:input_type -> viam.app.v1.GetRobotAPIKeysRequest
+	62,  // 136: viam.app.v1.AppService.GetphysicalDevice:input_type -> viam.app.v1.GetphysicalDeviceRequest
+	63,  // 137: viam.app.v1.AppService.GetRoverRentalphysicalDevices:input_type -> viam.app.v1.GetRoverRentalphysicalDevicesRequest
+	67,  // 138: viam.app.v1.AppService.GetphysicalDeviceParts:input_type -> viam.app.v1.GetphysicalDevicePartsRequest
+	69,  // 139: viam.app.v1.AppService.GetphysicalDevicePart:input_type -> viam.app.v1.GetphysicalDevicePartRequest
+	71,  // 140: viam.app.v1.AppService.GetphysicalDevicePartLogs:input_type -> viam.app.v1.GetphysicalDevicePartLogsRequest
+	73,  // 141: viam.app.v1.AppService.TailphysicalDevicePartLogs:input_type -> viam.app.v1.TailphysicalDevicePartLogsRequest
+	75,  // 142: viam.app.v1.AppService.GetphysicalDevicePartHistory:input_type -> viam.app.v1.GetphysicalDevicePartHistoryRequest
+	77,  // 143: viam.app.v1.AppService.UpdatephysicalDevicePart:input_type -> viam.app.v1.UpdatephysicalDevicePartRequest
+	79,  // 144: viam.app.v1.AppService.NewphysicalDevicePart:input_type -> viam.app.v1.NewphysicalDevicePartRequest
+	81,  // 145: viam.app.v1.AppService.DeletephysicalDevicePart:input_type -> viam.app.v1.DeletephysicalDevicePartRequest
+	82,  // 146: viam.app.v1.AppService.GetphysicalDeviceAPIKeys:input_type -> viam.app.v1.GetphysicalDeviceAPIKeysRequest
 	105, // 147: viam.app.v1.AppService.MarkPartAsMain:input_type -> viam.app.v1.MarkPartAsMainRequest
 	107, // 148: viam.app.v1.AppService.MarkPartForRestart:input_type -> viam.app.v1.MarkPartForRestartRequest
-	109, // 149: viam.app.v1.AppService.CreateRobotPartSecret:input_type -> viam.app.v1.CreateRobotPartSecretRequest
-	111, // 150: viam.app.v1.AppService.DeleteRobotPartSecret:input_type -> viam.app.v1.DeleteRobotPartSecretRequest
-	97,  // 151: viam.app.v1.AppService.ListRobots:input_type -> viam.app.v1.ListRobotsRequest
-	99,  // 152: viam.app.v1.AppService.NewRobot:input_type -> viam.app.v1.NewRobotRequest
-	101, // 153: viam.app.v1.AppService.UpdateRobot:input_type -> viam.app.v1.UpdateRobotRequest
-	103, // 154: viam.app.v1.AppService.DeleteRobot:input_type -> viam.app.v1.DeleteRobotRequest
+	109, // 149: viam.app.v1.AppService.CreatephysicalDevicePartSecret:input_type -> viam.app.v1.CreatephysicalDevicePartSecretRequest
+	111, // 150: viam.app.v1.AppService.DeletephysicalDevicePartSecret:input_type -> viam.app.v1.DeletephysicalDevicePartSecretRequest
+	97,  // 151: viam.app.v1.AppService.ListphysicalDevices:input_type -> viam.app.v1.ListphysicalDevicesRequest
+	99,  // 152: viam.app.v1.AppService.NewphysicalDevice:input_type -> viam.app.v1.NewphysicalDeviceRequest
+	101, // 153: viam.app.v1.AppService.UpdatephysicalDevice:input_type -> viam.app.v1.UpdatephysicalDeviceRequest
+	103, // 154: viam.app.v1.AppService.DeletephysicalDevice:input_type -> viam.app.v1.DeletephysicalDeviceRequest
 	87,  // 155: viam.app.v1.AppService.ListFragments:input_type -> viam.app.v1.ListFragmentsRequest
 	89,  // 156: viam.app.v1.AppService.GetFragment:input_type -> viam.app.v1.GetFragmentRequest
 	91,  // 157: viam.app.v1.AppService.CreateFragment:input_type -> viam.app.v1.CreateFragmentRequest
@@ -11888,25 +11888,25 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	61,  // 203: viam.app.v1.AppService.LocationAuth:output_type -> viam.app.v1.LocationAuthResponse
 	57,  // 204: viam.app.v1.AppService.CreateLocationSecret:output_type -> viam.app.v1.CreateLocationSecretResponse
 	59,  // 205: viam.app.v1.AppService.DeleteLocationSecret:output_type -> viam.app.v1.DeleteLocationSecretResponse
-	66,  // 206: viam.app.v1.AppService.GetRobot:output_type -> viam.app.v1.GetRobotResponse
-	65,  // 207: viam.app.v1.AppService.GetRoverRentalRobots:output_type -> viam.app.v1.GetRoverRentalRobotsResponse
-	68,  // 208: viam.app.v1.AppService.GetRobotParts:output_type -> viam.app.v1.GetRobotPartsResponse
-	70,  // 209: viam.app.v1.AppService.GetRobotPart:output_type -> viam.app.v1.GetRobotPartResponse
-	72,  // 210: viam.app.v1.AppService.GetRobotPartLogs:output_type -> viam.app.v1.GetRobotPartLogsResponse
-	74,  // 211: viam.app.v1.AppService.TailRobotPartLogs:output_type -> viam.app.v1.TailRobotPartLogsResponse
-	76,  // 212: viam.app.v1.AppService.GetRobotPartHistory:output_type -> viam.app.v1.GetRobotPartHistoryResponse
-	78,  // 213: viam.app.v1.AppService.UpdateRobotPart:output_type -> viam.app.v1.UpdateRobotPartResponse
-	80,  // 214: viam.app.v1.AppService.NewRobotPart:output_type -> viam.app.v1.NewRobotPartResponse
-	85,  // 215: viam.app.v1.AppService.DeleteRobotPart:output_type -> viam.app.v1.DeleteRobotPartResponse
-	84,  // 216: viam.app.v1.AppService.GetRobotAPIKeys:output_type -> viam.app.v1.GetRobotAPIKeysResponse
+	66,  // 206: viam.app.v1.AppService.GetphysicalDevice:output_type -> viam.app.v1.GetphysicalDeviceResponse
+	65,  // 207: viam.app.v1.AppService.GetRoverRentalphysicalDevices:output_type -> viam.app.v1.GetRoverRentalphysicalDevicesResponse
+	68,  // 208: viam.app.v1.AppService.GetphysicalDeviceParts:output_type -> viam.app.v1.GetphysicalDevicePartsResponse
+	70,  // 209: viam.app.v1.AppService.GetphysicalDevicePart:output_type -> viam.app.v1.GetphysicalDevicePartResponse
+	72,  // 210: viam.app.v1.AppService.GetphysicalDevicePartLogs:output_type -> viam.app.v1.GetphysicalDevicePartLogsResponse
+	74,  // 211: viam.app.v1.AppService.TailphysicalDevicePartLogs:output_type -> viam.app.v1.TailphysicalDevicePartLogsResponse
+	76,  // 212: viam.app.v1.AppService.GetphysicalDevicePartHistory:output_type -> viam.app.v1.GetphysicalDevicePartHistoryResponse
+	78,  // 213: viam.app.v1.AppService.UpdatephysicalDevicePart:output_type -> viam.app.v1.UpdatephysicalDevicePartResponse
+	80,  // 214: viam.app.v1.AppService.NewphysicalDevicePart:output_type -> viam.app.v1.NewphysicalDevicePartResponse
+	85,  // 215: viam.app.v1.AppService.DeletephysicalDevicePart:output_type -> viam.app.v1.DeletephysicalDevicePartResponse
+	84,  // 216: viam.app.v1.AppService.GetphysicalDeviceAPIKeys:output_type -> viam.app.v1.GetphysicalDeviceAPIKeysResponse
 	106, // 217: viam.app.v1.AppService.MarkPartAsMain:output_type -> viam.app.v1.MarkPartAsMainResponse
 	108, // 218: viam.app.v1.AppService.MarkPartForRestart:output_type -> viam.app.v1.MarkPartForRestartResponse
-	110, // 219: viam.app.v1.AppService.CreateRobotPartSecret:output_type -> viam.app.v1.CreateRobotPartSecretResponse
-	112, // 220: viam.app.v1.AppService.DeleteRobotPartSecret:output_type -> viam.app.v1.DeleteRobotPartSecretResponse
-	98,  // 221: viam.app.v1.AppService.ListRobots:output_type -> viam.app.v1.ListRobotsResponse
-	100, // 222: viam.app.v1.AppService.NewRobot:output_type -> viam.app.v1.NewRobotResponse
-	102, // 223: viam.app.v1.AppService.UpdateRobot:output_type -> viam.app.v1.UpdateRobotResponse
-	104, // 224: viam.app.v1.AppService.DeleteRobot:output_type -> viam.app.v1.DeleteRobotResponse
+	110, // 219: viam.app.v1.AppService.CreatephysicalDevicePartSecret:output_type -> viam.app.v1.CreatephysicalDevicePartSecretResponse
+	112, // 220: viam.app.v1.AppService.DeletephysicalDevicePartSecret:output_type -> viam.app.v1.DeletephysicalDevicePartSecretResponse
+	98,  // 221: viam.app.v1.AppService.ListphysicalDevices:output_type -> viam.app.v1.ListphysicalDevicesResponse
+	100, // 222: viam.app.v1.AppService.NewphysicalDevice:output_type -> viam.app.v1.NewphysicalDeviceResponse
+	102, // 223: viam.app.v1.AppService.UpdatephysicalDevice:output_type -> viam.app.v1.UpdatephysicalDeviceResponse
+	104, // 224: viam.app.v1.AppService.DeletephysicalDevice:output_type -> viam.app.v1.DeletephysicalDeviceResponse
 	88,  // 225: viam.app.v1.AppService.ListFragments:output_type -> viam.app.v1.ListFragmentsResponse
 	90,  // 226: viam.app.v1.AppService.GetFragment:output_type -> viam.app.v1.GetFragmentResponse
 	92,  // 227: viam.app.v1.AppService.CreateFragment:output_type -> viam.app.v1.CreateFragmentResponse
@@ -11947,7 +11947,7 @@ func file_app_v1_app_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_app_v1_app_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Robot); i {
+			switch v := v.(*physicalDevice); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11959,7 +11959,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RobotPart); i {
+			switch v := v.(*physicalDevicePart); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -11971,7 +11971,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RobotPartHistoryEntry); i {
+			switch v := v.(*physicalDevicePartHistoryEntry); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12643,7 +12643,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[58].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRobotRequest); i {
+			switch v := v.(*GetphysicalDeviceRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12655,7 +12655,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[59].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRoverRentalRobotsRequest); i {
+			switch v := v.(*GetRoverRentalphysicalDevicesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12667,7 +12667,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[60].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RoverRentalRobot); i {
+			switch v := v.(*RoverRentalphysicalDevice); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12679,7 +12679,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[61].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRoverRentalRobotsResponse); i {
+			switch v := v.(*GetRoverRentalphysicalDevicesResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12691,7 +12691,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[62].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRobotResponse); i {
+			switch v := v.(*GetphysicalDeviceResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12703,7 +12703,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[63].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRobotPartsRequest); i {
+			switch v := v.(*GetphysicalDevicePartsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12715,7 +12715,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[64].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRobotPartsResponse); i {
+			switch v := v.(*GetphysicalDevicePartsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12727,7 +12727,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[65].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRobotPartRequest); i {
+			switch v := v.(*GetphysicalDevicePartRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12739,7 +12739,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[66].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRobotPartResponse); i {
+			switch v := v.(*GetphysicalDevicePartResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12751,7 +12751,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[67].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRobotPartLogsRequest); i {
+			switch v := v.(*GetphysicalDevicePartLogsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12763,7 +12763,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[68].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRobotPartLogsResponse); i {
+			switch v := v.(*GetphysicalDevicePartLogsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12775,7 +12775,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[69].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TailRobotPartLogsRequest); i {
+			switch v := v.(*TailphysicalDevicePartLogsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12787,7 +12787,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[70].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TailRobotPartLogsResponse); i {
+			switch v := v.(*TailphysicalDevicePartLogsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12799,7 +12799,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[71].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRobotPartHistoryRequest); i {
+			switch v := v.(*GetphysicalDevicePartHistoryRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12811,7 +12811,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[72].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRobotPartHistoryResponse); i {
+			switch v := v.(*GetphysicalDevicePartHistoryResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12823,7 +12823,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[73].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateRobotPartRequest); i {
+			switch v := v.(*UpdatephysicalDevicePartRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12835,7 +12835,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[74].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateRobotPartResponse); i {
+			switch v := v.(*UpdatephysicalDevicePartResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12847,7 +12847,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[75].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*NewRobotPartRequest); i {
+			switch v := v.(*NewphysicalDevicePartRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12859,7 +12859,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[76].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*NewRobotPartResponse); i {
+			switch v := v.(*NewphysicalDevicePartResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12871,7 +12871,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[77].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRobotPartRequest); i {
+			switch v := v.(*DeletephysicalDevicePartRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12883,7 +12883,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[78].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRobotAPIKeysRequest); i {
+			switch v := v.(*GetphysicalDeviceAPIKeysRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12907,7 +12907,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[80].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRobotAPIKeysResponse); i {
+			switch v := v.(*GetphysicalDeviceAPIKeysResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12919,7 +12919,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[81].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRobotPartResponse); i {
+			switch v := v.(*DeletephysicalDevicePartResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -13063,7 +13063,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[93].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListRobotsRequest); i {
+			switch v := v.(*ListphysicalDevicesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -13075,7 +13075,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[94].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListRobotsResponse); i {
+			switch v := v.(*ListphysicalDevicesResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -13087,7 +13087,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[95].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*NewRobotRequest); i {
+			switch v := v.(*NewphysicalDeviceRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -13099,7 +13099,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[96].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*NewRobotResponse); i {
+			switch v := v.(*NewphysicalDeviceResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -13111,7 +13111,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[97].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateRobotRequest); i {
+			switch v := v.(*UpdatephysicalDeviceRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -13123,7 +13123,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[98].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateRobotResponse); i {
+			switch v := v.(*UpdatephysicalDeviceResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -13135,7 +13135,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[99].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRobotRequest); i {
+			switch v := v.(*DeletephysicalDeviceRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -13147,7 +13147,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[100].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRobotResponse); i {
+			switch v := v.(*DeletephysicalDeviceResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -13207,7 +13207,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[105].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateRobotPartSecretRequest); i {
+			switch v := v.(*CreatephysicalDevicePartSecretRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -13219,7 +13219,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[106].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateRobotPartSecretResponse); i {
+			switch v := v.(*CreatephysicalDevicePartSecretResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -13231,7 +13231,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[107].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRobotPartSecretRequest); i {
+			switch v := v.(*DeletephysicalDevicePartSecretRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -13243,7 +13243,7 @@ func file_app_v1_app_proto_init() {
 			}
 		}
 		file_app_v1_app_proto_msgTypes[108].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRobotPartSecretResponse); i {
+			switch v := v.(*DeletephysicalDevicePartSecretResponse); i {
 			case 0:
 				return &v.state
 			case 1:

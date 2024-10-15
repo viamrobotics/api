@@ -16,7 +16,7 @@ jobs:
   check_requirements:
     name: Check Merge Requirements
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamphysicalDeviceics'
     steps:
       - name: Check Labels
         if: >
