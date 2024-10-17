@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_protobuf_descriptor_pb = require('google-protobuf/google/protobuf/descriptor_pb.js');
 goog.object.extend(proto, google_protobuf_descriptor_pb);
@@ -112,7 +106,7 @@ proto.google.api.Visibility.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.api.Visibility.toObject = function(includeInstance, msg) {
   var f, obj = {
-rulesList: jspb.Message.toObjectList(msg.getRulesList(),
+    rulesList: jspb.Message.toObjectList(msg.getRulesList(),
     proto.google.api.VisibilityRule.toObject, includeInstance)
   };
 
@@ -265,8 +259,8 @@ proto.google.api.VisibilityRule.prototype.toObject = function(opt_includeInstanc
  */
 proto.google.api.VisibilityRule.toObject = function(includeInstance, msg) {
   var f, obj = {
-selector: jspb.Message.getFieldWithDefault(msg, 1, ""),
-restriction: jspb.Message.getFieldWithDefault(msg, 2, "")
+    selector: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    restriction: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

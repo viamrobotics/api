@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -235,8 +229,8 @@ proto.viam.component.gripper.v1.OpenRequest.prototype.toObject = function(opt_in
  */
 proto.viam.component.gripper.v1.OpenRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -517,8 +511,8 @@ proto.viam.component.gripper.v1.GrabRequest.prototype.toObject = function(opt_in
  */
 proto.viam.component.gripper.v1.GrabRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -698,8 +692,8 @@ proto.viam.component.gripper.v1.GrabResponse.prototype.toObject = function(opt_i
  */
 proto.viam.component.gripper.v1.GrabResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -879,8 +873,8 @@ proto.viam.component.gripper.v1.StopRequest.prototype.toObject = function(opt_in
  */
 proto.viam.component.gripper.v1.StopRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1161,7 +1155,7 @@ proto.viam.component.gripper.v1.IsMovingRequest.prototype.toObject = function(op
  */
 proto.viam.component.gripper.v1.IsMovingRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1291,7 +1285,7 @@ proto.viam.component.gripper.v1.IsMovingResponse.prototype.toObject = function(o
  */
 proto.viam.component.gripper.v1.IsMovingResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+    isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {

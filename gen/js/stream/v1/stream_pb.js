@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 goog.exportSymbol('proto.proto.stream.v1.AddStreamRequest', null, global);
 goog.exportSymbol('proto.proto.stream.v1.AddStreamResponse', null, global);
@@ -293,7 +287,7 @@ proto.proto.stream.v1.ListStreamsResponse.prototype.toObject = function(opt_incl
  */
 proto.proto.stream.v1.ListStreamsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-namesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    namesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -442,7 +436,7 @@ proto.proto.stream.v1.AddStreamRequest.prototype.toObject = function(opt_include
  */
 proto.proto.stream.v1.AddStreamRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -673,7 +667,7 @@ proto.proto.stream.v1.RemoveStreamRequest.prototype.toObject = function(opt_incl
  */
 proto.proto.stream.v1.RemoveStreamRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {

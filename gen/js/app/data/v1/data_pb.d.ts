@@ -381,13 +381,6 @@ export class TabularDataBySQLResponse extends jspb.Message {
   setDataList(value: Array<google_protobuf_struct_pb.Struct>): void;
   addData(value?: google_protobuf_struct_pb.Struct, index?: number): google_protobuf_struct_pb.Struct;
 
-  clearRawDataList(): void;
-  getRawDataList(): Array<Uint8Array | string>;
-  getRawDataList_asU8(): Array<Uint8Array>;
-  getRawDataList_asB64(): Array<string>;
-  setRawDataList(value: Array<Uint8Array | string>): void;
-  addRawData(value: Uint8Array | string, index?: number): Uint8Array | string;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataBySQLResponse.AsObject;
   static toObject(includeInstance: boolean, msg: TabularDataBySQLResponse): TabularDataBySQLResponse.AsObject;
@@ -401,7 +394,6 @@ export class TabularDataBySQLResponse extends jspb.Message {
 export namespace TabularDataBySQLResponse {
   export type AsObject = {
     dataList: Array<google_protobuf_struct_pb.Struct.AsObject>,
-    rawDataList: Array<Uint8Array | string>,
   }
 }
 
@@ -439,13 +431,6 @@ export class TabularDataByMQLResponse extends jspb.Message {
   setDataList(value: Array<google_protobuf_struct_pb.Struct>): void;
   addData(value?: google_protobuf_struct_pb.Struct, index?: number): google_protobuf_struct_pb.Struct;
 
-  clearRawDataList(): void;
-  getRawDataList(): Array<Uint8Array | string>;
-  getRawDataList_asU8(): Array<Uint8Array>;
-  getRawDataList_asB64(): Array<string>;
-  setRawDataList(value: Array<Uint8Array | string>): void;
-  addRawData(value: Uint8Array | string, index?: number): Uint8Array | string;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataByMQLResponse.AsObject;
   static toObject(includeInstance: boolean, msg: TabularDataByMQLResponse): TabularDataByMQLResponse.AsObject;
@@ -459,7 +444,6 @@ export class TabularDataByMQLResponse extends jspb.Message {
 export namespace TabularDataByMQLResponse {
   export type AsObject = {
     dataList: Array<google_protobuf_struct_pb.Struct.AsObject>,
-    rawDataList: Array<Uint8Array | string>,
   }
 }
 

@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_protobuf_descriptor_pb = require('google-protobuf/google/protobuf/descriptor_pb.js');
 goog.object.extend(proto, google_protobuf_descriptor_pb);
@@ -634,10 +628,10 @@ proto.viam.common.v1.ResourceName.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.common.v1.ResourceName.toObject = function(includeInstance, msg) {
   var f, obj = {
-namespace: jspb.Message.getFieldWithDefault(msg, 1, ""),
-type: jspb.Message.getFieldWithDefault(msg, 2, ""),
-subtype: jspb.Message.getFieldWithDefault(msg, 3, ""),
-name: jspb.Message.getFieldWithDefault(msg, 4, "")
+    namespace: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    subtype: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -854,13 +848,13 @@ proto.viam.common.v1.Pose.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.common.v1.Pose.toObject = function(includeInstance, msg) {
   var f, obj = {
-x: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-y: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-z: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-oX: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-oY: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-oZ: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-theta: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0)
+    x: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+    y: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    z: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    oX: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+    oY: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+    oZ: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+    theta: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0)
   };
 
   if (includeInstance) {
@@ -1164,10 +1158,10 @@ proto.viam.common.v1.Orientation.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.common.v1.Orientation.toObject = function(includeInstance, msg) {
   var f, obj = {
-oX: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-oY: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-oZ: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-theta: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
+    oX: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+    oY: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    oZ: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    theta: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -1384,8 +1378,8 @@ proto.viam.common.v1.PoseInFrame.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.common.v1.PoseInFrame.toObject = function(includeInstance, msg) {
   var f, obj = {
-referenceFrame: jspb.Message.getFieldWithDefault(msg, 1, ""),
-pose: (f = msg.getPose()) && proto.viam.common.v1.Pose.toObject(includeInstance, f)
+    referenceFrame: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pose: (f = msg.getPose()) && proto.viam.common.v1.Pose.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1565,9 +1559,9 @@ proto.viam.common.v1.Vector3.prototype.toObject = function(opt_includeInstance) 
  */
 proto.viam.common.v1.Vector3.toObject = function(includeInstance, msg) {
   var f, obj = {
-x: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-y: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-z: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0)
+    x: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+    y: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    z: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0)
   };
 
   if (includeInstance) {
@@ -1755,7 +1749,7 @@ proto.viam.common.v1.Sphere.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.common.v1.Sphere.toObject = function(includeInstance, msg) {
   var f, obj = {
-radiusMm: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
+    radiusMm: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
   };
 
   if (includeInstance) {
@@ -1885,8 +1879,8 @@ proto.viam.common.v1.Capsule.prototype.toObject = function(opt_includeInstance) 
  */
 proto.viam.common.v1.Capsule.toObject = function(includeInstance, msg) {
   var f, obj = {
-radiusMm: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-lengthMm: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+    radiusMm: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+    lengthMm: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -2045,7 +2039,7 @@ proto.viam.common.v1.RectangularPrism.prototype.toObject = function(opt_includeI
  */
 proto.viam.common.v1.RectangularPrism.toObject = function(includeInstance, msg) {
   var f, obj = {
-dimsMm: (f = msg.getDimsMm()) && proto.viam.common.v1.Vector3.toObject(includeInstance, f)
+    dimsMm: (f = msg.getDimsMm()) && proto.viam.common.v1.Vector3.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2223,11 +2217,11 @@ proto.viam.common.v1.Geometry.prototype.toObject = function(opt_includeInstance)
  */
 proto.viam.common.v1.Geometry.toObject = function(includeInstance, msg) {
   var f, obj = {
-center: (f = msg.getCenter()) && proto.viam.common.v1.Pose.toObject(includeInstance, f),
-sphere: (f = msg.getSphere()) && proto.viam.common.v1.Sphere.toObject(includeInstance, f),
-box: (f = msg.getBox()) && proto.viam.common.v1.RectangularPrism.toObject(includeInstance, f),
-capsule: (f = msg.getCapsule()) && proto.viam.common.v1.Capsule.toObject(includeInstance, f),
-label: jspb.Message.getFieldWithDefault(msg, 4, "")
+    center: (f = msg.getCenter()) && proto.viam.common.v1.Pose.toObject(includeInstance, f),
+    sphere: (f = msg.getSphere()) && proto.viam.common.v1.Sphere.toObject(includeInstance, f),
+    box: (f = msg.getBox()) && proto.viam.common.v1.RectangularPrism.toObject(includeInstance, f),
+    capsule: (f = msg.getCapsule()) && proto.viam.common.v1.Capsule.toObject(includeInstance, f),
+    label: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -2564,8 +2558,8 @@ proto.viam.common.v1.GeometriesInFrame.prototype.toObject = function(opt_include
  */
 proto.viam.common.v1.GeometriesInFrame.toObject = function(includeInstance, msg) {
   var f, obj = {
-referenceFrame: jspb.Message.getFieldWithDefault(msg, 1, ""),
-geometriesList: jspb.Message.toObjectList(msg.getGeometriesList(),
+    referenceFrame: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    geometriesList: jspb.Message.toObjectList(msg.getGeometriesList(),
     proto.viam.common.v1.Geometry.toObject, includeInstance)
   };
 
@@ -2747,8 +2741,8 @@ proto.viam.common.v1.PointCloudObject.prototype.toObject = function(opt_includeI
  */
 proto.viam.common.v1.PointCloudObject.toObject = function(includeInstance, msg) {
   var f, obj = {
-pointCloud: msg.getPointCloud_asB64(),
-geometries: (f = msg.getGeometries()) && proto.viam.common.v1.GeometriesInFrame.toObject(includeInstance, f)
+    pointCloud: msg.getPointCloud_asB64(),
+    geometries: (f = msg.getGeometries()) && proto.viam.common.v1.GeometriesInFrame.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2952,8 +2946,8 @@ proto.viam.common.v1.GeoPoint.prototype.toObject = function(opt_includeInstance)
  */
 proto.viam.common.v1.GeoPoint.toObject = function(includeInstance, msg) {
   var f, obj = {
-latitude: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-longitude: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+    latitude: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+    longitude: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -3119,8 +3113,8 @@ proto.viam.common.v1.GeoGeometry.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.common.v1.GeoGeometry.toObject = function(includeInstance, msg) {
   var f, obj = {
-location: (f = msg.getLocation()) && proto.viam.common.v1.GeoPoint.toObject(includeInstance, f),
-geometriesList: jspb.Message.toObjectList(msg.getGeometriesList(),
+    location: (f = msg.getLocation()) && proto.viam.common.v1.GeoPoint.toObject(includeInstance, f),
+    geometriesList: jspb.Message.toObjectList(msg.getGeometriesList(),
     proto.viam.common.v1.Geometry.toObject, includeInstance)
   };
 
@@ -3323,9 +3317,9 @@ proto.viam.common.v1.Transform.prototype.toObject = function(opt_includeInstance
  */
 proto.viam.common.v1.Transform.toObject = function(includeInstance, msg) {
   var f, obj = {
-referenceFrame: jspb.Message.getFieldWithDefault(msg, 1, ""),
-poseInObserverFrame: (f = msg.getPoseInObserverFrame()) && proto.viam.common.v1.PoseInFrame.toObject(includeInstance, f),
-physicalObject: (f = msg.getPhysicalObject()) && proto.viam.common.v1.Geometry.toObject(includeInstance, f)
+    referenceFrame: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    poseInObserverFrame: (f = msg.getPoseInObserverFrame()) && proto.viam.common.v1.PoseInFrame.toObject(includeInstance, f),
+    physicalObject: (f = msg.getPhysicalObject()) && proto.viam.common.v1.Geometry.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3562,9 +3556,9 @@ proto.viam.common.v1.WorldState.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.common.v1.WorldState.toObject = function(includeInstance, msg) {
   var f, obj = {
-obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
+    obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
     proto.viam.common.v1.GeometriesInFrame.toObject, includeInstance),
-transformsList: jspb.Message.toObjectList(msg.getTransformsList(),
+    transformsList: jspb.Message.toObjectList(msg.getTransformsList(),
     proto.viam.common.v1.Transform.toObject, includeInstance)
   };
 
@@ -3768,7 +3762,7 @@ proto.viam.common.v1.ActuatorStatus.prototype.toObject = function(opt_includeIns
  */
 proto.viam.common.v1.ActuatorStatus.toObject = function(includeInstance, msg) {
   var f, obj = {
-isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+    isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -3898,7 +3892,7 @@ proto.viam.common.v1.ResponseMetadata.prototype.toObject = function(opt_includeI
  */
 proto.viam.common.v1.ResponseMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-capturedAt: (f = msg.getCapturedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    capturedAt: (f = msg.getCapturedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4049,8 +4043,8 @@ proto.viam.common.v1.DoCommandRequest.prototype.toObject = function(opt_includeI
  */
 proto.viam.common.v1.DoCommandRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-command: (f = msg.getCommand()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    command: (f = msg.getCommand()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4230,7 +4224,7 @@ proto.viam.common.v1.DoCommandResponse.prototype.toObject = function(opt_include
  */
 proto.viam.common.v1.DoCommandResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-result: (f = msg.getResult()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    result: (f = msg.getResult()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4381,8 +4375,8 @@ proto.viam.common.v1.GetKinematicsRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.common.v1.GetKinematicsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4562,8 +4556,8 @@ proto.viam.common.v1.GetKinematicsResponse.prototype.toObject = function(opt_inc
  */
 proto.viam.common.v1.GetKinematicsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-format: jspb.Message.getFieldWithDefault(msg, 1, 0),
-kinematicsData: msg.getKinematicsData_asB64()
+    format: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    kinematicsData: msg.getKinematicsData_asB64()
   };
 
   if (includeInstance) {
@@ -4746,8 +4740,8 @@ proto.viam.common.v1.GetGeometriesRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.common.v1.GetGeometriesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4934,7 +4928,7 @@ proto.viam.common.v1.GetGeometriesResponse.prototype.toObject = function(opt_inc
  */
 proto.viam.common.v1.GetGeometriesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-geometriesList: jspb.Message.toObjectList(msg.getGeometriesList(),
+    geometriesList: jspb.Message.toObjectList(msg.getGeometriesList(),
     proto.viam.common.v1.Geometry.toObject, includeInstance)
   };
 
@@ -5087,8 +5081,8 @@ proto.viam.common.v1.GetReadingsRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.common.v1.GetReadingsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5268,7 +5262,7 @@ proto.viam.common.v1.GetReadingsResponse.prototype.toObject = function(opt_inclu
  */
 proto.viam.common.v1.GetReadingsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-readingsMap: (f = msg.getReadingsMap()) ? f.toObject(includeInstance, proto.google.protobuf.Value.toObject) : []
+    readingsMap: (f = msg.getReadingsMap()) ? f.toObject(includeInstance, proto.google.protobuf.Value.toObject) : []
   };
 
   if (includeInstance) {
@@ -5366,8 +5360,7 @@ proto.viam.common.v1.GetReadingsResponse.prototype.getReadingsMap = function(opt
  */
 proto.viam.common.v1.GetReadingsResponse.prototype.clearReadingsMap = function() {
   this.getReadingsMap().clear();
-  return this;
-};
+  return this;};
 
 
 
@@ -5409,14 +5402,14 @@ proto.viam.common.v1.LogEntry.prototype.toObject = function(opt_includeInstance)
  */
 proto.viam.common.v1.LogEntry.toObject = function(includeInstance, msg) {
   var f, obj = {
-host: jspb.Message.getFieldWithDefault(msg, 1, ""),
-level: jspb.Message.getFieldWithDefault(msg, 2, ""),
-time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-loggerName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-message: jspb.Message.getFieldWithDefault(msg, 5, ""),
-caller: (f = msg.getCaller()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-stack: jspb.Message.getFieldWithDefault(msg, 7, ""),
-fieldsList: jspb.Message.toObjectList(msg.getFieldsList(),
+    host: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    level: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    loggerName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    message: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    caller: (f = msg.getCaller()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    stack: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    fieldsList: jspb.Message.toObjectList(msg.getFieldsList(),
     google_protobuf_struct_pb.Struct.toObject, includeInstance)
   };
 
