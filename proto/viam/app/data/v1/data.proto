@@ -117,6 +117,8 @@ message Filter {
   // bbox_labels are used to match documents with the specified bounding box labels (using logical OR).
   repeated string bbox_labels = 15;
   string dataset_id = 16;
+  // optional in place of part_id, for requesting a batch. it is an error to provide both part_id and part_ids.
+  repeated string part_ids = 17;
 
   reserved 3, 5;
   reserved "component_model", "tags";
