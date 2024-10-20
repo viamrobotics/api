@@ -8546,7 +8546,7 @@ proto.viam.app.v1.RemoteAuth.prototype.setEntity = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.AgentInfo.repeatedFields_ = [3];
+proto.viam.app.v1.AgentInfo.repeatedFields_ = [3,7];
 
 
 
@@ -8584,7 +8584,8 @@ proto.viam.app.v1.AgentInfo.toObject = function(includeInstance, msg) {
     ipsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
     version: jspb.Message.getFieldWithDefault(msg, 4, ""),
     gitRevision: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    platform: jspb.Message.getFieldWithDefault(msg, 6, "")
+    platform: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    platformTagsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -8644,6 +8645,10 @@ proto.viam.app.v1.AgentInfo.deserializeBinaryFromReader = function(msg, reader) 
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setPlatform(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addPlatformTags(value);
       break;
     default:
       reader.skipField();
@@ -8713,6 +8718,13 @@ proto.viam.app.v1.AgentInfo.serializeBinaryToWriter = function(message, writer) 
   if (f != null) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = message.getPlatformTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      7,
       f
     );
   }
@@ -8861,6 +8873,43 @@ proto.viam.app.v1.AgentInfo.prototype.clearPlatform = function() {
  */
 proto.viam.app.v1.AgentInfo.prototype.hasPlatform = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * repeated string platform_tags = 7;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.AgentInfo.prototype.getPlatformTagsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 7));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.AgentInfo} returns this
+ */
+proto.viam.app.v1.AgentInfo.prototype.setPlatformTagsList = function(value) {
+  return jspb.Message.setField(this, 7, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.AgentInfo} returns this
+ */
+proto.viam.app.v1.AgentInfo.prototype.addPlatformTags = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 7, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.AgentInfo} returns this
+ */
+proto.viam.app.v1.AgentInfo.prototype.clearPlatformTagsList = function() {
+  return this.setPlatformTagsList([]);
 };
 
 
