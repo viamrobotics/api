@@ -1145,7 +1145,9 @@ message ModuleFileInfo {
   string version = 2;
   // The platform that the file is built to run on
   string platform = 3;
-  optional int32 priority = 4;
+  // Platform tag constraints. When a robot requests its config, it uploads a platform and a list of
+  // platform tags. The platform is checked against `platform` above, and the tags are checked against
+  // this `constraints` list.
   repeated string constraints = 5;
 }
 
