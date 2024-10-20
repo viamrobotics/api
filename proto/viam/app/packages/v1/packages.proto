@@ -103,8 +103,6 @@ message GetPackageRequest {
   optional bool include_url = 3;
   optional PackageType type = 4;
   optional string platform = 5;
-  optional int32 priority = 6;
-  repeated string constraints = 7;
 }
 
 message GetPackageResponse {

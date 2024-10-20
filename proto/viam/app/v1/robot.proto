@@ -293,6 +293,8 @@ message AgentInfo {
   string git_revision = 5;
   // The platform the RDK is running on. For example linux/amd64
   optional string platform = 6;
+  // optional tags to further constrain the platform.
+  repeated string constraints = 7;
 }
 
 enum CredentialsType {
