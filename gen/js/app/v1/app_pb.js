@@ -3374,7 +3374,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.ModuleFileInfo = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.ModuleFileInfo.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.v1.ModuleFileInfo, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -31450,6 +31450,13 @@ proto.viam.app.v1.Model.prototype.setModel = function(value) {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.ModuleFileInfo.repeatedFields_ = [5];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -31483,7 +31490,8 @@ proto.viam.app.v1.ModuleFileInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
     moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     version: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    platform: jspb.Message.getFieldWithDefault(msg, 3, "")
+    platform: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    constraintsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -31532,6 +31540,10 @@ proto.viam.app.v1.ModuleFileInfo.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {string} */ (reader.readString());
       msg.setPlatform(value);
       break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addConstraints(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -31579,6 +31591,13 @@ proto.viam.app.v1.ModuleFileInfo.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getConstraintsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      5,
       f
     );
   }
@@ -31636,6 +31655,43 @@ proto.viam.app.v1.ModuleFileInfo.prototype.getPlatform = function() {
  */
 proto.viam.app.v1.ModuleFileInfo.prototype.setPlatform = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * repeated string constraints = 5;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.ModuleFileInfo.prototype.getConstraintsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.ModuleFileInfo} returns this
+ */
+proto.viam.app.v1.ModuleFileInfo.prototype.setConstraintsList = function(value) {
+  return jspb.Message.setField(this, 5, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.ModuleFileInfo} returns this
+ */
+proto.viam.app.v1.ModuleFileInfo.prototype.addConstraints = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.ModuleFileInfo} returns this
+ */
+proto.viam.app.v1.ModuleFileInfo.prototype.clearConstraintsList = function() {
+  return this.setConstraintsList([]);
 };
 
 
