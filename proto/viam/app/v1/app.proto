@@ -1145,6 +1145,8 @@ message ModuleFileInfo {
   string version = 2;
   // The platform that the file is built to run on
   string platform = 3;
+  optional int32 priority = 4;
+  repeated string constraints = 5;
 }
 
 message UploadModuleFileRequest {
