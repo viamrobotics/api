@@ -543,6 +543,11 @@ export class DiscoveryQuery extends jspb.Message {
   getModel(): string;
   setModel(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DiscoveryQuery.AsObject;
   static toObject(includeInstance: boolean, msg: DiscoveryQuery): DiscoveryQuery.AsObject;
@@ -557,6 +562,7 @@ export namespace DiscoveryQuery {
   export type AsObject = {
     subtype: string,
     model: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
