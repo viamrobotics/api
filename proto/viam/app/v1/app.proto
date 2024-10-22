@@ -1147,8 +1147,8 @@ message ModuleFileInfo {
   string platform = 3;
   // Platform tag constraints. When a robot requests its config, it uploads a platform and a list of
   // platform tags. The platform is checked against `platform` above, and the tags are checked against
-  // this `constraints` list.
-  repeated string constraints = 5;
+  // this list.
+  repeated string platform_tags = 5;
 }
 
 message UploadModuleFileRequest {
