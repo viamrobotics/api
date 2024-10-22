@@ -3915,7 +3915,7 @@ proto.viam.app.data.v1.TabularDataBySQLRequest.prototype.setSqlQuery = function(
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.TabularDataBySQLResponse.repeatedFields_ = [1];
+proto.viam.app.data.v1.TabularDataBySQLResponse.repeatedFields_ = [1,2];
 
 
 
@@ -3949,7 +3949,8 @@ proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.toObject = function(op
 proto.viam.app.data.v1.TabularDataBySQLResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     dataList: jspb.Message.toObjectList(msg.getDataList(),
-    google_protobuf_struct_pb.Struct.toObject, includeInstance)
+    google_protobuf_struct_pb.Struct.toObject, includeInstance),
+    rawDataList: msg.getRawDataList_asB64()
   };
 
   if (includeInstance) {
@@ -3991,6 +3992,10 @@ proto.viam.app.data.v1.TabularDataBySQLResponse.deserializeBinaryFromReader = fu
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.addData(value);
       break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.addRawData(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -4026,6 +4031,13 @@ proto.viam.app.data.v1.TabularDataBySQLResponse.serializeBinaryToWriter = functi
       1,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getRawDataList_asU8();
+  if (f.length > 0) {
+    writer.writeRepeatedBytes(
+      2,
+      f
     );
   }
 };
@@ -4066,6 +4078,67 @@ proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.addData = function(opt
  */
 proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.clearDataList = function() {
   return this.setDataList([]);
+};
+
+
+/**
+ * repeated bytes raw_data = 2;
+ * @return {!Array<string>}
+ */
+proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.getRawDataList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * repeated bytes raw_data = 2;
+ * This is a type-conversion wrapper around `getRawDataList()`
+ * @return {!Array<string>}
+ */
+proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.getRawDataList_asB64 = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
+      this.getRawDataList()));
+};
+
+
+/**
+ * repeated bytes raw_data = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getRawDataList()`
+ * @return {!Array<!Uint8Array>}
+ */
+proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.getRawDataList_asU8 = function() {
+  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
+      this.getRawDataList()));
+};
+
+
+/**
+ * @param {!(Array<!Uint8Array>|Array<string>)} value
+ * @return {!proto.viam.app.data.v1.TabularDataBySQLResponse} returns this
+ */
+proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.setRawDataList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.data.v1.TabularDataBySQLResponse} returns this
+ */
+proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.addRawData = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.data.v1.TabularDataBySQLResponse} returns this
+ */
+proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.clearRawDataList = function() {
+  return this.setRawDataList([]);
 };
 
 
@@ -4285,7 +4358,7 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.clearMqlBinaryList = fu
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.TabularDataByMQLResponse.repeatedFields_ = [1];
+proto.viam.app.data.v1.TabularDataByMQLResponse.repeatedFields_ = [1,2];
 
 
 
@@ -4319,7 +4392,8 @@ proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.toObject = function(op
 proto.viam.app.data.v1.TabularDataByMQLResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     dataList: jspb.Message.toObjectList(msg.getDataList(),
-    google_protobuf_struct_pb.Struct.toObject, includeInstance)
+    google_protobuf_struct_pb.Struct.toObject, includeInstance),
+    rawDataList: msg.getRawDataList_asB64()
   };
 
   if (includeInstance) {
@@ -4361,6 +4435,10 @@ proto.viam.app.data.v1.TabularDataByMQLResponse.deserializeBinaryFromReader = fu
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.addData(value);
       break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.addRawData(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -4396,6 +4474,13 @@ proto.viam.app.data.v1.TabularDataByMQLResponse.serializeBinaryToWriter = functi
       1,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getRawDataList_asU8();
+  if (f.length > 0) {
+    writer.writeRepeatedBytes(
+      2,
+      f
     );
   }
 };
@@ -4436,6 +4521,67 @@ proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.addData = function(opt
  */
 proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.clearDataList = function() {
   return this.setDataList([]);
+};
+
+
+/**
+ * repeated bytes raw_data = 2;
+ * @return {!Array<string>}
+ */
+proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.getRawDataList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * repeated bytes raw_data = 2;
+ * This is a type-conversion wrapper around `getRawDataList()`
+ * @return {!Array<string>}
+ */
+proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.getRawDataList_asB64 = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
+      this.getRawDataList()));
+};
+
+
+/**
+ * repeated bytes raw_data = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getRawDataList()`
+ * @return {!Array<!Uint8Array>}
+ */
+proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.getRawDataList_asU8 = function() {
+  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
+      this.getRawDataList()));
+};
+
+
+/**
+ * @param {!(Array<!Uint8Array>|Array<string>)} value
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLResponse} returns this
+ */
+proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.setRawDataList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLResponse} returns this
+ */
+proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.addRawData = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLResponse} returns this
+ */
+proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.clearRawDataList = function() {
+  return this.setRawDataList([]);
 };
 
 
