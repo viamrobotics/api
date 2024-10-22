@@ -3957,10 +3957,10 @@ export class ModuleFileInfo extends jspb.Message {
   getPlatform(): string;
   setPlatform(value: string): void;
 
-  clearConstraintsList(): void;
-  getConstraintsList(): Array<string>;
-  setConstraintsList(value: Array<string>): void;
-  addConstraints(value: string, index?: number): string;
+  clearPlatformTagsList(): void;
+  getPlatformTagsList(): Array<string>;
+  setPlatformTagsList(value: Array<string>): void;
+  addPlatformTags(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleFileInfo.AsObject;
@@ -3977,7 +3977,7 @@ export namespace ModuleFileInfo {
     moduleId: string,
     version: string,
     platform: string,
-    constraintsList: Array<string>,
+    platformTagsList: Array<string>,
   }
 }
 

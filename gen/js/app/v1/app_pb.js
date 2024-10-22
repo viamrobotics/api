@@ -31491,7 +31491,7 @@ proto.viam.app.v1.ModuleFileInfo.toObject = function(includeInstance, msg) {
     moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     version: jspb.Message.getFieldWithDefault(msg, 2, ""),
     platform: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    constraintsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
+    platformTagsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -31542,7 +31542,7 @@ proto.viam.app.v1.ModuleFileInfo.deserializeBinaryFromReader = function(msg, rea
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.addConstraints(value);
+      msg.addPlatformTags(value);
       break;
     default:
       reader.skipField();
@@ -31594,7 +31594,7 @@ proto.viam.app.v1.ModuleFileInfo.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getConstraintsList();
+  f = message.getPlatformTagsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
       5,
@@ -31659,10 +31659,10 @@ proto.viam.app.v1.ModuleFileInfo.prototype.setPlatform = function(value) {
 
 
 /**
- * repeated string constraints = 5;
+ * repeated string platform_tags = 5;
  * @return {!Array<string>}
  */
-proto.viam.app.v1.ModuleFileInfo.prototype.getConstraintsList = function() {
+proto.viam.app.v1.ModuleFileInfo.prototype.getPlatformTagsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
@@ -31671,7 +31671,7 @@ proto.viam.app.v1.ModuleFileInfo.prototype.getConstraintsList = function() {
  * @param {!Array<string>} value
  * @return {!proto.viam.app.v1.ModuleFileInfo} returns this
  */
-proto.viam.app.v1.ModuleFileInfo.prototype.setConstraintsList = function(value) {
+proto.viam.app.v1.ModuleFileInfo.prototype.setPlatformTagsList = function(value) {
   return jspb.Message.setField(this, 5, value || []);
 };
 
@@ -31681,7 +31681,7 @@ proto.viam.app.v1.ModuleFileInfo.prototype.setConstraintsList = function(value) 
  * @param {number=} opt_index
  * @return {!proto.viam.app.v1.ModuleFileInfo} returns this
  */
-proto.viam.app.v1.ModuleFileInfo.prototype.addConstraints = function(value, opt_index) {
+proto.viam.app.v1.ModuleFileInfo.prototype.addPlatformTags = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
 };
 
@@ -31690,8 +31690,8 @@ proto.viam.app.v1.ModuleFileInfo.prototype.addConstraints = function(value, opt_
  * Clears the list making it empty but non-null.
  * @return {!proto.viam.app.v1.ModuleFileInfo} returns this
  */
-proto.viam.app.v1.ModuleFileInfo.prototype.clearConstraintsList = function() {
-  return this.setConstraintsList([]);
+proto.viam.app.v1.ModuleFileInfo.prototype.clearPlatformTagsList = function() {
+  return this.setPlatformTagsList([]);
 };
 
 
