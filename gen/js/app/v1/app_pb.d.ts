@@ -3957,6 +3957,11 @@ export class ModuleFileInfo extends jspb.Message {
   getPlatform(): string;
   setPlatform(value: string): void;
 
+  clearPlatformTagsList(): void;
+  getPlatformTagsList(): Array<string>;
+  setPlatformTagsList(value: Array<string>): void;
+  addPlatformTags(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleFileInfo.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleFileInfo): ModuleFileInfo.AsObject;
@@ -3972,6 +3977,7 @@ export namespace ModuleFileInfo {
     moduleId: string,
     version: string,
     platform: string,
+    platformTagsList: Array<string>,
   }
 }
 
