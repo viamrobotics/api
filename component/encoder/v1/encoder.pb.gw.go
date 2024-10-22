@@ -15,7 +15,7 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
-	v1_0 "go.viam.com/api/common/v1"
+	"go.viam.com/api/common/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -247,7 +247,7 @@ var (
 )
 
 func request_EncoderService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client EncoderServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DoCommandRequest
+	var protoReq v1.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -280,7 +280,7 @@ func request_EncoderService_DoCommand_0(ctx context.Context, marshaler runtime.M
 }
 
 func local_request_EncoderService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, server EncoderServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DoCommandRequest
+	var protoReq v1.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -317,7 +317,7 @@ var (
 )
 
 func request_EncoderService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, client EncoderServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetGeometriesRequest
+	var protoReq v1.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -350,7 +350,7 @@ func request_EncoderService_GetGeometries_0(ctx context.Context, marshaler runti
 }
 
 func local_request_EncoderService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, server EncoderServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetGeometriesRequest
+	var protoReq v1.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
