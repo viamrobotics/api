@@ -5,6 +5,7 @@ package viam.app.v1;
 import "app/mltraining/v1/ml_training.proto";
 import "app/packages/v1/packages.proto";
 import "common/v1/common.proto";
+import "google/protobuf/any.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "tagger/v1/tagger.proto";
@@ -929,6 +930,43 @@ message CheckPermissionsResponse {
   repeated AuthorizedPermissions authorized_permissions = 1;
 }
 
+enum ModuleConfigAttributeType {
+  MODULE_CONFIG_ATTRIBUTE_TYPE_UNSPECIFIED = 0;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_STRING = 1;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_INTEGER = 2;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_NUMBER = 3;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_BOOLEAN = 4;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_OBJECT = 5;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_GENERIC_SELECTOR = 6;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_ML_MODEL_SELECTOR = 7;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_RESOURCE_SELECTOR = 8;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_STRING_ARRAY = 9;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_INTEGER_ARRAY = 10;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_NUMBER_ARRAY = 11;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_BOOLEAN_ARRAY = 12;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_OBJECT_ARRAY = 13;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_GENERIC_SELECTOR_ARRAY = 14;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_ML_MODEL_SELECTOR_ARRAY = 15;
+  MODULE_CONFIG_ATTRIBUTE_TYPE_RESOURCE_SELECTOR_ARRAY = 16;
+}
+
+message ModuleConfigAttribute {
+  ModuleConfigAttributeType type = 1;
+  string title = 2;
+  string units = 3;
+  optional string resource_selector_api = 4;
+  repeated google.protobuf.Any generic_selector_values = 5;
+  optional string description = 6;
+  optional google.protobuf.Any default = 7;
+  bool required = 8;
+  optional double min = 9;
+  optional double max = 10;
+  optional string regex = 11;
+  optional string regex_hint = 12;
+  // for "object" and "object_array" types, specify the nested attributes of the JSON object.
+  map<string, ModuleConfigAttribute> attributes = 13;
+}
+
 message ModuleVersion {
   // The semver string that represents the major/minor/patch version of the module
   string version = 1;
@@ -1043,6 +1081,31 @@ message UpdateRegistryItemRequest {
   string description = 3;
   Visibility visibility = 4;
   optional string url = 5;
+
+  oneof metadata {
+    ModuleUpdateMetadata module_metadata = 6;
+    MLModelUpdateMetadata ml_model_metadata = 7;
+    MLTrainingUpdateMetadata ml_training_metadata = 8;
+  }
+}
+
+message ModuleUpdateMetadata {
+  // A list of models that are available in the module
+  repeated Model models = 1;
+  // A list of versions of the module that are available
+  // The executable to run to start the module program
+  string entrypoint = 2;
+}
+
+message MLModelUpdateMetadata {
+  viam.app.mltraining.v1.ModelType model_type = 1;
+  viam.app.mltraining.v1.ModelFramework model_framework = 2;
+}
+
+message MLTrainingUpdateMetadata {
+  viam.app.mltraining.v1.ModelType model_type = 1;
+  viam.app.mltraining.v1.ModelFramework model_framework = 2;
+  bool draft = 3;
 }
 
 message UpdateRegistryItemResponse {}
@@ -1136,6 +1199,9 @@ message Model {
   string api = 1;
   // The colon-delimited-triplet of the model
   string model = 2;
+
+  // Attribute guide of the model
+  map<string, ModuleConfigAttribute> attributes = 3;
 }
 
 message ModuleFileInfo {
