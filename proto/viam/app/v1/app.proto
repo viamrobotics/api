@@ -745,6 +745,25 @@ enum FragmentVisibility {
   FRAGMENT_VISIBILITY_PUBLIC_UNLISTED = 3;
 }
 
+message FragmentError {
+  FragmentErrorType error_type = 1;
+  string fragment_id = 2;
+  string detail = 3;
+}
+
+enum FragmentErrorType {
+  FRAGMENT_ERROR_TYPE_UNSPECIFIED = 0;
+  FRAGMENT_ERROR_TYPE_NO_ACCESS = 1;
+  FRAGMENT_ERROR_TYPE_NESTING_LIMIT_EXCEEDED = 2;
+  FRAGMENT_ERROR_TYPE_CHILD_ID_INVALID = 3;
+  FRAGMENT_ERROR_TYPE_DUPLICATE_NAMES = 4;
+}
+
+message FragmentTrees {
+  repeated string fragment_merge_order = 1;
+  repeated FragmentError errors = 2;
+}
+
 message ListFragmentsRequest {
   string organization_id = 1;
   bool show_public = 2;
@@ -818,6 +837,7 @@ message ListMachineFragmentsRequest {
 
 message ListMachineFragmentsResponse {
   repeated Fragment fragments = 1;
+  FragmentTrees fragment_trees = 2;
 }
 
 message ListRobotsResponse {
