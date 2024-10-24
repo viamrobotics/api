@@ -43,8 +43,8 @@ service ArmService {
     };
   }
 
-  // MoveThroughJointPositions moves every joint on a robot's arm to the specified JointPositions in the order they are specified, 
-  // obeying the specified velocity and acceleration limits. 
+  // MoveThroughJointPositions moves every joint on a robot's arm to the specified JointPositions in the order they are specified,
+  // obeying the specified velocity and acceleration limits.
   // This will block until done or a new operation cancels this one
   rpc MoveThroughJointPositions(MoveThroughJointPositionsRequest) returns (MoveThroughJointPositionsResponse) {
     option (common.v1.safety_heartbeat_monitored) = true;

@@ -220,6 +220,60 @@ export namespace MoveToJointPositionsResponse {
   }
 }
 
+export class MoveThroughJointPositionsRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  clearPositionsList(): void;
+  getPositionsList(): Array<JointPositions>;
+  setPositionsList(value: Array<JointPositions>): void;
+  addPositions(value?: JointPositions, index?: number): JointPositions;
+
+  hasOptions(): boolean;
+  clearOptions(): void;
+  getOptions(): MoveOptions | undefined;
+  setOptions(value?: MoveOptions): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MoveThroughJointPositionsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: MoveThroughJointPositionsRequest): MoveThroughJointPositionsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MoveThroughJointPositionsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MoveThroughJointPositionsRequest;
+  static deserializeBinaryFromReader(message: MoveThroughJointPositionsRequest, reader: jspb.BinaryReader): MoveThroughJointPositionsRequest;
+}
+
+export namespace MoveThroughJointPositionsRequest {
+  export type AsObject = {
+    name: string,
+    positionsList: Array<JointPositions.AsObject>,
+    options?: MoveOptions.AsObject,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class MoveThroughJointPositionsResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MoveThroughJointPositionsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: MoveThroughJointPositionsResponse): MoveThroughJointPositionsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MoveThroughJointPositionsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MoveThroughJointPositionsResponse;
+  static deserializeBinaryFromReader(message: MoveThroughJointPositionsResponse, reader: jspb.BinaryReader): MoveThroughJointPositionsResponse;
+}
+
+export namespace MoveThroughJointPositionsResponse {
+  export type AsObject = {
+  }
+}
+
 export class StopRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
@@ -331,6 +385,34 @@ export class IsMovingResponse extends jspb.Message {
 export namespace IsMovingResponse {
   export type AsObject = {
     isMoving: boolean,
+  }
+}
+
+export class MoveOptions extends jspb.Message {
+  hasMaxVelDegsPerSec(): boolean;
+  clearMaxVelDegsPerSec(): void;
+  getMaxVelDegsPerSec(): number;
+  setMaxVelDegsPerSec(value: number): void;
+
+  hasMaxAccDegsPerSec2(): boolean;
+  clearMaxAccDegsPerSec2(): void;
+  getMaxAccDegsPerSec2(): number;
+  setMaxAccDegsPerSec2(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MoveOptions.AsObject;
+  static toObject(includeInstance: boolean, msg: MoveOptions): MoveOptions.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MoveOptions, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MoveOptions;
+  static deserializeBinaryFromReader(message: MoveOptions, reader: jspb.BinaryReader): MoveOptions;
+}
+
+export namespace MoveOptions {
+  export type AsObject = {
+    maxVelDegsPerSec: number,
+    maxAccDegsPerSec2: number,
   }
 }
 
