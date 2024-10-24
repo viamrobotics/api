@@ -79,6 +79,11 @@ export class RobotConfig extends jspb.Message {
   getRevision(): string;
   setRevision(value: string): void;
 
+  hasMaintenance(): boolean;
+  clearMaintenance(): void;
+  getMaintenance(): MaintenanceConfig | undefined;
+  setMaintenance(value?: MaintenanceConfig): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -106,6 +111,7 @@ export namespace RobotConfig {
     enableWebProfile: boolean,
     logList: Array<LogPatternConfig.AsObject>,
     revision: string,
+    maintenance?: MaintenanceConfig.AsObject,
   }
 }
 
@@ -1074,6 +1080,11 @@ export class AgentInfo extends jspb.Message {
   getPlatform(): string;
   setPlatform(value: string): void;
 
+  clearPlatformTagsList(): void;
+  getPlatformTagsList(): Array<string>;
+  setPlatformTagsList(value: Array<string>): void;
+  addPlatformTags(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AgentInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AgentInfo): AgentInfo.AsObject;
@@ -1092,6 +1103,7 @@ export namespace AgentInfo {
     version: string,
     gitRevision: string,
     platform: string,
+    platformTagsList: Array<string>,
   }
 }
 
@@ -1306,6 +1318,11 @@ export class ModuleConfig extends jspb.Message {
   getStatus(): AppValidationStatus | undefined;
   setStatus(value?: AppValidationStatus): void;
 
+  hasFirstRunTimeout(): boolean;
+  clearFirstRunTimeout(): void;
+  getFirstRunTimeout(): google_protobuf_duration_pb.Duration | undefined;
+  setFirstRunTimeout(value?: google_protobuf_duration_pb.Duration): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
@@ -1325,6 +1342,7 @@ export namespace ModuleConfig {
     moduleId: string,
     envMap: Array<[string, string]>,
     status?: AppValidationStatus.AsObject,
+    firstRunTimeout?: google_protobuf_duration_pb.Duration.AsObject,
   }
 }
 
@@ -1363,6 +1381,32 @@ export namespace PackageConfig {
     version: string,
     type: string,
     status?: AppValidationStatus.AsObject,
+  }
+}
+
+export class MaintenanceConfig extends jspb.Message {
+  hasSensorName(): boolean;
+  clearSensorName(): void;
+  getSensorName(): common_v1_common_pb.ResourceName | undefined;
+  setSensorName(value?: common_v1_common_pb.ResourceName): void;
+
+  getMaintenanceAllowedKey(): string;
+  setMaintenanceAllowedKey(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MaintenanceConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: MaintenanceConfig): MaintenanceConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MaintenanceConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MaintenanceConfig;
+  static deserializeBinaryFromReader(message: MaintenanceConfig, reader: jspb.BinaryReader): MaintenanceConfig;
+}
+
+export namespace MaintenanceConfig {
+  export type AsObject = {
+    sensorName?: common_v1_common_pb.ResourceName.AsObject,
+    maintenanceAllowedKey: string,
   }
 }
 
