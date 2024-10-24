@@ -759,9 +759,10 @@ enum FragmentErrorType {
   FRAGMENT_ERROR_TYPE_DUPLICATE_NAMES = 4;
 }
 
-message FragmentTrees {
-  repeated string fragment_merge_order = 1;
-  repeated FragmentError errors = 2;
+message FragmentTree {
+  string root_fragment_id = 1;
+  repeated string fragment_merge_order = 2;
+  repeated FragmentError errors = 3;
 }
 
 message ListFragmentsRequest {
@@ -837,7 +838,7 @@ message ListMachineFragmentsRequest {
 
 message ListMachineFragmentsResponse {
   repeated Fragment fragments = 1;
-  FragmentTrees fragment_trees = 2;
+  repeated FragmentTree fragment_trees = 2;
 }
 
 message ListRobotsResponse {
