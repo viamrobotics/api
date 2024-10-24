@@ -71,10 +71,22 @@ message StreamingDataCaptureUploadResponse {
   string file_id = 1;
 }
 
-// SensorMetadata contains the time the sensor data was requested and was received.
+// BoundingBox contains a label and 2 normalized xy coordinates
+message BoundingBox {
+  string label = 1;
+  double x_min_normalized = 2;
+  double y_min_normalized = 3;
+  double x_max_normalized = 4;
+  double y_max_normalized = 5;
+}
+// SensorMetadata contains the time the sensor data was requested and was
+// received.
 message SensorMetadata {
   google.protobuf.Timestamp time_requested = 1;
   google.protobuf.Timestamp time_received = 2;
+  string mime_type = 3;
+  repeated string tags = 4;
+  repeated BoundingBox bounding_boxes = 5;
 }
 
 // SensorData contains the contents and metadata for tabular data.
