@@ -14,6 +14,12 @@ service StreamService {
   // AddStream requests a particular stream be added.
   rpc AddStream(AddStreamRequest) returns (AddStreamResponse);
 
+  // GetStreamOptions returns the options for a particular stream.
+  rpc GetStreamOptions(GetStreamOptionsRequest) returns (GetStreamOptionsResponse);
+
+  // SetStreamOptions sets the options for a particular stream.
+  rpc SetStreamOptions(SetStreamOptionsRequest) returns (SetStreamOptionsResponse);
+
   // RemoveStream requests a particular stream be removed. If the calling client
   // is the last to be receiving the stream, it will attempt to be stopped to
   // conserve resources.
@@ -43,3 +49,28 @@ message RemoveStreamRequest {
 
 // RemoveStreamResponse is returned after a successful RemoveStreamRequest.
 message RemoveStreamResponse {}
+
+// Resolution details the width and height of a stream.
+message Resolution {
+  int32 width = 1;
+  int32 height = 2;
+}
+
+// GetStreamOptionsRequest requests the options for a particular stream.
+message GetStreamOptionsRequest {
+  string name = 1;
+}
+
+// GetStreamOptionsResponse details the options for a particular stream.
+message GetStreamOptionsResponse {
+  repeated Resolution resolutions = 1;
+}
+
+// SetStreamOptionsRequest sets the options for a particular stream.
+message SetStreamOptionsRequest {
+  string name = 1;
+  Resolution resolution = 2;
+}
+
+// SetStreamOptionsResponse is returned after a successful SetStreamOptionsRequest.
+message SetStreamOptionsResponse {}
