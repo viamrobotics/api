@@ -330,6 +330,67 @@ proto.viam.component.arm.v1.ArmServicePromiseClient.prototype.moveToJointPositio
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.arm.v1.MoveThroughJointPositionsRequest,
+ *   !proto.viam.component.arm.v1.MoveThroughJointPositionsResponse>}
+ */
+const methodDescriptor_ArmService_MoveThroughJointPositions = new grpc.web.MethodDescriptor(
+  '/viam.component.arm.v1.ArmService/MoveThroughJointPositions',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.arm.v1.MoveThroughJointPositionsRequest,
+  proto.viam.component.arm.v1.MoveThroughJointPositionsResponse,
+  /**
+   * @param {!proto.viam.component.arm.v1.MoveThroughJointPositionsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.arm.v1.MoveThroughJointPositionsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.arm.v1.MoveThroughJointPositionsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.arm.v1.MoveThroughJointPositionsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.arm.v1.MoveThroughJointPositionsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.arm.v1.ArmServiceClient.prototype.moveThroughJointPositions =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/MoveThroughJointPositions',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_MoveThroughJointPositions,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.arm.v1.MoveThroughJointPositionsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.arm.v1.MoveThroughJointPositionsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.arm.v1.ArmServicePromiseClient.prototype.moveThroughJointPositions =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/MoveThroughJointPositions',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_MoveThroughJointPositions);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.component.arm.v1.StopRequest,
  *   !proto.viam.component.arm.v1.StopResponse>}
  */

@@ -43,6 +43,16 @@ service ArmService {
     };
   }
 
+  // MoveThroughJointPositions moves every joint on a robot's arm to the specified JointPositions in the order they are specified,
+  // obeying the specified velocity and acceleration limits.
+  // This will block until done or a new operation cancels this one
+  rpc MoveThroughJointPositions(MoveThroughJointPositionsRequest) returns (MoveThroughJointPositionsResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/arm/{name}/move_through_joint_positions"
+    };
+  }
+
   // Stop stops a robot's arm
   rpc Stop(StopRequest) returns (StopResponse) {
     option (google.api.http) = {
@@ -94,8 +104,7 @@ message GetEndPositionResponse {
 
 message JointPositions {
   // A list of joint positions. Rotations values are in degrees, translational values in mm.
-  // The numbers are ordered spatially from the base toward the end effector
-  // This is used in GetJointPositionsResponse and MoveToJointPositionsRequest
+  // There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector of the arm
   repeated double values = 1;
 }
 
@@ -137,6 +146,19 @@ message MoveToJointPositionsRequest {
 
 message MoveToJointPositionsResponse {}
 
+message MoveThroughJointPositionsRequest {
+  // Name of an arm
+  string name = 1;
+  // A list of joint positions which will be moved to in the order they are specified
+  repeated JointPositions positions = 2;
+  // optional specifications to be obeyed during the motion
+  optional MoveOptions options = 3;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message MoveThroughJointPositionsResponse {}
+
 message StopRequest {
   // Name of an arm
   string name = 1;
@@ -158,4 +180,11 @@ message IsMovingRequest {
 
 message IsMovingResponse {
   bool is_moving = 1;
+}
+
+message MoveOptions {
+  // Maximum allowable velocity of an arm joint, in degrees per second
+  optional double max_vel_degs_per_sec = 1;
+  // Maximum allowable acceleration of an arm joint, in degrees per second squared
+  optional double max_acc_degs_per_sec2 = 2;
 }
