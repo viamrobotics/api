@@ -712,7 +712,8 @@ message GetRobotAPIKeysResponse {
 message DeleteRobotPartResponse {}
 
 message Fragment {
-  string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+  // deprecated to instead use the default _id in MongoDB of type ObjectID
+  string id = 1 [deprecated = true];
   string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
   google.protobuf.Struct fragment = 3 [(tagger.v1.tags) = "bson:\"fragment\" json:\"fragment\""];
   string organization_owner = 4 [(tagger.v1.tags) = "bson:\"organization_owner\" json:\"owner\""];
