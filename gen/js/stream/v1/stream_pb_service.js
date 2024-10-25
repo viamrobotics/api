@@ -28,6 +28,24 @@ StreamService.AddStream = {
   responseType: stream_v1_stream_pb.AddStreamResponse
 };
 
+StreamService.GetStreamOptions = {
+  methodName: "GetStreamOptions",
+  service: StreamService,
+  requestStream: false,
+  responseStream: false,
+  requestType: stream_v1_stream_pb.GetStreamOptionsRequest,
+  responseType: stream_v1_stream_pb.GetStreamOptionsResponse
+};
+
+StreamService.SetStreamOptions = {
+  methodName: "SetStreamOptions",
+  service: StreamService,
+  requestStream: false,
+  responseStream: false,
+  requestType: stream_v1_stream_pb.SetStreamOptionsRequest,
+  responseType: stream_v1_stream_pb.SetStreamOptionsResponse
+};
+
 StreamService.RemoveStream = {
   methodName: "RemoveStream",
   service: StreamService,
@@ -80,6 +98,68 @@ StreamServiceClient.prototype.addStream = function addStream(requestMessage, met
     callback = arguments[1];
   }
   var client = grpc.unary(StreamService.AddStream, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+StreamServiceClient.prototype.getStreamOptions = function getStreamOptions(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(StreamService.GetStreamOptions, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+StreamServiceClient.prototype.setStreamOptions = function setStreamOptions(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(StreamService.SetStreamOptions, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

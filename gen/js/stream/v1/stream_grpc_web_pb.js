@@ -201,6 +201,128 @@ proto.proto.stream.v1.StreamServicePromiseClient.prototype.addStream =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.proto.stream.v1.GetStreamOptionsRequest,
+ *   !proto.proto.stream.v1.GetStreamOptionsResponse>}
+ */
+const methodDescriptor_StreamService_GetStreamOptions = new grpc.web.MethodDescriptor(
+  '/proto.stream.v1.StreamService/GetStreamOptions',
+  grpc.web.MethodType.UNARY,
+  proto.proto.stream.v1.GetStreamOptionsRequest,
+  proto.proto.stream.v1.GetStreamOptionsResponse,
+  /**
+   * @param {!proto.proto.stream.v1.GetStreamOptionsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.proto.stream.v1.GetStreamOptionsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.proto.stream.v1.GetStreamOptionsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.proto.stream.v1.GetStreamOptionsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.proto.stream.v1.GetStreamOptionsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.proto.stream.v1.StreamServiceClient.prototype.getStreamOptions =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/proto.stream.v1.StreamService/GetStreamOptions',
+      request,
+      metadata || {},
+      methodDescriptor_StreamService_GetStreamOptions,
+      callback);
+};
+
+
+/**
+ * @param {!proto.proto.stream.v1.GetStreamOptionsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.proto.stream.v1.GetStreamOptionsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.proto.stream.v1.StreamServicePromiseClient.prototype.getStreamOptions =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/proto.stream.v1.StreamService/GetStreamOptions',
+      request,
+      metadata || {},
+      methodDescriptor_StreamService_GetStreamOptions);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.proto.stream.v1.SetStreamOptionsRequest,
+ *   !proto.proto.stream.v1.SetStreamOptionsResponse>}
+ */
+const methodDescriptor_StreamService_SetStreamOptions = new grpc.web.MethodDescriptor(
+  '/proto.stream.v1.StreamService/SetStreamOptions',
+  grpc.web.MethodType.UNARY,
+  proto.proto.stream.v1.SetStreamOptionsRequest,
+  proto.proto.stream.v1.SetStreamOptionsResponse,
+  /**
+   * @param {!proto.proto.stream.v1.SetStreamOptionsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.proto.stream.v1.SetStreamOptionsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.proto.stream.v1.SetStreamOptionsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.proto.stream.v1.SetStreamOptionsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.proto.stream.v1.SetStreamOptionsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.proto.stream.v1.StreamServiceClient.prototype.setStreamOptions =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/proto.stream.v1.StreamService/SetStreamOptions',
+      request,
+      metadata || {},
+      methodDescriptor_StreamService_SetStreamOptions,
+      callback);
+};
+
+
+/**
+ * @param {!proto.proto.stream.v1.SetStreamOptionsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.proto.stream.v1.SetStreamOptionsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.proto.stream.v1.StreamServicePromiseClient.prototype.setStreamOptions =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/proto.stream.v1.StreamService/SetStreamOptions',
+      request,
+      metadata || {},
+      methodDescriptor_StreamService_SetStreamOptions);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.proto.stream.v1.RemoveStreamRequest,
  *   !proto.proto.stream.v1.RemoveStreamResponse>}
  */

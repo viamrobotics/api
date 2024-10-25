@@ -15,6 +15,11 @@ export class CommonLanguageSettings extends jspb.Message {
   setDestinationsList(value: Array<ClientLibraryDestinationMap[keyof ClientLibraryDestinationMap]>): void;
   addDestinations(value: ClientLibraryDestinationMap[keyof ClientLibraryDestinationMap], index?: number): ClientLibraryDestinationMap[keyof ClientLibraryDestinationMap];
 
+  hasSelectiveGapicGeneration(): boolean;
+  clearSelectiveGapicGeneration(): void;
+  getSelectiveGapicGeneration(): SelectiveGapicGeneration | undefined;
+  setSelectiveGapicGeneration(value?: SelectiveGapicGeneration): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CommonLanguageSettings.AsObject;
   static toObject(includeInstance: boolean, msg: CommonLanguageSettings): CommonLanguageSettings.AsObject;
@@ -29,6 +34,7 @@ export namespace CommonLanguageSettings {
   export type AsObject = {
     referenceDocsUri: string,
     destinationsList: Array<ClientLibraryDestinationMap[keyof ClientLibraryDestinationMap]>,
+    selectiveGapicGeneration?: SelectiveGapicGeneration.AsObject,
   }
 }
 
@@ -474,6 +480,28 @@ export namespace MethodSettings {
       maxPollDelay?: google_protobuf_duration_pb.Duration.AsObject,
       totalPollTimeout?: google_protobuf_duration_pb.Duration.AsObject,
     }
+  }
+}
+
+export class SelectiveGapicGeneration extends jspb.Message {
+  clearMethodsList(): void;
+  getMethodsList(): Array<string>;
+  setMethodsList(value: Array<string>): void;
+  addMethods(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SelectiveGapicGeneration.AsObject;
+  static toObject(includeInstance: boolean, msg: SelectiveGapicGeneration): SelectiveGapicGeneration.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SelectiveGapicGeneration, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SelectiveGapicGeneration;
+  static deserializeBinaryFromReader(message: SelectiveGapicGeneration, reader: jspb.BinaryReader): SelectiveGapicGeneration;
+}
+
+export namespace SelectiveGapicGeneration {
+  export type AsObject = {
+    methodsList: Array<string>,
   }
 }
 
