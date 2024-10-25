@@ -791,12 +791,18 @@ message Fragment {
 
 message FragmentHistoryEntry {
   // replacing this with a new name, fragment_id
-  string fragment = 1 [(tagger.v1.tags) = "bson:\"fragment\" json:\"fragment\"", deprecated = true];
+  string fragment = 1 [
+    (tagger.v1.tags) = "bson:\"fragment\" json:\"fragment\"",
+    deprecated = true
+  ];
   google.protobuf.Timestamp edited_on = 2 [(tagger.v1.tags) = "bson:\"edited_on\" json:\"edited_on\""];
-  // replacing this with fragmentContents, as we don't want FragmentHistoryEvents to contain fragment metadata
-  Fragment old = 3 [(tagger.v1.tags) = "bson:\"old\" json:\"old\"", deprecated = true];
+  // replacing this with fragment_contents, as we don't want FragmentHistoryEvents to contain fragment metadata
+  Fragment old = 3 [
+    (tagger.v1.tags) = "bson:\"old\" json:\"old\"",
+    deprecated = true
+  ];
   AuthenticatorInfo edited_by = 4 [(tagger.v1.tags) = "bson:\"edited_by\" json:\"edited_by\""];
-  google.protobuf.Struct fragmentContents = 5 [(tagger.v1.tags) = "bson:\"fragmentContents\" json:\"fragmentContents\""];
+  google.protobuf.Struct fragment_contents = 5 [(tagger.v1.tags) = "bson:\"fragment_contents\" json:\"fragment_contents\""];
   string fragment_id = 6 [(tagger.v1.tags) = "bson:\"fragment_id\" json:\"fragment_id\""];
 }
 
