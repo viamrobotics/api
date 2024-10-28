@@ -22,6 +22,24 @@ type StreamServiceAddStream = {
   readonly responseType: typeof stream_v1_stream_pb.AddStreamResponse;
 };
 
+type StreamServiceGetStreamOptions = {
+  readonly methodName: string;
+  readonly service: typeof StreamService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof stream_v1_stream_pb.GetStreamOptionsRequest;
+  readonly responseType: typeof stream_v1_stream_pb.GetStreamOptionsResponse;
+};
+
+type StreamServiceSetStreamOptions = {
+  readonly methodName: string;
+  readonly service: typeof StreamService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof stream_v1_stream_pb.SetStreamOptionsRequest;
+  readonly responseType: typeof stream_v1_stream_pb.SetStreamOptionsResponse;
+};
+
 type StreamServiceRemoveStream = {
   readonly methodName: string;
   readonly service: typeof StreamService;
@@ -35,6 +53,8 @@ export class StreamService {
   static readonly serviceName: string;
   static readonly ListStreams: StreamServiceListStreams;
   static readonly AddStream: StreamServiceAddStream;
+  static readonly GetStreamOptions: StreamServiceGetStreamOptions;
+  static readonly SetStreamOptions: StreamServiceSetStreamOptions;
   static readonly RemoveStream: StreamServiceRemoveStream;
 }
 
@@ -87,6 +107,24 @@ export class StreamServiceClient {
   addStream(
     requestMessage: stream_v1_stream_pb.AddStreamRequest,
     callback: (error: ServiceError|null, responseMessage: stream_v1_stream_pb.AddStreamResponse|null) => void
+  ): UnaryResponse;
+  getStreamOptions(
+    requestMessage: stream_v1_stream_pb.GetStreamOptionsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: stream_v1_stream_pb.GetStreamOptionsResponse|null) => void
+  ): UnaryResponse;
+  getStreamOptions(
+    requestMessage: stream_v1_stream_pb.GetStreamOptionsRequest,
+    callback: (error: ServiceError|null, responseMessage: stream_v1_stream_pb.GetStreamOptionsResponse|null) => void
+  ): UnaryResponse;
+  setStreamOptions(
+    requestMessage: stream_v1_stream_pb.SetStreamOptionsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: stream_v1_stream_pb.SetStreamOptionsResponse|null) => void
+  ): UnaryResponse;
+  setStreamOptions(
+    requestMessage: stream_v1_stream_pb.SetStreamOptionsRequest,
+    callback: (error: ServiceError|null, responseMessage: stream_v1_stream_pb.SetStreamOptionsResponse|null) => void
   ): UnaryResponse;
   removeStream(
     requestMessage: stream_v1_stream_pb.RemoveStreamRequest,
