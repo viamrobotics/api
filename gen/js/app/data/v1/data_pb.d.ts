@@ -381,6 +381,13 @@ export class TabularDataBySQLResponse extends jspb.Message {
   setDataList(value: Array<google_protobuf_struct_pb.Struct>): void;
   addData(value?: google_protobuf_struct_pb.Struct, index?: number): google_protobuf_struct_pb.Struct;
 
+  clearRawDataList(): void;
+  getRawDataList(): Array<Uint8Array | string>;
+  getRawDataList_asU8(): Array<Uint8Array>;
+  getRawDataList_asB64(): Array<string>;
+  setRawDataList(value: Array<Uint8Array | string>): void;
+  addRawData(value: Uint8Array | string, index?: number): Uint8Array | string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataBySQLResponse.AsObject;
   static toObject(includeInstance: boolean, msg: TabularDataBySQLResponse): TabularDataBySQLResponse.AsObject;
@@ -394,6 +401,7 @@ export class TabularDataBySQLResponse extends jspb.Message {
 export namespace TabularDataBySQLResponse {
   export type AsObject = {
     dataList: Array<google_protobuf_struct_pb.Struct.AsObject>,
+    rawDataList: Array<Uint8Array | string>,
   }
 }
 
@@ -431,6 +439,13 @@ export class TabularDataByMQLResponse extends jspb.Message {
   setDataList(value: Array<google_protobuf_struct_pb.Struct>): void;
   addData(value?: google_protobuf_struct_pb.Struct, index?: number): google_protobuf_struct_pb.Struct;
 
+  clearRawDataList(): void;
+  getRawDataList(): Array<Uint8Array | string>;
+  getRawDataList_asU8(): Array<Uint8Array>;
+  getRawDataList_asB64(): Array<string>;
+  setRawDataList(value: Array<Uint8Array | string>): void;
+  addRawData(value: Uint8Array | string, index?: number): Uint8Array | string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataByMQLResponse.AsObject;
   static toObject(includeInstance: boolean, msg: TabularDataByMQLResponse): TabularDataByMQLResponse.AsObject;
@@ -444,6 +459,7 @@ export class TabularDataByMQLResponse extends jspb.Message {
 export namespace TabularDataByMQLResponse {
   export type AsObject = {
     dataList: Array<google_protobuf_struct_pb.Struct.AsObject>,
+    rawDataList: Array<Uint8Array | string>,
   }
 }
 
@@ -1207,6 +1223,78 @@ export class RemoveBoundingBoxFromImageByIDResponse extends jspb.Message {
 }
 
 export namespace RemoveBoundingBoxFromImageByIDResponse {
+  export type AsObject = {
+  }
+}
+
+export class UpdateBoundingBoxRequest extends jspb.Message {
+  hasBinaryId(): boolean;
+  clearBinaryId(): void;
+  getBinaryId(): BinaryID | undefined;
+  setBinaryId(value?: BinaryID): void;
+
+  getBboxId(): string;
+  setBboxId(value: string): void;
+
+  hasLabel(): boolean;
+  clearLabel(): void;
+  getLabel(): string;
+  setLabel(value: string): void;
+
+  hasXMinNormalized(): boolean;
+  clearXMinNormalized(): void;
+  getXMinNormalized(): number;
+  setXMinNormalized(value: number): void;
+
+  hasYMinNormalized(): boolean;
+  clearYMinNormalized(): void;
+  getYMinNormalized(): number;
+  setYMinNormalized(value: number): void;
+
+  hasXMaxNormalized(): boolean;
+  clearXMaxNormalized(): void;
+  getXMaxNormalized(): number;
+  setXMaxNormalized(value: number): void;
+
+  hasYMaxNormalized(): boolean;
+  clearYMaxNormalized(): void;
+  getYMaxNormalized(): number;
+  setYMaxNormalized(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateBoundingBoxRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateBoundingBoxRequest): UpdateBoundingBoxRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateBoundingBoxRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateBoundingBoxRequest;
+  static deserializeBinaryFromReader(message: UpdateBoundingBoxRequest, reader: jspb.BinaryReader): UpdateBoundingBoxRequest;
+}
+
+export namespace UpdateBoundingBoxRequest {
+  export type AsObject = {
+    binaryId?: BinaryID.AsObject,
+    bboxId: string,
+    label: string,
+    xMinNormalized: number,
+    yMinNormalized: number,
+    xMaxNormalized: number,
+    yMaxNormalized: number,
+  }
+}
+
+export class UpdateBoundingBoxResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateBoundingBoxResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateBoundingBoxResponse): UpdateBoundingBoxResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateBoundingBoxResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateBoundingBoxResponse;
+  static deserializeBinaryFromReader(message: UpdateBoundingBoxResponse, reader: jspb.BinaryReader): UpdateBoundingBoxResponse;
+}
+
+export namespace UpdateBoundingBoxResponse {
   export type AsObject = {
   }
 }

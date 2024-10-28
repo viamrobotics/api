@@ -152,6 +152,8 @@ message GetPropertiesResponse {
   DistortionParameters distortion_parameters = 3;
   // Supported MIME types by the camera
   repeated string mime_types = 4;
+  // Optional camera frame rate for image capture timing
+  optional float frame_rate = 5;
 }
 
 message Webcams {

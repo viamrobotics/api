@@ -15,6 +15,8 @@ service BillingService {
   rpc GetInvoicesSummary(GetInvoicesSummaryRequest) returns (GetInvoicesSummaryResponse);
   // Download a PDF invoice
   rpc GetInvoicePdf(GetInvoicePdfRequest) returns (stream GetInvoicePdfResponse);
+  // Send an email with a prompt to the user's org's billing page.
+  rpc SendPaymentRequiredEmail(SendPaymentRequiredEmailRequest) returns (SendPaymentRequiredEmailResponse);
 }
 
 message InvoiceSummary {
@@ -24,26 +26,6 @@ message InvoiceSummary {
   string status = 4;
   google.protobuf.Timestamp due_date = 5;
   google.protobuf.Timestamp paid_date = 6;
-}
-
-message BillableResourceEvent {
-  string id = 1;
-  string type = 2;
-  double usage_quantity = 3;
-  string usage_quantity_unit = 4;
-  string usage_cost = 5;
-  google.protobuf.Timestamp occurred_at = 6;
-  string user_name = 7;
-}
-
-message Invoice {
-  string id = 1;
-  google.protobuf.Timestamp invoice_date = 2;
-  double invoice_amount = 3;
-  string status = 4;
-  google.protobuf.Timestamp due_date = 5;
-  repeated BillableResourceEvent items = 6;
-  string emailed_to = 7;
 }
 
 enum PaymentMethodType {
@@ -60,20 +42,60 @@ message GetCurrentMonthUsageRequest {
   string org_id = 1;
 }
 
+enum UsageCostType {
+  USAGE_COST_TYPE_UNSPECIFIED = 0;
+  USAGE_COST_TYPE_DATA_UPLOAD = 1;
+  USAGE_COST_TYPE_DATA_EGRESS = 2;
+  USAGE_COST_TYPE_REMOTE_CONTROL = 3;
+  USAGE_COST_TYPE_STANDARD_COMPUTE = 4;
+  USAGE_COST_TYPE_CLOUD_STORAGE = 5;
+  USAGE_COST_TYPE_BINARY_DATA_CLOUD_STORAGE = 6;
+  USAGE_COST_TYPE_OTHER_CLOUD_STORAGE = 7;
+  USAGE_COST_TYPE_PER_MACHINE = 8;
+}
+
+enum SourceType {
+  SOURCE_TYPE_UNSPECIFIED = 0;
+  SOURCE_TYPE_ORG = 1;
+  SOURCE_TYPE_FRAGMENT = 2;
+}
+
+message UsageCost {
+  UsageCostType resource_type = 1;
+  double cost = 2;
+}
+
+message ResourceUsageCostsBySource {
+  SourceType source_type = 1;
+  ResourceUsageCosts resource_usage_costs = 2;
+  string tier_name = 3;
+}
+
+message ResourceUsageCosts {
+  repeated UsageCost usage_costs = 1;
+  double discount = 2;
+  double total_with_discount = 3;
+  double total_without_discount = 4;
+}
+
 message GetCurrentMonthUsageResponse {
   google.protobuf.Timestamp start_date = 1;
   google.protobuf.Timestamp end_date = 2;
-  double cloud_storage_usage_cost = 3;
-  double data_upload_usage_cost = 4;
-  double data_egres_usage_cost = 5;
-  double remote_control_usage_cost = 6;
-  double standard_compute_usage_cost = 7;
-  double discount_amount = 8;
-  double total_usage_with_discount = 9;
-  double total_usage_without_discount = 10;
-  double per_machine_usage_cost = 11;
-  double binary_data_cloud_storage_usage_cost = 12;
-  double other_cloud_storage_usage_cost = 13;
+  repeated ResourceUsageCostsBySource resource_usage_costs_by_source = 14;
+  double subtotal = 15;
+
+  // all fields below are deprecated
+  double cloud_storage_usage_cost = 3 [deprecated = true];
+  double data_upload_usage_cost = 4 [deprecated = true];
+  double data_egres_usage_cost = 5 [deprecated = true];
+  double remote_control_usage_cost = 6 [deprecated = true];
+  double standard_compute_usage_cost = 7 [deprecated = true];
+  double discount_amount = 8 [deprecated = true];
+  double total_usage_with_discount = 9 [deprecated = true];
+  double total_usage_without_discount = 10 [deprecated = true];
+  double per_machine_usage_cost = 11 [deprecated = true];
+  double binary_data_cloud_storage_usage_cost = 12 [deprecated = true];
+  double other_cloud_storage_usage_cost = 13 [deprecated = true];
 }
 
 message GetOrgBillingInformationRequest {
@@ -109,3 +131,10 @@ message GetInvoicePdfRequest {
 message GetInvoicePdfResponse {
   bytes chunk = 1;
 }
+
+message SendPaymentRequiredEmailRequest {
+  string customer_org_id = 1;
+  string billing_owner_org_id = 2;
+}
+
+message SendPaymentRequiredEmailResponse {}

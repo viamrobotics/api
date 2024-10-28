@@ -938,6 +938,8 @@ message ModuleVersion {
   repeated Model models = 3;
   // The entrypoint for this version of the module
   string entrypoint = 4;
+  // The path to a setup script that is run before a newly downloaded module starts.
+  optional string first_run = 5;
 }
 
 message ModuleMetadata {
@@ -948,6 +950,8 @@ message ModuleMetadata {
   repeated ModuleVersion versions = 2;
   // The executable to run to start the module program
   string entrypoint = 3;
+  // The path to a setup script that is run before a newly downloaded module starts.
+  optional string first_run = 4;
 }
 
 message MLModelMetadata {
@@ -1097,10 +1101,12 @@ message CreateModuleResponse {
 
 enum Visibility {
   VISIBILITY_UNSPECIFIED = 0;
-  // Private modules are visible only within your org
+  // Private registry items are visible only within the owning org
   VISIBILITY_PRIVATE = 1;
-  // Public modules are visible to everyone
+  // Public registry items are visible to everyone
   VISIBILITY_PUBLIC = 2;
+  // Public Unlisted registry items are usable in everyone's robot but are hidden from the registry page as if they are private
+  VISIBILITY_PUBLIC_UNLISTED = 3;
 }
 
 message UpdateModuleRequest {
@@ -1116,6 +1122,8 @@ message UpdateModuleRequest {
   repeated Model models = 5;
   // The executable to run to start the module program
   string entrypoint = 6;
+  // The path to a setup script that is run before a newly downloaded module starts.
+  optional string first_run = 7;
 }
 
 message UpdateModuleResponse {
@@ -1137,6 +1145,10 @@ message ModuleFileInfo {
   string version = 2;
   // The platform that the file is built to run on
   string platform = 3;
+  // Platform tag constraints. When a robot requests its config, it uploads a platform and a list of
+  // platform tags. The platform is checked against `platform` above, and the tags are checked against
+  // this list.
+  repeated string platform_tags = 5;
 }
 
 message UploadModuleFileRequest {
@@ -1190,6 +1202,8 @@ message Module {
   // The public namespace of the organization that owns the module
   // This is empty if no public namespace is set
   string public_namespace = 12;
+  // The path to a setup script that is run before a newly downloaded module starts.
+  optional string first_run = 13;
 }
 
 message VersionHistory {
@@ -1201,6 +1215,8 @@ message VersionHistory {
   repeated Model models = 3;
   // The entrypoint for this version of the module
   string entrypoint = 4;
+  // The path to a setup script that is run before a newly downloaded module starts.
+  optional string first_run = 5;
 }
 
 message Uploads {

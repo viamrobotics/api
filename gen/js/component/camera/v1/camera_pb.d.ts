@@ -266,6 +266,11 @@ export class GetPropertiesResponse extends jspb.Message {
   setMimeTypesList(value: Array<string>): void;
   addMimeTypes(value: string, index?: number): string;
 
+  hasFrameRate(): boolean;
+  clearFrameRate(): void;
+  getFrameRate(): number;
+  setFrameRate(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
@@ -282,6 +287,7 @@ export namespace GetPropertiesResponse {
     intrinsicParameters?: IntrinsicParameters.AsObject,
     distortionParameters?: DistortionParameters.AsObject,
     mimeTypesList: Array<string>,
+    frameRate: number,
   }
 }
 

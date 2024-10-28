@@ -3250,6 +3250,11 @@ export class ModuleVersion extends jspb.Message {
   getEntrypoint(): string;
   setEntrypoint(value: string): void;
 
+  hasFirstRun(): boolean;
+  clearFirstRun(): void;
+  getFirstRun(): string;
+  setFirstRun(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleVersion.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleVersion): ModuleVersion.AsObject;
@@ -3266,6 +3271,7 @@ export namespace ModuleVersion {
     filesList: Array<Uploads.AsObject>,
     modelsList: Array<Model.AsObject>,
     entrypoint: string,
+    firstRun: string,
   }
 }
 
@@ -3283,6 +3289,11 @@ export class ModuleMetadata extends jspb.Message {
   getEntrypoint(): string;
   setEntrypoint(value: string): void;
 
+  hasFirstRun(): boolean;
+  clearFirstRun(): void;
+  getFirstRun(): string;
+  setFirstRun(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleMetadata): ModuleMetadata.AsObject;
@@ -3298,6 +3309,7 @@ export namespace ModuleMetadata {
     modelsList: Array<Model.AsObject>,
     versionsList: Array<ModuleVersion.AsObject>,
     entrypoint: string,
+    firstRun: string,
   }
 }
 
@@ -3864,6 +3876,11 @@ export class UpdateModuleRequest extends jspb.Message {
   getEntrypoint(): string;
   setEntrypoint(value: string): void;
 
+  hasFirstRun(): boolean;
+  clearFirstRun(): void;
+  getFirstRun(): string;
+  setFirstRun(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleRequest): UpdateModuleRequest.AsObject;
@@ -3882,6 +3899,7 @@ export namespace UpdateModuleRequest {
     description: string,
     modelsList: Array<Model.AsObject>,
     entrypoint: string,
+    firstRun: string,
   }
 }
 
@@ -3939,6 +3957,11 @@ export class ModuleFileInfo extends jspb.Message {
   getPlatform(): string;
   setPlatform(value: string): void;
 
+  clearPlatformTagsList(): void;
+  getPlatformTagsList(): Array<string>;
+  setPlatformTagsList(value: Array<string>): void;
+  addPlatformTags(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleFileInfo.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleFileInfo): ModuleFileInfo.AsObject;
@@ -3954,6 +3977,7 @@ export namespace ModuleFileInfo {
     moduleId: string,
     version: string,
     platform: string,
+    platformTagsList: Array<string>,
   }
 }
 
@@ -4097,6 +4121,11 @@ export class Module extends jspb.Message {
   getPublicNamespace(): string;
   setPublicNamespace(value: string): void;
 
+  hasFirstRun(): boolean;
+  clearFirstRun(): void;
+  getFirstRun(): string;
+  setFirstRun(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Module.AsObject;
   static toObject(includeInstance: boolean, msg: Module): Module.AsObject;
@@ -4121,6 +4150,7 @@ export namespace Module {
     organizationId: string,
     entrypoint: string,
     publicNamespace: string,
+    firstRun: string,
   }
 }
 
@@ -4141,6 +4171,11 @@ export class VersionHistory extends jspb.Message {
   getEntrypoint(): string;
   setEntrypoint(value: string): void;
 
+  hasFirstRun(): boolean;
+  clearFirstRun(): void;
+  getFirstRun(): string;
+  setFirstRun(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): VersionHistory.AsObject;
   static toObject(includeInstance: boolean, msg: VersionHistory): VersionHistory.AsObject;
@@ -4157,6 +4192,7 @@ export namespace VersionHistory {
     filesList: Array<Uploads.AsObject>,
     modelsList: Array<Model.AsObject>,
     entrypoint: string,
+    firstRun: string,
   }
 }
 
@@ -4695,6 +4731,7 @@ export interface VisibilityMap {
   VISIBILITY_UNSPECIFIED: 0;
   VISIBILITY_PRIVATE: 1;
   VISIBILITY_PUBLIC: 2;
+  VISIBILITY_PUBLIC_UNLISTED: 3;
 }
 
 export const Visibility: VisibilityMap;

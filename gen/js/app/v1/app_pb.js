@@ -3374,7 +3374,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.ModuleFileInfo = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.ModuleFileInfo.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.v1.ModuleFileInfo, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -26429,7 +26429,8 @@ proto.viam.app.v1.ModuleVersion.toObject = function(includeInstance, msg) {
     proto.viam.app.v1.Uploads.toObject, includeInstance),
     modelsList: jspb.Message.toObjectList(msg.getModelsList(),
     proto.viam.app.v1.Model.toObject, includeInstance),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 4, "")
+    entrypoint: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    firstRun: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -26483,6 +26484,10 @@ proto.viam.app.v1.ModuleVersion.deserializeBinaryFromReader = function(msg, read
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setEntrypoint(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFirstRun(value);
       break;
     default:
       reader.skipField();
@@ -26540,6 +26545,13 @@ proto.viam.app.v1.ModuleVersion.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -26658,6 +26670,42 @@ proto.viam.app.v1.ModuleVersion.prototype.setEntrypoint = function(value) {
 };
 
 
+/**
+ * optional string first_run = 5;
+ * @return {string}
+ */
+proto.viam.app.v1.ModuleVersion.prototype.getFirstRun = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.ModuleVersion} returns this
+ */
+proto.viam.app.v1.ModuleVersion.prototype.setFirstRun = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.ModuleVersion} returns this
+ */
+proto.viam.app.v1.ModuleVersion.prototype.clearFirstRun = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ModuleVersion.prototype.hasFirstRun = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -26701,7 +26749,8 @@ proto.viam.app.v1.ModuleMetadata.toObject = function(includeInstance, msg) {
     proto.viam.app.v1.Model.toObject, includeInstance),
     versionsList: jspb.Message.toObjectList(msg.getVersionsList(),
     proto.viam.app.v1.ModuleVersion.toObject, includeInstance),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 3, "")
+    entrypoint: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    firstRun: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -26752,6 +26801,10 @@ proto.viam.app.v1.ModuleMetadata.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {string} */ (reader.readString());
       msg.setEntrypoint(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFirstRun(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -26801,6 +26854,13 @@ proto.viam.app.v1.ModuleMetadata.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -26898,6 +26958,42 @@ proto.viam.app.v1.ModuleMetadata.prototype.getEntrypoint = function() {
  */
 proto.viam.app.v1.ModuleMetadata.prototype.setEntrypoint = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string first_run = 4;
+ * @return {string}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.getFirstRun = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.setFirstRun = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.clearFirstRun = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.hasFirstRun = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -30750,7 +30846,8 @@ proto.viam.app.v1.UpdateModuleRequest.toObject = function(includeInstance, msg) 
     description: jspb.Message.getFieldWithDefault(msg, 4, ""),
     modelsList: jspb.Message.toObjectList(msg.getModelsList(),
     proto.viam.app.v1.Model.toObject, includeInstance),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 6, "")
+    entrypoint: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    firstRun: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -30811,6 +30908,10 @@ proto.viam.app.v1.UpdateModuleRequest.deserializeBinaryFromReader = function(msg
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setEntrypoint(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFirstRun(value);
       break;
     default:
       reader.skipField();
@@ -30881,6 +30982,13 @@ proto.viam.app.v1.UpdateModuleRequest.serializeBinaryToWriter = function(message
   if (f.length > 0) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 7));
+  if (f != null) {
+    writer.writeString(
+      7,
       f
     );
   }
@@ -31012,6 +31120,42 @@ proto.viam.app.v1.UpdateModuleRequest.prototype.getEntrypoint = function() {
  */
 proto.viam.app.v1.UpdateModuleRequest.prototype.setEntrypoint = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional string first_run = 7;
+ * @return {string}
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.getFirstRun = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.setFirstRun = function(value) {
+  return jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.clearFirstRun = function() {
+  return jspb.Message.setField(this, 7, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.hasFirstRun = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -31306,6 +31450,13 @@ proto.viam.app.v1.Model.prototype.setModel = function(value) {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.ModuleFileInfo.repeatedFields_ = [5];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -31339,7 +31490,8 @@ proto.viam.app.v1.ModuleFileInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
     moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     version: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    platform: jspb.Message.getFieldWithDefault(msg, 3, "")
+    platform: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    platformTagsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -31388,6 +31540,10 @@ proto.viam.app.v1.ModuleFileInfo.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {string} */ (reader.readString());
       msg.setPlatform(value);
       break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addPlatformTags(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -31435,6 +31591,13 @@ proto.viam.app.v1.ModuleFileInfo.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getPlatformTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      5,
       f
     );
   }
@@ -31492,6 +31655,43 @@ proto.viam.app.v1.ModuleFileInfo.prototype.getPlatform = function() {
  */
 proto.viam.app.v1.ModuleFileInfo.prototype.setPlatform = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * repeated string platform_tags = 5;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.ModuleFileInfo.prototype.getPlatformTagsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.ModuleFileInfo} returns this
+ */
+proto.viam.app.v1.ModuleFileInfo.prototype.setPlatformTagsList = function(value) {
+  return jspb.Message.setField(this, 5, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.ModuleFileInfo} returns this
+ */
+proto.viam.app.v1.ModuleFileInfo.prototype.addPlatformTags = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.ModuleFileInfo} returns this
+ */
+proto.viam.app.v1.ModuleFileInfo.prototype.clearPlatformTagsList = function() {
+  return this.setPlatformTagsList([]);
 };
 
 
@@ -32207,7 +32407,8 @@ proto.viam.app.v1.Module.toObject = function(includeInstance, msg) {
     totalOrganizationUsage: jspb.Message.getFieldWithDefault(msg, 9, 0),
     organizationId: jspb.Message.getFieldWithDefault(msg, 10, ""),
     entrypoint: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    publicNamespace: jspb.Message.getFieldWithDefault(msg, 12, "")
+    publicNamespace: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    firstRun: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -32293,6 +32494,10 @@ proto.viam.app.v1.Module.deserializeBinaryFromReader = function(msg, reader) {
     case 12:
       var value = /** @type {string} */ (reader.readString());
       msg.setPublicNamespace(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFirstRun(value);
       break;
     default:
       reader.skipField();
@@ -32406,6 +32611,13 @@ proto.viam.app.v1.Module.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       12,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 13));
+  if (f != null) {
+    writer.writeString(
+      13,
       f
     );
   }
@@ -32668,6 +32880,42 @@ proto.viam.app.v1.Module.prototype.setPublicNamespace = function(value) {
 };
 
 
+/**
+ * optional string first_run = 13;
+ * @return {string}
+ */
+proto.viam.app.v1.Module.prototype.getFirstRun = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.Module} returns this
+ */
+proto.viam.app.v1.Module.prototype.setFirstRun = function(value) {
+  return jspb.Message.setField(this, 13, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.Module} returns this
+ */
+proto.viam.app.v1.Module.prototype.clearFirstRun = function() {
+  return jspb.Message.setField(this, 13, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Module.prototype.hasFirstRun = function() {
+  return jspb.Message.getField(this, 13) != null;
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -32712,7 +32960,8 @@ proto.viam.app.v1.VersionHistory.toObject = function(includeInstance, msg) {
     proto.viam.app.v1.Uploads.toObject, includeInstance),
     modelsList: jspb.Message.toObjectList(msg.getModelsList(),
     proto.viam.app.v1.Model.toObject, includeInstance),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 4, "")
+    entrypoint: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    firstRun: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -32766,6 +33015,10 @@ proto.viam.app.v1.VersionHistory.deserializeBinaryFromReader = function(msg, rea
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setEntrypoint(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFirstRun(value);
       break;
     default:
       reader.skipField();
@@ -32823,6 +33076,13 @@ proto.viam.app.v1.VersionHistory.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -32938,6 +33198,42 @@ proto.viam.app.v1.VersionHistory.prototype.getEntrypoint = function() {
  */
 proto.viam.app.v1.VersionHistory.prototype.setEntrypoint = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string first_run = 5;
+ * @return {string}
+ */
+proto.viam.app.v1.VersionHistory.prototype.getFirstRun = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.VersionHistory} returns this
+ */
+proto.viam.app.v1.VersionHistory.prototype.setFirstRun = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.VersionHistory} returns this
+ */
+proto.viam.app.v1.VersionHistory.prototype.clearFirstRun = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.VersionHistory.prototype.hasFirstRun = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -36408,7 +36704,8 @@ proto.viam.app.v1.RegistryItemStatus = {
 proto.viam.app.v1.Visibility = {
   VISIBILITY_UNSPECIFIED: 0,
   VISIBILITY_PRIVATE: 1,
-  VISIBILITY_PUBLIC: 2
+  VISIBILITY_PUBLIC: 2,
+  VISIBILITY_PUBLIC_UNLISTED: 3
 };
 
 goog.object.extend(exports, proto.viam.app.v1);

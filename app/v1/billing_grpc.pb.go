@@ -30,6 +30,8 @@ type BillingServiceClient interface {
 	GetInvoicesSummary(ctx context.Context, in *GetInvoicesSummaryRequest, opts ...grpc.CallOption) (*GetInvoicesSummaryResponse, error)
 	// Download a PDF invoice
 	GetInvoicePdf(ctx context.Context, in *GetInvoicePdfRequest, opts ...grpc.CallOption) (BillingService_GetInvoicePdfClient, error)
+	// Send an email with a prompt to the user's org's billing page.
+	SendPaymentRequiredEmail(ctx context.Context, in *SendPaymentRequiredEmailRequest, opts ...grpc.CallOption) (*SendPaymentRequiredEmailResponse, error)
 }
 
 type billingServiceClient struct {
@@ -99,6 +101,15 @@ func (x *billingServiceGetInvoicePdfClient) Recv() (*GetInvoicePdfResponse, erro
 	return m, nil
 }
 
+func (c *billingServiceClient) SendPaymentRequiredEmail(ctx context.Context, in *SendPaymentRequiredEmailRequest, opts ...grpc.CallOption) (*SendPaymentRequiredEmailResponse, error) {
+	out := new(SendPaymentRequiredEmailResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.BillingService/SendPaymentRequiredEmail", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BillingServiceServer is the server API for BillingService service.
 // All implementations must embed UnimplementedBillingServiceServer
 // for forward compatibility
@@ -111,6 +122,8 @@ type BillingServiceServer interface {
 	GetInvoicesSummary(context.Context, *GetInvoicesSummaryRequest) (*GetInvoicesSummaryResponse, error)
 	// Download a PDF invoice
 	GetInvoicePdf(*GetInvoicePdfRequest, BillingService_GetInvoicePdfServer) error
+	// Send an email with a prompt to the user's org's billing page.
+	SendPaymentRequiredEmail(context.Context, *SendPaymentRequiredEmailRequest) (*SendPaymentRequiredEmailResponse, error)
 	mustEmbedUnimplementedBillingServiceServer()
 }
 
@@ -129,6 +142,9 @@ func (UnimplementedBillingServiceServer) GetInvoicesSummary(context.Context, *Ge
 }
 func (UnimplementedBillingServiceServer) GetInvoicePdf(*GetInvoicePdfRequest, BillingService_GetInvoicePdfServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetInvoicePdf not implemented")
+}
+func (UnimplementedBillingServiceServer) SendPaymentRequiredEmail(context.Context, *SendPaymentRequiredEmailRequest) (*SendPaymentRequiredEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendPaymentRequiredEmail not implemented")
 }
 func (UnimplementedBillingServiceServer) mustEmbedUnimplementedBillingServiceServer() {}
 
@@ -218,6 +234,24 @@ func (x *billingServiceGetInvoicePdfServer) Send(m *GetInvoicePdfResponse) error
 	return x.ServerStream.SendMsg(m)
 }
 
+func _BillingService_SendPaymentRequiredEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendPaymentRequiredEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BillingServiceServer).SendPaymentRequiredEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.BillingService/SendPaymentRequiredEmail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BillingServiceServer).SendPaymentRequiredEmail(ctx, req.(*SendPaymentRequiredEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BillingService_ServiceDesc is the grpc.ServiceDesc for BillingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -236,6 +270,10 @@ var BillingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetInvoicesSummary",
 			Handler:    _BillingService_GetInvoicesSummary_Handler,
+		},
+		{
+			MethodName: "SendPaymentRequiredEmail",
+			Handler:    _BillingService_SendPaymentRequiredEmail_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

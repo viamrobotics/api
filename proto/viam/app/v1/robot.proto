@@ -43,6 +43,7 @@ message RobotConfig {
   repeated LogPatternConfig log = 14;
   // Attributes a particular revision to the config.
   string revision = 15;
+  optional MaintenanceConfig maintenance = 16;
 }
 
 // LogPatternConfig allows you to specify a 2-tuple consisting
@@ -292,6 +293,8 @@ message AgentInfo {
   string git_revision = 5;
   // The platform the RDK is running on. For example linux/amd64
   optional string platform = 6;
+  // Optional tags to further constrain which artifact is returned for modules.
+  repeated string platform_tags = 7;
 }
 
 enum CredentialsType {
@@ -361,6 +364,8 @@ message ModuleConfig {
   map<string, string> env = 6;
   // info about the validity of the module
   AppValidationStatus status = 7;
+  // timeout for first_run script
+  google.protobuf.Duration first_run_timeout = 8;
 }
 
 // PackageConfig is the configration for deployed Packages.
@@ -375,4 +380,9 @@ message PackageConfig {
   string type = 4;
   // info about the validity of the package
   AppValidationStatus status = 5;
+}
+
+message MaintenanceConfig {
+  common.v1.ResourceName sensor_name = 1;
+  string maintenance_allowed_key = 2;
 }

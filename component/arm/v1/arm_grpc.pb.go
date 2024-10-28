@@ -33,6 +33,10 @@ type ArmServiceClient interface {
 	// MoveToJointPositions moves every joint on a robot's arm to specified angles which are expressed in degrees
 	// This will block until done or a new operation cancels this one
 	MoveToJointPositions(ctx context.Context, in *MoveToJointPositionsRequest, opts ...grpc.CallOption) (*MoveToJointPositionsResponse, error)
+	// MoveThroughJointPositions moves every joint on a robot's arm to the specified JointPositions in the order they are specified,
+	// obeying the specified velocity and acceleration limits.
+	// This will block until done or a new operation cancels this one
+	MoveThroughJointPositions(ctx context.Context, in *MoveThroughJointPositionsRequest, opts ...grpc.CallOption) (*MoveThroughJointPositionsResponse, error)
 	// Stop stops a robot's arm
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
@@ -83,6 +87,15 @@ func (c *armServiceClient) GetJointPositions(ctx context.Context, in *GetJointPo
 func (c *armServiceClient) MoveToJointPositions(ctx context.Context, in *MoveToJointPositionsRequest, opts ...grpc.CallOption) (*MoveToJointPositionsResponse, error) {
 	out := new(MoveToJointPositionsResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.arm.v1.ArmService/MoveToJointPositions", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *armServiceClient) MoveThroughJointPositions(ctx context.Context, in *MoveThroughJointPositionsRequest, opts ...grpc.CallOption) (*MoveThroughJointPositionsResponse, error) {
+	out := new(MoveThroughJointPositionsResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.arm.v1.ArmService/MoveThroughJointPositions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -148,6 +161,10 @@ type ArmServiceServer interface {
 	// MoveToJointPositions moves every joint on a robot's arm to specified angles which are expressed in degrees
 	// This will block until done or a new operation cancels this one
 	MoveToJointPositions(context.Context, *MoveToJointPositionsRequest) (*MoveToJointPositionsResponse, error)
+	// MoveThroughJointPositions moves every joint on a robot's arm to the specified JointPositions in the order they are specified,
+	// obeying the specified velocity and acceleration limits.
+	// This will block until done or a new operation cancels this one
+	MoveThroughJointPositions(context.Context, *MoveThroughJointPositionsRequest) (*MoveThroughJointPositionsResponse, error)
 	// Stop stops a robot's arm
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
@@ -176,6 +193,9 @@ func (UnimplementedArmServiceServer) GetJointPositions(context.Context, *GetJoin
 }
 func (UnimplementedArmServiceServer) MoveToJointPositions(context.Context, *MoveToJointPositionsRequest) (*MoveToJointPositionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoveToJointPositions not implemented")
+}
+func (UnimplementedArmServiceServer) MoveThroughJointPositions(context.Context, *MoveThroughJointPositionsRequest) (*MoveThroughJointPositionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MoveThroughJointPositions not implemented")
 }
 func (UnimplementedArmServiceServer) Stop(context.Context, *StopRequest) (*StopResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stop not implemented")
@@ -273,6 +293,24 @@ func _ArmService_MoveToJointPositions_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArmServiceServer).MoveToJointPositions(ctx, req.(*MoveToJointPositionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArmService_MoveThroughJointPositions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MoveThroughJointPositionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArmServiceServer).MoveThroughJointPositions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.arm.v1.ArmService/MoveThroughJointPositions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArmServiceServer).MoveThroughJointPositions(ctx, req.(*MoveThroughJointPositionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -389,6 +427,10 @@ var ArmService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MoveToJointPositions",
 			Handler:    _ArmService_MoveToJointPositions_Handler,
+		},
+		{
+			MethodName: "MoveThroughJointPositions",
+			Handler:    _ArmService_MoveThroughJointPositions_Handler,
 		},
 		{
 			MethodName: "Stop",

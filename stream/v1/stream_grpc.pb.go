@@ -26,6 +26,10 @@ type StreamServiceClient interface {
 	ListStreams(ctx context.Context, in *ListStreamsRequest, opts ...grpc.CallOption) (*ListStreamsResponse, error)
 	// AddStream requests a particular stream be added.
 	AddStream(ctx context.Context, in *AddStreamRequest, opts ...grpc.CallOption) (*AddStreamResponse, error)
+	// GetStreamOptions returns the options for a particular stream.
+	GetStreamOptions(ctx context.Context, in *GetStreamOptionsRequest, opts ...grpc.CallOption) (*GetStreamOptionsResponse, error)
+	// SetStreamOptions sets the options for a particular stream.
+	SetStreamOptions(ctx context.Context, in *SetStreamOptionsRequest, opts ...grpc.CallOption) (*SetStreamOptionsResponse, error)
 	// RemoveStream requests a particular stream be removed. If the calling client
 	// is the last to be receiving the stream, it will attempt to be stopped to
 	// conserve resources.
@@ -58,6 +62,24 @@ func (c *streamServiceClient) AddStream(ctx context.Context, in *AddStreamReques
 	return out, nil
 }
 
+func (c *streamServiceClient) GetStreamOptions(ctx context.Context, in *GetStreamOptionsRequest, opts ...grpc.CallOption) (*GetStreamOptionsResponse, error) {
+	out := new(GetStreamOptionsResponse)
+	err := c.cc.Invoke(ctx, "/proto.stream.v1.StreamService/GetStreamOptions", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *streamServiceClient) SetStreamOptions(ctx context.Context, in *SetStreamOptionsRequest, opts ...grpc.CallOption) (*SetStreamOptionsResponse, error) {
+	out := new(SetStreamOptionsResponse)
+	err := c.cc.Invoke(ctx, "/proto.stream.v1.StreamService/SetStreamOptions", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *streamServiceClient) RemoveStream(ctx context.Context, in *RemoveStreamRequest, opts ...grpc.CallOption) (*RemoveStreamResponse, error) {
 	out := new(RemoveStreamResponse)
 	err := c.cc.Invoke(ctx, "/proto.stream.v1.StreamService/RemoveStream", in, out, opts...)
@@ -75,6 +97,10 @@ type StreamServiceServer interface {
 	ListStreams(context.Context, *ListStreamsRequest) (*ListStreamsResponse, error)
 	// AddStream requests a particular stream be added.
 	AddStream(context.Context, *AddStreamRequest) (*AddStreamResponse, error)
+	// GetStreamOptions returns the options for a particular stream.
+	GetStreamOptions(context.Context, *GetStreamOptionsRequest) (*GetStreamOptionsResponse, error)
+	// SetStreamOptions sets the options for a particular stream.
+	SetStreamOptions(context.Context, *SetStreamOptionsRequest) (*SetStreamOptionsResponse, error)
 	// RemoveStream requests a particular stream be removed. If the calling client
 	// is the last to be receiving the stream, it will attempt to be stopped to
 	// conserve resources.
@@ -91,6 +117,12 @@ func (UnimplementedStreamServiceServer) ListStreams(context.Context, *ListStream
 }
 func (UnimplementedStreamServiceServer) AddStream(context.Context, *AddStreamRequest) (*AddStreamResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddStream not implemented")
+}
+func (UnimplementedStreamServiceServer) GetStreamOptions(context.Context, *GetStreamOptionsRequest) (*GetStreamOptionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStreamOptions not implemented")
+}
+func (UnimplementedStreamServiceServer) SetStreamOptions(context.Context, *SetStreamOptionsRequest) (*SetStreamOptionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetStreamOptions not implemented")
 }
 func (UnimplementedStreamServiceServer) RemoveStream(context.Context, *RemoveStreamRequest) (*RemoveStreamResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveStream not implemented")
@@ -144,6 +176,42 @@ func _StreamService_AddStream_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StreamService_GetStreamOptions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStreamOptionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamServiceServer).GetStreamOptions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.stream.v1.StreamService/GetStreamOptions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamServiceServer).GetStreamOptions(ctx, req.(*GetStreamOptionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StreamService_SetStreamOptions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetStreamOptionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamServiceServer).SetStreamOptions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.stream.v1.StreamService/SetStreamOptions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamServiceServer).SetStreamOptions(ctx, req.(*SetStreamOptionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _StreamService_RemoveStream_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RemoveStreamRequest)
 	if err := dec(in); err != nil {
@@ -176,6 +244,14 @@ var StreamService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddStream",
 			Handler:    _StreamService_AddStream_Handler,
+		},
+		{
+			MethodName: "GetStreamOptions",
+			Handler:    _StreamService_GetStreamOptions_Handler,
+		},
+		{
+			MethodName: "SetStreamOptions",
+			Handler:    _StreamService_SetStreamOptions_Handler,
 		},
 		{
 			MethodName: "RemoveStream",
