@@ -762,7 +762,7 @@ enum FragmentErrorType {
 message FragmentTree {
   string root_fragment_id = 1;
   repeated string fragment_merge_order = 2;
-  repeated FragmentError errors = 3;
+  FragmentError error = 3;
 }
 
 message ListFragmentsRequest {
