@@ -438,20 +438,6 @@ message EnableBillingServiceRequest {
   BillingAddress billing_address = 2;
 }
 
-message OrganizationSetSupportEmailRequest {
-  string org_id = 1;
-  string email = 2;
-}
-message OrganizationSetSupportEmailResponse {}
-
-message OrganizationGetSupportEmailRequest {
-  string org_id = 1;
-}
-
-message OrganizationGetSupportEmailResponse {
-  string email = 1;
-}
-
 message EnableBillingServiceResponse {}
 
 message UpdateBillingServiceRequest {
@@ -467,6 +453,20 @@ message DisableBillingServiceRequest {
 }
 
 message DisableBillingServiceResponse {}
+
+message OrganizationSetSupportEmailRequest {
+  string org_id = 1;
+  string email = 2;
+}
+message OrganizationSetSupportEmailResponse {}
+
+message OrganizationGetSupportEmailRequest {
+  string org_id = 1;
+}
+
+message OrganizationGetSupportEmailResponse {
+  string email = 1;
+}
 
 // Location
 //
