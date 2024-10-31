@@ -61,6 +61,18 @@ service AppService {
   // Resend an organization invite
   rpc ResendOrganizationInvite(ResendOrganizationInviteRequest) returns (ResendOrganizationInviteResponse);
 
+  // Third party
+
+  rpc EnableBillingService(EnableBillingServiceRequest) returns (EnableBillingServiceResponse);
+
+  rpc DisableBillingService(DisableBillingServiceRequest) returns (DisableBillingServiceResponse);
+
+  rpc UpdateBillingService(UpdateBillingServiceRequest) returns (UpdateBillingServiceResponse);
+
+  rpc OrganizationSetSupportEmail(OrganizationSetSupportEmailRequest) returns (OrganizationSetSupportEmailResponse);
+
+  rpc OrganizationGetSupportEmail(OrganizationGetSupportEmailRequest) returns (OrganizationGetSupportEmailResponse);
+
   // Location
 
   // Create a location
@@ -410,6 +422,51 @@ message DeleteOrganizationMemberRequest {
 }
 
 message DeleteOrganizationMemberResponse {}
+
+// Third Party Org Services
+
+message BillingAddress {
+  string address_line_1 = 1;
+  optional string address_line_2 = 2;
+  string city = 3;
+  string state = 4;
+  string zipcode = 5;
+}
+
+message EnableBillingServiceRequest {
+  string org_id = 1;
+  BillingAddress billing_address = 2;
+}
+
+message OrganizationSetSupportEmailRequest {
+  string org_id = 1;
+  string email = 2;
+}
+message OrganizationSetSupportEmailResponse {}
+
+message OrganizationGetSupportEmailRequest {
+  string org_id = 1;
+}
+
+message OrganizationGetSupportEmailResponse {
+  string email = 1;
+}
+
+message EnableBillingServiceResponse {}
+
+message UpdateBillingServiceRequest {
+  string org_id = 1;
+  BillingAddress billing_address = 2;
+  string billing_support_email = 3;
+}
+
+message UpdateBillingServiceResponse {}
+
+message DisableBillingServiceRequest {
+  string org_id = 1;
+}
+
+message DisableBillingServiceResponse {}
 
 // Location
 //
