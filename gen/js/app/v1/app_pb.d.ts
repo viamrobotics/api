@@ -2263,6 +2263,66 @@ export namespace FragmentHistoryEntry {
   }
 }
 
+export class FragmentError extends jspb.Message {
+  getErrorType(): FragmentErrorTypeMap[keyof FragmentErrorTypeMap];
+  setErrorType(value: FragmentErrorTypeMap[keyof FragmentErrorTypeMap]): void;
+
+  getFragmentId(): string;
+  setFragmentId(value: string): void;
+
+  getDetail(): string;
+  setDetail(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FragmentError.AsObject;
+  static toObject(includeInstance: boolean, msg: FragmentError): FragmentError.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FragmentError, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FragmentError;
+  static deserializeBinaryFromReader(message: FragmentError, reader: jspb.BinaryReader): FragmentError;
+}
+
+export namespace FragmentError {
+  export type AsObject = {
+    errorType: FragmentErrorTypeMap[keyof FragmentErrorTypeMap],
+    fragmentId: string,
+    detail: string,
+  }
+}
+
+export class FragmentTree extends jspb.Message {
+  getRootFragmentId(): string;
+  setRootFragmentId(value: string): void;
+
+  clearFragmentMergeOrderList(): void;
+  getFragmentMergeOrderList(): Array<string>;
+  setFragmentMergeOrderList(value: Array<string>): void;
+  addFragmentMergeOrder(value: string, index?: number): string;
+
+  hasError(): boolean;
+  clearError(): void;
+  getError(): FragmentError | undefined;
+  setError(value?: FragmentError): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FragmentTree.AsObject;
+  static toObject(includeInstance: boolean, msg: FragmentTree): FragmentTree.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FragmentTree, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FragmentTree;
+  static deserializeBinaryFromReader(message: FragmentTree, reader: jspb.BinaryReader): FragmentTree;
+}
+
+export namespace FragmentTree {
+  export type AsObject = {
+    rootFragmentId: string,
+    fragmentMergeOrderList: Array<string>,
+    error?: FragmentError.AsObject,
+  }
+}
+
 export class ListFragmentsRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
@@ -2625,6 +2685,11 @@ export class ListMachineFragmentsResponse extends jspb.Message {
   setFragmentsList(value: Array<Fragment>): void;
   addFragments(value?: Fragment, index?: number): Fragment;
 
+  clearFragmentTreesList(): void;
+  getFragmentTreesList(): Array<FragmentTree>;
+  setFragmentTreesList(value: Array<FragmentTree>): void;
+  addFragmentTrees(value?: FragmentTree, index?: number): FragmentTree;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListMachineFragmentsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: ListMachineFragmentsResponse): ListMachineFragmentsResponse.AsObject;
@@ -2638,6 +2703,7 @@ export class ListMachineFragmentsResponse extends jspb.Message {
 export namespace ListMachineFragmentsResponse {
   export type AsObject = {
     fragmentsList: Array<Fragment.AsObject>,
+    fragmentTreesList: Array<FragmentTree.AsObject>,
   }
 }
 
@@ -4718,6 +4784,16 @@ export interface FragmentVisibilityMap {
 }
 
 export const FragmentVisibility: FragmentVisibilityMap;
+
+export interface FragmentErrorTypeMap {
+  FRAGMENT_ERROR_TYPE_UNSPECIFIED: 0;
+  FRAGMENT_ERROR_TYPE_NO_ACCESS: 1;
+  FRAGMENT_ERROR_TYPE_NESTING_LIMIT_EXCEEDED: 2;
+  FRAGMENT_ERROR_TYPE_CHILD_ID_INVALID: 3;
+  FRAGMENT_ERROR_TYPE_CYCLE_DETECTED: 4;
+}
+
+export const FragmentErrorType: FragmentErrorTypeMap;
 
 export interface RegistryItemStatusMap {
   REGISTRY_ITEM_STATUS_UNSPECIFIED: 0;
