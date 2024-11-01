@@ -61,6 +61,18 @@ service AppService {
   // Resend an organization invite
   rpc ResendOrganizationInvite(ResendOrganizationInviteRequest) returns (ResendOrganizationInviteResponse);
 
+  // Third party
+
+  rpc EnableBillingService(EnableBillingServiceRequest) returns (EnableBillingServiceResponse);
+
+  rpc DisableBillingService(DisableBillingServiceRequest) returns (DisableBillingServiceResponse);
+
+  rpc UpdateBillingService(UpdateBillingServiceRequest) returns (UpdateBillingServiceResponse);
+
+  rpc OrganizationSetSupportEmail(OrganizationSetSupportEmailRequest) returns (OrganizationSetSupportEmailResponse);
+
+  rpc OrganizationGetSupportEmail(OrganizationGetSupportEmailRequest) returns (OrganizationGetSupportEmailResponse);
+
   // Location
 
   // Create a location
@@ -411,6 +423,51 @@ message DeleteOrganizationMemberRequest {
 
 message DeleteOrganizationMemberResponse {}
 
+// Third Party Org Services
+
+message BillingAddress {
+  string address_line_1 = 1;
+  optional string address_line_2 = 2;
+  string city = 3;
+  string state = 4;
+  string zipcode = 5;
+}
+
+message EnableBillingServiceRequest {
+  string org_id = 1;
+  BillingAddress billing_address = 2;
+}
+
+message EnableBillingServiceResponse {}
+
+message UpdateBillingServiceRequest {
+  string org_id = 1;
+  BillingAddress billing_address = 2;
+  string billing_support_email = 3;
+}
+
+message UpdateBillingServiceResponse {}
+
+message DisableBillingServiceRequest {
+  string org_id = 1;
+}
+
+message DisableBillingServiceResponse {}
+
+message OrganizationSetSupportEmailRequest {
+  string org_id = 1;
+  string email = 2;
+}
+message OrganizationSetSupportEmailResponse {}
+
+message OrganizationGetSupportEmailRequest {
+  string org_id = 1;
+}
+
+message OrganizationGetSupportEmailResponse {
+  string email = 1;
+}
+
 // Location
 //
 
@@ -745,6 +802,26 @@ enum FragmentVisibility {
   FRAGMENT_VISIBILITY_PUBLIC_UNLISTED = 3;
 }
 
+message FragmentError {
+  FragmentErrorType error_type = 1;
+  string fragment_id = 2;
+  string detail = 3;
+}
+
+enum FragmentErrorType {
+  FRAGMENT_ERROR_TYPE_UNSPECIFIED = 0;
+  FRAGMENT_ERROR_TYPE_NO_ACCESS = 1;
+  FRAGMENT_ERROR_TYPE_NESTING_LIMIT_EXCEEDED = 2;
+  FRAGMENT_ERROR_TYPE_CHILD_ID_INVALID = 3;
+  FRAGMENT_ERROR_TYPE_CYCLE_DETECTED = 4;
+}
+
+message FragmentTree {
+  string root_fragment_id = 1;
+  repeated string fragment_merge_order = 2;
+  FragmentError error = 3;
+}
+
 message ListFragmentsRequest {
   string organization_id = 1;
   bool show_public = 2;
@@ -818,6 +895,7 @@ message ListMachineFragmentsRequest {
 
 message ListMachineFragmentsResponse {
   repeated Fragment fragments = 1;
+  repeated FragmentTree fragment_trees = 2;
 }
 
 message ListRobotsResponse {
@@ -1145,6 +1223,10 @@ message ModuleFileInfo {
   string version = 2;
   // The platform that the file is built to run on
   string platform = 3;
+  // Platform tag constraints. When a robot requests its config, it uploads a platform and a list of
+  // platform tags. The platform is checked against `platform` above, and the tags are checked against
+  // this list.
+  repeated string platform_tags = 5;
 }
 
 message UploadModuleFileRequest {
