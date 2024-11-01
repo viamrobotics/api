@@ -414,6 +414,9 @@ message ResourceStatus {
   // error details for a resource. This is guaranteed to be null if the
   // resource is ready and non-null if the resource unhealthy.
   string error = 5;
+  
+  // infomation about resource orgID, locationID and partID
+  optional GetCloudMetadataResponse cloud_metadata = 6;
 }
 
 message ConfigStatus {
