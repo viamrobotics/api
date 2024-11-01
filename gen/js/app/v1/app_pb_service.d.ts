@@ -139,6 +139,51 @@ type AppServiceResendOrganizationInvite = {
   readonly responseType: typeof app_v1_app_pb.ResendOrganizationInviteResponse;
 };
 
+type AppServiceEnableBillingService = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.EnableBillingServiceRequest;
+  readonly responseType: typeof app_v1_app_pb.EnableBillingServiceResponse;
+};
+
+type AppServiceDisableBillingService = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DisableBillingServiceRequest;
+  readonly responseType: typeof app_v1_app_pb.DisableBillingServiceResponse;
+};
+
+type AppServiceUpdateBillingService = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateBillingServiceRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateBillingServiceResponse;
+};
+
+type AppServiceOrganizationSetSupportEmail = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.OrganizationSetSupportEmailRequest;
+  readonly responseType: typeof app_v1_app_pb.OrganizationSetSupportEmailResponse;
+};
+
+type AppServiceOrganizationGetSupportEmail = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.OrganizationGetSupportEmailRequest;
+  readonly responseType: typeof app_v1_app_pb.OrganizationGetSupportEmailResponse;
+};
+
 type AppServiceCreateLocation = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -678,6 +723,11 @@ export class AppService {
   static readonly DeleteOrganizationMember: AppServiceDeleteOrganizationMember;
   static readonly DeleteOrganizationInvite: AppServiceDeleteOrganizationInvite;
   static readonly ResendOrganizationInvite: AppServiceResendOrganizationInvite;
+  static readonly EnableBillingService: AppServiceEnableBillingService;
+  static readonly DisableBillingService: AppServiceDisableBillingService;
+  static readonly UpdateBillingService: AppServiceUpdateBillingService;
+  static readonly OrganizationSetSupportEmail: AppServiceOrganizationSetSupportEmail;
+  static readonly OrganizationGetSupportEmail: AppServiceOrganizationGetSupportEmail;
   static readonly CreateLocation: AppServiceCreateLocation;
   static readonly GetLocation: AppServiceGetLocation;
   static readonly UpdateLocation: AppServiceUpdateLocation;
@@ -904,6 +954,51 @@ export class AppServiceClient {
   resendOrganizationInvite(
     requestMessage: app_v1_app_pb.ResendOrganizationInviteRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ResendOrganizationInviteResponse|null) => void
+  ): UnaryResponse;
+  enableBillingService(
+    requestMessage: app_v1_app_pb.EnableBillingServiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.EnableBillingServiceResponse|null) => void
+  ): UnaryResponse;
+  enableBillingService(
+    requestMessage: app_v1_app_pb.EnableBillingServiceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.EnableBillingServiceResponse|null) => void
+  ): UnaryResponse;
+  disableBillingService(
+    requestMessage: app_v1_app_pb.DisableBillingServiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DisableBillingServiceResponse|null) => void
+  ): UnaryResponse;
+  disableBillingService(
+    requestMessage: app_v1_app_pb.DisableBillingServiceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DisableBillingServiceResponse|null) => void
+  ): UnaryResponse;
+  updateBillingService(
+    requestMessage: app_v1_app_pb.UpdateBillingServiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateBillingServiceResponse|null) => void
+  ): UnaryResponse;
+  updateBillingService(
+    requestMessage: app_v1_app_pb.UpdateBillingServiceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateBillingServiceResponse|null) => void
+  ): UnaryResponse;
+  organizationSetSupportEmail(
+    requestMessage: app_v1_app_pb.OrganizationSetSupportEmailRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationSetSupportEmailResponse|null) => void
+  ): UnaryResponse;
+  organizationSetSupportEmail(
+    requestMessage: app_v1_app_pb.OrganizationSetSupportEmailRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationSetSupportEmailResponse|null) => void
+  ): UnaryResponse;
+  organizationGetSupportEmail(
+    requestMessage: app_v1_app_pb.OrganizationGetSupportEmailRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationGetSupportEmailResponse|null) => void
+  ): UnaryResponse;
+  organizationGetSupportEmail(
+    requestMessage: app_v1_app_pb.OrganizationGetSupportEmailRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationGetSupportEmailResponse|null) => void
   ): UnaryResponse;
   createLocation(
     requestMessage: app_v1_app_pb.CreateLocationRequest,

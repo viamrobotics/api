@@ -52,6 +52,11 @@ type AppServiceClient interface {
 	DeleteOrganizationInvite(ctx context.Context, in *DeleteOrganizationInviteRequest, opts ...grpc.CallOption) (*DeleteOrganizationInviteResponse, error)
 	// Resend an organization invite
 	ResendOrganizationInvite(ctx context.Context, in *ResendOrganizationInviteRequest, opts ...grpc.CallOption) (*ResendOrganizationInviteResponse, error)
+	EnableBillingService(ctx context.Context, in *EnableBillingServiceRequest, opts ...grpc.CallOption) (*EnableBillingServiceResponse, error)
+	DisableBillingService(ctx context.Context, in *DisableBillingServiceRequest, opts ...grpc.CallOption) (*DisableBillingServiceResponse, error)
+	UpdateBillingService(ctx context.Context, in *UpdateBillingServiceRequest, opts ...grpc.CallOption) (*UpdateBillingServiceResponse, error)
+	OrganizationSetSupportEmail(ctx context.Context, in *OrganizationSetSupportEmailRequest, opts ...grpc.CallOption) (*OrganizationSetSupportEmailResponse, error)
+	OrganizationGetSupportEmail(ctx context.Context, in *OrganizationGetSupportEmailRequest, opts ...grpc.CallOption) (*OrganizationGetSupportEmailResponse, error)
 	// Create a location
 	CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error)
 	// Get a location
@@ -293,6 +298,51 @@ func (c *appServiceClient) DeleteOrganizationInvite(ctx context.Context, in *Del
 func (c *appServiceClient) ResendOrganizationInvite(ctx context.Context, in *ResendOrganizationInviteRequest, opts ...grpc.CallOption) (*ResendOrganizationInviteResponse, error) {
 	out := new(ResendOrganizationInviteResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ResendOrganizationInvite", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) EnableBillingService(ctx context.Context, in *EnableBillingServiceRequest, opts ...grpc.CallOption) (*EnableBillingServiceResponse, error) {
+	out := new(EnableBillingServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/EnableBillingService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DisableBillingService(ctx context.Context, in *DisableBillingServiceRequest, opts ...grpc.CallOption) (*DisableBillingServiceResponse, error) {
+	out := new(DisableBillingServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DisableBillingService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateBillingService(ctx context.Context, in *UpdateBillingServiceRequest, opts ...grpc.CallOption) (*UpdateBillingServiceResponse, error) {
+	out := new(UpdateBillingServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateBillingService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) OrganizationSetSupportEmail(ctx context.Context, in *OrganizationSetSupportEmailRequest, opts ...grpc.CallOption) (*OrganizationSetSupportEmailResponse, error) {
+	out := new(OrganizationSetSupportEmailResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/OrganizationSetSupportEmail", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) OrganizationGetSupportEmail(ctx context.Context, in *OrganizationGetSupportEmailRequest, opts ...grpc.CallOption) (*OrganizationGetSupportEmailResponse, error) {
+	out := new(OrganizationGetSupportEmailResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/OrganizationGetSupportEmail", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -903,6 +953,11 @@ type AppServiceServer interface {
 	DeleteOrganizationInvite(context.Context, *DeleteOrganizationInviteRequest) (*DeleteOrganizationInviteResponse, error)
 	// Resend an organization invite
 	ResendOrganizationInvite(context.Context, *ResendOrganizationInviteRequest) (*ResendOrganizationInviteResponse, error)
+	EnableBillingService(context.Context, *EnableBillingServiceRequest) (*EnableBillingServiceResponse, error)
+	DisableBillingService(context.Context, *DisableBillingServiceRequest) (*DisableBillingServiceResponse, error)
+	UpdateBillingService(context.Context, *UpdateBillingServiceRequest) (*UpdateBillingServiceResponse, error)
+	OrganizationSetSupportEmail(context.Context, *OrganizationSetSupportEmailRequest) (*OrganizationSetSupportEmailResponse, error)
+	OrganizationGetSupportEmail(context.Context, *OrganizationGetSupportEmailRequest) (*OrganizationGetSupportEmailResponse, error)
 	// Create a location
 	CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error)
 	// Get a location
@@ -1056,6 +1111,21 @@ func (UnimplementedAppServiceServer) DeleteOrganizationInvite(context.Context, *
 }
 func (UnimplementedAppServiceServer) ResendOrganizationInvite(context.Context, *ResendOrganizationInviteRequest) (*ResendOrganizationInviteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResendOrganizationInvite not implemented")
+}
+func (UnimplementedAppServiceServer) EnableBillingService(context.Context, *EnableBillingServiceRequest) (*EnableBillingServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnableBillingService not implemented")
+}
+func (UnimplementedAppServiceServer) DisableBillingService(context.Context, *DisableBillingServiceRequest) (*DisableBillingServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DisableBillingService not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateBillingService(context.Context, *UpdateBillingServiceRequest) (*UpdateBillingServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBillingService not implemented")
+}
+func (UnimplementedAppServiceServer) OrganizationSetSupportEmail(context.Context, *OrganizationSetSupportEmailRequest) (*OrganizationSetSupportEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OrganizationSetSupportEmail not implemented")
+}
+func (UnimplementedAppServiceServer) OrganizationGetSupportEmail(context.Context, *OrganizationGetSupportEmailRequest) (*OrganizationGetSupportEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OrganizationGetSupportEmail not implemented")
 }
 func (UnimplementedAppServiceServer) CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateLocation not implemented")
@@ -1510,6 +1580,96 @@ func _AppService_ResendOrganizationInvite_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).ResendOrganizationInvite(ctx, req.(*ResendOrganizationInviteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_EnableBillingService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EnableBillingServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).EnableBillingService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/EnableBillingService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).EnableBillingService(ctx, req.(*EnableBillingServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DisableBillingService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DisableBillingServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DisableBillingService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DisableBillingService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DisableBillingService(ctx, req.(*DisableBillingServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateBillingService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateBillingServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateBillingService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateBillingService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateBillingService(ctx, req.(*UpdateBillingServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_OrganizationSetSupportEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OrganizationSetSupportEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).OrganizationSetSupportEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/OrganizationSetSupportEmail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).OrganizationSetSupportEmail(ctx, req.(*OrganizationSetSupportEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_OrganizationGetSupportEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OrganizationGetSupportEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).OrganizationGetSupportEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/OrganizationGetSupportEmail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).OrganizationGetSupportEmail(ctx, req.(*OrganizationGetSupportEmailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2635,6 +2795,26 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ResendOrganizationInvite",
 			Handler:    _AppService_ResendOrganizationInvite_Handler,
+		},
+		{
+			MethodName: "EnableBillingService",
+			Handler:    _AppService_EnableBillingService_Handler,
+		},
+		{
+			MethodName: "DisableBillingService",
+			Handler:    _AppService_DisableBillingService_Handler,
+		},
+		{
+			MethodName: "UpdateBillingService",
+			Handler:    _AppService_UpdateBillingService_Handler,
+		},
+		{
+			MethodName: "OrganizationSetSupportEmail",
+			Handler:    _AppService_OrganizationSetSupportEmail_Handler,
+		},
+		{
+			MethodName: "OrganizationGetSupportEmail",
+			Handler:    _AppService_OrganizationGetSupportEmail_Handler,
 		},
 		{
 			MethodName: "CreateLocation",
