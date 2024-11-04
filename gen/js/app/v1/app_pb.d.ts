@@ -2486,6 +2486,14 @@ export class FragmentHistoryEntry extends jspb.Message {
   getEditedBy(): AuthenticatorInfo | undefined;
   setEditedBy(value?: AuthenticatorInfo): void;
 
+  hasFragmentContents(): boolean;
+  clearFragmentContents(): void;
+  getFragmentContents(): google_protobuf_struct_pb.Struct | undefined;
+  setFragmentContents(value?: google_protobuf_struct_pb.Struct): void;
+
+  getFragmentId(): string;
+  setFragmentId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FragmentHistoryEntry.AsObject;
   static toObject(includeInstance: boolean, msg: FragmentHistoryEntry): FragmentHistoryEntry.AsObject;
@@ -2502,6 +2510,8 @@ export namespace FragmentHistoryEntry {
     editedOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     old?: Fragment.AsObject,
     editedBy?: AuthenticatorInfo.AsObject,
+    fragmentContents?: google_protobuf_struct_pb.Struct.AsObject,
+    fragmentId: string,
   }
 }
 
