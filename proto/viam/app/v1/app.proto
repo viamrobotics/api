@@ -816,9 +816,9 @@ enum FragmentErrorType {
   FRAGMENT_ERROR_TYPE_CYCLE_DETECTED = 4;
 }
 
-message FragmentTree {
-  string root_fragment_id = 1;
-  repeated string fragment_merge_order = 2;
+message FragmentWithError {
+  string fragment_id = 1;
+  Fragment fragment = 2;
   FragmentError error = 3;
 }
 
@@ -895,7 +895,7 @@ message ListMachineFragmentsRequest {
 
 message ListMachineFragmentsResponse {
   repeated Fragment fragments = 1;
-  repeated FragmentTree fragment_trees = 2;
+  repeated FragmentWithError resolved_fragments = 2;
 }
 
 message ListRobotsResponse {
