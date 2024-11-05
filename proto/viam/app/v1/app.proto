@@ -443,7 +443,6 @@ message EnableBillingServiceResponse {}
 message UpdateBillingServiceRequest {
   string org_id = 1;
   BillingAddress billing_address = 2;
-  string billing_support_email = 3;
 }
 
 message UpdateBillingServiceResponse {}
