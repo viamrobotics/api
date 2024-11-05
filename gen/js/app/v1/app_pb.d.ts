@@ -2533,14 +2533,14 @@ export namespace FragmentError {
   }
 }
 
-export class FragmentTree extends jspb.Message {
-  getRootFragmentId(): string;
-  setRootFragmentId(value: string): void;
+export class ResolvedFragment extends jspb.Message {
+  getFragmentId(): string;
+  setFragmentId(value: string): void;
 
-  clearFragmentMergeOrderList(): void;
-  getFragmentMergeOrderList(): Array<string>;
-  setFragmentMergeOrderList(value: Array<string>): void;
-  addFragmentMergeOrder(value: string, index?: number): string;
+  hasResolvedConfig(): boolean;
+  clearResolvedConfig(): void;
+  getResolvedConfig(): google_protobuf_struct_pb.Struct | undefined;
+  setResolvedConfig(value?: google_protobuf_struct_pb.Struct): void;
 
   hasError(): boolean;
   clearError(): void;
@@ -2548,19 +2548,19 @@ export class FragmentTree extends jspb.Message {
   setError(value?: FragmentError): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FragmentTree.AsObject;
-  static toObject(includeInstance: boolean, msg: FragmentTree): FragmentTree.AsObject;
+  toObject(includeInstance?: boolean): ResolvedFragment.AsObject;
+  static toObject(includeInstance: boolean, msg: ResolvedFragment): ResolvedFragment.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FragmentTree, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FragmentTree;
-  static deserializeBinaryFromReader(message: FragmentTree, reader: jspb.BinaryReader): FragmentTree;
+  static serializeBinaryToWriter(message: ResolvedFragment, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ResolvedFragment;
+  static deserializeBinaryFromReader(message: ResolvedFragment, reader: jspb.BinaryReader): ResolvedFragment;
 }
 
-export namespace FragmentTree {
+export namespace ResolvedFragment {
   export type AsObject = {
-    rootFragmentId: string,
-    fragmentMergeOrderList: Array<string>,
+    fragmentId: string,
+    resolvedConfig?: google_protobuf_struct_pb.Struct.AsObject,
     error?: FragmentError.AsObject,
   }
 }
@@ -2927,10 +2927,10 @@ export class ListMachineFragmentsResponse extends jspb.Message {
   setFragmentsList(value: Array<Fragment>): void;
   addFragments(value?: Fragment, index?: number): Fragment;
 
-  clearFragmentTreesList(): void;
-  getFragmentTreesList(): Array<FragmentTree>;
-  setFragmentTreesList(value: Array<FragmentTree>): void;
-  addFragmentTrees(value?: FragmentTree, index?: number): FragmentTree;
+  clearResolvedFragmentsList(): void;
+  getResolvedFragmentsList(): Array<ResolvedFragment>;
+  setResolvedFragmentsList(value: Array<ResolvedFragment>): void;
+  addResolvedFragments(value?: ResolvedFragment, index?: number): ResolvedFragment;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListMachineFragmentsResponse.AsObject;
@@ -2945,7 +2945,7 @@ export class ListMachineFragmentsResponse extends jspb.Message {
 export namespace ListMachineFragmentsResponse {
   export type AsObject = {
     fragmentsList: Array<Fragment.AsObject>,
-    fragmentTreesList: Array<FragmentTree.AsObject>,
+    resolvedFragmentsList: Array<ResolvedFragment.AsObject>,
   }
 }
 
