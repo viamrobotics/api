@@ -972,9 +972,6 @@ export class UpdateBillingServiceRequest extends jspb.Message {
   getBillingAddress(): BillingAddress | undefined;
   setBillingAddress(value?: BillingAddress): void;
 
-  getBillingSupportEmail(): string;
-  setBillingSupportEmail(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateBillingServiceRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateBillingServiceRequest): UpdateBillingServiceRequest.AsObject;
@@ -989,7 +986,6 @@ export namespace UpdateBillingServiceRequest {
   export type AsObject = {
     orgId: string,
     billingAddress?: BillingAddress.AsObject,
-    billingSupportEmail: string,
   }
 }
 
