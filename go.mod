@@ -7,7 +7,6 @@ require (
 	github.com/cosmtrek/air v1.29.0
 	github.com/edaniels/golinters v0.0.5-0.20220906153528-641155550742
 	github.com/fullstorydev/grpcurl v1.8.6
-	github.com/golang/protobuf v1.5.3
 	github.com/golangci/golangci-lint v1.50.1
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
 	github.com/pseudomuto/protoc-gen-doc v1.5.1
@@ -208,6 +207,7 @@ require (
 	github.com/denis-tingaikin/go-header v0.4.3 // indirect
 	github.com/firefart/nonamedreturns v1.0.4 // indirect
 	github.com/go-chi/chi/v5 v5.0.7 // indirect
+	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/hashicorp/go-version v1.6.0 // indirect
 	github.com/hexops/gotextdiff v1.0.3 // indirect
 	github.com/jhump/protocompile v0.0.0-20220216033700-d705409f108f // indirect
