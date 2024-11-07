@@ -5,8 +5,10 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  pull_request:
+  pull_request_target:
     types: ['synchronize', 'labeled']
+    branches:
+    - main
 
 env:
   # guards against running this action on its own previous commit
