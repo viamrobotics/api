@@ -2,8 +2,6 @@ module go.viam.com/api
 
 go 1.22.0
 
-toolchain go1.23.1
-
 require (
 	github.com/bufbuild/buf v1.46.0
 	github.com/cosmtrek/air v1.29.0
