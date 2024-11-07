@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_InputControllerService_GetControls_0 = &utilities.DoubleArray{Encoding: map[string]int{"controller": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_InputControllerService_GetControls_0 = &utilities.DoubleArray{Encoding: map[string]int{"controller": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_InputControllerService_GetControls_0(ctx context.Context, marshaler runtime.Marshaler, client InputControllerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -103,7 +103,7 @@ func local_request_InputControllerService_GetControls_0(ctx context.Context, mar
 }
 
 var (
-	filter_InputControllerService_GetEvents_0 = &utilities.DoubleArray{Encoding: map[string]int{"controller": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_InputControllerService_GetEvents_0 = &utilities.DoubleArray{Encoding: map[string]int{"controller": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_InputControllerService_GetEvents_0(ctx context.Context, marshaler runtime.Marshaler, client InputControllerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -173,7 +173,7 @@ func local_request_InputControllerService_GetEvents_0(ctx context.Context, marsh
 }
 
 var (
-	filter_InputControllerService_StreamEvents_0 = &utilities.DoubleArray{Encoding: map[string]int{"controller": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_InputControllerService_StreamEvents_0 = &utilities.DoubleArray{Encoding: map[string]int{"controller": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_InputControllerService_StreamEvents_0(ctx context.Context, marshaler runtime.Marshaler, client InputControllerServiceClient, req *http.Request, pathParams map[string]string) (InputControllerService_StreamEventsClient, runtime.ServerMetadata, error) {
@@ -218,7 +218,7 @@ func request_InputControllerService_StreamEvents_0(ctx context.Context, marshale
 }
 
 var (
-	filter_InputControllerService_TriggerEvent_0 = &utilities.DoubleArray{Encoding: map[string]int{"controller": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_InputControllerService_TriggerEvent_0 = &utilities.DoubleArray{Encoding: map[string]int{"controller": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_InputControllerService_TriggerEvent_0(ctx context.Context, marshaler runtime.Marshaler, client InputControllerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -288,7 +288,7 @@ func local_request_InputControllerService_TriggerEvent_0(ctx context.Context, ma
 }
 
 var (
-	filter_InputControllerService_DoCommand_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_InputControllerService_DoCommand_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_InputControllerService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client InputControllerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -358,7 +358,7 @@ func local_request_InputControllerService_DoCommand_0(ctx context.Context, marsh
 }
 
 var (
-	filter_InputControllerService_GetGeometries_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_InputControllerService_GetGeometries_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_InputControllerService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, client InputControllerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -571,7 +571,7 @@ func RegisterInputControllerServiceHandlerServer(ctx context.Context, mux *runti
 // RegisterInputControllerServiceHandlerFromEndpoint is same as RegisterInputControllerServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterInputControllerServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}

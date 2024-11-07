@@ -110,7 +110,7 @@ func local_request_AudioInputService_Properties_0(ctx context.Context, marshaler
 }
 
 var (
-	filter_AudioInputService_Record_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_AudioInputService_Record_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_AudioInputService_Record_0(ctx context.Context, marshaler runtime.Marshaler, client AudioInputServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -180,7 +180,7 @@ func local_request_AudioInputService_Record_0(ctx context.Context, marshaler run
 }
 
 var (
-	filter_AudioInputService_DoCommand_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_AudioInputService_DoCommand_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_AudioInputService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client AudioInputServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -250,7 +250,7 @@ func local_request_AudioInputService_DoCommand_0(ctx context.Context, marshaler 
 }
 
 var (
-	filter_AudioInputService_GetGeometries_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_AudioInputService_GetGeometries_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_AudioInputService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, client AudioInputServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -438,7 +438,7 @@ func RegisterAudioInputServiceHandlerServer(ctx context.Context, mux *runtime.Se
 // RegisterAudioInputServiceHandlerFromEndpoint is same as RegisterAudioInputServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterAudioInputServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}

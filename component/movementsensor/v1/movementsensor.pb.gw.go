@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_MovementSensorService_GetLinearVelocity_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_MovementSensorService_GetLinearVelocity_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_MovementSensorService_GetLinearVelocity_0(ctx context.Context, marshaler runtime.Marshaler, client MovementSensorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -103,7 +103,7 @@ func local_request_MovementSensorService_GetLinearVelocity_0(ctx context.Context
 }
 
 var (
-	filter_MovementSensorService_GetAngularVelocity_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_MovementSensorService_GetAngularVelocity_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_MovementSensorService_GetAngularVelocity_0(ctx context.Context, marshaler runtime.Marshaler, client MovementSensorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -173,7 +173,7 @@ func local_request_MovementSensorService_GetAngularVelocity_0(ctx context.Contex
 }
 
 var (
-	filter_MovementSensorService_GetCompassHeading_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_MovementSensorService_GetCompassHeading_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_MovementSensorService_GetCompassHeading_0(ctx context.Context, marshaler runtime.Marshaler, client MovementSensorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -243,7 +243,7 @@ func local_request_MovementSensorService_GetCompassHeading_0(ctx context.Context
 }
 
 var (
-	filter_MovementSensorService_GetOrientation_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_MovementSensorService_GetOrientation_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_MovementSensorService_GetOrientation_0(ctx context.Context, marshaler runtime.Marshaler, client MovementSensorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -313,7 +313,7 @@ func local_request_MovementSensorService_GetOrientation_0(ctx context.Context, m
 }
 
 var (
-	filter_MovementSensorService_GetPosition_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_MovementSensorService_GetPosition_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_MovementSensorService_GetPosition_0(ctx context.Context, marshaler runtime.Marshaler, client MovementSensorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -383,7 +383,7 @@ func local_request_MovementSensorService_GetPosition_0(ctx context.Context, mars
 }
 
 var (
-	filter_MovementSensorService_GetProperties_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_MovementSensorService_GetProperties_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_MovementSensorService_GetProperties_0(ctx context.Context, marshaler runtime.Marshaler, client MovementSensorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -453,7 +453,7 @@ func local_request_MovementSensorService_GetProperties_0(ctx context.Context, ma
 }
 
 var (
-	filter_MovementSensorService_GetAccuracy_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_MovementSensorService_GetAccuracy_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_MovementSensorService_GetAccuracy_0(ctx context.Context, marshaler runtime.Marshaler, client MovementSensorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -523,7 +523,7 @@ func local_request_MovementSensorService_GetAccuracy_0(ctx context.Context, mars
 }
 
 var (
-	filter_MovementSensorService_GetLinearAcceleration_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_MovementSensorService_GetLinearAcceleration_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_MovementSensorService_GetLinearAcceleration_0(ctx context.Context, marshaler runtime.Marshaler, client MovementSensorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -593,7 +593,7 @@ func local_request_MovementSensorService_GetLinearAcceleration_0(ctx context.Con
 }
 
 var (
-	filter_MovementSensorService_DoCommand_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_MovementSensorService_DoCommand_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_MovementSensorService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client MovementSensorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -663,7 +663,7 @@ func local_request_MovementSensorService_DoCommand_0(ctx context.Context, marsha
 }
 
 var (
-	filter_MovementSensorService_GetGeometries_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_MovementSensorService_GetGeometries_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_MovementSensorService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, client MovementSensorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -733,7 +733,7 @@ func local_request_MovementSensorService_GetGeometries_0(ctx context.Context, ma
 }
 
 var (
-	filter_MovementSensorService_GetReadings_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_MovementSensorService_GetReadings_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_MovementSensorService_GetReadings_0(ctx context.Context, marshaler runtime.Marshaler, client MovementSensorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -1089,7 +1089,7 @@ func RegisterMovementSensorServiceHandlerServer(ctx context.Context, mux *runtim
 // RegisterMovementSensorServiceHandlerFromEndpoint is same as RegisterMovementSensorServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterMovementSensorServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}

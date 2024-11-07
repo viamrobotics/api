@@ -15,7 +15,7 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
-	v1_0 "go.viam.com/api/common/v1"
+	"go.viam.com/api/common/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_PoseTrackerService_GetPoses_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_PoseTrackerService_GetPoses_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_PoseTrackerService_GetPoses_0(ctx context.Context, marshaler runtime.Marshaler, client PoseTrackerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -103,11 +103,11 @@ func local_request_PoseTrackerService_GetPoses_0(ctx context.Context, marshaler 
 }
 
 var (
-	filter_PoseTrackerService_DoCommand_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_PoseTrackerService_DoCommand_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_PoseTrackerService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client PoseTrackerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DoCommandRequest
+	var protoReq v1.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -140,7 +140,7 @@ func request_PoseTrackerService_DoCommand_0(ctx context.Context, marshaler runti
 }
 
 func local_request_PoseTrackerService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, server PoseTrackerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DoCommandRequest
+	var protoReq v1.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -173,11 +173,11 @@ func local_request_PoseTrackerService_DoCommand_0(ctx context.Context, marshaler
 }
 
 var (
-	filter_PoseTrackerService_GetGeometries_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_PoseTrackerService_GetGeometries_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_PoseTrackerService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, client PoseTrackerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetGeometriesRequest
+	var protoReq v1.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -210,7 +210,7 @@ func request_PoseTrackerService_GetGeometries_0(ctx context.Context, marshaler r
 }
 
 func local_request_PoseTrackerService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, server PoseTrackerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetGeometriesRequest
+	var protoReq v1.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -329,7 +329,7 @@ func RegisterPoseTrackerServiceHandlerServer(ctx context.Context, mux *runtime.S
 // RegisterPoseTrackerServiceHandlerFromEndpoint is same as RegisterPoseTrackerServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterPoseTrackerServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}

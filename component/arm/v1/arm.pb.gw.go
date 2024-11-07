@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_ArmService_GetEndPosition_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_ArmService_GetEndPosition_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_ArmService_GetEndPosition_0(ctx context.Context, marshaler runtime.Marshaler, client ArmServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -103,7 +103,7 @@ func local_request_ArmService_GetEndPosition_0(ctx context.Context, marshaler ru
 }
 
 var (
-	filter_ArmService_MoveToPosition_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_ArmService_MoveToPosition_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_ArmService_MoveToPosition_0(ctx context.Context, marshaler runtime.Marshaler, client ArmServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -173,7 +173,7 @@ func local_request_ArmService_MoveToPosition_0(ctx context.Context, marshaler ru
 }
 
 var (
-	filter_ArmService_GetJointPositions_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_ArmService_GetJointPositions_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_ArmService_GetJointPositions_0(ctx context.Context, marshaler runtime.Marshaler, client ArmServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -243,7 +243,7 @@ func local_request_ArmService_GetJointPositions_0(ctx context.Context, marshaler
 }
 
 var (
-	filter_ArmService_MoveToJointPositions_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_ArmService_MoveToJointPositions_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_ArmService_MoveToJointPositions_0(ctx context.Context, marshaler runtime.Marshaler, client ArmServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -313,7 +313,7 @@ func local_request_ArmService_MoveToJointPositions_0(ctx context.Context, marsha
 }
 
 var (
-	filter_ArmService_MoveThroughJointPositions_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_ArmService_MoveThroughJointPositions_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_ArmService_MoveThroughJointPositions_0(ctx context.Context, marshaler runtime.Marshaler, client ArmServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -383,7 +383,7 @@ func local_request_ArmService_MoveThroughJointPositions_0(ctx context.Context, m
 }
 
 var (
-	filter_ArmService_Stop_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_ArmService_Stop_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_ArmService_Stop_0(ctx context.Context, marshaler runtime.Marshaler, client ArmServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -505,7 +505,7 @@ func local_request_ArmService_IsMoving_0(ctx context.Context, marshaler runtime.
 }
 
 var (
-	filter_ArmService_DoCommand_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_ArmService_DoCommand_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_ArmService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client ArmServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -575,7 +575,7 @@ func local_request_ArmService_DoCommand_0(ctx context.Context, marshaler runtime
 }
 
 var (
-	filter_ArmService_GetKinematics_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_ArmService_GetKinematics_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_ArmService_GetKinematics_0(ctx context.Context, marshaler runtime.Marshaler, client ArmServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -645,7 +645,7 @@ func local_request_ArmService_GetKinematics_0(ctx context.Context, marshaler run
 }
 
 var (
-	filter_ArmService_GetGeometries_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_ArmService_GetGeometries_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_ArmService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, client ArmServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -976,7 +976,7 @@ func RegisterArmServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 // RegisterArmServiceHandlerFromEndpoint is same as RegisterArmServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterArmServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}

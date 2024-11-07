@@ -15,7 +15,7 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
-	v1_0 "go.viam.com/api/common/v1"
+	"go.viam.com/api/common/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_VisionService_GetDetectionsFromCamera_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_VisionService_GetDetectionsFromCamera_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_VisionService_GetDetectionsFromCamera_0(ctx context.Context, marshaler runtime.Marshaler, client VisionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -103,7 +103,7 @@ func local_request_VisionService_GetDetectionsFromCamera_0(ctx context.Context, 
 }
 
 var (
-	filter_VisionService_GetDetections_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_VisionService_GetDetections_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_VisionService_GetDetections_0(ctx context.Context, marshaler runtime.Marshaler, client VisionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -173,7 +173,7 @@ func local_request_VisionService_GetDetections_0(ctx context.Context, marshaler 
 }
 
 var (
-	filter_VisionService_GetClassificationsFromCamera_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_VisionService_GetClassificationsFromCamera_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_VisionService_GetClassificationsFromCamera_0(ctx context.Context, marshaler runtime.Marshaler, client VisionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -243,7 +243,7 @@ func local_request_VisionService_GetClassificationsFromCamera_0(ctx context.Cont
 }
 
 var (
-	filter_VisionService_GetClassifications_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_VisionService_GetClassifications_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_VisionService_GetClassifications_0(ctx context.Context, marshaler runtime.Marshaler, client VisionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -313,7 +313,7 @@ func local_request_VisionService_GetClassifications_0(ctx context.Context, marsh
 }
 
 var (
-	filter_VisionService_GetObjectPointClouds_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_VisionService_GetObjectPointClouds_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_VisionService_GetObjectPointClouds_0(ctx context.Context, marshaler runtime.Marshaler, client VisionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -383,7 +383,7 @@ func local_request_VisionService_GetObjectPointClouds_0(ctx context.Context, mar
 }
 
 var (
-	filter_VisionService_GetProperties_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_VisionService_GetProperties_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_VisionService_GetProperties_0(ctx context.Context, marshaler runtime.Marshaler, client VisionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -453,7 +453,7 @@ func local_request_VisionService_GetProperties_0(ctx context.Context, marshaler 
 }
 
 var (
-	filter_VisionService_CaptureAllFromCamera_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_VisionService_CaptureAllFromCamera_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_VisionService_CaptureAllFromCamera_0(ctx context.Context, marshaler runtime.Marshaler, client VisionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -523,11 +523,11 @@ func local_request_VisionService_CaptureAllFromCamera_0(ctx context.Context, mar
 }
 
 var (
-	filter_VisionService_DoCommand_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_VisionService_DoCommand_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_VisionService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client VisionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DoCommandRequest
+	var protoReq v1.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -560,7 +560,7 @@ func request_VisionService_DoCommand_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func local_request_VisionService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, server VisionServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DoCommandRequest
+	var protoReq v1.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -804,7 +804,7 @@ func RegisterVisionServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 // RegisterVisionServiceHandlerFromEndpoint is same as RegisterVisionServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterVisionServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}
