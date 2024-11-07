@@ -13,16 +13,12 @@ option java_package = "com.viam.service.datamanager.v1";
 service DataManagerService {
   // Sync performs a sync of the non-synced files for the specified service name,
   rpc Sync(SyncRequest) returns (SyncResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/datamanager/{name}/datasync"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/datasync"};
   }
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/datamanager/{name}/do_command"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/do_command"};
   }
 }
 

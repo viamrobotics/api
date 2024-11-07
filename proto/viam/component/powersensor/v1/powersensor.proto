@@ -13,37 +13,27 @@ option java_package = "com.viam.component.powersensor.v1";
 service PowerSensorService {
   // GetVoltage returns the voltage reading of a power sensor in volts
   rpc GetVoltage(GetVoltageRequest) returns (GetVoltageResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/power_sensor/{name}/voltage"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/power_sensor/{name}/voltage"};
   }
 
   // GetCurrent returns the current reading of a power sensor in amperes
   rpc GetCurrent(GetCurrentRequest) returns (GetCurrentResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/power_sensor/{name}/current"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/power_sensor/{name}/current"};
   }
 
   // GetPower returns the power reading of a power sensor in watts
   rpc GetPower(GetPowerRequest) returns (GetPowerResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/power_sensor/{name}/power"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/power_sensor/{name}/power"};
   }
 
   // GetReadings returns the readings of a sensor of the underlying robot.
   rpc GetReadings(common.v1.GetReadingsRequest) returns (common.v1.GetReadingsResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/power_sensor/{name}/readings"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/power_sensor/{name}/readings"};
   }
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/component/power_sensor/{name}/do_command"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/component/power_sensor/{name}/do_command"};
   }
 }
 
