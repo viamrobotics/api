@@ -47,7 +47,7 @@ jobs:
       - uses: actions/setup-node@v4
       - uses: actions/setup-go@v5
         with:
-          go-version: '1.21'
+          go-version-file: go.mod
       # todo: cache download
       - name: grpc-web
         run: |
@@ -78,14 +78,18 @@ jobs:
       - name: commit + push
         if: ${{ !env.is-auto-commit }}
         run: |
-          git add .
-          git checkout -b ${{ github.event.pull_request.head.ref }}
-          git status
-          # magic email from https://github.com/orgs/community/discussions/26560
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git config user.name github-actions
-          git commit -a -m "${{ env.CI_COMMIT_MESSAGE_PREFIX }} $(git rev-parse --short HEAD)"
-          git push -u origin ${{ github.event.pull_request.head.ref }}
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git checkout -b ${{ github.event.pull_request.head.ref }}
+            git status
+            # magic email from https://github.com/orgs/community/discussions/26560
+            git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+            git config user.name github-actions
+            git commit -a -m "${{ env.CI_COMMIT_MESSAGE_PREFIX }} $(git rev-parse --short HEAD)"
+            git push -u origin ${{ github.event.pull_request.head.ref }}
+          else
+            echo "no changes, not creating an automatic commit"
+          fi
       - name: add label
         if: ${{ !env.is-auto-commit }}
         env:

@@ -17,32 +17,24 @@ service AudioInputService {
 
   // Properties returns properties of an audio input of the underlying robot.
   rpc Properties(PropertiesRequest) returns (PropertiesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/audioinput/{name}/properties"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/audioinput/{name}/properties"};
   }
 
   // Record records audio from an audio input of the underlying robot
   // to an HTTP response. A specific MIME type cannot be requested and may not necessarily
   // be the same one returned each time.
   rpc Record(RecordRequest) returns (google.api.HttpBody) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/audioinput/{name}/record"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/audioinput/{name}/record"};
   }
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/component/audioinput/{name}/do_command"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/component/audioinput/{name}/do_command"};
   }
 
   // GetGeometries returns the geometries of the component in their current configuration
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/audioinput/{name}/geometries"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/audioinput/{name}/geometries"};
   }
 }
 
