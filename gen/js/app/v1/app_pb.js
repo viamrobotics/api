@@ -11036,8 +11036,7 @@ proto.viam.app.v1.UpdateBillingServiceRequest.prototype.toObject = function(opt_
 proto.viam.app.v1.UpdateBillingServiceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    billingAddress: (f = msg.getBillingAddress()) && proto.viam.app.v1.BillingAddress.toObject(includeInstance, f),
-    billingSupportEmail: jspb.Message.getFieldWithDefault(msg, 3, "")
+    billingAddress: (f = msg.getBillingAddress()) && proto.viam.app.v1.BillingAddress.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -11083,10 +11082,6 @@ proto.viam.app.v1.UpdateBillingServiceRequest.deserializeBinaryFromReader = func
       reader.readMessage(value,proto.viam.app.v1.BillingAddress.deserializeBinaryFromReader);
       msg.setBillingAddress(value);
       break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setBillingSupportEmail(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -11129,13 +11124,6 @@ proto.viam.app.v1.UpdateBillingServiceRequest.serializeBinaryToWriter = function
       2,
       f,
       proto.viam.app.v1.BillingAddress.serializeBinaryToWriter
-    );
-  }
-  f = message.getBillingSupportEmail();
-  if (f.length > 0) {
-    writer.writeString(
-      3,
-      f
     );
   }
 };
@@ -11193,24 +11181,6 @@ proto.viam.app.v1.UpdateBillingServiceRequest.prototype.clearBillingAddress = fu
  */
 proto.viam.app.v1.UpdateBillingServiceRequest.prototype.hasBillingAddress = function() {
   return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional string billing_support_email = 3;
- * @return {string}
- */
-proto.viam.app.v1.UpdateBillingServiceRequest.prototype.getBillingSupportEmail = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.v1.UpdateBillingServiceRequest} returns this
- */
-proto.viam.app.v1.UpdateBillingServiceRequest.prototype.setBillingSupportEmail = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
