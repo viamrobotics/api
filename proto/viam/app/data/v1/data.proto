@@ -275,11 +275,21 @@ message BoundingBox {
   double y_min_normalized = 4;
   double x_max_normalized = 5;
   double y_max_normalized = 6;
+  // confidence is an optional range from 0 - 1
+  optional double confidence = 7;
+}
+
+// Classification represents a confidence score with a label.
+message Classification {
+  string label = 1;
+  // confidence is an optional range from 0 - 1
+  optional double confidence = 2;
 }
 
 // Annotations are data annotations used for machine learning.
 message Annotations {
   repeated BoundingBox bboxes = 1;
+  repeated Classification classifications = 2;
 }
 
 // BinaryMetadata is the metadata associated with binary data.

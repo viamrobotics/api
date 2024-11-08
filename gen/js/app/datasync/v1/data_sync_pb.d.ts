@@ -2,6 +2,7 @@
 // file: app/datasync/v1/data_sync.proto
 
 import * as jspb from "google-protobuf";
+import * as app_data_v1_data_pb from "../../../app/data/v1/data_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
@@ -178,6 +179,14 @@ export class SensorMetadata extends jspb.Message {
   getTimeReceived(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTimeReceived(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getMimeType(): MimeTypeMap[keyof MimeTypeMap];
+  setMimeType(value: MimeTypeMap[keyof MimeTypeMap]): void;
+
+  hasAnnotations(): boolean;
+  clearAnnotations(): void;
+  getAnnotations(): app_data_v1_data_pb.Annotations | undefined;
+  setAnnotations(value?: app_data_v1_data_pb.Annotations): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SensorMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: SensorMetadata): SensorMetadata.AsObject;
@@ -192,6 +201,8 @@ export namespace SensorMetadata {
   export type AsObject = {
     timeRequested?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     timeReceived?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    mimeType: MimeTypeMap[keyof MimeTypeMap],
+    annotations?: app_data_v1_data_pb.Annotations.AsObject,
   }
 }
 
@@ -413,6 +424,15 @@ export namespace DataCaptureUploadMetadata {
     sensorMetadata?: SensorMetadata.AsObject,
   }
 }
+
+export interface MimeTypeMap {
+  MIME_TYPE_UNSPECIFIED: 0;
+  MIME_TYPE_IMAGE_JPEG: 1;
+  MIME_TYPE_IMAGE_PNG: 2;
+  MIME_TYPE_APPLICATION_PCD: 3;
+}
+
+export const MimeType: MimeTypeMap;
 
 export interface DataTypeMap {
   DATA_TYPE_UNSPECIFIED: 0;
