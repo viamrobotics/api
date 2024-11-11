@@ -15,25 +15,19 @@ option java_package = "com.viam.service.sensors.v1";
 service SensorsService {
   // GetSensors returns the list of all sensors.
   rpc GetSensors(GetSensorsRequest) returns (GetSensorsResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/{name}/sensors"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/{name}/sensors"};
     option deprecated = true;
   }
 
   // GetReadings returns the list of readings for all sensors specified.
   rpc GetReadings(GetReadingsRequest) returns (GetReadingsResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/sensors/{name}/readings"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/sensors/{name}/readings"};
     option deprecated = true;
   }
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/sensors/{name}/do_command"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/service/sensors/{name}/do_command"};
     option deprecated = true;
   }
 }

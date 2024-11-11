@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_protobuf_descriptor_pb = require('google-protobuf/google/protobuf/descriptor_pb.js');
 goog.object.extend(proto, google_protobuf_descriptor_pb);
@@ -108,8 +102,8 @@ proto.google.api.FieldInfo.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.api.FieldInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-format: jspb.Message.getFieldWithDefault(msg, 1, 0),
-referencedTypesList: jspb.Message.toObjectList(msg.getReferencedTypesList(),
+    format: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    referencedTypesList: jspb.Message.toObjectList(msg.getReferencedTypesList(),
     proto.google.api.TypeReference.toObject, includeInstance)
   };
 
@@ -302,7 +296,7 @@ proto.google.api.TypeReference.prototype.toObject = function(opt_includeInstance
  */
 proto.google.api.TypeReference.toObject = function(includeInstance, msg) {
   var f, obj = {
-typeName: jspb.Message.getFieldWithDefault(msg, 1, "")
+    typeName: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {

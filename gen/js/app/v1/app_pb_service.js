@@ -172,15 +172,6 @@ AppService.UpdateBillingService = {
   responseType: app_v1_app_pb.UpdateBillingServiceResponse
 };
 
-AppService.GetBillingService = {
-  methodName: "GetBillingService",
-  service: AppService,
-  requestStream: false,
-  responseStream: false,
-  requestType: app_v1_app_pb.GetBillingServiceRequest,
-  responseType: app_v1_app_pb.GetBillingServiceResponse
-};
-
 AppService.OrganizationSetSupportEmail = {
   methodName: "OrganizationSetSupportEmail",
   service: AppService,
@@ -1260,37 +1251,6 @@ AppServiceClient.prototype.updateBillingService = function updateBillingService(
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.UpdateBillingService, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-AppServiceClient.prototype.getBillingService = function getBillingService(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(AppService.GetBillingService, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

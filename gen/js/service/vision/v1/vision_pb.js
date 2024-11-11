@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -413,12 +407,12 @@ proto.viam.service.vision.v1.GetDetectionsRequest.prototype.toObject = function(
  */
 proto.viam.service.vision.v1.GetDetectionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-image: msg.getImage_asB64(),
-width: jspb.Message.getFieldWithDefault(msg, 3, 0),
-height: jspb.Message.getFieldWithDefault(msg, 4, 0),
-mimeType: jspb.Message.getFieldWithDefault(msg, 5, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    image: msg.getImage_asB64(),
+    width: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    height: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    mimeType: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -745,7 +739,7 @@ proto.viam.service.vision.v1.GetDetectionsResponse.prototype.toObject = function
  */
 proto.viam.service.vision.v1.GetDetectionsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-detectionsList: jspb.Message.toObjectList(msg.getDetectionsList(),
+    detectionsList: jspb.Message.toObjectList(msg.getDetectionsList(),
     proto.viam.service.vision.v1.Detection.toObject, includeInstance)
   };
 
@@ -898,9 +892,9 @@ proto.viam.service.vision.v1.GetDetectionsFromCameraRequest.prototype.toObject =
  */
 proto.viam.service.vision.v1.GetDetectionsFromCameraRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-cameraName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    cameraName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1116,7 +1110,7 @@ proto.viam.service.vision.v1.GetDetectionsFromCameraResponse.prototype.toObject 
  */
 proto.viam.service.vision.v1.GetDetectionsFromCameraResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-detectionsList: jspb.Message.toObjectList(msg.getDetectionsList(),
+    detectionsList: jspb.Message.toObjectList(msg.getDetectionsList(),
     proto.viam.service.vision.v1.Detection.toObject, includeInstance)
   };
 
@@ -1269,12 +1263,12 @@ proto.viam.service.vision.v1.Detection.prototype.toObject = function(opt_include
  */
 proto.viam.service.vision.v1.Detection.toObject = function(includeInstance, msg) {
   var f, obj = {
-xMin: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
-yMin: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
-xMax: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
-yMax: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
-confidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-className: jspb.Message.getFieldWithDefault(msg, 6, "")
+    xMin: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    yMin: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    xMax: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    yMax: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    confidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+    className: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -1621,13 +1615,13 @@ proto.viam.service.vision.v1.GetClassificationsRequest.prototype.toObject = func
  */
 proto.viam.service.vision.v1.GetClassificationsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-image: msg.getImage_asB64(),
-width: jspb.Message.getFieldWithDefault(msg, 3, 0),
-height: jspb.Message.getFieldWithDefault(msg, 4, 0),
-mimeType: jspb.Message.getFieldWithDefault(msg, 5, ""),
-n: jspb.Message.getFieldWithDefault(msg, 6, 0),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    image: msg.getImage_asB64(),
+    width: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    height: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    mimeType: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    n: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1983,7 +1977,7 @@ proto.viam.service.vision.v1.GetClassificationsResponse.prototype.toObject = fun
  */
 proto.viam.service.vision.v1.GetClassificationsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-classificationsList: jspb.Message.toObjectList(msg.getClassificationsList(),
+    classificationsList: jspb.Message.toObjectList(msg.getClassificationsList(),
     proto.viam.service.vision.v1.Classification.toObject, includeInstance)
   };
 
@@ -2136,10 +2130,10 @@ proto.viam.service.vision.v1.GetClassificationsFromCameraRequest.prototype.toObj
  */
 proto.viam.service.vision.v1.GetClassificationsFromCameraRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-cameraName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-n: jspb.Message.getFieldWithDefault(msg, 3, 0),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    cameraName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    n: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2384,7 +2378,7 @@ proto.viam.service.vision.v1.GetClassificationsFromCameraResponse.prototype.toOb
  */
 proto.viam.service.vision.v1.GetClassificationsFromCameraResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-classificationsList: jspb.Message.toObjectList(msg.getClassificationsList(),
+    classificationsList: jspb.Message.toObjectList(msg.getClassificationsList(),
     proto.viam.service.vision.v1.Classification.toObject, includeInstance)
   };
 
@@ -2537,8 +2531,8 @@ proto.viam.service.vision.v1.Classification.prototype.toObject = function(opt_in
  */
 proto.viam.service.vision.v1.Classification.toObject = function(includeInstance, msg) {
   var f, obj = {
-className: jspb.Message.getFieldWithDefault(msg, 1, ""),
-confidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+    className: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    confidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -2697,10 +2691,10 @@ proto.viam.service.vision.v1.GetObjectPointCloudsRequest.prototype.toObject = fu
  */
 proto.viam.service.vision.v1.GetObjectPointCloudsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-cameraName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-mimeType: jspb.Message.getFieldWithDefault(msg, 3, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    cameraName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    mimeType: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2945,8 +2939,8 @@ proto.viam.service.vision.v1.GetObjectPointCloudsResponse.prototype.toObject = f
  */
 proto.viam.service.vision.v1.GetObjectPointCloudsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-mimeType: jspb.Message.getFieldWithDefault(msg, 1, ""),
-objectsList: jspb.Message.toObjectList(msg.getObjectsList(),
+    mimeType: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    objectsList: jspb.Message.toObjectList(msg.getObjectsList(),
     common_v1_common_pb.PointCloudObject.toObject, includeInstance)
   };
 
@@ -3128,8 +3122,8 @@ proto.viam.service.vision.v1.GetPropertiesRequest.prototype.toObject = function(
  */
 proto.viam.service.vision.v1.GetPropertiesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3309,13 +3303,13 @@ proto.viam.service.vision.v1.CaptureAllFromCameraRequest.prototype.toObject = fu
  */
 proto.viam.service.vision.v1.CaptureAllFromCameraRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-cameraName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-returnImage: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-returnClassifications: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-returnDetections: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-returnObjectPointClouds: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    cameraName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    returnImage: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    returnClassifications: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    returnDetections: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    returnObjectPointClouds: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3647,14 +3641,14 @@ proto.viam.service.vision.v1.CaptureAllFromCameraResponse.prototype.toObject = f
  */
 proto.viam.service.vision.v1.CaptureAllFromCameraResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-image: (f = msg.getImage()) && component_camera_v1_camera_pb.Image.toObject(includeInstance, f),
-detectionsList: jspb.Message.toObjectList(msg.getDetectionsList(),
+    image: (f = msg.getImage()) && component_camera_v1_camera_pb.Image.toObject(includeInstance, f),
+    detectionsList: jspb.Message.toObjectList(msg.getDetectionsList(),
     proto.viam.service.vision.v1.Detection.toObject, includeInstance),
-classificationsList: jspb.Message.toObjectList(msg.getClassificationsList(),
+    classificationsList: jspb.Message.toObjectList(msg.getClassificationsList(),
     proto.viam.service.vision.v1.Classification.toObject, includeInstance),
-objectsList: jspb.Message.toObjectList(msg.getObjectsList(),
+    objectsList: jspb.Message.toObjectList(msg.getObjectsList(),
     common_v1_common_pb.PointCloudObject.toObject, includeInstance),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4008,9 +4002,9 @@ proto.viam.service.vision.v1.GetPropertiesResponse.prototype.toObject = function
  */
 proto.viam.service.vision.v1.GetPropertiesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-classificationsSupported: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-detectionsSupported: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-objectPointCloudsSupported: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    classificationsSupported: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    detectionsSupported: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    objectPointCloudsSupported: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {

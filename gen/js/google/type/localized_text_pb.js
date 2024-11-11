@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 goog.exportSymbol('proto.google.type.LocalizedText', null, global);
 /**
@@ -75,8 +69,8 @@ proto.google.type.LocalizedText.prototype.toObject = function(opt_includeInstanc
  */
 proto.google.type.LocalizedText.toObject = function(includeInstance, msg) {
   var f, obj = {
-text: jspb.Message.getFieldWithDefault(msg, 1, ""),
-languageCode: jspb.Message.getFieldWithDefault(msg, 2, "")
+    text: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    languageCode: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -169,8 +163,8 @@ proto.viam.service.sensors.v1.GetSensorsRequest.prototype.toObject = function(op
  */
 proto.viam.service.sensors.v1.GetSensorsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -357,7 +351,7 @@ proto.viam.service.sensors.v1.GetSensorsResponse.prototype.toObject = function(o
  */
 proto.viam.service.sensors.v1.GetSensorsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-sensorNamesList: jspb.Message.toObjectList(msg.getSensorNamesList(),
+    sensorNamesList: jspb.Message.toObjectList(msg.getSensorNamesList(),
     common_v1_common_pb.ResourceName.toObject, includeInstance)
   };
 
@@ -517,10 +511,10 @@ proto.viam.service.sensors.v1.GetReadingsRequest.prototype.toObject = function(o
  */
 proto.viam.service.sensors.v1.GetReadingsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-sensorNamesList: jspb.Message.toObjectList(msg.getSensorNamesList(),
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    sensorNamesList: jspb.Message.toObjectList(msg.getSensorNamesList(),
     common_v1_common_pb.ResourceName.toObject, includeInstance),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -751,8 +745,8 @@ proto.viam.service.sensors.v1.Readings.prototype.toObject = function(opt_include
  */
 proto.viam.service.sensors.v1.Readings.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: (f = msg.getName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-readingsMap: (f = msg.getReadingsMap()) ? f.toObject(includeInstance, proto.google.protobuf.Value.toObject) : []
+    name: (f = msg.getName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    readingsMap: (f = msg.getReadingsMap()) ? f.toObject(includeInstance, proto.google.protobuf.Value.toObject) : []
   };
 
   if (includeInstance) {
@@ -900,8 +894,7 @@ proto.viam.service.sensors.v1.Readings.prototype.getReadingsMap = function(opt_n
  */
 proto.viam.service.sensors.v1.Readings.prototype.clearReadingsMap = function() {
   this.getReadingsMap().clear();
-  return this;
-};
+  return this;};
 
 
 
@@ -943,7 +936,7 @@ proto.viam.service.sensors.v1.GetReadingsResponse.prototype.toObject = function(
  */
 proto.viam.service.sensors.v1.GetReadingsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-readingsList: jspb.Message.toObjectList(msg.getReadingsList(),
+    readingsList: jspb.Message.toObjectList(msg.getReadingsList(),
     proto.viam.service.sensors.v1.Readings.toObject, includeInstance)
   };
 

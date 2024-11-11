@@ -1005,48 +1005,6 @@ export namespace UpdateBillingServiceResponse {
   }
 }
 
-export class GetBillingServiceRequest extends jspb.Message {
-  getOrgId(): string;
-  setOrgId(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetBillingServiceRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetBillingServiceRequest): GetBillingServiceRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetBillingServiceRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetBillingServiceRequest;
-  static deserializeBinaryFromReader(message: GetBillingServiceRequest, reader: jspb.BinaryReader): GetBillingServiceRequest;
-}
-
-export namespace GetBillingServiceRequest {
-  export type AsObject = {
-    orgId: string,
-  }
-}
-
-export class GetBillingServiceResponse extends jspb.Message {
-  hasBillingAddress(): boolean;
-  clearBillingAddress(): void;
-  getBillingAddress(): BillingAddress | undefined;
-  setBillingAddress(value?: BillingAddress): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetBillingServiceResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetBillingServiceResponse): GetBillingServiceResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetBillingServiceResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetBillingServiceResponse;
-  static deserializeBinaryFromReader(message: GetBillingServiceResponse, reader: jspb.BinaryReader): GetBillingServiceResponse;
-}
-
-export namespace GetBillingServiceResponse {
-  export type AsObject = {
-    billingAddress?: BillingAddress.AsObject,
-  }
-}
-
 export class DisableBillingServiceRequest extends jspb.Message {
   getOrgId(): string;
   setOrgId(value: string): void;

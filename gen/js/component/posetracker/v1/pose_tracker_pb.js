@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -110,9 +104,9 @@ proto.viam.component.posetracker.v1.GetPosesRequest.prototype.toObject = functio
  */
 proto.viam.component.posetracker.v1.GetPosesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-bodyNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    bodyNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -340,7 +334,7 @@ proto.viam.component.posetracker.v1.GetPosesResponse.prototype.toObject = functi
  */
 proto.viam.component.posetracker.v1.GetPosesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-bodyPosesMap: (f = msg.getBodyPosesMap()) ? f.toObject(includeInstance, proto.viam.common.v1.PoseInFrame.toObject) : []
+    bodyPosesMap: (f = msg.getBodyPosesMap()) ? f.toObject(includeInstance, proto.viam.common.v1.PoseInFrame.toObject) : []
   };
 
   if (includeInstance) {
@@ -438,8 +432,7 @@ proto.viam.component.posetracker.v1.GetPosesResponse.prototype.getBodyPosesMap =
  */
 proto.viam.component.posetracker.v1.GetPosesResponse.prototype.clearBodyPosesMap = function() {
   this.getBodyPosesMap().clear();
-  return this;
-};
+  return this;};
 
 
 goog.object.extend(exports, proto.viam.component.posetracker.v1);

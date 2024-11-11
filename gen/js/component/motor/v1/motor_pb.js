@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -521,9 +515,9 @@ proto.viam.component.motor.v1.SetPowerRequest.prototype.toObject = function(opt_
  */
 proto.viam.component.motor.v1.SetPowerRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-powerPct: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    powerPct: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -833,10 +827,10 @@ proto.viam.component.motor.v1.GoForRequest.prototype.toObject = function(opt_inc
  */
 proto.viam.component.motor.v1.GoForRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-rpm: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-revolutions: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    rpm: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    revolutions: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1175,10 +1169,10 @@ proto.viam.component.motor.v1.GoToRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.component.motor.v1.GoToRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-rpm: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-positionRevolutions: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    rpm: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    positionRevolutions: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1517,9 +1511,9 @@ proto.viam.component.motor.v1.SetRPMRequest.prototype.toObject = function(opt_in
  */
 proto.viam.component.motor.v1.SetRPMRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-rpm: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    rpm: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1829,9 +1823,9 @@ proto.viam.component.motor.v1.ResetZeroPositionRequest.prototype.toObject = func
  */
 proto.viam.component.motor.v1.ResetZeroPositionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-offset: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    offset: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2141,8 +2135,8 @@ proto.viam.component.motor.v1.GetPositionRequest.prototype.toObject = function(o
  */
 proto.viam.component.motor.v1.GetPositionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2322,7 +2316,7 @@ proto.viam.component.motor.v1.GetPositionResponse.prototype.toObject = function(
  */
 proto.viam.component.motor.v1.GetPositionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-position: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
+    position: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
   };
 
   if (includeInstance) {
@@ -2452,8 +2446,8 @@ proto.viam.component.motor.v1.StopRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.component.motor.v1.StopRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2734,8 +2728,8 @@ proto.viam.component.motor.v1.IsPoweredRequest.prototype.toObject = function(opt
  */
 proto.viam.component.motor.v1.IsPoweredRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2915,8 +2909,8 @@ proto.viam.component.motor.v1.IsPoweredResponse.prototype.toObject = function(op
  */
 proto.viam.component.motor.v1.IsPoweredResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-isOn: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-powerPct: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+    isOn: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    powerPct: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -3075,8 +3069,8 @@ proto.viam.component.motor.v1.GetPropertiesRequest.prototype.toObject = function
  */
 proto.viam.component.motor.v1.GetPropertiesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3256,7 +3250,7 @@ proto.viam.component.motor.v1.GetPropertiesResponse.prototype.toObject = functio
  */
 proto.viam.component.motor.v1.GetPropertiesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-positionReporting: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+    positionReporting: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -3386,9 +3380,9 @@ proto.viam.component.motor.v1.Status.prototype.toObject = function(opt_includeIn
  */
 proto.viam.component.motor.v1.Status.toObject = function(includeInstance, msg) {
   var f, obj = {
-isPowered: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-position: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+    isPowered: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    position: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -3576,7 +3570,7 @@ proto.viam.component.motor.v1.IsMovingRequest.prototype.toObject = function(opt_
  */
 proto.viam.component.motor.v1.IsMovingRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -3706,7 +3700,7 @@ proto.viam.component.motor.v1.IsMovingResponse.prototype.toObject = function(opt
  */
 proto.viam.component.motor.v1.IsMovingResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+    isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {

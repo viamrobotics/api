@@ -166,15 +166,6 @@ type AppServiceUpdateBillingService = {
   readonly responseType: typeof app_v1_app_pb.UpdateBillingServiceResponse;
 };
 
-type AppServiceGetBillingService = {
-  readonly methodName: string;
-  readonly service: typeof AppService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.GetBillingServiceRequest;
-  readonly responseType: typeof app_v1_app_pb.GetBillingServiceResponse;
-};
-
 type AppServiceOrganizationSetSupportEmail = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -735,7 +726,6 @@ export class AppService {
   static readonly EnableBillingService: AppServiceEnableBillingService;
   static readonly DisableBillingService: AppServiceDisableBillingService;
   static readonly UpdateBillingService: AppServiceUpdateBillingService;
-  static readonly GetBillingService: AppServiceGetBillingService;
   static readonly OrganizationSetSupportEmail: AppServiceOrganizationSetSupportEmail;
   static readonly OrganizationGetSupportEmail: AppServiceOrganizationGetSupportEmail;
   static readonly CreateLocation: AppServiceCreateLocation;
@@ -991,15 +981,6 @@ export class AppServiceClient {
   updateBillingService(
     requestMessage: app_v1_app_pb.UpdateBillingServiceRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateBillingServiceResponse|null) => void
-  ): UnaryResponse;
-  getBillingService(
-    requestMessage: app_v1_app_pb.GetBillingServiceRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetBillingServiceResponse|null) => void
-  ): UnaryResponse;
-  getBillingService(
-    requestMessage: app_v1_app_pb.GetBillingServiceRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetBillingServiceResponse|null) => void
   ): UnaryResponse;
   organizationSetSupportEmail(
     requestMessage: app_v1_app_pb.OrganizationSetSupportEmailRequest,
