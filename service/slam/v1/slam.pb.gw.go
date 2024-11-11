@@ -15,7 +15,7 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
-	"go.viam.com/api/common/v1"
+	v1_0 "go.viam.com/api/common/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -220,7 +220,7 @@ var (
 )
 
 func request_SLAMService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client SLAMServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.DoCommandRequest
+	var protoReq v1_0.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -253,7 +253,7 @@ func request_SLAMService_DoCommand_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func local_request_SLAMService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, server SLAMServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.DoCommandRequest
+	var protoReq v1_0.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -386,21 +386,21 @@ func RegisterSLAMServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 // RegisterSLAMServiceHandlerFromEndpoint is same as RegisterSLAMServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterSLAMServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.NewClient(endpoint, opts...)
+	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()

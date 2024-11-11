@@ -16,7 +16,9 @@ service MotorService {
   // direction and positive values a forward direction
   rpc SetPower(SetPowerRequest) returns (SetPowerResponse) {
     option (common.v1.safety_heartbeat_monitored) = true;
-    option (google.api.http) = {put: "/viam/api/v1/component/motor/{name}/power"};
+    option (google.api.http) = {
+      put: "/viam/api/v1/component/motor/{name}/power"
+    };
   }
 
   // GoFor instructs the motor to turn at a specified speed, which is expressed in RPM,
@@ -26,7 +28,9 @@ service MotorService {
   // Deprecated: If revolutions is 0, this will run the motor at rpm indefinitely.
   rpc GoFor(GoForRequest) returns (GoForResponse) {
     option (common.v1.safety_heartbeat_monitored) = true;
-    option (google.api.http) = {put: "/viam/api/v1/component/motor/{name}/go_for"};
+    option (google.api.http) = {
+      put: "/viam/api/v1/component/motor/{name}/go_for"
+    };
   }
 
   // GoTo requests the robot's motor to move to a specific position that
@@ -34,55 +38,75 @@ service MotorService {
   // This method will return an error if position reporting is not supported
   rpc GoTo(GoToRequest) returns (GoToResponse) {
     option (common.v1.safety_heartbeat_monitored) = true;
-    option (google.api.http) = {put: "/viam/api/v1/component/motor/{name}/go_to"};
+    option (google.api.http) = {
+      put: "/viam/api/v1/component/motor/{name}/go_to"
+    };
   }
 
   // SetRPM instructs the motor to move at the specified RPM indefinitely.
   rpc SetRPM(SetRPMRequest) returns (SetRPMResponse) {
     option (common.v1.safety_heartbeat_monitored) = true;
-    option (google.api.http) = {put: "/viam/api/v1/component/motor/{name}/set_rpm"};
+    option (google.api.http) = {
+      put: "/viam/api/v1/component/motor/{name}/set_rpm"
+    };
   }
 
   // ResetZeroPosition sets the current position of the motor as the new zero position
   // This method will return an error if position reporting is not supported
   rpc ResetZeroPosition(ResetZeroPositionRequest) returns (ResetZeroPositionResponse) {
-    option (google.api.http) = {put: "/viam/api/v1/component/motor/{name}/zero"};
+    option (google.api.http) = {
+      put: "/viam/api/v1/component/motor/{name}/zero"
+    };
   }
 
   // Position reports the position of the robot's motor relative to its zero position
   // This method will return an error if position reporting is not supported
   rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/component/motor/{name}/position"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/motor/{name}/position"
+    };
   }
 
   // GetProperties returns a message of booleans indicating which optional features the robot's motor supports
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/component/motor/{name}/features"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/motor/{name}/features"
+    };
   }
 
   // Stop turns the robot's motor off
   rpc Stop(StopRequest) returns (StopResponse) {
-    option (google.api.http) = {put: "/viam/api/v1/component/motor/{name}/stop"};
+    option (google.api.http) = {
+      put: "/viam/api/v1/component/motor/{name}/stop"
+    };
   }
 
   // IsPowered returns true if the robot's motor is on
   rpc IsPowered(IsPoweredRequest) returns (IsPoweredResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/component/motor/{name}/powered"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/motor/{name}/powered"
+    };
   }
 
   // IsMoving reports if a component is in motion
   rpc IsMoving(IsMovingRequest) returns (IsMovingResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/component/motor/{name}/is_moving"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/motor/{name}/is_moving"
+    };
   }
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/component/motor/{name}/do_command"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/motor/{name}/do_command"
+    };
   }
 
   // GetGeometries returns the geometries of the component in their current configuration
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/component/motor/{name}/geometries"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/motor/{name}/geometries"
+    };
   }
 }
 

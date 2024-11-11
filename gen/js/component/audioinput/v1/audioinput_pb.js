@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -211,8 +217,8 @@ proto.viam.component.audioinput.v1.RecordRequest.prototype.toObject = function(o
  */
 proto.viam.component.audioinput.v1.RecordRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    duration: (f = msg.getDuration()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+duration: (f = msg.getDuration()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -392,9 +398,9 @@ proto.viam.component.audioinput.v1.AudioChunkInfo.prototype.toObject = function(
  */
 proto.viam.component.audioinput.v1.AudioChunkInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sampleFormat: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    channels: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    samplingRate: jspb.Message.getFieldWithDefault(msg, 3, 0)
+sampleFormat: jspb.Message.getFieldWithDefault(msg, 1, 0),
+channels: jspb.Message.getFieldWithDefault(msg, 2, 0),
+samplingRate: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -582,8 +588,8 @@ proto.viam.component.audioinput.v1.AudioChunk.prototype.toObject = function(opt_
  */
 proto.viam.component.audioinput.v1.AudioChunk.toObject = function(includeInstance, msg) {
   var f, obj = {
-    data: msg.getData_asB64(),
-    length: jspb.Message.getFieldWithDefault(msg, 2, 0)
+data: msg.getData_asB64(),
+length: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -766,8 +772,8 @@ proto.viam.component.audioinput.v1.ChunksRequest.prototype.toObject = function(o
  */
 proto.viam.component.audioinput.v1.ChunksRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sampleFormat: jspb.Message.getFieldWithDefault(msg, 2, 0)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sampleFormat: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -952,8 +958,8 @@ proto.viam.component.audioinput.v1.ChunksResponse.prototype.toObject = function(
  */
 proto.viam.component.audioinput.v1.ChunksResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    info: (f = msg.getInfo()) && proto.viam.component.audioinput.v1.AudioChunkInfo.toObject(includeInstance, f),
-    chunk: (f = msg.getChunk()) && proto.viam.component.audioinput.v1.AudioChunk.toObject(includeInstance, f)
+info: (f = msg.getInfo()) && proto.viam.component.audioinput.v1.AudioChunkInfo.toObject(includeInstance, f),
+chunk: (f = msg.getChunk()) && proto.viam.component.audioinput.v1.AudioChunk.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1154,7 +1160,7 @@ proto.viam.component.audioinput.v1.PropertiesRequest.prototype.toObject = functi
  */
 proto.viam.component.audioinput.v1.PropertiesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1284,13 +1290,13 @@ proto.viam.component.audioinput.v1.PropertiesResponse.prototype.toObject = funct
  */
 proto.viam.component.audioinput.v1.PropertiesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    channelCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    latency: (f = msg.getLatency()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
-    sampleRate: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    sampleSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    isBigEndian: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    isFloat: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    isInterleaved: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
+channelCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+latency: (f = msg.getLatency()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+sampleRate: jspb.Message.getFieldWithDefault(msg, 3, 0),
+sampleSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
+isBigEndian: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+isFloat: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+isInterleaved: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
   };
 
   if (includeInstance) {

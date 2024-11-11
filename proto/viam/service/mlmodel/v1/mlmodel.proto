@@ -13,11 +13,15 @@ option java_package = "com.viam.service.mlmodel.v1";
 service MLModelService {
   // Infer takes an already ordered input tensor as a map, makes an inference on the model, and returns an output data map.
   rpc Infer(InferRequest) returns (InferResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/mlmodel/{name}/infer"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/mlmodel/{name}/infer"
+    };
   }
   // Metadata returns the metadata associated with the ML model.
   rpc Metadata(MetadataRequest) returns (MetadataResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/service/mlmodel/{name}/metadata"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/mlmodel/{name}/metadata"
+    };
   }
 }
 

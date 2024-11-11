@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 goog.exportSymbol('proto.viam.app.v1.AcceptLegalRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.AcceptLegalResponse', null, global);
@@ -368,7 +374,7 @@ proto.viam.app.v1.IsLegalAcceptedResponse.prototype.toObject = function(opt_incl
  */
 proto.viam.app.v1.IsLegalAcceptedResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    acceptedLegal: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+acceptedLegal: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -707,11 +713,11 @@ proto.viam.app.v1.RegisterAuthApplicationRequest.prototype.toObject = function(o
  */
 proto.viam.app.v1.RegisterAuthApplicationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    applicationName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    orgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    originUrisList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    logoutUri: jspb.Message.getFieldWithDefault(msg, 5, "")
+applicationName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+orgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+originUrisList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+logoutUri: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -995,9 +1001,9 @@ proto.viam.app.v1.RegisterAuthApplicationResponse.prototype.toObject = function(
  */
 proto.viam.app.v1.RegisterAuthApplicationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    applicationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    applicationName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    clientSecret: jspb.Message.getFieldWithDefault(msg, 3, "")
+applicationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+applicationName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+clientSecret: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1192,12 +1198,12 @@ proto.viam.app.v1.UpdateAuthApplicationRequest.prototype.toObject = function(opt
  */
 proto.viam.app.v1.UpdateAuthApplicationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    applicationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    applicationName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    originUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    logoutUri: jspb.Message.getFieldWithDefault(msg, 6, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+applicationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+applicationName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+originUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+logoutUri: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -1510,8 +1516,8 @@ proto.viam.app.v1.UpdateAuthApplicationResponse.prototype.toObject = function(op
  */
 proto.viam.app.v1.UpdateAuthApplicationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    applicationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    applicationName: jspb.Message.getFieldWithDefault(msg, 2, "")
+applicationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+applicationName: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1670,8 +1676,8 @@ proto.viam.app.v1.GetAuthApplicationRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.GetAuthApplicationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    applicationId: jspb.Message.getFieldWithDefault(msg, 2, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+applicationId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1837,12 +1843,12 @@ proto.viam.app.v1.GetAuthApplicationResponse.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.GetAuthApplicationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    applicationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    applicationName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    clientSecret: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    originUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    logoutUri: jspb.Message.getFieldWithDefault(msg, 6, "")
+applicationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+applicationName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+clientSecret: jspb.Message.getFieldWithDefault(msg, 3, ""),
+originUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+logoutUri: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {

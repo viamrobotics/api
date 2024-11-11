@@ -13,14 +13,18 @@ option java_package = "com.viam.service.motion.v1";
 // A MotionService declares the gRPC contract for a motion service
 service MotionService {
   rpc Move(MoveRequest) returns (MoveResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/motion/{name}/move"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/motion/{name}/move"
+    };
   }
 
   // Generate a plan and move a component to a specific pose
   // with respect to the SLAM map's origin.
   // May replan to avoid obstacles
   rpc MoveOnMap(MoveOnMapRequest) returns (MoveOnMapResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/motion/{name}/move_on_map"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/motion/{name}/move_on_map"
+    };
   }
 
   // Generate and begin executing an execution to move a component
@@ -28,16 +32,22 @@ service MotionService {
   // May replan to avoid obstacles & account for location drift.
   // Creates a new plan upon replanning.
   rpc MoveOnGlobe(MoveOnGlobeRequest) returns (MoveOnGlobeResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/motion/{name}/move_on_globe"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/motion/{name}/move_on_globe"
+    };
   }
 
   rpc GetPose(GetPoseRequest) returns (GetPoseResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/service/motion/{name}/pose"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/motion/{name}/pose"
+    };
   }
 
   // Stops a Plan
   rpc StopPlan(StopPlanRequest) returns (StopPlanResponse) {
-    option (google.api.http) = {put: "/viam/api/v1/service/motion/{name}/stop_plan"};
+    option (google.api.http) = {
+      put: "/viam/api/v1/service/motion/{name}/stop_plan"
+    };
   }
 
   // Returns the status of plans created by requests to move components
@@ -45,7 +55,9 @@ service MotionService {
   // within the a 24HR TTL OR until the robot reinitializes.
   // This currently only returns plans for MoveOnGlobe and MoveOnMap.
   rpc ListPlanStatuses(ListPlanStatusesRequest) returns (ListPlanStatusesResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/service/motion/{name}/list_plan_statuses"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/motion/{name}/list_plan_statuses"
+    };
   }
 
   // Returns the plan(s) & state history of the most recent execution to move a
@@ -56,12 +68,16 @@ service MotionService {
   // Replans share the execution_id of the previously executing plan.
   // This currently only returns plans for MoveOnGlobe and MoveOnMap.
   rpc GetPlan(GetPlanRequest) returns (GetPlanResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/service/motion/{name}/get_plan"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/service/motion/{name}/get_plan"
+    };
   }
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/motion/{name}/do_command"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/motion/{name}/do_command"
+    };
   }
 }
 

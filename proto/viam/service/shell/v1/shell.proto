@@ -37,7 +37,9 @@ service ShellService {
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/shell/{name}/do_command"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/shell/{name}/do_command"
+    };
   }
 }
 

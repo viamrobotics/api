@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
@@ -291,10 +297,10 @@ proto.viam.app.dataset.v1.Dataset.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.app.dataset.v1.Dataset.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    timeCreated: (f = msg.getTimeCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+organizationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+timeCreated: (f = msg.getTimeCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -532,8 +538,8 @@ proto.viam.app.dataset.v1.CreateDatasetRequest.prototype.toObject = function(opt
  */
 proto.viam.app.dataset.v1.CreateDatasetRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 2, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+organizationId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -692,7 +698,7 @@ proto.viam.app.dataset.v1.CreateDatasetResponse.prototype.toObject = function(op
  */
 proto.viam.app.dataset.v1.CreateDatasetResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -822,7 +828,7 @@ proto.viam.app.dataset.v1.DeleteDatasetRequest.prototype.toObject = function(opt
  */
 proto.viam.app.dataset.v1.DeleteDatasetRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1053,8 +1059,8 @@ proto.viam.app.dataset.v1.RenameDatasetRequest.prototype.toObject = function(opt
  */
 proto.viam.app.dataset.v1.RenameDatasetRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1314,7 +1320,7 @@ proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest.prototype.toObject
  */
 proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1451,7 +1457,7 @@ proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDResponse.prototype.toObjec
  */
 proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    datasetsList: jspb.Message.toObjectList(msg.getDatasetsList(),
+datasetsList: jspb.Message.toObjectList(msg.getDatasetsList(),
     proto.viam.app.dataset.v1.Dataset.toObject, includeInstance)
   };
 
@@ -1611,7 +1617,7 @@ proto.viam.app.dataset.v1.ListDatasetsByIDsRequest.prototype.toObject = function
  */
 proto.viam.app.dataset.v1.ListDatasetsByIDsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    idsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+idsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1767,7 +1773,7 @@ proto.viam.app.dataset.v1.ListDatasetsByIDsResponse.prototype.toObject = functio
  */
 proto.viam.app.dataset.v1.ListDatasetsByIDsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    datasetsList: jspb.Message.toObjectList(msg.getDatasetsList(),
+datasetsList: jspb.Message.toObjectList(msg.getDatasetsList(),
     proto.viam.app.dataset.v1.Dataset.toObject, includeInstance)
   };
 
