@@ -14,105 +14,147 @@ option java_package = "com.viam.robot.v1";
 // A RobotService encompasses all functionality of some robot comprised of parts, local and remote.
 service RobotService {
   rpc GetOperations(GetOperationsRequest) returns (GetOperationsResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/operations/list"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/operations/list"
+    };
   }
 
   rpc GetSessions(GetSessionsRequest) returns (GetSessionsResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/sessions/list"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/sessions/list"
+    };
   }
 
   // ResourceNames returns the list of all resources.
   rpc ResourceNames(ResourceNamesRequest) returns (ResourceNamesResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/resources/list"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/resources/list"
+    };
   }
 
   // ResourceRPCSubtypes returns the list of all resource types.
   rpc ResourceRPCSubtypes(ResourceRPCSubtypesRequest) returns (ResourceRPCSubtypesResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/resource_rpc_subtypes/list"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/resource_rpc_subtypes/list"
+    };
   }
 
   rpc CancelOperation(CancelOperationRequest) returns (CancelOperationResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/operations/cancel"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/operations/cancel"
+    };
   }
 
   rpc BlockForOperation(BlockForOperationRequest) returns (BlockForOperationResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/operations/block"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/operations/block"
+    };
   }
 
   // DiscoverComponents returns the list of discovered component configurations.
   rpc DiscoverComponents(DiscoverComponentsRequest) returns (DiscoverComponentsResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/discovery/components"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/discovery/components"
+    };
   }
 
   rpc FrameSystemConfig(FrameSystemConfigRequest) returns (FrameSystemConfigResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/frame_system/config"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/frame_system/config"
+    };
   }
 
   rpc TransformPose(TransformPoseRequest) returns (TransformPoseResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/frame_system/transform_pose"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/frame_system/transform_pose"
+    };
   }
 
   rpc TransformPCD(TransformPCDRequest) returns (TransformPCDResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/frame_system/transform_pcd"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/frame_system/transform_pcd"
+    };
   }
 
   // GetStatus returns the list of all statuses requested. An empty request signifies all resources.
   rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/status"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/status"
+    };
     option deprecated = true;
   }
 
   // StreamStatus periodically sends the status of all statuses requested. An empty request signifies all resources.
   rpc StreamStatus(StreamStatusRequest) returns (stream StreamStatusResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/status/stream"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/status/stream"
+    };
     option deprecated = true;
   }
 
   // StopAll will stop all current and outstanding operations for the robot and stops all actuators and movement
   rpc StopAll(StopAllRequest) returns (StopAllResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/stop_all"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/stop_all"
+    };
   }
 
   // StartSession creates a new session that expects at least one heartbeat within the returned window.
   // If the window lapses, any resources that have safety heart monitored methods, where this session was
   // the last caller on the resource, will be stopped.
   rpc StartSession(StartSessionRequest) returns (StartSessionResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/sessions"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/sessions"
+    };
   }
 
   // SendSessionHeartbeat sends a heartbeat to the given session. If the session has expired, a
   // SESSION_EXPIRED error will be returned.
   rpc SendSessionHeartbeat(SendSessionHeartbeatRequest) returns (SendSessionHeartbeatResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/sessions/{id}/heartbeat"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/sessions/{id}/heartbeat"
+    };
   }
 
   // Log sends logs to be logged by this robot. Currently used for module logging.
   rpc Log(LogRequest) returns (LogResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/log"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/log"
+    };
   }
 
   // GetCloudMetadata returns app-related information about the robot.
   rpc GetCloudMetadata(GetCloudMetadataRequest) returns (GetCloudMetadataResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/cloud_metadata"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/cloud_metadata"
+    };
   }
 
   rpc RestartModule(RestartModuleRequest) returns (RestartModuleResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/restart_module"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/restart_module"
+    };
   }
 
   // Shutdown shuts down the robot.
   rpc Shutdown(ShutdownRequest) returns (ShutdownResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/shutdown"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/shutdown"
+    };
   }
 
   // GetMachineStatus returns the current status of the robot.
   rpc GetMachineStatus(GetMachineStatusRequest) returns (GetMachineStatusResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/machine_status"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/machine_status"
+    };
   }
 
   // GetVersion returns version information about the robot.
   rpc GetVersion(GetVersionRequest) returns (GetVersionResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/version"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/version"
+    };
   }
 }
 

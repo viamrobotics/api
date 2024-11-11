@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 goog.exportSymbol('proto.google.type.PostalAddress', null, global);
 /**
@@ -76,17 +82,17 @@ proto.google.type.PostalAddress.prototype.toObject = function(opt_includeInstanc
  */
 proto.google.type.PostalAddress.toObject = function(includeInstance, msg) {
   var f, obj = {
-    revision: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    regionCode: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    languageCode: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    postalCode: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sortingCode: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    administrativeArea: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    locality: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    sublocality: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    addressLinesList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
-    recipientsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
-    organization: jspb.Message.getFieldWithDefault(msg, 11, "")
+revision: jspb.Message.getFieldWithDefault(msg, 1, 0),
+regionCode: jspb.Message.getFieldWithDefault(msg, 2, ""),
+languageCode: jspb.Message.getFieldWithDefault(msg, 3, ""),
+postalCode: jspb.Message.getFieldWithDefault(msg, 4, ""),
+sortingCode: jspb.Message.getFieldWithDefault(msg, 5, ""),
+administrativeArea: jspb.Message.getFieldWithDefault(msg, 6, ""),
+locality: jspb.Message.getFieldWithDefault(msg, 7, ""),
+sublocality: jspb.Message.getFieldWithDefault(msg, 8, ""),
+addressLinesList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
+recipientsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
+organization: jspb.Message.getFieldWithDefault(msg, 11, "")
   };
 
   if (includeInstance) {

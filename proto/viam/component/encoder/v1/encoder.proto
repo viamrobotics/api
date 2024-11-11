@@ -13,26 +13,36 @@ service EncoderService {
   // Returns position of the encoder which can either be ticks since last
   // zeroing for an incremental encoder or degrees for an absolute encoder.
   rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/component/encoder/{name}/get_position"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/encoder/{name}/get_position"
+    };
   }
 
   rpc ResetPosition(ResetPositionRequest) returns (ResetPositionResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/component/encoder/{name}/reset_position"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/encoder/{name}/reset_position"
+    };
   }
 
   // Returns a list of all the methods that are
   // supported by a given robot.
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/component/encoder/{name}/get_properties"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/encoder/{name}/get_properties"
+    };
   }
 
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/component/encoder/{name}/do_command"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/component/encoder/{name}/do_command"
+    };
   }
 
   // GetGeometries returns the geometries of the component in their current configuration
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/component/encoder/{name}/geometries"};
+    option (google.api.http) = {
+      get: "/viam/api/v1/component/encoder/{name}/geometries"
+    };
   }
 }
 

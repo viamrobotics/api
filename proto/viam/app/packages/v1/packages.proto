@@ -11,25 +11,33 @@ option go_package = "go.viam.com/api/app/packages/v1";
 service PackageService {
   // CreatePackage uploads a package to the cloud
   rpc CreatePackage(stream CreatePackageRequest) returns (CreatePackageResponse) {
-    option (google.api.http) = {post: "/packages/v1/create"};
+    option (google.api.http) = {
+      post: "/packages/v1/create"
+    };
   }
 
   // DeletePackage removes the given package versions
   rpc DeletePackage(DeletePackageRequest) returns (DeletePackageResponse) {
-    option (google.api.http) = {delete: "/packages/v1/delete"};
+    option (google.api.http) = {
+      delete: "/packages/v1/delete"
+    };
   }
 
   // GetPackage returns the metadata for a requested package version. It also returns a URL
   // for downloading the package if one is requested.
   rpc GetPackage(GetPackageRequest) returns (GetPackageResponse) {
-    option (google.api.http) = {get: "/packages/v1/get"};
+    option (google.api.http) = {
+      get: "/packages/v1/get"
+    };
   }
 
   // ListPackages gets the metadata for the requested packages. Includes package name, version, and/or
   // type to filter beyond the required organization_id. ListPackages also returns URLs for
   // downloading each package if they are requested.
   rpc ListPackages(ListPackagesRequest) returns (ListPackagesResponse) {
-    option (google.api.http) = {get: "/packages/v1/list"};
+    option (google.api.http) = {
+      get: "/packages/v1/list"
+    };
   }
 }
 

@@ -15,7 +15,7 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
-	"go.viam.com/api/common/v1"
+	v1_0 "go.viam.com/api/common/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -36,7 +36,11 @@ func request_AudioInputService_Chunks_0(ctx context.Context, marshaler runtime.M
 	var protoReq ChunksRequest
 	var metadata runtime.ServerMetadata
 
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -180,7 +184,7 @@ var (
 )
 
 func request_AudioInputService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client AudioInputServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.DoCommandRequest
+	var protoReq v1_0.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -213,7 +217,7 @@ func request_AudioInputService_DoCommand_0(ctx context.Context, marshaler runtim
 }
 
 func local_request_AudioInputService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, server AudioInputServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.DoCommandRequest
+	var protoReq v1_0.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -250,7 +254,7 @@ var (
 )
 
 func request_AudioInputService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, client AudioInputServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.GetGeometriesRequest
+	var protoReq v1_0.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -283,7 +287,7 @@ func request_AudioInputService_GetGeometries_0(ctx context.Context, marshaler ru
 }
 
 func local_request_AudioInputService_GetGeometries_0(ctx context.Context, marshaler runtime.Marshaler, server AudioInputServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1.GetGeometriesRequest
+	var protoReq v1_0.GetGeometriesRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -434,21 +438,21 @@ func RegisterAudioInputServiceHandlerServer(ctx context.Context, mux *runtime.Se
 // RegisterAudioInputServiceHandlerFromEndpoint is same as RegisterAudioInputServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterAudioInputServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.NewClient(endpoint, opts...)
+	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()

@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 goog.exportSymbol('proto.google.type.PhoneNumber', null, global);
 goog.exportSymbol('proto.google.type.PhoneNumber.KindCase', null, global);
@@ -118,9 +124,9 @@ proto.google.type.PhoneNumber.prototype.toObject = function(opt_includeInstance)
  */
 proto.google.type.PhoneNumber.toObject = function(includeInstance, msg) {
   var f, obj = {
-    e164Number: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    shortCode: (f = msg.getShortCode()) && proto.google.type.PhoneNumber.ShortCode.toObject(includeInstance, f),
-    extension: jspb.Message.getFieldWithDefault(msg, 3, "")
+e164Number: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+shortCode: (f = msg.getShortCode()) && proto.google.type.PhoneNumber.ShortCode.toObject(includeInstance, f),
+extension: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -256,8 +262,8 @@ proto.google.type.PhoneNumber.ShortCode.prototype.toObject = function(opt_includ
  */
 proto.google.type.PhoneNumber.ShortCode.toObject = function(includeInstance, msg) {
   var f, obj = {
-    regionCode: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    number: jspb.Message.getFieldWithDefault(msg, 2, "")
+regionCode: jspb.Message.getFieldWithDefault(msg, 1, ""),
+number: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

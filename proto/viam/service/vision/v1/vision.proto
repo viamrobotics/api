@@ -14,43 +14,59 @@ option java_package = "com.viam.service.vision.v1";
 service VisionService {
   // GetDetectionsFromCamera will return a list of detections in the next image given a camera and a detector
   rpc GetDetectionsFromCamera(GetDetectionsFromCameraRequest) returns (GetDetectionsFromCameraResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/vision/{name}/camera_detections"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/vision/{name}/camera_detections"
+    };
   }
 
   // GetDetections will return a list of detections in the next image given the image bytes and a detector
   rpc GetDetections(GetDetectionsRequest) returns (GetDetectionsResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/vision/{name}/detections"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/vision/{name}/detections"
+    };
   }
 
   // GetClassificationsFromCamera will return a list of classifications in the next image given a camera and a classifier
   rpc GetClassificationsFromCamera(GetClassificationsFromCameraRequest) returns (GetClassificationsFromCameraResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/vision/{name}/camera_classifications"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/vision/{name}/camera_classifications"
+    };
   }
 
   // GetClassifications will return a list of classifications in the next image given the image bytes and a classifier
   rpc GetClassifications(GetClassificationsRequest) returns (GetClassificationsResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/vision/{name}/classifications"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/vision/{name}/classifications"
+    };
   }
 
   // GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying robot,
   // as well as the 3-vector center of each of the found objects.
   // A specific MIME type can be requested but may not necessarily be the same one returned.
   rpc GetObjectPointClouds(GetObjectPointCloudsRequest) returns (GetObjectPointCloudsResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/vision/{name}/object_point_clouds"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/vision/{name}/object_point_clouds"
+    };
   }
 
   // GetProperties will return the properties as booleans given the name of the vision service
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/vision/{name}/get_properties"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/vision/{name}/get_properties"
+    };
   }
 
   rpc CaptureAllFromCamera(CaptureAllFromCameraRequest) returns (CaptureAllFromCameraResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/vision/{name}/capture_all"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/vision/{name}/capture_all"
+    };
   }
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/vision/{name}/do_command"};
+    option (google.api.http) = {
+      post: "/viam/api/v1/service/vision/{name}/do_command"
+    };
   }
 }
 

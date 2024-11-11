@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -186,9 +192,9 @@ proto.viam.component.encoder.v1.GetPositionRequest.prototype.toObject = function
  */
 proto.viam.component.encoder.v1.GetPositionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    positionType: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+positionType: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -415,8 +421,8 @@ proto.viam.component.encoder.v1.GetPositionResponse.prototype.toObject = functio
  */
 proto.viam.component.encoder.v1.GetPositionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    value: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    positionType: jspb.Message.getFieldWithDefault(msg, 2, 0)
+value: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+positionType: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -575,8 +581,8 @@ proto.viam.component.encoder.v1.ResetPositionRequest.prototype.toObject = functi
  */
 proto.viam.component.encoder.v1.ResetPositionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -857,8 +863,8 @@ proto.viam.component.encoder.v1.GetPropertiesRequest.prototype.toObject = functi
  */
 proto.viam.component.encoder.v1.GetPropertiesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1038,8 +1044,8 @@ proto.viam.component.encoder.v1.GetPropertiesResponse.prototype.toObject = funct
  */
 proto.viam.component.encoder.v1.GetPropertiesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    ticksCountSupported: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    angleDegreesSupported: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+ticksCountSupported: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+angleDegreesSupported: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
