@@ -69,7 +69,7 @@ service AppService {
 
   rpc UpdateBillingService(UpdateBillingServiceRequest) returns (UpdateBillingServiceResponse);
 
-  rpc GetBillingService(UpdateBillingServiceRequest) returns (UpdateBillingServiceResponse);
+  rpc GetBillingServiceConfig(GetBillingServiceConfigRequest) returns (GetBillingServiceConfigResponse);
 
   rpc OrganizationSetSupportEmail(OrganizationSetSupportEmailRequest) returns (OrganizationSetSupportEmailResponse);
 
@@ -449,12 +449,15 @@ message UpdateBillingServiceRequest {
 
 message UpdateBillingServiceResponse {}
 
-message GetBillingServiceRequest {
+message GetBillingServiceConfigRequest {
   string org_id = 1;
 }
 
-message GetBillingServiceResponse {
+message GetBillingServiceConfigResponse {
   BillingAddress billing_address = 1;
+  string support_email = 2;
+  string logo_url = 3;
+  string billing_dashboard_url = 4;
 }
 
 message DisableBillingServiceRequest {
