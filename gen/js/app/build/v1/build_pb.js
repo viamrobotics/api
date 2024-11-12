@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
@@ -569,13 +563,13 @@ proto.viam.app.build.v1.StartBuildRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.app.build.v1.StartBuildRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-repo: jspb.Message.getFieldWithDefault(msg, 1, ""),
-ref: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
-platformsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-moduleId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-moduleVersion: jspb.Message.getFieldWithDefault(msg, 5, ""),
-token: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f,
-workdir: (f = jspb.Message.getField(msg, 7)) == null ? undefined : f
+    repo: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    ref: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    platformsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    moduleId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    moduleVersion: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    token: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    workdir: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -952,7 +946,7 @@ proto.viam.app.build.v1.StartBuildResponse.prototype.toObject = function(opt_inc
  */
 proto.viam.app.build.v1.StartBuildResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-buildId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    buildId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1082,8 +1076,8 @@ proto.viam.app.build.v1.GetLogsRequest.prototype.toObject = function(opt_include
  */
 proto.viam.app.build.v1.GetLogsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-buildId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-platform: jspb.Message.getFieldWithDefault(msg, 2, "")
+    buildId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    platform: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1242,8 +1236,8 @@ proto.viam.app.build.v1.GetLogsResponse.prototype.toObject = function(opt_includ
  */
 proto.viam.app.build.v1.GetLogsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-buildStep: jspb.Message.getFieldWithDefault(msg, 1, ""),
-data: jspb.Message.getFieldWithDefault(msg, 2, "")
+    buildStep: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    data: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1402,12 +1396,12 @@ proto.viam.app.build.v1.JobInfo.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.build.v1.JobInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-buildId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-platform: jspb.Message.getFieldWithDefault(msg, 2, ""),
-version: jspb.Message.getFieldWithDefault(msg, 3, ""),
-status: jspb.Message.getFieldWithDefault(msg, 4, 0),
-startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    buildId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    platform: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    version: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    status: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1724,9 +1718,9 @@ proto.viam.app.build.v1.ListJobsRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.app.build.v1.ListJobsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-maxJobsLength: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
-buildId: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f
+    moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    maxJobsLength: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    buildId: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1957,7 +1951,7 @@ proto.viam.app.build.v1.ListJobsResponse.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.build.v1.ListJobsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-jobsList: jspb.Message.toObjectList(msg.getJobsList(),
+    jobsList: jspb.Message.toObjectList(msg.getJobsList(),
     proto.viam.app.build.v1.JobInfo.toObject, includeInstance)
   };
 
@@ -2110,12 +2104,12 @@ proto.viam.app.build.v1.RepoLink.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.build.v1.RepoLink.toObject = function(includeInstance, msg) {
   var f, obj = {
-oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-orgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-namespace: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
-moduleName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-repo: jspb.Message.getFieldWithDefault(msg, 5, ""),
-viamUser: jspb.Message.getFieldWithDefault(msg, 6, "")
+    oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    orgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    namespace: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    moduleName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    repo: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    viamUser: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -2408,7 +2402,7 @@ proto.viam.app.build.v1.LinkRepoRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.app.build.v1.LinkRepoRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-link: (f = msg.getLink()) && proto.viam.app.build.v1.RepoLink.toObject(includeInstance, f)
+    link: (f = msg.getLink()) && proto.viam.app.build.v1.RepoLink.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2559,7 +2553,7 @@ proto.viam.app.build.v1.LinkRepoResponse.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.build.v1.LinkRepoResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-repoLinkId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    repoLinkId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2689,7 +2683,7 @@ proto.viam.app.build.v1.UnlinkRepoRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.app.build.v1.UnlinkRepoRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-repoLinkId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    repoLinkId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -3028,7 +3022,7 @@ proto.viam.app.build.v1.ListRepoLinksResponse.prototype.toObject = function(opt_
  */
 proto.viam.app.build.v1.ListRepoLinksResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-linksList: jspb.Message.toObjectList(msg.getLinksList(),
+    linksList: jspb.Message.toObjectList(msg.getLinksList(),
     proto.viam.app.build.v1.RepoLink.toObject, includeInstance)
   };
 
@@ -3289,10 +3283,10 @@ proto.viam.app.build.v1.AppLink.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.build.v1.AppLink.toObject = function(includeInstance, msg) {
   var f, obj = {
-oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-viamUser: jspb.Message.getFieldWithDefault(msg, 2, ""),
-externalUser: jspb.Message.getFieldWithDefault(msg, 3, ""),
-orgIdOrNsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+    oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    viamUser: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    externalUser: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    orgIdOrNsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -3535,7 +3529,7 @@ proto.viam.app.build.v1.ListAppLinksResponse.prototype.toObject = function(opt_i
  */
 proto.viam.app.build.v1.ListAppLinksResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-linksList: jspb.Message.toObjectList(msg.getLinksList(),
+    linksList: jspb.Message.toObjectList(msg.getLinksList(),
     proto.viam.app.build.v1.AppLink.toObject, includeInstance)
   };
 
@@ -3688,7 +3682,7 @@ proto.viam.app.build.v1.RemoveAppLinkRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.build.v1.RemoveAppLinkRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -3919,8 +3913,8 @@ proto.viam.app.build.v1.LinkOrgRequest.prototype.toObject = function(opt_include
  */
 proto.viam.app.build.v1.LinkOrgRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-orgId: jspb.Message.getFieldWithDefault(msg, 2, "")
+    oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    orgId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -4180,8 +4174,8 @@ proto.viam.app.build.v1.UnlinkOrgRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.build.v1.UnlinkOrgRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-orgId: jspb.Message.getFieldWithDefault(msg, 2, "")
+    oauthAppLinkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    orgId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

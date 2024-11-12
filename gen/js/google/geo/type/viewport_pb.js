@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_type_latlng_pb = require('../../../google/type/latlng_pb.js');
 goog.object.extend(proto, google_type_latlng_pb);
@@ -77,8 +71,8 @@ proto.google.geo.type.Viewport.prototype.toObject = function(opt_includeInstance
  */
 proto.google.geo.type.Viewport.toObject = function(includeInstance, msg) {
   var f, obj = {
-low: (f = msg.getLow()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f),
-high: (f = msg.getHigh()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f)
+    low: (f = msg.getLow()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f),
+    high: (f = msg.getHigh()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f)
   };
 
   if (includeInstance) {

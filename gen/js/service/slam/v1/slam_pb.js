@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -257,7 +251,7 @@ proto.viam.service.slam.v1.GetPositionRequest.prototype.toObject = function(opt_
  */
 proto.viam.service.slam.v1.GetPositionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -387,7 +381,7 @@ proto.viam.service.slam.v1.GetPositionResponse.prototype.toObject = function(opt
  */
 proto.viam.service.slam.v1.GetPositionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-pose: (f = msg.getPose()) && common_v1_common_pb.Pose.toObject(includeInstance, f)
+    pose: (f = msg.getPose()) && common_v1_common_pb.Pose.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -538,8 +532,8 @@ proto.viam.service.slam.v1.GetPointCloudMapRequest.prototype.toObject = function
  */
 proto.viam.service.slam.v1.GetPointCloudMapRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-returnEditedMap: (f = jspb.Message.getBooleanField(msg, 2)) == null ? undefined : f
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    returnEditedMap: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -716,7 +710,7 @@ proto.viam.service.slam.v1.GetPointCloudMapResponse.prototype.toObject = functio
  */
 proto.viam.service.slam.v1.GetPointCloudMapResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-pointCloudPcdChunk: msg.getPointCloudPcdChunk_asB64()
+    pointCloudPcdChunk: msg.getPointCloudPcdChunk_asB64()
   };
 
   if (includeInstance) {
@@ -870,7 +864,7 @@ proto.viam.service.slam.v1.GetInternalStateRequest.prototype.toObject = function
  */
 proto.viam.service.slam.v1.GetInternalStateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1000,7 +994,7 @@ proto.viam.service.slam.v1.GetInternalStateResponse.prototype.toObject = functio
  */
 proto.viam.service.slam.v1.GetInternalStateResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-internalStateChunk: msg.getInternalStateChunk_asB64()
+    internalStateChunk: msg.getInternalStateChunk_asB64()
   };
 
   if (includeInstance) {
@@ -1154,7 +1148,7 @@ proto.viam.service.slam.v1.GetPropertiesRequest.prototype.toObject = function(op
  */
 proto.viam.service.slam.v1.GetPropertiesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1291,10 +1285,10 @@ proto.viam.service.slam.v1.GetPropertiesResponse.prototype.toObject = function(o
  */
 proto.viam.service.slam.v1.GetPropertiesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-cloudSlam: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-mappingMode: jspb.Message.getFieldWithDefault(msg, 2, 0),
-internalStateFileType: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
-sensorInfoList: jspb.Message.toObjectList(msg.getSensorInfoList(),
+    cloudSlam: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    mappingMode: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    internalStateFileType: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    sensorInfoList: jspb.Message.toObjectList(msg.getSensorInfoList(),
     proto.viam.service.slam.v1.SensorInfo.toObject, includeInstance)
   };
 
@@ -1552,8 +1546,8 @@ proto.viam.service.slam.v1.SensorInfo.prototype.toObject = function(opt_includeI
  */
 proto.viam.service.slam.v1.SensorInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-type: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {

@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js');
 goog.object.extend(proto, google_protobuf_duration_pb);
@@ -168,9 +162,9 @@ proto.viam.app.agent.v1.DeviceAgentConfigRequest.prototype.toObject = function(o
  */
 proto.viam.app.agent.v1.DeviceAgentConfigRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-hostInfo: (f = msg.getHostInfo()) && proto.viam.app.agent.v1.HostInfo.toObject(includeInstance, f),
-subsystemVersionsMap: (f = msg.getSubsystemVersionsMap()) ? f.toObject(includeInstance, undefined) : []
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    hostInfo: (f = msg.getHostInfo()) && proto.viam.app.agent.v1.HostInfo.toObject(includeInstance, f),
+    subsystemVersionsMap: (f = msg.getSubsystemVersionsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -347,8 +341,7 @@ proto.viam.app.agent.v1.DeviceAgentConfigRequest.prototype.getSubsystemVersionsM
  */
 proto.viam.app.agent.v1.DeviceAgentConfigRequest.prototype.clearSubsystemVersionsMap = function() {
   this.getSubsystemVersionsMap().clear();
-  return this;
-};
+  return this;};
 
 
 
@@ -383,8 +376,8 @@ proto.viam.app.agent.v1.DeviceAgentConfigResponse.prototype.toObject = function(
  */
 proto.viam.app.agent.v1.DeviceAgentConfigResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-subsystemConfigsMap: (f = msg.getSubsystemConfigsMap()) ? f.toObject(includeInstance, proto.viam.app.agent.v1.DeviceSubsystemConfig.toObject) : [],
-checkInterval: (f = msg.getCheckInterval()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+    subsystemConfigsMap: (f = msg.getSubsystemConfigsMap()) ? f.toObject(includeInstance, proto.viam.app.agent.v1.DeviceSubsystemConfig.toObject) : [],
+    checkInterval: (f = msg.getCheckInterval()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -495,8 +488,7 @@ proto.viam.app.agent.v1.DeviceAgentConfigResponse.prototype.getSubsystemConfigsM
  */
 proto.viam.app.agent.v1.DeviceAgentConfigResponse.prototype.clearSubsystemConfigsMap = function() {
   this.getSubsystemConfigsMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -568,10 +560,10 @@ proto.viam.app.agent.v1.DeviceSubsystemConfig.prototype.toObject = function(opt_
  */
 proto.viam.app.agent.v1.DeviceSubsystemConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-updateInfo: (f = msg.getUpdateInfo()) && proto.viam.app.agent.v1.SubsystemUpdateInfo.toObject(includeInstance, f),
-disable: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-forceRestart: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    updateInfo: (f = msg.getUpdateInfo()) && proto.viam.app.agent.v1.SubsystemUpdateInfo.toObject(includeInstance, f),
+    disable: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    forceRestart: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -837,9 +829,9 @@ proto.viam.app.agent.v1.HostInfo.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.agent.v1.HostInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-platform: jspb.Message.getFieldWithDefault(msg, 1, ""),
-distro: jspb.Message.getFieldWithDefault(msg, 2, ""),
-tagsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+    platform: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    distro: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    tagsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1046,11 +1038,11 @@ proto.viam.app.agent.v1.SubsystemUpdateInfo.prototype.toObject = function(opt_in
  */
 proto.viam.app.agent.v1.SubsystemUpdateInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-filename: jspb.Message.getFieldWithDefault(msg, 1, ""),
-url: jspb.Message.getFieldWithDefault(msg, 2, ""),
-version: jspb.Message.getFieldWithDefault(msg, 3, ""),
-sha256: msg.getSha256_asB64(),
-format: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    filename: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    url: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    version: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    sha256: msg.getSha256_asB64(),
+    format: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {

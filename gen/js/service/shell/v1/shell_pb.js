@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -285,9 +279,9 @@ proto.viam.service.shell.v1.ShellRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.service.shell.v1.ShellRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-dataIn: jspb.Message.getFieldWithDefault(msg, 2, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    dataIn: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -496,9 +490,9 @@ proto.viam.service.shell.v1.ShellResponse.prototype.toObject = function(opt_incl
  */
 proto.viam.service.shell.v1.ShellResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-dataOut: jspb.Message.getFieldWithDefault(msg, 1, ""),
-dataErr: jspb.Message.getFieldWithDefault(msg, 2, ""),
-eof: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    dataOut: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    dataErr: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    eof: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -686,13 +680,13 @@ proto.viam.service.shell.v1.FileData.prototype.toObject = function(opt_includeIn
  */
 proto.viam.service.shell.v1.FileData.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-size: jspb.Message.getFieldWithDefault(msg, 2, 0),
-isDir: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-data: msg.getData_asB64(),
-eof: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-modTime: (f = msg.getModTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-mode: (f = jspb.Message.getField(msg, 7)) == null ? undefined : f
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    size: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    isDir: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    data: msg.getData_asB64(),
+    eof: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    modTime: (f = msg.getModTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    mode: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -1059,11 +1053,11 @@ proto.viam.service.shell.v1.CopyFilesToMachineRequestMetadata.prototype.toObject
  */
 proto.viam.service.shell.v1.CopyFilesToMachineRequestMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-sourceType: jspb.Message.getFieldWithDefault(msg, 2, 0),
-destination: jspb.Message.getFieldWithDefault(msg, 3, ""),
-preserve: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    sourceType: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    destination: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    preserve: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1356,8 +1350,8 @@ proto.viam.service.shell.v1.CopyFilesToMachineRequest.prototype.toObject = funct
  */
 proto.viam.service.shell.v1.CopyFilesToMachineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-metadata: (f = msg.getMetadata()) && proto.viam.service.shell.v1.CopyFilesToMachineRequestMetadata.toObject(includeInstance, f),
-fileData: (f = msg.getFileData()) && proto.viam.service.shell.v1.FileData.toObject(includeInstance, f)
+    metadata: (f = msg.getMetadata()) && proto.viam.service.shell.v1.CopyFilesToMachineRequestMetadata.toObject(includeInstance, f),
+    fileData: (f = msg.getFileData()) && proto.viam.service.shell.v1.FileData.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1558,7 +1552,7 @@ proto.viam.service.shell.v1.CopyFilesToMachineResponse.prototype.toObject = func
  */
 proto.viam.service.shell.v1.CopyFilesToMachineResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-ackLastFile: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+    ackLastFile: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -1695,11 +1689,11 @@ proto.viam.service.shell.v1.CopyFilesFromMachineRequestMetadata.prototype.toObje
  */
 proto.viam.service.shell.v1.CopyFilesFromMachineRequestMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-pathsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-allowRecursion: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-preserve: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pathsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    allowRecursion: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    preserve: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2011,8 +2005,8 @@ proto.viam.service.shell.v1.CopyFilesFromMachineRequest.prototype.toObject = fun
  */
 proto.viam.service.shell.v1.CopyFilesFromMachineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-metadata: (f = msg.getMetadata()) && proto.viam.service.shell.v1.CopyFilesFromMachineRequestMetadata.toObject(includeInstance, f),
-ackLastFile: (f = jspb.Message.getBooleanField(msg, 2)) == null ? undefined : f
+    metadata: (f = msg.getMetadata()) && proto.viam.service.shell.v1.CopyFilesFromMachineRequestMetadata.toObject(includeInstance, f),
+    ackLastFile: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -2210,7 +2204,7 @@ proto.viam.service.shell.v1.CopyFilesFromMachineResponseMetadata.prototype.toObj
  */
 proto.viam.service.shell.v1.CopyFilesFromMachineResponseMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-sourceType: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    sourceType: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -2366,8 +2360,8 @@ proto.viam.service.shell.v1.CopyFilesFromMachineResponse.prototype.toObject = fu
  */
 proto.viam.service.shell.v1.CopyFilesFromMachineResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-metadata: (f = msg.getMetadata()) && proto.viam.service.shell.v1.CopyFilesFromMachineResponseMetadata.toObject(includeInstance, f),
-fileData: (f = msg.getFileData()) && proto.viam.service.shell.v1.FileData.toObject(includeInstance, f)
+    metadata: (f = msg.getMetadata()) && proto.viam.service.shell.v1.CopyFilesFromMachineResponseMetadata.toObject(includeInstance, f),
+    fileData: (f = msg.getFileData()) && proto.viam.service.shell.v1.FileData.toObject(includeInstance, f)
   };
 
   if (includeInstance) {

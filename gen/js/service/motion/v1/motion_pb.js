@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -656,12 +650,12 @@ proto.viam.service.motion.v1.MoveRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.service.motion.v1.MoveRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-destination: (f = msg.getDestination()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f),
-componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-worldState: (f = msg.getWorldState()) && common_v1_common_pb.WorldState.toObject(includeInstance, f),
-constraints: (f = msg.getConstraints()) && proto.viam.service.motion.v1.Constraints.toObject(includeInstance, f),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    destination: (f = msg.getDestination()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f),
+    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    worldState: (f = msg.getWorldState()) && common_v1_common_pb.WorldState.toObject(includeInstance, f),
+    constraints: (f = msg.getConstraints()) && proto.viam.service.motion.v1.Constraints.toObject(includeInstance, f),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1041,7 +1035,7 @@ proto.viam.service.motion.v1.MoveResponse.prototype.toObject = function(opt_incl
  */
 proto.viam.service.motion.v1.MoveResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+    success: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -1178,14 +1172,14 @@ proto.viam.service.motion.v1.MoveOnMapRequest.prototype.toObject = function(opt_
  */
 proto.viam.service.motion.v1.MoveOnMapRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-destination: (f = msg.getDestination()) && common_v1_common_pb.Pose.toObject(includeInstance, f),
-componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-slamServiceName: (f = msg.getSlamServiceName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-motionConfiguration: (f = msg.getMotionConfiguration()) && proto.viam.service.motion.v1.MotionConfiguration.toObject(includeInstance, f),
-obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    destination: (f = msg.getDestination()) && common_v1_common_pb.Pose.toObject(includeInstance, f),
+    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    slamServiceName: (f = msg.getSlamServiceName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    motionConfiguration: (f = msg.getMotionConfiguration()) && proto.viam.service.motion.v1.MotionConfiguration.toObject(includeInstance, f),
+    obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
     common_v1_common_pb.Geometry.toObject, includeInstance),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1616,7 +1610,7 @@ proto.viam.service.motion.v1.MoveOnMapResponse.prototype.toObject = function(opt
  */
 proto.viam.service.motion.v1.MoveOnMapResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-executionId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    executionId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1746,8 +1740,8 @@ proto.viam.service.motion.v1.ObstacleDetector.prototype.toObject = function(opt_
  */
 proto.viam.service.motion.v1.ObstacleDetector.toObject = function(includeInstance, msg) {
   var f, obj = {
-visionService: (f = msg.getVisionService()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-camera: (f = msg.getCamera()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f)
+    visionService: (f = msg.getVisionService()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    camera: (f = msg.getCamera()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1955,13 +1949,13 @@ proto.viam.service.motion.v1.MotionConfiguration.prototype.toObject = function(o
  */
 proto.viam.service.motion.v1.MotionConfiguration.toObject = function(includeInstance, msg) {
   var f, obj = {
-obstacleDetectorsList: jspb.Message.toObjectList(msg.getObstacleDetectorsList(),
+    obstacleDetectorsList: jspb.Message.toObjectList(msg.getObstacleDetectorsList(),
     proto.viam.service.motion.v1.ObstacleDetector.toObject, includeInstance),
-positionPollingFrequencyHz: (f = jspb.Message.getOptionalFloatingPointField(msg, 2)) == null ? undefined : f,
-obstaclePollingFrequencyHz: (f = jspb.Message.getOptionalFloatingPointField(msg, 3)) == null ? undefined : f,
-planDeviationM: (f = jspb.Message.getOptionalFloatingPointField(msg, 4)) == null ? undefined : f,
-linearMPerSec: (f = jspb.Message.getOptionalFloatingPointField(msg, 5)) == null ? undefined : f,
-angularDegsPerSec: (f = jspb.Message.getOptionalFloatingPointField(msg, 6)) == null ? undefined : f
+    positionPollingFrequencyHz: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    obstaclePollingFrequencyHz: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    planDeviationM: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+    linearMPerSec: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+    angularDegsPerSec: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0)
   };
 
   if (includeInstance) {
@@ -2355,17 +2349,17 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.toObject = function(op
  */
 proto.viam.service.motion.v1.MoveOnGlobeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-destination: (f = msg.getDestination()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f),
-heading: (f = jspb.Message.getOptionalFloatingPointField(msg, 3)) == null ? undefined : f,
-componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-movementSensorName: (f = msg.getMovementSensorName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    destination: (f = msg.getDestination()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f),
+    heading: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    movementSensorName: (f = msg.getMovementSensorName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
     common_v1_common_pb.GeoGeometry.toObject, includeInstance),
-motionConfiguration: (f = msg.getMotionConfiguration()) && proto.viam.service.motion.v1.MotionConfiguration.toObject(includeInstance, f),
-boundingRegionsList: jspb.Message.toObjectList(msg.getBoundingRegionsList(),
+    motionConfiguration: (f = msg.getMotionConfiguration()) && proto.viam.service.motion.v1.MotionConfiguration.toObject(includeInstance, f),
+    boundingRegionsList: jspb.Message.toObjectList(msg.getBoundingRegionsList(),
     common_v1_common_pb.GeoGeometry.toObject, includeInstance),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2894,7 +2888,7 @@ proto.viam.service.motion.v1.MoveOnGlobeResponse.prototype.toObject = function(o
  */
 proto.viam.service.motion.v1.MoveOnGlobeResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-executionId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    executionId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -3031,12 +3025,12 @@ proto.viam.service.motion.v1.GetPoseRequest.prototype.toObject = function(opt_in
  */
 proto.viam.service.motion.v1.GetPoseRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-destinationFrame: jspb.Message.getFieldWithDefault(msg, 3, ""),
-supplementalTransformsList: jspb.Message.toObjectList(msg.getSupplementalTransformsList(),
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    destinationFrame: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    supplementalTransformsList: jspb.Message.toObjectList(msg.getSupplementalTransformsList(),
     common_v1_common_pb.Transform.toObject, includeInstance),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3346,7 +3340,7 @@ proto.viam.service.motion.v1.GetPoseResponse.prototype.toObject = function(opt_i
  */
 proto.viam.service.motion.v1.GetPoseResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-pose: (f = msg.getPose()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f)
+    pose: (f = msg.getPose()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3497,9 +3491,9 @@ proto.viam.service.motion.v1.StopPlanRequest.prototype.toObject = function(opt_i
  */
 proto.viam.service.motion.v1.StopPlanRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3830,9 +3824,9 @@ proto.viam.service.motion.v1.ListPlanStatusesRequest.prototype.toObject = functi
  */
 proto.viam.service.motion.v1.ListPlanStatusesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-onlyActivePlans: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    onlyActivePlans: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4048,7 +4042,7 @@ proto.viam.service.motion.v1.ListPlanStatusesResponse.prototype.toObject = funct
  */
 proto.viam.service.motion.v1.ListPlanStatusesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-planStatusesWithIdsList: jspb.Message.toObjectList(msg.getPlanStatusesWithIdsList(),
+    planStatusesWithIdsList: jspb.Message.toObjectList(msg.getPlanStatusesWithIdsList(),
     proto.viam.service.motion.v1.PlanStatusWithID.toObject, includeInstance)
   };
 
@@ -4201,11 +4195,11 @@ proto.viam.service.motion.v1.GetPlanRequest.prototype.toObject = function(opt_in
  */
 proto.viam.service.motion.v1.GetPlanRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-lastPlanOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-executionId: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    lastPlanOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    executionId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4518,8 +4512,8 @@ proto.viam.service.motion.v1.GetPlanResponse.prototype.toObject = function(opt_i
  */
 proto.viam.service.motion.v1.GetPlanResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-currentPlanWithStatus: (f = msg.getCurrentPlanWithStatus()) && proto.viam.service.motion.v1.PlanWithStatus.toObject(includeInstance, f),
-replanHistoryList: jspb.Message.toObjectList(msg.getReplanHistoryList(),
+    currentPlanWithStatus: (f = msg.getCurrentPlanWithStatus()) && proto.viam.service.motion.v1.PlanWithStatus.toObject(includeInstance, f),
+    replanHistoryList: jspb.Message.toObjectList(msg.getReplanHistoryList(),
     proto.viam.service.motion.v1.PlanWithStatus.toObject, includeInstance)
   };
 
@@ -4729,11 +4723,11 @@ proto.viam.service.motion.v1.Constraints.prototype.toObject = function(opt_inclu
  */
 proto.viam.service.motion.v1.Constraints.toObject = function(includeInstance, msg) {
   var f, obj = {
-linearConstraintList: jspb.Message.toObjectList(msg.getLinearConstraintList(),
+    linearConstraintList: jspb.Message.toObjectList(msg.getLinearConstraintList(),
     proto.viam.service.motion.v1.LinearConstraint.toObject, includeInstance),
-orientationConstraintList: jspb.Message.toObjectList(msg.getOrientationConstraintList(),
+    orientationConstraintList: jspb.Message.toObjectList(msg.getOrientationConstraintList(),
     proto.viam.service.motion.v1.OrientationConstraint.toObject, includeInstance),
-collisionSpecificationList: jspb.Message.toObjectList(msg.getCollisionSpecificationList(),
+    collisionSpecificationList: jspb.Message.toObjectList(msg.getCollisionSpecificationList(),
     proto.viam.service.motion.v1.CollisionSpecification.toObject, includeInstance)
   };
 
@@ -4988,8 +4982,8 @@ proto.viam.service.motion.v1.LinearConstraint.prototype.toObject = function(opt_
  */
 proto.viam.service.motion.v1.LinearConstraint.toObject = function(includeInstance, msg) {
   var f, obj = {
-lineToleranceMm: (f = jspb.Message.getOptionalFloatingPointField(msg, 1)) == null ? undefined : f,
-orientationToleranceDegs: (f = jspb.Message.getOptionalFloatingPointField(msg, 2)) == null ? undefined : f
+    lineToleranceMm: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+    orientationToleranceDegs: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -5184,7 +5178,7 @@ proto.viam.service.motion.v1.OrientationConstraint.prototype.toObject = function
  */
 proto.viam.service.motion.v1.OrientationConstraint.toObject = function(includeInstance, msg) {
   var f, obj = {
-orientationToleranceDegs: (f = jspb.Message.getOptionalFloatingPointField(msg, 1)) == null ? undefined : f
+    orientationToleranceDegs: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
   };
 
   if (includeInstance) {
@@ -5339,7 +5333,7 @@ proto.viam.service.motion.v1.CollisionSpecification.prototype.toObject = functio
  */
 proto.viam.service.motion.v1.CollisionSpecification.toObject = function(includeInstance, msg) {
   var f, obj = {
-allowsList: jspb.Message.toObjectList(msg.getAllowsList(),
+    allowsList: jspb.Message.toObjectList(msg.getAllowsList(),
     proto.viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions.toObject, includeInstance)
   };
 
@@ -5454,8 +5448,8 @@ proto.viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions.proto
  */
 proto.viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions.toObject = function(includeInstance, msg) {
   var f, obj = {
-frame1: jspb.Message.getFieldWithDefault(msg, 1, ""),
-frame2: jspb.Message.getFieldWithDefault(msg, 2, "")
+    frame1: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    frame2: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -5659,9 +5653,9 @@ proto.viam.service.motion.v1.PlanWithStatus.prototype.toObject = function(opt_in
  */
 proto.viam.service.motion.v1.PlanWithStatus.toObject = function(includeInstance, msg) {
   var f, obj = {
-plan: (f = msg.getPlan()) && proto.viam.service.motion.v1.Plan.toObject(includeInstance, f),
-status: (f = msg.getStatus()) && proto.viam.service.motion.v1.PlanStatus.toObject(includeInstance, f),
-statusHistoryList: jspb.Message.toObjectList(msg.getStatusHistoryList(),
+    plan: (f = msg.getPlan()) && proto.viam.service.motion.v1.Plan.toObject(includeInstance, f),
+    status: (f = msg.getStatus()) && proto.viam.service.motion.v1.PlanStatus.toObject(includeInstance, f),
+    statusHistoryList: jspb.Message.toObjectList(msg.getStatusHistoryList(),
     proto.viam.service.motion.v1.PlanStatus.toObject, includeInstance)
   };
 
@@ -5914,10 +5908,10 @@ proto.viam.service.motion.v1.PlanStatusWithID.prototype.toObject = function(opt_
  */
 proto.viam.service.motion.v1.PlanStatusWithID.toObject = function(includeInstance, msg) {
   var f, obj = {
-planId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-executionId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-status: (f = msg.getStatus()) && proto.viam.service.motion.v1.PlanStatus.toObject(includeInstance, f)
+    planId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    executionId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    status: (f = msg.getStatus()) && proto.viam.service.motion.v1.PlanStatus.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6176,9 +6170,9 @@ proto.viam.service.motion.v1.PlanStatus.prototype.toObject = function(opt_includ
  */
 proto.viam.service.motion.v1.PlanStatus.toObject = function(includeInstance, msg) {
   var f, obj = {
-state: jspb.Message.getFieldWithDefault(msg, 1, 0),
-timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-reason: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f
+    state: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    reason: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -6412,10 +6406,10 @@ proto.viam.service.motion.v1.Plan.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.service.motion.v1.Plan.toObject = function(includeInstance, msg) {
   var f, obj = {
-id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-executionId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-stepsList: jspb.Message.toObjectList(msg.getStepsList(),
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    executionId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    stepsList: jspb.Message.toObjectList(msg.getStepsList(),
     proto.viam.service.motion.v1.PlanStep.toObject, includeInstance)
   };
 
@@ -6676,7 +6670,7 @@ proto.viam.service.motion.v1.PlanStep.prototype.toObject = function(opt_includeI
  */
 proto.viam.service.motion.v1.PlanStep.toObject = function(includeInstance, msg) {
   var f, obj = {
-stepMap: (f = msg.getStepMap()) ? f.toObject(includeInstance, proto.viam.service.motion.v1.ComponentState.toObject) : []
+    stepMap: (f = msg.getStepMap()) ? f.toObject(includeInstance, proto.viam.service.motion.v1.ComponentState.toObject) : []
   };
 
   if (includeInstance) {
@@ -6774,8 +6768,7 @@ proto.viam.service.motion.v1.PlanStep.prototype.getStepMap = function(opt_noLazy
  */
 proto.viam.service.motion.v1.PlanStep.prototype.clearStepMap = function() {
   this.getStepMap().clear();
-  return this;
-};
+  return this;};
 
 
 
@@ -6810,7 +6803,7 @@ proto.viam.service.motion.v1.ComponentState.prototype.toObject = function(opt_in
  */
 proto.viam.service.motion.v1.ComponentState.toObject = function(includeInstance, msg) {
   var f, obj = {
-pose: (f = msg.getPose()) && common_v1_common_pb.Pose.toObject(includeInstance, f)
+    pose: (f = msg.getPose()) && common_v1_common_pb.Pose.toObject(includeInstance, f)
   };
 
   if (includeInstance) {

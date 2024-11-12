@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
@@ -477,9 +471,9 @@ proto.viam.service.mlmodel.v1.InferRequest.prototype.toObject = function(opt_inc
  */
 proto.viam.service.mlmodel.v1.InferRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-inputTensors: (f = msg.getInputTensors()) && proto.viam.service.mlmodel.v1.FlatTensors.toObject(includeInstance, f),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    inputTensors: (f = msg.getInputTensors()) && proto.viam.service.mlmodel.v1.FlatTensors.toObject(includeInstance, f),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -709,7 +703,7 @@ proto.viam.service.mlmodel.v1.InferResponse.prototype.toObject = function(opt_in
  */
 proto.viam.service.mlmodel.v1.InferResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-outputTensors: (f = msg.getOutputTensors()) && proto.viam.service.mlmodel.v1.FlatTensors.toObject(includeInstance, f)
+    outputTensors: (f = msg.getOutputTensors()) && proto.viam.service.mlmodel.v1.FlatTensors.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -860,8 +854,8 @@ proto.viam.service.mlmodel.v1.MetadataRequest.prototype.toObject = function(opt_
  */
 proto.viam.service.mlmodel.v1.MetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1041,7 +1035,7 @@ proto.viam.service.mlmodel.v1.MetadataResponse.prototype.toObject = function(opt
  */
 proto.viam.service.mlmodel.v1.MetadataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-metadata: (f = msg.getMetadata()) && proto.viam.service.mlmodel.v1.Metadata.toObject(includeInstance, f)
+    metadata: (f = msg.getMetadata()) && proto.viam.service.mlmodel.v1.Metadata.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1199,12 +1193,12 @@ proto.viam.service.mlmodel.v1.Metadata.prototype.toObject = function(opt_include
  */
 proto.viam.service.mlmodel.v1.Metadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-type: jspb.Message.getFieldWithDefault(msg, 2, ""),
-description: jspb.Message.getFieldWithDefault(msg, 3, ""),
-inputInfoList: jspb.Message.toObjectList(msg.getInputInfoList(),
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    inputInfoList: jspb.Message.toObjectList(msg.getInputInfoList(),
     proto.viam.service.mlmodel.v1.TensorInfo.toObject, includeInstance),
-outputInfoList: jspb.Message.toObjectList(msg.getOutputInfoList(),
+    outputInfoList: jspb.Message.toObjectList(msg.getOutputInfoList(),
     proto.viam.service.mlmodel.v1.TensorInfo.toObject, includeInstance)
   };
 
@@ -1502,13 +1496,13 @@ proto.viam.service.mlmodel.v1.TensorInfo.prototype.toObject = function(opt_inclu
  */
 proto.viam.service.mlmodel.v1.TensorInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-description: jspb.Message.getFieldWithDefault(msg, 2, ""),
-dataType: jspb.Message.getFieldWithDefault(msg, 3, ""),
-shapeList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-associatedFilesList: jspb.Message.toObjectList(msg.getAssociatedFilesList(),
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    dataType: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    shapeList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+    associatedFilesList: jspb.Message.toObjectList(msg.getAssociatedFilesList(),
     proto.viam.service.mlmodel.v1.File.toObject, includeInstance),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1847,9 +1841,9 @@ proto.viam.service.mlmodel.v1.File.prototype.toObject = function(opt_includeInst
  */
 proto.viam.service.mlmodel.v1.File.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-description: jspb.Message.getFieldWithDefault(msg, 2, ""),
-labelType: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    labelType: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -2037,7 +2031,7 @@ proto.viam.service.mlmodel.v1.FlatTensorDataInt8.prototype.toObject = function(o
  */
 proto.viam.service.mlmodel.v1.FlatTensorDataInt8.toObject = function(includeInstance, msg) {
   var f, obj = {
-data: msg.getData_asB64()
+    data: msg.getData_asB64()
   };
 
   if (includeInstance) {
@@ -2191,7 +2185,7 @@ proto.viam.service.mlmodel.v1.FlatTensorDataUInt8.prototype.toObject = function(
  */
 proto.viam.service.mlmodel.v1.FlatTensorDataUInt8.toObject = function(includeInstance, msg) {
   var f, obj = {
-data: msg.getData_asB64()
+    data: msg.getData_asB64()
   };
 
   if (includeInstance) {
@@ -2352,7 +2346,7 @@ proto.viam.service.mlmodel.v1.FlatTensorDataInt16.prototype.toObject = function(
  */
 proto.viam.service.mlmodel.v1.FlatTensorDataInt16.toObject = function(includeInstance, msg) {
   var f, obj = {
-dataList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    dataList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2510,7 +2504,7 @@ proto.viam.service.mlmodel.v1.FlatTensorDataUInt16.prototype.toObject = function
  */
 proto.viam.service.mlmodel.v1.FlatTensorDataUInt16.toObject = function(includeInstance, msg) {
   var f, obj = {
-dataList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    dataList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2668,7 +2662,7 @@ proto.viam.service.mlmodel.v1.FlatTensorDataInt32.prototype.toObject = function(
  */
 proto.viam.service.mlmodel.v1.FlatTensorDataInt32.toObject = function(includeInstance, msg) {
   var f, obj = {
-dataList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    dataList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2826,7 +2820,7 @@ proto.viam.service.mlmodel.v1.FlatTensorDataUInt32.prototype.toObject = function
  */
 proto.viam.service.mlmodel.v1.FlatTensorDataUInt32.toObject = function(includeInstance, msg) {
   var f, obj = {
-dataList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    dataList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2984,7 +2978,7 @@ proto.viam.service.mlmodel.v1.FlatTensorDataInt64.prototype.toObject = function(
  */
 proto.viam.service.mlmodel.v1.FlatTensorDataInt64.toObject = function(includeInstance, msg) {
   var f, obj = {
-dataList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    dataList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -3142,7 +3136,7 @@ proto.viam.service.mlmodel.v1.FlatTensorDataUInt64.prototype.toObject = function
  */
 proto.viam.service.mlmodel.v1.FlatTensorDataUInt64.toObject = function(includeInstance, msg) {
   var f, obj = {
-dataList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    dataList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -3300,7 +3294,7 @@ proto.viam.service.mlmodel.v1.FlatTensorDataFloat.prototype.toObject = function(
  */
 proto.viam.service.mlmodel.v1.FlatTensorDataFloat.toObject = function(includeInstance, msg) {
   var f, obj = {
-dataList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 1)) == null ? undefined : f
+    dataList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -3458,7 +3452,7 @@ proto.viam.service.mlmodel.v1.FlatTensorDataDouble.prototype.toObject = function
  */
 proto.viam.service.mlmodel.v1.FlatTensorDataDouble.toObject = function(includeInstance, msg) {
   var f, obj = {
-dataList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 1)) == null ? undefined : f
+    dataList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -3650,17 +3644,17 @@ proto.viam.service.mlmodel.v1.FlatTensor.prototype.toObject = function(opt_inclu
  */
 proto.viam.service.mlmodel.v1.FlatTensor.toObject = function(includeInstance, msg) {
   var f, obj = {
-shapeList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-int8Tensor: (f = msg.getInt8Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataInt8.toObject(includeInstance, f),
-uint8Tensor: (f = msg.getUint8Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataUInt8.toObject(includeInstance, f),
-int16Tensor: (f = msg.getInt16Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataInt16.toObject(includeInstance, f),
-uint16Tensor: (f = msg.getUint16Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataUInt16.toObject(includeInstance, f),
-int32Tensor: (f = msg.getInt32Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataInt32.toObject(includeInstance, f),
-uint32Tensor: (f = msg.getUint32Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataUInt32.toObject(includeInstance, f),
-int64Tensor: (f = msg.getInt64Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataInt64.toObject(includeInstance, f),
-uint64Tensor: (f = msg.getUint64Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataUInt64.toObject(includeInstance, f),
-floatTensor: (f = msg.getFloatTensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataFloat.toObject(includeInstance, f),
-doubleTensor: (f = msg.getDoubleTensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataDouble.toObject(includeInstance, f)
+    shapeList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+    int8Tensor: (f = msg.getInt8Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataInt8.toObject(includeInstance, f),
+    uint8Tensor: (f = msg.getUint8Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataUInt8.toObject(includeInstance, f),
+    int16Tensor: (f = msg.getInt16Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataInt16.toObject(includeInstance, f),
+    uint16Tensor: (f = msg.getUint16Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataUInt16.toObject(includeInstance, f),
+    int32Tensor: (f = msg.getInt32Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataInt32.toObject(includeInstance, f),
+    uint32Tensor: (f = msg.getUint32Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataUInt32.toObject(includeInstance, f),
+    int64Tensor: (f = msg.getInt64Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataInt64.toObject(includeInstance, f),
+    uint64Tensor: (f = msg.getUint64Tensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataUInt64.toObject(includeInstance, f),
+    floatTensor: (f = msg.getFloatTensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataFloat.toObject(includeInstance, f),
+    doubleTensor: (f = msg.getDoubleTensor()) && proto.viam.service.mlmodel.v1.FlatTensorDataDouble.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4311,7 +4305,7 @@ proto.viam.service.mlmodel.v1.FlatTensors.prototype.toObject = function(opt_incl
  */
 proto.viam.service.mlmodel.v1.FlatTensors.toObject = function(includeInstance, msg) {
   var f, obj = {
-tensorsMap: (f = msg.getTensorsMap()) ? f.toObject(includeInstance, proto.viam.service.mlmodel.v1.FlatTensor.toObject) : []
+    tensorsMap: (f = msg.getTensorsMap()) ? f.toObject(includeInstance, proto.viam.service.mlmodel.v1.FlatTensor.toObject) : []
   };
 
   if (includeInstance) {
@@ -4409,8 +4403,7 @@ proto.viam.service.mlmodel.v1.FlatTensors.prototype.getTensorsMap = function(opt
  */
 proto.viam.service.mlmodel.v1.FlatTensors.prototype.clearTensorsMap = function() {
   this.getTensorsMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
