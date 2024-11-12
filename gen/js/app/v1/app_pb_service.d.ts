@@ -166,6 +166,15 @@ type AppServiceUpdateBillingService = {
   readonly responseType: typeof app_v1_app_pb.UpdateBillingServiceResponse;
 };
 
+type AppServiceGetBillingServiceConfig = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetBillingServiceConfigRequest;
+  readonly responseType: typeof app_v1_app_pb.GetBillingServiceConfigResponse;
+};
+
 type AppServiceOrganizationSetSupportEmail = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -726,6 +735,7 @@ export class AppService {
   static readonly EnableBillingService: AppServiceEnableBillingService;
   static readonly DisableBillingService: AppServiceDisableBillingService;
   static readonly UpdateBillingService: AppServiceUpdateBillingService;
+  static readonly GetBillingServiceConfig: AppServiceGetBillingServiceConfig;
   static readonly OrganizationSetSupportEmail: AppServiceOrganizationSetSupportEmail;
   static readonly OrganizationGetSupportEmail: AppServiceOrganizationGetSupportEmail;
   static readonly CreateLocation: AppServiceCreateLocation;
@@ -981,6 +991,15 @@ export class AppServiceClient {
   updateBillingService(
     requestMessage: app_v1_app_pb.UpdateBillingServiceRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateBillingServiceResponse|null) => void
+  ): UnaryResponse;
+  getBillingServiceConfig(
+    requestMessage: app_v1_app_pb.GetBillingServiceConfigRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetBillingServiceConfigResponse|null) => void
+  ): UnaryResponse;
+  getBillingServiceConfig(
+    requestMessage: app_v1_app_pb.GetBillingServiceConfigRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetBillingServiceConfigResponse|null) => void
   ): UnaryResponse;
   organizationSetSupportEmail(
     requestMessage: app_v1_app_pb.OrganizationSetSupportEmailRequest,
