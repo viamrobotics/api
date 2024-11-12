@@ -21,6 +21,7 @@ To build protos for a PR:
     - the bot commit will also add a `protos-compiled` label which is checked to merge. subsequent manual commits remove this label
 - when you're ready to merge, **remove** the `ready-for-protos` label; that will trigger lint and merge checks
 - in order to merge, the last commit to your PR must be a bot commit. (this is enforced through labeling)
+- if your PR includes a backwards breaking change, the CI checks will fail and you will need someone with permissions (Steve, Simone) to force merge the PR.
 
 Other guidelines:
 - Do not make breaking changes to APIs if it can be avoided.
