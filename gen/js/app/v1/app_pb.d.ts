@@ -1005,6 +1005,60 @@ export namespace UpdateBillingServiceResponse {
   }
 }
 
+export class GetBillingServiceConfigRequest extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBillingServiceConfigRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBillingServiceConfigRequest): GetBillingServiceConfigRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetBillingServiceConfigRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBillingServiceConfigRequest;
+  static deserializeBinaryFromReader(message: GetBillingServiceConfigRequest, reader: jspb.BinaryReader): GetBillingServiceConfigRequest;
+}
+
+export namespace GetBillingServiceConfigRequest {
+  export type AsObject = {
+    orgId: string,
+  }
+}
+
+export class GetBillingServiceConfigResponse extends jspb.Message {
+  hasBillingAddress(): boolean;
+  clearBillingAddress(): void;
+  getBillingAddress(): BillingAddress | undefined;
+  setBillingAddress(value?: BillingAddress): void;
+
+  getSupportEmail(): string;
+  setSupportEmail(value: string): void;
+
+  getLogoUrl(): string;
+  setLogoUrl(value: string): void;
+
+  getBillingDashboardUrl(): string;
+  setBillingDashboardUrl(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetBillingServiceConfigResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetBillingServiceConfigResponse): GetBillingServiceConfigResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetBillingServiceConfigResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetBillingServiceConfigResponse;
+  static deserializeBinaryFromReader(message: GetBillingServiceConfigResponse, reader: jspb.BinaryReader): GetBillingServiceConfigResponse;
+}
+
+export namespace GetBillingServiceConfigResponse {
+  export type AsObject = {
+    billingAddress?: BillingAddress.AsObject,
+    supportEmail: string,
+    logoUrl: string,
+    billingDashboardUrl: string,
+  }
+}
+
 export class DisableBillingServiceRequest extends jspb.Message {
   getOrgId(): string;
   setOrgId(value: string): void;

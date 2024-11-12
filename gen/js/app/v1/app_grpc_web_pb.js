@@ -1189,6 +1189,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.updateBillingService =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetBillingServiceConfigRequest,
+ *   !proto.viam.app.v1.GetBillingServiceConfigResponse>}
+ */
+const methodDescriptor_AppService_GetBillingServiceConfig = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetBillingServiceConfig',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetBillingServiceConfigRequest,
+  proto.viam.app.v1.GetBillingServiceConfigResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetBillingServiceConfigRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetBillingServiceConfigResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetBillingServiceConfigRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetBillingServiceConfigResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetBillingServiceConfigResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getBillingServiceConfig =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetBillingServiceConfig',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetBillingServiceConfig,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetBillingServiceConfigRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetBillingServiceConfigResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getBillingServiceConfig =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetBillingServiceConfig',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetBillingServiceConfig);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.OrganizationSetSupportEmailRequest,
  *   !proto.viam.app.v1.OrganizationSetSupportEmailResponse>}
  */
