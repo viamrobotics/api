@@ -376,11 +376,6 @@ export namespace TabularDataBySQLRequest {
 }
 
 export class TabularDataBySQLResponse extends jspb.Message {
-  clearDataList(): void;
-  getDataList(): Array<google_protobuf_struct_pb.Struct>;
-  setDataList(value: Array<google_protobuf_struct_pb.Struct>): void;
-  addData(value?: google_protobuf_struct_pb.Struct, index?: number): google_protobuf_struct_pb.Struct;
-
   clearRawDataList(): void;
   getRawDataList(): Array<Uint8Array | string>;
   getRawDataList_asU8(): Array<Uint8Array>;
@@ -400,7 +395,6 @@ export class TabularDataBySQLResponse extends jspb.Message {
 
 export namespace TabularDataBySQLResponse {
   export type AsObject = {
-    dataList: Array<google_protobuf_struct_pb.Struct.AsObject>,
     rawDataList: Array<Uint8Array | string>,
   }
 }
@@ -434,11 +428,6 @@ export namespace TabularDataByMQLRequest {
 }
 
 export class TabularDataByMQLResponse extends jspb.Message {
-  clearDataList(): void;
-  getDataList(): Array<google_protobuf_struct_pb.Struct>;
-  setDataList(value: Array<google_protobuf_struct_pb.Struct>): void;
-  addData(value?: google_protobuf_struct_pb.Struct, index?: number): google_protobuf_struct_pb.Struct;
-
   clearRawDataList(): void;
   getRawDataList(): Array<Uint8Array | string>;
   getRawDataList_asU8(): Array<Uint8Array>;
@@ -458,7 +447,6 @@ export class TabularDataByMQLResponse extends jspb.Message {
 
 export namespace TabularDataByMQLResponse {
   export type AsObject = {
-    dataList: Array<google_protobuf_struct_pb.Struct.AsObject>,
     rawDataList: Array<Uint8Array | string>,
   }
 }
@@ -658,6 +646,11 @@ export class BoundingBox extends jspb.Message {
   getYMaxNormalized(): number;
   setYMaxNormalized(value: number): void;
 
+  hasConfidence(): boolean;
+  clearConfidence(): void;
+  getConfidence(): number;
+  setConfidence(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BoundingBox.AsObject;
   static toObject(includeInstance: boolean, msg: BoundingBox): BoundingBox.AsObject;
@@ -676,6 +669,33 @@ export namespace BoundingBox {
     yMinNormalized: number,
     xMaxNormalized: number,
     yMaxNormalized: number,
+    confidence: number,
+  }
+}
+
+export class Classification extends jspb.Message {
+  getLabel(): string;
+  setLabel(value: string): void;
+
+  hasConfidence(): boolean;
+  clearConfidence(): void;
+  getConfidence(): number;
+  setConfidence(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Classification.AsObject;
+  static toObject(includeInstance: boolean, msg: Classification): Classification.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Classification, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Classification;
+  static deserializeBinaryFromReader(message: Classification, reader: jspb.BinaryReader): Classification;
+}
+
+export namespace Classification {
+  export type AsObject = {
+    label: string,
+    confidence: number,
   }
 }
 
@@ -684,6 +704,11 @@ export class Annotations extends jspb.Message {
   getBboxesList(): Array<BoundingBox>;
   setBboxesList(value: Array<BoundingBox>): void;
   addBboxes(value?: BoundingBox, index?: number): BoundingBox;
+
+  clearClassificationsList(): void;
+  getClassificationsList(): Array<Classification>;
+  setClassificationsList(value: Array<Classification>): void;
+  addClassifications(value?: Classification, index?: number): Classification;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Annotations.AsObject;
@@ -698,6 +723,7 @@ export class Annotations extends jspb.Message {
 export namespace Annotations {
   export type AsObject = {
     bboxesList: Array<BoundingBox.AsObject>,
+    classificationsList: Array<Classification.AsObject>,
   }
 }
 

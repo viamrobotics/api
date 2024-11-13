@@ -115,6 +115,7 @@ message ProcessConfig {
   google.protobuf.Duration stop_timeout = 8;
   // additional environment variables passed to the process
   map<string, string> env = 9;
+  string username = 10;
 }
 
 message ServiceConfig {

@@ -15,6 +15,8 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
+var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js');
+goog.object.extend(proto, app_data_v1_data_pb);
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
@@ -33,6 +35,7 @@ goog.exportSymbol('proto.viam.app.datasync.v1.FileData', null, global);
 goog.exportSymbol('proto.viam.app.datasync.v1.FileUploadRequest', null, global);
 goog.exportSymbol('proto.viam.app.datasync.v1.FileUploadRequest.UploadPacketCase', null, global);
 goog.exportSymbol('proto.viam.app.datasync.v1.FileUploadResponse', null, global);
+goog.exportSymbol('proto.viam.app.datasync.v1.MimeType', null, global);
 goog.exportSymbol('proto.viam.app.datasync.v1.SensorData', null, global);
 goog.exportSymbol('proto.viam.app.datasync.v1.SensorData.DataCase', null, global);
 goog.exportSymbol('proto.viam.app.datasync.v1.SensorMetadata', null, global);
@@ -1424,7 +1427,9 @@ proto.viam.app.datasync.v1.SensorMetadata.prototype.toObject = function(opt_incl
 proto.viam.app.datasync.v1.SensorMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
     timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    mimeType: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    annotations: (f = msg.getAnnotations()) && app_data_v1_data_pb.Annotations.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1471,6 +1476,15 @@ proto.viam.app.datasync.v1.SensorMetadata.deserializeBinaryFromReader = function
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTimeReceived(value);
       break;
+    case 3:
+      var value = /** @type {!proto.viam.app.datasync.v1.MimeType} */ (reader.readEnum());
+      msg.setMimeType(value);
+      break;
+    case 4:
+      var value = new app_data_v1_data_pb.Annotations;
+      reader.readMessage(value,app_data_v1_data_pb.Annotations.deserializeBinaryFromReader);
+      msg.setAnnotations(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1514,6 +1528,21 @@ proto.viam.app.datasync.v1.SensorMetadata.serializeBinaryToWriter = function(mes
       2,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getMimeType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
+  f = message.getAnnotations();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      app_data_v1_data_pb.Annotations.serializeBinaryToWriter
     );
   }
 };
@@ -1590,6 +1619,61 @@ proto.viam.app.datasync.v1.SensorMetadata.prototype.clearTimeReceived = function
  */
 proto.viam.app.datasync.v1.SensorMetadata.prototype.hasTimeReceived = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional MimeType mime_type = 3;
+ * @return {!proto.viam.app.datasync.v1.MimeType}
+ */
+proto.viam.app.datasync.v1.SensorMetadata.prototype.getMimeType = function() {
+  return /** @type {!proto.viam.app.datasync.v1.MimeType} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.datasync.v1.MimeType} value
+ * @return {!proto.viam.app.datasync.v1.SensorMetadata} returns this
+ */
+proto.viam.app.datasync.v1.SensorMetadata.prototype.setMimeType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional viam.app.data.v1.Annotations annotations = 4;
+ * @return {?proto.viam.app.data.v1.Annotations}
+ */
+proto.viam.app.datasync.v1.SensorMetadata.prototype.getAnnotations = function() {
+  return /** @type{?proto.viam.app.data.v1.Annotations} */ (
+    jspb.Message.getWrapperField(this, app_data_v1_data_pb.Annotations, 4));
+};
+
+
+/**
+ * @param {?proto.viam.app.data.v1.Annotations|undefined} value
+ * @return {!proto.viam.app.datasync.v1.SensorMetadata} returns this
+*/
+proto.viam.app.datasync.v1.SensorMetadata.prototype.setAnnotations = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.datasync.v1.SensorMetadata} returns this
+ */
+proto.viam.app.datasync.v1.SensorMetadata.prototype.clearAnnotations = function() {
+  return this.setAnnotations(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.datasync.v1.SensorMetadata.prototype.hasAnnotations = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -3188,6 +3272,16 @@ proto.viam.app.datasync.v1.DataCaptureUploadMetadata.prototype.hasSensorMetadata
   return jspb.Message.getField(this, 2) != null;
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.datasync.v1.MimeType = {
+  MIME_TYPE_UNSPECIFIED: 0,
+  MIME_TYPE_IMAGE_JPEG: 1,
+  MIME_TYPE_IMAGE_PNG: 2,
+  MIME_TYPE_APPLICATION_PCD: 3
+};
 
 /**
  * @enum {number}

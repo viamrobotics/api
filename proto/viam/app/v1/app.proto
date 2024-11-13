@@ -69,6 +69,8 @@ service AppService {
 
   rpc UpdateBillingService(UpdateBillingServiceRequest) returns (UpdateBillingServiceResponse);
 
+  rpc GetBillingServiceConfig(GetBillingServiceConfigRequest) returns (GetBillingServiceConfigResponse);
+
   rpc OrganizationSetSupportEmail(OrganizationSetSupportEmailRequest) returns (OrganizationSetSupportEmailResponse);
 
   rpc OrganizationGetSupportEmail(OrganizationGetSupportEmailRequest) returns (OrganizationGetSupportEmailResponse);
@@ -443,10 +445,20 @@ message EnableBillingServiceResponse {}
 message UpdateBillingServiceRequest {
   string org_id = 1;
   BillingAddress billing_address = 2;
-  string billing_support_email = 3;
 }
 
 message UpdateBillingServiceResponse {}
+
+message GetBillingServiceConfigRequest {
+  string org_id = 1;
+}
+
+message GetBillingServiceConfigResponse {
+  BillingAddress billing_address = 1;
+  string support_email = 2;
+  string logo_url = 3;
+  string billing_dashboard_url = 4;
+}
 
 message DisableBillingServiceRequest {
   string org_id = 1;
@@ -816,9 +828,9 @@ enum FragmentErrorType {
   FRAGMENT_ERROR_TYPE_CYCLE_DETECTED = 4;
 }
 
-message FragmentTree {
-  string root_fragment_id = 1;
-  repeated string fragment_merge_order = 2;
+message ResolvedFragment {
+  string fragment_id = 1;
+  google.protobuf.Struct resolved_config = 2;
   FragmentError error = 3;
 }
 
@@ -895,7 +907,7 @@ message ListMachineFragmentsRequest {
 
 message ListMachineFragmentsResponse {
   repeated Fragment fragments = 1;
-  repeated FragmentTree fragment_trees = 2;
+  repeated ResolvedFragment resolved_fragments = 2;
 }
 
 message ListRobotsResponse {

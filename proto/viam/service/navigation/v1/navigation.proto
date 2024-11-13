@@ -12,66 +12,46 @@ option java_package = "com.viam.service.navigation.v1";
 // A NavigationService declares the gRPC contract for a Navigation service
 service NavigationService {
   rpc GetMode(GetModeRequest) returns (GetModeResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/navigation/{name}/mode"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/mode"};
   }
 
   rpc SetMode(SetModeRequest) returns (SetModeResponse) {
-    option (google.api.http) = {
-      put: "/viam/api/v1/service/navigation/{name}/mode"
-    };
+    option (google.api.http) = {put: "/viam/api/v1/service/navigation/{name}/mode"};
   }
 
   rpc GetLocation(GetLocationRequest) returns (GetLocationResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/navigation/{name}/location"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/location"};
   }
 
   rpc GetWaypoints(GetWaypointsRequest) returns (GetWaypointsResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/navigation/{name}/waypoints"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/waypoints"};
   }
 
   rpc AddWaypoint(AddWaypointRequest) returns (AddWaypointResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/navigation/{name}/waypoints"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/waypoints"};
   }
 
   rpc RemoveWaypoint(RemoveWaypointRequest) returns (RemoveWaypointResponse) {
-    option (google.api.http) = {
-      delete: "/viam/api/v1/service/navigation/{name}/waypoints/{id}"
-    };
+    option (google.api.http) = {delete: "/viam/api/v1/service/navigation/{name}/waypoints/{id}"};
   }
 
   rpc GetObstacles(GetObstaclesRequest) returns (GetObstaclesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/navigation/{name}/get_obstacles"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/get_obstacles"};
   }
 
   rpc GetPaths(GetPathsRequest) returns (GetPathsResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/navigation/{name}/get_paths"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/get_paths"};
   }
 
   // GetProperties returns properties of the current navigation service, including the
   // map_type being operated on.
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/navigation/{name}/properties"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/properties"};
   }
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/navigation/{name}/do_command"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/do_command"};
   }
 }
 

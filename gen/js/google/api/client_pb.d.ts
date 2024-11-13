@@ -284,6 +284,9 @@ export namespace PythonSettings {
     getRestAsyncIoEnabled(): boolean;
     setRestAsyncIoEnabled(value: boolean): void;
 
+    getProtobufPythonicTypesEnabled(): boolean;
+    setProtobufPythonicTypesEnabled(value: boolean): void;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ExperimentalFeatures.AsObject;
     static toObject(includeInstance: boolean, msg: ExperimentalFeatures): ExperimentalFeatures.AsObject;
@@ -297,6 +300,7 @@ export namespace PythonSettings {
   export namespace ExperimentalFeatures {
     export type AsObject = {
       restAsyncIoEnabled: boolean,
+      protobufPythonicTypesEnabled: boolean,
     }
   }
 }
