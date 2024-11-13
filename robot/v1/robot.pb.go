@@ -3412,7 +3412,7 @@ func file_robot_v1_robot_proto_init() {
 		(*RestartModuleRequest_ModuleId)(nil),
 		(*RestartModuleRequest_ModuleName)(nil),
 	}
-	file_robot_v1_robot_proto_msgTypes[49].OneofWrappers = []interface{}{}
+	file_robot_v1_robot_proto_msgTypes[49].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
