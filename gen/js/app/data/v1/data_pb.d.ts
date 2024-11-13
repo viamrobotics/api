@@ -376,6 +376,11 @@ export namespace TabularDataBySQLRequest {
 }
 
 export class TabularDataBySQLResponse extends jspb.Message {
+  clearDataList(): void;
+  getDataList(): Array<google_protobuf_struct_pb.Struct>;
+  setDataList(value: Array<google_protobuf_struct_pb.Struct>): void;
+  addData(value?: google_protobuf_struct_pb.Struct, index?: number): google_protobuf_struct_pb.Struct;
+
   clearRawDataList(): void;
   getRawDataList(): Array<Uint8Array | string>;
   getRawDataList_asU8(): Array<Uint8Array>;
@@ -395,6 +400,7 @@ export class TabularDataBySQLResponse extends jspb.Message {
 
 export namespace TabularDataBySQLResponse {
   export type AsObject = {
+    dataList: Array<google_protobuf_struct_pb.Struct.AsObject>,
     rawDataList: Array<Uint8Array | string>,
   }
 }
@@ -428,6 +434,11 @@ export namespace TabularDataByMQLRequest {
 }
 
 export class TabularDataByMQLResponse extends jspb.Message {
+  clearDataList(): void;
+  getDataList(): Array<google_protobuf_struct_pb.Struct>;
+  setDataList(value: Array<google_protobuf_struct_pb.Struct>): void;
+  addData(value?: google_protobuf_struct_pb.Struct, index?: number): google_protobuf_struct_pb.Struct;
+
   clearRawDataList(): void;
   getRawDataList(): Array<Uint8Array | string>;
   getRawDataList_asU8(): Array<Uint8Array>;
@@ -447,6 +458,7 @@ export class TabularDataByMQLResponse extends jspb.Message {
 
 export namespace TabularDataByMQLResponse {
   export type AsObject = {
+    dataList: Array<google_protobuf_struct_pb.Struct.AsObject>,
     rawDataList: Array<Uint8Array | string>,
   }
 }

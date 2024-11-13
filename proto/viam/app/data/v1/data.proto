@@ -200,10 +200,8 @@ message TabularDataBySQLRequest {
 
 // TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL.
 message TabularDataBySQLResponse {
+  repeated google.protobuf.Struct data = 1;
   repeated bytes raw_data = 2;
-
-  reserved 1;
-  reserved "data";
 }
 
 // TabularDataByMQLRequest requests tabular data using an MQL query.
@@ -220,10 +218,8 @@ message TabularDataByMQLRequest {
 
 // TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.
 message TabularDataByMQLResponse {
+  repeated google.protobuf.Struct data = 1;
   repeated bytes raw_data = 2;
-
-  reserved 1;
-  reserved "data";
 }
 
 // BinaryData contains data and metadata associated with binary data.

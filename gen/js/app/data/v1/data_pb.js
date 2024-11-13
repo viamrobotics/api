@@ -3937,7 +3937,7 @@ proto.viam.app.data.v1.TabularDataBySQLRequest.prototype.setSqlQuery = function(
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.TabularDataBySQLResponse.repeatedFields_ = [2];
+proto.viam.app.data.v1.TabularDataBySQLResponse.repeatedFields_ = [1,2];
 
 
 
@@ -3970,6 +3970,8 @@ proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.toObject = function(op
  */
 proto.viam.app.data.v1.TabularDataBySQLResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
+    dataList: jspb.Message.toObjectList(msg.getDataList(),
+    google_protobuf_struct_pb.Struct.toObject, includeInstance),
     rawDataList: msg.getRawDataList_asB64()
   };
 
@@ -4007,6 +4009,11 @@ proto.viam.app.data.v1.TabularDataBySQLResponse.deserializeBinaryFromReader = fu
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.addData(value);
+      break;
     case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.addRawData(value);
@@ -4040,6 +4047,14 @@ proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.serializeBinary = func
  */
 proto.viam.app.data.v1.TabularDataBySQLResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getDataList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
   f = message.getRawDataList_asU8();
   if (f.length > 0) {
     writer.writeRepeatedBytes(
@@ -4047,6 +4062,44 @@ proto.viam.app.data.v1.TabularDataBySQLResponse.serializeBinaryToWriter = functi
       f
     );
   }
+};
+
+
+/**
+ * repeated google.protobuf.Struct data = 1;
+ * @return {!Array<!proto.google.protobuf.Struct>}
+ */
+proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.getDataList = function() {
+  return /** @type{!Array<!proto.google.protobuf.Struct>} */ (
+    jspb.Message.getRepeatedWrapperField(this, google_protobuf_struct_pb.Struct, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.google.protobuf.Struct>} value
+ * @return {!proto.viam.app.data.v1.TabularDataBySQLResponse} returns this
+*/
+proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.setDataList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.google.protobuf.Struct=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.google.protobuf.Struct}
+ */
+proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.addData = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.google.protobuf.Struct, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.data.v1.TabularDataBySQLResponse} returns this
+ */
+proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.clearDataList = function() {
+  return this.setDataList([]);
 };
 
 
@@ -4327,7 +4380,7 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.clearMqlBinaryList = fu
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.TabularDataByMQLResponse.repeatedFields_ = [2];
+proto.viam.app.data.v1.TabularDataByMQLResponse.repeatedFields_ = [1,2];
 
 
 
@@ -4360,6 +4413,8 @@ proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.toObject = function(op
  */
 proto.viam.app.data.v1.TabularDataByMQLResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
+    dataList: jspb.Message.toObjectList(msg.getDataList(),
+    google_protobuf_struct_pb.Struct.toObject, includeInstance),
     rawDataList: msg.getRawDataList_asB64()
   };
 
@@ -4397,6 +4452,11 @@ proto.viam.app.data.v1.TabularDataByMQLResponse.deserializeBinaryFromReader = fu
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.addData(value);
+      break;
     case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.addRawData(value);
@@ -4430,6 +4490,14 @@ proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.serializeBinary = func
  */
 proto.viam.app.data.v1.TabularDataByMQLResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getDataList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
   f = message.getRawDataList_asU8();
   if (f.length > 0) {
     writer.writeRepeatedBytes(
@@ -4437,6 +4505,44 @@ proto.viam.app.data.v1.TabularDataByMQLResponse.serializeBinaryToWriter = functi
       f
     );
   }
+};
+
+
+/**
+ * repeated google.protobuf.Struct data = 1;
+ * @return {!Array<!proto.google.protobuf.Struct>}
+ */
+proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.getDataList = function() {
+  return /** @type{!Array<!proto.google.protobuf.Struct>} */ (
+    jspb.Message.getRepeatedWrapperField(this, google_protobuf_struct_pb.Struct, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.google.protobuf.Struct>} value
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLResponse} returns this
+*/
+proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.setDataList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.google.protobuf.Struct=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.google.protobuf.Struct}
+ */
+proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.addData = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.google.protobuf.Struct, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLResponse} returns this
+ */
+proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.clearDataList = function() {
+  return this.setDataList([]);
 };
 
 
