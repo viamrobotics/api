@@ -75,6 +75,18 @@ service AppService {
 
   rpc OrganizationGetSupportEmail(OrganizationGetSupportEmailRequest) returns (OrganizationGetSupportEmailResponse);
 
+  rpc OrganizationSetLogo(OrganizationSetLogoRequest) returns (OrganizationSetLogoResponse);
+  rpc OrganizationGetLogo(OrganizationGetLogoRequest) returns (OrganizationGetLogoResponse);
+
+  rpc EnableAuthService(EnableAuthServiceRequest) returns (EnableAuthServiceResponse);
+  rpc DisableAuthService(DisableAuthServiceRequest) returns (DisableAuthServiceResponse);
+
+  rpc CreateOAuthApp(CreateOAuthAppRequest) returns (CreateOAuthAppResponse);
+  rpc ReadOAuthApp(ReadOAuthAppRequest) returns (ReadOAuthAppResponse);
+  rpc UpdateOAuthApp(UpdateOAuthAppRequest) returns (UpdateOAuthAppResponse);
+  rpc DeleteOAuthApp(DeleteOAuthAppRequest) returns (DeleteOAuthAppResponse);
+  rpc ListOAuthApps(ListOAuthAppsRequest) returns (ListOAuthAppsResponse);
+
   // Location
 
   // Create a location
@@ -1410,4 +1422,78 @@ message CreateKeyFromExistingKeyAuthorizationsRequest {
 message CreateKeyFromExistingKeyAuthorizationsResponse {
   string id = 1;
   string key = 2;
+}
+
+message OrganizationSetLogoRequest {
+  string org_id = 1;
+  bytes logo = 2;
+}
+message OrganizationSetLogoResponse {}
+
+message OrganizationGetLogoRequest {
+  string org_id = 1;
+}
+message OrganizationGetLogoResponse {
+  string url = 1;
+}
+
+message EnableAuthServiceRequest {
+  string org_id = 1;
+}
+message EnableAuthServiceResponse {}
+
+message DisableAuthServiceRequest {
+  string org_id = 1;
+}
+message DisableAuthServiceResponse {}
+
+message CreateOAuthAppRequest {
+  string org_id = 1;
+  string name = 2;
+  OAuthConfig oauth_config = 3;
+}
+message CreateOAuthAppResponse {
+  string id = 1;
+  string secret = 2;
+}
+
+message ReadOAuthAppRequest {
+  string org_id = 1;
+  string id = 2;
+}
+message ReadOAuthAppResponse {
+  string name = 1;
+  string secret = 2;
+  OAuthConfig oauth_config = 3;
+}
+
+message UpdateOAuthAppRequest {
+  string org_id = 1;
+  string id = 2;
+  string name = 3;
+  OAuthConfig oauth_config = 4;
+}
+message UpdateOAuthAppResponse {}
+
+message DeleteOAuthAppRequest {
+  string org_id = 1;
+  string id = 2;
+}
+message DeleteOAuthAppResponse {}
+
+message ListOAuthAppsRequest {
+  string org_id = 1;
+}
+message ListOAuthAppsResponse {
+  repeated string ids = 1;
+}
+
+message OAuthConfig {
+  string client_authentication = 1;
+  string pkce = 2;
+  string url_validation = 3;
+  repeated string origin_uris = 4;
+  repeated string redirect_uris = 5;
+  string logout_uri = 6;
+  repeated string enabled_grants = 7;
 }
