@@ -19,6 +19,9 @@ service DataService {
   // TabularDataByMQL queries tabular data with an MQL (MongoDB Query Language) query.
   rpc TabularDataByMQL(TabularDataByMQLRequest) returns (TabularDataByMQLResponse);
 
+  // GetLatestTabularData gets the most recent tabular data captured from the specified data source.
+  rpc GetLatestTabularData(GetLatestTabularDataRequest) returns (GetLatestTabularDataResponse);
+
   // BinaryDataByFilter queries binary data and metadata based on given filters.
   rpc BinaryDataByFilter(BinaryDataByFilterRequest) returns (BinaryDataByFilterResponse);
 
@@ -224,6 +227,20 @@ message TabularDataByMQLResponse {
 
   reserved 1;
   reserved "data";
+}
+
+// GetLatestTabularDataRequest requests the most recent tabular data captured from the specified data source.
+message GetLatestTabularDataRequest {
+  string part_id = 1;
+  string resource_name = 2;
+  string method_name = 3;
+}
+
+// GetLatestTabularDataResponse provides the data, time synced, and time captured of most recent tabular data captured from the requested data source.
+message GetLatestTabularDataResponse {
+  google.protobuf.Timestamp time_captured = 1;
+  google.protobuf.Timestamp time_synced = 2;
+  google.protobuf.Struct payload = 3;
 }
 
 // BinaryData contains data and metadata associated with binary data.
