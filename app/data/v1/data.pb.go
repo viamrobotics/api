@@ -1018,6 +1018,131 @@ func (x *TabularDataByMQLResponse) GetRawData() [][]byte {
 	return nil
 }
 
+// GetLatestTabularDataRequest requests the most recent tabular data captured from the specified data source.
+type GetLatestTabularDataRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	PartId       string `protobuf:"bytes,1,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
+	ResourceName string `protobuf:"bytes,2,opt,name=resource_name,json=resourceName,proto3" json:"resource_name,omitempty"`
+	MethodName   string `protobuf:"bytes,3,opt,name=method_name,json=methodName,proto3" json:"method_name,omitempty"`
+}
+
+func (x *GetLatestTabularDataRequest) Reset() {
+	*x = GetLatestTabularDataRequest{}
+	mi := &file_app_data_v1_data_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetLatestTabularDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetLatestTabularDataRequest) ProtoMessage() {}
+
+func (x *GetLatestTabularDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetLatestTabularDataRequest.ProtoReflect.Descriptor instead.
+func (*GetLatestTabularDataRequest) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetLatestTabularDataRequest) GetPartId() string {
+	if x != nil {
+		return x.PartId
+	}
+	return ""
+}
+
+func (x *GetLatestTabularDataRequest) GetResourceName() string {
+	if x != nil {
+		return x.ResourceName
+	}
+	return ""
+}
+
+func (x *GetLatestTabularDataRequest) GetMethodName() string {
+	if x != nil {
+		return x.MethodName
+	}
+	return ""
+}
+
+// GetLatestTabularDataResponse provides the data, time synced, and time captured of the most recent tabular data captured
+// from the requested data source, as long as it was synced within the last year.
+type GetLatestTabularDataResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TimeCaptured *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=time_captured,json=timeCaptured,proto3" json:"time_captured,omitempty"`
+	TimeSynced   *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=time_synced,json=timeSynced,proto3" json:"time_synced,omitempty"`
+	Payload      *structpb.Struct       `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty"`
+}
+
+func (x *GetLatestTabularDataResponse) Reset() {
+	*x = GetLatestTabularDataResponse{}
+	mi := &file_app_data_v1_data_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetLatestTabularDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetLatestTabularDataResponse) ProtoMessage() {}
+
+func (x *GetLatestTabularDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetLatestTabularDataResponse.ProtoReflect.Descriptor instead.
+func (*GetLatestTabularDataResponse) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetLatestTabularDataResponse) GetTimeCaptured() *timestamppb.Timestamp {
+	if x != nil {
+		return x.TimeCaptured
+	}
+	return nil
+}
+
+func (x *GetLatestTabularDataResponse) GetTimeSynced() *timestamppb.Timestamp {
+	if x != nil {
+		return x.TimeSynced
+	}
+	return nil
+}
+
+func (x *GetLatestTabularDataResponse) GetPayload() *structpb.Struct {
+	if x != nil {
+		return x.Payload
+	}
+	return nil
+}
+
 // BinaryData contains data and metadata associated with binary data.
 type BinaryData struct {
 	state         protoimpl.MessageState
@@ -1030,7 +1155,7 @@ type BinaryData struct {
 
 func (x *BinaryData) Reset() {
 	*x = BinaryData{}
-	mi := &file_app_data_v1_data_proto_msgTypes[12]
+	mi := &file_app_data_v1_data_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1042,7 +1167,7 @@ func (x *BinaryData) String() string {
 func (*BinaryData) ProtoMessage() {}
 
 func (x *BinaryData) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[12]
+	mi := &file_app_data_v1_data_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1055,7 +1180,7 @@ func (x *BinaryData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BinaryData.ProtoReflect.Descriptor instead.
 func (*BinaryData) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{12}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *BinaryData) GetBinary() []byte {
@@ -1086,7 +1211,7 @@ type BinaryDataByFilterRequest struct {
 
 func (x *BinaryDataByFilterRequest) Reset() {
 	*x = BinaryDataByFilterRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[13]
+	mi := &file_app_data_v1_data_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1098,7 +1223,7 @@ func (x *BinaryDataByFilterRequest) String() string {
 func (*BinaryDataByFilterRequest) ProtoMessage() {}
 
 func (x *BinaryDataByFilterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[13]
+	mi := &file_app_data_v1_data_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1111,7 +1236,7 @@ func (x *BinaryDataByFilterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BinaryDataByFilterRequest.ProtoReflect.Descriptor instead.
 func (*BinaryDataByFilterRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{13}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *BinaryDataByFilterRequest) GetDataRequest() *DataRequest {
@@ -1156,7 +1281,7 @@ type BinaryDataByFilterResponse struct {
 
 func (x *BinaryDataByFilterResponse) Reset() {
 	*x = BinaryDataByFilterResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[14]
+	mi := &file_app_data_v1_data_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1168,7 +1293,7 @@ func (x *BinaryDataByFilterResponse) String() string {
 func (*BinaryDataByFilterResponse) ProtoMessage() {}
 
 func (x *BinaryDataByFilterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[14]
+	mi := &file_app_data_v1_data_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1181,7 +1306,7 @@ func (x *BinaryDataByFilterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BinaryDataByFilterResponse.ProtoReflect.Descriptor instead.
 func (*BinaryDataByFilterResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{14}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *BinaryDataByFilterResponse) GetData() []*BinaryData {
@@ -1225,7 +1350,7 @@ type BinaryID struct {
 
 func (x *BinaryID) Reset() {
 	*x = BinaryID{}
-	mi := &file_app_data_v1_data_proto_msgTypes[15]
+	mi := &file_app_data_v1_data_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1237,7 +1362,7 @@ func (x *BinaryID) String() string {
 func (*BinaryID) ProtoMessage() {}
 
 func (x *BinaryID) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[15]
+	mi := &file_app_data_v1_data_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1250,7 +1375,7 @@ func (x *BinaryID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BinaryID.ProtoReflect.Descriptor instead.
 func (*BinaryID) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{15}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *BinaryID) GetFileId() string {
@@ -1286,7 +1411,7 @@ type BinaryDataByIDsRequest struct {
 
 func (x *BinaryDataByIDsRequest) Reset() {
 	*x = BinaryDataByIDsRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[16]
+	mi := &file_app_data_v1_data_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1298,7 +1423,7 @@ func (x *BinaryDataByIDsRequest) String() string {
 func (*BinaryDataByIDsRequest) ProtoMessage() {}
 
 func (x *BinaryDataByIDsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[16]
+	mi := &file_app_data_v1_data_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1311,7 +1436,7 @@ func (x *BinaryDataByIDsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BinaryDataByIDsRequest.ProtoReflect.Descriptor instead.
 func (*BinaryDataByIDsRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{16}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *BinaryDataByIDsRequest) GetIncludeBinary() bool {
@@ -1340,7 +1465,7 @@ type BinaryDataByIDsResponse struct {
 
 func (x *BinaryDataByIDsResponse) Reset() {
 	*x = BinaryDataByIDsResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[17]
+	mi := &file_app_data_v1_data_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1352,7 +1477,7 @@ func (x *BinaryDataByIDsResponse) String() string {
 func (*BinaryDataByIDsResponse) ProtoMessage() {}
 
 func (x *BinaryDataByIDsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[17]
+	mi := &file_app_data_v1_data_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1365,7 +1490,7 @@ func (x *BinaryDataByIDsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BinaryDataByIDsResponse.ProtoReflect.Descriptor instead.
 func (*BinaryDataByIDsResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{17}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *BinaryDataByIDsResponse) GetData() []*BinaryData {
@@ -1401,7 +1526,7 @@ type BoundingBox struct {
 
 func (x *BoundingBox) Reset() {
 	*x = BoundingBox{}
-	mi := &file_app_data_v1_data_proto_msgTypes[18]
+	mi := &file_app_data_v1_data_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1413,7 +1538,7 @@ func (x *BoundingBox) String() string {
 func (*BoundingBox) ProtoMessage() {}
 
 func (x *BoundingBox) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[18]
+	mi := &file_app_data_v1_data_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1426,7 +1551,7 @@ func (x *BoundingBox) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BoundingBox.ProtoReflect.Descriptor instead.
 func (*BoundingBox) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{18}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *BoundingBox) GetId() string {
@@ -1491,7 +1616,7 @@ type Classification struct {
 
 func (x *Classification) Reset() {
 	*x = Classification{}
-	mi := &file_app_data_v1_data_proto_msgTypes[19]
+	mi := &file_app_data_v1_data_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1503,7 +1628,7 @@ func (x *Classification) String() string {
 func (*Classification) ProtoMessage() {}
 
 func (x *Classification) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[19]
+	mi := &file_app_data_v1_data_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1516,7 +1641,7 @@ func (x *Classification) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Classification.ProtoReflect.Descriptor instead.
 func (*Classification) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{19}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *Classification) GetLabel() string {
@@ -1545,7 +1670,7 @@ type Annotations struct {
 
 func (x *Annotations) Reset() {
 	*x = Annotations{}
-	mi := &file_app_data_v1_data_proto_msgTypes[20]
+	mi := &file_app_data_v1_data_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1557,7 +1682,7 @@ func (x *Annotations) String() string {
 func (*Annotations) ProtoMessage() {}
 
 func (x *Annotations) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[20]
+	mi := &file_app_data_v1_data_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1570,7 +1695,7 @@ func (x *Annotations) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Annotations.ProtoReflect.Descriptor instead.
 func (*Annotations) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{20}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *Annotations) GetBboxes() []*BoundingBox {
@@ -1606,7 +1731,7 @@ type BinaryMetadata struct {
 
 func (x *BinaryMetadata) Reset() {
 	*x = BinaryMetadata{}
-	mi := &file_app_data_v1_data_proto_msgTypes[21]
+	mi := &file_app_data_v1_data_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1618,7 +1743,7 @@ func (x *BinaryMetadata) String() string {
 func (*BinaryMetadata) ProtoMessage() {}
 
 func (x *BinaryMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[21]
+	mi := &file_app_data_v1_data_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1631,7 +1756,7 @@ func (x *BinaryMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BinaryMetadata.ProtoReflect.Descriptor instead.
 func (*BinaryMetadata) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{21}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *BinaryMetadata) GetId() string {
@@ -1714,7 +1839,7 @@ type DeleteTabularDataRequest struct {
 
 func (x *DeleteTabularDataRequest) Reset() {
 	*x = DeleteTabularDataRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[22]
+	mi := &file_app_data_v1_data_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1726,7 +1851,7 @@ func (x *DeleteTabularDataRequest) String() string {
 func (*DeleteTabularDataRequest) ProtoMessage() {}
 
 func (x *DeleteTabularDataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[22]
+	mi := &file_app_data_v1_data_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1739,7 +1864,7 @@ func (x *DeleteTabularDataRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteTabularDataRequest.ProtoReflect.Descriptor instead.
 func (*DeleteTabularDataRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{22}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *DeleteTabularDataRequest) GetOrganizationId() string {
@@ -1767,7 +1892,7 @@ type DeleteTabularDataResponse struct {
 
 func (x *DeleteTabularDataResponse) Reset() {
 	*x = DeleteTabularDataResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[23]
+	mi := &file_app_data_v1_data_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1779,7 +1904,7 @@ func (x *DeleteTabularDataResponse) String() string {
 func (*DeleteTabularDataResponse) ProtoMessage() {}
 
 func (x *DeleteTabularDataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[23]
+	mi := &file_app_data_v1_data_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1792,7 +1917,7 @@ func (x *DeleteTabularDataResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteTabularDataResponse.ProtoReflect.Descriptor instead.
 func (*DeleteTabularDataResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{23}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *DeleteTabularDataResponse) GetDeletedCount() uint64 {
@@ -1814,7 +1939,7 @@ type DeleteBinaryDataByFilterRequest struct {
 
 func (x *DeleteBinaryDataByFilterRequest) Reset() {
 	*x = DeleteBinaryDataByFilterRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[24]
+	mi := &file_app_data_v1_data_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1826,7 +1951,7 @@ func (x *DeleteBinaryDataByFilterRequest) String() string {
 func (*DeleteBinaryDataByFilterRequest) ProtoMessage() {}
 
 func (x *DeleteBinaryDataByFilterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[24]
+	mi := &file_app_data_v1_data_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1839,7 +1964,7 @@ func (x *DeleteBinaryDataByFilterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBinaryDataByFilterRequest.ProtoReflect.Descriptor instead.
 func (*DeleteBinaryDataByFilterRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{24}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *DeleteBinaryDataByFilterRequest) GetFilter() *Filter {
@@ -1867,7 +1992,7 @@ type DeleteBinaryDataByFilterResponse struct {
 
 func (x *DeleteBinaryDataByFilterResponse) Reset() {
 	*x = DeleteBinaryDataByFilterResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[25]
+	mi := &file_app_data_v1_data_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1879,7 +2004,7 @@ func (x *DeleteBinaryDataByFilterResponse) String() string {
 func (*DeleteBinaryDataByFilterResponse) ProtoMessage() {}
 
 func (x *DeleteBinaryDataByFilterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[25]
+	mi := &file_app_data_v1_data_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1892,7 +2017,7 @@ func (x *DeleteBinaryDataByFilterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBinaryDataByFilterResponse.ProtoReflect.Descriptor instead.
 func (*DeleteBinaryDataByFilterResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{25}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *DeleteBinaryDataByFilterResponse) GetDeletedCount() uint64 {
@@ -1913,7 +2038,7 @@ type DeleteBinaryDataByIDsRequest struct {
 
 func (x *DeleteBinaryDataByIDsRequest) Reset() {
 	*x = DeleteBinaryDataByIDsRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[26]
+	mi := &file_app_data_v1_data_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1925,7 +2050,7 @@ func (x *DeleteBinaryDataByIDsRequest) String() string {
 func (*DeleteBinaryDataByIDsRequest) ProtoMessage() {}
 
 func (x *DeleteBinaryDataByIDsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[26]
+	mi := &file_app_data_v1_data_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1938,7 +2063,7 @@ func (x *DeleteBinaryDataByIDsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBinaryDataByIDsRequest.ProtoReflect.Descriptor instead.
 func (*DeleteBinaryDataByIDsRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{26}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *DeleteBinaryDataByIDsRequest) GetBinaryIds() []*BinaryID {
@@ -1959,7 +2084,7 @@ type DeleteBinaryDataByIDsResponse struct {
 
 func (x *DeleteBinaryDataByIDsResponse) Reset() {
 	*x = DeleteBinaryDataByIDsResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[27]
+	mi := &file_app_data_v1_data_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1971,7 +2096,7 @@ func (x *DeleteBinaryDataByIDsResponse) String() string {
 func (*DeleteBinaryDataByIDsResponse) ProtoMessage() {}
 
 func (x *DeleteBinaryDataByIDsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[27]
+	mi := &file_app_data_v1_data_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1984,7 +2109,7 @@ func (x *DeleteBinaryDataByIDsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBinaryDataByIDsResponse.ProtoReflect.Descriptor instead.
 func (*DeleteBinaryDataByIDsResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{27}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *DeleteBinaryDataByIDsResponse) GetDeletedCount() uint64 {
@@ -2006,7 +2131,7 @@ type AddTagsToBinaryDataByIDsRequest struct {
 
 func (x *AddTagsToBinaryDataByIDsRequest) Reset() {
 	*x = AddTagsToBinaryDataByIDsRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[28]
+	mi := &file_app_data_v1_data_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2018,7 +2143,7 @@ func (x *AddTagsToBinaryDataByIDsRequest) String() string {
 func (*AddTagsToBinaryDataByIDsRequest) ProtoMessage() {}
 
 func (x *AddTagsToBinaryDataByIDsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[28]
+	mi := &file_app_data_v1_data_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2031,7 +2156,7 @@ func (x *AddTagsToBinaryDataByIDsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddTagsToBinaryDataByIDsRequest.ProtoReflect.Descriptor instead.
 func (*AddTagsToBinaryDataByIDsRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{28}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *AddTagsToBinaryDataByIDsRequest) GetBinaryIds() []*BinaryID {
@@ -2056,7 +2181,7 @@ type AddTagsToBinaryDataByIDsResponse struct {
 
 func (x *AddTagsToBinaryDataByIDsResponse) Reset() {
 	*x = AddTagsToBinaryDataByIDsResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[29]
+	mi := &file_app_data_v1_data_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2068,7 +2193,7 @@ func (x *AddTagsToBinaryDataByIDsResponse) String() string {
 func (*AddTagsToBinaryDataByIDsResponse) ProtoMessage() {}
 
 func (x *AddTagsToBinaryDataByIDsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[29]
+	mi := &file_app_data_v1_data_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2081,7 +2206,7 @@ func (x *AddTagsToBinaryDataByIDsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddTagsToBinaryDataByIDsResponse.ProtoReflect.Descriptor instead.
 func (*AddTagsToBinaryDataByIDsResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{29}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{31}
 }
 
 // AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided.
@@ -2096,7 +2221,7 @@ type AddTagsToBinaryDataByFilterRequest struct {
 
 func (x *AddTagsToBinaryDataByFilterRequest) Reset() {
 	*x = AddTagsToBinaryDataByFilterRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[30]
+	mi := &file_app_data_v1_data_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2108,7 +2233,7 @@ func (x *AddTagsToBinaryDataByFilterRequest) String() string {
 func (*AddTagsToBinaryDataByFilterRequest) ProtoMessage() {}
 
 func (x *AddTagsToBinaryDataByFilterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[30]
+	mi := &file_app_data_v1_data_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2121,7 +2246,7 @@ func (x *AddTagsToBinaryDataByFilterRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use AddTagsToBinaryDataByFilterRequest.ProtoReflect.Descriptor instead.
 func (*AddTagsToBinaryDataByFilterRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{30}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *AddTagsToBinaryDataByFilterRequest) GetFilter() *Filter {
@@ -2146,7 +2271,7 @@ type AddTagsToBinaryDataByFilterResponse struct {
 
 func (x *AddTagsToBinaryDataByFilterResponse) Reset() {
 	*x = AddTagsToBinaryDataByFilterResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[31]
+	mi := &file_app_data_v1_data_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2158,7 +2283,7 @@ func (x *AddTagsToBinaryDataByFilterResponse) String() string {
 func (*AddTagsToBinaryDataByFilterResponse) ProtoMessage() {}
 
 func (x *AddTagsToBinaryDataByFilterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[31]
+	mi := &file_app_data_v1_data_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2171,7 +2296,7 @@ func (x *AddTagsToBinaryDataByFilterResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use AddTagsToBinaryDataByFilterResponse.ProtoReflect.Descriptor instead.
 func (*AddTagsToBinaryDataByFilterResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{31}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{33}
 }
 
 // RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.
@@ -2186,7 +2311,7 @@ type RemoveTagsFromBinaryDataByIDsRequest struct {
 
 func (x *RemoveTagsFromBinaryDataByIDsRequest) Reset() {
 	*x = RemoveTagsFromBinaryDataByIDsRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[32]
+	mi := &file_app_data_v1_data_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2198,7 +2323,7 @@ func (x *RemoveTagsFromBinaryDataByIDsRequest) String() string {
 func (*RemoveTagsFromBinaryDataByIDsRequest) ProtoMessage() {}
 
 func (x *RemoveTagsFromBinaryDataByIDsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[32]
+	mi := &file_app_data_v1_data_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2211,7 +2336,7 @@ func (x *RemoveTagsFromBinaryDataByIDsRequest) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use RemoveTagsFromBinaryDataByIDsRequest.ProtoReflect.Descriptor instead.
 func (*RemoveTagsFromBinaryDataByIDsRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{32}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *RemoveTagsFromBinaryDataByIDsRequest) GetBinaryIds() []*BinaryID {
@@ -2239,7 +2364,7 @@ type RemoveTagsFromBinaryDataByIDsResponse struct {
 
 func (x *RemoveTagsFromBinaryDataByIDsResponse) Reset() {
 	*x = RemoveTagsFromBinaryDataByIDsResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[33]
+	mi := &file_app_data_v1_data_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2251,7 +2376,7 @@ func (x *RemoveTagsFromBinaryDataByIDsResponse) String() string {
 func (*RemoveTagsFromBinaryDataByIDsResponse) ProtoMessage() {}
 
 func (x *RemoveTagsFromBinaryDataByIDsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[33]
+	mi := &file_app_data_v1_data_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2264,7 +2389,7 @@ func (x *RemoveTagsFromBinaryDataByIDsResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use RemoveTagsFromBinaryDataByIDsResponse.ProtoReflect.Descriptor instead.
 func (*RemoveTagsFromBinaryDataByIDsResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{33}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *RemoveTagsFromBinaryDataByIDsResponse) GetDeletedCount() uint64 {
@@ -2286,7 +2411,7 @@ type RemoveTagsFromBinaryDataByFilterRequest struct {
 
 func (x *RemoveTagsFromBinaryDataByFilterRequest) Reset() {
 	*x = RemoveTagsFromBinaryDataByFilterRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[34]
+	mi := &file_app_data_v1_data_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2298,7 +2423,7 @@ func (x *RemoveTagsFromBinaryDataByFilterRequest) String() string {
 func (*RemoveTagsFromBinaryDataByFilterRequest) ProtoMessage() {}
 
 func (x *RemoveTagsFromBinaryDataByFilterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[34]
+	mi := &file_app_data_v1_data_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2311,7 +2436,7 @@ func (x *RemoveTagsFromBinaryDataByFilterRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use RemoveTagsFromBinaryDataByFilterRequest.ProtoReflect.Descriptor instead.
 func (*RemoveTagsFromBinaryDataByFilterRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{34}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *RemoveTagsFromBinaryDataByFilterRequest) GetFilter() *Filter {
@@ -2339,7 +2464,7 @@ type RemoveTagsFromBinaryDataByFilterResponse struct {
 
 func (x *RemoveTagsFromBinaryDataByFilterResponse) Reset() {
 	*x = RemoveTagsFromBinaryDataByFilterResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[35]
+	mi := &file_app_data_v1_data_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2351,7 +2476,7 @@ func (x *RemoveTagsFromBinaryDataByFilterResponse) String() string {
 func (*RemoveTagsFromBinaryDataByFilterResponse) ProtoMessage() {}
 
 func (x *RemoveTagsFromBinaryDataByFilterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[35]
+	mi := &file_app_data_v1_data_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2364,7 +2489,7 @@ func (x *RemoveTagsFromBinaryDataByFilterResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use RemoveTagsFromBinaryDataByFilterResponse.ProtoReflect.Descriptor instead.
 func (*RemoveTagsFromBinaryDataByFilterResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{35}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *RemoveTagsFromBinaryDataByFilterResponse) GetDeletedCount() uint64 {
@@ -2385,7 +2510,7 @@ type TagsByFilterRequest struct {
 
 func (x *TagsByFilterRequest) Reset() {
 	*x = TagsByFilterRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[36]
+	mi := &file_app_data_v1_data_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2397,7 +2522,7 @@ func (x *TagsByFilterRequest) String() string {
 func (*TagsByFilterRequest) ProtoMessage() {}
 
 func (x *TagsByFilterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[36]
+	mi := &file_app_data_v1_data_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2410,7 +2535,7 @@ func (x *TagsByFilterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TagsByFilterRequest.ProtoReflect.Descriptor instead.
 func (*TagsByFilterRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{36}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *TagsByFilterRequest) GetFilter() *Filter {
@@ -2431,7 +2556,7 @@ type TagsByFilterResponse struct {
 
 func (x *TagsByFilterResponse) Reset() {
 	*x = TagsByFilterResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[37]
+	mi := &file_app_data_v1_data_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2443,7 +2568,7 @@ func (x *TagsByFilterResponse) String() string {
 func (*TagsByFilterResponse) ProtoMessage() {}
 
 func (x *TagsByFilterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[37]
+	mi := &file_app_data_v1_data_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2456,7 +2581,7 @@ func (x *TagsByFilterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TagsByFilterResponse.ProtoReflect.Descriptor instead.
 func (*TagsByFilterResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{37}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *TagsByFilterResponse) GetTags() []string {
@@ -2483,7 +2608,7 @@ type AddBoundingBoxToImageByIDRequest struct {
 
 func (x *AddBoundingBoxToImageByIDRequest) Reset() {
 	*x = AddBoundingBoxToImageByIDRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[38]
+	mi := &file_app_data_v1_data_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2495,7 +2620,7 @@ func (x *AddBoundingBoxToImageByIDRequest) String() string {
 func (*AddBoundingBoxToImageByIDRequest) ProtoMessage() {}
 
 func (x *AddBoundingBoxToImageByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[38]
+	mi := &file_app_data_v1_data_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2508,7 +2633,7 @@ func (x *AddBoundingBoxToImageByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddBoundingBoxToImageByIDRequest.ProtoReflect.Descriptor instead.
 func (*AddBoundingBoxToImageByIDRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{38}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *AddBoundingBoxToImageByIDRequest) GetBinaryId() *BinaryID {
@@ -2564,7 +2689,7 @@ type AddBoundingBoxToImageByIDResponse struct {
 
 func (x *AddBoundingBoxToImageByIDResponse) Reset() {
 	*x = AddBoundingBoxToImageByIDResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[39]
+	mi := &file_app_data_v1_data_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2576,7 +2701,7 @@ func (x *AddBoundingBoxToImageByIDResponse) String() string {
 func (*AddBoundingBoxToImageByIDResponse) ProtoMessage() {}
 
 func (x *AddBoundingBoxToImageByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[39]
+	mi := &file_app_data_v1_data_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2589,7 +2714,7 @@ func (x *AddBoundingBoxToImageByIDResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use AddBoundingBoxToImageByIDResponse.ProtoReflect.Descriptor instead.
 func (*AddBoundingBoxToImageByIDResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{39}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *AddBoundingBoxToImageByIDResponse) GetBboxId() string {
@@ -2611,7 +2736,7 @@ type RemoveBoundingBoxFromImageByIDRequest struct {
 
 func (x *RemoveBoundingBoxFromImageByIDRequest) Reset() {
 	*x = RemoveBoundingBoxFromImageByIDRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[40]
+	mi := &file_app_data_v1_data_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2623,7 +2748,7 @@ func (x *RemoveBoundingBoxFromImageByIDRequest) String() string {
 func (*RemoveBoundingBoxFromImageByIDRequest) ProtoMessage() {}
 
 func (x *RemoveBoundingBoxFromImageByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[40]
+	mi := &file_app_data_v1_data_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2636,7 +2761,7 @@ func (x *RemoveBoundingBoxFromImageByIDRequest) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use RemoveBoundingBoxFromImageByIDRequest.ProtoReflect.Descriptor instead.
 func (*RemoveBoundingBoxFromImageByIDRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{40}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *RemoveBoundingBoxFromImageByIDRequest) GetBinaryId() *BinaryID {
@@ -2661,7 +2786,7 @@ type RemoveBoundingBoxFromImageByIDResponse struct {
 
 func (x *RemoveBoundingBoxFromImageByIDResponse) Reset() {
 	*x = RemoveBoundingBoxFromImageByIDResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[41]
+	mi := &file_app_data_v1_data_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2673,7 +2798,7 @@ func (x *RemoveBoundingBoxFromImageByIDResponse) String() string {
 func (*RemoveBoundingBoxFromImageByIDResponse) ProtoMessage() {}
 
 func (x *RemoveBoundingBoxFromImageByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[41]
+	mi := &file_app_data_v1_data_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2686,7 +2811,7 @@ func (x *RemoveBoundingBoxFromImageByIDResponse) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use RemoveBoundingBoxFromImageByIDResponse.ProtoReflect.Descriptor instead.
 func (*RemoveBoundingBoxFromImageByIDResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{41}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{43}
 }
 
 // UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID.
@@ -2706,7 +2831,7 @@ type UpdateBoundingBoxRequest struct {
 
 func (x *UpdateBoundingBoxRequest) Reset() {
 	*x = UpdateBoundingBoxRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[42]
+	mi := &file_app_data_v1_data_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2718,7 +2843,7 @@ func (x *UpdateBoundingBoxRequest) String() string {
 func (*UpdateBoundingBoxRequest) ProtoMessage() {}
 
 func (x *UpdateBoundingBoxRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[42]
+	mi := &file_app_data_v1_data_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2731,7 +2856,7 @@ func (x *UpdateBoundingBoxRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateBoundingBoxRequest.ProtoReflect.Descriptor instead.
 func (*UpdateBoundingBoxRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{42}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *UpdateBoundingBoxRequest) GetBinaryId() *BinaryID {
@@ -2791,7 +2916,7 @@ type UpdateBoundingBoxResponse struct {
 
 func (x *UpdateBoundingBoxResponse) Reset() {
 	*x = UpdateBoundingBoxResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[43]
+	mi := &file_app_data_v1_data_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2803,7 +2928,7 @@ func (x *UpdateBoundingBoxResponse) String() string {
 func (*UpdateBoundingBoxResponse) ProtoMessage() {}
 
 func (x *UpdateBoundingBoxResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[43]
+	mi := &file_app_data_v1_data_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2816,7 +2941,7 @@ func (x *UpdateBoundingBoxResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateBoundingBoxResponse.ProtoReflect.Descriptor instead.
 func (*UpdateBoundingBoxResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{43}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{45}
 }
 
 // BoundingBoxLabelsByFilterRequest requests all the labels of the bounding boxes from files from a given filter.
@@ -2830,7 +2955,7 @@ type BoundingBoxLabelsByFilterRequest struct {
 
 func (x *BoundingBoxLabelsByFilterRequest) Reset() {
 	*x = BoundingBoxLabelsByFilterRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[44]
+	mi := &file_app_data_v1_data_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2842,7 +2967,7 @@ func (x *BoundingBoxLabelsByFilterRequest) String() string {
 func (*BoundingBoxLabelsByFilterRequest) ProtoMessage() {}
 
 func (x *BoundingBoxLabelsByFilterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[44]
+	mi := &file_app_data_v1_data_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2855,7 +2980,7 @@ func (x *BoundingBoxLabelsByFilterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BoundingBoxLabelsByFilterRequest.ProtoReflect.Descriptor instead.
 func (*BoundingBoxLabelsByFilterRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{44}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *BoundingBoxLabelsByFilterRequest) GetFilter() *Filter {
@@ -2876,7 +3001,7 @@ type BoundingBoxLabelsByFilterResponse struct {
 
 func (x *BoundingBoxLabelsByFilterResponse) Reset() {
 	*x = BoundingBoxLabelsByFilterResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[45]
+	mi := &file_app_data_v1_data_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2888,7 +3013,7 @@ func (x *BoundingBoxLabelsByFilterResponse) String() string {
 func (*BoundingBoxLabelsByFilterResponse) ProtoMessage() {}
 
 func (x *BoundingBoxLabelsByFilterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[45]
+	mi := &file_app_data_v1_data_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2901,7 +3026,7 @@ func (x *BoundingBoxLabelsByFilterResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use BoundingBoxLabelsByFilterResponse.ProtoReflect.Descriptor instead.
 func (*BoundingBoxLabelsByFilterResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{45}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *BoundingBoxLabelsByFilterResponse) GetLabels() []string {
@@ -2925,7 +3050,7 @@ type ConfigureDatabaseUserRequest struct {
 
 func (x *ConfigureDatabaseUserRequest) Reset() {
 	*x = ConfigureDatabaseUserRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[46]
+	mi := &file_app_data_v1_data_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2937,7 +3062,7 @@ func (x *ConfigureDatabaseUserRequest) String() string {
 func (*ConfigureDatabaseUserRequest) ProtoMessage() {}
 
 func (x *ConfigureDatabaseUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[46]
+	mi := &file_app_data_v1_data_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2950,7 +3075,7 @@ func (x *ConfigureDatabaseUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigureDatabaseUserRequest.ProtoReflect.Descriptor instead.
 func (*ConfigureDatabaseUserRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{46}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *ConfigureDatabaseUserRequest) GetOrganizationId() string {
@@ -2975,7 +3100,7 @@ type ConfigureDatabaseUserResponse struct {
 
 func (x *ConfigureDatabaseUserResponse) Reset() {
 	*x = ConfigureDatabaseUserResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[47]
+	mi := &file_app_data_v1_data_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2987,7 +3112,7 @@ func (x *ConfigureDatabaseUserResponse) String() string {
 func (*ConfigureDatabaseUserResponse) ProtoMessage() {}
 
 func (x *ConfigureDatabaseUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[47]
+	mi := &file_app_data_v1_data_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3000,7 +3125,7 @@ func (x *ConfigureDatabaseUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigureDatabaseUserResponse.ProtoReflect.Descriptor instead.
 func (*ConfigureDatabaseUserResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{47}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{49}
 }
 
 // GetDatabaseConnectionRequest requests the database connection hostname.
@@ -3014,7 +3139,7 @@ type GetDatabaseConnectionRequest struct {
 
 func (x *GetDatabaseConnectionRequest) Reset() {
 	*x = GetDatabaseConnectionRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[48]
+	mi := &file_app_data_v1_data_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3026,7 +3151,7 @@ func (x *GetDatabaseConnectionRequest) String() string {
 func (*GetDatabaseConnectionRequest) ProtoMessage() {}
 
 func (x *GetDatabaseConnectionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[48]
+	mi := &file_app_data_v1_data_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3039,7 +3164,7 @@ func (x *GetDatabaseConnectionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDatabaseConnectionRequest.ProtoReflect.Descriptor instead.
 func (*GetDatabaseConnectionRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{48}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *GetDatabaseConnectionRequest) GetOrganizationId() string {
@@ -3064,7 +3189,7 @@ type GetDatabaseConnectionResponse struct {
 
 func (x *GetDatabaseConnectionResponse) Reset() {
 	*x = GetDatabaseConnectionResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[49]
+	mi := &file_app_data_v1_data_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3076,7 +3201,7 @@ func (x *GetDatabaseConnectionResponse) String() string {
 func (*GetDatabaseConnectionResponse) ProtoMessage() {}
 
 func (x *GetDatabaseConnectionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[49]
+	mi := &file_app_data_v1_data_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3089,7 +3214,7 @@ func (x *GetDatabaseConnectionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDatabaseConnectionResponse.ProtoReflect.Descriptor instead.
 func (*GetDatabaseConnectionResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{49}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *GetDatabaseConnectionResponse) GetHostname() string {
@@ -3125,7 +3250,7 @@ type AddBinaryDataToDatasetByIDsRequest struct {
 
 func (x *AddBinaryDataToDatasetByIDsRequest) Reset() {
 	*x = AddBinaryDataToDatasetByIDsRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[50]
+	mi := &file_app_data_v1_data_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3137,7 +3262,7 @@ func (x *AddBinaryDataToDatasetByIDsRequest) String() string {
 func (*AddBinaryDataToDatasetByIDsRequest) ProtoMessage() {}
 
 func (x *AddBinaryDataToDatasetByIDsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[50]
+	mi := &file_app_data_v1_data_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3150,7 +3275,7 @@ func (x *AddBinaryDataToDatasetByIDsRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use AddBinaryDataToDatasetByIDsRequest.ProtoReflect.Descriptor instead.
 func (*AddBinaryDataToDatasetByIDsRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{50}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *AddBinaryDataToDatasetByIDsRequest) GetBinaryIds() []*BinaryID {
@@ -3175,7 +3300,7 @@ type AddBinaryDataToDatasetByIDsResponse struct {
 
 func (x *AddBinaryDataToDatasetByIDsResponse) Reset() {
 	*x = AddBinaryDataToDatasetByIDsResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[51]
+	mi := &file_app_data_v1_data_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3187,7 +3312,7 @@ func (x *AddBinaryDataToDatasetByIDsResponse) String() string {
 func (*AddBinaryDataToDatasetByIDsResponse) ProtoMessage() {}
 
 func (x *AddBinaryDataToDatasetByIDsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[51]
+	mi := &file_app_data_v1_data_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3200,7 +3325,7 @@ func (x *AddBinaryDataToDatasetByIDsResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use AddBinaryDataToDatasetByIDsResponse.ProtoReflect.Descriptor instead.
 func (*AddBinaryDataToDatasetByIDsResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{51}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{53}
 }
 
 // RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id.
@@ -3215,7 +3340,7 @@ type RemoveBinaryDataFromDatasetByIDsRequest struct {
 
 func (x *RemoveBinaryDataFromDatasetByIDsRequest) Reset() {
 	*x = RemoveBinaryDataFromDatasetByIDsRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[52]
+	mi := &file_app_data_v1_data_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3227,7 +3352,7 @@ func (x *RemoveBinaryDataFromDatasetByIDsRequest) String() string {
 func (*RemoveBinaryDataFromDatasetByIDsRequest) ProtoMessage() {}
 
 func (x *RemoveBinaryDataFromDatasetByIDsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[52]
+	mi := &file_app_data_v1_data_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3240,7 +3365,7 @@ func (x *RemoveBinaryDataFromDatasetByIDsRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use RemoveBinaryDataFromDatasetByIDsRequest.ProtoReflect.Descriptor instead.
 func (*RemoveBinaryDataFromDatasetByIDsRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{52}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *RemoveBinaryDataFromDatasetByIDsRequest) GetBinaryIds() []*BinaryID {
@@ -3265,7 +3390,7 @@ type RemoveBinaryDataFromDatasetByIDsResponse struct {
 
 func (x *RemoveBinaryDataFromDatasetByIDsResponse) Reset() {
 	*x = RemoveBinaryDataFromDatasetByIDsResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[53]
+	mi := &file_app_data_v1_data_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3277,7 +3402,7 @@ func (x *RemoveBinaryDataFromDatasetByIDsResponse) String() string {
 func (*RemoveBinaryDataFromDatasetByIDsResponse) ProtoMessage() {}
 
 func (x *RemoveBinaryDataFromDatasetByIDsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[53]
+	mi := &file_app_data_v1_data_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3290,7 +3415,7 @@ func (x *RemoveBinaryDataFromDatasetByIDsResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use RemoveBinaryDataFromDatasetByIDsResponse.ProtoReflect.Descriptor instead.
 func (*RemoveBinaryDataFromDatasetByIDsResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{53}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{55}
 }
 
 var File_app_data_v1_data_proto protoreflect.FileDescriptor
@@ -3460,7 +3585,28 @@ var file_app_data_v1_data_proto_rawDesc = []byte{
 	0x79, 0x4d, 0x51, 0x4c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x19, 0x0a, 0x08,
 	0x72, 0x61, 0x77, 0x5f, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0c, 0x52, 0x07,
 	0x72, 0x61, 0x77, 0x44, 0x61, 0x74, 0x61, 0x4a, 0x04, 0x08, 0x01, 0x10, 0x02, 0x52, 0x04, 0x64,
-	0x61, 0x74, 0x61, 0x22, 0x62, 0x0a, 0x0a, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74,
+	0x61, 0x74, 0x61, 0x22, 0x7c, 0x0a, 0x1b, 0x47, 0x65, 0x74, 0x4c, 0x61, 0x74, 0x65, 0x73, 0x74,
+	0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x70, 0x61, 0x72, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x06, 0x70, 0x61, 0x72, 0x74, 0x49, 0x64, 0x12, 0x23, 0x0a, 0x0d, 0x72,
+	0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0c, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65,
+	0x12, 0x1f, 0x0a, 0x0b, 0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x4e, 0x61, 0x6d,
+	0x65, 0x22, 0xcf, 0x01, 0x0a, 0x1c, 0x47, 0x65, 0x74, 0x4c, 0x61, 0x74, 0x65, 0x73, 0x74, 0x54,
+	0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x3f, 0x0a, 0x0d, 0x74, 0x69, 0x6d, 0x65, 0x5f, 0x63, 0x61, 0x70, 0x74, 0x75,
+	0x72, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67,
+	0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65,
+	0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0c, 0x74, 0x69, 0x6d, 0x65, 0x43, 0x61, 0x70, 0x74, 0x75,
+	0x72, 0x65, 0x64, 0x12, 0x3b, 0x0a, 0x0b, 0x74, 0x69, 0x6d, 0x65, 0x5f, 0x73, 0x79, 0x6e, 0x63,
+	0x65, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73,
+	0x74, 0x61, 0x6d, 0x70, 0x52, 0x0a, 0x74, 0x69, 0x6d, 0x65, 0x53, 0x79, 0x6e, 0x63, 0x65, 0x64,
+	0x12, 0x31, 0x0a, 0x07, 0x70, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x07, 0x70, 0x61, 0x79, 0x6c,
+	0x6f, 0x61, 0x64, 0x22, 0x62, 0x0a, 0x0a, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74,
 	0x61, 0x12, 0x16, 0x0a, 0x06, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x0c, 0x52, 0x06, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x12, 0x3c, 0x0a, 0x08, 0x6d, 0x65, 0x74,
 	0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x76, 0x69,
@@ -3788,7 +3934,7 @@ var file_app_data_v1_data_proto_rawDesc = []byte{
 	0x01, 0x12, 0x1b, 0x0a, 0x17, 0x54, 0x41, 0x47, 0x53, 0x5f, 0x46, 0x49, 0x4c, 0x54, 0x45, 0x52,
 	0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x54, 0x41, 0x47, 0x47, 0x45, 0x44, 0x10, 0x02, 0x12, 0x1d,
 	0x0a, 0x19, 0x54, 0x41, 0x47, 0x53, 0x5f, 0x46, 0x49, 0x4c, 0x54, 0x45, 0x52, 0x5f, 0x54, 0x59,
-	0x50, 0x45, 0x5f, 0x55, 0x4e, 0x54, 0x41, 0x47, 0x47, 0x45, 0x44, 0x10, 0x03, 0x32, 0xea, 0x14,
+	0x50, 0x45, 0x5f, 0x55, 0x4e, 0x54, 0x41, 0x47, 0x47, 0x45, 0x44, 0x10, 0x03, 0x32, 0xe1, 0x15,
 	0x0a, 0x0b, 0x44, 0x61, 0x74, 0x61, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x72, 0x0a,
 	0x13, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69,
 	0x6c, 0x74, 0x65, 0x72, 0x12, 0x2c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e,
@@ -3810,155 +3956,162 @@ var file_app_data_v1_data_proto_rawDesc = []byte{
 	0x79, 0x4d, 0x51, 0x4c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x76, 0x69,
 	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x54,
 	0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x4d, 0x51, 0x4c, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6f, 0x0a, 0x12, 0x42, 0x69, 0x6e, 0x61, 0x72,
-	0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x2b, 0x2e,
-	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31,
-	0x2e, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c,
-	0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x76, 0x69, 0x61,
-	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x69,
-	0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x66, 0x0a, 0x0f, 0x42, 0x69, 0x6e, 0x61,
-	0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x12, 0x28, 0x2e, 0x76, 0x69,
-	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x42,
-	0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44,
-	0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x6c, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61,
-	0x72, 0x44, 0x61, 0x74, 0x61, 0x12, 0x2a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54,
-	0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x2b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74,
-	0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x61, 0x62, 0x75, 0x6c,
-	0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x81,
-	0x01, 0x0a, 0x18, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44,
-	0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x31, 0x2e, 0x76, 0x69,
-	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44,
-	0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42,
-	0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x32,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x75, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x4c, 0x61,
+	0x74, 0x65, 0x73, 0x74, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x12,
+	0x2d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e,
+	0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x4c, 0x61, 0x74, 0x65, 0x73, 0x74, 0x54, 0x61, 0x62, 0x75,
+	0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2e,
 	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76,
-	0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61,
-	0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x78, 0x0a, 0x15, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61,
-	0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x12, 0x2e, 0x2e, 0x76, 0x69,
-	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44,
-	0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42,
-	0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2f, 0x2e, 0x76, 0x69,
-	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44,
-	0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42,
-	0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x81, 0x01, 0x0a,
-	0x18, 0x41, 0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79,
-	0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x12, 0x31, 0x2e, 0x76, 0x69, 0x61, 0x6d,
-	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64,
-	0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61,
-	0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x32, 0x2e, 0x76,
+	0x31, 0x2e, 0x47, 0x65, 0x74, 0x4c, 0x61, 0x74, 0x65, 0x73, 0x74, 0x54, 0x61, 0x62, 0x75, 0x6c,
+	0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6f,
+	0x0a, 0x12, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69,
+	0x6c, 0x74, 0x65, 0x72, 0x12, 0x2b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e,
+	0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61,
+	0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x2c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74,
+	0x61, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42,
+	0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x66, 0x0a, 0x0f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49,
+	0x44, 0x73, 0x12, 0x28, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61,
+	0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61,
+	0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x76,
 	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e,
-	0x41, 0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44,
-	0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x8a, 0x01, 0x0a, 0x1b, 0x41, 0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69,
-	0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72,
-	0x12, 0x34, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61,
+	0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6c, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x12, 0x2a, 0x2e, 0x76,
+	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74,
+	0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
+	0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x81, 0x01, 0x0a, 0x18, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74,
+	0x65, 0x72, 0x12, 0x31, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61,
+	0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61,
+	0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x32, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
+	0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42,
+	0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65,
+	0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x78, 0x0a, 0x15, 0x44, 0x65, 0x6c,
+	0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49,
+	0x44, 0x73, 0x12, 0x2e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61,
+	0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61,
+	0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x2f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61,
+	0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61,
+	0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x81, 0x01, 0x0a, 0x18, 0x41, 0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54,
+	0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73,
+	0x12, 0x31, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61,
 	0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e,
-	0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x35, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
-	0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x54, 0x61, 0x67,
-	0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46,
-	0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x90, 0x01,
-	0x0a, 0x1d, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d,
-	0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x12,
-	0x36, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e,
-	0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f,
-	0x6d, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x37, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x32, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64,
+	0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f,
+	0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x8a, 0x01, 0x0a, 0x1b, 0x41, 0x64, 0x64, 0x54,
+	0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42,
+	0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x34, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x54, 0x61,
+	0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79,
+	0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x35, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31,
+	0x2e, 0x41, 0x64, 0x64, 0x54, 0x61, 0x67, 0x73, 0x54, 0x6f, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79,
+	0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x90, 0x01, 0x0a, 0x1d, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x54,
+	0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74,
+	0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x12, 0x36, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
+	0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65,
+	0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61,
+	0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x37,
+	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76,
+	0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d,
+	0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x99, 0x01, 0x0a, 0x20, 0x52, 0x65, 0x6d, 0x6f,
+	0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79,
+	0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x39, 0x2e, 0x76,
+	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e,
+	0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69,
+	0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
 	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76,
 	0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44,
-	0x61, 0x74, 0x61, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x99, 0x01, 0x0a, 0x20, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46,
-	0x72, 0x6f, 0x6d, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46,
-	0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x39, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x54,
-	0x61, 0x67, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74,
-	0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x3a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61,
-	0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x54, 0x61, 0x67, 0x73, 0x46, 0x72,
-	0x6f, 0x6d, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69,
-	0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5d, 0x0a, 0x0c,
-	0x54, 0x61, 0x67, 0x73, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x25, 0x2e, 0x76,
-	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e,
-	0x54, 0x61, 0x67, 0x73, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64,
+	0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x5d, 0x0a, 0x0c, 0x54, 0x61, 0x67, 0x73, 0x42, 0x79, 0x46, 0x69, 0x6c,
+	0x74, 0x65, 0x72, 0x12, 0x25, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64,
 	0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61, 0x67, 0x73, 0x42, 0x79, 0x46, 0x69, 0x6c,
-	0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x84, 0x01, 0x0a, 0x19,
-	0x41, 0x64, 0x64, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x54, 0x6f,
-	0x49, 0x6d, 0x61, 0x67, 0x65, 0x42, 0x79, 0x49, 0x44, 0x12, 0x32, 0x2e, 0x76, 0x69, 0x61, 0x6d,
-	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64,
-	0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x54, 0x6f, 0x49, 0x6d, 0x61,
-	0x67, 0x65, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x33, 0x2e,
-	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31,
-	0x2e, 0x41, 0x64, 0x64, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x54,
-	0x6f, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x93, 0x01, 0x0a, 0x1e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x42, 0x6f, 0x75,
-	0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x46, 0x72, 0x6f, 0x6d, 0x49, 0x6d, 0x61, 0x67,
-	0x65, 0x42, 0x79, 0x49, 0x44, 0x12, 0x37, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
+	0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61,
+	0x67, 0x73, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x84, 0x01, 0x0a, 0x19, 0x41, 0x64, 0x64, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69,
+	0x6e, 0x67, 0x42, 0x6f, 0x78, 0x54, 0x6f, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x42, 0x79, 0x49, 0x44,
+	0x12, 0x32, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61,
+	0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42,
+	0x6f, 0x78, 0x54, 0x6f, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x33, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e,
+	0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x42, 0x6f, 0x75, 0x6e, 0x64,
+	0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x54, 0x6f, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x42, 0x79, 0x49,
+	0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x93, 0x01, 0x0a, 0x1e, 0x52, 0x65,
+	0x6d, 0x6f, 0x76, 0x65, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x46,
+	0x72, 0x6f, 0x6d, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x42, 0x79, 0x49, 0x44, 0x12, 0x37, 0x2e, 0x76,
+	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e,
+	0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f,
+	0x78, 0x46, 0x72, 0x6f, 0x6d, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x38, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
 	0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x42,
 	0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x46, 0x72, 0x6f, 0x6d, 0x49, 0x6d,
-	0x61, 0x67, 0x65, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x38,
-	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76,
-	0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67,
-	0x42, 0x6f, 0x78, 0x46, 0x72, 0x6f, 0x6d, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x42, 0x79, 0x49, 0x44,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x84, 0x01, 0x0a, 0x19, 0x42, 0x6f, 0x75,
-	0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x4c, 0x61, 0x62, 0x65, 0x6c, 0x73, 0x42, 0x79,
-	0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x32, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
-	0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69,
-	0x6e, 0x67, 0x42, 0x6f, 0x78, 0x4c, 0x61, 0x62, 0x65, 0x6c, 0x73, 0x42, 0x79, 0x46, 0x69, 0x6c,
-	0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x33, 0x2e, 0x76, 0x69, 0x61,
-	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x6f,
-	0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x4c, 0x61, 0x62, 0x65, 0x6c, 0x73, 0x42,
-	0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x6c, 0x0a, 0x11, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e,
-	0x67, 0x42, 0x6f, 0x78, 0x12, 0x2a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e,
-	0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x42, 0x6f,
-	0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x2b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61,
-	0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69,
-	0x6e, 0x67, 0x42, 0x6f, 0x78, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x78, 0x0a,
-	0x15, 0x47, 0x65, 0x74, 0x44, 0x61, 0x74, 0x61, 0x62, 0x61, 0x73, 0x65, 0x43, 0x6f, 0x6e, 0x6e,
-	0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
-	0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x44, 0x61, 0x74,
-	0x61, 0x62, 0x61, 0x73, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
-	0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x44, 0x61, 0x74,
-	0x61, 0x62, 0x61, 0x73, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x78, 0x0a, 0x15, 0x43, 0x6f, 0x6e, 0x66, 0x69,
+	0x61, 0x67, 0x65, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x84, 0x01, 0x0a, 0x19, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x4c,
+	0x61, 0x62, 0x65, 0x6c, 0x73, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x32, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31,
+	0x2e, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x4c, 0x61, 0x62, 0x65,
+	0x6c, 0x73, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x33, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74,
+	0x61, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78,
+	0x4c, 0x61, 0x62, 0x65, 0x6c, 0x73, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6c, 0x0a, 0x11, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x12, 0x2a, 0x2e, 0x76, 0x69,
+	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x42, 0x6f, 0x75, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x6f, 0x78, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x78, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x44, 0x61, 0x74, 0x61, 0x62,
+	0x61, 0x73, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2e, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31,
+	0x2e, 0x47, 0x65, 0x74, 0x44, 0x61, 0x74, 0x61, 0x62, 0x61, 0x73, 0x65, 0x43, 0x6f, 0x6e, 0x6e,
+	0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2f, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31,
+	0x2e, 0x47, 0x65, 0x74, 0x44, 0x61, 0x74, 0x61, 0x62, 0x61, 0x73, 0x65, 0x43, 0x6f, 0x6e, 0x6e,
+	0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x78,
+	0x0a, 0x15, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x65, 0x44, 0x61, 0x74, 0x61, 0x62,
+	0x61, 0x73, 0x65, 0x55, 0x73, 0x65, 0x72, 0x12, 0x2e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69,
 	0x67, 0x75, 0x72, 0x65, 0x44, 0x61, 0x74, 0x61, 0x62, 0x61, 0x73, 0x65, 0x55, 0x73, 0x65, 0x72,
-	0x12, 0x2e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61,
-	0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x65, 0x44, 0x61, 0x74,
-	0x61, 0x62, 0x61, 0x73, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x2f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61,
-	0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x65, 0x44, 0x61, 0x74,
-	0x61, 0x62, 0x61, 0x73, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x8a, 0x01, 0x0a, 0x1b, 0x41, 0x64, 0x64, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44,
-	0x61, 0x74, 0x61, 0x54, 0x6f, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x42, 0x79, 0x49, 0x44,
-	0x73, 0x12, 0x34, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74,
-	0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61,
-	0x74, 0x61, 0x54, 0x6f, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x42, 0x79, 0x49, 0x44, 0x73,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x35, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
-	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x42, 0x69,
-	0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x54, 0x6f, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65,
-	0x74, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x99,
-	0x01, 0x0a, 0x20, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44,
-	0x61, 0x74, 0x61, 0x46, 0x72, 0x6f, 0x6d, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x42, 0x79,
-	0x49, 0x44, 0x73, 0x12, 0x39, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64,
-	0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x42, 0x69, 0x6e,
-	0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x46, 0x72, 0x6f, 0x6d, 0x44, 0x61, 0x74, 0x61, 0x73,
-	0x65, 0x74, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3a,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69,
+	0x67, 0x75, 0x72, 0x65, 0x44, 0x61, 0x74, 0x61, 0x62, 0x61, 0x73, 0x65, 0x55, 0x73, 0x65, 0x72,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x8a, 0x01, 0x0a, 0x1b, 0x41, 0x64, 0x64,
+	0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x54, 0x6f, 0x44, 0x61, 0x74, 0x61,
+	0x73, 0x65, 0x74, 0x42, 0x79, 0x49, 0x44, 0x73, 0x12, 0x34, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
+	0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x64, 0x64, 0x42,
+	0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x54, 0x6f, 0x44, 0x61, 0x74, 0x61, 0x73,
+	0x65, 0x74, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x35,
 	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76,
-	0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61,
-	0x74, 0x61, 0x46, 0x72, 0x6f, 0x6d, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x42, 0x79, 0x49,
-	0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x1d, 0x5a, 0x1b, 0x67, 0x6f,
-	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x70,
-	0x70, 0x2f, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x31, 0x2e, 0x41, 0x64, 0x64, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x54,
+	0x6f, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x99, 0x01, 0x0a, 0x20, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65,
+	0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x46, 0x72, 0x6f, 0x6d, 0x44, 0x61,
+	0x74, 0x61, 0x73, 0x65, 0x74, 0x42, 0x79, 0x49, 0x44, 0x73, 0x12, 0x39, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65,
+	0x6d, 0x6f, 0x76, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x46, 0x72,
+	0x6f, 0x6d, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
+	0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x42,
+	0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x46, 0x72, 0x6f, 0x6d, 0x44, 0x61, 0x74,
+	0x61, 0x73, 0x65, 0x74, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x42, 0x1d, 0x5a, 0x1b, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d,
+	0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x76, 0x31,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -3974,7 +4127,7 @@ func file_app_data_v1_data_proto_rawDescGZIP() []byte {
 }
 
 var file_app_data_v1_data_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_app_data_v1_data_proto_msgTypes = make([]protoimpl.MessageInfo, 55)
+var file_app_data_v1_data_proto_msgTypes = make([]protoimpl.MessageInfo, 57)
 var file_app_data_v1_data_proto_goTypes = []any{
 	(Order)(0),                                       // 0: viam.app.data.v1.Order
 	(TagsFilterType)(0),                              // 1: viam.app.data.v1.TagsFilterType
@@ -3990,52 +4143,54 @@ var file_app_data_v1_data_proto_goTypes = []any{
 	(*TabularDataBySQLResponse)(nil),                 // 11: viam.app.data.v1.TabularDataBySQLResponse
 	(*TabularDataByMQLRequest)(nil),                  // 12: viam.app.data.v1.TabularDataByMQLRequest
 	(*TabularDataByMQLResponse)(nil),                 // 13: viam.app.data.v1.TabularDataByMQLResponse
-	(*BinaryData)(nil),                               // 14: viam.app.data.v1.BinaryData
-	(*BinaryDataByFilterRequest)(nil),                // 15: viam.app.data.v1.BinaryDataByFilterRequest
-	(*BinaryDataByFilterResponse)(nil),               // 16: viam.app.data.v1.BinaryDataByFilterResponse
-	(*BinaryID)(nil),                                 // 17: viam.app.data.v1.BinaryID
-	(*BinaryDataByIDsRequest)(nil),                   // 18: viam.app.data.v1.BinaryDataByIDsRequest
-	(*BinaryDataByIDsResponse)(nil),                  // 19: viam.app.data.v1.BinaryDataByIDsResponse
-	(*BoundingBox)(nil),                              // 20: viam.app.data.v1.BoundingBox
-	(*Classification)(nil),                           // 21: viam.app.data.v1.Classification
-	(*Annotations)(nil),                              // 22: viam.app.data.v1.Annotations
-	(*BinaryMetadata)(nil),                           // 23: viam.app.data.v1.BinaryMetadata
-	(*DeleteTabularDataRequest)(nil),                 // 24: viam.app.data.v1.DeleteTabularDataRequest
-	(*DeleteTabularDataResponse)(nil),                // 25: viam.app.data.v1.DeleteTabularDataResponse
-	(*DeleteBinaryDataByFilterRequest)(nil),          // 26: viam.app.data.v1.DeleteBinaryDataByFilterRequest
-	(*DeleteBinaryDataByFilterResponse)(nil),         // 27: viam.app.data.v1.DeleteBinaryDataByFilterResponse
-	(*DeleteBinaryDataByIDsRequest)(nil),             // 28: viam.app.data.v1.DeleteBinaryDataByIDsRequest
-	(*DeleteBinaryDataByIDsResponse)(nil),            // 29: viam.app.data.v1.DeleteBinaryDataByIDsResponse
-	(*AddTagsToBinaryDataByIDsRequest)(nil),          // 30: viam.app.data.v1.AddTagsToBinaryDataByIDsRequest
-	(*AddTagsToBinaryDataByIDsResponse)(nil),         // 31: viam.app.data.v1.AddTagsToBinaryDataByIDsResponse
-	(*AddTagsToBinaryDataByFilterRequest)(nil),       // 32: viam.app.data.v1.AddTagsToBinaryDataByFilterRequest
-	(*AddTagsToBinaryDataByFilterResponse)(nil),      // 33: viam.app.data.v1.AddTagsToBinaryDataByFilterResponse
-	(*RemoveTagsFromBinaryDataByIDsRequest)(nil),     // 34: viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest
-	(*RemoveTagsFromBinaryDataByIDsResponse)(nil),    // 35: viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse
-	(*RemoveTagsFromBinaryDataByFilterRequest)(nil),  // 36: viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest
-	(*RemoveTagsFromBinaryDataByFilterResponse)(nil), // 37: viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse
-	(*TagsByFilterRequest)(nil),                      // 38: viam.app.data.v1.TagsByFilterRequest
-	(*TagsByFilterResponse)(nil),                     // 39: viam.app.data.v1.TagsByFilterResponse
-	(*AddBoundingBoxToImageByIDRequest)(nil),         // 40: viam.app.data.v1.AddBoundingBoxToImageByIDRequest
-	(*AddBoundingBoxToImageByIDResponse)(nil),        // 41: viam.app.data.v1.AddBoundingBoxToImageByIDResponse
-	(*RemoveBoundingBoxFromImageByIDRequest)(nil),    // 42: viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest
-	(*RemoveBoundingBoxFromImageByIDResponse)(nil),   // 43: viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse
-	(*UpdateBoundingBoxRequest)(nil),                 // 44: viam.app.data.v1.UpdateBoundingBoxRequest
-	(*UpdateBoundingBoxResponse)(nil),                // 45: viam.app.data.v1.UpdateBoundingBoxResponse
-	(*BoundingBoxLabelsByFilterRequest)(nil),         // 46: viam.app.data.v1.BoundingBoxLabelsByFilterRequest
-	(*BoundingBoxLabelsByFilterResponse)(nil),        // 47: viam.app.data.v1.BoundingBoxLabelsByFilterResponse
-	(*ConfigureDatabaseUserRequest)(nil),             // 48: viam.app.data.v1.ConfigureDatabaseUserRequest
-	(*ConfigureDatabaseUserResponse)(nil),            // 49: viam.app.data.v1.ConfigureDatabaseUserResponse
-	(*GetDatabaseConnectionRequest)(nil),             // 50: viam.app.data.v1.GetDatabaseConnectionRequest
-	(*GetDatabaseConnectionResponse)(nil),            // 51: viam.app.data.v1.GetDatabaseConnectionResponse
-	(*AddBinaryDataToDatasetByIDsRequest)(nil),       // 52: viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest
-	(*AddBinaryDataToDatasetByIDsResponse)(nil),      // 53: viam.app.data.v1.AddBinaryDataToDatasetByIDsResponse
-	(*RemoveBinaryDataFromDatasetByIDsRequest)(nil),  // 54: viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest
-	(*RemoveBinaryDataFromDatasetByIDsResponse)(nil), // 55: viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse
-	nil,                           // 56: viam.app.data.v1.CaptureMetadata.MethodParametersEntry
-	(*timestamppb.Timestamp)(nil), // 57: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),       // 58: google.protobuf.Struct
-	(*anypb.Any)(nil),             // 59: google.protobuf.Any
+	(*GetLatestTabularDataRequest)(nil),              // 14: viam.app.data.v1.GetLatestTabularDataRequest
+	(*GetLatestTabularDataResponse)(nil),             // 15: viam.app.data.v1.GetLatestTabularDataResponse
+	(*BinaryData)(nil),                               // 16: viam.app.data.v1.BinaryData
+	(*BinaryDataByFilterRequest)(nil),                // 17: viam.app.data.v1.BinaryDataByFilterRequest
+	(*BinaryDataByFilterResponse)(nil),               // 18: viam.app.data.v1.BinaryDataByFilterResponse
+	(*BinaryID)(nil),                                 // 19: viam.app.data.v1.BinaryID
+	(*BinaryDataByIDsRequest)(nil),                   // 20: viam.app.data.v1.BinaryDataByIDsRequest
+	(*BinaryDataByIDsResponse)(nil),                  // 21: viam.app.data.v1.BinaryDataByIDsResponse
+	(*BoundingBox)(nil),                              // 22: viam.app.data.v1.BoundingBox
+	(*Classification)(nil),                           // 23: viam.app.data.v1.Classification
+	(*Annotations)(nil),                              // 24: viam.app.data.v1.Annotations
+	(*BinaryMetadata)(nil),                           // 25: viam.app.data.v1.BinaryMetadata
+	(*DeleteTabularDataRequest)(nil),                 // 26: viam.app.data.v1.DeleteTabularDataRequest
+	(*DeleteTabularDataResponse)(nil),                // 27: viam.app.data.v1.DeleteTabularDataResponse
+	(*DeleteBinaryDataByFilterRequest)(nil),          // 28: viam.app.data.v1.DeleteBinaryDataByFilterRequest
+	(*DeleteBinaryDataByFilterResponse)(nil),         // 29: viam.app.data.v1.DeleteBinaryDataByFilterResponse
+	(*DeleteBinaryDataByIDsRequest)(nil),             // 30: viam.app.data.v1.DeleteBinaryDataByIDsRequest
+	(*DeleteBinaryDataByIDsResponse)(nil),            // 31: viam.app.data.v1.DeleteBinaryDataByIDsResponse
+	(*AddTagsToBinaryDataByIDsRequest)(nil),          // 32: viam.app.data.v1.AddTagsToBinaryDataByIDsRequest
+	(*AddTagsToBinaryDataByIDsResponse)(nil),         // 33: viam.app.data.v1.AddTagsToBinaryDataByIDsResponse
+	(*AddTagsToBinaryDataByFilterRequest)(nil),       // 34: viam.app.data.v1.AddTagsToBinaryDataByFilterRequest
+	(*AddTagsToBinaryDataByFilterResponse)(nil),      // 35: viam.app.data.v1.AddTagsToBinaryDataByFilterResponse
+	(*RemoveTagsFromBinaryDataByIDsRequest)(nil),     // 36: viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest
+	(*RemoveTagsFromBinaryDataByIDsResponse)(nil),    // 37: viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse
+	(*RemoveTagsFromBinaryDataByFilterRequest)(nil),  // 38: viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest
+	(*RemoveTagsFromBinaryDataByFilterResponse)(nil), // 39: viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse
+	(*TagsByFilterRequest)(nil),                      // 40: viam.app.data.v1.TagsByFilterRequest
+	(*TagsByFilterResponse)(nil),                     // 41: viam.app.data.v1.TagsByFilterResponse
+	(*AddBoundingBoxToImageByIDRequest)(nil),         // 42: viam.app.data.v1.AddBoundingBoxToImageByIDRequest
+	(*AddBoundingBoxToImageByIDResponse)(nil),        // 43: viam.app.data.v1.AddBoundingBoxToImageByIDResponse
+	(*RemoveBoundingBoxFromImageByIDRequest)(nil),    // 44: viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest
+	(*RemoveBoundingBoxFromImageByIDResponse)(nil),   // 45: viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse
+	(*UpdateBoundingBoxRequest)(nil),                 // 46: viam.app.data.v1.UpdateBoundingBoxRequest
+	(*UpdateBoundingBoxResponse)(nil),                // 47: viam.app.data.v1.UpdateBoundingBoxResponse
+	(*BoundingBoxLabelsByFilterRequest)(nil),         // 48: viam.app.data.v1.BoundingBoxLabelsByFilterRequest
+	(*BoundingBoxLabelsByFilterResponse)(nil),        // 49: viam.app.data.v1.BoundingBoxLabelsByFilterResponse
+	(*ConfigureDatabaseUserRequest)(nil),             // 50: viam.app.data.v1.ConfigureDatabaseUserRequest
+	(*ConfigureDatabaseUserResponse)(nil),            // 51: viam.app.data.v1.ConfigureDatabaseUserResponse
+	(*GetDatabaseConnectionRequest)(nil),             // 52: viam.app.data.v1.GetDatabaseConnectionRequest
+	(*GetDatabaseConnectionResponse)(nil),            // 53: viam.app.data.v1.GetDatabaseConnectionResponse
+	(*AddBinaryDataToDatasetByIDsRequest)(nil),       // 54: viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest
+	(*AddBinaryDataToDatasetByIDsResponse)(nil),      // 55: viam.app.data.v1.AddBinaryDataToDatasetByIDsResponse
+	(*RemoveBinaryDataFromDatasetByIDsRequest)(nil),  // 56: viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest
+	(*RemoveBinaryDataFromDatasetByIDsResponse)(nil), // 57: viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse
+	nil,                           // 58: viam.app.data.v1.CaptureMetadata.MethodParametersEntry
+	(*timestamppb.Timestamp)(nil), // 59: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),       // 60: google.protobuf.Struct
+	(*anypb.Any)(nil),             // 61: google.protobuf.Any
 }
 var file_app_data_v1_data_proto_depIdxs = []int32{
 	3,  // 0: viam.app.data.v1.DataRequest.filter:type_name -> viam.app.data.v1.Filter
@@ -4043,87 +4198,92 @@ var file_app_data_v1_data_proto_depIdxs = []int32{
 	6,  // 2: viam.app.data.v1.Filter.interval:type_name -> viam.app.data.v1.CaptureInterval
 	4,  // 3: viam.app.data.v1.Filter.tags_filter:type_name -> viam.app.data.v1.TagsFilter
 	1,  // 4: viam.app.data.v1.TagsFilter.type:type_name -> viam.app.data.v1.TagsFilterType
-	56, // 5: viam.app.data.v1.CaptureMetadata.method_parameters:type_name -> viam.app.data.v1.CaptureMetadata.MethodParametersEntry
-	57, // 6: viam.app.data.v1.CaptureInterval.start:type_name -> google.protobuf.Timestamp
-	57, // 7: viam.app.data.v1.CaptureInterval.end:type_name -> google.protobuf.Timestamp
+	58, // 5: viam.app.data.v1.CaptureMetadata.method_parameters:type_name -> viam.app.data.v1.CaptureMetadata.MethodParametersEntry
+	59, // 6: viam.app.data.v1.CaptureInterval.start:type_name -> google.protobuf.Timestamp
+	59, // 7: viam.app.data.v1.CaptureInterval.end:type_name -> google.protobuf.Timestamp
 	2,  // 8: viam.app.data.v1.TabularDataByFilterRequest.data_request:type_name -> viam.app.data.v1.DataRequest
 	5,  // 9: viam.app.data.v1.TabularDataByFilterResponse.metadata:type_name -> viam.app.data.v1.CaptureMetadata
 	9,  // 10: viam.app.data.v1.TabularDataByFilterResponse.data:type_name -> viam.app.data.v1.TabularData
-	58, // 11: viam.app.data.v1.TabularData.data:type_name -> google.protobuf.Struct
-	57, // 12: viam.app.data.v1.TabularData.time_requested:type_name -> google.protobuf.Timestamp
-	57, // 13: viam.app.data.v1.TabularData.time_received:type_name -> google.protobuf.Timestamp
-	23, // 14: viam.app.data.v1.BinaryData.metadata:type_name -> viam.app.data.v1.BinaryMetadata
-	2,  // 15: viam.app.data.v1.BinaryDataByFilterRequest.data_request:type_name -> viam.app.data.v1.DataRequest
-	14, // 16: viam.app.data.v1.BinaryDataByFilterResponse.data:type_name -> viam.app.data.v1.BinaryData
-	17, // 17: viam.app.data.v1.BinaryDataByIDsRequest.binary_ids:type_name -> viam.app.data.v1.BinaryID
-	14, // 18: viam.app.data.v1.BinaryDataByIDsResponse.data:type_name -> viam.app.data.v1.BinaryData
-	20, // 19: viam.app.data.v1.Annotations.bboxes:type_name -> viam.app.data.v1.BoundingBox
-	21, // 20: viam.app.data.v1.Annotations.classifications:type_name -> viam.app.data.v1.Classification
-	5,  // 21: viam.app.data.v1.BinaryMetadata.capture_metadata:type_name -> viam.app.data.v1.CaptureMetadata
-	57, // 22: viam.app.data.v1.BinaryMetadata.time_requested:type_name -> google.protobuf.Timestamp
-	57, // 23: viam.app.data.v1.BinaryMetadata.time_received:type_name -> google.protobuf.Timestamp
-	22, // 24: viam.app.data.v1.BinaryMetadata.annotations:type_name -> viam.app.data.v1.Annotations
-	3,  // 25: viam.app.data.v1.DeleteBinaryDataByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
-	17, // 26: viam.app.data.v1.DeleteBinaryDataByIDsRequest.binary_ids:type_name -> viam.app.data.v1.BinaryID
-	17, // 27: viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.binary_ids:type_name -> viam.app.data.v1.BinaryID
-	3,  // 28: viam.app.data.v1.AddTagsToBinaryDataByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
-	17, // 29: viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.binary_ids:type_name -> viam.app.data.v1.BinaryID
-	3,  // 30: viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
-	3,  // 31: viam.app.data.v1.TagsByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
-	17, // 32: viam.app.data.v1.AddBoundingBoxToImageByIDRequest.binary_id:type_name -> viam.app.data.v1.BinaryID
-	17, // 33: viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest.binary_id:type_name -> viam.app.data.v1.BinaryID
-	17, // 34: viam.app.data.v1.UpdateBoundingBoxRequest.binary_id:type_name -> viam.app.data.v1.BinaryID
-	3,  // 35: viam.app.data.v1.BoundingBoxLabelsByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
-	17, // 36: viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest.binary_ids:type_name -> viam.app.data.v1.BinaryID
-	17, // 37: viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest.binary_ids:type_name -> viam.app.data.v1.BinaryID
-	59, // 38: viam.app.data.v1.CaptureMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
-	7,  // 39: viam.app.data.v1.DataService.TabularDataByFilter:input_type -> viam.app.data.v1.TabularDataByFilterRequest
-	10, // 40: viam.app.data.v1.DataService.TabularDataBySQL:input_type -> viam.app.data.v1.TabularDataBySQLRequest
-	12, // 41: viam.app.data.v1.DataService.TabularDataByMQL:input_type -> viam.app.data.v1.TabularDataByMQLRequest
-	15, // 42: viam.app.data.v1.DataService.BinaryDataByFilter:input_type -> viam.app.data.v1.BinaryDataByFilterRequest
-	18, // 43: viam.app.data.v1.DataService.BinaryDataByIDs:input_type -> viam.app.data.v1.BinaryDataByIDsRequest
-	24, // 44: viam.app.data.v1.DataService.DeleteTabularData:input_type -> viam.app.data.v1.DeleteTabularDataRequest
-	26, // 45: viam.app.data.v1.DataService.DeleteBinaryDataByFilter:input_type -> viam.app.data.v1.DeleteBinaryDataByFilterRequest
-	28, // 46: viam.app.data.v1.DataService.DeleteBinaryDataByIDs:input_type -> viam.app.data.v1.DeleteBinaryDataByIDsRequest
-	30, // 47: viam.app.data.v1.DataService.AddTagsToBinaryDataByIDs:input_type -> viam.app.data.v1.AddTagsToBinaryDataByIDsRequest
-	32, // 48: viam.app.data.v1.DataService.AddTagsToBinaryDataByFilter:input_type -> viam.app.data.v1.AddTagsToBinaryDataByFilterRequest
-	34, // 49: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByIDs:input_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest
-	36, // 50: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByFilter:input_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest
-	38, // 51: viam.app.data.v1.DataService.TagsByFilter:input_type -> viam.app.data.v1.TagsByFilterRequest
-	40, // 52: viam.app.data.v1.DataService.AddBoundingBoxToImageByID:input_type -> viam.app.data.v1.AddBoundingBoxToImageByIDRequest
-	42, // 53: viam.app.data.v1.DataService.RemoveBoundingBoxFromImageByID:input_type -> viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest
-	46, // 54: viam.app.data.v1.DataService.BoundingBoxLabelsByFilter:input_type -> viam.app.data.v1.BoundingBoxLabelsByFilterRequest
-	44, // 55: viam.app.data.v1.DataService.UpdateBoundingBox:input_type -> viam.app.data.v1.UpdateBoundingBoxRequest
-	50, // 56: viam.app.data.v1.DataService.GetDatabaseConnection:input_type -> viam.app.data.v1.GetDatabaseConnectionRequest
-	48, // 57: viam.app.data.v1.DataService.ConfigureDatabaseUser:input_type -> viam.app.data.v1.ConfigureDatabaseUserRequest
-	52, // 58: viam.app.data.v1.DataService.AddBinaryDataToDatasetByIDs:input_type -> viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest
-	54, // 59: viam.app.data.v1.DataService.RemoveBinaryDataFromDatasetByIDs:input_type -> viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest
-	8,  // 60: viam.app.data.v1.DataService.TabularDataByFilter:output_type -> viam.app.data.v1.TabularDataByFilterResponse
-	11, // 61: viam.app.data.v1.DataService.TabularDataBySQL:output_type -> viam.app.data.v1.TabularDataBySQLResponse
-	13, // 62: viam.app.data.v1.DataService.TabularDataByMQL:output_type -> viam.app.data.v1.TabularDataByMQLResponse
-	16, // 63: viam.app.data.v1.DataService.BinaryDataByFilter:output_type -> viam.app.data.v1.BinaryDataByFilterResponse
-	19, // 64: viam.app.data.v1.DataService.BinaryDataByIDs:output_type -> viam.app.data.v1.BinaryDataByIDsResponse
-	25, // 65: viam.app.data.v1.DataService.DeleteTabularData:output_type -> viam.app.data.v1.DeleteTabularDataResponse
-	27, // 66: viam.app.data.v1.DataService.DeleteBinaryDataByFilter:output_type -> viam.app.data.v1.DeleteBinaryDataByFilterResponse
-	29, // 67: viam.app.data.v1.DataService.DeleteBinaryDataByIDs:output_type -> viam.app.data.v1.DeleteBinaryDataByIDsResponse
-	31, // 68: viam.app.data.v1.DataService.AddTagsToBinaryDataByIDs:output_type -> viam.app.data.v1.AddTagsToBinaryDataByIDsResponse
-	33, // 69: viam.app.data.v1.DataService.AddTagsToBinaryDataByFilter:output_type -> viam.app.data.v1.AddTagsToBinaryDataByFilterResponse
-	35, // 70: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByIDs:output_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse
-	37, // 71: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByFilter:output_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse
-	39, // 72: viam.app.data.v1.DataService.TagsByFilter:output_type -> viam.app.data.v1.TagsByFilterResponse
-	41, // 73: viam.app.data.v1.DataService.AddBoundingBoxToImageByID:output_type -> viam.app.data.v1.AddBoundingBoxToImageByIDResponse
-	43, // 74: viam.app.data.v1.DataService.RemoveBoundingBoxFromImageByID:output_type -> viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse
-	47, // 75: viam.app.data.v1.DataService.BoundingBoxLabelsByFilter:output_type -> viam.app.data.v1.BoundingBoxLabelsByFilterResponse
-	45, // 76: viam.app.data.v1.DataService.UpdateBoundingBox:output_type -> viam.app.data.v1.UpdateBoundingBoxResponse
-	51, // 77: viam.app.data.v1.DataService.GetDatabaseConnection:output_type -> viam.app.data.v1.GetDatabaseConnectionResponse
-	49, // 78: viam.app.data.v1.DataService.ConfigureDatabaseUser:output_type -> viam.app.data.v1.ConfigureDatabaseUserResponse
-	53, // 79: viam.app.data.v1.DataService.AddBinaryDataToDatasetByIDs:output_type -> viam.app.data.v1.AddBinaryDataToDatasetByIDsResponse
-	55, // 80: viam.app.data.v1.DataService.RemoveBinaryDataFromDatasetByIDs:output_type -> viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse
-	60, // [60:81] is the sub-list for method output_type
-	39, // [39:60] is the sub-list for method input_type
-	39, // [39:39] is the sub-list for extension type_name
-	39, // [39:39] is the sub-list for extension extendee
-	0,  // [0:39] is the sub-list for field type_name
+	60, // 11: viam.app.data.v1.TabularData.data:type_name -> google.protobuf.Struct
+	59, // 12: viam.app.data.v1.TabularData.time_requested:type_name -> google.protobuf.Timestamp
+	59, // 13: viam.app.data.v1.TabularData.time_received:type_name -> google.protobuf.Timestamp
+	59, // 14: viam.app.data.v1.GetLatestTabularDataResponse.time_captured:type_name -> google.protobuf.Timestamp
+	59, // 15: viam.app.data.v1.GetLatestTabularDataResponse.time_synced:type_name -> google.protobuf.Timestamp
+	60, // 16: viam.app.data.v1.GetLatestTabularDataResponse.payload:type_name -> google.protobuf.Struct
+	25, // 17: viam.app.data.v1.BinaryData.metadata:type_name -> viam.app.data.v1.BinaryMetadata
+	2,  // 18: viam.app.data.v1.BinaryDataByFilterRequest.data_request:type_name -> viam.app.data.v1.DataRequest
+	16, // 19: viam.app.data.v1.BinaryDataByFilterResponse.data:type_name -> viam.app.data.v1.BinaryData
+	19, // 20: viam.app.data.v1.BinaryDataByIDsRequest.binary_ids:type_name -> viam.app.data.v1.BinaryID
+	16, // 21: viam.app.data.v1.BinaryDataByIDsResponse.data:type_name -> viam.app.data.v1.BinaryData
+	22, // 22: viam.app.data.v1.Annotations.bboxes:type_name -> viam.app.data.v1.BoundingBox
+	23, // 23: viam.app.data.v1.Annotations.classifications:type_name -> viam.app.data.v1.Classification
+	5,  // 24: viam.app.data.v1.BinaryMetadata.capture_metadata:type_name -> viam.app.data.v1.CaptureMetadata
+	59, // 25: viam.app.data.v1.BinaryMetadata.time_requested:type_name -> google.protobuf.Timestamp
+	59, // 26: viam.app.data.v1.BinaryMetadata.time_received:type_name -> google.protobuf.Timestamp
+	24, // 27: viam.app.data.v1.BinaryMetadata.annotations:type_name -> viam.app.data.v1.Annotations
+	3,  // 28: viam.app.data.v1.DeleteBinaryDataByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
+	19, // 29: viam.app.data.v1.DeleteBinaryDataByIDsRequest.binary_ids:type_name -> viam.app.data.v1.BinaryID
+	19, // 30: viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.binary_ids:type_name -> viam.app.data.v1.BinaryID
+	3,  // 31: viam.app.data.v1.AddTagsToBinaryDataByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
+	19, // 32: viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.binary_ids:type_name -> viam.app.data.v1.BinaryID
+	3,  // 33: viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
+	3,  // 34: viam.app.data.v1.TagsByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
+	19, // 35: viam.app.data.v1.AddBoundingBoxToImageByIDRequest.binary_id:type_name -> viam.app.data.v1.BinaryID
+	19, // 36: viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest.binary_id:type_name -> viam.app.data.v1.BinaryID
+	19, // 37: viam.app.data.v1.UpdateBoundingBoxRequest.binary_id:type_name -> viam.app.data.v1.BinaryID
+	3,  // 38: viam.app.data.v1.BoundingBoxLabelsByFilterRequest.filter:type_name -> viam.app.data.v1.Filter
+	19, // 39: viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest.binary_ids:type_name -> viam.app.data.v1.BinaryID
+	19, // 40: viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest.binary_ids:type_name -> viam.app.data.v1.BinaryID
+	61, // 41: viam.app.data.v1.CaptureMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	7,  // 42: viam.app.data.v1.DataService.TabularDataByFilter:input_type -> viam.app.data.v1.TabularDataByFilterRequest
+	10, // 43: viam.app.data.v1.DataService.TabularDataBySQL:input_type -> viam.app.data.v1.TabularDataBySQLRequest
+	12, // 44: viam.app.data.v1.DataService.TabularDataByMQL:input_type -> viam.app.data.v1.TabularDataByMQLRequest
+	14, // 45: viam.app.data.v1.DataService.GetLatestTabularData:input_type -> viam.app.data.v1.GetLatestTabularDataRequest
+	17, // 46: viam.app.data.v1.DataService.BinaryDataByFilter:input_type -> viam.app.data.v1.BinaryDataByFilterRequest
+	20, // 47: viam.app.data.v1.DataService.BinaryDataByIDs:input_type -> viam.app.data.v1.BinaryDataByIDsRequest
+	26, // 48: viam.app.data.v1.DataService.DeleteTabularData:input_type -> viam.app.data.v1.DeleteTabularDataRequest
+	28, // 49: viam.app.data.v1.DataService.DeleteBinaryDataByFilter:input_type -> viam.app.data.v1.DeleteBinaryDataByFilterRequest
+	30, // 50: viam.app.data.v1.DataService.DeleteBinaryDataByIDs:input_type -> viam.app.data.v1.DeleteBinaryDataByIDsRequest
+	32, // 51: viam.app.data.v1.DataService.AddTagsToBinaryDataByIDs:input_type -> viam.app.data.v1.AddTagsToBinaryDataByIDsRequest
+	34, // 52: viam.app.data.v1.DataService.AddTagsToBinaryDataByFilter:input_type -> viam.app.data.v1.AddTagsToBinaryDataByFilterRequest
+	36, // 53: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByIDs:input_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest
+	38, // 54: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByFilter:input_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest
+	40, // 55: viam.app.data.v1.DataService.TagsByFilter:input_type -> viam.app.data.v1.TagsByFilterRequest
+	42, // 56: viam.app.data.v1.DataService.AddBoundingBoxToImageByID:input_type -> viam.app.data.v1.AddBoundingBoxToImageByIDRequest
+	44, // 57: viam.app.data.v1.DataService.RemoveBoundingBoxFromImageByID:input_type -> viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest
+	48, // 58: viam.app.data.v1.DataService.BoundingBoxLabelsByFilter:input_type -> viam.app.data.v1.BoundingBoxLabelsByFilterRequest
+	46, // 59: viam.app.data.v1.DataService.UpdateBoundingBox:input_type -> viam.app.data.v1.UpdateBoundingBoxRequest
+	52, // 60: viam.app.data.v1.DataService.GetDatabaseConnection:input_type -> viam.app.data.v1.GetDatabaseConnectionRequest
+	50, // 61: viam.app.data.v1.DataService.ConfigureDatabaseUser:input_type -> viam.app.data.v1.ConfigureDatabaseUserRequest
+	54, // 62: viam.app.data.v1.DataService.AddBinaryDataToDatasetByIDs:input_type -> viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest
+	56, // 63: viam.app.data.v1.DataService.RemoveBinaryDataFromDatasetByIDs:input_type -> viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest
+	8,  // 64: viam.app.data.v1.DataService.TabularDataByFilter:output_type -> viam.app.data.v1.TabularDataByFilterResponse
+	11, // 65: viam.app.data.v1.DataService.TabularDataBySQL:output_type -> viam.app.data.v1.TabularDataBySQLResponse
+	13, // 66: viam.app.data.v1.DataService.TabularDataByMQL:output_type -> viam.app.data.v1.TabularDataByMQLResponse
+	15, // 67: viam.app.data.v1.DataService.GetLatestTabularData:output_type -> viam.app.data.v1.GetLatestTabularDataResponse
+	18, // 68: viam.app.data.v1.DataService.BinaryDataByFilter:output_type -> viam.app.data.v1.BinaryDataByFilterResponse
+	21, // 69: viam.app.data.v1.DataService.BinaryDataByIDs:output_type -> viam.app.data.v1.BinaryDataByIDsResponse
+	27, // 70: viam.app.data.v1.DataService.DeleteTabularData:output_type -> viam.app.data.v1.DeleteTabularDataResponse
+	29, // 71: viam.app.data.v1.DataService.DeleteBinaryDataByFilter:output_type -> viam.app.data.v1.DeleteBinaryDataByFilterResponse
+	31, // 72: viam.app.data.v1.DataService.DeleteBinaryDataByIDs:output_type -> viam.app.data.v1.DeleteBinaryDataByIDsResponse
+	33, // 73: viam.app.data.v1.DataService.AddTagsToBinaryDataByIDs:output_type -> viam.app.data.v1.AddTagsToBinaryDataByIDsResponse
+	35, // 74: viam.app.data.v1.DataService.AddTagsToBinaryDataByFilter:output_type -> viam.app.data.v1.AddTagsToBinaryDataByFilterResponse
+	37, // 75: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByIDs:output_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse
+	39, // 76: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByFilter:output_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse
+	41, // 77: viam.app.data.v1.DataService.TagsByFilter:output_type -> viam.app.data.v1.TagsByFilterResponse
+	43, // 78: viam.app.data.v1.DataService.AddBoundingBoxToImageByID:output_type -> viam.app.data.v1.AddBoundingBoxToImageByIDResponse
+	45, // 79: viam.app.data.v1.DataService.RemoveBoundingBoxFromImageByID:output_type -> viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse
+	49, // 80: viam.app.data.v1.DataService.BoundingBoxLabelsByFilter:output_type -> viam.app.data.v1.BoundingBoxLabelsByFilterResponse
+	47, // 81: viam.app.data.v1.DataService.UpdateBoundingBox:output_type -> viam.app.data.v1.UpdateBoundingBoxResponse
+	53, // 82: viam.app.data.v1.DataService.GetDatabaseConnection:output_type -> viam.app.data.v1.GetDatabaseConnectionResponse
+	51, // 83: viam.app.data.v1.DataService.ConfigureDatabaseUser:output_type -> viam.app.data.v1.ConfigureDatabaseUserResponse
+	55, // 84: viam.app.data.v1.DataService.AddBinaryDataToDatasetByIDs:output_type -> viam.app.data.v1.AddBinaryDataToDatasetByIDsResponse
+	57, // 85: viam.app.data.v1.DataService.RemoveBinaryDataFromDatasetByIDs:output_type -> viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse
+	64, // [64:86] is the sub-list for method output_type
+	42, // [42:64] is the sub-list for method input_type
+	42, // [42:42] is the sub-list for extension type_name
+	42, // [42:42] is the sub-list for extension extendee
+	0,  // [0:42] is the sub-list for field type_name
 }
 
 func init() { file_app_data_v1_data_proto_init() }
@@ -4131,16 +4291,16 @@ func file_app_data_v1_data_proto_init() {
 	if File_app_data_v1_data_proto != nil {
 		return
 	}
-	file_app_data_v1_data_proto_msgTypes[18].OneofWrappers = []any{}
-	file_app_data_v1_data_proto_msgTypes[19].OneofWrappers = []any{}
-	file_app_data_v1_data_proto_msgTypes[42].OneofWrappers = []any{}
+	file_app_data_v1_data_proto_msgTypes[20].OneofWrappers = []any{}
+	file_app_data_v1_data_proto_msgTypes[21].OneofWrappers = []any{}
+	file_app_data_v1_data_proto_msgTypes[44].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_app_data_v1_data_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   55,
+			NumMessages:   57,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
