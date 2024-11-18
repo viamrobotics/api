@@ -236,7 +236,8 @@ message GetLatestTabularDataRequest {
   string method_name = 3;
 }
 
-// GetLatestTabularDataResponse provides the data, time synced, and time captured of most recent tabular data captured from the requested data source.
+// GetLatestTabularDataResponse provides the data, time synced, and time captured of the most recent tabular data captured 
+// from the requested data source, as long as it was synced within the last year.
 message GetLatestTabularDataResponse {
   google.protobuf.Timestamp time_captured = 1;
   google.protobuf.Timestamp time_synced = 2;
