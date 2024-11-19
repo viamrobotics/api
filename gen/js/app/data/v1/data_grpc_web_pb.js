@@ -269,6 +269,67 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.tabularDataByMQL =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.GetLatestTabularDataRequest,
+ *   !proto.viam.app.data.v1.GetLatestTabularDataResponse>}
+ */
+const methodDescriptor_DataService_GetLatestTabularData = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/GetLatestTabularData',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.GetLatestTabularDataRequest,
+  proto.viam.app.data.v1.GetLatestTabularDataResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.GetLatestTabularDataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.GetLatestTabularDataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetLatestTabularDataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.GetLatestTabularDataResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.GetLatestTabularDataResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.getLatestTabularData =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetLatestTabularData',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetLatestTabularData,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetLatestTabularDataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.GetLatestTabularDataResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.getLatestTabularData =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetLatestTabularData',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetLatestTabularData);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.data.v1.BinaryDataByFilterRequest,
  *   !proto.viam.app.data.v1.BinaryDataByFilterResponse>}
  */

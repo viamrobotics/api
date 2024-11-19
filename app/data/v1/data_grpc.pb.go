@@ -28,6 +28,8 @@ type DataServiceClient interface {
 	TabularDataBySQL(ctx context.Context, in *TabularDataBySQLRequest, opts ...grpc.CallOption) (*TabularDataBySQLResponse, error)
 	// TabularDataByMQL queries tabular data with an MQL (MongoDB Query Language) query.
 	TabularDataByMQL(ctx context.Context, in *TabularDataByMQLRequest, opts ...grpc.CallOption) (*TabularDataByMQLResponse, error)
+	// GetLatestTabularData gets the most recent tabular data captured from the specified data source.
+	GetLatestTabularData(ctx context.Context, in *GetLatestTabularDataRequest, opts ...grpc.CallOption) (*GetLatestTabularDataResponse, error)
 	// BinaryDataByFilter queries binary data and metadata based on given filters.
 	BinaryDataByFilter(ctx context.Context, in *BinaryDataByFilterRequest, opts ...grpc.CallOption) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
@@ -97,6 +99,15 @@ func (c *dataServiceClient) TabularDataBySQL(ctx context.Context, in *TabularDat
 func (c *dataServiceClient) TabularDataByMQL(ctx context.Context, in *TabularDataByMQLRequest, opts ...grpc.CallOption) (*TabularDataByMQLResponse, error) {
 	out := new(TabularDataByMQLResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/TabularDataByMQL", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) GetLatestTabularData(ctx context.Context, in *GetLatestTabularDataRequest, opts ...grpc.CallOption) (*GetLatestTabularDataResponse, error) {
+	out := new(GetLatestTabularDataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/GetLatestTabularData", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -275,6 +286,8 @@ type DataServiceServer interface {
 	TabularDataBySQL(context.Context, *TabularDataBySQLRequest) (*TabularDataBySQLResponse, error)
 	// TabularDataByMQL queries tabular data with an MQL (MongoDB Query Language) query.
 	TabularDataByMQL(context.Context, *TabularDataByMQLRequest) (*TabularDataByMQLResponse, error)
+	// GetLatestTabularData gets the most recent tabular data captured from the specified data source.
+	GetLatestTabularData(context.Context, *GetLatestTabularDataRequest) (*GetLatestTabularDataResponse, error)
 	// BinaryDataByFilter queries binary data and metadata based on given filters.
 	BinaryDataByFilter(context.Context, *BinaryDataByFilterRequest) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
@@ -328,6 +341,9 @@ func (UnimplementedDataServiceServer) TabularDataBySQL(context.Context, *Tabular
 }
 func (UnimplementedDataServiceServer) TabularDataByMQL(context.Context, *TabularDataByMQLRequest) (*TabularDataByMQLResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TabularDataByMQL not implemented")
+}
+func (UnimplementedDataServiceServer) GetLatestTabularData(context.Context, *GetLatestTabularDataRequest) (*GetLatestTabularDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLatestTabularData not implemented")
 }
 func (UnimplementedDataServiceServer) BinaryDataByFilter(context.Context, *BinaryDataByFilterRequest) (*BinaryDataByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BinaryDataByFilter not implemented")
@@ -446,6 +462,24 @@ func _DataService_TabularDataByMQL_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataServiceServer).TabularDataByMQL(ctx, req.(*TabularDataByMQLRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_GetLatestTabularData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLatestTabularDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).GetLatestTabularData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/GetLatestTabularData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).GetLatestTabularData(ctx, req.(*GetLatestTabularDataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -792,6 +826,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TabularDataByMQL",
 			Handler:    _DataService_TabularDataByMQL_Handler,
+		},
+		{
+			MethodName: "GetLatestTabularData",
+			Handler:    _DataService_GetLatestTabularData_Handler,
 		},
 		{
 			MethodName: "BinaryDataByFilter",

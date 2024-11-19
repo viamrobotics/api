@@ -451,6 +451,68 @@ export namespace TabularDataByMQLResponse {
   }
 }
 
+export class GetLatestTabularDataRequest extends jspb.Message {
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  getResourceName(): string;
+  setResourceName(value: string): void;
+
+  getMethodName(): string;
+  setMethodName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetLatestTabularDataRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLatestTabularDataRequest): GetLatestTabularDataRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetLatestTabularDataRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLatestTabularDataRequest;
+  static deserializeBinaryFromReader(message: GetLatestTabularDataRequest, reader: jspb.BinaryReader): GetLatestTabularDataRequest;
+}
+
+export namespace GetLatestTabularDataRequest {
+  export type AsObject = {
+    partId: string,
+    resourceName: string,
+    methodName: string,
+  }
+}
+
+export class GetLatestTabularDataResponse extends jspb.Message {
+  hasTimeCaptured(): boolean;
+  clearTimeCaptured(): void;
+  getTimeCaptured(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeCaptured(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasTimeSynced(): boolean;
+  clearTimeSynced(): void;
+  getTimeSynced(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeSynced(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasPayload(): boolean;
+  clearPayload(): void;
+  getPayload(): google_protobuf_struct_pb.Struct | undefined;
+  setPayload(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetLatestTabularDataResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLatestTabularDataResponse): GetLatestTabularDataResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetLatestTabularDataResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLatestTabularDataResponse;
+  static deserializeBinaryFromReader(message: GetLatestTabularDataResponse, reader: jspb.BinaryReader): GetLatestTabularDataResponse;
+}
+
+export namespace GetLatestTabularDataResponse {
+  export type AsObject = {
+    timeCaptured?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    timeSynced?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    payload?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
 export class BinaryData extends jspb.Message {
   getBinary(): Uint8Array | string;
   getBinary_asU8(): Uint8Array;
