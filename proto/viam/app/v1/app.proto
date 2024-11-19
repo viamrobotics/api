@@ -1449,35 +1449,35 @@ message DisableAuthServiceResponse {}
 
 message CreateOAuthAppRequest {
   string org_id = 1;
-  string name = 2;
+  string client_name = 2;
   OAuthConfig oauth_config = 3;
 }
 message CreateOAuthAppResponse {
-  string id = 1;
-  string secret = 2;
+  string client_id = 1;
+  string client_secret = 2;
 }
 
 message ReadOAuthAppRequest {
   string org_id = 1;
-  string id = 2;
+  string client_id = 2;
 }
 message ReadOAuthAppResponse {
-  string name = 1;
-  string secret = 2;
+  string client_name = 1;
+  string client_secret = 2;
   OAuthConfig oauth_config = 3;
 }
 
 message UpdateOAuthAppRequest {
   string org_id = 1;
-  string id = 2;
-  string name = 3;
+  string client_id = 2;
+  string client_name = 3;
   OAuthConfig oauth_config = 4;
 }
 message UpdateOAuthAppResponse {}
 
 message DeleteOAuthAppRequest {
   string org_id = 1;
-  string id = 2;
+  string client_id = 2;
 }
 message DeleteOAuthAppResponse {}
 
@@ -1485,7 +1485,7 @@ message ListOAuthAppsRequest {
   string org_id = 1;
 }
 message ListOAuthAppsResponse {
-  repeated string ids = 1;
+  repeated string client_ids = 1;
 }
 
 enum ClientAuthentication {
