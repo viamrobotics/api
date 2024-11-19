@@ -1488,10 +1488,30 @@ message ListOAuthAppsResponse {
   repeated string ids = 1;
 }
 
+enum ClientAuthentication {
+  CLIENT_AUTHENTICATION_UNSPECIFIED = 0;
+  CLIENT_AUTHENTICATION_REQUIRED = 1;
+  CLIENT_AUTHENTICATION_NOT_REQUIRED = 2;
+  CLIENT_AUTHENTICATION_NOT_REQUIRED_WHEN_USING_PKCE = 3;
+}
+
+enum PKCE {
+  PKCE_UNSPECIFIED = 0;
+  PKCE_REQUIRED = 1;
+  PKCE_NOT_REQUIRED = 2;
+  PKCE_NOT_REQUIRED_WHEN_USING_CLIENT_AUTHENTICATION = 3;
+}
+
+enum URLValidation {
+  URL_VALIDATION_UNSPECIFIED = 0;
+  URL_VALIDATION_EXACT_MATCH = 1;
+  URL_VALIDATION_ALLOW_WILDCARDS = 2;
+}
+
 message OAuthConfig {
-  string client_authentication = 1;
-  string pkce = 2;
-  string url_validation = 3;
+  ClientAuthentication client_authentication = 1;
+  PKCE pkce = 2;
+  URLValidation url_validation = 3;
   repeated string origin_uris = 4;
   repeated string redirect_uris = 5;
   string logout_uri = 6;
