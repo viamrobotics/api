@@ -1508,6 +1508,15 @@ enum URLValidation {
   URL_VALIDATION_ALLOW_WILDCARDS = 2;
 }
 
+enum EnabledGrant {
+  ENABLED_GRANT_UNSPECIFIED = 0;
+  ENABLED_GRANT_AUTHORIZATION_CODE = 1;
+  ENABLED_GRANT_IMPLICIT = 2;
+  ENABLED_GRANT_PASSWORD = 3;
+  ENABLED_GRANT_REFRESH_TOKEN = 4;
+  ENABLED_GRANT_DEVICE_CODE = 5;
+}
+
 message OAuthConfig {
   ClientAuthentication client_authentication = 1;
   PKCE pkce = 2;
@@ -1515,5 +1524,5 @@ message OAuthConfig {
   repeated string origin_uris = 4;
   repeated string redirect_uris = 5;
   string logout_uri = 6;
-  repeated string enabled_grants = 7;
+  repeated EnabledGrant enabled_grants = 7;
 }
