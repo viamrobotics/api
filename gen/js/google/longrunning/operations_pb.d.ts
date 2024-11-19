@@ -5,10 +5,10 @@ import * as jspb from "google-protobuf";
 import * as google_api_annotations_pb from "../../google/api/annotations_pb";
 import * as google_api_client_pb from "../../google/api/client_pb";
 import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
+import * as google_protobuf_descriptor_pb from "google-protobuf/google/protobuf/descriptor_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 import * as google_rpc_status_pb from "../../google/rpc/status_pb";
-import * as google_protobuf_descriptor_pb from "google-protobuf/google/protobuf/descriptor_pb";
 
 export class Operation extends jspb.Message {
   getName(): string;
