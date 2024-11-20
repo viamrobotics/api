@@ -234,6 +234,7 @@ message GetLatestTabularDataRequest {
   string part_id = 1;
   string resource_name = 2;
   string method_name = 3;
+  string resource_type = 4;
 }
 
 // GetLatestTabularDataResponse provides the data, time synced, and time captured of the most recent tabular data captured
