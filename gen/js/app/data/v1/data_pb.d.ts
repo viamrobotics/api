@@ -461,6 +461,9 @@ export class GetLatestTabularDataRequest extends jspb.Message {
   getMethodName(): string;
   setMethodName(value: string): void;
 
+  getResourceType(): string;
+  setResourceType(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetLatestTabularDataRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetLatestTabularDataRequest): GetLatestTabularDataRequest.AsObject;
@@ -476,6 +479,7 @@ export namespace GetLatestTabularDataRequest {
     partId: string,
     resourceName: string,
     methodName: string,
+    resourceType: string,
   }
 }
 
