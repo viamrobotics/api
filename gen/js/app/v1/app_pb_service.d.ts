@@ -193,6 +193,87 @@ type AppServiceOrganizationGetSupportEmail = {
   readonly responseType: typeof app_v1_app_pb.OrganizationGetSupportEmailResponse;
 };
 
+type AppServiceOrganizationSetLogo = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.OrganizationSetLogoRequest;
+  readonly responseType: typeof app_v1_app_pb.OrganizationSetLogoResponse;
+};
+
+type AppServiceOrganizationGetLogo = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.OrganizationGetLogoRequest;
+  readonly responseType: typeof app_v1_app_pb.OrganizationGetLogoResponse;
+};
+
+type AppServiceEnableAuthService = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.EnableAuthServiceRequest;
+  readonly responseType: typeof app_v1_app_pb.EnableAuthServiceResponse;
+};
+
+type AppServiceDisableAuthService = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DisableAuthServiceRequest;
+  readonly responseType: typeof app_v1_app_pb.DisableAuthServiceResponse;
+};
+
+type AppServiceCreateOAuthApp = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateOAuthAppRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateOAuthAppResponse;
+};
+
+type AppServiceReadOAuthApp = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ReadOAuthAppRequest;
+  readonly responseType: typeof app_v1_app_pb.ReadOAuthAppResponse;
+};
+
+type AppServiceUpdateOAuthApp = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateOAuthAppRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateOAuthAppResponse;
+};
+
+type AppServiceDeleteOAuthApp = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteOAuthAppRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteOAuthAppResponse;
+};
+
+type AppServiceListOAuthApps = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListOAuthAppsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListOAuthAppsResponse;
+};
+
 type AppServiceCreateLocation = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -738,6 +819,15 @@ export class AppService {
   static readonly GetBillingServiceConfig: AppServiceGetBillingServiceConfig;
   static readonly OrganizationSetSupportEmail: AppServiceOrganizationSetSupportEmail;
   static readonly OrganizationGetSupportEmail: AppServiceOrganizationGetSupportEmail;
+  static readonly OrganizationSetLogo: AppServiceOrganizationSetLogo;
+  static readonly OrganizationGetLogo: AppServiceOrganizationGetLogo;
+  static readonly EnableAuthService: AppServiceEnableAuthService;
+  static readonly DisableAuthService: AppServiceDisableAuthService;
+  static readonly CreateOAuthApp: AppServiceCreateOAuthApp;
+  static readonly ReadOAuthApp: AppServiceReadOAuthApp;
+  static readonly UpdateOAuthApp: AppServiceUpdateOAuthApp;
+  static readonly DeleteOAuthApp: AppServiceDeleteOAuthApp;
+  static readonly ListOAuthApps: AppServiceListOAuthApps;
   static readonly CreateLocation: AppServiceCreateLocation;
   static readonly GetLocation: AppServiceGetLocation;
   static readonly UpdateLocation: AppServiceUpdateLocation;
@@ -1018,6 +1108,87 @@ export class AppServiceClient {
   organizationGetSupportEmail(
     requestMessage: app_v1_app_pb.OrganizationGetSupportEmailRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationGetSupportEmailResponse|null) => void
+  ): UnaryResponse;
+  organizationSetLogo(
+    requestMessage: app_v1_app_pb.OrganizationSetLogoRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationSetLogoResponse|null) => void
+  ): UnaryResponse;
+  organizationSetLogo(
+    requestMessage: app_v1_app_pb.OrganizationSetLogoRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationSetLogoResponse|null) => void
+  ): UnaryResponse;
+  organizationGetLogo(
+    requestMessage: app_v1_app_pb.OrganizationGetLogoRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationGetLogoResponse|null) => void
+  ): UnaryResponse;
+  organizationGetLogo(
+    requestMessage: app_v1_app_pb.OrganizationGetLogoRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationGetLogoResponse|null) => void
+  ): UnaryResponse;
+  enableAuthService(
+    requestMessage: app_v1_app_pb.EnableAuthServiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.EnableAuthServiceResponse|null) => void
+  ): UnaryResponse;
+  enableAuthService(
+    requestMessage: app_v1_app_pb.EnableAuthServiceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.EnableAuthServiceResponse|null) => void
+  ): UnaryResponse;
+  disableAuthService(
+    requestMessage: app_v1_app_pb.DisableAuthServiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DisableAuthServiceResponse|null) => void
+  ): UnaryResponse;
+  disableAuthService(
+    requestMessage: app_v1_app_pb.DisableAuthServiceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DisableAuthServiceResponse|null) => void
+  ): UnaryResponse;
+  createOAuthApp(
+    requestMessage: app_v1_app_pb.CreateOAuthAppRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  createOAuthApp(
+    requestMessage: app_v1_app_pb.CreateOAuthAppRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  readOAuthApp(
+    requestMessage: app_v1_app_pb.ReadOAuthAppRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ReadOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  readOAuthApp(
+    requestMessage: app_v1_app_pb.ReadOAuthAppRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ReadOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  updateOAuthApp(
+    requestMessage: app_v1_app_pb.UpdateOAuthAppRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  updateOAuthApp(
+    requestMessage: app_v1_app_pb.UpdateOAuthAppRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  deleteOAuthApp(
+    requestMessage: app_v1_app_pb.DeleteOAuthAppRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  deleteOAuthApp(
+    requestMessage: app_v1_app_pb.DeleteOAuthAppRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  listOAuthApps(
+    requestMessage: app_v1_app_pb.ListOAuthAppsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOAuthAppsResponse|null) => void
+  ): UnaryResponse;
+  listOAuthApps(
+    requestMessage: app_v1_app_pb.ListOAuthAppsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOAuthAppsResponse|null) => void
   ): UnaryResponse;
   createLocation(
     requestMessage: app_v1_app_pb.CreateLocationRequest,
