@@ -269,6 +269,62 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.tabularDataByMQL =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.ExportTabularDataRequest,
+ *   !proto.viam.app.data.v1.ExportTabularDataResponse>}
+ */
+const methodDescriptor_DataService_ExportTabularData = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/ExportTabularData',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.viam.app.data.v1.ExportTabularDataRequest,
+  proto.viam.app.data.v1.ExportTabularDataResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.ExportTabularDataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.ExportTabularDataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ExportTabularDataRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.ExportTabularDataResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.exportTabularData =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.app.data.v1.DataService/ExportTabularData',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ExportTabularData);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ExportTabularDataRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.ExportTabularDataResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.exportTabularData =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.app.data.v1.DataService/ExportTabularData',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ExportTabularData);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.data.v1.GetLatestTabularDataRequest,
  *   !proto.viam.app.data.v1.GetLatestTabularDataResponse>}
  */
