@@ -11,7 +11,9 @@ option go_package = "go.viam.com/api/app/data/v1";
 // DataService is used to query robot data.
 service DataService {
   // TabularDataByFilter queries tabular data and metadata based on given filters.
-  rpc TabularDataByFilter(TabularDataByFilterRequest) returns (TabularDataByFilterResponse);
+  rpc TabularDataByFilter(TabularDataByFilterRequest) returns (TabularDataByFilterResponse) {
+    option deprecated = true;
+  }
 
   // TabularDataBySQL queries tabular data with a SQL query.
   rpc TabularDataBySQL(TabularDataBySQLRequest) returns (TabularDataBySQLResponse);
@@ -173,6 +175,7 @@ message CaptureInterval {
 
 // TabularDataByFilterRequest requests tabular data based on filter values.
 message TabularDataByFilterRequest {
+  option deprecated = true;
   DataRequest data_request = 1;
   bool count_only = 2;
   bool include_internal_data = 3;
@@ -180,6 +183,7 @@ message TabularDataByFilterRequest {
 
 // TabularDataByFilterResponse provides the data and metadata of tabular data.
 message TabularDataByFilterResponse {
+  option deprecated = true;
   repeated CaptureMetadata metadata = 1;
   repeated TabularData data = 2;
   uint64 count = 3;
@@ -189,6 +193,7 @@ message TabularDataByFilterResponse {
 
 // TabularData contains data and metadata associated with tabular data.
 message TabularData {
+  option deprecated = true;
   google.protobuf.Struct data = 1;
   uint32 metadata_index = 2;
   google.protobuf.Timestamp time_requested = 3;
