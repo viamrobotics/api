@@ -236,7 +236,7 @@ message TabularDataByMQLResponse {
 message ExportTabularDataRequest {
   string part_id = 1;
   string resource_name = 2;
-  string resource_type = 3;
+  string resource_subtype = 3;
   string method_name = 4;
   CaptureInterval interval = 13;
 }
