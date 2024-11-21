@@ -4580,7 +4580,7 @@ proto.viam.app.data.v1.GetLatestTabularDataRequest.toObject = function(includeIn
     partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     resourceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     methodName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    resourceType: jspb.Message.getFieldWithDefault(msg, 4, "")
+    resourceSubtype: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -4631,7 +4631,7 @@ proto.viam.app.data.v1.GetLatestTabularDataRequest.deserializeBinaryFromReader =
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setResourceType(value);
+      msg.setResourceSubtype(value);
       break;
     default:
       reader.skipField();
@@ -4683,7 +4683,7 @@ proto.viam.app.data.v1.GetLatestTabularDataRequest.serializeBinaryToWriter = fun
       f
     );
   }
-  f = message.getResourceType();
+  f = message.getResourceSubtype();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -4748,10 +4748,10 @@ proto.viam.app.data.v1.GetLatestTabularDataRequest.prototype.setMethodName = fun
 
 
 /**
- * optional string resource_type = 4;
+ * optional string resource_subtype = 4;
  * @return {string}
  */
-proto.viam.app.data.v1.GetLatestTabularDataRequest.prototype.getResourceType = function() {
+proto.viam.app.data.v1.GetLatestTabularDataRequest.prototype.getResourceSubtype = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -4760,7 +4760,7 @@ proto.viam.app.data.v1.GetLatestTabularDataRequest.prototype.getResourceType = f
  * @param {string} value
  * @return {!proto.viam.app.data.v1.GetLatestTabularDataRequest} returns this
  */
-proto.viam.app.data.v1.GetLatestTabularDataRequest.prototype.setResourceType = function(value) {
+proto.viam.app.data.v1.GetLatestTabularDataRequest.prototype.setResourceSubtype = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
