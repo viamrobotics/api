@@ -19,6 +19,9 @@ service DataService {
   // TabularDataByMQL queries tabular data with an MQL (MongoDB Query Language) query.
   rpc TabularDataByMQL(TabularDataByMQLRequest) returns (TabularDataByMQLResponse);
 
+  // ExportTabularData queries tabular data from the specified data source.
+  rpc ExportTabularData(ExportTabularDataRequest) returns (stream ExportTabularDataResponse);
+
   // GetLatestTabularData gets the most recent tabular data captured from the specified data source.
   rpc GetLatestTabularData(GetLatestTabularDataRequest) returns (GetLatestTabularDataResponse);
 
@@ -227,6 +230,32 @@ message TabularDataByMQLResponse {
 
   reserved 1;
   reserved "data";
+}
+
+// ExportTabularDataRequest requests tabular data from the specified data source.
+message ExportTabularDataRequest {
+  string part_id = 1;
+  string resource_name = 2;
+  string resource_type = 3;
+  string method_name = 4;
+  CaptureInterval interval = 13;
+}
+
+// ExportTabularDataResponse provides unified tabular data and metadata for a single data point from the specified data source.
+message ExportTabularDataResponse {
+  string part_id = 1;
+  string component_name = 2;
+  string component_type = 3;
+  string method_name = 4;
+  google.protobuf.Timestamp time_captured = 5;
+  string organization_id = 6;
+  string location_id = 7;
+  string robot_name = 8;
+  string robot_id = 9;
+  string part_name = 10;
+  map<string, google.protobuf.Any> method_parameters = 11;
+  repeated string tags = 12;
+  google.protobuf.Struct payload = 13;
 }
 
 // GetLatestTabularDataRequest requests the most recent tabular data captured from the specified data source.
