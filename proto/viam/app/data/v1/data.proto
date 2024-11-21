@@ -243,7 +243,7 @@ message ExportTabularDataRequest {
   string resource_name = 2;
   string resource_subtype = 3;
   string method_name = 4;
-  CaptureInterval interval = 13;
+  CaptureInterval interval = 5;
 }
 
 // ExportTabularDataResponse provides unified tabular data and metadata for a single data point from the specified data source.
