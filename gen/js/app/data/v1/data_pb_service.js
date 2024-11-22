@@ -37,6 +37,15 @@ DataService.TabularDataByMQL = {
   responseType: app_data_v1_data_pb.TabularDataByMQLResponse
 };
 
+DataService.ExportTabularData = {
+  methodName: "ExportTabularData",
+  service: DataService,
+  requestStream: false,
+  responseStream: true,
+  requestType: app_data_v1_data_pb.ExportTabularDataRequest,
+  responseType: app_data_v1_data_pb.ExportTabularDataResponse
+};
+
 DataService.GetLatestTabularData = {
   methodName: "GetLatestTabularData",
   service: DataService,
@@ -303,6 +312,45 @@ DataServiceClient.prototype.tabularDataByMQL = function tabularDataByMQL(request
   return {
     cancel: function () {
       callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.exportTabularData = function exportTabularData(requestMessage, metadata) {
+  var listeners = {
+    data: [],
+    end: [],
+    status: []
+  };
+  var client = grpc.invoke(DataService.ExportTabularData, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onMessage: function (responseMessage) {
+      listeners.data.forEach(function (handler) {
+        handler(responseMessage);
+      });
+    },
+    onEnd: function (status, statusMessage, trailers) {
+      listeners.status.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners.end.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners = null;
+    }
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    cancel: function () {
+      listeners = null;
       client.close();
     }
   };

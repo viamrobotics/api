@@ -31,6 +31,15 @@ type DataServiceTabularDataByMQL = {
   readonly responseType: typeof app_data_v1_data_pb.TabularDataByMQLResponse;
 };
 
+type DataServiceExportTabularData = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof app_data_v1_data_pb.ExportTabularDataRequest;
+  readonly responseType: typeof app_data_v1_data_pb.ExportTabularDataResponse;
+};
+
 type DataServiceGetLatestTabularData = {
   readonly methodName: string;
   readonly service: typeof DataService;
@@ -207,6 +216,7 @@ export class DataService {
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
   static readonly TabularDataBySQL: DataServiceTabularDataBySQL;
   static readonly TabularDataByMQL: DataServiceTabularDataByMQL;
+  static readonly ExportTabularData: DataServiceExportTabularData;
   static readonly GetLatestTabularData: DataServiceGetLatestTabularData;
   static readonly BinaryDataByFilter: DataServiceBinaryDataByFilter;
   static readonly BinaryDataByIDs: DataServiceBinaryDataByIDs;
@@ -287,6 +297,7 @@ export class DataServiceClient {
     requestMessage: app_data_v1_data_pb.TabularDataByMQLRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.TabularDataByMQLResponse|null) => void
   ): UnaryResponse;
+  exportTabularData(requestMessage: app_data_v1_data_pb.ExportTabularDataRequest, metadata?: grpc.Metadata): ResponseStream<app_data_v1_data_pb.ExportTabularDataResponse>;
   getLatestTabularData(
     requestMessage: app_data_v1_data_pb.GetLatestTabularDataRequest,
     metadata: grpc.Metadata,
