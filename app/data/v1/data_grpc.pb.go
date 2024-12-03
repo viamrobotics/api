@@ -22,12 +22,17 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataServiceClient interface {
+	// Deprecated: Do not use.
 	// TabularDataByFilter queries tabular data and metadata based on given filters.
 	TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (*TabularDataByFilterResponse, error)
 	// TabularDataBySQL queries tabular data with a SQL query.
 	TabularDataBySQL(ctx context.Context, in *TabularDataBySQLRequest, opts ...grpc.CallOption) (*TabularDataBySQLResponse, error)
 	// TabularDataByMQL queries tabular data with an MQL (MongoDB Query Language) query.
 	TabularDataByMQL(ctx context.Context, in *TabularDataByMQLRequest, opts ...grpc.CallOption) (*TabularDataByMQLResponse, error)
+	// ExportTabularData queries tabular data from the specified data source.
+	ExportTabularData(ctx context.Context, in *ExportTabularDataRequest, opts ...grpc.CallOption) (DataService_ExportTabularDataClient, error)
+	// GetLatestTabularData gets the most recent tabular data captured from the specified data source.
+	GetLatestTabularData(ctx context.Context, in *GetLatestTabularDataRequest, opts ...grpc.CallOption) (*GetLatestTabularDataResponse, error)
 	// BinaryDataByFilter queries binary data and metadata based on given filters.
 	BinaryDataByFilter(ctx context.Context, in *BinaryDataByFilterRequest, opts ...grpc.CallOption) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
@@ -76,6 +81,7 @@ func NewDataServiceClient(cc grpc.ClientConnInterface) DataServiceClient {
 	return &dataServiceClient{cc}
 }
 
+// Deprecated: Do not use.
 func (c *dataServiceClient) TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (*TabularDataByFilterResponse, error) {
 	out := new(TabularDataByFilterResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/TabularDataByFilter", in, out, opts...)
@@ -97,6 +103,47 @@ func (c *dataServiceClient) TabularDataBySQL(ctx context.Context, in *TabularDat
 func (c *dataServiceClient) TabularDataByMQL(ctx context.Context, in *TabularDataByMQLRequest, opts ...grpc.CallOption) (*TabularDataByMQLResponse, error) {
 	out := new(TabularDataByMQLResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/TabularDataByMQL", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) ExportTabularData(ctx context.Context, in *ExportTabularDataRequest, opts ...grpc.CallOption) (DataService_ExportTabularDataClient, error) {
+	stream, err := c.cc.NewStream(ctx, &DataService_ServiceDesc.Streams[0], "/viam.app.data.v1.DataService/ExportTabularData", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &dataServiceExportTabularDataClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type DataService_ExportTabularDataClient interface {
+	Recv() (*ExportTabularDataResponse, error)
+	grpc.ClientStream
+}
+
+type dataServiceExportTabularDataClient struct {
+	grpc.ClientStream
+}
+
+func (x *dataServiceExportTabularDataClient) Recv() (*ExportTabularDataResponse, error) {
+	m := new(ExportTabularDataResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *dataServiceClient) GetLatestTabularData(ctx context.Context, in *GetLatestTabularDataRequest, opts ...grpc.CallOption) (*GetLatestTabularDataResponse, error) {
+	out := new(GetLatestTabularDataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/GetLatestTabularData", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -269,12 +316,17 @@ func (c *dataServiceClient) RemoveBinaryDataFromDatasetByIDs(ctx context.Context
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
 type DataServiceServer interface {
+	// Deprecated: Do not use.
 	// TabularDataByFilter queries tabular data and metadata based on given filters.
 	TabularDataByFilter(context.Context, *TabularDataByFilterRequest) (*TabularDataByFilterResponse, error)
 	// TabularDataBySQL queries tabular data with a SQL query.
 	TabularDataBySQL(context.Context, *TabularDataBySQLRequest) (*TabularDataBySQLResponse, error)
 	// TabularDataByMQL queries tabular data with an MQL (MongoDB Query Language) query.
 	TabularDataByMQL(context.Context, *TabularDataByMQLRequest) (*TabularDataByMQLResponse, error)
+	// ExportTabularData queries tabular data from the specified data source.
+	ExportTabularData(*ExportTabularDataRequest, DataService_ExportTabularDataServer) error
+	// GetLatestTabularData gets the most recent tabular data captured from the specified data source.
+	GetLatestTabularData(context.Context, *GetLatestTabularDataRequest) (*GetLatestTabularDataResponse, error)
 	// BinaryDataByFilter queries binary data and metadata based on given filters.
 	BinaryDataByFilter(context.Context, *BinaryDataByFilterRequest) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
@@ -328,6 +380,12 @@ func (UnimplementedDataServiceServer) TabularDataBySQL(context.Context, *Tabular
 }
 func (UnimplementedDataServiceServer) TabularDataByMQL(context.Context, *TabularDataByMQLRequest) (*TabularDataByMQLResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TabularDataByMQL not implemented")
+}
+func (UnimplementedDataServiceServer) ExportTabularData(*ExportTabularDataRequest, DataService_ExportTabularDataServer) error {
+	return status.Errorf(codes.Unimplemented, "method ExportTabularData not implemented")
+}
+func (UnimplementedDataServiceServer) GetLatestTabularData(context.Context, *GetLatestTabularDataRequest) (*GetLatestTabularDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLatestTabularData not implemented")
 }
 func (UnimplementedDataServiceServer) BinaryDataByFilter(context.Context, *BinaryDataByFilterRequest) (*BinaryDataByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BinaryDataByFilter not implemented")
@@ -446,6 +504,45 @@ func _DataService_TabularDataByMQL_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataServiceServer).TabularDataByMQL(ctx, req.(*TabularDataByMQLRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_ExportTabularData_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ExportTabularDataRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(DataServiceServer).ExportTabularData(m, &dataServiceExportTabularDataServer{stream})
+}
+
+type DataService_ExportTabularDataServer interface {
+	Send(*ExportTabularDataResponse) error
+	grpc.ServerStream
+}
+
+type dataServiceExportTabularDataServer struct {
+	grpc.ServerStream
+}
+
+func (x *dataServiceExportTabularDataServer) Send(m *ExportTabularDataResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _DataService_GetLatestTabularData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLatestTabularDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).GetLatestTabularData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/GetLatestTabularData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).GetLatestTabularData(ctx, req.(*GetLatestTabularDataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -794,6 +891,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataService_TabularDataByMQL_Handler,
 		},
 		{
+			MethodName: "GetLatestTabularData",
+			Handler:    _DataService_GetLatestTabularData_Handler,
+		},
+		{
 			MethodName: "BinaryDataByFilter",
 			Handler:    _DataService_BinaryDataByFilter_Handler,
 		},
@@ -866,6 +967,12 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataService_RemoveBinaryDataFromDatasetByIDs_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ExportTabularData",
+			Handler:       _DataService_ExportTabularData_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "app/data/v1/data.proto",
 }

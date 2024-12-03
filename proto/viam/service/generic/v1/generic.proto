@@ -12,8 +12,6 @@ option java_package = "com.viam.service.generic.v1";
 service GenericService {
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/generic/{name}/do_command"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/service/generic/{name}/do_command"};
   }
 }

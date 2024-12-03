@@ -26,13 +26,13 @@ var google_api_client_pb = require('../../google/api/client_pb.js')
 
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js')
 
+var google_protobuf_descriptor_pb = require('google-protobuf/google/protobuf/descriptor_pb.js')
+
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js')
 
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js')
 
 var google_rpc_status_pb = require('../../google/rpc/status_pb.js')
-
-var google_protobuf_descriptor_pb = require('google-protobuf/google/protobuf/descriptor_pb.js')
 const proto = {};
 proto.google = {};
 proto.google.longrunning = require('./operations_pb.js');

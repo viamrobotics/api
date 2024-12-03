@@ -52,6 +52,21 @@ type AppServiceClient interface {
 	DeleteOrganizationInvite(ctx context.Context, in *DeleteOrganizationInviteRequest, opts ...grpc.CallOption) (*DeleteOrganizationInviteResponse, error)
 	// Resend an organization invite
 	ResendOrganizationInvite(ctx context.Context, in *ResendOrganizationInviteRequest, opts ...grpc.CallOption) (*ResendOrganizationInviteResponse, error)
+	EnableBillingService(ctx context.Context, in *EnableBillingServiceRequest, opts ...grpc.CallOption) (*EnableBillingServiceResponse, error)
+	DisableBillingService(ctx context.Context, in *DisableBillingServiceRequest, opts ...grpc.CallOption) (*DisableBillingServiceResponse, error)
+	UpdateBillingService(ctx context.Context, in *UpdateBillingServiceRequest, opts ...grpc.CallOption) (*UpdateBillingServiceResponse, error)
+	GetBillingServiceConfig(ctx context.Context, in *GetBillingServiceConfigRequest, opts ...grpc.CallOption) (*GetBillingServiceConfigResponse, error)
+	OrganizationSetSupportEmail(ctx context.Context, in *OrganizationSetSupportEmailRequest, opts ...grpc.CallOption) (*OrganizationSetSupportEmailResponse, error)
+	OrganizationGetSupportEmail(ctx context.Context, in *OrganizationGetSupportEmailRequest, opts ...grpc.CallOption) (*OrganizationGetSupportEmailResponse, error)
+	OrganizationSetLogo(ctx context.Context, in *OrganizationSetLogoRequest, opts ...grpc.CallOption) (*OrganizationSetLogoResponse, error)
+	OrganizationGetLogo(ctx context.Context, in *OrganizationGetLogoRequest, opts ...grpc.CallOption) (*OrganizationGetLogoResponse, error)
+	EnableAuthService(ctx context.Context, in *EnableAuthServiceRequest, opts ...grpc.CallOption) (*EnableAuthServiceResponse, error)
+	DisableAuthService(ctx context.Context, in *DisableAuthServiceRequest, opts ...grpc.CallOption) (*DisableAuthServiceResponse, error)
+	CreateOAuthApp(ctx context.Context, in *CreateOAuthAppRequest, opts ...grpc.CallOption) (*CreateOAuthAppResponse, error)
+	ReadOAuthApp(ctx context.Context, in *ReadOAuthAppRequest, opts ...grpc.CallOption) (*ReadOAuthAppResponse, error)
+	UpdateOAuthApp(ctx context.Context, in *UpdateOAuthAppRequest, opts ...grpc.CallOption) (*UpdateOAuthAppResponse, error)
+	DeleteOAuthApp(ctx context.Context, in *DeleteOAuthAppRequest, opts ...grpc.CallOption) (*DeleteOAuthAppResponse, error)
+	ListOAuthApps(ctx context.Context, in *ListOAuthAppsRequest, opts ...grpc.CallOption) (*ListOAuthAppsResponse, error)
 	// Create a location
 	CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error)
 	// Get a location
@@ -293,6 +308,141 @@ func (c *appServiceClient) DeleteOrganizationInvite(ctx context.Context, in *Del
 func (c *appServiceClient) ResendOrganizationInvite(ctx context.Context, in *ResendOrganizationInviteRequest, opts ...grpc.CallOption) (*ResendOrganizationInviteResponse, error) {
 	out := new(ResendOrganizationInviteResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ResendOrganizationInvite", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) EnableBillingService(ctx context.Context, in *EnableBillingServiceRequest, opts ...grpc.CallOption) (*EnableBillingServiceResponse, error) {
+	out := new(EnableBillingServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/EnableBillingService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DisableBillingService(ctx context.Context, in *DisableBillingServiceRequest, opts ...grpc.CallOption) (*DisableBillingServiceResponse, error) {
+	out := new(DisableBillingServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DisableBillingService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateBillingService(ctx context.Context, in *UpdateBillingServiceRequest, opts ...grpc.CallOption) (*UpdateBillingServiceResponse, error) {
+	out := new(UpdateBillingServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateBillingService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetBillingServiceConfig(ctx context.Context, in *GetBillingServiceConfigRequest, opts ...grpc.CallOption) (*GetBillingServiceConfigResponse, error) {
+	out := new(GetBillingServiceConfigResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetBillingServiceConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) OrganizationSetSupportEmail(ctx context.Context, in *OrganizationSetSupportEmailRequest, opts ...grpc.CallOption) (*OrganizationSetSupportEmailResponse, error) {
+	out := new(OrganizationSetSupportEmailResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/OrganizationSetSupportEmail", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) OrganizationGetSupportEmail(ctx context.Context, in *OrganizationGetSupportEmailRequest, opts ...grpc.CallOption) (*OrganizationGetSupportEmailResponse, error) {
+	out := new(OrganizationGetSupportEmailResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/OrganizationGetSupportEmail", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) OrganizationSetLogo(ctx context.Context, in *OrganizationSetLogoRequest, opts ...grpc.CallOption) (*OrganizationSetLogoResponse, error) {
+	out := new(OrganizationSetLogoResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/OrganizationSetLogo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) OrganizationGetLogo(ctx context.Context, in *OrganizationGetLogoRequest, opts ...grpc.CallOption) (*OrganizationGetLogoResponse, error) {
+	out := new(OrganizationGetLogoResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/OrganizationGetLogo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) EnableAuthService(ctx context.Context, in *EnableAuthServiceRequest, opts ...grpc.CallOption) (*EnableAuthServiceResponse, error) {
+	out := new(EnableAuthServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/EnableAuthService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DisableAuthService(ctx context.Context, in *DisableAuthServiceRequest, opts ...grpc.CallOption) (*DisableAuthServiceResponse, error) {
+	out := new(DisableAuthServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DisableAuthService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) CreateOAuthApp(ctx context.Context, in *CreateOAuthAppRequest, opts ...grpc.CallOption) (*CreateOAuthAppResponse, error) {
+	out := new(CreateOAuthAppResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateOAuthApp", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ReadOAuthApp(ctx context.Context, in *ReadOAuthAppRequest, opts ...grpc.CallOption) (*ReadOAuthAppResponse, error) {
+	out := new(ReadOAuthAppResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ReadOAuthApp", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateOAuthApp(ctx context.Context, in *UpdateOAuthAppRequest, opts ...grpc.CallOption) (*UpdateOAuthAppResponse, error) {
+	out := new(UpdateOAuthAppResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateOAuthApp", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteOAuthApp(ctx context.Context, in *DeleteOAuthAppRequest, opts ...grpc.CallOption) (*DeleteOAuthAppResponse, error) {
+	out := new(DeleteOAuthAppResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteOAuthApp", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListOAuthApps(ctx context.Context, in *ListOAuthAppsRequest, opts ...grpc.CallOption) (*ListOAuthAppsResponse, error) {
+	out := new(ListOAuthAppsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListOAuthApps", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -903,6 +1053,21 @@ type AppServiceServer interface {
 	DeleteOrganizationInvite(context.Context, *DeleteOrganizationInviteRequest) (*DeleteOrganizationInviteResponse, error)
 	// Resend an organization invite
 	ResendOrganizationInvite(context.Context, *ResendOrganizationInviteRequest) (*ResendOrganizationInviteResponse, error)
+	EnableBillingService(context.Context, *EnableBillingServiceRequest) (*EnableBillingServiceResponse, error)
+	DisableBillingService(context.Context, *DisableBillingServiceRequest) (*DisableBillingServiceResponse, error)
+	UpdateBillingService(context.Context, *UpdateBillingServiceRequest) (*UpdateBillingServiceResponse, error)
+	GetBillingServiceConfig(context.Context, *GetBillingServiceConfigRequest) (*GetBillingServiceConfigResponse, error)
+	OrganizationSetSupportEmail(context.Context, *OrganizationSetSupportEmailRequest) (*OrganizationSetSupportEmailResponse, error)
+	OrganizationGetSupportEmail(context.Context, *OrganizationGetSupportEmailRequest) (*OrganizationGetSupportEmailResponse, error)
+	OrganizationSetLogo(context.Context, *OrganizationSetLogoRequest) (*OrganizationSetLogoResponse, error)
+	OrganizationGetLogo(context.Context, *OrganizationGetLogoRequest) (*OrganizationGetLogoResponse, error)
+	EnableAuthService(context.Context, *EnableAuthServiceRequest) (*EnableAuthServiceResponse, error)
+	DisableAuthService(context.Context, *DisableAuthServiceRequest) (*DisableAuthServiceResponse, error)
+	CreateOAuthApp(context.Context, *CreateOAuthAppRequest) (*CreateOAuthAppResponse, error)
+	ReadOAuthApp(context.Context, *ReadOAuthAppRequest) (*ReadOAuthAppResponse, error)
+	UpdateOAuthApp(context.Context, *UpdateOAuthAppRequest) (*UpdateOAuthAppResponse, error)
+	DeleteOAuthApp(context.Context, *DeleteOAuthAppRequest) (*DeleteOAuthAppResponse, error)
+	ListOAuthApps(context.Context, *ListOAuthAppsRequest) (*ListOAuthAppsResponse, error)
 	// Create a location
 	CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error)
 	// Get a location
@@ -1056,6 +1221,51 @@ func (UnimplementedAppServiceServer) DeleteOrganizationInvite(context.Context, *
 }
 func (UnimplementedAppServiceServer) ResendOrganizationInvite(context.Context, *ResendOrganizationInviteRequest) (*ResendOrganizationInviteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResendOrganizationInvite not implemented")
+}
+func (UnimplementedAppServiceServer) EnableBillingService(context.Context, *EnableBillingServiceRequest) (*EnableBillingServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnableBillingService not implemented")
+}
+func (UnimplementedAppServiceServer) DisableBillingService(context.Context, *DisableBillingServiceRequest) (*DisableBillingServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DisableBillingService not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateBillingService(context.Context, *UpdateBillingServiceRequest) (*UpdateBillingServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBillingService not implemented")
+}
+func (UnimplementedAppServiceServer) GetBillingServiceConfig(context.Context, *GetBillingServiceConfigRequest) (*GetBillingServiceConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBillingServiceConfig not implemented")
+}
+func (UnimplementedAppServiceServer) OrganizationSetSupportEmail(context.Context, *OrganizationSetSupportEmailRequest) (*OrganizationSetSupportEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OrganizationSetSupportEmail not implemented")
+}
+func (UnimplementedAppServiceServer) OrganizationGetSupportEmail(context.Context, *OrganizationGetSupportEmailRequest) (*OrganizationGetSupportEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OrganizationGetSupportEmail not implemented")
+}
+func (UnimplementedAppServiceServer) OrganizationSetLogo(context.Context, *OrganizationSetLogoRequest) (*OrganizationSetLogoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OrganizationSetLogo not implemented")
+}
+func (UnimplementedAppServiceServer) OrganizationGetLogo(context.Context, *OrganizationGetLogoRequest) (*OrganizationGetLogoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OrganizationGetLogo not implemented")
+}
+func (UnimplementedAppServiceServer) EnableAuthService(context.Context, *EnableAuthServiceRequest) (*EnableAuthServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnableAuthService not implemented")
+}
+func (UnimplementedAppServiceServer) DisableAuthService(context.Context, *DisableAuthServiceRequest) (*DisableAuthServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DisableAuthService not implemented")
+}
+func (UnimplementedAppServiceServer) CreateOAuthApp(context.Context, *CreateOAuthAppRequest) (*CreateOAuthAppResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOAuthApp not implemented")
+}
+func (UnimplementedAppServiceServer) ReadOAuthApp(context.Context, *ReadOAuthAppRequest) (*ReadOAuthAppResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadOAuthApp not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateOAuthApp(context.Context, *UpdateOAuthAppRequest) (*UpdateOAuthAppResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOAuthApp not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteOAuthApp(context.Context, *DeleteOAuthAppRequest) (*DeleteOAuthAppResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOAuthApp not implemented")
+}
+func (UnimplementedAppServiceServer) ListOAuthApps(context.Context, *ListOAuthAppsRequest) (*ListOAuthAppsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOAuthApps not implemented")
 }
 func (UnimplementedAppServiceServer) CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateLocation not implemented")
@@ -1510,6 +1720,276 @@ func _AppService_ResendOrganizationInvite_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).ResendOrganizationInvite(ctx, req.(*ResendOrganizationInviteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_EnableBillingService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EnableBillingServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).EnableBillingService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/EnableBillingService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).EnableBillingService(ctx, req.(*EnableBillingServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DisableBillingService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DisableBillingServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DisableBillingService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DisableBillingService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DisableBillingService(ctx, req.(*DisableBillingServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateBillingService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateBillingServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateBillingService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateBillingService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateBillingService(ctx, req.(*UpdateBillingServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetBillingServiceConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBillingServiceConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetBillingServiceConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetBillingServiceConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetBillingServiceConfig(ctx, req.(*GetBillingServiceConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_OrganizationSetSupportEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OrganizationSetSupportEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).OrganizationSetSupportEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/OrganizationSetSupportEmail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).OrganizationSetSupportEmail(ctx, req.(*OrganizationSetSupportEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_OrganizationGetSupportEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OrganizationGetSupportEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).OrganizationGetSupportEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/OrganizationGetSupportEmail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).OrganizationGetSupportEmail(ctx, req.(*OrganizationGetSupportEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_OrganizationSetLogo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OrganizationSetLogoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).OrganizationSetLogo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/OrganizationSetLogo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).OrganizationSetLogo(ctx, req.(*OrganizationSetLogoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_OrganizationGetLogo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OrganizationGetLogoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).OrganizationGetLogo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/OrganizationGetLogo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).OrganizationGetLogo(ctx, req.(*OrganizationGetLogoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_EnableAuthService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EnableAuthServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).EnableAuthService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/EnableAuthService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).EnableAuthService(ctx, req.(*EnableAuthServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DisableAuthService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DisableAuthServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DisableAuthService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DisableAuthService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DisableAuthService(ctx, req.(*DisableAuthServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_CreateOAuthApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOAuthAppRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CreateOAuthApp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CreateOAuthApp",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CreateOAuthApp(ctx, req.(*CreateOAuthAppRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ReadOAuthApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadOAuthAppRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ReadOAuthApp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ReadOAuthApp",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ReadOAuthApp(ctx, req.(*ReadOAuthAppRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateOAuthApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOAuthAppRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateOAuthApp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateOAuthApp",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateOAuthApp(ctx, req.(*UpdateOAuthAppRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteOAuthApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOAuthAppRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteOAuthApp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteOAuthApp",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteOAuthApp(ctx, req.(*DeleteOAuthAppRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListOAuthApps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOAuthAppsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListOAuthApps(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListOAuthApps",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListOAuthApps(ctx, req.(*ListOAuthAppsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2635,6 +3115,66 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ResendOrganizationInvite",
 			Handler:    _AppService_ResendOrganizationInvite_Handler,
+		},
+		{
+			MethodName: "EnableBillingService",
+			Handler:    _AppService_EnableBillingService_Handler,
+		},
+		{
+			MethodName: "DisableBillingService",
+			Handler:    _AppService_DisableBillingService_Handler,
+		},
+		{
+			MethodName: "UpdateBillingService",
+			Handler:    _AppService_UpdateBillingService_Handler,
+		},
+		{
+			MethodName: "GetBillingServiceConfig",
+			Handler:    _AppService_GetBillingServiceConfig_Handler,
+		},
+		{
+			MethodName: "OrganizationSetSupportEmail",
+			Handler:    _AppService_OrganizationSetSupportEmail_Handler,
+		},
+		{
+			MethodName: "OrganizationGetSupportEmail",
+			Handler:    _AppService_OrganizationGetSupportEmail_Handler,
+		},
+		{
+			MethodName: "OrganizationSetLogo",
+			Handler:    _AppService_OrganizationSetLogo_Handler,
+		},
+		{
+			MethodName: "OrganizationGetLogo",
+			Handler:    _AppService_OrganizationGetLogo_Handler,
+		},
+		{
+			MethodName: "EnableAuthService",
+			Handler:    _AppService_EnableAuthService_Handler,
+		},
+		{
+			MethodName: "DisableAuthService",
+			Handler:    _AppService_DisableAuthService_Handler,
+		},
+		{
+			MethodName: "CreateOAuthApp",
+			Handler:    _AppService_CreateOAuthApp_Handler,
+		},
+		{
+			MethodName: "ReadOAuthApp",
+			Handler:    _AppService_ReadOAuthApp_Handler,
+		},
+		{
+			MethodName: "UpdateOAuthApp",
+			Handler:    _AppService_UpdateOAuthApp_Handler,
+		},
+		{
+			MethodName: "DeleteOAuthApp",
+			Handler:    _AppService_DeleteOAuthApp_Handler,
+		},
+		{
+			MethodName: "ListOAuthApps",
+			Handler:    _AppService_ListOAuthApps_Handler,
 		},
 		{
 			MethodName: "CreateLocation",

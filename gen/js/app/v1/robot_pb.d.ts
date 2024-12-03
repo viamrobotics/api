@@ -372,6 +372,9 @@ export class ProcessConfig extends jspb.Message {
 
   getEnvMap(): jspb.Map<string, string>;
   clearEnvMap(): void;
+  getUsername(): string;
+  setUsername(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ProcessConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ProcessConfig): ProcessConfig.AsObject;
@@ -393,6 +396,7 @@ export namespace ProcessConfig {
     stopSignal: number,
     stopTimeout?: google_protobuf_duration_pb.Duration.AsObject,
     envMap: Array<[string, string]>,
+    username: string,
   }
 }
 

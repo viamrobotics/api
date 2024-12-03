@@ -9047,7 +9047,8 @@ proto.viam.robot.v1.ResourceStatus.toObject = function(includeInstance, msg) {
     state: jspb.Message.getFieldWithDefault(msg, 2, 0),
     lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     revision: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    error: jspb.Message.getFieldWithDefault(msg, 5, "")
+    error: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    cloudMetadata: (f = msg.getCloudMetadata()) && proto.viam.robot.v1.GetCloudMetadataResponse.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9105,6 +9106,11 @@ proto.viam.robot.v1.ResourceStatus.deserializeBinaryFromReader = function(msg, r
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setError(value);
+      break;
+    case 6:
+      var value = new proto.viam.robot.v1.GetCloudMetadataResponse;
+      reader.readMessage(value,proto.viam.robot.v1.GetCloudMetadataResponse.deserializeBinaryFromReader);
+      msg.setCloudMetadata(value);
       break;
     default:
       reader.skipField();
@@ -9170,6 +9176,14 @@ proto.viam.robot.v1.ResourceStatus.serializeBinaryToWriter = function(message, w
     writer.writeString(
       5,
       f
+    );
+  }
+  f = message.getCloudMetadata();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      proto.viam.robot.v1.GetCloudMetadataResponse.serializeBinaryToWriter
     );
   }
 };
@@ -9312,6 +9326,43 @@ proto.viam.robot.v1.ResourceStatus.prototype.getError = function() {
  */
 proto.viam.robot.v1.ResourceStatus.prototype.setError = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional GetCloudMetadataResponse cloud_metadata = 6;
+ * @return {?proto.viam.robot.v1.GetCloudMetadataResponse}
+ */
+proto.viam.robot.v1.ResourceStatus.prototype.getCloudMetadata = function() {
+  return /** @type{?proto.viam.robot.v1.GetCloudMetadataResponse} */ (
+    jspb.Message.getWrapperField(this, proto.viam.robot.v1.GetCloudMetadataResponse, 6));
+};
+
+
+/**
+ * @param {?proto.viam.robot.v1.GetCloudMetadataResponse|undefined} value
+ * @return {!proto.viam.robot.v1.ResourceStatus} returns this
+*/
+proto.viam.robot.v1.ResourceStatus.prototype.setCloudMetadata = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.robot.v1.ResourceStatus} returns this
+ */
+proto.viam.robot.v1.ResourceStatus.prototype.clearCloudMetadata = function() {
+  return this.setCloudMetadata(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.robot.v1.ResourceStatus.prototype.hasCloudMetadata = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 

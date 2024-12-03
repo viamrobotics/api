@@ -376,11 +376,6 @@ export namespace TabularDataBySQLRequest {
 }
 
 export class TabularDataBySQLResponse extends jspb.Message {
-  clearDataList(): void;
-  getDataList(): Array<google_protobuf_struct_pb.Struct>;
-  setDataList(value: Array<google_protobuf_struct_pb.Struct>): void;
-  addData(value?: google_protobuf_struct_pb.Struct, index?: number): google_protobuf_struct_pb.Struct;
-
   clearRawDataList(): void;
   getRawDataList(): Array<Uint8Array | string>;
   getRawDataList_asU8(): Array<Uint8Array>;
@@ -400,7 +395,6 @@ export class TabularDataBySQLResponse extends jspb.Message {
 
 export namespace TabularDataBySQLResponse {
   export type AsObject = {
-    dataList: Array<google_protobuf_struct_pb.Struct.AsObject>,
     rawDataList: Array<Uint8Array | string>,
   }
 }
@@ -434,11 +428,6 @@ export namespace TabularDataByMQLRequest {
 }
 
 export class TabularDataByMQLResponse extends jspb.Message {
-  clearDataList(): void;
-  getDataList(): Array<google_protobuf_struct_pb.Struct>;
-  setDataList(value: Array<google_protobuf_struct_pb.Struct>): void;
-  addData(value?: google_protobuf_struct_pb.Struct, index?: number): google_protobuf_struct_pb.Struct;
-
   clearRawDataList(): void;
   getRawDataList(): Array<Uint8Array | string>;
   getRawDataList_asU8(): Array<Uint8Array>;
@@ -458,8 +447,184 @@ export class TabularDataByMQLResponse extends jspb.Message {
 
 export namespace TabularDataByMQLResponse {
   export type AsObject = {
-    dataList: Array<google_protobuf_struct_pb.Struct.AsObject>,
     rawDataList: Array<Uint8Array | string>,
+  }
+}
+
+export class ExportTabularDataRequest extends jspb.Message {
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  getResourceName(): string;
+  setResourceName(value: string): void;
+
+  getResourceSubtype(): string;
+  setResourceSubtype(value: string): void;
+
+  getMethodName(): string;
+  setMethodName(value: string): void;
+
+  hasInterval(): boolean;
+  clearInterval(): void;
+  getInterval(): CaptureInterval | undefined;
+  setInterval(value?: CaptureInterval): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ExportTabularDataRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ExportTabularDataRequest): ExportTabularDataRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ExportTabularDataRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ExportTabularDataRequest;
+  static deserializeBinaryFromReader(message: ExportTabularDataRequest, reader: jspb.BinaryReader): ExportTabularDataRequest;
+}
+
+export namespace ExportTabularDataRequest {
+  export type AsObject = {
+    partId: string,
+    resourceName: string,
+    resourceSubtype: string,
+    methodName: string,
+    interval?: CaptureInterval.AsObject,
+  }
+}
+
+export class ExportTabularDataResponse extends jspb.Message {
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  getComponentName(): string;
+  setComponentName(value: string): void;
+
+  getComponentType(): string;
+  setComponentType(value: string): void;
+
+  getMethodName(): string;
+  setMethodName(value: string): void;
+
+  hasTimeCaptured(): boolean;
+  clearTimeCaptured(): void;
+  getTimeCaptured(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeCaptured(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  getRobotName(): string;
+  setRobotName(value: string): void;
+
+  getRobotId(): string;
+  setRobotId(value: string): void;
+
+  getPartName(): string;
+  setPartName(value: string): void;
+
+  getMethodParametersMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
+  clearMethodParametersMap(): void;
+  clearTagsList(): void;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): void;
+  addTags(value: string, index?: number): string;
+
+  hasPayload(): boolean;
+  clearPayload(): void;
+  getPayload(): google_protobuf_struct_pb.Struct | undefined;
+  setPayload(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ExportTabularDataResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ExportTabularDataResponse): ExportTabularDataResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ExportTabularDataResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ExportTabularDataResponse;
+  static deserializeBinaryFromReader(message: ExportTabularDataResponse, reader: jspb.BinaryReader): ExportTabularDataResponse;
+}
+
+export namespace ExportTabularDataResponse {
+  export type AsObject = {
+    partId: string,
+    componentName: string,
+    componentType: string,
+    methodName: string,
+    timeCaptured?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    organizationId: string,
+    locationId: string,
+    robotName: string,
+    robotId: string,
+    partName: string,
+    methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    tagsList: Array<string>,
+    payload?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetLatestTabularDataRequest extends jspb.Message {
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  getResourceName(): string;
+  setResourceName(value: string): void;
+
+  getMethodName(): string;
+  setMethodName(value: string): void;
+
+  getResourceSubtype(): string;
+  setResourceSubtype(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetLatestTabularDataRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLatestTabularDataRequest): GetLatestTabularDataRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetLatestTabularDataRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLatestTabularDataRequest;
+  static deserializeBinaryFromReader(message: GetLatestTabularDataRequest, reader: jspb.BinaryReader): GetLatestTabularDataRequest;
+}
+
+export namespace GetLatestTabularDataRequest {
+  export type AsObject = {
+    partId: string,
+    resourceName: string,
+    methodName: string,
+    resourceSubtype: string,
+  }
+}
+
+export class GetLatestTabularDataResponse extends jspb.Message {
+  hasTimeCaptured(): boolean;
+  clearTimeCaptured(): void;
+  getTimeCaptured(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeCaptured(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasTimeSynced(): boolean;
+  clearTimeSynced(): void;
+  getTimeSynced(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimeSynced(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasPayload(): boolean;
+  clearPayload(): void;
+  getPayload(): google_protobuf_struct_pb.Struct | undefined;
+  setPayload(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetLatestTabularDataResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLatestTabularDataResponse): GetLatestTabularDataResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetLatestTabularDataResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLatestTabularDataResponse;
+  static deserializeBinaryFromReader(message: GetLatestTabularDataResponse, reader: jspb.BinaryReader): GetLatestTabularDataResponse;
+}
+
+export namespace GetLatestTabularDataResponse {
+  export type AsObject = {
+    timeCaptured?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    timeSynced?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    payload?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -658,6 +823,11 @@ export class BoundingBox extends jspb.Message {
   getYMaxNormalized(): number;
   setYMaxNormalized(value: number): void;
 
+  hasConfidence(): boolean;
+  clearConfidence(): void;
+  getConfidence(): number;
+  setConfidence(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BoundingBox.AsObject;
   static toObject(includeInstance: boolean, msg: BoundingBox): BoundingBox.AsObject;
@@ -676,6 +846,33 @@ export namespace BoundingBox {
     yMinNormalized: number,
     xMaxNormalized: number,
     yMaxNormalized: number,
+    confidence: number,
+  }
+}
+
+export class Classification extends jspb.Message {
+  getLabel(): string;
+  setLabel(value: string): void;
+
+  hasConfidence(): boolean;
+  clearConfidence(): void;
+  getConfidence(): number;
+  setConfidence(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Classification.AsObject;
+  static toObject(includeInstance: boolean, msg: Classification): Classification.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Classification, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Classification;
+  static deserializeBinaryFromReader(message: Classification, reader: jspb.BinaryReader): Classification;
+}
+
+export namespace Classification {
+  export type AsObject = {
+    label: string,
+    confidence: number,
   }
 }
 
@@ -684,6 +881,11 @@ export class Annotations extends jspb.Message {
   getBboxesList(): Array<BoundingBox>;
   setBboxesList(value: Array<BoundingBox>): void;
   addBboxes(value?: BoundingBox, index?: number): BoundingBox;
+
+  clearClassificationsList(): void;
+  getClassificationsList(): Array<Classification>;
+  setClassificationsList(value: Array<Classification>): void;
+  addClassifications(value?: Classification, index?: number): Classification;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Annotations.AsObject;
@@ -698,6 +900,7 @@ export class Annotations extends jspb.Message {
 export namespace Annotations {
   export type AsObject = {
     bboxesList: Array<BoundingBox.AsObject>,
+    classificationsList: Array<Classification.AsObject>,
   }
 }
 

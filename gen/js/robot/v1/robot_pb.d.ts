@@ -1151,6 +1151,11 @@ export class ResourceStatus extends jspb.Message {
   getError(): string;
   setError(value: string): void;
 
+  hasCloudMetadata(): boolean;
+  clearCloudMetadata(): void;
+  getCloudMetadata(): GetCloudMetadataResponse | undefined;
+  setCloudMetadata(value?: GetCloudMetadataResponse): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResourceStatus.AsObject;
   static toObject(includeInstance: boolean, msg: ResourceStatus): ResourceStatus.AsObject;
@@ -1168,6 +1173,7 @@ export namespace ResourceStatus {
     lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     revision: string,
     error: string,
+    cloudMetadata?: GetCloudMetadataResponse.AsObject,
   }
 
   export interface StateMap {

@@ -3476,7 +3476,8 @@ proto.viam.app.v1.ProcessConfig.toObject = function(includeInstance, msg) {
     log: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     stopSignal: jspb.Message.getFieldWithDefault(msg, 7, 0),
     stopTimeout: (f = msg.getStopTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
-    envMap: (f = msg.getEnvMap()) ? f.toObject(includeInstance, undefined) : []
+    envMap: (f = msg.getEnvMap()) ? f.toObject(includeInstance, undefined) : [],
+    username: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -3551,6 +3552,10 @@ proto.viam.app.v1.ProcessConfig.deserializeBinaryFromReader = function(msg, read
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
          });
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUsername(value);
       break;
     default:
       reader.skipField();
@@ -3641,6 +3646,13 @@ proto.viam.app.v1.ProcessConfig.serializeBinaryToWriter = function(message, writ
   f = message.getEnvMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(9, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = message.getUsername();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
   }
 };
 
@@ -3847,6 +3859,24 @@ proto.viam.app.v1.ProcessConfig.prototype.getEnvMap = function(opt_noLazyCreate)
 proto.viam.app.v1.ProcessConfig.prototype.clearEnvMap = function() {
   this.getEnvMap().clear();
   return this;};
+
+
+/**
+ * optional string username = 10;
+ * @return {string}
+ */
+proto.viam.app.v1.ProcessConfig.prototype.getUsername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.ProcessConfig} returns this
+ */
+proto.viam.app.v1.ProcessConfig.prototype.setUsername = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
+};
 
 
 
