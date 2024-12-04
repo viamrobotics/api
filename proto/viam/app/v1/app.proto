@@ -810,8 +810,6 @@ message Fragment {
   FragmentVisibility visibility = 12;
   // latest timestamp when fragment was updated
   google.protobuf.Timestamp last_updated = 13 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
-  // number of machines in the requester org using the fragment
-  int32 machines_in_org_count = 14;
 }
 
 message FragmentHistoryEntry {
@@ -842,6 +840,13 @@ enum FragmentErrorType {
   FRAGMENT_ERROR_TYPE_CYCLE_DETECTED = 4;
 }
 
+message FragmentUsage {
+  int32 fragment_id = 1;
+  int64 organizations = 2;
+  int64 parts = 3;
+  int64 machines_in_org = 4;
+}
+
 message ResolvedFragment {
   string fragment_id = 1;
   google.protobuf.Struct resolved_config = 2;
@@ -865,6 +870,7 @@ message GetFragmentRequest {
 
 message GetFragmentResponse {
   Fragment fragment = 1;
+  FragmentUsage fragment_usage = 2;
 }
 
 message CreateFragmentRequest {
@@ -923,6 +929,7 @@ message ListMachineFragmentsRequest {
 message ListMachineFragmentsResponse {
   repeated Fragment fragments = 1;
   repeated ResolvedFragment resolved_fragments = 2;
+  repeated FragmentUsage fragment_usages = 3;
 }
 
 message ListRobotsResponse {
