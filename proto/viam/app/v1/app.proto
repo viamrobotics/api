@@ -31,6 +31,9 @@ service AppService {
   // List the organizations a user belongs to
   rpc ListOrganizationsByUser(ListOrganizationsByUserRequest) returns (ListOrganizationsByUserResponse);
 
+  // Search organizations by a couple fields
+  rpc SearchOrganizations(SearchOrganizationsRequest) returns (SearchOrganizationsResponse);
+
   // Get an organization
   rpc GetOrganization(GetOrganizationRequest) returns (GetOrganizationResponse);
 
@@ -1363,10 +1366,23 @@ message ListOrganizationsByUserRequest {
 message OrgDetails {
   string org_id = 1;
   string org_name = 2;
+  optional string org_cid = 3;
+  optional string public_namespace = 4;
 }
 
 message ListOrganizationsByUserResponse {
   repeated OrgDetails orgs = 1;
+}
+
+message SearchOrganizationsRequest {
+  optional string org_id = 1;
+  optional string org_name = 2;
+  optional string cid = 3;
+  optional string public_namespace = 4;
+}
+
+message SearchOrganizationsResponse {
+  repeated OrgDetails organizations = 1;
 }
 
 message CreateKeyRequest {
