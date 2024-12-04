@@ -4691,6 +4691,14 @@ export class OrgDetails extends jspb.Message {
   getOrgName(): string;
   setOrgName(value: string): void;
 
+  hasOrgCid(): boolean;
+  clearOrgCid(): void;
+  getOrgCid(): string;
+  setOrgCid(value: string): void;
+
+  getPublicNamespace(): string;
+  setPublicNamespace(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OrgDetails.AsObject;
   static toObject(includeInstance: boolean, msg: OrgDetails): OrgDetails.AsObject;
@@ -4705,6 +4713,8 @@ export namespace OrgDetails {
   export type AsObject = {
     orgId: string,
     orgName: string,
+    orgCid: string,
+    publicNamespace: string,
   }
 }
 

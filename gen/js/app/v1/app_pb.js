@@ -37332,7 +37332,9 @@ proto.viam.app.v1.OrgDetails.prototype.toObject = function(opt_includeInstance) 
 proto.viam.app.v1.OrgDetails.toObject = function(includeInstance, msg) {
   var f, obj = {
     orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    orgName: jspb.Message.getFieldWithDefault(msg, 2, "")
+    orgName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    orgCid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    publicNamespace: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -37377,6 +37379,14 @@ proto.viam.app.v1.OrgDetails.deserializeBinaryFromReader = function(msg, reader)
       var value = /** @type {string} */ (reader.readString());
       msg.setOrgName(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrgCid(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPublicNamespace(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -37420,6 +37430,20 @@ proto.viam.app.v1.OrgDetails.serializeBinaryToWriter = function(message, writer)
       f
     );
   }
+  f = /** @type {string} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getPublicNamespace();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
 };
 
 
@@ -37456,6 +37480,60 @@ proto.viam.app.v1.OrgDetails.prototype.getOrgName = function() {
  */
 proto.viam.app.v1.OrgDetails.prototype.setOrgName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string org_cid = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.OrgDetails.prototype.getOrgCid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.OrgDetails} returns this
+ */
+proto.viam.app.v1.OrgDetails.prototype.setOrgCid = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.OrgDetails} returns this
+ */
+proto.viam.app.v1.OrgDetails.prototype.clearOrgCid = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.OrgDetails.prototype.hasOrgCid = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string public_namespace = 4;
+ * @return {string}
+ */
+proto.viam.app.v1.OrgDetails.prototype.getPublicNamespace = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.OrgDetails} returns this
+ */
+proto.viam.app.v1.OrgDetails.prototype.setPublicNamespace = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
