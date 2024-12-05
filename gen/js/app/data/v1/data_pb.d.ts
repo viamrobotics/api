@@ -493,11 +493,11 @@ export class ExportTabularDataResponse extends jspb.Message {
   getPartId(): string;
   setPartId(value: string): void;
 
-  getComponentName(): string;
-  setComponentName(value: string): void;
+  getResourceName(): string;
+  setResourceName(value: string): void;
 
-  getComponentType(): string;
-  setComponentType(value: string): void;
+  getResourceSubtype(): string;
+  setResourceSubtype(value: string): void;
 
   getMethodName(): string;
   setMethodName(value: string): void;
@@ -547,8 +547,8 @@ export class ExportTabularDataResponse extends jspb.Message {
 export namespace ExportTabularDataResponse {
   export type AsObject = {
     partId: string,
-    componentName: string,
-    componentType: string,
+    resourceName: string,
+    resourceSubtype: string,
     methodName: string,
     timeCaptured?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     organizationId: string,
