@@ -258,7 +258,7 @@ message ExportTabularDataResponse {
   string robot_name = 8;
   string robot_id = 9;
   string part_name = 10;
-  map<string, google.protobuf.Any> method_parameters = 11;
+  google.protobuf.Struct method_parameters = 11;
   repeated string tags = 12;
   google.protobuf.Struct payload = 13;
 }
