@@ -249,8 +249,8 @@ message ExportTabularDataRequest {
 // ExportTabularDataResponse provides unified tabular data and metadata for a single data point from the specified data source.
 message ExportTabularDataResponse {
   string part_id = 1;
-  string component_name = 2;
-  string component_type = 3;
+  string resource_name = 2;
+  string resource_subtype = 3;
   string method_name = 4;
   google.protobuf.Timestamp time_captured = 5;
   string organization_id = 6;
