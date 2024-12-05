@@ -4900,8 +4900,8 @@ proto.viam.app.data.v1.ExportTabularDataResponse.prototype.toObject = function(o
 proto.viam.app.data.v1.ExportTabularDataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    componentName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    componentType: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    resourceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    resourceSubtype: jspb.Message.getFieldWithDefault(msg, 3, ""),
     methodName: jspb.Message.getFieldWithDefault(msg, 4, ""),
     timeCaptured: (f = msg.getTimeCaptured()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     organizationId: jspb.Message.getFieldWithDefault(msg, 6, ""),
@@ -4954,11 +4954,11 @@ proto.viam.app.data.v1.ExportTabularDataResponse.deserializeBinaryFromReader = f
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setComponentName(value);
+      msg.setResourceName(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setComponentType(value);
+      msg.setResourceSubtype(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -5040,14 +5040,14 @@ proto.viam.app.data.v1.ExportTabularDataResponse.serializeBinaryToWriter = funct
       f
     );
   }
-  f = message.getComponentName();
+  f = message.getResourceName();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getComponentType();
+  f = message.getResourceSubtype();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -5145,10 +5145,10 @@ proto.viam.app.data.v1.ExportTabularDataResponse.prototype.setPartId = function(
 
 
 /**
- * optional string component_name = 2;
+ * optional string resource_name = 2;
  * @return {string}
  */
-proto.viam.app.data.v1.ExportTabularDataResponse.prototype.getComponentName = function() {
+proto.viam.app.data.v1.ExportTabularDataResponse.prototype.getResourceName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -5157,16 +5157,16 @@ proto.viam.app.data.v1.ExportTabularDataResponse.prototype.getComponentName = fu
  * @param {string} value
  * @return {!proto.viam.app.data.v1.ExportTabularDataResponse} returns this
  */
-proto.viam.app.data.v1.ExportTabularDataResponse.prototype.setComponentName = function(value) {
+proto.viam.app.data.v1.ExportTabularDataResponse.prototype.setResourceName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string component_type = 3;
+ * optional string resource_subtype = 3;
  * @return {string}
  */
-proto.viam.app.data.v1.ExportTabularDataResponse.prototype.getComponentType = function() {
+proto.viam.app.data.v1.ExportTabularDataResponse.prototype.getResourceSubtype = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -5175,7 +5175,7 @@ proto.viam.app.data.v1.ExportTabularDataResponse.prototype.getComponentType = fu
  * @param {string} value
  * @return {!proto.viam.app.data.v1.ExportTabularDataResponse} returns this
  */
-proto.viam.app.data.v1.ExportTabularDataResponse.prototype.setComponentType = function(value) {
+proto.viam.app.data.v1.ExportTabularDataResponse.prototype.setResourceSubtype = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
