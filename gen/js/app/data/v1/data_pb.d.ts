@@ -522,8 +522,11 @@ export class ExportTabularDataResponse extends jspb.Message {
   getPartName(): string;
   setPartName(value: string): void;
 
-  getMethodParametersMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearMethodParametersMap(): void;
+  hasMethodParameters(): boolean;
+  clearMethodParameters(): void;
+  getMethodParameters(): google_protobuf_struct_pb.Struct | undefined;
+  setMethodParameters(value?: google_protobuf_struct_pb.Struct): void;
+
   clearTagsList(): void;
   getTagsList(): Array<string>;
   setTagsList(value: Array<string>): void;
@@ -556,7 +559,7 @@ export namespace ExportTabularDataResponse {
     robotName: string,
     robotId: string,
     partName: string,
-    methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    methodParameters?: google_protobuf_struct_pb.Struct.AsObject,
     tagsList: Array<string>,
     payload?: google_protobuf_struct_pb.Struct.AsObject,
   }

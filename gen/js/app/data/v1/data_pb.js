@@ -4909,7 +4909,7 @@ proto.viam.app.data.v1.ExportTabularDataResponse.toObject = function(includeInst
     robotName: jspb.Message.getFieldWithDefault(msg, 8, ""),
     robotId: jspb.Message.getFieldWithDefault(msg, 9, ""),
     partName: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
+    methodParameters: (f = msg.getMethodParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     tagsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
     payload: (f = msg.getPayload()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
@@ -4990,10 +4990,9 @@ proto.viam.app.data.v1.ExportTabularDataResponse.deserializeBinaryFromReader = f
       msg.setPartName(value);
       break;
     case 11:
-      var value = msg.getMethodParametersMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.google.protobuf.Any.deserializeBinaryFromReader, "", new proto.google.protobuf.Any());
-         });
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setMethodParameters(value);
       break;
     case 12:
       var value = /** @type {string} */ (reader.readString());
@@ -5104,9 +5103,13 @@ proto.viam.app.data.v1.ExportTabularDataResponse.serializeBinaryToWriter = funct
       f
     );
   }
-  f = message.getMethodParametersMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(11, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.google.protobuf.Any.serializeBinaryToWriter);
+  f = message.getMethodParameters();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
   }
   f = message.getTagsList();
   if (f.length > 0) {
@@ -5326,25 +5329,40 @@ proto.viam.app.data.v1.ExportTabularDataResponse.prototype.setPartName = functio
 
 
 /**
- * map<string, google.protobuf.Any> method_parameters = 11;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.google.protobuf.Any>}
+ * optional google.protobuf.Struct method_parameters = 11;
+ * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.app.data.v1.ExportTabularDataResponse.prototype.getMethodParametersMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.google.protobuf.Any>} */ (
-      jspb.Message.getMapField(this, 11, opt_noLazyCreate,
-      proto.google.protobuf.Any));
+proto.viam.app.data.v1.ExportTabularDataResponse.prototype.getMethodParameters = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 11));
 };
 
 
 /**
- * Clears values from the map. The map will be non-null.
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.data.v1.ExportTabularDataResponse} returns this
+*/
+proto.viam.app.data.v1.ExportTabularDataResponse.prototype.setMethodParameters = function(value) {
+  return jspb.Message.setWrapperField(this, 11, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.viam.app.data.v1.ExportTabularDataResponse} returns this
  */
-proto.viam.app.data.v1.ExportTabularDataResponse.prototype.clearMethodParametersMap = function() {
-  this.getMethodParametersMap().clear();
-  return this;};
+proto.viam.app.data.v1.ExportTabularDataResponse.prototype.clearMethodParameters = function() {
+  return this.setMethodParameters(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.ExportTabularDataResponse.prototype.hasMethodParameters = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
 
 
 /**
