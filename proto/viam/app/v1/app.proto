@@ -1155,6 +1155,12 @@ message UpdateRegistryItemRequest {
   string description = 3;
   Visibility visibility = 4;
   optional string url = 5;
+
+  oneof metadata {
+    ModuleUpdateMetadata module_update_metadata = 6;
+    MLModelUpdateMetadata ml_model_update_metadata = 7;
+    MLTrainingUpdateMetadata ml_training_update_metadata = 8;
+  }
 }
 
 message UpdateRegistryItemResponse {}
@@ -1230,12 +1236,14 @@ message UpdateModuleRequest {
   string url = 3;
   // A short description of the module that explains its purpose
   string description = 4;
-  // A list of models that are available in the module
-  repeated Model models = 5;
+  // Deprecated. Use A list of models that are available in the module
+  repeated Model deprecated_models = 5;
   // The executable to run to start the module program
   string entrypoint = 6;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 7;
+  // A list of models with markdown descriptions that are available in the module
+  repeated UpdateModel models = 8;
 }
 
 message UpdateModuleResponse {
@@ -1243,7 +1251,32 @@ message UpdateModuleResponse {
   string url = 1;
 }
 
+message ModuleUpdateMetadata {
+  // A list of models that are available in the module
+  repeated UpdateModel models = 1;
+  // The executable to run to start the module program
+  string entrypoint = 3;
+}
+
+message MLModelUpdateMetadata {
+  viam.app.mltraining.v1.ModelType model_type = 1;
+  viam.app.mltraining.v1.ModelFramework model_framework = 2;
+}
+
+message MLTrainingUpdateMetadata {
+  viam.app.mltraining.v1.ModelType model_type = 1;
+  viam.app.mltraining.v1.ModelFramework model_framework = 2;
+  bool draft = 3;
+}
+
 message Model {
+  // The colon-delimited-triplet of the api implemented by the model
+  string api = 1;
+  // The colon-delimited-triplet of the model
+  string model = 2;
+}
+
+message UpdateModel {
   // The colon-delimited-triplet of the api implemented by the model
   string api = 1;
   // The colon-delimited-triplet of the model
