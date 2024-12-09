@@ -1248,6 +1248,8 @@ message Model {
   string api = 1;
   // The colon-delimited-triplet of the model
   string model = 2;
+  // The markdown content describing the usage of the model
+  optional string markdown_documentation = 3;
 }
 
 message ModuleFileInfo {
