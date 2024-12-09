@@ -2583,6 +2583,38 @@ export namespace FragmentError {
   }
 }
 
+export class FragmentUsage extends jspb.Message {
+  getFragmentId(): number;
+  setFragmentId(value: number): void;
+
+  getOrganizations(): number;
+  setOrganizations(value: number): void;
+
+  getMachines(): number;
+  setMachines(value: number): void;
+
+  getMachinesInCurrentOrg(): number;
+  setMachinesInCurrentOrg(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FragmentUsage.AsObject;
+  static toObject(includeInstance: boolean, msg: FragmentUsage): FragmentUsage.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FragmentUsage, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FragmentUsage;
+  static deserializeBinaryFromReader(message: FragmentUsage, reader: jspb.BinaryReader): FragmentUsage;
+}
+
+export namespace FragmentUsage {
+  export type AsObject = {
+    fragmentId: number,
+    organizations: number,
+    machines: number,
+    machinesInCurrentOrg: number,
+  }
+}
+
 export class ResolvedFragment extends jspb.Message {
   getFragmentId(): string;
   setFragmentId(value: string): void;
@@ -2651,6 +2683,11 @@ export class ListFragmentsResponse extends jspb.Message {
   setFragmentsList(value: Array<Fragment>): void;
   addFragments(value?: Fragment, index?: number): Fragment;
 
+  clearFragmentUsagesList(): void;
+  getFragmentUsagesList(): Array<FragmentUsage>;
+  setFragmentUsagesList(value: Array<FragmentUsage>): void;
+  addFragmentUsages(value?: FragmentUsage, index?: number): FragmentUsage;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListFragmentsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: ListFragmentsResponse): ListFragmentsResponse.AsObject;
@@ -2664,12 +2701,16 @@ export class ListFragmentsResponse extends jspb.Message {
 export namespace ListFragmentsResponse {
   export type AsObject = {
     fragmentsList: Array<Fragment.AsObject>,
+    fragmentUsagesList: Array<FragmentUsage.AsObject>,
   }
 }
 
 export class GetFragmentRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
+
+  getCurrentOrganizationId(): string;
+  setCurrentOrganizationId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetFragmentRequest.AsObject;
@@ -2684,6 +2725,7 @@ export class GetFragmentRequest extends jspb.Message {
 export namespace GetFragmentRequest {
   export type AsObject = {
     id: string,
+    currentOrganizationId: string,
   }
 }
 
@@ -2692,6 +2734,11 @@ export class GetFragmentResponse extends jspb.Message {
   clearFragment(): void;
   getFragment(): Fragment | undefined;
   setFragment(value?: Fragment): void;
+
+  hasFragmentUsage(): boolean;
+  clearFragmentUsage(): void;
+  getFragmentUsage(): FragmentUsage | undefined;
+  setFragmentUsage(value?: FragmentUsage): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetFragmentResponse.AsObject;
@@ -2706,6 +2753,7 @@ export class GetFragmentResponse extends jspb.Message {
 export namespace GetFragmentResponse {
   export type AsObject = {
     fragment?: Fragment.AsObject,
+    fragmentUsage?: FragmentUsage.AsObject,
   }
 }
 
