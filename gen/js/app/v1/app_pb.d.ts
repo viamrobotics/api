@@ -4739,6 +4739,16 @@ export class OrgDetails extends jspb.Message {
   getOrgName(): string;
   setOrgName(value: string): void;
 
+  hasOrgCid(): boolean;
+  clearOrgCid(): void;
+  getOrgCid(): string;
+  setOrgCid(value: string): void;
+
+  hasPublicNamespace(): boolean;
+  clearPublicNamespace(): void;
+  getPublicNamespace(): string;
+  setPublicNamespace(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OrgDetails.AsObject;
   static toObject(includeInstance: boolean, msg: OrgDetails): OrgDetails.AsObject;
@@ -4753,6 +4763,8 @@ export namespace OrgDetails {
   export type AsObject = {
     orgId: string,
     orgName: string,
+    orgCid: string,
+    publicNamespace: string,
   }
 }
 
@@ -4775,6 +4787,68 @@ export class ListOrganizationsByUserResponse extends jspb.Message {
 export namespace ListOrganizationsByUserResponse {
   export type AsObject = {
     orgsList: Array<OrgDetails.AsObject>,
+  }
+}
+
+export class SearchOrganizationsRequest extends jspb.Message {
+  hasOrgId(): boolean;
+  clearOrgId(): void;
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  hasOrgName(): boolean;
+  clearOrgName(): void;
+  getOrgName(): string;
+  setOrgName(value: string): void;
+
+  hasCid(): boolean;
+  clearCid(): void;
+  getCid(): string;
+  setCid(value: string): void;
+
+  hasPublicNamespace(): boolean;
+  clearPublicNamespace(): void;
+  getPublicNamespace(): string;
+  setPublicNamespace(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SearchOrganizationsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SearchOrganizationsRequest): SearchOrganizationsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SearchOrganizationsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SearchOrganizationsRequest;
+  static deserializeBinaryFromReader(message: SearchOrganizationsRequest, reader: jspb.BinaryReader): SearchOrganizationsRequest;
+}
+
+export namespace SearchOrganizationsRequest {
+  export type AsObject = {
+    orgId: string,
+    orgName: string,
+    cid: string,
+    publicNamespace: string,
+  }
+}
+
+export class SearchOrganizationsResponse extends jspb.Message {
+  clearOrganizationsList(): void;
+  getOrganizationsList(): Array<OrgDetails>;
+  setOrganizationsList(value: Array<OrgDetails>): void;
+  addOrganizations(value?: OrgDetails, index?: number): OrgDetails;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SearchOrganizationsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SearchOrganizationsResponse): SearchOrganizationsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SearchOrganizationsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SearchOrganizationsResponse;
+  static deserializeBinaryFromReader(message: SearchOrganizationsResponse, reader: jspb.BinaryReader): SearchOrganizationsResponse;
+}
+
+export namespace SearchOrganizationsResponse {
+  export type AsObject = {
+    organizationsList: Array<OrgDetails.AsObject>,
   }
 }
 
