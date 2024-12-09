@@ -49,6 +49,15 @@ type AppServiceListOrganizationsByUser = {
   readonly responseType: typeof app_v1_app_pb.ListOrganizationsByUserResponse;
 };
 
+type AppServiceSearchOrganizations = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.SearchOrganizationsRequest;
+  readonly responseType: typeof app_v1_app_pb.SearchOrganizationsResponse;
+};
+
 type AppServiceGetOrganization = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -803,6 +812,7 @@ export class AppService {
   static readonly ListOrganizations: AppServiceListOrganizations;
   static readonly GetOrganizationsWithAccessToLocation: AppServiceGetOrganizationsWithAccessToLocation;
   static readonly ListOrganizationsByUser: AppServiceListOrganizationsByUser;
+  static readonly SearchOrganizations: AppServiceSearchOrganizations;
   static readonly GetOrganization: AppServiceGetOrganization;
   static readonly GetOrganizationNamespaceAvailability: AppServiceGetOrganizationNamespaceAvailability;
   static readonly UpdateOrganization: AppServiceUpdateOrganization;
@@ -964,6 +974,15 @@ export class AppServiceClient {
   listOrganizationsByUser(
     requestMessage: app_v1_app_pb.ListOrganizationsByUserRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsByUserResponse|null) => void
+  ): UnaryResponse;
+  searchOrganizations(
+    requestMessage: app_v1_app_pb.SearchOrganizationsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SearchOrganizationsResponse|null) => void
+  ): UnaryResponse;
+  searchOrganizations(
+    requestMessage: app_v1_app_pb.SearchOrganizationsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SearchOrganizationsResponse|null) => void
   ): UnaryResponse;
   getOrganization(
     requestMessage: app_v1_app_pb.GetOrganizationRequest,
