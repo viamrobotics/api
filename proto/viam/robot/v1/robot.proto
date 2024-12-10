@@ -337,8 +337,18 @@ message ShutdownResponse {}
 message GetMachineStatusRequest {}
 
 message GetMachineStatusResponse {
+  enum State {
+    STATE_UNSPECIFIED = 0;
+    // the machine is reachable but still in the process of configuring initial
+    // modules and resources.
+    STATE_INITIALIZING = 1;
+    // the machine has finished initializing.
+    STATE_RUNNING = 2;
+  }
+
   repeated ResourceStatus resources = 1;
   ConfigStatus config = 2;
+  State state = 3;
 }
 
 message ResourceStatus {
