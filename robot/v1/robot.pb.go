@@ -74,6 +74,58 @@ func (PeerConnectionType) EnumDescriptor() ([]byte, []int) {
 	return file_robot_v1_robot_proto_rawDescGZIP(), []int{0}
 }
 
+type GetMachineStatusResponse_State int32
+
+const (
+	GetMachineStatusResponse_STATE_UNSPECIFIED GetMachineStatusResponse_State = 0
+	// the machine is reachable but still in the process of configuring initial
+	// modules and resources.
+	GetMachineStatusResponse_STATE_INITIALIZING GetMachineStatusResponse_State = 1
+	// the machine has finished initializing.
+	GetMachineStatusResponse_STATE_RUNNING GetMachineStatusResponse_State = 2
+)
+
+// Enum value maps for GetMachineStatusResponse_State.
+var (
+	GetMachineStatusResponse_State_name = map[int32]string{
+		0: "STATE_UNSPECIFIED",
+		1: "STATE_INITIALIZING",
+		2: "STATE_RUNNING",
+	}
+	GetMachineStatusResponse_State_value = map[string]int32{
+		"STATE_UNSPECIFIED":  0,
+		"STATE_INITIALIZING": 1,
+		"STATE_RUNNING":      2,
+	}
+)
+
+func (x GetMachineStatusResponse_State) Enum() *GetMachineStatusResponse_State {
+	p := new(GetMachineStatusResponse_State)
+	*p = x
+	return p
+}
+
+func (x GetMachineStatusResponse_State) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (GetMachineStatusResponse_State) Descriptor() protoreflect.EnumDescriptor {
+	return file_robot_v1_robot_proto_enumTypes[1].Descriptor()
+}
+
+func (GetMachineStatusResponse_State) Type() protoreflect.EnumType {
+	return &file_robot_v1_robot_proto_enumTypes[1]
+}
+
+func (x GetMachineStatusResponse_State) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use GetMachineStatusResponse_State.Descriptor instead.
+func (GetMachineStatusResponse_State) EnumDescriptor() ([]byte, []int) {
+	return file_robot_v1_robot_proto_rawDescGZIP(), []int{48, 0}
+}
+
 type ResourceStatus_State int32
 
 const (
@@ -122,11 +174,11 @@ func (x ResourceStatus_State) String() string {
 }
 
 func (ResourceStatus_State) Descriptor() protoreflect.EnumDescriptor {
-	return file_robot_v1_robot_proto_enumTypes[1].Descriptor()
+	return file_robot_v1_robot_proto_enumTypes[2].Descriptor()
 }
 
 func (ResourceStatus_State) Type() protoreflect.EnumType {
-	return &file_robot_v1_robot_proto_enumTypes[1]
+	return &file_robot_v1_robot_proto_enumTypes[2]
 }
 
 func (x ResourceStatus_State) Number() protoreflect.EnumNumber {
@@ -2432,8 +2484,9 @@ type GetMachineStatusResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Resources []*ResourceStatus `protobuf:"bytes,1,rep,name=resources,proto3" json:"resources,omitempty"`
-	Config    *ConfigStatus     `protobuf:"bytes,2,opt,name=config,proto3" json:"config,omitempty"`
+	Resources []*ResourceStatus              `protobuf:"bytes,1,rep,name=resources,proto3" json:"resources,omitempty"`
+	Config    *ConfigStatus                  `protobuf:"bytes,2,opt,name=config,proto3" json:"config,omitempty"`
+	State     GetMachineStatusResponse_State `protobuf:"varint,3,opt,name=state,proto3,enum=viam.robot.v1.GetMachineStatusResponse_State" json:"state,omitempty"`
 }
 
 func (x *GetMachineStatusResponse) Reset() {
@@ -2478,6 +2531,13 @@ func (x *GetMachineStatusResponse) GetConfig() *ConfigStatus {
 		return x.Config
 	}
 	return nil
+}
+
+func (x *GetMachineStatusResponse) GetState() GetMachineStatusResponse_State {
+	if x != nil {
+		return x.State
+	}
+	return GetMachineStatusResponse_STATE_UNSPECIFIED
 }
 
 type ResourceStatus struct {
@@ -2990,7 +3050,7 @@ var file_robot_v1_robot_proto_rawDesc = []byte{
 	0x6f, 0x77, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x12, 0x0a, 0x10, 0x53, 0x68,
 	0x75, 0x74, 0x64, 0x6f, 0x77, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x19,
 	0x0a, 0x17, 0x47, 0x65, 0x74, 0x4d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x53, 0x74, 0x61, 0x74,
-	0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x8c, 0x01, 0x0a, 0x18, 0x47, 0x65,
+	0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x9c, 0x02, 0x0a, 0x18, 0x47, 0x65,
 	0x74, 0x4d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65,
 	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x09, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72,
 	0x63, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x76, 0x69, 0x61, 0x6d,
@@ -2999,7 +3059,16 @@ var file_robot_v1_robot_proto_rawDesc = []byte{
 	0x63, 0x65, 0x73, 0x12, 0x33, 0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x72, 0x6f, 0x62, 0x6f, 0x74,
 	0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
-	0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0xe0, 0x03, 0x0a, 0x0e, 0x52, 0x65, 0x73,
+	0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x43, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74,
+	0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x2d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x72,
+	0x6f, 0x62, 0x6f, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x61, 0x63, 0x68, 0x69,
+	0x6e, 0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x2e, 0x53, 0x74, 0x61, 0x74, 0x65, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x22, 0x49, 0x0a,
+	0x05, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x15, 0x0a, 0x11, 0x53, 0x54, 0x41, 0x54, 0x45, 0x5f,
+	0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x16, 0x0a,
+	0x12, 0x53, 0x54, 0x41, 0x54, 0x45, 0x5f, 0x49, 0x4e, 0x49, 0x54, 0x49, 0x41, 0x4c, 0x49, 0x5a,
+	0x49, 0x4e, 0x47, 0x10, 0x01, 0x12, 0x11, 0x0a, 0x0d, 0x53, 0x54, 0x41, 0x54, 0x45, 0x5f, 0x52,
+	0x55, 0x4e, 0x4e, 0x49, 0x4e, 0x47, 0x10, 0x02, 0x22, 0xe0, 0x03, 0x0a, 0x0e, 0x52, 0x65, 0x73,
 	0x6f, 0x75, 0x72, 0x63, 0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x30, 0x0a, 0x04, 0x6e,
 	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x76, 0x69, 0x61, 0x6d,
 	0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x73, 0x6f, 0x75,
@@ -3243,161 +3312,163 @@ func file_robot_v1_robot_proto_rawDescGZIP() []byte {
 	return file_robot_v1_robot_proto_rawDescData
 }
 
-var file_robot_v1_robot_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_robot_v1_robot_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_robot_v1_robot_proto_msgTypes = make([]protoimpl.MessageInfo, 53)
 var file_robot_v1_robot_proto_goTypes = []any{
 	(PeerConnectionType)(0),              // 0: viam.robot.v1.PeerConnectionType
-	(ResourceStatus_State)(0),            // 1: viam.robot.v1.ResourceStatus.State
-	(*FrameSystemConfig)(nil),            // 2: viam.robot.v1.FrameSystemConfig
-	(*FrameSystemConfigRequest)(nil),     // 3: viam.robot.v1.FrameSystemConfigRequest
-	(*FrameSystemConfigResponse)(nil),    // 4: viam.robot.v1.FrameSystemConfigResponse
-	(*TransformPoseRequest)(nil),         // 5: viam.robot.v1.TransformPoseRequest
-	(*TransformPoseResponse)(nil),        // 6: viam.robot.v1.TransformPoseResponse
-	(*TransformPCDRequest)(nil),          // 7: viam.robot.v1.TransformPCDRequest
-	(*TransformPCDResponse)(nil),         // 8: viam.robot.v1.TransformPCDResponse
-	(*ResourceNamesRequest)(nil),         // 9: viam.robot.v1.ResourceNamesRequest
-	(*ResourceNamesResponse)(nil),        // 10: viam.robot.v1.ResourceNamesResponse
-	(*ResourceRPCSubtype)(nil),           // 11: viam.robot.v1.ResourceRPCSubtype
-	(*ResourceRPCSubtypesRequest)(nil),   // 12: viam.robot.v1.ResourceRPCSubtypesRequest
-	(*ResourceRPCSubtypesResponse)(nil),  // 13: viam.robot.v1.ResourceRPCSubtypesResponse
-	(*Operation)(nil),                    // 14: viam.robot.v1.Operation
-	(*GetOperationsRequest)(nil),         // 15: viam.robot.v1.GetOperationsRequest
-	(*GetOperationsResponse)(nil),        // 16: viam.robot.v1.GetOperationsResponse
-	(*CancelOperationRequest)(nil),       // 17: viam.robot.v1.CancelOperationRequest
-	(*CancelOperationResponse)(nil),      // 18: viam.robot.v1.CancelOperationResponse
-	(*BlockForOperationRequest)(nil),     // 19: viam.robot.v1.BlockForOperationRequest
-	(*BlockForOperationResponse)(nil),    // 20: viam.robot.v1.BlockForOperationResponse
-	(*PeerConnectionInfo)(nil),           // 21: viam.robot.v1.PeerConnectionInfo
-	(*Session)(nil),                      // 22: viam.robot.v1.Session
-	(*GetSessionsRequest)(nil),           // 23: viam.robot.v1.GetSessionsRequest
-	(*GetSessionsResponse)(nil),          // 24: viam.robot.v1.GetSessionsResponse
-	(*DiscoveryQuery)(nil),               // 25: viam.robot.v1.DiscoveryQuery
-	(*Discovery)(nil),                    // 26: viam.robot.v1.Discovery
-	(*DiscoverComponentsRequest)(nil),    // 27: viam.robot.v1.DiscoverComponentsRequest
-	(*DiscoverComponentsResponse)(nil),   // 28: viam.robot.v1.DiscoverComponentsResponse
-	(*Status)(nil),                       // 29: viam.robot.v1.Status
-	(*GetStatusRequest)(nil),             // 30: viam.robot.v1.GetStatusRequest
-	(*GetStatusResponse)(nil),            // 31: viam.robot.v1.GetStatusResponse
-	(*StreamStatusRequest)(nil),          // 32: viam.robot.v1.StreamStatusRequest
-	(*StreamStatusResponse)(nil),         // 33: viam.robot.v1.StreamStatusResponse
-	(*StopExtraParameters)(nil),          // 34: viam.robot.v1.StopExtraParameters
-	(*StopAllRequest)(nil),               // 35: viam.robot.v1.StopAllRequest
-	(*StopAllResponse)(nil),              // 36: viam.robot.v1.StopAllResponse
-	(*StartSessionRequest)(nil),          // 37: viam.robot.v1.StartSessionRequest
-	(*StartSessionResponse)(nil),         // 38: viam.robot.v1.StartSessionResponse
-	(*SendSessionHeartbeatRequest)(nil),  // 39: viam.robot.v1.SendSessionHeartbeatRequest
-	(*SendSessionHeartbeatResponse)(nil), // 40: viam.robot.v1.SendSessionHeartbeatResponse
-	(*LogRequest)(nil),                   // 41: viam.robot.v1.LogRequest
-	(*LogResponse)(nil),                  // 42: viam.robot.v1.LogResponse
-	(*GetCloudMetadataRequest)(nil),      // 43: viam.robot.v1.GetCloudMetadataRequest
-	(*GetCloudMetadataResponse)(nil),     // 44: viam.robot.v1.GetCloudMetadataResponse
-	(*RestartModuleRequest)(nil),         // 45: viam.robot.v1.RestartModuleRequest
-	(*RestartModuleResponse)(nil),        // 46: viam.robot.v1.RestartModuleResponse
-	(*ShutdownRequest)(nil),              // 47: viam.robot.v1.ShutdownRequest
-	(*ShutdownResponse)(nil),             // 48: viam.robot.v1.ShutdownResponse
-	(*GetMachineStatusRequest)(nil),      // 49: viam.robot.v1.GetMachineStatusRequest
-	(*GetMachineStatusResponse)(nil),     // 50: viam.robot.v1.GetMachineStatusResponse
-	(*ResourceStatus)(nil),               // 51: viam.robot.v1.ResourceStatus
-	(*ConfigStatus)(nil),                 // 52: viam.robot.v1.ConfigStatus
-	(*GetVersionRequest)(nil),            // 53: viam.robot.v1.GetVersionRequest
-	(*GetVersionResponse)(nil),           // 54: viam.robot.v1.GetVersionResponse
-	(*v1.Transform)(nil),                 // 55: viam.common.v1.Transform
-	(*structpb.Struct)(nil),              // 56: google.protobuf.Struct
-	(*v1.PoseInFrame)(nil),               // 57: viam.common.v1.PoseInFrame
-	(*v1.ResourceName)(nil),              // 58: viam.common.v1.ResourceName
-	(*timestamppb.Timestamp)(nil),        // 59: google.protobuf.Timestamp
-	(*durationpb.Duration)(nil),          // 60: google.protobuf.Duration
-	(*v1.LogEntry)(nil),                  // 61: viam.common.v1.LogEntry
+	(GetMachineStatusResponse_State)(0),  // 1: viam.robot.v1.GetMachineStatusResponse.State
+	(ResourceStatus_State)(0),            // 2: viam.robot.v1.ResourceStatus.State
+	(*FrameSystemConfig)(nil),            // 3: viam.robot.v1.FrameSystemConfig
+	(*FrameSystemConfigRequest)(nil),     // 4: viam.robot.v1.FrameSystemConfigRequest
+	(*FrameSystemConfigResponse)(nil),    // 5: viam.robot.v1.FrameSystemConfigResponse
+	(*TransformPoseRequest)(nil),         // 6: viam.robot.v1.TransformPoseRequest
+	(*TransformPoseResponse)(nil),        // 7: viam.robot.v1.TransformPoseResponse
+	(*TransformPCDRequest)(nil),          // 8: viam.robot.v1.TransformPCDRequest
+	(*TransformPCDResponse)(nil),         // 9: viam.robot.v1.TransformPCDResponse
+	(*ResourceNamesRequest)(nil),         // 10: viam.robot.v1.ResourceNamesRequest
+	(*ResourceNamesResponse)(nil),        // 11: viam.robot.v1.ResourceNamesResponse
+	(*ResourceRPCSubtype)(nil),           // 12: viam.robot.v1.ResourceRPCSubtype
+	(*ResourceRPCSubtypesRequest)(nil),   // 13: viam.robot.v1.ResourceRPCSubtypesRequest
+	(*ResourceRPCSubtypesResponse)(nil),  // 14: viam.robot.v1.ResourceRPCSubtypesResponse
+	(*Operation)(nil),                    // 15: viam.robot.v1.Operation
+	(*GetOperationsRequest)(nil),         // 16: viam.robot.v1.GetOperationsRequest
+	(*GetOperationsResponse)(nil),        // 17: viam.robot.v1.GetOperationsResponse
+	(*CancelOperationRequest)(nil),       // 18: viam.robot.v1.CancelOperationRequest
+	(*CancelOperationResponse)(nil),      // 19: viam.robot.v1.CancelOperationResponse
+	(*BlockForOperationRequest)(nil),     // 20: viam.robot.v1.BlockForOperationRequest
+	(*BlockForOperationResponse)(nil),    // 21: viam.robot.v1.BlockForOperationResponse
+	(*PeerConnectionInfo)(nil),           // 22: viam.robot.v1.PeerConnectionInfo
+	(*Session)(nil),                      // 23: viam.robot.v1.Session
+	(*GetSessionsRequest)(nil),           // 24: viam.robot.v1.GetSessionsRequest
+	(*GetSessionsResponse)(nil),          // 25: viam.robot.v1.GetSessionsResponse
+	(*DiscoveryQuery)(nil),               // 26: viam.robot.v1.DiscoveryQuery
+	(*Discovery)(nil),                    // 27: viam.robot.v1.Discovery
+	(*DiscoverComponentsRequest)(nil),    // 28: viam.robot.v1.DiscoverComponentsRequest
+	(*DiscoverComponentsResponse)(nil),   // 29: viam.robot.v1.DiscoverComponentsResponse
+	(*Status)(nil),                       // 30: viam.robot.v1.Status
+	(*GetStatusRequest)(nil),             // 31: viam.robot.v1.GetStatusRequest
+	(*GetStatusResponse)(nil),            // 32: viam.robot.v1.GetStatusResponse
+	(*StreamStatusRequest)(nil),          // 33: viam.robot.v1.StreamStatusRequest
+	(*StreamStatusResponse)(nil),         // 34: viam.robot.v1.StreamStatusResponse
+	(*StopExtraParameters)(nil),          // 35: viam.robot.v1.StopExtraParameters
+	(*StopAllRequest)(nil),               // 36: viam.robot.v1.StopAllRequest
+	(*StopAllResponse)(nil),              // 37: viam.robot.v1.StopAllResponse
+	(*StartSessionRequest)(nil),          // 38: viam.robot.v1.StartSessionRequest
+	(*StartSessionResponse)(nil),         // 39: viam.robot.v1.StartSessionResponse
+	(*SendSessionHeartbeatRequest)(nil),  // 40: viam.robot.v1.SendSessionHeartbeatRequest
+	(*SendSessionHeartbeatResponse)(nil), // 41: viam.robot.v1.SendSessionHeartbeatResponse
+	(*LogRequest)(nil),                   // 42: viam.robot.v1.LogRequest
+	(*LogResponse)(nil),                  // 43: viam.robot.v1.LogResponse
+	(*GetCloudMetadataRequest)(nil),      // 44: viam.robot.v1.GetCloudMetadataRequest
+	(*GetCloudMetadataResponse)(nil),     // 45: viam.robot.v1.GetCloudMetadataResponse
+	(*RestartModuleRequest)(nil),         // 46: viam.robot.v1.RestartModuleRequest
+	(*RestartModuleResponse)(nil),        // 47: viam.robot.v1.RestartModuleResponse
+	(*ShutdownRequest)(nil),              // 48: viam.robot.v1.ShutdownRequest
+	(*ShutdownResponse)(nil),             // 49: viam.robot.v1.ShutdownResponse
+	(*GetMachineStatusRequest)(nil),      // 50: viam.robot.v1.GetMachineStatusRequest
+	(*GetMachineStatusResponse)(nil),     // 51: viam.robot.v1.GetMachineStatusResponse
+	(*ResourceStatus)(nil),               // 52: viam.robot.v1.ResourceStatus
+	(*ConfigStatus)(nil),                 // 53: viam.robot.v1.ConfigStatus
+	(*GetVersionRequest)(nil),            // 54: viam.robot.v1.GetVersionRequest
+	(*GetVersionResponse)(nil),           // 55: viam.robot.v1.GetVersionResponse
+	(*v1.Transform)(nil),                 // 56: viam.common.v1.Transform
+	(*structpb.Struct)(nil),              // 57: google.protobuf.Struct
+	(*v1.PoseInFrame)(nil),               // 58: viam.common.v1.PoseInFrame
+	(*v1.ResourceName)(nil),              // 59: viam.common.v1.ResourceName
+	(*timestamppb.Timestamp)(nil),        // 60: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),          // 61: google.protobuf.Duration
+	(*v1.LogEntry)(nil),                  // 62: viam.common.v1.LogEntry
 }
 var file_robot_v1_robot_proto_depIdxs = []int32{
-	55, // 0: viam.robot.v1.FrameSystemConfig.frame:type_name -> viam.common.v1.Transform
-	56, // 1: viam.robot.v1.FrameSystemConfig.kinematics:type_name -> google.protobuf.Struct
-	55, // 2: viam.robot.v1.FrameSystemConfigRequest.supplemental_transforms:type_name -> viam.common.v1.Transform
-	2,  // 3: viam.robot.v1.FrameSystemConfigResponse.frame_system_configs:type_name -> viam.robot.v1.FrameSystemConfig
-	57, // 4: viam.robot.v1.TransformPoseRequest.source:type_name -> viam.common.v1.PoseInFrame
-	55, // 5: viam.robot.v1.TransformPoseRequest.supplemental_transforms:type_name -> viam.common.v1.Transform
-	57, // 6: viam.robot.v1.TransformPoseResponse.pose:type_name -> viam.common.v1.PoseInFrame
-	58, // 7: viam.robot.v1.ResourceNamesResponse.resources:type_name -> viam.common.v1.ResourceName
-	58, // 8: viam.robot.v1.ResourceRPCSubtype.subtype:type_name -> viam.common.v1.ResourceName
-	11, // 9: viam.robot.v1.ResourceRPCSubtypesResponse.resource_rpc_subtypes:type_name -> viam.robot.v1.ResourceRPCSubtype
-	56, // 10: viam.robot.v1.Operation.arguments:type_name -> google.protobuf.Struct
-	59, // 11: viam.robot.v1.Operation.started:type_name -> google.protobuf.Timestamp
-	14, // 12: viam.robot.v1.GetOperationsResponse.operations:type_name -> viam.robot.v1.Operation
+	56, // 0: viam.robot.v1.FrameSystemConfig.frame:type_name -> viam.common.v1.Transform
+	57, // 1: viam.robot.v1.FrameSystemConfig.kinematics:type_name -> google.protobuf.Struct
+	56, // 2: viam.robot.v1.FrameSystemConfigRequest.supplemental_transforms:type_name -> viam.common.v1.Transform
+	3,  // 3: viam.robot.v1.FrameSystemConfigResponse.frame_system_configs:type_name -> viam.robot.v1.FrameSystemConfig
+	58, // 4: viam.robot.v1.TransformPoseRequest.source:type_name -> viam.common.v1.PoseInFrame
+	56, // 5: viam.robot.v1.TransformPoseRequest.supplemental_transforms:type_name -> viam.common.v1.Transform
+	58, // 6: viam.robot.v1.TransformPoseResponse.pose:type_name -> viam.common.v1.PoseInFrame
+	59, // 7: viam.robot.v1.ResourceNamesResponse.resources:type_name -> viam.common.v1.ResourceName
+	59, // 8: viam.robot.v1.ResourceRPCSubtype.subtype:type_name -> viam.common.v1.ResourceName
+	12, // 9: viam.robot.v1.ResourceRPCSubtypesResponse.resource_rpc_subtypes:type_name -> viam.robot.v1.ResourceRPCSubtype
+	57, // 10: viam.robot.v1.Operation.arguments:type_name -> google.protobuf.Struct
+	60, // 11: viam.robot.v1.Operation.started:type_name -> google.protobuf.Timestamp
+	15, // 12: viam.robot.v1.GetOperationsResponse.operations:type_name -> viam.robot.v1.Operation
 	0,  // 13: viam.robot.v1.PeerConnectionInfo.type:type_name -> viam.robot.v1.PeerConnectionType
-	21, // 14: viam.robot.v1.Session.peer_connection_info:type_name -> viam.robot.v1.PeerConnectionInfo
-	22, // 15: viam.robot.v1.GetSessionsResponse.sessions:type_name -> viam.robot.v1.Session
-	56, // 16: viam.robot.v1.DiscoveryQuery.extra:type_name -> google.protobuf.Struct
-	25, // 17: viam.robot.v1.Discovery.query:type_name -> viam.robot.v1.DiscoveryQuery
-	56, // 18: viam.robot.v1.Discovery.results:type_name -> google.protobuf.Struct
-	25, // 19: viam.robot.v1.DiscoverComponentsRequest.queries:type_name -> viam.robot.v1.DiscoveryQuery
-	26, // 20: viam.robot.v1.DiscoverComponentsResponse.discovery:type_name -> viam.robot.v1.Discovery
-	58, // 21: viam.robot.v1.Status.name:type_name -> viam.common.v1.ResourceName
-	56, // 22: viam.robot.v1.Status.status:type_name -> google.protobuf.Struct
-	59, // 23: viam.robot.v1.Status.last_reconfigured:type_name -> google.protobuf.Timestamp
-	58, // 24: viam.robot.v1.GetStatusRequest.resource_names:type_name -> viam.common.v1.ResourceName
-	29, // 25: viam.robot.v1.GetStatusResponse.status:type_name -> viam.robot.v1.Status
-	58, // 26: viam.robot.v1.StreamStatusRequest.resource_names:type_name -> viam.common.v1.ResourceName
-	60, // 27: viam.robot.v1.StreamStatusRequest.every:type_name -> google.protobuf.Duration
-	29, // 28: viam.robot.v1.StreamStatusResponse.status:type_name -> viam.robot.v1.Status
-	58, // 29: viam.robot.v1.StopExtraParameters.name:type_name -> viam.common.v1.ResourceName
-	56, // 30: viam.robot.v1.StopExtraParameters.params:type_name -> google.protobuf.Struct
-	34, // 31: viam.robot.v1.StopAllRequest.extra:type_name -> viam.robot.v1.StopExtraParameters
-	60, // 32: viam.robot.v1.StartSessionResponse.heartbeat_window:type_name -> google.protobuf.Duration
-	61, // 33: viam.robot.v1.LogRequest.logs:type_name -> viam.common.v1.LogEntry
-	51, // 34: viam.robot.v1.GetMachineStatusResponse.resources:type_name -> viam.robot.v1.ResourceStatus
-	52, // 35: viam.robot.v1.GetMachineStatusResponse.config:type_name -> viam.robot.v1.ConfigStatus
-	58, // 36: viam.robot.v1.ResourceStatus.name:type_name -> viam.common.v1.ResourceName
-	1,  // 37: viam.robot.v1.ResourceStatus.state:type_name -> viam.robot.v1.ResourceStatus.State
-	59, // 38: viam.robot.v1.ResourceStatus.last_updated:type_name -> google.protobuf.Timestamp
-	44, // 39: viam.robot.v1.ResourceStatus.cloud_metadata:type_name -> viam.robot.v1.GetCloudMetadataResponse
-	59, // 40: viam.robot.v1.ConfigStatus.last_updated:type_name -> google.protobuf.Timestamp
-	15, // 41: viam.robot.v1.RobotService.GetOperations:input_type -> viam.robot.v1.GetOperationsRequest
-	23, // 42: viam.robot.v1.RobotService.GetSessions:input_type -> viam.robot.v1.GetSessionsRequest
-	9,  // 43: viam.robot.v1.RobotService.ResourceNames:input_type -> viam.robot.v1.ResourceNamesRequest
-	12, // 44: viam.robot.v1.RobotService.ResourceRPCSubtypes:input_type -> viam.robot.v1.ResourceRPCSubtypesRequest
-	17, // 45: viam.robot.v1.RobotService.CancelOperation:input_type -> viam.robot.v1.CancelOperationRequest
-	19, // 46: viam.robot.v1.RobotService.BlockForOperation:input_type -> viam.robot.v1.BlockForOperationRequest
-	27, // 47: viam.robot.v1.RobotService.DiscoverComponents:input_type -> viam.robot.v1.DiscoverComponentsRequest
-	3,  // 48: viam.robot.v1.RobotService.FrameSystemConfig:input_type -> viam.robot.v1.FrameSystemConfigRequest
-	5,  // 49: viam.robot.v1.RobotService.TransformPose:input_type -> viam.robot.v1.TransformPoseRequest
-	7,  // 50: viam.robot.v1.RobotService.TransformPCD:input_type -> viam.robot.v1.TransformPCDRequest
-	30, // 51: viam.robot.v1.RobotService.GetStatus:input_type -> viam.robot.v1.GetStatusRequest
-	32, // 52: viam.robot.v1.RobotService.StreamStatus:input_type -> viam.robot.v1.StreamStatusRequest
-	35, // 53: viam.robot.v1.RobotService.StopAll:input_type -> viam.robot.v1.StopAllRequest
-	37, // 54: viam.robot.v1.RobotService.StartSession:input_type -> viam.robot.v1.StartSessionRequest
-	39, // 55: viam.robot.v1.RobotService.SendSessionHeartbeat:input_type -> viam.robot.v1.SendSessionHeartbeatRequest
-	41, // 56: viam.robot.v1.RobotService.Log:input_type -> viam.robot.v1.LogRequest
-	43, // 57: viam.robot.v1.RobotService.GetCloudMetadata:input_type -> viam.robot.v1.GetCloudMetadataRequest
-	45, // 58: viam.robot.v1.RobotService.RestartModule:input_type -> viam.robot.v1.RestartModuleRequest
-	47, // 59: viam.robot.v1.RobotService.Shutdown:input_type -> viam.robot.v1.ShutdownRequest
-	49, // 60: viam.robot.v1.RobotService.GetMachineStatus:input_type -> viam.robot.v1.GetMachineStatusRequest
-	53, // 61: viam.robot.v1.RobotService.GetVersion:input_type -> viam.robot.v1.GetVersionRequest
-	16, // 62: viam.robot.v1.RobotService.GetOperations:output_type -> viam.robot.v1.GetOperationsResponse
-	24, // 63: viam.robot.v1.RobotService.GetSessions:output_type -> viam.robot.v1.GetSessionsResponse
-	10, // 64: viam.robot.v1.RobotService.ResourceNames:output_type -> viam.robot.v1.ResourceNamesResponse
-	13, // 65: viam.robot.v1.RobotService.ResourceRPCSubtypes:output_type -> viam.robot.v1.ResourceRPCSubtypesResponse
-	18, // 66: viam.robot.v1.RobotService.CancelOperation:output_type -> viam.robot.v1.CancelOperationResponse
-	20, // 67: viam.robot.v1.RobotService.BlockForOperation:output_type -> viam.robot.v1.BlockForOperationResponse
-	28, // 68: viam.robot.v1.RobotService.DiscoverComponents:output_type -> viam.robot.v1.DiscoverComponentsResponse
-	4,  // 69: viam.robot.v1.RobotService.FrameSystemConfig:output_type -> viam.robot.v1.FrameSystemConfigResponse
-	6,  // 70: viam.robot.v1.RobotService.TransformPose:output_type -> viam.robot.v1.TransformPoseResponse
-	8,  // 71: viam.robot.v1.RobotService.TransformPCD:output_type -> viam.robot.v1.TransformPCDResponse
-	31, // 72: viam.robot.v1.RobotService.GetStatus:output_type -> viam.robot.v1.GetStatusResponse
-	33, // 73: viam.robot.v1.RobotService.StreamStatus:output_type -> viam.robot.v1.StreamStatusResponse
-	36, // 74: viam.robot.v1.RobotService.StopAll:output_type -> viam.robot.v1.StopAllResponse
-	38, // 75: viam.robot.v1.RobotService.StartSession:output_type -> viam.robot.v1.StartSessionResponse
-	40, // 76: viam.robot.v1.RobotService.SendSessionHeartbeat:output_type -> viam.robot.v1.SendSessionHeartbeatResponse
-	42, // 77: viam.robot.v1.RobotService.Log:output_type -> viam.robot.v1.LogResponse
-	44, // 78: viam.robot.v1.RobotService.GetCloudMetadata:output_type -> viam.robot.v1.GetCloudMetadataResponse
-	46, // 79: viam.robot.v1.RobotService.RestartModule:output_type -> viam.robot.v1.RestartModuleResponse
-	48, // 80: viam.robot.v1.RobotService.Shutdown:output_type -> viam.robot.v1.ShutdownResponse
-	50, // 81: viam.robot.v1.RobotService.GetMachineStatus:output_type -> viam.robot.v1.GetMachineStatusResponse
-	54, // 82: viam.robot.v1.RobotService.GetVersion:output_type -> viam.robot.v1.GetVersionResponse
-	62, // [62:83] is the sub-list for method output_type
-	41, // [41:62] is the sub-list for method input_type
-	41, // [41:41] is the sub-list for extension type_name
-	41, // [41:41] is the sub-list for extension extendee
-	0,  // [0:41] is the sub-list for field type_name
+	22, // 14: viam.robot.v1.Session.peer_connection_info:type_name -> viam.robot.v1.PeerConnectionInfo
+	23, // 15: viam.robot.v1.GetSessionsResponse.sessions:type_name -> viam.robot.v1.Session
+	57, // 16: viam.robot.v1.DiscoveryQuery.extra:type_name -> google.protobuf.Struct
+	26, // 17: viam.robot.v1.Discovery.query:type_name -> viam.robot.v1.DiscoveryQuery
+	57, // 18: viam.robot.v1.Discovery.results:type_name -> google.protobuf.Struct
+	26, // 19: viam.robot.v1.DiscoverComponentsRequest.queries:type_name -> viam.robot.v1.DiscoveryQuery
+	27, // 20: viam.robot.v1.DiscoverComponentsResponse.discovery:type_name -> viam.robot.v1.Discovery
+	59, // 21: viam.robot.v1.Status.name:type_name -> viam.common.v1.ResourceName
+	57, // 22: viam.robot.v1.Status.status:type_name -> google.protobuf.Struct
+	60, // 23: viam.robot.v1.Status.last_reconfigured:type_name -> google.protobuf.Timestamp
+	59, // 24: viam.robot.v1.GetStatusRequest.resource_names:type_name -> viam.common.v1.ResourceName
+	30, // 25: viam.robot.v1.GetStatusResponse.status:type_name -> viam.robot.v1.Status
+	59, // 26: viam.robot.v1.StreamStatusRequest.resource_names:type_name -> viam.common.v1.ResourceName
+	61, // 27: viam.robot.v1.StreamStatusRequest.every:type_name -> google.protobuf.Duration
+	30, // 28: viam.robot.v1.StreamStatusResponse.status:type_name -> viam.robot.v1.Status
+	59, // 29: viam.robot.v1.StopExtraParameters.name:type_name -> viam.common.v1.ResourceName
+	57, // 30: viam.robot.v1.StopExtraParameters.params:type_name -> google.protobuf.Struct
+	35, // 31: viam.robot.v1.StopAllRequest.extra:type_name -> viam.robot.v1.StopExtraParameters
+	61, // 32: viam.robot.v1.StartSessionResponse.heartbeat_window:type_name -> google.protobuf.Duration
+	62, // 33: viam.robot.v1.LogRequest.logs:type_name -> viam.common.v1.LogEntry
+	52, // 34: viam.robot.v1.GetMachineStatusResponse.resources:type_name -> viam.robot.v1.ResourceStatus
+	53, // 35: viam.robot.v1.GetMachineStatusResponse.config:type_name -> viam.robot.v1.ConfigStatus
+	1,  // 36: viam.robot.v1.GetMachineStatusResponse.state:type_name -> viam.robot.v1.GetMachineStatusResponse.State
+	59, // 37: viam.robot.v1.ResourceStatus.name:type_name -> viam.common.v1.ResourceName
+	2,  // 38: viam.robot.v1.ResourceStatus.state:type_name -> viam.robot.v1.ResourceStatus.State
+	60, // 39: viam.robot.v1.ResourceStatus.last_updated:type_name -> google.protobuf.Timestamp
+	45, // 40: viam.robot.v1.ResourceStatus.cloud_metadata:type_name -> viam.robot.v1.GetCloudMetadataResponse
+	60, // 41: viam.robot.v1.ConfigStatus.last_updated:type_name -> google.protobuf.Timestamp
+	16, // 42: viam.robot.v1.RobotService.GetOperations:input_type -> viam.robot.v1.GetOperationsRequest
+	24, // 43: viam.robot.v1.RobotService.GetSessions:input_type -> viam.robot.v1.GetSessionsRequest
+	10, // 44: viam.robot.v1.RobotService.ResourceNames:input_type -> viam.robot.v1.ResourceNamesRequest
+	13, // 45: viam.robot.v1.RobotService.ResourceRPCSubtypes:input_type -> viam.robot.v1.ResourceRPCSubtypesRequest
+	18, // 46: viam.robot.v1.RobotService.CancelOperation:input_type -> viam.robot.v1.CancelOperationRequest
+	20, // 47: viam.robot.v1.RobotService.BlockForOperation:input_type -> viam.robot.v1.BlockForOperationRequest
+	28, // 48: viam.robot.v1.RobotService.DiscoverComponents:input_type -> viam.robot.v1.DiscoverComponentsRequest
+	4,  // 49: viam.robot.v1.RobotService.FrameSystemConfig:input_type -> viam.robot.v1.FrameSystemConfigRequest
+	6,  // 50: viam.robot.v1.RobotService.TransformPose:input_type -> viam.robot.v1.TransformPoseRequest
+	8,  // 51: viam.robot.v1.RobotService.TransformPCD:input_type -> viam.robot.v1.TransformPCDRequest
+	31, // 52: viam.robot.v1.RobotService.GetStatus:input_type -> viam.robot.v1.GetStatusRequest
+	33, // 53: viam.robot.v1.RobotService.StreamStatus:input_type -> viam.robot.v1.StreamStatusRequest
+	36, // 54: viam.robot.v1.RobotService.StopAll:input_type -> viam.robot.v1.StopAllRequest
+	38, // 55: viam.robot.v1.RobotService.StartSession:input_type -> viam.robot.v1.StartSessionRequest
+	40, // 56: viam.robot.v1.RobotService.SendSessionHeartbeat:input_type -> viam.robot.v1.SendSessionHeartbeatRequest
+	42, // 57: viam.robot.v1.RobotService.Log:input_type -> viam.robot.v1.LogRequest
+	44, // 58: viam.robot.v1.RobotService.GetCloudMetadata:input_type -> viam.robot.v1.GetCloudMetadataRequest
+	46, // 59: viam.robot.v1.RobotService.RestartModule:input_type -> viam.robot.v1.RestartModuleRequest
+	48, // 60: viam.robot.v1.RobotService.Shutdown:input_type -> viam.robot.v1.ShutdownRequest
+	50, // 61: viam.robot.v1.RobotService.GetMachineStatus:input_type -> viam.robot.v1.GetMachineStatusRequest
+	54, // 62: viam.robot.v1.RobotService.GetVersion:input_type -> viam.robot.v1.GetVersionRequest
+	17, // 63: viam.robot.v1.RobotService.GetOperations:output_type -> viam.robot.v1.GetOperationsResponse
+	25, // 64: viam.robot.v1.RobotService.GetSessions:output_type -> viam.robot.v1.GetSessionsResponse
+	11, // 65: viam.robot.v1.RobotService.ResourceNames:output_type -> viam.robot.v1.ResourceNamesResponse
+	14, // 66: viam.robot.v1.RobotService.ResourceRPCSubtypes:output_type -> viam.robot.v1.ResourceRPCSubtypesResponse
+	19, // 67: viam.robot.v1.RobotService.CancelOperation:output_type -> viam.robot.v1.CancelOperationResponse
+	21, // 68: viam.robot.v1.RobotService.BlockForOperation:output_type -> viam.robot.v1.BlockForOperationResponse
+	29, // 69: viam.robot.v1.RobotService.DiscoverComponents:output_type -> viam.robot.v1.DiscoverComponentsResponse
+	5,  // 70: viam.robot.v1.RobotService.FrameSystemConfig:output_type -> viam.robot.v1.FrameSystemConfigResponse
+	7,  // 71: viam.robot.v1.RobotService.TransformPose:output_type -> viam.robot.v1.TransformPoseResponse
+	9,  // 72: viam.robot.v1.RobotService.TransformPCD:output_type -> viam.robot.v1.TransformPCDResponse
+	32, // 73: viam.robot.v1.RobotService.GetStatus:output_type -> viam.robot.v1.GetStatusResponse
+	34, // 74: viam.robot.v1.RobotService.StreamStatus:output_type -> viam.robot.v1.StreamStatusResponse
+	37, // 75: viam.robot.v1.RobotService.StopAll:output_type -> viam.robot.v1.StopAllResponse
+	39, // 76: viam.robot.v1.RobotService.StartSession:output_type -> viam.robot.v1.StartSessionResponse
+	41, // 77: viam.robot.v1.RobotService.SendSessionHeartbeat:output_type -> viam.robot.v1.SendSessionHeartbeatResponse
+	43, // 78: viam.robot.v1.RobotService.Log:output_type -> viam.robot.v1.LogResponse
+	45, // 79: viam.robot.v1.RobotService.GetCloudMetadata:output_type -> viam.robot.v1.GetCloudMetadataResponse
+	47, // 80: viam.robot.v1.RobotService.RestartModule:output_type -> viam.robot.v1.RestartModuleResponse
+	49, // 81: viam.robot.v1.RobotService.Shutdown:output_type -> viam.robot.v1.ShutdownResponse
+	51, // 82: viam.robot.v1.RobotService.GetMachineStatus:output_type -> viam.robot.v1.GetMachineStatusResponse
+	55, // 83: viam.robot.v1.RobotService.GetVersion:output_type -> viam.robot.v1.GetVersionResponse
+	63, // [63:84] is the sub-list for method output_type
+	42, // [42:63] is the sub-list for method input_type
+	42, // [42:42] is the sub-list for extension type_name
+	42, // [42:42] is the sub-list for extension extendee
+	0,  // [0:42] is the sub-list for field type_name
 }
 
 func init() { file_robot_v1_robot_proto_init() }
@@ -3418,7 +3489,7 @@ func file_robot_v1_robot_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_robot_v1_robot_proto_rawDesc,
-			NumEnums:      2,
+			NumEnums:      3,
 			NumMessages:   53,
 			NumExtensions: 0,
 			NumServices:   1,
