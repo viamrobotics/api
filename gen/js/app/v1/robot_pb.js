@@ -967,7 +967,8 @@ proto.viam.app.v1.RobotConfig.toObject = function(includeInstance, msg) {
     logList: jspb.Message.toObjectList(msg.getLogList(),
     proto.viam.app.v1.LogPatternConfig.toObject, includeInstance),
     revision: jspb.Message.getFieldWithDefault(msg, 15, ""),
-    maintenance: (f = msg.getMaintenance()) && proto.viam.app.v1.MaintenanceConfig.toObject(includeInstance, f)
+    maintenance: (f = msg.getMaintenance()) && proto.viam.app.v1.MaintenanceConfig.toObject(includeInstance, f),
+    disableLogDeduplication: jspb.Message.getBooleanFieldWithDefault(msg, 17, false)
   };
 
   if (includeInstance) {
@@ -1079,6 +1080,10 @@ proto.viam.app.v1.RobotConfig.deserializeBinaryFromReader = function(msg, reader
       var value = new proto.viam.app.v1.MaintenanceConfig;
       reader.readMessage(value,proto.viam.app.v1.MaintenanceConfig.deserializeBinaryFromReader);
       msg.setMaintenance(value);
+      break;
+    case 17:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDisableLogDeduplication(value);
       break;
     default:
       reader.skipField();
@@ -1231,6 +1236,13 @@ proto.viam.app.v1.RobotConfig.serializeBinaryToWriter = function(message, writer
       16,
       f,
       proto.viam.app.v1.MaintenanceConfig.serializeBinaryToWriter
+    );
+  }
+  f = message.getDisableLogDeduplication();
+  if (f) {
+    writer.writeBool(
+      17,
+      f
     );
   }
 };
@@ -1793,6 +1805,24 @@ proto.viam.app.v1.RobotConfig.prototype.clearMaintenance = function() {
  */
 proto.viam.app.v1.RobotConfig.prototype.hasMaintenance = function() {
   return jspb.Message.getField(this, 16) != null;
+};
+
+
+/**
+ * optional bool disable_log_deduplication = 17;
+ * @return {boolean}
+ */
+proto.viam.app.v1.RobotConfig.prototype.getDisableLogDeduplication = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 17, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.RobotConfig} returns this
+ */
+proto.viam.app.v1.RobotConfig.prototype.setDisableLogDeduplication = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 17, value);
 };
 
 
