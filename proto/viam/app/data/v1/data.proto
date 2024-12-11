@@ -11,13 +11,21 @@ option go_package = "go.viam.com/api/app/data/v1";
 // DataService is used to query robot data.
 service DataService {
   // TabularDataByFilter queries tabular data and metadata based on given filters.
-  rpc TabularDataByFilter(TabularDataByFilterRequest) returns (TabularDataByFilterResponse);
+  rpc TabularDataByFilter(TabularDataByFilterRequest) returns (TabularDataByFilterResponse) {
+    option deprecated = true;
+  }
 
   // TabularDataBySQL queries tabular data with a SQL query.
   rpc TabularDataBySQL(TabularDataBySQLRequest) returns (TabularDataBySQLResponse);
 
   // TabularDataByMQL queries tabular data with an MQL (MongoDB Query Language) query.
   rpc TabularDataByMQL(TabularDataByMQLRequest) returns (TabularDataByMQLResponse);
+
+  // ExportTabularData queries tabular data from the specified data source.
+  rpc ExportTabularData(ExportTabularDataRequest) returns (stream ExportTabularDataResponse);
+
+  // GetLatestTabularData gets the most recent tabular data captured from the specified data source.
+  rpc GetLatestTabularData(GetLatestTabularDataRequest) returns (GetLatestTabularDataResponse);
 
   // BinaryDataByFilter queries binary data and metadata based on given filters.
   rpc BinaryDataByFilter(BinaryDataByFilterRequest) returns (BinaryDataByFilterResponse);
@@ -167,6 +175,7 @@ message CaptureInterval {
 
 // TabularDataByFilterRequest requests tabular data based on filter values.
 message TabularDataByFilterRequest {
+  option deprecated = true;
   DataRequest data_request = 1;
   bool count_only = 2;
   bool include_internal_data = 3;
@@ -174,6 +183,7 @@ message TabularDataByFilterRequest {
 
 // TabularDataByFilterResponse provides the data and metadata of tabular data.
 message TabularDataByFilterResponse {
+  option deprecated = true;
   repeated CaptureMetadata metadata = 1;
   repeated TabularData data = 2;
   uint64 count = 3;
@@ -183,6 +193,7 @@ message TabularDataByFilterResponse {
 
 // TabularData contains data and metadata associated with tabular data.
 message TabularData {
+  option deprecated = true;
   google.protobuf.Struct data = 1;
   uint32 metadata_index = 2;
   google.protobuf.Timestamp time_requested = 3;
@@ -224,6 +235,48 @@ message TabularDataByMQLResponse {
 
   reserved 1;
   reserved "data";
+}
+
+// ExportTabularDataRequest requests tabular data from the specified data source.
+message ExportTabularDataRequest {
+  string part_id = 1;
+  string resource_name = 2;
+  string resource_subtype = 3;
+  string method_name = 4;
+  CaptureInterval interval = 5;
+}
+
+// ExportTabularDataResponse provides unified tabular data and metadata for a single data point from the specified data source.
+message ExportTabularDataResponse {
+  string part_id = 1;
+  string resource_name = 2;
+  string resource_subtype = 3;
+  string method_name = 4;
+  google.protobuf.Timestamp time_captured = 5;
+  string organization_id = 6;
+  string location_id = 7;
+  string robot_name = 8;
+  string robot_id = 9;
+  string part_name = 10;
+  google.protobuf.Struct method_parameters = 11;
+  repeated string tags = 12;
+  google.protobuf.Struct payload = 13;
+}
+
+// GetLatestTabularDataRequest requests the most recent tabular data captured from the specified data source.
+message GetLatestTabularDataRequest {
+  string part_id = 1;
+  string resource_name = 2;
+  string method_name = 3;
+  string resource_subtype = 4;
+}
+
+// GetLatestTabularDataResponse provides the data, time synced, and time captured of the most recent tabular data captured
+// from the requested data source, as long as it was synced within the last year.
+message GetLatestTabularDataResponse {
+  google.protobuf.Timestamp time_captured = 1;
+  google.protobuf.Timestamp time_synced = 2;
+  google.protobuf.Struct payload = 3;
 }
 
 // BinaryData contains data and metadata associated with binary data.

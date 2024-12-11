@@ -41,6 +41,7 @@ goog.exportSymbol('proto.viam.robot.v1.GetCloudMetadataRequest', null, global);
 goog.exportSymbol('proto.viam.robot.v1.GetCloudMetadataResponse', null, global);
 goog.exportSymbol('proto.viam.robot.v1.GetMachineStatusRequest', null, global);
 goog.exportSymbol('proto.viam.robot.v1.GetMachineStatusResponse', null, global);
+goog.exportSymbol('proto.viam.robot.v1.GetMachineStatusResponse.State', null, global);
 goog.exportSymbol('proto.viam.robot.v1.GetOperationsRequest', null, global);
 goog.exportSymbol('proto.viam.robot.v1.GetOperationsResponse', null, global);
 goog.exportSymbol('proto.viam.robot.v1.GetSessionsRequest', null, global);
@@ -8841,7 +8842,8 @@ proto.viam.robot.v1.GetMachineStatusResponse.toObject = function(includeInstance
   var f, obj = {
     resourcesList: jspb.Message.toObjectList(msg.getResourcesList(),
     proto.viam.robot.v1.ResourceStatus.toObject, includeInstance),
-    config: (f = msg.getConfig()) && proto.viam.robot.v1.ConfigStatus.toObject(includeInstance, f)
+    config: (f = msg.getConfig()) && proto.viam.robot.v1.ConfigStatus.toObject(includeInstance, f),
+    state: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -8888,6 +8890,10 @@ proto.viam.robot.v1.GetMachineStatusResponse.deserializeBinaryFromReader = funct
       reader.readMessage(value,proto.viam.robot.v1.ConfigStatus.deserializeBinaryFromReader);
       msg.setConfig(value);
       break;
+    case 3:
+      var value = /** @type {!proto.viam.robot.v1.GetMachineStatusResponse.State} */ (reader.readEnum());
+      msg.setState(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -8933,8 +8939,24 @@ proto.viam.robot.v1.GetMachineStatusResponse.serializeBinaryToWriter = function(
       proto.viam.robot.v1.ConfigStatus.serializeBinaryToWriter
     );
   }
+  f = message.getState();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.viam.robot.v1.GetMachineStatusResponse.State = {
+  STATE_UNSPECIFIED: 0,
+  STATE_INITIALIZING: 1,
+  STATE_RUNNING: 2
+};
 
 /**
  * repeated ResourceStatus resources = 1;
@@ -9008,6 +9030,24 @@ proto.viam.robot.v1.GetMachineStatusResponse.prototype.clearConfig = function() 
  */
 proto.viam.robot.v1.GetMachineStatusResponse.prototype.hasConfig = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional State state = 3;
+ * @return {!proto.viam.robot.v1.GetMachineStatusResponse.State}
+ */
+proto.viam.robot.v1.GetMachineStatusResponse.prototype.getState = function() {
+  return /** @type {!proto.viam.robot.v1.GetMachineStatusResponse.State} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.GetMachineStatusResponse.State} value
+ * @return {!proto.viam.robot.v1.GetMachineStatusResponse} returns this
+ */
+proto.viam.robot.v1.GetMachineStatusResponse.prototype.setState = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
