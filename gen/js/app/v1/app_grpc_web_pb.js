@@ -396,6 +396,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listOrganizationsByUser =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.SearchOrganizationsRequest,
+ *   !proto.viam.app.v1.SearchOrganizationsResponse>}
+ */
+const methodDescriptor_AppService_SearchOrganizations = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/SearchOrganizations',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.SearchOrganizationsRequest,
+  proto.viam.app.v1.SearchOrganizationsResponse,
+  /**
+   * @param {!proto.viam.app.v1.SearchOrganizationsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.SearchOrganizationsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.SearchOrganizationsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.SearchOrganizationsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.SearchOrganizationsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.searchOrganizations =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/SearchOrganizations',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_SearchOrganizations,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.SearchOrganizationsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.SearchOrganizationsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.searchOrganizations =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/SearchOrganizations',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_SearchOrganizations);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.GetOrganizationRequest,
  *   !proto.viam.app.v1.GetOrganizationResponse>}
  */
