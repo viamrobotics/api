@@ -1238,14 +1238,12 @@ message UpdateModuleRequest {
   string url = 3;
   // A short description of the module that explains its purpose
   string description = 4;
-  // Deprecated. Use A list of models that are available in the module
-  repeated Model deprecated_models = 5;
+  // A list of models that are available in the module
+  repeated Model models = 5;
   // The executable to run to start the module program
   string entrypoint = 6;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 7;
-  // A list of models with markdown descriptions that are available in the module
-  repeated Model models = 8;
 }
 
 message UpdateModuleResponse {
