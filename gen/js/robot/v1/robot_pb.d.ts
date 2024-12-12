@@ -1114,6 +1114,9 @@ export class GetMachineStatusResponse extends jspb.Message {
   getConfig(): ConfigStatus | undefined;
   setConfig(value?: ConfigStatus): void;
 
+  getState(): GetMachineStatusResponse.StateMap[keyof GetMachineStatusResponse.StateMap];
+  setState(value: GetMachineStatusResponse.StateMap[keyof GetMachineStatusResponse.StateMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetMachineStatusResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetMachineStatusResponse): GetMachineStatusResponse.AsObject;
@@ -1128,7 +1131,16 @@ export namespace GetMachineStatusResponse {
   export type AsObject = {
     resourcesList: Array<ResourceStatus.AsObject>,
     config?: ConfigStatus.AsObject,
+    state: GetMachineStatusResponse.StateMap[keyof GetMachineStatusResponse.StateMap],
   }
+
+  export interface StateMap {
+    STATE_UNSPECIFIED: 0;
+    STATE_INITIALIZING: 1;
+    STATE_RUNNING: 2;
+  }
+
+  export const State: StateMap;
 }
 
 export class ResourceStatus extends jspb.Message {

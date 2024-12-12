@@ -6,7 +6,9 @@ Protobuf definitions for Viam's public-facing API.
 
 ### Development
 
-- `make setup` - Setup your development environment
+Ensure that relevant tooling has been installed; use `make setup` from within
+the [rdk](https://github.com/viamrobotics/rdk) repo to do so.
+
 - `make all` - Clean and build the Go and web generated libraries
 - `make dist/buf` - Build the Go and web generated libraries without cleaning
 - `make clean` - Clean tool cache
