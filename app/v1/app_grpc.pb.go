@@ -32,6 +32,8 @@ type AppServiceClient interface {
 	GetOrganizationsWithAccessToLocation(ctx context.Context, in *GetOrganizationsWithAccessToLocationRequest, opts ...grpc.CallOption) (*GetOrganizationsWithAccessToLocationResponse, error)
 	// List the organizations a user belongs to
 	ListOrganizationsByUser(ctx context.Context, in *ListOrganizationsByUserRequest, opts ...grpc.CallOption) (*ListOrganizationsByUserResponse, error)
+	// Search organizations by a couple fields
+	SearchOrganizations(ctx context.Context, in *SearchOrganizationsRequest, opts ...grpc.CallOption) (*SearchOrganizationsResponse, error)
 	// Get an organization
 	GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error)
 	// Checks for namespace availablity throughout all orgs.
@@ -218,6 +220,15 @@ func (c *appServiceClient) GetOrganizationsWithAccessToLocation(ctx context.Cont
 func (c *appServiceClient) ListOrganizationsByUser(ctx context.Context, in *ListOrganizationsByUserRequest, opts ...grpc.CallOption) (*ListOrganizationsByUserResponse, error) {
 	out := new(ListOrganizationsByUserResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListOrganizationsByUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) SearchOrganizations(ctx context.Context, in *SearchOrganizationsRequest, opts ...grpc.CallOption) (*SearchOrganizationsResponse, error) {
+	out := new(SearchOrganizationsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/SearchOrganizations", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1033,6 +1044,8 @@ type AppServiceServer interface {
 	GetOrganizationsWithAccessToLocation(context.Context, *GetOrganizationsWithAccessToLocationRequest) (*GetOrganizationsWithAccessToLocationResponse, error)
 	// List the organizations a user belongs to
 	ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error)
+	// Search organizations by a couple fields
+	SearchOrganizations(context.Context, *SearchOrganizationsRequest) (*SearchOrganizationsResponse, error)
 	// Get an organization
 	GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error)
 	// Checks for namespace availablity throughout all orgs.
@@ -1191,6 +1204,9 @@ func (UnimplementedAppServiceServer) GetOrganizationsWithAccessToLocation(contex
 }
 func (UnimplementedAppServiceServer) ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationsByUser not implemented")
+}
+func (UnimplementedAppServiceServer) SearchOrganizations(context.Context, *SearchOrganizationsRequest) (*SearchOrganizationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchOrganizations not implemented")
 }
 func (UnimplementedAppServiceServer) GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganization not implemented")
@@ -1540,6 +1556,24 @@ func _AppService_ListOrganizationsByUser_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).ListOrganizationsByUser(ctx, req.(*ListOrganizationsByUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_SearchOrganizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchOrganizationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).SearchOrganizations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/SearchOrganizations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).SearchOrganizations(ctx, req.(*SearchOrganizationsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3075,6 +3109,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListOrganizationsByUser",
 			Handler:    _AppService_ListOrganizationsByUser_Handler,
+		},
+		{
+			MethodName: "SearchOrganizations",
+			Handler:    _AppService_SearchOrganizations_Handler,
 		},
 		{
 			MethodName: "GetOrganization",
