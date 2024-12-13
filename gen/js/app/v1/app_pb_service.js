@@ -55,6 +55,15 @@ AppService.ListOrganizationsByUser = {
   responseType: app_v1_app_pb.ListOrganizationsByUserResponse
 };
 
+AppService.SearchOrganizations = {
+  methodName: "SearchOrganizations",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.SearchOrganizationsRequest,
+  responseType: app_v1_app_pb.SearchOrganizationsResponse
+};
+
 AppService.GetOrganization = {
   methodName: "GetOrganization",
   service: AppService,
@@ -938,6 +947,37 @@ AppServiceClient.prototype.listOrganizationsByUser = function listOrganizationsB
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListOrganizationsByUser, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.searchOrganizations = function searchOrganizations(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.SearchOrganizations, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
