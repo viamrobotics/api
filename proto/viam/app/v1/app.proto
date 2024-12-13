@@ -1255,7 +1255,7 @@ message ModuleUpdateMetadata {
   // A list of models that are available in the module
   repeated Model models = 1;
   // The executable to run to start the module program
-  string entrypoint = 3;
+  string entrypoint = 2;
 }
 
 message MLModelUpdateMetadata {
