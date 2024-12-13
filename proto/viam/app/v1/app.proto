@@ -1161,9 +1161,9 @@ message UpdateRegistryItemRequest {
   optional string url = 5;
 
   oneof metadata {
-    ModuleUpdateMetadata module_update_metadata = 6;
-    MLModelUpdateMetadata ml_model_update_metadata = 7;
-    MLTrainingUpdateMetadata ml_training_update_metadata = 8;
+    UpdateModuleMetadata module_update_metadata = 6;
+    UpdateMLModelMetadata ml_model_update_metadata = 7;
+    UpdateMLTrainingMetadata ml_training_update_metadata = 8;
   }
 }
 
@@ -1254,19 +1254,19 @@ message UpdateModuleResponse {
   string url = 1;
 }
 
-message ModuleUpdateMetadata {
+message UpdateModuleMetadata {
   // A list of models that are available in the module
   repeated Model models = 1;
   // The executable to run to start the module program
   string entrypoint = 2;
 }
 
-message MLModelUpdateMetadata {
+message UpdateMLModelMetadata {
   viam.app.mltraining.v1.ModelType model_type = 1;
   viam.app.mltraining.v1.ModelFramework model_framework = 2;
 }
 
-message MLTrainingUpdateMetadata {
+message UpdateMLTrainingMetadata {
   viam.app.mltraining.v1.ModelType model_type = 1;
   viam.app.mltraining.v1.ModelFramework model_framework = 2;
   bool draft = 3;
