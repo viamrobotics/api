@@ -1135,6 +1135,7 @@ message RegistryItem {
 
 message GetRegistryItemRequest {
   string item_id = 1;
+  optional bool include_markdown_documentation = 2;
 }
 
 message GetRegistryItemResponse {
@@ -1158,6 +1159,12 @@ message UpdateRegistryItemRequest {
   string description = 3;
   Visibility visibility = 4;
   optional string url = 5;
+
+  oneof metadata {
+    UpdateModuleMetadata module_update_metadata = 6;
+    UpdateMLModelMetadata ml_model_update_metadata = 7;
+    UpdateMLTrainingMetadata ml_training_update_metadata = 8;
+  }
 }
 
 message UpdateRegistryItemResponse {}
@@ -1179,6 +1186,7 @@ message ListRegistryItemsRequest {
   optional string page_token = 7;
   // One or more public namespaces to return results for.
   repeated string public_namespaces = 8;
+  optional bool include_markdown_documentation = 9;
 }
 
 message ListRegistryItemsResponse {
@@ -1246,11 +1254,31 @@ message UpdateModuleResponse {
   string url = 1;
 }
 
+message UpdateModuleMetadata {
+  // A list of models that are available in the module
+  repeated Model models = 1;
+  // The executable to run to start the module program
+  string entrypoint = 2;
+}
+
+message UpdateMLModelMetadata {
+  viam.app.mltraining.v1.ModelType model_type = 1;
+  viam.app.mltraining.v1.ModelFramework model_framework = 2;
+}
+
+message UpdateMLTrainingMetadata {
+  viam.app.mltraining.v1.ModelType model_type = 1;
+  viam.app.mltraining.v1.ModelFramework model_framework = 2;
+  bool draft = 3;
+}
+
 message Model {
   // The colon-delimited-triplet of the api implemented by the model
   string api = 1;
   // The colon-delimited-triplet of the model
   string model = 2;
+  // The markdown content describing the usage of the model
+  optional string markdown_documentation = 3;
 }
 
 message ModuleFileInfo {
@@ -1283,6 +1311,7 @@ message UploadModuleFileResponse {
 message GetModuleRequest {
   // The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)
   string module_id = 1;
+  optional bool include_markdown_documentation = 2;
 }
 
 message GetModuleResponse {
@@ -1344,6 +1373,7 @@ message Uploads {
 message ListModulesRequest {
   // The id of the organization to return private modules for.
   optional string organization_id = 1;
+  optional bool include_markdown_documentation = 2;
 }
 
 message ListModulesResponse {

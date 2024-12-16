@@ -3915,6 +3915,11 @@ export class GetRegistryItemRequest extends jspb.Message {
   getItemId(): string;
   setItemId(value: string): void;
 
+  hasIncludeMarkdownDocumentation(): boolean;
+  clearIncludeMarkdownDocumentation(): void;
+  getIncludeMarkdownDocumentation(): boolean;
+  setIncludeMarkdownDocumentation(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRegistryItemRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRegistryItemRequest): GetRegistryItemRequest.AsObject;
@@ -3928,6 +3933,7 @@ export class GetRegistryItemRequest extends jspb.Message {
 export namespace GetRegistryItemRequest {
   export type AsObject = {
     itemId: string,
+    includeMarkdownDocumentation: boolean,
   }
 }
 
@@ -4015,6 +4021,22 @@ export class UpdateRegistryItemRequest extends jspb.Message {
   getUrl(): string;
   setUrl(value: string): void;
 
+  hasModuleUpdateMetadata(): boolean;
+  clearModuleUpdateMetadata(): void;
+  getModuleUpdateMetadata(): UpdateModuleMetadata | undefined;
+  setModuleUpdateMetadata(value?: UpdateModuleMetadata): void;
+
+  hasMlModelUpdateMetadata(): boolean;
+  clearMlModelUpdateMetadata(): void;
+  getMlModelUpdateMetadata(): UpdateMLModelMetadata | undefined;
+  setMlModelUpdateMetadata(value?: UpdateMLModelMetadata): void;
+
+  hasMlTrainingUpdateMetadata(): boolean;
+  clearMlTrainingUpdateMetadata(): void;
+  getMlTrainingUpdateMetadata(): UpdateMLTrainingMetadata | undefined;
+  setMlTrainingUpdateMetadata(value?: UpdateMLTrainingMetadata): void;
+
+  getMetadataCase(): UpdateRegistryItemRequest.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRegistryItemRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateRegistryItemRequest): UpdateRegistryItemRequest.AsObject;
@@ -4032,6 +4054,16 @@ export namespace UpdateRegistryItemRequest {
     description: string,
     visibility: VisibilityMap[keyof VisibilityMap],
     url: string,
+    moduleUpdateMetadata?: UpdateModuleMetadata.AsObject,
+    mlModelUpdateMetadata?: UpdateMLModelMetadata.AsObject,
+    mlTrainingUpdateMetadata?: UpdateMLTrainingMetadata.AsObject,
+  }
+
+  export enum MetadataCase {
+    METADATA_NOT_SET = 0,
+    MODULE_UPDATE_METADATA = 6,
+    ML_MODEL_UPDATE_METADATA = 7,
+    ML_TRAINING_UPDATE_METADATA = 8,
   }
 }
 
@@ -4092,6 +4124,11 @@ export class ListRegistryItemsRequest extends jspb.Message {
   setPublicNamespacesList(value: Array<string>): void;
   addPublicNamespaces(value: string, index?: number): string;
 
+  hasIncludeMarkdownDocumentation(): boolean;
+  clearIncludeMarkdownDocumentation(): void;
+  getIncludeMarkdownDocumentation(): boolean;
+  setIncludeMarkdownDocumentation(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListRegistryItemsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListRegistryItemsRequest): ListRegistryItemsRequest.AsObject;
@@ -4112,6 +4149,7 @@ export namespace ListRegistryItemsRequest {
     searchTerm: string,
     pageToken: string,
     publicNamespacesList: Array<string>,
+    includeMarkdownDocumentation: boolean,
   }
 }
 
@@ -4329,12 +4367,95 @@ export namespace UpdateModuleResponse {
   }
 }
 
+export class UpdateModuleMetadata extends jspb.Message {
+  clearModelsList(): void;
+  getModelsList(): Array<Model>;
+  setModelsList(value: Array<Model>): void;
+  addModels(value?: Model, index?: number): Model;
+
+  getEntrypoint(): string;
+  setEntrypoint(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateModuleMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateModuleMetadata): UpdateModuleMetadata.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateModuleMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateModuleMetadata;
+  static deserializeBinaryFromReader(message: UpdateModuleMetadata, reader: jspb.BinaryReader): UpdateModuleMetadata;
+}
+
+export namespace UpdateModuleMetadata {
+  export type AsObject = {
+    modelsList: Array<Model.AsObject>,
+    entrypoint: string,
+  }
+}
+
+export class UpdateMLModelMetadata extends jspb.Message {
+  getModelType(): app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap];
+  setModelType(value: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap]): void;
+
+  getModelFramework(): app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap];
+  setModelFramework(value: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateMLModelMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateMLModelMetadata): UpdateMLModelMetadata.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateMLModelMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateMLModelMetadata;
+  static deserializeBinaryFromReader(message: UpdateMLModelMetadata, reader: jspb.BinaryReader): UpdateMLModelMetadata;
+}
+
+export namespace UpdateMLModelMetadata {
+  export type AsObject = {
+    modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
+    modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
+  }
+}
+
+export class UpdateMLTrainingMetadata extends jspb.Message {
+  getModelType(): app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap];
+  setModelType(value: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap]): void;
+
+  getModelFramework(): app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap];
+  setModelFramework(value: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap]): void;
+
+  getDraft(): boolean;
+  setDraft(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateMLTrainingMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateMLTrainingMetadata): UpdateMLTrainingMetadata.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateMLTrainingMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateMLTrainingMetadata;
+  static deserializeBinaryFromReader(message: UpdateMLTrainingMetadata, reader: jspb.BinaryReader): UpdateMLTrainingMetadata;
+}
+
+export namespace UpdateMLTrainingMetadata {
+  export type AsObject = {
+    modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
+    modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
+    draft: boolean,
+  }
+}
+
 export class Model extends jspb.Message {
   getApi(): string;
   setApi(value: string): void;
 
   getModel(): string;
   setModel(value: string): void;
+
+  hasMarkdownDocumentation(): boolean;
+  clearMarkdownDocumentation(): void;
+  getMarkdownDocumentation(): string;
+  setMarkdownDocumentation(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Model.AsObject;
@@ -4350,6 +4471,7 @@ export namespace Model {
   export type AsObject = {
     api: string,
     model: string,
+    markdownDocumentation: string,
   }
 }
 
@@ -4448,6 +4570,11 @@ export class GetModuleRequest extends jspb.Message {
   getModuleId(): string;
   setModuleId(value: string): void;
 
+  hasIncludeMarkdownDocumentation(): boolean;
+  clearIncludeMarkdownDocumentation(): void;
+  getIncludeMarkdownDocumentation(): boolean;
+  setIncludeMarkdownDocumentation(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetModuleRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetModuleRequest): GetModuleRequest.AsObject;
@@ -4461,6 +4588,7 @@ export class GetModuleRequest extends jspb.Message {
 export namespace GetModuleRequest {
   export type AsObject = {
     moduleId: string,
+    includeMarkdownDocumentation: boolean,
   }
 }
 
@@ -4634,6 +4762,11 @@ export class ListModulesRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
+  hasIncludeMarkdownDocumentation(): boolean;
+  clearIncludeMarkdownDocumentation(): void;
+  getIncludeMarkdownDocumentation(): boolean;
+  setIncludeMarkdownDocumentation(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListModulesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListModulesRequest): ListModulesRequest.AsObject;
@@ -4647,6 +4780,7 @@ export class ListModulesRequest extends jspb.Message {
 export namespace ListModulesRequest {
   export type AsObject = {
     organizationId: string,
+    includeMarkdownDocumentation: boolean,
   }
 }
 
