@@ -844,10 +844,10 @@ enum FragmentErrorType {
 }
 
 message FragmentUsage {
-  int32 fragment_id = 1;
-  int64 organizations = 2;
-  int64 machines = 3;
-  int64 machines_in_current_org = 4;
+  string fragment_id = 1;
+  int32 organizations = 2;
+  int32 machines = 3;
+  int32 machines_in_current_org = 4;
 }
 
 message ResolvedFragment {
