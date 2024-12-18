@@ -2584,8 +2584,8 @@ export namespace FragmentError {
 }
 
 export class FragmentUsage extends jspb.Message {
-  getFragmentId(): number;
-  setFragmentId(value: number): void;
+  getFragmentId(): string;
+  setFragmentId(value: string): void;
 
   getOrganizations(): number;
   setOrganizations(value: number): void;
@@ -2608,7 +2608,7 @@ export class FragmentUsage extends jspb.Message {
 
 export namespace FragmentUsage {
   export type AsObject = {
-    fragmentId: number,
+    fragmentId: string,
     organizations: number,
     machines: number,
     machinesInCurrentOrg: number,
