@@ -493,11 +493,11 @@ export class ExportTabularDataResponse extends jspb.Message {
   getPartId(): string;
   setPartId(value: string): void;
 
-  getComponentName(): string;
-  setComponentName(value: string): void;
+  getResourceName(): string;
+  setResourceName(value: string): void;
 
-  getComponentType(): string;
-  setComponentType(value: string): void;
+  getResourceSubtype(): string;
+  setResourceSubtype(value: string): void;
 
   getMethodName(): string;
   setMethodName(value: string): void;
@@ -522,8 +522,11 @@ export class ExportTabularDataResponse extends jspb.Message {
   getPartName(): string;
   setPartName(value: string): void;
 
-  getMethodParametersMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearMethodParametersMap(): void;
+  hasMethodParameters(): boolean;
+  clearMethodParameters(): void;
+  getMethodParameters(): google_protobuf_struct_pb.Struct | undefined;
+  setMethodParameters(value?: google_protobuf_struct_pb.Struct): void;
+
   clearTagsList(): void;
   getTagsList(): Array<string>;
   setTagsList(value: Array<string>): void;
@@ -547,8 +550,8 @@ export class ExportTabularDataResponse extends jspb.Message {
 export namespace ExportTabularDataResponse {
   export type AsObject = {
     partId: string,
-    componentName: string,
-    componentType: string,
+    resourceName: string,
+    resourceSubtype: string,
     methodName: string,
     timeCaptured?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     organizationId: string,
@@ -556,7 +559,7 @@ export namespace ExportTabularDataResponse {
     robotName: string,
     robotId: string,
     partName: string,
-    methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    methodParameters?: google_protobuf_struct_pb.Struct.AsObject,
     tagsList: Array<string>,
     payload?: google_protobuf_struct_pb.Struct.AsObject,
   }

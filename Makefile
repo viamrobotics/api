@@ -8,10 +8,6 @@ export PATH := $(GOBIN):$(shell npm root)/.bin:$(PATH)
 .PHONY: all
 all: clean dist/buf
 
-.PHONY: setup
-setup:
-	bash etc/setup.sh
-
 .PHONY: clean
 clean:
 	git clean -fxd

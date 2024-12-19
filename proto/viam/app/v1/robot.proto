@@ -44,6 +44,9 @@ message RobotConfig {
   // Attributes a particular revision to the config.
   string revision = 15;
   optional MaintenanceConfig maintenance = 16;
+  // Disables the robot's log deduplication (identical, noisy logs will still
+  // be output individually instead of aggregated.)
+  bool disable_log_deduplication = 17;
 }
 
 // LogPatternConfig allows you to specify a 2-tuple consisting

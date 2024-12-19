@@ -31,6 +31,9 @@ service AppService {
   // List the organizations a user belongs to
   rpc ListOrganizationsByUser(ListOrganizationsByUserRequest) returns (ListOrganizationsByUserResponse);
 
+  // Search organizations by a couple fields
+  rpc SearchOrganizations(SearchOrganizationsRequest) returns (SearchOrganizationsResponse);
+
   // Get an organization
   rpc GetOrganization(GetOrganizationRequest) returns (GetOrganizationResponse);
 
@@ -840,6 +843,13 @@ enum FragmentErrorType {
   FRAGMENT_ERROR_TYPE_CYCLE_DETECTED = 4;
 }
 
+message FragmentUsage {
+  string fragment_id = 1;
+  int32 organizations = 2;
+  int32 machines = 3;
+  int32 machines_in_current_org = 4;
+}
+
 message ResolvedFragment {
   string fragment_id = 1;
   google.protobuf.Struct resolved_config = 2;
@@ -854,14 +864,17 @@ message ListFragmentsRequest {
 
 message ListFragmentsResponse {
   repeated Fragment fragments = 1;
+  repeated FragmentUsage fragment_usages = 2;
 }
 
 message GetFragmentRequest {
   string id = 1;
+  string current_organization_id = 2;
 }
 
 message GetFragmentResponse {
   Fragment fragment = 1;
+  FragmentUsage fragment_usage = 2;
 }
 
 message CreateFragmentRequest {
@@ -1122,6 +1135,7 @@ message RegistryItem {
 
 message GetRegistryItemRequest {
   string item_id = 1;
+  optional bool include_markdown_documentation = 2;
 }
 
 message GetRegistryItemResponse {
@@ -1145,6 +1159,12 @@ message UpdateRegistryItemRequest {
   string description = 3;
   Visibility visibility = 4;
   optional string url = 5;
+
+  oneof metadata {
+    UpdateModuleMetadata module_update_metadata = 6;
+    UpdateMLModelMetadata ml_model_update_metadata = 7;
+    UpdateMLTrainingMetadata ml_training_update_metadata = 8;
+  }
 }
 
 message UpdateRegistryItemResponse {}
@@ -1166,6 +1186,7 @@ message ListRegistryItemsRequest {
   optional string page_token = 7;
   // One or more public namespaces to return results for.
   repeated string public_namespaces = 8;
+  optional bool include_markdown_documentation = 9;
 }
 
 message ListRegistryItemsResponse {
@@ -1233,11 +1254,31 @@ message UpdateModuleResponse {
   string url = 1;
 }
 
+message UpdateModuleMetadata {
+  // A list of models that are available in the module
+  repeated Model models = 1;
+  // The executable to run to start the module program
+  string entrypoint = 2;
+}
+
+message UpdateMLModelMetadata {
+  viam.app.mltraining.v1.ModelType model_type = 1;
+  viam.app.mltraining.v1.ModelFramework model_framework = 2;
+}
+
+message UpdateMLTrainingMetadata {
+  viam.app.mltraining.v1.ModelType model_type = 1;
+  viam.app.mltraining.v1.ModelFramework model_framework = 2;
+  bool draft = 3;
+}
+
 message Model {
   // The colon-delimited-triplet of the api implemented by the model
   string api = 1;
   // The colon-delimited-triplet of the model
   string model = 2;
+  // The markdown content describing the usage of the model
+  optional string markdown_documentation = 3;
 }
 
 message ModuleFileInfo {
@@ -1270,6 +1311,7 @@ message UploadModuleFileResponse {
 message GetModuleRequest {
   // The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)
   string module_id = 1;
+  optional bool include_markdown_documentation = 2;
 }
 
 message GetModuleResponse {
@@ -1331,6 +1373,7 @@ message Uploads {
 message ListModulesRequest {
   // The id of the organization to return private modules for.
   optional string organization_id = 1;
+  optional bool include_markdown_documentation = 2;
 }
 
 message ListModulesResponse {
@@ -1353,10 +1396,23 @@ message ListOrganizationsByUserRequest {
 message OrgDetails {
   string org_id = 1;
   string org_name = 2;
+  optional string org_cid = 3;
+  optional string public_namespace = 4;
 }
 
 message ListOrganizationsByUserResponse {
   repeated OrgDetails orgs = 1;
+}
+
+message SearchOrganizationsRequest {
+  optional string org_id = 1;
+  optional string org_name = 2;
+  optional string cid = 3;
+  optional string public_namespace = 4;
+}
+
+message SearchOrganizationsResponse {
+  repeated OrgDetails organizations = 1;
 }
 
 message CreateKeyRequest {

@@ -84,6 +84,9 @@ export class RobotConfig extends jspb.Message {
   getMaintenance(): MaintenanceConfig | undefined;
   setMaintenance(value?: MaintenanceConfig): void;
 
+  getDisableLogDeduplication(): boolean;
+  setDisableLogDeduplication(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -112,6 +115,7 @@ export namespace RobotConfig {
     logList: Array<LogPatternConfig.AsObject>,
     revision: string,
     maintenance?: MaintenanceConfig.AsObject,
+    disableLogDeduplication: boolean,
   }
 }
 

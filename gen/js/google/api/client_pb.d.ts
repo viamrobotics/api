@@ -401,6 +401,8 @@ export class GoSettings extends jspb.Message {
   getCommon(): CommonLanguageSettings | undefined;
   setCommon(value?: CommonLanguageSettings): void;
 
+  getRenamedServicesMap(): jspb.Map<string, string>;
+  clearRenamedServicesMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GoSettings.AsObject;
   static toObject(includeInstance: boolean, msg: GoSettings): GoSettings.AsObject;
@@ -414,6 +416,7 @@ export class GoSettings extends jspb.Message {
 export namespace GoSettings {
   export type AsObject = {
     common?: CommonLanguageSettings.AsObject,
+    renamedServicesMap: Array<[string, string]>,
   }
 }
 
