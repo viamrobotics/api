@@ -22773,7 +22773,7 @@ proto.viam.app.v1.FragmentUsage.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.v1.FragmentUsage.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragmentId: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     organizations: jspb.Message.getFieldWithDefault(msg, 2, 0),
     machines: jspb.Message.getFieldWithDefault(msg, 3, 0),
     machinesInCurrentOrg: jspb.Message.getFieldWithDefault(msg, 4, 0)
@@ -22814,19 +22814,19 @@ proto.viam.app.v1.FragmentUsage.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {string} */ (reader.readString());
       msg.setFragmentId(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {number} */ (reader.readInt32());
       msg.setOrganizations(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {number} */ (reader.readInt32());
       msg.setMachines(value);
       break;
     case 4:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {number} */ (reader.readInt32());
       msg.setMachinesInCurrentOrg(value);
       break;
     default:
@@ -22859,29 +22859,29 @@ proto.viam.app.v1.FragmentUsage.prototype.serializeBinary = function() {
 proto.viam.app.v1.FragmentUsage.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getFragmentId();
-  if (f !== 0) {
-    writer.writeInt32(
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
   }
   f = message.getOrganizations();
   if (f !== 0) {
-    writer.writeInt64(
+    writer.writeInt32(
       2,
       f
     );
   }
   f = message.getMachines();
   if (f !== 0) {
-    writer.writeInt64(
+    writer.writeInt32(
       3,
       f
     );
   }
   f = message.getMachinesInCurrentOrg();
   if (f !== 0) {
-    writer.writeInt64(
+    writer.writeInt32(
       4,
       f
     );
@@ -22890,25 +22890,25 @@ proto.viam.app.v1.FragmentUsage.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional int32 fragment_id = 1;
- * @return {number}
+ * optional string fragment_id = 1;
+ * @return {string}
  */
 proto.viam.app.v1.FragmentUsage.prototype.getFragmentId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.viam.app.v1.FragmentUsage} returns this
  */
 proto.viam.app.v1.FragmentUsage.prototype.setFragmentId = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional int64 organizations = 2;
+ * optional int32 organizations = 2;
  * @return {number}
  */
 proto.viam.app.v1.FragmentUsage.prototype.getOrganizations = function() {
@@ -22926,7 +22926,7 @@ proto.viam.app.v1.FragmentUsage.prototype.setOrganizations = function(value) {
 
 
 /**
- * optional int64 machines = 3;
+ * optional int32 machines = 3;
  * @return {number}
  */
 proto.viam.app.v1.FragmentUsage.prototype.getMachines = function() {
@@ -22944,7 +22944,7 @@ proto.viam.app.v1.FragmentUsage.prototype.setMachines = function(value) {
 
 
 /**
- * optional int64 machines_in_current_org = 4;
+ * optional int32 machines_in_current_org = 4;
  * @return {number}
  */
 proto.viam.app.v1.FragmentUsage.prototype.getMachinesInCurrentOrg = function() {
