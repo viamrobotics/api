@@ -35809,7 +35809,8 @@ proto.viam.app.v1.Model.toObject = function(includeInstance, msg) {
   var f, obj = {
     api: jspb.Message.getFieldWithDefault(msg, 1, ""),
     model: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    markdownDocumentation: jspb.Message.getFieldWithDefault(msg, 3, "")
+    markdownDocumentation: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -35858,6 +35859,10 @@ proto.viam.app.v1.Model.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setMarkdownDocumentation(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -35905,6 +35910,13 @@ proto.viam.app.v1.Model.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -35980,6 +35992,42 @@ proto.viam.app.v1.Model.prototype.clearMarkdownDocumentation = function() {
  */
 proto.viam.app.v1.Model.prototype.hasMarkdownDocumentation = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string description = 4;
+ * @return {string}
+ */
+proto.viam.app.v1.Model.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.Model} returns this
+ */
+proto.viam.app.v1.Model.prototype.setDescription = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.Model} returns this
+ */
+proto.viam.app.v1.Model.prototype.clearDescription = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Model.prototype.hasDescription = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 

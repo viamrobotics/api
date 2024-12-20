@@ -203,6 +203,14 @@ export namespace BadRequest {
     getDescription(): string;
     setDescription(value: string): void;
 
+    getReason(): string;
+    setReason(value: string): void;
+
+    hasLocalizedMessage(): boolean;
+    clearLocalizedMessage(): void;
+    getLocalizedMessage(): LocalizedMessage | undefined;
+    setLocalizedMessage(value?: LocalizedMessage): void;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): FieldViolation.AsObject;
     static toObject(includeInstance: boolean, msg: FieldViolation): FieldViolation.AsObject;
@@ -217,6 +225,8 @@ export namespace BadRequest {
     export type AsObject = {
       field: string,
       description: string,
+      reason: string,
+      localizedMessage?: LocalizedMessage.AsObject,
     }
   }
 }

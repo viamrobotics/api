@@ -4457,6 +4457,11 @@ export class Model extends jspb.Message {
   getMarkdownDocumentation(): string;
   setMarkdownDocumentation(value: string): void;
 
+  hasDescription(): boolean;
+  clearDescription(): void;
+  getDescription(): string;
+  setDescription(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Model.AsObject;
   static toObject(includeInstance: boolean, msg: Model): Model.AsObject;
@@ -4472,6 +4477,7 @@ export namespace Model {
     api: string,
     model: string,
     markdownDocumentation: string,
+    description: string,
   }
 }
 
