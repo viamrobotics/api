@@ -25,6 +25,4 @@ message GetInferenceRequest {
 message GetInferenceResponse {
   viam.service.mlmodel.v1.FlatTensors output_tensors = 1;
   viam.app.data.v1.Annotations annotations = 2;
-  // anything else you want to say
-  google.protobuf.Struct extra = 99;
 }
