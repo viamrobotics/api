@@ -17,6 +17,8 @@ var global = (function() { return this || window || global || self || Function('
 
 var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js');
 goog.object.extend(proto, app_data_v1_data_pb);
+var service_mlmodel_v1_mlmodel_pb = require('../../../service/mlmodel/v1/mlmodel_pb.js');
+goog.object.extend(proto, service_mlmodel_v1_mlmodel_pb);
 goog.exportSymbol('proto.viam.app.mlinference.v1.GetInferenceRequest', null, global);
 goog.exportSymbol('proto.viam.app.mlinference.v1.GetInferenceResponse', null, global);
 /**
@@ -334,7 +336,8 @@ proto.viam.app.mlinference.v1.GetInferenceResponse.prototype.toObject = function
  */
 proto.viam.app.mlinference.v1.GetInferenceResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    outputTensors: (f = msg.getOutputTensors()) && service_mlmodel_v1_mlmodel_pb.FlatTensors.toObject(includeInstance, f),
+    annotations: (f = msg.getAnnotations()) && app_data_v1_data_pb.Annotations.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -371,6 +374,16 @@ proto.viam.app.mlinference.v1.GetInferenceResponse.deserializeBinaryFromReader =
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = new service_mlmodel_v1_mlmodel_pb.FlatTensors;
+      reader.readMessage(value,service_mlmodel_v1_mlmodel_pb.FlatTensors.deserializeBinaryFromReader);
+      msg.setOutputTensors(value);
+      break;
+    case 2:
+      var value = new app_data_v1_data_pb.Annotations;
+      reader.readMessage(value,app_data_v1_data_pb.Annotations.deserializeBinaryFromReader);
+      msg.setAnnotations(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -400,6 +413,96 @@ proto.viam.app.mlinference.v1.GetInferenceResponse.prototype.serializeBinary = f
  */
 proto.viam.app.mlinference.v1.GetInferenceResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getOutputTensors();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      service_mlmodel_v1_mlmodel_pb.FlatTensors.serializeBinaryToWriter
+    );
+  }
+  f = message.getAnnotations();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      app_data_v1_data_pb.Annotations.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional viam.service.mlmodel.v1.FlatTensors output_tensors = 1;
+ * @return {?proto.viam.service.mlmodel.v1.FlatTensors}
+ */
+proto.viam.app.mlinference.v1.GetInferenceResponse.prototype.getOutputTensors = function() {
+  return /** @type{?proto.viam.service.mlmodel.v1.FlatTensors} */ (
+    jspb.Message.getWrapperField(this, service_mlmodel_v1_mlmodel_pb.FlatTensors, 1));
+};
+
+
+/**
+ * @param {?proto.viam.service.mlmodel.v1.FlatTensors|undefined} value
+ * @return {!proto.viam.app.mlinference.v1.GetInferenceResponse} returns this
+*/
+proto.viam.app.mlinference.v1.GetInferenceResponse.prototype.setOutputTensors = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.mlinference.v1.GetInferenceResponse} returns this
+ */
+proto.viam.app.mlinference.v1.GetInferenceResponse.prototype.clearOutputTensors = function() {
+  return this.setOutputTensors(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.mlinference.v1.GetInferenceResponse.prototype.hasOutputTensors = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional viam.app.data.v1.Annotations annotations = 2;
+ * @return {?proto.viam.app.data.v1.Annotations}
+ */
+proto.viam.app.mlinference.v1.GetInferenceResponse.prototype.getAnnotations = function() {
+  return /** @type{?proto.viam.app.data.v1.Annotations} */ (
+    jspb.Message.getWrapperField(this, app_data_v1_data_pb.Annotations, 2));
+};
+
+
+/**
+ * @param {?proto.viam.app.data.v1.Annotations|undefined} value
+ * @return {!proto.viam.app.mlinference.v1.GetInferenceResponse} returns this
+*/
+proto.viam.app.mlinference.v1.GetInferenceResponse.prototype.setAnnotations = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.mlinference.v1.GetInferenceResponse} returns this
+ */
+proto.viam.app.mlinference.v1.GetInferenceResponse.prototype.clearAnnotations = function() {
+  return this.setAnnotations(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.mlinference.v1.GetInferenceResponse.prototype.hasAnnotations = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 

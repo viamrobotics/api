@@ -1680,7 +1680,9 @@ proto.google.rpc.BadRequest.FieldViolation.prototype.toObject = function(opt_inc
 proto.google.rpc.BadRequest.FieldViolation.toObject = function(includeInstance, msg) {
   var f, obj = {
     field: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 2, "")
+    description: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    reason: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    localizedMessage: (f = msg.getLocalizedMessage()) && proto.google.rpc.LocalizedMessage.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1725,6 +1727,15 @@ proto.google.rpc.BadRequest.FieldViolation.deserializeBinaryFromReader = functio
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setReason(value);
+      break;
+    case 4:
+      var value = new proto.google.rpc.LocalizedMessage;
+      reader.readMessage(value,proto.google.rpc.LocalizedMessage.deserializeBinaryFromReader);
+      msg.setLocalizedMessage(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1768,6 +1779,21 @@ proto.google.rpc.BadRequest.FieldViolation.serializeBinaryToWriter = function(me
       f
     );
   }
+  f = message.getReason();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getLocalizedMessage();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      proto.google.rpc.LocalizedMessage.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -1804,6 +1830,61 @@ proto.google.rpc.BadRequest.FieldViolation.prototype.getDescription = function()
  */
 proto.google.rpc.BadRequest.FieldViolation.prototype.setDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string reason = 3;
+ * @return {string}
+ */
+proto.google.rpc.BadRequest.FieldViolation.prototype.getReason = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.google.rpc.BadRequest.FieldViolation} returns this
+ */
+proto.google.rpc.BadRequest.FieldViolation.prototype.setReason = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional LocalizedMessage localized_message = 4;
+ * @return {?proto.google.rpc.LocalizedMessage}
+ */
+proto.google.rpc.BadRequest.FieldViolation.prototype.getLocalizedMessage = function() {
+  return /** @type{?proto.google.rpc.LocalizedMessage} */ (
+    jspb.Message.getWrapperField(this, proto.google.rpc.LocalizedMessage, 4));
+};
+
+
+/**
+ * @param {?proto.google.rpc.LocalizedMessage|undefined} value
+ * @return {!proto.google.rpc.BadRequest.FieldViolation} returns this
+*/
+proto.google.rpc.BadRequest.FieldViolation.prototype.setLocalizedMessage = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.google.rpc.BadRequest.FieldViolation} returns this
+ */
+proto.google.rpc.BadRequest.FieldViolation.prototype.clearLocalizedMessage = function() {
+  return this.setLocalizedMessage(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.google.rpc.BadRequest.FieldViolation.prototype.hasLocalizedMessage = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
