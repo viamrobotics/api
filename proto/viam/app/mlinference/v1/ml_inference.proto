@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.app.mlinference.v1;
 
 import "app/data/v1/data.proto";
+import "service/mlmodel/v1/mlmodel.proto";
 
 option go_package = "go.viam.com/api/app/mlinference/v1";
 
@@ -20,4 +21,7 @@ message GetInferenceRequest {
   string organization_id = 4;
 }
 
-message GetInferenceResponse {}
+message GetInferenceResponse {
+  viam.service.mlmodel.v1.FlatTensors output_tensors = 1;
+  viam.app.data.v1.Annotations annotations = 2;
+}

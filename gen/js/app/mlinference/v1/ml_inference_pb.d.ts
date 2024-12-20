@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as app_data_v1_data_pb from "../../../app/data/v1/data_pb";
+import * as service_mlmodel_v1_mlmodel_pb from "../../../service/mlmodel/v1/mlmodel_pb";
 
 export class GetInferenceRequest extends jspb.Message {
   getRegistryItemId(): string;
@@ -39,6 +40,16 @@ export namespace GetInferenceRequest {
 }
 
 export class GetInferenceResponse extends jspb.Message {
+  hasOutputTensors(): boolean;
+  clearOutputTensors(): void;
+  getOutputTensors(): service_mlmodel_v1_mlmodel_pb.FlatTensors | undefined;
+  setOutputTensors(value?: service_mlmodel_v1_mlmodel_pb.FlatTensors): void;
+
+  hasAnnotations(): boolean;
+  clearAnnotations(): void;
+  getAnnotations(): app_data_v1_data_pb.Annotations | undefined;
+  setAnnotations(value?: app_data_v1_data_pb.Annotations): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetInferenceResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetInferenceResponse): GetInferenceResponse.AsObject;
@@ -51,6 +62,8 @@ export class GetInferenceResponse extends jspb.Message {
 
 export namespace GetInferenceResponse {
   export type AsObject = {
+    outputTensors?: service_mlmodel_v1_mlmodel_pb.FlatTensors.AsObject,
+    annotations?: app_data_v1_data_pb.Annotations.AsObject,
   }
 }
 
