@@ -1279,6 +1279,8 @@ message Model {
   string model = 2;
   // The markdown content describing the usage of the model
   optional string markdown_documentation = 3;
+  // A short description of the model that explains its purpose
+  optional string description = 4;
 }
 
 message ModuleFileInfo {
