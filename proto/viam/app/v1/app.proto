@@ -822,6 +822,18 @@ message FragmentHistoryEntry {
   AuthenticatorInfo edited_by = 4 [(tagger.v1.tags) = "bson:\"edited_by\" json:\"edited_by\""];
 }
 
+message FragmentVersion {
+  string version = 1;
+  google.protobuf.Timestamp created_at = 2;
+}
+
+message FragmentTag {
+  string tag = 1;
+  string version = 2;
+  google.protobuf.Timestamp created_at = 3;
+  google.protobuf.Timestamp updated_at = 4;
+}
+
 enum FragmentVisibility {
   FRAGMENT_VISIBILITY_UNSPECIFIED = 0;
   FRAGMENT_VISIBILITY_PRIVATE = 1;
@@ -848,6 +860,7 @@ message FragmentUsage {
   int32 organizations = 2;
   int32 machines = 3;
   int32 machines_in_current_org = 4;
+  string version = 5;
 }
 
 message ResolvedFragment {
@@ -870,11 +883,14 @@ message ListFragmentsResponse {
 message GetFragmentRequest {
   string id = 1;
   string current_organization_id = 2;
+  optional string version = 3;
 }
 
 message GetFragmentResponse {
   Fragment fragment = 1;
-  FragmentUsage fragment_usage = 2;
+  repeated FragmentUsage usages = 2;
+  repeated FragmentVersion versions = 3;
+  repeated FragmentTag tags = 4;
 }
 
 message CreateFragmentRequest {
