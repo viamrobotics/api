@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package viam.service.discovery.v1;
+
+import "app/v1/robot.proto";
+import "common/v1/common.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "go.viam.com/api/service/discovey/v1";
+option java_package = "com.viam.service.discovery.v1";
+
+service DiscoveryService {
+  // DiscoverResources returns the list of all discovered viam resources connected to the viam-server machine.
+  rpc DiscoverResources(DiscoverResourcesRequest) returns (DiscoverResourcesResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/{name}/discovery"};
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/discovery/{name}/do_command"};
+  }
+}
+
+message DiscoverResourcesRequest {
+  // name of the discover service
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message DiscoverResourcesResponse {
+  // list of ComponentConfigs that describe the components found by a discover service. Can be used with UpdateRobotPart.
+  repeated app.v1.ComponentConfig discovery = 1;
+}
