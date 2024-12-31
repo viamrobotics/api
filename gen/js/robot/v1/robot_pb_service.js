@@ -64,6 +64,15 @@ RobotService.BlockForOperation = {
   responseType: robot_v1_robot_pb.BlockForOperationResponse
 };
 
+RobotService.GetModelsFromModules = {
+  methodName: "GetModelsFromModules",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.GetModelsFromModulesRequest,
+  responseType: robot_v1_robot_pb.GetModelsFromModulesResponse
+};
+
 RobotService.DiscoverComponents = {
   methodName: "DiscoverComponents",
   service: RobotService,
@@ -366,6 +375,37 @@ RobotServiceClient.prototype.blockForOperation = function blockForOperation(requ
     callback = arguments[1];
   }
   var client = grpc.unary(RobotService.BlockForOperation, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.getModelsFromModules = function getModelsFromModules(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.GetModelsFromModules, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

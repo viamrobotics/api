@@ -594,6 +594,76 @@ export namespace Discovery {
   }
 }
 
+export class ModuleModel extends jspb.Message {
+  getModuleName(): string;
+  setModuleName(value: string): void;
+
+  getModel(): string;
+  setModel(value: string): void;
+
+  getApi(): string;
+  setApi(value: string): void;
+
+  getFromLocalModule(): boolean;
+  setFromLocalModule(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleModel.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleModel): ModuleModel.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleModel, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleModel;
+  static deserializeBinaryFromReader(message: ModuleModel, reader: jspb.BinaryReader): ModuleModel;
+}
+
+export namespace ModuleModel {
+  export type AsObject = {
+    moduleName: string,
+    model: string,
+    api: string,
+    fromLocalModule: boolean,
+  }
+}
+
+export class GetModelsFromModulesRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetModelsFromModulesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetModelsFromModulesRequest): GetModelsFromModulesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetModelsFromModulesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetModelsFromModulesRequest;
+  static deserializeBinaryFromReader(message: GetModelsFromModulesRequest, reader: jspb.BinaryReader): GetModelsFromModulesRequest;
+}
+
+export namespace GetModelsFromModulesRequest {
+  export type AsObject = {
+  }
+}
+
+export class GetModelsFromModulesResponse extends jspb.Message {
+  clearModelList(): void;
+  getModelList(): Array<ModuleModel>;
+  setModelList(value: Array<ModuleModel>): void;
+  addModel(value?: ModuleModel, index?: number): ModuleModel;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetModelsFromModulesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetModelsFromModulesResponse): GetModelsFromModulesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetModelsFromModulesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetModelsFromModulesResponse;
+  static deserializeBinaryFromReader(message: GetModelsFromModulesResponse, reader: jspb.BinaryReader): GetModelsFromModulesResponse;
+}
+
+export namespace GetModelsFromModulesResponse {
+  export type AsObject = {
+    modelList: Array<ModuleModel.AsObject>,
+  }
+}
+
 export class DiscoverComponentsRequest extends jspb.Message {
   clearQueriesList(): void;
   getQueriesList(): Array<DiscoveryQuery>;
