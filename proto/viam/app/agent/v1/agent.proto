@@ -19,26 +19,54 @@ message DeviceAgentConfigRequest {
   // info about the host system
   HostInfo host_info = 2;
   // current subsystems and versions
-  map<string, string> subsystem_versions = 3;
+  // DEPRECATED in favor of version_info
+  map<string, string> subsystem_versions = 3 [deprecated = true];
+  // Currently installed versions for agent and viam-server
+  VersionInfo version_info = 4;
 }
 
 message DeviceAgentConfigResponse {
   // subsystems to be installed/configured/updated
   // note: previously installed subsystems will be removed from the system if removed from this list
-  map<string, DeviceSubsystemConfig> subsystem_configs = 1;
+  // DEPRECATED in favor of indidivual update_info and settings fields
+  map<string, DeviceSubsystemConfig> subsystem_configs = 1 [deprecated = true];
+
   // how often this request should be repeated
   google.protobuf.Duration check_interval = 2;
+
+  // update info for agent and viam-server, parsed/processed in App
+  UpdateInfo agent_update_info = 3;
+  UpdateInfo viam_server_update_info = 4;
+
+  // various settings that are passed directly to device Agent
+  google.protobuf.Struct advanced_settings = 5;
+  google.protobuf.Struct network_configuration = 6;
+  google.protobuf.Struct additional_networks = 7;
+  google.protobuf.Struct system_configuration = 8;
 }
 
+// DEPRECATED as of January 2025
 message DeviceSubsystemConfig {
+  option deprecated = true;
   // data needed to download/validate the subsystem
-  SubsystemUpdateInfo update_info = 1;
+  UpdateInfo update_info = 1;
   // if this subsystem is disabled and should not be started by the agent
   bool disable = 2;
   // force_restart will restart the subsystem, even if no updates are available
   bool force_restart = 3;
   //arbitrary config sections
   google.protobuf.Struct attributes = 4;
+}
+
+message VersionInfo {
+  // the version of agent currently running and making the request
+  string agent_running = 1;
+  // the version of agent installed (will run after restart if different)
+  string agent_installed = 2;
+  // the version of viam-server currently running
+  string viam_server_running = 3;
+  // the version of viam-server installed (will run after restart if different)
+  string viam_server_installed = 4;
 }
 
 message HostInfo {
@@ -51,7 +79,7 @@ message HostInfo {
   repeated string tags = 3;
 }
 
-message SubsystemUpdateInfo {
+message UpdateInfo {
   // unpacked filename as it is expected on disk (regardless of url)
   string filename = 1;
   // url to download from
