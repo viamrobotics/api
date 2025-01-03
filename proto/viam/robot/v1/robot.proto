@@ -259,7 +259,7 @@ message ModuleModel {
 message GetModelsFromModulesRequest {}
 
 message GetModelsFromModulesResponse {
-  repeated ModuleModel model = 1;
+  repeated ModuleModel models = 1;
 }
 
 message DiscoverComponentsRequest {
