@@ -30,6 +30,8 @@ type RobotServiceClient interface {
 	ResourceRPCSubtypes(ctx context.Context, in *ResourceRPCSubtypesRequest, opts ...grpc.CallOption) (*ResourceRPCSubtypesResponse, error)
 	CancelOperation(ctx context.Context, in *CancelOperationRequest, opts ...grpc.CallOption) (*CancelOperationResponse, error)
 	BlockForOperation(ctx context.Context, in *BlockForOperationRequest, opts ...grpc.CallOption) (*BlockForOperationResponse, error)
+	// GetModelsFromModules returns the list of models supported in modules on the machine.
+	GetModelsFromModules(ctx context.Context, in *GetModelsFromModulesRequest, opts ...grpc.CallOption) (*GetModelsFromModulesResponse, error)
 	// DiscoverComponents returns the list of discovered component configurations.
 	DiscoverComponents(ctx context.Context, in *DiscoverComponentsRequest, opts ...grpc.CallOption) (*DiscoverComponentsResponse, error)
 	FrameSystemConfig(ctx context.Context, in *FrameSystemConfigRequest, opts ...grpc.CallOption) (*FrameSystemConfigResponse, error)
@@ -119,6 +121,15 @@ func (c *robotServiceClient) CancelOperation(ctx context.Context, in *CancelOper
 func (c *robotServiceClient) BlockForOperation(ctx context.Context, in *BlockForOperationRequest, opts ...grpc.CallOption) (*BlockForOperationResponse, error) {
 	out := new(BlockForOperationResponse)
 	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/BlockForOperation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *robotServiceClient) GetModelsFromModules(ctx context.Context, in *GetModelsFromModulesRequest, opts ...grpc.CallOption) (*GetModelsFromModulesResponse, error) {
+	out := new(GetModelsFromModulesResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetModelsFromModules", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -297,6 +308,8 @@ type RobotServiceServer interface {
 	ResourceRPCSubtypes(context.Context, *ResourceRPCSubtypesRequest) (*ResourceRPCSubtypesResponse, error)
 	CancelOperation(context.Context, *CancelOperationRequest) (*CancelOperationResponse, error)
 	BlockForOperation(context.Context, *BlockForOperationRequest) (*BlockForOperationResponse, error)
+	// GetModelsFromModules returns the list of models supported in modules on the machine.
+	GetModelsFromModules(context.Context, *GetModelsFromModulesRequest) (*GetModelsFromModulesResponse, error)
 	// DiscoverComponents returns the list of discovered component configurations.
 	DiscoverComponents(context.Context, *DiscoverComponentsRequest) (*DiscoverComponentsResponse, error)
 	FrameSystemConfig(context.Context, *FrameSystemConfigRequest) (*FrameSystemConfigResponse, error)
@@ -352,6 +365,9 @@ func (UnimplementedRobotServiceServer) CancelOperation(context.Context, *CancelO
 }
 func (UnimplementedRobotServiceServer) BlockForOperation(context.Context, *BlockForOperationRequest) (*BlockForOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BlockForOperation not implemented")
+}
+func (UnimplementedRobotServiceServer) GetModelsFromModules(context.Context, *GetModelsFromModulesRequest) (*GetModelsFromModulesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetModelsFromModules not implemented")
 }
 func (UnimplementedRobotServiceServer) DiscoverComponents(context.Context, *DiscoverComponentsRequest) (*DiscoverComponentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DiscoverComponents not implemented")
@@ -515,6 +531,24 @@ func _RobotService_BlockForOperation_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RobotServiceServer).BlockForOperation(ctx, req.(*BlockForOperationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RobotService_GetModelsFromModules_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetModelsFromModulesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).GetModelsFromModules(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/GetModelsFromModules",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).GetModelsFromModules(ctx, req.(*GetModelsFromModulesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -822,6 +856,10 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BlockForOperation",
 			Handler:    _RobotService_BlockForOperation_Handler,
+		},
+		{
+			MethodName: "GetModelsFromModules",
+			Handler:    _RobotService_GetModelsFromModules_Handler,
 		},
 		{
 			MethodName: "DiscoverComponents",

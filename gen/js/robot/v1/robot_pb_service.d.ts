@@ -58,6 +58,15 @@ type RobotServiceBlockForOperation = {
   readonly responseType: typeof robot_v1_robot_pb.BlockForOperationResponse;
 };
 
+type RobotServiceGetModelsFromModules = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.GetModelsFromModulesRequest;
+  readonly responseType: typeof robot_v1_robot_pb.GetModelsFromModulesResponse;
+};
+
 type RobotServiceDiscoverComponents = {
   readonly methodName: string;
   readonly service: typeof RobotService;
@@ -201,6 +210,7 @@ export class RobotService {
   static readonly ResourceRPCSubtypes: RobotServiceResourceRPCSubtypes;
   static readonly CancelOperation: RobotServiceCancelOperation;
   static readonly BlockForOperation: RobotServiceBlockForOperation;
+  static readonly GetModelsFromModules: RobotServiceGetModelsFromModules;
   static readonly DiscoverComponents: RobotServiceDiscoverComponents;
   static readonly FrameSystemConfig: RobotServiceFrameSystemConfig;
   static readonly TransformPose: RobotServiceTransformPose;
@@ -303,6 +313,15 @@ export class RobotServiceClient {
   blockForOperation(
     requestMessage: robot_v1_robot_pb.BlockForOperationRequest,
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.BlockForOperationResponse|null) => void
+  ): UnaryResponse;
+  getModelsFromModules(
+    requestMessage: robot_v1_robot_pb.GetModelsFromModulesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetModelsFromModulesResponse|null) => void
+  ): UnaryResponse;
+  getModelsFromModules(
+    requestMessage: robot_v1_robot_pb.GetModelsFromModulesRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetModelsFromModulesResponse|null) => void
   ): UnaryResponse;
   discoverComponents(
     requestMessage: robot_v1_robot_pb.DiscoverComponentsRequest,
