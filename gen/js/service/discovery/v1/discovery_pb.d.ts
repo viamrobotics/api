@@ -34,10 +34,10 @@ export namespace DiscoverResourcesRequest {
 }
 
 export class DiscoverResourcesResponse extends jspb.Message {
-  clearDiscoveryList(): void;
-  getDiscoveryList(): Array<app_v1_robot_pb.ComponentConfig>;
-  setDiscoveryList(value: Array<app_v1_robot_pb.ComponentConfig>): void;
-  addDiscovery(value?: app_v1_robot_pb.ComponentConfig, index?: number): app_v1_robot_pb.ComponentConfig;
+  clearDiscoveriesList(): void;
+  getDiscoveriesList(): Array<app_v1_robot_pb.ComponentConfig>;
+  setDiscoveriesList(value: Array<app_v1_robot_pb.ComponentConfig>): void;
+  addDiscoveries(value?: app_v1_robot_pb.ComponentConfig, index?: number): app_v1_robot_pb.ComponentConfig;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DiscoverResourcesResponse.AsObject;
@@ -51,7 +51,7 @@ export class DiscoverResourcesResponse extends jspb.Message {
 
 export namespace DiscoverResourcesResponse {
   export type AsObject = {
-    discoveryList: Array<app_v1_robot_pb.ComponentConfig.AsObject>,
+    discoveriesList: Array<app_v1_robot_pb.ComponentConfig.AsObject>,
   }
 }
 

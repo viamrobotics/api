@@ -287,7 +287,7 @@ proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.toObject = f
  */
 proto.viam.service.discovery.v1.DiscoverResourcesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    discoveryList: jspb.Message.toObjectList(msg.getDiscoveryList(),
+    discoveriesList: jspb.Message.toObjectList(msg.getDiscoveriesList(),
     app_v1_robot_pb.ComponentConfig.toObject, includeInstance)
   };
 
@@ -328,7 +328,7 @@ proto.viam.service.discovery.v1.DiscoverResourcesResponse.deserializeBinaryFromR
     case 1:
       var value = new app_v1_robot_pb.ComponentConfig;
       reader.readMessage(value,app_v1_robot_pb.ComponentConfig.deserializeBinaryFromReader);
-      msg.addDiscovery(value);
+      msg.addDiscoveries(value);
       break;
     default:
       reader.skipField();
@@ -359,7 +359,7 @@ proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.serializeBin
  */
 proto.viam.service.discovery.v1.DiscoverResourcesResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getDiscoveryList();
+  f = message.getDiscoveriesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
@@ -371,10 +371,10 @@ proto.viam.service.discovery.v1.DiscoverResourcesResponse.serializeBinaryToWrite
 
 
 /**
- * repeated viam.app.v1.ComponentConfig discovery = 1;
+ * repeated viam.app.v1.ComponentConfig discoveries = 1;
  * @return {!Array<!proto.viam.app.v1.ComponentConfig>}
  */
-proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.getDiscoveryList = function() {
+proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.getDiscoveriesList = function() {
   return /** @type{!Array<!proto.viam.app.v1.ComponentConfig>} */ (
     jspb.Message.getRepeatedWrapperField(this, app_v1_robot_pb.ComponentConfig, 1));
 };
@@ -384,7 +384,7 @@ proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.getDiscovery
  * @param {!Array<!proto.viam.app.v1.ComponentConfig>} value
  * @return {!proto.viam.service.discovery.v1.DiscoverResourcesResponse} returns this
 */
-proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.setDiscoveryList = function(value) {
+proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.setDiscoveriesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -394,7 +394,7 @@ proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.setDiscovery
  * @param {number=} opt_index
  * @return {!proto.viam.app.v1.ComponentConfig}
  */
-proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.addDiscovery = function(opt_value, opt_index) {
+proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.addDiscoveries = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.app.v1.ComponentConfig, opt_index);
 };
 
@@ -403,8 +403,8 @@ proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.addDiscovery
  * Clears the list making it empty but non-null.
  * @return {!proto.viam.service.discovery.v1.DiscoverResourcesResponse} returns this
  */
-proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.clearDiscoveryList = function() {
-  return this.setDiscoveryList([]);
+proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.clearDiscoveriesList = function() {
+  return this.setDiscoveriesList([]);
 };
 
 

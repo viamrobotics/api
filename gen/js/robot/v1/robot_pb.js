@@ -5720,7 +5720,7 @@ proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.toObject = function(o
  */
 proto.viam.robot.v1.GetModelsFromModulesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    modelList: jspb.Message.toObjectList(msg.getModelList(),
+    modelsList: jspb.Message.toObjectList(msg.getModelsList(),
     proto.viam.robot.v1.ModuleModel.toObject, includeInstance)
   };
 
@@ -5761,7 +5761,7 @@ proto.viam.robot.v1.GetModelsFromModulesResponse.deserializeBinaryFromReader = f
     case 1:
       var value = new proto.viam.robot.v1.ModuleModel;
       reader.readMessage(value,proto.viam.robot.v1.ModuleModel.deserializeBinaryFromReader);
-      msg.addModel(value);
+      msg.addModels(value);
       break;
     default:
       reader.skipField();
@@ -5792,7 +5792,7 @@ proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.serializeBinary = fun
  */
 proto.viam.robot.v1.GetModelsFromModulesResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getModelList();
+  f = message.getModelsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
@@ -5804,10 +5804,10 @@ proto.viam.robot.v1.GetModelsFromModulesResponse.serializeBinaryToWriter = funct
 
 
 /**
- * repeated ModuleModel model = 1;
+ * repeated ModuleModel models = 1;
  * @return {!Array<!proto.viam.robot.v1.ModuleModel>}
  */
-proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.getModelList = function() {
+proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.getModelsList = function() {
   return /** @type{!Array<!proto.viam.robot.v1.ModuleModel>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.viam.robot.v1.ModuleModel, 1));
 };
@@ -5817,7 +5817,7 @@ proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.getModelList = functi
  * @param {!Array<!proto.viam.robot.v1.ModuleModel>} value
  * @return {!proto.viam.robot.v1.GetModelsFromModulesResponse} returns this
 */
-proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.setModelList = function(value) {
+proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.setModelsList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -5827,7 +5827,7 @@ proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.setModelList = functi
  * @param {number=} opt_index
  * @return {!proto.viam.robot.v1.ModuleModel}
  */
-proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.addModel = function(opt_value, opt_index) {
+proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.addModels = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.robot.v1.ModuleModel, opt_index);
 };
 
@@ -5836,8 +5836,8 @@ proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.addModel = function(o
  * Clears the list making it empty but non-null.
  * @return {!proto.viam.robot.v1.GetModelsFromModulesResponse} returns this
  */
-proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.clearModelList = function() {
-  return this.setModelList([]);
+proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.clearModelsList = function() {
+  return this.setModelsList([]);
 };
 
 

@@ -643,10 +643,10 @@ export namespace GetModelsFromModulesRequest {
 }
 
 export class GetModelsFromModulesResponse extends jspb.Message {
-  clearModelList(): void;
-  getModelList(): Array<ModuleModel>;
-  setModelList(value: Array<ModuleModel>): void;
-  addModel(value?: ModuleModel, index?: number): ModuleModel;
+  clearModelsList(): void;
+  getModelsList(): Array<ModuleModel>;
+  setModelsList(value: Array<ModuleModel>): void;
+  addModels(value?: ModuleModel, index?: number): ModuleModel;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetModelsFromModulesResponse.AsObject;
@@ -660,7 +660,7 @@ export class GetModelsFromModulesResponse extends jspb.Message {
 
 export namespace GetModelsFromModulesResponse {
   export type AsObject = {
-    modelList: Array<ModuleModel.AsObject>,
+    modelsList: Array<ModuleModel.AsObject>,
   }
 }
 
