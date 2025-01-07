@@ -84,7 +84,7 @@ type DiscoverResourcesResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// list of ComponentConfigs that describe the components found by a discover service. Can be used with UpdateRobotPart.
+	// list of ComponentConfigs that describe the components found by a discover service.
 	Discoveries []*v1.ComponentConfig `protobuf:"bytes,1,rep,name=discoveries,proto3" json:"discoveries,omitempty"`
 }
 
