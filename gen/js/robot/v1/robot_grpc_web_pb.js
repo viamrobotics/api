@@ -455,6 +455,67 @@ proto.viam.robot.v1.RobotServicePromiseClient.prototype.blockForOperation =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.GetModelsFromModulesRequest,
+ *   !proto.viam.robot.v1.GetModelsFromModulesResponse>}
+ */
+const methodDescriptor_RobotService_GetModelsFromModules = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/GetModelsFromModules',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.GetModelsFromModulesRequest,
+  proto.viam.robot.v1.GetModelsFromModulesResponse,
+  /**
+   * @param {!proto.viam.robot.v1.GetModelsFromModulesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.GetModelsFromModulesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.GetModelsFromModulesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.GetModelsFromModulesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.GetModelsFromModulesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.getModelsFromModules =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/GetModelsFromModules',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_GetModelsFromModules,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.GetModelsFromModulesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.GetModelsFromModulesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.getModelsFromModules =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/GetModelsFromModules',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_GetModelsFromModules);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.robot.v1.DiscoverComponentsRequest,
  *   !proto.viam.robot.v1.DiscoverComponentsResponse>}
  */
