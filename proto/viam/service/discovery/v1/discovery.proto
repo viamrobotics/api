@@ -30,6 +30,6 @@ message DiscoverResourcesRequest {
 }
 
 message DiscoverResourcesResponse {
-  // list of ComponentConfigs that describe the components found by a discover service. Can be used with UpdateRobotPart.
+  // list of ComponentConfigs that describe the components found by a discover service.
   repeated app.v1.ComponentConfig discoveries = 1;
 }
