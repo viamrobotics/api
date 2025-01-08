@@ -804,15 +804,17 @@ message Fragment {
   google.protobuf.Timestamp created_on = 6 [(tagger.v1.tags) = "bson:\"created_on\""];
   string organization_name = 7;
   // number of robot parts using this fragment
-  int32 robot_part_count = 9;
+  int32 machine_count = 9;
   // number of organizations using this fragment
   int32 organization_count = 10;
   // whether the organization(s) using this fragment is the same as the fragment org
   bool only_used_by_owner = 11;
+  // whether the fragment is only used by the owner org and orgs using it through a shared location
+  bool only_used_internally = 12;
   // the visibility of a fragment; public, private or unlisted
-  FragmentVisibility visibility = 12;
+  FragmentVisibility visibility = 13;
   // latest timestamp when fragment was updated
-  google.protobuf.Timestamp last_updated = 13 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
+  google.protobuf.Timestamp last_updated = 14 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
 }
 
 message FragmentHistoryEntry {
