@@ -15,17 +15,17 @@ service EndUserService {
   // Allows users to register third party auth applications using Viam linked to the indicated organization
   rpc RegisterAuthApplication(RegisterAuthApplicationRequest) returns (RegisterAuthApplicationResponse) {
     option deprecated = true;
-  };
+  }
 
   // Allows users to update their third party auth applications
   rpc UpdateAuthApplication(UpdateAuthApplicationRequest) returns (UpdateAuthApplicationResponse) {
     option deprecated = true;
-  };
+  }
 
   // Allows users to get the config for their third party auth applications
   rpc GetAuthApplication(GetAuthApplicationRequest) returns (GetAuthApplicationResponse) {
     option deprecated = true;
-  };
+  }
 }
 
 message IsLegalAcceptedRequest {}
