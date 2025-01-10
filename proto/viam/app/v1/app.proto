@@ -190,9 +190,6 @@ service AppService {
   // Gets a single fragment
   rpc GetFragment(GetFragmentRequest) returns (GetFragmentResponse);
 
-  // Gets usage for a fragment across versions
-  rpc GetFragmentUsage(GetFragmentUsageRequest) returns (GetFragmentUsageResponse);
-
   // Creates a fragment
   rpc CreateFragment(CreateFragmentRequest) returns (CreateFragmentResponse);
 
@@ -837,8 +834,6 @@ message FragmentRevision {
 message FragmentTag {
   string tag = 1;
   string revision = 2;
-  google.protobuf.Timestamp created_at = 3;
-  google.protobuf.Timestamp updated_at = 4;
 }
 
 enum FragmentVisibility {
@@ -868,7 +863,7 @@ message FragmentUsage {
   int32 organizations = 2;
   int32 machines = 3;
   int32 machines_in_current_org = 4;
-  string version = 5;
+  optional string version = 5; // revision or tag
 }
 
 message ResolvedFragment {
@@ -891,7 +886,7 @@ message ListFragmentsResponse {
 message GetFragmentRequest {
   string id = 1;
   string current_organization_id = 2;
-  optional string version = 3;
+  optional string version = 3; // revision or tag
 }
 
 message GetFragmentResponse {
@@ -899,14 +894,6 @@ message GetFragmentResponse {
   FragmentUsage fragment_usage = 2;
   repeated FragmentRevision revisions = 3;
   repeated FragmentTag tags = 4;
-}
-
-message GetFragmentUsageRequest {
-  string fragment_id = 1;
-}
-
-message GetFragmentUsageResponse {
-  repeated FragmentUsage version_usages = 1;
 }
 
 message CreateFragmentRequest {
