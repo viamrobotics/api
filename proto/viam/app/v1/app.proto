@@ -190,6 +190,9 @@ service AppService {
   // Gets a single fragment
   rpc GetFragment(GetFragmentRequest) returns (GetFragmentResponse);
 
+  // Gets usage for a fragment across versions
+  rpc GetFragmentUsage(GetFragmentUsageRequest) returns (GetFragmentUsageResponse);
+
   // Creates a fragment
   rpc CreateFragment(CreateFragmentRequest) returns (CreateFragmentResponse);
 
@@ -891,6 +894,14 @@ message GetFragmentResponse {
   FragmentUsage fragment_usage = 2;
   repeated FragmentRevision revisions = 3;
   repeated FragmentTag tags = 4;
+}
+
+message GetFragmentUsageRequest {
+  string fragment_id = 1;
+}
+
+message GetFragmentUsageResponse {
+  repeated FragmentUsage version_usages = 1;
 }
 
 message CreateFragmentRequest {
