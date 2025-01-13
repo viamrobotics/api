@@ -202,6 +202,15 @@ type RobotServiceGetVersion = {
   readonly responseType: typeof robot_v1_robot_pb.GetVersionResponse;
 };
 
+type RobotServiceTraffic = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: true;
+  readonly responseStream: true;
+  readonly requestType: typeof robot_v1_robot_pb.TrafficRequest;
+  readonly responseType: typeof robot_v1_robot_pb.TrafficResponse;
+};
+
 export class RobotService {
   static readonly serviceName: string;
   static readonly GetOperations: RobotServiceGetOperations;
@@ -226,6 +235,7 @@ export class RobotService {
   static readonly Shutdown: RobotServiceShutdown;
   static readonly GetMachineStatus: RobotServiceGetMachineStatus;
   static readonly GetVersion: RobotServiceGetVersion;
+  static readonly Traffic: RobotServiceTraffic;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -450,5 +460,6 @@ export class RobotServiceClient {
     requestMessage: robot_v1_robot_pb.GetVersionRequest,
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetVersionResponse|null) => void
   ): UnaryResponse;
+  traffic(metadata?: grpc.Metadata): BidirectionalStream<robot_v1_robot_pb.TrafficRequest, robot_v1_robot_pb.TrafficResponse>;
 }
 

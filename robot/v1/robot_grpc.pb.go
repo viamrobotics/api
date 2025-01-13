@@ -65,6 +65,8 @@ type RobotServiceClient interface {
 	GetMachineStatus(ctx context.Context, in *GetMachineStatusRequest, opts ...grpc.CallOption) (*GetMachineStatusResponse, error)
 	// GetVersion returns version information about the robot.
 	GetVersion(ctx context.Context, in *GetVersionRequest, opts ...grpc.CallOption) (*GetVersionResponse, error)
+	// Traffic traffics.
+	Traffic(ctx context.Context, opts ...grpc.CallOption) (RobotService_TrafficClient, error)
 }
 
 type robotServiceClient struct {
@@ -299,6 +301,37 @@ func (c *robotServiceClient) GetVersion(ctx context.Context, in *GetVersionReque
 	return out, nil
 }
 
+func (c *robotServiceClient) Traffic(ctx context.Context, opts ...grpc.CallOption) (RobotService_TrafficClient, error) {
+	stream, err := c.cc.NewStream(ctx, &RobotService_ServiceDesc.Streams[1], "/viam.robot.v1.RobotService/Traffic", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &robotServiceTrafficClient{stream}
+	return x, nil
+}
+
+type RobotService_TrafficClient interface {
+	Send(*TrafficRequest) error
+	Recv() (*TrafficResponse, error)
+	grpc.ClientStream
+}
+
+type robotServiceTrafficClient struct {
+	grpc.ClientStream
+}
+
+func (x *robotServiceTrafficClient) Send(m *TrafficRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *robotServiceTrafficClient) Recv() (*TrafficResponse, error) {
+	m := new(TrafficResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // RobotServiceServer is the server API for RobotService service.
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
@@ -346,6 +379,8 @@ type RobotServiceServer interface {
 	GetMachineStatus(context.Context, *GetMachineStatusRequest) (*GetMachineStatusResponse, error)
 	// GetVersion returns version information about the robot.
 	GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error)
+	// Traffic traffics.
+	Traffic(RobotService_TrafficServer) error
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -418,6 +453,9 @@ func (UnimplementedRobotServiceServer) GetMachineStatus(context.Context, *GetMac
 }
 func (UnimplementedRobotServiceServer) GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetVersion not implemented")
+}
+func (UnimplementedRobotServiceServer) Traffic(RobotService_TrafficServer) error {
+	return status.Errorf(codes.Unimplemented, "method Traffic not implemented")
 }
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
@@ -831,6 +869,32 @@ func _RobotService_GetVersion_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_Traffic_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(RobotServiceServer).Traffic(&robotServiceTrafficServer{stream})
+}
+
+type RobotService_TrafficServer interface {
+	Send(*TrafficResponse) error
+	Recv() (*TrafficRequest, error)
+	grpc.ServerStream
+}
+
+type robotServiceTrafficServer struct {
+	grpc.ServerStream
+}
+
+func (x *robotServiceTrafficServer) Send(m *TrafficResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *robotServiceTrafficServer) Recv() (*TrafficRequest, error) {
+	m := new(TrafficRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // RobotService_ServiceDesc is the grpc.ServiceDesc for RobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -928,6 +992,12 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 			StreamName:    "StreamStatus",
 			Handler:       _RobotService_StreamStatus_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "Traffic",
+			Handler:       _RobotService_Traffic_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
 		},
 	},
 	Metadata: "robot/v1/robot.proto",

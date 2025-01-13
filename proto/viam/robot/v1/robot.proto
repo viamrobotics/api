@@ -121,11 +121,23 @@ service RobotService {
   rpc GetVersion(GetVersionRequest) returns (GetVersionResponse) {
     option (google.api.http) = {get: "/viam/api/v1/version"};
   }
+
+  // Traffic traffics.
+  rpc Traffic(stream TrafficRequest) returns (stream TrafficResponse);
+}
+
+message TrafficRequest {
+  bytes data_in = 1;
+  bool eof = 2;
+}
+
+message TrafficResponse {
+  bytes data_out = 1;
+  bool eof = 2;
 }
 
 message FrameSystemConfig {
   // this is an experimental API message
-
   common.v1.Transform frame = 1;
   google.protobuf.Struct kinematics = 2;
 }

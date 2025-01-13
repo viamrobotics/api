@@ -8,6 +8,58 @@ import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/du
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
+export class TrafficRequest extends jspb.Message {
+  getDataIn(): Uint8Array | string;
+  getDataIn_asU8(): Uint8Array;
+  getDataIn_asB64(): string;
+  setDataIn(value: Uint8Array | string): void;
+
+  getEof(): boolean;
+  setEof(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TrafficRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TrafficRequest): TrafficRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TrafficRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TrafficRequest;
+  static deserializeBinaryFromReader(message: TrafficRequest, reader: jspb.BinaryReader): TrafficRequest;
+}
+
+export namespace TrafficRequest {
+  export type AsObject = {
+    dataIn: Uint8Array | string,
+    eof: boolean,
+  }
+}
+
+export class TrafficResponse extends jspb.Message {
+  getDataOut(): Uint8Array | string;
+  getDataOut_asU8(): Uint8Array;
+  getDataOut_asB64(): string;
+  setDataOut(value: Uint8Array | string): void;
+
+  getEof(): boolean;
+  setEof(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TrafficResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TrafficResponse): TrafficResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TrafficResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TrafficResponse;
+  static deserializeBinaryFromReader(message: TrafficResponse, reader: jspb.BinaryReader): TrafficResponse;
+}
+
+export namespace TrafficResponse {
+  export type AsObject = {
+    dataOut: Uint8Array | string,
+    eof: boolean,
+  }
+}
+
 export class FrameSystemConfig extends jspb.Message {
   hasFrame(): boolean;
   clearFrame(): void;
