@@ -8,7 +8,7 @@ import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/du
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
-export class TrafficRequest extends jspb.Message {
+export class TunnelRequest extends jspb.Message {
   getDestination(): string;
   setDestination(value: string): void;
 
@@ -21,16 +21,16 @@ export class TrafficRequest extends jspb.Message {
   setEof(value: boolean): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TrafficRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: TrafficRequest): TrafficRequest.AsObject;
+  toObject(includeInstance?: boolean): TunnelRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TunnelRequest): TunnelRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TrafficRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TrafficRequest;
-  static deserializeBinaryFromReader(message: TrafficRequest, reader: jspb.BinaryReader): TrafficRequest;
+  static serializeBinaryToWriter(message: TunnelRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TunnelRequest;
+  static deserializeBinaryFromReader(message: TunnelRequest, reader: jspb.BinaryReader): TunnelRequest;
 }
 
-export namespace TrafficRequest {
+export namespace TunnelRequest {
   export type AsObject = {
     destination: string,
     dataIn: Uint8Array | string,
@@ -38,7 +38,7 @@ export namespace TrafficRequest {
   }
 }
 
-export class TrafficResponse extends jspb.Message {
+export class TunnelResponse extends jspb.Message {
   getDataOut(): Uint8Array | string;
   getDataOut_asU8(): Uint8Array;
   getDataOut_asB64(): string;
@@ -48,16 +48,16 @@ export class TrafficResponse extends jspb.Message {
   setEof(value: boolean): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TrafficResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: TrafficResponse): TrafficResponse.AsObject;
+  toObject(includeInstance?: boolean): TunnelResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TunnelResponse): TunnelResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TrafficResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TrafficResponse;
-  static deserializeBinaryFromReader(message: TrafficResponse, reader: jspb.BinaryReader): TrafficResponse;
+  static serializeBinaryToWriter(message: TunnelResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TunnelResponse;
+  static deserializeBinaryFromReader(message: TunnelResponse, reader: jspb.BinaryReader): TunnelResponse;
 }
 
-export namespace TrafficResponse {
+export namespace TunnelResponse {
   export type AsObject = {
     dataOut: Uint8Array | string,
     eof: boolean,
