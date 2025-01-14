@@ -9,6 +9,9 @@ import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/stru
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class TrafficRequest extends jspb.Message {
+  getDestination(): string;
+  setDestination(value: string): void;
+
   getDataIn(): Uint8Array | string;
   getDataIn_asU8(): Uint8Array;
   getDataIn_asB64(): string;
@@ -29,6 +32,7 @@ export class TrafficRequest extends jspb.Message {
 
 export namespace TrafficRequest {
   export type AsObject = {
+    destination: string,
     dataIn: Uint8Array | string,
     eof: boolean,
   }

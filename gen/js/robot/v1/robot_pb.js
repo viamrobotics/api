@@ -1337,8 +1337,9 @@ proto.viam.robot.v1.TrafficRequest.prototype.toObject = function(opt_includeInst
  */
 proto.viam.robot.v1.TrafficRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
+    destination: jspb.Message.getFieldWithDefault(msg, 1, ""),
     dataIn: msg.getDataIn_asB64(),
-    eof: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+    eof: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -1376,10 +1377,14 @@ proto.viam.robot.v1.TrafficRequest.deserializeBinaryFromReader = function(msg, r
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDestination(value);
+      break;
+    case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setDataIn(value);
       break;
-    case 2:
+    case 3:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setEof(value);
       break;
@@ -1412,17 +1417,24 @@ proto.viam.robot.v1.TrafficRequest.prototype.serializeBinary = function() {
  */
 proto.viam.robot.v1.TrafficRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getDestination();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
   f = message.getDataIn_asU8();
   if (f.length > 0) {
     writer.writeBytes(
-      1,
+      2,
       f
     );
   }
   f = message.getEof();
   if (f) {
     writer.writeBool(
-      2,
+      3,
       f
     );
   }
@@ -1430,16 +1442,34 @@ proto.viam.robot.v1.TrafficRequest.serializeBinaryToWriter = function(message, w
 
 
 /**
- * optional bytes data_in = 1;
+ * optional string destination = 1;
  * @return {string}
  */
-proto.viam.robot.v1.TrafficRequest.prototype.getDataIn = function() {
+proto.viam.robot.v1.TrafficRequest.prototype.getDestination = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * optional bytes data_in = 1;
+ * @param {string} value
+ * @return {!proto.viam.robot.v1.TrafficRequest} returns this
+ */
+proto.viam.robot.v1.TrafficRequest.prototype.setDestination = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional bytes data_in = 2;
+ * @return {string}
+ */
+proto.viam.robot.v1.TrafficRequest.prototype.getDataIn = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * optional bytes data_in = 2;
  * This is a type-conversion wrapper around `getDataIn()`
  * @return {string}
  */
@@ -1450,7 +1480,7 @@ proto.viam.robot.v1.TrafficRequest.prototype.getDataIn_asB64 = function() {
 
 
 /**
- * optional bytes data_in = 1;
+ * optional bytes data_in = 2;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getDataIn()`
@@ -1467,16 +1497,16 @@ proto.viam.robot.v1.TrafficRequest.prototype.getDataIn_asU8 = function() {
  * @return {!proto.viam.robot.v1.TrafficRequest} returns this
  */
 proto.viam.robot.v1.TrafficRequest.prototype.setDataIn = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
+  return jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 
 /**
- * optional bool eof = 2;
+ * optional bool eof = 3;
  * @return {boolean}
  */
 proto.viam.robot.v1.TrafficRequest.prototype.getEof = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
 };
 
 
@@ -1485,7 +1515,7 @@ proto.viam.robot.v1.TrafficRequest.prototype.getEof = function() {
  * @return {!proto.viam.robot.v1.TrafficRequest} returns this
  */
 proto.viam.robot.v1.TrafficRequest.prototype.setEof = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 2, value);
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 

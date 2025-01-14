@@ -127,8 +127,9 @@ service RobotService {
 }
 
 message TrafficRequest {
-  bytes data_in = 1;
-  bool eof = 2;
+  string destination = 1;
+  bytes data_in = 2;
+  bool eof = 3;
 }
 
 message TrafficResponse {
