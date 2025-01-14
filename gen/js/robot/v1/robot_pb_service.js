@@ -208,6 +208,15 @@ RobotService.GetVersion = {
   responseType: robot_v1_robot_pb.GetVersionResponse
 };
 
+RobotService.Traffic = {
+  methodName: "Traffic",
+  service: RobotService,
+  requestStream: true,
+  responseStream: true,
+  requestType: robot_v1_robot_pb.TrafficRequest,
+  responseType: robot_v1_robot_pb.TrafficResponse
+};
+
 exports.RobotService = RobotService;
 
 function RobotServiceClient(serviceHost, options) {
@@ -900,6 +909,51 @@ RobotServiceClient.prototype.getVersion = function getVersion(requestMessage, me
   return {
     cancel: function () {
       callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.traffic = function traffic(metadata) {
+  var listeners = {
+    data: [],
+    end: [],
+    status: []
+  };
+  var client = grpc.client(RobotService.Traffic, {
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport
+  });
+  client.onEnd(function (status, statusMessage, trailers) {
+    listeners.status.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners.end.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners = null;
+  });
+  client.onMessage(function (message) {
+    listeners.data.forEach(function (handler) {
+      handler(message);
+    })
+  });
+  client.start(metadata);
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    write: function (requestMessage) {
+      client.send(requestMessage);
+      return this;
+    },
+    end: function () {
+      client.finishSend();
+    },
+    cancel: function () {
+      listeners = null;
       client.close();
     }
   };
