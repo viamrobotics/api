@@ -208,13 +208,13 @@ RobotService.GetVersion = {
   responseType: robot_v1_robot_pb.GetVersionResponse
 };
 
-RobotService.Traffic = {
-  methodName: "Traffic",
+RobotService.Tunnel = {
+  methodName: "Tunnel",
   service: RobotService,
   requestStream: true,
   responseStream: true,
-  requestType: robot_v1_robot_pb.TrafficRequest,
-  responseType: robot_v1_robot_pb.TrafficResponse
+  requestType: robot_v1_robot_pb.TunnelRequest,
+  responseType: robot_v1_robot_pb.TunnelResponse
 };
 
 exports.RobotService = RobotService;
@@ -914,13 +914,13 @@ RobotServiceClient.prototype.getVersion = function getVersion(requestMessage, me
   };
 };
 
-RobotServiceClient.prototype.traffic = function traffic(metadata) {
+RobotServiceClient.prototype.tunnel = function tunnel(metadata) {
   var listeners = {
     data: [],
     end: [],
     status: []
   };
-  var client = grpc.client(RobotService.Traffic, {
+  var client = grpc.client(RobotService.Tunnel, {
     host: this.serviceHost,
     metadata: metadata,
     transport: this.options.transport

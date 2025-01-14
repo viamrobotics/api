@@ -122,17 +122,17 @@ service RobotService {
     option (google.api.http) = {get: "/viam/api/v1/version"};
   }
 
-  // Traffic traffics.
-  rpc Traffic(stream TrafficRequest) returns (stream TrafficResponse);
+  // Tunnel Tunnels.
+  rpc Tunnel(stream TunnelRequest) returns (stream TunnelResponse);
 }
 
-message TrafficRequest {
+message TunnelRequest {
   string destination = 1;
   bytes data_in = 2;
   bool eof = 3;
 }
 
-message TrafficResponse {
+message TunnelResponse {
   bytes data_out = 1;
   bool eof = 2;
 }
