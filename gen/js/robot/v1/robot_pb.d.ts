@@ -9,8 +9,8 @@ import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/stru
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class TunnelRequest extends jspb.Message {
-  getDestination(): string;
-  setDestination(value: string): void;
+  getDestinationPort(): number;
+  setDestinationPort(value: number): void;
 
   getDataIn(): Uint8Array | string;
   getDataIn_asU8(): Uint8Array;
@@ -32,7 +32,7 @@ export class TunnelRequest extends jspb.Message {
 
 export namespace TunnelRequest {
   export type AsObject = {
-    destination: string,
+    destinationPort: number,
     dataIn: Uint8Array | string,
     eof: boolean,
   }
