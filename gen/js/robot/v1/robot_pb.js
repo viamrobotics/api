@@ -1337,7 +1337,7 @@ proto.viam.robot.v1.TunnelRequest.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.robot.v1.TunnelRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    destination: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    destinationPort: jspb.Message.getFieldWithDefault(msg, 1, 0),
     dataIn: msg.getDataIn_asB64(),
     eof: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
@@ -1377,8 +1377,8 @@ proto.viam.robot.v1.TunnelRequest.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setDestination(value);
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setDestinationPort(value);
       break;
     case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
@@ -1417,9 +1417,9 @@ proto.viam.robot.v1.TunnelRequest.prototype.serializeBinary = function() {
  */
 proto.viam.robot.v1.TunnelRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getDestination();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getDestinationPort();
+  if (f !== 0) {
+    writer.writeUint32(
       1,
       f
     );
@@ -1442,20 +1442,20 @@ proto.viam.robot.v1.TunnelRequest.serializeBinaryToWriter = function(message, wr
 
 
 /**
- * optional string destination = 1;
- * @return {string}
+ * optional uint32 destination_port = 1;
+ * @return {number}
  */
-proto.viam.robot.v1.TunnelRequest.prototype.getDestination = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.viam.robot.v1.TunnelRequest.prototype.getDestinationPort = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.viam.robot.v1.TunnelRequest} returns this
  */
-proto.viam.robot.v1.TunnelRequest.prototype.setDestination = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.viam.robot.v1.TunnelRequest.prototype.setDestinationPort = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 

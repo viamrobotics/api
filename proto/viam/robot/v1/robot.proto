@@ -127,7 +127,7 @@ service RobotService {
 }
 
 message TunnelRequest {
-  string destination = 1;
+  uint32 destination_port = 1;
   bytes data_in = 2;
   bool eof = 3;
 }
