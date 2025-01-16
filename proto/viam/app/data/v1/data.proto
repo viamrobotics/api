@@ -224,6 +224,7 @@ message TabularDataByMQLRequest {
   // document is one stage in the pipeline. The pipeline is run on the "sensorData.readings"
   // namespace, which holds the Viam organization's tabular data.
   repeated bytes mql_binary = 3;
+  optional bool use_recent_data = 4;
 
   reserved 2;
   reserved "mql_query";
