@@ -12,13 +12,10 @@ export class TunnelRequest extends jspb.Message {
   getDestinationPort(): number;
   setDestinationPort(value: number): void;
 
-  getDataIn(): Uint8Array | string;
-  getDataIn_asU8(): Uint8Array;
-  getDataIn_asB64(): string;
-  setDataIn(value: Uint8Array | string): void;
-
-  getEof(): boolean;
-  setEof(value: boolean): void;
+  getData(): Uint8Array | string;
+  getData_asU8(): Uint8Array;
+  getData_asB64(): string;
+  setData(value: Uint8Array | string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TunnelRequest.AsObject;
@@ -33,19 +30,15 @@ export class TunnelRequest extends jspb.Message {
 export namespace TunnelRequest {
   export type AsObject = {
     destinationPort: number,
-    dataIn: Uint8Array | string,
-    eof: boolean,
+    data: Uint8Array | string,
   }
 }
 
 export class TunnelResponse extends jspb.Message {
-  getDataOut(): Uint8Array | string;
-  getDataOut_asU8(): Uint8Array;
-  getDataOut_asB64(): string;
-  setDataOut(value: Uint8Array | string): void;
-
-  getEof(): boolean;
-  setEof(value: boolean): void;
+  getData(): Uint8Array | string;
+  getData_asU8(): Uint8Array;
+  getData_asB64(): string;
+  setData(value: Uint8Array | string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TunnelResponse.AsObject;
@@ -59,8 +52,7 @@ export class TunnelResponse extends jspb.Message {
 
 export namespace TunnelResponse {
   export type AsObject = {
-    dataOut: Uint8Array | string,
-    eof: boolean,
+    data: Uint8Array | string,
   }
 }
 
