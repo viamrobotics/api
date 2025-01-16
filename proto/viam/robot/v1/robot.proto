@@ -128,13 +128,11 @@ service RobotService {
 
 message TunnelRequest {
   uint32 destination_port = 1;
-  bytes data_in = 2;
-  bool eof = 3;
+  bytes data = 2;
 }
 
 message TunnelResponse {
-  bytes data_out = 1;
-  bool eof = 2;
+  bytes data = 1;
 }
 
 message FrameSystemConfig {

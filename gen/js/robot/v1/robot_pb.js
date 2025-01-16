@@ -1338,8 +1338,7 @@ proto.viam.robot.v1.TunnelRequest.prototype.toObject = function(opt_includeInsta
 proto.viam.robot.v1.TunnelRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     destinationPort: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    dataIn: msg.getDataIn_asB64(),
-    eof: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    data: msg.getData_asB64()
   };
 
   if (includeInstance) {
@@ -1382,11 +1381,7 @@ proto.viam.robot.v1.TunnelRequest.deserializeBinaryFromReader = function(msg, re
       break;
     case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setDataIn(value);
-      break;
-    case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setEof(value);
+      msg.setData(value);
       break;
     default:
       reader.skipField();
@@ -1424,17 +1419,10 @@ proto.viam.robot.v1.TunnelRequest.serializeBinaryToWriter = function(message, wr
       f
     );
   }
-  f = message.getDataIn_asU8();
+  f = message.getData_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       2,
-      f
-    );
-  }
-  f = message.getEof();
-  if (f) {
-    writer.writeBool(
-      3,
       f
     );
   }
@@ -1460,35 +1448,35 @@ proto.viam.robot.v1.TunnelRequest.prototype.setDestinationPort = function(value)
 
 
 /**
- * optional bytes data_in = 2;
+ * optional bytes data = 2;
  * @return {string}
  */
-proto.viam.robot.v1.TunnelRequest.prototype.getDataIn = function() {
+proto.viam.robot.v1.TunnelRequest.prototype.getData = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * optional bytes data_in = 2;
- * This is a type-conversion wrapper around `getDataIn()`
+ * optional bytes data = 2;
+ * This is a type-conversion wrapper around `getData()`
  * @return {string}
  */
-proto.viam.robot.v1.TunnelRequest.prototype.getDataIn_asB64 = function() {
+proto.viam.robot.v1.TunnelRequest.prototype.getData_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getDataIn()));
+      this.getData()));
 };
 
 
 /**
- * optional bytes data_in = 2;
+ * optional bytes data = 2;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getDataIn()`
+ * This is a type-conversion wrapper around `getData()`
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.TunnelRequest.prototype.getDataIn_asU8 = function() {
+proto.viam.robot.v1.TunnelRequest.prototype.getData_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getDataIn()));
+      this.getData()));
 };
 
 
@@ -1496,26 +1484,8 @@ proto.viam.robot.v1.TunnelRequest.prototype.getDataIn_asU8 = function() {
  * @param {!(string|Uint8Array)} value
  * @return {!proto.viam.robot.v1.TunnelRequest} returns this
  */
-proto.viam.robot.v1.TunnelRequest.prototype.setDataIn = function(value) {
+proto.viam.robot.v1.TunnelRequest.prototype.setData = function(value) {
   return jspb.Message.setProto3BytesField(this, 2, value);
-};
-
-
-/**
- * optional bool eof = 3;
- * @return {boolean}
- */
-proto.viam.robot.v1.TunnelRequest.prototype.getEof = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.viam.robot.v1.TunnelRequest} returns this
- */
-proto.viam.robot.v1.TunnelRequest.prototype.setEof = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -1551,8 +1521,7 @@ proto.viam.robot.v1.TunnelResponse.prototype.toObject = function(opt_includeInst
  */
 proto.viam.robot.v1.TunnelResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dataOut: msg.getDataOut_asB64(),
-    eof: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+    data: msg.getData_asB64()
   };
 
   if (includeInstance) {
@@ -1591,11 +1560,7 @@ proto.viam.robot.v1.TunnelResponse.deserializeBinaryFromReader = function(msg, r
     switch (field) {
     case 1:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setDataOut(value);
-      break;
-    case 2:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setEof(value);
+      msg.setData(value);
       break;
     default:
       reader.skipField();
@@ -1626,53 +1591,46 @@ proto.viam.robot.v1.TunnelResponse.prototype.serializeBinary = function() {
  */
 proto.viam.robot.v1.TunnelResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getDataOut_asU8();
+  f = message.getData_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       1,
       f
     );
   }
-  f = message.getEof();
-  if (f) {
-    writer.writeBool(
-      2,
-      f
-    );
-  }
 };
 
 
 /**
- * optional bytes data_out = 1;
+ * optional bytes data = 1;
  * @return {string}
  */
-proto.viam.robot.v1.TunnelResponse.prototype.getDataOut = function() {
+proto.viam.robot.v1.TunnelResponse.prototype.getData = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * optional bytes data_out = 1;
- * This is a type-conversion wrapper around `getDataOut()`
+ * optional bytes data = 1;
+ * This is a type-conversion wrapper around `getData()`
  * @return {string}
  */
-proto.viam.robot.v1.TunnelResponse.prototype.getDataOut_asB64 = function() {
+proto.viam.robot.v1.TunnelResponse.prototype.getData_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getDataOut()));
+      this.getData()));
 };
 
 
 /**
- * optional bytes data_out = 1;
+ * optional bytes data = 1;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getDataOut()`
+ * This is a type-conversion wrapper around `getData()`
  * @return {!Uint8Array}
  */
-proto.viam.robot.v1.TunnelResponse.prototype.getDataOut_asU8 = function() {
+proto.viam.robot.v1.TunnelResponse.prototype.getData_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getDataOut()));
+      this.getData()));
 };
 
 
@@ -1680,26 +1638,8 @@ proto.viam.robot.v1.TunnelResponse.prototype.getDataOut_asU8 = function() {
  * @param {!(string|Uint8Array)} value
  * @return {!proto.viam.robot.v1.TunnelResponse} returns this
  */
-proto.viam.robot.v1.TunnelResponse.prototype.setDataOut = function(value) {
+proto.viam.robot.v1.TunnelResponse.prototype.setData = function(value) {
   return jspb.Message.setProto3BytesField(this, 1, value);
-};
-
-
-/**
- * optional bool eof = 2;
- * @return {boolean}
- */
-proto.viam.robot.v1.TunnelResponse.prototype.getEof = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.viam.robot.v1.TunnelResponse} returns this
- */
-proto.viam.robot.v1.TunnelResponse.prototype.setEof = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
