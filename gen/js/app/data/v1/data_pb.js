@@ -4239,7 +4239,8 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.toObject = function(opt
 proto.viam.app.data.v1.TabularDataByMQLRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    mqlBinaryList: msg.getMqlBinaryList_asB64()
+    mqlBinaryList: msg.getMqlBinaryList_asB64(),
+    useRecentData: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -4284,6 +4285,10 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.deserializeBinaryFromReader = fun
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.addMqlBinary(value);
       break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setUseRecentData(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -4324,6 +4329,13 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.serializeBinaryToWriter = functio
   if (f.length > 0) {
     writer.writeRepeatedBytes(
       3,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeBool(
+      4,
       f
     );
   }
@@ -4406,6 +4418,42 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.addMqlBinary = function
  */
 proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.clearMqlBinaryList = function() {
   return this.setMqlBinaryList([]);
+};
+
+
+/**
+ * optional bool use_recent_data = 4;
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.getUseRecentData = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLRequest} returns this
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.setUseRecentData = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLRequest} returns this
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.clearUseRecentData = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.hasUseRecentData = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
