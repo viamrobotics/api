@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package viam.component.button.v1;
+
+import "common/v1/common.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "go.viam.com/api/component/button/v1";
+option java_package = "com.viam.component.button.v1";
+
+// A ButtonService services buttons associated with a machine
+service ButtonService {
+  // Pushes a button
+  rpc Push(PushRequest) returns (PushResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
+    option (google.api.http) = {put: "/viam/api/v1/component/button/{name}/push"};
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/component/gripper/{name}/do_command"};
+  }
+}
+
+message PushRequest {
+  string name = 1;
+  google.protobuf.Struct extra = 99;
+}
+
+message PushResponse {}
+

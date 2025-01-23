@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package viam.component.switch.v1;
+
+import "common/v1/common.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "go.viam.com/api/component/switch/v1";
+option java_package = "com.viam.component.switch.v1";
+
+// A SwitchService services switches associated with a machine
+service SwitchService {
+  // Turns on the switch
+  rpc On(OnRequest) returns (OnResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
+    option (google.api.http) = {put: "/viam/api/v1/component/switch/{name}/on"};
+  }
+
+  // Turns off the switch
+  rpc Off(OffRequest) returns (OffResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
+    option (google.api.http) = {put: "/viam/api/v1/component/switch/{name}/off"};
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/component/gripper/{name}/do_command"};
+  }
+}
+
+message OnRequest {
+  string name = 1;
+  google.protobuf.Struct extra = 99;
+}
+
+message OnResponse {}
+
+message OffRequest {
+  string name = 1;
+  google.protobuf.Struct extra = 99;
+}
+
+message OffResponse {}
+
