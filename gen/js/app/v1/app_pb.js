@@ -22303,7 +22303,9 @@ proto.viam.app.v1.FragmentHistoryEntry.toObject = function(includeInstance, msg)
     fragment: jspb.Message.getFieldWithDefault(msg, 1, ""),
     editedOn: (f = msg.getEditedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     old: (f = msg.getOld()) && proto.viam.app.v1.Fragment.toObject(includeInstance, f),
-    editedBy: (f = msg.getEditedBy()) && proto.viam.app.v1.AuthenticatorInfo.toObject(includeInstance, f)
+    editedBy: (f = msg.getEditedBy()) && proto.viam.app.v1.AuthenticatorInfo.toObject(includeInstance, f),
+    revision: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -22358,6 +22360,15 @@ proto.viam.app.v1.FragmentHistoryEntry.deserializeBinaryFromReader = function(ms
       var value = new proto.viam.app.v1.AuthenticatorInfo;
       reader.readMessage(value,proto.viam.app.v1.AuthenticatorInfo.deserializeBinaryFromReader);
       msg.setEditedBy(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRevision(value);
+      break;
+    case 6:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setConfig(value);
       break;
     default:
       reader.skipField();
@@ -22417,6 +22428,21 @@ proto.viam.app.v1.FragmentHistoryEntry.serializeBinaryToWriter = function(messag
       4,
       f,
       proto.viam.app.v1.AuthenticatorInfo.serializeBinaryToWriter
+    );
+  }
+  f = message.getRevision();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getConfig();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -22548,6 +22574,61 @@ proto.viam.app.v1.FragmentHistoryEntry.prototype.clearEditedBy = function() {
  */
 proto.viam.app.v1.FragmentHistoryEntry.prototype.hasEditedBy = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional string revision = 5;
+ * @return {string}
+ */
+proto.viam.app.v1.FragmentHistoryEntry.prototype.getRevision = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.FragmentHistoryEntry} returns this
+ */
+proto.viam.app.v1.FragmentHistoryEntry.prototype.setRevision = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct config = 6;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.app.v1.FragmentHistoryEntry.prototype.getConfig = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.v1.FragmentHistoryEntry} returns this
+*/
+proto.viam.app.v1.FragmentHistoryEntry.prototype.setConfig = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.FragmentHistoryEntry} returns this
+ */
+proto.viam.app.v1.FragmentHistoryEntry.prototype.clearConfig = function() {
+  return this.setConfig(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.FragmentHistoryEntry.prototype.hasConfig = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
