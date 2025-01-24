@@ -13,13 +13,11 @@ option java_package = "com.viam.component.switch.v1";
 service SwitchService {
   // Turns on the switch
   rpc On(OnRequest) returns (OnResponse) {
-    option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {put: "/viam/api/v1/component/switch/{name}/on"};
   }
 
   // Turns off the switch
   rpc Off(OffRequest) returns (OffResponse) {
-    option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {put: "/viam/api/v1/component/switch/{name}/off"};
   }
 
