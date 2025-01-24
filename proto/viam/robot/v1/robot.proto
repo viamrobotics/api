@@ -45,8 +45,10 @@ service RobotService {
   }
 
   // DiscoverComponents returns the list of discovered component configurations.
+  // This API is deprecated
   rpc DiscoverComponents(DiscoverComponentsRequest) returns (DiscoverComponentsResponse) {
     option (google.api.http) = {get: "/viam/api/v1/discovery/components"};
+    option deprecated = true;
   }
 
   rpc FrameSystemConfig(FrameSystemConfigRequest) returns (FrameSystemConfigResponse) {
@@ -237,14 +239,17 @@ message GetSessionsResponse {
 }
 
 // Discovery
+// Discovery is deprecated
 
 message DiscoveryQuery {
+  option deprecated = true;
   string subtype = 1;
   string model = 2;
   google.protobuf.Struct extra = 99;
 }
 
 message Discovery {
+  option deprecated = true;
   DiscoveryQuery query = 1;
   google.protobuf.Struct results = 2;
 }
@@ -263,10 +268,12 @@ message GetModelsFromModulesResponse {
 }
 
 message DiscoverComponentsRequest {
+  option deprecated = true;
   repeated DiscoveryQuery queries = 1;
 }
 
 message DiscoverComponentsResponse {
+  option deprecated = true;
   repeated Discovery discovery = 1;
 }
 
