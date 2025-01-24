@@ -9,16 +9,23 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/component/switch/v1";
 option java_package = "com.viam.component.switch.v1";
 
-// A SwitchService services switches associated with a machine
+// A SwitchService services switches associated with a machine.
+// Switches can have multiple discrete positions - e.g. a simple
+// switch has 2 positions, but a knob could have 10 positions.
 service SwitchService {
-  // Turns on the switch
-  rpc On(OnRequest) returns (OnResponse) {
-    option (google.api.http) = {put: "/viam/api/v1/component/switch/{name}/on"};
+  // Set the position of the switch
+  rpc SetPosition(SetPositionRequest) returns (SetPositionResponse) {
+    option (google.api.http) = {put: "/viam/api/v1/component/switch/{name}/set_position"};
   }
 
-  // Turns off the switch
-  rpc Off(OffRequest) returns (OffResponse) {
-    option (google.api.http) = {put: "/viam/api/v1/component/switch/{name}/off"};
+  // Get the position of the switch
+  rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {
+    option (google.api.http) = {put: "/viam/api/v1/component/switch/{name}/get_position"};
+  }
+
+  // Get the number of positions that the switch supports
+  rpc GetNumberOfPositions(GetNumberOfPositionsRequest) returns (GetNumberOfPositionsResponse) {
+    option (google.api.http) = {put: "/viam/api/v1/component/switch/{name}/get_number_of_positions"};
   }
 
   // DoCommand sends/receives arbitrary commands
@@ -27,17 +34,29 @@ service SwitchService {
   }
 }
 
-message OnRequest {
+message SetPositionRequest {
+  string name = 1;
+  uint32 position = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message SetPositionResponse {}
+
+message GetPositionRequest {
   string name = 1;
   google.protobuf.Struct extra = 99;
 }
 
-message OnResponse {}
+message GetPositionResponse {
+  uint32 position = 1;
+}
 
-message OffRequest {
+message GetNumberOfPositionsRequest {
   string name = 1;
   google.protobuf.Struct extra = 99;
 }
 
-message OffResponse {}
+message GetNumberOfPositionsResponse {
+  uint32 number_of_positions = 1;
+}
 
