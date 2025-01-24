@@ -820,7 +820,7 @@ message FragmentHistoryEntry {
   google.protobuf.Timestamp edited_on = 2 [(tagger.v1.tags) = "bson:\"edited_on\" json:\"edited_on\""];
   Fragment old = 3 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
   AuthenticatorInfo edited_by = 4 [(tagger.v1.tags) = "bson:\"edited_by\" json:\"edited_by\""];
-  string revision = 5;
+  string revision = 5; [(tagger.v1.tags) = "bson:\"revision\" json:\"revision\""];
   google.protobuf.Struct config = 6 [(tagger.v1.tags) = "bson:\"fragment\" json:\"fragment\""];
 }
 
