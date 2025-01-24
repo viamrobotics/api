@@ -32,7 +32,9 @@ type RobotServiceClient interface {
 	BlockForOperation(ctx context.Context, in *BlockForOperationRequest, opts ...grpc.CallOption) (*BlockForOperationResponse, error)
 	// GetModelsFromModules returns the list of models supported in modules on the machine.
 	GetModelsFromModules(ctx context.Context, in *GetModelsFromModulesRequest, opts ...grpc.CallOption) (*GetModelsFromModulesResponse, error)
+	// Deprecated: Do not use.
 	// DiscoverComponents returns the list of discovered component configurations.
+	// This API is deprecated
 	DiscoverComponents(ctx context.Context, in *DiscoverComponentsRequest, opts ...grpc.CallOption) (*DiscoverComponentsResponse, error)
 	FrameSystemConfig(ctx context.Context, in *FrameSystemConfigRequest, opts ...grpc.CallOption) (*FrameSystemConfigResponse, error)
 	TransformPose(ctx context.Context, in *TransformPoseRequest, opts ...grpc.CallOption) (*TransformPoseResponse, error)
@@ -136,6 +138,7 @@ func (c *robotServiceClient) GetModelsFromModules(ctx context.Context, in *GetMo
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *robotServiceClient) DiscoverComponents(ctx context.Context, in *DiscoverComponentsRequest, opts ...grpc.CallOption) (*DiscoverComponentsResponse, error) {
 	out := new(DiscoverComponentsResponse)
 	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/DiscoverComponents", in, out, opts...)
@@ -310,7 +313,9 @@ type RobotServiceServer interface {
 	BlockForOperation(context.Context, *BlockForOperationRequest) (*BlockForOperationResponse, error)
 	// GetModelsFromModules returns the list of models supported in modules on the machine.
 	GetModelsFromModules(context.Context, *GetModelsFromModulesRequest) (*GetModelsFromModulesResponse, error)
+	// Deprecated: Do not use.
 	// DiscoverComponents returns the list of discovered component configurations.
+	// This API is deprecated
 	DiscoverComponents(context.Context, *DiscoverComponentsRequest) (*DiscoverComponentsResponse, error)
 	FrameSystemConfig(context.Context, *FrameSystemConfigRequest) (*FrameSystemConfigResponse, error)
 	TransformPose(context.Context, *TransformPoseRequest) (*TransformPoseResponse, error)
