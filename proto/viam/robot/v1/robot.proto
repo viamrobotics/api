@@ -122,7 +122,7 @@ service RobotService {
     option (google.api.http) = {get: "/viam/api/v1/version"};
   }
 
-  // Tunnel Tunnels.
+  // Tunnel tunnels traffic to the destination port of the robot server.
   rpc Tunnel(stream TunnelRequest) returns (stream TunnelResponse);
 }
 

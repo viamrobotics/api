@@ -65,7 +65,7 @@ type RobotServiceClient interface {
 	GetMachineStatus(ctx context.Context, in *GetMachineStatusRequest, opts ...grpc.CallOption) (*GetMachineStatusResponse, error)
 	// GetVersion returns version information about the robot.
 	GetVersion(ctx context.Context, in *GetVersionRequest, opts ...grpc.CallOption) (*GetVersionResponse, error)
-	// Tunnel Tunnels.
+	// Tunnel tunnels traffic to the destination port of the robot server.
 	Tunnel(ctx context.Context, opts ...grpc.CallOption) (RobotService_TunnelClient, error)
 }
 
@@ -379,7 +379,7 @@ type RobotServiceServer interface {
 	GetMachineStatus(context.Context, *GetMachineStatusRequest) (*GetMachineStatusResponse, error)
 	// GetVersion returns version information about the robot.
 	GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error)
-	// Tunnel Tunnels.
+	// Tunnel tunnels traffic to the destination port of the robot server.
 	Tunnel(RobotService_TunnelServer) error
 	mustEmbedUnimplementedRobotServiceServer()
 }
