@@ -27,10 +27,13 @@ type EndUserServiceClient interface {
 	IsLegalAccepted(ctx context.Context, in *IsLegalAcceptedRequest, opts ...grpc.CallOption) (*IsLegalAcceptedResponse, error)
 	// Marks that the specified user has accepted end user license agreements.
 	AcceptLegal(ctx context.Context, in *AcceptLegalRequest, opts ...grpc.CallOption) (*AcceptLegalResponse, error)
+	// Deprecated: Do not use.
 	// Allows users to register third party auth applications using Viam linked to the indicated organization
 	RegisterAuthApplication(ctx context.Context, in *RegisterAuthApplicationRequest, opts ...grpc.CallOption) (*RegisterAuthApplicationResponse, error)
+	// Deprecated: Do not use.
 	// Allows users to update their third party auth applications
 	UpdateAuthApplication(ctx context.Context, in *UpdateAuthApplicationRequest, opts ...grpc.CallOption) (*UpdateAuthApplicationResponse, error)
+	// Deprecated: Do not use.
 	// Allows users to get the config for their third party auth applications
 	GetAuthApplication(ctx context.Context, in *GetAuthApplicationRequest, opts ...grpc.CallOption) (*GetAuthApplicationResponse, error)
 }
@@ -61,6 +64,7 @@ func (c *endUserServiceClient) AcceptLegal(ctx context.Context, in *AcceptLegalR
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *endUserServiceClient) RegisterAuthApplication(ctx context.Context, in *RegisterAuthApplicationRequest, opts ...grpc.CallOption) (*RegisterAuthApplicationResponse, error) {
 	out := new(RegisterAuthApplicationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.EndUserService/RegisterAuthApplication", in, out, opts...)
@@ -70,6 +74,7 @@ func (c *endUserServiceClient) RegisterAuthApplication(ctx context.Context, in *
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *endUserServiceClient) UpdateAuthApplication(ctx context.Context, in *UpdateAuthApplicationRequest, opts ...grpc.CallOption) (*UpdateAuthApplicationResponse, error) {
 	out := new(UpdateAuthApplicationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.EndUserService/UpdateAuthApplication", in, out, opts...)
@@ -79,6 +84,7 @@ func (c *endUserServiceClient) UpdateAuthApplication(ctx context.Context, in *Up
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *endUserServiceClient) GetAuthApplication(ctx context.Context, in *GetAuthApplicationRequest, opts ...grpc.CallOption) (*GetAuthApplicationResponse, error) {
 	out := new(GetAuthApplicationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.EndUserService/GetAuthApplication", in, out, opts...)
@@ -97,10 +103,13 @@ type EndUserServiceServer interface {
 	IsLegalAccepted(context.Context, *IsLegalAcceptedRequest) (*IsLegalAcceptedResponse, error)
 	// Marks that the specified user has accepted end user license agreements.
 	AcceptLegal(context.Context, *AcceptLegalRequest) (*AcceptLegalResponse, error)
+	// Deprecated: Do not use.
 	// Allows users to register third party auth applications using Viam linked to the indicated organization
 	RegisterAuthApplication(context.Context, *RegisterAuthApplicationRequest) (*RegisterAuthApplicationResponse, error)
+	// Deprecated: Do not use.
 	// Allows users to update their third party auth applications
 	UpdateAuthApplication(context.Context, *UpdateAuthApplicationRequest) (*UpdateAuthApplicationResponse, error)
+	// Deprecated: Do not use.
 	// Allows users to get the config for their third party auth applications
 	GetAuthApplication(context.Context, *GetAuthApplicationRequest) (*GetAuthApplicationResponse, error)
 	mustEmbedUnimplementedEndUserServiceServer()
