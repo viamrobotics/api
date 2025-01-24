@@ -8,6 +8,54 @@ import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/du
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
+export class TunnelRequest extends jspb.Message {
+  getDestinationPort(): number;
+  setDestinationPort(value: number): void;
+
+  getData(): Uint8Array | string;
+  getData_asU8(): Uint8Array;
+  getData_asB64(): string;
+  setData(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TunnelRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TunnelRequest): TunnelRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TunnelRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TunnelRequest;
+  static deserializeBinaryFromReader(message: TunnelRequest, reader: jspb.BinaryReader): TunnelRequest;
+}
+
+export namespace TunnelRequest {
+  export type AsObject = {
+    destinationPort: number,
+    data: Uint8Array | string,
+  }
+}
+
+export class TunnelResponse extends jspb.Message {
+  getData(): Uint8Array | string;
+  getData_asU8(): Uint8Array;
+  getData_asB64(): string;
+  setData(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TunnelResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TunnelResponse): TunnelResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TunnelResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TunnelResponse;
+  static deserializeBinaryFromReader(message: TunnelResponse, reader: jspb.BinaryReader): TunnelResponse;
+}
+
+export namespace TunnelResponse {
+  export type AsObject = {
+    data: Uint8Array | string,
+  }
+}
+
 export class FrameSystemConfig extends jspb.Message {
   hasFrame(): boolean;
   clearFrame(): void;

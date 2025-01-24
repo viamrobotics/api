@@ -65,6 +65,8 @@ type RobotServiceClient interface {
 	GetMachineStatus(ctx context.Context, in *GetMachineStatusRequest, opts ...grpc.CallOption) (*GetMachineStatusResponse, error)
 	// GetVersion returns version information about the robot.
 	GetVersion(ctx context.Context, in *GetVersionRequest, opts ...grpc.CallOption) (*GetVersionResponse, error)
+	// Tunnel tunnels traffic to the destination port of the robot server.
+	Tunnel(ctx context.Context, opts ...grpc.CallOption) (RobotService_TunnelClient, error)
 }
 
 type robotServiceClient struct {
@@ -299,6 +301,37 @@ func (c *robotServiceClient) GetVersion(ctx context.Context, in *GetVersionReque
 	return out, nil
 }
 
+func (c *robotServiceClient) Tunnel(ctx context.Context, opts ...grpc.CallOption) (RobotService_TunnelClient, error) {
+	stream, err := c.cc.NewStream(ctx, &RobotService_ServiceDesc.Streams[1], "/viam.robot.v1.RobotService/Tunnel", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &robotServiceTunnelClient{stream}
+	return x, nil
+}
+
+type RobotService_TunnelClient interface {
+	Send(*TunnelRequest) error
+	Recv() (*TunnelResponse, error)
+	grpc.ClientStream
+}
+
+type robotServiceTunnelClient struct {
+	grpc.ClientStream
+}
+
+func (x *robotServiceTunnelClient) Send(m *TunnelRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *robotServiceTunnelClient) Recv() (*TunnelResponse, error) {
+	m := new(TunnelResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // RobotServiceServer is the server API for RobotService service.
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
@@ -346,6 +379,8 @@ type RobotServiceServer interface {
 	GetMachineStatus(context.Context, *GetMachineStatusRequest) (*GetMachineStatusResponse, error)
 	// GetVersion returns version information about the robot.
 	GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error)
+	// Tunnel tunnels traffic to the destination port of the robot server.
+	Tunnel(RobotService_TunnelServer) error
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -418,6 +453,9 @@ func (UnimplementedRobotServiceServer) GetMachineStatus(context.Context, *GetMac
 }
 func (UnimplementedRobotServiceServer) GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetVersion not implemented")
+}
+func (UnimplementedRobotServiceServer) Tunnel(RobotService_TunnelServer) error {
+	return status.Errorf(codes.Unimplemented, "method Tunnel not implemented")
 }
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
@@ -831,6 +869,32 @@ func _RobotService_GetVersion_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_Tunnel_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(RobotServiceServer).Tunnel(&robotServiceTunnelServer{stream})
+}
+
+type RobotService_TunnelServer interface {
+	Send(*TunnelResponse) error
+	Recv() (*TunnelRequest, error)
+	grpc.ServerStream
+}
+
+type robotServiceTunnelServer struct {
+	grpc.ServerStream
+}
+
+func (x *robotServiceTunnelServer) Send(m *TunnelResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *robotServiceTunnelServer) Recv() (*TunnelRequest, error) {
+	m := new(TunnelRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // RobotService_ServiceDesc is the grpc.ServiceDesc for RobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -928,6 +992,12 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 			StreamName:    "StreamStatus",
 			Handler:       _RobotService_StreamStatus_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "Tunnel",
+			Handler:       _RobotService_Tunnel_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
 		},
 	},
 	Metadata: "robot/v1/robot.proto",
