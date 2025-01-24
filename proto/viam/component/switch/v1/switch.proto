@@ -59,4 +59,3 @@ message GetNumberOfPositionsRequest {
 message GetNumberOfPositionsResponse {
   uint32 number_of_positions = 1;
 }
-

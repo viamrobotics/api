@@ -28,4 +28,3 @@ message PushRequest {
 }
 
 message PushResponse {}
-
