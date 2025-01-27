@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js');
 goog.object.extend(proto, app_data_v1_data_pb);
@@ -95,10 +101,10 @@ proto.viam.app.mlinference.v1.GetInferenceRequest.prototype.toObject = function(
  */
 proto.viam.app.mlinference.v1.GetInferenceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    registryItemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    registryItemVersion: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    binaryId: (f = msg.getBinaryId()) && app_data_v1_data_pb.BinaryID.toObject(includeInstance, f),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 4, "")
+registryItemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+registryItemVersion: jspb.Message.getFieldWithDefault(msg, 2, ""),
+binaryId: (f = msg.getBinaryId()) && app_data_v1_data_pb.BinaryID.toObject(includeInstance, f),
+organizationId: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -336,8 +342,8 @@ proto.viam.app.mlinference.v1.GetInferenceResponse.prototype.toObject = function
  */
 proto.viam.app.mlinference.v1.GetInferenceResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    outputTensors: (f = msg.getOutputTensors()) && service_mlmodel_v1_mlmodel_pb.FlatTensors.toObject(includeInstance, f),
-    annotations: (f = msg.getAnnotations()) && app_data_v1_data_pb.Annotations.toObject(includeInstance, f)
+outputTensors: (f = msg.getOutputTensors()) && service_mlmodel_v1_mlmodel_pb.FlatTensors.toObject(includeInstance, f),
+annotations: (f = msg.getAnnotations()) && app_data_v1_data_pb.Annotations.toObject(includeInstance, f)
   };
 
   if (includeInstance) {

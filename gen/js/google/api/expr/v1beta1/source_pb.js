@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 goog.exportSymbol('proto.google.api.expr.v1beta1.SourceInfo', null, global);
 goog.exportSymbol('proto.google.api.expr.v1beta1.SourcePosition', null, global);
@@ -98,9 +104,9 @@ proto.google.api.expr.v1beta1.SourceInfo.prototype.toObject = function(opt_inclu
  */
 proto.google.api.expr.v1beta1.SourceInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    location: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    lineOffsetsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    positionsMap: (f = msg.getPositionsMap()) ? f.toObject(includeInstance, undefined) : []
+location: jspb.Message.getFieldWithDefault(msg, 2, ""),
+lineOffsetsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+positionsMap: (f = msg.getPositionsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -277,7 +283,8 @@ proto.google.api.expr.v1beta1.SourceInfo.prototype.getPositionsMap = function(op
  */
 proto.google.api.expr.v1beta1.SourceInfo.prototype.clearPositionsMap = function() {
   this.getPositionsMap().clear();
-  return this;};
+  return this;
+};
 
 
 
@@ -312,10 +319,10 @@ proto.google.api.expr.v1beta1.SourcePosition.prototype.toObject = function(opt_i
  */
 proto.google.api.expr.v1beta1.SourcePosition.toObject = function(includeInstance, msg) {
   var f, obj = {
-    location: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    offset: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    line: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    column: jspb.Message.getFieldWithDefault(msg, 4, 0)
+location: jspb.Message.getFieldWithDefault(msg, 1, ""),
+offset: jspb.Message.getFieldWithDefault(msg, 2, 0),
+line: jspb.Message.getFieldWithDefault(msg, 3, 0),
+column: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
