@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 goog.exportSymbol('proto.google.bytestream.QueryWriteStatusRequest', null, global);
 goog.exportSymbol('proto.google.bytestream.QueryWriteStatusResponse', null, global);
@@ -179,9 +185,9 @@ proto.google.bytestream.ReadRequest.prototype.toObject = function(opt_includeIns
  */
 proto.google.bytestream.ReadRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    resourceName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    readOffset: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    readLimit: jspb.Message.getFieldWithDefault(msg, 3, 0)
+resourceName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+readOffset: jspb.Message.getFieldWithDefault(msg, 2, 0),
+readLimit: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -369,7 +375,7 @@ proto.google.bytestream.ReadResponse.prototype.toObject = function(opt_includeIn
  */
 proto.google.bytestream.ReadResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    data: msg.getData_asB64()
+data: msg.getData_asB64()
   };
 
   if (includeInstance) {
@@ -523,10 +529,10 @@ proto.google.bytestream.WriteRequest.prototype.toObject = function(opt_includeIn
  */
 proto.google.bytestream.WriteRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    resourceName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    writeOffset: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    finishWrite: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    data: msg.getData_asB64()
+resourceName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+writeOffset: jspb.Message.getFieldWithDefault(msg, 2, 0),
+finishWrite: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+data: msg.getData_asB64()
   };
 
   if (includeInstance) {
@@ -767,7 +773,7 @@ proto.google.bytestream.WriteResponse.prototype.toObject = function(opt_includeI
  */
 proto.google.bytestream.WriteResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    committedSize: jspb.Message.getFieldWithDefault(msg, 1, 0)
+committedSize: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -897,7 +903,7 @@ proto.google.bytestream.QueryWriteStatusRequest.prototype.toObject = function(op
  */
 proto.google.bytestream.QueryWriteStatusRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    resourceName: jspb.Message.getFieldWithDefault(msg, 1, "")
+resourceName: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1027,8 +1033,8 @@ proto.google.bytestream.QueryWriteStatusResponse.prototype.toObject = function(o
  */
 proto.google.bytestream.QueryWriteStatusResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    committedSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    complete: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+committedSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
+complete: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {

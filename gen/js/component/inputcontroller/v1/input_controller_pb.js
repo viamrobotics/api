@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -297,8 +303,8 @@ proto.viam.component.inputcontroller.v1.GetControlsRequest.prototype.toObject = 
  */
 proto.viam.component.inputcontroller.v1.GetControlsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    controller: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+controller: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -485,7 +491,7 @@ proto.viam.component.inputcontroller.v1.GetControlsResponse.prototype.toObject =
  */
 proto.viam.component.inputcontroller.v1.GetControlsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    controlsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+controlsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -634,8 +640,8 @@ proto.viam.component.inputcontroller.v1.GetEventsRequest.prototype.toObject = fu
  */
 proto.viam.component.inputcontroller.v1.GetEventsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    controller: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+controller: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -822,7 +828,7 @@ proto.viam.component.inputcontroller.v1.GetEventsResponse.prototype.toObject = f
  */
 proto.viam.component.inputcontroller.v1.GetEventsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    eventsList: jspb.Message.toObjectList(msg.getEventsList(),
+eventsList: jspb.Message.toObjectList(msg.getEventsList(),
     proto.viam.component.inputcontroller.v1.Event.toObject, includeInstance)
   };
 
@@ -975,9 +981,9 @@ proto.viam.component.inputcontroller.v1.TriggerEventRequest.prototype.toObject =
  */
 proto.viam.component.inputcontroller.v1.TriggerEventRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    controller: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    event: (f = msg.getEvent()) && proto.viam.component.inputcontroller.v1.Event.toObject(includeInstance, f),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+controller: jspb.Message.getFieldWithDefault(msg, 1, ""),
+event: (f = msg.getEvent()) && proto.viam.component.inputcontroller.v1.Event.toObject(includeInstance, f),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1308,10 +1314,10 @@ proto.viam.component.inputcontroller.v1.Event.prototype.toObject = function(opt_
  */
 proto.viam.component.inputcontroller.v1.Event.toObject = function(includeInstance, msg) {
   var f, obj = {
-    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    event: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    control: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    value: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
+time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+event: jspb.Message.getFieldWithDefault(msg, 2, ""),
+control: jspb.Message.getFieldWithDefault(msg, 3, ""),
+value: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -1556,10 +1562,10 @@ proto.viam.component.inputcontroller.v1.StreamEventsRequest.prototype.toObject =
  */
 proto.viam.component.inputcontroller.v1.StreamEventsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    controller: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    eventsList: jspb.Message.toObjectList(msg.getEventsList(),
+controller: jspb.Message.getFieldWithDefault(msg, 1, ""),
+eventsList: jspb.Message.toObjectList(msg.getEventsList(),
     proto.viam.component.inputcontroller.v1.StreamEventsRequest.Events.toObject, includeInstance),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1704,9 +1710,9 @@ proto.viam.component.inputcontroller.v1.StreamEventsRequest.Events.prototype.toO
  */
 proto.viam.component.inputcontroller.v1.StreamEventsRequest.Events.toObject = function(includeInstance, msg) {
   var f, obj = {
-    control: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    eventsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    cancelledEventsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+control: jspb.Message.getFieldWithDefault(msg, 1, ""),
+eventsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+cancelledEventsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2025,7 +2031,7 @@ proto.viam.component.inputcontroller.v1.StreamEventsResponse.prototype.toObject 
  */
 proto.viam.component.inputcontroller.v1.StreamEventsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    event: (f = msg.getEvent()) && proto.viam.component.inputcontroller.v1.Event.toObject(includeInstance, f)
+event: (f = msg.getEvent()) && proto.viam.component.inputcontroller.v1.Event.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2183,7 +2189,7 @@ proto.viam.component.inputcontroller.v1.Status.prototype.toObject = function(opt
  */
 proto.viam.component.inputcontroller.v1.Status.toObject = function(includeInstance, msg) {
   var f, obj = {
-    eventsList: jspb.Message.toObjectList(msg.getEventsList(),
+eventsList: jspb.Message.toObjectList(msg.getEventsList(),
     proto.viam.component.inputcontroller.v1.Event.toObject, includeInstance)
   };
 

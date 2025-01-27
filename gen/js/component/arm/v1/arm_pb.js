@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -427,8 +433,8 @@ proto.viam.component.arm.v1.GetEndPositionRequest.prototype.toObject = function(
  */
 proto.viam.component.arm.v1.GetEndPositionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -608,7 +614,7 @@ proto.viam.component.arm.v1.GetEndPositionResponse.prototype.toObject = function
  */
 proto.viam.component.arm.v1.GetEndPositionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pose: (f = msg.getPose()) && common_v1_common_pb.Pose.toObject(includeInstance, f)
+pose: (f = msg.getPose()) && common_v1_common_pb.Pose.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -766,7 +772,7 @@ proto.viam.component.arm.v1.JointPositions.prototype.toObject = function(opt_inc
  */
 proto.viam.component.arm.v1.JointPositions.toObject = function(includeInstance, msg) {
   var f, obj = {
-    valuesList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 1)) == null ? undefined : f
+valuesList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -917,8 +923,8 @@ proto.viam.component.arm.v1.GetJointPositionsRequest.prototype.toObject = functi
  */
 proto.viam.component.arm.v1.GetJointPositionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1098,7 +1104,7 @@ proto.viam.component.arm.v1.GetJointPositionsResponse.prototype.toObject = funct
  */
 proto.viam.component.arm.v1.GetJointPositionsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    positions: (f = msg.getPositions()) && proto.viam.component.arm.v1.JointPositions.toObject(includeInstance, f)
+positions: (f = msg.getPositions()) && proto.viam.component.arm.v1.JointPositions.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1249,9 +1255,9 @@ proto.viam.component.arm.v1.MoveToPositionRequest.prototype.toObject = function(
  */
 proto.viam.component.arm.v1.MoveToPositionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    to: (f = msg.getTo()) && common_v1_common_pb.Pose.toObject(includeInstance, f),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+to: (f = msg.getTo()) && common_v1_common_pb.Pose.toObject(includeInstance, f),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1582,9 +1588,9 @@ proto.viam.component.arm.v1.MoveToJointPositionsRequest.prototype.toObject = fun
  */
 proto.viam.component.arm.v1.MoveToJointPositionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    positions: (f = msg.getPositions()) && proto.viam.component.arm.v1.JointPositions.toObject(includeInstance, f),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+positions: (f = msg.getPositions()) && proto.viam.component.arm.v1.JointPositions.toObject(includeInstance, f),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1922,11 +1928,11 @@ proto.viam.component.arm.v1.MoveThroughJointPositionsRequest.prototype.toObject 
  */
 proto.viam.component.arm.v1.MoveThroughJointPositionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    positionsList: jspb.Message.toObjectList(msg.getPositionsList(),
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+positionsList: jspb.Message.toObjectList(msg.getPositionsList(),
     proto.viam.component.arm.v1.JointPositions.toObject, includeInstance),
-    options: (f = msg.getOptions()) && proto.viam.component.arm.v1.MoveOptions.toObject(includeInstance, f),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+options: (f = msg.getOptions()) && proto.viam.component.arm.v1.MoveOptions.toObject(includeInstance, f),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2308,8 +2314,8 @@ proto.viam.component.arm.v1.StopRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.component.arm.v1.StopRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2590,9 +2596,9 @@ proto.viam.component.arm.v1.Status.prototype.toObject = function(opt_includeInst
  */
 proto.viam.component.arm.v1.Status.toObject = function(includeInstance, msg) {
   var f, obj = {
-    endPosition: (f = msg.getEndPosition()) && common_v1_common_pb.Pose.toObject(includeInstance, f),
-    jointPositions: (f = msg.getJointPositions()) && proto.viam.component.arm.v1.JointPositions.toObject(includeInstance, f),
-    isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+endPosition: (f = msg.getEndPosition()) && common_v1_common_pb.Pose.toObject(includeInstance, f),
+jointPositions: (f = msg.getJointPositions()) && proto.viam.component.arm.v1.JointPositions.toObject(includeInstance, f),
+isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -2822,7 +2828,7 @@ proto.viam.component.arm.v1.IsMovingRequest.prototype.toObject = function(opt_in
  */
 proto.viam.component.arm.v1.IsMovingRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2952,7 +2958,7 @@ proto.viam.component.arm.v1.IsMovingResponse.prototype.toObject = function(opt_i
  */
 proto.viam.component.arm.v1.IsMovingResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -3082,8 +3088,8 @@ proto.viam.component.arm.v1.MoveOptions.prototype.toObject = function(opt_includ
  */
 proto.viam.component.arm.v1.MoveOptions.toObject = function(includeInstance, msg) {
   var f, obj = {
-    maxVelDegsPerSec: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    maxAccDegsPerSec2: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+maxVelDegsPerSec: (f = jspb.Message.getOptionalFloatingPointField(msg, 1)) == null ? undefined : f,
+maxAccDegsPerSec2: (f = jspb.Message.getOptionalFloatingPointField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
