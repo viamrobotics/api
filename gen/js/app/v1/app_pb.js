@@ -11088,7 +11088,8 @@ proto.viam.app.v1.BillingAddress.toObject = function(includeInstance, msg) {
     addressLine2: jspb.Message.getFieldWithDefault(msg, 2, ""),
     city: jspb.Message.getFieldWithDefault(msg, 3, ""),
     state: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    zipcode: jspb.Message.getFieldWithDefault(msg, 5, "")
+    zipcode: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    country: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -11144,6 +11145,10 @@ proto.viam.app.v1.BillingAddress.deserializeBinaryFromReader = function(msg, rea
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setZipcode(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCountry(value);
       break;
     default:
       reader.skipField();
@@ -11206,6 +11211,13 @@ proto.viam.app.v1.BillingAddress.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = message.getCountry();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -11317,6 +11329,24 @@ proto.viam.app.v1.BillingAddress.prototype.getZipcode = function() {
  */
 proto.viam.app.v1.BillingAddress.prototype.setZipcode = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string country = 6;
+ * @return {string}
+ */
+proto.viam.app.v1.BillingAddress.prototype.getCountry = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.BillingAddress} returns this
+ */
+proto.viam.app.v1.BillingAddress.prototype.setCountry = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 

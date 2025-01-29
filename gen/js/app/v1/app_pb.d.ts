@@ -901,6 +901,9 @@ export class BillingAddress extends jspb.Message {
   getZipcode(): string;
   setZipcode(value: string): void;
 
+  getCountry(): string;
+  setCountry(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BillingAddress.AsObject;
   static toObject(includeInstance: boolean, msg: BillingAddress): BillingAddress.AsObject;
@@ -918,6 +921,7 @@ export namespace BillingAddress {
     city: string,
     state: string,
     zipcode: string,
+    country: string,
   }
 }
 
