@@ -448,6 +448,7 @@ message BillingAddress {
   string city = 3;
   string state = 4;
   string zipcode = 5;
+  string country = 6;
 }
 
 message EnableBillingServiceRequest {
