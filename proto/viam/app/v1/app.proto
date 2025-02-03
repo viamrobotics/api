@@ -208,6 +208,12 @@ service AppService {
   // Gets usage for a fragment across versions
   rpc GetFragmentUsage(GetFragmentUsageRequest) returns (GetFragmentUsageResponse);
 
+  // Sets a fragment tag to a revision
+  rpc SetFragmentTag(SetFragmentTagRequest) returns (SetFragmentTagResponse);
+
+  // Deletes a fragment tag
+  rpc DeleteFragmentTag(DeleteFragmentTagRequest) returns (SetFragmentTagResponse);
+
   // Creates an IdentityAuthorization
   rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
 
@@ -945,6 +951,25 @@ message GetFragmentUsageRequest {
 
 message GetFragmentUsageResponse {
   repeated FragmentUsage version_usages = 1;
+}
+
+message SetFragmentTagRequest {
+  string fragment_id = 1;
+  string tag = 2;
+  string revision = 3;
+}
+
+message SetFragmentTagResponse {
+  repeated FragmentTag tags = 1;
+}
+
+message DeleteFragmentTagRequest {
+  string fragment_id = 1;
+  string tag = 2;
+}
+
+message DeleteFragmentTagResponse {
+  repeated FragmentTag tags = 1;
 }
 
 message ListRobotsRequest {
