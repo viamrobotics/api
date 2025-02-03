@@ -3065,6 +3065,48 @@ export namespace GetFragmentHistoryResponse {
   }
 }
 
+export class GetFragmentUsageRequest extends jspb.Message {
+  getFragmentId(): string;
+  setFragmentId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetFragmentUsageRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetFragmentUsageRequest): GetFragmentUsageRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetFragmentUsageRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetFragmentUsageRequest;
+  static deserializeBinaryFromReader(message: GetFragmentUsageRequest, reader: jspb.BinaryReader): GetFragmentUsageRequest;
+}
+
+export namespace GetFragmentUsageRequest {
+  export type AsObject = {
+    fragmentId: string,
+  }
+}
+
+export class GetFragmentUsageResponse extends jspb.Message {
+  clearVersionUsagesList(): void;
+  getVersionUsagesList(): Array<FragmentUsage>;
+  setVersionUsagesList(value: Array<FragmentUsage>): void;
+  addVersionUsages(value?: FragmentUsage, index?: number): FragmentUsage;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetFragmentUsageResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetFragmentUsageResponse): GetFragmentUsageResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetFragmentUsageResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetFragmentUsageResponse;
+  static deserializeBinaryFromReader(message: GetFragmentUsageResponse, reader: jspb.BinaryReader): GetFragmentUsageResponse;
+}
+
+export namespace GetFragmentUsageResponse {
+  export type AsObject = {
+    versionUsagesList: Array<FragmentUsage.AsObject>,
+  }
+}
+
 export class ListRobotsRequest extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;

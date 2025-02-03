@@ -4173,6 +4173,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.getFragmentHistory =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetFragmentUsageRequest,
+ *   !proto.viam.app.v1.GetFragmentUsageResponse>}
+ */
+const methodDescriptor_AppService_GetFragmentUsage = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetFragmentUsage',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetFragmentUsageRequest,
+  proto.viam.app.v1.GetFragmentUsageResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetFragmentUsageRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetFragmentUsageResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetFragmentUsageRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetFragmentUsageResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetFragmentUsageResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getFragmentUsage =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetFragmentUsage',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetFragmentUsage,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetFragmentUsageRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetFragmentUsageResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getFragmentUsage =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetFragmentUsage',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetFragmentUsage);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.AddRoleRequest,
  *   !proto.viam.app.v1.AddRoleResponse>}
  */
