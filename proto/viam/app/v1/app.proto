@@ -212,7 +212,7 @@ service AppService {
   rpc SetFragmentTag(SetFragmentTagRequest) returns (SetFragmentTagResponse);
 
   // Deletes a fragment tag
-  rpc DeleteFragmentTag(DeleteFragmentTagRequest) returns (SetFragmentTagResponse);
+  rpc DeleteFragmentTag(DeleteFragmentTagRequest) returns (DeleteFragmentTagResponse);
 
   // Creates an IdentityAuthorization
   rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
