@@ -144,6 +144,8 @@ type AppServiceClient interface {
 	ListMachineFragments(ctx context.Context, in *ListMachineFragmentsRequest, opts ...grpc.CallOption) (*ListMachineFragmentsResponse, error)
 	// Gets fragment history
 	GetFragmentHistory(ctx context.Context, in *GetFragmentHistoryRequest, opts ...grpc.CallOption) (*GetFragmentHistoryResponse, error)
+	// Gets usage for a fragment across versions
+	GetFragmentUsage(ctx context.Context, in *GetFragmentUsageRequest, opts ...grpc.CallOption) (*GetFragmentUsageResponse, error)
 	// Creates an IdentityAuthorization
 	AddRole(ctx context.Context, in *AddRoleRequest, opts ...grpc.CallOption) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
@@ -807,6 +809,15 @@ func (c *appServiceClient) GetFragmentHistory(ctx context.Context, in *GetFragme
 	return out, nil
 }
 
+func (c *appServiceClient) GetFragmentUsage(ctx context.Context, in *GetFragmentUsageRequest, opts ...grpc.CallOption) (*GetFragmentUsageResponse, error) {
+	out := new(GetFragmentUsageResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetFragmentUsage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) AddRole(ctx context.Context, in *AddRoleRequest, opts ...grpc.CallOption) (*AddRoleResponse, error) {
 	out := new(AddRoleResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/AddRole", in, out, opts...)
@@ -1156,6 +1167,8 @@ type AppServiceServer interface {
 	ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error)
 	// Gets fragment history
 	GetFragmentHistory(context.Context, *GetFragmentHistoryRequest) (*GetFragmentHistoryResponse, error)
+	// Gets usage for a fragment across versions
+	GetFragmentUsage(context.Context, *GetFragmentUsageRequest) (*GetFragmentUsageResponse, error)
 	// Creates an IdentityAuthorization
 	AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
@@ -1390,6 +1403,9 @@ func (UnimplementedAppServiceServer) ListMachineFragments(context.Context, *List
 }
 func (UnimplementedAppServiceServer) GetFragmentHistory(context.Context, *GetFragmentHistoryRequest) (*GetFragmentHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFragmentHistory not implemented")
+}
+func (UnimplementedAppServiceServer) GetFragmentUsage(context.Context, *GetFragmentUsageRequest) (*GetFragmentUsageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFragmentUsage not implemented")
 }
 func (UnimplementedAppServiceServer) AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddRole not implemented")
@@ -2679,6 +2695,24 @@ func _AppService_GetFragmentHistory_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_GetFragmentUsage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFragmentUsageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetFragmentUsage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetFragmentUsage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetFragmentUsage(ctx, req.(*GetFragmentUsageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_AddRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddRoleRequest)
 	if err := dec(in); err != nil {
@@ -3353,6 +3387,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFragmentHistory",
 			Handler:    _AppService_GetFragmentHistory_Handler,
+		},
+		{
+			MethodName: "GetFragmentUsage",
+			Handler:    _AppService_GetFragmentUsage_Handler,
 		},
 		{
 			MethodName: "AddRole",

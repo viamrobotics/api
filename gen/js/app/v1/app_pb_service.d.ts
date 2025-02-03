@@ -607,6 +607,15 @@ type AppServiceGetFragmentHistory = {
   readonly responseType: typeof app_v1_app_pb.GetFragmentHistoryResponse;
 };
 
+type AppServiceGetFragmentUsage = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetFragmentUsageRequest;
+  readonly responseType: typeof app_v1_app_pb.GetFragmentUsageResponse;
+};
+
 type AppServiceAddRole = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -874,6 +883,7 @@ export class AppService {
   static readonly DeleteFragment: AppServiceDeleteFragment;
   static readonly ListMachineFragments: AppServiceListMachineFragments;
   static readonly GetFragmentHistory: AppServiceGetFragmentHistory;
+  static readonly GetFragmentUsage: AppServiceGetFragmentUsage;
   static readonly AddRole: AppServiceAddRole;
   static readonly RemoveRole: AppServiceRemoveRole;
   static readonly ChangeRole: AppServiceChangeRole;
@@ -1524,6 +1534,15 @@ export class AppServiceClient {
   getFragmentHistory(
     requestMessage: app_v1_app_pb.GetFragmentHistoryRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFragmentHistoryResponse|null) => void
+  ): UnaryResponse;
+  getFragmentUsage(
+    requestMessage: app_v1_app_pb.GetFragmentUsageRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFragmentUsageResponse|null) => void
+  ): UnaryResponse;
+  getFragmentUsage(
+    requestMessage: app_v1_app_pb.GetFragmentUsageRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFragmentUsageResponse|null) => void
   ): UnaryResponse;
   addRole(
     requestMessage: app_v1_app_pb.AddRoleRequest,

@@ -205,6 +205,9 @@ service AppService {
   // Gets fragment history
   rpc GetFragmentHistory(GetFragmentHistoryRequest) returns (GetFragmentHistoryResponse);
 
+  // Gets usage for a fragment across versions
+  rpc GetFragmentUsage(GetFragmentUsageRequest) returns (GetFragmentUsageResponse);
+
   // Creates an IdentityAuthorization
   rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
 
@@ -934,6 +937,14 @@ message GetFragmentHistoryRequest {
 message GetFragmentHistoryResponse {
   repeated FragmentHistoryEntry history = 1;
   string next_page_token = 2;
+}
+
+message GetFragmentUsageRequest {
+  string fragment_id = 1;
+}
+
+message GetFragmentUsageResponse {
+  repeated FragmentUsage version_usages = 1;
 }
 
 message ListRobotsRequest {
