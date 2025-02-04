@@ -146,6 +146,10 @@ type AppServiceClient interface {
 	GetFragmentHistory(ctx context.Context, in *GetFragmentHistoryRequest, opts ...grpc.CallOption) (*GetFragmentHistoryResponse, error)
 	// Gets usage for a fragment across versions
 	GetFragmentUsage(ctx context.Context, in *GetFragmentUsageRequest, opts ...grpc.CallOption) (*GetFragmentUsageResponse, error)
+	// Sets a fragment tag to a revision
+	SetFragmentTag(ctx context.Context, in *SetFragmentTagRequest, opts ...grpc.CallOption) (*SetFragmentTagResponse, error)
+	// Deletes a fragment tag
+	DeleteFragmentTag(ctx context.Context, in *DeleteFragmentTagRequest, opts ...grpc.CallOption) (*DeleteFragmentTagResponse, error)
 	// Creates an IdentityAuthorization
 	AddRole(ctx context.Context, in *AddRoleRequest, opts ...grpc.CallOption) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
@@ -818,6 +822,24 @@ func (c *appServiceClient) GetFragmentUsage(ctx context.Context, in *GetFragment
 	return out, nil
 }
 
+func (c *appServiceClient) SetFragmentTag(ctx context.Context, in *SetFragmentTagRequest, opts ...grpc.CallOption) (*SetFragmentTagResponse, error) {
+	out := new(SetFragmentTagResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/SetFragmentTag", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteFragmentTag(ctx context.Context, in *DeleteFragmentTagRequest, opts ...grpc.CallOption) (*DeleteFragmentTagResponse, error) {
+	out := new(DeleteFragmentTagResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteFragmentTag", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) AddRole(ctx context.Context, in *AddRoleRequest, opts ...grpc.CallOption) (*AddRoleResponse, error) {
 	out := new(AddRoleResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/AddRole", in, out, opts...)
@@ -1169,6 +1191,10 @@ type AppServiceServer interface {
 	GetFragmentHistory(context.Context, *GetFragmentHistoryRequest) (*GetFragmentHistoryResponse, error)
 	// Gets usage for a fragment across versions
 	GetFragmentUsage(context.Context, *GetFragmentUsageRequest) (*GetFragmentUsageResponse, error)
+	// Sets a fragment tag to a revision
+	SetFragmentTag(context.Context, *SetFragmentTagRequest) (*SetFragmentTagResponse, error)
+	// Deletes a fragment tag
+	DeleteFragmentTag(context.Context, *DeleteFragmentTagRequest) (*DeleteFragmentTagResponse, error)
 	// Creates an IdentityAuthorization
 	AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
@@ -1406,6 +1432,12 @@ func (UnimplementedAppServiceServer) GetFragmentHistory(context.Context, *GetFra
 }
 func (UnimplementedAppServiceServer) GetFragmentUsage(context.Context, *GetFragmentUsageRequest) (*GetFragmentUsageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFragmentUsage not implemented")
+}
+func (UnimplementedAppServiceServer) SetFragmentTag(context.Context, *SetFragmentTagRequest) (*SetFragmentTagResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetFragmentTag not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteFragmentTag(context.Context, *DeleteFragmentTagRequest) (*DeleteFragmentTagResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFragmentTag not implemented")
 }
 func (UnimplementedAppServiceServer) AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddRole not implemented")
@@ -2713,6 +2745,42 @@ func _AppService_GetFragmentUsage_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_SetFragmentTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetFragmentTagRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).SetFragmentTag(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/SetFragmentTag",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).SetFragmentTag(ctx, req.(*SetFragmentTagRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteFragmentTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteFragmentTagRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteFragmentTag(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteFragmentTag",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteFragmentTag(ctx, req.(*DeleteFragmentTagRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_AddRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddRoleRequest)
 	if err := dec(in); err != nil {
@@ -3391,6 +3459,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFragmentUsage",
 			Handler:    _AppService_GetFragmentUsage_Handler,
+		},
+		{
+			MethodName: "SetFragmentTag",
+			Handler:    _AppService_SetFragmentTag_Handler,
+		},
+		{
+			MethodName: "DeleteFragmentTag",
+			Handler:    _AppService_DeleteFragmentTag_Handler,
 		},
 		{
 			MethodName: "AddRole",
