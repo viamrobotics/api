@@ -616,6 +616,24 @@ type AppServiceGetFragmentUsage = {
   readonly responseType: typeof app_v1_app_pb.GetFragmentUsageResponse;
 };
 
+type AppServiceSetFragmentTag = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.SetFragmentTagRequest;
+  readonly responseType: typeof app_v1_app_pb.SetFragmentTagResponse;
+};
+
+type AppServiceDeleteFragmentTag = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteFragmentTagRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteFragmentTagResponse;
+};
+
 type AppServiceAddRole = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -884,6 +902,8 @@ export class AppService {
   static readonly ListMachineFragments: AppServiceListMachineFragments;
   static readonly GetFragmentHistory: AppServiceGetFragmentHistory;
   static readonly GetFragmentUsage: AppServiceGetFragmentUsage;
+  static readonly SetFragmentTag: AppServiceSetFragmentTag;
+  static readonly DeleteFragmentTag: AppServiceDeleteFragmentTag;
   static readonly AddRole: AppServiceAddRole;
   static readonly RemoveRole: AppServiceRemoveRole;
   static readonly ChangeRole: AppServiceChangeRole;
@@ -1543,6 +1563,24 @@ export class AppServiceClient {
   getFragmentUsage(
     requestMessage: app_v1_app_pb.GetFragmentUsageRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFragmentUsageResponse|null) => void
+  ): UnaryResponse;
+  setFragmentTag(
+    requestMessage: app_v1_app_pb.SetFragmentTagRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SetFragmentTagResponse|null) => void
+  ): UnaryResponse;
+  setFragmentTag(
+    requestMessage: app_v1_app_pb.SetFragmentTagRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SetFragmentTagResponse|null) => void
+  ): UnaryResponse;
+  deleteFragmentTag(
+    requestMessage: app_v1_app_pb.DeleteFragmentTagRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteFragmentTagResponse|null) => void
+  ): UnaryResponse;
+  deleteFragmentTag(
+    requestMessage: app_v1_app_pb.DeleteFragmentTagRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteFragmentTagResponse|null) => void
   ): UnaryResponse;
   addRole(
     requestMessage: app_v1_app_pb.AddRoleRequest,

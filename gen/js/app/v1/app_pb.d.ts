@@ -3107,6 +3107,102 @@ export namespace GetFragmentUsageResponse {
   }
 }
 
+export class SetFragmentTagRequest extends jspb.Message {
+  getFragmentId(): string;
+  setFragmentId(value: string): void;
+
+  getTag(): string;
+  setTag(value: string): void;
+
+  getRevision(): string;
+  setRevision(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetFragmentTagRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SetFragmentTagRequest): SetFragmentTagRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetFragmentTagRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetFragmentTagRequest;
+  static deserializeBinaryFromReader(message: SetFragmentTagRequest, reader: jspb.BinaryReader): SetFragmentTagRequest;
+}
+
+export namespace SetFragmentTagRequest {
+  export type AsObject = {
+    fragmentId: string,
+    tag: string,
+    revision: string,
+  }
+}
+
+export class SetFragmentTagResponse extends jspb.Message {
+  clearTagsList(): void;
+  getTagsList(): Array<FragmentTag>;
+  setTagsList(value: Array<FragmentTag>): void;
+  addTags(value?: FragmentTag, index?: number): FragmentTag;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetFragmentTagResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SetFragmentTagResponse): SetFragmentTagResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetFragmentTagResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetFragmentTagResponse;
+  static deserializeBinaryFromReader(message: SetFragmentTagResponse, reader: jspb.BinaryReader): SetFragmentTagResponse;
+}
+
+export namespace SetFragmentTagResponse {
+  export type AsObject = {
+    tagsList: Array<FragmentTag.AsObject>,
+  }
+}
+
+export class DeleteFragmentTagRequest extends jspb.Message {
+  getFragmentId(): string;
+  setFragmentId(value: string): void;
+
+  getTag(): string;
+  setTag(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteFragmentTagRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteFragmentTagRequest): DeleteFragmentTagRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteFragmentTagRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteFragmentTagRequest;
+  static deserializeBinaryFromReader(message: DeleteFragmentTagRequest, reader: jspb.BinaryReader): DeleteFragmentTagRequest;
+}
+
+export namespace DeleteFragmentTagRequest {
+  export type AsObject = {
+    fragmentId: string,
+    tag: string,
+  }
+}
+
+export class DeleteFragmentTagResponse extends jspb.Message {
+  clearTagsList(): void;
+  getTagsList(): Array<FragmentTag>;
+  setTagsList(value: Array<FragmentTag>): void;
+  addTags(value?: FragmentTag, index?: number): FragmentTag;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteFragmentTagResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteFragmentTagResponse): DeleteFragmentTagResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteFragmentTagResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteFragmentTagResponse;
+  static deserializeBinaryFromReader(message: DeleteFragmentTagResponse, reader: jspb.BinaryReader): DeleteFragmentTagResponse;
+}
+
+export namespace DeleteFragmentTagResponse {
+  export type AsObject = {
+    tagsList: Array<FragmentTag.AsObject>,
+  }
+}
+
 export class ListRobotsRequest extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;

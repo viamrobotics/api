@@ -622,6 +622,24 @@ AppService.GetFragmentUsage = {
   responseType: app_v1_app_pb.GetFragmentUsageResponse
 };
 
+AppService.SetFragmentTag = {
+  methodName: "SetFragmentTag",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.SetFragmentTagRequest,
+  responseType: app_v1_app_pb.SetFragmentTagResponse
+};
+
+AppService.DeleteFragmentTag = {
+  methodName: "DeleteFragmentTag",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteFragmentTagRequest,
+  responseType: app_v1_app_pb.DeleteFragmentTagResponse
+};
+
 AppService.AddRole = {
   methodName: "AddRole",
   service: AppService,
@@ -2917,6 +2935,68 @@ AppServiceClient.prototype.getFragmentUsage = function getFragmentUsage(requestM
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.GetFragmentUsage, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.setFragmentTag = function setFragmentTag(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.SetFragmentTag, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteFragmentTag = function deleteFragmentTag(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteFragmentTag, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
