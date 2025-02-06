@@ -4234,6 +4234,128 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.getFragmentUsage =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.SetFragmentTagRequest,
+ *   !proto.viam.app.v1.SetFragmentTagResponse>}
+ */
+const methodDescriptor_AppService_SetFragmentTag = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/SetFragmentTag',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.SetFragmentTagRequest,
+  proto.viam.app.v1.SetFragmentTagResponse,
+  /**
+   * @param {!proto.viam.app.v1.SetFragmentTagRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.SetFragmentTagResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.SetFragmentTagRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.SetFragmentTagResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.SetFragmentTagResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.setFragmentTag =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/SetFragmentTag',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_SetFragmentTag,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.SetFragmentTagRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.SetFragmentTagResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.setFragmentTag =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/SetFragmentTag',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_SetFragmentTag);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeleteFragmentTagRequest,
+ *   !proto.viam.app.v1.DeleteFragmentTagResponse>}
+ */
+const methodDescriptor_AppService_DeleteFragmentTag = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeleteFragmentTag',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeleteFragmentTagRequest,
+  proto.viam.app.v1.DeleteFragmentTagResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeleteFragmentTagRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeleteFragmentTagResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteFragmentTagRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeleteFragmentTagResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeleteFragmentTagResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deleteFragmentTag =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteFragmentTag',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteFragmentTag,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteFragmentTagRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeleteFragmentTagResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deleteFragmentTag =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteFragmentTag',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteFragmentTag);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.AddRoleRequest,
  *   !proto.viam.app.v1.AddRoleResponse>}
  */

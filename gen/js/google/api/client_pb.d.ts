@@ -496,6 +496,9 @@ export class SelectiveGapicGeneration extends jspb.Message {
   setMethodsList(value: Array<string>): void;
   addMethods(value: string, index?: number): string;
 
+  getGenerateOmittedAsInternal(): boolean;
+  setGenerateOmittedAsInternal(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SelectiveGapicGeneration.AsObject;
   static toObject(includeInstance: boolean, msg: SelectiveGapicGeneration): SelectiveGapicGeneration.AsObject;
@@ -509,6 +512,7 @@ export class SelectiveGapicGeneration extends jspb.Message {
 export namespace SelectiveGapicGeneration {
   export type AsObject = {
     methodsList: Array<string>,
+    generateOmittedAsInternal: boolean,
   }
 }
 
