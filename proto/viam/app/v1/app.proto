@@ -949,6 +949,7 @@ message ResolvedFragment {
   string fragment_id = 1;
   google.protobuf.Struct resolved_config = 2;
   FragmentError error = 3;
+  string revision = 4;
 }
 
 message ListFragmentsRequest {
@@ -1046,6 +1047,11 @@ message ListRobotsRequest {
   string location_id = 1;
 }
 
+message FragmentRequest {
+  string fragment_id = 1;
+  string version = 2;
+}
+
 message ListMachineFragmentsRequest {
   // the machine_id used to filter fragments defined in a machine's parts.
   // Also returns any fragments nested within the fragments defined in parts.
@@ -1053,6 +1059,7 @@ message ListMachineFragmentsRequest {
   // additional fragment_ids to append to the response. useful when needing to view fragments that will be
   // provisionally added to the machine alongside existing fragments.
   repeated string additional_fragment_ids = 2;
+  repeated FragmentRequest additional_fragments = 3;
 }
 
 message ListMachineFragmentsResponse {
