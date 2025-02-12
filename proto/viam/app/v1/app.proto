@@ -1047,7 +1047,7 @@ message ListRobotsRequest {
   string location_id = 1;
 }
 
-message FragmentRequest {
+message AdditionalFragment {
   string fragment_id = 1;
   string version = 2;
 }
@@ -1056,10 +1056,11 @@ message ListMachineFragmentsRequest {
   // the machine_id used to filter fragments defined in a machine's parts.
   // Also returns any fragments nested within the fragments defined in parts.
   string machine_id = 1;
-  // additional fragment_ids to append to the response. useful when needing to view fragments that will be
-  // provisionally added to the machine alongside existing fragments.
+  // additional_fragment_ids will be deprecated in favor of additional_fragments.
   repeated string additional_fragment_ids = 2;
-  repeated FragmentRequest additional_fragments = 3;
+  // additional fragments to append to the response. useful when needing to view fragments that will be
+  // provisionally added to the machine alongside existing fragments.
+  repeated AdditionalFragment additional_fragments = 3;
 }
 
 message ListMachineFragmentsResponse {
