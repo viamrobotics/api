@@ -16,6 +16,11 @@ export class DeviceAgentConfigRequest extends jspb.Message {
 
   getSubsystemVersionsMap(): jspb.Map<string, string>;
   clearSubsystemVersionsMap(): void;
+  hasVersionInfo(): boolean;
+  clearVersionInfo(): void;
+  getVersionInfo(): VersionInfo | undefined;
+  setVersionInfo(value?: VersionInfo): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeviceAgentConfigRequest.AsObject;
   static toObject(includeInstance: boolean, msg: DeviceAgentConfigRequest): DeviceAgentConfigRequest.AsObject;
@@ -31,6 +36,7 @@ export namespace DeviceAgentConfigRequest {
     id: string,
     hostInfo?: HostInfo.AsObject,
     subsystemVersionsMap: Array<[string, string]>,
+    versionInfo?: VersionInfo.AsObject,
   }
 }
 
@@ -41,6 +47,36 @@ export class DeviceAgentConfigResponse extends jspb.Message {
   clearCheckInterval(): void;
   getCheckInterval(): google_protobuf_duration_pb.Duration | undefined;
   setCheckInterval(value?: google_protobuf_duration_pb.Duration): void;
+
+  hasAgentUpdateInfo(): boolean;
+  clearAgentUpdateInfo(): void;
+  getAgentUpdateInfo(): UpdateInfo | undefined;
+  setAgentUpdateInfo(value?: UpdateInfo): void;
+
+  hasViamServerUpdateInfo(): boolean;
+  clearViamServerUpdateInfo(): void;
+  getViamServerUpdateInfo(): UpdateInfo | undefined;
+  setViamServerUpdateInfo(value?: UpdateInfo): void;
+
+  hasAdvancedSettings(): boolean;
+  clearAdvancedSettings(): void;
+  getAdvancedSettings(): google_protobuf_struct_pb.Struct | undefined;
+  setAdvancedSettings(value?: google_protobuf_struct_pb.Struct): void;
+
+  hasNetworkConfiguration(): boolean;
+  clearNetworkConfiguration(): void;
+  getNetworkConfiguration(): google_protobuf_struct_pb.Struct | undefined;
+  setNetworkConfiguration(value?: google_protobuf_struct_pb.Struct): void;
+
+  hasAdditionalNetworks(): boolean;
+  clearAdditionalNetworks(): void;
+  getAdditionalNetworks(): google_protobuf_struct_pb.Struct | undefined;
+  setAdditionalNetworks(value?: google_protobuf_struct_pb.Struct): void;
+
+  hasSystemConfiguration(): boolean;
+  clearSystemConfiguration(): void;
+  getSystemConfiguration(): google_protobuf_struct_pb.Struct | undefined;
+  setSystemConfiguration(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeviceAgentConfigResponse.AsObject;
@@ -56,14 +92,20 @@ export namespace DeviceAgentConfigResponse {
   export type AsObject = {
     subsystemConfigsMap: Array<[string, DeviceSubsystemConfig.AsObject]>,
     checkInterval?: google_protobuf_duration_pb.Duration.AsObject,
+    agentUpdateInfo?: UpdateInfo.AsObject,
+    viamServerUpdateInfo?: UpdateInfo.AsObject,
+    advancedSettings?: google_protobuf_struct_pb.Struct.AsObject,
+    networkConfiguration?: google_protobuf_struct_pb.Struct.AsObject,
+    additionalNetworks?: google_protobuf_struct_pb.Struct.AsObject,
+    systemConfiguration?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
 export class DeviceSubsystemConfig extends jspb.Message {
   hasUpdateInfo(): boolean;
   clearUpdateInfo(): void;
-  getUpdateInfo(): SubsystemUpdateInfo | undefined;
-  setUpdateInfo(value?: SubsystemUpdateInfo): void;
+  getUpdateInfo(): UpdateInfo | undefined;
+  setUpdateInfo(value?: UpdateInfo): void;
 
   getDisable(): boolean;
   setDisable(value: boolean): void;
@@ -88,10 +130,42 @@ export class DeviceSubsystemConfig extends jspb.Message {
 
 export namespace DeviceSubsystemConfig {
   export type AsObject = {
-    updateInfo?: SubsystemUpdateInfo.AsObject,
+    updateInfo?: UpdateInfo.AsObject,
     disable: boolean,
     forceRestart: boolean,
     attributes?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class VersionInfo extends jspb.Message {
+  getAgentRunning(): string;
+  setAgentRunning(value: string): void;
+
+  getAgentInstalled(): string;
+  setAgentInstalled(value: string): void;
+
+  getViamServerRunning(): string;
+  setViamServerRunning(value: string): void;
+
+  getViamServerInstalled(): string;
+  setViamServerInstalled(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): VersionInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: VersionInfo): VersionInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: VersionInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): VersionInfo;
+  static deserializeBinaryFromReader(message: VersionInfo, reader: jspb.BinaryReader): VersionInfo;
+}
+
+export namespace VersionInfo {
+  export type AsObject = {
+    agentRunning: string,
+    agentInstalled: string,
+    viamServerRunning: string,
+    viamServerInstalled: string,
   }
 }
 
@@ -125,7 +199,7 @@ export namespace HostInfo {
   }
 }
 
-export class SubsystemUpdateInfo extends jspb.Message {
+export class UpdateInfo extends jspb.Message {
   getFilename(): string;
   setFilename(value: string): void;
 
@@ -144,16 +218,16 @@ export class SubsystemUpdateInfo extends jspb.Message {
   setFormat(value: PackageFormatMap[keyof PackageFormatMap]): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SubsystemUpdateInfo.AsObject;
-  static toObject(includeInstance: boolean, msg: SubsystemUpdateInfo): SubsystemUpdateInfo.AsObject;
+  toObject(includeInstance?: boolean): UpdateInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateInfo): UpdateInfo.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: SubsystemUpdateInfo, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SubsystemUpdateInfo;
-  static deserializeBinaryFromReader(message: SubsystemUpdateInfo, reader: jspb.BinaryReader): SubsystemUpdateInfo;
+  static serializeBinaryToWriter(message: UpdateInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateInfo;
+  static deserializeBinaryFromReader(message: UpdateInfo, reader: jspb.BinaryReader): UpdateInfo;
 }
 
-export namespace SubsystemUpdateInfo {
+export namespace UpdateInfo {
   export type AsObject = {
     filename: string,
     url: string,
