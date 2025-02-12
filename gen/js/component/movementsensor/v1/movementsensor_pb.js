@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -405,8 +411,8 @@ proto.viam.component.movementsensor.v1.GetLinearVelocityRequest.prototype.toObje
  */
 proto.viam.component.movementsensor.v1.GetLinearVelocityRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -586,7 +592,7 @@ proto.viam.component.movementsensor.v1.GetLinearVelocityResponse.prototype.toObj
  */
 proto.viam.component.movementsensor.v1.GetLinearVelocityResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    linearVelocity: (f = msg.getLinearVelocity()) && common_v1_common_pb.Vector3.toObject(includeInstance, f)
+linearVelocity: (f = msg.getLinearVelocity()) && common_v1_common_pb.Vector3.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -737,8 +743,8 @@ proto.viam.component.movementsensor.v1.GetAngularVelocityRequest.prototype.toObj
  */
 proto.viam.component.movementsensor.v1.GetAngularVelocityRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -918,7 +924,7 @@ proto.viam.component.movementsensor.v1.GetAngularVelocityResponse.prototype.toOb
  */
 proto.viam.component.movementsensor.v1.GetAngularVelocityResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    angularVelocity: (f = msg.getAngularVelocity()) && common_v1_common_pb.Vector3.toObject(includeInstance, f)
+angularVelocity: (f = msg.getAngularVelocity()) && common_v1_common_pb.Vector3.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1069,8 +1075,8 @@ proto.viam.component.movementsensor.v1.GetCompassHeadingRequest.prototype.toObje
  */
 proto.viam.component.movementsensor.v1.GetCompassHeadingRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1250,7 +1256,7 @@ proto.viam.component.movementsensor.v1.GetCompassHeadingResponse.prototype.toObj
  */
 proto.viam.component.movementsensor.v1.GetCompassHeadingResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    value: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
+value: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
   };
 
   if (includeInstance) {
@@ -1380,8 +1386,8 @@ proto.viam.component.movementsensor.v1.GetOrientationRequest.prototype.toObject 
  */
 proto.viam.component.movementsensor.v1.GetOrientationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1561,7 +1567,7 @@ proto.viam.component.movementsensor.v1.GetOrientationResponse.prototype.toObject
  */
 proto.viam.component.movementsensor.v1.GetOrientationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orientation: (f = msg.getOrientation()) && common_v1_common_pb.Orientation.toObject(includeInstance, f)
+orientation: (f = msg.getOrientation()) && common_v1_common_pb.Orientation.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1712,8 +1718,8 @@ proto.viam.component.movementsensor.v1.GetPositionRequest.prototype.toObject = f
  */
 proto.viam.component.movementsensor.v1.GetPositionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1893,8 +1899,8 @@ proto.viam.component.movementsensor.v1.GetPositionResponse.prototype.toObject = 
  */
 proto.viam.component.movementsensor.v1.GetPositionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    coordinate: (f = msg.getCoordinate()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f),
-    altitudeM: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+coordinate: (f = msg.getCoordinate()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f),
+altitudeM: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -2074,8 +2080,8 @@ proto.viam.component.movementsensor.v1.GetPropertiesRequest.prototype.toObject =
  */
 proto.viam.component.movementsensor.v1.GetPropertiesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2255,12 +2261,12 @@ proto.viam.component.movementsensor.v1.GetPropertiesResponse.prototype.toObject 
  */
 proto.viam.component.movementsensor.v1.GetPropertiesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    linearVelocitySupported: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    angularVelocitySupported: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    orientationSupported: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    positionSupported: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    compassHeadingSupported: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    linearAccelerationSupported: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
+linearVelocitySupported: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+angularVelocitySupported: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+orientationSupported: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+positionSupported: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+compassHeadingSupported: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+linearAccelerationSupported: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -2535,8 +2541,8 @@ proto.viam.component.movementsensor.v1.GetAccuracyRequest.prototype.toObject = f
  */
 proto.viam.component.movementsensor.v1.GetAccuracyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2716,11 +2722,11 @@ proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.toObject = 
  */
 proto.viam.component.movementsensor.v1.GetAccuracyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    accuracyMap: (f = msg.getAccuracyMap()) ? f.toObject(includeInstance, undefined) : [],
-    positionHdop: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    positionVdop: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    positionNmeaGgaFix: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    compassDegreesError: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0)
+accuracyMap: (f = msg.getAccuracyMap()) ? f.toObject(includeInstance, undefined) : [],
+positionHdop: (f = jspb.Message.getOptionalFloatingPointField(msg, 2)) == null ? undefined : f,
+positionVdop: (f = jspb.Message.getOptionalFloatingPointField(msg, 3)) == null ? undefined : f,
+positionNmeaGgaFix: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+compassDegreesError: (f = jspb.Message.getOptionalFloatingPointField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2862,7 +2868,8 @@ proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.getAccuracy
  */
 proto.viam.component.movementsensor.v1.GetAccuracyResponse.prototype.clearAccuracyMap = function() {
   this.getAccuracyMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -3041,8 +3048,8 @@ proto.viam.component.movementsensor.v1.GetLinearAccelerationRequest.prototype.to
  */
 proto.viam.component.movementsensor.v1.GetLinearAccelerationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3222,7 +3229,7 @@ proto.viam.component.movementsensor.v1.GetLinearAccelerationResponse.prototype.t
  */
 proto.viam.component.movementsensor.v1.GetLinearAccelerationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    linearAcceleration: (f = msg.getLinearAcceleration()) && common_v1_common_pb.Vector3.toObject(includeInstance, f)
+linearAcceleration: (f = msg.getLinearAcceleration()) && common_v1_common_pb.Vector3.toObject(includeInstance, f)
   };
 
   if (includeInstance) {

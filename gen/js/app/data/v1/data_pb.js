@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
 goog.object.extend(proto, google_protobuf_any_pb);
@@ -1331,10 +1337,10 @@ proto.viam.app.data.v1.DataRequest.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.data.v1.DataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f),
-    limit: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    last: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    sortOrder: jspb.Message.getFieldWithDefault(msg, 4, 0)
+filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f),
+limit: jspb.Message.getFieldWithDefault(msg, 2, 0),
+last: jspb.Message.getFieldWithDefault(msg, 3, ""),
+sortOrder: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -1579,20 +1585,20 @@ proto.viam.app.data.v1.Filter.prototype.toObject = function(opt_includeInstance)
  */
 proto.viam.app.data.v1.Filter.toObject = function(includeInstance, msg) {
   var f, obj = {
-    componentName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    componentType: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    method: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    robotName: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    robotId: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    partName: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    partId: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    locationIdsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
-    organizationIdsList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
-    mimeTypeList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
-    interval: (f = msg.getInterval()) && proto.viam.app.data.v1.CaptureInterval.toObject(includeInstance, f),
-    tagsFilter: (f = msg.getTagsFilter()) && proto.viam.app.data.v1.TagsFilter.toObject(includeInstance, f),
-    bboxLabelsList: (f = jspb.Message.getRepeatedField(msg, 15)) == null ? undefined : f,
-    datasetId: jspb.Message.getFieldWithDefault(msg, 16, "")
+componentName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+componentType: jspb.Message.getFieldWithDefault(msg, 2, ""),
+method: jspb.Message.getFieldWithDefault(msg, 4, ""),
+robotName: jspb.Message.getFieldWithDefault(msg, 6, ""),
+robotId: jspb.Message.getFieldWithDefault(msg, 7, ""),
+partName: jspb.Message.getFieldWithDefault(msg, 8, ""),
+partId: jspb.Message.getFieldWithDefault(msg, 9, ""),
+locationIdsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
+organizationIdsList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
+mimeTypeList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
+interval: (f = msg.getInterval()) && proto.viam.app.data.v1.CaptureInterval.toObject(includeInstance, f),
+tagsFilter: (f = msg.getTagsFilter()) && proto.viam.app.data.v1.TagsFilter.toObject(includeInstance, f),
+bboxLabelsList: (f = jspb.Message.getRepeatedField(msg, 15)) == null ? undefined : f,
+datasetId: jspb.Message.getFieldWithDefault(msg, 16, "")
   };
 
   if (includeInstance) {
@@ -2224,8 +2230,8 @@ proto.viam.app.data.v1.TagsFilter.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.app.data.v1.TagsFilter.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+type: jspb.Message.getFieldWithDefault(msg, 1, 0),
+tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2410,18 +2416,18 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.toObject = function(opt_include
  */
 proto.viam.app.data.v1.CaptureMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    robotName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    robotId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    partName: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    partId: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    componentType: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    componentName: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    methodName: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
-    mimeType: jspb.Message.getFieldWithDefault(msg, 13, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+locationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+robotName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+robotId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+partName: jspb.Message.getFieldWithDefault(msg, 5, ""),
+partId: jspb.Message.getFieldWithDefault(msg, 6, ""),
+componentType: jspb.Message.getFieldWithDefault(msg, 7, ""),
+componentName: jspb.Message.getFieldWithDefault(msg, 9, ""),
+methodName: jspb.Message.getFieldWithDefault(msg, 10, ""),
+methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
+tagsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
+mimeType: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -2802,7 +2808,8 @@ proto.viam.app.data.v1.CaptureMetadata.prototype.getMethodParametersMap = functi
  */
 proto.viam.app.data.v1.CaptureMetadata.prototype.clearMethodParametersMap = function() {
   this.getMethodParametersMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -2892,8 +2899,8 @@ proto.viam.app.data.v1.CaptureInterval.prototype.toObject = function(opt_include
  */
 proto.viam.app.data.v1.CaptureInterval.toObject = function(includeInstance, msg) {
   var f, obj = {
-    start: (f = msg.getStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+start: (f = msg.getStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3094,9 +3101,9 @@ proto.viam.app.data.v1.TabularDataByFilterRequest.prototype.toObject = function(
  */
 proto.viam.app.data.v1.TabularDataByFilterRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dataRequest: (f = msg.getDataRequest()) && proto.viam.app.data.v1.DataRequest.toObject(includeInstance, f),
-    countOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    includeInternalData: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+dataRequest: (f = msg.getDataRequest()) && proto.viam.app.data.v1.DataRequest.toObject(includeInstance, f),
+countOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+includeInternalData: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -3312,13 +3319,13 @@ proto.viam.app.data.v1.TabularDataByFilterResponse.prototype.toObject = function
  */
 proto.viam.app.data.v1.TabularDataByFilterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    metadataList: jspb.Message.toObjectList(msg.getMetadataList(),
+metadataList: jspb.Message.toObjectList(msg.getMetadataList(),
     proto.viam.app.data.v1.CaptureMetadata.toObject, includeInstance),
-    dataList: jspb.Message.toObjectList(msg.getDataList(),
+dataList: jspb.Message.toObjectList(msg.getDataList(),
     proto.viam.app.data.v1.TabularData.toObject, includeInstance),
-    count: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    last: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    totalSizeBytes: jspb.Message.getFieldWithDefault(msg, 5, 0)
+count: jspb.Message.getFieldWithDefault(msg, 3, 0),
+last: jspb.Message.getFieldWithDefault(msg, 4, ""),
+totalSizeBytes: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -3608,10 +3615,10 @@ proto.viam.app.data.v1.TabularData.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.data.v1.TabularData.toObject = function(includeInstance, msg) {
   var f, obj = {
-    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    metadataIndex: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+metadataIndex: jspb.Message.getFieldWithDefault(msg, 2, 0),
+timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3891,8 +3898,8 @@ proto.viam.app.data.v1.TabularDataBySQLRequest.prototype.toObject = function(opt
  */
 proto.viam.app.data.v1.TabularDataBySQLRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sqlQuery: jspb.Message.getFieldWithDefault(msg, 2, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sqlQuery: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -4058,7 +4065,7 @@ proto.viam.app.data.v1.TabularDataBySQLResponse.prototype.toObject = function(op
  */
 proto.viam.app.data.v1.TabularDataBySQLResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    rawDataList: msg.getRawDataList_asB64()
+rawDataList: msg.getRawDataList_asB64()
   };
 
   if (includeInstance) {
@@ -4238,9 +4245,9 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.toObject = function(opt
  */
 proto.viam.app.data.v1.TabularDataByMQLRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    mqlBinaryList: msg.getMqlBinaryList_asB64(),
-    useRecentData: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+mqlBinaryList: msg.getMqlBinaryList_asB64(),
+useRecentData: (f = jspb.Message.getBooleanField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -4496,7 +4503,7 @@ proto.viam.app.data.v1.TabularDataByMQLResponse.prototype.toObject = function(op
  */
 proto.viam.app.data.v1.TabularDataByMQLResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    rawDataList: msg.getRawDataList_asB64()
+rawDataList: msg.getRawDataList_asB64()
   };
 
   if (includeInstance) {
@@ -4669,11 +4676,11 @@ proto.viam.app.data.v1.ExportTabularDataRequest.prototype.toObject = function(op
  */
 proto.viam.app.data.v1.ExportTabularDataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    resourceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    resourceSubtype: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    methodName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    interval: (f = msg.getInterval()) && proto.viam.app.data.v1.CaptureInterval.toObject(includeInstance, f)
+partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+resourceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+resourceSubtype: jspb.Message.getFieldWithDefault(msg, 3, ""),
+methodName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+interval: (f = msg.getInterval()) && proto.viam.app.data.v1.CaptureInterval.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4947,19 +4954,19 @@ proto.viam.app.data.v1.ExportTabularDataResponse.prototype.toObject = function(o
  */
 proto.viam.app.data.v1.ExportTabularDataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    resourceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    resourceSubtype: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    methodName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    timeCaptured: (f = msg.getTimeCaptured()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    robotName: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    robotId: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    partName: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    methodParameters: (f = msg.getMethodParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
-    payload: (f = msg.getPayload()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+resourceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+resourceSubtype: jspb.Message.getFieldWithDefault(msg, 3, ""),
+methodName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+timeCaptured: (f = msg.getTimeCaptured()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+organizationId: jspb.Message.getFieldWithDefault(msg, 6, ""),
+locationId: jspb.Message.getFieldWithDefault(msg, 7, ""),
+robotName: jspb.Message.getFieldWithDefault(msg, 8, ""),
+robotId: jspb.Message.getFieldWithDefault(msg, 9, ""),
+partName: jspb.Message.getFieldWithDefault(msg, 10, ""),
+methodParameters: (f = msg.getMethodParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+tagsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
+payload: (f = msg.getPayload()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5519,10 +5526,10 @@ proto.viam.app.data.v1.GetLatestTabularDataRequest.prototype.toObject = function
  */
 proto.viam.app.data.v1.GetLatestTabularDataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    resourceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    methodName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    resourceSubtype: jspb.Message.getFieldWithDefault(msg, 4, "")
+partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+resourceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+methodName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+resourceSubtype: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -5739,9 +5746,9 @@ proto.viam.app.data.v1.GetLatestTabularDataResponse.prototype.toObject = functio
  */
 proto.viam.app.data.v1.GetLatestTabularDataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    timeCaptured: (f = msg.getTimeCaptured()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    timeSynced: (f = msg.getTimeSynced()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    payload: (f = msg.getPayload()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+timeCaptured: (f = msg.getTimeCaptured()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+timeSynced: (f = msg.getTimeSynced()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+payload: (f = msg.getPayload()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5992,8 +5999,8 @@ proto.viam.app.data.v1.BinaryData.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.app.data.v1.BinaryData.toObject = function(includeInstance, msg) {
   var f, obj = {
-    binary: msg.getBinary_asB64(),
-    metadata: (f = msg.getMetadata()) && proto.viam.app.data.v1.BinaryMetadata.toObject(includeInstance, f)
+binary: msg.getBinary_asB64(),
+metadata: (f = msg.getMetadata()) && proto.viam.app.data.v1.BinaryMetadata.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6197,10 +6204,10 @@ proto.viam.app.data.v1.BinaryDataByFilterRequest.prototype.toObject = function(o
  */
 proto.viam.app.data.v1.BinaryDataByFilterRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dataRequest: (f = msg.getDataRequest()) && proto.viam.app.data.v1.DataRequest.toObject(includeInstance, f),
-    includeBinary: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    countOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    includeInternalData: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+dataRequest: (f = msg.getDataRequest()) && proto.viam.app.data.v1.DataRequest.toObject(includeInstance, f),
+includeBinary: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+countOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+includeInternalData: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -6445,11 +6452,11 @@ proto.viam.app.data.v1.BinaryDataByFilterResponse.prototype.toObject = function(
  */
 proto.viam.app.data.v1.BinaryDataByFilterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dataList: jspb.Message.toObjectList(msg.getDataList(),
+dataList: jspb.Message.toObjectList(msg.getDataList(),
     proto.viam.app.data.v1.BinaryData.toObject, includeInstance),
-    count: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    last: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    totalSizeBytes: jspb.Message.getFieldWithDefault(msg, 4, 0)
+count: jspb.Message.getFieldWithDefault(msg, 2, 0),
+last: jspb.Message.getFieldWithDefault(msg, 3, ""),
+totalSizeBytes: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -6688,9 +6695,9 @@ proto.viam.app.data.v1.BinaryID.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.data.v1.BinaryID.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fileId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 3, "")
+fileId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+locationId: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -6885,8 +6892,8 @@ proto.viam.app.data.v1.BinaryDataByIDsRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.data.v1.BinaryDataByIDsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    includeBinary: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
+includeBinary: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
     proto.viam.app.data.v1.BinaryID.toObject, includeInstance)
   };
 
@@ -7075,9 +7082,9 @@ proto.viam.app.data.v1.BinaryDataByIDsResponse.prototype.toObject = function(opt
  */
 proto.viam.app.data.v1.BinaryDataByIDsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dataList: jspb.Message.toObjectList(msg.getDataList(),
+dataList: jspb.Message.toObjectList(msg.getDataList(),
     proto.viam.app.data.v1.BinaryData.toObject, includeInstance),
-    count: jspb.Message.getFieldWithDefault(msg, 2, 0)
+count: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -7258,13 +7265,13 @@ proto.viam.app.data.v1.BoundingBox.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.data.v1.BoundingBox.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    label: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    xMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    yMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    xMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    yMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    confidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+label: jspb.Message.getFieldWithDefault(msg, 2, ""),
+xMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+yMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+xMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+yMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+confidence: (f = jspb.Message.getOptionalFloatingPointField(msg, 7)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -7586,8 +7593,8 @@ proto.viam.app.data.v1.Classification.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.data.v1.Classification.toObject = function(includeInstance, msg) {
   var f, obj = {
-    label: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    confidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+label: jspb.Message.getFieldWithDefault(msg, 1, ""),
+confidence: (f = jspb.Message.getOptionalFloatingPointField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -7771,9 +7778,9 @@ proto.viam.app.data.v1.Annotations.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.data.v1.Annotations.toObject = function(includeInstance, msg) {
   var f, obj = {
-    bboxesList: jspb.Message.toObjectList(msg.getBboxesList(),
+bboxesList: jspb.Message.toObjectList(msg.getBboxesList(),
     proto.viam.app.data.v1.BoundingBox.toObject, includeInstance),
-    classificationsList: jspb.Message.toObjectList(msg.getClassificationsList(),
+classificationsList: jspb.Message.toObjectList(msg.getClassificationsList(),
     proto.viam.app.data.v1.Classification.toObject, includeInstance)
   };
 
@@ -7984,15 +7991,15 @@ proto.viam.app.data.v1.BinaryMetadata.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.data.v1.BinaryMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    captureMetadata: (f = msg.getCaptureMetadata()) && proto.viam.app.data.v1.CaptureMetadata.toObject(includeInstance, f),
-    timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    fileName: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    fileExt: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    uri: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    annotations: (f = msg.getAnnotations()) && proto.viam.app.data.v1.Annotations.toObject(includeInstance, f),
-    datasetIdsList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+captureMetadata: (f = msg.getCaptureMetadata()) && proto.viam.app.data.v1.CaptureMetadata.toObject(includeInstance, f),
+timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+fileName: jspb.Message.getFieldWithDefault(msg, 5, ""),
+fileExt: jspb.Message.getFieldWithDefault(msg, 6, ""),
+uri: jspb.Message.getFieldWithDefault(msg, 7, ""),
+annotations: (f = msg.getAnnotations()) && proto.viam.app.data.v1.Annotations.toObject(includeInstance, f),
+datasetIdsList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -8457,8 +8464,8 @@ proto.viam.app.data.v1.DeleteTabularDataRequest.prototype.toObject = function(op
  */
 proto.viam.app.data.v1.DeleteTabularDataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    deleteOlderThanDays: jspb.Message.getFieldWithDefault(msg, 2, 0)
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+deleteOlderThanDays: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -8617,7 +8624,7 @@ proto.viam.app.data.v1.DeleteTabularDataResponse.prototype.toObject = function(o
  */
 proto.viam.app.data.v1.DeleteTabularDataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0)
+deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -8747,8 +8754,8 @@ proto.viam.app.data.v1.DeleteBinaryDataByFilterRequest.prototype.toObject = func
  */
 proto.viam.app.data.v1.DeleteBinaryDataByFilterRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f),
-    includeInternalData: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f),
+includeInternalData: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -8928,7 +8935,7 @@ proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.prototype.toObject = fun
  */
 proto.viam.app.data.v1.DeleteBinaryDataByFilterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0)
+deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -9065,7 +9072,7 @@ proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.prototype.toObject = functio
  */
 proto.viam.app.data.v1.DeleteBinaryDataByIDsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
+binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
     proto.viam.app.data.v1.BinaryID.toObject, includeInstance)
   };
 
@@ -9218,7 +9225,7 @@ proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.prototype.toObject = functi
  */
 proto.viam.app.data.v1.DeleteBinaryDataByIDsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0)
+deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -9355,9 +9362,9 @@ proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.prototype.toObject = func
  */
 proto.viam.app.data.v1.AddTagsToBinaryDataByIDsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
+binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
     proto.viam.app.data.v1.BinaryID.toObject, includeInstance),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -9665,8 +9672,8 @@ proto.viam.app.data.v1.AddTagsToBinaryDataByFilterRequest.prototype.toObject = f
  */
 proto.viam.app.data.v1.AddTagsToBinaryDataByFilterRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f),
+tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -9973,9 +9980,9 @@ proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.prototype.toObject =
  */
 proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
+binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
     proto.viam.app.data.v1.BinaryID.toObject, includeInstance),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -10175,7 +10182,7 @@ proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse.prototype.toObject 
  */
 proto.viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0)
+deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -10312,8 +10319,8 @@ proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest.prototype.toObjec
  */
 proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f),
+tagsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -10512,7 +10519,7 @@ proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse.prototype.toObje
  */
 proto.viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0)
+deletedCount: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -10642,7 +10649,7 @@ proto.viam.app.data.v1.TagsByFilterRequest.prototype.toObject = function(opt_inc
  */
 proto.viam.app.data.v1.TagsByFilterRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f)
+filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10800,7 +10807,7 @@ proto.viam.app.data.v1.TagsByFilterResponse.prototype.toObject = function(opt_in
  */
 proto.viam.app.data.v1.TagsByFilterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+tagsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -10949,12 +10956,12 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.toObject = fun
  */
 proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    binaryId: (f = msg.getBinaryId()) && proto.viam.app.data.v1.BinaryID.toObject(includeInstance, f),
-    label: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    xMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    yMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    xMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    yMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0)
+binaryId: (f = msg.getBinaryId()) && proto.viam.app.data.v1.BinaryID.toObject(includeInstance, f),
+label: jspb.Message.getFieldWithDefault(msg, 2, ""),
+xMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+yMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+xMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+yMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0)
   };
 
   if (includeInstance) {
@@ -11250,7 +11257,7 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse.prototype.toObject = fu
  */
 proto.viam.app.data.v1.AddBoundingBoxToImageByIDResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    bboxId: jspb.Message.getFieldWithDefault(msg, 1, "")
+bboxId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -11380,8 +11387,8 @@ proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest.prototype.toObject 
  */
 proto.viam.app.data.v1.RemoveBoundingBoxFromImageByIDRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    binaryId: (f = msg.getBinaryId()) && proto.viam.app.data.v1.BinaryID.toObject(includeInstance, f),
-    bboxId: jspb.Message.getFieldWithDefault(msg, 2, "")
+binaryId: (f = msg.getBinaryId()) && proto.viam.app.data.v1.BinaryID.toObject(includeInstance, f),
+bboxId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -11662,13 +11669,13 @@ proto.viam.app.data.v1.UpdateBoundingBoxRequest.prototype.toObject = function(op
  */
 proto.viam.app.data.v1.UpdateBoundingBoxRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    binaryId: (f = msg.getBinaryId()) && proto.viam.app.data.v1.BinaryID.toObject(includeInstance, f),
-    bboxId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    label: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    xMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    yMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    xMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    yMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0)
+binaryId: (f = msg.getBinaryId()) && proto.viam.app.data.v1.BinaryID.toObject(includeInstance, f),
+bboxId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+label: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+xMinNormalized: (f = jspb.Message.getOptionalFloatingPointField(msg, 4)) == null ? undefined : f,
+yMinNormalized: (f = jspb.Message.getOptionalFloatingPointField(msg, 5)) == null ? undefined : f,
+xMaxNormalized: (f = jspb.Message.getOptionalFloatingPointField(msg, 6)) == null ? undefined : f,
+yMaxNormalized: (f = jspb.Message.getOptionalFloatingPointField(msg, 7)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -12184,7 +12191,7 @@ proto.viam.app.data.v1.BoundingBoxLabelsByFilterRequest.prototype.toObject = fun
  */
 proto.viam.app.data.v1.BoundingBoxLabelsByFilterRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f)
+filter: (f = msg.getFilter()) && proto.viam.app.data.v1.Filter.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -12342,7 +12349,7 @@ proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse.prototype.toObject = fu
  */
 proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    labelsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+labelsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -12491,8 +12498,8 @@ proto.viam.app.data.v1.ConfigureDatabaseUserRequest.prototype.toObject = functio
  */
 proto.viam.app.data.v1.ConfigureDatabaseUserRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    password: jspb.Message.getFieldWithDefault(msg, 2, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+password: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -12752,7 +12759,7 @@ proto.viam.app.data.v1.GetDatabaseConnectionRequest.prototype.toObject = functio
  */
 proto.viam.app.data.v1.GetDatabaseConnectionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -12882,9 +12889,9 @@ proto.viam.app.data.v1.GetDatabaseConnectionResponse.prototype.toObject = functi
  */
 proto.viam.app.data.v1.GetDatabaseConnectionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    hostname: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    mongodbUri: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    hasDatabaseUser: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+hostname: jspb.Message.getFieldWithDefault(msg, 1, ""),
+mongodbUri: jspb.Message.getFieldWithDefault(msg, 2, ""),
+hasDatabaseUser: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -13079,9 +13086,9 @@ proto.viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest.prototype.toObject = f
  */
 proto.viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
+binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
     proto.viam.app.data.v1.BinaryID.toObject, includeInstance),
-    datasetId: jspb.Message.getFieldWithDefault(msg, 2, "")
+datasetId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -13370,9 +13377,9 @@ proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest.prototype.toObjec
  */
 proto.viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
+binaryIdsList: jspb.Message.toObjectList(msg.getBinaryIdsList(),
     proto.viam.app.data.v1.BinaryID.toObject, includeInstance),
-    datasetId: jspb.Message.getFieldWithDefault(msg, 2, "")
+datasetId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

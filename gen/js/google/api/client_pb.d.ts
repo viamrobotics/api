@@ -287,6 +287,9 @@ export namespace PythonSettings {
     getProtobufPythonicTypesEnabled(): boolean;
     setProtobufPythonicTypesEnabled(value: boolean): void;
 
+    getUnversionedPackageDisabled(): boolean;
+    setUnversionedPackageDisabled(value: boolean): void;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ExperimentalFeatures.AsObject;
     static toObject(includeInstance: boolean, msg: ExperimentalFeatures): ExperimentalFeatures.AsObject;
@@ -301,6 +304,7 @@ export namespace PythonSettings {
     export type AsObject = {
       restAsyncIoEnabled: boolean,
       protobufPythonicTypesEnabled: boolean,
+      unversionedPackageDisabled: boolean,
     }
   }
 }

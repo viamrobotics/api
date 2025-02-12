@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -386,9 +392,9 @@ proto.viam.component.camera.v1.GetImageRequest.prototype.toObject = function(opt
  */
 proto.viam.component.camera.v1.GetImageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    mimeType: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+mimeType: jspb.Message.getFieldWithDefault(msg, 2, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -597,8 +603,8 @@ proto.viam.component.camera.v1.GetImageResponse.prototype.toObject = function(op
  */
 proto.viam.component.camera.v1.GetImageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    mimeType: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    image: msg.getImage_asB64()
+mimeType: jspb.Message.getFieldWithDefault(msg, 1, ""),
+image: msg.getImage_asB64()
   };
 
   if (includeInstance) {
@@ -781,7 +787,7 @@ proto.viam.component.camera.v1.GetImagesRequest.prototype.toObject = function(op
  */
 proto.viam.component.camera.v1.GetImagesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -918,9 +924,9 @@ proto.viam.component.camera.v1.GetImagesResponse.prototype.toObject = function(o
  */
 proto.viam.component.camera.v1.GetImagesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    imagesList: jspb.Message.toObjectList(msg.getImagesList(),
+imagesList: jspb.Message.toObjectList(msg.getImagesList(),
     proto.viam.component.camera.v1.Image.toObject, includeInstance),
-    responseMetadata: (f = msg.getResponseMetadata()) && common_v1_common_pb.ResponseMetadata.toObject(includeInstance, f)
+responseMetadata: (f = msg.getResponseMetadata()) && common_v1_common_pb.ResponseMetadata.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1122,9 +1128,9 @@ proto.viam.component.camera.v1.Image.prototype.toObject = function(opt_includeIn
  */
 proto.viam.component.camera.v1.Image.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sourceName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    format: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    image: msg.getImage_asB64()
+sourceName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+format: jspb.Message.getFieldWithDefault(msg, 2, 0),
+image: msg.getImage_asB64()
   };
 
   if (includeInstance) {
@@ -1336,9 +1342,9 @@ proto.viam.component.camera.v1.RenderFrameRequest.prototype.toObject = function(
  */
 proto.viam.component.camera.v1.RenderFrameRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    mimeType: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+mimeType: jspb.Message.getFieldWithDefault(msg, 2, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1547,9 +1553,9 @@ proto.viam.component.camera.v1.GetPointCloudRequest.prototype.toObject = functio
  */
 proto.viam.component.camera.v1.GetPointCloudRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    mimeType: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+mimeType: jspb.Message.getFieldWithDefault(msg, 2, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1758,8 +1764,8 @@ proto.viam.component.camera.v1.GetPointCloudResponse.prototype.toObject = functi
  */
 proto.viam.component.camera.v1.GetPointCloudResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    mimeType: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pointCloud: msg.getPointCloud_asB64()
+mimeType: jspb.Message.getFieldWithDefault(msg, 1, ""),
+pointCloud: msg.getPointCloud_asB64()
   };
 
   if (includeInstance) {
@@ -1942,7 +1948,7 @@ proto.viam.component.camera.v1.GetPropertiesRequest.prototype.toObject = functio
  */
 proto.viam.component.camera.v1.GetPropertiesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2079,11 +2085,11 @@ proto.viam.component.camera.v1.GetPropertiesResponse.prototype.toObject = functi
  */
 proto.viam.component.camera.v1.GetPropertiesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    supportsPcd: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    intrinsicParameters: (f = msg.getIntrinsicParameters()) && proto.viam.component.camera.v1.IntrinsicParameters.toObject(includeInstance, f),
-    distortionParameters: (f = msg.getDistortionParameters()) && proto.viam.component.camera.v1.DistortionParameters.toObject(includeInstance, f),
-    mimeTypesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    frameRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0)
+supportsPcd: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+intrinsicParameters: (f = msg.getIntrinsicParameters()) && proto.viam.component.camera.v1.IntrinsicParameters.toObject(includeInstance, f),
+distortionParameters: (f = msg.getDistortionParameters()) && proto.viam.component.camera.v1.DistortionParameters.toObject(includeInstance, f),
+mimeTypesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+frameRate: (f = jspb.Message.getOptionalFloatingPointField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2415,7 +2421,7 @@ proto.viam.component.camera.v1.Webcams.prototype.toObject = function(opt_include
  */
 proto.viam.component.camera.v1.Webcams.toObject = function(includeInstance, msg) {
   var f, obj = {
-    webcamsList: jspb.Message.toObjectList(msg.getWebcamsList(),
+webcamsList: jspb.Message.toObjectList(msg.getWebcamsList(),
     proto.viam.component.camera.v1.Webcam.toObject, includeInstance)
   };
 
@@ -2575,12 +2581,12 @@ proto.viam.component.camera.v1.Webcam.prototype.toObject = function(opt_includeI
  */
 proto.viam.component.camera.v1.Webcam.toObject = function(includeInstance, msg) {
   var f, obj = {
-    label: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    status: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    propertiesList: jspb.Message.toObjectList(msg.getPropertiesList(),
+label: jspb.Message.getFieldWithDefault(msg, 1, ""),
+status: jspb.Message.getFieldWithDefault(msg, 2, ""),
+propertiesList: jspb.Message.toObjectList(msg.getPropertiesList(),
     proto.viam.component.camera.v1.Property.toObject, includeInstance),
-    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 5, "")
+name: jspb.Message.getFieldWithDefault(msg, 4, ""),
+id: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -2848,10 +2854,10 @@ proto.viam.component.camera.v1.Property.prototype.toObject = function(opt_includ
  */
 proto.viam.component.camera.v1.Property.toObject = function(includeInstance, msg) {
   var f, obj = {
-    widthPx: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    heightPx: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    frameFormat: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    frameRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
+widthPx: jspb.Message.getFieldWithDefault(msg, 1, 0),
+heightPx: jspb.Message.getFieldWithDefault(msg, 2, 0),
+frameFormat: jspb.Message.getFieldWithDefault(msg, 3, ""),
+frameRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -3068,12 +3074,12 @@ proto.viam.component.camera.v1.IntrinsicParameters.prototype.toObject = function
  */
 proto.viam.component.camera.v1.IntrinsicParameters.toObject = function(includeInstance, msg) {
   var f, obj = {
-    widthPx: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    heightPx: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    focalXPx: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    focalYPx: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    centerXPx: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    centerYPx: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0)
+widthPx: jspb.Message.getFieldWithDefault(msg, 1, 0),
+heightPx: jspb.Message.getFieldWithDefault(msg, 2, 0),
+focalXPx: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+focalYPx: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+centerXPx: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+centerYPx: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0)
   };
 
   if (includeInstance) {
@@ -3355,8 +3361,8 @@ proto.viam.component.camera.v1.DistortionParameters.prototype.toObject = functio
  */
 proto.viam.component.camera.v1.DistortionParameters.toObject = function(includeInstance, msg) {
   var f, obj = {
-    model: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    parametersList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 2)) == null ? undefined : f
+model: jspb.Message.getFieldWithDefault(msg, 1, ""),
+parametersList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {

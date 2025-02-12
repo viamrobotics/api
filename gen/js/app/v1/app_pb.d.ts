@@ -4692,6 +4692,11 @@ export class Model extends jspb.Message {
   getDescription(): string;
   setDescription(value: string): void;
 
+  clearSupportedHardwareList(): void;
+  getSupportedHardwareList(): Array<string>;
+  setSupportedHardwareList(value: Array<string>): void;
+  addSupportedHardware(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Model.AsObject;
   static toObject(includeInstance: boolean, msg: Model): Model.AsObject;
@@ -4708,6 +4713,7 @@ export namespace Model {
     model: string,
     markdownDocumentation: string,
     description: string,
+    supportedHardwareList: Array<string>,
   }
 }
 
