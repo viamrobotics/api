@@ -42,6 +42,10 @@ type AppServiceClient interface {
 	UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error)
 	// Delete an organization
 	DeleteOrganization(ctx context.Context, in *DeleteOrganizationRequest, opts ...grpc.CallOption) (*DeleteOrganizationResponse, error)
+	// Get user-defined metadata for an organization
+	GetOrganizationMetadata(ctx context.Context, in *GetOrganizationMetadataRequest, opts ...grpc.CallOption) (*GetOrganizationMetadataResponse, error)
+	// Update user-defined metadata for an organization
+	UpdateOrganizationMetadata(ctx context.Context, in *UpdateOrganizationMetadataRequest, opts ...grpc.CallOption) (*UpdateOrganizationMetadataResponse, error)
 	// List all members of an organization and all invited members to the organization.
 	ListOrganizationMembers(ctx context.Context, in *ListOrganizationMembersRequest, opts ...grpc.CallOption) (*ListOrganizationMembersResponse, error)
 	// Create an organization invite to an organization
@@ -77,6 +81,10 @@ type AppServiceClient interface {
 	UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error)
 	// Delete a location
 	DeleteLocation(ctx context.Context, in *DeleteLocationRequest, opts ...grpc.CallOption) (*DeleteLocationResponse, error)
+	// Get user-defined metadata for a location
+	GetLocationMetadata(ctx context.Context, in *GetLocationMetadataRequest, opts ...grpc.CallOption) (*GetLocationMetadataResponse, error)
+	// Update user-defined metadata for a location
+	UpdateLocationMetadata(ctx context.Context, in *UpdateLocationMetadataRequest, opts ...grpc.CallOption) (*UpdateLocationMetadataResponse, error)
 	// Get a list of locations
 	ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error)
 	// Share a location with an organization
@@ -92,6 +100,10 @@ type AppServiceClient interface {
 	DeleteLocationSecret(ctx context.Context, in *DeleteLocationSecretRequest, opts ...grpc.CallOption) (*DeleteLocationSecretResponse, error)
 	// Get a specific robot by ID
 	GetRobot(ctx context.Context, in *GetRobotRequest, opts ...grpc.CallOption) (*GetRobotResponse, error)
+	// Get user-defined metadata for a robot
+	GetRobotMetadata(ctx context.Context, in *GetRobotMetadataRequest, opts ...grpc.CallOption) (*GetRobotMetadataResponse, error)
+	// Update user-defined metadata for an robot
+	UpdateRobotMetadata(ctx context.Context, in *UpdateRobotMetadataRequest, opts ...grpc.CallOption) (*UpdateRobotMetadataResponse, error)
 	// Get Rover Rental Location Robots
 	GetRoverRentalRobots(ctx context.Context, in *GetRoverRentalRobotsRequest, opts ...grpc.CallOption) (*GetRoverRentalRobotsResponse, error)
 	GetRobotParts(ctx context.Context, in *GetRobotPartsRequest, opts ...grpc.CallOption) (*GetRobotPartsResponse, error)
@@ -107,6 +119,10 @@ type AppServiceClient interface {
 	NewRobotPart(ctx context.Context, in *NewRobotPartRequest, opts ...grpc.CallOption) (*NewRobotPartResponse, error)
 	// Delete a robot part
 	DeleteRobotPart(ctx context.Context, in *DeleteRobotPartRequest, opts ...grpc.CallOption) (*DeleteRobotPartResponse, error)
+	// Get user-defined metadata for a robot part
+	GetRobotPartMetadata(ctx context.Context, in *GetRobotPartMetadataRequest, opts ...grpc.CallOption) (*GetRobotPartMetadataResponse, error)
+	// Update user-defined metadata for an robot part
+	UpdateRobotPartMetadata(ctx context.Context, in *UpdateRobotPartMetadataRequest, opts ...grpc.CallOption) (*UpdateRobotPartMetadataResponse, error)
 	// Gets the Robot API Keys for the robot
 	GetRobotAPIKeys(ctx context.Context, in *GetRobotAPIKeysRequest, opts ...grpc.CallOption) (*GetRobotAPIKeysResponse, error)
 	// Marks the given part as the main part, and all the others as not
@@ -271,6 +287,24 @@ func (c *appServiceClient) UpdateOrganization(ctx context.Context, in *UpdateOrg
 func (c *appServiceClient) DeleteOrganization(ctx context.Context, in *DeleteOrganizationRequest, opts ...grpc.CallOption) (*DeleteOrganizationResponse, error) {
 	out := new(DeleteOrganizationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteOrganization", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetOrganizationMetadata(ctx context.Context, in *GetOrganizationMetadataRequest, opts ...grpc.CallOption) (*GetOrganizationMetadataResponse, error) {
+	out := new(GetOrganizationMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganizationMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateOrganizationMetadata(ctx context.Context, in *UpdateOrganizationMetadataRequest, opts ...grpc.CallOption) (*UpdateOrganizationMetadataResponse, error) {
+	out := new(UpdateOrganizationMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateOrganizationMetadata", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -502,6 +536,24 @@ func (c *appServiceClient) DeleteLocation(ctx context.Context, in *DeleteLocatio
 	return out, nil
 }
 
+func (c *appServiceClient) GetLocationMetadata(ctx context.Context, in *GetLocationMetadataRequest, opts ...grpc.CallOption) (*GetLocationMetadataResponse, error) {
+	out := new(GetLocationMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetLocationMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateLocationMetadata(ctx context.Context, in *UpdateLocationMetadataRequest, opts ...grpc.CallOption) (*UpdateLocationMetadataResponse, error) {
+	out := new(UpdateLocationMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateLocationMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error) {
 	out := new(ListLocationsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListLocations", in, out, opts...)
@@ -559,6 +611,24 @@ func (c *appServiceClient) DeleteLocationSecret(ctx context.Context, in *DeleteL
 func (c *appServiceClient) GetRobot(ctx context.Context, in *GetRobotRequest, opts ...grpc.CallOption) (*GetRobotResponse, error) {
 	out := new(GetRobotResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobot", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetRobotMetadata(ctx context.Context, in *GetRobotMetadataRequest, opts ...grpc.CallOption) (*GetRobotMetadataResponse, error) {
+	out := new(GetRobotMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateRobotMetadata(ctx context.Context, in *UpdateRobotMetadataRequest, opts ...grpc.CallOption) (*UpdateRobotMetadataResponse, error) {
+	out := new(UpdateRobotMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateRobotMetadata", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -663,6 +733,24 @@ func (c *appServiceClient) NewRobotPart(ctx context.Context, in *NewRobotPartReq
 func (c *appServiceClient) DeleteRobotPart(ctx context.Context, in *DeleteRobotPartRequest, opts ...grpc.CallOption) (*DeleteRobotPartResponse, error) {
 	out := new(DeleteRobotPartResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteRobotPart", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetRobotPartMetadata(ctx context.Context, in *GetRobotPartMetadataRequest, opts ...grpc.CallOption) (*GetRobotPartMetadataResponse, error) {
+	out := new(GetRobotPartMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotPartMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateRobotPartMetadata(ctx context.Context, in *UpdateRobotPartMetadataRequest, opts ...grpc.CallOption) (*UpdateRobotPartMetadataResponse, error) {
+	out := new(UpdateRobotPartMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateRobotPartMetadata", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1087,6 +1175,10 @@ type AppServiceServer interface {
 	UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error)
 	// Delete an organization
 	DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error)
+	// Get user-defined metadata for an organization
+	GetOrganizationMetadata(context.Context, *GetOrganizationMetadataRequest) (*GetOrganizationMetadataResponse, error)
+	// Update user-defined metadata for an organization
+	UpdateOrganizationMetadata(context.Context, *UpdateOrganizationMetadataRequest) (*UpdateOrganizationMetadataResponse, error)
 	// List all members of an organization and all invited members to the organization.
 	ListOrganizationMembers(context.Context, *ListOrganizationMembersRequest) (*ListOrganizationMembersResponse, error)
 	// Create an organization invite to an organization
@@ -1122,6 +1214,10 @@ type AppServiceServer interface {
 	UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error)
 	// Delete a location
 	DeleteLocation(context.Context, *DeleteLocationRequest) (*DeleteLocationResponse, error)
+	// Get user-defined metadata for a location
+	GetLocationMetadata(context.Context, *GetLocationMetadataRequest) (*GetLocationMetadataResponse, error)
+	// Update user-defined metadata for a location
+	UpdateLocationMetadata(context.Context, *UpdateLocationMetadataRequest) (*UpdateLocationMetadataResponse, error)
 	// Get a list of locations
 	ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error)
 	// Share a location with an organization
@@ -1137,6 +1233,10 @@ type AppServiceServer interface {
 	DeleteLocationSecret(context.Context, *DeleteLocationSecretRequest) (*DeleteLocationSecretResponse, error)
 	// Get a specific robot by ID
 	GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error)
+	// Get user-defined metadata for a robot
+	GetRobotMetadata(context.Context, *GetRobotMetadataRequest) (*GetRobotMetadataResponse, error)
+	// Update user-defined metadata for an robot
+	UpdateRobotMetadata(context.Context, *UpdateRobotMetadataRequest) (*UpdateRobotMetadataResponse, error)
 	// Get Rover Rental Location Robots
 	GetRoverRentalRobots(context.Context, *GetRoverRentalRobotsRequest) (*GetRoverRentalRobotsResponse, error)
 	GetRobotParts(context.Context, *GetRobotPartsRequest) (*GetRobotPartsResponse, error)
@@ -1152,6 +1252,10 @@ type AppServiceServer interface {
 	NewRobotPart(context.Context, *NewRobotPartRequest) (*NewRobotPartResponse, error)
 	// Delete a robot part
 	DeleteRobotPart(context.Context, *DeleteRobotPartRequest) (*DeleteRobotPartResponse, error)
+	// Get user-defined metadata for a robot part
+	GetRobotPartMetadata(context.Context, *GetRobotPartMetadataRequest) (*GetRobotPartMetadataResponse, error)
+	// Update user-defined metadata for an robot part
+	UpdateRobotPartMetadata(context.Context, *UpdateRobotPartMetadataRequest) (*UpdateRobotPartMetadataResponse, error)
 	// Gets the Robot API Keys for the robot
 	GetRobotAPIKeys(context.Context, *GetRobotAPIKeysRequest) (*GetRobotAPIKeysResponse, error)
 	// Marks the given part as the main part, and all the others as not
@@ -1259,6 +1363,12 @@ func (UnimplementedAppServiceServer) UpdateOrganization(context.Context, *Update
 func (UnimplementedAppServiceServer) DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganization not implemented")
 }
+func (UnimplementedAppServiceServer) GetOrganizationMetadata(context.Context, *GetOrganizationMetadataRequest) (*GetOrganizationMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationMetadata not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateOrganizationMetadata(context.Context, *UpdateOrganizationMetadataRequest) (*UpdateOrganizationMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationMetadata not implemented")
+}
 func (UnimplementedAppServiceServer) ListOrganizationMembers(context.Context, *ListOrganizationMembersRequest) (*ListOrganizationMembersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationMembers not implemented")
 }
@@ -1334,6 +1444,12 @@ func (UnimplementedAppServiceServer) UpdateLocation(context.Context, *UpdateLoca
 func (UnimplementedAppServiceServer) DeleteLocation(context.Context, *DeleteLocationRequest) (*DeleteLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteLocation not implemented")
 }
+func (UnimplementedAppServiceServer) GetLocationMetadata(context.Context, *GetLocationMetadataRequest) (*GetLocationMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLocationMetadata not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateLocationMetadata(context.Context, *UpdateLocationMetadataRequest) (*UpdateLocationMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateLocationMetadata not implemented")
+}
 func (UnimplementedAppServiceServer) ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListLocations not implemented")
 }
@@ -1354,6 +1470,12 @@ func (UnimplementedAppServiceServer) DeleteLocationSecret(context.Context, *Dele
 }
 func (UnimplementedAppServiceServer) GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobot not implemented")
+}
+func (UnimplementedAppServiceServer) GetRobotMetadata(context.Context, *GetRobotMetadataRequest) (*GetRobotMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRobotMetadata not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateRobotMetadata(context.Context, *UpdateRobotMetadataRequest) (*UpdateRobotMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRobotMetadata not implemented")
 }
 func (UnimplementedAppServiceServer) GetRoverRentalRobots(context.Context, *GetRoverRentalRobotsRequest) (*GetRoverRentalRobotsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRoverRentalRobots not implemented")
@@ -1381,6 +1503,12 @@ func (UnimplementedAppServiceServer) NewRobotPart(context.Context, *NewRobotPart
 }
 func (UnimplementedAppServiceServer) DeleteRobotPart(context.Context, *DeleteRobotPartRequest) (*DeleteRobotPartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRobotPart not implemented")
+}
+func (UnimplementedAppServiceServer) GetRobotPartMetadata(context.Context, *GetRobotPartMetadataRequest) (*GetRobotPartMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPartMetadata not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateRobotPartMetadata(context.Context, *UpdateRobotPartMetadataRequest) (*UpdateRobotPartMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRobotPartMetadata not implemented")
 }
 func (UnimplementedAppServiceServer) GetRobotAPIKeys(context.Context, *GetRobotAPIKeysRequest) (*GetRobotAPIKeysResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobotAPIKeys not implemented")
@@ -1694,6 +1822,42 @@ func _AppService_DeleteOrganization_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).DeleteOrganization(ctx, req.(*DeleteOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetOrganizationMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetOrganizationMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetOrganizationMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetOrganizationMetadata(ctx, req.(*GetOrganizationMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateOrganizationMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateOrganizationMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateOrganizationMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateOrganizationMetadata(ctx, req.(*UpdateOrganizationMetadataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2148,6 +2312,42 @@ func _AppService_DeleteLocation_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_GetLocationMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLocationMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetLocationMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetLocationMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetLocationMetadata(ctx, req.(*GetLocationMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateLocationMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateLocationMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateLocationMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateLocationMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateLocationMetadata(ctx, req.(*UpdateLocationMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_ListLocations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListLocationsRequest)
 	if err := dec(in); err != nil {
@@ -2270,6 +2470,42 @@ func _AppService_GetRobot_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).GetRobot(ctx, req.(*GetRobotRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetRobotMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRobotMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetRobotMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetRobotMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetRobotMetadata(ctx, req.(*GetRobotMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateRobotMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRobotMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateRobotMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateRobotMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateRobotMetadata(ctx, req.(*UpdateRobotMetadataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2435,6 +2671,42 @@ func _AppService_DeleteRobotPart_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).DeleteRobotPart(ctx, req.(*DeleteRobotPartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetRobotPartMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRobotPartMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetRobotPartMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetRobotPartMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetRobotPartMetadata(ctx, req.(*GetRobotPartMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateRobotPartMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRobotPartMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateRobotPartMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateRobotPartMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateRobotPartMetadata(ctx, req.(*UpdateRobotPartMetadataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3233,6 +3505,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_DeleteOrganization_Handler,
 		},
 		{
+			MethodName: "GetOrganizationMetadata",
+			Handler:    _AppService_GetOrganizationMetadata_Handler,
+		},
+		{
+			MethodName: "UpdateOrganizationMetadata",
+			Handler:    _AppService_UpdateOrganizationMetadata_Handler,
+		},
+		{
 			MethodName: "ListOrganizationMembers",
 			Handler:    _AppService_ListOrganizationMembers_Handler,
 		},
@@ -3333,6 +3613,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_DeleteLocation_Handler,
 		},
 		{
+			MethodName: "GetLocationMetadata",
+			Handler:    _AppService_GetLocationMetadata_Handler,
+		},
+		{
+			MethodName: "UpdateLocationMetadata",
+			Handler:    _AppService_UpdateLocationMetadata_Handler,
+		},
+		{
 			MethodName: "ListLocations",
 			Handler:    _AppService_ListLocations_Handler,
 		},
@@ -3359,6 +3647,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRobot",
 			Handler:    _AppService_GetRobot_Handler,
+		},
+		{
+			MethodName: "GetRobotMetadata",
+			Handler:    _AppService_GetRobotMetadata_Handler,
+		},
+		{
+			MethodName: "UpdateRobotMetadata",
+			Handler:    _AppService_UpdateRobotMetadata_Handler,
 		},
 		{
 			MethodName: "GetRoverRentalRobots",
@@ -3391,6 +3687,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteRobotPart",
 			Handler:    _AppService_DeleteRobotPart_Handler,
+		},
+		{
+			MethodName: "GetRobotPartMetadata",
+			Handler:    _AppService_GetRobotPartMetadata_Handler,
+		},
+		{
+			MethodName: "UpdateRobotPartMetadata",
+			Handler:    _AppService_UpdateRobotPartMetadata_Handler,
 		},
 		{
 			MethodName: "GetRobotAPIKeys",

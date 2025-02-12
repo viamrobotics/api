@@ -26,6 +26,8 @@ var app_packages_v1_packages_pb = require('../../app/packages/v1/packages_pb.js'
 
 var common_v1_common_pb = require('../../common/v1/common_pb.js')
 
+var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js')
+
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
@@ -695,6 +697,128 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.deleteOrganization =
       request,
       metadata || {},
       methodDescriptor_AppService_DeleteOrganization);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetOrganizationMetadataRequest,
+ *   !proto.viam.app.v1.GetOrganizationMetadataResponse>}
+ */
+const methodDescriptor_AppService_GetOrganizationMetadata = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetOrganizationMetadata',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetOrganizationMetadataRequest,
+  proto.viam.app.v1.GetOrganizationMetadataResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetOrganizationMetadataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetOrganizationMetadataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetOrganizationMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetOrganizationMetadataResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetOrganizationMetadataResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getOrganizationMetadata =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetOrganizationMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetOrganizationMetadata,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetOrganizationMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetOrganizationMetadataResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getOrganizationMetadata =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetOrganizationMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetOrganizationMetadata);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.UpdateOrganizationMetadataRequest,
+ *   !proto.viam.app.v1.UpdateOrganizationMetadataResponse>}
+ */
+const methodDescriptor_AppService_UpdateOrganizationMetadata = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/UpdateOrganizationMetadata',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.UpdateOrganizationMetadataRequest,
+  proto.viam.app.v1.UpdateOrganizationMetadataResponse,
+  /**
+   * @param {!proto.viam.app.v1.UpdateOrganizationMetadataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.UpdateOrganizationMetadataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateOrganizationMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.UpdateOrganizationMetadataResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.UpdateOrganizationMetadataResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.updateOrganizationMetadata =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateOrganizationMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateOrganizationMetadata,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateOrganizationMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.UpdateOrganizationMetadataResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.updateOrganizationMetadata =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateOrganizationMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateOrganizationMetadata);
 };
 
 
@@ -2226,6 +2350,128 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.deleteLocation =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetLocationMetadataRequest,
+ *   !proto.viam.app.v1.GetLocationMetadataResponse>}
+ */
+const methodDescriptor_AppService_GetLocationMetadata = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetLocationMetadata',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetLocationMetadataRequest,
+  proto.viam.app.v1.GetLocationMetadataResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetLocationMetadataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetLocationMetadataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetLocationMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetLocationMetadataResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetLocationMetadataResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getLocationMetadata =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetLocationMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetLocationMetadata,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetLocationMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetLocationMetadataResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getLocationMetadata =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetLocationMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetLocationMetadata);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.UpdateLocationMetadataRequest,
+ *   !proto.viam.app.v1.UpdateLocationMetadataResponse>}
+ */
+const methodDescriptor_AppService_UpdateLocationMetadata = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/UpdateLocationMetadata',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.UpdateLocationMetadataRequest,
+  proto.viam.app.v1.UpdateLocationMetadataResponse,
+  /**
+   * @param {!proto.viam.app.v1.UpdateLocationMetadataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.UpdateLocationMetadataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateLocationMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.UpdateLocationMetadataResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.UpdateLocationMetadataResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.updateLocationMetadata =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateLocationMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateLocationMetadata,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateLocationMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.UpdateLocationMetadataResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.updateLocationMetadata =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateLocationMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateLocationMetadata);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.ListLocationsRequest,
  *   !proto.viam.app.v1.ListLocationsResponse>}
  */
@@ -2647,6 +2893,128 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.getRobot =
       request,
       metadata || {},
       methodDescriptor_AppService_GetRobot);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetRobotMetadataRequest,
+ *   !proto.viam.app.v1.GetRobotMetadataResponse>}
+ */
+const methodDescriptor_AppService_GetRobotMetadata = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetRobotMetadata',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetRobotMetadataRequest,
+  proto.viam.app.v1.GetRobotMetadataResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetRobotMetadataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetRobotMetadataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetRobotMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetRobotMetadataResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetRobotMetadataResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getRobotMetadata =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetRobotMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetRobotMetadata,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetRobotMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetRobotMetadataResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getRobotMetadata =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetRobotMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetRobotMetadata);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.UpdateRobotMetadataRequest,
+ *   !proto.viam.app.v1.UpdateRobotMetadataResponse>}
+ */
+const methodDescriptor_AppService_UpdateRobotMetadata = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/UpdateRobotMetadata',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.UpdateRobotMetadataRequest,
+  proto.viam.app.v1.UpdateRobotMetadataResponse,
+  /**
+   * @param {!proto.viam.app.v1.UpdateRobotMetadataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.UpdateRobotMetadataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateRobotMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.UpdateRobotMetadataResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.UpdateRobotMetadataResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.updateRobotMetadata =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateRobotMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateRobotMetadata,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateRobotMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.UpdateRobotMetadataResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.updateRobotMetadata =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateRobotMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateRobotMetadata);
 };
 
 
@@ -3191,6 +3559,128 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.deleteRobotPart =
       request,
       metadata || {},
       methodDescriptor_AppService_DeleteRobotPart);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetRobotPartMetadataRequest,
+ *   !proto.viam.app.v1.GetRobotPartMetadataResponse>}
+ */
+const methodDescriptor_AppService_GetRobotPartMetadata = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetRobotPartMetadata',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetRobotPartMetadataRequest,
+  proto.viam.app.v1.GetRobotPartMetadataResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetRobotPartMetadataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetRobotPartMetadataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetRobotPartMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetRobotPartMetadataResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetRobotPartMetadataResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getRobotPartMetadata =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetRobotPartMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetRobotPartMetadata,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetRobotPartMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetRobotPartMetadataResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getRobotPartMetadata =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetRobotPartMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetRobotPartMetadata);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.UpdateRobotPartMetadataRequest,
+ *   !proto.viam.app.v1.UpdateRobotPartMetadataResponse>}
+ */
+const methodDescriptor_AppService_UpdateRobotPartMetadata = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/UpdateRobotPartMetadata',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.UpdateRobotPartMetadataRequest,
+  proto.viam.app.v1.UpdateRobotPartMetadataResponse,
+  /**
+   * @param {!proto.viam.app.v1.UpdateRobotPartMetadataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.UpdateRobotPartMetadataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateRobotPartMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.UpdateRobotPartMetadataResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.UpdateRobotPartMetadataResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.updateRobotPartMetadata =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateRobotPartMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateRobotPartMetadata,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateRobotPartMetadataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.UpdateRobotPartMetadataResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.updateRobotPartMetadata =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/UpdateRobotPartMetadata',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UpdateRobotPartMetadata);
 };
 
 

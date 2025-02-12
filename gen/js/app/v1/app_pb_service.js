@@ -100,6 +100,24 @@ AppService.DeleteOrganization = {
   responseType: app_v1_app_pb.DeleteOrganizationResponse
 };
 
+AppService.GetOrganizationMetadata = {
+  methodName: "GetOrganizationMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetOrganizationMetadataRequest,
+  responseType: app_v1_app_pb.GetOrganizationMetadataResponse
+};
+
+AppService.UpdateOrganizationMetadata = {
+  methodName: "UpdateOrganizationMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateOrganizationMetadataRequest,
+  responseType: app_v1_app_pb.UpdateOrganizationMetadataResponse
+};
+
 AppService.ListOrganizationMembers = {
   methodName: "ListOrganizationMembers",
   service: AppService,
@@ -325,6 +343,24 @@ AppService.DeleteLocation = {
   responseType: app_v1_app_pb.DeleteLocationResponse
 };
 
+AppService.GetLocationMetadata = {
+  methodName: "GetLocationMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetLocationMetadataRequest,
+  responseType: app_v1_app_pb.GetLocationMetadataResponse
+};
+
+AppService.UpdateLocationMetadata = {
+  methodName: "UpdateLocationMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateLocationMetadataRequest,
+  responseType: app_v1_app_pb.UpdateLocationMetadataResponse
+};
+
 AppService.ListLocations = {
   methodName: "ListLocations",
   service: AppService,
@@ -386,6 +422,24 @@ AppService.GetRobot = {
   responseStream: false,
   requestType: app_v1_app_pb.GetRobotRequest,
   responseType: app_v1_app_pb.GetRobotResponse
+};
+
+AppService.GetRobotMetadata = {
+  methodName: "GetRobotMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetRobotMetadataRequest,
+  responseType: app_v1_app_pb.GetRobotMetadataResponse
+};
+
+AppService.UpdateRobotMetadata = {
+  methodName: "UpdateRobotMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateRobotMetadataRequest,
+  responseType: app_v1_app_pb.UpdateRobotMetadataResponse
 };
 
 AppService.GetRoverRentalRobots = {
@@ -467,6 +521,24 @@ AppService.DeleteRobotPart = {
   responseStream: false,
   requestType: app_v1_app_pb.DeleteRobotPartRequest,
   responseType: app_v1_app_pb.DeleteRobotPartResponse
+};
+
+AppService.GetRobotPartMetadata = {
+  methodName: "GetRobotPartMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetRobotPartMetadataRequest,
+  responseType: app_v1_app_pb.GetRobotPartMetadataResponse
+};
+
+AppService.UpdateRobotPartMetadata = {
+  methodName: "UpdateRobotPartMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateRobotPartMetadataRequest,
+  responseType: app_v1_app_pb.UpdateRobotPartMetadataResponse
 };
 
 AppService.GetRobotAPIKeys = {
@@ -1129,6 +1201,68 @@ AppServiceClient.prototype.deleteOrganization = function deleteOrganization(requ
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.DeleteOrganization, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getOrganizationMetadata = function getOrganizationMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetOrganizationMetadata, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateOrganizationMetadata = function updateOrganizationMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateOrganizationMetadata, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1930,6 +2064,68 @@ AppServiceClient.prototype.deleteLocation = function deleteLocation(requestMessa
   };
 };
 
+AppServiceClient.prototype.getLocationMetadata = function getLocationMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetLocationMetadata, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateLocationMetadata = function updateLocationMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateLocationMetadata, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.listLocations = function listLocations(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -2121,6 +2317,68 @@ AppServiceClient.prototype.getRobot = function getRobot(requestMessage, metadata
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.GetRobot, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getRobotMetadata = function getRobotMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetRobotMetadata, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateRobotMetadata = function updateRobotMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateRobotMetadata, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -2408,6 +2666,68 @@ AppServiceClient.prototype.deleteRobotPart = function deleteRobotPart(requestMes
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.DeleteRobotPart, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getRobotPartMetadata = function getRobotPartMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetRobotPartMetadata, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateRobotPartMetadata = function updateRobotPartMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateRobotPartMetadata, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
