@@ -205,6 +205,15 @@ service AppService {
   // Gets fragment history
   rpc GetFragmentHistory(GetFragmentHistoryRequest) returns (GetFragmentHistoryResponse);
 
+  // Gets usage for a fragment across versions
+  rpc GetFragmentUsage(GetFragmentUsageRequest) returns (GetFragmentUsageResponse);
+
+  // Sets a fragment tag to a revision
+  rpc SetFragmentTag(SetFragmentTagRequest) returns (SetFragmentTagResponse);
+
+  // Deletes a fragment tag
+  rpc DeleteFragmentTag(DeleteFragmentTagRequest) returns (DeleteFragmentTagResponse);
+
   // Creates an IdentityAuthorization
   rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
 
@@ -448,6 +457,7 @@ message BillingAddress {
   string city = 3;
   string state = 4;
   string zipcode = 5;
+  string country = 6;
 }
 
 message EnableBillingServiceRequest {
@@ -813,6 +823,7 @@ message Fragment {
   FragmentVisibility visibility = 12;
   // latest timestamp when fragment was updated
   google.protobuf.Timestamp last_updated = 13 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
+  string revision = 14;
 }
 
 message FragmentHistoryEntry {
@@ -820,6 +831,18 @@ message FragmentHistoryEntry {
   google.protobuf.Timestamp edited_on = 2 [(tagger.v1.tags) = "bson:\"edited_on\" json:\"edited_on\""];
   Fragment old = 3 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
   AuthenticatorInfo edited_by = 4 [(tagger.v1.tags) = "bson:\"edited_by\" json:\"edited_by\""];
+  string revision = 5 [(tagger.v1.tags) = "bson:\"revision\" json:\"revision\""];
+  google.protobuf.Struct config = 6 [(tagger.v1.tags) = "bson:\"config\" json:\"config\""];
+}
+
+message FragmentRevision {
+  string revision = 1;
+  google.protobuf.Timestamp created_at = 2;
+}
+
+message FragmentTag {
+  string tag = 1;
+  string revision = 2;
 }
 
 enum FragmentVisibility {
@@ -843,11 +866,13 @@ enum FragmentErrorType {
   FRAGMENT_ERROR_TYPE_CYCLE_DETECTED = 4;
 }
 
+// Cached fragment usage statistics
 message FragmentUsage {
   string fragment_id = 1;
   int32 organizations = 2;
   int32 machines = 3;
   int32 machines_in_current_org = 4;
+  optional string version = 5; // revision or tag
 }
 
 message ResolvedFragment {
@@ -870,11 +895,14 @@ message ListFragmentsResponse {
 message GetFragmentRequest {
   string id = 1;
   string current_organization_id = 2;
+  optional string version = 3; // revision or tag
 }
 
 message GetFragmentResponse {
   Fragment fragment = 1;
   FragmentUsage fragment_usage = 2;
+  repeated FragmentRevision revisions = 3;
+  repeated FragmentTag tags = 4;
 }
 
 message CreateFragmentRequest {
@@ -915,6 +943,33 @@ message GetFragmentHistoryRequest {
 message GetFragmentHistoryResponse {
   repeated FragmentHistoryEntry history = 1;
   string next_page_token = 2;
+}
+
+message GetFragmentUsageRequest {
+  string fragment_id = 1;
+}
+
+message GetFragmentUsageResponse {
+  repeated FragmentUsage version_usages = 1;
+}
+
+message SetFragmentTagRequest {
+  string fragment_id = 1;
+  string tag = 2;
+  string revision = 3;
+}
+
+message SetFragmentTagResponse {
+  repeated FragmentTag tags = 1;
+}
+
+message DeleteFragmentTagRequest {
+  string fragment_id = 1;
+  string tag = 2;
+}
+
+message DeleteFragmentTagResponse {
+  repeated FragmentTag tags = 1;
 }
 
 message ListRobotsRequest {
