@@ -5,6 +5,7 @@ package viam.app.v1;
 import "app/mltraining/v1/ml_training.proto";
 import "app/packages/v1/packages.proto";
 import "common/v1/common.proto";
+import "google/protobuf/any.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "tagger/v1/tagger.proto";
@@ -45,6 +46,12 @@ service AppService {
 
   // Delete an organization
   rpc DeleteOrganization(DeleteOrganizationRequest) returns (DeleteOrganizationResponse);
+
+  // Get user-defined metadata for an organization
+  rpc GetOrganizationMetadata(GetOrganizationMetadataRequest) returns (GetOrganizationMetadataResponse);
+
+  // Update user-defined metadata for an organization
+  rpc UpdateOrganizationMetadata(UpdateOrganizationMetadataRequest) returns (UpdateOrganizationMetadataResponse);
 
   // List all members of an organization and all invited members to the organization.
   rpc ListOrganizationMembers(ListOrganizationMembersRequest) returns (ListOrganizationMembersResponse);
@@ -104,6 +111,12 @@ service AppService {
   // Delete a location
   rpc DeleteLocation(DeleteLocationRequest) returns (DeleteLocationResponse);
 
+  // Get user-defined metadata for a location
+  rpc GetLocationMetadata(GetLocationMetadataRequest) returns (GetLocationMetadataResponse);
+
+  // Update user-defined metadata for a location
+  rpc UpdateLocationMetadata(UpdateLocationMetadataRequest) returns (UpdateLocationMetadataResponse);
+
   // Get a list of locations
   rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
 
@@ -125,6 +138,12 @@ service AppService {
 
   // Get a specific robot by ID
   rpc GetRobot(GetRobotRequest) returns (GetRobotResponse);
+
+  // Get user-defined metadata for a robot
+  rpc GetRobotMetadata(GetRobotMetadataRequest) returns (GetRobotMetadataResponse);
+
+  // Update user-defined metadata for an robot
+  rpc UpdateRobotMetadata(UpdateRobotMetadataRequest) returns (UpdateRobotMetadataResponse);
 
   // Get Rover Rental Location Robots
   rpc GetRoverRentalRobots(GetRoverRentalRobotsRequest) returns (GetRoverRentalRobotsResponse);
@@ -149,6 +168,12 @@ service AppService {
 
   // Delete a robot part
   rpc DeleteRobotPart(DeleteRobotPartRequest) returns (DeleteRobotPartResponse);
+
+  // Get user-defined metadata for a robot part
+  rpc GetRobotPartMetadata(GetRobotPartMetadataRequest) returns (GetRobotPartMetadataResponse);
+
+  // Update user-defined metadata for an robot part
+  rpc UpdateRobotPartMetadata(UpdateRobotPartMetadataRequest) returns (UpdateRobotPartMetadataResponse);
 
   // Gets the Robot API Keys for the robot
   rpc GetRobotAPIKeys(GetRobotAPIKeysRequest) returns (GetRobotAPIKeysResponse);
@@ -392,6 +417,21 @@ message DeleteOrganizationRequest {
 
 message DeleteOrganizationResponse {}
 
+message GetOrganizationMetadataRequest {
+  string organization_id = 1;
+}
+
+message GetOrganizationMetadataResponse {
+  map<string, google.protobuf.Any> data = 1;
+}
+
+message UpdateOrganizationMetadataRequest {
+  string organization_id = 1;
+  map<string, google.protobuf.Any> data = 2;
+}
+
+message UpdateOrganizationMetadataResponse {}
+
 message ListOrganizationMembersRequest {
   string organization_id = 1;
 }
@@ -629,6 +669,21 @@ message DeleteLocationRequest {
 
 message DeleteLocationResponse {}
 
+message GetLocationMetadataRequest {
+  string location_id = 1;
+}
+
+message GetLocationMetadataResponse {
+  map<string, google.protobuf.Any> data = 1;
+}
+
+message UpdateLocationMetadataRequest {
+  string location_id = 1;
+  map<string, google.protobuf.Any> data = 2;
+}
+
+message UpdateLocationMetadataResponse {}
+
 message GetOrganizationsWithAccessToLocationRequest {
   string location_id = 1;
 }
@@ -787,6 +842,21 @@ message NewRobotPartResponse {
 message DeleteRobotPartRequest {
   string part_id = 1;
 }
+
+message GetRobotPartMetadataRequest {
+  string id = 1;
+}
+
+message GetRobotPartMetadataResponse {
+  map<string, google.protobuf.Any> data = 1;
+}
+
+message UpdateRobotPartMetadataRequest {
+  string id = 1;
+  map<string, google.protobuf.Any> data = 2;
+}
+
+message UpdateRobotPartMetadataResponse {}
 
 message GetRobotAPIKeysRequest {
   string robot_id = 1;
@@ -1018,6 +1088,21 @@ message DeleteRobotRequest {
 }
 
 message DeleteRobotResponse {}
+
+message GetRobotMetadataRequest {
+  string id = 1;
+}
+
+message GetRobotMetadataResponse {
+  map<string, google.protobuf.Any> data = 1;
+}
+
+message UpdateRobotMetadataRequest {
+  string id = 1;
+  map<string, google.protobuf.Any> data = 2;
+}
+
+message UpdateRobotMetadataResponse {}
 
 message MarkPartAsMainRequest {
   string part_id = 1;
