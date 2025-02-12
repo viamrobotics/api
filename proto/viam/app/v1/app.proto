@@ -5,6 +5,7 @@ package viam.app.v1;
 import "app/mltraining/v1/ml_training.proto";
 import "app/packages/v1/packages.proto";
 import "common/v1/common.proto";
+import "google/protobuf/any.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "tagger/v1/tagger.proto";
