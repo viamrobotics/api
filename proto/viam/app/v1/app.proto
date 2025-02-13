@@ -1049,14 +1049,14 @@ message ListRobotsRequest {
 
 message AdditionalFragment {
   string fragment_id = 1;
-  string version = 2;
+  optional string version = 2;
 }
 
 message ListMachineFragmentsRequest {
   // the machine_id used to filter fragments defined in a machine's parts.
   // Also returns any fragments nested within the fragments defined in parts.
   string machine_id = 1;
-  // additional_fragment_ids will be deprecated in favor of additional_fragments.
+  // TODO(APP-7642): Mark this field as deprecated
   repeated string additional_fragment_ids = 2;
   // additional fragments to append to the response. useful when needing to view fragments that will be
   // provisionally added to the machine alongside existing fragments.
