@@ -2938,6 +2938,9 @@ export class ResolvedFragment extends jspb.Message {
   getError(): FragmentError | undefined;
   setError(value?: FragmentError): void;
 
+  getRevision(): string;
+  setRevision(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResolvedFragment.AsObject;
   static toObject(includeInstance: boolean, msg: ResolvedFragment): ResolvedFragment.AsObject;
@@ -2953,6 +2956,7 @@ export namespace ResolvedFragment {
     fragmentId: string,
     resolvedConfig?: google_protobuf_struct_pb.Struct.AsObject,
     error?: FragmentError.AsObject,
+    revision: string,
   }
 }
 
@@ -3458,6 +3462,32 @@ export namespace ListRobotsRequest {
   }
 }
 
+export class AdditionalFragment extends jspb.Message {
+  getFragmentId(): string;
+  setFragmentId(value: string): void;
+
+  hasVersion(): boolean;
+  clearVersion(): void;
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AdditionalFragment.AsObject;
+  static toObject(includeInstance: boolean, msg: AdditionalFragment): AdditionalFragment.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AdditionalFragment, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AdditionalFragment;
+  static deserializeBinaryFromReader(message: AdditionalFragment, reader: jspb.BinaryReader): AdditionalFragment;
+}
+
+export namespace AdditionalFragment {
+  export type AsObject = {
+    fragmentId: string,
+    version: string,
+  }
+}
+
 export class ListMachineFragmentsRequest extends jspb.Message {
   getMachineId(): string;
   setMachineId(value: string): void;
@@ -3466,6 +3496,11 @@ export class ListMachineFragmentsRequest extends jspb.Message {
   getAdditionalFragmentIdsList(): Array<string>;
   setAdditionalFragmentIdsList(value: Array<string>): void;
   addAdditionalFragmentIds(value: string, index?: number): string;
+
+  clearAdditionalFragmentsList(): void;
+  getAdditionalFragmentsList(): Array<AdditionalFragment>;
+  setAdditionalFragmentsList(value: Array<AdditionalFragment>): void;
+  addAdditionalFragments(value?: AdditionalFragment, index?: number): AdditionalFragment;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListMachineFragmentsRequest.AsObject;
@@ -3481,6 +3516,7 @@ export namespace ListMachineFragmentsRequest {
   export type AsObject = {
     machineId: string,
     additionalFragmentIdsList: Array<string>,
+    additionalFragmentsList: Array<AdditionalFragment.AsObject>,
   }
 }
 
