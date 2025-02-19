@@ -363,6 +363,7 @@ message BinaryMetadata {
   string uri = 7;
   Annotations annotations = 8;
   repeated string dataset_ids = 9;
+  string binary_data_id = 10;
 }
 
 // DeleteTabularDataRequest deletes the data from the organization that is older than `delete_older_than_days`
