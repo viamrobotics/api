@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -185,8 +191,8 @@ proto.viam.component.powersensor.v1.GetVoltageRequest.prototype.toObject = funct
  */
 proto.viam.component.powersensor.v1.GetVoltageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -366,8 +372,8 @@ proto.viam.component.powersensor.v1.GetVoltageResponse.prototype.toObject = func
  */
 proto.viam.component.powersensor.v1.GetVoltageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    volts: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    isAc: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+volts: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+isAc: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -526,8 +532,8 @@ proto.viam.component.powersensor.v1.GetCurrentRequest.prototype.toObject = funct
  */
 proto.viam.component.powersensor.v1.GetCurrentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -707,8 +713,8 @@ proto.viam.component.powersensor.v1.GetCurrentResponse.prototype.toObject = func
  */
 proto.viam.component.powersensor.v1.GetCurrentResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    amperes: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    isAc: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+amperes: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+isAc: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -867,8 +873,8 @@ proto.viam.component.powersensor.v1.GetPowerRequest.prototype.toObject = functio
  */
 proto.viam.component.powersensor.v1.GetPowerRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1048,7 +1054,7 @@ proto.viam.component.powersensor.v1.GetPowerResponse.prototype.toObject = functi
  */
 proto.viam.component.powersensor.v1.GetPowerResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    watts: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
+watts: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
   };
 
   if (includeInstance) {

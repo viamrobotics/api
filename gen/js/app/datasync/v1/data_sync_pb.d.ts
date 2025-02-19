@@ -40,6 +40,9 @@ export class DataCaptureUploadResponse extends jspb.Message {
   getFileId(): string;
   setFileId(value: string): void;
 
+  getBinaryDataId(): string;
+  setBinaryDataId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataCaptureUploadResponse.AsObject;
   static toObject(includeInstance: boolean, msg: DataCaptureUploadResponse): DataCaptureUploadResponse.AsObject;
@@ -53,6 +56,7 @@ export class DataCaptureUploadResponse extends jspb.Message {
 export namespace DataCaptureUploadResponse {
   export type AsObject = {
     fileId: string,
+    binaryDataId: string,
   }
 }
 
@@ -95,6 +99,9 @@ export class FileUploadResponse extends jspb.Message {
   getFileId(): string;
   setFileId(value: string): void;
 
+  getBinaryDataId(): string;
+  setBinaryDataId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FileUploadResponse.AsObject;
   static toObject(includeInstance: boolean, msg: FileUploadResponse): FileUploadResponse.AsObject;
@@ -108,6 +115,7 @@ export class FileUploadResponse extends jspb.Message {
 export namespace FileUploadResponse {
   export type AsObject = {
     fileId: string,
+    binaryDataId: string,
   }
 }
 
@@ -152,6 +160,9 @@ export class StreamingDataCaptureUploadResponse extends jspb.Message {
   getFileId(): string;
   setFileId(value: string): void;
 
+  getBinaryDataId(): string;
+  setBinaryDataId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StreamingDataCaptureUploadResponse.AsObject;
   static toObject(includeInstance: boolean, msg: StreamingDataCaptureUploadResponse): StreamingDataCaptureUploadResponse.AsObject;
@@ -165,6 +176,7 @@ export class StreamingDataCaptureUploadResponse extends jspb.Message {
 export namespace StreamingDataCaptureUploadResponse {
   export type AsObject = {
     fileId: string,
+    binaryDataId: string,
   }
 }
 
