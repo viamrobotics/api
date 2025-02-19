@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
@@ -382,12 +388,12 @@ proto.viam.app.v1.InvoiceSummary.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.v1.InvoiceSummary.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    invoiceDate: (f = msg.getInvoiceDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    invoiceAmount: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    status: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    dueDate: (f = msg.getDueDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    paidDate: (f = msg.getPaidDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+invoiceDate: (f = msg.getInvoiceDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+invoiceAmount: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+status: jspb.Message.getFieldWithDefault(msg, 4, ""),
+dueDate: (f = msg.getDueDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+paidDate: (f = msg.getPaidDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -725,8 +731,8 @@ proto.viam.app.v1.PaymentMethodCard.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.PaymentMethodCard.toObject = function(includeInstance, msg) {
   var f, obj = {
-    brand: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    lastFourDigits: jspb.Message.getFieldWithDefault(msg, 2, "")
+brand: jspb.Message.getFieldWithDefault(msg, 1, ""),
+lastFourDigits: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -885,7 +891,7 @@ proto.viam.app.v1.GetCurrentMonthUsageRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.GetCurrentMonthUsageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1015,8 +1021,8 @@ proto.viam.app.v1.UsageCost.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.app.v1.UsageCost.toObject = function(includeInstance, msg) {
   var f, obj = {
-    resourceType: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    cost: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+resourceType: jspb.Message.getFieldWithDefault(msg, 1, 0),
+cost: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -1175,9 +1181,9 @@ proto.viam.app.v1.ResourceUsageCostsBySource.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.ResourceUsageCostsBySource.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sourceType: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    resourceUsageCosts: (f = msg.getResourceUsageCosts()) && proto.viam.app.v1.ResourceUsageCosts.toObject(includeInstance, f),
-    tierName: jspb.Message.getFieldWithDefault(msg, 3, "")
+sourceType: jspb.Message.getFieldWithDefault(msg, 1, 0),
+resourceUsageCosts: (f = msg.getResourceUsageCosts()) && proto.viam.app.v1.ResourceUsageCosts.toObject(includeInstance, f),
+tierName: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1393,11 +1399,11 @@ proto.viam.app.v1.ResourceUsageCosts.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.ResourceUsageCosts.toObject = function(includeInstance, msg) {
   var f, obj = {
-    usageCostsList: jspb.Message.toObjectList(msg.getUsageCostsList(),
+usageCostsList: jspb.Message.toObjectList(msg.getUsageCostsList(),
     proto.viam.app.v1.UsageCost.toObject, includeInstance),
-    discount: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    totalWithDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    totalWithoutDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
+discount: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+totalWithDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+totalWithoutDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -1643,22 +1649,22 @@ proto.viam.app.v1.GetCurrentMonthUsageResponse.prototype.toObject = function(opt
  */
 proto.viam.app.v1.GetCurrentMonthUsageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    startDate: (f = msg.getStartDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endDate: (f = msg.getEndDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    resourceUsageCostsBySourceList: jspb.Message.toObjectList(msg.getResourceUsageCostsBySourceList(),
+startDate: (f = msg.getStartDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+endDate: (f = msg.getEndDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+resourceUsageCostsBySourceList: jspb.Message.toObjectList(msg.getResourceUsageCostsBySourceList(),
     proto.viam.app.v1.ResourceUsageCostsBySource.toObject, includeInstance),
-    subtotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 15, 0.0),
-    cloudStorageUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    dataUploadUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    dataEgresUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    remoteControlUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    standardComputeUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
-    discountAmount: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
-    totalUsageWithDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
-    totalUsageWithoutDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
-    perMachineUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0),
-    binaryDataCloudStorageUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 12, 0.0),
-    otherCloudStorageUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 13, 0.0)
+subtotal: jspb.Message.getFloatingPointFieldWithDefault(msg, 15, 0.0),
+cloudStorageUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+dataUploadUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+dataEgresUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+remoteControlUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+standardComputeUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
+discountAmount: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
+totalUsageWithDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
+totalUsageWithoutDiscount: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
+perMachineUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0),
+binaryDataCloudStorageUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 12, 0.0),
+otherCloudStorageUsageCost: jspb.Message.getFloatingPointFieldWithDefault(msg, 13, 0.0)
   };
 
   if (includeInstance) {
@@ -2258,7 +2264,7 @@ proto.viam.app.v1.GetOrgBillingInformationRequest.prototype.toObject = function(
  */
 proto.viam.app.v1.GetOrgBillingInformationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2388,10 +2394,10 @@ proto.viam.app.v1.GetOrgBillingInformationResponse.prototype.toObject = function
  */
 proto.viam.app.v1.GetOrgBillingInformationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    billingEmail: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    method: (f = msg.getMethod()) && proto.viam.app.v1.PaymentMethodCard.toObject(includeInstance, f),
-    billingTier: jspb.Message.getFieldWithDefault(msg, 4, "")
+type: jspb.Message.getFieldWithDefault(msg, 1, 0),
+billingEmail: jspb.Message.getFieldWithDefault(msg, 2, ""),
+method: (f = msg.getMethod()) && proto.viam.app.v1.PaymentMethodCard.toObject(includeInstance, f),
+billingTier: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2647,7 +2653,7 @@ proto.viam.app.v1.GetInvoicesSummaryRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.GetInvoicesSummaryRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2784,8 +2790,8 @@ proto.viam.app.v1.GetInvoicesSummaryResponse.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.GetInvoicesSummaryResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    outstandingBalance: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    invoicesList: jspb.Message.toObjectList(msg.getInvoicesList(),
+outstandingBalance: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+invoicesList: jspb.Message.toObjectList(msg.getInvoicesList(),
     proto.viam.app.v1.InvoiceSummary.toObject, includeInstance)
   };
 
@@ -2967,8 +2973,8 @@ proto.viam.app.v1.GetInvoicePdfRequest.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.GetInvoicePdfRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    orgId: jspb.Message.getFieldWithDefault(msg, 2, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+orgId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -3127,7 +3133,7 @@ proto.viam.app.v1.GetInvoicePdfResponse.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.GetInvoicePdfResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    chunk: msg.getChunk_asB64()
+chunk: msg.getChunk_asB64()
   };
 
   if (includeInstance) {
@@ -3281,8 +3287,8 @@ proto.viam.app.v1.SendPaymentRequiredEmailRequest.prototype.toObject = function(
  */
 proto.viam.app.v1.SendPaymentRequiredEmailRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    customerOrgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    billingOwnerOrgId: jspb.Message.getFieldWithDefault(msg, 2, "")
+customerOrgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+billingOwnerOrgId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

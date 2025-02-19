@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -495,8 +501,8 @@ proto.viam.service.navigation.v1.GetModeRequest.prototype.toObject = function(op
  */
 proto.viam.service.navigation.v1.GetModeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -676,7 +682,7 @@ proto.viam.service.navigation.v1.GetModeResponse.prototype.toObject = function(o
  */
 proto.viam.service.navigation.v1.GetModeResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    mode: jspb.Message.getFieldWithDefault(msg, 1, 0)
+mode: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -806,9 +812,9 @@ proto.viam.service.navigation.v1.SetModeRequest.prototype.toObject = function(op
  */
 proto.viam.service.navigation.v1.SetModeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    mode: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+mode: jspb.Message.getFieldWithDefault(msg, 2, 0),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1118,8 +1124,8 @@ proto.viam.service.navigation.v1.Waypoint.prototype.toObject = function(opt_incl
  */
 proto.viam.service.navigation.v1.Waypoint.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    location: (f = msg.getLocation()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+location: (f = msg.getLocation()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1299,8 +1305,8 @@ proto.viam.service.navigation.v1.GetLocationRequest.prototype.toObject = functio
  */
 proto.viam.service.navigation.v1.GetLocationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1480,8 +1486,8 @@ proto.viam.service.navigation.v1.GetLocationResponse.prototype.toObject = functi
  */
 proto.viam.service.navigation.v1.GetLocationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    location: (f = msg.getLocation()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f),
-    compassHeading: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+location: (f = msg.getLocation()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f),
+compassHeading: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -1661,8 +1667,8 @@ proto.viam.service.navigation.v1.GetWaypointsRequest.prototype.toObject = functi
  */
 proto.viam.service.navigation.v1.GetWaypointsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1849,7 +1855,7 @@ proto.viam.service.navigation.v1.GetWaypointsResponse.prototype.toObject = funct
  */
 proto.viam.service.navigation.v1.GetWaypointsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    waypointsList: jspb.Message.toObjectList(msg.getWaypointsList(),
+waypointsList: jspb.Message.toObjectList(msg.getWaypointsList(),
     proto.viam.service.navigation.v1.Waypoint.toObject, includeInstance)
   };
 
@@ -2002,9 +2008,9 @@ proto.viam.service.navigation.v1.AddWaypointRequest.prototype.toObject = functio
  */
 proto.viam.service.navigation.v1.AddWaypointRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    location: (f = msg.getLocation()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+location: (f = msg.getLocation()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2335,9 +2341,9 @@ proto.viam.service.navigation.v1.RemoveWaypointRequest.prototype.toObject = func
  */
 proto.viam.service.navigation.v1.RemoveWaypointRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+id: jspb.Message.getFieldWithDefault(msg, 2, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2647,8 +2653,8 @@ proto.viam.service.navigation.v1.GetObstaclesRequest.prototype.toObject = functi
  */
 proto.viam.service.navigation.v1.GetObstaclesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2835,7 +2841,7 @@ proto.viam.service.navigation.v1.GetObstaclesResponse.prototype.toObject = funct
  */
 proto.viam.service.navigation.v1.GetObstaclesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
+obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
     common_v1_common_pb.GeoGeometry.toObject, includeInstance)
   };
 
@@ -2995,8 +3001,8 @@ proto.viam.service.navigation.v1.Path.prototype.toObject = function(opt_includeI
  */
 proto.viam.service.navigation.v1.Path.toObject = function(includeInstance, msg) {
   var f, obj = {
-    destinationWaypointId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    geopointsList: jspb.Message.toObjectList(msg.getGeopointsList(),
+destinationWaypointId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+geopointsList: jspb.Message.toObjectList(msg.getGeopointsList(),
     common_v1_common_pb.GeoPoint.toObject, includeInstance)
   };
 
@@ -3178,8 +3184,8 @@ proto.viam.service.navigation.v1.GetPathsRequest.prototype.toObject = function(o
  */
 proto.viam.service.navigation.v1.GetPathsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3366,7 +3372,7 @@ proto.viam.service.navigation.v1.GetPathsResponse.prototype.toObject = function(
  */
 proto.viam.service.navigation.v1.GetPathsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pathsList: jspb.Message.toObjectList(msg.getPathsList(),
+pathsList: jspb.Message.toObjectList(msg.getPathsList(),
     proto.viam.service.navigation.v1.Path.toObject, includeInstance)
   };
 
@@ -3519,7 +3525,7 @@ proto.viam.service.navigation.v1.GetPropertiesRequest.prototype.toObject = funct
  */
 proto.viam.service.navigation.v1.GetPropertiesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -3649,7 +3655,7 @@ proto.viam.service.navigation.v1.GetPropertiesResponse.prototype.toObject = func
  */
 proto.viam.service.navigation.v1.GetPropertiesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    mapType: jspb.Message.getFieldWithDefault(msg, 1, 0)
+mapType: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {

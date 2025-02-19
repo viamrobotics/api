@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
@@ -415,12 +421,12 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.toObject = funct
  */
 proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    datasetId: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    modelName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    modelVersion: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    modelType: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
+datasetId: jspb.Message.getFieldWithDefault(msg, 7, ""),
+organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+modelName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+modelVersion: jspb.Message.getFieldWithDefault(msg, 4, ""),
+modelType: jspb.Message.getFieldWithDefault(msg, 5, 0),
+tagsList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -714,7 +720,7 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobResponse.prototype.toObject = func
  */
 proto.viam.app.mltraining.v1.SubmitTrainingJobResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -844,13 +850,13 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.toObject =
  */
 proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    datasetId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    registryItemId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    registryItemVersion: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    modelName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    modelVersion: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : []
+datasetId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+registryItemId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+registryItemVersion: jspb.Message.getFieldWithDefault(msg, 6, ""),
+organizationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+modelName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+modelVersion: jspb.Message.getFieldWithDefault(msg, 5, ""),
+argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -1122,7 +1128,8 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getArgumen
  */
 proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.clearArgumentsMap = function() {
   this.getArgumentsMap().clear();
-  return this;};
+  return this;
+};
 
 
 
@@ -1157,7 +1164,7 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobResponse.prototype.toObject 
  */
 proto.viam.app.mltraining.v1.SubmitCustomTrainingJobResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1287,7 +1294,7 @@ proto.viam.app.mltraining.v1.GetTrainingJobRequest.prototype.toObject = function
  */
 proto.viam.app.mltraining.v1.GetTrainingJobRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1417,7 +1424,7 @@ proto.viam.app.mltraining.v1.GetTrainingJobResponse.prototype.toObject = functio
  */
 proto.viam.app.mltraining.v1.GetTrainingJobResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    metadata: (f = msg.getMetadata()) && proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject(includeInstance, f)
+metadata: (f = msg.getMetadata()) && proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1568,8 +1575,8 @@ proto.viam.app.mltraining.v1.ListTrainingJobsRequest.prototype.toObject = functi
  */
 proto.viam.app.mltraining.v1.ListTrainingJobsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    status: jspb.Message.getFieldWithDefault(msg, 2, 0)
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+status: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -1735,7 +1742,7 @@ proto.viam.app.mltraining.v1.ListTrainingJobsResponse.prototype.toObject = funct
  */
 proto.viam.app.mltraining.v1.ListTrainingJobsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    jobsList: jspb.Message.toObjectList(msg.getJobsList(),
+jobsList: jspb.Message.toObjectList(msg.getJobsList(),
     proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject, includeInstance)
   };
 
@@ -1895,24 +1902,24 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.toObject = function(o
  */
 proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    datasetId: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    modelName: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    modelVersion: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    modelType: jspb.Message.getFieldWithDefault(msg, 15, 0),
-    modelFramework: jspb.Message.getFieldWithDefault(msg, 17, 0),
-    isCustomJob: jspb.Message.getBooleanFieldWithDefault(msg, 18, false),
-    registryItemId: jspb.Message.getFieldWithDefault(msg, 19, ""),
-    registryItemVersion: jspb.Message.getFieldWithDefault(msg, 20, ""),
-    status: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    errorStatus: (f = msg.getErrorStatus()) && google_rpc_status_pb.Status.toObject(includeInstance, f),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    lastModified: (f = msg.getLastModified()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    trainingStarted: (f = msg.getTrainingStarted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    trainingEnded: (f = msg.getTrainingEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 16)) == null ? undefined : f
+id: jspb.Message.getFieldWithDefault(msg, 7, ""),
+datasetId: jspb.Message.getFieldWithDefault(msg, 11, ""),
+organizationId: jspb.Message.getFieldWithDefault(msg, 12, ""),
+modelName: jspb.Message.getFieldWithDefault(msg, 13, ""),
+modelVersion: jspb.Message.getFieldWithDefault(msg, 14, ""),
+modelType: jspb.Message.getFieldWithDefault(msg, 15, 0),
+modelFramework: jspb.Message.getFieldWithDefault(msg, 17, 0),
+isCustomJob: jspb.Message.getBooleanFieldWithDefault(msg, 18, false),
+registryItemId: jspb.Message.getFieldWithDefault(msg, 19, ""),
+registryItemVersion: jspb.Message.getFieldWithDefault(msg, 20, ""),
+status: jspb.Message.getFieldWithDefault(msg, 2, 0),
+errorStatus: (f = msg.getErrorStatus()) && google_rpc_status_pb.Status.toObject(includeInstance, f),
+createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+lastModified: (f = msg.getLastModified()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+trainingStarted: (f = msg.getTrainingStarted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+trainingEnded: (f = msg.getTrainingEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+tagsList: (f = jspb.Message.getRepeatedField(msg, 16)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2659,7 +2666,7 @@ proto.viam.app.mltraining.v1.CancelTrainingJobRequest.prototype.toObject = funct
  */
 proto.viam.app.mltraining.v1.CancelTrainingJobRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2890,7 +2897,7 @@ proto.viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest.prototype.toObjec
  */
 proto.viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -3121,9 +3128,9 @@ proto.viam.app.mltraining.v1.TrainingJobLogEntry.prototype.toObject = function(o
  */
 proto.viam.app.mltraining.v1.TrainingJobLogEntry.toObject = function(includeInstance, msg) {
   var f, obj = {
-    level: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    message: jspb.Message.getFieldWithDefault(msg, 3, "")
+level: jspb.Message.getFieldWithDefault(msg, 1, ""),
+time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+message: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -3332,8 +3339,8 @@ proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest.prototype.toObject = func
  */
 proto.viam.app.mltraining.v1.GetTrainingJobLogsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+pageToken: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -3517,9 +3524,9 @@ proto.viam.app.mltraining.v1.GetTrainingJobLogsResponse.prototype.toObject = fun
  */
 proto.viam.app.mltraining.v1.GetTrainingJobLogsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    logsList: jspb.Message.toObjectList(msg.getLogsList(),
+logsList: jspb.Message.toObjectList(msg.getLogsList(),
     proto.viam.app.mltraining.v1.TrainingJobLogEntry.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
