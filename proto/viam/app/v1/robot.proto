@@ -148,7 +148,7 @@ message SessionsConfig {
 
 message TrafficTunnelEndpoint {
   int32 port = 1;
-  int32 connnection_timeout_seconds = 2;
+  google.protobuf.Duration connection_timeout = 2;
 }
 
 message AuthConfig {
