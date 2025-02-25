@@ -27,6 +27,9 @@ export class SubmitTrainingJobRequest extends jspb.Message {
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
+  getModelFramework(): ModelFrameworkMap[keyof ModelFrameworkMap];
+  setModelFramework(value: ModelFrameworkMap[keyof ModelFrameworkMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SubmitTrainingJobRequest.AsObject;
   static toObject(includeInstance: boolean, msg: SubmitTrainingJobRequest): SubmitTrainingJobRequest.AsObject;
@@ -45,6 +48,7 @@ export namespace SubmitTrainingJobRequest {
     modelVersion: string,
     modelType: ModelTypeMap[keyof ModelTypeMap],
     tagsList: Array<string>,
+    modelFramework: ModelFrameworkMap[keyof ModelFrameworkMap],
   }
 }
 

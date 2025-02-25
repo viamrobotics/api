@@ -420,7 +420,8 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.toObject = function(includ
     modelName: jspb.Message.getFieldWithDefault(msg, 3, ""),
     modelVersion: jspb.Message.getFieldWithDefault(msg, 4, ""),
     modelType: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
+    tagsList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
+    modelFramework: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -480,6 +481,10 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.deserializeBinaryFromReade
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.addTags(value);
+      break;
+    case 8:
+      var value = /** @type {!proto.viam.app.mltraining.v1.ModelFramework} */ (reader.readEnum());
+      msg.setModelFramework(value);
       break;
     default:
       reader.skipField();
@@ -549,6 +554,13 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.serializeBinaryToWriter = 
   if (f.length > 0) {
     writer.writeRepeatedString(
       6,
+      f
+    );
+  }
+  f = message.getModelFramework();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      8,
       f
     );
   }
@@ -679,6 +691,24 @@ proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.addTags = functi
  */
 proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.clearTagsList = function() {
   return this.setTagsList([]);
+};
+
+
+/**
+ * optional ModelFramework model_framework = 8;
+ * @return {!proto.viam.app.mltraining.v1.ModelFramework}
+ */
+proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.getModelFramework = function() {
+  return /** @type {!proto.viam.app.mltraining.v1.ModelFramework} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.ModelFramework} value
+ * @return {!proto.viam.app.mltraining.v1.SubmitTrainingJobRequest} returns this
+ */
+proto.viam.app.mltraining.v1.SubmitTrainingJobRequest.prototype.setModelFramework = function(value) {
+  return jspb.Message.setProto3EnumField(this, 8, value);
 };
 
 
