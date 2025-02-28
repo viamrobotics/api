@@ -143,6 +143,10 @@ message TunnelResponse {
 message ListTunnelsRequest {}
 
 message ListTunnelsResponse {
+  repeated Tunnel tunnels = 1;
+}
+
+message Tunnel {
   uint32 port = 1;
   google.protobuf.Duration connection_timeout = 2;
 }
