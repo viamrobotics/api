@@ -124,6 +124,11 @@ service RobotService {
 
   // Tunnel tunnels traffic to the destination port of the robot server.
   rpc Tunnel(stream TunnelRequest) returns (stream TunnelResponse);
+
+  // ListTunnels lists all available tunnels configured on the robot.
+  rpc ListTunnels(ListTunnelsRequest) returns (ListTunnelsResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/list_tunnels"};
+  }
 }
 
 message TunnelRequest {
@@ -133,6 +138,17 @@ message TunnelRequest {
 
 message TunnelResponse {
   bytes data = 1;
+}
+
+message ListTunnelsRequest {}
+
+message ListTunnelsResponse {
+  repeated Tunnel tunnels = 1;
+}
+
+message Tunnel {
+  uint32 port = 1;
+  google.protobuf.Duration connection_timeout = 2;
 }
 
 message FrameSystemConfig {
