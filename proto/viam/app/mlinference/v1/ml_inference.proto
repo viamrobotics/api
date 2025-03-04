@@ -18,6 +18,7 @@ message GetInferenceRequest {
   string registry_item_id = 1;
   string registry_item_version = 2;
   viam.app.data.v1.BinaryID binary_id = 3;
+  string binary_data_id = 5;
   string organization_id = 4;
 }
 

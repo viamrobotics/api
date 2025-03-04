@@ -17,6 +17,9 @@ export class GetInferenceRequest extends jspb.Message {
   getBinaryId(): app_data_v1_data_pb.BinaryID | undefined;
   setBinaryId(value?: app_data_v1_data_pb.BinaryID): void;
 
+  getBinaryDataId(): string;
+  setBinaryDataId(value: string): void;
+
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
@@ -35,6 +38,7 @@ export namespace GetInferenceRequest {
     registryItemId: string,
     registryItemVersion: string,
     binaryId?: app_data_v1_data_pb.BinaryID.AsObject,
+    binaryDataId: string,
     organizationId: string,
   }
 }

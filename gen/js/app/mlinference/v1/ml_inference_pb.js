@@ -98,6 +98,7 @@ proto.viam.app.mlinference.v1.GetInferenceRequest.toObject = function(includeIns
     registryItemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     registryItemVersion: jspb.Message.getFieldWithDefault(msg, 2, ""),
     binaryId: (f = msg.getBinaryId()) && app_data_v1_data_pb.BinaryID.toObject(includeInstance, f),
+    binaryDataId: jspb.Message.getFieldWithDefault(msg, 5, ""),
     organizationId: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
@@ -147,6 +148,10 @@ proto.viam.app.mlinference.v1.GetInferenceRequest.deserializeBinaryFromReader = 
       var value = new app_data_v1_data_pb.BinaryID;
       reader.readMessage(value,app_data_v1_data_pb.BinaryID.deserializeBinaryFromReader);
       msg.setBinaryId(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBinaryDataId(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -201,6 +206,13 @@ proto.viam.app.mlinference.v1.GetInferenceRequest.serializeBinaryToWriter = func
       3,
       f,
       app_data_v1_data_pb.BinaryID.serializeBinaryToWriter
+    );
+  }
+  f = message.getBinaryDataId();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
     );
   }
   f = message.getOrganizationId();
@@ -283,6 +295,24 @@ proto.viam.app.mlinference.v1.GetInferenceRequest.prototype.clearBinaryId = func
  */
 proto.viam.app.mlinference.v1.GetInferenceRequest.prototype.hasBinaryId = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string binary_data_id = 5;
+ * @return {string}
+ */
+proto.viam.app.mlinference.v1.GetInferenceRequest.prototype.getBinaryDataId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mlinference.v1.GetInferenceRequest} returns this
+ */
+proto.viam.app.mlinference.v1.GetInferenceRequest.prototype.setBinaryDataId = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
