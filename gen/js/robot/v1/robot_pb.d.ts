@@ -56,6 +56,70 @@ export namespace TunnelResponse {
   }
 }
 
+export class ListTunnelsRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListTunnelsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListTunnelsRequest): ListTunnelsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListTunnelsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListTunnelsRequest;
+  static deserializeBinaryFromReader(message: ListTunnelsRequest, reader: jspb.BinaryReader): ListTunnelsRequest;
+}
+
+export namespace ListTunnelsRequest {
+  export type AsObject = {
+  }
+}
+
+export class ListTunnelsResponse extends jspb.Message {
+  clearTunnelsList(): void;
+  getTunnelsList(): Array<Tunnel>;
+  setTunnelsList(value: Array<Tunnel>): void;
+  addTunnels(value?: Tunnel, index?: number): Tunnel;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListTunnelsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListTunnelsResponse): ListTunnelsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListTunnelsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListTunnelsResponse;
+  static deserializeBinaryFromReader(message: ListTunnelsResponse, reader: jspb.BinaryReader): ListTunnelsResponse;
+}
+
+export namespace ListTunnelsResponse {
+  export type AsObject = {
+    tunnelsList: Array<Tunnel.AsObject>,
+  }
+}
+
+export class Tunnel extends jspb.Message {
+  getPort(): number;
+  setPort(value: number): void;
+
+  hasConnectionTimeout(): boolean;
+  clearConnectionTimeout(): void;
+  getConnectionTimeout(): google_protobuf_duration_pb.Duration | undefined;
+  setConnectionTimeout(value?: google_protobuf_duration_pb.Duration): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Tunnel.AsObject;
+  static toObject(includeInstance: boolean, msg: Tunnel): Tunnel.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Tunnel, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Tunnel;
+  static deserializeBinaryFromReader(message: Tunnel, reader: jspb.BinaryReader): Tunnel;
+}
+
+export namespace Tunnel {
+  export type AsObject = {
+    port: number,
+    connectionTimeout?: google_protobuf_duration_pb.Duration.AsObject,
+  }
+}
+
 export class FrameSystemConfig extends jspb.Message {
   hasFrame(): boolean;
   clearFrame(): void;
