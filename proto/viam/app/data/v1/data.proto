@@ -313,6 +313,7 @@ message BinaryID {
 message BinaryDataByIDsRequest {
   bool include_binary = 2;
   repeated BinaryID binary_ids = 3;
+  repeated string binary_data_ids = 4;
 
   reserved 1;
   reserved "file_ids";
@@ -361,6 +362,7 @@ message BinaryMetadata {
   string uri = 7;
   Annotations annotations = 8;
   repeated string dataset_ids = 9;
+  string binary_data_id = 10;
 }
 
 // DeleteTabularDataRequest deletes the data from the organization that is older than `delete_older_than_days`
@@ -396,7 +398,7 @@ message DeleteBinaryDataByFilterResponse {
 // DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided.
 message DeleteBinaryDataByIDsRequest {
   repeated BinaryID binary_ids = 2;
-
+  repeated string binary_data_ids = 3;
   reserved 1;
   reserved "file_ids";
 }
@@ -412,6 +414,7 @@ message DeleteBinaryDataByIDsResponse {
 // AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided.
 message AddTagsToBinaryDataByIDsRequest {
   repeated BinaryID binary_ids = 3;
+  repeated string binary_data_ids = 4;
   repeated string tags = 2;
 
   reserved 1;
@@ -431,6 +434,7 @@ message AddTagsToBinaryDataByFilterResponse {}
 // RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.
 message RemoveTagsFromBinaryDataByIDsRequest {
   repeated BinaryID binary_ids = 3;
+  repeated string binary_data_ids = 4;
   repeated string tags = 2;
 
   reserved 1;
@@ -467,6 +471,7 @@ message TagsByFilterResponse {
 // with the associated label and position in normalized coordinates will be added.
 message AddBoundingBoxToImageByIDRequest {
   BinaryID binary_id = 7;
+  string binary_data_id = 8;
   string label = 2;
   double x_min_normalized = 3;
   double y_min_normalized = 4;
@@ -485,6 +490,7 @@ message AddBoundingBoxToImageByIDResponse {
 // RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID.
 message RemoveBoundingBoxFromImageByIDRequest {
   BinaryID binary_id = 3;
+  string binary_data_id = 4;
   string bbox_id = 2;
 
   reserved 1;
@@ -496,6 +502,7 @@ message RemoveBoundingBoxFromImageByIDResponse {}
 // UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID.
 message UpdateBoundingBoxRequest {
   BinaryID binary_id = 1;
+  string binary_data_id = 8;
   string bbox_id = 2;
   optional string label = 3;
   optional double x_min_normalized = 4;
@@ -543,6 +550,7 @@ message GetDatabaseConnectionResponse {
 // AddBinaryDataToDatasetByIDsRequest adds the binary data with the given binary IDs to a dataset with dataset_id.
 message AddBinaryDataToDatasetByIDsRequest {
   repeated BinaryID binary_ids = 1;
+  repeated string binary_data_ids = 3;
   string dataset_id = 2;
 }
 
@@ -551,6 +559,7 @@ message AddBinaryDataToDatasetByIDsResponse {}
 // RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id.
 message RemoveBinaryDataFromDatasetByIDsRequest {
   repeated BinaryID binary_ids = 1;
+  repeated string binary_data_ids = 3;
   string dataset_id = 2;
 }
 
