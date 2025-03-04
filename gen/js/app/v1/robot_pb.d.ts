@@ -482,6 +482,11 @@ export class NetworkConfig extends jspb.Message {
   getSessions(): SessionsConfig | undefined;
   setSessions(value?: SessionsConfig): void;
 
+  clearTrafficTunnelEndpointsList(): void;
+  getTrafficTunnelEndpointsList(): Array<TrafficTunnelEndpoint>;
+  setTrafficTunnelEndpointsList(value: Array<TrafficTunnelEndpoint>): void;
+  addTrafficTunnelEndpoints(value?: TrafficTunnelEndpoint, index?: number): TrafficTunnelEndpoint;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): NetworkConfig.AsObject;
   static toObject(includeInstance: boolean, msg: NetworkConfig): NetworkConfig.AsObject;
@@ -499,6 +504,7 @@ export namespace NetworkConfig {
     tlsCertFile: string,
     tlsKeyFile: string,
     sessions?: SessionsConfig.AsObject,
+    trafficTunnelEndpointsList: Array<TrafficTunnelEndpoint.AsObject>,
   }
 }
 
@@ -521,6 +527,32 @@ export class SessionsConfig extends jspb.Message {
 export namespace SessionsConfig {
   export type AsObject = {
     heartbeatWindow?: google_protobuf_duration_pb.Duration.AsObject,
+  }
+}
+
+export class TrafficTunnelEndpoint extends jspb.Message {
+  getPort(): number;
+  setPort(value: number): void;
+
+  hasConnectionTimeout(): boolean;
+  clearConnectionTimeout(): void;
+  getConnectionTimeout(): google_protobuf_duration_pb.Duration | undefined;
+  setConnectionTimeout(value?: google_protobuf_duration_pb.Duration): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TrafficTunnelEndpoint.AsObject;
+  static toObject(includeInstance: boolean, msg: TrafficTunnelEndpoint): TrafficTunnelEndpoint.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TrafficTunnelEndpoint, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TrafficTunnelEndpoint;
+  static deserializeBinaryFromReader(message: TrafficTunnelEndpoint, reader: jspb.BinaryReader): TrafficTunnelEndpoint;
+}
+
+export namespace TrafficTunnelEndpoint {
+  export type AsObject = {
+    port: number,
+    connectionTimeout?: google_protobuf_duration_pb.Duration.AsObject,
   }
 }
 
