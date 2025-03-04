@@ -597,6 +597,8 @@ message Location {
   int32 robot_count = 7;
   // Config for how data in this location is stored.
   StorageConfig config = 8;
+  // The organization that is the primary owner of the location.
+  optional OrganizationIdentity primary_org_identity = 9;
 }
 
 // SharedSecret is a secret used for LocationAuth and RobotParts.
