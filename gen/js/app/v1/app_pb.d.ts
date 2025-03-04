@@ -1389,6 +1389,11 @@ export class Location extends jspb.Message {
   getConfig(): StorageConfig | undefined;
   setConfig(value?: StorageConfig): void;
 
+  hasPrimaryOrgIdentity(): boolean;
+  clearPrimaryOrgIdentity(): void;
+  getPrimaryOrgIdentity(): OrganizationIdentity | undefined;
+  setPrimaryOrgIdentity(value?: OrganizationIdentity): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Location.AsObject;
   static toObject(includeInstance: boolean, msg: Location): Location.AsObject;
@@ -1409,6 +1414,7 @@ export namespace Location {
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     robotCount: number,
     config?: StorageConfig.AsObject,
+    primaryOrgIdentity?: OrganizationIdentity.AsObject,
   }
 }
 
