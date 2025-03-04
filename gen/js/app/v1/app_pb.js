@@ -14833,7 +14833,8 @@ proto.viam.app.v1.Location.toObject = function(includeInstance, msg) {
     proto.viam.app.v1.LocationOrganization.toObject, includeInstance),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     robotCount: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    config: (f = msg.getConfig()) && proto.viam.app.v1.StorageConfig.toObject(includeInstance, f)
+    config: (f = msg.getConfig()) && proto.viam.app.v1.StorageConfig.toObject(includeInstance, f),
+    primaryOrgIdentity: (f = msg.getPrimaryOrgIdentity()) && proto.viam.app.v1.OrganizationIdentity.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -14905,6 +14906,11 @@ proto.viam.app.v1.Location.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.viam.app.v1.StorageConfig;
       reader.readMessage(value,proto.viam.app.v1.StorageConfig.deserializeBinaryFromReader);
       msg.setConfig(value);
+      break;
+    case 9:
+      var value = new proto.viam.app.v1.OrganizationIdentity;
+      reader.readMessage(value,proto.viam.app.v1.OrganizationIdentity.deserializeBinaryFromReader);
+      msg.setPrimaryOrgIdentity(value);
       break;
     default:
       reader.skipField();
@@ -14993,6 +14999,14 @@ proto.viam.app.v1.Location.serializeBinaryToWriter = function(message, writer) {
       8,
       f,
       proto.viam.app.v1.StorageConfig.serializeBinaryToWriter
+    );
+  }
+  f = message.getPrimaryOrgIdentity();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      proto.viam.app.v1.OrganizationIdentity.serializeBinaryToWriter
     );
   }
 };
@@ -15216,6 +15230,43 @@ proto.viam.app.v1.Location.prototype.clearConfig = function() {
  */
 proto.viam.app.v1.Location.prototype.hasConfig = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional OrganizationIdentity primary_org_identity = 9;
+ * @return {?proto.viam.app.v1.OrganizationIdentity}
+ */
+proto.viam.app.v1.Location.prototype.getPrimaryOrgIdentity = function() {
+  return /** @type{?proto.viam.app.v1.OrganizationIdentity} */ (
+    jspb.Message.getWrapperField(this, proto.viam.app.v1.OrganizationIdentity, 9));
+};
+
+
+/**
+ * @param {?proto.viam.app.v1.OrganizationIdentity|undefined} value
+ * @return {!proto.viam.app.v1.Location} returns this
+*/
+proto.viam.app.v1.Location.prototype.setPrimaryOrgIdentity = function(value) {
+  return jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.Location} returns this
+ */
+proto.viam.app.v1.Location.prototype.clearPrimaryOrgIdentity = function() {
+  return this.setPrimaryOrgIdentity(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Location.prototype.hasPrimaryOrgIdentity = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
