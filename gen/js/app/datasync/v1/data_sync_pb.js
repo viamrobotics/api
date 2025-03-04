@@ -559,7 +559,8 @@ proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.toObject = functi
  */
 proto.viam.app.datasync.v1.DataCaptureUploadResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fileId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    fileId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    binaryDataId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -600,6 +601,10 @@ proto.viam.app.datasync.v1.DataCaptureUploadResponse.deserializeBinaryFromReader
       var value = /** @type {string} */ (reader.readString());
       msg.setFileId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBinaryDataId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -636,6 +641,13 @@ proto.viam.app.datasync.v1.DataCaptureUploadResponse.serializeBinaryToWriter = f
       f
     );
   }
+  f = message.getBinaryDataId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -654,6 +666,24 @@ proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.getFileId = funct
  */
 proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.setFileId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string binary_data_id = 2;
+ * @return {string}
+ */
+proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.getBinaryDataId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datasync.v1.DataCaptureUploadResponse} returns this
+ */
+proto.viam.app.datasync.v1.DataCaptureUploadResponse.prototype.setBinaryDataId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -917,7 +947,8 @@ proto.viam.app.datasync.v1.FileUploadResponse.prototype.toObject = function(opt_
  */
 proto.viam.app.datasync.v1.FileUploadResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fileId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    fileId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    binaryDataId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -958,6 +989,10 @@ proto.viam.app.datasync.v1.FileUploadResponse.deserializeBinaryFromReader = func
       var value = /** @type {string} */ (reader.readString());
       msg.setFileId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBinaryDataId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -994,6 +1029,13 @@ proto.viam.app.datasync.v1.FileUploadResponse.serializeBinaryToWriter = function
       f
     );
   }
+  f = message.getBinaryDataId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -1012,6 +1054,24 @@ proto.viam.app.datasync.v1.FileUploadResponse.prototype.getFileId = function() {
  */
 proto.viam.app.datasync.v1.FileUploadResponse.prototype.setFileId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string binary_data_id = 2;
+ * @return {string}
+ */
+proto.viam.app.datasync.v1.FileUploadResponse.prototype.getBinaryDataId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datasync.v1.FileUploadResponse} returns this
+ */
+proto.viam.app.datasync.v1.FileUploadResponse.prototype.setBinaryDataId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1296,7 +1356,8 @@ proto.viam.app.datasync.v1.StreamingDataCaptureUploadResponse.prototype.toObject
  */
 proto.viam.app.datasync.v1.StreamingDataCaptureUploadResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fileId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    fileId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    binaryDataId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1337,6 +1398,10 @@ proto.viam.app.datasync.v1.StreamingDataCaptureUploadResponse.deserializeBinaryF
       var value = /** @type {string} */ (reader.readString());
       msg.setFileId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBinaryDataId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1373,6 +1438,13 @@ proto.viam.app.datasync.v1.StreamingDataCaptureUploadResponse.serializeBinaryToW
       f
     );
   }
+  f = message.getBinaryDataId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -1391,6 +1463,24 @@ proto.viam.app.datasync.v1.StreamingDataCaptureUploadResponse.prototype.getFileI
  */
 proto.viam.app.datasync.v1.StreamingDataCaptureUploadResponse.prototype.setFileId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string binary_data_id = 2;
+ * @return {string}
+ */
+proto.viam.app.datasync.v1.StreamingDataCaptureUploadResponse.prototype.getBinaryDataId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datasync.v1.StreamingDataCaptureUploadResponse} returns this
+ */
+proto.viam.app.datasync.v1.StreamingDataCaptureUploadResponse.prototype.setBinaryDataId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
