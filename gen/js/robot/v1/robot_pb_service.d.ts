@@ -211,6 +211,15 @@ type RobotServiceTunnel = {
   readonly responseType: typeof robot_v1_robot_pb.TunnelResponse;
 };
 
+type RobotServiceListTunnels = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.ListTunnelsRequest;
+  readonly responseType: typeof robot_v1_robot_pb.ListTunnelsResponse;
+};
+
 export class RobotService {
   static readonly serviceName: string;
   static readonly GetOperations: RobotServiceGetOperations;
@@ -236,6 +245,7 @@ export class RobotService {
   static readonly GetMachineStatus: RobotServiceGetMachineStatus;
   static readonly GetVersion: RobotServiceGetVersion;
   static readonly Tunnel: RobotServiceTunnel;
+  static readonly ListTunnels: RobotServiceListTunnels;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -461,5 +471,14 @@ export class RobotServiceClient {
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetVersionResponse|null) => void
   ): UnaryResponse;
   tunnel(metadata?: grpc.Metadata): BidirectionalStream<robot_v1_robot_pb.TunnelRequest, robot_v1_robot_pb.TunnelResponse>;
+  listTunnels(
+    requestMessage: robot_v1_robot_pb.ListTunnelsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.ListTunnelsResponse|null) => void
+  ): UnaryResponse;
+  listTunnels(
+    requestMessage: robot_v1_robot_pb.ListTunnelsRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.ListTunnelsResponse|null) => void
+  ): UnaryResponse;
 }
 

@@ -67,6 +67,8 @@ type RobotServiceClient interface {
 	GetVersion(ctx context.Context, in *GetVersionRequest, opts ...grpc.CallOption) (*GetVersionResponse, error)
 	// Tunnel tunnels traffic to the destination port of the robot server.
 	Tunnel(ctx context.Context, opts ...grpc.CallOption) (RobotService_TunnelClient, error)
+	// ListTunnels lists all available tunnels configured on the robot.
+	ListTunnels(ctx context.Context, in *ListTunnelsRequest, opts ...grpc.CallOption) (*ListTunnelsResponse, error)
 }
 
 type robotServiceClient struct {
@@ -332,6 +334,15 @@ func (x *robotServiceTunnelClient) Recv() (*TunnelResponse, error) {
 	return m, nil
 }
 
+func (c *robotServiceClient) ListTunnels(ctx context.Context, in *ListTunnelsRequest, opts ...grpc.CallOption) (*ListTunnelsResponse, error) {
+	out := new(ListTunnelsResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/ListTunnels", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RobotServiceServer is the server API for RobotService service.
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
@@ -381,6 +392,8 @@ type RobotServiceServer interface {
 	GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error)
 	// Tunnel tunnels traffic to the destination port of the robot server.
 	Tunnel(RobotService_TunnelServer) error
+	// ListTunnels lists all available tunnels configured on the robot.
+	ListTunnels(context.Context, *ListTunnelsRequest) (*ListTunnelsResponse, error)
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -456,6 +469,9 @@ func (UnimplementedRobotServiceServer) GetVersion(context.Context, *GetVersionRe
 }
 func (UnimplementedRobotServiceServer) Tunnel(RobotService_TunnelServer) error {
 	return status.Errorf(codes.Unimplemented, "method Tunnel not implemented")
+}
+func (UnimplementedRobotServiceServer) ListTunnels(context.Context, *ListTunnelsRequest) (*ListTunnelsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTunnels not implemented")
 }
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
@@ -895,6 +911,24 @@ func (x *robotServiceTunnelServer) Recv() (*TunnelRequest, error) {
 	return m, nil
 }
 
+func _RobotService_ListTunnels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTunnelsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).ListTunnels(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/ListTunnels",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).ListTunnels(ctx, req.(*ListTunnelsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RobotService_ServiceDesc is the grpc.ServiceDesc for RobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -985,6 +1019,10 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetVersion",
 			Handler:    _RobotService_GetVersion_Handler,
+		},
+		{
+			MethodName: "ListTunnels",
+			Handler:    _RobotService_ListTunnels_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
