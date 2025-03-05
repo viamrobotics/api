@@ -258,22 +258,6 @@ message GetSessionsResponse {
   repeated Session sessions = 1;
 }
 
-// Discovery
-// Discovery is deprecated
-
-message DiscoveryQuery {
-  option deprecated = true;
-  string subtype = 1;
-  string model = 2;
-  google.protobuf.Struct extra = 99;
-}
-
-message Discovery {
-  option deprecated = true;
-  DiscoveryQuery query = 1;
-  google.protobuf.Struct results = 2;
-}
-
 message ModuleModel {
   string module_name = 1;
   string model = 2;
