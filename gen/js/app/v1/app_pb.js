@@ -21,8 +21,6 @@ var app_packages_v1_packages_pb = require('../../app/packages/v1/packages_pb.js'
 goog.object.extend(proto, app_packages_v1_packages_pb);
 var common_v1_common_pb = require('../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
-var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
-goog.object.extend(proto, google_protobuf_any_pb);
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js');
 goog.object.extend(proto, google_protobuf_struct_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
@@ -9717,7 +9715,7 @@ proto.viam.app.v1.GetOrganizationMetadataResponse.prototype.toObject = function(
  */
 proto.viam.app.v1.GetOrganizationMetadataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dataMap: (f = msg.getDataMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : []
+    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9755,10 +9753,9 @@ proto.viam.app.v1.GetOrganizationMetadataResponse.deserializeBinaryFromReader = 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = msg.getDataMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.google.protobuf.Any.deserializeBinaryFromReader, "", new proto.google.protobuf.Any());
-         });
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setData(value);
       break;
     default:
       reader.skipField();
@@ -9789,33 +9786,52 @@ proto.viam.app.v1.GetOrganizationMetadataResponse.prototype.serializeBinary = fu
  */
 proto.viam.app.v1.GetOrganizationMetadataResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getDataMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(1, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.google.protobuf.Any.serializeBinaryToWriter);
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
   }
 };
 
 
 /**
- * map<string, google.protobuf.Any> data = 1;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.google.protobuf.Any>}
+ * optional google.protobuf.Struct data = 1;
+ * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.app.v1.GetOrganizationMetadataResponse.prototype.getDataMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.google.protobuf.Any>} */ (
-      jspb.Message.getMapField(this, 1, opt_noLazyCreate,
-      proto.google.protobuf.Any));
+proto.viam.app.v1.GetOrganizationMetadataResponse.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 1));
 };
 
 
 /**
- * Clears values from the map. The map will be non-null.
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.v1.GetOrganizationMetadataResponse} returns this
+*/
+proto.viam.app.v1.GetOrganizationMetadataResponse.prototype.setData = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.viam.app.v1.GetOrganizationMetadataResponse} returns this
  */
-proto.viam.app.v1.GetOrganizationMetadataResponse.prototype.clearDataMap = function() {
-  this.getDataMap().clear();
-  return this;};
+proto.viam.app.v1.GetOrganizationMetadataResponse.prototype.clearData = function() {
+  return this.setData(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetOrganizationMetadataResponse.prototype.hasData = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
 
 
 
@@ -9851,7 +9867,7 @@ proto.viam.app.v1.UpdateOrganizationMetadataRequest.prototype.toObject = functio
 proto.viam.app.v1.UpdateOrganizationMetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    dataMap: (f = msg.getDataMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : []
+    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9893,10 +9909,9 @@ proto.viam.app.v1.UpdateOrganizationMetadataRequest.deserializeBinaryFromReader 
       msg.setOrganizationId(value);
       break;
     case 2:
-      var value = msg.getDataMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.google.protobuf.Any.deserializeBinaryFromReader, "", new proto.google.protobuf.Any());
-         });
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setData(value);
       break;
     default:
       reader.skipField();
@@ -9934,9 +9949,13 @@ proto.viam.app.v1.UpdateOrganizationMetadataRequest.serializeBinaryToWriter = fu
       f
     );
   }
-  f = message.getDataMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.google.protobuf.Any.serializeBinaryToWriter);
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
   }
 };
 
@@ -9960,25 +9979,40 @@ proto.viam.app.v1.UpdateOrganizationMetadataRequest.prototype.setOrganizationId 
 
 
 /**
- * map<string, google.protobuf.Any> data = 2;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.google.protobuf.Any>}
+ * optional google.protobuf.Struct data = 2;
+ * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.app.v1.UpdateOrganizationMetadataRequest.prototype.getDataMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.google.protobuf.Any>} */ (
-      jspb.Message.getMapField(this, 2, opt_noLazyCreate,
-      proto.google.protobuf.Any));
+proto.viam.app.v1.UpdateOrganizationMetadataRequest.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
 
 
 /**
- * Clears values from the map. The map will be non-null.
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.v1.UpdateOrganizationMetadataRequest} returns this
+*/
+proto.viam.app.v1.UpdateOrganizationMetadataRequest.prototype.setData = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.viam.app.v1.UpdateOrganizationMetadataRequest} returns this
  */
-proto.viam.app.v1.UpdateOrganizationMetadataRequest.prototype.clearDataMap = function() {
-  this.getDataMap().clear();
-  return this;};
+proto.viam.app.v1.UpdateOrganizationMetadataRequest.prototype.clearData = function() {
+  return this.setData(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateOrganizationMetadataRequest.prototype.hasData = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
 
 
 
@@ -16978,7 +17012,7 @@ proto.viam.app.v1.GetLocationMetadataResponse.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.GetLocationMetadataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dataMap: (f = msg.getDataMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : []
+    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -17016,10 +17050,9 @@ proto.viam.app.v1.GetLocationMetadataResponse.deserializeBinaryFromReader = func
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = msg.getDataMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.google.protobuf.Any.deserializeBinaryFromReader, "", new proto.google.protobuf.Any());
-         });
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setData(value);
       break;
     default:
       reader.skipField();
@@ -17050,33 +17083,52 @@ proto.viam.app.v1.GetLocationMetadataResponse.prototype.serializeBinary = functi
  */
 proto.viam.app.v1.GetLocationMetadataResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getDataMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(1, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.google.protobuf.Any.serializeBinaryToWriter);
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
   }
 };
 
 
 /**
- * map<string, google.protobuf.Any> data = 1;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.google.protobuf.Any>}
+ * optional google.protobuf.Struct data = 1;
+ * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.app.v1.GetLocationMetadataResponse.prototype.getDataMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.google.protobuf.Any>} */ (
-      jspb.Message.getMapField(this, 1, opt_noLazyCreate,
-      proto.google.protobuf.Any));
+proto.viam.app.v1.GetLocationMetadataResponse.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 1));
 };
 
 
 /**
- * Clears values from the map. The map will be non-null.
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.v1.GetLocationMetadataResponse} returns this
+*/
+proto.viam.app.v1.GetLocationMetadataResponse.prototype.setData = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.viam.app.v1.GetLocationMetadataResponse} returns this
  */
-proto.viam.app.v1.GetLocationMetadataResponse.prototype.clearDataMap = function() {
-  this.getDataMap().clear();
-  return this;};
+proto.viam.app.v1.GetLocationMetadataResponse.prototype.clearData = function() {
+  return this.setData(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetLocationMetadataResponse.prototype.hasData = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
 
 
 
@@ -17112,7 +17164,7 @@ proto.viam.app.v1.UpdateLocationMetadataRequest.prototype.toObject = function(op
 proto.viam.app.v1.UpdateLocationMetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    dataMap: (f = msg.getDataMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : []
+    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -17154,10 +17206,9 @@ proto.viam.app.v1.UpdateLocationMetadataRequest.deserializeBinaryFromReader = fu
       msg.setLocationId(value);
       break;
     case 2:
-      var value = msg.getDataMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.google.protobuf.Any.deserializeBinaryFromReader, "", new proto.google.protobuf.Any());
-         });
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setData(value);
       break;
     default:
       reader.skipField();
@@ -17195,9 +17246,13 @@ proto.viam.app.v1.UpdateLocationMetadataRequest.serializeBinaryToWriter = functi
       f
     );
   }
-  f = message.getDataMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.google.protobuf.Any.serializeBinaryToWriter);
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
   }
 };
 
@@ -17221,25 +17276,40 @@ proto.viam.app.v1.UpdateLocationMetadataRequest.prototype.setLocationId = functi
 
 
 /**
- * map<string, google.protobuf.Any> data = 2;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.google.protobuf.Any>}
+ * optional google.protobuf.Struct data = 2;
+ * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.app.v1.UpdateLocationMetadataRequest.prototype.getDataMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.google.protobuf.Any>} */ (
-      jspb.Message.getMapField(this, 2, opt_noLazyCreate,
-      proto.google.protobuf.Any));
+proto.viam.app.v1.UpdateLocationMetadataRequest.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
 
 
 /**
- * Clears values from the map. The map will be non-null.
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.v1.UpdateLocationMetadataRequest} returns this
+*/
+proto.viam.app.v1.UpdateLocationMetadataRequest.prototype.setData = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.viam.app.v1.UpdateLocationMetadataRequest} returns this
  */
-proto.viam.app.v1.UpdateLocationMetadataRequest.prototype.clearDataMap = function() {
-  this.getDataMap().clear();
-  return this;};
+proto.viam.app.v1.UpdateLocationMetadataRequest.prototype.clearData = function() {
+  return this.setData(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateLocationMetadataRequest.prototype.hasData = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
 
 
 
@@ -22962,7 +23032,7 @@ proto.viam.app.v1.GetRobotPartMetadataResponse.prototype.toObject = function(opt
  */
 proto.viam.app.v1.GetRobotPartMetadataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dataMap: (f = msg.getDataMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : []
+    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -23000,10 +23070,9 @@ proto.viam.app.v1.GetRobotPartMetadataResponse.deserializeBinaryFromReader = fun
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = msg.getDataMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.google.protobuf.Any.deserializeBinaryFromReader, "", new proto.google.protobuf.Any());
-         });
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setData(value);
       break;
     default:
       reader.skipField();
@@ -23034,33 +23103,52 @@ proto.viam.app.v1.GetRobotPartMetadataResponse.prototype.serializeBinary = funct
  */
 proto.viam.app.v1.GetRobotPartMetadataResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getDataMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(1, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.google.protobuf.Any.serializeBinaryToWriter);
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
   }
 };
 
 
 /**
- * map<string, google.protobuf.Any> data = 1;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.google.protobuf.Any>}
+ * optional google.protobuf.Struct data = 1;
+ * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.app.v1.GetRobotPartMetadataResponse.prototype.getDataMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.google.protobuf.Any>} */ (
-      jspb.Message.getMapField(this, 1, opt_noLazyCreate,
-      proto.google.protobuf.Any));
+proto.viam.app.v1.GetRobotPartMetadataResponse.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 1));
 };
 
 
 /**
- * Clears values from the map. The map will be non-null.
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.v1.GetRobotPartMetadataResponse} returns this
+*/
+proto.viam.app.v1.GetRobotPartMetadataResponse.prototype.setData = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.viam.app.v1.GetRobotPartMetadataResponse} returns this
  */
-proto.viam.app.v1.GetRobotPartMetadataResponse.prototype.clearDataMap = function() {
-  this.getDataMap().clear();
-  return this;};
+proto.viam.app.v1.GetRobotPartMetadataResponse.prototype.clearData = function() {
+  return this.setData(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartMetadataResponse.prototype.hasData = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
 
 
 
@@ -23096,7 +23184,7 @@ proto.viam.app.v1.UpdateRobotPartMetadataRequest.prototype.toObject = function(o
 proto.viam.app.v1.UpdateRobotPartMetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    dataMap: (f = msg.getDataMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : []
+    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -23138,10 +23226,9 @@ proto.viam.app.v1.UpdateRobotPartMetadataRequest.deserializeBinaryFromReader = f
       msg.setId(value);
       break;
     case 2:
-      var value = msg.getDataMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.google.protobuf.Any.deserializeBinaryFromReader, "", new proto.google.protobuf.Any());
-         });
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setData(value);
       break;
     default:
       reader.skipField();
@@ -23179,9 +23266,13 @@ proto.viam.app.v1.UpdateRobotPartMetadataRequest.serializeBinaryToWriter = funct
       f
     );
   }
-  f = message.getDataMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.google.protobuf.Any.serializeBinaryToWriter);
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
   }
 };
 
@@ -23205,25 +23296,40 @@ proto.viam.app.v1.UpdateRobotPartMetadataRequest.prototype.setId = function(valu
 
 
 /**
- * map<string, google.protobuf.Any> data = 2;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.google.protobuf.Any>}
+ * optional google.protobuf.Struct data = 2;
+ * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.app.v1.UpdateRobotPartMetadataRequest.prototype.getDataMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.google.protobuf.Any>} */ (
-      jspb.Message.getMapField(this, 2, opt_noLazyCreate,
-      proto.google.protobuf.Any));
+proto.viam.app.v1.UpdateRobotPartMetadataRequest.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
 
 
 /**
- * Clears values from the map. The map will be non-null.
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.v1.UpdateRobotPartMetadataRequest} returns this
+*/
+proto.viam.app.v1.UpdateRobotPartMetadataRequest.prototype.setData = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.viam.app.v1.UpdateRobotPartMetadataRequest} returns this
  */
-proto.viam.app.v1.UpdateRobotPartMetadataRequest.prototype.clearDataMap = function() {
-  this.getDataMap().clear();
-  return this;};
+proto.viam.app.v1.UpdateRobotPartMetadataRequest.prototype.clearData = function() {
+  return this.setData(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateRobotPartMetadataRequest.prototype.hasData = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
 
 
 
@@ -31310,7 +31416,7 @@ proto.viam.app.v1.GetRobotMetadataResponse.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.GetRobotMetadataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dataMap: (f = msg.getDataMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : []
+    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -31348,10 +31454,9 @@ proto.viam.app.v1.GetRobotMetadataResponse.deserializeBinaryFromReader = functio
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = msg.getDataMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.google.protobuf.Any.deserializeBinaryFromReader, "", new proto.google.protobuf.Any());
-         });
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setData(value);
       break;
     default:
       reader.skipField();
@@ -31382,33 +31487,52 @@ proto.viam.app.v1.GetRobotMetadataResponse.prototype.serializeBinary = function(
  */
 proto.viam.app.v1.GetRobotMetadataResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getDataMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(1, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.google.protobuf.Any.serializeBinaryToWriter);
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
   }
 };
 
 
 /**
- * map<string, google.protobuf.Any> data = 1;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.google.protobuf.Any>}
+ * optional google.protobuf.Struct data = 1;
+ * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.app.v1.GetRobotMetadataResponse.prototype.getDataMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.google.protobuf.Any>} */ (
-      jspb.Message.getMapField(this, 1, opt_noLazyCreate,
-      proto.google.protobuf.Any));
+proto.viam.app.v1.GetRobotMetadataResponse.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 1));
 };
 
 
 /**
- * Clears values from the map. The map will be non-null.
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.v1.GetRobotMetadataResponse} returns this
+*/
+proto.viam.app.v1.GetRobotMetadataResponse.prototype.setData = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.viam.app.v1.GetRobotMetadataResponse} returns this
  */
-proto.viam.app.v1.GetRobotMetadataResponse.prototype.clearDataMap = function() {
-  this.getDataMap().clear();
-  return this;};
+proto.viam.app.v1.GetRobotMetadataResponse.prototype.clearData = function() {
+  return this.setData(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotMetadataResponse.prototype.hasData = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
 
 
 
@@ -31444,7 +31568,7 @@ proto.viam.app.v1.UpdateRobotMetadataRequest.prototype.toObject = function(opt_i
 proto.viam.app.v1.UpdateRobotMetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    dataMap: (f = msg.getDataMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : []
+    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -31486,10 +31610,9 @@ proto.viam.app.v1.UpdateRobotMetadataRequest.deserializeBinaryFromReader = funct
       msg.setId(value);
       break;
     case 2:
-      var value = msg.getDataMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.google.protobuf.Any.deserializeBinaryFromReader, "", new proto.google.protobuf.Any());
-         });
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setData(value);
       break;
     default:
       reader.skipField();
@@ -31527,9 +31650,13 @@ proto.viam.app.v1.UpdateRobotMetadataRequest.serializeBinaryToWriter = function(
       f
     );
   }
-  f = message.getDataMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.google.protobuf.Any.serializeBinaryToWriter);
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
   }
 };
 
@@ -31553,25 +31680,40 @@ proto.viam.app.v1.UpdateRobotMetadataRequest.prototype.setId = function(value) {
 
 
 /**
- * map<string, google.protobuf.Any> data = 2;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.google.protobuf.Any>}
+ * optional google.protobuf.Struct data = 2;
+ * @return {?proto.google.protobuf.Struct}
  */
-proto.viam.app.v1.UpdateRobotMetadataRequest.prototype.getDataMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.google.protobuf.Any>} */ (
-      jspb.Message.getMapField(this, 2, opt_noLazyCreate,
-      proto.google.protobuf.Any));
+proto.viam.app.v1.UpdateRobotMetadataRequest.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
 };
 
 
 /**
- * Clears values from the map. The map will be non-null.
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.v1.UpdateRobotMetadataRequest} returns this
+*/
+proto.viam.app.v1.UpdateRobotMetadataRequest.prototype.setData = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.viam.app.v1.UpdateRobotMetadataRequest} returns this
  */
-proto.viam.app.v1.UpdateRobotMetadataRequest.prototype.clearDataMap = function() {
-  this.getDataMap().clear();
-  return this;};
+proto.viam.app.v1.UpdateRobotMetadataRequest.prototype.clearData = function() {
+  return this.setData(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateRobotMetadataRequest.prototype.hasData = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
 
 
 

@@ -5,7 +5,6 @@ import * as jspb from "google-protobuf";
 import * as app_mltraining_v1_ml_training_pb from "../../app/mltraining/v1/ml_training_pb";
 import * as app_packages_v1_packages_pb from "../../app/packages/v1/packages_pb";
 import * as common_v1_common_pb from "../../common/v1/common_pb";
-import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as tagger_v1_tagger_pb from "../../tagger/v1/tagger_pb";
@@ -611,8 +610,11 @@ export namespace GetOrganizationMetadataRequest {
 }
 
 export class GetOrganizationMetadataResponse extends jspb.Message {
-  getDataMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearDataMap(): void;
+  hasData(): boolean;
+  clearData(): void;
+  getData(): google_protobuf_struct_pb.Struct | undefined;
+  setData(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetOrganizationMetadataResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetOrganizationMetadataResponse): GetOrganizationMetadataResponse.AsObject;
@@ -625,7 +627,7 @@ export class GetOrganizationMetadataResponse extends jspb.Message {
 
 export namespace GetOrganizationMetadataResponse {
   export type AsObject = {
-    dataMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    data?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -633,8 +635,11 @@ export class UpdateOrganizationMetadataRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
-  getDataMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearDataMap(): void;
+  hasData(): boolean;
+  clearData(): void;
+  getData(): google_protobuf_struct_pb.Struct | undefined;
+  setData(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateOrganizationMetadataRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateOrganizationMetadataRequest): UpdateOrganizationMetadataRequest.AsObject;
@@ -648,7 +653,7 @@ export class UpdateOrganizationMetadataRequest extends jspb.Message {
 export namespace UpdateOrganizationMetadataRequest {
   export type AsObject = {
     organizationId: string,
-    dataMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    data?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -1671,8 +1676,11 @@ export namespace GetLocationMetadataRequest {
 }
 
 export class GetLocationMetadataResponse extends jspb.Message {
-  getDataMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearDataMap(): void;
+  hasData(): boolean;
+  clearData(): void;
+  getData(): google_protobuf_struct_pb.Struct | undefined;
+  setData(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetLocationMetadataResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetLocationMetadataResponse): GetLocationMetadataResponse.AsObject;
@@ -1685,7 +1693,7 @@ export class GetLocationMetadataResponse extends jspb.Message {
 
 export namespace GetLocationMetadataResponse {
   export type AsObject = {
-    dataMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    data?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -1693,8 +1701,11 @@ export class UpdateLocationMetadataRequest extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;
 
-  getDataMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearDataMap(): void;
+  hasData(): boolean;
+  clearData(): void;
+  getData(): google_protobuf_struct_pb.Struct | undefined;
+  setData(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateLocationMetadataRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateLocationMetadataRequest): UpdateLocationMetadataRequest.AsObject;
@@ -1708,7 +1719,7 @@ export class UpdateLocationMetadataRequest extends jspb.Message {
 export namespace UpdateLocationMetadataRequest {
   export type AsObject = {
     locationId: string,
-    dataMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    data?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -2543,8 +2554,11 @@ export namespace GetRobotPartMetadataRequest {
 }
 
 export class GetRobotPartMetadataResponse extends jspb.Message {
-  getDataMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearDataMap(): void;
+  hasData(): boolean;
+  clearData(): void;
+  getData(): google_protobuf_struct_pb.Struct | undefined;
+  setData(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartMetadataResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartMetadataResponse): GetRobotPartMetadataResponse.AsObject;
@@ -2557,7 +2571,7 @@ export class GetRobotPartMetadataResponse extends jspb.Message {
 
 export namespace GetRobotPartMetadataResponse {
   export type AsObject = {
-    dataMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    data?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -2565,8 +2579,11 @@ export class UpdateRobotPartMetadataRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  getDataMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearDataMap(): void;
+  hasData(): boolean;
+  clearData(): void;
+  getData(): google_protobuf_struct_pb.Struct | undefined;
+  setData(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRobotPartMetadataRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateRobotPartMetadataRequest): UpdateRobotPartMetadataRequest.AsObject;
@@ -2580,7 +2597,7 @@ export class UpdateRobotPartMetadataRequest extends jspb.Message {
 export namespace UpdateRobotPartMetadataRequest {
   export type AsObject = {
     id: string,
-    dataMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    data?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -3727,8 +3744,11 @@ export namespace GetRobotMetadataRequest {
 }
 
 export class GetRobotMetadataResponse extends jspb.Message {
-  getDataMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearDataMap(): void;
+  hasData(): boolean;
+  clearData(): void;
+  getData(): google_protobuf_struct_pb.Struct | undefined;
+  setData(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotMetadataResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotMetadataResponse): GetRobotMetadataResponse.AsObject;
@@ -3741,7 +3761,7 @@ export class GetRobotMetadataResponse extends jspb.Message {
 
 export namespace GetRobotMetadataResponse {
   export type AsObject = {
-    dataMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    data?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -3749,8 +3769,11 @@ export class UpdateRobotMetadataRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  getDataMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearDataMap(): void;
+  hasData(): boolean;
+  clearData(): void;
+  getData(): google_protobuf_struct_pb.Struct | undefined;
+  setData(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRobotMetadataRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateRobotMetadataRequest): UpdateRobotMetadataRequest.AsObject;
@@ -3764,7 +3787,7 @@ export class UpdateRobotMetadataRequest extends jspb.Message {
 export namespace UpdateRobotMetadataRequest {
   export type AsObject = {
     id: string,
-    dataMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    data?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
