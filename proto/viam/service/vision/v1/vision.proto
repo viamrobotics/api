@@ -97,6 +97,11 @@ message Detection {
   double confidence = 5;
   // label associated with the detected object
   string class_name = 6;
+  // the four corners of the box, divided by the size of the entire image
+  optional double x_min_normalized = 7;
+  optional double y_min_normalized = 8;
+  optional double x_max_normalized = 9;
+  optional double y_max_normalized = 10;
 }
 
 message GetClassificationsRequest {
