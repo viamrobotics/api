@@ -26,8 +26,6 @@ var app_packages_v1_packages_pb = require('../../app/packages/v1/packages_pb.js'
 
 var common_v1_common_pb = require('../../common/v1/common_pb.js')
 
-var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js')
-
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')

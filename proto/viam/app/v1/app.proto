@@ -5,7 +5,6 @@ package viam.app.v1;
 import "app/mltraining/v1/ml_training.proto";
 import "app/packages/v1/packages.proto";
 import "common/v1/common.proto";
-import "google/protobuf/any.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "tagger/v1/tagger.proto";
@@ -422,12 +421,12 @@ message GetOrganizationMetadataRequest {
 }
 
 message GetOrganizationMetadataResponse {
-  map<string, google.protobuf.Any> data = 1;
+  google.protobuf.Struct data = 1;
 }
 
 message UpdateOrganizationMetadataRequest {
   string organization_id = 1;
-  map<string, google.protobuf.Any> data = 2;
+  google.protobuf.Struct data = 2;
 }
 
 message UpdateOrganizationMetadataResponse {}
@@ -676,12 +675,12 @@ message GetLocationMetadataRequest {
 }
 
 message GetLocationMetadataResponse {
-  map<string, google.protobuf.Any> data = 1;
+  google.protobuf.Struct data = 1;
 }
 
 message UpdateLocationMetadataRequest {
   string location_id = 1;
-  map<string, google.protobuf.Any> data = 2;
+  google.protobuf.Struct data = 2;
 }
 
 message UpdateLocationMetadataResponse {}
@@ -850,12 +849,12 @@ message GetRobotPartMetadataRequest {
 }
 
 message GetRobotPartMetadataResponse {
-  map<string, google.protobuf.Any> data = 1;
+  google.protobuf.Struct data = 1;
 }
 
 message UpdateRobotPartMetadataRequest {
   string id = 1;
-  map<string, google.protobuf.Any> data = 2;
+  google.protobuf.Struct data = 2;
 }
 
 message UpdateRobotPartMetadataResponse {}
@@ -1104,12 +1103,12 @@ message GetRobotMetadataRequest {
 }
 
 message GetRobotMetadataResponse {
-  map<string, google.protobuf.Any> data = 1;
+  google.protobuf.Struct data = 1;
 }
 
 message UpdateRobotMetadataRequest {
   string id = 1;
-  map<string, google.protobuf.Any> data = 2;
+  google.protobuf.Struct data = 2;
 }
 
 message UpdateRobotMetadataResponse {}
