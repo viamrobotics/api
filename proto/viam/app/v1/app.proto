@@ -1430,6 +1430,8 @@ message Model {
   optional string markdown_documentation = 3;
   // A short description of the model that explains its purpose
   optional string description = 4;
+  // A list of supported hardware names
+  repeated string supported_hardware = 5;
 }
 
 message ModuleFileInfo {
