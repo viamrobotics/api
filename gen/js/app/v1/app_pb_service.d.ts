@@ -904,6 +904,15 @@ type AppServiceCreateKeyFromExistingKeyAuthorizations = {
   readonly responseType: typeof app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsResponse;
 };
 
+type AppServiceGetAppContent = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetAppContentRequest;
+  readonly responseType: typeof app_v1_app_pb.GetAppContentResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
@@ -1006,6 +1015,7 @@ export class AppService {
   static readonly RenameKey: AppServiceRenameKey;
   static readonly RotateKey: AppServiceRotateKey;
   static readonly CreateKeyFromExistingKeyAuthorizations: AppServiceCreateKeyFromExistingKeyAuthorizations;
+  static readonly GetAppContent: AppServiceGetAppContent;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -1923,6 +1933,15 @@ export class AppServiceClient {
   createKeyFromExistingKeyAuthorizations(
     requestMessage: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsResponse|null) => void
+  ): UnaryResponse;
+  getAppContent(
+    requestMessage: app_v1_app_pb.GetAppContentRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetAppContentResponse|null) => void
+  ): UnaryResponse;
+  getAppContent(
+    requestMessage: app_v1_app_pb.GetAppContentRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetAppContentResponse|null) => void
   ): UnaryResponse;
 }
 

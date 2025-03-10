@@ -5928,6 +5928,50 @@ export namespace CreateKeyFromExistingKeyAuthorizationsResponse {
   }
 }
 
+export class GetAppContentRequest extends jspb.Message {
+  getPublicNamespace(): string;
+  setPublicNamespace(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAppContentRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAppContentRequest): GetAppContentRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetAppContentRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAppContentRequest;
+  static deserializeBinaryFromReader(message: GetAppContentRequest, reader: jspb.BinaryReader): GetAppContentRequest;
+}
+
+export namespace GetAppContentRequest {
+  export type AsObject = {
+    publicNamespace: string,
+    name: string,
+  }
+}
+
+export class GetAppContentResponse extends jspb.Message {
+  getUrl(): string;
+  setUrl(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAppContentResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAppContentResponse): GetAppContentResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetAppContentResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAppContentResponse;
+  static deserializeBinaryFromReader(message: GetAppContentResponse, reader: jspb.BinaryReader): GetAppContentResponse;
+}
+
+export namespace GetAppContentResponse {
+  export type AsObject = {
+    url: string,
+  }
+}
+
 export class OrganizationSetLogoRequest extends jspb.Message {
   getOrgId(): string;
   setOrgId(value: string): void;
