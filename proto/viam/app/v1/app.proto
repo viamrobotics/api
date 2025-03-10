@@ -1310,9 +1310,9 @@ message UpdateRegistryItemRequest {
   optional string url = 5;
 
   oneof metadata {
-    UpdateModuleMetadata module_update_metadata = 6;
-    UpdateMLModelMetadata ml_model_update_metadata = 7;
-    UpdateMLTrainingMetadata ml_training_update_metadata = 8;
+    UpdateModuleMetadata update_module_metadata = 6;
+    UpdateMLModelMetadata update_ml_model_metadata = 7;
+    UpdateMLTrainingMetadata update_ml_training_metadata = 8;
   }
 }
 
