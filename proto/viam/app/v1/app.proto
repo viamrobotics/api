@@ -1406,7 +1406,7 @@ message App {
   // The type of the application
   string type = 2;
   // The entrypoint of the application
-  string entrypoint = 3; 
+  string entrypoint = 3;
 }
 
 message UpdateModuleResponse {

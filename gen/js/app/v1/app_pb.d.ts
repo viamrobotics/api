@@ -4933,6 +4933,11 @@ export class UpdateModuleRequest extends jspb.Message {
   getFirstRun(): string;
   setFirstRun(value: string): void;
 
+  clearAppsList(): void;
+  getAppsList(): Array<App>;
+  setAppsList(value: Array<App>): void;
+  addApps(value?: App, index?: number): App;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleRequest): UpdateModuleRequest.AsObject;
@@ -4952,6 +4957,35 @@ export namespace UpdateModuleRequest {
     modelsList: Array<Model.AsObject>,
     entrypoint: string,
     firstRun: string,
+    appsList: Array<App.AsObject>,
+  }
+}
+
+export class App extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getType(): string;
+  setType(value: string): void;
+
+  getEntrypoint(): string;
+  setEntrypoint(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): App.AsObject;
+  static toObject(includeInstance: boolean, msg: App): App.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: App, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): App;
+  static deserializeBinaryFromReader(message: App, reader: jspb.BinaryReader): App;
+}
+
+export namespace App {
+  export type AsObject = {
+    name: string,
+    type: string,
+    entrypoint: string,
   }
 }
 
