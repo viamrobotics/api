@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -1268,7 +1274,11 @@ proto.viam.service.vision.v1.Detection.toObject = function(includeInstance, msg)
     xMax: jspb.Message.getFieldWithDefault(msg, 3, 0),
     yMax: jspb.Message.getFieldWithDefault(msg, 4, 0),
     confidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    className: jspb.Message.getFieldWithDefault(msg, 6, "")
+    className: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    xMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
+    yMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
+    xMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
+    yMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0)
   };
 
   if (includeInstance) {
@@ -1328,6 +1338,22 @@ proto.viam.service.vision.v1.Detection.deserializeBinaryFromReader = function(ms
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setClassName(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setXMinNormalized(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setYMinNormalized(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setXMaxNormalized(value);
+      break;
+    case 10:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setYMaxNormalized(value);
       break;
     default:
       reader.skipField();
@@ -1397,6 +1423,34 @@ proto.viam.service.vision.v1.Detection.serializeBinaryToWriter = function(messag
   if (f.length > 0) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 7));
+  if (f != null) {
+    writer.writeDouble(
+      7,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 8));
+  if (f != null) {
+    writer.writeDouble(
+      8,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 9));
+  if (f != null) {
+    writer.writeDouble(
+      9,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeDouble(
+      10,
       f
     );
   }
@@ -1580,6 +1634,150 @@ proto.viam.service.vision.v1.Detection.prototype.getClassName = function() {
  */
 proto.viam.service.vision.v1.Detection.prototype.setClassName = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional double x_min_normalized = 7;
+ * @return {number}
+ */
+proto.viam.service.vision.v1.Detection.prototype.getXMinNormalized = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 7, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.service.vision.v1.Detection} returns this
+ */
+proto.viam.service.vision.v1.Detection.prototype.setXMinNormalized = function(value) {
+  return jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.service.vision.v1.Detection} returns this
+ */
+proto.viam.service.vision.v1.Detection.prototype.clearXMinNormalized = function() {
+  return jspb.Message.setField(this, 7, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.Detection.prototype.hasXMinNormalized = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional double y_min_normalized = 8;
+ * @return {number}
+ */
+proto.viam.service.vision.v1.Detection.prototype.getYMinNormalized = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 8, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.service.vision.v1.Detection} returns this
+ */
+proto.viam.service.vision.v1.Detection.prototype.setYMinNormalized = function(value) {
+  return jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.service.vision.v1.Detection} returns this
+ */
+proto.viam.service.vision.v1.Detection.prototype.clearYMinNormalized = function() {
+  return jspb.Message.setField(this, 8, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.Detection.prototype.hasYMinNormalized = function() {
+  return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional double x_max_normalized = 9;
+ * @return {number}
+ */
+proto.viam.service.vision.v1.Detection.prototype.getXMaxNormalized = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 9, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.service.vision.v1.Detection} returns this
+ */
+proto.viam.service.vision.v1.Detection.prototype.setXMaxNormalized = function(value) {
+  return jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.service.vision.v1.Detection} returns this
+ */
+proto.viam.service.vision.v1.Detection.prototype.clearXMaxNormalized = function() {
+  return jspb.Message.setField(this, 9, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.Detection.prototype.hasXMaxNormalized = function() {
+  return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional double y_max_normalized = 10;
+ * @return {number}
+ */
+proto.viam.service.vision.v1.Detection.prototype.getYMaxNormalized = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 10, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.service.vision.v1.Detection} returns this
+ */
+proto.viam.service.vision.v1.Detection.prototype.setYMaxNormalized = function(value) {
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.service.vision.v1.Detection} returns this
+ */
+proto.viam.service.vision.v1.Detection.prototype.clearYMaxNormalized = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.Detection.prototype.hasYMaxNormalized = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 

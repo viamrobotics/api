@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js');
 goog.object.extend(proto, app_data_v1_data_pb);
@@ -2562,7 +2568,8 @@ proto.viam.app.datasync.v1.UploadMetadata.prototype.getMethodParametersMap = fun
  */
 proto.viam.app.datasync.v1.UploadMetadata.prototype.clearMethodParametersMap = function() {
   this.getMethodParametersMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -3103,7 +3110,8 @@ proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.getMethodParametersMap 
  */
 proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.clearMethodParametersMap = function() {
   this.getMethodParametersMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**

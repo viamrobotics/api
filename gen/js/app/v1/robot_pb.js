@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var common_v1_common_pb = require('../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -3910,7 +3916,8 @@ proto.viam.app.v1.ProcessConfig.prototype.getEnvMap = function(opt_noLazyCreate)
  */
 proto.viam.app.v1.ProcessConfig.prototype.clearEnvMap = function() {
   this.getEnvMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -10828,7 +10835,8 @@ proto.viam.app.v1.ModuleConfig.prototype.getEnvMap = function(opt_noLazyCreate) 
  */
 proto.viam.app.v1.ModuleConfig.prototype.clearEnvMap = function() {
   this.getEnvMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**

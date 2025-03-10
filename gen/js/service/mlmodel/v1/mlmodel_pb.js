@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
@@ -4403,7 +4409,8 @@ proto.viam.service.mlmodel.v1.FlatTensors.prototype.getTensorsMap = function(opt
  */
 proto.viam.service.mlmodel.v1.FlatTensors.prototype.clearTensorsMap = function() {
   this.getTensorsMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
