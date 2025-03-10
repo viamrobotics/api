@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
 goog.object.extend(proto, google_protobuf_any_pb);
@@ -84,9 +78,9 @@ proto.google.api.HttpBody.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.api.HttpBody.toObject = function(includeInstance, msg) {
   var f, obj = {
-contentType: jspb.Message.getFieldWithDefault(msg, 1, ""),
-data: msg.getData_asB64(),
-extensionsList: jspb.Message.toObjectList(msg.getExtensionsList(),
+    contentType: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    data: msg.getData_asB64(),
+    extensionsList: jspb.Message.toObjectList(msg.getExtensionsList(),
     google_protobuf_any_pb.Any.toObject, includeInstance)
   };
 

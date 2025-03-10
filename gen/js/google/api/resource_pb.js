@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_protobuf_descriptor_pb = require('google-protobuf/google/protobuf/descriptor_pb.js');
 goog.object.extend(proto, google_protobuf_descriptor_pb);
@@ -111,13 +105,13 @@ proto.google.api.ResourceDescriptor.prototype.toObject = function(opt_includeIns
  */
 proto.google.api.ResourceDescriptor.toObject = function(includeInstance, msg) {
   var f, obj = {
-type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-patternList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-nameField: jspb.Message.getFieldWithDefault(msg, 3, ""),
-history: jspb.Message.getFieldWithDefault(msg, 4, 0),
-plural: jspb.Message.getFieldWithDefault(msg, 5, ""),
-singular: jspb.Message.getFieldWithDefault(msg, 6, ""),
-styleList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f
+    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    patternList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    nameField: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    history: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    plural: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    singular: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    styleList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -478,8 +472,8 @@ proto.google.api.ResourceReference.prototype.toObject = function(opt_includeInst
  */
 proto.google.api.ResourceReference.toObject = function(includeInstance, msg) {
   var f, obj = {
-type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-childType: jspb.Message.getFieldWithDefault(msg, 2, "")
+    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    childType: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

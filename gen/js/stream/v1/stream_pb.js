@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 goog.exportSymbol('proto.proto.stream.v1.AddStreamRequest', null, global);
 goog.exportSymbol('proto.proto.stream.v1.AddStreamResponse', null, global);
@@ -403,7 +397,7 @@ proto.proto.stream.v1.ListStreamsResponse.prototype.toObject = function(opt_incl
  */
 proto.proto.stream.v1.ListStreamsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-namesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    namesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -552,7 +546,7 @@ proto.proto.stream.v1.AddStreamRequest.prototype.toObject = function(opt_include
  */
 proto.proto.stream.v1.AddStreamRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -783,7 +777,7 @@ proto.proto.stream.v1.RemoveStreamRequest.prototype.toObject = function(opt_incl
  */
 proto.proto.stream.v1.RemoveStreamRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1014,8 +1008,8 @@ proto.proto.stream.v1.Resolution.prototype.toObject = function(opt_includeInstan
  */
 proto.proto.stream.v1.Resolution.toObject = function(includeInstance, msg) {
   var f, obj = {
-width: jspb.Message.getFieldWithDefault(msg, 1, 0),
-height: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    width: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    height: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -1174,7 +1168,7 @@ proto.proto.stream.v1.GetStreamOptionsRequest.prototype.toObject = function(opt_
  */
 proto.proto.stream.v1.GetStreamOptionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1311,7 +1305,7 @@ proto.proto.stream.v1.GetStreamOptionsResponse.prototype.toObject = function(opt
  */
 proto.proto.stream.v1.GetStreamOptionsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-resolutionsList: jspb.Message.toObjectList(msg.getResolutionsList(),
+    resolutionsList: jspb.Message.toObjectList(msg.getResolutionsList(),
     proto.proto.stream.v1.Resolution.toObject, includeInstance)
   };
 
@@ -1464,8 +1458,8 @@ proto.proto.stream.v1.SetStreamOptionsRequest.prototype.toObject = function(opt_
  */
 proto.proto.stream.v1.SetStreamOptionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-resolution: (f = msg.getResolution()) && proto.proto.stream.v1.Resolution.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    resolution: (f = msg.getResolution()) && proto.proto.stream.v1.Resolution.toObject(includeInstance, f)
   };
 
   if (includeInstance) {

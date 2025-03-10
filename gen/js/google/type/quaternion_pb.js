@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 goog.exportSymbol('proto.google.type.Quaternion', null, global);
 /**
@@ -75,10 +69,10 @@ proto.google.type.Quaternion.prototype.toObject = function(opt_includeInstance) 
  */
 proto.google.type.Quaternion.toObject = function(includeInstance, msg) {
   var f, obj = {
-x: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-y: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-z: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-w: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
+    x: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+    y: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    z: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    w: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {

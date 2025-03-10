@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 goog.exportSymbol('proto.google.type.Expr', null, global);
 /**
@@ -75,10 +69,10 @@ proto.google.type.Expr.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.Expr.toObject = function(includeInstance, msg) {
   var f, obj = {
-expression: jspb.Message.getFieldWithDefault(msg, 1, ""),
-title: jspb.Message.getFieldWithDefault(msg, 2, ""),
-description: jspb.Message.getFieldWithDefault(msg, 3, ""),
-location: jspb.Message.getFieldWithDefault(msg, 4, "")
+    expression: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    title: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    location: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {

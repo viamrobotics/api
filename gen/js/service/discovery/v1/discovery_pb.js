@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var app_v1_robot_pb = require('../../../app/v1/robot_pb.js');
 goog.object.extend(proto, app_v1_robot_pb);
@@ -105,8 +99,8 @@ proto.viam.service.discovery.v1.DiscoverResourcesRequest.prototype.toObject = fu
  */
 proto.viam.service.discovery.v1.DiscoverResourcesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -293,7 +287,7 @@ proto.viam.service.discovery.v1.DiscoverResourcesResponse.prototype.toObject = f
  */
 proto.viam.service.discovery.v1.DiscoverResourcesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-discoveriesList: jspb.Message.toObjectList(msg.getDiscoveriesList(),
+    discoveriesList: jspb.Message.toObjectList(msg.getDiscoveriesList(),
     app_v1_robot_pb.ComponentConfig.toObject, includeInstance)
   };
 
