@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -339,8 +345,8 @@ proto.viam.component.gantry.v1.GetPositionRequest.prototype.toObject = function(
  */
 proto.viam.component.gantry.v1.GetPositionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -527,7 +533,7 @@ proto.viam.component.gantry.v1.GetPositionResponse.prototype.toObject = function
  */
 proto.viam.component.gantry.v1.GetPositionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    positionsMmList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 1)) == null ? undefined : f
+positionsMmList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -685,10 +691,10 @@ proto.viam.component.gantry.v1.MoveToPositionRequest.prototype.toObject = functi
  */
 proto.viam.component.gantry.v1.MoveToPositionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    positionsMmList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 2)) == null ? undefined : f,
-    speedsMmPerSecList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 3)) == null ? undefined : f,
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+positionsMmList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 2)) == null ? undefined : f,
+speedsMmPerSecList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 3)) == null ? undefined : f,
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1069,8 +1075,8 @@ proto.viam.component.gantry.v1.HomeRequest.prototype.toObject = function(opt_inc
  */
 proto.viam.component.gantry.v1.HomeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1250,7 +1256,7 @@ proto.viam.component.gantry.v1.HomeResponse.prototype.toObject = function(opt_in
  */
 proto.viam.component.gantry.v1.HomeResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    homed: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+homed: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -1380,8 +1386,8 @@ proto.viam.component.gantry.v1.GetLengthsRequest.prototype.toObject = function(o
  */
 proto.viam.component.gantry.v1.GetLengthsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1568,7 +1574,7 @@ proto.viam.component.gantry.v1.GetLengthsResponse.prototype.toObject = function(
  */
 proto.viam.component.gantry.v1.GetLengthsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    lengthsMmList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 1)) == null ? undefined : f
+lengthsMmList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1719,8 +1725,8 @@ proto.viam.component.gantry.v1.StopRequest.prototype.toObject = function(opt_inc
  */
 proto.viam.component.gantry.v1.StopRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2008,9 +2014,9 @@ proto.viam.component.gantry.v1.Status.prototype.toObject = function(opt_includeI
  */
 proto.viam.component.gantry.v1.Status.toObject = function(includeInstance, msg) {
   var f, obj = {
-    positionsMmList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 1)) == null ? undefined : f,
-    lengthsMmList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 2)) == null ? undefined : f,
-    isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+positionsMmList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 1)) == null ? undefined : f,
+lengthsMmList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 2)) == null ? undefined : f,
+isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -2240,7 +2246,7 @@ proto.viam.component.gantry.v1.IsMovingRequest.prototype.toObject = function(opt
  */
 proto.viam.component.gantry.v1.IsMovingRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2370,7 +2376,7 @@ proto.viam.component.gantry.v1.IsMovingResponse.prototype.toObject = function(op
  */
 proto.viam.component.gantry.v1.IsMovingResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+isMoving: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {

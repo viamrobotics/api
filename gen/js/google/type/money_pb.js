@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 goog.exportSymbol('proto.google.type.Money', null, global);
 /**
@@ -69,9 +75,9 @@ proto.google.type.Money.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.Money.toObject = function(includeInstance, msg) {
   var f, obj = {
-    currencyCode: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    units: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    nanos: jspb.Message.getFieldWithDefault(msg, 3, 0)
+currencyCode: jspb.Message.getFieldWithDefault(msg, 1, ""),
+units: jspb.Message.getFieldWithDefault(msg, 2, 0),
+nanos: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
