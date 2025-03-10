@@ -4348,7 +4348,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.Model = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.Model.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.v1.Model, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -37457,9 +37457,9 @@ proto.viam.app.v1.UpdateRegistryItemRequest.oneofGroups_ = [[6,7,8]];
  */
 proto.viam.app.v1.UpdateRegistryItemRequest.MetadataCase = {
   METADATA_NOT_SET: 0,
-  MODULE_UPDATE_METADATA: 6,
-  ML_MODEL_UPDATE_METADATA: 7,
-  ML_TRAINING_UPDATE_METADATA: 8
+  UPDATE_MODULE_METADATA: 6,
+  UPDATE_ML_MODEL_METADATA: 7,
+  UPDATE_ML_TRAINING_METADATA: 8
 };
 
 /**
@@ -37505,9 +37505,9 @@ proto.viam.app.v1.UpdateRegistryItemRequest.toObject = function(includeInstance,
     description: jspb.Message.getFieldWithDefault(msg, 3, ""),
     visibility: jspb.Message.getFieldWithDefault(msg, 4, 0),
     url: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    moduleUpdateMetadata: (f = msg.getModuleUpdateMetadata()) && proto.viam.app.v1.UpdateModuleMetadata.toObject(includeInstance, f),
-    mlModelUpdateMetadata: (f = msg.getMlModelUpdateMetadata()) && proto.viam.app.v1.UpdateMLModelMetadata.toObject(includeInstance, f),
-    mlTrainingUpdateMetadata: (f = msg.getMlTrainingUpdateMetadata()) && proto.viam.app.v1.UpdateMLTrainingMetadata.toObject(includeInstance, f)
+    updateModuleMetadata: (f = msg.getUpdateModuleMetadata()) && proto.viam.app.v1.UpdateModuleMetadata.toObject(includeInstance, f),
+    updateMlModelMetadata: (f = msg.getUpdateMlModelMetadata()) && proto.viam.app.v1.UpdateMLModelMetadata.toObject(includeInstance, f),
+    updateMlTrainingMetadata: (f = msg.getUpdateMlTrainingMetadata()) && proto.viam.app.v1.UpdateMLTrainingMetadata.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -37567,17 +37567,17 @@ proto.viam.app.v1.UpdateRegistryItemRequest.deserializeBinaryFromReader = functi
     case 6:
       var value = new proto.viam.app.v1.UpdateModuleMetadata;
       reader.readMessage(value,proto.viam.app.v1.UpdateModuleMetadata.deserializeBinaryFromReader);
-      msg.setModuleUpdateMetadata(value);
+      msg.setUpdateModuleMetadata(value);
       break;
     case 7:
       var value = new proto.viam.app.v1.UpdateMLModelMetadata;
       reader.readMessage(value,proto.viam.app.v1.UpdateMLModelMetadata.deserializeBinaryFromReader);
-      msg.setMlModelUpdateMetadata(value);
+      msg.setUpdateMlModelMetadata(value);
       break;
     case 8:
       var value = new proto.viam.app.v1.UpdateMLTrainingMetadata;
       reader.readMessage(value,proto.viam.app.v1.UpdateMLTrainingMetadata.deserializeBinaryFromReader);
-      msg.setMlTrainingUpdateMetadata(value);
+      msg.setUpdateMlTrainingMetadata(value);
       break;
     default:
       reader.skipField();
@@ -37643,7 +37643,7 @@ proto.viam.app.v1.UpdateRegistryItemRequest.serializeBinaryToWriter = function(m
       f
     );
   }
-  f = message.getModuleUpdateMetadata();
+  f = message.getUpdateModuleMetadata();
   if (f != null) {
     writer.writeMessage(
       6,
@@ -37651,7 +37651,7 @@ proto.viam.app.v1.UpdateRegistryItemRequest.serializeBinaryToWriter = function(m
       proto.viam.app.v1.UpdateModuleMetadata.serializeBinaryToWriter
     );
   }
-  f = message.getMlModelUpdateMetadata();
+  f = message.getUpdateMlModelMetadata();
   if (f != null) {
     writer.writeMessage(
       7,
@@ -37659,7 +37659,7 @@ proto.viam.app.v1.UpdateRegistryItemRequest.serializeBinaryToWriter = function(m
       proto.viam.app.v1.UpdateMLModelMetadata.serializeBinaryToWriter
     );
   }
-  f = message.getMlTrainingUpdateMetadata();
+  f = message.getUpdateMlTrainingMetadata();
   if (f != null) {
     writer.writeMessage(
       8,
@@ -37779,10 +37779,10 @@ proto.viam.app.v1.UpdateRegistryItemRequest.prototype.hasUrl = function() {
 
 
 /**
- * optional UpdateModuleMetadata module_update_metadata = 6;
+ * optional UpdateModuleMetadata update_module_metadata = 6;
  * @return {?proto.viam.app.v1.UpdateModuleMetadata}
  */
-proto.viam.app.v1.UpdateRegistryItemRequest.prototype.getModuleUpdateMetadata = function() {
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.getUpdateModuleMetadata = function() {
   return /** @type{?proto.viam.app.v1.UpdateModuleMetadata} */ (
     jspb.Message.getWrapperField(this, proto.viam.app.v1.UpdateModuleMetadata, 6));
 };
@@ -37792,7 +37792,7 @@ proto.viam.app.v1.UpdateRegistryItemRequest.prototype.getModuleUpdateMetadata = 
  * @param {?proto.viam.app.v1.UpdateModuleMetadata|undefined} value
  * @return {!proto.viam.app.v1.UpdateRegistryItemRequest} returns this
 */
-proto.viam.app.v1.UpdateRegistryItemRequest.prototype.setModuleUpdateMetadata = function(value) {
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.setUpdateModuleMetadata = function(value) {
   return jspb.Message.setOneofWrapperField(this, 6, proto.viam.app.v1.UpdateRegistryItemRequest.oneofGroups_[0], value);
 };
 
@@ -37801,8 +37801,8 @@ proto.viam.app.v1.UpdateRegistryItemRequest.prototype.setModuleUpdateMetadata = 
  * Clears the message field making it undefined.
  * @return {!proto.viam.app.v1.UpdateRegistryItemRequest} returns this
  */
-proto.viam.app.v1.UpdateRegistryItemRequest.prototype.clearModuleUpdateMetadata = function() {
-  return this.setModuleUpdateMetadata(undefined);
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.clearUpdateModuleMetadata = function() {
+  return this.setUpdateModuleMetadata(undefined);
 };
 
 
@@ -37810,16 +37810,16 @@ proto.viam.app.v1.UpdateRegistryItemRequest.prototype.clearModuleUpdateMetadata 
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.app.v1.UpdateRegistryItemRequest.prototype.hasModuleUpdateMetadata = function() {
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.hasUpdateModuleMetadata = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * optional UpdateMLModelMetadata ml_model_update_metadata = 7;
+ * optional UpdateMLModelMetadata update_ml_model_metadata = 7;
  * @return {?proto.viam.app.v1.UpdateMLModelMetadata}
  */
-proto.viam.app.v1.UpdateRegistryItemRequest.prototype.getMlModelUpdateMetadata = function() {
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.getUpdateMlModelMetadata = function() {
   return /** @type{?proto.viam.app.v1.UpdateMLModelMetadata} */ (
     jspb.Message.getWrapperField(this, proto.viam.app.v1.UpdateMLModelMetadata, 7));
 };
@@ -37829,7 +37829,7 @@ proto.viam.app.v1.UpdateRegistryItemRequest.prototype.getMlModelUpdateMetadata =
  * @param {?proto.viam.app.v1.UpdateMLModelMetadata|undefined} value
  * @return {!proto.viam.app.v1.UpdateRegistryItemRequest} returns this
 */
-proto.viam.app.v1.UpdateRegistryItemRequest.prototype.setMlModelUpdateMetadata = function(value) {
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.setUpdateMlModelMetadata = function(value) {
   return jspb.Message.setOneofWrapperField(this, 7, proto.viam.app.v1.UpdateRegistryItemRequest.oneofGroups_[0], value);
 };
 
@@ -37838,8 +37838,8 @@ proto.viam.app.v1.UpdateRegistryItemRequest.prototype.setMlModelUpdateMetadata =
  * Clears the message field making it undefined.
  * @return {!proto.viam.app.v1.UpdateRegistryItemRequest} returns this
  */
-proto.viam.app.v1.UpdateRegistryItemRequest.prototype.clearMlModelUpdateMetadata = function() {
-  return this.setMlModelUpdateMetadata(undefined);
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.clearUpdateMlModelMetadata = function() {
+  return this.setUpdateMlModelMetadata(undefined);
 };
 
 
@@ -37847,16 +37847,16 @@ proto.viam.app.v1.UpdateRegistryItemRequest.prototype.clearMlModelUpdateMetadata
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.app.v1.UpdateRegistryItemRequest.prototype.hasMlModelUpdateMetadata = function() {
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.hasUpdateMlModelMetadata = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
- * optional UpdateMLTrainingMetadata ml_training_update_metadata = 8;
+ * optional UpdateMLTrainingMetadata update_ml_training_metadata = 8;
  * @return {?proto.viam.app.v1.UpdateMLTrainingMetadata}
  */
-proto.viam.app.v1.UpdateRegistryItemRequest.prototype.getMlTrainingUpdateMetadata = function() {
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.getUpdateMlTrainingMetadata = function() {
   return /** @type{?proto.viam.app.v1.UpdateMLTrainingMetadata} */ (
     jspb.Message.getWrapperField(this, proto.viam.app.v1.UpdateMLTrainingMetadata, 8));
 };
@@ -37866,7 +37866,7 @@ proto.viam.app.v1.UpdateRegistryItemRequest.prototype.getMlTrainingUpdateMetadat
  * @param {?proto.viam.app.v1.UpdateMLTrainingMetadata|undefined} value
  * @return {!proto.viam.app.v1.UpdateRegistryItemRequest} returns this
 */
-proto.viam.app.v1.UpdateRegistryItemRequest.prototype.setMlTrainingUpdateMetadata = function(value) {
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.setUpdateMlTrainingMetadata = function(value) {
   return jspb.Message.setOneofWrapperField(this, 8, proto.viam.app.v1.UpdateRegistryItemRequest.oneofGroups_[0], value);
 };
 
@@ -37875,8 +37875,8 @@ proto.viam.app.v1.UpdateRegistryItemRequest.prototype.setMlTrainingUpdateMetadat
  * Clears the message field making it undefined.
  * @return {!proto.viam.app.v1.UpdateRegistryItemRequest} returns this
  */
-proto.viam.app.v1.UpdateRegistryItemRequest.prototype.clearMlTrainingUpdateMetadata = function() {
-  return this.setMlTrainingUpdateMetadata(undefined);
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.clearUpdateMlTrainingMetadata = function() {
+  return this.setUpdateMlTrainingMetadata(undefined);
 };
 
 
@@ -37884,7 +37884,7 @@ proto.viam.app.v1.UpdateRegistryItemRequest.prototype.clearMlTrainingUpdateMetad
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.app.v1.UpdateRegistryItemRequest.prototype.hasMlTrainingUpdateMetadata = function() {
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.hasUpdateMlTrainingMetadata = function() {
   return jspb.Message.getField(this, 8) != null;
 };
 
@@ -40541,6 +40541,13 @@ proto.viam.app.v1.UpdateMLTrainingMetadata.prototype.setDraft = function(value) 
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.Model.repeatedFields_ = [5];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -40575,7 +40582,8 @@ proto.viam.app.v1.Model.toObject = function(includeInstance, msg) {
     api: jspb.Message.getFieldWithDefault(msg, 1, ""),
     model: jspb.Message.getFieldWithDefault(msg, 2, ""),
     markdownDocumentation: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 4, "")
+    description: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    supportedHardwareList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -40627,6 +40635,10 @@ proto.viam.app.v1.Model.deserializeBinaryFromReader = function(msg, reader) {
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addSupportedHardware(value);
       break;
     default:
       reader.skipField();
@@ -40682,6 +40694,13 @@ proto.viam.app.v1.Model.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getSupportedHardwareList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      5,
       f
     );
   }
@@ -40793,6 +40812,43 @@ proto.viam.app.v1.Model.prototype.clearDescription = function() {
  */
 proto.viam.app.v1.Model.prototype.hasDescription = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * repeated string supported_hardware = 5;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.Model.prototype.getSupportedHardwareList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.Model} returns this
+ */
+proto.viam.app.v1.Model.prototype.setSupportedHardwareList = function(value) {
+  return jspb.Message.setField(this, 5, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.Model} returns this
+ */
+proto.viam.app.v1.Model.prototype.addSupportedHardware = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.Model} returns this
+ */
+proto.viam.app.v1.Model.prototype.clearSupportedHardwareList = function() {
+  return this.setSupportedHardwareList([]);
 };
 
 
