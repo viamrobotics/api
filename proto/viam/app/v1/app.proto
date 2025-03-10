@@ -286,6 +286,8 @@ service AppService {
   rpc RotateKey(RotateKeyRequest) returns (RotateKeyResponse);
 
   rpc CreateKeyFromExistingKeyAuthorizations(CreateKeyFromExistingKeyAuthorizationsRequest) returns (CreateKeyFromExistingKeyAuthorizationsResponse);
+
+  rpc GetAppContentRequest(GetAppContentRequest) returns (GetAppContentResponse);
 }
 
 message Robot {
@@ -1629,6 +1631,15 @@ message CreateKeyFromExistingKeyAuthorizationsRequest {
 message CreateKeyFromExistingKeyAuthorizationsResponse {
   string id = 1;
   string key = 2;
+}
+
+message GetAppContentRequest {
+  string public_namespace = 1;
+  string name = 2;
+}
+
+message GetAppContentResponse {
+  string url = 1;
 }
 
 message OrganizationSetLogoRequest {
