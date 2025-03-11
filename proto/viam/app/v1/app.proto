@@ -1398,6 +1398,17 @@ message UpdateModuleRequest {
   string entrypoint = 6;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 7;
+  // A list of applications associated with the module
+  repeated App apps = 8;
+}
+
+message App {
+  // The name of the application
+  string name = 1;
+  // The type of the application
+  string type = 2;
+  // The entrypoint of the application
+  string entrypoint = 3;
 }
 
 message UpdateModuleResponse {
