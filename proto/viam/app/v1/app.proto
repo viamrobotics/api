@@ -288,6 +288,12 @@ service AppService {
   rpc CreateKeyFromExistingKeyAuthorizations(CreateKeyFromExistingKeyAuthorizationsRequest) returns (CreateKeyFromExistingKeyAuthorizationsResponse);
 
   rpc GetAppContent(GetAppContentRequest) returns (GetAppContentResponse);
+
+  // Get available billing tiers that can be assigned to organizations
+  rpc GetAvailableBillingTiers(GetAvailableBillingTiersRequest) returns (GetAvailableBillingTiersResponse);
+
+  // Update an organization's billing tier
+  rpc UpdateOrganizationBillingTier(UpdateOrganizationBillingTierRequest) returns (UpdateOrganizationBillingTierResponse);
 }
 
 message Robot {
@@ -1756,4 +1762,19 @@ message OAuthConfig {
   repeated string redirect_uris = 5;
   string logout_uri = 6;
   repeated EnabledGrant enabled_grants = 7;
+}
+
+message GetAvailableBillingTiersRequest {
+}
+
+message GetAvailableBillingTiersResponse {
+  repeated string tiers = 1;
+}
+
+message UpdateOrganizationBillingTierRequest {
+  string organization_id = 1;
+  string billing_tier = 2;
+}
+
+message UpdateOrganizationBillingTierResponse {
 }
