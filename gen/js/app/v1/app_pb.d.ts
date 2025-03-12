@@ -4629,20 +4629,20 @@ export class UpdateRegistryItemRequest extends jspb.Message {
   getUrl(): string;
   setUrl(value: string): void;
 
-  hasModuleUpdateMetadata(): boolean;
-  clearModuleUpdateMetadata(): void;
-  getModuleUpdateMetadata(): UpdateModuleMetadata | undefined;
-  setModuleUpdateMetadata(value?: UpdateModuleMetadata): void;
+  hasUpdateModuleMetadata(): boolean;
+  clearUpdateModuleMetadata(): void;
+  getUpdateModuleMetadata(): UpdateModuleMetadata | undefined;
+  setUpdateModuleMetadata(value?: UpdateModuleMetadata): void;
 
-  hasMlModelUpdateMetadata(): boolean;
-  clearMlModelUpdateMetadata(): void;
-  getMlModelUpdateMetadata(): UpdateMLModelMetadata | undefined;
-  setMlModelUpdateMetadata(value?: UpdateMLModelMetadata): void;
+  hasUpdateMlModelMetadata(): boolean;
+  clearUpdateMlModelMetadata(): void;
+  getUpdateMlModelMetadata(): UpdateMLModelMetadata | undefined;
+  setUpdateMlModelMetadata(value?: UpdateMLModelMetadata): void;
 
-  hasMlTrainingUpdateMetadata(): boolean;
-  clearMlTrainingUpdateMetadata(): void;
-  getMlTrainingUpdateMetadata(): UpdateMLTrainingMetadata | undefined;
-  setMlTrainingUpdateMetadata(value?: UpdateMLTrainingMetadata): void;
+  hasUpdateMlTrainingMetadata(): boolean;
+  clearUpdateMlTrainingMetadata(): void;
+  getUpdateMlTrainingMetadata(): UpdateMLTrainingMetadata | undefined;
+  setUpdateMlTrainingMetadata(value?: UpdateMLTrainingMetadata): void;
 
   getMetadataCase(): UpdateRegistryItemRequest.MetadataCase;
   serializeBinary(): Uint8Array;
@@ -4662,16 +4662,16 @@ export namespace UpdateRegistryItemRequest {
     description: string,
     visibility: VisibilityMap[keyof VisibilityMap],
     url: string,
-    moduleUpdateMetadata?: UpdateModuleMetadata.AsObject,
-    mlModelUpdateMetadata?: UpdateMLModelMetadata.AsObject,
-    mlTrainingUpdateMetadata?: UpdateMLTrainingMetadata.AsObject,
+    updateModuleMetadata?: UpdateModuleMetadata.AsObject,
+    updateMlModelMetadata?: UpdateMLModelMetadata.AsObject,
+    updateMlTrainingMetadata?: UpdateMLTrainingMetadata.AsObject,
   }
 
   export enum MetadataCase {
     METADATA_NOT_SET = 0,
-    MODULE_UPDATE_METADATA = 6,
-    ML_MODEL_UPDATE_METADATA = 7,
-    ML_TRAINING_UPDATE_METADATA = 8,
+    UPDATE_MODULE_METADATA = 6,
+    UPDATE_ML_MODEL_METADATA = 7,
+    UPDATE_ML_TRAINING_METADATA = 8,
   }
 }
 
@@ -4933,6 +4933,11 @@ export class UpdateModuleRequest extends jspb.Message {
   getFirstRun(): string;
   setFirstRun(value: string): void;
 
+  clearAppsList(): void;
+  getAppsList(): Array<App>;
+  setAppsList(value: Array<App>): void;
+  addApps(value?: App, index?: number): App;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleRequest): UpdateModuleRequest.AsObject;
@@ -4952,6 +4957,35 @@ export namespace UpdateModuleRequest {
     modelsList: Array<Model.AsObject>,
     entrypoint: string,
     firstRun: string,
+    appsList: Array<App.AsObject>,
+  }
+}
+
+export class App extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getType(): string;
+  setType(value: string): void;
+
+  getEntrypoint(): string;
+  setEntrypoint(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): App.AsObject;
+  static toObject(includeInstance: boolean, msg: App): App.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: App, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): App;
+  static deserializeBinaryFromReader(message: App, reader: jspb.BinaryReader): App;
+}
+
+export namespace App {
+  export type AsObject = {
+    name: string,
+    type: string,
+    entrypoint: string,
   }
 }
 
@@ -5070,6 +5104,11 @@ export class Model extends jspb.Message {
   getDescription(): string;
   setDescription(value: string): void;
 
+  clearSupportedHardwareList(): void;
+  getSupportedHardwareList(): Array<string>;
+  setSupportedHardwareList(value: Array<string>): void;
+  addSupportedHardware(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Model.AsObject;
   static toObject(includeInstance: boolean, msg: Model): Model.AsObject;
@@ -5086,6 +5125,7 @@ export namespace Model {
     model: string,
     markdownDocumentation: string,
     description: string,
+    supportedHardwareList: Array<string>,
   }
 }
 
