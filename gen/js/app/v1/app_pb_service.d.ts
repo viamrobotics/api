@@ -670,6 +670,15 @@ type AppServiceListMachineFragments = {
   readonly responseType: typeof app_v1_app_pb.ListMachineFragmentsResponse;
 };
 
+type AppServiceListMachineSummaries = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListMachineSummariesRequest;
+  readonly responseType: typeof app_v1_app_pb.ListMachineSummariesResponse;
+};
+
 type AppServiceGetFragmentHistory = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -989,6 +998,7 @@ export class AppService {
   static readonly UpdateFragment: AppServiceUpdateFragment;
   static readonly DeleteFragment: AppServiceDeleteFragment;
   static readonly ListMachineFragments: AppServiceListMachineFragments;
+  static readonly ListMachineSummaries: AppServiceListMachineSummaries;
   static readonly GetFragmentHistory: AppServiceGetFragmentHistory;
   static readonly GetFragmentUsage: AppServiceGetFragmentUsage;
   static readonly SetFragmentTag: AppServiceSetFragmentTag;
@@ -1707,6 +1717,15 @@ export class AppServiceClient {
   listMachineFragments(
     requestMessage: app_v1_app_pb.ListMachineFragmentsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListMachineFragmentsResponse|null) => void
+  ): UnaryResponse;
+  listMachineSummaries(
+    requestMessage: app_v1_app_pb.ListMachineSummariesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListMachineSummariesResponse|null) => void
+  ): UnaryResponse;
+  listMachineSummaries(
+    requestMessage: app_v1_app_pb.ListMachineSummariesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListMachineSummariesResponse|null) => void
   ): UnaryResponse;
   getFragmentHistory(
     requestMessage: app_v1_app_pb.GetFragmentHistoryRequest,

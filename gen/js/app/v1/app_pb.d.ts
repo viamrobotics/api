@@ -3571,6 +3571,268 @@ export namespace ListMachineFragmentsResponse {
   }
 }
 
+export class ListMachineSummariesRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListMachineSummariesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListMachineSummariesRequest): ListMachineSummariesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListMachineSummariesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListMachineSummariesRequest;
+  static deserializeBinaryFromReader(message: ListMachineSummariesRequest, reader: jspb.BinaryReader): ListMachineSummariesRequest;
+}
+
+export namespace ListMachineSummariesRequest {
+  export type AsObject = {
+    organizationId: string,
+  }
+}
+
+export class ListMachineSummariesResponse extends jspb.Message {
+  clearLocationSummariesList(): void;
+  getLocationSummariesList(): Array<LocationSummary>;
+  setLocationSummariesList(value: Array<LocationSummary>): void;
+  addLocationSummaries(value?: LocationSummary, index?: number): LocationSummary;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListMachineSummariesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListMachineSummariesResponse): ListMachineSummariesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListMachineSummariesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListMachineSummariesResponse;
+  static deserializeBinaryFromReader(message: ListMachineSummariesResponse, reader: jspb.BinaryReader): ListMachineSummariesResponse;
+}
+
+export namespace ListMachineSummariesResponse {
+  export type AsObject = {
+    locationSummariesList: Array<LocationSummary.AsObject>,
+  }
+}
+
+export class LocationSummary extends jspb.Message {
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  getLocationName(): string;
+  setLocationName(value: string): void;
+
+  clearMachineSummariesList(): void;
+  getMachineSummariesList(): Array<MachineSummary>;
+  setMachineSummariesList(value: Array<MachineSummary>): void;
+  addMachineSummaries(value?: MachineSummary, index?: number): MachineSummary;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LocationSummary.AsObject;
+  static toObject(includeInstance: boolean, msg: LocationSummary): LocationSummary.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: LocationSummary, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LocationSummary;
+  static deserializeBinaryFromReader(message: LocationSummary, reader: jspb.BinaryReader): LocationSummary;
+}
+
+export namespace LocationSummary {
+  export type AsObject = {
+    locationId: string,
+    locationName: string,
+    machineSummariesList: Array<MachineSummary.AsObject>,
+  }
+}
+
+export class MachineSummary extends jspb.Message {
+  getMachineId(): string;
+  setMachineId(value: string): void;
+
+  getMachineName(): string;
+  setMachineName(value: string): void;
+
+  clearPartSummariesList(): void;
+  getPartSummariesList(): Array<PartSummary>;
+  setPartSummariesList(value: Array<PartSummary>): void;
+  addPartSummaries(value?: PartSummary, index?: number): PartSummary;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MachineSummary.AsObject;
+  static toObject(includeInstance: boolean, msg: MachineSummary): MachineSummary.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MachineSummary, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MachineSummary;
+  static deserializeBinaryFromReader(message: MachineSummary, reader: jspb.BinaryReader): MachineSummary;
+}
+
+export namespace MachineSummary {
+  export type AsObject = {
+    machineId: string,
+    machineName: string,
+    partSummariesList: Array<PartSummary.AsObject>,
+  }
+}
+
+export class FragmentSummary extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FragmentSummary.AsObject;
+  static toObject(includeInstance: boolean, msg: FragmentSummary): FragmentSummary.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FragmentSummary, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FragmentSummary;
+  static deserializeBinaryFromReader(message: FragmentSummary, reader: jspb.BinaryReader): FragmentSummary;
+}
+
+export namespace FragmentSummary {
+  export type AsObject = {
+    id: string,
+    name: string,
+  }
+}
+
+export class ViamServerVersion extends jspb.Message {
+  hasMajor(): boolean;
+  clearMajor(): void;
+  getMajor(): string;
+  setMajor(value: string): void;
+
+  hasMinor(): boolean;
+  clearMinor(): void;
+  getMinor(): string;
+  setMinor(value: string): void;
+
+  getVersionCase(): ViamServerVersion.VersionCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ViamServerVersion.AsObject;
+  static toObject(includeInstance: boolean, msg: ViamServerVersion): ViamServerVersion.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ViamServerVersion, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ViamServerVersion;
+  static deserializeBinaryFromReader(message: ViamServerVersion, reader: jspb.BinaryReader): ViamServerVersion;
+}
+
+export namespace ViamServerVersion {
+  export type AsObject = {
+    major: string,
+    minor: string,
+  }
+
+  export enum VersionCase {
+    VERSION_NOT_SET = 0,
+    MAJOR = 1,
+    MINOR = 2,
+  }
+}
+
+export class ViamAgentVersion extends jspb.Message {
+  hasMajor(): boolean;
+  clearMajor(): void;
+  getMajor(): string;
+  setMajor(value: string): void;
+
+  hasMinor(): boolean;
+  clearMinor(): void;
+  getMinor(): string;
+  setMinor(value: string): void;
+
+  getVersionCase(): ViamAgentVersion.VersionCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ViamAgentVersion.AsObject;
+  static toObject(includeInstance: boolean, msg: ViamAgentVersion): ViamAgentVersion.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ViamAgentVersion, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ViamAgentVersion;
+  static deserializeBinaryFromReader(message: ViamAgentVersion, reader: jspb.BinaryReader): ViamAgentVersion;
+}
+
+export namespace ViamAgentVersion {
+  export type AsObject = {
+    major: string,
+    minor: string,
+  }
+
+  export enum VersionCase {
+    VERSION_NOT_SET = 0,
+    MAJOR = 1,
+    MINOR = 2,
+  }
+}
+
+export class PartSummary extends jspb.Message {
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  getPartName(): string;
+  setPartName(value: string): void;
+
+  hasLastOnline(): boolean;
+  clearLastOnline(): void;
+  getLastOnline(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastOnline(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasViamServerVersion(): boolean;
+  clearViamServerVersion(): void;
+  getViamServerVersion(): ViamServerVersion | undefined;
+  setViamServerVersion(value?: ViamServerVersion): void;
+
+  hasViamAgentVersion(): boolean;
+  clearViamAgentVersion(): void;
+  getViamAgentVersion(): ViamAgentVersion | undefined;
+  setViamAgentVersion(value?: ViamAgentVersion): void;
+
+  hasOs(): boolean;
+  clearOs(): void;
+  getOs(): string;
+  setOs(value: string): void;
+
+  hasPlatform(): boolean;
+  clearPlatform(): void;
+  getPlatform(): string;
+  setPlatform(value: string): void;
+
+  hasPublicIpAddress(): boolean;
+  clearPublicIpAddress(): void;
+  getPublicIpAddress(): string;
+  setPublicIpAddress(value: string): void;
+
+  clearFragmentsList(): void;
+  getFragmentsList(): Array<FragmentSummary>;
+  setFragmentsList(value: Array<FragmentSummary>): void;
+  addFragments(value?: FragmentSummary, index?: number): FragmentSummary;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PartSummary.AsObject;
+  static toObject(includeInstance: boolean, msg: PartSummary): PartSummary.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PartSummary, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PartSummary;
+  static deserializeBinaryFromReader(message: PartSummary, reader: jspb.BinaryReader): PartSummary;
+}
+
+export namespace PartSummary {
+  export type AsObject = {
+    partId: string,
+    partName: string,
+    lastOnline?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    viamServerVersion?: ViamServerVersion.AsObject,
+    viamAgentVersion?: ViamAgentVersion.AsObject,
+    os: string,
+    platform: string,
+    publicIpAddress: string,
+    fragmentsList: Array<FragmentSummary.AsObject>,
+  }
+}
+
 export class ListRobotsResponse extends jspb.Message {
   clearRobotsList(): void;
   getRobotsList(): Array<Robot>;

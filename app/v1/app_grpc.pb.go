@@ -158,6 +158,8 @@ type AppServiceClient interface {
 	DeleteFragment(ctx context.Context, in *DeleteFragmentRequest, opts ...grpc.CallOption) (*DeleteFragmentResponse, error)
 	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
 	ListMachineFragments(ctx context.Context, in *ListMachineFragmentsRequest, opts ...grpc.CallOption) (*ListMachineFragmentsResponse, error)
+	// List all machines and their corresponding machine dashboard information
+	ListMachineSummaries(ctx context.Context, in *ListMachineSummariesRequest, opts ...grpc.CallOption) (*ListMachineSummariesResponse, error)
 	// Gets fragment history
 	GetFragmentHistory(ctx context.Context, in *GetFragmentHistoryRequest, opts ...grpc.CallOption) (*GetFragmentHistoryResponse, error)
 	// Gets usage for a fragment across versions
@@ -893,6 +895,15 @@ func (c *appServiceClient) ListMachineFragments(ctx context.Context, in *ListMac
 	return out, nil
 }
 
+func (c *appServiceClient) ListMachineSummaries(ctx context.Context, in *ListMachineSummariesRequest, opts ...grpc.CallOption) (*ListMachineSummariesResponse, error) {
+	out := new(ListMachineSummariesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListMachineSummaries", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) GetFragmentHistory(ctx context.Context, in *GetFragmentHistoryRequest, opts ...grpc.CallOption) (*GetFragmentHistoryResponse, error) {
 	out := new(GetFragmentHistoryResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetFragmentHistory", in, out, opts...)
@@ -1301,6 +1312,8 @@ type AppServiceServer interface {
 	DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error)
 	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
 	ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error)
+	// List all machines and their corresponding machine dashboard information
+	ListMachineSummaries(context.Context, *ListMachineSummariesRequest) (*ListMachineSummariesResponse, error)
 	// Gets fragment history
 	GetFragmentHistory(context.Context, *GetFragmentHistoryRequest) (*GetFragmentHistoryResponse, error)
 	// Gets usage for a fragment across versions
@@ -1565,6 +1578,9 @@ func (UnimplementedAppServiceServer) DeleteFragment(context.Context, *DeleteFrag
 }
 func (UnimplementedAppServiceServer) ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMachineFragments not implemented")
+}
+func (UnimplementedAppServiceServer) ListMachineSummaries(context.Context, *ListMachineSummariesRequest) (*ListMachineSummariesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMachineSummaries not implemented")
 }
 func (UnimplementedAppServiceServer) GetFragmentHistory(context.Context, *GetFragmentHistoryRequest) (*GetFragmentHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFragmentHistory not implemented")
@@ -2995,6 +3011,24 @@ func _AppService_ListMachineFragments_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_ListMachineSummaries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMachineSummariesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListMachineSummaries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListMachineSummaries",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListMachineSummaries(ctx, req.(*ListMachineSummariesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_GetFragmentHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetFragmentHistoryRequest)
 	if err := dec(in); err != nil {
@@ -3787,6 +3821,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListMachineFragments",
 			Handler:    _AppService_ListMachineFragments_Handler,
+		},
+		{
+			MethodName: "ListMachineSummaries",
+			Handler:    _AppService_ListMachineSummaries_Handler,
 		},
 		{
 			MethodName: "GetFragmentHistory",
