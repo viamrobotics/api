@@ -226,6 +226,9 @@ service AppService {
   // Gets top level and nested fragments for a machine, as well as any other specified fragment ids
   rpc ListMachineFragments(ListMachineFragmentsRequest) returns (ListMachineFragmentsResponse);
 
+  // List all machines and their corresponding machine dashboard information
+  rpc ListMachineSummaries(ListMachineSummariesRequest) returns (ListMachineSummariesResponse);
+
   // Gets fragment history
   rpc GetFragmentHistory(GetFragmentHistoryRequest) returns (GetFragmentHistoryResponse);
 
@@ -1069,6 +1072,58 @@ message ListMachineFragmentsRequest {
 message ListMachineFragmentsResponse {
   repeated Fragment fragments = 1;
   repeated ResolvedFragment resolved_fragments = 2;
+}
+
+message ListMachineSummariesRequest {
+  string organization_id = 1;
+}
+
+message ListMachineSummariesResponse {
+  repeated LocationSummary location_summaries = 1;
+}
+
+message LocationSummary {
+  string location_id = 1;
+  string location_name = 2;
+  repeated MachineSummary machine_summaries = 3;
+}
+
+message MachineSummary {
+  string machine_id = 1;
+  string machine_name = 2;
+  repeated PartSummary part_summaries = 3;
+}
+
+message FragmentSummary {
+  string id = 1;
+  reserved 2; // placeholder for fragment version
+  string name = 3;
+}
+
+message ViamServerVersion {
+  oneof version {
+    string major = 1;
+    string minor = 2;
+  }
+}
+
+message ViamAgentVersion {
+  oneof version {
+    string major = 1;
+    string minor = 2;
+  }
+}
+
+message PartSummary {
+  string part_id = 1;
+  string part_name = 2;
+  optional google.protobuf.Timestamp last_online = 3;
+  optional ViamServerVersion viam_server_version = 4;
+  optional ViamAgentVersion viam_agent_version = 5;
+  optional string os = 6;
+  optional string platform = 7;
+  optional string public_ip_address = 8;
+  repeated FragmentSummary fragments = 9;
 }
 
 message ListRobotsResponse {
