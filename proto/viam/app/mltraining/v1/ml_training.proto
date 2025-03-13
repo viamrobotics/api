@@ -52,7 +52,7 @@ message SubmitTrainingJobRequest {
   string model_name = 3 [(tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
   string model_version = 4 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
   ModelType model_type = 5 [(tagger.v1.tags) = "bson:\"model_type\" json:\"model_type\""];
-  ModelFramework model_framework = 8 [(tagger.v1.tags) = "bson:\"model_type\" json:\"model_type\""];
+  ModelFramework model_framework = 8 [(tagger.v1.tags) = "bson:\"model_framework\" json:\"model_framework\""];
   repeated string tags = 6 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
 
   reserved 1;
