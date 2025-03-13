@@ -676,6 +676,15 @@ AppService.ListMachineFragments = {
   responseType: app_v1_app_pb.ListMachineFragmentsResponse
 };
 
+AppService.ListMachineSummaries = {
+  methodName: "ListMachineSummaries",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListMachineSummariesRequest,
+  responseType: app_v1_app_pb.ListMachineSummariesResponse
+};
+
 AppService.GetFragmentHistory = {
   methodName: "GetFragmentHistory",
   service: AppService,
@@ -908,6 +917,15 @@ AppService.CreateKeyFromExistingKeyAuthorizations = {
   responseStream: false,
   requestType: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsRequest,
   responseType: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsResponse
+};
+
+AppService.GetAppContent = {
+  methodName: "GetAppContent",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetAppContentRequest,
+  responseType: app_v1_app_pb.GetAppContentResponse
 };
 
 exports.AppService = AppService;
@@ -3219,6 +3237,37 @@ AppServiceClient.prototype.listMachineFragments = function listMachineFragments(
   };
 };
 
+AppServiceClient.prototype.listMachineSummaries = function listMachineSummaries(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListMachineSummaries, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.getFragmentHistory = function getFragmentHistory(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -4009,6 +4058,37 @@ AppServiceClient.prototype.createKeyFromExistingKeyAuthorizations = function cre
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.CreateKeyFromExistingKeyAuthorizations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getAppContent = function getAppContent(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetAppContent, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -158,6 +158,8 @@ type AppServiceClient interface {
 	DeleteFragment(ctx context.Context, in *DeleteFragmentRequest, opts ...grpc.CallOption) (*DeleteFragmentResponse, error)
 	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
 	ListMachineFragments(ctx context.Context, in *ListMachineFragmentsRequest, opts ...grpc.CallOption) (*ListMachineFragmentsResponse, error)
+	// List all machines and their corresponding machine dashboard information
+	ListMachineSummaries(ctx context.Context, in *ListMachineSummariesRequest, opts ...grpc.CallOption) (*ListMachineSummariesResponse, error)
 	// Gets fragment history
 	GetFragmentHistory(ctx context.Context, in *GetFragmentHistoryRequest, opts ...grpc.CallOption) (*GetFragmentHistoryResponse, error)
 	// Gets usage for a fragment across versions
@@ -193,6 +195,7 @@ type AppServiceClient interface {
 	RenameKey(ctx context.Context, in *RenameKeyRequest, opts ...grpc.CallOption) (*RenameKeyResponse, error)
 	RotateKey(ctx context.Context, in *RotateKeyRequest, opts ...grpc.CallOption) (*RotateKeyResponse, error)
 	CreateKeyFromExistingKeyAuthorizations(ctx context.Context, in *CreateKeyFromExistingKeyAuthorizationsRequest, opts ...grpc.CallOption) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
+	GetAppContent(ctx context.Context, in *GetAppContentRequest, opts ...grpc.CallOption) (*GetAppContentResponse, error)
 }
 
 type appServiceClient struct {
@@ -892,6 +895,15 @@ func (c *appServiceClient) ListMachineFragments(ctx context.Context, in *ListMac
 	return out, nil
 }
 
+func (c *appServiceClient) ListMachineSummaries(ctx context.Context, in *ListMachineSummariesRequest, opts ...grpc.CallOption) (*ListMachineSummariesResponse, error) {
+	out := new(ListMachineSummariesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListMachineSummaries", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) GetFragmentHistory(ctx context.Context, in *GetFragmentHistoryRequest, opts ...grpc.CallOption) (*GetFragmentHistoryResponse, error) {
 	out := new(GetFragmentHistoryResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetFragmentHistory", in, out, opts...)
@@ -1151,6 +1163,15 @@ func (c *appServiceClient) CreateKeyFromExistingKeyAuthorizations(ctx context.Co
 	return out, nil
 }
 
+func (c *appServiceClient) GetAppContent(ctx context.Context, in *GetAppContentRequest, opts ...grpc.CallOption) (*GetAppContentResponse, error) {
+	out := new(GetAppContentResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetAppContent", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppServiceServer is the server API for AppService service.
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
@@ -1291,6 +1312,8 @@ type AppServiceServer interface {
 	DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error)
 	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
 	ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error)
+	// List all machines and their corresponding machine dashboard information
+	ListMachineSummaries(context.Context, *ListMachineSummariesRequest) (*ListMachineSummariesResponse, error)
 	// Gets fragment history
 	GetFragmentHistory(context.Context, *GetFragmentHistoryRequest) (*GetFragmentHistoryResponse, error)
 	// Gets usage for a fragment across versions
@@ -1326,6 +1349,7 @@ type AppServiceServer interface {
 	RenameKey(context.Context, *RenameKeyRequest) (*RenameKeyResponse, error)
 	RotateKey(context.Context, *RotateKeyRequest) (*RotateKeyResponse, error)
 	CreateKeyFromExistingKeyAuthorizations(context.Context, *CreateKeyFromExistingKeyAuthorizationsRequest) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
+	GetAppContent(context.Context, *GetAppContentRequest) (*GetAppContentResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -1555,6 +1579,9 @@ func (UnimplementedAppServiceServer) DeleteFragment(context.Context, *DeleteFrag
 func (UnimplementedAppServiceServer) ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMachineFragments not implemented")
 }
+func (UnimplementedAppServiceServer) ListMachineSummaries(context.Context, *ListMachineSummariesRequest) (*ListMachineSummariesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMachineSummaries not implemented")
+}
 func (UnimplementedAppServiceServer) GetFragmentHistory(context.Context, *GetFragmentHistoryRequest) (*GetFragmentHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFragmentHistory not implemented")
 }
@@ -1632,6 +1659,9 @@ func (UnimplementedAppServiceServer) RotateKey(context.Context, *RotateKeyReques
 }
 func (UnimplementedAppServiceServer) CreateKeyFromExistingKeyAuthorizations(context.Context, *CreateKeyFromExistingKeyAuthorizationsRequest) (*CreateKeyFromExistingKeyAuthorizationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateKeyFromExistingKeyAuthorizations not implemented")
+}
+func (UnimplementedAppServiceServer) GetAppContent(context.Context, *GetAppContentRequest) (*GetAppContentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppContent not implemented")
 }
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
@@ -2981,6 +3011,24 @@ func _AppService_ListMachineFragments_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_ListMachineSummaries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMachineSummariesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListMachineSummaries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListMachineSummaries",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListMachineSummaries(ctx, req.(*ListMachineSummariesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_GetFragmentHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetFragmentHistoryRequest)
 	if err := dec(in); err != nil {
@@ -3457,6 +3505,24 @@ func _AppService_CreateKeyFromExistingKeyAuthorizations_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_GetAppContent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAppContentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetAppContent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetAppContent",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetAppContent(ctx, req.(*GetAppContentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3757,6 +3823,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_ListMachineFragments_Handler,
 		},
 		{
+			MethodName: "ListMachineSummaries",
+			Handler:    _AppService_ListMachineSummaries_Handler,
+		},
+		{
 			MethodName: "GetFragmentHistory",
 			Handler:    _AppService_GetFragmentHistory_Handler,
 		},
@@ -3855,6 +3925,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateKeyFromExistingKeyAuthorizations",
 			Handler:    _AppService_CreateKeyFromExistingKeyAuthorizations_Handler,
+		},
+		{
+			MethodName: "GetAppContent",
+			Handler:    _AppService_GetAppContent_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
