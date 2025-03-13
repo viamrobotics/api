@@ -83,7 +83,7 @@ message RectangularPrism {
 }
 
 message Mesh {
-  // File format of mesh (e.g. ply, stl)
+  // File format of mesh (e.g. ply)
   string file_type = 1;
   // contents of mesh file in binary form
   bytes mesh = 2;
