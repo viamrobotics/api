@@ -22,6 +22,9 @@ export class SubmitTrainingJobRequest extends jspb.Message {
   getModelType(): ModelTypeMap[keyof ModelTypeMap];
   setModelType(value: ModelTypeMap[keyof ModelTypeMap]): void;
 
+  getModelFramework(): ModelFrameworkMap[keyof ModelFrameworkMap];
+  setModelFramework(value: ModelFrameworkMap[keyof ModelFrameworkMap]): void;
+
   clearTagsList(): void;
   getTagsList(): Array<string>;
   setTagsList(value: Array<string>): void;
@@ -44,6 +47,7 @@ export namespace SubmitTrainingJobRequest {
     modelName: string,
     modelVersion: string,
     modelType: ModelTypeMap[keyof ModelTypeMap],
+    modelFramework: ModelFrameworkMap[keyof ModelFrameworkMap],
     tagsList: Array<string>,
   }
 }
