@@ -378,5 +378,188 @@ proto.viam.app.v1.BillingServicePromiseClient.prototype.sendPaymentRequiredEmail
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetAvailableBillingTiersRequest,
+ *   !proto.viam.app.v1.GetAvailableBillingTiersResponse>}
+ */
+const methodDescriptor_BillingService_GetAvailableBillingTiers = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/GetAvailableBillingTiers',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetAvailableBillingTiersRequest,
+  proto.viam.app.v1.GetAvailableBillingTiersResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetAvailableBillingTiersRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetAvailableBillingTiersResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetAvailableBillingTiersRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetAvailableBillingTiersResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetAvailableBillingTiersResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.getAvailableBillingTiers =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/GetAvailableBillingTiers',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetAvailableBillingTiers,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetAvailableBillingTiersRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetAvailableBillingTiersResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.getAvailableBillingTiers =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/GetAvailableBillingTiers',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetAvailableBillingTiers);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.UpdateOrganizationBillingTierRequest,
+ *   !proto.viam.app.v1.UpdateOrganizationBillingTierResponse>}
+ */
+const methodDescriptor_BillingService_UpdateOrganizationBillingTier = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/UpdateOrganizationBillingTier',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.UpdateOrganizationBillingTierRequest,
+  proto.viam.app.v1.UpdateOrganizationBillingTierResponse,
+  /**
+   * @param {!proto.viam.app.v1.UpdateOrganizationBillingTierRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.UpdateOrganizationBillingTierResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateOrganizationBillingTierRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.UpdateOrganizationBillingTierResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.UpdateOrganizationBillingTierResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.updateOrganizationBillingTier =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/UpdateOrganizationBillingTier',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_UpdateOrganizationBillingTier,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateOrganizationBillingTierRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.UpdateOrganizationBillingTierResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.updateOrganizationBillingTier =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/UpdateOrganizationBillingTier',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_UpdateOrganizationBillingTier);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.CreateBillingTierRequest,
+ *   !proto.viam.app.v1.CreateBillingTierResponse>}
+ */
+const methodDescriptor_BillingService_CreateBillingTier = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/CreateBillingTier',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.CreateBillingTierRequest,
+  proto.viam.app.v1.CreateBillingTierResponse,
+  /**
+   * @param {!proto.viam.app.v1.CreateBillingTierRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.CreateBillingTierResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateBillingTierRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.CreateBillingTierResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.CreateBillingTierResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.createBillingTier =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/CreateBillingTier',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_CreateBillingTier,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateBillingTierRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.CreateBillingTierResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.createBillingTier =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/CreateBillingTier',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_CreateBillingTier);
+};
+
+
 module.exports = proto.viam.app.v1;
 
