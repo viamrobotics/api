@@ -5799,6 +5799,11 @@ export class OrgDetails extends jspb.Message {
   getPublicNamespace(): string;
   setPublicNamespace(value: string): void;
 
+  hasBillingTier(): boolean;
+  clearBillingTier(): void;
+  getBillingTier(): string;
+  setBillingTier(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OrgDetails.AsObject;
   static toObject(includeInstance: boolean, msg: OrgDetails): OrgDetails.AsObject;
@@ -5815,6 +5820,7 @@ export namespace OrgDetails {
     orgName: string,
     orgCid: string,
     publicNamespace: string,
+    billingTier: string,
   }
 }
 
