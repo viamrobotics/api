@@ -582,11 +582,26 @@ message RemoveBinaryDataFromDatasetByIDsResponse {}
 
 message DataPipeline {
   string id = 1;
+
+  // Associated Viam organization ID.
   string organization_id = 2;
+
+  // Unique identifier within org.
   string name = 3;
+
+  // A MongoDB aggregation pipeline as a list of BSON documents, where
+  // each document is one stage in the pipeline.
   repeated bytes mql_binary = 4;
+
+  // Expected execution schedule, as a cron expression (note this also defines
+  // the input time window; an hourly schedule would process 1 hour of
+  // data at a time).
   string schedule = 5;
+
+  // API key ID to use when executing the pipeline.
   string api_key_id = 6;
+
+  // Whether or not the pipeline is enabled.
   bool enabled = 7;
 }
 
