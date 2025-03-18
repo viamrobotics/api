@@ -73,15 +73,6 @@ RobotService.GetModelsFromModules = {
   responseType: robot_v1_robot_pb.GetModelsFromModulesResponse
 };
 
-RobotService.DiscoverComponents = {
-  methodName: "DiscoverComponents",
-  service: RobotService,
-  requestStream: false,
-  responseStream: false,
-  requestType: robot_v1_robot_pb.DiscoverComponentsRequest,
-  responseType: robot_v1_robot_pb.DiscoverComponentsResponse
-};
-
 RobotService.FrameSystemConfig = {
   methodName: "FrameSystemConfig",
   service: RobotService,
@@ -424,37 +415,6 @@ RobotServiceClient.prototype.getModelsFromModules = function getModelsFromModule
     callback = arguments[1];
   }
   var client = grpc.unary(RobotService.GetModelsFromModules, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-RobotServiceClient.prototype.discoverComponents = function discoverComponents(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(RobotService.DiscoverComponents, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -1481,5 +1481,310 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeBinaryDataFromDa
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.GetDataPipelineRequest,
+ *   !proto.viam.app.data.v1.GetDataPipelineResponse>}
+ */
+const methodDescriptor_DataService_GetDataPipeline = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/GetDataPipeline',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.GetDataPipelineRequest,
+  proto.viam.app.data.v1.GetDataPipelineResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.GetDataPipelineRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.GetDataPipelineResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetDataPipelineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.GetDataPipelineResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.GetDataPipelineResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.getDataPipeline =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetDataPipeline',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetDataPipeline,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetDataPipelineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.GetDataPipelineResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.getDataPipeline =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetDataPipeline',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetDataPipeline);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.ListDataPipelinesRequest,
+ *   !proto.viam.app.data.v1.ListDataPipelinesResponse>}
+ */
+const methodDescriptor_DataService_ListDataPipelines = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/ListDataPipelines',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.ListDataPipelinesRequest,
+  proto.viam.app.data.v1.ListDataPipelinesResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.ListDataPipelinesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.ListDataPipelinesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ListDataPipelinesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.ListDataPipelinesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.ListDataPipelinesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.listDataPipelines =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ListDataPipelines',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ListDataPipelines,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ListDataPipelinesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.ListDataPipelinesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.listDataPipelines =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ListDataPipelines',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ListDataPipelines);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.CreateDataPipelineRequest,
+ *   !proto.viam.app.data.v1.CreateDataPipelineResponse>}
+ */
+const methodDescriptor_DataService_CreateDataPipeline = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/CreateDataPipeline',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.CreateDataPipelineRequest,
+  proto.viam.app.data.v1.CreateDataPipelineResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.CreateDataPipelineRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.CreateDataPipelineResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateDataPipelineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.CreateDataPipelineResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.CreateDataPipelineResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.createDataPipeline =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateDataPipeline',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateDataPipeline,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateDataPipelineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.CreateDataPipelineResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.createDataPipeline =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateDataPipeline',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateDataPipeline);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.UpdateDataPipelineRequest,
+ *   !proto.viam.app.data.v1.UpdateDataPipelineResponse>}
+ */
+const methodDescriptor_DataService_UpdateDataPipeline = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/UpdateDataPipeline',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.UpdateDataPipelineRequest,
+  proto.viam.app.data.v1.UpdateDataPipelineResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.UpdateDataPipelineRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.UpdateDataPipelineResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.UpdateDataPipelineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.UpdateDataPipelineResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.UpdateDataPipelineResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.updateDataPipeline =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/UpdateDataPipeline',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_UpdateDataPipeline,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.UpdateDataPipelineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.UpdateDataPipelineResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.updateDataPipeline =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/UpdateDataPipeline',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_UpdateDataPipeline);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.DeleteDataPipelineRequest,
+ *   !proto.viam.app.data.v1.DeleteDataPipelineResponse>}
+ */
+const methodDescriptor_DataService_DeleteDataPipeline = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/DeleteDataPipeline',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.DeleteDataPipelineRequest,
+  proto.viam.app.data.v1.DeleteDataPipelineResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.DeleteDataPipelineRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.DeleteDataPipelineResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.DeleteDataPipelineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.DeleteDataPipelineResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.DeleteDataPipelineResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.deleteDataPipeline =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/DeleteDataPipeline',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_DeleteDataPipeline,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.DeleteDataPipelineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.DeleteDataPipelineResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.deleteDataPipeline =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/DeleteDataPipeline',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_DeleteDataPipeline);
+};
+
+
 module.exports = proto.viam.app.data.v1;
 

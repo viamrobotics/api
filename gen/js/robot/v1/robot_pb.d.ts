@@ -648,64 +648,6 @@ export namespace GetSessionsResponse {
   }
 }
 
-export class DiscoveryQuery extends jspb.Message {
-  getSubtype(): string;
-  setSubtype(value: string): void;
-
-  getModel(): string;
-  setModel(value: string): void;
-
-  hasExtra(): boolean;
-  clearExtra(): void;
-  getExtra(): google_protobuf_struct_pb.Struct | undefined;
-  setExtra(value?: google_protobuf_struct_pb.Struct): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DiscoveryQuery.AsObject;
-  static toObject(includeInstance: boolean, msg: DiscoveryQuery): DiscoveryQuery.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DiscoveryQuery, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DiscoveryQuery;
-  static deserializeBinaryFromReader(message: DiscoveryQuery, reader: jspb.BinaryReader): DiscoveryQuery;
-}
-
-export namespace DiscoveryQuery {
-  export type AsObject = {
-    subtype: string,
-    model: string,
-    extra?: google_protobuf_struct_pb.Struct.AsObject,
-  }
-}
-
-export class Discovery extends jspb.Message {
-  hasQuery(): boolean;
-  clearQuery(): void;
-  getQuery(): DiscoveryQuery | undefined;
-  setQuery(value?: DiscoveryQuery): void;
-
-  hasResults(): boolean;
-  clearResults(): void;
-  getResults(): google_protobuf_struct_pb.Struct | undefined;
-  setResults(value?: google_protobuf_struct_pb.Struct): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Discovery.AsObject;
-  static toObject(includeInstance: boolean, msg: Discovery): Discovery.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Discovery, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Discovery;
-  static deserializeBinaryFromReader(message: Discovery, reader: jspb.BinaryReader): Discovery;
-}
-
-export namespace Discovery {
-  export type AsObject = {
-    query?: DiscoveryQuery.AsObject,
-    results?: google_protobuf_struct_pb.Struct.AsObject,
-  }
-}
-
 export class ModuleModel extends jspb.Message {
   getModuleName(): string;
   setModuleName(value: string): void;
@@ -773,50 +715,6 @@ export class GetModelsFromModulesResponse extends jspb.Message {
 export namespace GetModelsFromModulesResponse {
   export type AsObject = {
     modelsList: Array<ModuleModel.AsObject>,
-  }
-}
-
-export class DiscoverComponentsRequest extends jspb.Message {
-  clearQueriesList(): void;
-  getQueriesList(): Array<DiscoveryQuery>;
-  setQueriesList(value: Array<DiscoveryQuery>): void;
-  addQueries(value?: DiscoveryQuery, index?: number): DiscoveryQuery;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DiscoverComponentsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: DiscoverComponentsRequest): DiscoverComponentsRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DiscoverComponentsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DiscoverComponentsRequest;
-  static deserializeBinaryFromReader(message: DiscoverComponentsRequest, reader: jspb.BinaryReader): DiscoverComponentsRequest;
-}
-
-export namespace DiscoverComponentsRequest {
-  export type AsObject = {
-    queriesList: Array<DiscoveryQuery.AsObject>,
-  }
-}
-
-export class DiscoverComponentsResponse extends jspb.Message {
-  clearDiscoveryList(): void;
-  getDiscoveryList(): Array<Discovery>;
-  setDiscoveryList(value: Array<Discovery>): void;
-  addDiscovery(value?: Discovery, index?: number): Discovery;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DiscoverComponentsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: DiscoverComponentsResponse): DiscoverComponentsResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DiscoverComponentsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DiscoverComponentsResponse;
-  static deserializeBinaryFromReader(message: DiscoverComponentsResponse, reader: jspb.BinaryReader): DiscoverComponentsResponse;
-}
-
-export namespace DiscoverComponentsResponse {
-  export type AsObject = {
-    discoveryList: Array<Discovery.AsObject>,
   }
 }
 

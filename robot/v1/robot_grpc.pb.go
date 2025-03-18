@@ -32,10 +32,6 @@ type RobotServiceClient interface {
 	BlockForOperation(ctx context.Context, in *BlockForOperationRequest, opts ...grpc.CallOption) (*BlockForOperationResponse, error)
 	// GetModelsFromModules returns the list of models supported in modules on the machine.
 	GetModelsFromModules(ctx context.Context, in *GetModelsFromModulesRequest, opts ...grpc.CallOption) (*GetModelsFromModulesResponse, error)
-	// Deprecated: Do not use.
-	// DiscoverComponents returns the list of discovered component configurations.
-	// This API is deprecated
-	DiscoverComponents(ctx context.Context, in *DiscoverComponentsRequest, opts ...grpc.CallOption) (*DiscoverComponentsResponse, error)
 	FrameSystemConfig(ctx context.Context, in *FrameSystemConfigRequest, opts ...grpc.CallOption) (*FrameSystemConfigResponse, error)
 	TransformPose(ctx context.Context, in *TransformPoseRequest, opts ...grpc.CallOption) (*TransformPoseResponse, error)
 	TransformPCD(ctx context.Context, in *TransformPCDRequest, opts ...grpc.CallOption) (*TransformPCDResponse, error)
@@ -136,16 +132,6 @@ func (c *robotServiceClient) BlockForOperation(ctx context.Context, in *BlockFor
 func (c *robotServiceClient) GetModelsFromModules(ctx context.Context, in *GetModelsFromModulesRequest, opts ...grpc.CallOption) (*GetModelsFromModulesResponse, error) {
 	out := new(GetModelsFromModulesResponse)
 	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetModelsFromModules", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *robotServiceClient) DiscoverComponents(ctx context.Context, in *DiscoverComponentsRequest, opts ...grpc.CallOption) (*DiscoverComponentsResponse, error) {
-	out := new(DiscoverComponentsResponse)
-	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/DiscoverComponents", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -357,10 +343,6 @@ type RobotServiceServer interface {
 	BlockForOperation(context.Context, *BlockForOperationRequest) (*BlockForOperationResponse, error)
 	// GetModelsFromModules returns the list of models supported in modules on the machine.
 	GetModelsFromModules(context.Context, *GetModelsFromModulesRequest) (*GetModelsFromModulesResponse, error)
-	// Deprecated: Do not use.
-	// DiscoverComponents returns the list of discovered component configurations.
-	// This API is deprecated
-	DiscoverComponents(context.Context, *DiscoverComponentsRequest) (*DiscoverComponentsResponse, error)
 	FrameSystemConfig(context.Context, *FrameSystemConfigRequest) (*FrameSystemConfigResponse, error)
 	TransformPose(context.Context, *TransformPoseRequest) (*TransformPoseResponse, error)
 	TransformPCD(context.Context, *TransformPCDRequest) (*TransformPCDResponse, error)
@@ -421,9 +403,6 @@ func (UnimplementedRobotServiceServer) BlockForOperation(context.Context, *Block
 }
 func (UnimplementedRobotServiceServer) GetModelsFromModules(context.Context, *GetModelsFromModulesRequest) (*GetModelsFromModulesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelsFromModules not implemented")
-}
-func (UnimplementedRobotServiceServer) DiscoverComponents(context.Context, *DiscoverComponentsRequest) (*DiscoverComponentsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DiscoverComponents not implemented")
 }
 func (UnimplementedRobotServiceServer) FrameSystemConfig(context.Context, *FrameSystemConfigRequest) (*FrameSystemConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FrameSystemConfig not implemented")
@@ -608,24 +587,6 @@ func _RobotService_GetModelsFromModules_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RobotServiceServer).GetModelsFromModules(ctx, req.(*GetModelsFromModulesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _RobotService_DiscoverComponents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DiscoverComponentsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RobotServiceServer).DiscoverComponents(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.robot.v1.RobotService/DiscoverComponents",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RobotServiceServer).DiscoverComponents(ctx, req.(*DiscoverComponentsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -963,10 +924,6 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetModelsFromModules",
 			Handler:    _RobotService_GetModelsFromModules_Handler,
-		},
-		{
-			MethodName: "DiscoverComponents",
-			Handler:    _RobotService_DiscoverComponents_Handler,
 		},
 		{
 			MethodName: "FrameSystemConfig",
