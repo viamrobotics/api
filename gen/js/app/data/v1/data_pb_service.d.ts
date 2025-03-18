@@ -211,6 +211,51 @@ type DataServiceRemoveBinaryDataFromDatasetByIDs = {
   readonly responseType: typeof app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse;
 };
 
+type DataServiceGetDataPipeline = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.GetDataPipelineRequest;
+  readonly responseType: typeof app_data_v1_data_pb.GetDataPipelineResponse;
+};
+
+type DataServiceListDataPipelines = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.ListDataPipelinesRequest;
+  readonly responseType: typeof app_data_v1_data_pb.ListDataPipelinesResponse;
+};
+
+type DataServiceCreateDataPipeline = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.CreateDataPipelineRequest;
+  readonly responseType: typeof app_data_v1_data_pb.CreateDataPipelineResponse;
+};
+
+type DataServiceUpdateDataPipeline = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.UpdateDataPipelineRequest;
+  readonly responseType: typeof app_data_v1_data_pb.UpdateDataPipelineResponse;
+};
+
+type DataServiceDeleteDataPipeline = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.DeleteDataPipelineRequest;
+  readonly responseType: typeof app_data_v1_data_pb.DeleteDataPipelineResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
@@ -236,6 +281,11 @@ export class DataService {
   static readonly ConfigureDatabaseUser: DataServiceConfigureDatabaseUser;
   static readonly AddBinaryDataToDatasetByIDs: DataServiceAddBinaryDataToDatasetByIDs;
   static readonly RemoveBinaryDataFromDatasetByIDs: DataServiceRemoveBinaryDataFromDatasetByIDs;
+  static readonly GetDataPipeline: DataServiceGetDataPipeline;
+  static readonly ListDataPipelines: DataServiceListDataPipelines;
+  static readonly CreateDataPipeline: DataServiceCreateDataPipeline;
+  static readonly UpdateDataPipeline: DataServiceUpdateDataPipeline;
+  static readonly DeleteDataPipeline: DataServiceDeleteDataPipeline;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -468,6 +518,51 @@ export class DataServiceClient {
   removeBinaryDataFromDatasetByIDs(
     requestMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse|null) => void
+  ): UnaryResponse;
+  getDataPipeline(
+    requestMessage: app_data_v1_data_pb.GetDataPipelineRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetDataPipelineResponse|null) => void
+  ): UnaryResponse;
+  getDataPipeline(
+    requestMessage: app_data_v1_data_pb.GetDataPipelineRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetDataPipelineResponse|null) => void
+  ): UnaryResponse;
+  listDataPipelines(
+    requestMessage: app_data_v1_data_pb.ListDataPipelinesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ListDataPipelinesResponse|null) => void
+  ): UnaryResponse;
+  listDataPipelines(
+    requestMessage: app_data_v1_data_pb.ListDataPipelinesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ListDataPipelinesResponse|null) => void
+  ): UnaryResponse;
+  createDataPipeline(
+    requestMessage: app_data_v1_data_pb.CreateDataPipelineRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateDataPipelineResponse|null) => void
+  ): UnaryResponse;
+  createDataPipeline(
+    requestMessage: app_data_v1_data_pb.CreateDataPipelineRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateDataPipelineResponse|null) => void
+  ): UnaryResponse;
+  updateDataPipeline(
+    requestMessage: app_data_v1_data_pb.UpdateDataPipelineRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.UpdateDataPipelineResponse|null) => void
+  ): UnaryResponse;
+  updateDataPipeline(
+    requestMessage: app_data_v1_data_pb.UpdateDataPipelineRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.UpdateDataPipelineResponse|null) => void
+  ): UnaryResponse;
+  deleteDataPipeline(
+    requestMessage: app_data_v1_data_pb.DeleteDataPipelineRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteDataPipelineResponse|null) => void
+  ): UnaryResponse;
+  deleteDataPipeline(
+    requestMessage: app_data_v1_data_pb.DeleteDataPipelineRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteDataPipelineResponse|null) => void
   ): UnaryResponse;
 }
 
