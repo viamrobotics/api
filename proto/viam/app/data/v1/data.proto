@@ -586,7 +586,7 @@ message DataPipeline {
   // Associated Viam organization ID.
   string organization_id = 2;
 
-  // Unique identifier within org.
+  // Unique identifier at the org level.
   string name = 3;
 
   // A MongoDB aggregation pipeline as a list of BSON documents, where
