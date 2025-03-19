@@ -597,11 +597,8 @@ message DataPipeline {
   // defines the input time window; an hourly schedule would process 1 hour of data at a time).
   string schedule = 5;
 
-  // The API key ID to use when executing the pipeline.
-  string api_key_id = 6;
-
   // Whether or not the pipeline is enabled.
-  bool enabled = 7;
+  bool enabled = 6;
 }
 
 message GetDataPipelineRequest {
