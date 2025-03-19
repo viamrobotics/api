@@ -3753,8 +3753,8 @@ type DataPipeline struct {
 	// A MongoDB aggregation pipeline as a list of BSON documents, where
 	// each document is one stage in the pipeline.
 	MqlBinary [][]byte `protobuf:"bytes,4,rep,name=mql_binary,json=mqlBinary,proto3" json:"mql_binary,omitempty"`
-	// A cron expression representing the expected execution schedule (note this also defines
-	// the input time window; an hourly schedule would process 1 hour of data at a time).
+	// A cron expression representing the expected execution schedule, in UTC (note this also
+	// defines the input time window; an hourly schedule would process 1 hour of data at a time).
 	Schedule string `protobuf:"bytes,5,opt,name=schedule,proto3" json:"schedule,omitempty"`
 	// The API key ID to use when executing the pipeline.
 	ApiKeyId string `protobuf:"bytes,6,opt,name=api_key_id,json=apiKeyId,proto3" json:"api_key_id,omitempty"`
