@@ -593,7 +593,7 @@ message DataPipeline {
   // each document is one stage in the pipeline.
   repeated bytes mql_binary = 4;
 
-  // A cron expression representing the expected execution schedule, in UTC (note this also
+  // A cron expression representing the expected execution schedule in UTC (note this also
   // defines the input time window; an hourly schedule would process 1 hour of data at a time).
   string schedule = 5;
 
