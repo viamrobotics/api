@@ -71,16 +71,6 @@ type DataServiceClient interface {
 	AddBinaryDataToDatasetByIDs(ctx context.Context, in *AddBinaryDataToDatasetByIDsRequest, opts ...grpc.CallOption) (*AddBinaryDataToDatasetByIDsResponse, error)
 	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
 	RemoveBinaryDataFromDatasetByIDs(ctx context.Context, in *RemoveBinaryDataFromDatasetByIDsRequest, opts ...grpc.CallOption) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
-	// GetDataPipeline retrieves a specific data pipeline by its id.
-	GetDataPipeline(ctx context.Context, in *GetDataPipelineRequest, opts ...grpc.CallOption) (*GetDataPipelineResponse, error)
-	// ListDataPipelines returns a list of data pipelines based on organization id.
-	ListDataPipelines(ctx context.Context, in *ListDataPipelinesRequest, opts ...grpc.CallOption) (*ListDataPipelinesResponse, error)
-	// CreateDataPipeline creates a new data pipeline with the provided configuration.
-	CreateDataPipeline(ctx context.Context, in *CreateDataPipelineRequest, opts ...grpc.CallOption) (*CreateDataPipelineResponse, error)
-	// UpdateDataPipeline modifies an existing data pipeline's configuration.
-	UpdateDataPipeline(ctx context.Context, in *UpdateDataPipelineRequest, opts ...grpc.CallOption) (*UpdateDataPipelineResponse, error)
-	// DeleteDataPipeline deletes a data pipeline from the database.
-	DeleteDataPipeline(ctx context.Context, in *DeleteDataPipelineRequest, opts ...grpc.CallOption) (*DeleteDataPipelineResponse, error)
 }
 
 type dataServiceClient struct {
@@ -322,51 +312,6 @@ func (c *dataServiceClient) RemoveBinaryDataFromDatasetByIDs(ctx context.Context
 	return out, nil
 }
 
-func (c *dataServiceClient) GetDataPipeline(ctx context.Context, in *GetDataPipelineRequest, opts ...grpc.CallOption) (*GetDataPipelineResponse, error) {
-	out := new(GetDataPipelineResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/GetDataPipeline", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataServiceClient) ListDataPipelines(ctx context.Context, in *ListDataPipelinesRequest, opts ...grpc.CallOption) (*ListDataPipelinesResponse, error) {
-	out := new(ListDataPipelinesResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/ListDataPipelines", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataServiceClient) CreateDataPipeline(ctx context.Context, in *CreateDataPipelineRequest, opts ...grpc.CallOption) (*CreateDataPipelineResponse, error) {
-	out := new(CreateDataPipelineResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/CreateDataPipeline", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataServiceClient) UpdateDataPipeline(ctx context.Context, in *UpdateDataPipelineRequest, opts ...grpc.CallOption) (*UpdateDataPipelineResponse, error) {
-	out := new(UpdateDataPipelineResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/UpdateDataPipeline", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dataServiceClient) DeleteDataPipeline(ctx context.Context, in *DeleteDataPipelineRequest, opts ...grpc.CallOption) (*DeleteDataPipelineResponse, error) {
-	out := new(DeleteDataPipelineResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/DeleteDataPipeline", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -420,16 +365,6 @@ type DataServiceServer interface {
 	AddBinaryDataToDatasetByIDs(context.Context, *AddBinaryDataToDatasetByIDsRequest) (*AddBinaryDataToDatasetByIDsResponse, error)
 	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
 	RemoveBinaryDataFromDatasetByIDs(context.Context, *RemoveBinaryDataFromDatasetByIDsRequest) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
-	// GetDataPipeline retrieves a specific data pipeline by its id.
-	GetDataPipeline(context.Context, *GetDataPipelineRequest) (*GetDataPipelineResponse, error)
-	// ListDataPipelines returns a list of data pipelines based on organization id.
-	ListDataPipelines(context.Context, *ListDataPipelinesRequest) (*ListDataPipelinesResponse, error)
-	// CreateDataPipeline creates a new data pipeline with the provided configuration.
-	CreateDataPipeline(context.Context, *CreateDataPipelineRequest) (*CreateDataPipelineResponse, error)
-	// UpdateDataPipeline modifies an existing data pipeline's configuration.
-	UpdateDataPipeline(context.Context, *UpdateDataPipelineRequest) (*UpdateDataPipelineResponse, error)
-	// DeleteDataPipeline deletes a data pipeline from the database.
-	DeleteDataPipeline(context.Context, *DeleteDataPipelineRequest) (*DeleteDataPipelineResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -505,21 +440,6 @@ func (UnimplementedDataServiceServer) AddBinaryDataToDatasetByIDs(context.Contex
 }
 func (UnimplementedDataServiceServer) RemoveBinaryDataFromDatasetByIDs(context.Context, *RemoveBinaryDataFromDatasetByIDsRequest) (*RemoveBinaryDataFromDatasetByIDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveBinaryDataFromDatasetByIDs not implemented")
-}
-func (UnimplementedDataServiceServer) GetDataPipeline(context.Context, *GetDataPipelineRequest) (*GetDataPipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDataPipeline not implemented")
-}
-func (UnimplementedDataServiceServer) ListDataPipelines(context.Context, *ListDataPipelinesRequest) (*ListDataPipelinesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListDataPipelines not implemented")
-}
-func (UnimplementedDataServiceServer) CreateDataPipeline(context.Context, *CreateDataPipelineRequest) (*CreateDataPipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateDataPipeline not implemented")
-}
-func (UnimplementedDataServiceServer) UpdateDataPipeline(context.Context, *UpdateDataPipelineRequest) (*UpdateDataPipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateDataPipeline not implemented")
-}
-func (UnimplementedDataServiceServer) DeleteDataPipeline(context.Context, *DeleteDataPipelineRequest) (*DeleteDataPipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteDataPipeline not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -951,96 +871,6 @@ func _DataService_RemoveBinaryDataFromDatasetByIDs_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataService_GetDataPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDataPipelineRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataServiceServer).GetDataPipeline(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/GetDataPipeline",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).GetDataPipeline(ctx, req.(*GetDataPipelineRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DataService_ListDataPipelines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListDataPipelinesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataServiceServer).ListDataPipelines(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/ListDataPipelines",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).ListDataPipelines(ctx, req.(*ListDataPipelinesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DataService_CreateDataPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateDataPipelineRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataServiceServer).CreateDataPipeline(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/CreateDataPipeline",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).CreateDataPipeline(ctx, req.(*CreateDataPipelineRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DataService_UpdateDataPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateDataPipelineRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataServiceServer).UpdateDataPipeline(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/UpdateDataPipeline",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).UpdateDataPipeline(ctx, req.(*UpdateDataPipelineRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DataService_DeleteDataPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteDataPipelineRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DataServiceServer).DeleteDataPipeline(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.data.v1.DataService/DeleteDataPipeline",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataServiceServer).DeleteDataPipeline(ctx, req.(*DeleteDataPipelineRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1135,26 +965,6 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveBinaryDataFromDatasetByIDs",
 			Handler:    _DataService_RemoveBinaryDataFromDatasetByIDs_Handler,
-		},
-		{
-			MethodName: "GetDataPipeline",
-			Handler:    _DataService_GetDataPipeline_Handler,
-		},
-		{
-			MethodName: "ListDataPipelines",
-			Handler:    _DataService_ListDataPipelines_Handler,
-		},
-		{
-			MethodName: "CreateDataPipeline",
-			Handler:    _DataService_CreateDataPipeline_Handler,
-		},
-		{
-			MethodName: "UpdateDataPipeline",
-			Handler:    _DataService_UpdateDataPipeline_Handler,
-		},
-		{
-			MethodName: "DeleteDataPipeline",
-			Handler:    _DataService_DeleteDataPipeline_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

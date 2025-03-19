@@ -82,21 +82,6 @@ service DataService {
 
   // RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
   rpc RemoveBinaryDataFromDatasetByIDs(RemoveBinaryDataFromDatasetByIDsRequest) returns (RemoveBinaryDataFromDatasetByIDsResponse);
-
-  // GetDataPipeline retrieves a specific data pipeline by its id.
-  rpc GetDataPipeline(GetDataPipelineRequest) returns (GetDataPipelineResponse);
-
-  // ListDataPipelines returns a list of data pipelines based on organization id.
-  rpc ListDataPipelines(ListDataPipelinesRequest) returns (ListDataPipelinesResponse);
-
-  // CreateDataPipeline creates a new data pipeline with the provided configuration.
-  rpc CreateDataPipeline(CreateDataPipelineRequest) returns (CreateDataPipelineResponse);
-
-  // UpdateDataPipeline modifies an existing data pipeline's configuration.
-  rpc UpdateDataPipeline(UpdateDataPipelineRequest) returns (UpdateDataPipelineResponse);
-
-  // DeleteDataPipeline deletes a data pipeline from the database.
-  rpc DeleteDataPipeline(DeleteDataPipelineRequest) returns (DeleteDataPipelineResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -579,66 +564,3 @@ message RemoveBinaryDataFromDatasetByIDsRequest {
 }
 
 message RemoveBinaryDataFromDatasetByIDsResponse {}
-
-message DataPipeline {
-  string id = 1;
-
-  // The associated Viam organization ID.
-  string organization_id = 2;
-
-  // A unique identifier at the org level.
-  string name = 3;
-
-  // A MongoDB aggregation pipeline as a list of BSON documents, where
-  // each document is one stage in the pipeline.
-  repeated bytes mql_binary = 4;
-
-  // A cron expression representing the expected execution schedule (note this also defines
-  // the input time window; an hourly schedule would process 1 hour of data at a time).
-  string schedule = 5;
-
-  // The API key ID to use when executing the pipeline.
-  string api_key_id = 6;
-
-  // Whether or not the pipeline is enabled.
-  bool enabled = 7;
-}
-
-message GetDataPipelineRequest {
-  string id = 1;
-}
-
-message GetDataPipelineResponse {
-  DataPipeline data_pipeline = 1;
-}
-
-message ListDataPipelinesRequest {
-  string organization_id = 1;
-}
-
-message ListDataPipelinesResponse {
-  repeated DataPipeline data_pipelines = 1;
-}
-
-message CreateDataPipelineRequest {
-  DataPipeline data_pipeline = 1;
-}
-
-message CreateDataPipelineResponse {
-  string id = 1;
-}
-
-message UpdateDataPipelineRequest {
-  string id = 1;
-  DataPipeline data_pipeline = 2;
-}
-
-message UpdateDataPipelineResponse {
-  string id = 1;
-}
-
-message DeleteDataPipelineRequest {
-  string id = 1;
-}
-
-message DeleteDataPipelineResponse {}
