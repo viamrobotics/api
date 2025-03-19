@@ -14322,8 +14322,7 @@ proto.viam.app.data.v1.DataPipeline.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
     mqlBinaryList: msg.getMqlBinaryList_asB64(),
     schedule: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    apiKeyId: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    enabled: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
+    enabled: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -14381,10 +14380,6 @@ proto.viam.app.data.v1.DataPipeline.deserializeBinaryFromReader = function(msg, 
       msg.setSchedule(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setApiKeyId(value);
-      break;
-    case 7:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setEnabled(value);
       break;
@@ -14452,17 +14447,10 @@ proto.viam.app.data.v1.DataPipeline.serializeBinaryToWriter = function(message, 
       f
     );
   }
-  f = message.getApiKeyId();
-  if (f.length > 0) {
-    writer.writeString(
-      6,
-      f
-    );
-  }
   f = message.getEnabled();
   if (f) {
     writer.writeBool(
-      7,
+      6,
       f
     );
   }
@@ -14603,29 +14591,11 @@ proto.viam.app.data.v1.DataPipeline.prototype.setSchedule = function(value) {
 
 
 /**
- * optional string api_key_id = 6;
- * @return {string}
- */
-proto.viam.app.data.v1.DataPipeline.prototype.getApiKeyId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.data.v1.DataPipeline} returns this
- */
-proto.viam.app.data.v1.DataPipeline.prototype.setApiKeyId = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
-};
-
-
-/**
- * optional bool enabled = 7;
+ * optional bool enabled = 6;
  * @return {boolean}
  */
 proto.viam.app.data.v1.DataPipeline.prototype.getEnabled = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
 };
 
 
@@ -14634,7 +14604,7 @@ proto.viam.app.data.v1.DataPipeline.prototype.getEnabled = function() {
  * @return {!proto.viam.app.data.v1.DataPipeline} returns this
  */
 proto.viam.app.data.v1.DataPipeline.prototype.setEnabled = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 7, value);
+  return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 

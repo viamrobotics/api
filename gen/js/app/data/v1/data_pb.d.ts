@@ -1799,9 +1799,6 @@ export class DataPipeline extends jspb.Message {
   getSchedule(): string;
   setSchedule(value: string): void;
 
-  getApiKeyId(): string;
-  setApiKeyId(value: string): void;
-
   getEnabled(): boolean;
   setEnabled(value: boolean): void;
 
@@ -1822,7 +1819,6 @@ export namespace DataPipeline {
     name: string,
     mqlBinaryList: Array<Uint8Array | string>,
     schedule: string,
-    apiKeyId: string,
     enabled: boolean,
   }
 }
