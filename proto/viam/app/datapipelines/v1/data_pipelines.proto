@@ -52,6 +52,7 @@ message DataPipeline {
 }
 
 message GetDataPipelineRequest {
+  // The ID of the data pipeline to retrieve.
   string id = 1;
 }
 
@@ -60,6 +61,7 @@ message GetDataPipelineResponse {
 }
 
 message ListDataPipelinesRequest {
+  // The associated Viam organization ID.
   string organization_id = 1;
 }
 
@@ -110,6 +112,7 @@ message UpdateDataPipelineRequest {
 message UpdateDataPipelineResponse {}
 
 message DeleteDataPipelineRequest {
+  // The ID of the data pipeline to delete.
   string id = 1;
 }
 
