@@ -51,6 +51,22 @@ message DataPipeline {
   google.protobuf.Timestamp updated_at = 8;
 }
 
+message DataPipelineUpdate {
+  // A unique identifier at the org level.
+  string name = 3;
+
+  // A MongoDB aggregation pipeline as a list of BSON documents, where
+  // each document is one stage in the pipeline.
+  repeated bytes mql_binary = 4;
+
+  // A cron expression representing the expected execution schedule in UTC (note this also
+  // defines the input time window; an hourly schedule would process 1 hour of data at a time).
+  string schedule = 5;
+
+  // Whether or not the pipeline is enabled.
+  bool enabled = 6;
+}
+
 message GetDataPipelineRequest {
   string id = 1;
 }
@@ -68,7 +84,22 @@ message ListDataPipelinesResponse {
 }
 
 message CreateDataPipelineRequest {
-  DataPipeline data_pipeline = 1;
+  // The associated Viam organization ID.
+  string organization_id = 1;
+
+  // A unique identifier at the org level.
+  string name = 2;
+
+  // A MongoDB aggregation pipeline as a list of BSON documents, where
+  // each document is one stage in the pipeline.
+  repeated bytes mql_binary = 3;
+
+  // A cron expression representing the expected execution schedule in UTC (note this also
+  // defines the input time window; an hourly schedule would process 1 hour of data at a time).
+  string schedule = 4;
+
+  // Whether or not the pipeline is enabled.
+  bool enabled = 5;
 }
 
 message CreateDataPipelineResponse {
@@ -77,12 +108,10 @@ message CreateDataPipelineResponse {
 
 message UpdateDataPipelineRequest {
   string id = 1;
-  DataPipeline data_pipeline = 2;
+  DataPipelineUpdate data_pipeline = 2;
 }
 
-message UpdateDataPipelineResponse {
-  string id = 1;
-}
+message UpdateDataPipelineResponse {}
 
 message DeleteDataPipelineRequest {
   string id = 1;
