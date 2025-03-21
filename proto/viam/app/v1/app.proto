@@ -1707,7 +1707,8 @@ message GetAppContentRequest {
 }
 
 message GetAppContentResponse {
-  string url = 1;
+  string blob_path = 1;
+  string entrypoint = 2;
 }
 
 message OrganizationSetLogoRequest {
