@@ -145,10 +145,21 @@ export namespace ListDataPipelinesResponse {
 }
 
 export class CreateDataPipelineRequest extends jspb.Message {
-  hasDataPipeline(): boolean;
-  clearDataPipeline(): void;
-  getDataPipeline(): DataPipeline | undefined;
-  setDataPipeline(value?: DataPipeline): void;
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  clearMqlBinaryList(): void;
+  getMqlBinaryList(): Array<Uint8Array | string>;
+  getMqlBinaryList_asU8(): Array<Uint8Array>;
+  getMqlBinaryList_asB64(): Array<string>;
+  setMqlBinaryList(value: Array<Uint8Array | string>): void;
+  addMqlBinary(value: Uint8Array | string, index?: number): Uint8Array | string;
+
+  getSchedule(): string;
+  setSchedule(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateDataPipelineRequest.AsObject;
@@ -162,7 +173,10 @@ export class CreateDataPipelineRequest extends jspb.Message {
 
 export namespace CreateDataPipelineRequest {
   export type AsObject = {
-    dataPipeline?: DataPipeline.AsObject,
+    organizationId: string,
+    name: string,
+    mqlBinaryList: Array<Uint8Array | string>,
+    schedule: string,
   }
 }
 
@@ -190,10 +204,21 @@ export class UpdateDataPipelineRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  hasDataPipeline(): boolean;
-  clearDataPipeline(): void;
-  getDataPipeline(): DataPipeline | undefined;
-  setDataPipeline(value?: DataPipeline): void;
+  getName(): string;
+  setName(value: string): void;
+
+  clearMqlBinaryList(): void;
+  getMqlBinaryList(): Array<Uint8Array | string>;
+  getMqlBinaryList_asU8(): Array<Uint8Array>;
+  getMqlBinaryList_asB64(): Array<string>;
+  setMqlBinaryList(value: Array<Uint8Array | string>): void;
+  addMqlBinary(value: Uint8Array | string, index?: number): Uint8Array | string;
+
+  getSchedule(): string;
+  setSchedule(value: string): void;
+
+  getEnabled(): boolean;
+  setEnabled(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateDataPipelineRequest.AsObject;
@@ -208,14 +233,14 @@ export class UpdateDataPipelineRequest extends jspb.Message {
 export namespace UpdateDataPipelineRequest {
   export type AsObject = {
     id: string,
-    dataPipeline?: DataPipeline.AsObject,
+    name: string,
+    mqlBinaryList: Array<Uint8Array | string>,
+    schedule: string,
+    enabled: boolean,
   }
 }
 
 export class UpdateDataPipelineResponse extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateDataPipelineResponse.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateDataPipelineResponse): UpdateDataPipelineResponse.AsObject;
@@ -228,7 +253,6 @@ export class UpdateDataPipelineResponse extends jspb.Message {
 
 export namespace UpdateDataPipelineResponse {
   export type AsObject = {
-    id: string,
   }
 }
 

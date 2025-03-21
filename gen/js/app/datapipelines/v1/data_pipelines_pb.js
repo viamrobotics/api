@@ -144,7 +144,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.datapipelines.v1.CreateDataPipelineRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.datapipelines.v1.CreateDataPipelineRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -186,7 +186,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1263,6 +1263,13 @@ proto.viam.app.datapipelines.v1.ListDataPipelinesResponse.prototype.clearDataPip
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.repeatedFields_ = [3];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1294,7 +1301,10 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.toObject = f
  */
 proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dataPipeline: (f = msg.getDataPipeline()) && proto.viam.app.datapipelines.v1.DataPipeline.toObject(includeInstance, f)
+    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    mqlBinaryList: msg.getMqlBinaryList_asB64(),
+    schedule: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -1332,9 +1342,20 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.deserializeBinaryFromR
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.viam.app.datapipelines.v1.DataPipeline;
-      reader.readMessage(value,proto.viam.app.datapipelines.v1.DataPipeline.deserializeBinaryFromReader);
-      msg.setDataPipeline(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganizationId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 3:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.addMqlBinary(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSchedule(value);
       break;
     default:
       reader.skipField();
@@ -1365,51 +1386,149 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.serializeBin
  */
 proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getDataPipeline();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getOrganizationId();
+  if (f.length > 0) {
+    writer.writeString(
       1,
-      f,
-      proto.viam.app.datapipelines.v1.DataPipeline.serializeBinaryToWriter
+      f
+    );
+  }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getMqlBinaryList_asU8();
+  if (f.length > 0) {
+    writer.writeRepeatedBytes(
+      3,
+      f
+    );
+  }
+  f = message.getSchedule();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
 
 
 /**
- * optional DataPipeline data_pipeline = 1;
- * @return {?proto.viam.app.datapipelines.v1.DataPipeline}
+ * optional string organization_id = 1;
+ * @return {string}
  */
-proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.getDataPipeline = function() {
-  return /** @type{?proto.viam.app.datapipelines.v1.DataPipeline} */ (
-    jspb.Message.getWrapperField(this, proto.viam.app.datapipelines.v1.DataPipeline, 1));
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.getOrganizationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {?proto.viam.app.datapipelines.v1.DataPipeline|undefined} value
- * @return {!proto.viam.app.datapipelines.v1.CreateDataPipelineRequest} returns this
-*/
-proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.setDataPipeline = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * @param {string} value
  * @return {!proto.viam.app.datapipelines.v1.CreateDataPipelineRequest} returns this
  */
-proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.clearDataPipeline = function() {
-  return this.setDataPipeline(undefined);
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.setOrganizationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {boolean}
+ * optional string name = 2;
+ * @return {string}
  */
-proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.hasDataPipeline = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datapipelines.v1.CreateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.setName = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * repeated bytes mql_binary = 3;
+ * @return {!Array<string>}
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.getMqlBinaryList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * repeated bytes mql_binary = 3;
+ * This is a type-conversion wrapper around `getMqlBinaryList()`
+ * @return {!Array<string>}
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.getMqlBinaryList_asB64 = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
+      this.getMqlBinaryList()));
+};
+
+
+/**
+ * repeated bytes mql_binary = 3;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getMqlBinaryList()`
+ * @return {!Array<!Uint8Array>}
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.getMqlBinaryList_asU8 = function() {
+  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
+      this.getMqlBinaryList()));
+};
+
+
+/**
+ * @param {!(Array<!Uint8Array>|Array<string>)} value
+ * @return {!proto.viam.app.datapipelines.v1.CreateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.setMqlBinaryList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.datapipelines.v1.CreateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.addMqlBinary = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.datapipelines.v1.CreateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.clearMqlBinaryList = function() {
+  return this.setMqlBinaryList([]);
+};
+
+
+/**
+ * optional string schedule = 4;
+ * @return {string}
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.getSchedule = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datapipelines.v1.CreateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.setSchedule = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -1544,6 +1663,13 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineResponse.prototype.setId = fun
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.repeatedFields_ = [3];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1576,7 +1702,10 @@ proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.toObject = f
 proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    dataPipeline: (f = msg.getDataPipeline()) && proto.viam.app.datapipelines.v1.DataPipeline.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    mqlBinaryList: msg.getMqlBinaryList_asB64(),
+    schedule: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    enabled: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -1618,9 +1747,20 @@ proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.deserializeBinaryFromR
       msg.setId(value);
       break;
     case 2:
-      var value = new proto.viam.app.datapipelines.v1.DataPipeline;
-      reader.readMessage(value,proto.viam.app.datapipelines.v1.DataPipeline.deserializeBinaryFromReader);
-      msg.setDataPipeline(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 3:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.addMqlBinary(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSchedule(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setEnabled(value);
       break;
     default:
       reader.skipField();
@@ -1658,12 +1798,32 @@ proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.serializeBinaryToWrite
       f
     );
   }
-  f = message.getDataPipeline();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
       2,
-      f,
-      proto.viam.app.datapipelines.v1.DataPipeline.serializeBinaryToWriter
+      f
+    );
+  }
+  f = message.getMqlBinaryList_asU8();
+  if (f.length > 0) {
+    writer.writeRepeatedBytes(
+      3,
+      f
+    );
+  }
+  f = message.getSchedule();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getEnabled();
+  if (f) {
+    writer.writeBool(
+      5,
+      f
     );
   }
 };
@@ -1688,39 +1848,117 @@ proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.setId = func
 
 
 /**
- * optional DataPipeline data_pipeline = 2;
- * @return {?proto.viam.app.datapipelines.v1.DataPipeline}
+ * optional string name = 2;
+ * @return {string}
  */
-proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.getDataPipeline = function() {
-  return /** @type{?proto.viam.app.datapipelines.v1.DataPipeline} */ (
-    jspb.Message.getWrapperField(this, proto.viam.app.datapipelines.v1.DataPipeline, 2));
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * @param {?proto.viam.app.datapipelines.v1.DataPipeline|undefined} value
- * @return {!proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest} returns this
-*/
-proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.setDataPipeline = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * @param {string} value
  * @return {!proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest} returns this
  */
-proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.clearDataPipeline = function() {
-  return this.setDataPipeline(undefined);
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.setName = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * Returns whether this field is set.
+ * repeated bytes mql_binary = 3;
+ * @return {!Array<string>}
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.getMqlBinaryList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * repeated bytes mql_binary = 3;
+ * This is a type-conversion wrapper around `getMqlBinaryList()`
+ * @return {!Array<string>}
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.getMqlBinaryList_asB64 = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.bytesListAsB64(
+      this.getMqlBinaryList()));
+};
+
+
+/**
+ * repeated bytes mql_binary = 3;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getMqlBinaryList()`
+ * @return {!Array<!Uint8Array>}
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.getMqlBinaryList_asU8 = function() {
+  return /** @type {!Array<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
+      this.getMqlBinaryList()));
+};
+
+
+/**
+ * @param {!(Array<!Uint8Array>|Array<string>)} value
+ * @return {!proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.setMqlBinaryList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.addMqlBinary = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.clearMqlBinaryList = function() {
+  return this.setMqlBinaryList([]);
+};
+
+
+/**
+ * optional string schedule = 4;
+ * @return {string}
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.getSchedule = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.setSchedule = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional bool enabled = 5;
  * @return {boolean}
  */
-proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.hasDataPipeline = function() {
-  return jspb.Message.getField(this, 2) != null;
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.getEnabled = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.setEnabled = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
@@ -1756,7 +1994,7 @@ proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse.prototype.toObject = 
  */
 proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+
   };
 
   if (includeInstance) {
@@ -1793,10 +2031,6 @@ proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse.deserializeBinaryFrom
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -1826,31 +2060,6 @@ proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse.prototype.serializeBi
  */
 proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional string id = 1;
- * @return {string}
- */
-proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse} returns this
- */
-proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse.prototype.setId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
