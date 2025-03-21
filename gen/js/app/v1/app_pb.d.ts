@@ -6255,8 +6255,11 @@ export namespace GetAppContentRequest {
 }
 
 export class GetAppContentResponse extends jspb.Message {
-  getUrl(): string;
-  setUrl(value: string): void;
+  getBlobPath(): string;
+  setBlobPath(value: string): void;
+
+  getEntrypoint(): string;
+  setEntrypoint(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAppContentResponse.AsObject;
@@ -6270,7 +6273,8 @@ export class GetAppContentResponse extends jspb.Message {
 
 export namespace GetAppContentResponse {
   export type AsObject = {
-    url: string,
+    blobPath: string,
+    entrypoint: string,
   }
 }
 

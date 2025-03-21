@@ -49245,7 +49245,8 @@ proto.viam.app.v1.GetAppContentResponse.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.GetAppContentResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    url: jspb.Message.getFieldWithDefault(msg, 1, "")
+    blobPath: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    entrypoint: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -49284,7 +49285,11 @@ proto.viam.app.v1.GetAppContentResponse.deserializeBinaryFromReader = function(m
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUrl(value);
+      msg.setBlobPath(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEntrypoint(value);
       break;
     default:
       reader.skipField();
@@ -49315,10 +49320,17 @@ proto.viam.app.v1.GetAppContentResponse.prototype.serializeBinary = function() {
  */
 proto.viam.app.v1.GetAppContentResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUrl();
+  f = message.getBlobPath();
   if (f.length > 0) {
     writer.writeString(
       1,
+      f
+    );
+  }
+  f = message.getEntrypoint();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
       f
     );
   }
@@ -49326,10 +49338,10 @@ proto.viam.app.v1.GetAppContentResponse.serializeBinaryToWriter = function(messa
 
 
 /**
- * optional string url = 1;
+ * optional string blob_path = 1;
  * @return {string}
  */
-proto.viam.app.v1.GetAppContentResponse.prototype.getUrl = function() {
+proto.viam.app.v1.GetAppContentResponse.prototype.getBlobPath = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -49338,8 +49350,26 @@ proto.viam.app.v1.GetAppContentResponse.prototype.getUrl = function() {
  * @param {string} value
  * @return {!proto.viam.app.v1.GetAppContentResponse} returns this
  */
-proto.viam.app.v1.GetAppContentResponse.prototype.setUrl = function(value) {
+proto.viam.app.v1.GetAppContentResponse.prototype.setBlobPath = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string entrypoint = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.GetAppContentResponse.prototype.getEntrypoint = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetAppContentResponse} returns this
+ */
+proto.viam.app.v1.GetAppContentResponse.prototype.setEntrypoint = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
