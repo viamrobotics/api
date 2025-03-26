@@ -55,6 +55,33 @@ BillingService.SendPaymentRequiredEmail = {
   responseType: app_v1_billing_pb.SendPaymentRequiredEmailResponse
 };
 
+BillingService.GetAvailableBillingTiers = {
+  methodName: "GetAvailableBillingTiers",
+  service: BillingService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_billing_pb.GetAvailableBillingTiersRequest,
+  responseType: app_v1_billing_pb.GetAvailableBillingTiersResponse
+};
+
+BillingService.UpdateOrganizationBillingTier = {
+  methodName: "UpdateOrganizationBillingTier",
+  service: BillingService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_billing_pb.UpdateOrganizationBillingTierRequest,
+  responseType: app_v1_billing_pb.UpdateOrganizationBillingTierResponse
+};
+
+BillingService.CreateBillingTier = {
+  methodName: "CreateBillingTier",
+  service: BillingService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_billing_pb.CreateBillingTierRequest,
+  responseType: app_v1_billing_pb.CreateBillingTierResponse
+};
+
 exports.BillingService = BillingService;
 
 function BillingServiceClient(serviceHost, options) {
@@ -199,6 +226,99 @@ BillingServiceClient.prototype.sendPaymentRequiredEmail = function sendPaymentRe
     callback = arguments[1];
   }
   var client = grpc.unary(BillingService.SendPaymentRequiredEmail, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BillingServiceClient.prototype.getAvailableBillingTiers = function getAvailableBillingTiers(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BillingService.GetAvailableBillingTiers, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BillingServiceClient.prototype.updateOrganizationBillingTier = function updateOrganizationBillingTier(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BillingService.UpdateOrganizationBillingTier, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BillingServiceClient.prototype.createBillingTier = function createBillingTier(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BillingService.CreateBillingTier, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
