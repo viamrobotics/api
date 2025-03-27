@@ -415,6 +415,11 @@ export class TabularDataByMQLRequest extends jspb.Message {
   getUseRecentData(): boolean;
   setUseRecentData(value: boolean): void;
 
+  hasUseDataPipeline(): boolean;
+  clearUseDataPipeline(): void;
+  getUseDataPipeline(): string;
+  setUseDataPipeline(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataByMQLRequest.AsObject;
   static toObject(includeInstance: boolean, msg: TabularDataByMQLRequest): TabularDataByMQLRequest.AsObject;
@@ -430,6 +435,7 @@ export namespace TabularDataByMQLRequest {
     organizationId: string,
     mqlBinaryList: Array<Uint8Array | string>,
     useRecentData: boolean,
+    useDataPipeline: string,
   }
 }
 

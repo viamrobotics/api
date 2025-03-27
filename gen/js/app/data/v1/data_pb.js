@@ -4240,7 +4240,8 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.toObject = function(includeInstan
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     mqlBinaryList: msg.getMqlBinaryList_asB64(),
-    useRecentData: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+    useRecentData: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    useDataPipeline: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -4289,6 +4290,10 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.deserializeBinaryFromReader = fun
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setUseRecentData(value);
       break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUseDataPipeline(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -4336,6 +4341,13 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.serializeBinaryToWriter = functio
   if (f != null) {
     writer.writeBool(
       4,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -4454,6 +4466,42 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.clearUseRecentData = fu
  */
 proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.hasUseRecentData = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional string use_data_pipeline = 5;
+ * @return {string}
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.getUseDataPipeline = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLRequest} returns this
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.setUseDataPipeline = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLRequest} returns this
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.clearUseDataPipeline = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.hasUseDataPipeline = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
