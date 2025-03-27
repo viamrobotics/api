@@ -225,6 +225,9 @@ message TabularDataByMQLRequest {
   // namespace, which holds the Viam organization's tabular data.
   repeated bytes mql_binary = 3;
   optional bool use_recent_data = 4;
+  // if set, MQL query will target the sink collection for the data pipeline name
+  // referenced by this value under the given organization.
+  optional string use_data_pipeline = 5;
 
   reserved 2;
   reserved "mql_query";
