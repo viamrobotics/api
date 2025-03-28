@@ -50,6 +50,7 @@ message FileUploadRequest {
 
 // FileUploadResponse returns the file id of the uploaded contents and metadata for binary (image + file) data.
 message FileUploadResponse {
+  option deprecated = true;
   string file_id = 1;
   string binary_data_id = 2;
 }
@@ -65,6 +66,7 @@ message StreamingDataCaptureUploadRequest {
 
 // StreamingDataCaptureUploadResponse returns the file id of the uploaded contents and metadata for streaming binary (image + file) data.
 message StreamingDataCaptureUploadResponse {
+  option deprecated = true;
   string file_id = 1;
   string binary_data_id = 2;
 }
