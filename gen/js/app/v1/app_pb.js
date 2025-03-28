@@ -45988,7 +45988,8 @@ proto.viam.app.v1.OrgDetails.toObject = function(includeInstance, msg) {
     orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     orgName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     orgCid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    publicNamespace: jspb.Message.getFieldWithDefault(msg, 4, "")
+    publicNamespace: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    billingTier: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -46040,6 +46041,10 @@ proto.viam.app.v1.OrgDetails.deserializeBinaryFromReader = function(msg, reader)
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setPublicNamespace(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBillingTier(value);
       break;
     default:
       reader.skipField();
@@ -46095,6 +46100,13 @@ proto.viam.app.v1.OrgDetails.serializeBinaryToWriter = function(message, writer)
   if (f != null) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -46206,6 +46218,42 @@ proto.viam.app.v1.OrgDetails.prototype.clearPublicNamespace = function() {
  */
 proto.viam.app.v1.OrgDetails.prototype.hasPublicNamespace = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional string billing_tier = 5;
+ * @return {string}
+ */
+proto.viam.app.v1.OrgDetails.prototype.getBillingTier = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.OrgDetails} returns this
+ */
+proto.viam.app.v1.OrgDetails.prototype.setBillingTier = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.OrgDetails} returns this
+ */
+proto.viam.app.v1.OrgDetails.prototype.clearBillingTier = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.OrgDetails.prototype.hasBillingTier = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
