@@ -452,6 +452,84 @@ export namespace SendPaymentRequiredEmailResponse {
   }
 }
 
+export class GetAvailableBillingTiersRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAvailableBillingTiersRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAvailableBillingTiersRequest): GetAvailableBillingTiersRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetAvailableBillingTiersRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAvailableBillingTiersRequest;
+  static deserializeBinaryFromReader(message: GetAvailableBillingTiersRequest, reader: jspb.BinaryReader): GetAvailableBillingTiersRequest;
+}
+
+export namespace GetAvailableBillingTiersRequest {
+  export type AsObject = {
+  }
+}
+
+export class GetAvailableBillingTiersResponse extends jspb.Message {
+  clearTiersList(): void;
+  getTiersList(): Array<string>;
+  setTiersList(value: Array<string>): void;
+  addTiers(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAvailableBillingTiersResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAvailableBillingTiersResponse): GetAvailableBillingTiersResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetAvailableBillingTiersResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAvailableBillingTiersResponse;
+  static deserializeBinaryFromReader(message: GetAvailableBillingTiersResponse, reader: jspb.BinaryReader): GetAvailableBillingTiersResponse;
+}
+
+export namespace GetAvailableBillingTiersResponse {
+  export type AsObject = {
+    tiersList: Array<string>,
+  }
+}
+
+export class UpdateOrganizationBillingTierRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getBillingTier(): string;
+  setBillingTier(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateOrganizationBillingTierRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateOrganizationBillingTierRequest): UpdateOrganizationBillingTierRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateOrganizationBillingTierRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateOrganizationBillingTierRequest;
+  static deserializeBinaryFromReader(message: UpdateOrganizationBillingTierRequest, reader: jspb.BinaryReader): UpdateOrganizationBillingTierRequest;
+}
+
+export namespace UpdateOrganizationBillingTierRequest {
+  export type AsObject = {
+    organizationId: string,
+    billingTier: string,
+  }
+}
+
+export class UpdateOrganizationBillingTierResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateOrganizationBillingTierResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateOrganizationBillingTierResponse): UpdateOrganizationBillingTierResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateOrganizationBillingTierResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateOrganizationBillingTierResponse;
+  static deserializeBinaryFromReader(message: UpdateOrganizationBillingTierResponse, reader: jspb.BinaryReader): UpdateOrganizationBillingTierResponse;
+}
+
+export namespace UpdateOrganizationBillingTierResponse {
+  export type AsObject = {
+  }
+}
+
 export interface PaymentMethodTypeMap {
   PAYMENT_METHOD_TYPE_UNSPECIFIED: 0;
   PAYMENT_METHOD_TYPE_CARD: 1;

@@ -49,6 +49,24 @@ type BillingServiceSendPaymentRequiredEmail = {
   readonly responseType: typeof app_v1_billing_pb.SendPaymentRequiredEmailResponse;
 };
 
+type BillingServiceGetAvailableBillingTiers = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.GetAvailableBillingTiersRequest;
+  readonly responseType: typeof app_v1_billing_pb.GetAvailableBillingTiersResponse;
+};
+
+type BillingServiceUpdateOrganizationBillingTier = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.UpdateOrganizationBillingTierRequest;
+  readonly responseType: typeof app_v1_billing_pb.UpdateOrganizationBillingTierResponse;
+};
+
 export class BillingService {
   static readonly serviceName: string;
   static readonly GetCurrentMonthUsage: BillingServiceGetCurrentMonthUsage;
@@ -56,6 +74,8 @@ export class BillingService {
   static readonly GetInvoicesSummary: BillingServiceGetInvoicesSummary;
   static readonly GetInvoicePdf: BillingServiceGetInvoicePdf;
   static readonly SendPaymentRequiredEmail: BillingServiceSendPaymentRequiredEmail;
+  static readonly GetAvailableBillingTiers: BillingServiceGetAvailableBillingTiers;
+  static readonly UpdateOrganizationBillingTier: BillingServiceUpdateOrganizationBillingTier;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -126,6 +146,24 @@ export class BillingServiceClient {
   sendPaymentRequiredEmail(
     requestMessage: app_v1_billing_pb.SendPaymentRequiredEmailRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.SendPaymentRequiredEmailResponse|null) => void
+  ): UnaryResponse;
+  getAvailableBillingTiers(
+    requestMessage: app_v1_billing_pb.GetAvailableBillingTiersRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetAvailableBillingTiersResponse|null) => void
+  ): UnaryResponse;
+  getAvailableBillingTiers(
+    requestMessage: app_v1_billing_pb.GetAvailableBillingTiersRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetAvailableBillingTiersResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationBillingTier(
+    requestMessage: app_v1_billing_pb.UpdateOrganizationBillingTierRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.UpdateOrganizationBillingTierResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationBillingTier(
+    requestMessage: app_v1_billing_pb.UpdateOrganizationBillingTierRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.UpdateOrganizationBillingTierResponse|null) => void
   ): UnaryResponse;
 }
 

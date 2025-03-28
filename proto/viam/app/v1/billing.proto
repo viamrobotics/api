@@ -17,6 +17,10 @@ service BillingService {
   rpc GetInvoicePdf(GetInvoicePdfRequest) returns (stream GetInvoicePdfResponse);
   // Send an email with a prompt to the user's org's billing page.
   rpc SendPaymentRequiredEmail(SendPaymentRequiredEmailRequest) returns (SendPaymentRequiredEmailResponse);
+  // Get available billing tiers that can be assigned to organizations
+  rpc GetAvailableBillingTiers(GetAvailableBillingTiersRequest) returns (GetAvailableBillingTiersResponse);
+  // Update an organization's billing tier
+  rpc UpdateOrganizationBillingTier(UpdateOrganizationBillingTierRequest) returns (UpdateOrganizationBillingTierResponse);
 }
 
 message InvoiceSummary {
@@ -153,3 +157,16 @@ message SendPaymentRequiredEmailRequest {
 }
 
 message SendPaymentRequiredEmailResponse {}
+
+message GetAvailableBillingTiersRequest {}
+
+message GetAvailableBillingTiersResponse {
+  repeated string tiers = 1;
+}
+
+message UpdateOrganizationBillingTierRequest {
+  string organization_id = 1;
+  string billing_tier = 2;
+}
+
+message UpdateOrganizationBillingTierResponse {}
