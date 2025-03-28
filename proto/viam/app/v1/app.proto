@@ -1619,6 +1619,7 @@ message OrgDetails {
   string org_name = 2;
   optional string org_cid = 3;
   optional string public_namespace = 4;
+  optional string billing_tier = 5;
 }
 
 message ListOrganizationsByUserResponse {
