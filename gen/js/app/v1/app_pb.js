@@ -41914,8 +41914,8 @@ proto.viam.app.v1.UpdateModuleRequest.serializeBinaryToWriter = function(message
       proto.viam.app.v1.App.serializeBinaryToWriter
     );
   }
-  f = message.getMarkdownDescription();
-  if (f.length > 0) {
+  f = /** @type {string} */ (jspb.Message.getField(message, 9));
+  if (f != null) {
     writer.writeString(
       9,
       f
@@ -42140,7 +42140,25 @@ proto.viam.app.v1.UpdateModuleRequest.prototype.getMarkdownDescription = functio
  * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
  */
 proto.viam.app.v1.UpdateModuleRequest.prototype.setMarkdownDescription = function(value) {
-  return jspb.Message.setProto3StringField(this, 9, value);
+  return jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.clearMarkdownDescription = function() {
+  return jspb.Message.setField(this, 9, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.hasMarkdownDescription = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 

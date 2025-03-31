@@ -5212,6 +5212,8 @@ export class UpdateModuleRequest extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasMarkdownDescription(): boolean;
+  clearMarkdownDescription(): void;
   getMarkdownDescription(): string;
   setMarkdownDescription(value: string): void;
 
