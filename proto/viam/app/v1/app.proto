@@ -1460,7 +1460,7 @@ message UpdateModuleRequest {
   // A list of applications associated with the module
   repeated App apps = 8;
   // longer documentation provided in markdown format
-  string markdown_description = 9;
+  optional string markdown_description = 9;
 }
 
 message App {
