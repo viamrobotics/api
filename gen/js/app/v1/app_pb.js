@@ -37280,7 +37280,8 @@ proto.viam.app.v1.ModuleMetadata.toObject = function(includeInstance, msg) {
     versionsList: jspb.Message.toObjectList(msg.getVersionsList(),
     proto.viam.app.v1.ModuleVersion.toObject, includeInstance),
     entrypoint: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    firstRun: jspb.Message.getFieldWithDefault(msg, 4, "")
+    firstRun: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    markdownDescription: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -37334,6 +37335,10 @@ proto.viam.app.v1.ModuleMetadata.deserializeBinaryFromReader = function(msg, rea
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setFirstRun(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMarkdownDescription(value);
       break;
     default:
       reader.skipField();
@@ -37391,6 +37396,13 @@ proto.viam.app.v1.ModuleMetadata.serializeBinaryToWriter = function(message, wri
   if (f != null) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -37524,6 +37536,42 @@ proto.viam.app.v1.ModuleMetadata.prototype.clearFirstRun = function() {
  */
 proto.viam.app.v1.ModuleMetadata.prototype.hasFirstRun = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional string markdown_description = 5;
+ * @return {string}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.getMarkdownDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.setMarkdownDescription = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.clearMarkdownDescription = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.hasMarkdownDescription = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -39602,7 +39650,8 @@ proto.viam.app.v1.UpdateRegistryItemRequest.toObject = function(includeInstance,
     url: jspb.Message.getFieldWithDefault(msg, 5, ""),
     updateModuleMetadata: (f = msg.getUpdateModuleMetadata()) && proto.viam.app.v1.UpdateModuleMetadata.toObject(includeInstance, f),
     updateMlModelMetadata: (f = msg.getUpdateMlModelMetadata()) && proto.viam.app.v1.UpdateMLModelMetadata.toObject(includeInstance, f),
-    updateMlTrainingMetadata: (f = msg.getUpdateMlTrainingMetadata()) && proto.viam.app.v1.UpdateMLTrainingMetadata.toObject(includeInstance, f)
+    updateMlTrainingMetadata: (f = msg.getUpdateMlTrainingMetadata()) && proto.viam.app.v1.UpdateMLTrainingMetadata.toObject(includeInstance, f),
+    markdownDescription: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -39673,6 +39722,10 @@ proto.viam.app.v1.UpdateRegistryItemRequest.deserializeBinaryFromReader = functi
       var value = new proto.viam.app.v1.UpdateMLTrainingMetadata;
       reader.readMessage(value,proto.viam.app.v1.UpdateMLTrainingMetadata.deserializeBinaryFromReader);
       msg.setUpdateMlTrainingMetadata(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMarkdownDescription(value);
       break;
     default:
       reader.skipField();
@@ -39760,6 +39813,13 @@ proto.viam.app.v1.UpdateRegistryItemRequest.serializeBinaryToWriter = function(m
       8,
       f,
       proto.viam.app.v1.UpdateMLTrainingMetadata.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 9));
+  if (f != null) {
+    writer.writeString(
+      9,
+      f
     );
   }
 };
@@ -39981,6 +40041,42 @@ proto.viam.app.v1.UpdateRegistryItemRequest.prototype.clearUpdateMlTrainingMetad
  */
 proto.viam.app.v1.UpdateRegistryItemRequest.prototype.hasUpdateMlTrainingMetadata = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional string markdown_description = 9;
+ * @return {string}
+ */
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.getMarkdownDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UpdateRegistryItemRequest} returns this
+ */
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.setMarkdownDescription = function(value) {
+  return jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateRegistryItemRequest} returns this
+ */
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.clearMarkdownDescription = function() {
+  return jspb.Message.setField(this, 9, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateRegistryItemRequest.prototype.hasMarkdownDescription = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
@@ -41655,7 +41751,8 @@ proto.viam.app.v1.UpdateModuleRequest.toObject = function(includeInstance, msg) 
     entrypoint: jspb.Message.getFieldWithDefault(msg, 6, ""),
     firstRun: jspb.Message.getFieldWithDefault(msg, 7, ""),
     appsList: jspb.Message.toObjectList(msg.getAppsList(),
-    proto.viam.app.v1.App.toObject, includeInstance)
+    proto.viam.app.v1.App.toObject, includeInstance),
+    markdownDescription: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -41725,6 +41822,10 @@ proto.viam.app.v1.UpdateModuleRequest.deserializeBinaryFromReader = function(msg
       var value = new proto.viam.app.v1.App;
       reader.readMessage(value,proto.viam.app.v1.App.deserializeBinaryFromReader);
       msg.addApps(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMarkdownDescription(value);
       break;
     default:
       reader.skipField();
@@ -41811,6 +41912,13 @@ proto.viam.app.v1.UpdateModuleRequest.serializeBinaryToWriter = function(message
       8,
       f,
       proto.viam.app.v1.App.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 9));
+  if (f != null) {
+    writer.writeString(
+      9,
+      f
     );
   }
 };
@@ -42015,6 +42123,42 @@ proto.viam.app.v1.UpdateModuleRequest.prototype.addApps = function(opt_value, op
  */
 proto.viam.app.v1.UpdateModuleRequest.prototype.clearAppsList = function() {
   return this.setAppsList([]);
+};
+
+
+/**
+ * optional string markdown_description = 9;
+ * @return {string}
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.getMarkdownDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.setMarkdownDescription = function(value) {
+  return jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.clearMarkdownDescription = function() {
+  return jspb.Message.setField(this, 9, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.hasMarkdownDescription = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
