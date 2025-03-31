@@ -1273,6 +1273,8 @@ message ModuleMetadata {
   string entrypoint = 3;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 4;
+  // markdown content for the entire module
+  optional string markdown_description = 5;
 }
 
 message MLModelMetadata {
