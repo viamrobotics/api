@@ -1371,6 +1371,8 @@ message UpdateRegistryItemRequest {
     UpdateMLModelMetadata update_ml_model_metadata = 7;
     UpdateMLTrainingMetadata update_ml_training_metadata = 8;
   }
+
+  optional string markdown_description = 9;
 }
 
 message UpdateRegistryItemResponse {}
@@ -1455,6 +1457,8 @@ message UpdateModuleRequest {
   optional string first_run = 7;
   // A list of applications associated with the module
   repeated App apps = 8;
+  // longer documentation provided in markdown format
+  optional string markdown_description = 9;
 }
 
 message App {
