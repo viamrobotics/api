@@ -4906,6 +4906,11 @@ export class UpdateRegistryItemRequest extends jspb.Message {
   getUpdateMlTrainingMetadata(): UpdateMLTrainingMetadata | undefined;
   setUpdateMlTrainingMetadata(value?: UpdateMLTrainingMetadata): void;
 
+  hasMarkdownDescription(): boolean;
+  clearMarkdownDescription(): void;
+  getMarkdownDescription(): string;
+  setMarkdownDescription(value: string): void;
+
   getMetadataCase(): UpdateRegistryItemRequest.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRegistryItemRequest.AsObject;
@@ -4927,6 +4932,7 @@ export namespace UpdateRegistryItemRequest {
     updateModuleMetadata?: UpdateModuleMetadata.AsObject,
     updateMlModelMetadata?: UpdateMLModelMetadata.AsObject,
     updateMlTrainingMetadata?: UpdateMLTrainingMetadata.AsObject,
+    markdownDescription: string,
   }
 
   export enum MetadataCase {
@@ -5200,6 +5206,11 @@ export class UpdateModuleRequest extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasMarkdownDescription(): boolean;
+  clearMarkdownDescription(): void;
+  getMarkdownDescription(): string;
+  setMarkdownDescription(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleRequest): UpdateModuleRequest.AsObject;
@@ -5220,6 +5231,7 @@ export namespace UpdateModuleRequest {
     entrypoint: string,
     firstRun: string,
     appsList: Array<App.AsObject>,
+    markdownDescription: string,
   }
 }
 
