@@ -4570,6 +4570,11 @@ export class ModuleMetadata extends jspb.Message {
   getFirstRun(): string;
   setFirstRun(value: string): void;
 
+  hasMarkdownDescription(): boolean;
+  clearMarkdownDescription(): void;
+  getMarkdownDescription(): string;
+  setMarkdownDescription(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleMetadata): ModuleMetadata.AsObject;
@@ -4586,6 +4591,7 @@ export namespace ModuleMetadata {
     versionsList: Array<ModuleVersion.AsObject>,
     entrypoint: string,
     firstRun: string,
+    markdownDescription: string,
   }
 }
 
