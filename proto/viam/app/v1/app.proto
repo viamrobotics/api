@@ -1261,6 +1261,8 @@ message ModuleVersion {
   string entrypoint = 4;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 5;
+  // The markdown documentation for this version of the module
+  optional string markdown_description = 6;
 }
 
 message ModuleMetadata {
