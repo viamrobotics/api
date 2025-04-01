@@ -1575,6 +1575,8 @@ message Module {
   string public_namespace = 12;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 13;
+  // Longer documentation provided in markdown format
+  optional string markdown_description = 14;
 }
 
 message VersionHistory {
@@ -1588,6 +1590,8 @@ message VersionHistory {
   string entrypoint = 4;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 5;
+  // The markdown documentation for this version of the module
+  optional string markdown_description = 6;
 }
 
 message Uploads {

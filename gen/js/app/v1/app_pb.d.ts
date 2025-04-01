@@ -5594,6 +5594,11 @@ export class Module extends jspb.Message {
   getFirstRun(): string;
   setFirstRun(value: string): void;
 
+  hasMarkdownDescription(): boolean;
+  clearMarkdownDescription(): void;
+  getMarkdownDescription(): string;
+  setMarkdownDescription(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Module.AsObject;
   static toObject(includeInstance: boolean, msg: Module): Module.AsObject;
@@ -5619,6 +5624,7 @@ export namespace Module {
     entrypoint: string,
     publicNamespace: string,
     firstRun: string,
+    markdownDescription: string,
   }
 }
 
@@ -5644,6 +5650,11 @@ export class VersionHistory extends jspb.Message {
   getFirstRun(): string;
   setFirstRun(value: string): void;
 
+  hasMarkdownDescription(): boolean;
+  clearMarkdownDescription(): void;
+  getMarkdownDescription(): string;
+  setMarkdownDescription(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): VersionHistory.AsObject;
   static toObject(includeInstance: boolean, msg: VersionHistory): VersionHistory.AsObject;
@@ -5661,6 +5672,7 @@ export namespace VersionHistory {
     modelsList: Array<Model.AsObject>,
     entrypoint: string,
     firstRun: string,
+    markdownDescription: string,
   }
 }
 
