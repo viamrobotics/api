@@ -22,6 +22,9 @@ service DataPipelinesService {
 
   // DeleteDataPipeline deletes a data pipeline from the database.
   rpc DeleteDataPipeline(DeleteDataPipelineRequest) returns (DeleteDataPipelineResponse);
+
+  // PipelineDataByMQL requests data from a data pipeline using an MQL query.
+  rpc PipelineDataByMQL(PipelineDataByMQLRequest) returns (PipelineDataByMQLResponse);
 }
 
 message DataPipeline {
@@ -117,3 +120,14 @@ message DeleteDataPipelineRequest {
 }
 
 message DeleteDataPipelineResponse {}
+
+message PipelineDataByMQLRequest {
+  string organization_id = 1;
+  string pipeline_id = 2;
+  repeated bytes mql_binary = 3;
+}
+
+message PipelineDataByMQLResponse {
+  repeated bytes raw_data = 1;
+}
+
