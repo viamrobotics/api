@@ -46,13 +46,17 @@ service DataService {
   rpc AddTagsToBinaryDataByIDs(AddTagsToBinaryDataByIDsRequest) returns (AddTagsToBinaryDataByIDsResponse);
 
   // AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
-  rpc AddTagsToBinaryDataByFilter(AddTagsToBinaryDataByFilterRequest) returns (AddTagsToBinaryDataByFilterResponse);
+  rpc AddTagsToBinaryDataByFilter(AddTagsToBinaryDataByFilterRequest) returns (AddTagsToBinaryDataByFilterResponse) {
+    option deprecated = true;
+  }
 
   // RemoveTagsToBinaryDataByIDs removes string tags from binary data based on given IDs.
   rpc RemoveTagsFromBinaryDataByIDs(RemoveTagsFromBinaryDataByIDsRequest) returns (RemoveTagsFromBinaryDataByIDsResponse);
 
   // RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
-  rpc RemoveTagsFromBinaryDataByFilter(RemoveTagsFromBinaryDataByFilterRequest) returns (RemoveTagsFromBinaryDataByFilterResponse);
+  rpc RemoveTagsFromBinaryDataByFilter(RemoveTagsFromBinaryDataByFilterRequest) returns (RemoveTagsFromBinaryDataByFilterResponse) {
+    option deprecated = true;
+  }
 
   // TagsByFilter gets all unique tags from data based on given filter.
   rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse);
