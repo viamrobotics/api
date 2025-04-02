@@ -4531,6 +4531,11 @@ export class ModuleVersion extends jspb.Message {
   getFirstRun(): string;
   setFirstRun(value: string): void;
 
+  hasMarkdownDescription(): boolean;
+  clearMarkdownDescription(): void;
+  getMarkdownDescription(): string;
+  setMarkdownDescription(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleVersion.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleVersion): ModuleVersion.AsObject;
@@ -4548,6 +4553,7 @@ export namespace ModuleVersion {
     modelsList: Array<Model.AsObject>,
     entrypoint: string,
     firstRun: string,
+    markdownDescription: string,
   }
 }
 
