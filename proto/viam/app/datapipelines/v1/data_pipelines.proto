@@ -22,6 +22,12 @@ service DataPipelinesService {
 
   // DeleteDataPipeline deletes a data pipeline from the database.
   rpc DeleteDataPipeline(DeleteDataPipelineRequest) returns (DeleteDataPipelineResponse);
+
+  // EnableDataPipeline enables a data pipeline.
+  rpc EnableDataPipeline(EnableDataPipelineRequest) returns (EnableDataPipelineResponse);
+
+  // DisableDataPipeline disables a data pipeline.
+  rpc DisableDataPipeline(DisableDataPipelineRequest) returns (DisableDataPipelineResponse);
 }
 
 message DataPipeline {
@@ -104,9 +110,6 @@ message UpdateDataPipelineRequest {
   // A cron expression representing the expected execution schedule in UTC (note this also
   // defines the input time window; an hourly schedule would process 1 hour of data at a time).
   string schedule = 4;
-
-  // Whether or not the pipeline is enabled.
-  bool enabled = 5;
 }
 
 message UpdateDataPipelineResponse {}
@@ -117,3 +120,17 @@ message DeleteDataPipelineRequest {
 }
 
 message DeleteDataPipelineResponse {}
+
+message EnableDataPipelineRequest {
+  // The ID of the data pipeline to enable.
+  string id = 1;
+}
+
+message EnableDataPipelineResponse {}
+
+message DisableDataPipelineRequest {
+  // The ID of the data pipeline to disable.
+  string id = 1;
+}
+
+message DisableDataPipelineResponse {}
