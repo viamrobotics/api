@@ -225,7 +225,7 @@ enum TabularDataSourceType {
   TABULAR_DATA_SOURCE_TYPE_COLD_STORAGE = 1;
   // TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE indicates reading from hot storage. This is a
   // premium feature requiring opting in specific data sources.
-  // See docs at https://docs.viam.com/data-ai/capture-data/advanced/advanced-data-capture-sync/?source=searchResultItem#capture-to-the-hot-data-store
+  // See docs at https://docs.viam.com/data-ai/capture-data/advanced/advanced-data-capture-sync/#capture-to-the-hot-data-store
   TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE = 2;
   // TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK indicates reading the output data of
   // a data pipeline. When using this, a pipeline ID needs to be specified.
