@@ -247,6 +247,7 @@ message TabularDataByMQLRequest {
   // document is one stage in the pipeline. The pipeline is run on the "sensorData.readings"
   // namespace, which holds the Viam organization's tabular data.
   repeated bytes mql_binary = 3;
+  // Deprecated, please use TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE instead.
   optional bool use_recent_data = 4;
   // data_source is an optional field that can be used to specify the data source for the query.
   // If not specified, the query will run on "cold" storage.
