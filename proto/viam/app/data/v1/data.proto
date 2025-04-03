@@ -218,13 +218,14 @@ message TabularDataBySQLResponse {
 }
 
 enum DataSourceType {
-  COLD_STORAGE = 0;
-  HOT_STORAGE = 1;
-  PIPELINE_SINK = 2;
+  DATA_SOURCE_TYPE_UNSPECIFIED = 0;
+  DATA_SOURCE_TYPE_COLD_STORAGE = 1;
+  DATA_SOURCE_TYPE_HOT_STORAGE = 2;
+  DATA_SOURCE_TYPE_PIPELINE_SINK = 3;
 }
 message DataSource {
   DataSourceType type = 1;
-  string pipelineID = 2;
+  string pipeline_id = 2;
 }
 
 // TabularDataByMQLRequest requests tabular data using an MQL query.
@@ -239,12 +240,8 @@ message TabularDataByMQLRequest {
   // If not specified, the query will run on "cold" storage.
   optional DataSource data_source = 6;
 
-  reserved 2;
-  reserved "mql_query";
-  // if set, MQL query will target the sink collection for the data pipeline name
-  // referenced by this value under the given organization.
-  reserved 5;
-  reserved "use_data_pipeline";
+  reserved 2, 5;
+  reserved "mql_query", "use_data_pipeline";
 }
 
 // TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.
