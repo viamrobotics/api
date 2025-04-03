@@ -217,15 +217,22 @@ message TabularDataBySQLResponse {
   reserved "data";
 }
 
-enum DataSourceType {
+// TabularDataSourceType specifies the data source type for querying.
+enum TabularDataSourceType {
   DATA_SOURCE_TYPE_UNSPECIFIED = 0;
+  // DATA_SOURCE_TYPE_COLD_STORAGE specifies the data source as cold storage.
   DATA_SOURCE_TYPE_COLD_STORAGE = 1;
+  // DATA_SOURCE_TYPE_HOT_STORAGE specifies the data source as hot storage.
   DATA_SOURCE_TYPE_HOT_STORAGE = 2;
+  // DATA_SOURCE_TYPE_PIPELINE_SINK specifies the data source as a pipeline sink.
   DATA_SOURCE_TYPE_PIPELINE_SINK = 3;
 }
-message DataSource {
-  DataSourceType type = 1;
-  string pipeline_id = 2;
+
+// TabularDataSource specifies the data source for user queries to execute on.
+message TabularDataSource {
+  TabularDataSourceType type = 1;
+  // pipeline_id is the ID of the pipeline to query.
+  optional string pipeline_id = 2;
 }
 
 // TabularDataByMQLRequest requests tabular data using an MQL query.
@@ -238,7 +245,7 @@ message TabularDataByMQLRequest {
   optional bool use_recent_data = 4;
   // data_source is an optional field that can be used to specify the data source for the query.
   // If not specified, the query will run on "cold" storage.
-  optional DataSource data_source = 6;
+  optional TabularDataSource data_source = 6;
 
   reserved 2, 5;
   reserved "mql_query", "use_data_pipeline";
