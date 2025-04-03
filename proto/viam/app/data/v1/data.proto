@@ -220,9 +220,9 @@ message TabularDataBySQLResponse {
 // TabularDataSourceType specifies the data source type for TabularDataByMQL queries.
 enum TabularDataSourceType {
   TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED = 0;
-  // TABULAR_DATA_SOURCE_TYPE_COLD_STORAGE indicates reading from cold storage. This is
+  // TABULAR_DATA_SOURCE_TYPE_STANDARD indicates reading from standard storage. This is
   // the default option and available for all data synced to Viam.
-  TABULAR_DATA_SOURCE_TYPE_COLD_STORAGE = 1;
+  TABULAR_DATA_SOURCE_TYPE_STANDARD = 1;
   // TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE indicates reading from hot storage. This is a
   // premium feature requiring opting in specific data sources.
   // See docs at https://docs.viam.com/data-ai/capture-data/advanced/advanced-data-capture-sync/#capture-to-the-hot-data-store
