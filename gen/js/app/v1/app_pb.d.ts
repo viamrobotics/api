@@ -3511,6 +3511,60 @@ export namespace AdditionalFragment {
   }
 }
 
+export class ListFragmentNestedFragmentsRequest extends jspb.Message {
+  getFragmentId(): string;
+  setFragmentId(value: string): void;
+
+  clearAdditionalFragmentsList(): void;
+  getAdditionalFragmentsList(): Array<AdditionalFragment>;
+  setAdditionalFragmentsList(value: Array<AdditionalFragment>): void;
+  addAdditionalFragments(value?: AdditionalFragment, index?: number): AdditionalFragment;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListFragmentNestedFragmentsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListFragmentNestedFragmentsRequest): ListFragmentNestedFragmentsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListFragmentNestedFragmentsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListFragmentNestedFragmentsRequest;
+  static deserializeBinaryFromReader(message: ListFragmentNestedFragmentsRequest, reader: jspb.BinaryReader): ListFragmentNestedFragmentsRequest;
+}
+
+export namespace ListFragmentNestedFragmentsRequest {
+  export type AsObject = {
+    fragmentId: string,
+    additionalFragmentsList: Array<AdditionalFragment.AsObject>,
+  }
+}
+
+export class ListFragmentNestedFragmentsResponse extends jspb.Message {
+  clearFragmentsList(): void;
+  getFragmentsList(): Array<Fragment>;
+  setFragmentsList(value: Array<Fragment>): void;
+  addFragments(value?: Fragment, index?: number): Fragment;
+
+  clearResolvedFragmentsList(): void;
+  getResolvedFragmentsList(): Array<ResolvedFragment>;
+  setResolvedFragmentsList(value: Array<ResolvedFragment>): void;
+  addResolvedFragments(value?: ResolvedFragment, index?: number): ResolvedFragment;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListFragmentNestedFragmentsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListFragmentNestedFragmentsResponse): ListFragmentNestedFragmentsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListFragmentNestedFragmentsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListFragmentNestedFragmentsResponse;
+  static deserializeBinaryFromReader(message: ListFragmentNestedFragmentsResponse, reader: jspb.BinaryReader): ListFragmentNestedFragmentsResponse;
+}
+
+export namespace ListFragmentNestedFragmentsResponse {
+  export type AsObject = {
+    fragmentsList: Array<Fragment.AsObject>,
+    resolvedFragmentsList: Array<ResolvedFragment.AsObject>,
+  }
+}
+
 export class ListMachineFragmentsRequest extends jspb.Message {
   getMachineId(): string;
   setMachineId(value: string): void;

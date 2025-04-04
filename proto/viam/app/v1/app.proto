@@ -223,6 +223,9 @@ service AppService {
   // Deletes a fragment
   rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
 
+  // List nested fragments for a fragment
+  rpc ListFragmentNestedFragments(ListFragmentNestedFragmentsRequest) returns (ListFragmentNestedFragmentsResponse);
+
   // Gets top level and nested fragments for a machine, as well as any other specified fragment ids
   rpc ListMachineFragments(ListMachineFragmentsRequest) returns (ListMachineFragmentsResponse);
 
@@ -1056,6 +1059,16 @@ message ListRobotsRequest {
 message AdditionalFragment {
   string fragment_id = 1;
   optional string version = 2;
+}
+
+message ListFragmentNestedFragmentsRequest {
+  string fragment_id = 1;
+  repeated AdditionalFragment additional_fragments = 2;
+}
+
+message ListFragmentNestedFragmentsResponse {
+  repeated Fragment fragments = 1;
+  repeated ResolvedFragment resolved_fragments = 2;
 }
 
 message ListMachineFragmentsRequest {

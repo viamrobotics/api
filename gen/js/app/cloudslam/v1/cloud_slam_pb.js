@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -413,18 +419,18 @@ proto.viam.app.cloudslam.v1.StartMappingSessionRequest.prototype.toObject = func
  */
 proto.viam.app.cloudslam.v1.StartMappingSessionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    slamVersion: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    viamServerVersion: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    mapName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    robotId: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    captureInterval: (f = msg.getCaptureInterval()) && proto.viam.app.cloudslam.v1.CaptureInterval.toObject(includeInstance, f),
-    sensorsList: jspb.Message.toObjectList(msg.getSensorsList(),
+slamVersion: jspb.Message.getFieldWithDefault(msg, 1, ""),
+viamServerVersion: jspb.Message.getFieldWithDefault(msg, 2, ""),
+mapName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+organizationId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+locationId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+robotId: jspb.Message.getFieldWithDefault(msg, 6, ""),
+captureInterval: (f = msg.getCaptureInterval()) && proto.viam.app.cloudslam.v1.CaptureInterval.toObject(includeInstance, f),
+sensorsList: jspb.Message.toObjectList(msg.getSensorsList(),
     proto.viam.app.cloudslam.v1.SensorInfo.toObject, includeInstance),
-    slamConfig: (f = msg.getSlamConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    existingMapVersion: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    module: (f = msg.getModule()) && proto.viam.app.cloudslam.v1.Module.toObject(includeInstance, f)
+slamConfig: (f = msg.getSlamConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+existingMapVersion: jspb.Message.getFieldWithDefault(msg, 11, ""),
+module: (f = msg.getModule()) && proto.viam.app.cloudslam.v1.Module.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -929,9 +935,9 @@ proto.viam.app.cloudslam.v1.Module.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.cloudslam.v1.Module.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    moduleId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 4, "")
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+moduleId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+version: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -1119,9 +1125,9 @@ proto.viam.app.cloudslam.v1.SensorInfo.prototype.toObject = function(opt_include
  */
 proto.viam.app.cloudslam.v1.SensorInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sourceComponentName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    dataFrequencyHz: jspb.Message.getFieldWithDefault(msg, 3, "")
+sourceComponentName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+type: jspb.Message.getFieldWithDefault(msg, 2, ""),
+dataFrequencyHz: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1309,8 +1315,8 @@ proto.viam.app.cloudslam.v1.CaptureInterval.prototype.toObject = function(opt_in
  */
 proto.viam.app.cloudslam.v1.CaptureInterval.toObject = function(includeInstance, msg) {
   var f, obj = {
-    startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1511,7 +1517,7 @@ proto.viam.app.cloudslam.v1.StartMappingSessionResponse.prototype.toObject = fun
  */
 proto.viam.app.cloudslam.v1.StartMappingSessionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1641,7 +1647,7 @@ proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotRequest.prototype.to
  */
 proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    robotId: jspb.Message.getFieldWithDefault(msg, 1, "")
+robotId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1771,7 +1777,7 @@ proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotResponse.prototype.t
  */
 proto.viam.app.cloudslam.v1.GetActiveMappingSessionsForRobotResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1901,7 +1907,7 @@ proto.viam.app.cloudslam.v1.GetMappingSessionPointCloudRequest.prototype.toObjec
  */
 proto.viam.app.cloudslam.v1.GetMappingSessionPointCloudRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2031,8 +2037,8 @@ proto.viam.app.cloudslam.v1.GetMappingSessionPointCloudResponse.prototype.toObje
  */
 proto.viam.app.cloudslam.v1.GetMappingSessionPointCloudResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    mapUrl: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pose: (f = msg.getPose()) && common_v1_common_pb.Pose.toObject(includeInstance, f)
+mapUrl: jspb.Message.getFieldWithDefault(msg, 1, ""),
+pose: (f = msg.getPose()) && common_v1_common_pb.Pose.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2212,8 +2218,8 @@ proto.viam.app.cloudslam.v1.ListMappingSessionsRequest.prototype.toObject = func
  */
 proto.viam.app.cloudslam.v1.ListMappingSessionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 2, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+locationId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2379,7 +2385,7 @@ proto.viam.app.cloudslam.v1.ListMappingSessionsResponse.prototype.toObject = fun
  */
 proto.viam.app.cloudslam.v1.ListMappingSessionsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionList: jspb.Message.toObjectList(msg.getSessionList(),
+sessionList: jspb.Message.toObjectList(msg.getSessionList(),
     proto.viam.app.cloudslam.v1.MappingMetadata.toObject, includeInstance)
   };
 
@@ -2532,7 +2538,7 @@ proto.viam.app.cloudslam.v1.StopMappingSessionRequest.prototype.toObject = funct
  */
 proto.viam.app.cloudslam.v1.StopMappingSessionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2662,8 +2668,8 @@ proto.viam.app.cloudslam.v1.StopMappingSessionResponse.prototype.toObject = func
  */
 proto.viam.app.cloudslam.v1.StopMappingSessionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    packageId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 2, "")
+packageId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+version: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2822,7 +2828,7 @@ proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDRequest.prototype.toObj
  */
 proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
+sessionId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2952,7 +2958,7 @@ proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDResponse.prototype.toOb
  */
 proto.viam.app.cloudslam.v1.GetMappingSessionMetadataByIDResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sessionMetadata: (f = msg.getSessionMetadata()) && proto.viam.app.cloudslam.v1.MappingMetadata.toObject(includeInstance, f)
+sessionMetadata: (f = msg.getSessionMetadata()) && proto.viam.app.cloudslam.v1.MappingMetadata.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3103,20 +3109,20 @@ proto.viam.app.cloudslam.v1.MappingMetadata.prototype.toObject = function(opt_in
  */
 proto.viam.app.cloudslam.v1.MappingMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    robotId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    timeStartSubmitted: (f = msg.getTimeStartSubmitted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    timeCloudRunJobStarted: (f = msg.getTimeCloudRunJobStarted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    timeEndSubmitted: (f = msg.getTimeEndSubmitted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    timeCloudRunJobEnded: (f = msg.getTimeCloudRunJobEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endStatus: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    cloudRunJobId: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    viamServerVersion: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    mapName: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    slamVersion: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    config: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    errorMsg: jspb.Message.getFieldWithDefault(msg, 14, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+locationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+robotId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+timeStartSubmitted: (f = msg.getTimeStartSubmitted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+timeCloudRunJobStarted: (f = msg.getTimeCloudRunJobStarted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+timeEndSubmitted: (f = msg.getTimeEndSubmitted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+timeCloudRunJobEnded: (f = msg.getTimeCloudRunJobEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+endStatus: jspb.Message.getFieldWithDefault(msg, 8, 0),
+cloudRunJobId: jspb.Message.getFieldWithDefault(msg, 9, ""),
+viamServerVersion: jspb.Message.getFieldWithDefault(msg, 10, ""),
+mapName: jspb.Message.getFieldWithDefault(msg, 11, ""),
+slamVersion: jspb.Message.getFieldWithDefault(msg, 12, ""),
+config: jspb.Message.getFieldWithDefault(msg, 13, ""),
+errorMsg: jspb.Message.getFieldWithDefault(msg, 14, "")
   };
 
   if (includeInstance) {

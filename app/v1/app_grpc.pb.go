@@ -156,6 +156,8 @@ type AppServiceClient interface {
 	UpdateFragment(ctx context.Context, in *UpdateFragmentRequest, opts ...grpc.CallOption) (*UpdateFragmentResponse, error)
 	// Deletes a fragment
 	DeleteFragment(ctx context.Context, in *DeleteFragmentRequest, opts ...grpc.CallOption) (*DeleteFragmentResponse, error)
+	// List nested fragments for a fragment
+	ListFragmentNestedFragments(ctx context.Context, in *ListFragmentNestedFragmentsRequest, opts ...grpc.CallOption) (*ListFragmentNestedFragmentsResponse, error)
 	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
 	ListMachineFragments(ctx context.Context, in *ListMachineFragmentsRequest, opts ...grpc.CallOption) (*ListMachineFragmentsResponse, error)
 	// List all machines and their corresponding machine dashboard information
@@ -886,6 +888,15 @@ func (c *appServiceClient) DeleteFragment(ctx context.Context, in *DeleteFragmen
 	return out, nil
 }
 
+func (c *appServiceClient) ListFragmentNestedFragments(ctx context.Context, in *ListFragmentNestedFragmentsRequest, opts ...grpc.CallOption) (*ListFragmentNestedFragmentsResponse, error) {
+	out := new(ListFragmentNestedFragmentsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListFragmentNestedFragments", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) ListMachineFragments(ctx context.Context, in *ListMachineFragmentsRequest, opts ...grpc.CallOption) (*ListMachineFragmentsResponse, error) {
 	out := new(ListMachineFragmentsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListMachineFragments", in, out, opts...)
@@ -1310,6 +1321,8 @@ type AppServiceServer interface {
 	UpdateFragment(context.Context, *UpdateFragmentRequest) (*UpdateFragmentResponse, error)
 	// Deletes a fragment
 	DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error)
+	// List nested fragments for a fragment
+	ListFragmentNestedFragments(context.Context, *ListFragmentNestedFragmentsRequest) (*ListFragmentNestedFragmentsResponse, error)
 	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
 	ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error)
 	// List all machines and their corresponding machine dashboard information
@@ -1575,6 +1588,9 @@ func (UnimplementedAppServiceServer) UpdateFragment(context.Context, *UpdateFrag
 }
 func (UnimplementedAppServiceServer) DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFragment not implemented")
+}
+func (UnimplementedAppServiceServer) ListFragmentNestedFragments(context.Context, *ListFragmentNestedFragmentsRequest) (*ListFragmentNestedFragmentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFragmentNestedFragments not implemented")
 }
 func (UnimplementedAppServiceServer) ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMachineFragments not implemented")
@@ -2993,6 +3009,24 @@ func _AppService_DeleteFragment_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_ListFragmentNestedFragments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFragmentNestedFragmentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListFragmentNestedFragments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListFragmentNestedFragments",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListFragmentNestedFragments(ctx, req.(*ListFragmentNestedFragmentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_ListMachineFragments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListMachineFragmentsRequest)
 	if err := dec(in); err != nil {
@@ -3817,6 +3851,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteFragment",
 			Handler:    _AppService_DeleteFragment_Handler,
+		},
+		{
+			MethodName: "ListFragmentNestedFragments",
+			Handler:    _AppService_ListFragmentNestedFragments_Handler,
 		},
 		{
 			MethodName: "ListMachineFragments",

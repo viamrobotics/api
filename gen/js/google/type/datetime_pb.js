@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js');
 goog.object.extend(proto, google_protobuf_duration_pb);
@@ -120,15 +126,15 @@ proto.google.type.DateTime.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.DateTime.toObject = function(includeInstance, msg) {
   var f, obj = {
-    year: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    month: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    day: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    hours: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    minutes: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    seconds: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    nanos: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    utcOffset: (f = msg.getUtcOffset()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
-    timeZone: (f = msg.getTimeZone()) && proto.google.type.TimeZone.toObject(includeInstance, f)
+year: jspb.Message.getFieldWithDefault(msg, 1, 0),
+month: jspb.Message.getFieldWithDefault(msg, 2, 0),
+day: jspb.Message.getFieldWithDefault(msg, 3, 0),
+hours: jspb.Message.getFieldWithDefault(msg, 4, 0),
+minutes: jspb.Message.getFieldWithDefault(msg, 5, 0),
+seconds: jspb.Message.getFieldWithDefault(msg, 6, 0),
+nanos: jspb.Message.getFieldWithDefault(msg, 7, 0),
+utcOffset: (f = msg.getUtcOffset()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+timeZone: (f = msg.getTimeZone()) && proto.google.type.TimeZone.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -532,8 +538,8 @@ proto.google.type.TimeZone.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.TimeZone.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 2, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+version: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
