@@ -661,6 +661,15 @@ type AppServiceDeleteFragment = {
   readonly responseType: typeof app_v1_app_pb.DeleteFragmentResponse;
 };
 
+type AppServiceListFragmentNestedFragments = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListFragmentNestedFragmentsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListFragmentNestedFragmentsResponse;
+};
+
 type AppServiceListMachineFragments = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -997,6 +1006,7 @@ export class AppService {
   static readonly CreateFragment: AppServiceCreateFragment;
   static readonly UpdateFragment: AppServiceUpdateFragment;
   static readonly DeleteFragment: AppServiceDeleteFragment;
+  static readonly ListFragmentNestedFragments: AppServiceListFragmentNestedFragments;
   static readonly ListMachineFragments: AppServiceListMachineFragments;
   static readonly ListMachineSummaries: AppServiceListMachineSummaries;
   static readonly GetFragmentHistory: AppServiceGetFragmentHistory;
@@ -1708,6 +1718,15 @@ export class AppServiceClient {
   deleteFragment(
     requestMessage: app_v1_app_pb.DeleteFragmentRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteFragmentResponse|null) => void
+  ): UnaryResponse;
+  listFragmentNestedFragments(
+    requestMessage: app_v1_app_pb.ListFragmentNestedFragmentsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListFragmentNestedFragmentsResponse|null) => void
+  ): UnaryResponse;
+  listFragmentNestedFragments(
+    requestMessage: app_v1_app_pb.ListFragmentNestedFragmentsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListFragmentNestedFragmentsResponse|null) => void
   ): UnaryResponse;
   listMachineFragments(
     requestMessage: app_v1_app_pb.ListMachineFragmentsRequest,
