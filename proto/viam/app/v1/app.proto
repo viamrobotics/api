@@ -275,6 +275,8 @@ service AppService {
 
   rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
 
+  rpc RenameModule(RenameModuleRequest) returns (RenameModuleResponse);
+
   rpc UploadModuleFile(stream UploadModuleFileRequest) returns (UploadModuleFileResponse);
 
   rpc GetModule(GetModuleRequest) returns (GetModuleResponse);
@@ -1446,6 +1448,13 @@ message CreateModuleResponse {
   // The detail page of the module
   string url = 2;
 }
+
+message RenameModuleRequest {
+  string module_id = 1;
+  string new_module_name = 2;
+}
+
+message RenameModuleResponse {}
 
 enum Visibility {
   VISIBILITY_UNSPECIFIED = 0;
