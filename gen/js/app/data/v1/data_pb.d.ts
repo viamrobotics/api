@@ -399,6 +399,32 @@ export namespace TabularDataBySQLResponse {
   }
 }
 
+export class TabularDataSource extends jspb.Message {
+  getType(): TabularDataSourceTypeMap[keyof TabularDataSourceTypeMap];
+  setType(value: TabularDataSourceTypeMap[keyof TabularDataSourceTypeMap]): void;
+
+  hasPipelineId(): boolean;
+  clearPipelineId(): void;
+  getPipelineId(): string;
+  setPipelineId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TabularDataSource.AsObject;
+  static toObject(includeInstance: boolean, msg: TabularDataSource): TabularDataSource.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TabularDataSource, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TabularDataSource;
+  static deserializeBinaryFromReader(message: TabularDataSource, reader: jspb.BinaryReader): TabularDataSource;
+}
+
+export namespace TabularDataSource {
+  export type AsObject = {
+    type: TabularDataSourceTypeMap[keyof TabularDataSourceTypeMap],
+    pipelineId: string,
+  }
+}
+
 export class TabularDataByMQLRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
@@ -415,10 +441,10 @@ export class TabularDataByMQLRequest extends jspb.Message {
   getUseRecentData(): boolean;
   setUseRecentData(value: boolean): void;
 
-  hasUseDataPipeline(): boolean;
-  clearUseDataPipeline(): void;
-  getUseDataPipeline(): string;
-  setUseDataPipeline(value: string): void;
+  hasDataSource(): boolean;
+  clearDataSource(): void;
+  getDataSource(): TabularDataSource | undefined;
+  setDataSource(value?: TabularDataSource): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataByMQLRequest.AsObject;
@@ -435,7 +461,7 @@ export namespace TabularDataByMQLRequest {
     organizationId: string,
     mqlBinaryList: Array<Uint8Array | string>,
     useRecentData: boolean,
-    useDataPipeline: string,
+    dataSource?: TabularDataSource.AsObject,
   }
 }
 
@@ -1801,4 +1827,13 @@ export interface TagsFilterTypeMap {
 }
 
 export const TagsFilterType: TagsFilterTypeMap;
+
+export interface TabularDataSourceTypeMap {
+  TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED: 0;
+  TABULAR_DATA_SOURCE_TYPE_STANDARD: 1;
+  TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE: 2;
+  TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK: 3;
+}
+
+export const TabularDataSourceType: TabularDataSourceTypeMap;
 

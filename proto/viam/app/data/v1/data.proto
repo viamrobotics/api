@@ -217,6 +217,29 @@ message TabularDataBySQLResponse {
   reserved "data";
 }
 
+// TabularDataSourceType specifies the data source type for TabularDataByMQL queries.
+enum TabularDataSourceType {
+  TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED = 0;
+  // TABULAR_DATA_SOURCE_TYPE_STANDARD indicates reading from standard storage. This is
+  // the default option and available for all data synced to Viam.
+  TABULAR_DATA_SOURCE_TYPE_STANDARD = 1;
+  // TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE indicates reading from hot storage. This is a
+  // premium feature requiring opting in specific data sources.
+  // See docs at https://docs.viam.com/data-ai/capture-data/advanced/advanced-data-capture-sync/#capture-to-the-hot-data-store
+  TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE = 2;
+  // TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK indicates reading the output data of
+  // a data pipeline. When using this, a pipeline ID needs to be specified.
+  TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK = 3;
+}
+
+// TabularDataSource specifies the data source for user queries to execute on.
+message TabularDataSource {
+  TabularDataSourceType type = 1;
+  // pipeline_id is the ID of the pipeline to query. Required when using
+  // TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK.
+  optional string pipeline_id = 2;
+}
+
 // TabularDataByMQLRequest requests tabular data using an MQL query.
 message TabularDataByMQLRequest {
   string organization_id = 1;
@@ -224,13 +247,14 @@ message TabularDataByMQLRequest {
   // document is one stage in the pipeline. The pipeline is run on the "sensorData.readings"
   // namespace, which holds the Viam organization's tabular data.
   repeated bytes mql_binary = 3;
+  // Deprecated, please use TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE instead.
   optional bool use_recent_data = 4;
-  // if set, MQL query will target the sink collection for the data pipeline name
-  // referenced by this value under the given organization.
-  optional string use_data_pipeline = 5;
+  // data_source is an optional field that can be used to specify the data source for the query.
+  // If not specified, the query will run on "standard" storage.
+  optional TabularDataSource data_source = 6;
 
-  reserved 2;
-  reserved "mql_query";
+  reserved 2, 5;
+  reserved "mql_query", "use_data_pipeline";
 }
 
 // TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.
