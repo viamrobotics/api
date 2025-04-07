@@ -1428,8 +1428,8 @@ message DeleteRegistryItemRequest {
 message DeleteRegistryItemResponse {}
 
 message RenameRegistryItemRequest {
-  string module_id = 1;
-  string new_module_name = 2;
+  string item_id = 1;
+  string new_name = 2;
 }
 
 message RenameRegistryItemResponse {
