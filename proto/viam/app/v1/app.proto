@@ -269,13 +269,13 @@ service AppService {
 
   rpc DeleteRegistryItem(DeleteRegistryItemRequest) returns (DeleteRegistryItemResponse);
 
+  rpc RenameRegistryItem(RenameRegistryItemRequest) returns (RenameRegistryItemResponse);
+
   rpc TransferRegistryItem(TransferRegistryItemRequest) returns (TransferRegistryItemResponse);
 
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
 
   rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
-
-  rpc RenameModule(RenameModuleRequest) returns (RenameModuleResponse);
 
   rpc UploadModuleFile(stream UploadModuleFileRequest) returns (UploadModuleFileResponse);
 
@@ -1427,6 +1427,15 @@ message DeleteRegistryItemRequest {
 
 message DeleteRegistryItemResponse {}
 
+message RenameRegistryItemRequest {
+  string module_id = 1;
+  string new_module_name = 2;
+}
+
+message RenameRegistryItemResponse {
+  RegistryItem item = 1;
+}
+
 message TransferRegistryItemRequest {
   string item_id = 1;
   string new_public_namespace = 2;
@@ -1448,13 +1457,6 @@ message CreateModuleResponse {
   // The detail page of the module
   string url = 2;
 }
-
-message RenameModuleRequest {
-  string module_id = 1;
-  string new_module_name = 2;
-}
-
-message RenameModuleResponse {}
 
 enum Visibility {
   VISIBILITY_UNSPECIFIED = 0;
