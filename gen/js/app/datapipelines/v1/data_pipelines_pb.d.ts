@@ -217,9 +217,6 @@ export class UpdateDataPipelineRequest extends jspb.Message {
   getSchedule(): string;
   setSchedule(value: string): void;
 
-  getEnabled(): boolean;
-  setEnabled(value: boolean): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateDataPipelineRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateDataPipelineRequest): UpdateDataPipelineRequest.AsObject;
@@ -236,7 +233,6 @@ export namespace UpdateDataPipelineRequest {
     name: string,
     mqlBinaryList: Array<Uint8Array | string>,
     schedule: string,
-    enabled: boolean,
   }
 }
 
@@ -288,6 +284,78 @@ export class DeleteDataPipelineResponse extends jspb.Message {
 }
 
 export namespace DeleteDataPipelineResponse {
+  export type AsObject = {
+  }
+}
+
+export class EnableDataPipelineRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EnableDataPipelineRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EnableDataPipelineRequest): EnableDataPipelineRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: EnableDataPipelineRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EnableDataPipelineRequest;
+  static deserializeBinaryFromReader(message: EnableDataPipelineRequest, reader: jspb.BinaryReader): EnableDataPipelineRequest;
+}
+
+export namespace EnableDataPipelineRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class EnableDataPipelineResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EnableDataPipelineResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: EnableDataPipelineResponse): EnableDataPipelineResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: EnableDataPipelineResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EnableDataPipelineResponse;
+  static deserializeBinaryFromReader(message: EnableDataPipelineResponse, reader: jspb.BinaryReader): EnableDataPipelineResponse;
+}
+
+export namespace EnableDataPipelineResponse {
+  export type AsObject = {
+  }
+}
+
+export class DisableDataPipelineRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DisableDataPipelineRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DisableDataPipelineRequest): DisableDataPipelineRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DisableDataPipelineRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DisableDataPipelineRequest;
+  static deserializeBinaryFromReader(message: DisableDataPipelineRequest, reader: jspb.BinaryReader): DisableDataPipelineRequest;
+}
+
+export namespace DisableDataPipelineRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class DisableDataPipelineResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DisableDataPipelineResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DisableDataPipelineResponse): DisableDataPipelineResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DisableDataPipelineResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DisableDataPipelineResponse;
+  static deserializeBinaryFromReader(message: DisableDataPipelineResponse, reader: jspb.BinaryReader): DisableDataPipelineResponse;
+}
+
+export namespace DisableDataPipelineResponse {
   export type AsObject = {
   }
 }
