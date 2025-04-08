@@ -28,6 +28,9 @@ service DataPipelinesService {
 
   // DisableDataPipeline disables a data pipeline.
   rpc DisableDataPipeline(DisableDataPipelineRequest) returns (DisableDataPipelineResponse);
+
+  // ListPipelineExecutions lists the executions of a data pipeline.
+  rpc ListPipelineExecutions(ListPipelineExecutionsRequest) returns (ListPipelineExecutionsResponse);
 }
 
 message DataPipeline {
@@ -134,3 +137,33 @@ message DisableDataPipelineRequest {
 }
 
 message DisableDataPipelineResponse {}
+
+message ListPipelineExecutionsRequest {
+  string id = 1;
+
+  // pagination fields: https://google.aip.dev/158
+  uint32 page_size = 2;
+  string page_token = 3;
+}
+
+message ListPipelineExecutionsResponse {
+  repeated PipelineExecution executions = 1;
+  string next_page_token = 2;
+}
+
+message PipelineExecution {
+  string id = 1;
+  google.protobuf.Timestamp started = 2;
+  google.protobuf.Timestamp ended = 3;
+  PipelineExecutionStatus status = 6;
+}
+
+enum PipelineExecutionStatus {
+  PIPELINE_STATUS_EXECUTION_UNSPECIFIED = 0;
+  PIPELINE_STATUS_EXECUTION_SCHEDULED = 1;
+  PIPELINE_STATUS_EXECUTION_STARTED = 2;
+  PIPELINE_STATUS_EXECUTION_COMPLETED = 3;
+  PIPELINE_STATUS_EXECUTION_FAILED = 4;
+}
+
+
