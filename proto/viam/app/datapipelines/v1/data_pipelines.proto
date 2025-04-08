@@ -177,7 +177,7 @@ message PipelineRun {
   // The status of the run.
   PipelineRunStatus status = 6;
 
-  // The reason the run failed, if it did.
+  // An optional message related to the run status.
   string reason = 7;
 }
 
