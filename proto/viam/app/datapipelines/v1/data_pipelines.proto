@@ -160,7 +160,7 @@ message ListPipelineRunsResponse {
 
 message PipelineRun {
   // The ID of the run.
-  string id = 1;
+  string run_id = 1;
 
   // The time the run was started.
   google.protobuf.Timestamp start_time = 2;
