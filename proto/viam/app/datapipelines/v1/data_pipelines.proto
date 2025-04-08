@@ -29,8 +29,8 @@ service DataPipelinesService {
   // DisableDataPipeline disables a data pipeline.
   rpc DisableDataPipeline(DisableDataPipelineRequest) returns (DisableDataPipelineResponse);
 
-  // ListPipelineExecutions lists the executions of a data pipeline.
-  rpc ListPipelineExecutions(ListPipelineExecutionsRequest) returns (ListPipelineExecutionsResponse);
+  // ListPipelineRuns lists the runs of a data pipeline.
+  rpc ListPipelineRuns(ListPipelineRunsRequest) returns (ListPipelineRunsResponse);
 }
 
 message DataPipeline {
@@ -138,8 +138,8 @@ message DisableDataPipelineRequest {
 
 message DisableDataPipelineResponse {}
 
-message ListPipelineExecutionsRequest {
-  // The ID of the data pipeline to list executions for.
+message ListPipelineRunsRequest {
+  // The ID of the data pipeline to list runs for.
   string id = 1;
 
   // pagination fields
@@ -155,43 +155,43 @@ message PipelineDataInterval {
   google.protobuf.Timestamp end_time = 2;
 }
 
-message ListPipelineExecutionsResponse {
-  // The ID of the data pipeline the executions are for.
+message ListPipelineRunsResponse {
+  // The ID of the data pipeline the runs are for.
   string pipeline_id = 1;
 
-  // The executions that were run.
-  repeated PipelineExecution executions = 2;
+  // The runs that were run.
+  repeated PipelineRun runs = 2;
 
   // A token to retrieve the next page of results.
   string next_page_token = 3;
 }
 
-message PipelineExecution {
-  // The ID of the execution.
+message PipelineRun {
+  // The ID of the run.
   string id = 1;
 
-  // The time the execution was started.
+  // The time the run was started.
   google.protobuf.Timestamp started = 2;
 
-  // The time the execution was ended.
+  // The time the run was ended.
   google.protobuf.Timestamp ended = 3;
 
-  // The status of the execution.
-  PipelineExecutionStatus status = 4;
+  // The status of the run.
+  PipelineRunStatus status = 4;
 
   // The interval the pipeline was run on.
   PipelineDataInterval interval = 5;
 
-  // The reason the execution failed, if it did.
+  // The reason the run failed, if it did.
   string reason = 6;
 }
 
-enum PipelineExecutionStatus {
-  PIPELINE_EXECUTION_STATUS_UNSPECIFIED = 0;
-  PIPELINE_EXECUTION_STATUS_SCHEDULED = 1;
-  PIPELINE_EXECUTION_STATUS_STARTED = 2;
-  PIPELINE_EXECUTION_STATUS_COMPLETED = 3;
-  PIPELINE_EXECUTION_STATUS_FAILED = 4;
+enum PipelineRunStatus {
+  PIPELINE_RUN_STATUS_UNSPECIFIED = 0;
+  PIPELINE_RUN_STATUS_SCHEDULED = 1;
+  PIPELINE_RUN_STATUS_STARTED = 2;
+  PIPELINE_RUN_STATUS_COMPLETED = 3;
+  PIPELINE_RUN_STATUS_FAILED = 4;
 }
 
 
