@@ -384,5 +384,127 @@ proto.viam.app.datapipelines.v1.DataPipelinesServicePromiseClient.prototype.dele
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.datapipelines.v1.EnableDataPipelineRequest,
+ *   !proto.viam.app.datapipelines.v1.EnableDataPipelineResponse>}
+ */
+const methodDescriptor_DataPipelinesService_EnableDataPipeline = new grpc.web.MethodDescriptor(
+  '/viam.app.datapipelines.v1.DataPipelinesService/EnableDataPipeline',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.datapipelines.v1.EnableDataPipelineRequest,
+  proto.viam.app.datapipelines.v1.EnableDataPipelineResponse,
+  /**
+   * @param {!proto.viam.app.datapipelines.v1.EnableDataPipelineRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.datapipelines.v1.EnableDataPipelineResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.datapipelines.v1.EnableDataPipelineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.datapipelines.v1.EnableDataPipelineResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.datapipelines.v1.EnableDataPipelineResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.datapipelines.v1.DataPipelinesServiceClient.prototype.enableDataPipeline =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.datapipelines.v1.DataPipelinesService/EnableDataPipeline',
+      request,
+      metadata || {},
+      methodDescriptor_DataPipelinesService_EnableDataPipeline,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.datapipelines.v1.EnableDataPipelineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.datapipelines.v1.EnableDataPipelineResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.datapipelines.v1.DataPipelinesServicePromiseClient.prototype.enableDataPipeline =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.datapipelines.v1.DataPipelinesService/EnableDataPipeline',
+      request,
+      metadata || {},
+      methodDescriptor_DataPipelinesService_EnableDataPipeline);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.datapipelines.v1.DisableDataPipelineRequest,
+ *   !proto.viam.app.datapipelines.v1.DisableDataPipelineResponse>}
+ */
+const methodDescriptor_DataPipelinesService_DisableDataPipeline = new grpc.web.MethodDescriptor(
+  '/viam.app.datapipelines.v1.DataPipelinesService/DisableDataPipeline',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.datapipelines.v1.DisableDataPipelineRequest,
+  proto.viam.app.datapipelines.v1.DisableDataPipelineResponse,
+  /**
+   * @param {!proto.viam.app.datapipelines.v1.DisableDataPipelineRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.datapipelines.v1.DisableDataPipelineResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.datapipelines.v1.DisableDataPipelineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.datapipelines.v1.DisableDataPipelineResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.datapipelines.v1.DisableDataPipelineResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.datapipelines.v1.DataPipelinesServiceClient.prototype.disableDataPipeline =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.datapipelines.v1.DataPipelinesService/DisableDataPipeline',
+      request,
+      metadata || {},
+      methodDescriptor_DataPipelinesService_DisableDataPipeline,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.datapipelines.v1.DisableDataPipelineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.datapipelines.v1.DisableDataPipelineResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.datapipelines.v1.DataPipelinesServicePromiseClient.prototype.disableDataPipeline =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.datapipelines.v1.DataPipelinesService/DisableDataPipeline',
+      request,
+      metadata || {},
+      methodDescriptor_DataPipelinesService_DisableDataPipeline);
+};
+
+
 module.exports = proto.viam.app.datapipelines.v1;
 
