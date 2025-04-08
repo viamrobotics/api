@@ -1064,7 +1064,7 @@ message AdditionalFragment {
 }
 
 message ListNestedFragmentsRequest {
-  string fragment_id = 1;
+  optional string fragment_id = 1;
   repeated AdditionalFragment additional_fragments = 2;
 }
 
