@@ -153,9 +153,6 @@ message ListPipelineRunsResponse {
 
   // The runs that were run.
   repeated PipelineRun runs = 2;
-
-  // A token to retrieve the next page of results.
-  string next_page_token = 3;
 }
 
 message PipelineRun {
