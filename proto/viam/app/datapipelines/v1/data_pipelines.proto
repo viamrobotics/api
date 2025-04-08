@@ -28,6 +28,9 @@ service DataPipelinesService {
 
   // DisableDataPipeline disables a data pipeline.
   rpc DisableDataPipeline(DisableDataPipelineRequest) returns (DisableDataPipelineResponse);
+
+  // ListPipelineRuns lists the runs of a data pipeline.
+  rpc ListPipelineRuns(ListPipelineRunsRequest) returns (ListPipelineRunsResponse);
 }
 
 message DataPipeline {
@@ -134,3 +137,54 @@ message DisableDataPipelineRequest {
 }
 
 message DisableDataPipelineResponse {}
+
+message ListPipelineRunsRequest {
+  // The ID of the data pipeline to list runs for.
+  string id = 1;
+
+  // pagination fields
+  uint32 page_size = 2;
+  string page_token = 3;
+}
+
+message ListPipelineRunsResponse {
+  // The ID of the data pipeline the runs are for.
+  string pipeline_id = 1;
+
+  // The runs that were run.
+  repeated PipelineRun runs = 2;
+
+  // A token to retrieve the next page of results.
+  string next_page_token = 3;
+}
+
+message PipelineRun {
+  // The ID of the run.
+  string id = 1;
+
+  // The time the run started.
+  google.protobuf.Timestamp start_time = 2;
+
+  // The time the run ended.
+  google.protobuf.Timestamp end_time = 3;
+
+  // The start time of the data that was processed in the run.
+  google.protobuf.Timestamp data_start_time = 4;
+
+  // The end time of the data that was processed in the run.
+  google.protobuf.Timestamp data_end_time = 5;
+
+  // The status of the run.
+  PipelineRunStatus status = 6;
+
+  // An optional message related to the run status.
+  string reason = 7;
+}
+
+enum PipelineRunStatus {
+  PIPELINE_RUN_STATUS_UNSPECIFIED = 0;
+  PIPELINE_RUN_STATUS_SCHEDULED = 1;
+  PIPELINE_RUN_STATUS_STARTED = 2;
+  PIPELINE_RUN_STATUS_COMPLETED = 3;
+  PIPELINE_RUN_STATUS_FAILED = 4;
+}

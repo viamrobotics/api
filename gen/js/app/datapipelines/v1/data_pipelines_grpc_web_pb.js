@@ -506,5 +506,66 @@ proto.viam.app.datapipelines.v1.DataPipelinesServicePromiseClient.prototype.disa
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.datapipelines.v1.ListPipelineRunsRequest,
+ *   !proto.viam.app.datapipelines.v1.ListPipelineRunsResponse>}
+ */
+const methodDescriptor_DataPipelinesService_ListPipelineRuns = new grpc.web.MethodDescriptor(
+  '/viam.app.datapipelines.v1.DataPipelinesService/ListPipelineRuns',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.datapipelines.v1.ListPipelineRunsRequest,
+  proto.viam.app.datapipelines.v1.ListPipelineRunsResponse,
+  /**
+   * @param {!proto.viam.app.datapipelines.v1.ListPipelineRunsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.datapipelines.v1.ListPipelineRunsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.datapipelines.v1.ListPipelineRunsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.datapipelines.v1.ListPipelineRunsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.datapipelines.v1.ListPipelineRunsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.datapipelines.v1.DataPipelinesServiceClient.prototype.listPipelineRuns =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.datapipelines.v1.DataPipelinesService/ListPipelineRuns',
+      request,
+      metadata || {},
+      methodDescriptor_DataPipelinesService_ListPipelineRuns,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.datapipelines.v1.ListPipelineRunsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.datapipelines.v1.ListPipelineRunsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.datapipelines.v1.DataPipelinesServicePromiseClient.prototype.listPipelineRuns =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.datapipelines.v1.DataPipelinesService/ListPipelineRuns',
+      request,
+      metadata || {},
+      methodDescriptor_DataPipelinesService_ListPipelineRuns);
+};
+
+
 module.exports = proto.viam.app.datapipelines.v1;
 
