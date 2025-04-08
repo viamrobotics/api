@@ -3512,6 +3512,8 @@ export namespace AdditionalFragment {
 }
 
 export class ListNestedFragmentsRequest extends jspb.Message {
+  hasFragmentId(): boolean;
+  clearFragmentId(): void;
   getFragmentId(): string;
   setFragmentId(value: string): void;
 
