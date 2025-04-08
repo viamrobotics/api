@@ -143,8 +143,8 @@ message ListPipelineRunsRequest {
   string id = 1;
 
   // pagination fields
-  uint32 page_size = 2;
-  string page_token = 3;
+  uint32 limit = 2;
+  uint32 offset = 3;
 }
 
 message ListPipelineRunsResponse {
