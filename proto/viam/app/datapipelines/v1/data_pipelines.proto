@@ -162,10 +162,10 @@ message PipelineRun {
   // The ID of the run.
   string id = 1;
 
-  // The time the run was started.
+  // The time the run started.
   google.protobuf.Timestamp start_time = 2;
 
-  // The time the run was ended.
+  // The time the run ended.
   google.protobuf.Timestamp end_time = 3;
 
   // The start time of the data that was processed in the run.
