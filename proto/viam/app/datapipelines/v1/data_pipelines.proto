@@ -147,14 +147,6 @@ message ListPipelineRunsRequest {
   string page_token = 3;
 }
 
-message PipelineDataInterval {
-  // The start time of the interval the pipeline was run on.
-  google.protobuf.Timestamp start_time = 1;
-
-  // The end time of the interval the pipeline was run on.
-  google.protobuf.Timestamp end_time = 2;
-}
-
 message ListPipelineRunsResponse {
   // The ID of the data pipeline the runs are for.
   string pipeline_id = 1;
@@ -171,19 +163,22 @@ message PipelineRun {
   string id = 1;
 
   // The time the run was started.
-  google.protobuf.Timestamp started = 2;
+  google.protobuf.Timestamp start_time = 2;
 
   // The time the run was ended.
-  google.protobuf.Timestamp ended = 3;
+  google.protobuf.Timestamp end_time = 3;
+
+  // The start time of the data that was processed in the run.
+  google.protobuf.Timestamp data_start_time = 4;
+
+  // The end time of the data that was processed in the run.
+  google.protobuf.Timestamp data_end_time = 5;
 
   // The status of the run.
-  PipelineRunStatus status = 4;
-
-  // The interval the pipeline was run on.
-  PipelineDataInterval interval = 5;
+  PipelineRunStatus status = 6;
 
   // The reason the run failed, if it did.
-  string reason = 6;
+  string reason = 7;
 }
 
 enum PipelineRunStatus {
