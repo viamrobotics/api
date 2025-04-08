@@ -269,6 +269,8 @@ service AppService {
 
   rpc DeleteRegistryItem(DeleteRegistryItemRequest) returns (DeleteRegistryItemResponse);
 
+  rpc RenameRegistryItem(RenameRegistryItemRequest) returns (RenameRegistryItemResponse);
+
   rpc TransferRegistryItem(TransferRegistryItemRequest) returns (TransferRegistryItemResponse);
 
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
@@ -1424,6 +1426,15 @@ message DeleteRegistryItemRequest {
 }
 
 message DeleteRegistryItemResponse {}
+
+message RenameRegistryItemRequest {
+  string item_id = 1;
+  string new_name = 2;
+}
+
+message RenameRegistryItemResponse {
+  RegistryItem item = 1;
+}
 
 message TransferRegistryItemRequest {
   string item_id = 1;

@@ -5576,6 +5576,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.deleteRegistryItem =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.RenameRegistryItemRequest,
+ *   !proto.viam.app.v1.RenameRegistryItemResponse>}
+ */
+const methodDescriptor_AppService_RenameRegistryItem = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/RenameRegistryItem',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.RenameRegistryItemRequest,
+  proto.viam.app.v1.RenameRegistryItemResponse,
+  /**
+   * @param {!proto.viam.app.v1.RenameRegistryItemRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.RenameRegistryItemResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.RenameRegistryItemRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.RenameRegistryItemResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.RenameRegistryItemResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.renameRegistryItem =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/RenameRegistryItem',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_RenameRegistryItem,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.RenameRegistryItemRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.RenameRegistryItemResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.renameRegistryItem =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/RenameRegistryItem',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_RenameRegistryItem);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.TransferRegistryItemRequest,
  *   !proto.viam.app.v1.TransferRegistryItemResponse>}
  */
