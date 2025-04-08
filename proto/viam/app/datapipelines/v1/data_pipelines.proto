@@ -139,30 +139,50 @@ message DisableDataPipelineRequest {
 message DisableDataPipelineResponse {}
 
 message ListPipelineExecutionsRequest {
+  // The ID of the data pipeline to list executions for.
   string id = 1;
 
-  // pagination fields: https://google.aip.dev/158
+  // pagination fields
   uint32 page_size = 2;
   string page_token = 3;
 }
 
 message PipelineDataInterval {
+  // The start time of the interval the pipeline was run on.
   google.protobuf.Timestamp start_time = 1;
+
+  // The end time of the interval the pipeline was run on.
   google.protobuf.Timestamp end_time = 2;
 }
 
 message ListPipelineExecutionsResponse {
+  // The ID of the data pipeline the executions are for.
   string pipeline_id = 1;
+
+  // The executions that were run.
   repeated PipelineExecution executions = 2;
+
+  // A token to retrieve the next page of results.
   string next_page_token = 3;
 }
 
 message PipelineExecution {
+  // The ID of the execution.
   string id = 1;
+
+  // The time the execution was started.
   google.protobuf.Timestamp started = 2;
+
+  // The time the execution was ended.
   google.protobuf.Timestamp ended = 3;
+
+  // The status of the execution.
   PipelineExecutionStatus status = 4;
+
+  // The interval the pipeline was run on.
   PipelineDataInterval interval = 5;
+
+  // The reason the execution failed, if it did.
   string reason = 6;
 }
 
