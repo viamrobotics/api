@@ -188,5 +188,3 @@ enum PipelineRunStatus {
   PIPELINE_RUN_STATUS_COMPLETED = 3;
   PIPELINE_RUN_STATUS_FAILED = 4;
 }
-
-

@@ -67,6 +67,15 @@ type DataPipelinesServiceDisableDataPipeline = {
   readonly responseType: typeof app_datapipelines_v1_data_pipelines_pb.DisableDataPipelineResponse;
 };
 
+type DataPipelinesServiceListPipelineRuns = {
+  readonly methodName: string;
+  readonly service: typeof DataPipelinesService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsRequest;
+  readonly responseType: typeof app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsResponse;
+};
+
 export class DataPipelinesService {
   static readonly serviceName: string;
   static readonly GetDataPipeline: DataPipelinesServiceGetDataPipeline;
@@ -76,6 +85,7 @@ export class DataPipelinesService {
   static readonly DeleteDataPipeline: DataPipelinesServiceDeleteDataPipeline;
   static readonly EnableDataPipeline: DataPipelinesServiceEnableDataPipeline;
   static readonly DisableDataPipeline: DataPipelinesServiceDisableDataPipeline;
+  static readonly ListPipelineRuns: DataPipelinesServiceListPipelineRuns;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -172,6 +182,15 @@ export class DataPipelinesServiceClient {
   disableDataPipeline(
     requestMessage: app_datapipelines_v1_data_pipelines_pb.DisableDataPipelineRequest,
     callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.DisableDataPipelineResponse|null) => void
+  ): UnaryResponse;
+  listPipelineRuns(
+    requestMessage: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsResponse|null) => void
+  ): UnaryResponse;
+  listPipelineRuns(
+    requestMessage: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsResponse|null) => void
   ): UnaryResponse;
 }
 
