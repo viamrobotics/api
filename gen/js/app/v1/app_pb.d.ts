@@ -5153,6 +5153,52 @@ export namespace DeleteRegistryItemResponse {
   }
 }
 
+export class RenameRegistryItemRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  getNewName(): string;
+  setNewName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RenameRegistryItemRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RenameRegistryItemRequest): RenameRegistryItemRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RenameRegistryItemRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RenameRegistryItemRequest;
+  static deserializeBinaryFromReader(message: RenameRegistryItemRequest, reader: jspb.BinaryReader): RenameRegistryItemRequest;
+}
+
+export namespace RenameRegistryItemRequest {
+  export type AsObject = {
+    itemId: string,
+    newName: string,
+  }
+}
+
+export class RenameRegistryItemResponse extends jspb.Message {
+  hasItem(): boolean;
+  clearItem(): void;
+  getItem(): RegistryItem | undefined;
+  setItem(value?: RegistryItem): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RenameRegistryItemResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RenameRegistryItemResponse): RenameRegistryItemResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RenameRegistryItemResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RenameRegistryItemResponse;
+  static deserializeBinaryFromReader(message: RenameRegistryItemResponse, reader: jspb.BinaryReader): RenameRegistryItemResponse;
+}
+
+export namespace RenameRegistryItemResponse {
+  export type AsObject = {
+    item?: RegistryItem.AsObject,
+  }
+}
+
 export class TransferRegistryItemRequest extends jspb.Message {
   getItemId(): string;
   setItemId(value: string): void;
