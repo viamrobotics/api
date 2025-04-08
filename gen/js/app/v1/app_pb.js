@@ -30228,8 +30228,8 @@ proto.viam.app.v1.ListNestedFragmentsRequest.prototype.serializeBinary = functio
  */
 proto.viam.app.v1.ListNestedFragmentsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getFragmentId();
-  if (f.length > 0) {
+  f = /** @type {string} */ (jspb.Message.getField(message, 1));
+  if (f != null) {
     writer.writeString(
       1,
       f
@@ -30260,7 +30260,25 @@ proto.viam.app.v1.ListNestedFragmentsRequest.prototype.getFragmentId = function(
  * @return {!proto.viam.app.v1.ListNestedFragmentsRequest} returns this
  */
 proto.viam.app.v1.ListNestedFragmentsRequest.prototype.setFragmentId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.ListNestedFragmentsRequest} returns this
+ */
+proto.viam.app.v1.ListNestedFragmentsRequest.prototype.clearFragmentId = function() {
+  return jspb.Message.setField(this, 1, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ListNestedFragmentsRequest.prototype.hasFragmentId = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
