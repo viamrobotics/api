@@ -143,8 +143,8 @@ message ListPipelineRunsRequest {
   string id = 1;
 
   // pagination fields
-  uint32 limit = 2;
-  uint32 offset = 3;
+  uint32 page_size = 2;
+  string page_token = 3;
 }
 
 message ListPipelineRunsResponse {
@@ -153,6 +153,9 @@ message ListPipelineRunsResponse {
 
   // The runs that were run.
   repeated PipelineRun runs = 2;
+
+  // A token to retrieve the next page of results.
+  string next_page_token = 3;
 }
 
 message PipelineRun {
@@ -173,9 +176,6 @@ message PipelineRun {
 
   // The status of the run.
   PipelineRunStatus status = 6;
-
-  // An optional message related to the run status.
-  string reason = 7;
 }
 
 enum PipelineRunStatus {
