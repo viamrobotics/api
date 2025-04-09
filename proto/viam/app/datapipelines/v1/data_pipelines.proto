@@ -176,9 +176,6 @@ message PipelineRun {
 
   // The status of the run.
   PipelineRunStatus status = 6;
-
-  // An optional message related to the run status.
-  string reason = 7;
 }
 
 enum PipelineRunStatus {
