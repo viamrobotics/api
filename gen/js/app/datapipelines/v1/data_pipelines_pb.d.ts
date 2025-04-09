@@ -445,9 +445,6 @@ export class PipelineRun extends jspb.Message {
   getStatus(): PipelineRunStatusMap[keyof PipelineRunStatusMap];
   setStatus(value: PipelineRunStatusMap[keyof PipelineRunStatusMap]): void;
 
-  getReason(): string;
-  setReason(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PipelineRun.AsObject;
   static toObject(includeInstance: boolean, msg: PipelineRun): PipelineRun.AsObject;
@@ -466,7 +463,6 @@ export namespace PipelineRun {
     dataStartTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     dataEndTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     status: PipelineRunStatusMap[keyof PipelineRunStatusMap],
-    reason: string,
   }
 }
 
