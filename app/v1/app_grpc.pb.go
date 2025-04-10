@@ -156,6 +156,8 @@ type AppServiceClient interface {
 	UpdateFragment(ctx context.Context, in *UpdateFragmentRequest, opts ...grpc.CallOption) (*UpdateFragmentResponse, error)
 	// Deletes a fragment
 	DeleteFragment(ctx context.Context, in *DeleteFragmentRequest, opts ...grpc.CallOption) (*DeleteFragmentResponse, error)
+	// List nested fragments for a fragment
+	ListNestedFragments(ctx context.Context, in *ListNestedFragmentsRequest, opts ...grpc.CallOption) (*ListNestedFragmentsResponse, error)
 	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
 	ListMachineFragments(ctx context.Context, in *ListMachineFragmentsRequest, opts ...grpc.CallOption) (*ListMachineFragmentsResponse, error)
 	// List all machines and their corresponding machine dashboard information
@@ -183,6 +185,7 @@ type AppServiceClient interface {
 	UpdateRegistryItem(ctx context.Context, in *UpdateRegistryItemRequest, opts ...grpc.CallOption) (*UpdateRegistryItemResponse, error)
 	ListRegistryItems(ctx context.Context, in *ListRegistryItemsRequest, opts ...grpc.CallOption) (*ListRegistryItemsResponse, error)
 	DeleteRegistryItem(ctx context.Context, in *DeleteRegistryItemRequest, opts ...grpc.CallOption) (*DeleteRegistryItemResponse, error)
+	RenameRegistryItem(ctx context.Context, in *RenameRegistryItemRequest, opts ...grpc.CallOption) (*RenameRegistryItemResponse, error)
 	TransferRegistryItem(ctx context.Context, in *TransferRegistryItemRequest, opts ...grpc.CallOption) (*TransferRegistryItemResponse, error)
 	CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error)
 	UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error)
@@ -886,6 +889,15 @@ func (c *appServiceClient) DeleteFragment(ctx context.Context, in *DeleteFragmen
 	return out, nil
 }
 
+func (c *appServiceClient) ListNestedFragments(ctx context.Context, in *ListNestedFragmentsRequest, opts ...grpc.CallOption) (*ListNestedFragmentsResponse, error) {
+	out := new(ListNestedFragmentsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListNestedFragments", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) ListMachineFragments(ctx context.Context, in *ListMachineFragmentsRequest, opts ...grpc.CallOption) (*ListMachineFragmentsResponse, error) {
 	out := new(ListMachineFragmentsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListMachineFragments", in, out, opts...)
@@ -1024,6 +1036,15 @@ func (c *appServiceClient) ListRegistryItems(ctx context.Context, in *ListRegist
 func (c *appServiceClient) DeleteRegistryItem(ctx context.Context, in *DeleteRegistryItemRequest, opts ...grpc.CallOption) (*DeleteRegistryItemResponse, error) {
 	out := new(DeleteRegistryItemResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteRegistryItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) RenameRegistryItem(ctx context.Context, in *RenameRegistryItemRequest, opts ...grpc.CallOption) (*RenameRegistryItemResponse, error) {
+	out := new(RenameRegistryItemResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/RenameRegistryItem", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1310,6 +1331,8 @@ type AppServiceServer interface {
 	UpdateFragment(context.Context, *UpdateFragmentRequest) (*UpdateFragmentResponse, error)
 	// Deletes a fragment
 	DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error)
+	// List nested fragments for a fragment
+	ListNestedFragments(context.Context, *ListNestedFragmentsRequest) (*ListNestedFragmentsResponse, error)
 	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
 	ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error)
 	// List all machines and their corresponding machine dashboard information
@@ -1337,6 +1360,7 @@ type AppServiceServer interface {
 	UpdateRegistryItem(context.Context, *UpdateRegistryItemRequest) (*UpdateRegistryItemResponse, error)
 	ListRegistryItems(context.Context, *ListRegistryItemsRequest) (*ListRegistryItemsResponse, error)
 	DeleteRegistryItem(context.Context, *DeleteRegistryItemRequest) (*DeleteRegistryItemResponse, error)
+	RenameRegistryItem(context.Context, *RenameRegistryItemRequest) (*RenameRegistryItemResponse, error)
 	TransferRegistryItem(context.Context, *TransferRegistryItemRequest) (*TransferRegistryItemResponse, error)
 	CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error)
 	UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error)
@@ -1576,6 +1600,9 @@ func (UnimplementedAppServiceServer) UpdateFragment(context.Context, *UpdateFrag
 func (UnimplementedAppServiceServer) DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFragment not implemented")
 }
+func (UnimplementedAppServiceServer) ListNestedFragments(context.Context, *ListNestedFragmentsRequest) (*ListNestedFragmentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListNestedFragments not implemented")
+}
 func (UnimplementedAppServiceServer) ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMachineFragments not implemented")
 }
@@ -1623,6 +1650,9 @@ func (UnimplementedAppServiceServer) ListRegistryItems(context.Context, *ListReg
 }
 func (UnimplementedAppServiceServer) DeleteRegistryItem(context.Context, *DeleteRegistryItemRequest) (*DeleteRegistryItemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRegistryItem not implemented")
+}
+func (UnimplementedAppServiceServer) RenameRegistryItem(context.Context, *RenameRegistryItemRequest) (*RenameRegistryItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameRegistryItem not implemented")
 }
 func (UnimplementedAppServiceServer) TransferRegistryItem(context.Context, *TransferRegistryItemRequest) (*TransferRegistryItemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TransferRegistryItem not implemented")
@@ -2993,6 +3023,24 @@ func _AppService_DeleteFragment_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_ListNestedFragments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListNestedFragmentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListNestedFragments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListNestedFragments",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListNestedFragments(ctx, req.(*ListNestedFragmentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_ListMachineFragments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListMachineFragmentsRequest)
 	if err := dec(in); err != nil {
@@ -3277,6 +3325,24 @@ func _AppService_DeleteRegistryItem_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).DeleteRegistryItem(ctx, req.(*DeleteRegistryItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_RenameRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameRegistryItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).RenameRegistryItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/RenameRegistryItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).RenameRegistryItem(ctx, req.(*RenameRegistryItemRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3819,6 +3885,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_DeleteFragment_Handler,
 		},
 		{
+			MethodName: "ListNestedFragments",
+			Handler:    _AppService_ListNestedFragments_Handler,
+		},
+		{
 			MethodName: "ListMachineFragments",
 			Handler:    _AppService_ListMachineFragments_Handler,
 		},
@@ -3881,6 +3951,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteRegistryItem",
 			Handler:    _AppService_DeleteRegistryItem_Handler,
+		},
+		{
+			MethodName: "RenameRegistryItem",
+			Handler:    _AppService_RenameRegistryItem_Handler,
 		},
 		{
 			MethodName: "TransferRegistryItem",

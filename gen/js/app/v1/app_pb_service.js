@@ -667,6 +667,15 @@ AppService.DeleteFragment = {
   responseType: app_v1_app_pb.DeleteFragmentResponse
 };
 
+AppService.ListNestedFragments = {
+  methodName: "ListNestedFragments",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListNestedFragmentsRequest,
+  responseType: app_v1_app_pb.ListNestedFragmentsResponse
+};
+
 AppService.ListMachineFragments = {
   methodName: "ListMachineFragments",
   service: AppService,
@@ -809,6 +818,15 @@ AppService.DeleteRegistryItem = {
   responseStream: false,
   requestType: app_v1_app_pb.DeleteRegistryItemRequest,
   responseType: app_v1_app_pb.DeleteRegistryItemResponse
+};
+
+AppService.RenameRegistryItem = {
+  methodName: "RenameRegistryItem",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.RenameRegistryItemRequest,
+  responseType: app_v1_app_pb.RenameRegistryItemResponse
 };
 
 AppService.TransferRegistryItem = {
@@ -3206,6 +3224,37 @@ AppServiceClient.prototype.deleteFragment = function deleteFragment(requestMessa
   };
 };
 
+AppServiceClient.prototype.listNestedFragments = function listNestedFragments(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListNestedFragments, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.listMachineFragments = function listMachineFragments(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -3676,6 +3725,37 @@ AppServiceClient.prototype.deleteRegistryItem = function deleteRegistryItem(requ
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.DeleteRegistryItem, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.renameRegistryItem = function renameRegistryItem(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.RenameRegistryItem, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

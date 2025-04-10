@@ -3511,6 +3511,62 @@ export namespace AdditionalFragment {
   }
 }
 
+export class ListNestedFragmentsRequest extends jspb.Message {
+  hasFragmentId(): boolean;
+  clearFragmentId(): void;
+  getFragmentId(): string;
+  setFragmentId(value: string): void;
+
+  clearAdditionalFragmentsList(): void;
+  getAdditionalFragmentsList(): Array<AdditionalFragment>;
+  setAdditionalFragmentsList(value: Array<AdditionalFragment>): void;
+  addAdditionalFragments(value?: AdditionalFragment, index?: number): AdditionalFragment;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListNestedFragmentsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListNestedFragmentsRequest): ListNestedFragmentsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListNestedFragmentsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListNestedFragmentsRequest;
+  static deserializeBinaryFromReader(message: ListNestedFragmentsRequest, reader: jspb.BinaryReader): ListNestedFragmentsRequest;
+}
+
+export namespace ListNestedFragmentsRequest {
+  export type AsObject = {
+    fragmentId: string,
+    additionalFragmentsList: Array<AdditionalFragment.AsObject>,
+  }
+}
+
+export class ListNestedFragmentsResponse extends jspb.Message {
+  clearFragmentsList(): void;
+  getFragmentsList(): Array<Fragment>;
+  setFragmentsList(value: Array<Fragment>): void;
+  addFragments(value?: Fragment, index?: number): Fragment;
+
+  clearResolvedFragmentsList(): void;
+  getResolvedFragmentsList(): Array<ResolvedFragment>;
+  setResolvedFragmentsList(value: Array<ResolvedFragment>): void;
+  addResolvedFragments(value?: ResolvedFragment, index?: number): ResolvedFragment;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListNestedFragmentsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListNestedFragmentsResponse): ListNestedFragmentsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListNestedFragmentsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListNestedFragmentsResponse;
+  static deserializeBinaryFromReader(message: ListNestedFragmentsResponse, reader: jspb.BinaryReader): ListNestedFragmentsResponse;
+}
+
+export namespace ListNestedFragmentsResponse {
+  export type AsObject = {
+    fragmentsList: Array<Fragment.AsObject>,
+    resolvedFragmentsList: Array<ResolvedFragment.AsObject>,
+  }
+}
+
 export class ListMachineFragmentsRequest extends jspb.Message {
   getMachineId(): string;
   setMachineId(value: string): void;
@@ -4531,6 +4587,11 @@ export class ModuleVersion extends jspb.Message {
   getFirstRun(): string;
   setFirstRun(value: string): void;
 
+  hasMarkdownDescription(): boolean;
+  clearMarkdownDescription(): void;
+  getMarkdownDescription(): string;
+  setMarkdownDescription(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleVersion.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleVersion): ModuleVersion.AsObject;
@@ -4548,6 +4609,7 @@ export namespace ModuleVersion {
     modelsList: Array<Model.AsObject>,
     entrypoint: string,
     firstRun: string,
+    markdownDescription: string,
   }
 }
 
@@ -4570,6 +4632,11 @@ export class ModuleMetadata extends jspb.Message {
   getFirstRun(): string;
   setFirstRun(value: string): void;
 
+  hasMarkdownDescription(): boolean;
+  clearMarkdownDescription(): void;
+  getMarkdownDescription(): string;
+  setMarkdownDescription(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleMetadata): ModuleMetadata.AsObject;
@@ -4586,6 +4653,7 @@ export namespace ModuleMetadata {
     versionsList: Array<ModuleVersion.AsObject>,
     entrypoint: string,
     firstRun: string,
+    markdownDescription: string,
   }
 }
 
@@ -4906,6 +4974,11 @@ export class UpdateRegistryItemRequest extends jspb.Message {
   getUpdateMlTrainingMetadata(): UpdateMLTrainingMetadata | undefined;
   setUpdateMlTrainingMetadata(value?: UpdateMLTrainingMetadata): void;
 
+  hasMarkdownDescription(): boolean;
+  clearMarkdownDescription(): void;
+  getMarkdownDescription(): string;
+  setMarkdownDescription(value: string): void;
+
   getMetadataCase(): UpdateRegistryItemRequest.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRegistryItemRequest.AsObject;
@@ -4927,6 +5000,7 @@ export namespace UpdateRegistryItemRequest {
     updateModuleMetadata?: UpdateModuleMetadata.AsObject,
     updateMlModelMetadata?: UpdateMLModelMetadata.AsObject,
     updateMlTrainingMetadata?: UpdateMLTrainingMetadata.AsObject,
+    markdownDescription: string,
   }
 
   export enum MetadataCase {
@@ -5081,6 +5155,52 @@ export namespace DeleteRegistryItemResponse {
   }
 }
 
+export class RenameRegistryItemRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  getNewName(): string;
+  setNewName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RenameRegistryItemRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RenameRegistryItemRequest): RenameRegistryItemRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RenameRegistryItemRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RenameRegistryItemRequest;
+  static deserializeBinaryFromReader(message: RenameRegistryItemRequest, reader: jspb.BinaryReader): RenameRegistryItemRequest;
+}
+
+export namespace RenameRegistryItemRequest {
+  export type AsObject = {
+    itemId: string,
+    newName: string,
+  }
+}
+
+export class RenameRegistryItemResponse extends jspb.Message {
+  hasItem(): boolean;
+  clearItem(): void;
+  getItem(): RegistryItem | undefined;
+  setItem(value?: RegistryItem): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RenameRegistryItemResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RenameRegistryItemResponse): RenameRegistryItemResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RenameRegistryItemResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RenameRegistryItemResponse;
+  static deserializeBinaryFromReader(message: RenameRegistryItemResponse, reader: jspb.BinaryReader): RenameRegistryItemResponse;
+}
+
+export namespace RenameRegistryItemResponse {
+  export type AsObject = {
+    item?: RegistryItem.AsObject,
+  }
+}
+
 export class TransferRegistryItemRequest extends jspb.Message {
   getItemId(): string;
   setItemId(value: string): void;
@@ -5200,6 +5320,11 @@ export class UpdateModuleRequest extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasMarkdownDescription(): boolean;
+  clearMarkdownDescription(): void;
+  getMarkdownDescription(): string;
+  setMarkdownDescription(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleRequest): UpdateModuleRequest.AsObject;
@@ -5220,6 +5345,7 @@ export namespace UpdateModuleRequest {
     entrypoint: string,
     firstRun: string,
     appsList: Array<App.AsObject>,
+    markdownDescription: string,
   }
 }
 
@@ -5576,6 +5702,11 @@ export class Module extends jspb.Message {
   getFirstRun(): string;
   setFirstRun(value: string): void;
 
+  hasMarkdownDescription(): boolean;
+  clearMarkdownDescription(): void;
+  getMarkdownDescription(): string;
+  setMarkdownDescription(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Module.AsObject;
   static toObject(includeInstance: boolean, msg: Module): Module.AsObject;
@@ -5601,6 +5732,7 @@ export namespace Module {
     entrypoint: string,
     publicNamespace: string,
     firstRun: string,
+    markdownDescription: string,
   }
 }
 
@@ -5626,6 +5758,11 @@ export class VersionHistory extends jspb.Message {
   getFirstRun(): string;
   setFirstRun(value: string): void;
 
+  hasMarkdownDescription(): boolean;
+  clearMarkdownDescription(): void;
+  getMarkdownDescription(): string;
+  setMarkdownDescription(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): VersionHistory.AsObject;
   static toObject(includeInstance: boolean, msg: VersionHistory): VersionHistory.AsObject;
@@ -5643,6 +5780,7 @@ export namespace VersionHistory {
     modelsList: Array<Model.AsObject>,
     entrypoint: string,
     firstRun: string,
+    markdownDescription: string,
   }
 }
 
@@ -5799,6 +5937,11 @@ export class OrgDetails extends jspb.Message {
   getPublicNamespace(): string;
   setPublicNamespace(value: string): void;
 
+  hasBillingTier(): boolean;
+  clearBillingTier(): void;
+  getBillingTier(): string;
+  setBillingTier(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OrgDetails.AsObject;
   static toObject(includeInstance: boolean, msg: OrgDetails): OrgDetails.AsObject;
@@ -5815,6 +5958,7 @@ export namespace OrgDetails {
     orgName: string,
     orgCid: string,
     publicNamespace: string,
+    billingTier: string,
   }
 }
 

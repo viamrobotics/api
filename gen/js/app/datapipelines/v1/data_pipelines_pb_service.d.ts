@@ -49,6 +49,33 @@ type DataPipelinesServiceDeleteDataPipeline = {
   readonly responseType: typeof app_datapipelines_v1_data_pipelines_pb.DeleteDataPipelineResponse;
 };
 
+type DataPipelinesServiceEnableDataPipeline = {
+  readonly methodName: string;
+  readonly service: typeof DataPipelinesService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_datapipelines_v1_data_pipelines_pb.EnableDataPipelineRequest;
+  readonly responseType: typeof app_datapipelines_v1_data_pipelines_pb.EnableDataPipelineResponse;
+};
+
+type DataPipelinesServiceDisableDataPipeline = {
+  readonly methodName: string;
+  readonly service: typeof DataPipelinesService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_datapipelines_v1_data_pipelines_pb.DisableDataPipelineRequest;
+  readonly responseType: typeof app_datapipelines_v1_data_pipelines_pb.DisableDataPipelineResponse;
+};
+
+type DataPipelinesServiceListPipelineRuns = {
+  readonly methodName: string;
+  readonly service: typeof DataPipelinesService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsRequest;
+  readonly responseType: typeof app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsResponse;
+};
+
 export class DataPipelinesService {
   static readonly serviceName: string;
   static readonly GetDataPipeline: DataPipelinesServiceGetDataPipeline;
@@ -56,6 +83,9 @@ export class DataPipelinesService {
   static readonly CreateDataPipeline: DataPipelinesServiceCreateDataPipeline;
   static readonly UpdateDataPipeline: DataPipelinesServiceUpdateDataPipeline;
   static readonly DeleteDataPipeline: DataPipelinesServiceDeleteDataPipeline;
+  static readonly EnableDataPipeline: DataPipelinesServiceEnableDataPipeline;
+  static readonly DisableDataPipeline: DataPipelinesServiceDisableDataPipeline;
+  static readonly ListPipelineRuns: DataPipelinesServiceListPipelineRuns;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -134,6 +164,33 @@ export class DataPipelinesServiceClient {
   deleteDataPipeline(
     requestMessage: app_datapipelines_v1_data_pipelines_pb.DeleteDataPipelineRequest,
     callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.DeleteDataPipelineResponse|null) => void
+  ): UnaryResponse;
+  enableDataPipeline(
+    requestMessage: app_datapipelines_v1_data_pipelines_pb.EnableDataPipelineRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.EnableDataPipelineResponse|null) => void
+  ): UnaryResponse;
+  enableDataPipeline(
+    requestMessage: app_datapipelines_v1_data_pipelines_pb.EnableDataPipelineRequest,
+    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.EnableDataPipelineResponse|null) => void
+  ): UnaryResponse;
+  disableDataPipeline(
+    requestMessage: app_datapipelines_v1_data_pipelines_pb.DisableDataPipelineRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.DisableDataPipelineResponse|null) => void
+  ): UnaryResponse;
+  disableDataPipeline(
+    requestMessage: app_datapipelines_v1_data_pipelines_pb.DisableDataPipelineRequest,
+    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.DisableDataPipelineResponse|null) => void
+  ): UnaryResponse;
+  listPipelineRuns(
+    requestMessage: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsResponse|null) => void
+  ): UnaryResponse;
+  listPipelineRuns(
+    requestMessage: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsResponse|null) => void
   ): UnaryResponse;
 }
 

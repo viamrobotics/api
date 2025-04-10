@@ -223,6 +223,9 @@ service AppService {
   // Deletes a fragment
   rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
 
+  // List nested fragments for a fragment
+  rpc ListNestedFragments(ListNestedFragmentsRequest) returns (ListNestedFragmentsResponse);
+
   // Gets top level and nested fragments for a machine, as well as any other specified fragment ids
   rpc ListMachineFragments(ListMachineFragmentsRequest) returns (ListMachineFragmentsResponse);
 
@@ -265,6 +268,8 @@ service AppService {
   rpc ListRegistryItems(ListRegistryItemsRequest) returns (ListRegistryItemsResponse);
 
   rpc DeleteRegistryItem(DeleteRegistryItemRequest) returns (DeleteRegistryItemResponse);
+
+  rpc RenameRegistryItem(RenameRegistryItemRequest) returns (RenameRegistryItemResponse);
 
   rpc TransferRegistryItem(TransferRegistryItemRequest) returns (TransferRegistryItemResponse);
 
@@ -1058,6 +1063,16 @@ message AdditionalFragment {
   optional string version = 2;
 }
 
+message ListNestedFragmentsRequest {
+  optional string fragment_id = 1;
+  repeated AdditionalFragment additional_fragments = 2;
+}
+
+message ListNestedFragmentsResponse {
+  repeated Fragment fragments = 1;
+  repeated ResolvedFragment resolved_fragments = 2;
+}
+
 message ListMachineFragmentsRequest {
   // the machine_id used to filter fragments defined in a machine's parts.
   // Also returns any fragments nested within the fragments defined in parts.
@@ -1261,6 +1276,8 @@ message ModuleVersion {
   string entrypoint = 4;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 5;
+  // The markdown documentation for this version of the module
+  optional string markdown_description = 6;
 }
 
 message ModuleMetadata {
@@ -1273,6 +1290,8 @@ message ModuleMetadata {
   string entrypoint = 3;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 4;
+  // markdown content for the entire module
+  optional string markdown_description = 5;
 }
 
 message MLModelMetadata {
@@ -1371,6 +1390,8 @@ message UpdateRegistryItemRequest {
     UpdateMLModelMetadata update_ml_model_metadata = 7;
     UpdateMLTrainingMetadata update_ml_training_metadata = 8;
   }
+
+  optional string markdown_description = 9;
 }
 
 message UpdateRegistryItemResponse {}
@@ -1405,6 +1426,15 @@ message DeleteRegistryItemRequest {
 }
 
 message DeleteRegistryItemResponse {}
+
+message RenameRegistryItemRequest {
+  string item_id = 1;
+  string new_name = 2;
+}
+
+message RenameRegistryItemResponse {
+  RegistryItem item = 1;
+}
 
 message TransferRegistryItemRequest {
   string item_id = 1;
@@ -1455,6 +1485,8 @@ message UpdateModuleRequest {
   optional string first_run = 7;
   // A list of applications associated with the module
   repeated App apps = 8;
+  // longer documentation provided in markdown format
+  optional string markdown_description = 9;
 }
 
 message App {
@@ -1569,6 +1601,8 @@ message Module {
   string public_namespace = 12;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 13;
+  // Longer documentation provided in markdown format
+  optional string markdown_description = 14;
 }
 
 message VersionHistory {
@@ -1582,6 +1616,8 @@ message VersionHistory {
   string entrypoint = 4;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 5;
+  // The markdown documentation for this version of the module
+  optional string markdown_description = 6;
 }
 
 message Uploads {
@@ -1619,6 +1655,7 @@ message OrgDetails {
   string org_name = 2;
   optional string org_cid = 3;
   optional string public_namespace = 4;
+  optional string billing_tier = 5;
 }
 
 message ListOrganizationsByUserResponse {

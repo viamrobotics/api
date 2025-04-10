@@ -661,6 +661,15 @@ type AppServiceDeleteFragment = {
   readonly responseType: typeof app_v1_app_pb.DeleteFragmentResponse;
 };
 
+type AppServiceListNestedFragments = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListNestedFragmentsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListNestedFragmentsResponse;
+};
+
 type AppServiceListMachineFragments = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -803,6 +812,15 @@ type AppServiceDeleteRegistryItem = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.DeleteRegistryItemRequest;
   readonly responseType: typeof app_v1_app_pb.DeleteRegistryItemResponse;
+};
+
+type AppServiceRenameRegistryItem = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.RenameRegistryItemRequest;
+  readonly responseType: typeof app_v1_app_pb.RenameRegistryItemResponse;
 };
 
 type AppServiceTransferRegistryItem = {
@@ -997,6 +1015,7 @@ export class AppService {
   static readonly CreateFragment: AppServiceCreateFragment;
   static readonly UpdateFragment: AppServiceUpdateFragment;
   static readonly DeleteFragment: AppServiceDeleteFragment;
+  static readonly ListNestedFragments: AppServiceListNestedFragments;
   static readonly ListMachineFragments: AppServiceListMachineFragments;
   static readonly ListMachineSummaries: AppServiceListMachineSummaries;
   static readonly GetFragmentHistory: AppServiceGetFragmentHistory;
@@ -1013,6 +1032,7 @@ export class AppService {
   static readonly UpdateRegistryItem: AppServiceUpdateRegistryItem;
   static readonly ListRegistryItems: AppServiceListRegistryItems;
   static readonly DeleteRegistryItem: AppServiceDeleteRegistryItem;
+  static readonly RenameRegistryItem: AppServiceRenameRegistryItem;
   static readonly TransferRegistryItem: AppServiceTransferRegistryItem;
   static readonly CreateModule: AppServiceCreateModule;
   static readonly UpdateModule: AppServiceUpdateModule;
@@ -1709,6 +1729,15 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.DeleteFragmentRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteFragmentResponse|null) => void
   ): UnaryResponse;
+  listNestedFragments(
+    requestMessage: app_v1_app_pb.ListNestedFragmentsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListNestedFragmentsResponse|null) => void
+  ): UnaryResponse;
+  listNestedFragments(
+    requestMessage: app_v1_app_pb.ListNestedFragmentsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListNestedFragmentsResponse|null) => void
+  ): UnaryResponse;
   listMachineFragments(
     requestMessage: app_v1_app_pb.ListMachineFragmentsRequest,
     metadata: grpc.Metadata,
@@ -1852,6 +1881,15 @@ export class AppServiceClient {
   deleteRegistryItem(
     requestMessage: app_v1_app_pb.DeleteRegistryItemRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  renameRegistryItem(
+    requestMessage: app_v1_app_pb.RenameRegistryItemRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RenameRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  renameRegistryItem(
+    requestMessage: app_v1_app_pb.RenameRegistryItemRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RenameRegistryItemResponse|null) => void
   ): UnaryResponse;
   transferRegistryItem(
     requestMessage: app_v1_app_pb.TransferRegistryItemRequest,
