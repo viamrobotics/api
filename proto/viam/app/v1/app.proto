@@ -835,6 +835,7 @@ message UpdateRobotPartRequest {
   string id = 1;
   string name = 2;
   google.protobuf.Struct robot_config = 3;
+  optional google.protobuf.Timestamp last_known_update = 4;
 }
 
 message UpdateRobotPartResponse {
@@ -1004,6 +1005,7 @@ message UpdateFragmentRequest {
   google.protobuf.Struct config = 3;
   optional bool public = 4;
   optional FragmentVisibility visibility = 5;
+  optional google.protobuf.Timestamp last_known_update = 6;
 }
 
 message UpdateFragmentResponse {
