@@ -331,7 +331,6 @@ message BinaryDataByFilterResponse {
 
 // BinaryID is the unique identifier for a file that one can request to be retrieved or modified.
 message BinaryID {
-  option deprecated = true;
   string file_id = 1;
   string organization_id = 2;
   string location_id = 3;
@@ -340,7 +339,6 @@ message BinaryID {
 // BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids.
 message BinaryDataByIDsRequest {
   bool include_binary = 2;
-  option deprecated = true;
   repeated BinaryID binary_ids = 3;
   repeated string binary_data_ids = 4;
 
@@ -426,7 +424,6 @@ message DeleteBinaryDataByFilterResponse {
 
 // DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided.
 message DeleteBinaryDataByIDsRequest {
-  option deprecated = true;
   repeated BinaryID binary_ids = 2;
   repeated string binary_data_ids = 3;
   reserved 1;
@@ -443,7 +440,6 @@ message DeleteBinaryDataByIDsResponse {
 
 // AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided.
 message AddTagsToBinaryDataByIDsRequest {
-  option deprecated = true;
   repeated BinaryID binary_ids = 3;
   repeated string binary_data_ids = 4;
   repeated string tags = 2;
@@ -464,7 +460,6 @@ message AddTagsToBinaryDataByFilterResponse {}
 
 // RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.
 message RemoveTagsFromBinaryDataByIDsRequest {
-  option deprecated = true;
   repeated BinaryID binary_ids = 3;
   repeated string binary_data_ids = 4;
   repeated string tags = 2;
@@ -502,7 +497,6 @@ message TagsByFilterResponse {
 // AddBoundingBoxToImageByIDRequest specifies the binary ID to which a bounding box
 // with the associated label and position in normalized coordinates will be added.
 message AddBoundingBoxToImageByIDRequest {
-  option deprecated = true;
   BinaryID binary_id = 7;
   string binary_data_id = 8;
   string label = 2;
@@ -522,7 +516,6 @@ message AddBoundingBoxToImageByIDResponse {
 
 // RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID.
 message RemoveBoundingBoxFromImageByIDRequest {
-  option deprecated = true;
   BinaryID binary_id = 3;
   string binary_data_id = 4;
   string bbox_id = 2;
@@ -535,7 +528,6 @@ message RemoveBoundingBoxFromImageByIDResponse {}
 
 // UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID.
 message UpdateBoundingBoxRequest {
-  option deprecated = true;
   BinaryID binary_id = 1;
   string binary_data_id = 8;
   string bbox_id = 2;
@@ -584,7 +576,6 @@ message GetDatabaseConnectionResponse {
 
 // AddBinaryDataToDatasetByIDsRequest adds the binary data with the given binary IDs to a dataset with dataset_id.
 message AddBinaryDataToDatasetByIDsRequest {
-  option deprecated = true;
   repeated BinaryID binary_ids = 1;
   repeated string binary_data_ids = 3;
   string dataset_id = 2;
@@ -594,7 +585,6 @@ message AddBinaryDataToDatasetByIDsResponse {}
 
 // RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id.
 message RemoveBinaryDataFromDatasetByIDsRequest {
-  option deprecated = true;
   repeated BinaryID binary_ids = 1;
   repeated string binary_data_ids = 3;
   string dataset_id = 2;
