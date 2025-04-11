@@ -360,7 +360,7 @@ export namespace DisableDataPipelineResponse {
   }
 }
 
-export class ListPipelineRunsRequest extends jspb.Message {
+export class ListDataPipelineRunsRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
@@ -371,16 +371,16 @@ export class ListPipelineRunsRequest extends jspb.Message {
   setPageToken(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ListPipelineRunsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: ListPipelineRunsRequest): ListPipelineRunsRequest.AsObject;
+  toObject(includeInstance?: boolean): ListDataPipelineRunsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListDataPipelineRunsRequest): ListDataPipelineRunsRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ListPipelineRunsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ListPipelineRunsRequest;
-  static deserializeBinaryFromReader(message: ListPipelineRunsRequest, reader: jspb.BinaryReader): ListPipelineRunsRequest;
+  static serializeBinaryToWriter(message: ListDataPipelineRunsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListDataPipelineRunsRequest;
+  static deserializeBinaryFromReader(message: ListDataPipelineRunsRequest, reader: jspb.BinaryReader): ListDataPipelineRunsRequest;
 }
 
-export namespace ListPipelineRunsRequest {
+export namespace ListDataPipelineRunsRequest {
   export type AsObject = {
     id: string,
     pageSize: number,
@@ -388,37 +388,37 @@ export namespace ListPipelineRunsRequest {
   }
 }
 
-export class ListPipelineRunsResponse extends jspb.Message {
+export class ListDataPipelineRunsResponse extends jspb.Message {
   getPipelineId(): string;
   setPipelineId(value: string): void;
 
   clearRunsList(): void;
-  getRunsList(): Array<PipelineRun>;
-  setRunsList(value: Array<PipelineRun>): void;
-  addRuns(value?: PipelineRun, index?: number): PipelineRun;
+  getRunsList(): Array<DataPipelineRun>;
+  setRunsList(value: Array<DataPipelineRun>): void;
+  addRuns(value?: DataPipelineRun, index?: number): DataPipelineRun;
 
   getNextPageToken(): string;
   setNextPageToken(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ListPipelineRunsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: ListPipelineRunsResponse): ListPipelineRunsResponse.AsObject;
+  toObject(includeInstance?: boolean): ListDataPipelineRunsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListDataPipelineRunsResponse): ListDataPipelineRunsResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ListPipelineRunsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ListPipelineRunsResponse;
-  static deserializeBinaryFromReader(message: ListPipelineRunsResponse, reader: jspb.BinaryReader): ListPipelineRunsResponse;
+  static serializeBinaryToWriter(message: ListDataPipelineRunsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListDataPipelineRunsResponse;
+  static deserializeBinaryFromReader(message: ListDataPipelineRunsResponse, reader: jspb.BinaryReader): ListDataPipelineRunsResponse;
 }
 
-export namespace ListPipelineRunsResponse {
+export namespace ListDataPipelineRunsResponse {
   export type AsObject = {
     pipelineId: string,
-    runsList: Array<PipelineRun.AsObject>,
+    runsList: Array<DataPipelineRun.AsObject>,
     nextPageToken: string,
   }
 }
 
-export class PipelineRun extends jspb.Message {
+export class DataPipelineRun extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
@@ -442,37 +442,37 @@ export class PipelineRun extends jspb.Message {
   getDataEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setDataEndTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  getStatus(): PipelineRunStatusMap[keyof PipelineRunStatusMap];
-  setStatus(value: PipelineRunStatusMap[keyof PipelineRunStatusMap]): void;
+  getStatus(): DataPipelineRunStatusMap[keyof DataPipelineRunStatusMap];
+  setStatus(value: DataPipelineRunStatusMap[keyof DataPipelineRunStatusMap]): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): PipelineRun.AsObject;
-  static toObject(includeInstance: boolean, msg: PipelineRun): PipelineRun.AsObject;
+  toObject(includeInstance?: boolean): DataPipelineRun.AsObject;
+  static toObject(includeInstance: boolean, msg: DataPipelineRun): DataPipelineRun.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: PipelineRun, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): PipelineRun;
-  static deserializeBinaryFromReader(message: PipelineRun, reader: jspb.BinaryReader): PipelineRun;
+  static serializeBinaryToWriter(message: DataPipelineRun, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DataPipelineRun;
+  static deserializeBinaryFromReader(message: DataPipelineRun, reader: jspb.BinaryReader): DataPipelineRun;
 }
 
-export namespace PipelineRun {
+export namespace DataPipelineRun {
   export type AsObject = {
     id: string,
     startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     dataStartTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     dataEndTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    status: PipelineRunStatusMap[keyof PipelineRunStatusMap],
+    status: DataPipelineRunStatusMap[keyof DataPipelineRunStatusMap],
   }
 }
 
-export interface PipelineRunStatusMap {
-  PIPELINE_RUN_STATUS_UNSPECIFIED: 0;
-  PIPELINE_RUN_STATUS_SCHEDULED: 1;
-  PIPELINE_RUN_STATUS_STARTED: 2;
-  PIPELINE_RUN_STATUS_COMPLETED: 3;
-  PIPELINE_RUN_STATUS_FAILED: 4;
+export interface DataPipelineRunStatusMap {
+  DATA_PIPELINE_RUN_STATUS_UNSPECIFIED: 0;
+  DATA_PIPELINE_RUN_STATUS_SCHEDULED: 1;
+  DATA_PIPELINE_RUN_STATUS_STARTED: 2;
+  DATA_PIPELINE_RUN_STATUS_COMPLETED: 3;
+  DATA_PIPELINE_RUN_STATUS_FAILED: 4;
 }
 
-export const PipelineRunStatus: PipelineRunStatusMap;
+export const DataPipelineRunStatus: DataPipelineRunStatusMap;
 

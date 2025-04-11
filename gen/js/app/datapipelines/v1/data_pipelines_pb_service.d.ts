@@ -67,13 +67,13 @@ type DataPipelinesServiceDisableDataPipeline = {
   readonly responseType: typeof app_datapipelines_v1_data_pipelines_pb.DisableDataPipelineResponse;
 };
 
-type DataPipelinesServiceListPipelineRuns = {
+type DataPipelinesServiceListDataPipelineRuns = {
   readonly methodName: string;
   readonly service: typeof DataPipelinesService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsRequest;
-  readonly responseType: typeof app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsResponse;
+  readonly requestType: typeof app_datapipelines_v1_data_pipelines_pb.ListDataPipelineRunsRequest;
+  readonly responseType: typeof app_datapipelines_v1_data_pipelines_pb.ListDataPipelineRunsResponse;
 };
 
 export class DataPipelinesService {
@@ -85,7 +85,7 @@ export class DataPipelinesService {
   static readonly DeleteDataPipeline: DataPipelinesServiceDeleteDataPipeline;
   static readonly EnableDataPipeline: DataPipelinesServiceEnableDataPipeline;
   static readonly DisableDataPipeline: DataPipelinesServiceDisableDataPipeline;
-  static readonly ListPipelineRuns: DataPipelinesServiceListPipelineRuns;
+  static readonly ListDataPipelineRuns: DataPipelinesServiceListDataPipelineRuns;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -183,14 +183,14 @@ export class DataPipelinesServiceClient {
     requestMessage: app_datapipelines_v1_data_pipelines_pb.DisableDataPipelineRequest,
     callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.DisableDataPipelineResponse|null) => void
   ): UnaryResponse;
-  listPipelineRuns(
-    requestMessage: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsRequest,
+  listDataPipelineRuns(
+    requestMessage: app_datapipelines_v1_data_pipelines_pb.ListDataPipelineRunsRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.ListDataPipelineRunsResponse|null) => void
   ): UnaryResponse;
-  listPipelineRuns(
-    requestMessage: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsRequest,
-    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsResponse|null) => void
+  listDataPipelineRuns(
+    requestMessage: app_datapipelines_v1_data_pipelines_pb.ListDataPipelineRunsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.ListDataPipelineRunsResponse|null) => void
   ): UnaryResponse;
 }
 

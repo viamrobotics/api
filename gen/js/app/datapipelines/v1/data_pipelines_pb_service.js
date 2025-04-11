@@ -73,13 +73,13 @@ DataPipelinesService.DisableDataPipeline = {
   responseType: app_datapipelines_v1_data_pipelines_pb.DisableDataPipelineResponse
 };
 
-DataPipelinesService.ListPipelineRuns = {
-  methodName: "ListPipelineRuns",
+DataPipelinesService.ListDataPipelineRuns = {
+  methodName: "ListDataPipelineRuns",
   service: DataPipelinesService,
   requestStream: false,
   responseStream: false,
-  requestType: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsRequest,
-  responseType: app_datapipelines_v1_data_pipelines_pb.ListPipelineRunsResponse
+  requestType: app_datapipelines_v1_data_pipelines_pb.ListDataPipelineRunsRequest,
+  responseType: app_datapipelines_v1_data_pipelines_pb.ListDataPipelineRunsResponse
 };
 
 exports.DataPipelinesService = DataPipelinesService;
@@ -306,11 +306,11 @@ DataPipelinesServiceClient.prototype.disableDataPipeline = function disableDataP
   };
 };
 
-DataPipelinesServiceClient.prototype.listPipelineRuns = function listPipelineRuns(requestMessage, metadata, callback) {
+DataPipelinesServiceClient.prototype.listDataPipelineRuns = function listDataPipelineRuns(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataPipelinesService.ListPipelineRuns, {
+  var client = grpc.unary(DataPipelinesService.ListDataPipelineRuns, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
