@@ -15,7 +15,10 @@ service CameraService {
   // GetImage returns a frame from a camera of the underlying robot. A specific MIME type
   // can be requested but may not necessarily be the same one returned.
   rpc GetImage(GetImageRequest) returns (GetImageResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/image"};
+    option deprecated = true;
+    option (google.api.http) = {
+      get : "/viam/api/v1/component/camera/{name}/image"
+    };
   }
 
   rpc GetImages(GetImagesRequest) returns (GetImagesResponse) {
@@ -69,6 +72,10 @@ message GetImageResponse {
 message GetImagesRequest {
   // Name of a camera
   string name = 1;
+  repeated string desired_source_names = 2;
+  repeated Format desired_formats = 3;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetImagesResponse {
@@ -93,6 +100,7 @@ enum Format {
   FORMAT_RAW_DEPTH = 2;
   FORMAT_JPEG = 3;
   FORMAT_PNG = 4;
+  ... all the formats in rimage/utils
 }
 
 message RenderFrameRequest {
