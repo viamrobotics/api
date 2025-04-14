@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package viam.component.camera.v1;
+package viam.component.camera.v2;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
@@ -12,9 +12,18 @@ option java_package = "com.viam.component.camera.v2";
 
 // A CameraService services all cameras associated with a robot
 service CameraService {
+  // Readings returns the camera readings
   rpc Readings(ReadingsRequest) returns (ReadingsResponse) {
     option (google.api.http) = {
       get : "/viam/api/v2/component/camera/{name}/readings"
+    };
+  }
+
+  // GetProperties returns the camera intrinsic parameters and camera distortion
+  // parameters from a camera of the underlying robot, if available.
+  rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
+    option (google.api.http) = {
+      get : "/viam/api/v2/component/camera/{name}/properties"
     };
   }
 
@@ -30,11 +39,13 @@ service CameraService {
 message ReadingsRequest {
   // Name of a camera
   string name = 1;
+  // the requested sensor names
+  // if empty all sensors are requested
   repeated string sensor_names = 2;
 }
 
 message ReadingsResponse {
-  // list of images returned from the camera system
+  // list of readings returned from the camera system
   map<string, Reading> readings = 1;
   // contains timestamp data
   google.protobuf.Timestamp captured_at = 2;
@@ -42,14 +53,12 @@ message ReadingsResponse {
 
 message Reading {
   // format of the response image bytes
-  Metadata format = 1;
+  Metadata metadata = 1;
   // image in bytes
   bytes image = 2;
 }
 
-message Metadata {
-  Format format = 2;
-}
+message Metadata { MimeType mime_type = 2; }
 
 enum MimeType {
   MIME_TYPE_UNSPECIFIED = 0;
@@ -58,4 +67,20 @@ enum MimeType {
   MIME_TYPE_JPEG = 3;
   MIME_TYPE_PNG = 4;
   ... all the other mime types
+}
+
+message GetPropertiesRequest {
+  // Name of a camera
+  string name = 1;
+}
+
+message GetPropertiesResponse {
+  // Parameters for doing a perspective of a 3D scene to a 2D plane
+  // If camera does not provide intrinsic parameters, leave the field empty
+  // Initializing the parameters with 0-values is considered an error
+  IntrinsicParameters intrinsic_parameters = 1;
+  // Parameters for modeling lens distortion in cameras
+  // If camera does not provide distortion parameters, leave the field empty
+  // Initializing the parameters with 0-values is considered an error
+  DistortionParameters distortion_parameters = 2;
 }
