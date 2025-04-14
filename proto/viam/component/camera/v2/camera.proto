@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package viam.component.camera.v1;
+
+import "common/v1/common.proto";
+import "google/api/annotations.proto";
+import "google/api/httpbody.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "go.viam.com/api/component/camera/v2";
+option java_package = "com.viam.component.camera.v2";
+
+// A CameraService services all cameras associated with a robot
+service CameraService {
+  rpc Readings(ReadingsRequest) returns (ReadingsResponse) {
+    option (google.api.http) = {
+      get : "/viam/api/v2/component/camera/{name}/readings"
+    };
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest)
+      returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {
+      post : "/viam/api/v2/component/camera/{name}/do_command"
+    };
+  }
+}
+
+message ReadingsRequest {
+  // Name of a camera
+  string name = 1;
+  repeated string sensor_names = 2;
+}
+
+message ReadingsResponse {
+  // list of images returned from the camera system
+  map<string, Reading> readings = 1;
+  // contains timestamp data
+  google.protobuf.Timestamp captured_at = 2;
+}
+
+message Reading {
+  // format of the response image bytes
+  Metadata format = 1;
+  // image in bytes
+  bytes image = 2;
+}
+
+message Metadata {
+  Format format = 2;
+}
+
+enum MimeType {
+  MIME_TYPE_UNSPECIFIED = 0;
+  MIME_TYPE_RAW_RGBA = 1;
+  MIME_TYPE_RAW_DEPTH = 2;
+  MIME_TYPE_JPEG = 3;
+  MIME_TYPE_PNG = 4;
+  ... all the other mime types
+}
