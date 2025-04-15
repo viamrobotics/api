@@ -140,22 +140,25 @@ message ReadingsRequest {
 }
 
 message ReadingsResponse {
-  // timestamp all sensor readings were taken
-  google.protobuf.Timestamp captured_at = 1;
   // map of camera sensor names to camera sensor readings returned from the
   // camera at the captured_at time
-  map<string, Reading> readings = 2;
+  // if there is only a single reading a key of empty string may be used to
+  // represent an unlabeled sensor reading
+  map<string, Reading> readings = 1;
+
+  // contains timestamp data
+  common.v1.ResponseMetadata response_metadata = 84260;
 }
 
 message Reading {
-  // image_metadata is set if data contains an image, mutually exclusive with 
+  // image_metadata is set if data contains an image, mutually exclusive with
   // all other _metadata fields
   ImageMetadata image_metadata = 1;
-  // bitmap_metadata is set if data contains an bitmap, mutually exclusive with 
+  // bitmap_metadata is set if data contains an bitmap, mutually exclusive with
   // all other _metadata fields
   BitmapMetadata bitmap_metadata = 2;
-  // pointcloud_metadata is set if data contains an pointcloud, mutually exclusive with 
-  // all other _metadata fields
+  // pointcloud_metadata is set if data contains an pointcloud, mutually
+  // exclusive with all other _metadata fields
   PointCloudMetadata pointcloud_metadata = 3;
 
   // the reading's data
@@ -164,14 +167,14 @@ message Reading {
 
 enum ImageType {
   IMAGE_TYPE_UNSPECIFIED = 0;
-  IMAGE_TYPE_IMAGE_JPEG = 1;
-  IMAGE_TYPE_IMAGE_PNG = 2;
+  IMAGE_TYPE_JPEG = 1;
+  IMAGE_TYPE_PNG = 2;
 }
 
 enum BitmapType {
   BITMAP_TYPE_UNSPECIFIED = 0;
-  BITMAP_TYPE_BITMAP_VIAM_RAW_RGBA = 1;
-  BITMAP_TYPE_BITMAP_VIAM_RAW_DEPTH = 2;
+  BITMAP_TYPE_VIAM_RAW_RGBA = 1;
+  BITMAP_TYPE_VIAM_RAW_DEPTH = 2;
 }
 
 enum PointCloudType {
@@ -191,16 +194,16 @@ message Dimensions {
   uint32 y = 3;
 }
 
-message BitmapMetadata { 
+message BitmapMetadata {
   // type of the bitmap
-  BitmapType type = 1; 
+  BitmapType type = 1;
   // pixel dimensions of the bitmap
   Dimensions pixel_dimensions = 2;
 }
 
-message PointCloudMetadata { 
+message PointCloudMetadata {
   // type of the pointcloud
-  PointCloudType type = 1; 
+  PointCloudType type = 1;
 }
 
 message GetPropertiesRequest {
