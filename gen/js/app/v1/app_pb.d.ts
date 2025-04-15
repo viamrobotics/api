@@ -2429,6 +2429,11 @@ export class UpdateRobotPartRequest extends jspb.Message {
   getRobotConfig(): google_protobuf_struct_pb.Struct | undefined;
   setRobotConfig(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasLastKnownUpdate(): boolean;
+  clearLastKnownUpdate(): void;
+  getLastKnownUpdate(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastKnownUpdate(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRobotPartRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateRobotPartRequest): UpdateRobotPartRequest.AsObject;
@@ -2444,6 +2449,7 @@ export namespace UpdateRobotPartRequest {
     id: string,
     name: string,
     robotConfig?: google_protobuf_struct_pb.Struct.AsObject,
+    lastKnownUpdate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -3191,6 +3197,11 @@ export class UpdateFragmentRequest extends jspb.Message {
   getVisibility(): FragmentVisibilityMap[keyof FragmentVisibilityMap];
   setVisibility(value: FragmentVisibilityMap[keyof FragmentVisibilityMap]): void;
 
+  hasLastKnownUpdate(): boolean;
+  clearLastKnownUpdate(): void;
+  getLastKnownUpdate(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastKnownUpdate(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateFragmentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateFragmentRequest): UpdateFragmentRequest.AsObject;
@@ -3208,6 +3219,7 @@ export namespace UpdateFragmentRequest {
     config?: google_protobuf_struct_pb.Struct.AsObject,
     pb_public: boolean,
     visibility: FragmentVisibilityMap[keyof FragmentVisibilityMap],
+    lastKnownUpdate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 

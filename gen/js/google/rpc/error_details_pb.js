@@ -1010,7 +1010,13 @@ proto.google.rpc.QuotaFailure.Violation.prototype.toObject = function(opt_includ
 proto.google.rpc.QuotaFailure.Violation.toObject = function(includeInstance, msg) {
   var f, obj = {
     subject: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 2, "")
+    description: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    apiService: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    quotaMetric: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    quotaId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    quotaDimensionsMap: (f = msg.getQuotaDimensionsMap()) ? f.toObject(includeInstance, undefined) : [],
+    quotaValue: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    futureQuotaValue: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -1055,6 +1061,32 @@ proto.google.rpc.QuotaFailure.Violation.deserializeBinaryFromReader = function(m
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setApiService(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setQuotaMetric(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setQuotaId(value);
+      break;
+    case 6:
+      var value = msg.getQuotaDimensionsMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setQuotaValue(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setFutureQuotaValue(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1098,6 +1130,45 @@ proto.google.rpc.QuotaFailure.Violation.serializeBinaryToWriter = function(messa
       f
     );
   }
+  f = message.getApiService();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getQuotaMetric();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getQuotaId();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getQuotaDimensionsMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(6, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = message.getQuotaValue();
+  if (f !== 0) {
+    writer.writeInt64(
+      7,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 8));
+  if (f != null) {
+    writer.writeInt64(
+      8,
+      f
+    );
+  }
 };
 
 
@@ -1134,6 +1205,136 @@ proto.google.rpc.QuotaFailure.Violation.prototype.getDescription = function() {
  */
 proto.google.rpc.QuotaFailure.Violation.prototype.setDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string api_service = 3;
+ * @return {string}
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.getApiService = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.google.rpc.QuotaFailure.Violation} returns this
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.setApiService = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string quota_metric = 4;
+ * @return {string}
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.getQuotaMetric = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.google.rpc.QuotaFailure.Violation} returns this
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.setQuotaMetric = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string quota_id = 5;
+ * @return {string}
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.getQuotaId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.google.rpc.QuotaFailure.Violation} returns this
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.setQuotaId = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * map<string, string> quota_dimensions = 6;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.getQuotaDimensionsMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 6, opt_noLazyCreate,
+      null));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.google.rpc.QuotaFailure.Violation} returns this
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.clearQuotaDimensionsMap = function() {
+  this.getQuotaDimensionsMap().clear();
+  return this;};
+
+
+/**
+ * optional int64 quota_value = 7;
+ * @return {number}
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.getQuotaValue = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.google.rpc.QuotaFailure.Violation} returns this
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.setQuotaValue = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional int64 future_quota_value = 8;
+ * @return {number}
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.getFutureQuotaValue = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.google.rpc.QuotaFailure.Violation} returns this
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.setFutureQuotaValue = function(value) {
+  return jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.google.rpc.QuotaFailure.Violation} returns this
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.clearFutureQuotaValue = function() {
+  return jspb.Message.setField(this, 8, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.google.rpc.QuotaFailure.Violation.prototype.hasFutureQuotaValue = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
