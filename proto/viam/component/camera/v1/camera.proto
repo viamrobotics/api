@@ -34,7 +34,16 @@ service CameraService {
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/point_cloud"};
   }
 
-  // GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying robot, if available.
+  // Readings returns a map of camera sensor names to camera sensor reading
+  // allong with a timestamp
+  rpc Readings(ReadingsRequest) returns (ReadingsResponse) {
+    option (google.api.http) = {
+      get : "/viam/api/v1/component/camera/{name}/readings"
+    };
+  }
+
+  // GetProperties returns the camera intrinsic parameters and camera distortion
+  // parameters from a camera of the underlying robot, if available.
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/properties"};
   }
@@ -118,6 +127,80 @@ message GetPointCloudResponse {
   string mime_type = 1;
   // Frame in bytes
   bytes point_cloud = 2;
+}
+
+message ReadingsRequest {
+  // Name of a camera
+  string name = 1;
+  // Requested sensor_names
+  // If empty all sensors are requested
+  repeated string sensor_names = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message ReadingsResponse {
+  // timestamp all sensor readings were taken
+  google.protobuf.Timestamp captured_at = 1;
+  // map of camera sensor names to camera sensor readings returned from the
+  // camera at the captured_at time
+  map<string, Reading> readings = 2;
+}
+
+message Reading {
+  // image_metadata is set if data contains an image, mutually exclusive with 
+  // all other _metadata fields
+  ImageMetadata image_metadata = 1;
+  // bitmap_metadata is set if data contains an bitmap, mutually exclusive with 
+  // all other _metadata fields
+  BitmapMetadata bitmap_metadata = 2;
+  // pointcloud_metadata is set if data contains an pointcloud, mutually exclusive with 
+  // all other _metadata fields
+  PointCloudMetadata pointcloud_metadata = 3;
+
+  // the reading's data
+  bytes data = 6;
+}
+
+enum ImageType {
+  IMAGE_TYPE_UNSPECIFIED = 0;
+  IMAGE_TYPE_IMAGE_JPEG = 1;
+  IMAGE_TYPE_IMAGE_PNG = 2;
+}
+
+enum BitmapType {
+  BITMAP_TYPE_UNSPECIFIED = 0;
+  BITMAP_TYPE_BITMAP_VIAM_RAW_RGBA = 1;
+  BITMAP_TYPE_BITMAP_VIAM_RAW_DEPTH = 2;
+}
+
+enum PointCloudType {
+  POINT_CLOUD_TYPE_UNSPECIFIED = 0;
+  POINT_CLOUD_TYPE_PCD = 1;
+}
+
+message ImageMetadata {
+  // type of the image
+  ImageType type = 1;
+  // pixel dimensions of the image
+  Dimensions pixel_dimensions = 2;
+}
+
+message Dimensions {
+  uint32 x = 2;
+  uint32 y = 3;
+}
+
+message BitmapMetadata { 
+  // type of the bitmap
+  BitmapType type = 1; 
+  // pixel dimensions of the bitmap
+  Dimensions pixel_dimensions = 2;
+}
+
+message PointCloudMetadata { 
+  // type of the pointcloud
+  PointCloudType type = 1; 
 }
 
 message GetPropertiesRequest {
