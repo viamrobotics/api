@@ -4437,7 +4437,8 @@ proto.viam.app.v1.NetworkConfig.toObject = function(includeInstance, msg) {
     tlsKeyFile: jspb.Message.getFieldWithDefault(msg, 4, ""),
     sessions: (f = msg.getSessions()) && proto.viam.app.v1.SessionsConfig.toObject(includeInstance, f),
     trafficTunnelEndpointsList: jspb.Message.toObjectList(msg.getTrafficTunnelEndpointsList(),
-    proto.viam.app.v1.TrafficTunnelEndpoint.toObject, includeInstance)
+    proto.viam.app.v1.TrafficTunnelEndpoint.toObject, includeInstance),
+    noTls: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
   };
 
   if (includeInstance) {
@@ -4499,6 +4500,10 @@ proto.viam.app.v1.NetworkConfig.deserializeBinaryFromReader = function(msg, read
       var value = new proto.viam.app.v1.TrafficTunnelEndpoint;
       reader.readMessage(value,proto.viam.app.v1.TrafficTunnelEndpoint.deserializeBinaryFromReader);
       msg.addTrafficTunnelEndpoints(value);
+      break;
+    case 7:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setNoTls(value);
       break;
     default:
       reader.skipField();
@@ -4571,6 +4576,13 @@ proto.viam.app.v1.NetworkConfig.serializeBinaryToWriter = function(message, writ
       6,
       f,
       proto.viam.app.v1.TrafficTunnelEndpoint.serializeBinaryToWriter
+    );
+  }
+  f = message.getNoTls();
+  if (f) {
+    writer.writeBool(
+      7,
+      f
     );
   }
 };
@@ -4720,6 +4732,24 @@ proto.viam.app.v1.NetworkConfig.prototype.addTrafficTunnelEndpoints = function(o
  */
 proto.viam.app.v1.NetworkConfig.prototype.clearTrafficTunnelEndpointsList = function() {
   return this.setTrafficTunnelEndpointsList([]);
+};
+
+
+/**
+ * optional bool no_tls = 7;
+ * @return {boolean}
+ */
+proto.viam.app.v1.NetworkConfig.prototype.getNoTls = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.NetworkConfig} returns this
+ */
+proto.viam.app.v1.NetworkConfig.prototype.setNoTls = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 

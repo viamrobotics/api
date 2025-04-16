@@ -487,6 +487,9 @@ export class NetworkConfig extends jspb.Message {
   setTrafficTunnelEndpointsList(value: Array<TrafficTunnelEndpoint>): void;
   addTrafficTunnelEndpoints(value?: TrafficTunnelEndpoint, index?: number): TrafficTunnelEndpoint;
 
+  getNoTls(): boolean;
+  setNoTls(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): NetworkConfig.AsObject;
   static toObject(includeInstance: boolean, msg: NetworkConfig): NetworkConfig.AsObject;
@@ -505,6 +508,7 @@ export namespace NetworkConfig {
     tlsKeyFile: string,
     sessions?: SessionsConfig.AsObject,
     trafficTunnelEndpointsList: Array<TrafficTunnelEndpoint.AsObject>,
+    noTls: boolean,
   }
 }
 
