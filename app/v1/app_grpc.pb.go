@@ -40,6 +40,8 @@ type AppServiceClient interface {
 	GetOrganizationNamespaceAvailability(ctx context.Context, in *GetOrganizationNamespaceAvailabilityRequest, opts ...grpc.CallOption) (*GetOrganizationNamespaceAvailabilityResponse, error)
 	// Update an organization
 	UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error)
+	// Update an organization's namespace if it's already been set.
+	UpdateOrganizationNamespace(ctx context.Context, in *UpdateOrganizationNamespaceRequest, opts ...grpc.CallOption) (*UpdateOrganizationNamespaceResponse, error)
 	// Delete an organization
 	DeleteOrganization(ctx context.Context, in *DeleteOrganizationRequest, opts ...grpc.CallOption) (*DeleteOrganizationResponse, error)
 	// Get user-defined metadata for an organization
@@ -284,6 +286,15 @@ func (c *appServiceClient) GetOrganizationNamespaceAvailability(ctx context.Cont
 func (c *appServiceClient) UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error) {
 	out := new(UpdateOrganizationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateOrganization", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateOrganizationNamespace(ctx context.Context, in *UpdateOrganizationNamespaceRequest, opts ...grpc.CallOption) (*UpdateOrganizationNamespaceResponse, error) {
+	out := new(UpdateOrganizationNamespaceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateOrganizationNamespace", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1215,6 +1226,8 @@ type AppServiceServer interface {
 	GetOrganizationNamespaceAvailability(context.Context, *GetOrganizationNamespaceAvailabilityRequest) (*GetOrganizationNamespaceAvailabilityResponse, error)
 	// Update an organization
 	UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error)
+	// Update an organization's namespace if it's already been set.
+	UpdateOrganizationNamespace(context.Context, *UpdateOrganizationNamespaceRequest) (*UpdateOrganizationNamespaceResponse, error)
 	// Delete an organization
 	DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error)
 	// Get user-defined metadata for an organization
@@ -1407,6 +1420,9 @@ func (UnimplementedAppServiceServer) GetOrganizationNamespaceAvailability(contex
 }
 func (UnimplementedAppServiceServer) UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganization not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateOrganizationNamespace(context.Context, *UpdateOrganizationNamespaceRequest) (*UpdateOrganizationNamespaceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationNamespace not implemented")
 }
 func (UnimplementedAppServiceServer) DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganization not implemented")
@@ -1864,6 +1880,24 @@ func _AppService_UpdateOrganization_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).UpdateOrganization(ctx, req.(*UpdateOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateOrganizationNamespace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationNamespaceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateOrganizationNamespace(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateOrganizationNamespace",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateOrganizationNamespace(ctx, req.(*UpdateOrganizationNamespaceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3631,6 +3665,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateOrganization",
 			Handler:    _AppService_UpdateOrganization_Handler,
+		},
+		{
+			MethodName: "UpdateOrganizationNamespace",
+			Handler:    _AppService_UpdateOrganizationNamespace_Handler,
 		},
 		{
 			MethodName: "DeleteOrganization",

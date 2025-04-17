@@ -91,6 +91,15 @@ AppService.UpdateOrganization = {
   responseType: app_v1_app_pb.UpdateOrganizationResponse
 };
 
+AppService.UpdateOrganizationNamespace = {
+  methodName: "UpdateOrganizationNamespace",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateOrganizationNamespaceRequest,
+  responseType: app_v1_app_pb.UpdateOrganizationNamespaceResponse
+};
+
 AppService.DeleteOrganization = {
   methodName: "DeleteOrganization",
   service: AppService,
@@ -1206,6 +1215,37 @@ AppServiceClient.prototype.updateOrganization = function updateOrganization(requ
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.UpdateOrganization, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateOrganizationNamespace = function updateOrganizationNamespace(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateOrganizationNamespace, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
