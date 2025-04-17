@@ -43,6 +43,9 @@ service AppService {
   // Update an organization
   rpc UpdateOrganization(UpdateOrganizationRequest) returns (UpdateOrganizationResponse);
 
+  // Update an organization's namespace if it's already been set.
+  rpc UpdateOrganizationNamespace(UpdateOrganizationNamespaceRequest) returns (UpdateOrganizationNamespaceResponse);
+
   // Delete an organization
   rpc DeleteOrganization(DeleteOrganizationRequest) returns (DeleteOrganizationResponse);
 
@@ -417,6 +420,15 @@ message UpdateOrganizationRequest {
 }
 
 message UpdateOrganizationResponse {
+  Organization organization = 1;
+}
+
+message UpdateOrganizationNamespaceRequest {
+  string organization_id = 1;
+  optional string new_public_namespace = 2;
+}
+
+message UpdateOrganizationNamespaceResponse {
   Organization organization = 1;
 }
 
