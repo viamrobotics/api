@@ -85,6 +85,15 @@ type AppServiceUpdateOrganization = {
   readonly responseType: typeof app_v1_app_pb.UpdateOrganizationResponse;
 };
 
+type AppServiceUpdateOrganizationNamespace = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateOrganizationNamespaceRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateOrganizationNamespaceResponse;
+};
+
 type AppServiceDeleteOrganization = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -951,6 +960,7 @@ export class AppService {
   static readonly GetOrganization: AppServiceGetOrganization;
   static readonly GetOrganizationNamespaceAvailability: AppServiceGetOrganizationNamespaceAvailability;
   static readonly UpdateOrganization: AppServiceUpdateOrganization;
+  static readonly UpdateOrganizationNamespace: AppServiceUpdateOrganizationNamespace;
   static readonly DeleteOrganization: AppServiceDeleteOrganization;
   static readonly GetOrganizationMetadata: AppServiceGetOrganizationMetadata;
   static readonly UpdateOrganizationMetadata: AppServiceUpdateOrganizationMetadata;
@@ -1160,6 +1170,15 @@ export class AppServiceClient {
   updateOrganization(
     requestMessage: app_v1_app_pb.UpdateOrganizationRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationNamespace(
+    requestMessage: app_v1_app_pb.UpdateOrganizationNamespaceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationNamespaceResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationNamespace(
+    requestMessage: app_v1_app_pb.UpdateOrganizationNamespaceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationNamespaceResponse|null) => void
   ): UnaryResponse;
   deleteOrganization(
     requestMessage: app_v1_app_pb.DeleteOrganizationRequest,
