@@ -36,8 +36,8 @@ type DataPipelinesServiceClient interface {
 	EnableDataPipeline(ctx context.Context, in *EnableDataPipelineRequest, opts ...grpc.CallOption) (*EnableDataPipelineResponse, error)
 	// DisableDataPipeline disables a data pipeline.
 	DisableDataPipeline(ctx context.Context, in *DisableDataPipelineRequest, opts ...grpc.CallOption) (*DisableDataPipelineResponse, error)
-	// ListPipelineRuns lists the runs of a data pipeline.
-	ListPipelineRuns(ctx context.Context, in *ListPipelineRunsRequest, opts ...grpc.CallOption) (*ListPipelineRunsResponse, error)
+	// ListDataPipelineRuns lists the runs of a data pipeline.
+	ListDataPipelineRuns(ctx context.Context, in *ListDataPipelineRunsRequest, opts ...grpc.CallOption) (*ListDataPipelineRunsResponse, error)
 }
 
 type dataPipelinesServiceClient struct {
@@ -111,9 +111,9 @@ func (c *dataPipelinesServiceClient) DisableDataPipeline(ctx context.Context, in
 	return out, nil
 }
 
-func (c *dataPipelinesServiceClient) ListPipelineRuns(ctx context.Context, in *ListPipelineRunsRequest, opts ...grpc.CallOption) (*ListPipelineRunsResponse, error) {
-	out := new(ListPipelineRunsResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.datapipelines.v1.DataPipelinesService/ListPipelineRuns", in, out, opts...)
+func (c *dataPipelinesServiceClient) ListDataPipelineRuns(ctx context.Context, in *ListDataPipelineRunsRequest, opts ...grpc.CallOption) (*ListDataPipelineRunsResponse, error) {
+	out := new(ListDataPipelineRunsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.datapipelines.v1.DataPipelinesService/ListDataPipelineRuns", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -138,8 +138,8 @@ type DataPipelinesServiceServer interface {
 	EnableDataPipeline(context.Context, *EnableDataPipelineRequest) (*EnableDataPipelineResponse, error)
 	// DisableDataPipeline disables a data pipeline.
 	DisableDataPipeline(context.Context, *DisableDataPipelineRequest) (*DisableDataPipelineResponse, error)
-	// ListPipelineRuns lists the runs of a data pipeline.
-	ListPipelineRuns(context.Context, *ListPipelineRunsRequest) (*ListPipelineRunsResponse, error)
+	// ListDataPipelineRuns lists the runs of a data pipeline.
+	ListDataPipelineRuns(context.Context, *ListDataPipelineRunsRequest) (*ListDataPipelineRunsResponse, error)
 	mustEmbedUnimplementedDataPipelinesServiceServer()
 }
 
@@ -168,8 +168,8 @@ func (UnimplementedDataPipelinesServiceServer) EnableDataPipeline(context.Contex
 func (UnimplementedDataPipelinesServiceServer) DisableDataPipeline(context.Context, *DisableDataPipelineRequest) (*DisableDataPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DisableDataPipeline not implemented")
 }
-func (UnimplementedDataPipelinesServiceServer) ListPipelineRuns(context.Context, *ListPipelineRunsRequest) (*ListPipelineRunsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPipelineRuns not implemented")
+func (UnimplementedDataPipelinesServiceServer) ListDataPipelineRuns(context.Context, *ListDataPipelineRunsRequest) (*ListDataPipelineRunsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDataPipelineRuns not implemented")
 }
 func (UnimplementedDataPipelinesServiceServer) mustEmbedUnimplementedDataPipelinesServiceServer() {}
 
@@ -310,20 +310,20 @@ func _DataPipelinesService_DisableDataPipeline_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataPipelinesService_ListPipelineRuns_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPipelineRunsRequest)
+func _DataPipelinesService_ListDataPipelineRuns_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDataPipelineRunsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DataPipelinesServiceServer).ListPipelineRuns(ctx, in)
+		return srv.(DataPipelinesServiceServer).ListDataPipelineRuns(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.datapipelines.v1.DataPipelinesService/ListPipelineRuns",
+		FullMethod: "/viam.app.datapipelines.v1.DataPipelinesService/ListDataPipelineRuns",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataPipelinesServiceServer).ListPipelineRuns(ctx, req.(*ListPipelineRunsRequest))
+		return srv.(DataPipelinesServiceServer).ListDataPipelineRuns(ctx, req.(*ListDataPipelineRunsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -364,8 +364,8 @@ var DataPipelinesService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataPipelinesService_DisableDataPipeline_Handler,
 		},
 		{
-			MethodName: "ListPipelineRuns",
-			Handler:    _DataPipelinesService_ListPipelineRuns_Handler,
+			MethodName: "ListDataPipelineRuns",
+			Handler:    _DataPipelinesService_ListDataPipelineRuns_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
