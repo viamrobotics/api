@@ -140,6 +140,7 @@ message NetworkConfig {
   string tls_key_file = 4;
   SessionsConfig sessions = 5;
   repeated TrafficTunnelEndpoint traffic_tunnel_endpoints = 6;
+  bool no_tls = 7;
 }
 
 message SessionsConfig {

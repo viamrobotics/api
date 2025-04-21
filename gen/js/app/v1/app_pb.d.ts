@@ -553,6 +553,54 @@ export namespace UpdateOrganizationResponse {
   }
 }
 
+export class UpdateOrganizationNamespaceRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  hasNewPublicNamespace(): boolean;
+  clearNewPublicNamespace(): void;
+  getNewPublicNamespace(): string;
+  setNewPublicNamespace(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateOrganizationNamespaceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateOrganizationNamespaceRequest): UpdateOrganizationNamespaceRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateOrganizationNamespaceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateOrganizationNamespaceRequest;
+  static deserializeBinaryFromReader(message: UpdateOrganizationNamespaceRequest, reader: jspb.BinaryReader): UpdateOrganizationNamespaceRequest;
+}
+
+export namespace UpdateOrganizationNamespaceRequest {
+  export type AsObject = {
+    organizationId: string,
+    newPublicNamespace: string,
+  }
+}
+
+export class UpdateOrganizationNamespaceResponse extends jspb.Message {
+  hasOrganization(): boolean;
+  clearOrganization(): void;
+  getOrganization(): Organization | undefined;
+  setOrganization(value?: Organization): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateOrganizationNamespaceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateOrganizationNamespaceResponse): UpdateOrganizationNamespaceResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateOrganizationNamespaceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateOrganizationNamespaceResponse;
+  static deserializeBinaryFromReader(message: UpdateOrganizationNamespaceResponse, reader: jspb.BinaryReader): UpdateOrganizationNamespaceResponse;
+}
+
+export namespace UpdateOrganizationNamespaceResponse {
+  export type AsObject = {
+    organization?: Organization.AsObject,
+  }
+}
+
 export class DeleteOrganizationRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
@@ -2429,6 +2477,11 @@ export class UpdateRobotPartRequest extends jspb.Message {
   getRobotConfig(): google_protobuf_struct_pb.Struct | undefined;
   setRobotConfig(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasLastKnownUpdate(): boolean;
+  clearLastKnownUpdate(): void;
+  getLastKnownUpdate(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastKnownUpdate(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRobotPartRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateRobotPartRequest): UpdateRobotPartRequest.AsObject;
@@ -2444,6 +2497,7 @@ export namespace UpdateRobotPartRequest {
     id: string,
     name: string,
     robotConfig?: google_protobuf_struct_pb.Struct.AsObject,
+    lastKnownUpdate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -3191,6 +3245,11 @@ export class UpdateFragmentRequest extends jspb.Message {
   getVisibility(): FragmentVisibilityMap[keyof FragmentVisibilityMap];
   setVisibility(value: FragmentVisibilityMap[keyof FragmentVisibilityMap]): void;
 
+  hasLastKnownUpdate(): boolean;
+  clearLastKnownUpdate(): void;
+  getLastKnownUpdate(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastKnownUpdate(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateFragmentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateFragmentRequest): UpdateFragmentRequest.AsObject;
@@ -3208,6 +3267,7 @@ export namespace UpdateFragmentRequest {
     config?: google_protobuf_struct_pb.Struct.AsObject,
     pb_public: boolean,
     visibility: FragmentVisibilityMap[keyof FragmentVisibilityMap],
+    lastKnownUpdate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
