@@ -425,7 +425,7 @@ message UpdateOrganizationResponse {
 
 message UpdateOrganizationNamespaceRequest {
   string organization_id = 1;
-  optional string new_public_namespace = 2;
+  string new_public_namespace = 2;
 }
 
 message UpdateOrganizationNamespaceResponse {
