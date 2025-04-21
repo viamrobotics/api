@@ -9812,8 +9812,8 @@ proto.viam.app.v1.UpdateOrganizationNamespaceRequest.serializeBinaryToWriter = f
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 2));
-  if (f != null) {
+  f = message.getNewPublicNamespace();
+  if (f.length > 0) {
     writer.writeString(
       2,
       f
@@ -9854,25 +9854,7 @@ proto.viam.app.v1.UpdateOrganizationNamespaceRequest.prototype.getNewPublicNames
  * @return {!proto.viam.app.v1.UpdateOrganizationNamespaceRequest} returns this
  */
 proto.viam.app.v1.UpdateOrganizationNamespaceRequest.prototype.setNewPublicNamespace = function(value) {
-  return jspb.Message.setField(this, 2, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.viam.app.v1.UpdateOrganizationNamespaceRequest} returns this
- */
-proto.viam.app.v1.UpdateOrganizationNamespaceRequest.prototype.clearNewPublicNamespace = function() {
-  return jspb.Message.setField(this, 2, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.v1.UpdateOrganizationNamespaceRequest.prototype.hasNewPublicNamespace = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

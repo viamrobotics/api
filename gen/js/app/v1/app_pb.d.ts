@@ -557,8 +557,6 @@ export class UpdateOrganizationNamespaceRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
-  hasNewPublicNamespace(): boolean;
-  clearNewPublicNamespace(): void;
   getNewPublicNamespace(): string;
   setNewPublicNamespace(value: string): void;
 
