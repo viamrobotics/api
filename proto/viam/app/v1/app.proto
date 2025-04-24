@@ -299,6 +299,10 @@ service AppService {
   rpc CreateKeyFromExistingKeyAuthorizations(CreateKeyFromExistingKeyAuthorizationsRequest) returns (CreateKeyFromExistingKeyAuthorizationsResponse);
 
   rpc GetAppContent(GetAppContentRequest) returns (GetAppContentResponse);
+
+  // Search
+
+  rpc SearchForItems(SearchForItemsRequest) returns (SearchForItemsResponse);
 }
 
 message Robot {
@@ -1863,4 +1867,18 @@ message OAuthConfig {
   repeated string redirect_uris = 5;
   string logout_uri = 6;
   repeated EnabledGrant enabled_grants = 7;
+}
+
+message SearchResult {
+  string id = 1;
+  string item_type = 2;
+  string name = 3;
+}
+
+message SearchForItemsRequest {
+  string search_string = 1;
+}
+
+message SearchForItemsResponse {
+  repeated SearchResult results = 1;
 }
