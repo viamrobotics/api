@@ -2025,7 +2025,7 @@ proto.viam.module.v1.ValidateConfigRequest.prototype.hasConfig = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.module.v1.ValidateConfigResponse.repeatedFields_ = [1];
+proto.viam.module.v1.ValidateConfigResponse.repeatedFields_ = [1,2];
 
 
 
@@ -2058,7 +2058,8 @@ proto.viam.module.v1.ValidateConfigResponse.prototype.toObject = function(opt_in
  */
 proto.viam.module.v1.ValidateConfigResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dependenciesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    dependenciesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+    optionalDependenciesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2099,6 +2100,10 @@ proto.viam.module.v1.ValidateConfigResponse.deserializeBinaryFromReader = functi
       var value = /** @type {string} */ (reader.readString());
       msg.addDependencies(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addOptionalDependencies(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2132,6 +2137,13 @@ proto.viam.module.v1.ValidateConfigResponse.serializeBinaryToWriter = function(m
   if (f.length > 0) {
     writer.writeRepeatedString(
       1,
+      f
+    );
+  }
+  f = message.getOptionalDependenciesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
       f
     );
   }
@@ -2172,6 +2184,43 @@ proto.viam.module.v1.ValidateConfigResponse.prototype.addDependencies = function
  */
 proto.viam.module.v1.ValidateConfigResponse.prototype.clearDependenciesList = function() {
   return this.setDependenciesList([]);
+};
+
+
+/**
+ * repeated string optional_dependencies = 2;
+ * @return {!Array<string>}
+ */
+proto.viam.module.v1.ValidateConfigResponse.prototype.getOptionalDependenciesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.module.v1.ValidateConfigResponse} returns this
+ */
+proto.viam.module.v1.ValidateConfigResponse.prototype.setOptionalDependenciesList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.module.v1.ValidateConfigResponse} returns this
+ */
+proto.viam.module.v1.ValidateConfigResponse.prototype.addOptionalDependencies = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.module.v1.ValidateConfigResponse} returns this
+ */
+proto.viam.module.v1.ValidateConfigResponse.prototype.clearOptionalDependenciesList = function() {
+  return this.setOptionalDependenciesList([]);
 };
 
 
