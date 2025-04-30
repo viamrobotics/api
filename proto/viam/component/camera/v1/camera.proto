@@ -230,13 +230,12 @@ message BinaryReadingsResponse {
 message BinaryReading {
   // the name of the sensor where the reading came from
   string source_name = 1;
-  // format of the response sensor bytes
+  // format of the data
   ReadingFormat format = 2;
-  // data in bytes
+  // the reading data
   bytes data = 3;
   // image pixel_dimensions
-  // may not be set if the reading isn't in an image reading format doesn't
-  // support pixel_dimensions
+  // may not be set if the reading isn't an image or a bitmap
   Dimensions pixel_dimensions = 4;
 }
 
