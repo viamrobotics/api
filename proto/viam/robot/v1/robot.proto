@@ -177,8 +177,8 @@ message TransformPoseResponse {
 }
 
 message TransformPCDRequest {
-  // the point clouds to transform. This should be in the PCD format
-  // encoded into bytes: https://pointclouds.org/documentation/tutorials/pcd_file_format.html
+  // the point clouds to transform. This should be in the PCD format,
+  // [encoded into bytes](https://pointclouds.org/documentation/tutorials/pcd_file_format.html).
   bytes point_cloud_pcd = 1;
   // the reference frame of the point cloud.
   string source = 2;
