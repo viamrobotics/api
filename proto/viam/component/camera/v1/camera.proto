@@ -41,6 +41,12 @@ service CameraService {
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/point_cloud"};
   }
 
+  // BinaryReadings returns the readings of all sensors on the camera at a given point in time.
+  // The caller may specify requested sensor_names and/or formats to be sent. The server is
+  // expected to return all results if the caller doesn't specify requested sensor_names and/or formats
+  // and only return requested sensor_names and/or formats when the caller specifies them.
+  // This is important to conserve bandwidth when the caller is only interested in certain
+  // sensor readings or formats.
   rpc BinaryReadings(BinaryReadingsRequest) returns (BinaryReadingsResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/binary_readings"};
   }
