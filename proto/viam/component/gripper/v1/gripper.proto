@@ -42,6 +42,11 @@ service GripperService {
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/geometries"};
   }
+
+  // GetKinematics returns the kinematics file for the component
+  rpc GetKinematics(common.v1.GetKinematicsRequest) returns (common.v1.GetKinematicsResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/kinematics"};
+  }
 }
 
 message OpenRequest {
