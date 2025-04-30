@@ -12,34 +12,37 @@ option java_package = "com.viam.component.camera.v1";
 
 // A CameraService services all cameras associated with a robot
 service CameraService {
-  // GetImage returns a frame from a camera of the underlying robot. A specific MIME type
-  // can be requested but may not necessarily be the same one returned.
+  // GetImage returns a frame from a camera of the underlying robot. A specific
+  // MIME type can be requested but may not necessarily be the same one
+  // returned.
   rpc GetImage(GetImageRequest) returns (GetImageResponse) {
+    option deprecated = true;
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/image"};
   }
 
   rpc GetImages(GetImagesRequest) returns (GetImagesResponse) {
+    option deprecated = true;
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/images"};
   }
 
-  // RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
-  // can be requested but may not necessarily be the same one returned.
+  // RenderFrame renders a frame from a camera of the underlying robot to an
+  // HTTP response. A specific MIME type can be requested but may not
+  // necessarily be the same one returned.
   rpc RenderFrame(RenderFrameRequest) returns (google.api.HttpBody) {
+    option deprecated = true;
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/render_frame"};
   }
 
-  // GetPointCloud returns a point cloud from a camera of the underlying robot. A specific MIME type
-  // can be requested but may not necessarily be the same one returned.
+  // GetPointCloud returns a point cloud from a camera of the underlying robot.
+  // A specific MIME type can be requested but may not necessarily be the same
+  // one returned.
   rpc GetPointCloud(GetPointCloudRequest) returns (GetPointCloudResponse) {
+    option deprecated = true;
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/point_cloud"};
   }
 
-  // Readings returns a map of camera sensor names to camera sensor reading
-  // allong with a timestamp
-  rpc Readings(ReadingsRequest) returns (ReadingsResponse) {
-    option (google.api.http) = {
-      get : "/viam/api/v1/component/camera/{name}/readings"
-    };
+  rpc BinaryReadings(BinaryReadingsRequest) returns (BinaryReadingsResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/binary_readings"};
   }
 
   // GetProperties returns the camera intrinsic parameters and camera distortion
@@ -53,7 +56,8 @@ service CameraService {
     option (google.api.http) = {post: "/viam/api/v1/component/camera/{name}/do_command"};
   }
 
-  // GetGeometries returns the geometries of the component in their current configuration
+  // GetGeometries returns the geometries of the component in their current
+  // configuration
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/geometries"};
   }
@@ -129,90 +133,14 @@ message GetPointCloudResponse {
   bytes point_cloud = 2;
 }
 
-message ReadingsRequest {
-  // Name of a camera
-  string name = 1;
-  // Requested sensor_names
-  // If empty all sensors are requested
-  repeated string sensor_names = 2;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message ReadingsResponse {
-  // map of camera sensor names to camera sensor readings returned from the
-  // camera at the captured_at time
-  // if there is only a single reading a key of empty string may be used to
-  // represent an unlabeled sensor reading
-  map<string, Reading> readings = 1;
-
-  // contains timestamp data
-  common.v1.ResponseMetadata response_metadata = 84260;
-}
-
-message Reading {
-  // image_metadata is set if data contains an image, mutually exclusive with
-  // all other _metadata fields
-  ImageMetadata image_metadata = 1;
-  // bitmap_metadata is set if data contains an bitmap, mutually exclusive with
-  // all other _metadata fields
-  BitmapMetadata bitmap_metadata = 2;
-  // pointcloud_metadata is set if data contains an pointcloud, mutually
-  // exclusive with all other _metadata fields
-  PointCloudMetadata pointcloud_metadata = 3;
-
-  // the reading's data
-  bytes data = 6;
-}
-
-enum ImageType {
-  IMAGE_TYPE_UNSPECIFIED = 0;
-  IMAGE_TYPE_JPEG = 1;
-  IMAGE_TYPE_PNG = 2;
-}
-
-enum BitmapType {
-  BITMAP_TYPE_UNSPECIFIED = 0;
-  BITMAP_TYPE_VIAM_RAW_RGBA = 1;
-  BITMAP_TYPE_VIAM_RAW_DEPTH = 2;
-}
-
-enum PointCloudType {
-  POINT_CLOUD_TYPE_UNSPECIFIED = 0;
-  POINT_CLOUD_TYPE_PCD = 1;
-}
-
-message ImageMetadata {
-  // type of the image
-  ImageType type = 1;
-  // pixel dimensions of the image
-  Dimensions pixel_dimensions = 2;
-}
-
-message Dimensions {
-  uint32 x = 2;
-  uint32 y = 3;
-}
-
-message BitmapMetadata {
-  // type of the bitmap
-  BitmapType type = 1;
-  // pixel dimensions of the bitmap
-  Dimensions pixel_dimensions = 2;
-}
-
-message PointCloudMetadata {
-  // type of the pointcloud
-  PointCloudType type = 1;
-}
-
 message GetPropertiesRequest {
   // Name of a camera
   string name = 1;
 }
 
 message GetPropertiesResponse {
-  // A boolean property determining whether the camera supports the return of pointcloud data
+  // A boolean property determining whether the camera supports the return of
+  // pointcloud data
   bool supports_pcd = 1;
   // Parameters for doing a perspective of a 3D scene to a 2D plane
   // If camera does not provide intrinsic parameters, leave the field empty
@@ -268,4 +196,51 @@ message IntrinsicParameters {
 message DistortionParameters {
   string model = 1;
   repeated double parameters = 2;
+}
+
+enum ReadingFormat {
+  READING_FORMAT_UNSPECIFIED = 0;
+  READING_FORMAT_BITMAP_RAW_RGBA = 1;
+  READING_FORMAT_BITMAP_RAW_DEPTH = 2;
+  READING_FORMAT_IMAGE_JPEG = 3;
+  READING_FORMAT_IMAGE_PNG = 4;
+  READING_FORMAT_POINTCLOUD_PCD = 5;
+}
+
+message BinaryReadingsRequest {
+  // Name of a camera
+  string name = 1;
+
+  // Requested sensor_names
+  // If empty all readings are requested
+  repeated string sensor_names = 2;
+
+  // Requested reading_formats
+  // If empty all readings are requested
+  repeated ReadingFormat formats = 3;
+}
+
+message BinaryReadingsResponse {
+  // list of binary readings returned from the camera system
+  repeated BinaryReading readings = 1;
+  // contains timestamp data
+  common.v1.ResponseMetadata response_metadata = 84260;
+}
+
+message BinaryReading {
+  // the name of the sensor where the reading came from
+  string source_name = 1;
+  // format of the response sensor bytes
+  ReadingFormat format = 2;
+  // data in bytes
+  bytes data = 3;
+  // image pixel_dimensions
+  // may not be set if the reading isn't in an image reading format doesn't
+  // support pixel_dimensions
+  Dimensions pixel_dimensions = 4;
+}
+
+message Dimensions {
+  uint32 x = 1;
+  uint32 y = 2;
 }
