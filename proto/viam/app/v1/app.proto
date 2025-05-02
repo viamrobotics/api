@@ -1292,6 +1292,8 @@ message ModuleVersion {
   optional string first_run = 5;
   // The markdown documentation for this version of the module
   optional string markdown_description = 6;
+  // A list of applications associated with the module
+  repeated App apps = 7;
 }
 
 message ModuleMetadata {
@@ -1306,6 +1308,8 @@ message ModuleMetadata {
   optional string first_run = 4;
   // markdown content for the entire module
   optional string markdown_description = 5;
+  // A list of applications associated with the module
+  repeated App apps = 6;
 }
 
 message MLModelMetadata {
@@ -1522,6 +1526,8 @@ message UpdateModuleMetadata {
   repeated Model models = 1;
   // The executable to run to start the module program
   string entrypoint = 2;
+  // A list of applications associated with the module
+  repeated App apps = 3;
 }
 
 message UpdateMLModelMetadata {
@@ -1634,6 +1640,8 @@ message VersionHistory {
   optional string first_run = 5;
   // The markdown documentation for this version of the module
   optional string markdown_description = 6;
+  // A list of applications associated with the module
+  repeated App apps = 7;
 }
 
 message Uploads {
