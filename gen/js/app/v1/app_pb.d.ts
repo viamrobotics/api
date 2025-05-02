@@ -4650,6 +4650,11 @@ export class ModuleVersion extends jspb.Message {
   getMarkdownDescription(): string;
   setMarkdownDescription(value: string): void;
 
+  clearAppsList(): void;
+  getAppsList(): Array<App>;
+  setAppsList(value: Array<App>): void;
+  addApps(value?: App, index?: number): App;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleVersion.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleVersion): ModuleVersion.AsObject;
@@ -4668,6 +4673,7 @@ export namespace ModuleVersion {
     entrypoint: string,
     firstRun: string,
     markdownDescription: string,
+    appsList: Array<App.AsObject>,
   }
 }
 
@@ -4695,6 +4701,11 @@ export class ModuleMetadata extends jspb.Message {
   getMarkdownDescription(): string;
   setMarkdownDescription(value: string): void;
 
+  clearAppsList(): void;
+  getAppsList(): Array<App>;
+  setAppsList(value: Array<App>): void;
+  addApps(value?: App, index?: number): App;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleMetadata): ModuleMetadata.AsObject;
@@ -4712,6 +4723,7 @@ export namespace ModuleMetadata {
     entrypoint: string,
     firstRun: string,
     markdownDescription: string,
+    appsList: Array<App.AsObject>,
   }
 }
 
@@ -5464,6 +5476,11 @@ export class UpdateModuleMetadata extends jspb.Message {
   getEntrypoint(): string;
   setEntrypoint(value: string): void;
 
+  clearAppsList(): void;
+  getAppsList(): Array<App>;
+  setAppsList(value: Array<App>): void;
+  addApps(value?: App, index?: number): App;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleMetadata): UpdateModuleMetadata.AsObject;
@@ -5478,6 +5495,7 @@ export namespace UpdateModuleMetadata {
   export type AsObject = {
     modelsList: Array<Model.AsObject>,
     entrypoint: string,
+    appsList: Array<App.AsObject>,
   }
 }
 
@@ -5827,6 +5845,11 @@ export class VersionHistory extends jspb.Message {
   getMarkdownDescription(): string;
   setMarkdownDescription(value: string): void;
 
+  clearAppsList(): void;
+  getAppsList(): Array<App>;
+  setAppsList(value: Array<App>): void;
+  addApps(value?: App, index?: number): App;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): VersionHistory.AsObject;
   static toObject(includeInstance: boolean, msg: VersionHistory): VersionHistory.AsObject;
@@ -5845,6 +5868,7 @@ export namespace VersionHistory {
     entrypoint: string,
     firstRun: string,
     markdownDescription: string,
+    appsList: Array<App.AsObject>,
   }
 }
 
