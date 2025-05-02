@@ -45619,7 +45619,7 @@ proto.viam.app.v1.GetModuleResponse.prototype.hasModule = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.Module.repeatedFields_ = [4,7];
+proto.viam.app.v1.Module.repeatedFields_ = [4,7,15];
 
 
 
@@ -45667,7 +45667,9 @@ proto.viam.app.v1.Module.toObject = function(includeInstance, msg) {
     entrypoint: jspb.Message.getFieldWithDefault(msg, 11, ""),
     publicNamespace: jspb.Message.getFieldWithDefault(msg, 12, ""),
     firstRun: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    markdownDescription: jspb.Message.getFieldWithDefault(msg, 14, "")
+    markdownDescription: jspb.Message.getFieldWithDefault(msg, 14, ""),
+    appsList: jspb.Message.toObjectList(msg.getAppsList(),
+    proto.viam.app.v1.App.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -45761,6 +45763,11 @@ proto.viam.app.v1.Module.deserializeBinaryFromReader = function(msg, reader) {
     case 14:
       var value = /** @type {string} */ (reader.readString());
       msg.setMarkdownDescription(value);
+      break;
+    case 15:
+      var value = new proto.viam.app.v1.App;
+      reader.readMessage(value,proto.viam.app.v1.App.deserializeBinaryFromReader);
+      msg.addApps(value);
       break;
     default:
       reader.skipField();
@@ -45889,6 +45896,14 @@ proto.viam.app.v1.Module.serializeBinaryToWriter = function(message, writer) {
     writer.writeString(
       14,
       f
+    );
+  }
+  f = message.getAppsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      15,
+      f,
+      proto.viam.app.v1.App.serializeBinaryToWriter
     );
   }
 };
@@ -46219,6 +46234,44 @@ proto.viam.app.v1.Module.prototype.clearMarkdownDescription = function() {
  */
 proto.viam.app.v1.Module.prototype.hasMarkdownDescription = function() {
   return jspb.Message.getField(this, 14) != null;
+};
+
+
+/**
+ * repeated App apps = 15;
+ * @return {!Array<!proto.viam.app.v1.App>}
+ */
+proto.viam.app.v1.Module.prototype.getAppsList = function() {
+  return /** @type{!Array<!proto.viam.app.v1.App>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.v1.App, 15));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.app.v1.App>} value
+ * @return {!proto.viam.app.v1.Module} returns this
+*/
+proto.viam.app.v1.Module.prototype.setAppsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 15, value);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.App=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.App}
+ */
+proto.viam.app.v1.Module.prototype.addApps = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 15, opt_value, proto.viam.app.v1.App, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.Module} returns this
+ */
+proto.viam.app.v1.Module.prototype.clearAppsList = function() {
+  return this.setAppsList([]);
 };
 
 

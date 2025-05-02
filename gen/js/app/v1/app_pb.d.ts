@@ -5765,6 +5765,11 @@ export class Module extends jspb.Message {
   getMarkdownDescription(): string;
   setMarkdownDescription(value: string): void;
 
+  clearAppsList(): void;
+  getAppsList(): Array<App>;
+  setAppsList(value: Array<App>): void;
+  addApps(value?: App, index?: number): App;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Module.AsObject;
   static toObject(includeInstance: boolean, msg: Module): Module.AsObject;
@@ -5791,6 +5796,7 @@ export namespace Module {
     publicNamespace: string,
     firstRun: string,
     markdownDescription: string,
+    appsList: Array<App.AsObject>,
   }
 }
 
