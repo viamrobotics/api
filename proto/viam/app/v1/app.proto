@@ -1617,6 +1617,8 @@ message Module {
   optional string first_run = 13;
   // Longer documentation provided in markdown format
   optional string markdown_description = 14;
+  // A list of applications associated with the module
+  repeated App apps = 15;
 }
 
 message VersionHistory {
