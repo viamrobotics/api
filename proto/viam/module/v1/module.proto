@@ -21,8 +21,8 @@ service ModuleService {
   // Ready determines if the server is started and ready to recieve resource configurations.
   rpc Ready(ReadyRequest) returns (ReadyResponse);
 
-  // ValidateConfig determines whether the given config is valid and registers/returns implicit
-  // dependencies.
+  // ValidateConfig determines whether the given config is valid and registers/returns
+  // both required and optional implicit dependencies.
   rpc ValidateConfig(ValidateConfigRequest) returns (ValidateConfigResponse);
 }
 
@@ -68,4 +68,5 @@ message ValidateConfigRequest {
 
 message ValidateConfigResponse {
   repeated string dependencies = 1;
+  repeated string optional_dependencies = 2;
 }

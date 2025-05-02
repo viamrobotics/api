@@ -261,6 +261,11 @@ export class ValidateConfigResponse extends jspb.Message {
   setDependenciesList(value: Array<string>): void;
   addDependencies(value: string, index?: number): string;
 
+  clearOptionalDependenciesList(): void;
+  getOptionalDependenciesList(): Array<string>;
+  setOptionalDependenciesList(value: Array<string>): void;
+  addOptionalDependencies(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ValidateConfigResponse.AsObject;
   static toObject(includeInstance: boolean, msg: ValidateConfigResponse): ValidateConfigResponse.AsObject;
@@ -274,6 +279,7 @@ export class ValidateConfigResponse extends jspb.Message {
 export namespace ValidateConfigResponse {
   export type AsObject = {
     dependenciesList: Array<string>,
+    optionalDependenciesList: Array<string>,
   }
 }
 
