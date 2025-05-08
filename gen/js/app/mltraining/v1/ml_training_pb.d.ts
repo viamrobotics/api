@@ -290,6 +290,8 @@ export class TrainingJobMetadata extends jspb.Message {
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
+  getArgumentsMap(): jspb.Map<string, string>;
+  clearArgumentsMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJobMetadata): TrainingJobMetadata.AsObject;
@@ -320,6 +322,7 @@ export namespace TrainingJobMetadata {
     trainingEnded?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     syncedModelId: string,
     tagsList: Array<string>,
+    argumentsMap: Array<[string, string]>,
   }
 }
 
