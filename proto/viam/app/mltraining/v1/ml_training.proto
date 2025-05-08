@@ -123,6 +123,7 @@ message TrainingJobMetadata {
   google.protobuf.Timestamp training_ended = 10 [(tagger.v1.tags) = "bson:\"training_ended\" json:\"training_ended\""];
   string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
   repeated string tags = 16 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
+  map<string, string> arguments = 21 [(tagger.v1.tags) = "bson:\"arguments\" json:\"arguments\""];
 
   reserved 1, 6;
   reserved "request", "user_email";
