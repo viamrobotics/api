@@ -4017,9 +4017,13 @@ export class UpdateRobotRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
+  hasName(): boolean;
+  clearName(): void;
   getName(): string;
   setName(value: string): void;
 
+  hasLocation(): boolean;
+  clearLocation(): void;
   getLocation(): string;
   setLocation(value: string): void;
 

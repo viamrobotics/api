@@ -33862,15 +33862,15 @@ proto.viam.app.v1.UpdateRobotRequest.serializeBinaryToWriter = function(message,
       f
     );
   }
-  f = message.getName();
-  if (f.length > 0) {
+  f = /** @type {string} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getLocation();
-  if (f.length > 0) {
+  f = /** @type {string} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
     writer.writeString(
       3,
       f
@@ -33911,7 +33911,25 @@ proto.viam.app.v1.UpdateRobotRequest.prototype.getName = function() {
  * @return {!proto.viam.app.v1.UpdateRobotRequest} returns this
  */
 proto.viam.app.v1.UpdateRobotRequest.prototype.setName = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateRobotRequest} returns this
+ */
+proto.viam.app.v1.UpdateRobotRequest.prototype.clearName = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateRobotRequest.prototype.hasName = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -33929,7 +33947,25 @@ proto.viam.app.v1.UpdateRobotRequest.prototype.getLocation = function() {
  * @return {!proto.viam.app.v1.UpdateRobotRequest} returns this
  */
 proto.viam.app.v1.UpdateRobotRequest.prototype.setLocation = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateRobotRequest} returns this
+ */
+proto.viam.app.v1.UpdateRobotRequest.prototype.clearLocation = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateRobotRequest.prototype.hasLocation = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
