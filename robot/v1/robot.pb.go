@@ -685,8 +685,8 @@ type TransformPCDRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// the point clouds to transform. This should be in the PCD format
-	// encoded into bytes: https://pointclouds.org/documentation/tutorials/pcd_file_format.html
+	// the point clouds to transform. This should be in the PCD format,
+	// [encoded into bytes](https://pointclouds.org/documentation/tutorials/pcd_file_format.html).
 	PointCloudPcd []byte `protobuf:"bytes,1,opt,name=point_cloud_pcd,json=pointCloudPcd,proto3" json:"point_cloud_pcd,omitempty"`
 	// the reference frame of the point cloud.
 	Source string `protobuf:"bytes,2,opt,name=source,proto3" json:"source,omitempty"`
