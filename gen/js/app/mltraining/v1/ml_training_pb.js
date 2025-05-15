@@ -1942,7 +1942,8 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInst
     trainingStarted: (f = msg.getTrainingStarted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     trainingEnded: (f = msg.getTrainingEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 16)) == null ? undefined : f
+    tagsList: (f = jspb.Message.getRepeatedField(msg, 16)) == null ? undefined : f,
+    argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -2055,6 +2056,12 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
     case 16:
       var value = /** @type {string} */ (reader.readString());
       msg.addTags(value);
+      break;
+    case 21:
+      var value = msg.getArgumentsMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
       break;
     default:
       reader.skipField();
@@ -2215,6 +2222,10 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
       16,
       f
     );
+  }
+  f = message.getArgumentsMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(21, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
 };
 
@@ -2655,6 +2666,28 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.addTags = function(va
 proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.clearTagsList = function() {
   return this.setTagsList([]);
 };
+
+
+/**
+ * map<string, string> arguments = 21;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getArgumentsMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 21, opt_noLazyCreate,
+      null));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.clearArgumentsMap = function() {
+  this.getArgumentsMap().clear();
+  return this;};
 
 
 
