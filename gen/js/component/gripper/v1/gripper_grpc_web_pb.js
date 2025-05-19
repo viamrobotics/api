@@ -449,5 +449,66 @@ proto.viam.component.gripper.v1.GripperServicePromiseClient.prototype.getGeometr
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.common.v1.GetKinematicsRequest,
+ *   !proto.viam.common.v1.GetKinematicsResponse>}
+ */
+const methodDescriptor_GripperService_GetKinematics = new grpc.web.MethodDescriptor(
+  '/viam.component.gripper.v1.GripperService/GetKinematics',
+  grpc.web.MethodType.UNARY,
+  common_v1_common_pb.GetKinematicsRequest,
+  common_v1_common_pb.GetKinematicsResponse,
+  /**
+   * @param {!proto.viam.common.v1.GetKinematicsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  common_v1_common_pb.GetKinematicsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.common.v1.GetKinematicsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.common.v1.GetKinematicsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.common.v1.GetKinematicsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.gripper.v1.GripperServiceClient.prototype.getKinematics =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.gripper.v1.GripperService/GetKinematics',
+      request,
+      metadata || {},
+      methodDescriptor_GripperService_GetKinematics,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.common.v1.GetKinematicsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.common.v1.GetKinematicsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.gripper.v1.GripperServicePromiseClient.prototype.getKinematics =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.gripper.v1.GripperService/GetKinematics',
+      request,
+      metadata || {},
+      methodDescriptor_GripperService_GetKinematics);
+};
+
+
 module.exports = proto.viam.component.gripper.v1;
 
