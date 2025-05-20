@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package viam.service.worldobjectstore.v1;
+
+import "common/v1/common.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "go.viam.com/api/service/worldobjectstore/v1";
+option java_package = "com.viam.service.worldobjectstore.v1";
+
+message WorldObjectPoints {
+    repeated float array = 1;
+}
+
+message WorldObjectLine {
+    repeated float array = 1;
+}
+
+message WorldObject {
+  bytes uuid = 1;
+  string name = 2;
+  common.v1.PoseInFrame pose = 3;
+
+  // Can hold information like color, opacity, points colors, collisionAllowed, etc
+  google.protobuf.Struct metadata = 4;
+
+  oneof geometry {
+    common.v1.RectangularPrism box = 5;
+    common.v1.Capsule capsule = 6;
+    common.v1.Sphere sphere = 7;
+    common.v1.Mesh mesh = 8;
+    WorldObjectPoints points = 9;
+    WorldObjectLine line = 10;
+  }
+}
+
+service WorldObjectStoreService {
+    // ListObjects returns all world object ids
+    rpc ListObjects(ListWorldObjectsRequest) returns (ListWorldObjectsResponse) {}
+
+    // GetObject returns a world object by id
+    rpc GetObject(GetWorldObjectRequest) returns (GetWorldObjectResponse) {}
+
+    // DoCommand sends/receives arbitrary commands
+    rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+        option (google.api.http) = {post: "/viam/api/v1/service/worldobjectstore/{name}/do_command"};
+    }
+}
+
+message ListWorldObjectsRequest {}
+
+message ListWorldObjectsResponse {
+    repeated bytes uuids = 1;
+}
+
+message GetWorldObjectRequest {
+    bytes uuid = 1;
+}
+
+message GetWorldObjectResponse {
+    WorldObject object = 1;
+}
