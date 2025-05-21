@@ -20,18 +20,19 @@ message WorldObjectLine {
 message WorldObject {
   bytes uuid = 1;
   string name = 2;
-  common.v1.PoseInFrame pose = 3;
+  string reference_frame = 3;
+  common.v1.Pose pose = 4;
 
   // Can hold information like color, opacity, points colors, collisionAllowed, etc
-  google.protobuf.Struct metadata = 4;
+  google.protobuf.Struct metadata = 5;
 
   oneof geometry {
-    common.v1.RectangularPrism box = 5;
-    common.v1.Capsule capsule = 6;
-    common.v1.Sphere sphere = 7;
-    common.v1.Mesh mesh = 8;
-    WorldObjectPoints points = 9;
-    WorldObjectLine line = 10;
+    common.v1.RectangularPrism box = 6;
+    common.v1.Capsule capsule = 7;
+    common.v1.Sphere sphere = 8;
+    common.v1.Mesh mesh = 9;
+    WorldObjectPoints points = 10;
+    WorldObjectLine line = 11;
   }
 }
 
