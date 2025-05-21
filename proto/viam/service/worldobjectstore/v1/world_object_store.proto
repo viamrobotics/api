@@ -23,7 +23,7 @@ message WorldObject {
   string reference_frame = 3;
   common.v1.Pose pose = 4;
 
-  // Can hold information like color, opacity, points colors, collisionAllowed, etc
+  // Can hold information like color, opacity, points colors, collisionAllowed, etc...
   google.protobuf.Struct metadata = 5;
 
   oneof geometry {
