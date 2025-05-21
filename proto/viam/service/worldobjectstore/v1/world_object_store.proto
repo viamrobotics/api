@@ -50,6 +50,9 @@ service WorldObjectStoreService {
 }
 
 message ListWorldObjectsRequest {
+  // Name of the world object store service
+  string name = 1;
+
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -59,7 +62,10 @@ message ListWorldObjectsResponse {
 }
 
 message GetWorldObjectRequest {
-  bytes uuid = 1;
+  // Name of the world object store service
+  string name = 1;
+
+  bytes uuid = 2;
 
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
