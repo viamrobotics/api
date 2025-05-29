@@ -12313,7 +12313,8 @@ proto.viam.app.v1.ResendOrganizationInviteRequest.prototype.toObject = function(
 proto.viam.app.v1.ResendOrganizationInviteRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    email: jspb.Message.getFieldWithDefault(msg, 2, "")
+    email: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    tmp: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -12358,6 +12359,10 @@ proto.viam.app.v1.ResendOrganizationInviteRequest.deserializeBinaryFromReader = 
       var value = /** @type {string} */ (reader.readString());
       msg.setEmail(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTmp(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -12401,6 +12406,13 @@ proto.viam.app.v1.ResendOrganizationInviteRequest.serializeBinaryToWriter = func
       f
     );
   }
+  f = message.getTmp();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -12437,6 +12449,24 @@ proto.viam.app.v1.ResendOrganizationInviteRequest.prototype.getEmail = function(
  */
 proto.viam.app.v1.ResendOrganizationInviteRequest.prototype.setEmail = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string tmp = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.ResendOrganizationInviteRequest.prototype.getTmp = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.ResendOrganizationInviteRequest} returns this
+ */
+proto.viam.app.v1.ResendOrganizationInviteRequest.prototype.setTmp = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
