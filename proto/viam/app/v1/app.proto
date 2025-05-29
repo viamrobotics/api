@@ -497,6 +497,7 @@ message DeleteOrganizationInviteResponse {}
 message ResendOrganizationInviteRequest {
   string organization_id = 1;
   string email = 2;
+  string tmp = 3;
 }
 
 message ResendOrganizationInviteResponse {
