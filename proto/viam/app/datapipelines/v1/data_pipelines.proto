@@ -94,8 +94,7 @@ message CreateDataPipelineRequest {
   string schedule = 4;
 
   // When true, pipeline runs will be scheduled for the organization's past data.
-  // Required.
-  google.protobuf.BoolValue enable_backfill = 5;
+  optional bool enable_backfill = 5;
 }
 
 message CreateDataPipelineResponse {
