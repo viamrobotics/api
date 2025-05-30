@@ -404,6 +404,7 @@ message GetOrganizationResponse {
 
 message GetOrganizationNamespaceAvailabilityRequest {
   string public_namespace = 1;
+  string organization_id = 2;
 }
 
 message GetOrganizationNamespaceAvailabilityResponse {
