@@ -155,6 +155,9 @@ service AppService {
   // Get a specific robot part by ID
   rpc GetRobotPart(GetRobotPartRequest) returns (GetRobotPartResponse);
 
+  // Get a specific robot part by name and location
+  rpc GetRobotPartByNameAndLocation(GetRobotPartByNameAndLocationRequest) returns (GetRobotPartByNameAndLocationResponse);
+
   rpc GetRobotPartLogs(GetRobotPartLogsRequest) returns (GetRobotPartLogsResponse);
 
   rpc TailRobotPartLogs(TailRobotPartLogsRequest) returns (stream TailRobotPartLogsResponse);
@@ -807,6 +810,15 @@ message GetRobotPartRequest {
 message GetRobotPartResponse {
   RobotPart part = 1;
   string config_json = 2;
+}
+
+message GetRobotPartByNameAndLocationRequest {
+  string name = 1;
+  string location_id = 2;
+}
+
+message GetRobotPartByNameAndLocationResponse {
+  RobotPart part = 1;
 }
 
 message GetRobotPartLogsRequest {
