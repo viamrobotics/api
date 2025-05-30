@@ -12313,7 +12313,8 @@ proto.viam.app.v1.ResendOrganizationInviteRequest.prototype.toObject = function(
 proto.viam.app.v1.ResendOrganizationInviteRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    email: jspb.Message.getFieldWithDefault(msg, 2, "")
+    email: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    sendEmailInvite: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -12358,6 +12359,10 @@ proto.viam.app.v1.ResendOrganizationInviteRequest.deserializeBinaryFromReader = 
       var value = /** @type {string} */ (reader.readString());
       msg.setEmail(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSendEmailInvite(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -12401,6 +12406,13 @@ proto.viam.app.v1.ResendOrganizationInviteRequest.serializeBinaryToWriter = func
       f
     );
   }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -12437,6 +12449,42 @@ proto.viam.app.v1.ResendOrganizationInviteRequest.prototype.getEmail = function(
  */
 proto.viam.app.v1.ResendOrganizationInviteRequest.prototype.setEmail = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional bool send_email_invite = 3;
+ * @return {boolean}
+ */
+proto.viam.app.v1.ResendOrganizationInviteRequest.prototype.getSendEmailInvite = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.ResendOrganizationInviteRequest} returns this
+ */
+proto.viam.app.v1.ResendOrganizationInviteRequest.prototype.setSendEmailInvite = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.ResendOrganizationInviteRequest} returns this
+ */
+proto.viam.app.v1.ResendOrganizationInviteRequest.prototype.clearSendEmailInvite = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ResendOrganizationInviteRequest.prototype.hasSendEmailInvite = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
