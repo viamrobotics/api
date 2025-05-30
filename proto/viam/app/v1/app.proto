@@ -1047,6 +1047,8 @@ message GetFragmentUsageRequest {
 
 message GetFragmentUsageResponse {
   repeated FragmentUsage version_usages = 1;
+  repeated FragmentUsage tag_usages = 2;
+  repeated FragmentUsage revision_usages = 3;
 }
 
 message SetFragmentTagRequest {
