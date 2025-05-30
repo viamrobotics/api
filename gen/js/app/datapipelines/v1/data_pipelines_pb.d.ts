@@ -161,6 +161,11 @@ export class CreateDataPipelineRequest extends jspb.Message {
   getSchedule(): string;
   setSchedule(value: string): void;
 
+  hasEnableBackfill(): boolean;
+  clearEnableBackfill(): void;
+  getEnableBackfill(): boolean;
+  setEnableBackfill(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateDataPipelineRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateDataPipelineRequest): CreateDataPipelineRequest.AsObject;
@@ -177,6 +182,7 @@ export namespace CreateDataPipelineRequest {
     name: string,
     mqlBinaryList: Array<Uint8Array | string>,
     schedule: string,
+    enableBackfill: boolean,
   }
 }
 
