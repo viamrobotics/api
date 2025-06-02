@@ -934,6 +934,11 @@ export class ResendOrganizationInviteRequest extends jspb.Message {
   getEmail(): string;
   setEmail(value: string): void;
 
+  hasSendEmailInvite(): boolean;
+  clearSendEmailInvite(): void;
+  getSendEmailInvite(): boolean;
+  setSendEmailInvite(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResendOrganizationInviteRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ResendOrganizationInviteRequest): ResendOrganizationInviteRequest.AsObject;
@@ -948,6 +953,7 @@ export namespace ResendOrganizationInviteRequest {
   export type AsObject = {
     organizationId: string,
     email: string,
+    sendEmailInvite: boolean,
   }
 }
 

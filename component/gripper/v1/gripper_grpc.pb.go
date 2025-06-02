@@ -35,6 +35,8 @@ type GripperServiceClient interface {
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
+	// GetKinematics returns the kinematics file for the component
+	GetKinematics(ctx context.Context, in *v1.GetKinematicsRequest, opts ...grpc.CallOption) (*v1.GetKinematicsResponse, error)
 }
 
 type gripperServiceClient struct {
@@ -99,6 +101,15 @@ func (c *gripperServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeom
 	return out, nil
 }
 
+func (c *gripperServiceClient) GetKinematics(ctx context.Context, in *v1.GetKinematicsRequest, opts ...grpc.CallOption) (*v1.GetKinematicsResponse, error) {
+	out := new(v1.GetKinematicsResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.gripper.v1.GripperService/GetKinematics", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GripperServiceServer is the server API for GripperService service.
 // All implementations must embed UnimplementedGripperServiceServer
 // for forward compatibility
@@ -115,6 +126,8 @@ type GripperServiceServer interface {
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
+	// GetKinematics returns the kinematics file for the component
+	GetKinematics(context.Context, *v1.GetKinematicsRequest) (*v1.GetKinematicsResponse, error)
 	mustEmbedUnimplementedGripperServiceServer()
 }
 
@@ -139,6 +152,9 @@ func (UnimplementedGripperServiceServer) DoCommand(context.Context, *v1.DoComman
 }
 func (UnimplementedGripperServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
+}
+func (UnimplementedGripperServiceServer) GetKinematics(context.Context, *v1.GetKinematicsRequest) (*v1.GetKinematicsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetKinematics not implemented")
 }
 func (UnimplementedGripperServiceServer) mustEmbedUnimplementedGripperServiceServer() {}
 
@@ -261,6 +277,24 @@ func _GripperService_GetGeometries_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GripperService_GetKinematics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetKinematicsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GripperServiceServer).GetKinematics(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.gripper.v1.GripperService/GetKinematics",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GripperServiceServer).GetKinematics(ctx, req.(*v1.GetKinematicsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GripperService_ServiceDesc is the grpc.ServiceDesc for GripperService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -291,6 +325,10 @@ var GripperService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetGeometries",
 			Handler:    _GripperService_GetGeometries_Handler,
+		},
+		{
+			MethodName: "GetKinematics",
+			Handler:    _GripperService_GetKinematics_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
