@@ -111,6 +111,8 @@ type AppServiceClient interface {
 	GetRobotParts(ctx context.Context, in *GetRobotPartsRequest, opts ...grpc.CallOption) (*GetRobotPartsResponse, error)
 	// Get a specific robot part by ID
 	GetRobotPart(ctx context.Context, in *GetRobotPartRequest, opts ...grpc.CallOption) (*GetRobotPartResponse, error)
+	// Get a specific robot part by name and location
+	GetRobotPartByNameAndLocation(ctx context.Context, in *GetRobotPartByNameAndLocationRequest, opts ...grpc.CallOption) (*GetRobotPartByNameAndLocationResponse, error)
 	GetRobotPartLogs(ctx context.Context, in *GetRobotPartLogsRequest, opts ...grpc.CallOption) (*GetRobotPartLogsResponse, error)
 	TailRobotPartLogs(ctx context.Context, in *TailRobotPartLogsRequest, opts ...grpc.CallOption) (AppService_TailRobotPartLogsClient, error)
 	// Get a specific robot part histy by ID
@@ -673,6 +675,15 @@ func (c *appServiceClient) GetRobotParts(ctx context.Context, in *GetRobotPartsR
 func (c *appServiceClient) GetRobotPart(ctx context.Context, in *GetRobotPartRequest, opts ...grpc.CallOption) (*GetRobotPartResponse, error) {
 	out := new(GetRobotPartResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotPart", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetRobotPartByNameAndLocation(ctx context.Context, in *GetRobotPartByNameAndLocationRequest, opts ...grpc.CallOption) (*GetRobotPartByNameAndLocationResponse, error) {
+	out := new(GetRobotPartByNameAndLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotPartByNameAndLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1297,6 +1308,8 @@ type AppServiceServer interface {
 	GetRobotParts(context.Context, *GetRobotPartsRequest) (*GetRobotPartsResponse, error)
 	// Get a specific robot part by ID
 	GetRobotPart(context.Context, *GetRobotPartRequest) (*GetRobotPartResponse, error)
+	// Get a specific robot part by name and location
+	GetRobotPartByNameAndLocation(context.Context, *GetRobotPartByNameAndLocationRequest) (*GetRobotPartByNameAndLocationResponse, error)
 	GetRobotPartLogs(context.Context, *GetRobotPartLogsRequest) (*GetRobotPartLogsResponse, error)
 	TailRobotPartLogs(*TailRobotPartLogsRequest, AppService_TailRobotPartLogsServer) error
 	// Get a specific robot part histy by ID
@@ -1549,6 +1562,9 @@ func (UnimplementedAppServiceServer) GetRobotParts(context.Context, *GetRobotPar
 }
 func (UnimplementedAppServiceServer) GetRobotPart(context.Context, *GetRobotPartRequest) (*GetRobotPartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPart not implemented")
+}
+func (UnimplementedAppServiceServer) GetRobotPartByNameAndLocation(context.Context, *GetRobotPartByNameAndLocationRequest) (*GetRobotPartByNameAndLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPartByNameAndLocation not implemented")
 }
 func (UnimplementedAppServiceServer) GetRobotPartLogs(context.Context, *GetRobotPartLogsRequest) (*GetRobotPartLogsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPartLogs not implemented")
@@ -2654,6 +2670,24 @@ func _AppService_GetRobotPart_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).GetRobotPart(ctx, req.(*GetRobotPartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetRobotPartByNameAndLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRobotPartByNameAndLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetRobotPartByNameAndLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetRobotPartByNameAndLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetRobotPartByNameAndLocation(ctx, req.(*GetRobotPartByNameAndLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3837,6 +3871,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRobotPart",
 			Handler:    _AppService_GetRobotPart_Handler,
+		},
+		{
+			MethodName: "GetRobotPartByNameAndLocation",
+			Handler:    _AppService_GetRobotPartByNameAndLocation_Handler,
 		},
 		{
 			MethodName: "GetRobotPartLogs",
