@@ -92,6 +92,9 @@ message CreateDataPipelineRequest {
   // A cron expression representing the expected execution schedule in UTC (note this also
   // defines the input time window; an hourly schedule would process 1 hour of data at a time).
   string schedule = 4;
+
+  // When true, pipeline runs will be scheduled for the organization's past data.
+  optional bool enable_backfill = 5;
 }
 
 message CreateDataPipelineResponse {
