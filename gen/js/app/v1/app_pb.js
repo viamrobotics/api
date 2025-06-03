@@ -31877,7 +31877,8 @@ proto.viam.app.v1.ListMachineSummariesRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.ListMachineSummariesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    fragmentId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -31918,6 +31919,10 @@ proto.viam.app.v1.ListMachineSummariesRequest.deserializeBinaryFromReader = func
       var value = /** @type {string} */ (reader.readString());
       msg.setOrganizationId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFragmentId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -31954,6 +31959,13 @@ proto.viam.app.v1.ListMachineSummariesRequest.serializeBinaryToWriter = function
       f
     );
   }
+  f = /** @type {string} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -31972,6 +31984,42 @@ proto.viam.app.v1.ListMachineSummariesRequest.prototype.getOrganizationId = func
  */
 proto.viam.app.v1.ListMachineSummariesRequest.prototype.setOrganizationId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string fragment_id = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.ListMachineSummariesRequest.prototype.getFragmentId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.ListMachineSummariesRequest} returns this
+ */
+proto.viam.app.v1.ListMachineSummariesRequest.prototype.setFragmentId = function(value) {
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.ListMachineSummariesRequest} returns this
+ */
+proto.viam.app.v1.ListMachineSummariesRequest.prototype.clearFragmentId = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ListMachineSummariesRequest.prototype.hasFragmentId = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
