@@ -3741,10 +3741,10 @@ export class ListMachineSummariesRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
-  hasFragmentId(): boolean;
-  clearFragmentId(): void;
-  getFragmentId(): string;
-  setFragmentId(value: string): void;
+  clearFragmentIdsList(): void;
+  getFragmentIdsList(): Array<string>;
+  setFragmentIdsList(value: Array<string>): void;
+  addFragmentIds(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListMachineSummariesRequest.AsObject;
@@ -3759,7 +3759,7 @@ export class ListMachineSummariesRequest extends jspb.Message {
 export namespace ListMachineSummariesRequest {
   export type AsObject = {
     organizationId: string,
-    fragmentId: string,
+    fragmentIdsList: Array<string>,
   }
 }
 

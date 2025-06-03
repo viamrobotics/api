@@ -3319,7 +3319,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.ListMachineSummariesRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.ListMachineSummariesRequest.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.v1.ListMachineSummariesRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -31846,6 +31846,13 @@ proto.viam.app.v1.ListMachineFragmentsResponse.prototype.clearResolvedFragmentsL
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.ListMachineSummariesRequest.repeatedFields_ = [2];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -31878,7 +31885,7 @@ proto.viam.app.v1.ListMachineSummariesRequest.prototype.toObject = function(opt_
 proto.viam.app.v1.ListMachineSummariesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fragmentId: jspb.Message.getFieldWithDefault(msg, 2, "")
+    fragmentIdsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -31921,7 +31928,7 @@ proto.viam.app.v1.ListMachineSummariesRequest.deserializeBinaryFromReader = func
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setFragmentId(value);
+      msg.addFragmentIds(value);
       break;
     default:
       reader.skipField();
@@ -31959,9 +31966,9 @@ proto.viam.app.v1.ListMachineSummariesRequest.serializeBinaryToWriter = function
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 2));
-  if (f != null) {
-    writer.writeString(
+  f = message.getFragmentIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
       2,
       f
     );
@@ -31988,38 +31995,39 @@ proto.viam.app.v1.ListMachineSummariesRequest.prototype.setOrganizationId = func
 
 
 /**
- * optional string fragment_id = 2;
- * @return {string}
+ * repeated string fragment_ids = 2;
+ * @return {!Array<string>}
  */
-proto.viam.app.v1.ListMachineSummariesRequest.prototype.getFragmentId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.viam.app.v1.ListMachineSummariesRequest.prototype.getFragmentIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.ListMachineSummariesRequest} returns this
+ */
+proto.viam.app.v1.ListMachineSummariesRequest.prototype.setFragmentIdsList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
  * @param {string} value
+ * @param {number=} opt_index
  * @return {!proto.viam.app.v1.ListMachineSummariesRequest} returns this
  */
-proto.viam.app.v1.ListMachineSummariesRequest.prototype.setFragmentId = function(value) {
-  return jspb.Message.setField(this, 2, value);
+proto.viam.app.v1.ListMachineSummariesRequest.prototype.addFragmentIds = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
 
 /**
- * Clears the field making it undefined.
+ * Clears the list making it empty but non-null.
  * @return {!proto.viam.app.v1.ListMachineSummariesRequest} returns this
  */
-proto.viam.app.v1.ListMachineSummariesRequest.prototype.clearFragmentId = function() {
-  return jspb.Message.setField(this, 2, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.v1.ListMachineSummariesRequest.prototype.hasFragmentId = function() {
-  return jspb.Message.getField(this, 2) != null;
+proto.viam.app.v1.ListMachineSummariesRequest.prototype.clearFragmentIdsList = function() {
+  return this.setFragmentIdsList([]);
 };
 
 
