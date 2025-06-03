@@ -155,6 +155,9 @@ service AppService {
   // Get a specific robot part by ID
   rpc GetRobotPart(GetRobotPartRequest) returns (GetRobotPartResponse);
 
+  // Get a specific robot part by name and location
+  rpc GetRobotPartByNameAndLocation(GetRobotPartByNameAndLocationRequest) returns (GetRobotPartByNameAndLocationResponse);
+
   rpc GetRobotPartLogs(GetRobotPartLogsRequest) returns (GetRobotPartLogsResponse);
 
   rpc TailRobotPartLogs(TailRobotPartLogsRequest) returns (stream TailRobotPartLogsResponse);
@@ -497,6 +500,9 @@ message DeleteOrganizationInviteResponse {}
 message ResendOrganizationInviteRequest {
   string organization_id = 1;
   string email = 2;
+  // Set to true (the default) to send an email to the recipient of an invite. The user must accept the email to be added to the associated authorizations.
+  // When set to false, the user automatically receives the associated authorization on the next login of the user with the associated email address.
+  optional bool send_email_invite = 3;
 }
 
 message ResendOrganizationInviteResponse {
@@ -804,6 +810,15 @@ message GetRobotPartRequest {
 message GetRobotPartResponse {
   RobotPart part = 1;
   string config_json = 2;
+}
+
+message GetRobotPartByNameAndLocationRequest {
+  string name = 1;
+  string location_id = 2;
+}
+
+message GetRobotPartByNameAndLocationResponse {
+  RobotPart part = 1;
 }
 
 message GetRobotPartLogsRequest {

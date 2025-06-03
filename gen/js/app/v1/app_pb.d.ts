@@ -934,6 +934,11 @@ export class ResendOrganizationInviteRequest extends jspb.Message {
   getEmail(): string;
   setEmail(value: string): void;
 
+  hasSendEmailInvite(): boolean;
+  clearSendEmailInvite(): void;
+  getSendEmailInvite(): boolean;
+  setSendEmailInvite(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResendOrganizationInviteRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ResendOrganizationInviteRequest): ResendOrganizationInviteRequest.AsObject;
@@ -948,6 +953,7 @@ export namespace ResendOrganizationInviteRequest {
   export type AsObject = {
     organizationId: string,
     email: string,
+    sendEmailInvite: boolean,
   }
 }
 
@@ -2274,6 +2280,52 @@ export namespace GetRobotPartResponse {
   export type AsObject = {
     part?: RobotPart.AsObject,
     configJson: string,
+  }
+}
+
+export class GetRobotPartByNameAndLocationRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetRobotPartByNameAndLocationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRobotPartByNameAndLocationRequest): GetRobotPartByNameAndLocationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetRobotPartByNameAndLocationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRobotPartByNameAndLocationRequest;
+  static deserializeBinaryFromReader(message: GetRobotPartByNameAndLocationRequest, reader: jspb.BinaryReader): GetRobotPartByNameAndLocationRequest;
+}
+
+export namespace GetRobotPartByNameAndLocationRequest {
+  export type AsObject = {
+    name: string,
+    locationId: string,
+  }
+}
+
+export class GetRobotPartByNameAndLocationResponse extends jspb.Message {
+  hasPart(): boolean;
+  clearPart(): void;
+  getPart(): RobotPart | undefined;
+  setPart(value?: RobotPart): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetRobotPartByNameAndLocationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRobotPartByNameAndLocationResponse): GetRobotPartByNameAndLocationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetRobotPartByNameAndLocationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRobotPartByNameAndLocationResponse;
+  static deserializeBinaryFromReader(message: GetRobotPartByNameAndLocationResponse, reader: jspb.BinaryReader): GetRobotPartByNameAndLocationResponse;
+}
+
+export namespace GetRobotPartByNameAndLocationResponse {
+  export type AsObject = {
+    part?: RobotPart.AsObject,
   }
 }
 

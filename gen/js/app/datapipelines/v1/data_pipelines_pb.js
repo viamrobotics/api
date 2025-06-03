@@ -1459,7 +1459,8 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.toObject = function(in
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     mqlBinaryList: msg.getMqlBinaryList_asB64(),
-    schedule: jspb.Message.getFieldWithDefault(msg, 4, "")
+    schedule: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    enableBackfill: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -1511,6 +1512,10 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.deserializeBinaryFromR
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setSchedule(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setEnableBackfill(value);
       break;
     default:
       reader.skipField();
@@ -1566,6 +1571,13 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.serializeBinaryToWrite
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -1684,6 +1696,42 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.getSchedule 
  */
 proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.setSchedule = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional bool enable_backfill = 5;
+ * @return {boolean}
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.getEnableBackfill = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.datapipelines.v1.CreateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.setEnableBackfill = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.datapipelines.v1.CreateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.clearEnableBackfill = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.hasEnableBackfill = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
