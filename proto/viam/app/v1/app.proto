@@ -1105,6 +1105,7 @@ message ListMachineFragmentsResponse {
 
 message ListMachineSummariesRequest {
   string organization_id = 1;
+  optional string fragment_id = 2;
 }
 
 message ListMachineSummariesResponse {
