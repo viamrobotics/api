@@ -1120,6 +1120,8 @@ message ListMachineFragmentsResponse {
 
 message ListMachineSummariesRequest {
   string organization_id = 1;
+  // Optional list of fragment IDs to filter machines that use any of these fragments
+  repeated string fragment_ids = 2;
 }
 
 message ListMachineSummariesResponse {
