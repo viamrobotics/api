@@ -8997,7 +8997,8 @@ proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.prototype.toObject
  */
 proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    publicNamespace: jspb.Message.getFieldWithDefault(msg, 1, "")
+    publicNamespace: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -9038,6 +9039,10 @@ proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.deserializeBinaryF
       var value = /** @type {string} */ (reader.readString());
       msg.setPublicNamespace(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganizationId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -9074,6 +9079,13 @@ proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.serializeBinaryToW
       f
     );
   }
+  f = message.getOrganizationId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -9092,6 +9104,24 @@ proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.prototype.getPubli
  */
 proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.prototype.setPublicNamespace = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string organization_id = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.prototype.getOrganizationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest} returns this
+ */
+proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.prototype.setOrganizationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
