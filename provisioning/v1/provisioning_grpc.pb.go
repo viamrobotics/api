@@ -30,6 +30,9 @@ type ProvisioningServiceClient interface {
 	SetSmartMachineCredentials(ctx context.Context, in *SetSmartMachineCredentialsRequest, opts ...grpc.CallOption) (*SetSmartMachineCredentialsResponse, error)
 	// GetNetworkList is to retrieve the list of networks that are visible to the smart machine.
 	GetNetworkList(ctx context.Context, in *GetNetworkListRequest, opts ...grpc.CallOption) (*GetNetworkListResponse, error)
+	// ExitProvisioning is called when "done" with all other calls.
+	// It causes the device to exit provisioning mode to try any newly added wifi networks and resume normal operation.
+	ExitProvisioning(ctx context.Context, in *ExitProvisioningRequest, opts ...grpc.CallOption) (*ExitProvisioningResponse, error)
 }
 
 type provisioningServiceClient struct {
@@ -76,6 +79,15 @@ func (c *provisioningServiceClient) GetNetworkList(ctx context.Context, in *GetN
 	return out, nil
 }
 
+func (c *provisioningServiceClient) ExitProvisioning(ctx context.Context, in *ExitProvisioningRequest, opts ...grpc.CallOption) (*ExitProvisioningResponse, error) {
+	out := new(ExitProvisioningResponse)
+	err := c.cc.Invoke(ctx, "/viam.provisioning.v1.ProvisioningService/ExitProvisioning", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProvisioningServiceServer is the server API for ProvisioningService service.
 // All implementations must embed UnimplementedProvisioningServiceServer
 // for forward compatibility
@@ -88,6 +100,9 @@ type ProvisioningServiceServer interface {
 	SetSmartMachineCredentials(context.Context, *SetSmartMachineCredentialsRequest) (*SetSmartMachineCredentialsResponse, error)
 	// GetNetworkList is to retrieve the list of networks that are visible to the smart machine.
 	GetNetworkList(context.Context, *GetNetworkListRequest) (*GetNetworkListResponse, error)
+	// ExitProvisioning is called when "done" with all other calls.
+	// It causes the device to exit provisioning mode to try any newly added wifi networks and resume normal operation.
+	ExitProvisioning(context.Context, *ExitProvisioningRequest) (*ExitProvisioningResponse, error)
 	mustEmbedUnimplementedProvisioningServiceServer()
 }
 
@@ -106,6 +121,9 @@ func (UnimplementedProvisioningServiceServer) SetSmartMachineCredentials(context
 }
 func (UnimplementedProvisioningServiceServer) GetNetworkList(context.Context, *GetNetworkListRequest) (*GetNetworkListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNetworkList not implemented")
+}
+func (UnimplementedProvisioningServiceServer) ExitProvisioning(context.Context, *ExitProvisioningRequest) (*ExitProvisioningResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExitProvisioning not implemented")
 }
 func (UnimplementedProvisioningServiceServer) mustEmbedUnimplementedProvisioningServiceServer() {}
 
@@ -192,6 +210,24 @@ func _ProvisioningService_GetNetworkList_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProvisioningService_ExitProvisioning_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExitProvisioningRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProvisioningServiceServer).ExitProvisioning(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.provisioning.v1.ProvisioningService/ExitProvisioning",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProvisioningServiceServer).ExitProvisioning(ctx, req.(*ExitProvisioningRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProvisioningService_ServiceDesc is the grpc.ServiceDesc for ProvisioningService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -214,6 +250,10 @@ var ProvisioningService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetNetworkList",
 			Handler:    _ProvisioningService_GetNetworkList_Handler,
+		},
+		{
+			MethodName: "ExitProvisioning",
+			Handler:    _ProvisioningService_ExitProvisioning_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

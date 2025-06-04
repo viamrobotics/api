@@ -17,7 +17,15 @@ service ProvisioningService {
 
   // GetNetworkList is to retrieve the list of networks that are visible to the smart machine.
   rpc GetNetworkList(GetNetworkListRequest) returns (GetNetworkListResponse);
+
+  // ExitProvisioning is called when "done" with all other calls.
+  // It causes the device to exit provisioning mode to try any newly added wifi networks and resume normal operation.
+  rpc ExitProvisioning(ExitProvisioningRequest) returns (ExitProvisioningResponse);
 }
+
+message ExitProvisioningRequest {}
+
+message ExitProvisioningResponse {}
 
 message GetSmartMachineStatusRequest {}
 
@@ -27,6 +35,7 @@ message GetSmartMachineStatusResponse {
   bool is_online = 3;
   NetworkInfo latest_connection_attempt = 4;
   repeated string errors = 5;
+  string agent_version = 6;
 }
 
 message SetNetworkCredentialsRequest {
