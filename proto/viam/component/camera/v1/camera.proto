@@ -12,29 +12,47 @@ option java_package = "com.viam.component.camera.v1";
 
 // A CameraService services all cameras associated with a robot
 service CameraService {
-  // GetImage returns a frame from a camera of the underlying robot. A specific MIME type
-  // can be requested but may not necessarily be the same one returned.
+  // GetImage returns a frame from a camera of the underlying robot. A specific
+  // MIME type can be requested but may not necessarily be the same one
+  // returned.
   rpc GetImage(GetImageRequest) returns (GetImageResponse) {
+    option deprecated = true;
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/image"};
   }
 
   rpc GetImages(GetImagesRequest) returns (GetImagesResponse) {
+    option deprecated = true;
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/images"};
   }
 
-  // RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
-  // can be requested but may not necessarily be the same one returned.
+  // RenderFrame renders a frame from a camera of the underlying robot to an
+  // HTTP response. A specific MIME type can be requested but may not
+  // necessarily be the same one returned.
   rpc RenderFrame(RenderFrameRequest) returns (google.api.HttpBody) {
+    option deprecated = true;
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/render_frame"};
   }
 
-  // GetPointCloud returns a point cloud from a camera of the underlying robot. A specific MIME type
-  // can be requested but may not necessarily be the same one returned.
+  // GetPointCloud returns a point cloud from a camera of the underlying robot.
+  // A specific MIME type can be requested but may not necessarily be the same
+  // one returned.
   rpc GetPointCloud(GetPointCloudRequest) returns (GetPointCloudResponse) {
+    option deprecated = true;
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/point_cloud"};
   }
 
-  // GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying robot, if available.
+  // BinaryReadings returns the readings of all sensors on the camera at a given point in time.
+  // The caller may specify requested sensor_names and/or formats to be sent. The server is
+  // expected to return all results if the caller doesn't specify requested sensor_names and/or formats
+  // and only return requested sensor_names and/or formats when the caller specifies them.
+  // This is important to conserve bandwidth when the caller is only interested in certain
+  // sensor readings or formats.
+  rpc BinaryReadings(BinaryReadingsRequest) returns (BinaryReadingsResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/binary_readings"};
+  }
+
+  // GetProperties returns the camera intrinsic parameters and camera distortion
+  // parameters from a camera of the underlying robot, if available.
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/properties"};
   }
@@ -44,7 +62,8 @@ service CameraService {
     option (google.api.http) = {post: "/viam/api/v1/component/camera/{name}/do_command"};
   }
 
-  // GetGeometries returns the geometries of the component in their current configuration
+  // GetGeometries returns the geometries of the component in their current
+  // configuration
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/geometries"};
   }
@@ -126,7 +145,8 @@ message GetPropertiesRequest {
 }
 
 message GetPropertiesResponse {
-  // A boolean property determining whether the camera supports the return of pointcloud data
+  // A boolean property determining whether the camera supports the return of
+  // pointcloud data
   bool supports_pcd = 1;
   // Parameters for doing a perspective of a 3D scene to a 2D plane
   // If camera does not provide intrinsic parameters, leave the field empty
@@ -182,4 +202,50 @@ message IntrinsicParameters {
 message DistortionParameters {
   string model = 1;
   repeated double parameters = 2;
+}
+
+enum ReadingFormat {
+  READING_FORMAT_UNSPECIFIED = 0;
+  READING_FORMAT_BITMAP_RAW_RGBA = 1;
+  READING_FORMAT_BITMAP_RAW_DEPTH = 2;
+  READING_FORMAT_IMAGE_JPEG = 3;
+  READING_FORMAT_IMAGE_PNG = 4;
+  READING_FORMAT_POINTCLOUD_PCD = 5;
+}
+
+message BinaryReadingsRequest {
+  // Name of a camera
+  string name = 1;
+
+  // Requested sensor_names
+  // If empty all readings are requested
+  repeated string sensor_names = 2;
+
+  // Requested reading_formats
+  // If empty all readings are requested
+  repeated ReadingFormat formats = 3;
+}
+
+message BinaryReadingsResponse {
+  // list of binary readings returned from the camera system
+  repeated BinaryReading readings = 1;
+  // contains timestamp data
+  common.v1.ResponseMetadata response_metadata = 84260;
+}
+
+message BinaryReading {
+  // the name of the sensor where the reading came from
+  string source_name = 1;
+  // format of the data
+  ReadingFormat format = 2;
+  // the reading data
+  bytes data = 3;
+  // image pixel_dimensions
+  // may not be set if the reading isn't an image or a bitmap
+  Dimensions pixel_dimensions = 4;
+}
+
+message Dimensions {
+  uint32 x = 1;
+  uint32 y = 2;
 }
