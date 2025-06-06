@@ -320,5 +320,66 @@ proto.viam.provisioning.v1.ProvisioningServicePromiseClient.prototype.getNetwork
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.provisioning.v1.ExitProvisioningRequest,
+ *   !proto.viam.provisioning.v1.ExitProvisioningResponse>}
+ */
+const methodDescriptor_ProvisioningService_ExitProvisioning = new grpc.web.MethodDescriptor(
+  '/viam.provisioning.v1.ProvisioningService/ExitProvisioning',
+  grpc.web.MethodType.UNARY,
+  proto.viam.provisioning.v1.ExitProvisioningRequest,
+  proto.viam.provisioning.v1.ExitProvisioningResponse,
+  /**
+   * @param {!proto.viam.provisioning.v1.ExitProvisioningRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.provisioning.v1.ExitProvisioningResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.provisioning.v1.ExitProvisioningRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.provisioning.v1.ExitProvisioningResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.provisioning.v1.ExitProvisioningResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.provisioning.v1.ProvisioningServiceClient.prototype.exitProvisioning =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.provisioning.v1.ProvisioningService/ExitProvisioning',
+      request,
+      metadata || {},
+      methodDescriptor_ProvisioningService_ExitProvisioning,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.provisioning.v1.ExitProvisioningRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.provisioning.v1.ExitProvisioningResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.provisioning.v1.ProvisioningServicePromiseClient.prototype.exitProvisioning =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.provisioning.v1.ProvisioningService/ExitProvisioning',
+      request,
+      metadata || {},
+      methodDescriptor_ProvisioningService_ExitProvisioning);
+};
+
+
 module.exports = proto.viam.provisioning.v1;
 

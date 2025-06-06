@@ -97,6 +97,9 @@ message CreateDataPipelineRequest {
   // defines the input time window; an hourly schedule would process 1 hour of data at a time).
   string schedule = 4;
 
+  // When true, pipeline runs will be scheduled for the organization's past data.
+  optional bool enable_backfill = 5;
+
   // The type of data source for the pipeline. If not specified, default is standard data storage.
   optional viam.app.data.v1.TabularDataSourceType data_source_type = 5;
 }

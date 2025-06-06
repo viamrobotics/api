@@ -3,6 +3,38 @@
 
 import * as jspb from "google-protobuf";
 
+export class ExitProvisioningRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ExitProvisioningRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ExitProvisioningRequest): ExitProvisioningRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ExitProvisioningRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ExitProvisioningRequest;
+  static deserializeBinaryFromReader(message: ExitProvisioningRequest, reader: jspb.BinaryReader): ExitProvisioningRequest;
+}
+
+export namespace ExitProvisioningRequest {
+  export type AsObject = {
+  }
+}
+
+export class ExitProvisioningResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ExitProvisioningResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ExitProvisioningResponse): ExitProvisioningResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ExitProvisioningResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ExitProvisioningResponse;
+  static deserializeBinaryFromReader(message: ExitProvisioningResponse, reader: jspb.BinaryReader): ExitProvisioningResponse;
+}
+
+export namespace ExitProvisioningResponse {
+  export type AsObject = {
+  }
+}
+
 export class GetSmartMachineStatusRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetSmartMachineStatusRequest.AsObject;
@@ -41,6 +73,9 @@ export class GetSmartMachineStatusResponse extends jspb.Message {
   setErrorsList(value: Array<string>): void;
   addErrors(value: string, index?: number): string;
 
+  getAgentVersion(): string;
+  setAgentVersion(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetSmartMachineStatusResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetSmartMachineStatusResponse): GetSmartMachineStatusResponse.AsObject;
@@ -58,6 +93,7 @@ export namespace GetSmartMachineStatusResponse {
     isOnline: boolean,
     latestConnectionAttempt?: NetworkInfo.AsObject,
     errorsList: Array<string>,
+    agentVersion: string,
   }
 }
 
