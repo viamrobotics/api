@@ -101,7 +101,7 @@ message CreateDataPipelineRequest {
   optional bool enable_backfill = 5;
 
   // The type of data source for the pipeline. If not specified, default is standard data storage.
-  optional viam.app.data.v1.TabularDataSourceType data_source_type = 5;
+  optional viam.app.data.v1.TabularDataSourceType data_source_type = 6;
 }
 
 message CreateDataPipelineResponse {
