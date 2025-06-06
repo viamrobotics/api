@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.app.datapipelines.v1;
 
 import "google/protobuf/timestamp.proto";
+import "app/data/v1/data.proto";
 
 option go_package = "go.viam.com/api/app/datapipelines/v1";
 
@@ -58,6 +59,9 @@ message DataPipeline {
 
   // The time the pipeline was last updated.
   google.protobuf.Timestamp updated_at = 8;
+
+  // The type of data source for the pipeline. If not specified, default is standard data storage.
+  optional viam.app.data.v1.TabularDataSourceType data_source_type = 9;
 }
 
 message GetDataPipelineRequest {
@@ -92,6 +96,9 @@ message CreateDataPipelineRequest {
   // A cron expression representing the expected execution schedule in UTC (note this also
   // defines the input time window; an hourly schedule would process 1 hour of data at a time).
   string schedule = 4;
+
+  // The type of data source for the pipeline. If not specified, default is standard data storage.
+  optional viam.app.data.v1.TabularDataSourceType data_source_type = 5;
 }
 
 message CreateDataPipelineResponse {
@@ -113,6 +120,9 @@ message UpdateDataPipelineRequest {
   // A cron expression representing the expected execution schedule in UTC (note this also
   // defines the input time window; an hourly schedule would process 1 hour of data at a time).
   string schedule = 4;
+
+  // The type of data source for the pipeline. If not specified, default is standard data storage.
+  optional viam.app.data.v1.TabularDataSourceType data_source_type = 5;
 }
 
 message UpdateDataPipelineResponse {}
