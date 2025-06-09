@@ -451,6 +451,9 @@ export class GetOrganizationNamespaceAvailabilityRequest extends jspb.Message {
   getPublicNamespace(): string;
   setPublicNamespace(value: string): void;
 
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetOrganizationNamespaceAvailabilityRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetOrganizationNamespaceAvailabilityRequest): GetOrganizationNamespaceAvailabilityRequest.AsObject;
@@ -464,6 +467,7 @@ export class GetOrganizationNamespaceAvailabilityRequest extends jspb.Message {
 export namespace GetOrganizationNamespaceAvailabilityRequest {
   export type AsObject = {
     publicNamespace: string,
+    organizationId: string,
   }
 }
 
