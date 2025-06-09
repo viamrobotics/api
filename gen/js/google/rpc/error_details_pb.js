@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js');
 goog.object.extend(proto, google_protobuf_duration_pb);
@@ -357,9 +363,9 @@ proto.google.rpc.ErrorInfo.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.rpc.ErrorInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    reason: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    domain: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    metadataMap: (f = msg.getMetadataMap()) ? f.toObject(includeInstance, undefined) : []
+reason: jspb.Message.getFieldWithDefault(msg, 1, ""),
+domain: jspb.Message.getFieldWithDefault(msg, 2, ""),
+metadataMap: (f = msg.getMetadataMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -515,7 +521,8 @@ proto.google.rpc.ErrorInfo.prototype.getMetadataMap = function(opt_noLazyCreate)
  */
 proto.google.rpc.ErrorInfo.prototype.clearMetadataMap = function() {
   this.getMetadataMap().clear();
-  return this;};
+  return this;
+};
 
 
 
@@ -550,7 +557,7 @@ proto.google.rpc.RetryInfo.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.rpc.RetryInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    retryDelay: (f = msg.getRetryDelay()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+retryDelay: (f = msg.getRetryDelay()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -708,8 +715,8 @@ proto.google.rpc.DebugInfo.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.rpc.DebugInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    stackEntriesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    detail: jspb.Message.getFieldWithDefault(msg, 2, "")
+stackEntriesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+detail: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -894,7 +901,7 @@ proto.google.rpc.QuotaFailure.prototype.toObject = function(opt_includeInstance)
  */
 proto.google.rpc.QuotaFailure.toObject = function(includeInstance, msg) {
   var f, obj = {
-    violationsList: jspb.Message.toObjectList(msg.getViolationsList(),
+violationsList: jspb.Message.toObjectList(msg.getViolationsList(),
     proto.google.rpc.QuotaFailure.Violation.toObject, includeInstance)
   };
 
@@ -1009,14 +1016,14 @@ proto.google.rpc.QuotaFailure.Violation.prototype.toObject = function(opt_includ
  */
 proto.google.rpc.QuotaFailure.Violation.toObject = function(includeInstance, msg) {
   var f, obj = {
-    subject: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    apiService: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    quotaMetric: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    quotaId: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    quotaDimensionsMap: (f = msg.getQuotaDimensionsMap()) ? f.toObject(includeInstance, undefined) : [],
-    quotaValue: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    futureQuotaValue: jspb.Message.getFieldWithDefault(msg, 8, 0)
+subject: jspb.Message.getFieldWithDefault(msg, 1, ""),
+description: jspb.Message.getFieldWithDefault(msg, 2, ""),
+apiService: jspb.Message.getFieldWithDefault(msg, 3, ""),
+quotaMetric: jspb.Message.getFieldWithDefault(msg, 4, ""),
+quotaId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+quotaDimensionsMap: (f = msg.getQuotaDimensionsMap()) ? f.toObject(includeInstance, undefined) : [],
+quotaValue: jspb.Message.getFieldWithDefault(msg, 7, 0),
+futureQuotaValue: (f = jspb.Message.getField(msg, 8)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1281,7 +1288,8 @@ proto.google.rpc.QuotaFailure.Violation.prototype.getQuotaDimensionsMap = functi
  */
 proto.google.rpc.QuotaFailure.Violation.prototype.clearQuotaDimensionsMap = function() {
   this.getQuotaDimensionsMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -1415,7 +1423,7 @@ proto.google.rpc.PreconditionFailure.prototype.toObject = function(opt_includeIn
  */
 proto.google.rpc.PreconditionFailure.toObject = function(includeInstance, msg) {
   var f, obj = {
-    violationsList: jspb.Message.toObjectList(msg.getViolationsList(),
+violationsList: jspb.Message.toObjectList(msg.getViolationsList(),
     proto.google.rpc.PreconditionFailure.Violation.toObject, includeInstance)
   };
 
@@ -1530,9 +1538,9 @@ proto.google.rpc.PreconditionFailure.Violation.prototype.toObject = function(opt
  */
 proto.google.rpc.PreconditionFailure.Violation.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    subject: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 3, "")
+type: jspb.Message.getFieldWithDefault(msg, 1, ""),
+subject: jspb.Message.getFieldWithDefault(msg, 2, ""),
+description: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1765,7 +1773,7 @@ proto.google.rpc.BadRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.rpc.BadRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fieldViolationsList: jspb.Message.toObjectList(msg.getFieldViolationsList(),
+fieldViolationsList: jspb.Message.toObjectList(msg.getFieldViolationsList(),
     proto.google.rpc.BadRequest.FieldViolation.toObject, includeInstance)
   };
 
@@ -1880,10 +1888,10 @@ proto.google.rpc.BadRequest.FieldViolation.prototype.toObject = function(opt_inc
  */
 proto.google.rpc.BadRequest.FieldViolation.toObject = function(includeInstance, msg) {
   var f, obj = {
-    field: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    reason: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    localizedMessage: (f = msg.getLocalizedMessage()) && proto.google.rpc.LocalizedMessage.toObject(includeInstance, f)
+field: jspb.Message.getFieldWithDefault(msg, 1, ""),
+description: jspb.Message.getFieldWithDefault(msg, 2, ""),
+reason: jspb.Message.getFieldWithDefault(msg, 3, ""),
+localizedMessage: (f = msg.getLocalizedMessage()) && proto.google.rpc.LocalizedMessage.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2159,8 +2167,8 @@ proto.google.rpc.RequestInfo.prototype.toObject = function(opt_includeInstance) 
  */
 proto.google.rpc.RequestInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    requestId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    servingData: jspb.Message.getFieldWithDefault(msg, 2, "")
+requestId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+servingData: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2319,10 +2327,10 @@ proto.google.rpc.ResourceInfo.prototype.toObject = function(opt_includeInstance)
  */
 proto.google.rpc.ResourceInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    resourceType: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    resourceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    owner: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 4, "")
+resourceType: jspb.Message.getFieldWithDefault(msg, 1, ""),
+resourceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+owner: jspb.Message.getFieldWithDefault(msg, 3, ""),
+description: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -2546,7 +2554,7 @@ proto.google.rpc.Help.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.rpc.Help.toObject = function(includeInstance, msg) {
   var f, obj = {
-    linksList: jspb.Message.toObjectList(msg.getLinksList(),
+linksList: jspb.Message.toObjectList(msg.getLinksList(),
     proto.google.rpc.Help.Link.toObject, includeInstance)
   };
 
@@ -2661,8 +2669,8 @@ proto.google.rpc.Help.Link.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.rpc.Help.Link.toObject = function(includeInstance, msg) {
   var f, obj = {
-    description: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    url: jspb.Message.getFieldWithDefault(msg, 2, "")
+description: jspb.Message.getFieldWithDefault(msg, 1, ""),
+url: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2859,8 +2867,8 @@ proto.google.rpc.LocalizedMessage.prototype.toObject = function(opt_includeInsta
  */
 proto.google.rpc.LocalizedMessage.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locale: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    message: jspb.Message.getFieldWithDefault(msg, 2, "")
+locale: jspb.Message.getFieldWithDefault(msg, 1, ""),
+message: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

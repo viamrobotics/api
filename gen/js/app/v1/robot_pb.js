@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var common_v1_common_pb = require('../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -966,31 +972,31 @@ proto.viam.app.v1.RobotConfig.prototype.toObject = function(opt_includeInstance)
  */
 proto.viam.app.v1.RobotConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    cloud: (f = msg.getCloud()) && proto.viam.app.v1.CloudConfig.toObject(includeInstance, f),
-    remotesList: jspb.Message.toObjectList(msg.getRemotesList(),
+cloud: (f = msg.getCloud()) && proto.viam.app.v1.CloudConfig.toObject(includeInstance, f),
+remotesList: jspb.Message.toObjectList(msg.getRemotesList(),
     proto.viam.app.v1.RemoteConfig.toObject, includeInstance),
-    componentsList: jspb.Message.toObjectList(msg.getComponentsList(),
+componentsList: jspb.Message.toObjectList(msg.getComponentsList(),
     proto.viam.app.v1.ComponentConfig.toObject, includeInstance),
-    processesList: jspb.Message.toObjectList(msg.getProcessesList(),
+processesList: jspb.Message.toObjectList(msg.getProcessesList(),
     proto.viam.app.v1.ProcessConfig.toObject, includeInstance),
-    servicesList: jspb.Message.toObjectList(msg.getServicesList(),
+servicesList: jspb.Message.toObjectList(msg.getServicesList(),
     proto.viam.app.v1.ServiceConfig.toObject, includeInstance),
-    network: (f = msg.getNetwork()) && proto.viam.app.v1.NetworkConfig.toObject(includeInstance, f),
-    auth: (f = msg.getAuth()) && proto.viam.app.v1.AuthConfig.toObject(includeInstance, f),
-    debug: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
-    modulesList: jspb.Message.toObjectList(msg.getModulesList(),
+network: (f = msg.getNetwork()) && proto.viam.app.v1.NetworkConfig.toObject(includeInstance, f),
+auth: (f = msg.getAuth()) && proto.viam.app.v1.AuthConfig.toObject(includeInstance, f),
+debug: (f = jspb.Message.getBooleanField(msg, 8)) == null ? undefined : f,
+modulesList: jspb.Message.toObjectList(msg.getModulesList(),
     proto.viam.app.v1.ModuleConfig.toObject, includeInstance),
-    disablePartialStart: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
-    packagesList: jspb.Message.toObjectList(msg.getPackagesList(),
+disablePartialStart: (f = jspb.Message.getBooleanField(msg, 10)) == null ? undefined : f,
+packagesList: jspb.Message.toObjectList(msg.getPackagesList(),
     proto.viam.app.v1.PackageConfig.toObject, includeInstance),
-    overwriteFragmentStatusList: jspb.Message.toObjectList(msg.getOverwriteFragmentStatusList(),
+overwriteFragmentStatusList: jspb.Message.toObjectList(msg.getOverwriteFragmentStatusList(),
     proto.viam.app.v1.AppValidationStatus.toObject, includeInstance),
-    enableWebProfile: jspb.Message.getBooleanFieldWithDefault(msg, 13, false),
-    logList: jspb.Message.toObjectList(msg.getLogList(),
+enableWebProfile: jspb.Message.getBooleanFieldWithDefault(msg, 13, false),
+logList: jspb.Message.toObjectList(msg.getLogList(),
     proto.viam.app.v1.LogPatternConfig.toObject, includeInstance),
-    revision: jspb.Message.getFieldWithDefault(msg, 15, ""),
-    maintenance: (f = msg.getMaintenance()) && proto.viam.app.v1.MaintenanceConfig.toObject(includeInstance, f),
-    disableLogDeduplication: jspb.Message.getBooleanFieldWithDefault(msg, 17, false)
+revision: jspb.Message.getFieldWithDefault(msg, 15, ""),
+maintenance: (f = msg.getMaintenance()) && proto.viam.app.v1.MaintenanceConfig.toObject(includeInstance, f),
+disableLogDeduplication: jspb.Message.getBooleanFieldWithDefault(msg, 17, false)
   };
 
   if (includeInstance) {
@@ -1880,8 +1886,8 @@ proto.viam.app.v1.LogPatternConfig.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.LogPatternConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pattern: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    level: jspb.Message.getFieldWithDefault(msg, 2, "")
+pattern: jspb.Message.getFieldWithDefault(msg, 1, ""),
+level: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2040,8 +2046,8 @@ proto.viam.app.v1.LocationSecret.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.v1.LocationSecret.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    secret: jspb.Message.getFieldWithDefault(msg, 2, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+secret: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2200,7 +2206,7 @@ proto.viam.app.v1.AppValidationStatus.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.AppValidationStatus.toObject = function(includeInstance, msg) {
   var f, obj = {
-    error: jspb.Message.getFieldWithDefault(msg, 1, "")
+error: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2337,19 +2343,19 @@ proto.viam.app.v1.CloudConfig.prototype.toObject = function(opt_includeInstance)
  */
 proto.viam.app.v1.CloudConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fqdn: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    localFqdn: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    managedBy: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    signalingAddress: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    signalingInsecure: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    locationSecret: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    secret: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    locationSecretsList: jspb.Message.toObjectList(msg.getLocationSecretsList(),
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+fqdn: jspb.Message.getFieldWithDefault(msg, 2, ""),
+localFqdn: jspb.Message.getFieldWithDefault(msg, 3, ""),
+managedBy: jspb.Message.getFieldWithDefault(msg, 4, ""),
+signalingAddress: jspb.Message.getFieldWithDefault(msg, 5, ""),
+signalingInsecure: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+locationSecret: jspb.Message.getFieldWithDefault(msg, 7, ""),
+secret: jspb.Message.getFieldWithDefault(msg, 8, ""),
+locationSecretsList: jspb.Message.toObjectList(msg.getLocationSecretsList(),
     proto.viam.app.v1.LocationSecret.toObject, includeInstance),
-    primaryOrgId: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    machineId: jspb.Message.getFieldWithDefault(msg, 12, "")
+primaryOrgId: jspb.Message.getFieldWithDefault(msg, 10, ""),
+locationId: jspb.Message.getFieldWithDefault(msg, 11, ""),
+machineId: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -2827,17 +2833,17 @@ proto.viam.app.v1.ComponentConfig.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.app.v1.ComponentConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    namespace: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    model: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    frame: (f = msg.getFrame()) && proto.viam.app.v1.Frame.toObject(includeInstance, f),
-    dependsOnList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
-    serviceConfigsList: jspb.Message.toObjectList(msg.getServiceConfigsList(),
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+namespace: jspb.Message.getFieldWithDefault(msg, 2, ""),
+type: jspb.Message.getFieldWithDefault(msg, 3, ""),
+model: jspb.Message.getFieldWithDefault(msg, 4, ""),
+frame: (f = msg.getFrame()) && proto.viam.app.v1.Frame.toObject(includeInstance, f),
+dependsOnList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
+serviceConfigsList: jspb.Message.toObjectList(msg.getServiceConfigsList(),
     proto.viam.app.v1.ResourceLevelServiceConfig.toObject, includeInstance),
-    attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    api: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    logConfiguration: (f = msg.getLogConfiguration()) && proto.viam.app.v1.LogConfiguration.toObject(includeInstance, f)
+attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+api: jspb.Message.getFieldWithDefault(msg, 9, ""),
+logConfiguration: (f = msg.getLogConfiguration()) && proto.viam.app.v1.LogConfiguration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3332,8 +3338,8 @@ proto.viam.app.v1.ResourceLevelServiceConfig.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.ResourceLevelServiceConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+type: jspb.Message.getFieldWithDefault(msg, 1, ""),
+attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3520,16 +3526,16 @@ proto.viam.app.v1.ProcessConfig.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.v1.ProcessConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    argsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    cwd: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    oneShot: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    log: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    stopSignal: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    stopTimeout: (f = msg.getStopTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
-    envMap: (f = msg.getEnvMap()) ? f.toObject(includeInstance, undefined) : [],
-    username: jspb.Message.getFieldWithDefault(msg, 10, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+argsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+cwd: jspb.Message.getFieldWithDefault(msg, 4, ""),
+oneShot: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+log: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+stopSignal: jspb.Message.getFieldWithDefault(msg, 7, 0),
+stopTimeout: (f = msg.getStopTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+envMap: (f = msg.getEnvMap()) ? f.toObject(includeInstance, undefined) : [],
+username: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -3910,7 +3916,8 @@ proto.viam.app.v1.ProcessConfig.prototype.getEnvMap = function(opt_noLazyCreate)
  */
 proto.viam.app.v1.ProcessConfig.prototype.clearEnvMap = function() {
   this.getEnvMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -3970,16 +3977,16 @@ proto.viam.app.v1.ServiceConfig.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.v1.ServiceConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    namespace: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    dependsOnList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    model: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    api: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    serviceConfigsList: jspb.Message.toObjectList(msg.getServiceConfigsList(),
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+namespace: jspb.Message.getFieldWithDefault(msg, 2, ""),
+type: jspb.Message.getFieldWithDefault(msg, 3, ""),
+attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+dependsOnList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+model: jspb.Message.getFieldWithDefault(msg, 6, ""),
+api: jspb.Message.getFieldWithDefault(msg, 9, ""),
+serviceConfigsList: jspb.Message.toObjectList(msg.getServiceConfigsList(),
     proto.viam.app.v1.ResourceLevelServiceConfig.toObject, includeInstance),
-    logConfiguration: (f = msg.getLogConfiguration()) && proto.viam.app.v1.LogConfiguration.toObject(includeInstance, f)
+logConfiguration: (f = msg.getLogConfiguration()) && proto.viam.app.v1.LogConfiguration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4431,14 +4438,14 @@ proto.viam.app.v1.NetworkConfig.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.v1.NetworkConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fqdn: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    bindAddress: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    tlsCertFile: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    tlsKeyFile: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sessions: (f = msg.getSessions()) && proto.viam.app.v1.SessionsConfig.toObject(includeInstance, f),
-    trafficTunnelEndpointsList: jspb.Message.toObjectList(msg.getTrafficTunnelEndpointsList(),
+fqdn: jspb.Message.getFieldWithDefault(msg, 1, ""),
+bindAddress: jspb.Message.getFieldWithDefault(msg, 2, ""),
+tlsCertFile: jspb.Message.getFieldWithDefault(msg, 3, ""),
+tlsKeyFile: jspb.Message.getFieldWithDefault(msg, 4, ""),
+sessions: (f = msg.getSessions()) && proto.viam.app.v1.SessionsConfig.toObject(includeInstance, f),
+trafficTunnelEndpointsList: jspb.Message.toObjectList(msg.getTrafficTunnelEndpointsList(),
     proto.viam.app.v1.TrafficTunnelEndpoint.toObject, includeInstance),
-    noTls: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
+noTls: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
   };
 
   if (includeInstance) {
@@ -4785,7 +4792,7 @@ proto.viam.app.v1.SessionsConfig.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.v1.SessionsConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    heartbeatWindow: (f = msg.getHeartbeatWindow()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+heartbeatWindow: (f = msg.getHeartbeatWindow()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4936,8 +4943,8 @@ proto.viam.app.v1.TrafficTunnelEndpoint.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.TrafficTunnelEndpoint.toObject = function(includeInstance, msg) {
   var f, obj = {
-    port: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    connectionTimeout: (f = msg.getConnectionTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+port: jspb.Message.getFieldWithDefault(msg, 1, 0),
+connectionTimeout: (f = msg.getConnectionTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5124,10 +5131,10 @@ proto.viam.app.v1.AuthConfig.prototype.toObject = function(opt_includeInstance) 
  */
 proto.viam.app.v1.AuthConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    handlersList: jspb.Message.toObjectList(msg.getHandlersList(),
+handlersList: jspb.Message.toObjectList(msg.getHandlersList(),
     proto.viam.app.v1.AuthHandlerConfig.toObject, includeInstance),
-    tlsAuthEntitiesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    externalAuthConfig: (f = msg.getExternalAuthConfig()) && proto.viam.app.v1.ExternalAuthConfig.toObject(includeInstance, f)
+tlsAuthEntitiesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+externalAuthConfig: (f = msg.getExternalAuthConfig()) && proto.viam.app.v1.ExternalAuthConfig.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5377,7 +5384,7 @@ proto.viam.app.v1.JWKSFile.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.app.v1.JWKSFile.toObject = function(includeInstance, msg) {
   var f, obj = {
-    json: (f = msg.getJson()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+json: (f = msg.getJson()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5528,7 +5535,7 @@ proto.viam.app.v1.ExternalAuthConfig.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.ExternalAuthConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    jwks: (f = msg.getJwks()) && proto.viam.app.v1.JWKSFile.toObject(includeInstance, f)
+jwks: (f = msg.getJwks()) && proto.viam.app.v1.JWKSFile.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5679,8 +5686,8 @@ proto.viam.app.v1.AuthHandlerConfig.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.AuthHandlerConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+type: jspb.Message.getFieldWithDefault(msg, 1, 0),
+config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5860,10 +5867,10 @@ proto.viam.app.v1.Frame.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.app.v1.Frame.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    translation: (f = msg.getTranslation()) && proto.viam.app.v1.Translation.toObject(includeInstance, f),
-    orientation: (f = msg.getOrientation()) && proto.viam.app.v1.Orientation.toObject(includeInstance, f),
-    geometry: (f = msg.getGeometry()) && common_v1_common_pb.Geometry.toObject(includeInstance, f)
+parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+translation: (f = msg.getTranslation()) && proto.viam.app.v1.Translation.toObject(includeInstance, f),
+orientation: (f = msg.getOrientation()) && proto.viam.app.v1.Orientation.toObject(includeInstance, f),
+geometry: (f = msg.getGeometry()) && common_v1_common_pb.Geometry.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6143,7 +6150,7 @@ proto.viam.app.v1.LogConfiguration.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.LogConfiguration.toObject = function(includeInstance, msg) {
   var f, obj = {
-    level: jspb.Message.getFieldWithDefault(msg, 1, "")
+level: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -6273,9 +6280,9 @@ proto.viam.app.v1.Translation.prototype.toObject = function(opt_includeInstance)
  */
 proto.viam.app.v1.Translation.toObject = function(includeInstance, msg) {
   var f, obj = {
-    x: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    y: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    z: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0)
+x: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+y: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+z: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0)
   };
 
   if (includeInstance) {
@@ -6493,12 +6500,12 @@ proto.viam.app.v1.Orientation.prototype.toObject = function(opt_includeInstance)
  */
 proto.viam.app.v1.Orientation.toObject = function(includeInstance, msg) {
   var f, obj = {
-    noOrientation: (f = msg.getNoOrientation()) && proto.viam.app.v1.Orientation.NoOrientation.toObject(includeInstance, f),
-    vectorRadians: (f = msg.getVectorRadians()) && proto.viam.app.v1.Orientation.OrientationVectorRadians.toObject(includeInstance, f),
-    vectorDegrees: (f = msg.getVectorDegrees()) && proto.viam.app.v1.Orientation.OrientationVectorDegrees.toObject(includeInstance, f),
-    eulerAngles: (f = msg.getEulerAngles()) && proto.viam.app.v1.Orientation.EulerAngles.toObject(includeInstance, f),
-    axisAngles: (f = msg.getAxisAngles()) && proto.viam.app.v1.Orientation.AxisAngles.toObject(includeInstance, f),
-    quaternion: (f = msg.getQuaternion()) && proto.viam.app.v1.Orientation.Quaternion.toObject(includeInstance, f)
+noOrientation: (f = msg.getNoOrientation()) && proto.viam.app.v1.Orientation.NoOrientation.toObject(includeInstance, f),
+vectorRadians: (f = msg.getVectorRadians()) && proto.viam.app.v1.Orientation.OrientationVectorRadians.toObject(includeInstance, f),
+vectorDegrees: (f = msg.getVectorDegrees()) && proto.viam.app.v1.Orientation.OrientationVectorDegrees.toObject(includeInstance, f),
+eulerAngles: (f = msg.getEulerAngles()) && proto.viam.app.v1.Orientation.EulerAngles.toObject(includeInstance, f),
+axisAngles: (f = msg.getAxisAngles()) && proto.viam.app.v1.Orientation.AxisAngles.toObject(includeInstance, f),
+quaternion: (f = msg.getQuaternion()) && proto.viam.app.v1.Orientation.Quaternion.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6778,10 +6785,10 @@ proto.viam.app.v1.Orientation.OrientationVectorRadians.prototype.toObject = func
  */
 proto.viam.app.v1.Orientation.OrientationVectorRadians.toObject = function(includeInstance, msg) {
   var f, obj = {
-    theta: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    x: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    y: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    z: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
+theta: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+x: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+y: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+z: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -6998,10 +7005,10 @@ proto.viam.app.v1.Orientation.OrientationVectorDegrees.prototype.toObject = func
  */
 proto.viam.app.v1.Orientation.OrientationVectorDegrees.toObject = function(includeInstance, msg) {
   var f, obj = {
-    theta: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    x: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    y: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    z: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
+theta: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+x: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+y: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+z: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -7218,9 +7225,9 @@ proto.viam.app.v1.Orientation.EulerAngles.prototype.toObject = function(opt_incl
  */
 proto.viam.app.v1.Orientation.EulerAngles.toObject = function(includeInstance, msg) {
   var f, obj = {
-    roll: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    pitch: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    yaw: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0)
+roll: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+pitch: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+yaw: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0)
   };
 
   if (includeInstance) {
@@ -7408,10 +7415,10 @@ proto.viam.app.v1.Orientation.AxisAngles.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.Orientation.AxisAngles.toObject = function(includeInstance, msg) {
   var f, obj = {
-    theta: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    x: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    y: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    z: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
+theta: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+x: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+y: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+z: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -7628,10 +7635,10 @@ proto.viam.app.v1.Orientation.Quaternion.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.Orientation.Quaternion.toObject = function(includeInstance, msg) {
   var f, obj = {
-    w: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    x: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    y: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    z: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
+w: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+x: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+y: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+z: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -8077,17 +8084,17 @@ proto.viam.app.v1.RemoteConfig.prototype.toObject = function(opt_includeInstance
  */
 proto.viam.app.v1.RemoteConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    address: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    frame: (f = msg.getFrame()) && proto.viam.app.v1.Frame.toObject(includeInstance, f),
-    auth: (f = msg.getAuth()) && proto.viam.app.v1.RemoteAuth.toObject(includeInstance, f),
-    managedBy: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    insecure: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    connectionCheckInterval: (f = msg.getConnectionCheckInterval()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
-    reconnectInterval: (f = msg.getReconnectInterval()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
-    serviceConfigsList: jspb.Message.toObjectList(msg.getServiceConfigsList(),
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+address: jspb.Message.getFieldWithDefault(msg, 2, ""),
+frame: (f = msg.getFrame()) && proto.viam.app.v1.Frame.toObject(includeInstance, f),
+auth: (f = msg.getAuth()) && proto.viam.app.v1.RemoteAuth.toObject(includeInstance, f),
+managedBy: jspb.Message.getFieldWithDefault(msg, 5, ""),
+insecure: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+connectionCheckInterval: (f = msg.getConnectionCheckInterval()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+reconnectInterval: (f = msg.getReconnectInterval()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+serviceConfigsList: jspb.Message.toObjectList(msg.getServiceConfigsList(),
     proto.viam.app.v1.ResourceLevelServiceConfig.toObject, includeInstance),
-    secret: jspb.Message.getFieldWithDefault(msg, 10, "")
+secret: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -8584,8 +8591,8 @@ proto.viam.app.v1.RemoteAuth.prototype.toObject = function(opt_includeInstance) 
  */
 proto.viam.app.v1.RemoteAuth.toObject = function(includeInstance, msg) {
   var f, obj = {
-    credentials: (f = msg.getCredentials()) && proto.viam.app.v1.RemoteAuth.Credentials.toObject(includeInstance, f),
-    entity: jspb.Message.getFieldWithDefault(msg, 2, "")
+credentials: (f = msg.getCredentials()) && proto.viam.app.v1.RemoteAuth.Credentials.toObject(includeInstance, f),
+entity: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -8710,8 +8717,8 @@ proto.viam.app.v1.RemoteAuth.Credentials.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.RemoteAuth.Credentials.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    payload: jspb.Message.getFieldWithDefault(msg, 2, "")
+type: jspb.Message.getFieldWithDefault(msg, 1, 0),
+payload: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -8932,13 +8939,13 @@ proto.viam.app.v1.AgentInfo.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.app.v1.AgentInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    host: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    os: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    ipsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    version: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    gitRevision: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    platform: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    platformTagsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
+host: jspb.Message.getFieldWithDefault(msg, 1, ""),
+os: jspb.Message.getFieldWithDefault(msg, 2, ""),
+ipsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+version: jspb.Message.getFieldWithDefault(msg, 4, ""),
+gitRevision: jspb.Message.getFieldWithDefault(msg, 5, ""),
+platform: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f,
+platformTagsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -9298,8 +9305,8 @@ proto.viam.app.v1.ConfigRequest.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.v1.ConfigRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    agentInfo: (f = msg.getAgentInfo()) && proto.viam.app.v1.AgentInfo.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+agentInfo: (f = msg.getAgentInfo()) && proto.viam.app.v1.AgentInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9479,7 +9486,7 @@ proto.viam.app.v1.ConfigResponse.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.v1.ConfigResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    config: (f = msg.getConfig()) && proto.viam.app.v1.RobotConfig.toObject(includeInstance, f)
+config: (f = msg.getConfig()) && proto.viam.app.v1.RobotConfig.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9630,7 +9637,7 @@ proto.viam.app.v1.CertificateRequest.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.CertificateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -9760,9 +9767,9 @@ proto.viam.app.v1.CertificateResponse.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.CertificateResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    tlsCertificate: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    tlsPrivateKey: jspb.Message.getFieldWithDefault(msg, 3, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+tlsCertificate: jspb.Message.getFieldWithDefault(msg, 2, ""),
+tlsPrivateKey: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -9957,8 +9964,8 @@ proto.viam.app.v1.LogRequest.prototype.toObject = function(opt_includeInstance) 
  */
 proto.viam.app.v1.LogRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    logsList: jspb.Message.toObjectList(msg.getLogsList(),
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+logsList: jspb.Message.toObjectList(msg.getLogsList(),
     common_v1_common_pb.LogEntry.toObject, includeInstance)
   };
 
@@ -10241,7 +10248,7 @@ proto.viam.app.v1.NeedsRestartRequest.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.NeedsRestartRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -10371,9 +10378,9 @@ proto.viam.app.v1.NeedsRestartResponse.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.NeedsRestartResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    mustRestart: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    restartCheckInterval: (f = msg.getRestartCheckInterval()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+mustRestart: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+restartCheckInterval: (f = msg.getRestartCheckInterval()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10582,14 +10589,14 @@ proto.viam.app.v1.ModuleConfig.prototype.toObject = function(opt_includeInstance
  */
 proto.viam.app.v1.ModuleConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    path: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    logLevel: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    moduleId: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    envMap: (f = msg.getEnvMap()) ? f.toObject(includeInstance, undefined) : [],
-    status: (f = msg.getStatus()) && proto.viam.app.v1.AppValidationStatus.toObject(includeInstance, f),
-    firstRunTimeout: (f = msg.getFirstRunTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+path: jspb.Message.getFieldWithDefault(msg, 2, ""),
+logLevel: jspb.Message.getFieldWithDefault(msg, 3, ""),
+type: jspb.Message.getFieldWithDefault(msg, 4, ""),
+moduleId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+envMap: (f = msg.getEnvMap()) ? f.toObject(includeInstance, undefined) : [],
+status: (f = msg.getStatus()) && proto.viam.app.v1.AppValidationStatus.toObject(includeInstance, f),
+firstRunTimeout: (f = msg.getFirstRunTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10858,7 +10865,8 @@ proto.viam.app.v1.ModuleConfig.prototype.getEnvMap = function(opt_noLazyCreate) 
  */
 proto.viam.app.v1.ModuleConfig.prototype.clearEnvMap = function() {
   this.getEnvMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -10967,11 +10975,11 @@ proto.viam.app.v1.PackageConfig.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.v1.PackageConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pb_package: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    status: (f = msg.getStatus()) && proto.viam.app.v1.AppValidationStatus.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+pb_package: jspb.Message.getFieldWithDefault(msg, 2, ""),
+version: jspb.Message.getFieldWithDefault(msg, 3, ""),
+type: jspb.Message.getFieldWithDefault(msg, 4, ""),
+status: (f = msg.getStatus()) && proto.viam.app.v1.AppValidationStatus.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -11238,8 +11246,8 @@ proto.viam.app.v1.MaintenanceConfig.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.MaintenanceConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    sensorName: (f = msg.getSensorName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-    maintenanceAllowedKey: jspb.Message.getFieldWithDefault(msg, 2, "")
+sensorName: (f = msg.getSensorName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+maintenanceAllowedKey: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

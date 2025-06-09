@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
@@ -297,9 +303,9 @@ proto.viam.app.packages.v1.FileInfo.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.packages.v1.FileInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    size: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    isDirectory: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+size: jspb.Message.getFieldWithDefault(msg, 2, 0),
+isDirectory: (f = jspb.Message.getBooleanField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -512,14 +518,14 @@ proto.viam.app.packages.v1.PackageInfo.prototype.toObject = function(opt_include
  */
 proto.viam.app.packages.v1.PackageInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    platform: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    filesList: jspb.Message.toObjectList(msg.getFilesList(),
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+version: jspb.Message.getFieldWithDefault(msg, 3, ""),
+type: jspb.Message.getFieldWithDefault(msg, 4, 0),
+platform: (f = jspb.Message.getField(msg, 7)) == null ? undefined : f,
+filesList: jspb.Message.toObjectList(msg.getFilesList(),
     proto.viam.app.packages.v1.FileInfo.toObject, includeInstance),
-    metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -910,8 +916,8 @@ proto.viam.app.packages.v1.CreatePackageRequest.prototype.toObject = function(op
  */
 proto.viam.app.packages.v1.CreatePackageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    info: (f = msg.getInfo()) && proto.viam.app.packages.v1.PackageInfo.toObject(includeInstance, f),
-    contents: msg.getContents_asB64()
+info: (f = msg.getInfo()) && proto.viam.app.packages.v1.PackageInfo.toObject(includeInstance, f),
+contents: msg.getContents_asB64()
   };
 
   if (includeInstance) {
@@ -1133,8 +1139,8 @@ proto.viam.app.packages.v1.CreatePackageResponse.prototype.toObject = function(o
  */
 proto.viam.app.packages.v1.CreatePackageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 2, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+version: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1293,9 +1299,9 @@ proto.viam.app.packages.v1.DeletePackageRequest.prototype.toObject = function(op
  */
 proto.viam.app.packages.v1.DeletePackageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 3, 0)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+version: jspb.Message.getFieldWithDefault(msg, 2, ""),
+type: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -1584,11 +1590,11 @@ proto.viam.app.packages.v1.Package.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.packages.v1.Package.toObject = function(includeInstance, msg) {
   var f, obj = {
-    info: (f = msg.getInfo()) && proto.viam.app.packages.v1.PackageInfo.toObject(includeInstance, f),
-    url: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    checksum: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 5, "")
+info: (f = msg.getInfo()) && proto.viam.app.packages.v1.PackageInfo.toObject(includeInstance, f),
+url: jspb.Message.getFieldWithDefault(msg, 2, ""),
+createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+checksum: jspb.Message.getFieldWithDefault(msg, 4, ""),
+id: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -1876,11 +1882,11 @@ proto.viam.app.packages.v1.GetPackageRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.packages.v1.GetPackageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    includeUrl: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    type: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    platform: jspb.Message.getFieldWithDefault(msg, 5, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+version: jspb.Message.getFieldWithDefault(msg, 2, ""),
+includeUrl: (f = jspb.Message.getBooleanField(msg, 3)) == null ? undefined : f,
+type: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+platform: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2180,7 +2186,7 @@ proto.viam.app.packages.v1.GetPackageResponse.prototype.toObject = function(opt_
  */
 proto.viam.app.packages.v1.GetPackageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pb_package: (f = msg.getPackage()) && proto.viam.app.packages.v1.Package.toObject(includeInstance, f)
+pb_package: (f = msg.getPackage()) && proto.viam.app.packages.v1.Package.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2331,11 +2337,11 @@ proto.viam.app.packages.v1.ListPackagesRequest.prototype.toObject = function(opt
  */
 proto.viam.app.packages.v1.ListPackagesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    includeUrl: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+version: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+type: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+includeUrl: (f = jspb.Message.getBooleanField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2660,7 +2666,7 @@ proto.viam.app.packages.v1.ListPackagesResponse.prototype.toObject = function(op
  */
 proto.viam.app.packages.v1.ListPackagesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    packagesList: jspb.Message.toObjectList(msg.getPackagesList(),
+packagesList: jspb.Message.toObjectList(msg.getPackagesList(),
     proto.viam.app.packages.v1.Package.toObject, includeInstance)
   };
 

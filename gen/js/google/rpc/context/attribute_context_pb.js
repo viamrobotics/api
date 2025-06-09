@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
 goog.object.extend(proto, google_protobuf_any_pb);
@@ -216,14 +222,14 @@ proto.google.rpc.context.AttributeContext.prototype.toObject = function(opt_incl
  */
 proto.google.rpc.context.AttributeContext.toObject = function(includeInstance, msg) {
   var f, obj = {
-    origin: (f = msg.getOrigin()) && proto.google.rpc.context.AttributeContext.Peer.toObject(includeInstance, f),
-    source: (f = msg.getSource()) && proto.google.rpc.context.AttributeContext.Peer.toObject(includeInstance, f),
-    destination: (f = msg.getDestination()) && proto.google.rpc.context.AttributeContext.Peer.toObject(includeInstance, f),
-    request: (f = msg.getRequest()) && proto.google.rpc.context.AttributeContext.Request.toObject(includeInstance, f),
-    response: (f = msg.getResponse()) && proto.google.rpc.context.AttributeContext.Response.toObject(includeInstance, f),
-    resource: (f = msg.getResource()) && proto.google.rpc.context.AttributeContext.Resource.toObject(includeInstance, f),
-    api: (f = msg.getApi()) && proto.google.rpc.context.AttributeContext.Api.toObject(includeInstance, f),
-    extensionsList: jspb.Message.toObjectList(msg.getExtensionsList(),
+origin: (f = msg.getOrigin()) && proto.google.rpc.context.AttributeContext.Peer.toObject(includeInstance, f),
+source: (f = msg.getSource()) && proto.google.rpc.context.AttributeContext.Peer.toObject(includeInstance, f),
+destination: (f = msg.getDestination()) && proto.google.rpc.context.AttributeContext.Peer.toObject(includeInstance, f),
+request: (f = msg.getRequest()) && proto.google.rpc.context.AttributeContext.Request.toObject(includeInstance, f),
+response: (f = msg.getResponse()) && proto.google.rpc.context.AttributeContext.Response.toObject(includeInstance, f),
+resource: (f = msg.getResource()) && proto.google.rpc.context.AttributeContext.Resource.toObject(includeInstance, f),
+api: (f = msg.getApi()) && proto.google.rpc.context.AttributeContext.Api.toObject(includeInstance, f),
+extensionsList: jspb.Message.toObjectList(msg.getExtensionsList(),
     google_protobuf_any_pb.Any.toObject, includeInstance)
   };
 
@@ -429,11 +435,11 @@ proto.google.rpc.context.AttributeContext.Peer.prototype.toObject = function(opt
  */
 proto.google.rpc.context.AttributeContext.Peer.toObject = function(includeInstance, msg) {
   var f, obj = {
-    ip: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    port: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
-    principal: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    regionCode: jspb.Message.getFieldWithDefault(msg, 8, "")
+ip: jspb.Message.getFieldWithDefault(msg, 1, ""),
+port: jspb.Message.getFieldWithDefault(msg, 2, 0),
+labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
+principal: jspb.Message.getFieldWithDefault(msg, 7, ""),
+regionCode: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -611,7 +617,8 @@ proto.google.rpc.context.AttributeContext.Peer.prototype.getLabelsMap = function
  */
 proto.google.rpc.context.AttributeContext.Peer.prototype.clearLabelsMap = function() {
   this.getLabelsMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -682,10 +689,10 @@ proto.google.rpc.context.AttributeContext.Api.prototype.toObject = function(opt_
  */
 proto.google.rpc.context.AttributeContext.Api.toObject = function(includeInstance, msg) {
   var f, obj = {
-    service: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    operation: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    protocol: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 4, "")
+service: jspb.Message.getFieldWithDefault(msg, 1, ""),
+operation: jspb.Message.getFieldWithDefault(msg, 2, ""),
+protocol: jspb.Message.getFieldWithDefault(msg, 3, ""),
+version: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -909,11 +916,11 @@ proto.google.rpc.context.AttributeContext.Auth.prototype.toObject = function(opt
  */
 proto.google.rpc.context.AttributeContext.Auth.toObject = function(includeInstance, msg) {
   var f, obj = {
-    principal: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    audiencesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    presenter: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    claims: (f = msg.getClaims()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    accessLevelsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
+principal: jspb.Message.getFieldWithDefault(msg, 1, ""),
+audiencesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+presenter: jspb.Message.getFieldWithDefault(msg, 3, ""),
+claims: (f = msg.getClaims()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+accessLevelsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1218,18 +1225,18 @@ proto.google.rpc.context.AttributeContext.Request.prototype.toObject = function(
  */
 proto.google.rpc.context.AttributeContext.Request.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    method: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    headersMap: (f = msg.getHeadersMap()) ? f.toObject(includeInstance, undefined) : [],
-    path: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    host: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    scheme: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    query: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    size: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    protocol: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    reason: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    auth: (f = msg.getAuth()) && proto.google.rpc.context.AttributeContext.Auth.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+method: jspb.Message.getFieldWithDefault(msg, 2, ""),
+headersMap: (f = msg.getHeadersMap()) ? f.toObject(includeInstance, undefined) : [],
+path: jspb.Message.getFieldWithDefault(msg, 4, ""),
+host: jspb.Message.getFieldWithDefault(msg, 5, ""),
+scheme: jspb.Message.getFieldWithDefault(msg, 6, ""),
+query: jspb.Message.getFieldWithDefault(msg, 7, ""),
+time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+size: jspb.Message.getFieldWithDefault(msg, 10, 0),
+protocol: jspb.Message.getFieldWithDefault(msg, 11, ""),
+reason: jspb.Message.getFieldWithDefault(msg, 12, ""),
+auth: (f = msg.getAuth()) && proto.google.rpc.context.AttributeContext.Auth.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1488,7 +1495,8 @@ proto.google.rpc.context.AttributeContext.Request.prototype.getHeadersMap = func
  */
 proto.google.rpc.context.AttributeContext.Request.prototype.clearHeadersMap = function() {
   this.getHeadersMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -1723,11 +1731,11 @@ proto.google.rpc.context.AttributeContext.Response.prototype.toObject = function
  */
 proto.google.rpc.context.AttributeContext.Response.toObject = function(includeInstance, msg) {
   var f, obj = {
-    code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    size: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    headersMap: (f = msg.getHeadersMap()) ? f.toObject(includeInstance, undefined) : [],
-    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    backendLatency: (f = msg.getBackendLatency()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+code: jspb.Message.getFieldWithDefault(msg, 1, 0),
+size: jspb.Message.getFieldWithDefault(msg, 2, 0),
+headersMap: (f = msg.getHeadersMap()) ? f.toObject(includeInstance, undefined) : [],
+time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+backendLatency: (f = msg.getBackendLatency()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1909,7 +1917,8 @@ proto.google.rpc.context.AttributeContext.Response.prototype.getHeadersMap = fun
  */
 proto.google.rpc.context.AttributeContext.Response.prototype.clearHeadersMap = function() {
   this.getHeadersMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -2018,18 +2027,18 @@ proto.google.rpc.context.AttributeContext.Resource.prototype.toObject = function
  */
 proto.google.rpc.context.AttributeContext.Resource.toObject = function(includeInstance, msg) {
   var f, obj = {
-    service: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
-    uid: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    annotationsMap: (f = msg.getAnnotationsMap()) ? f.toObject(includeInstance, undefined) : [],
-    displayName: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    updateTime: (f = msg.getUpdateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    deleteTime: (f = msg.getDeleteTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    etag: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    location: jspb.Message.getFieldWithDefault(msg, 12, "")
+service: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+type: jspb.Message.getFieldWithDefault(msg, 3, ""),
+labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
+uid: jspb.Message.getFieldWithDefault(msg, 5, ""),
+annotationsMap: (f = msg.getAnnotationsMap()) ? f.toObject(includeInstance, undefined) : [],
+displayName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+updateTime: (f = msg.getUpdateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+deleteTime: (f = msg.getDeleteTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+etag: jspb.Message.getFieldWithDefault(msg, 11, ""),
+location: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -2307,7 +2316,8 @@ proto.google.rpc.context.AttributeContext.Resource.prototype.getLabelsMap = func
  */
 proto.google.rpc.context.AttributeContext.Resource.prototype.clearLabelsMap = function() {
   this.getLabelsMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**
@@ -2347,7 +2357,8 @@ proto.google.rpc.context.AttributeContext.Resource.prototype.getAnnotationsMap =
  */
 proto.google.rpc.context.AttributeContext.Resource.prototype.clearAnnotationsMap = function() {
   this.getAnnotationsMap().clear();
-  return this;};
+  return this;
+};
 
 
 /**

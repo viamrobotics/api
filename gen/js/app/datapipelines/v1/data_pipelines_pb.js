@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js');
 goog.object.extend(proto, app_data_v1_data_pb);
@@ -455,15 +461,15 @@ proto.viam.app.datapipelines.v1.DataPipeline.prototype.toObject = function(opt_i
  */
 proto.viam.app.datapipelines.v1.DataPipeline.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    mqlBinaryList: msg.getMqlBinaryList_asB64(),
-    schedule: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    enabled: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    dataSourceType: jspb.Message.getFieldWithDefault(msg, 9, 0)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+name: jspb.Message.getFieldWithDefault(msg, 3, ""),
+mqlBinaryList: msg.getMqlBinaryList_asB64(),
+schedule: jspb.Message.getFieldWithDefault(msg, 5, ""),
+enabled: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+dataSourceType: (f = jspb.Message.getField(msg, 9)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -928,7 +934,7 @@ proto.viam.app.datapipelines.v1.GetDataPipelineRequest.prototype.toObject = func
  */
 proto.viam.app.datapipelines.v1.GetDataPipelineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1058,7 +1064,7 @@ proto.viam.app.datapipelines.v1.GetDataPipelineResponse.prototype.toObject = fun
  */
 proto.viam.app.datapipelines.v1.GetDataPipelineResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dataPipeline: (f = msg.getDataPipeline()) && proto.viam.app.datapipelines.v1.DataPipeline.toObject(includeInstance, f)
+dataPipeline: (f = msg.getDataPipeline()) && proto.viam.app.datapipelines.v1.DataPipeline.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1209,7 +1215,7 @@ proto.viam.app.datapipelines.v1.ListDataPipelinesRequest.prototype.toObject = fu
  */
 proto.viam.app.datapipelines.v1.ListDataPipelinesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1346,7 +1352,7 @@ proto.viam.app.datapipelines.v1.ListDataPipelinesResponse.prototype.toObject = f
  */
 proto.viam.app.datapipelines.v1.ListDataPipelinesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dataPipelinesList: jspb.Message.toObjectList(msg.getDataPipelinesList(),
+dataPipelinesList: jspb.Message.toObjectList(msg.getDataPipelinesList(),
     proto.viam.app.datapipelines.v1.DataPipeline.toObject, includeInstance)
   };
 
@@ -1506,12 +1512,12 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.toObject = f
  */
 proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    mqlBinaryList: msg.getMqlBinaryList_asB64(),
-    schedule: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    enableBackfill: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    dataSourceType: jspb.Message.getFieldWithDefault(msg, 6, 0)
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+mqlBinaryList: msg.getMqlBinaryList_asB64(),
+schedule: jspb.Message.getFieldWithDefault(msg, 4, ""),
+enableBackfill: (f = jspb.Message.getBooleanField(msg, 5)) == null ? undefined : f,
+dataSourceType: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1865,7 +1871,7 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineResponse.prototype.toObject = 
  */
 proto.viam.app.datapipelines.v1.CreateDataPipelineResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2002,11 +2008,11 @@ proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.toObject = f
  */
 proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    mqlBinaryList: msg.getMqlBinaryList_asB64(),
-    schedule: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    dataSourceType: jspb.Message.getFieldWithDefault(msg, 5, 0)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+mqlBinaryList: msg.getMqlBinaryList_asB64(),
+schedule: jspb.Message.getFieldWithDefault(msg, 4, ""),
+dataSourceType: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2414,7 +2420,7 @@ proto.viam.app.datapipelines.v1.DeleteDataPipelineRequest.prototype.toObject = f
  */
 proto.viam.app.datapipelines.v1.DeleteDataPipelineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2645,7 +2651,7 @@ proto.viam.app.datapipelines.v1.EnableDataPipelineRequest.prototype.toObject = f
  */
 proto.viam.app.datapipelines.v1.EnableDataPipelineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -2876,7 +2882,7 @@ proto.viam.app.datapipelines.v1.DisableDataPipelineRequest.prototype.toObject = 
  */
 proto.viam.app.datapipelines.v1.DisableDataPipelineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -3107,9 +3113,9 @@ proto.viam.app.datapipelines.v1.ListDataPipelineRunsRequest.prototype.toObject =
  */
 proto.viam.app.datapipelines.v1.ListDataPipelineRunsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -3304,10 +3310,10 @@ proto.viam.app.datapipelines.v1.ListDataPipelineRunsResponse.prototype.toObject 
  */
 proto.viam.app.datapipelines.v1.ListDataPipelineRunsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pipelineId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    runsList: jspb.Message.toObjectList(msg.getRunsList(),
+pipelineId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+runsList: jspb.Message.toObjectList(msg.getRunsList(),
     proto.viam.app.datapipelines.v1.DataPipelineRun.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -3517,12 +3523,12 @@ proto.viam.app.datapipelines.v1.DataPipelineRun.prototype.toObject = function(op
  */
 proto.viam.app.datapipelines.v1.DataPipelineRun.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    dataStartTime: (f = msg.getDataStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    dataEndTime: (f = msg.getDataEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    status: jspb.Message.getFieldWithDefault(msg, 6, 0)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+dataStartTime: (f = msg.getDataStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+dataEndTime: (f = msg.getDataEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+status: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {

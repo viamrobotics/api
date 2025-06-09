@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var app_v1_robot_pb = require('../../app/v1/robot_pb.js');
 goog.object.extend(proto, app_v1_robot_pb);
@@ -322,8 +328,8 @@ proto.viam.module.v1.AddResourceRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.module.v1.AddResourceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    config: (f = msg.getConfig()) && app_v1_robot_pb.ComponentConfig.toObject(includeInstance, f),
-    dependenciesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+config: (f = msg.getConfig()) && app_v1_robot_pb.ComponentConfig.toObject(includeInstance, f),
+dependenciesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -630,8 +636,8 @@ proto.viam.module.v1.ReconfigureResourceRequest.prototype.toObject = function(op
  */
 proto.viam.module.v1.ReconfigureResourceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    config: (f = msg.getConfig()) && app_v1_robot_pb.ComponentConfig.toObject(includeInstance, f),
-    dependenciesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+config: (f = msg.getConfig()) && app_v1_robot_pb.ComponentConfig.toObject(includeInstance, f),
+dependenciesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -931,7 +937,7 @@ proto.viam.module.v1.RemoveResourceRequest.prototype.toObject = function(opt_inc
  */
 proto.viam.module.v1.RemoveResourceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1169,8 +1175,8 @@ proto.viam.module.v1.HandlerDefinition.prototype.toObject = function(opt_include
  */
 proto.viam.module.v1.HandlerDefinition.toObject = function(includeInstance, msg) {
   var f, obj = {
-    subtype: (f = msg.getSubtype()) && robot_v1_robot_pb.ResourceRPCSubtype.toObject(includeInstance, f),
-    modelsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+subtype: (f = msg.getSubtype()) && robot_v1_robot_pb.ResourceRPCSubtype.toObject(includeInstance, f),
+modelsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1376,7 +1382,7 @@ proto.viam.module.v1.HandlerMap.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.module.v1.HandlerMap.toObject = function(includeInstance, msg) {
   var f, obj = {
-    handlersList: jspb.Message.toObjectList(msg.getHandlersList(),
+handlersList: jspb.Message.toObjectList(msg.getHandlersList(),
     proto.viam.module.v1.HandlerDefinition.toObject, includeInstance)
   };
 
@@ -1529,8 +1535,8 @@ proto.viam.module.v1.ReadyRequest.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.module.v1.ReadyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parentAddress: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    webrtcOffer: jspb.Message.getFieldWithDefault(msg, 2, "")
+parentAddress: jspb.Message.getFieldWithDefault(msg, 1, ""),
+webrtcOffer: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1689,9 +1695,9 @@ proto.viam.module.v1.ReadyResponse.prototype.toObject = function(opt_includeInst
  */
 proto.viam.module.v1.ReadyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    ready: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    handlermap: (f = msg.getHandlermap()) && proto.viam.module.v1.HandlerMap.toObject(includeInstance, f),
-    webrtcAnswer: jspb.Message.getFieldWithDefault(msg, 3, "")
+ready: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+handlermap: (f = msg.getHandlermap()) && proto.viam.module.v1.HandlerMap.toObject(includeInstance, f),
+webrtcAnswer: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1900,7 +1906,7 @@ proto.viam.module.v1.ValidateConfigRequest.prototype.toObject = function(opt_inc
  */
 proto.viam.module.v1.ValidateConfigRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    config: (f = msg.getConfig()) && app_v1_robot_pb.ComponentConfig.toObject(includeInstance, f)
+config: (f = msg.getConfig()) && app_v1_robot_pb.ComponentConfig.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2058,8 +2064,8 @@ proto.viam.module.v1.ValidateConfigResponse.prototype.toObject = function(opt_in
  */
 proto.viam.module.v1.ValidateConfigResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    dependenciesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    optionalDependenciesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+dependenciesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+optionalDependenciesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {

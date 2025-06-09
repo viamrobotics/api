@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var app_mltraining_v1_ml_training_pb = require('../../app/mltraining/v1/ml_training_pb.js');
 goog.object.extend(proto, app_mltraining_v1_ml_training_pb);
@@ -5860,11 +5866,11 @@ proto.viam.app.v1.Robot.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.app.v1.Robot.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    location: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    lastAccess: (f = msg.getLastAccess()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+location: jspb.Message.getFieldWithDefault(msg, 3, ""),
+lastAccess: (f = msg.getLastAccess()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6159,22 +6165,22 @@ proto.viam.app.v1.RobotPart.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.app.v1.RobotPart.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    dnsName: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    secret: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    robot: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    robotConfig: (f = msg.getRobotConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    lastAccess: (f = msg.getLastAccess()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    userSuppliedInfo: (f = msg.getUserSuppliedInfo()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    mainPart: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
-    fqdn: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    localFqdn: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    secretsList: jspb.Message.toObjectList(msg.getSecretsList(),
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+dnsName: jspb.Message.getFieldWithDefault(msg, 10, ""),
+secret: jspb.Message.getFieldWithDefault(msg, 3, ""),
+robot: jspb.Message.getFieldWithDefault(msg, 4, ""),
+locationId: jspb.Message.getFieldWithDefault(msg, 12, ""),
+robotConfig: (f = msg.getRobotConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+lastAccess: (f = msg.getLastAccess()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+userSuppliedInfo: (f = msg.getUserSuppliedInfo()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+mainPart: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+fqdn: jspb.Message.getFieldWithDefault(msg, 9, ""),
+localFqdn: jspb.Message.getFieldWithDefault(msg, 11, ""),
+createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+secretsList: jspb.Message.toObjectList(msg.getSecretsList(),
     proto.viam.app.v1.SharedSecret.toObject, includeInstance),
-    lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6837,11 +6843,11 @@ proto.viam.app.v1.RobotPartHistoryEntry.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.RobotPartHistoryEntry.toObject = function(includeInstance, msg) {
   var f, obj = {
-    part: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    robot: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    when: (f = msg.getWhen()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    old: (f = msg.getOld()) && proto.viam.app.v1.RobotPart.toObject(includeInstance, f),
-    editedBy: (f = msg.getEditedBy()) && proto.viam.app.v1.AuthenticatorInfo.toObject(includeInstance, f)
+part: jspb.Message.getFieldWithDefault(msg, 1, ""),
+robot: jspb.Message.getFieldWithDefault(msg, 2, ""),
+when: (f = msg.getWhen()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+old: (f = msg.getOld()) && proto.viam.app.v1.RobotPart.toObject(includeInstance, f),
+editedBy: (f = msg.getEditedBy()) && proto.viam.app.v1.AuthenticatorInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7150,9 +7156,9 @@ proto.viam.app.v1.AuthenticatorInfo.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.AuthenticatorInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    value: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    isDeactivated: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+type: jspb.Message.getFieldWithDefault(msg, 1, 0),
+value: jspb.Message.getFieldWithDefault(msg, 2, ""),
+isDeactivated: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -7441,12 +7447,12 @@ proto.viam.app.v1.Organization.prototype.toObject = function(opt_includeInstance
  */
 proto.viam.app.v1.Organization.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    publicNamespace: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    defaultRegion: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    cid: jspb.Message.getFieldWithDefault(msg, 6, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+publicNamespace: jspb.Message.getFieldWithDefault(msg, 4, ""),
+defaultRegion: jspb.Message.getFieldWithDefault(msg, 5, ""),
+cid: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -7767,10 +7773,10 @@ proto.viam.app.v1.OrganizationMember.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.OrganizationMember.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    emailsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    dateAdded: (f = msg.getDateAdded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    lastLogin: (f = msg.getLastLogin()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+emailsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+dateAdded: (f = msg.getDateAdded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+lastLogin: (f = msg.getLastLogin()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -8055,7 +8061,7 @@ proto.viam.app.v1.ListOrganizationsResponse.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.ListOrganizationsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationsList: jspb.Message.toObjectList(msg.getOrganizationsList(),
+organizationsList: jspb.Message.toObjectList(msg.getOrganizationsList(),
     proto.viam.app.v1.Organization.toObject, includeInstance)
   };
 
@@ -8215,10 +8221,10 @@ proto.viam.app.v1.OrganizationInvite.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.OrganizationInvite.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    email: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    authorizationsList: jspb.Message.toObjectList(msg.getAuthorizationsList(),
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+email: jspb.Message.getFieldWithDefault(msg, 2, ""),
+createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+authorizationsList: jspb.Message.toObjectList(msg.getAuthorizationsList(),
     proto.viam.app.v1.Authorization.toObject, includeInstance)
   };
 
@@ -8479,7 +8485,7 @@ proto.viam.app.v1.CreateOrganizationRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.CreateOrganizationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -8609,7 +8615,7 @@ proto.viam.app.v1.CreateOrganizationResponse.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.CreateOrganizationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organization: (f = msg.getOrganization()) && proto.viam.app.v1.Organization.toObject(includeInstance, f)
+organization: (f = msg.getOrganization()) && proto.viam.app.v1.Organization.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -8760,7 +8766,7 @@ proto.viam.app.v1.GetOrganizationRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.GetOrganizationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -8890,7 +8896,7 @@ proto.viam.app.v1.GetOrganizationResponse.prototype.toObject = function(opt_incl
  */
 proto.viam.app.v1.GetOrganizationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organization: (f = msg.getOrganization()) && proto.viam.app.v1.Organization.toObject(includeInstance, f)
+organization: (f = msg.getOrganization()) && proto.viam.app.v1.Organization.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9041,7 +9047,8 @@ proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.prototype.toObject
  */
 proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    publicNamespace: jspb.Message.getFieldWithDefault(msg, 1, "")
+publicNamespace: jspb.Message.getFieldWithDefault(msg, 1, ""),
+organizationId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -9082,6 +9089,10 @@ proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.deserializeBinaryF
       var value = /** @type {string} */ (reader.readString());
       msg.setPublicNamespace(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganizationId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -9118,6 +9129,13 @@ proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.serializeBinaryToW
       f
     );
   }
+  f = message.getOrganizationId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -9136,6 +9154,24 @@ proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.prototype.getPubli
  */
 proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.prototype.setPublicNamespace = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string organization_id = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.prototype.getOrganizationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest} returns this
+ */
+proto.viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.prototype.setOrganizationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -9171,7 +9207,7 @@ proto.viam.app.v1.GetOrganizationNamespaceAvailabilityResponse.prototype.toObjec
  */
 proto.viam.app.v1.GetOrganizationNamespaceAvailabilityResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    available: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+available: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -9301,11 +9337,11 @@ proto.viam.app.v1.UpdateOrganizationRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.UpdateOrganizationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    publicNamespace: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    region: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    cid: jspb.Message.getFieldWithDefault(msg, 5, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+publicNamespace: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+region: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+cid: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -9623,7 +9659,7 @@ proto.viam.app.v1.UpdateOrganizationResponse.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.UpdateOrganizationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organization: (f = msg.getOrganization()) && proto.viam.app.v1.Organization.toObject(includeInstance, f)
+organization: (f = msg.getOrganization()) && proto.viam.app.v1.Organization.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9774,8 +9810,8 @@ proto.viam.app.v1.UpdateOrganizationNamespaceRequest.prototype.toObject = functi
  */
 proto.viam.app.v1.UpdateOrganizationNamespaceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    newPublicNamespace: jspb.Message.getFieldWithDefault(msg, 2, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+newPublicNamespace: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -9934,7 +9970,7 @@ proto.viam.app.v1.UpdateOrganizationNamespaceResponse.prototype.toObject = funct
  */
 proto.viam.app.v1.UpdateOrganizationNamespaceResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organization: (f = msg.getOrganization()) && proto.viam.app.v1.Organization.toObject(includeInstance, f)
+organization: (f = msg.getOrganization()) && proto.viam.app.v1.Organization.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10085,7 +10121,7 @@ proto.viam.app.v1.DeleteOrganizationRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.DeleteOrganizationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -10316,7 +10352,7 @@ proto.viam.app.v1.GetOrganizationMetadataRequest.prototype.toObject = function(o
  */
 proto.viam.app.v1.GetOrganizationMetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -10446,7 +10482,7 @@ proto.viam.app.v1.GetOrganizationMetadataResponse.prototype.toObject = function(
  */
 proto.viam.app.v1.GetOrganizationMetadataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10597,8 +10633,8 @@ proto.viam.app.v1.UpdateOrganizationMetadataRequest.prototype.toObject = functio
  */
 proto.viam.app.v1.UpdateOrganizationMetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10879,7 +10915,7 @@ proto.viam.app.v1.ListOrganizationMembersRequest.prototype.toObject = function(o
  */
 proto.viam.app.v1.ListOrganizationMembersRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -11016,10 +11052,10 @@ proto.viam.app.v1.ListOrganizationMembersResponse.prototype.toObject = function(
  */
 proto.viam.app.v1.ListOrganizationMembersResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    membersList: jspb.Message.toObjectList(msg.getMembersList(),
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+membersList: jspb.Message.toObjectList(msg.getMembersList(),
     proto.viam.app.v1.OrganizationMember.toObject, includeInstance),
-    invitesList: jspb.Message.toObjectList(msg.getInvitesList(),
+invitesList: jspb.Message.toObjectList(msg.getInvitesList(),
     proto.viam.app.v1.OrganizationInvite.toObject, includeInstance)
   };
 
@@ -11259,11 +11295,11 @@ proto.viam.app.v1.CreateOrganizationInviteRequest.prototype.toObject = function(
  */
 proto.viam.app.v1.CreateOrganizationInviteRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    email: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    authorizationsList: jspb.Message.toObjectList(msg.getAuthorizationsList(),
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+email: jspb.Message.getFieldWithDefault(msg, 2, ""),
+authorizationsList: jspb.Message.toObjectList(msg.getAuthorizationsList(),
     proto.viam.app.v1.Authorization.toObject, includeInstance),
-    sendEmailInvite: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+sendEmailInvite: (f = jspb.Message.getBooleanField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -11520,7 +11556,7 @@ proto.viam.app.v1.CreateOrganizationInviteResponse.prototype.toObject = function
  */
 proto.viam.app.v1.CreateOrganizationInviteResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    invite: (f = msg.getInvite()) && proto.viam.app.v1.OrganizationInvite.toObject(includeInstance, f)
+invite: (f = msg.getInvite()) && proto.viam.app.v1.OrganizationInvite.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -11678,11 +11714,11 @@ proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest.prototype.toObje
  */
 proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    email: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    addAuthorizationsList: jspb.Message.toObjectList(msg.getAddAuthorizationsList(),
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+email: jspb.Message.getFieldWithDefault(msg, 2, ""),
+addAuthorizationsList: jspb.Message.toObjectList(msg.getAddAuthorizationsList(),
     proto.viam.app.v1.Authorization.toObject, includeInstance),
-    removeAuthorizationsList: jspb.Message.toObjectList(msg.getRemoveAuthorizationsList(),
+removeAuthorizationsList: jspb.Message.toObjectList(msg.getRemoveAuthorizationsList(),
     proto.viam.app.v1.Authorization.toObject, includeInstance)
   };
 
@@ -11944,7 +11980,7 @@ proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse.prototype.toObj
  */
 proto.viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    invite: (f = msg.getInvite()) && proto.viam.app.v1.OrganizationInvite.toObject(includeInstance, f)
+invite: (f = msg.getInvite()) && proto.viam.app.v1.OrganizationInvite.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -12095,8 +12131,8 @@ proto.viam.app.v1.DeleteOrganizationInviteRequest.prototype.toObject = function(
  */
 proto.viam.app.v1.DeleteOrganizationInviteRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    email: jspb.Message.getFieldWithDefault(msg, 2, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+email: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -12356,9 +12392,9 @@ proto.viam.app.v1.ResendOrganizationInviteRequest.prototype.toObject = function(
  */
 proto.viam.app.v1.ResendOrganizationInviteRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    email: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    sendEmailInvite: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+email: jspb.Message.getFieldWithDefault(msg, 2, ""),
+sendEmailInvite: (f = jspb.Message.getBooleanField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -12564,7 +12600,7 @@ proto.viam.app.v1.ResendOrganizationInviteResponse.prototype.toObject = function
  */
 proto.viam.app.v1.ResendOrganizationInviteResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    invite: (f = msg.getInvite()) && proto.viam.app.v1.OrganizationInvite.toObject(includeInstance, f)
+invite: (f = msg.getInvite()) && proto.viam.app.v1.OrganizationInvite.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -12715,8 +12751,8 @@ proto.viam.app.v1.DeleteOrganizationMemberRequest.prototype.toObject = function(
  */
 proto.viam.app.v1.DeleteOrganizationMemberRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    userId: jspb.Message.getFieldWithDefault(msg, 2, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+userId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -12976,12 +13012,12 @@ proto.viam.app.v1.BillingAddress.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.v1.BillingAddress.toObject = function(includeInstance, msg) {
   var f, obj = {
-    addressLine1: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    addressLine2: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    city: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    state: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    zipcode: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    country: jspb.Message.getFieldWithDefault(msg, 6, "")
+addressLine1: jspb.Message.getFieldWithDefault(msg, 1, ""),
+addressLine2: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+city: jspb.Message.getFieldWithDefault(msg, 3, ""),
+state: jspb.Message.getFieldWithDefault(msg, 4, ""),
+zipcode: jspb.Message.getFieldWithDefault(msg, 5, ""),
+country: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -13274,8 +13310,8 @@ proto.viam.app.v1.EnableBillingServiceRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.EnableBillingServiceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    billingAddress: (f = msg.getBillingAddress()) && proto.viam.app.v1.BillingAddress.toObject(includeInstance, f)
+orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+billingAddress: (f = msg.getBillingAddress()) && proto.viam.app.v1.BillingAddress.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -13556,8 +13592,8 @@ proto.viam.app.v1.UpdateBillingServiceRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.UpdateBillingServiceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    billingAddress: (f = msg.getBillingAddress()) && proto.viam.app.v1.BillingAddress.toObject(includeInstance, f)
+orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+billingAddress: (f = msg.getBillingAddress()) && proto.viam.app.v1.BillingAddress.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -13838,7 +13874,7 @@ proto.viam.app.v1.GetBillingServiceConfigRequest.prototype.toObject = function(o
  */
 proto.viam.app.v1.GetBillingServiceConfigRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -13968,10 +14004,10 @@ proto.viam.app.v1.GetBillingServiceConfigResponse.prototype.toObject = function(
  */
 proto.viam.app.v1.GetBillingServiceConfigResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    billingAddress: (f = msg.getBillingAddress()) && proto.viam.app.v1.BillingAddress.toObject(includeInstance, f),
-    supportEmail: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    logoUrl: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    billingDashboardUrl: jspb.Message.getFieldWithDefault(msg, 4, "")
+billingAddress: (f = msg.getBillingAddress()) && proto.viam.app.v1.BillingAddress.toObject(includeInstance, f),
+supportEmail: jspb.Message.getFieldWithDefault(msg, 2, ""),
+logoUrl: jspb.Message.getFieldWithDefault(msg, 3, ""),
+billingDashboardUrl: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -14209,7 +14245,7 @@ proto.viam.app.v1.DisableBillingServiceRequest.prototype.toObject = function(opt
  */
 proto.viam.app.v1.DisableBillingServiceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -14440,8 +14476,8 @@ proto.viam.app.v1.OrganizationSetSupportEmailRequest.prototype.toObject = functi
  */
 proto.viam.app.v1.OrganizationSetSupportEmailRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    email: jspb.Message.getFieldWithDefault(msg, 2, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+email: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -14701,7 +14737,7 @@ proto.viam.app.v1.OrganizationGetSupportEmailRequest.prototype.toObject = functi
  */
 proto.viam.app.v1.OrganizationGetSupportEmailRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -14831,7 +14867,7 @@ proto.viam.app.v1.OrganizationGetSupportEmailResponse.prototype.toObject = funct
  */
 proto.viam.app.v1.OrganizationGetSupportEmailResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    email: jspb.Message.getFieldWithDefault(msg, 1, "")
+email: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -14961,8 +14997,8 @@ proto.viam.app.v1.OrganizationIdentity.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.OrganizationIdentity.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -15121,8 +15157,8 @@ proto.viam.app.v1.LocationOrganization.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.LocationOrganization.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    primary: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+primary: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -15288,9 +15324,9 @@ proto.viam.app.v1.LocationAuth.prototype.toObject = function(opt_includeInstance
  */
 proto.viam.app.v1.LocationAuth.toObject = function(includeInstance, msg) {
   var f, obj = {
-    secret: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    secretsList: jspb.Message.toObjectList(msg.getSecretsList(),
+secret: jspb.Message.getFieldWithDefault(msg, 1, ""),
+locationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+secretsList: jspb.Message.toObjectList(msg.getSecretsList(),
     proto.viam.app.v1.SharedSecret.toObject, includeInstance)
   };
 
@@ -15501,7 +15537,7 @@ proto.viam.app.v1.StorageConfig.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.v1.StorageConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    region: jspb.Message.getFieldWithDefault(msg, 1, "")
+region: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -15638,16 +15674,16 @@ proto.viam.app.v1.Location.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.app.v1.Location.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    parentLocationId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    auth: (f = msg.getAuth()) && proto.viam.app.v1.LocationAuth.toObject(includeInstance, f),
-    organizationsList: jspb.Message.toObjectList(msg.getOrganizationsList(),
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+parentLocationId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+auth: (f = msg.getAuth()) && proto.viam.app.v1.LocationAuth.toObject(includeInstance, f),
+organizationsList: jspb.Message.toObjectList(msg.getOrganizationsList(),
     proto.viam.app.v1.LocationOrganization.toObject, includeInstance),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    robotCount: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    config: (f = msg.getConfig()) && proto.viam.app.v1.StorageConfig.toObject(includeInstance, f),
-    primaryOrgIdentity: (f = msg.getPrimaryOrgIdentity()) && proto.viam.app.v1.OrganizationIdentity.toObject(includeInstance, f)
+createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+robotCount: jspb.Message.getFieldWithDefault(msg, 7, 0),
+config: (f = msg.getConfig()) && proto.viam.app.v1.StorageConfig.toObject(includeInstance, f),
+primaryOrgIdentity: (f = msg.getPrimaryOrgIdentity()) && proto.viam.app.v1.OrganizationIdentity.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -16115,10 +16151,10 @@ proto.viam.app.v1.SharedSecret.prototype.toObject = function(opt_includeInstance
  */
 proto.viam.app.v1.SharedSecret.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    secret: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    state: jspb.Message.getFieldWithDefault(msg, 4, 0)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+secret: jspb.Message.getFieldWithDefault(msg, 2, ""),
+createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+state: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -16365,9 +16401,9 @@ proto.viam.app.v1.CreateLocationRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.CreateLocationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    parentLocationId: jspb.Message.getFieldWithDefault(msg, 3, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+parentLocationId: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -16573,7 +16609,7 @@ proto.viam.app.v1.CreateLocationResponse.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.CreateLocationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    location: (f = msg.getLocation()) && proto.viam.app.v1.Location.toObject(includeInstance, f)
+location: (f = msg.getLocation()) && proto.viam.app.v1.Location.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -16724,7 +16760,7 @@ proto.viam.app.v1.GetLocationRequest.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.GetLocationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -16854,7 +16890,7 @@ proto.viam.app.v1.GetLocationResponse.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.GetLocationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    location: (f = msg.getLocation()) && proto.viam.app.v1.Location.toObject(includeInstance, f)
+location: (f = msg.getLocation()) && proto.viam.app.v1.Location.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -17005,10 +17041,10 @@ proto.viam.app.v1.UpdateLocationRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.UpdateLocationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    parentLocationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    region: jspb.Message.getFieldWithDefault(msg, 4, "")
+locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+parentLocationId: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+region: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -17279,7 +17315,7 @@ proto.viam.app.v1.UpdateLocationResponse.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.UpdateLocationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    location: (f = msg.getLocation()) && proto.viam.app.v1.Location.toObject(includeInstance, f)
+location: (f = msg.getLocation()) && proto.viam.app.v1.Location.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -17430,7 +17466,7 @@ proto.viam.app.v1.DeleteLocationRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.DeleteLocationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -17661,7 +17697,7 @@ proto.viam.app.v1.GetLocationMetadataRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.GetLocationMetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -17791,7 +17827,7 @@ proto.viam.app.v1.GetLocationMetadataResponse.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.GetLocationMetadataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -17942,8 +17978,8 @@ proto.viam.app.v1.UpdateLocationMetadataRequest.prototype.toObject = function(op
  */
 proto.viam.app.v1.UpdateLocationMetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -18224,7 +18260,7 @@ proto.viam.app.v1.GetOrganizationsWithAccessToLocationRequest.prototype.toObject
  */
 proto.viam.app.v1.GetOrganizationsWithAccessToLocationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -18361,7 +18397,7 @@ proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse.prototype.toObjec
  */
 proto.viam.app.v1.GetOrganizationsWithAccessToLocationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationIdentitiesList: jspb.Message.toObjectList(msg.getOrganizationIdentitiesList(),
+organizationIdentitiesList: jspb.Message.toObjectList(msg.getOrganizationIdentitiesList(),
     proto.viam.app.v1.OrganizationIdentity.toObject, includeInstance)
   };
 
@@ -18514,7 +18550,7 @@ proto.viam.app.v1.ListLocationsRequest.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.ListLocationsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -18644,8 +18680,8 @@ proto.viam.app.v1.ShareLocationRequest.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.ShareLocationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 2, "")
+locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+organizationId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -18905,8 +18941,8 @@ proto.viam.app.v1.UnshareLocationRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.UnshareLocationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 2, "")
+locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+organizationId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -19173,7 +19209,7 @@ proto.viam.app.v1.ListLocationsResponse.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.ListLocationsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationsList: jspb.Message.toObjectList(msg.getLocationsList(),
+locationsList: jspb.Message.toObjectList(msg.getLocationsList(),
     proto.viam.app.v1.Location.toObject, includeInstance)
   };
 
@@ -19326,7 +19362,7 @@ proto.viam.app.v1.CreateLocationSecretRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.CreateLocationSecretRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -19456,7 +19492,7 @@ proto.viam.app.v1.CreateLocationSecretResponse.prototype.toObject = function(opt
  */
 proto.viam.app.v1.CreateLocationSecretResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    auth: (f = msg.getAuth()) && proto.viam.app.v1.LocationAuth.toObject(includeInstance, f)
+auth: (f = msg.getAuth()) && proto.viam.app.v1.LocationAuth.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -19607,8 +19643,8 @@ proto.viam.app.v1.DeleteLocationSecretRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.DeleteLocationSecretRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    secretId: jspb.Message.getFieldWithDefault(msg, 2, "")
+locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+secretId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -19868,7 +19904,7 @@ proto.viam.app.v1.LocationAuthRequest.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.LocationAuthRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -19998,7 +20034,7 @@ proto.viam.app.v1.LocationAuthResponse.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.LocationAuthResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    auth: (f = msg.getAuth()) && proto.viam.app.v1.LocationAuth.toObject(includeInstance, f)
+auth: (f = msg.getAuth()) && proto.viam.app.v1.LocationAuth.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -20149,7 +20185,7 @@ proto.viam.app.v1.GetRobotRequest.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.app.v1.GetRobotRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -20279,7 +20315,7 @@ proto.viam.app.v1.GetRoverRentalRobotsRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.GetRoverRentalRobotsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -20409,10 +20445,10 @@ proto.viam.app.v1.RoverRentalRobot.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.RoverRentalRobot.toObject = function(includeInstance, msg) {
   var f, obj = {
-    robotId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    robotName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    robotMainPartId: jspb.Message.getFieldWithDefault(msg, 4, "")
+robotId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+locationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+robotName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+robotMainPartId: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -20636,7 +20672,7 @@ proto.viam.app.v1.GetRoverRentalRobotsResponse.prototype.toObject = function(opt
  */
 proto.viam.app.v1.GetRoverRentalRobotsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    robotsList: jspb.Message.toObjectList(msg.getRobotsList(),
+robotsList: jspb.Message.toObjectList(msg.getRobotsList(),
     proto.viam.app.v1.RoverRentalRobot.toObject, includeInstance)
   };
 
@@ -20789,7 +20825,7 @@ proto.viam.app.v1.GetRobotResponse.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.GetRobotResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    robot: (f = msg.getRobot()) && proto.viam.app.v1.Robot.toObject(includeInstance, f)
+robot: (f = msg.getRobot()) && proto.viam.app.v1.Robot.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -20940,7 +20976,7 @@ proto.viam.app.v1.GetRobotPartsRequest.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.GetRobotPartsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    robotId: jspb.Message.getFieldWithDefault(msg, 1, "")
+robotId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -21077,7 +21113,7 @@ proto.viam.app.v1.GetRobotPartsResponse.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.GetRobotPartsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    partsList: jspb.Message.toObjectList(msg.getPartsList(),
+partsList: jspb.Message.toObjectList(msg.getPartsList(),
     proto.viam.app.v1.RobotPart.toObject, includeInstance)
   };
 
@@ -21230,7 +21266,7 @@ proto.viam.app.v1.GetRobotPartRequest.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.GetRobotPartRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -21360,8 +21396,8 @@ proto.viam.app.v1.GetRobotPartResponse.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.GetRobotPartResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    part: (f = msg.getPart()) && proto.viam.app.v1.RobotPart.toObject(includeInstance, f),
-    configJson: jspb.Message.getFieldWithDefault(msg, 2, "")
+part: (f = msg.getPart()) && proto.viam.app.v1.RobotPart.toObject(includeInstance, f),
+configJson: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -21541,8 +21577,8 @@ proto.viam.app.v1.GetRobotPartByNameAndLocationRequest.prototype.toObject = func
  */
 proto.viam.app.v1.GetRobotPartByNameAndLocationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    locationId: jspb.Message.getFieldWithDefault(msg, 2, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+locationId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -21701,7 +21737,7 @@ proto.viam.app.v1.GetRobotPartByNameAndLocationResponse.prototype.toObject = fun
  */
 proto.viam.app.v1.GetRobotPartByNameAndLocationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    part: (f = msg.getPart()) && proto.viam.app.v1.RobotPart.toObject(includeInstance, f)
+part: (f = msg.getPart()) && proto.viam.app.v1.RobotPart.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -21859,15 +21895,15 @@ proto.viam.app.v1.GetRobotPartLogsRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.app.v1.GetRobotPartLogsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    errorsOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    filter: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    levelsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    start: (f = msg.getStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    limit: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    source: jspb.Message.getFieldWithDefault(msg, 9, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+errorsOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+filter: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+pageToken: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+levelsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+start: (f = msg.getStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+limit: (f = jspb.Message.getField(msg, 8)) == null ? undefined : f,
+source: (f = jspb.Message.getField(msg, 9)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -22369,9 +22405,9 @@ proto.viam.app.v1.GetRobotPartLogsResponse.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.GetRobotPartLogsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    logsList: jspb.Message.toObjectList(msg.getLogsList(),
+logsList: jspb.Message.toObjectList(msg.getLogsList(),
     common_v1_common_pb.LogEntry.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -22552,9 +22588,9 @@ proto.viam.app.v1.TailRobotPartLogsRequest.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.TailRobotPartLogsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    errorsOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    filter: jspb.Message.getFieldWithDefault(msg, 3, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+errorsOnly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+filter: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -22767,7 +22803,7 @@ proto.viam.app.v1.TailRobotPartLogsResponse.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.TailRobotPartLogsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    logsList: jspb.Message.toObjectList(msg.getLogsList(),
+logsList: jspb.Message.toObjectList(msg.getLogsList(),
     common_v1_common_pb.LogEntry.toObject, includeInstance)
   };
 
@@ -22920,7 +22956,7 @@ proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.GetRobotPartHistoryRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -23057,7 +23093,7 @@ proto.viam.app.v1.GetRobotPartHistoryResponse.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.GetRobotPartHistoryResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    historyList: jspb.Message.toObjectList(msg.getHistoryList(),
+historyList: jspb.Message.toObjectList(msg.getHistoryList(),
     proto.viam.app.v1.RobotPartHistoryEntry.toObject, includeInstance)
   };
 
@@ -23210,10 +23246,10 @@ proto.viam.app.v1.UpdateRobotPartRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.UpdateRobotPartRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    robotConfig: (f = msg.getRobotConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    lastKnownUpdate: (f = msg.getLastKnownUpdate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+robotConfig: (f = msg.getRobotConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+lastKnownUpdate: (f = msg.getLastKnownUpdate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -23472,7 +23508,7 @@ proto.viam.app.v1.UpdateRobotPartResponse.prototype.toObject = function(opt_incl
  */
 proto.viam.app.v1.UpdateRobotPartResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    part: (f = msg.getPart()) && proto.viam.app.v1.RobotPart.toObject(includeInstance, f)
+part: (f = msg.getPart()) && proto.viam.app.v1.RobotPart.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -23623,8 +23659,8 @@ proto.viam.app.v1.NewRobotPartRequest.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.NewRobotPartRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    robotId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    partName: jspb.Message.getFieldWithDefault(msg, 2, "")
+robotId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+partName: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -23783,7 +23819,7 @@ proto.viam.app.v1.NewRobotPartResponse.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.NewRobotPartResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    partId: jspb.Message.getFieldWithDefault(msg, 1, "")
+partId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -23913,7 +23949,7 @@ proto.viam.app.v1.DeleteRobotPartRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.DeleteRobotPartRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    partId: jspb.Message.getFieldWithDefault(msg, 1, "")
+partId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -24043,7 +24079,7 @@ proto.viam.app.v1.GetRobotPartMetadataRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.GetRobotPartMetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -24173,7 +24209,7 @@ proto.viam.app.v1.GetRobotPartMetadataResponse.prototype.toObject = function(opt
  */
 proto.viam.app.v1.GetRobotPartMetadataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -24324,8 +24360,8 @@ proto.viam.app.v1.UpdateRobotPartMetadataRequest.prototype.toObject = function(o
  */
 proto.viam.app.v1.UpdateRobotPartMetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -24606,7 +24642,7 @@ proto.viam.app.v1.GetRobotAPIKeysRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.GetRobotAPIKeysRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    robotId: jspb.Message.getFieldWithDefault(msg, 1, "")
+robotId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -24736,10 +24772,10 @@ proto.viam.app.v1.APIKey.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.app.v1.APIKey.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    key: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+key: jspb.Message.getFieldWithDefault(msg, 2, ""),
+name: jspb.Message.getFieldWithDefault(msg, 3, ""),
+createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -24984,7 +25020,7 @@ proto.viam.app.v1.GetRobotAPIKeysResponse.prototype.toObject = function(opt_incl
  */
 proto.viam.app.v1.GetRobotAPIKeysResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    apiKeysList: jspb.Message.toObjectList(msg.getApiKeysList(),
+apiKeysList: jspb.Message.toObjectList(msg.getApiKeysList(),
     proto.viam.app.v1.APIKeyWithAuthorizations.toObject, includeInstance)
   };
 
@@ -25238,19 +25274,19 @@ proto.viam.app.v1.Fragment.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.app.v1.Fragment.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    fragment: (f = msg.getFragment()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    organizationOwner: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    organizationName: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    robotPartCount: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    organizationCount: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    onlyUsedByOwner: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
-    visibility: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    revision: jspb.Message.getFieldWithDefault(msg, 14, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+fragment: (f = msg.getFragment()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+organizationOwner: jspb.Message.getFieldWithDefault(msg, 4, ""),
+pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+organizationName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+robotPartCount: jspb.Message.getFieldWithDefault(msg, 9, 0),
+organizationCount: jspb.Message.getFieldWithDefault(msg, 10, 0),
+onlyUsedByOwner: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
+visibility: jspb.Message.getFieldWithDefault(msg, 12, 0),
+lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+revision: jspb.Message.getFieldWithDefault(msg, 14, "")
   };
 
   if (includeInstance) {
@@ -25791,12 +25827,12 @@ proto.viam.app.v1.FragmentHistoryEntry.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.FragmentHistoryEntry.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragment: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    editedOn: (f = msg.getEditedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    old: (f = msg.getOld()) && proto.viam.app.v1.Fragment.toObject(includeInstance, f),
-    editedBy: (f = msg.getEditedBy()) && proto.viam.app.v1.AuthenticatorInfo.toObject(includeInstance, f),
-    revision: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+fragment: jspb.Message.getFieldWithDefault(msg, 1, ""),
+editedOn: (f = msg.getEditedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+old: (f = msg.getOld()) && proto.viam.app.v1.Fragment.toObject(includeInstance, f),
+editedBy: (f = msg.getEditedBy()) && proto.viam.app.v1.AuthenticatorInfo.toObject(includeInstance, f),
+revision: jspb.Message.getFieldWithDefault(msg, 5, ""),
+config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -26155,8 +26191,8 @@ proto.viam.app.v1.FragmentRevision.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.FragmentRevision.toObject = function(includeInstance, msg) {
   var f, obj = {
-    revision: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+revision: jspb.Message.getFieldWithDefault(msg, 1, ""),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -26336,8 +26372,8 @@ proto.viam.app.v1.FragmentTag.prototype.toObject = function(opt_includeInstance)
  */
 proto.viam.app.v1.FragmentTag.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tag: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    revision: jspb.Message.getFieldWithDefault(msg, 2, "")
+tag: jspb.Message.getFieldWithDefault(msg, 1, ""),
+revision: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -26496,9 +26532,9 @@ proto.viam.app.v1.FragmentError.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.v1.FragmentError.toObject = function(includeInstance, msg) {
   var f, obj = {
-    errorType: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    fragmentId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    detail: jspb.Message.getFieldWithDefault(msg, 3, "")
+errorType: jspb.Message.getFieldWithDefault(msg, 1, 0),
+fragmentId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+detail: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -26686,11 +26722,11 @@ proto.viam.app.v1.FragmentUsage.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.v1.FragmentUsage.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    organizations: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    machines: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    machinesInCurrentOrg: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    version: jspb.Message.getFieldWithDefault(msg, 5, "")
+fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+organizations: jspb.Message.getFieldWithDefault(msg, 2, 0),
+machines: jspb.Message.getFieldWithDefault(msg, 3, 0),
+machinesInCurrentOrg: jspb.Message.getFieldWithDefault(msg, 4, 0),
+version: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -26954,10 +26990,10 @@ proto.viam.app.v1.ResolvedFragment.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.ResolvedFragment.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    resolvedConfig: (f = msg.getResolvedConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    error: (f = msg.getError()) && proto.viam.app.v1.FragmentError.toObject(includeInstance, f),
-    revision: jspb.Message.getFieldWithDefault(msg, 4, "")
+fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+resolvedConfig: (f = msg.getResolvedConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+error: (f = msg.getError()) && proto.viam.app.v1.FragmentError.toObject(includeInstance, f),
+revision: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -27223,9 +27259,9 @@ proto.viam.app.v1.ListFragmentsRequest.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.ListFragmentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    showPublic: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    fragmentVisibilityList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+showPublic: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+fragmentVisibilityList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -27441,9 +27477,9 @@ proto.viam.app.v1.ListFragmentsResponse.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.ListFragmentsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragmentsList: jspb.Message.toObjectList(msg.getFragmentsList(),
+fragmentsList: jspb.Message.toObjectList(msg.getFragmentsList(),
     proto.viam.app.v1.Fragment.toObject, includeInstance),
-    fragmentUsagesList: jspb.Message.toObjectList(msg.getFragmentUsagesList(),
+fragmentUsagesList: jspb.Message.toObjectList(msg.getFragmentUsagesList(),
     proto.viam.app.v1.FragmentUsage.toObject, includeInstance)
   };
 
@@ -27647,9 +27683,9 @@ proto.viam.app.v1.GetFragmentRequest.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.GetFragmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    currentOrganizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 3, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+currentOrganizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+version: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -27862,11 +27898,11 @@ proto.viam.app.v1.GetFragmentResponse.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.GetFragmentResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragment: (f = msg.getFragment()) && proto.viam.app.v1.Fragment.toObject(includeInstance, f),
-    fragmentUsage: (f = msg.getFragmentUsage()) && proto.viam.app.v1.FragmentUsage.toObject(includeInstance, f),
-    revisionsList: jspb.Message.toObjectList(msg.getRevisionsList(),
+fragment: (f = msg.getFragment()) && proto.viam.app.v1.Fragment.toObject(includeInstance, f),
+fragmentUsage: (f = msg.getFragmentUsage()) && proto.viam.app.v1.FragmentUsage.toObject(includeInstance, f),
+revisionsList: jspb.Message.toObjectList(msg.getRevisionsList(),
     proto.viam.app.v1.FragmentRevision.toObject, includeInstance),
-    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     proto.viam.app.v1.FragmentTag.toObject, includeInstance)
   };
 
@@ -28170,10 +28206,10 @@ proto.viam.app.v1.CreateFragmentRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.CreateFragmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    visibility: jspb.Message.getFieldWithDefault(msg, 4, 0)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+organizationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+visibility: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -28429,7 +28465,7 @@ proto.viam.app.v1.CreateFragmentResponse.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.CreateFragmentResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragment: (f = msg.getFragment()) && proto.viam.app.v1.Fragment.toObject(includeInstance, f)
+fragment: (f = msg.getFragment()) && proto.viam.app.v1.Fragment.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -28580,12 +28616,12 @@ proto.viam.app.v1.UpdateFragmentRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.UpdateFragmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    visibility: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    lastKnownUpdate: (f = msg.getLastKnownUpdate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+config: (f = msg.getConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+pb_public: (f = jspb.Message.getBooleanField(msg, 4)) == null ? undefined : f,
+visibility: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f,
+lastKnownUpdate: (f = msg.getLastKnownUpdate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -28938,7 +28974,7 @@ proto.viam.app.v1.UpdateFragmentResponse.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.UpdateFragmentResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragment: (f = msg.getFragment()) && proto.viam.app.v1.Fragment.toObject(includeInstance, f)
+fragment: (f = msg.getFragment()) && proto.viam.app.v1.Fragment.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -29089,7 +29125,7 @@ proto.viam.app.v1.DeleteFragmentRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.DeleteFragmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -29320,9 +29356,9 @@ proto.viam.app.v1.GetFragmentHistoryRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.GetFragmentHistoryRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    pageLimit: jspb.Message.getFieldWithDefault(msg, 3, 0)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+pageToken: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+pageLimit: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -29553,9 +29589,9 @@ proto.viam.app.v1.GetFragmentHistoryResponse.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.GetFragmentHistoryResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    historyList: jspb.Message.toObjectList(msg.getHistoryList(),
+historyList: jspb.Message.toObjectList(msg.getHistoryList(),
     proto.viam.app.v1.FragmentHistoryEntry.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -29736,7 +29772,7 @@ proto.viam.app.v1.GetFragmentUsageRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.app.v1.GetFragmentUsageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragmentId: jspb.Message.getFieldWithDefault(msg, 1, "")
+fragmentId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -29873,7 +29909,7 @@ proto.viam.app.v1.GetFragmentUsageResponse.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.GetFragmentUsageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    versionUsagesList: jspb.Message.toObjectList(msg.getVersionUsagesList(),
+versionUsagesList: jspb.Message.toObjectList(msg.getVersionUsagesList(),
     proto.viam.app.v1.FragmentUsage.toObject, includeInstance)
   };
 
@@ -30026,9 +30062,9 @@ proto.viam.app.v1.SetFragmentTagRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.SetFragmentTagRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    tag: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    revision: jspb.Message.getFieldWithDefault(msg, 3, "")
+fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+tag: jspb.Message.getFieldWithDefault(msg, 2, ""),
+revision: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -30223,7 +30259,7 @@ proto.viam.app.v1.SetFragmentTagResponse.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.SetFragmentTagResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     proto.viam.app.v1.FragmentTag.toObject, includeInstance)
   };
 
@@ -30376,8 +30412,8 @@ proto.viam.app.v1.DeleteFragmentTagRequest.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.DeleteFragmentTagRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    tag: jspb.Message.getFieldWithDefault(msg, 2, "")
+fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+tag: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -30543,7 +30579,7 @@ proto.viam.app.v1.DeleteFragmentTagResponse.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.DeleteFragmentTagResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     proto.viam.app.v1.FragmentTag.toObject, includeInstance)
   };
 
@@ -30696,7 +30732,7 @@ proto.viam.app.v1.ListRobotsRequest.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.ListRobotsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+locationId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -30826,8 +30862,8 @@ proto.viam.app.v1.AdditionalFragment.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.AdditionalFragment.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 2, "")
+fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+version: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -31011,8 +31047,8 @@ proto.viam.app.v1.ListNestedFragmentsRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.ListNestedFragmentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    additionalFragmentsList: jspb.Message.toObjectList(msg.getAdditionalFragmentsList(),
+fragmentId: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+additionalFragmentsList: jspb.Message.toObjectList(msg.getAdditionalFragmentsList(),
     proto.viam.app.v1.AdditionalFragment.toObject, includeInstance)
   };
 
@@ -31219,9 +31255,9 @@ proto.viam.app.v1.ListNestedFragmentsResponse.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.ListNestedFragmentsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragmentsList: jspb.Message.toObjectList(msg.getFragmentsList(),
+fragmentsList: jspb.Message.toObjectList(msg.getFragmentsList(),
     proto.viam.app.v1.Fragment.toObject, includeInstance),
-    resolvedFragmentsList: jspb.Message.toObjectList(msg.getResolvedFragmentsList(),
+resolvedFragmentsList: jspb.Message.toObjectList(msg.getResolvedFragmentsList(),
     proto.viam.app.v1.ResolvedFragment.toObject, includeInstance)
   };
 
@@ -31432,9 +31468,9 @@ proto.viam.app.v1.ListMachineFragmentsRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.ListMachineFragmentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    machineId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    additionalFragmentIdsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    additionalFragmentsList: jspb.Message.toObjectList(msg.getAdditionalFragmentsList(),
+machineId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+additionalFragmentIdsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+additionalFragmentsList: jspb.Message.toObjectList(msg.getAdditionalFragmentsList(),
     proto.viam.app.v1.AdditionalFragment.toObject, includeInstance)
   };
 
@@ -31671,9 +31707,9 @@ proto.viam.app.v1.ListMachineFragmentsResponse.prototype.toObject = function(opt
  */
 proto.viam.app.v1.ListMachineFragmentsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragmentsList: jspb.Message.toObjectList(msg.getFragmentsList(),
+fragmentsList: jspb.Message.toObjectList(msg.getFragmentsList(),
     proto.viam.app.v1.Fragment.toObject, includeInstance),
-    resolvedFragmentsList: jspb.Message.toObjectList(msg.getResolvedFragmentsList(),
+resolvedFragmentsList: jspb.Message.toObjectList(msg.getResolvedFragmentsList(),
     proto.viam.app.v1.ResolvedFragment.toObject, includeInstance)
   };
 
@@ -31884,8 +31920,8 @@ proto.viam.app.v1.ListMachineSummariesRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.ListMachineSummariesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fragmentIdsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+fragmentIdsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -32070,7 +32106,7 @@ proto.viam.app.v1.ListMachineSummariesResponse.prototype.toObject = function(opt
  */
 proto.viam.app.v1.ListMachineSummariesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationSummariesList: jspb.Message.toObjectList(msg.getLocationSummariesList(),
+locationSummariesList: jspb.Message.toObjectList(msg.getLocationSummariesList(),
     proto.viam.app.v1.LocationSummary.toObject, includeInstance)
   };
 
@@ -32230,9 +32266,9 @@ proto.viam.app.v1.LocationSummary.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.app.v1.LocationSummary.toObject = function(includeInstance, msg) {
   var f, obj = {
-    locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    locationName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    machineSummariesList: jspb.Message.toObjectList(msg.getMachineSummariesList(),
+locationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+locationName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+machineSummariesList: jspb.Message.toObjectList(msg.getMachineSummariesList(),
     proto.viam.app.v1.MachineSummary.toObject, includeInstance)
   };
 
@@ -32450,9 +32486,9 @@ proto.viam.app.v1.MachineSummary.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.v1.MachineSummary.toObject = function(includeInstance, msg) {
   var f, obj = {
-    machineId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    machineName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    partSummariesList: jspb.Message.toObjectList(msg.getPartSummariesList(),
+machineId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+machineName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+partSummariesList: jspb.Message.toObjectList(msg.getPartSummariesList(),
     proto.viam.app.v1.PartSummary.toObject, includeInstance)
   };
 
@@ -32663,8 +32699,8 @@ proto.viam.app.v1.FragmentSummary.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.app.v1.FragmentSummary.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 3, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -32849,8 +32885,8 @@ proto.viam.app.v1.ViamServerVersion.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.ViamServerVersion.toObject = function(includeInstance, msg) {
   var f, obj = {
-    major: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    minor: jspb.Message.getFieldWithDefault(msg, 2, "")
+major: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+minor: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -33071,8 +33107,8 @@ proto.viam.app.v1.ViamAgentVersion.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.ViamAgentVersion.toObject = function(includeInstance, msg) {
   var f, obj = {
-    major: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    minor: jspb.Message.getFieldWithDefault(msg, 2, "")
+major: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+minor: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -33274,15 +33310,15 @@ proto.viam.app.v1.PartSummary.prototype.toObject = function(opt_includeInstance)
  */
 proto.viam.app.v1.PartSummary.toObject = function(includeInstance, msg) {
   var f, obj = {
-    partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    partName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    lastOnline: (f = msg.getLastOnline()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    viamServerVersion: (f = msg.getViamServerVersion()) && proto.viam.app.v1.ViamServerVersion.toObject(includeInstance, f),
-    viamAgentVersion: (f = msg.getViamAgentVersion()) && proto.viam.app.v1.ViamAgentVersion.toObject(includeInstance, f),
-    os: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    platform: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    publicIpAddress: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    fragmentsList: jspb.Message.toObjectList(msg.getFragmentsList(),
+partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+partName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+lastOnline: (f = msg.getLastOnline()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+viamServerVersion: (f = msg.getViamServerVersion()) && proto.viam.app.v1.ViamServerVersion.toObject(includeInstance, f),
+viamAgentVersion: (f = msg.getViamAgentVersion()) && proto.viam.app.v1.ViamAgentVersion.toObject(includeInstance, f),
+os: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f,
+platform: (f = jspb.Message.getField(msg, 7)) == null ? undefined : f,
+publicIpAddress: (f = jspb.Message.getField(msg, 8)) == null ? undefined : f,
+fragmentsList: jspb.Message.toObjectList(msg.getFragmentsList(),
     proto.viam.app.v1.FragmentSummary.toObject, includeInstance)
   };
 
@@ -33791,7 +33827,7 @@ proto.viam.app.v1.ListRobotsResponse.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.ListRobotsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    robotsList: jspb.Message.toObjectList(msg.getRobotsList(),
+robotsList: jspb.Message.toObjectList(msg.getRobotsList(),
     proto.viam.app.v1.Robot.toObject, includeInstance)
   };
 
@@ -33944,8 +33980,8 @@ proto.viam.app.v1.NewRobotRequest.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.app.v1.NewRobotRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    location: jspb.Message.getFieldWithDefault(msg, 2, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+location: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -34104,7 +34140,7 @@ proto.viam.app.v1.NewRobotResponse.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.NewRobotResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -34234,9 +34270,9 @@ proto.viam.app.v1.UpdateRobotRequest.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.UpdateRobotRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    location: jspb.Message.getFieldWithDefault(msg, 3, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+location: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -34424,7 +34460,7 @@ proto.viam.app.v1.UpdateRobotResponse.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.UpdateRobotResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    robot: (f = msg.getRobot()) && proto.viam.app.v1.Robot.toObject(includeInstance, f)
+robot: (f = msg.getRobot()) && proto.viam.app.v1.Robot.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -34575,7 +34611,7 @@ proto.viam.app.v1.DeleteRobotRequest.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.DeleteRobotRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -34806,7 +34842,7 @@ proto.viam.app.v1.GetRobotMetadataRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.app.v1.GetRobotMetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -34936,7 +34972,7 @@ proto.viam.app.v1.GetRobotMetadataResponse.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.GetRobotMetadataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -35087,8 +35123,8 @@ proto.viam.app.v1.UpdateRobotMetadataRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.UpdateRobotMetadataRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -35369,7 +35405,7 @@ proto.viam.app.v1.MarkPartAsMainRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.MarkPartAsMainRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    partId: jspb.Message.getFieldWithDefault(msg, 1, "")
+partId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -35600,7 +35636,7 @@ proto.viam.app.v1.MarkPartForRestartRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.MarkPartForRestartRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    partId: jspb.Message.getFieldWithDefault(msg, 1, "")
+partId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -35831,7 +35867,7 @@ proto.viam.app.v1.CreateRobotPartSecretRequest.prototype.toObject = function(opt
  */
 proto.viam.app.v1.CreateRobotPartSecretRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    partId: jspb.Message.getFieldWithDefault(msg, 1, "")
+partId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -35961,7 +35997,7 @@ proto.viam.app.v1.CreateRobotPartSecretResponse.prototype.toObject = function(op
  */
 proto.viam.app.v1.CreateRobotPartSecretResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    part: (f = msg.getPart()) && proto.viam.app.v1.RobotPart.toObject(includeInstance, f)
+part: (f = msg.getPart()) && proto.viam.app.v1.RobotPart.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -36112,8 +36148,8 @@ proto.viam.app.v1.DeleteRobotPartSecretRequest.prototype.toObject = function(opt
  */
 proto.viam.app.v1.DeleteRobotPartSecretRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    secretId: jspb.Message.getFieldWithDefault(msg, 2, "")
+partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+secretId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -36373,13 +36409,13 @@ proto.viam.app.v1.Authorization.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.v1.Authorization.toObject = function(includeInstance, msg) {
   var f, obj = {
-    authorizationType: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    authorizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    resourceType: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    resourceId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    identityId: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    identityType: jspb.Message.getFieldWithDefault(msg, 7, "")
+authorizationType: jspb.Message.getFieldWithDefault(msg, 1, ""),
+authorizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+resourceType: jspb.Message.getFieldWithDefault(msg, 3, ""),
+resourceId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+identityId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+organizationId: jspb.Message.getFieldWithDefault(msg, 6, ""),
+identityType: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -36683,7 +36719,7 @@ proto.viam.app.v1.AddRoleRequest.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.v1.AddRoleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    authorization: (f = msg.getAuthorization()) && proto.viam.app.v1.Authorization.toObject(includeInstance, f)
+authorization: (f = msg.getAuthorization()) && proto.viam.app.v1.Authorization.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -36935,7 +36971,7 @@ proto.viam.app.v1.RemoveRoleRequest.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.RemoveRoleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    authorization: (f = msg.getAuthorization()) && proto.viam.app.v1.Authorization.toObject(includeInstance, f)
+authorization: (f = msg.getAuthorization()) && proto.viam.app.v1.Authorization.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -37187,8 +37223,8 @@ proto.viam.app.v1.ChangeRoleRequest.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.ChangeRoleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    oldAuthorization: (f = msg.getOldAuthorization()) && proto.viam.app.v1.Authorization.toObject(includeInstance, f),
-    newAuthorization: (f = msg.getNewAuthorization()) && proto.viam.app.v1.Authorization.toObject(includeInstance, f)
+oldAuthorization: (f = msg.getOldAuthorization()) && proto.viam.app.v1.Authorization.toObject(includeInstance, f),
+newAuthorization: (f = msg.getNewAuthorization()) && proto.viam.app.v1.Authorization.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -37497,8 +37533,8 @@ proto.viam.app.v1.ListAuthorizationsRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.ListAuthorizationsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    resourceIdsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+resourceIdsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -37683,7 +37719,7 @@ proto.viam.app.v1.ListAuthorizationsResponse.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.ListAuthorizationsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    authorizationsList: jspb.Message.toObjectList(msg.getAuthorizationsList(),
+authorizationsList: jspb.Message.toObjectList(msg.getAuthorizationsList(),
     proto.viam.app.v1.Authorization.toObject, includeInstance)
   };
 
@@ -37843,7 +37879,7 @@ proto.viam.app.v1.CheckPermissionsRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.app.v1.CheckPermissionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    permissionsList: jspb.Message.toObjectList(msg.getPermissionsList(),
+permissionsList: jspb.Message.toObjectList(msg.getPermissionsList(),
     proto.viam.app.v1.AuthorizedPermissions.toObject, includeInstance)
   };
 
@@ -38003,9 +38039,9 @@ proto.viam.app.v1.AuthorizedPermissions.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.AuthorizedPermissions.toObject = function(includeInstance, msg) {
   var f, obj = {
-    resourceType: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    resourceId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    permissionsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+resourceType: jspb.Message.getFieldWithDefault(msg, 1, ""),
+resourceId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+permissionsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -38219,7 +38255,7 @@ proto.viam.app.v1.CheckPermissionsResponse.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.CheckPermissionsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    authorizedPermissionsList: jspb.Message.toObjectList(msg.getAuthorizedPermissionsList(),
+authorizedPermissionsList: jspb.Message.toObjectList(msg.getAuthorizedPermissionsList(),
     proto.viam.app.v1.AuthorizedPermissions.toObject, includeInstance)
   };
 
@@ -38379,15 +38415,15 @@ proto.viam.app.v1.ModuleVersion.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.app.v1.ModuleVersion.toObject = function(includeInstance, msg) {
   var f, obj = {
-    version: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    filesList: jspb.Message.toObjectList(msg.getFilesList(),
+version: jspb.Message.getFieldWithDefault(msg, 1, ""),
+filesList: jspb.Message.toObjectList(msg.getFilesList(),
     proto.viam.app.v1.Uploads.toObject, includeInstance),
-    modelsList: jspb.Message.toObjectList(msg.getModelsList(),
+modelsList: jspb.Message.toObjectList(msg.getModelsList(),
     proto.viam.app.v1.Model.toObject, includeInstance),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    firstRun: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    markdownDescription: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    appsList: jspb.Message.toObjectList(msg.getAppsList(),
+entrypoint: jspb.Message.getFieldWithDefault(msg, 4, ""),
+firstRun: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f,
+markdownDescription: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f,
+appsList: jspb.Message.toObjectList(msg.getAppsList(),
     proto.viam.app.v1.App.toObject, includeInstance)
   };
 
@@ -38801,14 +38837,14 @@ proto.viam.app.v1.ModuleMetadata.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.v1.ModuleMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    modelsList: jspb.Message.toObjectList(msg.getModelsList(),
+modelsList: jspb.Message.toObjectList(msg.getModelsList(),
     proto.viam.app.v1.Model.toObject, includeInstance),
-    versionsList: jspb.Message.toObjectList(msg.getVersionsList(),
+versionsList: jspb.Message.toObjectList(msg.getVersionsList(),
     proto.viam.app.v1.ModuleVersion.toObject, includeInstance),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    firstRun: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    markdownDescription: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    appsList: jspb.Message.toObjectList(msg.getAppsList(),
+entrypoint: jspb.Message.getFieldWithDefault(msg, 3, ""),
+firstRun: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+markdownDescription: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f,
+appsList: jspb.Message.toObjectList(msg.getAppsList(),
     proto.viam.app.v1.App.toObject, includeInstance)
   };
 
@@ -39193,9 +39229,9 @@ proto.viam.app.v1.MLModelMetadata.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.app.v1.MLModelMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    versionsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    modelType: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    modelFramework: jspb.Message.getFieldWithDefault(msg, 3, 0)
+versionsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+modelType: jspb.Message.getFieldWithDefault(msg, 2, 0),
+modelFramework: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -39402,8 +39438,8 @@ proto.viam.app.v1.MLTrainingVersion.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.MLTrainingVersion.toObject = function(includeInstance, msg) {
   var f, obj = {
-    version: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+version: jspb.Message.getFieldWithDefault(msg, 1, ""),
+createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -39590,11 +39626,11 @@ proto.viam.app.v1.MLTrainingMetadata.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.MLTrainingMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    versionsList: jspb.Message.toObjectList(msg.getVersionsList(),
+versionsList: jspb.Message.toObjectList(msg.getVersionsList(),
     proto.viam.app.v1.MLTrainingVersion.toObject, includeInstance),
-    modelType: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    modelFramework: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    draft: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+modelType: jspb.Message.getFieldWithDefault(msg, 2, 0),
+modelFramework: jspb.Message.getFieldWithDefault(msg, 3, 0),
+draft: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -39860,23 +39896,23 @@ proto.viam.app.v1.RegistryItem.prototype.toObject = function(opt_includeInstance
  */
 proto.viam.app.v1.RegistryItem.toObject = function(includeInstance, msg) {
   var f, obj = {
-    itemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    publicNamespace: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    visibility: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    url: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    totalRobotUsage: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    totalExternalRobotUsage: jspb.Message.getFieldWithDefault(msg, 13, 0),
-    totalOrganizationUsage: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    totalExternalOrganizationUsage: jspb.Message.getFieldWithDefault(msg, 14, 0),
-    moduleMetadata: (f = msg.getModuleMetadata()) && proto.viam.app.v1.ModuleMetadata.toObject(includeInstance, f),
-    mlModelMetadata: (f = msg.getMlModelMetadata()) && proto.viam.app.v1.MLModelMetadata.toObject(includeInstance, f),
-    mlTrainingMetadata: (f = msg.getMlTrainingMetadata()) && proto.viam.app.v1.MLTrainingMetadata.toObject(includeInstance, f),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+itemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+publicNamespace: jspb.Message.getFieldWithDefault(msg, 3, ""),
+name: jspb.Message.getFieldWithDefault(msg, 4, ""),
+type: jspb.Message.getFieldWithDefault(msg, 5, 0),
+visibility: jspb.Message.getFieldWithDefault(msg, 6, 0),
+url: jspb.Message.getFieldWithDefault(msg, 7, ""),
+description: jspb.Message.getFieldWithDefault(msg, 8, ""),
+totalRobotUsage: jspb.Message.getFieldWithDefault(msg, 9, 0),
+totalExternalRobotUsage: jspb.Message.getFieldWithDefault(msg, 13, 0),
+totalOrganizationUsage: jspb.Message.getFieldWithDefault(msg, 10, 0),
+totalExternalOrganizationUsage: jspb.Message.getFieldWithDefault(msg, 14, 0),
+moduleMetadata: (f = msg.getModuleMetadata()) && proto.viam.app.v1.ModuleMetadata.toObject(includeInstance, f),
+mlModelMetadata: (f = msg.getMlModelMetadata()) && proto.viam.app.v1.MLModelMetadata.toObject(includeInstance, f),
+mlTrainingMetadata: (f = msg.getMlTrainingMetadata()) && proto.viam.app.v1.MLTrainingMetadata.toObject(includeInstance, f),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -40575,8 +40611,8 @@ proto.viam.app.v1.GetRegistryItemRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.GetRegistryItemRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    itemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    includeMarkdownDocumentation: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+itemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+includeMarkdownDocumentation: (f = jspb.Message.getBooleanField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -40753,7 +40789,7 @@ proto.viam.app.v1.GetRegistryItemResponse.prototype.toObject = function(opt_incl
  */
 proto.viam.app.v1.GetRegistryItemResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    item: (f = msg.getItem()) && proto.viam.app.v1.RegistryItem.toObject(includeInstance, f)
+item: (f = msg.getItem()) && proto.viam.app.v1.RegistryItem.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -40904,9 +40940,9 @@ proto.viam.app.v1.CreateRegistryItemRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.CreateRegistryItemRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 3, 0)
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+type: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -41222,15 +41258,15 @@ proto.viam.app.v1.UpdateRegistryItemRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.UpdateRegistryItemRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    itemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    description: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    visibility: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    url: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    updateModuleMetadata: (f = msg.getUpdateModuleMetadata()) && proto.viam.app.v1.UpdateModuleMetadata.toObject(includeInstance, f),
-    updateMlModelMetadata: (f = msg.getUpdateMlModelMetadata()) && proto.viam.app.v1.UpdateMLModelMetadata.toObject(includeInstance, f),
-    updateMlTrainingMetadata: (f = msg.getUpdateMlTrainingMetadata()) && proto.viam.app.v1.UpdateMLTrainingMetadata.toObject(includeInstance, f),
-    markdownDescription: jspb.Message.getFieldWithDefault(msg, 9, "")
+itemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+type: jspb.Message.getFieldWithDefault(msg, 2, 0),
+description: jspb.Message.getFieldWithDefault(msg, 3, ""),
+visibility: jspb.Message.getFieldWithDefault(msg, 4, 0),
+url: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f,
+updateModuleMetadata: (f = msg.getUpdateModuleMetadata()) && proto.viam.app.v1.UpdateModuleMetadata.toObject(includeInstance, f),
+updateMlModelMetadata: (f = msg.getUpdateMlModelMetadata()) && proto.viam.app.v1.UpdateMLModelMetadata.toObject(includeInstance, f),
+updateMlTrainingMetadata: (f = msg.getUpdateMlTrainingMetadata()) && proto.viam.app.v1.UpdateMLTrainingMetadata.toObject(includeInstance, f),
+markdownDescription: (f = jspb.Message.getField(msg, 9)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -41799,15 +41835,15 @@ proto.viam.app.v1.ListRegistryItemsRequest.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.ListRegistryItemsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    typesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    visibilitiesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    platformsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    statusesList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    searchTerm: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    publicNamespacesList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
-    includeMarkdownDocumentation: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
+organizationId: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+typesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+visibilitiesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+platformsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+statusesList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+searchTerm: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f,
+pageToken: (f = jspb.Message.getField(msg, 7)) == null ? undefined : f,
+publicNamespacesList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
+includeMarkdownDocumentation: (f = jspb.Message.getBooleanField(msg, 9)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -42349,7 +42385,7 @@ proto.viam.app.v1.ListRegistryItemsResponse.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.ListRegistryItemsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    itemsList: jspb.Message.toObjectList(msg.getItemsList(),
+itemsList: jspb.Message.toObjectList(msg.getItemsList(),
     proto.viam.app.v1.RegistryItem.toObject, includeInstance)
   };
 
@@ -42502,7 +42538,7 @@ proto.viam.app.v1.DeleteRegistryItemRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.DeleteRegistryItemRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    itemId: jspb.Message.getFieldWithDefault(msg, 1, "")
+itemId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -42733,8 +42769,8 @@ proto.viam.app.v1.RenameRegistryItemRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.RenameRegistryItemRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    itemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    newName: jspb.Message.getFieldWithDefault(msg, 2, "")
+itemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+newName: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -42893,7 +42929,7 @@ proto.viam.app.v1.RenameRegistryItemResponse.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.RenameRegistryItemResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    item: (f = msg.getItem()) && proto.viam.app.v1.RegistryItem.toObject(includeInstance, f)
+item: (f = msg.getItem()) && proto.viam.app.v1.RegistryItem.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -43044,8 +43080,8 @@ proto.viam.app.v1.TransferRegistryItemRequest.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.TransferRegistryItemRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    itemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    newPublicNamespace: jspb.Message.getFieldWithDefault(msg, 2, "")
+itemId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+newPublicNamespace: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -43305,8 +43341,8 @@ proto.viam.app.v1.CreateModuleRequest.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.CreateModuleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, "")
+organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -43465,8 +43501,8 @@ proto.viam.app.v1.CreateModuleResponse.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.CreateModuleResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    url: jspb.Message.getFieldWithDefault(msg, 2, "")
+moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+url: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -43632,17 +43668,17 @@ proto.viam.app.v1.UpdateModuleRequest.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.UpdateModuleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    visibility: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    url: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    modelsList: jspb.Message.toObjectList(msg.getModelsList(),
+moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+visibility: jspb.Message.getFieldWithDefault(msg, 2, 0),
+url: jspb.Message.getFieldWithDefault(msg, 3, ""),
+description: jspb.Message.getFieldWithDefault(msg, 4, ""),
+modelsList: jspb.Message.toObjectList(msg.getModelsList(),
     proto.viam.app.v1.Model.toObject, includeInstance),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    firstRun: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    appsList: jspb.Message.toObjectList(msg.getAppsList(),
+entrypoint: jspb.Message.getFieldWithDefault(msg, 6, ""),
+firstRun: (f = jspb.Message.getField(msg, 7)) == null ? undefined : f,
+appsList: jspb.Message.toObjectList(msg.getAppsList(),
     proto.viam.app.v1.App.toObject, includeInstance),
-    markdownDescription: jspb.Message.getFieldWithDefault(msg, 9, "")
+markdownDescription: (f = jspb.Message.getField(msg, 9)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -44084,9 +44120,9 @@ proto.viam.app.v1.App.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.app.v1.App.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 3, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+type: jspb.Message.getFieldWithDefault(msg, 2, ""),
+entrypoint: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -44274,7 +44310,7 @@ proto.viam.app.v1.UpdateModuleResponse.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.UpdateModuleResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    url: jspb.Message.getFieldWithDefault(msg, 1, "")
+url: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -44411,10 +44447,10 @@ proto.viam.app.v1.UpdateModuleMetadata.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.UpdateModuleMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    modelsList: jspb.Message.toObjectList(msg.getModelsList(),
+modelsList: jspb.Message.toObjectList(msg.getModelsList(),
     proto.viam.app.v1.Model.toObject, includeInstance),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    appsList: jspb.Message.toObjectList(msg.getAppsList(),
+entrypoint: jspb.Message.getFieldWithDefault(msg, 2, ""),
+appsList: jspb.Message.toObjectList(msg.getAppsList(),
     proto.viam.app.v1.App.toObject, includeInstance)
   };
 
@@ -44647,8 +44683,8 @@ proto.viam.app.v1.UpdateMLModelMetadata.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.UpdateMLModelMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    modelType: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    modelFramework: jspb.Message.getFieldWithDefault(msg, 2, 0)
+modelType: jspb.Message.getFieldWithDefault(msg, 1, 0),
+modelFramework: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -44807,9 +44843,9 @@ proto.viam.app.v1.UpdateMLTrainingMetadata.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.UpdateMLTrainingMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    modelType: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    modelFramework: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    draft: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+modelType: jspb.Message.getFieldWithDefault(msg, 1, 0),
+modelFramework: jspb.Message.getFieldWithDefault(msg, 2, 0),
+draft: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -45004,11 +45040,11 @@ proto.viam.app.v1.Model.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.app.v1.Model.toObject = function(includeInstance, msg) {
   var f, obj = {
-    api: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    model: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    markdownDocumentation: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    supportedHardwareList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
+api: jspb.Message.getFieldWithDefault(msg, 1, ""),
+model: jspb.Message.getFieldWithDefault(msg, 2, ""),
+markdownDocumentation: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+description: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+supportedHardwareList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -45316,10 +45352,10 @@ proto.viam.app.v1.ModuleFileInfo.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.v1.ModuleFileInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    version: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    platform: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    platformTagsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
+moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+version: jspb.Message.getFieldWithDefault(msg, 2, ""),
+platform: jspb.Message.getFieldWithDefault(msg, 3, ""),
+platformTagsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -45581,8 +45617,8 @@ proto.viam.app.v1.UploadModuleFileRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.app.v1.UploadModuleFileRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    moduleFileInfo: (f = msg.getModuleFileInfo()) && proto.viam.app.v1.ModuleFileInfo.toObject(includeInstance, f),
-    file: msg.getFile_asB64()
+moduleFileInfo: (f = msg.getModuleFileInfo()) && proto.viam.app.v1.ModuleFileInfo.toObject(includeInstance, f),
+file: msg.getFile_asB64()
   };
 
   if (includeInstance) {
@@ -45804,7 +45840,7 @@ proto.viam.app.v1.UploadModuleFileResponse.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.UploadModuleFileResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    url: jspb.Message.getFieldWithDefault(msg, 1, "")
+url: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -45934,8 +45970,8 @@ proto.viam.app.v1.GetModuleRequest.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.GetModuleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    includeMarkdownDocumentation: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+includeMarkdownDocumentation: (f = jspb.Message.getBooleanField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -46112,7 +46148,7 @@ proto.viam.app.v1.GetModuleResponse.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.GetModuleResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    module: (f = msg.getModule()) && proto.viam.app.v1.Module.toObject(includeInstance, f)
+module: (f = msg.getModule()) && proto.viam.app.v1.Module.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -46270,23 +46306,23 @@ proto.viam.app.v1.Module.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.app.v1.Module.toObject = function(includeInstance, msg) {
   var f, obj = {
-    moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    visibility: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    versionsList: jspb.Message.toObjectList(msg.getVersionsList(),
+moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+visibility: jspb.Message.getFieldWithDefault(msg, 3, 0),
+versionsList: jspb.Message.toObjectList(msg.getVersionsList(),
     proto.viam.app.v1.VersionHistory.toObject, includeInstance),
-    url: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    modelsList: jspb.Message.toObjectList(msg.getModelsList(),
+url: jspb.Message.getFieldWithDefault(msg, 5, ""),
+description: jspb.Message.getFieldWithDefault(msg, 6, ""),
+modelsList: jspb.Message.toObjectList(msg.getModelsList(),
     proto.viam.app.v1.Model.toObject, includeInstance),
-    totalRobotUsage: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    totalOrganizationUsage: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    publicNamespace: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    firstRun: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    markdownDescription: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    appsList: jspb.Message.toObjectList(msg.getAppsList(),
+totalRobotUsage: jspb.Message.getFieldWithDefault(msg, 8, 0),
+totalOrganizationUsage: jspb.Message.getFieldWithDefault(msg, 9, 0),
+organizationId: jspb.Message.getFieldWithDefault(msg, 10, ""),
+entrypoint: jspb.Message.getFieldWithDefault(msg, 11, ""),
+publicNamespace: jspb.Message.getFieldWithDefault(msg, 12, ""),
+firstRun: (f = jspb.Message.getField(msg, 13)) == null ? undefined : f,
+markdownDescription: (f = jspb.Message.getField(msg, 14)) == null ? undefined : f,
+appsList: jspb.Message.toObjectList(msg.getAppsList(),
     proto.viam.app.v1.App.toObject, includeInstance)
   };
 
@@ -46932,15 +46968,15 @@ proto.viam.app.v1.VersionHistory.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.v1.VersionHistory.toObject = function(includeInstance, msg) {
   var f, obj = {
-    version: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    filesList: jspb.Message.toObjectList(msg.getFilesList(),
+version: jspb.Message.getFieldWithDefault(msg, 1, ""),
+filesList: jspb.Message.toObjectList(msg.getFilesList(),
     proto.viam.app.v1.Uploads.toObject, includeInstance),
-    modelsList: jspb.Message.toObjectList(msg.getModelsList(),
+modelsList: jspb.Message.toObjectList(msg.getModelsList(),
     proto.viam.app.v1.Model.toObject, includeInstance),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    firstRun: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    markdownDescription: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    appsList: jspb.Message.toObjectList(msg.getAppsList(),
+entrypoint: jspb.Message.getFieldWithDefault(msg, 4, ""),
+firstRun: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f,
+markdownDescription: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f,
+appsList: jspb.Message.toObjectList(msg.getAppsList(),
     proto.viam.app.v1.App.toObject, includeInstance)
   };
 
@@ -47347,8 +47383,8 @@ proto.viam.app.v1.Uploads.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.app.v1.Uploads.toObject = function(includeInstance, msg) {
   var f, obj = {
-    platform: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    uploadedAt: (f = msg.getUploadedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+platform: jspb.Message.getFieldWithDefault(msg, 1, ""),
+uploadedAt: (f = msg.getUploadedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -47528,8 +47564,8 @@ proto.viam.app.v1.ListModulesRequest.prototype.toObject = function(opt_includeIn
  */
 proto.viam.app.v1.ListModulesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    includeMarkdownDocumentation: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+organizationId: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+includeMarkdownDocumentation: (f = jspb.Message.getBooleanField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -47731,7 +47767,7 @@ proto.viam.app.v1.ListModulesResponse.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.ListModulesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    modulesList: jspb.Message.toObjectList(msg.getModulesList(),
+modulesList: jspb.Message.toObjectList(msg.getModulesList(),
     proto.viam.app.v1.Module.toObject, includeInstance)
   };
 
@@ -47884,7 +47920,7 @@ proto.viam.app.v1.GetUserIDByEmailRequest.prototype.toObject = function(opt_incl
  */
 proto.viam.app.v1.GetUserIDByEmailRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    email: jspb.Message.getFieldWithDefault(msg, 1, "")
+email: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -48014,7 +48050,7 @@ proto.viam.app.v1.GetUserIDByEmailResponse.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.GetUserIDByEmailResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userId: jspb.Message.getFieldWithDefault(msg, 1, "")
+userId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -48144,7 +48180,7 @@ proto.viam.app.v1.ListOrganizationsByUserRequest.prototype.toObject = function(o
  */
 proto.viam.app.v1.ListOrganizationsByUserRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userId: jspb.Message.getFieldWithDefault(msg, 1, "")
+userId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -48274,11 +48310,11 @@ proto.viam.app.v1.OrgDetails.prototype.toObject = function(opt_includeInstance) 
  */
 proto.viam.app.v1.OrgDetails.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    orgName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    orgCid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    publicNamespace: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    billingTier: jspb.Message.getFieldWithDefault(msg, 5, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+orgName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+orgCid: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+publicNamespace: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+billingTier: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -48585,7 +48621,7 @@ proto.viam.app.v1.ListOrganizationsByUserResponse.prototype.toObject = function(
  */
 proto.viam.app.v1.ListOrganizationsByUserResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgsList: jspb.Message.toObjectList(msg.getOrgsList(),
+orgsList: jspb.Message.toObjectList(msg.getOrgsList(),
     proto.viam.app.v1.OrgDetails.toObject, includeInstance)
   };
 
@@ -48738,10 +48774,10 @@ proto.viam.app.v1.SearchOrganizationsRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.SearchOrganizationsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    orgName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    cid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    publicNamespace: jspb.Message.getFieldWithDefault(msg, 4, "")
+orgId: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+orgName: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+cid: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+publicNamespace: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -49037,7 +49073,7 @@ proto.viam.app.v1.SearchOrganizationsResponse.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.SearchOrganizationsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationsList: jspb.Message.toObjectList(msg.getOrganizationsList(),
+organizationsList: jspb.Message.toObjectList(msg.getOrganizationsList(),
     proto.viam.app.v1.OrgDetails.toObject, includeInstance)
   };
 
@@ -49197,9 +49233,9 @@ proto.viam.app.v1.CreateKeyRequest.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.CreateKeyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    authorizationsList: jspb.Message.toObjectList(msg.getAuthorizationsList(),
+authorizationsList: jspb.Message.toObjectList(msg.getAuthorizationsList(),
     proto.viam.app.v1.Authorization.toObject, includeInstance),
-    name: jspb.Message.getFieldWithDefault(msg, 2, "")
+name: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -49380,8 +49416,8 @@ proto.viam.app.v1.CreateKeyResponse.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.CreateKeyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    key: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 2, "")
+key: jspb.Message.getFieldWithDefault(msg, 1, ""),
+id: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -49540,7 +49576,7 @@ proto.viam.app.v1.DeleteKeyRequest.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.DeleteKeyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -49771,8 +49807,8 @@ proto.viam.app.v1.RenameKeyRequest.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.RenameKeyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -49931,8 +49967,8 @@ proto.viam.app.v1.RenameKeyResponse.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.RenameKeyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -50091,11 +50127,11 @@ proto.viam.app.v1.AuthorizationDetails.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.AuthorizationDetails.toObject = function(includeInstance, msg) {
   var f, obj = {
-    authorizationType: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    authorizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    resourceType: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    resourceId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    orgId: jspb.Message.getFieldWithDefault(msg, 5, "")
+authorizationType: jspb.Message.getFieldWithDefault(msg, 1, ""),
+authorizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+resourceType: jspb.Message.getFieldWithDefault(msg, 3, ""),
+resourceId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+orgId: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -50348,8 +50384,8 @@ proto.viam.app.v1.APIKeyWithAuthorizations.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.APIKeyWithAuthorizations.toObject = function(includeInstance, msg) {
   var f, obj = {
-    apiKey: (f = msg.getApiKey()) && proto.viam.app.v1.APIKey.toObject(includeInstance, f),
-    authorizationsList: jspb.Message.toObjectList(msg.getAuthorizationsList(),
+apiKey: (f = msg.getApiKey()) && proto.viam.app.v1.APIKey.toObject(includeInstance, f),
+authorizationsList: jspb.Message.toObjectList(msg.getAuthorizationsList(),
     proto.viam.app.v1.AuthorizationDetails.toObject, includeInstance)
   };
 
@@ -50552,7 +50588,7 @@ proto.viam.app.v1.ListKeysRequest.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.app.v1.ListKeysRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -50689,7 +50725,7 @@ proto.viam.app.v1.ListKeysResponse.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.ListKeysResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    apiKeysList: jspb.Message.toObjectList(msg.getApiKeysList(),
+apiKeysList: jspb.Message.toObjectList(msg.getApiKeysList(),
     proto.viam.app.v1.APIKeyWithAuthorizations.toObject, includeInstance)
   };
 
@@ -50842,7 +50878,7 @@ proto.viam.app.v1.RotateKeyRequest.prototype.toObject = function(opt_includeInst
  */
 proto.viam.app.v1.RotateKeyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -50972,8 +51008,8 @@ proto.viam.app.v1.RotateKeyResponse.prototype.toObject = function(opt_includeIns
  */
 proto.viam.app.v1.RotateKeyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    key: jspb.Message.getFieldWithDefault(msg, 2, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+key: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -51132,7 +51168,7 @@ proto.viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest.prototype.toObje
  */
 proto.viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -51262,8 +51298,8 @@ proto.viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse.prototype.toObj
  */
 proto.viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    key: jspb.Message.getFieldWithDefault(msg, 2, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+key: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -51422,8 +51458,8 @@ proto.viam.app.v1.GetAppContentRequest.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.GetAppContentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    publicNamespace: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, "")
+publicNamespace: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -51582,8 +51618,8 @@ proto.viam.app.v1.GetAppContentResponse.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.GetAppContentResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    blobPath: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 2, "")
+blobPath: jspb.Message.getFieldWithDefault(msg, 1, ""),
+entrypoint: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -51742,8 +51778,8 @@ proto.viam.app.v1.OrganizationSetLogoRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.OrganizationSetLogoRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    logo: msg.getLogo_asB64()
+orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+logo: msg.getLogo_asB64()
   };
 
   if (includeInstance) {
@@ -52027,7 +52063,7 @@ proto.viam.app.v1.OrganizationGetLogoRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.OrganizationGetLogoRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -52157,7 +52193,7 @@ proto.viam.app.v1.OrganizationGetLogoResponse.prototype.toObject = function(opt_
  */
 proto.viam.app.v1.OrganizationGetLogoResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    url: jspb.Message.getFieldWithDefault(msg, 1, "")
+url: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -52287,7 +52323,7 @@ proto.viam.app.v1.EnableAuthServiceRequest.prototype.toObject = function(opt_inc
  */
 proto.viam.app.v1.EnableAuthServiceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -52518,7 +52554,7 @@ proto.viam.app.v1.DisableAuthServiceRequest.prototype.toObject = function(opt_in
  */
 proto.viam.app.v1.DisableAuthServiceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -52749,9 +52785,9 @@ proto.viam.app.v1.CreateOAuthAppRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.CreateOAuthAppRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    clientName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    oauthConfig: (f = msg.getOauthConfig()) && proto.viam.app.v1.OAuthConfig.toObject(includeInstance, f)
+orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+clientName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+oauthConfig: (f = msg.getOauthConfig()) && proto.viam.app.v1.OAuthConfig.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -52960,8 +52996,8 @@ proto.viam.app.v1.CreateOAuthAppResponse.prototype.toObject = function(opt_inclu
  */
 proto.viam.app.v1.CreateOAuthAppResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    clientSecret: jspb.Message.getFieldWithDefault(msg, 2, "")
+clientId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+clientSecret: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -53120,8 +53156,8 @@ proto.viam.app.v1.ReadOAuthAppRequest.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.ReadOAuthAppRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    clientId: jspb.Message.getFieldWithDefault(msg, 2, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+clientId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -53280,9 +53316,9 @@ proto.viam.app.v1.ReadOAuthAppResponse.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.ReadOAuthAppResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    clientSecret: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    oauthConfig: (f = msg.getOauthConfig()) && proto.viam.app.v1.OAuthConfig.toObject(includeInstance, f)
+clientName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+clientSecret: jspb.Message.getFieldWithDefault(msg, 2, ""),
+oauthConfig: (f = msg.getOauthConfig()) && proto.viam.app.v1.OAuthConfig.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -53491,10 +53527,10 @@ proto.viam.app.v1.UpdateOAuthAppRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.UpdateOAuthAppRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    clientId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    clientName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    oauthConfig: (f = msg.getOauthConfig()) && proto.viam.app.v1.OAuthConfig.toObject(includeInstance, f)
+orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+clientId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+clientName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+oauthConfig: (f = msg.getOauthConfig()) && proto.viam.app.v1.OAuthConfig.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -53833,8 +53869,8 @@ proto.viam.app.v1.DeleteOAuthAppRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.DeleteOAuthAppRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    clientId: jspb.Message.getFieldWithDefault(msg, 2, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+clientId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -54094,7 +54130,7 @@ proto.viam.app.v1.ListOAuthAppsRequest.prototype.toObject = function(opt_include
  */
 proto.viam.app.v1.ListOAuthAppsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
+orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -54231,7 +54267,7 @@ proto.viam.app.v1.ListOAuthAppsResponse.prototype.toObject = function(opt_includ
  */
 proto.viam.app.v1.ListOAuthAppsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+clientIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -54387,13 +54423,13 @@ proto.viam.app.v1.OAuthConfig.prototype.toObject = function(opt_includeInstance)
  */
 proto.viam.app.v1.OAuthConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientAuthentication: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    pkce: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    urlValidation: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    originUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
-    redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    logoutUri: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    enabledGrantsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
+clientAuthentication: jspb.Message.getFieldWithDefault(msg, 1, 0),
+pkce: jspb.Message.getFieldWithDefault(msg, 2, 0),
+urlValidation: jspb.Message.getFieldWithDefault(msg, 3, 0),
+originUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+logoutUri: jspb.Message.getFieldWithDefault(msg, 6, ""),
+enabledGrantsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
   };
 
   if (includeInstance) {

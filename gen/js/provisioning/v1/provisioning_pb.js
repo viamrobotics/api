@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 goog.exportSymbol('proto.viam.provisioning.v1.CloudConfig', null, global);
 goog.exportSymbol('proto.viam.provisioning.v1.ExitProvisioningRequest', null, global);
@@ -643,12 +649,12 @@ proto.viam.provisioning.v1.GetSmartMachineStatusResponse.prototype.toObject = fu
  */
 proto.viam.provisioning.v1.GetSmartMachineStatusResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    provisioningInfo: (f = msg.getProvisioningInfo()) && proto.viam.provisioning.v1.ProvisioningInfo.toObject(includeInstance, f),
-    hasSmartMachineCredentials: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    isOnline: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    latestConnectionAttempt: (f = msg.getLatestConnectionAttempt()) && proto.viam.provisioning.v1.NetworkInfo.toObject(includeInstance, f),
-    errorsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    agentVersion: jspb.Message.getFieldWithDefault(msg, 6, "")
+provisioningInfo: (f = msg.getProvisioningInfo()) && proto.viam.provisioning.v1.ProvisioningInfo.toObject(includeInstance, f),
+hasSmartMachineCredentials: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+isOnline: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+latestConnectionAttempt: (f = msg.getLatestConnectionAttempt()) && proto.viam.provisioning.v1.NetworkInfo.toObject(includeInstance, f),
+errorsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+agentVersion: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -984,9 +990,9 @@ proto.viam.provisioning.v1.SetNetworkCredentialsRequest.prototype.toObject = fun
  */
 proto.viam.provisioning.v1.SetNetworkCredentialsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    ssid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    psk: jspb.Message.getFieldWithDefault(msg, 3, "")
+type: jspb.Message.getFieldWithDefault(msg, 1, ""),
+ssid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+psk: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1275,7 +1281,7 @@ proto.viam.provisioning.v1.SetSmartMachineCredentialsRequest.prototype.toObject 
  */
 proto.viam.provisioning.v1.SetSmartMachineCredentialsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    cloud: (f = msg.getCloud()) && proto.viam.provisioning.v1.CloudConfig.toObject(includeInstance, f)
+cloud: (f = msg.getCloud()) && proto.viam.provisioning.v1.CloudConfig.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1635,7 +1641,7 @@ proto.viam.provisioning.v1.GetNetworkListResponse.prototype.toObject = function(
  */
 proto.viam.provisioning.v1.GetNetworkListResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    networksList: jspb.Message.toObjectList(msg.getNetworksList(),
+networksList: jspb.Message.toObjectList(msg.getNetworksList(),
     proto.viam.provisioning.v1.NetworkInfo.toObject, includeInstance)
   };
 
@@ -1788,9 +1794,9 @@ proto.viam.provisioning.v1.ProvisioningInfo.prototype.toObject = function(opt_in
  */
 proto.viam.provisioning.v1.ProvisioningInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    model: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    manufacturer: jspb.Message.getFieldWithDefault(msg, 3, "")
+fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+model: jspb.Message.getFieldWithDefault(msg, 2, ""),
+manufacturer: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1978,12 +1984,12 @@ proto.viam.provisioning.v1.NetworkInfo.prototype.toObject = function(opt_include
  */
 proto.viam.provisioning.v1.NetworkInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    ssid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    security: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    signal: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    connected: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    lastError: jspb.Message.getFieldWithDefault(msg, 6, "")
+type: jspb.Message.getFieldWithDefault(msg, 1, ""),
+ssid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+security: jspb.Message.getFieldWithDefault(msg, 3, ""),
+signal: jspb.Message.getFieldWithDefault(msg, 4, 0),
+connected: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+lastError: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -2258,9 +2264,9 @@ proto.viam.provisioning.v1.CloudConfig.prototype.toObject = function(opt_include
  */
 proto.viam.provisioning.v1.CloudConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    secret: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    appAddress: jspb.Message.getFieldWithDefault(msg, 3, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+secret: jspb.Message.getFieldWithDefault(msg, 2, ""),
+appAddress: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
