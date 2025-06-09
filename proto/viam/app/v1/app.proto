@@ -155,6 +155,9 @@ service AppService {
   // Get a specific robot part by ID
   rpc GetRobotPart(GetRobotPartRequest) returns (GetRobotPartResponse);
 
+  // Get a specific robot part by name and location
+  rpc GetRobotPartByNameAndLocation(GetRobotPartByNameAndLocationRequest) returns (GetRobotPartByNameAndLocationResponse);
+
   rpc GetRobotPartLogs(GetRobotPartLogsRequest) returns (GetRobotPartLogsResponse);
 
   rpc TailRobotPartLogs(TailRobotPartLogsRequest) returns (stream TailRobotPartLogsResponse);
@@ -404,6 +407,7 @@ message GetOrganizationResponse {
 
 message GetOrganizationNamespaceAvailabilityRequest {
   string public_namespace = 1;
+  string organization_id = 2;
 }
 
 message GetOrganizationNamespaceAvailabilityResponse {
@@ -497,6 +501,9 @@ message DeleteOrganizationInviteResponse {}
 message ResendOrganizationInviteRequest {
   string organization_id = 1;
   string email = 2;
+  // Set to true (the default) to send an email to the recipient of an invite. The user must accept the email to be added to the associated authorizations.
+  // When set to false, the user automatically receives the associated authorization on the next login of the user with the associated email address.
+  optional bool send_email_invite = 3;
 }
 
 message ResendOrganizationInviteResponse {
@@ -806,6 +813,15 @@ message GetRobotPartResponse {
   string config_json = 2;
 }
 
+message GetRobotPartByNameAndLocationRequest {
+  string name = 1;
+  string location_id = 2;
+}
+
+message GetRobotPartByNameAndLocationResponse {
+  RobotPart part = 1;
+}
+
 message GetRobotPartLogsRequest {
   string id = 1;
   // TODO(https://viam.atlassian.net/browse/APP-3877): Remove this field
@@ -1105,6 +1121,8 @@ message ListMachineFragmentsResponse {
 
 message ListMachineSummariesRequest {
   string organization_id = 1;
+  // Optional list of fragment IDs to filter machines that use any of these fragments
+  repeated string fragment_ids = 2;
 }
 
 message ListMachineSummariesResponse {

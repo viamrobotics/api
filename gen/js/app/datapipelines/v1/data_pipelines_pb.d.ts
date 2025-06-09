@@ -2,6 +2,7 @@
 // file: app/datapipelines/v1/data_pipelines.proto
 
 import * as jspb from "google-protobuf";
+import * as app_data_v1_data_pb from "../../../app/data/v1/data_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class DataPipeline extends jspb.Message {
@@ -37,6 +38,11 @@ export class DataPipeline extends jspb.Message {
   getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasDataSourceType(): boolean;
+  clearDataSourceType(): void;
+  getDataSourceType(): app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap];
+  setDataSourceType(value: app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataPipeline.AsObject;
   static toObject(includeInstance: boolean, msg: DataPipeline): DataPipeline.AsObject;
@@ -57,6 +63,7 @@ export namespace DataPipeline {
     enabled: boolean,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    dataSourceType: app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap],
   }
 }
 
@@ -161,6 +168,16 @@ export class CreateDataPipelineRequest extends jspb.Message {
   getSchedule(): string;
   setSchedule(value: string): void;
 
+  hasEnableBackfill(): boolean;
+  clearEnableBackfill(): void;
+  getEnableBackfill(): boolean;
+  setEnableBackfill(value: boolean): void;
+
+  hasDataSourceType(): boolean;
+  clearDataSourceType(): void;
+  getDataSourceType(): app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap];
+  setDataSourceType(value: app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateDataPipelineRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateDataPipelineRequest): CreateDataPipelineRequest.AsObject;
@@ -177,6 +194,8 @@ export namespace CreateDataPipelineRequest {
     name: string,
     mqlBinaryList: Array<Uint8Array | string>,
     schedule: string,
+    enableBackfill: boolean,
+    dataSourceType: app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap],
   }
 }
 
@@ -217,6 +236,11 @@ export class UpdateDataPipelineRequest extends jspb.Message {
   getSchedule(): string;
   setSchedule(value: string): void;
 
+  hasDataSourceType(): boolean;
+  clearDataSourceType(): void;
+  getDataSourceType(): app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap];
+  setDataSourceType(value: app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateDataPipelineRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateDataPipelineRequest): UpdateDataPipelineRequest.AsObject;
@@ -233,6 +257,7 @@ export namespace UpdateDataPipelineRequest {
     name: string,
     mqlBinaryList: Array<Uint8Array | string>,
     schedule: string,
+    dataSourceType: app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap],
   }
 }
 
