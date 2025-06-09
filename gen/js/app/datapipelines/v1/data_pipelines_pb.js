@@ -15,6 +15,8 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
+var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js');
+goog.object.extend(proto, app_data_v1_data_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.viam.app.datapipelines.v1.CreateDataPipelineRequest', null, global);
@@ -460,7 +462,8 @@ proto.viam.app.datapipelines.v1.DataPipeline.toObject = function(includeInstance
     schedule: jspb.Message.getFieldWithDefault(msg, 5, ""),
     enabled: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    dataSourceType: jspb.Message.getFieldWithDefault(msg, 9, 0)
   };
 
   if (includeInstance) {
@@ -530,6 +533,10 @@ proto.viam.app.datapipelines.v1.DataPipeline.deserializeBinaryFromReader = funct
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setUpdatedAt(value);
+      break;
+    case 9:
+      var value = /** @type {!proto.viam.app.data.v1.TabularDataSourceType} */ (reader.readEnum());
+      msg.setDataSourceType(value);
       break;
     default:
       reader.skipField();
@@ -616,6 +623,13 @@ proto.viam.app.datapipelines.v1.DataPipeline.serializeBinaryToWriter = function(
       8,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {!proto.viam.app.data.v1.TabularDataSourceType} */ (jspb.Message.getField(message, 9));
+  if (f != null) {
+    writer.writeEnum(
+      9,
+      f
     );
   }
 };
@@ -843,6 +857,42 @@ proto.viam.app.datapipelines.v1.DataPipeline.prototype.clearUpdatedAt = function
  */
 proto.viam.app.datapipelines.v1.DataPipeline.prototype.hasUpdatedAt = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional viam.app.data.v1.TabularDataSourceType data_source_type = 9;
+ * @return {!proto.viam.app.data.v1.TabularDataSourceType}
+ */
+proto.viam.app.datapipelines.v1.DataPipeline.prototype.getDataSourceType = function() {
+  return /** @type {!proto.viam.app.data.v1.TabularDataSourceType} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.TabularDataSourceType} value
+ * @return {!proto.viam.app.datapipelines.v1.DataPipeline} returns this
+ */
+proto.viam.app.datapipelines.v1.DataPipeline.prototype.setDataSourceType = function(value) {
+  return jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.datapipelines.v1.DataPipeline} returns this
+ */
+proto.viam.app.datapipelines.v1.DataPipeline.prototype.clearDataSourceType = function() {
+  return jspb.Message.setField(this, 9, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.datapipelines.v1.DataPipeline.prototype.hasDataSourceType = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
@@ -1459,7 +1509,9 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.toObject = function(in
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     mqlBinaryList: msg.getMqlBinaryList_asB64(),
-    schedule: jspb.Message.getFieldWithDefault(msg, 4, "")
+    schedule: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    enableBackfill: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    dataSourceType: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -1511,6 +1563,14 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.deserializeBinaryFromR
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setSchedule(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setEnableBackfill(value);
+      break;
+    case 6:
+      var value = /** @type {!proto.viam.app.data.v1.TabularDataSourceType} */ (reader.readEnum());
+      msg.setDataSourceType(value);
       break;
     default:
       reader.skipField();
@@ -1566,6 +1626,20 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.serializeBinaryToWrite
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeBool(
+      5,
+      f
+    );
+  }
+  f = /** @type {!proto.viam.app.data.v1.TabularDataSourceType} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
+    writer.writeEnum(
+      6,
       f
     );
   }
@@ -1684,6 +1758,78 @@ proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.getSchedule 
  */
 proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.setSchedule = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional bool enable_backfill = 5;
+ * @return {boolean}
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.getEnableBackfill = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.datapipelines.v1.CreateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.setEnableBackfill = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.datapipelines.v1.CreateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.clearEnableBackfill = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.hasEnableBackfill = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional viam.app.data.v1.TabularDataSourceType data_source_type = 6;
+ * @return {!proto.viam.app.data.v1.TabularDataSourceType}
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.getDataSourceType = function() {
+  return /** @type {!proto.viam.app.data.v1.TabularDataSourceType} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.TabularDataSourceType} value
+ * @return {!proto.viam.app.datapipelines.v1.CreateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.setDataSourceType = function(value) {
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.datapipelines.v1.CreateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.clearDataSourceType = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.datapipelines.v1.CreateDataPipelineRequest.prototype.hasDataSourceType = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
@@ -1859,7 +2005,8 @@ proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.toObject = function(in
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     mqlBinaryList: msg.getMqlBinaryList_asB64(),
-    schedule: jspb.Message.getFieldWithDefault(msg, 4, "")
+    schedule: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    dataSourceType: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -1911,6 +2058,10 @@ proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.deserializeBinaryFromR
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setSchedule(value);
+      break;
+    case 5:
+      var value = /** @type {!proto.viam.app.data.v1.TabularDataSourceType} */ (reader.readEnum());
+      msg.setDataSourceType(value);
       break;
     default:
       reader.skipField();
@@ -1966,6 +2117,13 @@ proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.serializeBinaryToWrite
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = /** @type {!proto.viam.app.data.v1.TabularDataSourceType} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeEnum(
+      5,
       f
     );
   }
@@ -2084,6 +2242,42 @@ proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.getSchedule 
  */
 proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.setSchedule = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional viam.app.data.v1.TabularDataSourceType data_source_type = 5;
+ * @return {!proto.viam.app.data.v1.TabularDataSourceType}
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.getDataSourceType = function() {
+  return /** @type {!proto.viam.app.data.v1.TabularDataSourceType} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.TabularDataSourceType} value
+ * @return {!proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.setDataSourceType = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest} returns this
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.clearDataSourceType = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest.prototype.hasDataSourceType = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 

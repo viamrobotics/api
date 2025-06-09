@@ -46,6 +46,15 @@ ProvisioningService.GetNetworkList = {
   responseType: provisioning_v1_provisioning_pb.GetNetworkListResponse
 };
 
+ProvisioningService.ExitProvisioning = {
+  methodName: "ExitProvisioning",
+  service: ProvisioningService,
+  requestStream: false,
+  responseStream: false,
+  requestType: provisioning_v1_provisioning_pb.ExitProvisioningRequest,
+  responseType: provisioning_v1_provisioning_pb.ExitProvisioningResponse
+};
+
 exports.ProvisioningService = ProvisioningService;
 
 function ProvisioningServiceClient(serviceHost, options) {
@@ -151,6 +160,37 @@ ProvisioningServiceClient.prototype.getNetworkList = function getNetworkList(req
     callback = arguments[1];
   }
   var client = grpc.unary(ProvisioningService.GetNetworkList, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ProvisioningServiceClient.prototype.exitProvisioning = function exitProvisioning(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ProvisioningService.ExitProvisioning, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
