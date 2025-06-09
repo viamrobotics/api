@@ -376,6 +376,7 @@ message OrganizationMember {
   repeated string emails = 2;
   google.protobuf.Timestamp date_added = 3;
   optional google.protobuf.Timestamp last_login = 4;
+  optional google.protobuf.Timestamp last_access = 5;
 }
 
 message ListOrganizationsResponse {
