@@ -7770,7 +7770,8 @@ proto.viam.app.v1.OrganizationMember.toObject = function(includeInstance, msg) {
     userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     emailsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
     dateAdded: (f = msg.getDateAdded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    lastLogin: (f = msg.getLastLogin()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    lastLogin: (f = msg.getLastLogin()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    lastAccess: (f = msg.getLastAccess()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7824,6 +7825,11 @@ proto.viam.app.v1.OrganizationMember.deserializeBinaryFromReader = function(msg,
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setLastLogin(value);
+      break;
+    case 5:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastAccess(value);
       break;
     default:
       reader.skipField();
@@ -7880,6 +7886,14 @@ proto.viam.app.v1.OrganizationMember.serializeBinaryToWriter = function(message,
   if (f != null) {
     writer.writeMessage(
       4,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastAccess();
+  if (f != null) {
+    writer.writeMessage(
+      5,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -8013,6 +8027,43 @@ proto.viam.app.v1.OrganizationMember.prototype.clearLastLogin = function() {
  */
 proto.viam.app.v1.OrganizationMember.prototype.hasLastLogin = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_access = 5;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.OrganizationMember.prototype.getLastAccess = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.OrganizationMember} returns this
+*/
+proto.viam.app.v1.OrganizationMember.prototype.setLastAccess = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.OrganizationMember} returns this
+ */
+proto.viam.app.v1.OrganizationMember.prototype.clearLastAccess = function() {
+  return this.setLastAccess(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.OrganizationMember.prototype.hasLastAccess = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
