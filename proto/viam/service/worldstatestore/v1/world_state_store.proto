@@ -6,8 +6,8 @@ import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
-option go_package = "go.viam.com/api/service/worldobjectstore/v1";
-option java_package = "com.viam.service.worldobjectstore.v1";
+option go_package = "go.viam.com/api/service/worldstatestore/v1";
+option java_package = "com.viam.service.worldstatestore.v1";
 
 service WorldStateStoreService {
   // ListWorldObjects returns all world object ids
