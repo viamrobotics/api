@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package viam.service.worldobjectstore.v1;
+package viam.service.worldstatestore.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
@@ -9,20 +9,20 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/service/worldobjectstore/v1";
 option java_package = "com.viam.service.worldobjectstore.v1";
 
-service WorldObjectStoreService {
+service WorldStateStoreService {
   // ListWorldObjects returns all world object ids
-  rpc ListWorldObjects(ListWorldObjectsRequest) returns (ListWorldObjectsResponse) {}
+  rpc ListWorldStates(ListWorldStatesRequest) returns (ListWorldStatesResponse) {}
 
   // GetWorldObject returns a world object by id
-  rpc GetWorldObject(GetWorldObjectRequest) returns (GetWorldObjectResponse) {}
+  rpc GetWorldState(GetWorldStateRequest) returns (GetWorldStateResponse) {}
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/worldobjectstore/{name}/do_command"};
+    option (google.api.http) = {post: "/viam/api/v1/service/worldstatestore/{name}/do_command"};
   }
 }
 
-message ListWorldObjectsRequest {
+message ListWorldStatesRequest {
   // Name of the world object store service
   string name = 1;
 
@@ -30,11 +30,11 @@ message ListWorldObjectsRequest {
   google.protobuf.Struct extra = 99;
 }
 
-message ListWorldObjectsResponse {
+message ListWorldStatesResponse {
   repeated bytes uuids = 1;
 }
 
-message GetWorldObjectRequest {
+message GetWorldStateRequest {
   // Name of the world object store service
   string name = 1;
 
@@ -44,6 +44,6 @@ message GetWorldObjectRequest {
   google.protobuf.Struct extra = 99;
 }
 
-message GetWorldObjectResponse {
+message GetWorldStateResponse {
   common.v1.WorldState world_state = 1;
 }
