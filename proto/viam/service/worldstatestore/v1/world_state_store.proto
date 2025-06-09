@@ -10,10 +10,10 @@ option go_package = "go.viam.com/api/service/worldstatestore/v1";
 option java_package = "com.viam.service.worldstatestore.v1";
 
 service WorldStateStoreService {
-  // ListWorldObjects returns all world object ids
+  // ListWorldStates returns all world state ids
   rpc ListWorldStates(ListWorldStatesRequest) returns (ListWorldStatesResponse) {}
 
-  // GetWorldObject returns a world object by id
+  // GetWorldState returns a world state by id
   rpc GetWorldState(GetWorldStateRequest) returns (GetWorldStateResponse) {}
 
   // DoCommand sends/receives arbitrary commands
@@ -23,7 +23,7 @@ service WorldStateStoreService {
 }
 
 message ListWorldStatesRequest {
-  // Name of the world object store service
+  // Name of the world state store service
   string name = 1;
 
   // Additional arguments to the method
@@ -35,7 +35,7 @@ message ListWorldStatesResponse {
 }
 
 message GetWorldStateRequest {
-  // Name of the world object store service
+  // Name of the world state store service
   string name = 1;
 
   bytes uuid = 2;
