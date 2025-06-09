@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -568,8 +562,8 @@ proto.viam.component.board.v1.Status.prototype.toObject = function(opt_includeIn
  */
 proto.viam.component.board.v1.Status.toObject = function(includeInstance, msg) {
   var f, obj = {
-analogsMap: (f = msg.getAnalogsMap()) ? f.toObject(includeInstance, undefined) : [],
-digitalInterruptsMap: (f = msg.getDigitalInterruptsMap()) ? f.toObject(includeInstance, undefined) : []
+    analogsMap: (f = msg.getAnalogsMap()) ? f.toObject(includeInstance, undefined) : [],
+    digitalInterruptsMap: (f = msg.getDigitalInterruptsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -677,8 +671,7 @@ proto.viam.component.board.v1.Status.prototype.getAnalogsMap = function(opt_noLa
  */
 proto.viam.component.board.v1.Status.prototype.clearAnalogsMap = function() {
   this.getAnalogsMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -700,8 +693,7 @@ proto.viam.component.board.v1.Status.prototype.getDigitalInterruptsMap = functio
  */
 proto.viam.component.board.v1.Status.prototype.clearDigitalInterruptsMap = function() {
   this.getDigitalInterruptsMap().clear();
-  return this;
-};
+  return this;};
 
 
 
@@ -736,10 +728,10 @@ proto.viam.component.board.v1.SetGPIORequest.prototype.toObject = function(opt_i
  */
 proto.viam.component.board.v1.SetGPIORequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
-high: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    high: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1078,9 +1070,9 @@ proto.viam.component.board.v1.GetGPIORequest.prototype.toObject = function(opt_i
  */
 proto.viam.component.board.v1.GetGPIORequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1289,7 +1281,7 @@ proto.viam.component.board.v1.GetGPIOResponse.prototype.toObject = function(opt_
  */
 proto.viam.component.board.v1.GetGPIOResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-high: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+    high: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -1419,9 +1411,9 @@ proto.viam.component.board.v1.PWMRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.component.board.v1.PWMRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1630,7 +1622,7 @@ proto.viam.component.board.v1.PWMResponse.prototype.toObject = function(opt_incl
  */
 proto.viam.component.board.v1.PWMResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-dutyCyclePct: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
+    dutyCyclePct: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
   };
 
   if (includeInstance) {
@@ -1760,10 +1752,10 @@ proto.viam.component.board.v1.SetPWMRequest.prototype.toObject = function(opt_in
  */
 proto.viam.component.board.v1.SetPWMRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
-dutyCyclePct: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    dutyCyclePct: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2102,9 +2094,9 @@ proto.viam.component.board.v1.PWMFrequencyRequest.prototype.toObject = function(
  */
 proto.viam.component.board.v1.PWMFrequencyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2313,7 +2305,7 @@ proto.viam.component.board.v1.PWMFrequencyResponse.prototype.toObject = function
  */
 proto.viam.component.board.v1.PWMFrequencyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-frequencyHz: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    frequencyHz: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -2443,10 +2435,10 @@ proto.viam.component.board.v1.SetPWMFrequencyRequest.prototype.toObject = functi
  */
 proto.viam.component.board.v1.SetPWMFrequencyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
-frequencyHz: jspb.Message.getFieldWithDefault(msg, 3, 0),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    frequencyHz: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2785,9 +2777,9 @@ proto.viam.component.board.v1.ReadAnalogReaderRequest.prototype.toObject = funct
  */
 proto.viam.component.board.v1.ReadAnalogReaderRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-boardName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-analogReaderName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    boardName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    analogReaderName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2996,10 +2988,10 @@ proto.viam.component.board.v1.ReadAnalogReaderResponse.prototype.toObject = func
  */
 proto.viam.component.board.v1.ReadAnalogReaderResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-value: jspb.Message.getFieldWithDefault(msg, 1, 0),
-minRange: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-maxRange: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-stepSize: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
+    value: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    minRange: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    maxRange: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    stepSize: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -3216,10 +3208,10 @@ proto.viam.component.board.v1.WriteAnalogRequest.prototype.toObject = function(o
  */
 proto.viam.component.board.v1.WriteAnalogRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
-value: jspb.Message.getFieldWithDefault(msg, 3, 0),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pin: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    value: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3558,9 +3550,9 @@ proto.viam.component.board.v1.GetDigitalInterruptValueRequest.prototype.toObject
  */
 proto.viam.component.board.v1.GetDigitalInterruptValueRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-boardName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-digitalInterruptName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    boardName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    digitalInterruptName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3769,7 +3761,7 @@ proto.viam.component.board.v1.GetDigitalInterruptValueResponse.prototype.toObjec
  */
 proto.viam.component.board.v1.GetDigitalInterruptValueResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-value: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    value: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -3906,9 +3898,9 @@ proto.viam.component.board.v1.StreamTicksRequest.prototype.toObject = function(o
  */
 proto.viam.component.board.v1.StreamTicksRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-pinNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pinNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4136,9 +4128,9 @@ proto.viam.component.board.v1.StreamTicksResponse.prototype.toObject = function(
  */
 proto.viam.component.board.v1.StreamTicksResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-pinName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-time: jspb.Message.getFieldWithDefault(msg, 2, 0),
-high: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    pinName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    time: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    high: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -4326,10 +4318,10 @@ proto.viam.component.board.v1.SetPowerModeRequest.prototype.toObject = function(
  */
 proto.viam.component.board.v1.SetPowerModeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-powerMode: jspb.Message.getFieldWithDefault(msg, 2, 0),
-duration: (f = msg.getDuration()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
-extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    powerMode: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    duration: (f = msg.getDuration()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {

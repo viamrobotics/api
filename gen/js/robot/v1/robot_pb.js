@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var common_v1_common_pb = require('../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
@@ -1321,8 +1315,8 @@ proto.viam.robot.v1.TunnelRequest.prototype.toObject = function(opt_includeInsta
  */
 proto.viam.robot.v1.TunnelRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-destinationPort: jspb.Message.getFieldWithDefault(msg, 1, 0),
-data: msg.getData_asB64()
+    destinationPort: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    data: msg.getData_asB64()
   };
 
   if (includeInstance) {
@@ -1505,7 +1499,7 @@ proto.viam.robot.v1.TunnelResponse.prototype.toObject = function(opt_includeInst
  */
 proto.viam.robot.v1.TunnelResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-data: msg.getData_asB64()
+    data: msg.getData_asB64()
   };
 
   if (includeInstance) {
@@ -1767,7 +1761,7 @@ proto.viam.robot.v1.ListTunnelsResponse.prototype.toObject = function(opt_includ
  */
 proto.viam.robot.v1.ListTunnelsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-tunnelsList: jspb.Message.toObjectList(msg.getTunnelsList(),
+    tunnelsList: jspb.Message.toObjectList(msg.getTunnelsList(),
     proto.viam.robot.v1.Tunnel.toObject, includeInstance)
   };
 
@@ -1920,8 +1914,8 @@ proto.viam.robot.v1.Tunnel.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.robot.v1.Tunnel.toObject = function(includeInstance, msg) {
   var f, obj = {
-port: jspb.Message.getFieldWithDefault(msg, 1, 0),
-connectionTimeout: (f = msg.getConnectionTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+    port: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    connectionTimeout: (f = msg.getConnectionTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2101,8 +2095,8 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.toObject = function(opt_includeI
  */
 proto.viam.robot.v1.FrameSystemConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
-frame: (f = msg.getFrame()) && common_v1_common_pb.Transform.toObject(includeInstance, f),
-kinematics: (f = msg.getKinematics()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    frame: (f = msg.getFrame()) && common_v1_common_pb.Transform.toObject(includeInstance, f),
+    kinematics: (f = msg.getKinematics()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2310,7 +2304,7 @@ proto.viam.robot.v1.FrameSystemConfigRequest.prototype.toObject = function(opt_i
  */
 proto.viam.robot.v1.FrameSystemConfigRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-supplementalTransformsList: jspb.Message.toObjectList(msg.getSupplementalTransformsList(),
+    supplementalTransformsList: jspb.Message.toObjectList(msg.getSupplementalTransformsList(),
     common_v1_common_pb.Transform.toObject, includeInstance)
   };
 
@@ -2470,7 +2464,7 @@ proto.viam.robot.v1.FrameSystemConfigResponse.prototype.toObject = function(opt_
  */
 proto.viam.robot.v1.FrameSystemConfigResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-frameSystemConfigsList: jspb.Message.toObjectList(msg.getFrameSystemConfigsList(),
+    frameSystemConfigsList: jspb.Message.toObjectList(msg.getFrameSystemConfigsList(),
     proto.viam.robot.v1.FrameSystemConfig.toObject, includeInstance)
   };
 
@@ -2630,9 +2624,9 @@ proto.viam.robot.v1.TransformPoseRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.robot.v1.TransformPoseRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-source: (f = msg.getSource()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f),
-destination: jspb.Message.getFieldWithDefault(msg, 2, ""),
-supplementalTransformsList: jspb.Message.toObjectList(msg.getSupplementalTransformsList(),
+    source: (f = msg.getSource()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f),
+    destination: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    supplementalTransformsList: jspb.Message.toObjectList(msg.getSupplementalTransformsList(),
     common_v1_common_pb.Transform.toObject, includeInstance)
   };
 
@@ -2864,7 +2858,7 @@ proto.viam.robot.v1.TransformPoseResponse.prototype.toObject = function(opt_incl
  */
 proto.viam.robot.v1.TransformPoseResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-pose: (f = msg.getPose()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f)
+    pose: (f = msg.getPose()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3015,9 +3009,9 @@ proto.viam.robot.v1.TransformPCDRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.robot.v1.TransformPCDRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-pointCloudPcd: msg.getPointCloudPcd_asB64(),
-source: jspb.Message.getFieldWithDefault(msg, 2, ""),
-destination: jspb.Message.getFieldWithDefault(msg, 3, "")
+    pointCloudPcd: msg.getPointCloudPcd_asB64(),
+    source: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    destination: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -3229,7 +3223,7 @@ proto.viam.robot.v1.TransformPCDResponse.prototype.toObject = function(opt_inclu
  */
 proto.viam.robot.v1.TransformPCDResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-pointCloudPcd: msg.getPointCloudPcd_asB64()
+    pointCloudPcd: msg.getPointCloudPcd_asB64()
   };
 
   if (includeInstance) {
@@ -3491,7 +3485,7 @@ proto.viam.robot.v1.ResourceNamesResponse.prototype.toObject = function(opt_incl
  */
 proto.viam.robot.v1.ResourceNamesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-resourcesList: jspb.Message.toObjectList(msg.getResourcesList(),
+    resourcesList: jspb.Message.toObjectList(msg.getResourcesList(),
     common_v1_common_pb.ResourceName.toObject, includeInstance)
   };
 
@@ -3644,8 +3638,8 @@ proto.viam.robot.v1.ResourceRPCSubtype.prototype.toObject = function(opt_include
  */
 proto.viam.robot.v1.ResourceRPCSubtype.toObject = function(includeInstance, msg) {
   var f, obj = {
-subtype: (f = msg.getSubtype()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-protoService: jspb.Message.getFieldWithDefault(msg, 2, "")
+    subtype: (f = msg.getSubtype()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    protoService: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -3933,7 +3927,7 @@ proto.viam.robot.v1.ResourceRPCSubtypesResponse.prototype.toObject = function(op
  */
 proto.viam.robot.v1.ResourceRPCSubtypesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-resourceRpcSubtypesList: jspb.Message.toObjectList(msg.getResourceRpcSubtypesList(),
+    resourceRpcSubtypesList: jspb.Message.toObjectList(msg.getResourceRpcSubtypesList(),
     proto.viam.robot.v1.ResourceRPCSubtype.toObject, includeInstance)
   };
 
@@ -4086,11 +4080,11 @@ proto.viam.robot.v1.Operation.prototype.toObject = function(opt_includeInstance)
  */
 proto.viam.robot.v1.Operation.toObject = function(includeInstance, msg) {
   var f, obj = {
-id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-method: jspb.Message.getFieldWithDefault(msg, 2, ""),
-arguments: (f = msg.getArguments()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-started: (f = msg.getStarted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-sessionId: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    method: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    arguments: (f = msg.getArguments()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    started: (f = msg.getStarted()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    sessionId: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -4504,7 +4498,7 @@ proto.viam.robot.v1.GetOperationsResponse.prototype.toObject = function(opt_incl
  */
 proto.viam.robot.v1.GetOperationsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-operationsList: jspb.Message.toObjectList(msg.getOperationsList(),
+    operationsList: jspb.Message.toObjectList(msg.getOperationsList(),
     proto.viam.robot.v1.Operation.toObject, includeInstance)
   };
 
@@ -4657,7 +4651,7 @@ proto.viam.robot.v1.CancelOperationRequest.prototype.toObject = function(opt_inc
  */
 proto.viam.robot.v1.CancelOperationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-id: jspb.Message.getFieldWithDefault(msg, 1, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -4888,7 +4882,7 @@ proto.viam.robot.v1.BlockForOperationRequest.prototype.toObject = function(opt_i
  */
 proto.viam.robot.v1.BlockForOperationRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-id: jspb.Message.getFieldWithDefault(msg, 1, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -5119,9 +5113,9 @@ proto.viam.robot.v1.PeerConnectionInfo.prototype.toObject = function(opt_include
  */
 proto.viam.robot.v1.PeerConnectionInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-type: jspb.Message.getFieldWithDefault(msg, 1, 0),
-remoteAddress: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
-localAddress: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f
+    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    remoteAddress: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    localAddress: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -5345,8 +5339,8 @@ proto.viam.robot.v1.Session.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.robot.v1.Session.toObject = function(includeInstance, msg) {
   var f, obj = {
-id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-peerConnectionInfo: (f = msg.getPeerConnectionInfo()) && proto.viam.robot.v1.PeerConnectionInfo.toObject(includeInstance, f)
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    peerConnectionInfo: (f = msg.getPeerConnectionInfo()) && proto.viam.robot.v1.PeerConnectionInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5634,7 +5628,7 @@ proto.viam.robot.v1.GetSessionsResponse.prototype.toObject = function(opt_includ
  */
 proto.viam.robot.v1.GetSessionsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-sessionsList: jspb.Message.toObjectList(msg.getSessionsList(),
+    sessionsList: jspb.Message.toObjectList(msg.getSessionsList(),
     proto.viam.robot.v1.Session.toObject, includeInstance)
   };
 
@@ -5787,10 +5781,10 @@ proto.viam.robot.v1.ModuleModel.prototype.toObject = function(opt_includeInstanc
  */
 proto.viam.robot.v1.ModuleModel.toObject = function(includeInstance, msg) {
   var f, obj = {
-moduleName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-model: jspb.Message.getFieldWithDefault(msg, 2, ""),
-api: jspb.Message.getFieldWithDefault(msg, 3, ""),
-fromLocalModule: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+    moduleName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    model: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    api: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    fromLocalModule: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -6115,7 +6109,7 @@ proto.viam.robot.v1.GetModelsFromModulesResponse.prototype.toObject = function(o
  */
 proto.viam.robot.v1.GetModelsFromModulesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-modelsList: jspb.Message.toObjectList(msg.getModelsList(),
+    modelsList: jspb.Message.toObjectList(msg.getModelsList(),
     proto.viam.robot.v1.ModuleModel.toObject, includeInstance)
   };
 
@@ -6268,9 +6262,9 @@ proto.viam.robot.v1.Status.prototype.toObject = function(opt_includeInstance) {
  */
 proto.viam.robot.v1.Status.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: (f = msg.getName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-status: (f = msg.getStatus()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-lastReconfigured: (f = msg.getLastReconfigured()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    name: (f = msg.getName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    status: (f = msg.getStatus()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    lastReconfigured: (f = msg.getLastReconfigured()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6528,7 +6522,7 @@ proto.viam.robot.v1.GetStatusRequest.prototype.toObject = function(opt_includeIn
  */
 proto.viam.robot.v1.GetStatusRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-resourceNamesList: jspb.Message.toObjectList(msg.getResourceNamesList(),
+    resourceNamesList: jspb.Message.toObjectList(msg.getResourceNamesList(),
     common_v1_common_pb.ResourceName.toObject, includeInstance)
   };
 
@@ -6688,7 +6682,7 @@ proto.viam.robot.v1.GetStatusResponse.prototype.toObject = function(opt_includeI
  */
 proto.viam.robot.v1.GetStatusResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-statusList: jspb.Message.toObjectList(msg.getStatusList(),
+    statusList: jspb.Message.toObjectList(msg.getStatusList(),
     proto.viam.robot.v1.Status.toObject, includeInstance)
   };
 
@@ -6848,9 +6842,9 @@ proto.viam.robot.v1.StreamStatusRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.robot.v1.StreamStatusRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-resourceNamesList: jspb.Message.toObjectList(msg.getResourceNamesList(),
+    resourceNamesList: jspb.Message.toObjectList(msg.getResourceNamesList(),
     common_v1_common_pb.ResourceName.toObject, includeInstance),
-every: (f = msg.getEvery()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+    every: (f = msg.getEvery()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7059,7 +7053,7 @@ proto.viam.robot.v1.StreamStatusResponse.prototype.toObject = function(opt_inclu
  */
 proto.viam.robot.v1.StreamStatusResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-statusList: jspb.Message.toObjectList(msg.getStatusList(),
+    statusList: jspb.Message.toObjectList(msg.getStatusList(),
     proto.viam.robot.v1.Status.toObject, includeInstance)
   };
 
@@ -7212,8 +7206,8 @@ proto.viam.robot.v1.StopExtraParameters.prototype.toObject = function(opt_includ
  */
 proto.viam.robot.v1.StopExtraParameters.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: (f = msg.getName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-params: (f = msg.getParams()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    name: (f = msg.getName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    params: (f = msg.getParams()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7421,7 +7415,7 @@ proto.viam.robot.v1.StopAllRequest.prototype.toObject = function(opt_includeInst
  */
 proto.viam.robot.v1.StopAllRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-extraList: jspb.Message.toObjectList(msg.getExtraList(),
+    extraList: jspb.Message.toObjectList(msg.getExtraList(),
     proto.viam.robot.v1.StopExtraParameters.toObject, includeInstance)
   };
 
@@ -7675,7 +7669,7 @@ proto.viam.robot.v1.StartSessionRequest.prototype.toObject = function(opt_includ
  */
 proto.viam.robot.v1.StartSessionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-resume: jspb.Message.getFieldWithDefault(msg, 1, "")
+    resume: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -7805,8 +7799,8 @@ proto.viam.robot.v1.StartSessionResponse.prototype.toObject = function(opt_inclu
  */
 proto.viam.robot.v1.StartSessionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-heartbeatWindow: (f = msg.getHeartbeatWindow()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    heartbeatWindow: (f = msg.getHeartbeatWindow()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7986,7 +7980,7 @@ proto.viam.robot.v1.SendSessionHeartbeatRequest.prototype.toObject = function(op
  */
 proto.viam.robot.v1.SendSessionHeartbeatRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-id: jspb.Message.getFieldWithDefault(msg, 1, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -8224,7 +8218,7 @@ proto.viam.robot.v1.LogRequest.prototype.toObject = function(opt_includeInstance
  */
 proto.viam.robot.v1.LogRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-logsList: jspb.Message.toObjectList(msg.getLogsList(),
+    logsList: jspb.Message.toObjectList(msg.getLogsList(),
     common_v1_common_pb.LogEntry.toObject, includeInstance)
   };
 
@@ -8579,11 +8573,11 @@ proto.viam.robot.v1.GetCloudMetadataResponse.prototype.toObject = function(opt_i
  */
 proto.viam.robot.v1.GetCloudMetadataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-robotPartId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-primaryOrgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-locationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-machineId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-machinePartId: jspb.Message.getFieldWithDefault(msg, 5, "")
+    robotPartId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    primaryOrgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    locationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    machineId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    machinePartId: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -8855,8 +8849,8 @@ proto.viam.robot.v1.RestartModuleRequest.prototype.toObject = function(opt_inclu
  */
 proto.viam.robot.v1.RestartModuleRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-moduleId: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
-moduleName: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f
+    moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    moduleName: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -9462,10 +9456,10 @@ proto.viam.robot.v1.GetMachineStatusResponse.prototype.toObject = function(opt_i
  */
 proto.viam.robot.v1.GetMachineStatusResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-resourcesList: jspb.Message.toObjectList(msg.getResourcesList(),
+    resourcesList: jspb.Message.toObjectList(msg.getResourcesList(),
     proto.viam.robot.v1.ResourceStatus.toObject, includeInstance),
-config: (f = msg.getConfig()) && proto.viam.robot.v1.ConfigStatus.toObject(includeInstance, f),
-state: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    config: (f = msg.getConfig()) && proto.viam.robot.v1.ConfigStatus.toObject(includeInstance, f),
+    state: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -9705,12 +9699,12 @@ proto.viam.robot.v1.ResourceStatus.prototype.toObject = function(opt_includeInst
  */
 proto.viam.robot.v1.ResourceStatus.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: (f = msg.getName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-state: jspb.Message.getFieldWithDefault(msg, 2, 0),
-lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-revision: jspb.Message.getFieldWithDefault(msg, 4, ""),
-error: jspb.Message.getFieldWithDefault(msg, 5, ""),
-cloudMetadata: (f = msg.getCloudMetadata()) && proto.viam.robot.v1.GetCloudMetadataResponse.toObject(includeInstance, f)
+    name: (f = msg.getName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    state: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    revision: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    error: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    cloudMetadata: (f = msg.getCloudMetadata()) && proto.viam.robot.v1.GetCloudMetadataResponse.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10060,8 +10054,8 @@ proto.viam.robot.v1.ConfigStatus.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.robot.v1.ConfigStatus.toObject = function(includeInstance, msg) {
   var f, obj = {
-revision: jspb.Message.getFieldWithDefault(msg, 1, ""),
-lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    revision: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10342,9 +10336,9 @@ proto.viam.robot.v1.GetVersionResponse.prototype.toObject = function(opt_include
  */
 proto.viam.robot.v1.GetVersionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-platform: jspb.Message.getFieldWithDefault(msg, 1, ""),
-version: jspb.Message.getFieldWithDefault(msg, 2, ""),
-apiVersion: jspb.Message.getFieldWithDefault(msg, 3, "")
+    platform: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    version: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    apiVersion: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {

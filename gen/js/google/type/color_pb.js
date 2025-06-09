@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js');
 goog.object.extend(proto, google_protobuf_wrappers_pb);
@@ -77,10 +71,10 @@ proto.google.type.Color.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.Color.toObject = function(includeInstance, msg) {
   var f, obj = {
-red: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-green: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-blue: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-alpha: (f = msg.getAlpha()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f)
+    red: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+    green: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    blue: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    alpha: (f = msg.getAlpha()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
