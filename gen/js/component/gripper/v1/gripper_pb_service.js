@@ -47,6 +47,15 @@ GripperService.IsMoving = {
   responseType: component_gripper_v1_gripper_pb.IsMovingResponse
 };
 
+GripperService.IsHoldingSomething = {
+  methodName: "IsHoldingSomething",
+  service: GripperService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_gripper_v1_gripper_pb.IsHoldingSomethingRequest,
+  responseType: component_gripper_v1_gripper_pb.IsHoldingSomethingResponse
+};
+
 GripperService.DoCommand = {
   methodName: "DoCommand",
   service: GripperService,
@@ -179,6 +188,37 @@ GripperServiceClient.prototype.isMoving = function isMoving(requestMessage, meta
     callback = arguments[1];
   }
   var client = grpc.unary(GripperService.IsMoving, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+GripperServiceClient.prototype.isHoldingSomething = function isHoldingSomething(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(GripperService.IsHoldingSomething, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -182,3 +182,55 @@ export namespace IsMovingResponse {
   }
 }
 
+export class IsHoldingSomethingRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): IsHoldingSomethingRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: IsHoldingSomethingRequest): IsHoldingSomethingRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: IsHoldingSomethingRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): IsHoldingSomethingRequest;
+  static deserializeBinaryFromReader(message: IsHoldingSomethingRequest, reader: jspb.BinaryReader): IsHoldingSomethingRequest;
+}
+
+export namespace IsHoldingSomethingRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class IsHoldingSomethingResponse extends jspb.Message {
+  getIsHoldingSomething(): boolean;
+  setIsHoldingSomething(value: boolean): void;
+
+  hasMeta(): boolean;
+  clearMeta(): void;
+  getMeta(): google_protobuf_struct_pb.Struct | undefined;
+  setMeta(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): IsHoldingSomethingResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: IsHoldingSomethingResponse): IsHoldingSomethingResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: IsHoldingSomethingResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): IsHoldingSomethingResponse;
+  static deserializeBinaryFromReader(message: IsHoldingSomethingResponse, reader: jspb.BinaryReader): IsHoldingSomethingResponse;
+}
+
+export namespace IsHoldingSomethingResponse {
+  export type AsObject = {
+    isHoldingSomething: boolean,
+    meta?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+

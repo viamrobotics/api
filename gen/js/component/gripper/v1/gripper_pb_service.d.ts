@@ -41,6 +41,15 @@ type GripperServiceIsMoving = {
   readonly responseType: typeof component_gripper_v1_gripper_pb.IsMovingResponse;
 };
 
+type GripperServiceIsHoldingSomething = {
+  readonly methodName: string;
+  readonly service: typeof GripperService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_gripper_v1_gripper_pb.IsHoldingSomethingRequest;
+  readonly responseType: typeof component_gripper_v1_gripper_pb.IsHoldingSomethingResponse;
+};
+
 type GripperServiceDoCommand = {
   readonly methodName: string;
   readonly service: typeof GripperService;
@@ -74,6 +83,7 @@ export class GripperService {
   static readonly Grab: GripperServiceGrab;
   static readonly Stop: GripperServiceStop;
   static readonly IsMoving: GripperServiceIsMoving;
+  static readonly IsHoldingSomething: GripperServiceIsHoldingSomething;
   static readonly DoCommand: GripperServiceDoCommand;
   static readonly GetGeometries: GripperServiceGetGeometries;
   static readonly GetKinematics: GripperServiceGetKinematics;
@@ -146,6 +156,15 @@ export class GripperServiceClient {
   isMoving(
     requestMessage: component_gripper_v1_gripper_pb.IsMovingRequest,
     callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.IsMovingResponse|null) => void
+  ): UnaryResponse;
+  isHoldingSomething(
+    requestMessage: component_gripper_v1_gripper_pb.IsHoldingSomethingRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.IsHoldingSomethingResponse|null) => void
+  ): UnaryResponse;
+  isHoldingSomething(
+    requestMessage: component_gripper_v1_gripper_pb.IsHoldingSomethingRequest,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.IsHoldingSomethingResponse|null) => void
   ): UnaryResponse;
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
