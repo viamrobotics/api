@@ -9,32 +9,6 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/service/worldobjectstore/v1";
 option java_package = "com.viam.service.worldobjectstore.v1";
 
-message WorldObjectPoints {
-  repeated float array = 1;
-}
-
-message WorldObjectLine {
-  repeated float array = 1;
-}
-
-message WorldObject {
-  bytes uuid = 1;
-  string name = 2;
-  string reference_frame = 3;
-  common.v1.Pose pose = 4;
-
-  // Can hold information like color, opacity, points colors, collisionAllowed, etc...
-  google.protobuf.Struct metadata = 5;
-
-  oneof geometry {
-    common.v1.RectangularPrism box = 6;
-    common.v1.Capsule capsule = 7;
-    common.v1.Sphere sphere = 8;
-    common.v1.Mesh mesh = 9;
-    WorldObjectPoints points = 10;
-    WorldObjectLine line = 11;
-  }
-}
 
 service WorldObjectStoreService {
   // ListWorldObjects returns all world object ids
@@ -72,5 +46,8 @@ message GetWorldObjectRequest {
 }
 
 message GetWorldObjectResponse {
-  WorldObject object = 1;
+  oneof world_object {
+    common.v1.GeometryInFrame geometry_in_frame = 1;
+    common.v1.PoseInFrame pose_in_frame = 2;
+  }
 }
