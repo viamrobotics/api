@@ -42,6 +42,8 @@ message Pose {
   double o_z = 6;
   // degrees
   double theta = 7;
+  // Label of the pose. If none supplied, will be an empty string.
+  string label = 8;
 }
 
 message Orientation {
@@ -59,6 +61,10 @@ message Orientation {
 message PoseInFrame {
   string reference_frame = 1;
   Pose pose = 2;
+  // UUID of the geometry. If none supplied, will be an empty string.
+  bytes uuid = 3;
+  // Can hold information like color, opacity, points colors, collisionAllowed, etc...
+  google.protobuf.Struct metadata = 4;
 }
 
 message Vector3 {
@@ -89,6 +95,14 @@ message Mesh {
   bytes mesh = 2;
 }
 
+message Points {
+  repeated float array = 1;
+}
+
+message Line {
+  repeated float array = 1;
+}
+
 // Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
 message Geometry {
   // Pose of a geometries center point
@@ -99,6 +113,8 @@ message Geometry {
     RectangularPrism box = 3;
     Capsule capsule = 5;
     Mesh mesh = 6;
+    Points points = 7;
+    Line line = 8;
   }
   // Label of the geometry. If none supplied, will be an empty string.
   string label = 4;
@@ -111,6 +127,16 @@ message GeometriesInFrame {
   string reference_frame = 1;
   // Dimensional type
   repeated Geometry geometries = 2;
+}
+
+// GeometryInFrame contains a geometry and the and the reference frame in which it was observed
+message GeometryInFrame {
+  string reference_frame = 1;
+  Geometry geometry = 2;
+  // UUID of the geometry. If none supplied, will be an empty string.
+  bytes uuid = 3;
+  // Can hold information like color, opacity, points colors, collisionAllowed, etc...
+  google.protobuf.Struct metadata = 4;
 }
 
 // PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a
