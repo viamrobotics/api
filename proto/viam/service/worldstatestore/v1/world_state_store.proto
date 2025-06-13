@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package viam.service.worldstatestore.v1;
+
+import "common/v1/common.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "go.viam.com/api/service/worldstatestore/v1";
+option java_package = "com.viam.service.worldstatestore.v1";
+
+
+service WorldStateStoreService {
+  // ListWorldStates returns all world state object uuids
+  rpc ListWorldStateUUIDs(ListWorldStateUUIDsRequest) returns (ListWorldStateUUIDsResponse) {}
+
+  // GetWorldState returns a world state object by uuid
+  rpc GetWorldStateObject(GetWorldStateObjectRequest) returns (GetWorldStateObjectResponse) {}
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/worldstatestore/{name}/do_command"};
+  }
+}
+
+message ListWorldStateUUIDsRequest {
+  // Name of the world object store service
+  string name = 1;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message ListWorldStateUUIDsResponse {
+  repeated bytes uuids = 1;
+}
+
+message GetWorldStateObjectRequest {
+  // Name of the world object store service
+  string name = 1;
+
+  bytes uuid = 2;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetWorldStateObjectResponse {
+  oneof world_state_object {
+    common.v1.GeometryInFrame geometry_in_frame = 1;
+    common.v1.PoseInFrame pose_in_frame = 2;
+  }
+}
