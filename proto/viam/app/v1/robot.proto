@@ -377,6 +377,8 @@ message ModuleConfig {
   AppValidationStatus status = 7;
   // timeout for first_run script
   google.protobuf.Duration first_run_timeout = 8;
+  // whether we are starting a module in TCP mode
+  bool tcp_mode = 9;
 }
 
 // PackageConfig is the configration for deployed Packages.
