@@ -11,10 +11,10 @@ option java_package = "com.viam.service.worldstatestore.v1";
 
 
 service WorldStateStoreService {
-  // ListWorldStates returns all world state object uuids
+  // ListWorldStateUUIDs returns all world state object uuids
   rpc ListWorldStateUUIDs(ListWorldStateUUIDsRequest) returns (ListWorldStateUUIDsResponse) {}
 
-  // GetWorldState returns a world state object by uuid
+  // GetWorldStateObject returns a world state object by uuid
   rpc GetWorldStateObject(GetWorldStateObjectRequest) returns (GetWorldStateObjectResponse) {}
 
   // DoCommand sends/receives arbitrary commands
