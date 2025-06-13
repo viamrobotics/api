@@ -31,6 +31,8 @@ type GripperServiceClient interface {
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
+	// IsHoldingSomething returns whether the gripper is currently holding onto an object
+	IsHoldingSomething(ctx context.Context, in *IsHoldingSomethingRequest, opts ...grpc.CallOption) (*IsHoldingSomethingResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
@@ -83,6 +85,15 @@ func (c *gripperServiceClient) IsMoving(ctx context.Context, in *IsMovingRequest
 	return out, nil
 }
 
+func (c *gripperServiceClient) IsHoldingSomething(ctx context.Context, in *IsHoldingSomethingRequest, opts ...grpc.CallOption) (*IsHoldingSomethingResponse, error) {
+	out := new(IsHoldingSomethingResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.gripper.v1.GripperService/IsHoldingSomething", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *gripperServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.gripper.v1.GripperService/DoCommand", in, out, opts...)
@@ -122,6 +133,8 @@ type GripperServiceServer interface {
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
+	// IsHoldingSomething returns whether the gripper is currently holding onto an object
+	IsHoldingSomething(context.Context, *IsHoldingSomethingRequest) (*IsHoldingSomethingResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
@@ -146,6 +159,9 @@ func (UnimplementedGripperServiceServer) Stop(context.Context, *StopRequest) (*S
 }
 func (UnimplementedGripperServiceServer) IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsMoving not implemented")
+}
+func (UnimplementedGripperServiceServer) IsHoldingSomething(context.Context, *IsHoldingSomethingRequest) (*IsHoldingSomethingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsHoldingSomething not implemented")
 }
 func (UnimplementedGripperServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -241,6 +257,24 @@ func _GripperService_IsMoving_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GripperService_IsHoldingSomething_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsHoldingSomethingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GripperServiceServer).IsHoldingSomething(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.gripper.v1.GripperService/IsHoldingSomething",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GripperServiceServer).IsHoldingSomething(ctx, req.(*IsHoldingSomethingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GripperService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DoCommandRequest)
 	if err := dec(in); err != nil {
@@ -317,6 +351,10 @@ var GripperService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsMoving",
 			Handler:    _GripperService_IsMoving_Handler,
+		},
+		{
+			MethodName: "IsHoldingSomething",
+			Handler:    _GripperService_IsHoldingSomething_Handler,
 		},
 		{
 			MethodName: "DoCommand",
