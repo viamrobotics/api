@@ -10589,7 +10589,8 @@ proto.viam.app.v1.ModuleConfig.toObject = function(includeInstance, msg) {
     moduleId: jspb.Message.getFieldWithDefault(msg, 5, ""),
     envMap: (f = msg.getEnvMap()) ? f.toObject(includeInstance, undefined) : [],
     status: (f = msg.getStatus()) && proto.viam.app.v1.AppValidationStatus.toObject(includeInstance, f),
-    firstRunTimeout: (f = msg.getFirstRunTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
+    firstRunTimeout: (f = msg.getFirstRunTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+    tcpMode: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
   };
 
   if (includeInstance) {
@@ -10661,6 +10662,10 @@ proto.viam.app.v1.ModuleConfig.deserializeBinaryFromReader = function(msg, reade
       var value = new google_protobuf_duration_pb.Duration;
       reader.readMessage(value,google_protobuf_duration_pb.Duration.deserializeBinaryFromReader);
       msg.setFirstRunTimeout(value);
+      break;
+    case 9:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setTcpMode(value);
       break;
     default:
       reader.skipField();
@@ -10744,6 +10749,13 @@ proto.viam.app.v1.ModuleConfig.serializeBinaryToWriter = function(message, write
       8,
       f,
       google_protobuf_duration_pb.Duration.serializeBinaryToWriter
+    );
+  }
+  f = message.getTcpMode();
+  if (f) {
+    writer.writeBool(
+      9,
+      f
     );
   }
 };
@@ -10932,6 +10944,24 @@ proto.viam.app.v1.ModuleConfig.prototype.clearFirstRunTimeout = function() {
  */
 proto.viam.app.v1.ModuleConfig.prototype.hasFirstRunTimeout = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional bool tcp_mode = 9;
+ * @return {boolean}
+ */
+proto.viam.app.v1.ModuleConfig.prototype.getTcpMode = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.ModuleConfig} returns this
+ */
+proto.viam.app.v1.ModuleConfig.prototype.setTcpMode = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 9, value);
 };
 
 

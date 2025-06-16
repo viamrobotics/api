@@ -1367,6 +1367,9 @@ export class ModuleConfig extends jspb.Message {
   getFirstRunTimeout(): google_protobuf_duration_pb.Duration | undefined;
   setFirstRunTimeout(value?: google_protobuf_duration_pb.Duration): void;
 
+  getTcpMode(): boolean;
+  setTcpMode(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
@@ -1387,6 +1390,7 @@ export namespace ModuleConfig {
     envMap: Array<[string, string]>,
     status?: AppValidationStatus.AsObject,
     firstRunTimeout?: google_protobuf_duration_pb.Duration.AsObject,
+    tcpMode: boolean,
   }
 }
 
