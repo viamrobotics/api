@@ -42,8 +42,6 @@ message Pose {
   double o_z = 6;
   // degrees
   double theta = 7;
-  // Label of the pose. If none supplied, will be an empty string.
-  string label = 8;
 }
 
 message Orientation {
@@ -61,10 +59,6 @@ message Orientation {
 message PoseInFrame {
   string reference_frame = 1;
   Pose pose = 2;
-  // UUID of the geometry. If none supplied, will be an empty string.
-  bytes uuid = 3;
-  // Can hold information like color, opacity, points colors, collisionAllowed, etc...
-  google.protobuf.Struct metadata = 4;
 }
 
 message Vector3 {
@@ -129,16 +123,6 @@ message GeometriesInFrame {
   repeated Geometry geometries = 2;
 }
 
-// GeometryInFrame contains a geometry and the and the reference frame in which it was observed
-message GeometryInFrame {
-  string reference_frame = 1;
-  Geometry geometry = 2;
-  // UUID of the geometry. If none supplied, will be an empty string.
-  bytes uuid = 3;
-  // Can hold information like color, opacity, points colors, collisionAllowed, etc...
-  google.protobuf.Struct metadata = 4;
-}
-
 // PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a
 // repeated list of geometries which respresents the center point and geometry of each of the objects within the point cloud
 message PointCloudObject {
@@ -170,6 +154,10 @@ message Transform {
   // the pose of the above reference frame with respect to a different observer reference frame
   PoseInFrame pose_in_observer_frame = 2;
   optional Geometry physical_object = 3;
+  // UUID of the geometry. If none supplied, will be an empty string.
+  bytes uuid = 4;
+  // Can hold information like color, opacity, points colors, collisionAllowed, etc...
+  google.protobuf.Struct metadata = 5;
 }
 
 // WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,

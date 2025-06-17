@@ -46,8 +46,5 @@ message GetWorldStateObjectRequest {
 }
 
 message GetWorldStateObjectResponse {
-  oneof world_state_object {
-    common.v1.GeometryInFrame geometry_in_frame = 1;
-    common.v1.PoseInFrame pose_in_frame = 2;
-  }
+  common.v1.Transform transform = 1;
 }
