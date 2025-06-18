@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.app.v1;
 
 import "common/v1/common.proto";
+import "google/protobuf/any.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "tagger/v1/tagger.proto";
@@ -47,7 +48,7 @@ message RobotConfig {
   // Disables the robot's log deduplication (identical, noisy logs will still
   // be output individually instead of aggregated.)
   bool disable_log_deduplication = 17;
-  repeated JobConfig = 18;
+  repeated JobConfig jobs = 18;
 }
 
 // LogPatternConfig allows you to specify a 2-tuple consisting
@@ -69,7 +70,7 @@ message JobConfig {
   string method = 4;
   // in case method is "DoCommand", specifies the
   // command argument of the gRPC request.
-  optional map<string, google.protobuf.Any> command = 5;
+  map<string, google.protobuf.Any> command = 5;
 }
 
 // Valid location secret that can be used for authentication to the robot.
