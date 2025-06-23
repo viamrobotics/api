@@ -44,18 +44,6 @@ service RobotService {
     option (google.api.http) = {get: "/viam/api/v1/module_models"};
   }
 
-  rpc FrameSystemConfig(FrameSystemConfigRequest) returns (FrameSystemConfigResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/frame_system/config"};
-  }
-
-  rpc TransformPose(TransformPoseRequest) returns (TransformPoseResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/frame_system/transform_pose"};
-  }
-
-  rpc TransformPCD(TransformPCDRequest) returns (TransformPCDResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/frame_system/transform_pcd"};
-  }
-
   // GetStatus returns the list of all statuses requested. An empty request signifies all resources.
   rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {
     option (google.api.http) = {get: "/viam/api/v1/status"};
@@ -121,6 +109,28 @@ service RobotService {
   // ListTunnels lists all available tunnels configured on the robot.
   rpc ListTunnels(ListTunnelsRequest) returns (ListTunnelsResponse) {
     option (google.api.http) = {get: "/viam/api/v1/list_tunnels"};
+  }
+
+  // The below methods constitute the methods accessible to modules as part of the FrameSystem service.
+
+  // FrameSystemConfig returns the information relevant to building the robot's frame system.
+  rpc FrameSystemConfig(FrameSystemConfigRequest) returns (FrameSystemConfigResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/frame_system/config"};
+  }
+
+  // GetPose returns the pose of a component in a desired referenceframe.
+  rpc GetPose(GetPoseRequest) returns (GetPoseResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/frame_system/pose"};
+  }
+
+  // TransformPose returns a pose in one referenceframe in a desired referenceframe.
+  rpc TransformPose(TransformPoseRequest) returns (TransformPoseResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/frame_system/transform_pose"};
+  }
+
+  // TransformPose returns a point cloud in one referenceframe in a desired referenceframe.
+  rpc TransformPCD(TransformPCDRequest) returns (TransformPCDResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/frame_system/transform_pcd"};
   }
 }
 
@@ -424,4 +434,23 @@ message GetVersionResponse {
   string version = 2;
 
   string api_version = 3;
+}
+
+message GetPoseRequest {
+  string name = 1;
+  // the component whose pose is being requested
+  common.v1.ResourceName component_name = 2;
+  // the reference frame in which the component's pose
+  // should be provided, if unset this defaults
+  // to the "world" reference frame
+  string destination_frame = 3;
+  // pose information on any additional reference frames that are needed
+  // to compute the component's pose
+  repeated common.v1.Transform supplemental_transforms = 4;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetPoseResponse {
+  common.v1.PoseInFrame pose = 1;
 }
