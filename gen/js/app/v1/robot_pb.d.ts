@@ -87,6 +87,11 @@ export class RobotConfig extends jspb.Message {
   getDisableLogDeduplication(): boolean;
   setDisableLogDeduplication(value: boolean): void;
 
+  clearJobsList(): void;
+  getJobsList(): Array<JobConfig>;
+  setJobsList(value: Array<JobConfig>): void;
+  addJobs(value?: JobConfig, index?: number): JobConfig;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -116,6 +121,7 @@ export namespace RobotConfig {
     revision: string,
     maintenance?: MaintenanceConfig.AsObject,
     disableLogDeduplication: boolean,
+    jobsList: Array<JobConfig.AsObject>,
   }
 }
 
@@ -140,6 +146,44 @@ export namespace LogPatternConfig {
   export type AsObject = {
     pattern: string,
     level: string,
+  }
+}
+
+export class JobConfig extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getSchedule(): string;
+  setSchedule(value: string): void;
+
+  getResource(): string;
+  setResource(value: string): void;
+
+  getMethod(): string;
+  setMethod(value: string): void;
+
+  hasCommand(): boolean;
+  clearCommand(): void;
+  getCommand(): google_protobuf_struct_pb.Struct | undefined;
+  setCommand(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): JobConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: JobConfig): JobConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: JobConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): JobConfig;
+  static deserializeBinaryFromReader(message: JobConfig, reader: jspb.BinaryReader): JobConfig;
+}
+
+export namespace JobConfig {
+  export type AsObject = {
+    name: string,
+    schedule: string,
+    resource: string,
+    method: string,
+    command?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
