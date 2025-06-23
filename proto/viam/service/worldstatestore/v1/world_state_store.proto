@@ -9,7 +9,6 @@ import "google/protobuf/struct.proto";
 option go_package = "go.viam.com/api/service/worldstatestore/v1";
 option java_package = "com.viam.service.worldstatestore.v1";
 
-
 service WorldStateStoreService {
   // ListWorldStateUUIDs returns all world state object uuids
   rpc ListWorldStateUUIDs(ListWorldStateUUIDsRequest) returns (ListWorldStateUUIDsResponse) {}
@@ -46,5 +45,5 @@ message GetWorldStateObjectRequest {
 }
 
 message GetWorldStateObjectResponse {
-  common.v1.Transform transform = 1;
+  common.v1.TransformNew transform = 2;
 }
