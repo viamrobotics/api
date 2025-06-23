@@ -128,6 +128,11 @@ export class GetNumberOfPositionsResponse extends jspb.Message {
   getNumberOfPositions(): number;
   setNumberOfPositions(value: number): void;
 
+  clearLabelsList(): void;
+  getLabelsList(): Array<string>;
+  setLabelsList(value: Array<string>): void;
+  addLabels(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetNumberOfPositionsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetNumberOfPositionsResponse): GetNumberOfPositionsResponse.AsObject;
@@ -141,6 +146,7 @@ export class GetNumberOfPositionsResponse extends jspb.Message {
 export namespace GetNumberOfPositionsResponse {
   export type AsObject = {
     numberOfPositions: number,
+    labelsList: Array<string>,
   }
 }
 
