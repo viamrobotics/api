@@ -3,7 +3,7 @@ syntax = "proto3";
 package viam.app.v1;
 
 import "common/v1/common.proto";
-import "google/protobuf/any.proto";
+//import "google/protobuf/any.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "tagger/v1/tagger.proto";
@@ -70,7 +70,7 @@ message JobConfig {
   string method = 4;
   // in case method is "DoCommand", specifies the
   // command argument of the gRPC request.
-  map<string, google.protobuf.Any> command = 5;
+  google.protobuf.Struct command = 5;
 }
 
 // Valid location secret that can be used for authentication to the robot.
