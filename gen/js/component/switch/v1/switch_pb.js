@@ -143,7 +143,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.component.switch.v1.GetNumberOfPositionsResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.component.switch.v1.GetNumberOfPositionsResponse.repeatedFields_, null);
 };
 goog.inherits(proto.viam.component.switch.v1.GetNumberOfPositionsResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -958,6 +958,13 @@ proto.viam.component.switch.v1.GetNumberOfPositionsRequest.prototype.hasExtra = 
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.component.switch.v1.GetNumberOfPositionsResponse.repeatedFields_ = [2];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -989,7 +996,8 @@ proto.viam.component.switch.v1.GetNumberOfPositionsResponse.prototype.toObject =
  */
 proto.viam.component.switch.v1.GetNumberOfPositionsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    numberOfPositions: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    numberOfPositions: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    labelsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1030,6 +1038,10 @@ proto.viam.component.switch.v1.GetNumberOfPositionsResponse.deserializeBinaryFro
       var value = /** @type {number} */ (reader.readUint32());
       msg.setNumberOfPositions(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addLabels(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1066,6 +1078,13 @@ proto.viam.component.switch.v1.GetNumberOfPositionsResponse.serializeBinaryToWri
       f
     );
   }
+  f = message.getLabelsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -1084,6 +1103,43 @@ proto.viam.component.switch.v1.GetNumberOfPositionsResponse.prototype.getNumberO
  */
 proto.viam.component.switch.v1.GetNumberOfPositionsResponse.prototype.setNumberOfPositions = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * repeated string labels = 2;
+ * @return {!Array<string>}
+ */
+proto.viam.component.switch.v1.GetNumberOfPositionsResponse.prototype.getLabelsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.component.switch.v1.GetNumberOfPositionsResponse} returns this
+ */
+proto.viam.component.switch.v1.GetNumberOfPositionsResponse.prototype.setLabelsList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.component.switch.v1.GetNumberOfPositionsResponse} returns this
+ */
+proto.viam.component.switch.v1.GetNumberOfPositionsResponse.prototype.addLabels = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.component.switch.v1.GetNumberOfPositionsResponse} returns this
+ */
+proto.viam.component.switch.v1.GetNumberOfPositionsResponse.prototype.clearLabelsList = function() {
+  return this.setLabelsList([]);
 };
 
 
