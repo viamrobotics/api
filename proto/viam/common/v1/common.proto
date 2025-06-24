@@ -89,6 +89,14 @@ message Mesh {
   bytes mesh = 2;
 }
 
+message Points {
+  repeated float array = 1;
+}
+
+message Line {
+  repeated float array = 1;
+}
+
 // Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
 message Geometry {
   // Pose of a geometries center point
@@ -99,6 +107,8 @@ message Geometry {
     RectangularPrism box = 3;
     Capsule capsule = 5;
     Mesh mesh = 6;
+    Points points = 7;
+    Line line = 8;
   }
   // Label of the geometry. If none supplied, will be an empty string.
   string label = 4;
@@ -144,6 +154,33 @@ message Transform {
   // the pose of the above reference frame with respect to a different observer reference frame
   PoseInFrame pose_in_observer_frame = 2;
   optional Geometry physical_object = 3;
+}
+
+// TransformNew contains a pose and two reference frames. `parent` is the starting reference frame, and `name` is the observer reference frame.
+// `pose` represents the pose of an object in the `parent` frame as observed within the `name` frame.
+message TransformNew {
+  // The name of the parent reference frame
+  string parent = 1; // just renaming this for clarity
+  reserved "reference_frame";
+
+  // Deprecated: use `name` and `pose` instead
+  reserved 2;
+  reserved "pose_in_observer_frame";
+
+  optional Geometry geometry = 3; // just renaming this for clarity
+  reserved "physical_object";
+
+  // The name of the observer reference frame
+  string name = 4;
+
+  // The pose of the object in the `parent` frame as observed within the `name` frame
+  Pose pose = 5;
+
+  // The UUID of the transform
+  bytes uuid = 6;
+
+  // Can hold information like color, opacity, points colors, collision_allowed, etc...
+  optional google.protobuf.Struct metadata = 7;
 }
 
 // WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,
