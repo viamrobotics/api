@@ -172,7 +172,7 @@ message TransformNew {
 
   // The name of the observer reference frame
   string name = 4;
-  
+
   // The pose of the object in the `parent` frame as observed within the `name` frame
   Pose pose = 5;
 
