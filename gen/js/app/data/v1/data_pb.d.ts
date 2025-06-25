@@ -507,6 +507,11 @@ export class ExportTabularDataRequest extends jspb.Message {
   getInterval(): CaptureInterval | undefined;
   setInterval(value?: CaptureInterval): void;
 
+  hasAdditionalParameters(): boolean;
+  clearAdditionalParameters(): void;
+  getAdditionalParameters(): google_protobuf_struct_pb.Struct | undefined;
+  setAdditionalParameters(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ExportTabularDataRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ExportTabularDataRequest): ExportTabularDataRequest.AsObject;
@@ -524,6 +529,7 @@ export namespace ExportTabularDataRequest {
     resourceSubtype: string,
     methodName: string,
     interval?: CaptureInterval.AsObject,
+    additionalParameters?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -616,6 +622,11 @@ export class GetLatestTabularDataRequest extends jspb.Message {
   getResourceSubtype(): string;
   setResourceSubtype(value: string): void;
 
+  hasAdditionalParameters(): boolean;
+  clearAdditionalParameters(): void;
+  getAdditionalParameters(): google_protobuf_struct_pb.Struct | undefined;
+  setAdditionalParameters(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetLatestTabularDataRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetLatestTabularDataRequest): GetLatestTabularDataRequest.AsObject;
@@ -632,6 +643,7 @@ export namespace GetLatestTabularDataRequest {
     resourceName: string,
     methodName: string,
     resourceSubtype: string,
+    additionalParameters?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
