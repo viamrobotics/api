@@ -1542,7 +1542,7 @@ message App {
   // Optional: fragment IDs to filter machines in the picker
   repeated string fragment_ids = 4;
   // Optional: path to a custom logo for branding
-  string logo_path = 5;
+  optional string logo_path = 5;
   // Optional: structured customizations for the app (e.g., machine picker headings)
   AppCustomizations customizations = 6;
 }
@@ -1917,7 +1917,7 @@ message TextOverrides {
 }
 
 message GetAppBrandingResponse {
-  string logo_path = 1;
+  optional string logo_path = 1;
   map<string, TextOverrides> text_customizations = 2;
 }
 
@@ -1926,6 +1926,6 @@ message AppCustomizations {
 }
 
 message MachinePickerCustomizations {
-  string heading = 1;
-  string subheading = 2;
+  optional string heading = 1;
+  optional string subheading = 2;
 }
