@@ -4925,7 +4925,8 @@ proto.viam.app.data.v1.ExportTabularDataRequest.toObject = function(includeInsta
     resourceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     resourceSubtype: jspb.Message.getFieldWithDefault(msg, 3, ""),
     methodName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    interval: (f = msg.getInterval()) && proto.viam.app.data.v1.CaptureInterval.toObject(includeInstance, f)
+    interval: (f = msg.getInterval()) && proto.viam.app.data.v1.CaptureInterval.toObject(includeInstance, f),
+    additionalParameters: (f = msg.getAdditionalParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4982,6 +4983,11 @@ proto.viam.app.data.v1.ExportTabularDataRequest.deserializeBinaryFromReader = fu
       var value = new proto.viam.app.data.v1.CaptureInterval;
       reader.readMessage(value,proto.viam.app.data.v1.CaptureInterval.deserializeBinaryFromReader);
       msg.setInterval(value);
+      break;
+    case 6:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setAdditionalParameters(value);
       break;
     default:
       reader.skipField();
@@ -5046,6 +5052,14 @@ proto.viam.app.data.v1.ExportTabularDataRequest.serializeBinaryToWriter = functi
       5,
       f,
       proto.viam.app.data.v1.CaptureInterval.serializeBinaryToWriter
+    );
+  }
+  f = message.getAdditionalParameters();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -5157,6 +5171,43 @@ proto.viam.app.data.v1.ExportTabularDataRequest.prototype.clearInterval = functi
  */
 proto.viam.app.data.v1.ExportTabularDataRequest.prototype.hasInterval = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional google.protobuf.Struct additional_parameters = 6;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.app.data.v1.ExportTabularDataRequest.prototype.getAdditionalParameters = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.data.v1.ExportTabularDataRequest} returns this
+*/
+proto.viam.app.data.v1.ExportTabularDataRequest.prototype.setAdditionalParameters = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.data.v1.ExportTabularDataRequest} returns this
+ */
+proto.viam.app.data.v1.ExportTabularDataRequest.prototype.clearAdditionalParameters = function() {
+  return this.setAdditionalParameters(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.ExportTabularDataRequest.prototype.hasAdditionalParameters = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
@@ -5774,7 +5825,8 @@ proto.viam.app.data.v1.GetLatestTabularDataRequest.toObject = function(includeIn
     partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     resourceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     methodName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    resourceSubtype: jspb.Message.getFieldWithDefault(msg, 4, "")
+    resourceSubtype: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    additionalParameters: (f = msg.getAdditionalParameters()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5826,6 +5878,11 @@ proto.viam.app.data.v1.GetLatestTabularDataRequest.deserializeBinaryFromReader =
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setResourceSubtype(value);
+      break;
+    case 5:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setAdditionalParameters(value);
       break;
     default:
       reader.skipField();
@@ -5882,6 +5939,14 @@ proto.viam.app.data.v1.GetLatestTabularDataRequest.serializeBinaryToWriter = fun
     writer.writeString(
       4,
       f
+    );
+  }
+  f = message.getAdditionalParameters();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -5956,6 +6021,43 @@ proto.viam.app.data.v1.GetLatestTabularDataRequest.prototype.getResourceSubtype 
  */
 proto.viam.app.data.v1.GetLatestTabularDataRequest.prototype.setResourceSubtype = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct additional_parameters = 5;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.app.data.v1.GetLatestTabularDataRequest.prototype.getAdditionalParameters = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.data.v1.GetLatestTabularDataRequest} returns this
+*/
+proto.viam.app.data.v1.GetLatestTabularDataRequest.prototype.setAdditionalParameters = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.data.v1.GetLatestTabularDataRequest} returns this
+ */
+proto.viam.app.data.v1.GetLatestTabularDataRequest.prototype.clearAdditionalParameters = function() {
+  return this.setAdditionalParameters(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.GetLatestTabularDataRequest.prototype.hasAdditionalParameters = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
