@@ -958,6 +958,15 @@ type AppServiceGetAppContent = {
   readonly responseType: typeof app_v1_app_pb.GetAppContentResponse;
 };
 
+type AppServiceGetAppBranding = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetAppBrandingRequest;
+  readonly responseType: typeof app_v1_app_pb.GetAppBrandingResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
@@ -1066,6 +1075,7 @@ export class AppService {
   static readonly RotateKey: AppServiceRotateKey;
   static readonly CreateKeyFromExistingKeyAuthorizations: AppServiceCreateKeyFromExistingKeyAuthorizations;
   static readonly GetAppContent: AppServiceGetAppContent;
+  static readonly GetAppBranding: AppServiceGetAppBranding;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -2037,6 +2047,15 @@ export class AppServiceClient {
   getAppContent(
     requestMessage: app_v1_app_pb.GetAppContentRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetAppContentResponse|null) => void
+  ): UnaryResponse;
+  getAppBranding(
+    requestMessage: app_v1_app_pb.GetAppBrandingRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetAppBrandingResponse|null) => void
+  ): UnaryResponse;
+  getAppBranding(
+    requestMessage: app_v1_app_pb.GetAppBrandingRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetAppBrandingResponse|null) => void
   ): UnaryResponse;
 }
 
