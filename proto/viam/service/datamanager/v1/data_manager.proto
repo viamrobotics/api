@@ -20,6 +20,11 @@ service DataManagerService {
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/do_command"};
   }
+
+  // UploadImageToDataset uploads a single image to a given dataset
+  rpc UploadImageToDataset(UploadImageToDatasetRequest) return (UploadImageToDatasetResponse) {
+    option (google.api.http) = {post:  "/viam/api/v1/service/datamanager/{name}/upload_image_to_dataset"}
+  }
 }
 
 message SyncRequest {
@@ -29,3 +34,13 @@ message SyncRequest {
 }
 
 message SyncResponse {}
+
+message UploadImageToDatasetRequest {
+  string name = 1;
+  string image_uri = 2;
+  string dataset_id = 3;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message UploadImageToDatasetResponse {}
