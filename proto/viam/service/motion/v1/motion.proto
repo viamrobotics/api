@@ -33,6 +33,7 @@ service MotionService {
 
   rpc GetPose(GetPoseRequest) returns (GetPoseResponse) {
     option (google.api.http) = {get: "/viam/api/v1/service/motion/{name}/pose"};
+    option deprecated = true;
   }
 
   // Stops a Plan
@@ -160,6 +161,7 @@ message MoveOnGlobeResponse {
 }
 
 message GetPoseRequest {
+  option deprecated = true;
   string name = 1;
   // the component whose pose is being requested
   common.v1.ResourceName component_name = 2;
@@ -175,6 +177,7 @@ message GetPoseRequest {
 }
 
 message GetPoseResponse {
+  option deprecated = true;
   common.v1.PoseInFrame pose = 1;
 }
 
