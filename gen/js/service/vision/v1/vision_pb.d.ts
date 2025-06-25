@@ -152,6 +152,26 @@ export class Detection extends jspb.Message {
   getClassName(): string;
   setClassName(value: string): void;
 
+  hasXMinNormalized(): boolean;
+  clearXMinNormalized(): void;
+  getXMinNormalized(): number;
+  setXMinNormalized(value: number): void;
+
+  hasYMinNormalized(): boolean;
+  clearYMinNormalized(): void;
+  getYMinNormalized(): number;
+  setYMinNormalized(value: number): void;
+
+  hasXMaxNormalized(): boolean;
+  clearXMaxNormalized(): void;
+  getXMaxNormalized(): number;
+  setXMaxNormalized(value: number): void;
+
+  hasYMaxNormalized(): boolean;
+  clearYMaxNormalized(): void;
+  getYMaxNormalized(): number;
+  setYMaxNormalized(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Detection.AsObject;
   static toObject(includeInstance: boolean, msg: Detection): Detection.AsObject;
@@ -170,6 +190,10 @@ export namespace Detection {
     yMax: number,
     confidence: number,
     className: string,
+    xMinNormalized: number,
+    yMinNormalized: number,
+    xMaxNormalized: number,
+    yMaxNormalized: number,
   }
 }
 

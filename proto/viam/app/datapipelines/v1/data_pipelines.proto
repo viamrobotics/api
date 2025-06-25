@@ -1,0 +1,200 @@
+syntax = "proto3";
+
+package viam.app.datapipelines.v1;
+
+import "app/data/v1/data.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/app/datapipelines/v1";
+
+// DataPipelinesService is used to manage data pipelines.
+service DataPipelinesService {
+  // GetDataPipeline retrieves a specific data pipeline by its id.
+  rpc GetDataPipeline(GetDataPipelineRequest) returns (GetDataPipelineResponse);
+
+  // ListDataPipelines returns a list of data pipelines based on organization id.
+  rpc ListDataPipelines(ListDataPipelinesRequest) returns (ListDataPipelinesResponse);
+
+  // CreateDataPipeline creates a new data pipeline with the provided configuration.
+  rpc CreateDataPipeline(CreateDataPipelineRequest) returns (CreateDataPipelineResponse);
+
+  // UpdateDataPipeline modifies an existing data pipeline's configuration.
+  rpc UpdateDataPipeline(UpdateDataPipelineRequest) returns (UpdateDataPipelineResponse);
+
+  // DeleteDataPipeline deletes a data pipeline from the database.
+  rpc DeleteDataPipeline(DeleteDataPipelineRequest) returns (DeleteDataPipelineResponse);
+
+  // EnableDataPipeline enables a data pipeline.
+  rpc EnableDataPipeline(EnableDataPipelineRequest) returns (EnableDataPipelineResponse);
+
+  // DisableDataPipeline disables a data pipeline.
+  rpc DisableDataPipeline(DisableDataPipelineRequest) returns (DisableDataPipelineResponse);
+
+  // ListDataPipelineRuns lists the runs of a data pipeline.
+  rpc ListDataPipelineRuns(ListDataPipelineRunsRequest) returns (ListDataPipelineRunsResponse);
+}
+
+message DataPipeline {
+  string id = 1;
+
+  // The associated Viam organization ID.
+  string organization_id = 2;
+
+  // A unique identifier at the org level.
+  string name = 3;
+
+  // A MongoDB aggregation pipeline as a list of BSON documents, where
+  // each document is one stage in the pipeline.
+  repeated bytes mql_binary = 4;
+
+  // A cron expression representing the expected execution schedule in UTC (note this also
+  // defines the input time window; an hourly schedule would process 1 hour of data at a time).
+  string schedule = 5;
+
+  // Whether or not the pipeline is enabled.
+  bool enabled = 6;
+
+  // The time the pipeline was created.
+  google.protobuf.Timestamp created_on = 7;
+
+  // The time the pipeline was last updated.
+  google.protobuf.Timestamp updated_at = 8;
+
+  // The type of data source for the pipeline. If not specified, default is standard data storage.
+  optional viam.app.data.v1.TabularDataSourceType data_source_type = 9;
+}
+
+message GetDataPipelineRequest {
+  // The ID of the data pipeline to retrieve.
+  string id = 1;
+}
+
+message GetDataPipelineResponse {
+  DataPipeline data_pipeline = 1;
+}
+
+message ListDataPipelinesRequest {
+  // The associated Viam organization ID.
+  string organization_id = 1;
+}
+
+message ListDataPipelinesResponse {
+  repeated DataPipeline data_pipelines = 1;
+}
+
+message CreateDataPipelineRequest {
+  // The associated Viam organization ID.
+  string organization_id = 1;
+
+  // A unique identifier at the org level.
+  string name = 2;
+
+  // A MongoDB aggregation pipeline as a list of BSON documents, where
+  // each document is one stage in the pipeline.
+  repeated bytes mql_binary = 3;
+
+  // A cron expression representing the expected execution schedule in UTC (note this also
+  // defines the input time window; an hourly schedule would process 1 hour of data at a time).
+  string schedule = 4;
+
+  // When true, pipeline runs will be scheduled for the organization's past data.
+  optional bool enable_backfill = 5;
+
+  // The type of data source for the pipeline. If not specified, default is standard data storage.
+  optional viam.app.data.v1.TabularDataSourceType data_source_type = 6;
+}
+
+message CreateDataPipelineResponse {
+  // The ID of the newly created data pipeline.
+  string id = 1;
+}
+
+message UpdateDataPipelineRequest {
+  // The ID of the data pipeline to update.
+  string id = 1;
+
+  // A unique identifier at the org level.
+  string name = 2;
+
+  // A MongoDB aggregation pipeline as a list of BSON documents, where
+  // each document is one stage in the pipeline.
+  repeated bytes mql_binary = 3;
+
+  // A cron expression representing the expected execution schedule in UTC (note this also
+  // defines the input time window; an hourly schedule would process 1 hour of data at a time).
+  string schedule = 4;
+
+  // The type of data source for the pipeline. If not specified, default is standard data storage.
+  optional viam.app.data.v1.TabularDataSourceType data_source_type = 5;
+}
+
+message UpdateDataPipelineResponse {}
+
+message DeleteDataPipelineRequest {
+  // The ID of the data pipeline to delete.
+  string id = 1;
+}
+
+message DeleteDataPipelineResponse {}
+
+message EnableDataPipelineRequest {
+  // The ID of the data pipeline to enable.
+  string id = 1;
+}
+
+message EnableDataPipelineResponse {}
+
+message DisableDataPipelineRequest {
+  // The ID of the data pipeline to disable.
+  string id = 1;
+}
+
+message DisableDataPipelineResponse {}
+
+message ListDataPipelineRunsRequest {
+  // The ID of the data pipeline to list runs for.
+  string id = 1;
+
+  // pagination fields
+  uint32 page_size = 2;
+  string page_token = 3;
+}
+
+message ListDataPipelineRunsResponse {
+  // The ID of the data pipeline the runs are for.
+  string pipeline_id = 1;
+
+  // The runs that were run.
+  repeated DataPipelineRun runs = 2;
+
+  // A token to retrieve the next page of results.
+  string next_page_token = 3;
+}
+
+message DataPipelineRun {
+  // The ID of the run.
+  string id = 1;
+
+  // The time the run started.
+  google.protobuf.Timestamp start_time = 2;
+
+  // The time the run ended.
+  google.protobuf.Timestamp end_time = 3;
+
+  // The start time of the data that was processed in the run.
+  google.protobuf.Timestamp data_start_time = 4;
+
+  // The end time of the data that was processed in the run.
+  google.protobuf.Timestamp data_end_time = 5;
+
+  // The status of the run.
+  DataPipelineRunStatus status = 6;
+}
+
+enum DataPipelineRunStatus {
+  DATA_PIPELINE_RUN_STATUS_UNSPECIFIED = 0;
+  DATA_PIPELINE_RUN_STATUS_SCHEDULED = 1;
+  DATA_PIPELINE_RUN_STATUS_STARTED = 2;
+  DATA_PIPELINE_RUN_STATUS_COMPLETED = 3;
+  DATA_PIPELINE_RUN_STATUS_FAILED = 4;
+}

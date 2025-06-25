@@ -33,6 +33,11 @@ service GripperService {
     option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/is_moving"};
   }
 
+  // IsHoldingSomething returns whether the gripper is currently holding onto an object
+  rpc IsHoldingSomething(IsHoldingSomethingRequest) returns (IsHoldingSomethingResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/is_holding_something"};
+  }
+
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {post: "/viam/api/v1/component/gripper/{name}/do_command"};
@@ -41,6 +46,11 @@ service GripperService {
   // GetGeometries returns the geometries of the component in their current configuration
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/geometries"};
+  }
+
+  // GetKinematics returns the kinematics file for the component
+  rpc GetKinematics(common.v1.GetKinematicsRequest) returns (common.v1.GetKinematicsResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/kinematics"};
   }
 }
 
@@ -75,4 +85,14 @@ message IsMovingRequest {
 
 message IsMovingResponse {
   bool is_moving = 1;
+}
+
+message IsHoldingSomethingRequest {
+  string name = 1;
+  google.protobuf.Struct extra = 99;
+}
+
+message IsHoldingSomethingResponse {
+  bool is_holding_something = 1;
+  google.protobuf.Struct meta = 99;
 }

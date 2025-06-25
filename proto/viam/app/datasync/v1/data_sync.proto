@@ -36,6 +36,7 @@ message DataCaptureUploadRequest {
 // DataCaptureUploadResponse returns the file id of the uploaded contents and metadata for tabular data.
 message DataCaptureUploadResponse {
   string file_id = 1;
+  string binary_data_id = 2;
 }
 
 // FileUploadRequest requests to upload the contents and metadata for binary (image + file) data.
@@ -49,7 +50,8 @@ message FileUploadRequest {
 
 // FileUploadResponse returns the file id of the uploaded contents and metadata for binary (image + file) data.
 message FileUploadResponse {
-  string file_id = 1;
+  string file_id = 1 [deprecated = true];
+  string binary_data_id = 2;
 }
 
 // StreamingDataCaptureUploadRequest requests to upload the contents and metadata for streaming binary (image + file) data.
@@ -63,7 +65,8 @@ message StreamingDataCaptureUploadRequest {
 
 // StreamingDataCaptureUploadResponse returns the file id of the uploaded contents and metadata for streaming binary (image + file) data.
 message StreamingDataCaptureUploadResponse {
-  string file_id = 1;
+  string file_id = 1 [deprecated = true];
+  string binary_data_id = 2;
 }
 
 enum MimeType {

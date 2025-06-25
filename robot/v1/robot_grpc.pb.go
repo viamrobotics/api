@@ -30,8 +30,8 @@ type RobotServiceClient interface {
 	ResourceRPCSubtypes(ctx context.Context, in *ResourceRPCSubtypesRequest, opts ...grpc.CallOption) (*ResourceRPCSubtypesResponse, error)
 	CancelOperation(ctx context.Context, in *CancelOperationRequest, opts ...grpc.CallOption) (*CancelOperationResponse, error)
 	BlockForOperation(ctx context.Context, in *BlockForOperationRequest, opts ...grpc.CallOption) (*BlockForOperationResponse, error)
-	// DiscoverComponents returns the list of discovered component configurations.
-	DiscoverComponents(ctx context.Context, in *DiscoverComponentsRequest, opts ...grpc.CallOption) (*DiscoverComponentsResponse, error)
+	// GetModelsFromModules returns the list of models supported in modules on the machine.
+	GetModelsFromModules(ctx context.Context, in *GetModelsFromModulesRequest, opts ...grpc.CallOption) (*GetModelsFromModulesResponse, error)
 	FrameSystemConfig(ctx context.Context, in *FrameSystemConfigRequest, opts ...grpc.CallOption) (*FrameSystemConfigResponse, error)
 	TransformPose(ctx context.Context, in *TransformPoseRequest, opts ...grpc.CallOption) (*TransformPoseResponse, error)
 	TransformPCD(ctx context.Context, in *TransformPCDRequest, opts ...grpc.CallOption) (*TransformPCDResponse, error)
@@ -61,6 +61,10 @@ type RobotServiceClient interface {
 	GetMachineStatus(ctx context.Context, in *GetMachineStatusRequest, opts ...grpc.CallOption) (*GetMachineStatusResponse, error)
 	// GetVersion returns version information about the robot.
 	GetVersion(ctx context.Context, in *GetVersionRequest, opts ...grpc.CallOption) (*GetVersionResponse, error)
+	// Tunnel tunnels traffic to the destination port of the robot server.
+	Tunnel(ctx context.Context, opts ...grpc.CallOption) (RobotService_TunnelClient, error)
+	// ListTunnels lists all available tunnels configured on the robot.
+	ListTunnels(ctx context.Context, in *ListTunnelsRequest, opts ...grpc.CallOption) (*ListTunnelsResponse, error)
 }
 
 type robotServiceClient struct {
@@ -125,9 +129,9 @@ func (c *robotServiceClient) BlockForOperation(ctx context.Context, in *BlockFor
 	return out, nil
 }
 
-func (c *robotServiceClient) DiscoverComponents(ctx context.Context, in *DiscoverComponentsRequest, opts ...grpc.CallOption) (*DiscoverComponentsResponse, error) {
-	out := new(DiscoverComponentsResponse)
-	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/DiscoverComponents", in, out, opts...)
+func (c *robotServiceClient) GetModelsFromModules(ctx context.Context, in *GetModelsFromModulesRequest, opts ...grpc.CallOption) (*GetModelsFromModulesResponse, error) {
+	out := new(GetModelsFromModulesResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetModelsFromModules", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -285,6 +289,46 @@ func (c *robotServiceClient) GetVersion(ctx context.Context, in *GetVersionReque
 	return out, nil
 }
 
+func (c *robotServiceClient) Tunnel(ctx context.Context, opts ...grpc.CallOption) (RobotService_TunnelClient, error) {
+	stream, err := c.cc.NewStream(ctx, &RobotService_ServiceDesc.Streams[1], "/viam.robot.v1.RobotService/Tunnel", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &robotServiceTunnelClient{stream}
+	return x, nil
+}
+
+type RobotService_TunnelClient interface {
+	Send(*TunnelRequest) error
+	Recv() (*TunnelResponse, error)
+	grpc.ClientStream
+}
+
+type robotServiceTunnelClient struct {
+	grpc.ClientStream
+}
+
+func (x *robotServiceTunnelClient) Send(m *TunnelRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *robotServiceTunnelClient) Recv() (*TunnelResponse, error) {
+	m := new(TunnelResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *robotServiceClient) ListTunnels(ctx context.Context, in *ListTunnelsRequest, opts ...grpc.CallOption) (*ListTunnelsResponse, error) {
+	out := new(ListTunnelsResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/ListTunnels", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RobotServiceServer is the server API for RobotService service.
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
@@ -297,8 +341,8 @@ type RobotServiceServer interface {
 	ResourceRPCSubtypes(context.Context, *ResourceRPCSubtypesRequest) (*ResourceRPCSubtypesResponse, error)
 	CancelOperation(context.Context, *CancelOperationRequest) (*CancelOperationResponse, error)
 	BlockForOperation(context.Context, *BlockForOperationRequest) (*BlockForOperationResponse, error)
-	// DiscoverComponents returns the list of discovered component configurations.
-	DiscoverComponents(context.Context, *DiscoverComponentsRequest) (*DiscoverComponentsResponse, error)
+	// GetModelsFromModules returns the list of models supported in modules on the machine.
+	GetModelsFromModules(context.Context, *GetModelsFromModulesRequest) (*GetModelsFromModulesResponse, error)
 	FrameSystemConfig(context.Context, *FrameSystemConfigRequest) (*FrameSystemConfigResponse, error)
 	TransformPose(context.Context, *TransformPoseRequest) (*TransformPoseResponse, error)
 	TransformPCD(context.Context, *TransformPCDRequest) (*TransformPCDResponse, error)
@@ -328,6 +372,10 @@ type RobotServiceServer interface {
 	GetMachineStatus(context.Context, *GetMachineStatusRequest) (*GetMachineStatusResponse, error)
 	// GetVersion returns version information about the robot.
 	GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error)
+	// Tunnel tunnels traffic to the destination port of the robot server.
+	Tunnel(RobotService_TunnelServer) error
+	// ListTunnels lists all available tunnels configured on the robot.
+	ListTunnels(context.Context, *ListTunnelsRequest) (*ListTunnelsResponse, error)
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -353,8 +401,8 @@ func (UnimplementedRobotServiceServer) CancelOperation(context.Context, *CancelO
 func (UnimplementedRobotServiceServer) BlockForOperation(context.Context, *BlockForOperationRequest) (*BlockForOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BlockForOperation not implemented")
 }
-func (UnimplementedRobotServiceServer) DiscoverComponents(context.Context, *DiscoverComponentsRequest) (*DiscoverComponentsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DiscoverComponents not implemented")
+func (UnimplementedRobotServiceServer) GetModelsFromModules(context.Context, *GetModelsFromModulesRequest) (*GetModelsFromModulesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetModelsFromModules not implemented")
 }
 func (UnimplementedRobotServiceServer) FrameSystemConfig(context.Context, *FrameSystemConfigRequest) (*FrameSystemConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FrameSystemConfig not implemented")
@@ -397,6 +445,12 @@ func (UnimplementedRobotServiceServer) GetMachineStatus(context.Context, *GetMac
 }
 func (UnimplementedRobotServiceServer) GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetVersion not implemented")
+}
+func (UnimplementedRobotServiceServer) Tunnel(RobotService_TunnelServer) error {
+	return status.Errorf(codes.Unimplemented, "method Tunnel not implemented")
+}
+func (UnimplementedRobotServiceServer) ListTunnels(context.Context, *ListTunnelsRequest) (*ListTunnelsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTunnels not implemented")
 }
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
@@ -519,20 +573,20 @@ func _RobotService_BlockForOperation_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RobotService_DiscoverComponents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DiscoverComponentsRequest)
+func _RobotService_GetModelsFromModules_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetModelsFromModulesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RobotServiceServer).DiscoverComponents(ctx, in)
+		return srv.(RobotServiceServer).GetModelsFromModules(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.robot.v1.RobotService/DiscoverComponents",
+		FullMethod: "/viam.robot.v1.RobotService/GetModelsFromModules",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RobotServiceServer).DiscoverComponents(ctx, req.(*DiscoverComponentsRequest))
+		return srv.(RobotServiceServer).GetModelsFromModules(ctx, req.(*GetModelsFromModulesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -792,6 +846,50 @@ func _RobotService_GetVersion_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_Tunnel_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(RobotServiceServer).Tunnel(&robotServiceTunnelServer{stream})
+}
+
+type RobotService_TunnelServer interface {
+	Send(*TunnelResponse) error
+	Recv() (*TunnelRequest, error)
+	grpc.ServerStream
+}
+
+type robotServiceTunnelServer struct {
+	grpc.ServerStream
+}
+
+func (x *robotServiceTunnelServer) Send(m *TunnelResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *robotServiceTunnelServer) Recv() (*TunnelRequest, error) {
+	m := new(TunnelRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func _RobotService_ListTunnels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTunnelsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).ListTunnels(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/ListTunnels",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).ListTunnels(ctx, req.(*ListTunnelsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RobotService_ServiceDesc is the grpc.ServiceDesc for RobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -824,8 +922,8 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _RobotService_BlockForOperation_Handler,
 		},
 		{
-			MethodName: "DiscoverComponents",
-			Handler:    _RobotService_DiscoverComponents_Handler,
+			MethodName: "GetModelsFromModules",
+			Handler:    _RobotService_GetModelsFromModules_Handler,
 		},
 		{
 			MethodName: "FrameSystemConfig",
@@ -879,12 +977,22 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "GetVersion",
 			Handler:    _RobotService_GetVersion_Handler,
 		},
+		{
+			MethodName: "ListTunnels",
+			Handler:    _RobotService_ListTunnels_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "StreamStatus",
 			Handler:       _RobotService_StreamStatus_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "Tunnel",
+			Handler:       _RobotService_Tunnel_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
 		},
 	},
 	Metadata: "robot/v1/robot.proto",

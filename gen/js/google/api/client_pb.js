@@ -2373,7 +2373,8 @@ proto.google.api.PythonSettings.ExperimentalFeatures.prototype.toObject = functi
 proto.google.api.PythonSettings.ExperimentalFeatures.toObject = function(includeInstance, msg) {
   var f, obj = {
     restAsyncIoEnabled: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    protobufPythonicTypesEnabled: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+    protobufPythonicTypesEnabled: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    unversionedPackageDisabled: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -2418,6 +2419,10 @@ proto.google.api.PythonSettings.ExperimentalFeatures.deserializeBinaryFromReader
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setProtobufPythonicTypesEnabled(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setUnversionedPackageDisabled(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2461,6 +2466,13 @@ proto.google.api.PythonSettings.ExperimentalFeatures.serializeBinaryToWriter = f
       f
     );
   }
+  f = message.getUnversionedPackageDisabled();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -2497,6 +2509,24 @@ proto.google.api.PythonSettings.ExperimentalFeatures.prototype.getProtobufPython
  */
 proto.google.api.PythonSettings.ExperimentalFeatures.prototype.setProtobufPythonicTypesEnabled = function(value) {
   return jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
+
+/**
+ * optional bool unversioned_package_disabled = 3;
+ * @return {boolean}
+ */
+proto.google.api.PythonSettings.ExperimentalFeatures.prototype.getUnversionedPackageDisabled = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.google.api.PythonSettings.ExperimentalFeatures} returns this
+ */
+proto.google.api.PythonSettings.ExperimentalFeatures.prototype.setUnversionedPackageDisabled = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -3990,7 +4020,8 @@ proto.google.api.SelectiveGapicGeneration.prototype.toObject = function(opt_incl
  */
 proto.google.api.SelectiveGapicGeneration.toObject = function(includeInstance, msg) {
   var f, obj = {
-    methodsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    methodsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+    generateOmittedAsInternal: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -4031,6 +4062,10 @@ proto.google.api.SelectiveGapicGeneration.deserializeBinaryFromReader = function
       var value = /** @type {string} */ (reader.readString());
       msg.addMethods(value);
       break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setGenerateOmittedAsInternal(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -4064,6 +4099,13 @@ proto.google.api.SelectiveGapicGeneration.serializeBinaryToWriter = function(mes
   if (f.length > 0) {
     writer.writeRepeatedString(
       1,
+      f
+    );
+  }
+  f = message.getGenerateOmittedAsInternal();
+  if (f) {
+    writer.writeBool(
+      2,
       f
     );
   }
@@ -4104,6 +4146,24 @@ proto.google.api.SelectiveGapicGeneration.prototype.addMethods = function(value,
  */
 proto.google.api.SelectiveGapicGeneration.prototype.clearMethodsList = function() {
   return this.setMethodsList([]);
+};
+
+
+/**
+ * optional bool generate_omitted_as_internal = 2;
+ * @return {boolean}
+ */
+proto.google.api.SelectiveGapicGeneration.prototype.getGenerateOmittedAsInternal = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.google.api.SelectiveGapicGeneration} returns this
+ */
+proto.google.api.SelectiveGapicGeneration.prototype.setGenerateOmittedAsInternal = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 

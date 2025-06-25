@@ -399,6 +399,32 @@ export namespace TabularDataBySQLResponse {
   }
 }
 
+export class TabularDataSource extends jspb.Message {
+  getType(): TabularDataSourceTypeMap[keyof TabularDataSourceTypeMap];
+  setType(value: TabularDataSourceTypeMap[keyof TabularDataSourceTypeMap]): void;
+
+  hasPipelineId(): boolean;
+  clearPipelineId(): void;
+  getPipelineId(): string;
+  setPipelineId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TabularDataSource.AsObject;
+  static toObject(includeInstance: boolean, msg: TabularDataSource): TabularDataSource.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TabularDataSource, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TabularDataSource;
+  static deserializeBinaryFromReader(message: TabularDataSource, reader: jspb.BinaryReader): TabularDataSource;
+}
+
+export namespace TabularDataSource {
+  export type AsObject = {
+    type: TabularDataSourceTypeMap[keyof TabularDataSourceTypeMap],
+    pipelineId: string,
+  }
+}
+
 export class TabularDataByMQLRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
@@ -409,6 +435,16 @@ export class TabularDataByMQLRequest extends jspb.Message {
   getMqlBinaryList_asB64(): Array<string>;
   setMqlBinaryList(value: Array<Uint8Array | string>): void;
   addMqlBinary(value: Uint8Array | string, index?: number): Uint8Array | string;
+
+  hasUseRecentData(): boolean;
+  clearUseRecentData(): void;
+  getUseRecentData(): boolean;
+  setUseRecentData(value: boolean): void;
+
+  hasDataSource(): boolean;
+  clearDataSource(): void;
+  getDataSource(): TabularDataSource | undefined;
+  setDataSource(value?: TabularDataSource): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataByMQLRequest.AsObject;
@@ -424,6 +460,8 @@ export namespace TabularDataByMQLRequest {
   export type AsObject = {
     organizationId: string,
     mqlBinaryList: Array<Uint8Array | string>,
+    useRecentData: boolean,
+    dataSource?: TabularDataSource.AsObject,
   }
 }
 
@@ -469,6 +507,11 @@ export class ExportTabularDataRequest extends jspb.Message {
   getInterval(): CaptureInterval | undefined;
   setInterval(value?: CaptureInterval): void;
 
+  hasAdditionalParameters(): boolean;
+  clearAdditionalParameters(): void;
+  getAdditionalParameters(): google_protobuf_struct_pb.Struct | undefined;
+  setAdditionalParameters(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ExportTabularDataRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ExportTabularDataRequest): ExportTabularDataRequest.AsObject;
@@ -486,6 +529,7 @@ export namespace ExportTabularDataRequest {
     resourceSubtype: string,
     methodName: string,
     interval?: CaptureInterval.AsObject,
+    additionalParameters?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -578,6 +622,11 @@ export class GetLatestTabularDataRequest extends jspb.Message {
   getResourceSubtype(): string;
   setResourceSubtype(value: string): void;
 
+  hasAdditionalParameters(): boolean;
+  clearAdditionalParameters(): void;
+  getAdditionalParameters(): google_protobuf_struct_pb.Struct | undefined;
+  setAdditionalParameters(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetLatestTabularDataRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetLatestTabularDataRequest): GetLatestTabularDataRequest.AsObject;
@@ -594,6 +643,7 @@ export namespace GetLatestTabularDataRequest {
     resourceName: string,
     methodName: string,
     resourceSubtype: string,
+    additionalParameters?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -764,6 +814,11 @@ export class BinaryDataByIDsRequest extends jspb.Message {
   setBinaryIdsList(value: Array<BinaryID>): void;
   addBinaryIds(value?: BinaryID, index?: number): BinaryID;
 
+  clearBinaryDataIdsList(): void;
+  getBinaryDataIdsList(): Array<string>;
+  setBinaryDataIdsList(value: Array<string>): void;
+  addBinaryDataIds(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataByIDsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryDataByIDsRequest): BinaryDataByIDsRequest.AsObject;
@@ -778,6 +833,7 @@ export namespace BinaryDataByIDsRequest {
   export type AsObject = {
     includeBinary: boolean,
     binaryIdsList: Array<BinaryID.AsObject>,
+    binaryDataIdsList: Array<string>,
   }
 }
 
@@ -945,6 +1001,9 @@ export class BinaryMetadata extends jspb.Message {
   setDatasetIdsList(value: Array<string>): void;
   addDatasetIds(value: string, index?: number): string;
 
+  getBinaryDataId(): string;
+  setBinaryDataId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryMetadata): BinaryMetadata.AsObject;
@@ -966,6 +1025,7 @@ export namespace BinaryMetadata {
     uri: string,
     annotations?: Annotations.AsObject,
     datasetIdsList: Array<string>,
+    binaryDataId: string,
   }
 }
 
@@ -1065,6 +1125,11 @@ export class DeleteBinaryDataByIDsRequest extends jspb.Message {
   setBinaryIdsList(value: Array<BinaryID>): void;
   addBinaryIds(value?: BinaryID, index?: number): BinaryID;
 
+  clearBinaryDataIdsList(): void;
+  getBinaryDataIdsList(): Array<string>;
+  setBinaryDataIdsList(value: Array<string>): void;
+  addBinaryDataIds(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteBinaryDataByIDsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: DeleteBinaryDataByIDsRequest): DeleteBinaryDataByIDsRequest.AsObject;
@@ -1078,6 +1143,7 @@ export class DeleteBinaryDataByIDsRequest extends jspb.Message {
 export namespace DeleteBinaryDataByIDsRequest {
   export type AsObject = {
     binaryIdsList: Array<BinaryID.AsObject>,
+    binaryDataIdsList: Array<string>,
   }
 }
 
@@ -1107,6 +1173,11 @@ export class AddTagsToBinaryDataByIDsRequest extends jspb.Message {
   setBinaryIdsList(value: Array<BinaryID>): void;
   addBinaryIds(value?: BinaryID, index?: number): BinaryID;
 
+  clearBinaryDataIdsList(): void;
+  getBinaryDataIdsList(): Array<string>;
+  setBinaryDataIdsList(value: Array<string>): void;
+  addBinaryDataIds(value: string, index?: number): string;
+
   clearTagsList(): void;
   getTagsList(): Array<string>;
   setTagsList(value: Array<string>): void;
@@ -1125,6 +1196,7 @@ export class AddTagsToBinaryDataByIDsRequest extends jspb.Message {
 export namespace AddTagsToBinaryDataByIDsRequest {
   export type AsObject = {
     binaryIdsList: Array<BinaryID.AsObject>,
+    binaryDataIdsList: Array<string>,
     tagsList: Array<string>,
   }
 }
@@ -1195,6 +1267,11 @@ export class RemoveTagsFromBinaryDataByIDsRequest extends jspb.Message {
   setBinaryIdsList(value: Array<BinaryID>): void;
   addBinaryIds(value?: BinaryID, index?: number): BinaryID;
 
+  clearBinaryDataIdsList(): void;
+  getBinaryDataIdsList(): Array<string>;
+  setBinaryDataIdsList(value: Array<string>): void;
+  addBinaryDataIds(value: string, index?: number): string;
+
   clearTagsList(): void;
   getTagsList(): Array<string>;
   setTagsList(value: Array<string>): void;
@@ -1213,6 +1290,7 @@ export class RemoveTagsFromBinaryDataByIDsRequest extends jspb.Message {
 export namespace RemoveTagsFromBinaryDataByIDsRequest {
   export type AsObject = {
     binaryIdsList: Array<BinaryID.AsObject>,
+    binaryDataIdsList: Array<string>,
     tagsList: Array<string>,
   }
 }
@@ -1335,6 +1413,9 @@ export class AddBoundingBoxToImageByIDRequest extends jspb.Message {
   getBinaryId(): BinaryID | undefined;
   setBinaryId(value?: BinaryID): void;
 
+  getBinaryDataId(): string;
+  setBinaryDataId(value: string): void;
+
   getLabel(): string;
   setLabel(value: string): void;
 
@@ -1363,6 +1444,7 @@ export class AddBoundingBoxToImageByIDRequest extends jspb.Message {
 export namespace AddBoundingBoxToImageByIDRequest {
   export type AsObject = {
     binaryId?: BinaryID.AsObject,
+    binaryDataId: string,
     label: string,
     xMinNormalized: number,
     yMinNormalized: number,
@@ -1397,6 +1479,9 @@ export class RemoveBoundingBoxFromImageByIDRequest extends jspb.Message {
   getBinaryId(): BinaryID | undefined;
   setBinaryId(value?: BinaryID): void;
 
+  getBinaryDataId(): string;
+  setBinaryDataId(value: string): void;
+
   getBboxId(): string;
   setBboxId(value: string): void;
 
@@ -1413,6 +1498,7 @@ export class RemoveBoundingBoxFromImageByIDRequest extends jspb.Message {
 export namespace RemoveBoundingBoxFromImageByIDRequest {
   export type AsObject = {
     binaryId?: BinaryID.AsObject,
+    binaryDataId: string,
     bboxId: string,
   }
 }
@@ -1438,6 +1524,9 @@ export class UpdateBoundingBoxRequest extends jspb.Message {
   clearBinaryId(): void;
   getBinaryId(): BinaryID | undefined;
   setBinaryId(value?: BinaryID): void;
+
+  getBinaryDataId(): string;
+  setBinaryDataId(value: string): void;
 
   getBboxId(): string;
   setBboxId(value: string): void;
@@ -1480,6 +1569,7 @@ export class UpdateBoundingBoxRequest extends jspb.Message {
 export namespace UpdateBoundingBoxRequest {
   export type AsObject = {
     binaryId?: BinaryID.AsObject,
+    binaryDataId: string,
     bboxId: string,
     label: string,
     xMinNormalized: number,
@@ -1643,6 +1733,11 @@ export class AddBinaryDataToDatasetByIDsRequest extends jspb.Message {
   setBinaryIdsList(value: Array<BinaryID>): void;
   addBinaryIds(value?: BinaryID, index?: number): BinaryID;
 
+  clearBinaryDataIdsList(): void;
+  getBinaryDataIdsList(): Array<string>;
+  setBinaryDataIdsList(value: Array<string>): void;
+  addBinaryDataIds(value: string, index?: number): string;
+
   getDatasetId(): string;
   setDatasetId(value: string): void;
 
@@ -1659,6 +1754,7 @@ export class AddBinaryDataToDatasetByIDsRequest extends jspb.Message {
 export namespace AddBinaryDataToDatasetByIDsRequest {
   export type AsObject = {
     binaryIdsList: Array<BinaryID.AsObject>,
+    binaryDataIdsList: Array<string>,
     datasetId: string,
   }
 }
@@ -1685,6 +1781,11 @@ export class RemoveBinaryDataFromDatasetByIDsRequest extends jspb.Message {
   setBinaryIdsList(value: Array<BinaryID>): void;
   addBinaryIds(value?: BinaryID, index?: number): BinaryID;
 
+  clearBinaryDataIdsList(): void;
+  getBinaryDataIdsList(): Array<string>;
+  setBinaryDataIdsList(value: Array<string>): void;
+  addBinaryDataIds(value: string, index?: number): string;
+
   getDatasetId(): string;
   setDatasetId(value: string): void;
 
@@ -1701,6 +1802,7 @@ export class RemoveBinaryDataFromDatasetByIDsRequest extends jspb.Message {
 export namespace RemoveBinaryDataFromDatasetByIDsRequest {
   export type AsObject = {
     binaryIdsList: Array<BinaryID.AsObject>,
+    binaryDataIdsList: Array<string>,
     datasetId: string,
   }
 }
@@ -1737,4 +1839,13 @@ export interface TagsFilterTypeMap {
 }
 
 export const TagsFilterType: TagsFilterTypeMap;
+
+export interface TabularDataSourceTypeMap {
+  TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED: 0;
+  TABULAR_DATA_SOURCE_TYPE_STANDARD: 1;
+  TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE: 2;
+  TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK: 3;
+}
+
+export const TabularDataSourceType: TabularDataSourceTypeMap;
 

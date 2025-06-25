@@ -47,6 +47,7 @@ message RobotConfig {
   // Disables the robot's log deduplication (identical, noisy logs will still
   // be output individually instead of aggregated.)
   bool disable_log_deduplication = 17;
+  repeated JobConfig jobs = 18;
 }
 
 // LogPatternConfig allows you to specify a 2-tuple consisting
@@ -54,6 +55,21 @@ message RobotConfig {
 message LogPatternConfig {
   string pattern = 1;
   string level = 2;
+}
+
+message JobConfig {
+  // unique name of the job.
+  string name = 1;
+  // a unix-cron string or a Golang-parsable duration string,
+  // specifies the interval at which the job is run.
+  string schedule = 2;
+  // the resource associated with this job.
+  string resource = 3;
+  // the gRPC request of this job's resource.
+  string method = 4;
+  // in case method is "DoCommand", specifies the
+  // command argument of the gRPC request.
+  google.protobuf.Struct command = 5;
 }
 
 // Valid location secret that can be used for authentication to the robot.
@@ -139,10 +155,17 @@ message NetworkConfig {
   string tls_cert_file = 3;
   string tls_key_file = 4;
   SessionsConfig sessions = 5;
+  repeated TrafficTunnelEndpoint traffic_tunnel_endpoints = 6;
+  bool no_tls = 7;
 }
 
 message SessionsConfig {
   google.protobuf.Duration heartbeat_window = 1;
+}
+
+message TrafficTunnelEndpoint {
+  int32 port = 1;
+  google.protobuf.Duration connection_timeout = 2;
 }
 
 message AuthConfig {
@@ -370,6 +393,8 @@ message ModuleConfig {
   AppValidationStatus status = 7;
   // timeout for first_run script
   google.protobuf.Duration first_run_timeout = 8;
+  // whether we are starting a module in TCP mode
+  bool tcp_mode = 9;
 }
 
 // PackageConfig is the configration for deployed Packages.

@@ -43,8 +43,17 @@ service AppService {
   // Update an organization
   rpc UpdateOrganization(UpdateOrganizationRequest) returns (UpdateOrganizationResponse);
 
+  // Update an organization's namespace if it's already been set.
+  rpc UpdateOrganizationNamespace(UpdateOrganizationNamespaceRequest) returns (UpdateOrganizationNamespaceResponse);
+
   // Delete an organization
   rpc DeleteOrganization(DeleteOrganizationRequest) returns (DeleteOrganizationResponse);
+
+  // Get user-defined metadata for an organization
+  rpc GetOrganizationMetadata(GetOrganizationMetadataRequest) returns (GetOrganizationMetadataResponse);
+
+  // Update user-defined metadata for an organization
+  rpc UpdateOrganizationMetadata(UpdateOrganizationMetadataRequest) returns (UpdateOrganizationMetadataResponse);
 
   // List all members of an organization and all invited members to the organization.
   rpc ListOrganizationMembers(ListOrganizationMembersRequest) returns (ListOrganizationMembersResponse);
@@ -104,6 +113,12 @@ service AppService {
   // Delete a location
   rpc DeleteLocation(DeleteLocationRequest) returns (DeleteLocationResponse);
 
+  // Get user-defined metadata for a location
+  rpc GetLocationMetadata(GetLocationMetadataRequest) returns (GetLocationMetadataResponse);
+
+  // Update user-defined metadata for a location
+  rpc UpdateLocationMetadata(UpdateLocationMetadataRequest) returns (UpdateLocationMetadataResponse);
+
   // Get a list of locations
   rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
 
@@ -126,6 +141,12 @@ service AppService {
   // Get a specific robot by ID
   rpc GetRobot(GetRobotRequest) returns (GetRobotResponse);
 
+  // Get user-defined metadata for a robot
+  rpc GetRobotMetadata(GetRobotMetadataRequest) returns (GetRobotMetadataResponse);
+
+  // Update user-defined metadata for an robot
+  rpc UpdateRobotMetadata(UpdateRobotMetadataRequest) returns (UpdateRobotMetadataResponse);
+
   // Get Rover Rental Location Robots
   rpc GetRoverRentalRobots(GetRoverRentalRobotsRequest) returns (GetRoverRentalRobotsResponse);
 
@@ -133,6 +154,9 @@ service AppService {
 
   // Get a specific robot part by ID
   rpc GetRobotPart(GetRobotPartRequest) returns (GetRobotPartResponse);
+
+  // Get a specific robot part by name and location
+  rpc GetRobotPartByNameAndLocation(GetRobotPartByNameAndLocationRequest) returns (GetRobotPartByNameAndLocationResponse);
 
   rpc GetRobotPartLogs(GetRobotPartLogsRequest) returns (GetRobotPartLogsResponse);
 
@@ -149,6 +173,12 @@ service AppService {
 
   // Delete a robot part
   rpc DeleteRobotPart(DeleteRobotPartRequest) returns (DeleteRobotPartResponse);
+
+  // Get user-defined metadata for a robot part
+  rpc GetRobotPartMetadata(GetRobotPartMetadataRequest) returns (GetRobotPartMetadataResponse);
+
+  // Update user-defined metadata for an robot part
+  rpc UpdateRobotPartMetadata(UpdateRobotPartMetadataRequest) returns (UpdateRobotPartMetadataResponse);
 
   // Gets the Robot API Keys for the robot
   rpc GetRobotAPIKeys(GetRobotAPIKeysRequest) returns (GetRobotAPIKeysResponse);
@@ -199,11 +229,26 @@ service AppService {
   // Deletes a fragment
   rpc DeleteFragment(DeleteFragmentRequest) returns (DeleteFragmentResponse);
 
+  // List nested fragments for a fragment
+  rpc ListNestedFragments(ListNestedFragmentsRequest) returns (ListNestedFragmentsResponse);
+
   // Gets top level and nested fragments for a machine, as well as any other specified fragment ids
   rpc ListMachineFragments(ListMachineFragmentsRequest) returns (ListMachineFragmentsResponse);
 
+  // List all machines and their corresponding machine dashboard information
+  rpc ListMachineSummaries(ListMachineSummariesRequest) returns (ListMachineSummariesResponse);
+
   // Gets fragment history
   rpc GetFragmentHistory(GetFragmentHistoryRequest) returns (GetFragmentHistoryResponse);
+
+  // Gets usage for a fragment across versions
+  rpc GetFragmentUsage(GetFragmentUsageRequest) returns (GetFragmentUsageResponse);
+
+  // Sets a fragment tag to a revision
+  rpc SetFragmentTag(SetFragmentTagRequest) returns (SetFragmentTagResponse);
+
+  // Deletes a fragment tag
+  rpc DeleteFragmentTag(DeleteFragmentTagRequest) returns (DeleteFragmentTagResponse);
 
   // Creates an IdentityAuthorization
   rpc AddRole(AddRoleRequest) returns (AddRoleResponse);
@@ -230,6 +275,8 @@ service AppService {
 
   rpc DeleteRegistryItem(DeleteRegistryItemRequest) returns (DeleteRegistryItemResponse);
 
+  rpc RenameRegistryItem(RenameRegistryItemRequest) returns (RenameRegistryItemResponse);
+
   rpc TransferRegistryItem(TransferRegistryItemRequest) returns (TransferRegistryItemResponse);
 
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
@@ -253,6 +300,8 @@ service AppService {
   rpc RotateKey(RotateKeyRequest) returns (RotateKeyResponse);
 
   rpc CreateKeyFromExistingKeyAuthorizations(CreateKeyFromExistingKeyAuthorizationsRequest) returns (CreateKeyFromExistingKeyAuthorizationsResponse);
+
+  rpc GetAppContent(GetAppContentRequest) returns (GetAppContentResponse);
 }
 
 message Robot {
@@ -327,6 +376,7 @@ message OrganizationMember {
   repeated string emails = 2;
   google.protobuf.Timestamp date_added = 3;
   optional google.protobuf.Timestamp last_login = 4;
+  optional google.protobuf.Timestamp last_access = 5;
 }
 
 message ListOrganizationsResponse {
@@ -358,6 +408,7 @@ message GetOrganizationResponse {
 
 message GetOrganizationNamespaceAvailabilityRequest {
   string public_namespace = 1;
+  string organization_id = 2;
 }
 
 message GetOrganizationNamespaceAvailabilityResponse {
@@ -377,11 +428,35 @@ message UpdateOrganizationResponse {
   Organization organization = 1;
 }
 
+message UpdateOrganizationNamespaceRequest {
+  string organization_id = 1;
+  string new_public_namespace = 2;
+}
+
+message UpdateOrganizationNamespaceResponse {
+  Organization organization = 1;
+}
+
 message DeleteOrganizationRequest {
   string organization_id = 1;
 }
 
 message DeleteOrganizationResponse {}
+
+message GetOrganizationMetadataRequest {
+  string organization_id = 1;
+}
+
+message GetOrganizationMetadataResponse {
+  google.protobuf.Struct data = 1;
+}
+
+message UpdateOrganizationMetadataRequest {
+  string organization_id = 1;
+  google.protobuf.Struct data = 2;
+}
+
+message UpdateOrganizationMetadataResponse {}
 
 message ListOrganizationMembersRequest {
   string organization_id = 1;
@@ -427,6 +502,9 @@ message DeleteOrganizationInviteResponse {}
 message ResendOrganizationInviteRequest {
   string organization_id = 1;
   string email = 2;
+  // Set to true (the default) to send an email to the recipient of an invite. The user must accept the email to be added to the associated authorizations.
+  // When set to false, the user automatically receives the associated authorization on the next login of the user with the associated email address.
+  optional bool send_email_invite = 3;
 }
 
 message ResendOrganizationInviteResponse {
@@ -448,6 +526,7 @@ message BillingAddress {
   string city = 3;
   string state = 4;
   string zipcode = 5;
+  string country = 6;
 }
 
 message EnableBillingServiceRequest {
@@ -547,6 +626,8 @@ message Location {
   int32 robot_count = 7;
   // Config for how data in this location is stored.
   StorageConfig config = 8;
+  // The organization that is the primary owner of the location.
+  optional OrganizationIdentity primary_org_identity = 9;
 }
 
 // SharedSecret is a secret used for LocationAuth and RobotParts.
@@ -618,6 +699,21 @@ message DeleteLocationRequest {
 }
 
 message DeleteLocationResponse {}
+
+message GetLocationMetadataRequest {
+  string location_id = 1;
+}
+
+message GetLocationMetadataResponse {
+  google.protobuf.Struct data = 1;
+}
+
+message UpdateLocationMetadataRequest {
+  string location_id = 1;
+  google.protobuf.Struct data = 2;
+}
+
+message UpdateLocationMetadataResponse {}
 
 message GetOrganizationsWithAccessToLocationRequest {
   string location_id = 1;
@@ -718,6 +814,15 @@ message GetRobotPartResponse {
   string config_json = 2;
 }
 
+message GetRobotPartByNameAndLocationRequest {
+  string name = 1;
+  string location_id = 2;
+}
+
+message GetRobotPartByNameAndLocationResponse {
+  RobotPart part = 1;
+}
+
 message GetRobotPartLogsRequest {
   string id = 1;
   // TODO(https://viam.atlassian.net/browse/APP-3877): Remove this field
@@ -759,6 +864,7 @@ message UpdateRobotPartRequest {
   string id = 1;
   string name = 2;
   google.protobuf.Struct robot_config = 3;
+  optional google.protobuf.Timestamp last_known_update = 4;
 }
 
 message UpdateRobotPartResponse {
@@ -777,6 +883,21 @@ message NewRobotPartResponse {
 message DeleteRobotPartRequest {
   string part_id = 1;
 }
+
+message GetRobotPartMetadataRequest {
+  string id = 1;
+}
+
+message GetRobotPartMetadataResponse {
+  google.protobuf.Struct data = 1;
+}
+
+message UpdateRobotPartMetadataRequest {
+  string id = 1;
+  google.protobuf.Struct data = 2;
+}
+
+message UpdateRobotPartMetadataResponse {}
 
 message GetRobotAPIKeysRequest {
   string robot_id = 1;
@@ -813,6 +934,7 @@ message Fragment {
   FragmentVisibility visibility = 12;
   // latest timestamp when fragment was updated
   google.protobuf.Timestamp last_updated = 13 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
+  string revision = 14;
 }
 
 message FragmentHistoryEntry {
@@ -820,6 +942,18 @@ message FragmentHistoryEntry {
   google.protobuf.Timestamp edited_on = 2 [(tagger.v1.tags) = "bson:\"edited_on\" json:\"edited_on\""];
   Fragment old = 3 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
   AuthenticatorInfo edited_by = 4 [(tagger.v1.tags) = "bson:\"edited_by\" json:\"edited_by\""];
+  string revision = 5 [(tagger.v1.tags) = "bson:\"revision\" json:\"revision\""];
+  google.protobuf.Struct config = 6 [(tagger.v1.tags) = "bson:\"config\" json:\"config\""];
+}
+
+message FragmentRevision {
+  string revision = 1;
+  google.protobuf.Timestamp created_at = 2;
+}
+
+message FragmentTag {
+  string tag = 1;
+  string revision = 2;
 }
 
 enum FragmentVisibility {
@@ -843,17 +977,20 @@ enum FragmentErrorType {
   FRAGMENT_ERROR_TYPE_CYCLE_DETECTED = 4;
 }
 
+// Cached fragment usage statistics
 message FragmentUsage {
   string fragment_id = 1;
   int32 organizations = 2;
   int32 machines = 3;
   int32 machines_in_current_org = 4;
+  optional string version = 5; // revision or tag
 }
 
 message ResolvedFragment {
   string fragment_id = 1;
   google.protobuf.Struct resolved_config = 2;
   FragmentError error = 3;
+  string revision = 4;
 }
 
 message ListFragmentsRequest {
@@ -870,11 +1007,14 @@ message ListFragmentsResponse {
 message GetFragmentRequest {
   string id = 1;
   string current_organization_id = 2;
+  optional string version = 3; // revision or tag
 }
 
 message GetFragmentResponse {
   Fragment fragment = 1;
   FragmentUsage fragment_usage = 2;
+  repeated FragmentRevision revisions = 3;
+  repeated FragmentTag tags = 4;
 }
 
 message CreateFragmentRequest {
@@ -894,6 +1034,7 @@ message UpdateFragmentRequest {
   google.protobuf.Struct config = 3;
   optional bool public = 4;
   optional FragmentVisibility visibility = 5;
+  optional google.protobuf.Timestamp last_known_update = 6;
 }
 
 message UpdateFragmentResponse {
@@ -917,22 +1058,120 @@ message GetFragmentHistoryResponse {
   string next_page_token = 2;
 }
 
+message GetFragmentUsageRequest {
+  string fragment_id = 1;
+}
+
+message GetFragmentUsageResponse {
+  repeated FragmentUsage version_usages = 1;
+}
+
+message SetFragmentTagRequest {
+  string fragment_id = 1;
+  string tag = 2;
+  string revision = 3;
+}
+
+message SetFragmentTagResponse {
+  repeated FragmentTag tags = 1;
+}
+
+message DeleteFragmentTagRequest {
+  string fragment_id = 1;
+  string tag = 2;
+}
+
+message DeleteFragmentTagResponse {
+  repeated FragmentTag tags = 1;
+}
+
 message ListRobotsRequest {
   string location_id = 1;
+}
+
+message AdditionalFragment {
+  string fragment_id = 1;
+  optional string version = 2;
+}
+
+message ListNestedFragmentsRequest {
+  optional string fragment_id = 1;
+  repeated AdditionalFragment additional_fragments = 2;
+}
+
+message ListNestedFragmentsResponse {
+  repeated Fragment fragments = 1;
+  repeated ResolvedFragment resolved_fragments = 2;
 }
 
 message ListMachineFragmentsRequest {
   // the machine_id used to filter fragments defined in a machine's parts.
   // Also returns any fragments nested within the fragments defined in parts.
   string machine_id = 1;
-  // additional fragment_ids to append to the response. useful when needing to view fragments that will be
-  // provisionally added to the machine alongside existing fragments.
+  // TODO(APP-7642): Mark this field as deprecated
   repeated string additional_fragment_ids = 2;
+  // additional fragments to append to the response. useful when needing to view fragments that will be
+  // provisionally added to the machine alongside existing fragments.
+  repeated AdditionalFragment additional_fragments = 3;
 }
 
 message ListMachineFragmentsResponse {
   repeated Fragment fragments = 1;
   repeated ResolvedFragment resolved_fragments = 2;
+}
+
+message ListMachineSummariesRequest {
+  string organization_id = 1;
+  // Optional list of fragment IDs to filter machines that use any of these fragments
+  repeated string fragment_ids = 2;
+}
+
+message ListMachineSummariesResponse {
+  repeated LocationSummary location_summaries = 1;
+}
+
+message LocationSummary {
+  string location_id = 1;
+  string location_name = 2;
+  repeated MachineSummary machine_summaries = 3;
+}
+
+message MachineSummary {
+  string machine_id = 1;
+  string machine_name = 2;
+  repeated PartSummary part_summaries = 3;
+}
+
+message FragmentSummary {
+  string id = 1;
+  reserved 2; // placeholder for fragment version
+  string name = 3;
+}
+
+message ViamServerVersion {
+  oneof version {
+    string major = 1;
+    string minor = 2;
+  }
+}
+
+message ViamAgentVersion {
+  oneof version {
+    string major = 1;
+    string minor = 2;
+  }
+}
+
+message PartSummary {
+  string part_id = 1;
+  string part_name = 2;
+  optional google.protobuf.Timestamp last_online = 3;
+  optional ViamServerVersion viam_server_version = 4;
+  optional ViamAgentVersion viam_agent_version = 5;
+  optional string os = 6;
+  optional string platform = 7;
+  optional string public_ip_address = 8;
+  repeated FragmentSummary fragments = 9;
 }
 
 message ListRobotsResponse {
@@ -963,6 +1202,21 @@ message DeleteRobotRequest {
 }
 
 message DeleteRobotResponse {}
+
+message GetRobotMetadataRequest {
+  string id = 1;
+}
+
+message GetRobotMetadataResponse {
+  google.protobuf.Struct data = 1;
+}
+
+message UpdateRobotMetadataRequest {
+  string id = 1;
+  google.protobuf.Struct data = 2;
+}
+
+message UpdateRobotMetadataResponse {}
 
 message MarkPartAsMainRequest {
   string part_id = 1;
@@ -1055,6 +1309,10 @@ message ModuleVersion {
   string entrypoint = 4;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 5;
+  // The markdown documentation for this version of the module
+  optional string markdown_description = 6;
+  // A list of applications associated with the module
+  repeated App apps = 7;
 }
 
 message ModuleMetadata {
@@ -1067,6 +1325,10 @@ message ModuleMetadata {
   string entrypoint = 3;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 4;
+  // markdown content for the entire module
+  optional string markdown_description = 5;
+  // A list of applications associated with the module
+  repeated App apps = 6;
 }
 
 message MLModelMetadata {
@@ -1161,10 +1423,12 @@ message UpdateRegistryItemRequest {
   optional string url = 5;
 
   oneof metadata {
-    UpdateModuleMetadata module_update_metadata = 6;
-    UpdateMLModelMetadata ml_model_update_metadata = 7;
-    UpdateMLTrainingMetadata ml_training_update_metadata = 8;
+    UpdateModuleMetadata update_module_metadata = 6;
+    UpdateMLModelMetadata update_ml_model_metadata = 7;
+    UpdateMLTrainingMetadata update_ml_training_metadata = 8;
   }
+
+  optional string markdown_description = 9;
 }
 
 message UpdateRegistryItemResponse {}
@@ -1199,6 +1463,15 @@ message DeleteRegistryItemRequest {
 }
 
 message DeleteRegistryItemResponse {}
+
+message RenameRegistryItemRequest {
+  string item_id = 1;
+  string new_name = 2;
+}
+
+message RenameRegistryItemResponse {
+  RegistryItem item = 1;
+}
 
 message TransferRegistryItemRequest {
   string item_id = 1;
@@ -1247,6 +1520,19 @@ message UpdateModuleRequest {
   string entrypoint = 6;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 7;
+  // A list of applications associated with the module
+  repeated App apps = 8;
+  // longer documentation provided in markdown format
+  optional string markdown_description = 9;
+}
+
+message App {
+  // The name of the application
+  string name = 1;
+  // The type of the application
+  string type = 2;
+  // The entrypoint of the application
+  string entrypoint = 3;
 }
 
 message UpdateModuleResponse {
@@ -1259,6 +1545,8 @@ message UpdateModuleMetadata {
   repeated Model models = 1;
   // The executable to run to start the module program
   string entrypoint = 2;
+  // A list of applications associated with the module
+  repeated App apps = 3;
 }
 
 message UpdateMLModelMetadata {
@@ -1279,6 +1567,10 @@ message Model {
   string model = 2;
   // The markdown content describing the usage of the model
   optional string markdown_documentation = 3;
+  // A short description of the model that explains its purpose
+  optional string description = 4;
+  // A list of supported hardware names
+  repeated string supported_hardware = 5;
 }
 
 message ModuleFileInfo {
@@ -1348,6 +1640,10 @@ message Module {
   string public_namespace = 12;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 13;
+  // Longer documentation provided in markdown format
+  optional string markdown_description = 14;
+  // A list of applications associated with the module
+  repeated App apps = 15;
 }
 
 message VersionHistory {
@@ -1361,6 +1657,10 @@ message VersionHistory {
   string entrypoint = 4;
   // The path to a setup script that is run before a newly downloaded module starts.
   optional string first_run = 5;
+  // The markdown documentation for this version of the module
+  optional string markdown_description = 6;
+  // A list of applications associated with the module
+  repeated App apps = 7;
 }
 
 message Uploads {
@@ -1398,6 +1698,7 @@ message OrgDetails {
   string org_name = 2;
   optional string org_cid = 3;
   optional string public_namespace = 4;
+  optional string billing_tier = 5;
 }
 
 message ListOrganizationsByUserResponse {
@@ -1478,6 +1779,16 @@ message CreateKeyFromExistingKeyAuthorizationsRequest {
 message CreateKeyFromExistingKeyAuthorizationsResponse {
   string id = 1;
   string key = 2;
+}
+
+message GetAppContentRequest {
+  string public_namespace = 1;
+  string name = 2;
+}
+
+message GetAppContentResponse {
+  string blob_path = 1;
+  string entrypoint = 2;
 }
 
 message OrganizationSetLogoRequest {

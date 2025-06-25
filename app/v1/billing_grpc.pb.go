@@ -32,6 +32,10 @@ type BillingServiceClient interface {
 	GetInvoicePdf(ctx context.Context, in *GetInvoicePdfRequest, opts ...grpc.CallOption) (BillingService_GetInvoicePdfClient, error)
 	// Send an email with a prompt to the user's org's billing page.
 	SendPaymentRequiredEmail(ctx context.Context, in *SendPaymentRequiredEmailRequest, opts ...grpc.CallOption) (*SendPaymentRequiredEmailResponse, error)
+	// Get available billing tiers that can be assigned to organizations
+	GetAvailableBillingTiers(ctx context.Context, in *GetAvailableBillingTiersRequest, opts ...grpc.CallOption) (*GetAvailableBillingTiersResponse, error)
+	// Update an organization's billing tier
+	UpdateOrganizationBillingTier(ctx context.Context, in *UpdateOrganizationBillingTierRequest, opts ...grpc.CallOption) (*UpdateOrganizationBillingTierResponse, error)
 }
 
 type billingServiceClient struct {
@@ -110,6 +114,24 @@ func (c *billingServiceClient) SendPaymentRequiredEmail(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *billingServiceClient) GetAvailableBillingTiers(ctx context.Context, in *GetAvailableBillingTiersRequest, opts ...grpc.CallOption) (*GetAvailableBillingTiersResponse, error) {
+	out := new(GetAvailableBillingTiersResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.BillingService/GetAvailableBillingTiers", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingServiceClient) UpdateOrganizationBillingTier(ctx context.Context, in *UpdateOrganizationBillingTierRequest, opts ...grpc.CallOption) (*UpdateOrganizationBillingTierResponse, error) {
+	out := new(UpdateOrganizationBillingTierResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.BillingService/UpdateOrganizationBillingTier", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BillingServiceServer is the server API for BillingService service.
 // All implementations must embed UnimplementedBillingServiceServer
 // for forward compatibility
@@ -124,6 +146,10 @@ type BillingServiceServer interface {
 	GetInvoicePdf(*GetInvoicePdfRequest, BillingService_GetInvoicePdfServer) error
 	// Send an email with a prompt to the user's org's billing page.
 	SendPaymentRequiredEmail(context.Context, *SendPaymentRequiredEmailRequest) (*SendPaymentRequiredEmailResponse, error)
+	// Get available billing tiers that can be assigned to organizations
+	GetAvailableBillingTiers(context.Context, *GetAvailableBillingTiersRequest) (*GetAvailableBillingTiersResponse, error)
+	// Update an organization's billing tier
+	UpdateOrganizationBillingTier(context.Context, *UpdateOrganizationBillingTierRequest) (*UpdateOrganizationBillingTierResponse, error)
 	mustEmbedUnimplementedBillingServiceServer()
 }
 
@@ -145,6 +171,12 @@ func (UnimplementedBillingServiceServer) GetInvoicePdf(*GetInvoicePdfRequest, Bi
 }
 func (UnimplementedBillingServiceServer) SendPaymentRequiredEmail(context.Context, *SendPaymentRequiredEmailRequest) (*SendPaymentRequiredEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendPaymentRequiredEmail not implemented")
+}
+func (UnimplementedBillingServiceServer) GetAvailableBillingTiers(context.Context, *GetAvailableBillingTiersRequest) (*GetAvailableBillingTiersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAvailableBillingTiers not implemented")
+}
+func (UnimplementedBillingServiceServer) UpdateOrganizationBillingTier(context.Context, *UpdateOrganizationBillingTierRequest) (*UpdateOrganizationBillingTierResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationBillingTier not implemented")
 }
 func (UnimplementedBillingServiceServer) mustEmbedUnimplementedBillingServiceServer() {}
 
@@ -252,6 +284,42 @@ func _BillingService_SendPaymentRequiredEmail_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BillingService_GetAvailableBillingTiers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAvailableBillingTiersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BillingServiceServer).GetAvailableBillingTiers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.BillingService/GetAvailableBillingTiers",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BillingServiceServer).GetAvailableBillingTiers(ctx, req.(*GetAvailableBillingTiersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BillingService_UpdateOrganizationBillingTier_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationBillingTierRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BillingServiceServer).UpdateOrganizationBillingTier(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.BillingService/UpdateOrganizationBillingTier",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BillingServiceServer).UpdateOrganizationBillingTier(ctx, req.(*UpdateOrganizationBillingTierRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BillingService_ServiceDesc is the grpc.ServiceDesc for BillingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -274,6 +342,14 @@ var BillingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendPaymentRequiredEmail",
 			Handler:    _BillingService_SendPaymentRequiredEmail_Handler,
+		},
+		{
+			MethodName: "GetAvailableBillingTiers",
+			Handler:    _BillingService_GetAvailableBillingTiers_Handler,
+		},
+		{
+			MethodName: "UpdateOrganizationBillingTier",
+			Handler:    _BillingService_UpdateOrganizationBillingTier_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

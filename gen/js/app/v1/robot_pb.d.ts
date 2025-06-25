@@ -87,6 +87,11 @@ export class RobotConfig extends jspb.Message {
   getDisableLogDeduplication(): boolean;
   setDisableLogDeduplication(value: boolean): void;
 
+  clearJobsList(): void;
+  getJobsList(): Array<JobConfig>;
+  setJobsList(value: Array<JobConfig>): void;
+  addJobs(value?: JobConfig, index?: number): JobConfig;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -116,6 +121,7 @@ export namespace RobotConfig {
     revision: string,
     maintenance?: MaintenanceConfig.AsObject,
     disableLogDeduplication: boolean,
+    jobsList: Array<JobConfig.AsObject>,
   }
 }
 
@@ -140,6 +146,44 @@ export namespace LogPatternConfig {
   export type AsObject = {
     pattern: string,
     level: string,
+  }
+}
+
+export class JobConfig extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getSchedule(): string;
+  setSchedule(value: string): void;
+
+  getResource(): string;
+  setResource(value: string): void;
+
+  getMethod(): string;
+  setMethod(value: string): void;
+
+  hasCommand(): boolean;
+  clearCommand(): void;
+  getCommand(): google_protobuf_struct_pb.Struct | undefined;
+  setCommand(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): JobConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: JobConfig): JobConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: JobConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): JobConfig;
+  static deserializeBinaryFromReader(message: JobConfig, reader: jspb.BinaryReader): JobConfig;
+}
+
+export namespace JobConfig {
+  export type AsObject = {
+    name: string,
+    schedule: string,
+    resource: string,
+    method: string,
+    command?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -482,6 +526,14 @@ export class NetworkConfig extends jspb.Message {
   getSessions(): SessionsConfig | undefined;
   setSessions(value?: SessionsConfig): void;
 
+  clearTrafficTunnelEndpointsList(): void;
+  getTrafficTunnelEndpointsList(): Array<TrafficTunnelEndpoint>;
+  setTrafficTunnelEndpointsList(value: Array<TrafficTunnelEndpoint>): void;
+  addTrafficTunnelEndpoints(value?: TrafficTunnelEndpoint, index?: number): TrafficTunnelEndpoint;
+
+  getNoTls(): boolean;
+  setNoTls(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): NetworkConfig.AsObject;
   static toObject(includeInstance: boolean, msg: NetworkConfig): NetworkConfig.AsObject;
@@ -499,6 +551,8 @@ export namespace NetworkConfig {
     tlsCertFile: string,
     tlsKeyFile: string,
     sessions?: SessionsConfig.AsObject,
+    trafficTunnelEndpointsList: Array<TrafficTunnelEndpoint.AsObject>,
+    noTls: boolean,
   }
 }
 
@@ -521,6 +575,32 @@ export class SessionsConfig extends jspb.Message {
 export namespace SessionsConfig {
   export type AsObject = {
     heartbeatWindow?: google_protobuf_duration_pb.Duration.AsObject,
+  }
+}
+
+export class TrafficTunnelEndpoint extends jspb.Message {
+  getPort(): number;
+  setPort(value: number): void;
+
+  hasConnectionTimeout(): boolean;
+  clearConnectionTimeout(): void;
+  getConnectionTimeout(): google_protobuf_duration_pb.Duration | undefined;
+  setConnectionTimeout(value?: google_protobuf_duration_pb.Duration): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TrafficTunnelEndpoint.AsObject;
+  static toObject(includeInstance: boolean, msg: TrafficTunnelEndpoint): TrafficTunnelEndpoint.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TrafficTunnelEndpoint, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TrafficTunnelEndpoint;
+  static deserializeBinaryFromReader(message: TrafficTunnelEndpoint, reader: jspb.BinaryReader): TrafficTunnelEndpoint;
+}
+
+export namespace TrafficTunnelEndpoint {
+  export type AsObject = {
+    port: number,
+    connectionTimeout?: google_protobuf_duration_pb.Duration.AsObject,
   }
 }
 
@@ -1331,6 +1411,9 @@ export class ModuleConfig extends jspb.Message {
   getFirstRunTimeout(): google_protobuf_duration_pb.Duration | undefined;
   setFirstRunTimeout(value?: google_protobuf_duration_pb.Duration): void;
 
+  getTcpMode(): boolean;
+  setTcpMode(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
@@ -1351,6 +1434,7 @@ export namespace ModuleConfig {
     envMap: Array<[string, string]>,
     status?: AppValidationStatus.AsObject,
     firstRunTimeout?: google_protobuf_duration_pb.Duration.AsObject,
+    tcpMode: boolean,
   }
 }
 

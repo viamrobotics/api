@@ -39,9 +39,9 @@ service RobotService {
     option (google.api.http) = {post: "/viam/api/v1/operations/block"};
   }
 
-  // DiscoverComponents returns the list of discovered component configurations.
-  rpc DiscoverComponents(DiscoverComponentsRequest) returns (DiscoverComponentsResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/discovery/components"};
+  // GetModelsFromModules returns the list of models supported in modules on the machine.
+  rpc GetModelsFromModules(GetModelsFromModulesRequest) returns (GetModelsFromModulesResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/module_models"};
   }
 
   rpc FrameSystemConfig(FrameSystemConfigRequest) returns (FrameSystemConfigResponse) {
@@ -114,11 +114,38 @@ service RobotService {
   rpc GetVersion(GetVersionRequest) returns (GetVersionResponse) {
     option (google.api.http) = {get: "/viam/api/v1/version"};
   }
+
+  // Tunnel tunnels traffic to the destination port of the robot server.
+  rpc Tunnel(stream TunnelRequest) returns (stream TunnelResponse);
+
+  // ListTunnels lists all available tunnels configured on the robot.
+  rpc ListTunnels(ListTunnelsRequest) returns (ListTunnelsResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/list_tunnels"};
+  }
+}
+
+message TunnelRequest {
+  uint32 destination_port = 1;
+  bytes data = 2;
+}
+
+message TunnelResponse {
+  bytes data = 1;
+}
+
+message ListTunnelsRequest {}
+
+message ListTunnelsResponse {
+  repeated Tunnel tunnels = 1;
+}
+
+message Tunnel {
+  uint32 port = 1;
+  google.protobuf.Duration connection_timeout = 2;
 }
 
 message FrameSystemConfig {
   // this is an experimental API message
-
   common.v1.Transform frame = 1;
   google.protobuf.Struct kinematics = 2;
 }
@@ -150,8 +177,8 @@ message TransformPoseResponse {
 }
 
 message TransformPCDRequest {
-  // the point clouds to transform. This should be in the PCD format
-  // encoded into bytes: https://pointclouds.org/documentation/tutorials/pcd_file_format.html
+  // the point clouds to transform. This should be in the PCD format,
+  // [encoded into bytes](https://pointclouds.org/documentation/tutorials/pcd_file_format.html).
   bytes point_cloud_pcd = 1;
   // the reference frame of the point cloud.
   string source = 2;
@@ -231,25 +258,17 @@ message GetSessionsResponse {
   repeated Session sessions = 1;
 }
 
-// Discovery
-
-message DiscoveryQuery {
-  string subtype = 1;
+message ModuleModel {
+  string module_name = 1;
   string model = 2;
-  google.protobuf.Struct extra = 99;
+  string api = 3;
+  bool from_local_module = 4;
 }
 
-message Discovery {
-  DiscoveryQuery query = 1;
-  google.protobuf.Struct results = 2;
-}
+message GetModelsFromModulesRequest {}
 
-message DiscoverComponentsRequest {
-  repeated DiscoveryQuery queries = 1;
-}
-
-message DiscoverComponentsResponse {
-  repeated Discovery discovery = 1;
+message GetModelsFromModulesResponse {
+  repeated ModuleModel models = 1;
 }
 
 message Status {

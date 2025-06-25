@@ -41,6 +41,15 @@ type GripperServiceIsMoving = {
   readonly responseType: typeof component_gripper_v1_gripper_pb.IsMovingResponse;
 };
 
+type GripperServiceIsHoldingSomething = {
+  readonly methodName: string;
+  readonly service: typeof GripperService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_gripper_v1_gripper_pb.IsHoldingSomethingRequest;
+  readonly responseType: typeof component_gripper_v1_gripper_pb.IsHoldingSomethingResponse;
+};
+
 type GripperServiceDoCommand = {
   readonly methodName: string;
   readonly service: typeof GripperService;
@@ -59,14 +68,25 @@ type GripperServiceGetGeometries = {
   readonly responseType: typeof common_v1_common_pb.GetGeometriesResponse;
 };
 
+type GripperServiceGetKinematics = {
+  readonly methodName: string;
+  readonly service: typeof GripperService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetKinematicsRequest;
+  readonly responseType: typeof common_v1_common_pb.GetKinematicsResponse;
+};
+
 export class GripperService {
   static readonly serviceName: string;
   static readonly Open: GripperServiceOpen;
   static readonly Grab: GripperServiceGrab;
   static readonly Stop: GripperServiceStop;
   static readonly IsMoving: GripperServiceIsMoving;
+  static readonly IsHoldingSomething: GripperServiceIsHoldingSomething;
   static readonly DoCommand: GripperServiceDoCommand;
   static readonly GetGeometries: GripperServiceGetGeometries;
+  static readonly GetKinematics: GripperServiceGetKinematics;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -137,6 +157,15 @@ export class GripperServiceClient {
     requestMessage: component_gripper_v1_gripper_pb.IsMovingRequest,
     callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.IsMovingResponse|null) => void
   ): UnaryResponse;
+  isHoldingSomething(
+    requestMessage: component_gripper_v1_gripper_pb.IsHoldingSomethingRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.IsHoldingSomethingResponse|null) => void
+  ): UnaryResponse;
+  isHoldingSomething(
+    requestMessage: component_gripper_v1_gripper_pb.IsHoldingSomethingRequest,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.IsHoldingSomethingResponse|null) => void
+  ): UnaryResponse;
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     metadata: grpc.Metadata,
@@ -154,6 +183,15 @@ export class GripperServiceClient {
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
+  ): UnaryResponse;
+  getKinematics(
+    requestMessage: common_v1_common_pb.GetKinematicsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetKinematicsResponse|null) => void
+  ): UnaryResponse;
+  getKinematics(
+    requestMessage: common_v1_common_pb.GetKinematicsRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetKinematicsResponse|null) => void
   ): UnaryResponse;
 }
 

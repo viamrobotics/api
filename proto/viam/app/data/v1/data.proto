@@ -217,6 +217,29 @@ message TabularDataBySQLResponse {
   reserved "data";
 }
 
+// TabularDataSourceType specifies the data source type for TabularDataByMQL queries.
+enum TabularDataSourceType {
+  TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED = 0;
+  // TABULAR_DATA_SOURCE_TYPE_STANDARD indicates reading from standard storage. This is
+  // the default option and available for all data synced to Viam.
+  TABULAR_DATA_SOURCE_TYPE_STANDARD = 1;
+  // TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE indicates reading from hot storage. This is a
+  // premium feature requiring opting in specific data sources.
+  // See docs at https://docs.viam.com/data-ai/capture-data/advanced/advanced-data-capture-sync/#capture-to-the-hot-data-store
+  TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE = 2;
+  // TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK indicates reading the output data of
+  // a data pipeline. When using this, a pipeline ID needs to be specified.
+  TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK = 3;
+}
+
+// TabularDataSource specifies the data source for user queries to execute on.
+message TabularDataSource {
+  TabularDataSourceType type = 1;
+  // pipeline_id is the ID of the pipeline to query. Required when using
+  // TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK.
+  optional string pipeline_id = 2;
+}
+
 // TabularDataByMQLRequest requests tabular data using an MQL query.
 message TabularDataByMQLRequest {
   string organization_id = 1;
@@ -224,9 +247,14 @@ message TabularDataByMQLRequest {
   // document is one stage in the pipeline. The pipeline is run on the "sensorData.readings"
   // namespace, which holds the Viam organization's tabular data.
   repeated bytes mql_binary = 3;
+  // Deprecated, please use TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE instead.
+  optional bool use_recent_data = 4;
+  // data_source is an optional field that can be used to specify the data source for the query.
+  // If not specified, the query will run on "standard" storage.
+  optional TabularDataSource data_source = 6;
 
-  reserved 2;
-  reserved "mql_query";
+  reserved 2, 5;
+  reserved "mql_query", "use_data_pipeline";
 }
 
 // TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.
@@ -244,6 +272,7 @@ message ExportTabularDataRequest {
   string resource_subtype = 3;
   string method_name = 4;
   CaptureInterval interval = 5;
+  optional google.protobuf.Struct additional_parameters = 6;
 }
 
 // ExportTabularDataResponse provides unified tabular data and metadata for a single data point from the specified data source.
@@ -269,6 +298,7 @@ message GetLatestTabularDataRequest {
   string resource_name = 2;
   string method_name = 3;
   string resource_subtype = 4;
+  optional google.protobuf.Struct additional_parameters = 5;
 }
 
 // GetLatestTabularDataResponse provides the data, time synced, and time captured of the most recent tabular data captured
@@ -303,6 +333,7 @@ message BinaryDataByFilterResponse {
 
 // BinaryID is the unique identifier for a file that one can request to be retrieved or modified.
 message BinaryID {
+  option deprecated = true;
   string file_id = 1;
   string organization_id = 2;
   string location_id = 3;
@@ -311,7 +342,8 @@ message BinaryID {
 // BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids.
 message BinaryDataByIDsRequest {
   bool include_binary = 2;
-  repeated BinaryID binary_ids = 3;
+  repeated BinaryID binary_ids = 3 [deprecated = true];
+  repeated string binary_data_ids = 4;
 
   reserved 1;
   reserved "file_ids";
@@ -351,7 +383,7 @@ message Annotations {
 
 // BinaryMetadata is the metadata associated with binary data.
 message BinaryMetadata {
-  string id = 1;
+  string id = 1 [deprecated = true];
   CaptureMetadata capture_metadata = 2;
   google.protobuf.Timestamp time_requested = 3;
   google.protobuf.Timestamp time_received = 4;
@@ -360,6 +392,7 @@ message BinaryMetadata {
   string uri = 7;
   Annotations annotations = 8;
   repeated string dataset_ids = 9;
+  string binary_data_id = 10;
 }
 
 // DeleteTabularDataRequest deletes the data from the organization that is older than `delete_older_than_days`
@@ -394,8 +427,8 @@ message DeleteBinaryDataByFilterResponse {
 
 // DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided.
 message DeleteBinaryDataByIDsRequest {
-  repeated BinaryID binary_ids = 2;
-
+  repeated BinaryID binary_ids = 2 [deprecated = true];
+  repeated string binary_data_ids = 3;
   reserved 1;
   reserved "file_ids";
 }
@@ -410,7 +443,8 @@ message DeleteBinaryDataByIDsResponse {
 
 // AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided.
 message AddTagsToBinaryDataByIDsRequest {
-  repeated BinaryID binary_ids = 3;
+  repeated BinaryID binary_ids = 3 [deprecated = true];
+  repeated string binary_data_ids = 4;
   repeated string tags = 2;
 
   reserved 1;
@@ -429,7 +463,8 @@ message AddTagsToBinaryDataByFilterResponse {}
 
 // RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.
 message RemoveTagsFromBinaryDataByIDsRequest {
-  repeated BinaryID binary_ids = 3;
+  repeated BinaryID binary_ids = 3 [deprecated = true];
+  repeated string binary_data_ids = 4;
   repeated string tags = 2;
 
   reserved 1;
@@ -465,7 +500,8 @@ message TagsByFilterResponse {
 // AddBoundingBoxToImageByIDRequest specifies the binary ID to which a bounding box
 // with the associated label and position in normalized coordinates will be added.
 message AddBoundingBoxToImageByIDRequest {
-  BinaryID binary_id = 7;
+  BinaryID binary_id = 7 [deprecated = true];
+  string binary_data_id = 8;
   string label = 2;
   double x_min_normalized = 3;
   double y_min_normalized = 4;
@@ -483,7 +519,8 @@ message AddBoundingBoxToImageByIDResponse {
 
 // RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID.
 message RemoveBoundingBoxFromImageByIDRequest {
-  BinaryID binary_id = 3;
+  BinaryID binary_id = 3 [deprecated = true];
+  string binary_data_id = 4;
   string bbox_id = 2;
 
   reserved 1;
@@ -494,7 +531,8 @@ message RemoveBoundingBoxFromImageByIDResponse {}
 
 // UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID.
 message UpdateBoundingBoxRequest {
-  BinaryID binary_id = 1;
+  BinaryID binary_id = 1 [deprecated = true];
+  string binary_data_id = 8;
   string bbox_id = 2;
   optional string label = 3;
   optional double x_min_normalized = 4;
@@ -541,7 +579,8 @@ message GetDatabaseConnectionResponse {
 
 // AddBinaryDataToDatasetByIDsRequest adds the binary data with the given binary IDs to a dataset with dataset_id.
 message AddBinaryDataToDatasetByIDsRequest {
-  repeated BinaryID binary_ids = 1;
+  repeated BinaryID binary_ids = 1 [deprecated = true];
+  repeated string binary_data_ids = 3;
   string dataset_id = 2;
 }
 
@@ -549,7 +588,8 @@ message AddBinaryDataToDatasetByIDsResponse {}
 
 // RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id.
 message RemoveBinaryDataFromDatasetByIDsRequest {
-  repeated BinaryID binary_ids = 1;
+  repeated BinaryID binary_ids = 1 [deprecated = true];
+  repeated string binary_data_ids = 3;
   string dataset_id = 2;
 }
 

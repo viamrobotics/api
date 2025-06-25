@@ -21,6 +21,8 @@ grpc.web = require('grpc-web');
 
 
 var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js')
+
+var service_mlmodel_v1_mlmodel_pb = require('../../../service/mlmodel/v1/mlmodel_pb.js')
 const proto = {};
 proto.viam = {};
 proto.viam.app = {};

@@ -40,12 +40,22 @@ type ProvisioningServiceGetNetworkList = {
   readonly responseType: typeof provisioning_v1_provisioning_pb.GetNetworkListResponse;
 };
 
+type ProvisioningServiceExitProvisioning = {
+  readonly methodName: string;
+  readonly service: typeof ProvisioningService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof provisioning_v1_provisioning_pb.ExitProvisioningRequest;
+  readonly responseType: typeof provisioning_v1_provisioning_pb.ExitProvisioningResponse;
+};
+
 export class ProvisioningService {
   static readonly serviceName: string;
   static readonly GetSmartMachineStatus: ProvisioningServiceGetSmartMachineStatus;
   static readonly SetNetworkCredentials: ProvisioningServiceSetNetworkCredentials;
   static readonly SetSmartMachineCredentials: ProvisioningServiceSetSmartMachineCredentials;
   static readonly GetNetworkList: ProvisioningServiceGetNetworkList;
+  static readonly ExitProvisioning: ProvisioningServiceExitProvisioning;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -115,6 +125,15 @@ export class ProvisioningServiceClient {
   getNetworkList(
     requestMessage: provisioning_v1_provisioning_pb.GetNetworkListRequest,
     callback: (error: ServiceError|null, responseMessage: provisioning_v1_provisioning_pb.GetNetworkListResponse|null) => void
+  ): UnaryResponse;
+  exitProvisioning(
+    requestMessage: provisioning_v1_provisioning_pb.ExitProvisioningRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: provisioning_v1_provisioning_pb.ExitProvisioningResponse|null) => void
+  ): UnaryResponse;
+  exitProvisioning(
+    requestMessage: provisioning_v1_provisioning_pb.ExitProvisioningRequest,
+    callback: (error: ServiceError|null, responseMessage: provisioning_v1_provisioning_pb.ExitProvisioningResponse|null) => void
   ): UnaryResponse;
 }
 
