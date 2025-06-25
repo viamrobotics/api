@@ -6488,5 +6488,66 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.getAppContent =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetAppBrandingRequest,
+ *   !proto.viam.app.v1.GetAppBrandingResponse>}
+ */
+const methodDescriptor_AppService_GetAppBranding = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetAppBranding',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetAppBrandingRequest,
+  proto.viam.app.v1.GetAppBrandingResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetAppBrandingRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetAppBrandingResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetAppBrandingRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetAppBrandingResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetAppBrandingResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getAppBranding =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetAppBranding',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetAppBranding,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetAppBrandingRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetAppBrandingResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getAppBranding =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetAppBranding',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetAppBranding);
+};
+
+
 module.exports = proto.viam.app.v1;
 
