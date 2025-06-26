@@ -22,8 +22,8 @@ service DataManagerService {
   }
 
   // UploadImageToDataset uploads a single image to a given dataset
-  rpc UploadImageToDataset(UploadImageToDatasetRequest) return (UploadImageToDatasetResponse) {
-    option (google.api.http) = {post:  "/viam/api/v1/service/datamanager/{name}/upload_image_to_dataset"}
+  rpc UploadImageToDataset(UploadImageToDatasetRequest) returns (UploadImageToDatasetResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/upload_image_to_dataset"};
   }
 }
 
@@ -37,8 +37,9 @@ message SyncResponse {}
 
 message UploadImageToDatasetRequest {
   string name = 1;
-  string image_uri = 2;
-  string dataset_id = 3;
+  bytes image = 2;
+  repeated string tags = 3;
+  repeated string dataset_ids = 4;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }

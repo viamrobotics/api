@@ -25,6 +25,8 @@ service DataSyncService {
   rpc StreamingDataCaptureUpload(stream viam.app.datasync.v1.StreamingDataCaptureUploadRequest) returns (viam.app.datasync.v1.StreamingDataCaptureUploadResponse) {
     option (google.api.http) = {post: "/datasync/v1/streaming_data_capture_upload"};
   }
+  // UploadImageToDataset uploads an image and adds it to a datase.
+  rpc UploadImageToDataset(viam.app.datasync.v1.UploadImageToDatasetRequest) returns (viam.app.datasync.v1.UploadImageToDatasetResponse) {}
 }
 
 // DataCaptureUploadRequest requests to upload the contents and metadata for tabular data.
@@ -110,6 +112,7 @@ message UploadMetadata {
   map<string, google.protobuf.Any> method_parameters = 8;
   string file_extension = 9;
   repeated string tags = 10;
+  repeated string dataset_ids = 12;
 
   reserved 4, 11;
   reserved "component_model", "session_id";
@@ -148,3 +151,12 @@ message DataCaptureUploadMetadata {
   UploadMetadata upload_metadata = 1;
   SensorMetadata sensor_metadata = 2;
 }
+
+// UploadDataToDatasetRequest uploads the data and adds it to a dataset_id.
+message UploadImageToDatasetRequest {
+  UploadMetadata metadata = 1;
+  FileData file_data = 2;
+  repeated string dataset_ids = 3;
+}
+
+message UploadImageToDatasetResponse {}
