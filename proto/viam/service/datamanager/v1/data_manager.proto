@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.service.datamanager.v1;
 
+import "app/datasync/v1/data_sync.proto";
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
@@ -40,6 +41,7 @@ message UploadImageToDatasetRequest {
   bytes image = 2;
   repeated string tags = 3;
   repeated string dataset_ids = 4;
+  app.datasync.v1.MimeType mime_type = 5;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
