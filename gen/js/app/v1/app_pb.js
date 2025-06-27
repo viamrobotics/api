@@ -5974,7 +5974,8 @@ proto.viam.app.v1.Robot.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     location: jspb.Message.getFieldWithDefault(msg, 3, ""),
     lastAccess: (f = msg.getLastAccess()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    primaryOrganizationId: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -6032,6 +6033,10 @@ proto.viam.app.v1.Robot.deserializeBinaryFromReader = function(msg, reader) {
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setCreatedOn(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPrimaryOrganizationId(value);
       break;
     default:
       reader.skipField();
@@ -6097,6 +6102,13 @@ proto.viam.app.v1.Robot.serializeBinaryToWriter = function(message, writer) {
       5,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getPrimaryOrganizationId();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
     );
   }
 };
@@ -6227,6 +6239,24 @@ proto.viam.app.v1.Robot.prototype.clearCreatedOn = function() {
  */
 proto.viam.app.v1.Robot.prototype.hasCreatedOn = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional string primary_organization_id = 6;
+ * @return {string}
+ */
+proto.viam.app.v1.Robot.prototype.getPrimaryOrganizationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.Robot} returns this
+ */
+proto.viam.app.v1.Robot.prototype.setPrimaryOrganizationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 

@@ -29,6 +29,9 @@ export class Robot extends jspb.Message {
   getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getPrimaryOrganizationId(): string;
+  setPrimaryOrganizationId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Robot.AsObject;
   static toObject(includeInstance: boolean, msg: Robot): Robot.AsObject;
@@ -46,6 +49,7 @@ export namespace Robot {
     location: string,
     lastAccess?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    primaryOrganizationId: string,
   }
 }
 
