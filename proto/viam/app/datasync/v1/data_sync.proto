@@ -110,6 +110,7 @@ message UploadMetadata {
   map<string, google.protobuf.Any> method_parameters = 8;
   string file_extension = 9;
   repeated string tags = 10;
+  repeated string dataset_ids = 12;
 
   reserved 4, 11;
   reserved "component_model", "session_id";
