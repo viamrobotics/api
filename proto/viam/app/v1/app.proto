@@ -312,6 +312,7 @@ message Robot {
   string location = 3 [(tagger.v1.tags) = "bson:\"location\" json:\"location\""];
   google.protobuf.Timestamp last_access = 4 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
   google.protobuf.Timestamp created_on = 5 [(tagger.v1.tags) = "bson:\"created_on\""];
+  string primary_organization_id = 6 [(tagger.v1.tags) = "bson:\"primary_organization_id\" json:\"primary_organization_id\""];
 }
 
 message RobotPart {
