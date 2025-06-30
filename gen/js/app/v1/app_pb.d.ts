@@ -7103,6 +7103,11 @@ export class GetAppBrandingResponse extends jspb.Message {
 
   getTextCustomizationsMap(): jspb.Map<string, TextOverrides>;
   clearTextCustomizationsMap(): void;
+  clearFragmentIdsList(): void;
+  getFragmentIdsList(): Array<string>;
+  setFragmentIdsList(value: Array<string>): void;
+  addFragmentIds(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAppBrandingResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetAppBrandingResponse): GetAppBrandingResponse.AsObject;
@@ -7117,6 +7122,7 @@ export namespace GetAppBrandingResponse {
   export type AsObject = {
     logoPath: string,
     textCustomizationsMap: Array<[string, TextOverrides.AsObject]>,
+    fragmentIdsList: Array<string>,
   }
 }
 

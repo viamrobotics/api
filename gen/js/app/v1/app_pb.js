@@ -5886,7 +5886,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.GetAppBrandingResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.GetAppBrandingResponse.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.v1.GetAppBrandingResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -55461,6 +55461,13 @@ proto.viam.app.v1.TextOverrides.prototype.clearFieldsMap = function() {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.GetAppBrandingResponse.repeatedFields_ = [3];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -55493,7 +55500,8 @@ proto.viam.app.v1.GetAppBrandingResponse.prototype.toObject = function(opt_inclu
 proto.viam.app.v1.GetAppBrandingResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     logoPath: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    textCustomizationsMap: (f = msg.getTextCustomizationsMap()) ? f.toObject(includeInstance, proto.viam.app.v1.TextOverrides.toObject) : []
+    textCustomizationsMap: (f = msg.getTextCustomizationsMap()) ? f.toObject(includeInstance, proto.viam.app.v1.TextOverrides.toObject) : [],
+    fragmentIdsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -55540,6 +55548,10 @@ proto.viam.app.v1.GetAppBrandingResponse.deserializeBinaryFromReader = function(
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.viam.app.v1.TextOverrides.deserializeBinaryFromReader, "", new proto.viam.app.v1.TextOverrides());
          });
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addFragmentIds(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -55579,6 +55591,13 @@ proto.viam.app.v1.GetAppBrandingResponse.serializeBinaryToWriter = function(mess
   f = message.getTextCustomizationsMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.viam.app.v1.TextOverrides.serializeBinaryToWriter);
+  }
+  f = message.getFragmentIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      3,
+      f
+    );
   }
 };
 
@@ -55639,6 +55658,43 @@ proto.viam.app.v1.GetAppBrandingResponse.prototype.getTextCustomizationsMap = fu
 proto.viam.app.v1.GetAppBrandingResponse.prototype.clearTextCustomizationsMap = function() {
   this.getTextCustomizationsMap().clear();
   return this;};
+
+
+/**
+ * repeated string fragment_ids = 3;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.GetAppBrandingResponse.prototype.getFragmentIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.GetAppBrandingResponse} returns this
+ */
+proto.viam.app.v1.GetAppBrandingResponse.prototype.setFragmentIdsList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.GetAppBrandingResponse} returns this
+ */
+proto.viam.app.v1.GetAppBrandingResponse.prototype.addFragmentIds = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.GetAppBrandingResponse} returns this
+ */
+proto.viam.app.v1.GetAppBrandingResponse.prototype.clearFragmentIdsList = function() {
+  return this.setFragmentIdsList([]);
+};
 
 
 
