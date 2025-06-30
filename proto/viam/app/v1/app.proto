@@ -206,6 +206,9 @@ service AppService {
   // Get a list of robots at multiple locations
   rpc ListRobotsForLocations(ListRobotsForLocationsRequest) returns (ListRobotsForLocationsResponse);
 
+  // Get a list of robots at an org
+  rpc ListRobotsForOrg(ListRobotsForOrgRequest) returns (ListRobotsForOrgResponse);
+
   // NewRobot creates a new robot
   rpc NewRobot(NewRobotRequest) returns (NewRobotResponse);
 
@@ -1098,6 +1101,9 @@ message ListRobotsForLocationsRequest {
   repeated string location_ids = 1;
 }
 
+message ListRobotsForOrgRequest {
+  string org_id = 1;
+}
 
 message AdditionalFragment {
   string fragment_id = 1;
@@ -1193,6 +1199,10 @@ message ListRobotsResponse {
 }
 
 message ListRobotsForLocationsResponse {
+  repeated Robot robots = 1;
+}
+
+message ListRobotsForOrgResponse {
   repeated Robot robots = 1;
 }
 
