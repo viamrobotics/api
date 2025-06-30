@@ -607,6 +607,24 @@ type AppServiceListRobots = {
   readonly responseType: typeof app_v1_app_pb.ListRobotsResponse;
 };
 
+type AppServiceListRobotsForLocations = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListRobotsForLocationsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListRobotsForLocationsResponse;
+};
+
+type AppServiceListRobotsForOrg = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListRobotsForOrgRequest;
+  readonly responseType: typeof app_v1_app_pb.ListRobotsForOrgResponse;
+};
+
 type AppServiceNewRobot = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -1036,6 +1054,8 @@ export class AppService {
   static readonly CreateRobotPartSecret: AppServiceCreateRobotPartSecret;
   static readonly DeleteRobotPartSecret: AppServiceDeleteRobotPartSecret;
   static readonly ListRobots: AppServiceListRobots;
+  static readonly ListRobotsForLocations: AppServiceListRobotsForLocations;
+  static readonly ListRobotsForOrg: AppServiceListRobotsForOrg;
   static readonly NewRobot: AppServiceNewRobot;
   static readonly UpdateRobot: AppServiceUpdateRobot;
   static readonly DeleteRobot: AppServiceDeleteRobot;
@@ -1704,6 +1724,24 @@ export class AppServiceClient {
   listRobots(
     requestMessage: app_v1_app_pb.ListRobotsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsResponse|null) => void
+  ): UnaryResponse;
+  listRobotsForLocations(
+    requestMessage: app_v1_app_pb.ListRobotsForLocationsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsForLocationsResponse|null) => void
+  ): UnaryResponse;
+  listRobotsForLocations(
+    requestMessage: app_v1_app_pb.ListRobotsForLocationsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsForLocationsResponse|null) => void
+  ): UnaryResponse;
+  listRobotsForOrg(
+    requestMessage: app_v1_app_pb.ListRobotsForOrgRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsForOrgResponse|null) => void
+  ): UnaryResponse;
+  listRobotsForOrg(
+    requestMessage: app_v1_app_pb.ListRobotsForOrgRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsForOrgResponse|null) => void
   ): UnaryResponse;
   newRobot(
     requestMessage: app_v1_app_pb.NewRobotRequest,
