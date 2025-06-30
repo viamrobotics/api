@@ -1919,6 +1919,7 @@ message TextOverrides {
 message GetAppBrandingResponse {
   optional string logo_path = 1;
   map<string, TextOverrides> text_customizations = 2;
+  repeated string fragment_ids = 3;
 }
 
 message AppCustomizations {
