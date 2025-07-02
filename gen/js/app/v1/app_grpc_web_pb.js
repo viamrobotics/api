@@ -4173,6 +4173,128 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listRobots =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.ListRobotsForLocationsRequest,
+ *   !proto.viam.app.v1.ListRobotsForLocationsResponse>}
+ */
+const methodDescriptor_AppService_ListRobotsForLocations = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/ListRobotsForLocations',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.ListRobotsForLocationsRequest,
+  proto.viam.app.v1.ListRobotsForLocationsResponse,
+  /**
+   * @param {!proto.viam.app.v1.ListRobotsForLocationsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.ListRobotsForLocationsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.ListRobotsForLocationsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ListRobotsForLocationsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ListRobotsForLocationsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.listRobotsForLocations =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListRobotsForLocations',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListRobotsForLocations,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ListRobotsForLocationsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.ListRobotsForLocationsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.listRobotsForLocations =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListRobotsForLocations',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListRobotsForLocations);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.ListRobotsForOrgRequest,
+ *   !proto.viam.app.v1.ListRobotsForOrgResponse>}
+ */
+const methodDescriptor_AppService_ListRobotsForOrg = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/ListRobotsForOrg',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.ListRobotsForOrgRequest,
+  proto.viam.app.v1.ListRobotsForOrgResponse,
+  /**
+   * @param {!proto.viam.app.v1.ListRobotsForOrgRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.ListRobotsForOrgResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.ListRobotsForOrgRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ListRobotsForOrgResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ListRobotsForOrgResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.listRobotsForOrg =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListRobotsForOrg',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListRobotsForOrg,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ListRobotsForOrgRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.ListRobotsForOrgResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.listRobotsForOrg =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListRobotsForOrg',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListRobotsForOrg);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.NewRobotRequest,
  *   !proto.viam.app.v1.NewRobotResponse>}
  */

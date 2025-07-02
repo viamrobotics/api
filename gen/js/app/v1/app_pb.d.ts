@@ -3605,6 +3605,48 @@ export namespace ListRobotsRequest {
   }
 }
 
+export class ListRobotsForLocationsRequest extends jspb.Message {
+  clearLocationIdsList(): void;
+  getLocationIdsList(): Array<string>;
+  setLocationIdsList(value: Array<string>): void;
+  addLocationIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListRobotsForLocationsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListRobotsForLocationsRequest): ListRobotsForLocationsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListRobotsForLocationsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListRobotsForLocationsRequest;
+  static deserializeBinaryFromReader(message: ListRobotsForLocationsRequest, reader: jspb.BinaryReader): ListRobotsForLocationsRequest;
+}
+
+export namespace ListRobotsForLocationsRequest {
+  export type AsObject = {
+    locationIdsList: Array<string>,
+  }
+}
+
+export class ListRobotsForOrgRequest extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListRobotsForOrgRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListRobotsForOrgRequest): ListRobotsForOrgRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListRobotsForOrgRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListRobotsForOrgRequest;
+  static deserializeBinaryFromReader(message: ListRobotsForOrgRequest, reader: jspb.BinaryReader): ListRobotsForOrgRequest;
+}
+
+export namespace ListRobotsForOrgRequest {
+  export type AsObject = {
+    orgId: string,
+  }
+}
+
 export class AdditionalFragment extends jspb.Message {
   getFragmentId(): string;
   setFragmentId(value: string): void;
@@ -4044,6 +4086,50 @@ export class ListRobotsResponse extends jspb.Message {
 }
 
 export namespace ListRobotsResponse {
+  export type AsObject = {
+    robotsList: Array<Robot.AsObject>,
+  }
+}
+
+export class ListRobotsForLocationsResponse extends jspb.Message {
+  clearRobotsList(): void;
+  getRobotsList(): Array<Robot>;
+  setRobotsList(value: Array<Robot>): void;
+  addRobots(value?: Robot, index?: number): Robot;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListRobotsForLocationsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListRobotsForLocationsResponse): ListRobotsForLocationsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListRobotsForLocationsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListRobotsForLocationsResponse;
+  static deserializeBinaryFromReader(message: ListRobotsForLocationsResponse, reader: jspb.BinaryReader): ListRobotsForLocationsResponse;
+}
+
+export namespace ListRobotsForLocationsResponse {
+  export type AsObject = {
+    robotsList: Array<Robot.AsObject>,
+  }
+}
+
+export class ListRobotsForOrgResponse extends jspb.Message {
+  clearRobotsList(): void;
+  getRobotsList(): Array<Robot>;
+  setRobotsList(value: Array<Robot>): void;
+  addRobots(value?: Robot, index?: number): Robot;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListRobotsForOrgResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListRobotsForOrgResponse): ListRobotsForOrgResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListRobotsForOrgResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListRobotsForOrgResponse;
+  static deserializeBinaryFromReader(message: ListRobotsForOrgResponse, reader: jspb.BinaryReader): ListRobotsForOrgResponse;
+}
+
+export namespace ListRobotsForOrgResponse {
   export type AsObject = {
     robotsList: Array<Robot.AsObject>,
   }

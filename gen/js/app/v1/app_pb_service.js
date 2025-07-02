@@ -613,6 +613,24 @@ AppService.ListRobots = {
   responseType: app_v1_app_pb.ListRobotsResponse
 };
 
+AppService.ListRobotsForLocations = {
+  methodName: "ListRobotsForLocations",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListRobotsForLocationsRequest,
+  responseType: app_v1_app_pb.ListRobotsForLocationsResponse
+};
+
+AppService.ListRobotsForOrg = {
+  methodName: "ListRobotsForOrg",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListRobotsForOrgRequest,
+  responseType: app_v1_app_pb.ListRobotsForOrgResponse
+};
+
 AppService.NewRobot = {
   methodName: "NewRobot",
   service: AppService,
@@ -3039,6 +3057,68 @@ AppServiceClient.prototype.listRobots = function listRobots(requestMessage, meta
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListRobots, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listRobotsForLocations = function listRobotsForLocations(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListRobotsForLocations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listRobotsForOrg = function listRobotsForOrg(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListRobotsForOrg, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

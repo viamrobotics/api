@@ -200,8 +200,14 @@ service AppService {
   // Delete a Secret from the RobotPart.
   rpc DeleteRobotPartSecret(DeleteRobotPartSecretRequest) returns (DeleteRobotPartSecretResponse);
 
-  // Get a list of robots
+  // Get a list of robots at a location
   rpc ListRobots(ListRobotsRequest) returns (ListRobotsResponse);
+
+  // Get a list of robots at multiple locations
+  rpc ListRobotsForLocations(ListRobotsForLocationsRequest) returns (ListRobotsForLocationsResponse);
+
+  // Get a list of robots at an org
+  rpc ListRobotsForOrg(ListRobotsForOrgRequest) returns (ListRobotsForOrgResponse);
 
   // NewRobot creates a new robot
   rpc NewRobot(NewRobotRequest) returns (NewRobotResponse);
@@ -1091,6 +1097,14 @@ message ListRobotsRequest {
   string location_id = 1;
 }
 
+message ListRobotsForLocationsRequest {
+  repeated string location_ids = 1;
+}
+
+message ListRobotsForOrgRequest {
+  string org_id = 1;
+}
+
 message AdditionalFragment {
   string fragment_id = 1;
   optional string version = 2;
@@ -1181,6 +1195,14 @@ message PartSummary {
 }
 
 message ListRobotsResponse {
+  repeated Robot robots = 1;
+}
+
+message ListRobotsForLocationsResponse {
+  repeated Robot robots = 1;
+}
+
+message ListRobotsForOrgResponse {
   repeated Robot robots = 1;
 }
 
