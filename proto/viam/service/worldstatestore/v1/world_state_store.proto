@@ -10,11 +10,11 @@ option go_package = "go.viam.com/api/service/worldstatestore/v1";
 option java_package = "com.viam.service.worldstatestore.v1";
 
 service WorldStateStoreService {
-  // ListWorldStateUUIDs returns all world state object uuids
-  rpc ListWorldStateUUIDs(ListWorldStateUUIDsRequest) returns (ListWorldStateUUIDsResponse) {}
+  // ListUUIDs returns all world state transform UUIDs
+  rpc ListUUIDs(ListUUIDsRequest) returns (ListUUIDsResponse) {}
 
-  // GetWorldStateObject returns a world state object by uuid
-  rpc GetWorldStateObject(GetWorldStateObjectRequest) returns (GetWorldStateObjectResponse) {}
+  // GetTransform returns a world state transform by uuid
+  rpc GetTransform(GetTransformRequest) returns (GetTransformResponse) {}
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
@@ -22,7 +22,7 @@ service WorldStateStoreService {
   }
 }
 
-message ListWorldStateUUIDsRequest {
+message ListUUIDsRequest {
   // Name of the world object store service
   string name = 1;
 
@@ -30,11 +30,11 @@ message ListWorldStateUUIDsRequest {
   google.protobuf.Struct extra = 99;
 }
 
-message ListWorldStateUUIDsResponse {
+message ListUUIDsResponse {
   repeated bytes uuids = 1;
 }
 
-message GetWorldStateObjectRequest {
+message GetTransformRequest {
   // Name of the world object store service
   string name = 1;
 
@@ -44,6 +44,6 @@ message GetWorldStateObjectRequest {
   google.protobuf.Struct extra = 99;
 }
 
-message GetWorldStateObjectResponse {
-  common.v1.TransformNew transform = 2;
+message GetTransformResponse {
+  common.v1.Transform transform = 2;
 }

@@ -94,7 +94,7 @@ message Points {
 }
 
 message Line {
-  repeated float array = 1;
+  repeated float segments = 1;
 }
 
 // Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
@@ -145,29 +145,18 @@ message GeoGeometry {
   repeated Geometry geometries = 2;
 }
 
-// Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference
-// frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
-// reference frame as observed within the second reference frame.
-message Transform {
-  // the name of a given reference frame
-  string reference_frame = 1;
-  // the pose of the above reference frame with respect to a different observer reference frame
-  PoseInFrame pose_in_observer_frame = 2;
-  optional Geometry physical_object = 3;
-}
-
-// TransformNew contains a pose and two reference frames. `parent` is the starting reference frame, and `name` is the observer reference frame.
+// Transform contains a pose and two reference frames. `parent` is the starting reference frame, and `name` is the observer reference frame.
 // `pose` represents the pose of an object in the `parent` frame as observed within the `name` frame.
-message TransformNew {
+message Transform {
   // The name of the parent reference frame
-  string parent = 1; // just renaming this for clarity
+  string parent = 1;
   reserved "reference_frame";
 
   // Deprecated: use `name` and `pose` instead
   reserved 2;
   reserved "pose_in_observer_frame";
 
-  optional Geometry geometry = 3; // just renaming this for clarity
+  optional Geometry geometry = 3;
   reserved "physical_object";
 
   // The name of the observer reference frame
