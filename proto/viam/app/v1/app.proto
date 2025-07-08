@@ -200,8 +200,14 @@ service AppService {
   // Delete a Secret from the RobotPart.
   rpc DeleteRobotPartSecret(DeleteRobotPartSecretRequest) returns (DeleteRobotPartSecretResponse);
 
-  // Get a list of robots
+  // Get a list of robots at a location
   rpc ListRobots(ListRobotsRequest) returns (ListRobotsResponse);
+
+  // Get a list of robots at multiple locations
+  rpc ListRobotsForLocations(ListRobotsForLocationsRequest) returns (ListRobotsForLocationsResponse);
+
+  // Get a list of robots at an org
+  rpc ListRobotsForOrg(ListRobotsForOrgRequest) returns (ListRobotsForOrgResponse);
 
   // NewRobot creates a new robot
   rpc NewRobot(NewRobotRequest) returns (NewRobotResponse);
@@ -302,6 +308,8 @@ service AppService {
   rpc CreateKeyFromExistingKeyAuthorizations(CreateKeyFromExistingKeyAuthorizationsRequest) returns (CreateKeyFromExistingKeyAuthorizationsResponse);
 
   rpc GetAppContent(GetAppContentRequest) returns (GetAppContentResponse);
+
+  rpc GetAppBranding(GetAppBrandingRequest) returns (GetAppBrandingResponse);
 }
 
 message Robot {
@@ -1089,6 +1097,14 @@ message ListRobotsRequest {
   string location_id = 1;
 }
 
+message ListRobotsForLocationsRequest {
+  repeated string location_ids = 1;
+}
+
+message ListRobotsForOrgRequest {
+  string org_id = 1;
+}
+
 message AdditionalFragment {
   string fragment_id = 1;
   optional string version = 2;
@@ -1124,6 +1140,10 @@ message ListMachineSummariesRequest {
   string organization_id = 1;
   // Optional list of fragment IDs to filter machines that use any of these fragments
   repeated string fragment_ids = 2;
+  // Optional list of location IDs to filter machines that are in any of these locations.
+  repeated string location_ids = 3;
+  // Optional max number of machines to return; default to 100 if unset
+  optional int32 limit = 4;
 }
 
 message ListMachineSummariesResponse {
@@ -1175,6 +1195,14 @@ message PartSummary {
 }
 
 message ListRobotsResponse {
+  repeated Robot robots = 1;
+}
+
+message ListRobotsForLocationsResponse {
+  repeated Robot robots = 1;
+}
+
+message ListRobotsForOrgResponse {
   repeated Robot robots = 1;
 }
 
@@ -1533,6 +1561,12 @@ message App {
   string type = 2;
   // The entrypoint of the application
   string entrypoint = 3;
+  // Optional: fragment IDs to filter machines in the picker
+  repeated string fragment_ids = 4;
+  // Optional: path to a custom logo for branding
+  optional string logo_path = 5;
+  // Optional: structured customizations for the app (e.g., machine picker headings)
+  AppCustomizations customizations = 6;
 }
 
 message UpdateModuleResponse {
@@ -1892,4 +1926,29 @@ message OAuthConfig {
   repeated string redirect_uris = 5;
   string logout_uri = 6;
   repeated EnabledGrant enabled_grants = 7;
+}
+
+// Branding and customization for app machine picker
+message GetAppBrandingRequest {
+  string public_namespace = 1;
+  string name = 2;
+}
+
+message TextOverrides {
+  map<string, string> fields = 1;
+}
+
+message GetAppBrandingResponse {
+  optional string logo_path = 1;
+  map<string, TextOverrides> text_customizations = 2;
+  repeated string fragment_ids = 3;
+}
+
+message AppCustomizations {
+  MachinePickerCustomizations machine_picker = 1;
+}
+
+message MachinePickerCustomizations {
+  optional string heading = 1;
+  optional string subheading = 2;
 }

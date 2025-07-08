@@ -142,8 +142,12 @@ type AppServiceClient interface {
 	CreateRobotPartSecret(ctx context.Context, in *CreateRobotPartSecretRequest, opts ...grpc.CallOption) (*CreateRobotPartSecretResponse, error)
 	// Delete a Secret from the RobotPart.
 	DeleteRobotPartSecret(ctx context.Context, in *DeleteRobotPartSecretRequest, opts ...grpc.CallOption) (*DeleteRobotPartSecretResponse, error)
-	// Get a list of robots
+	// Get a list of robots at a location
 	ListRobots(ctx context.Context, in *ListRobotsRequest, opts ...grpc.CallOption) (*ListRobotsResponse, error)
+	// Get a list of robots at multiple locations
+	ListRobotsForLocations(ctx context.Context, in *ListRobotsForLocationsRequest, opts ...grpc.CallOption) (*ListRobotsForLocationsResponse, error)
+	// Get a list of robots at an org
+	ListRobotsForOrg(ctx context.Context, in *ListRobotsForOrgRequest, opts ...grpc.CallOption) (*ListRobotsForOrgResponse, error)
 	// NewRobot creates a new robot
 	NewRobot(ctx context.Context, in *NewRobotRequest, opts ...grpc.CallOption) (*NewRobotResponse, error)
 	// UpdateRobot updates a robot
@@ -203,6 +207,7 @@ type AppServiceClient interface {
 	RotateKey(ctx context.Context, in *RotateKeyRequest, opts ...grpc.CallOption) (*RotateKeyResponse, error)
 	CreateKeyFromExistingKeyAuthorizations(ctx context.Context, in *CreateKeyFromExistingKeyAuthorizationsRequest, opts ...grpc.CallOption) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
 	GetAppContent(ctx context.Context, in *GetAppContentRequest, opts ...grpc.CallOption) (*GetAppContentResponse, error)
+	GetAppBranding(ctx context.Context, in *GetAppBrandingRequest, opts ...grpc.CallOption) (*GetAppBrandingResponse, error)
 }
 
 type appServiceClient struct {
@@ -839,6 +844,24 @@ func (c *appServiceClient) ListRobots(ctx context.Context, in *ListRobotsRequest
 	return out, nil
 }
 
+func (c *appServiceClient) ListRobotsForLocations(ctx context.Context, in *ListRobotsForLocationsRequest, opts ...grpc.CallOption) (*ListRobotsForLocationsResponse, error) {
+	out := new(ListRobotsForLocationsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListRobotsForLocations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListRobotsForOrg(ctx context.Context, in *ListRobotsForOrgRequest, opts ...grpc.CallOption) (*ListRobotsForOrgResponse, error) {
+	out := new(ListRobotsForOrgResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListRobotsForOrg", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) NewRobot(ctx context.Context, in *NewRobotRequest, opts ...grpc.CallOption) (*NewRobotResponse, error) {
 	out := new(NewRobotResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/NewRobot", in, out, opts...)
@@ -1215,6 +1238,15 @@ func (c *appServiceClient) GetAppContent(ctx context.Context, in *GetAppContentR
 	return out, nil
 }
 
+func (c *appServiceClient) GetAppBranding(ctx context.Context, in *GetAppBrandingRequest, opts ...grpc.CallOption) (*GetAppBrandingResponse, error) {
+	out := new(GetAppBrandingResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetAppBranding", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppServiceServer is the server API for AppService service.
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
@@ -1339,8 +1371,12 @@ type AppServiceServer interface {
 	CreateRobotPartSecret(context.Context, *CreateRobotPartSecretRequest) (*CreateRobotPartSecretResponse, error)
 	// Delete a Secret from the RobotPart.
 	DeleteRobotPartSecret(context.Context, *DeleteRobotPartSecretRequest) (*DeleteRobotPartSecretResponse, error)
-	// Get a list of robots
+	// Get a list of robots at a location
 	ListRobots(context.Context, *ListRobotsRequest) (*ListRobotsResponse, error)
+	// Get a list of robots at multiple locations
+	ListRobotsForLocations(context.Context, *ListRobotsForLocationsRequest) (*ListRobotsForLocationsResponse, error)
+	// Get a list of robots at an org
+	ListRobotsForOrg(context.Context, *ListRobotsForOrgRequest) (*ListRobotsForOrgResponse, error)
 	// NewRobot creates a new robot
 	NewRobot(context.Context, *NewRobotRequest) (*NewRobotResponse, error)
 	// UpdateRobot updates a robot
@@ -1400,6 +1436,7 @@ type AppServiceServer interface {
 	RotateKey(context.Context, *RotateKeyRequest) (*RotateKeyResponse, error)
 	CreateKeyFromExistingKeyAuthorizations(context.Context, *CreateKeyFromExistingKeyAuthorizationsRequest) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
 	GetAppContent(context.Context, *GetAppContentRequest) (*GetAppContentResponse, error)
+	GetAppBranding(context.Context, *GetAppBrandingRequest) (*GetAppBrandingResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -1608,6 +1645,12 @@ func (UnimplementedAppServiceServer) DeleteRobotPartSecret(context.Context, *Del
 func (UnimplementedAppServiceServer) ListRobots(context.Context, *ListRobotsRequest) (*ListRobotsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListRobots not implemented")
 }
+func (UnimplementedAppServiceServer) ListRobotsForLocations(context.Context, *ListRobotsForLocationsRequest) (*ListRobotsForLocationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRobotsForLocations not implemented")
+}
+func (UnimplementedAppServiceServer) ListRobotsForOrg(context.Context, *ListRobotsForOrgRequest) (*ListRobotsForOrgResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRobotsForOrg not implemented")
+}
 func (UnimplementedAppServiceServer) NewRobot(context.Context, *NewRobotRequest) (*NewRobotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NewRobot not implemented")
 }
@@ -1724,6 +1767,9 @@ func (UnimplementedAppServiceServer) CreateKeyFromExistingKeyAuthorizations(cont
 }
 func (UnimplementedAppServiceServer) GetAppContent(context.Context, *GetAppContentRequest) (*GetAppContentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAppContent not implemented")
+}
+func (UnimplementedAppServiceServer) GetAppBranding(context.Context, *GetAppBrandingRequest) (*GetAppBrandingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppBranding not implemented")
 }
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
@@ -2947,6 +2993,42 @@ func _AppService_ListRobots_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_ListRobotsForLocations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRobotsForLocationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListRobotsForLocations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListRobotsForLocations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListRobotsForLocations(ctx, req.(*ListRobotsForLocationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListRobotsForOrg_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRobotsForOrgRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListRobotsForOrg(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListRobotsForOrg",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListRobotsForOrg(ctx, req.(*ListRobotsForOrgRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_NewRobot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(NewRobotRequest)
 	if err := dec(in); err != nil {
@@ -3657,6 +3739,24 @@ func _AppService_GetAppContent_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_GetAppBranding_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAppBrandingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetAppBranding(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetAppBranding",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetAppBranding(ctx, req.(*GetAppBrandingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3929,6 +4029,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_ListRobots_Handler,
 		},
 		{
+			MethodName: "ListRobotsForLocations",
+			Handler:    _AppService_ListRobotsForLocations_Handler,
+		},
+		{
+			MethodName: "ListRobotsForOrg",
+			Handler:    _AppService_ListRobotsForOrg_Handler,
+		},
+		{
 			MethodName: "NewRobot",
 			Handler:    _AppService_NewRobot_Handler,
 		},
@@ -4079,6 +4187,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAppContent",
 			Handler:    _AppService_GetAppContent_Handler,
+		},
+		{
+			MethodName: "GetAppBranding",
+			Handler:    _AppService_GetAppBranding_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
