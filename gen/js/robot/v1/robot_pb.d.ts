@@ -1350,6 +1350,64 @@ export namespace GetVersionResponse {
   }
 }
 
+export class GetPoseRequest extends jspb.Message {
+  getComponentName(): string;
+  setComponentName(value: string): void;
+
+  getDestinationFrame(): string;
+  setDestinationFrame(value: string): void;
+
+  clearSupplementalTransformsList(): void;
+  getSupplementalTransformsList(): Array<common_v1_common_pb.Transform>;
+  setSupplementalTransformsList(value: Array<common_v1_common_pb.Transform>): void;
+  addSupplementalTransforms(value?: common_v1_common_pb.Transform, index?: number): common_v1_common_pb.Transform;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPoseRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPoseRequest): GetPoseRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPoseRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPoseRequest;
+  static deserializeBinaryFromReader(message: GetPoseRequest, reader: jspb.BinaryReader): GetPoseRequest;
+}
+
+export namespace GetPoseRequest {
+  export type AsObject = {
+    componentName: string,
+    destinationFrame: string,
+    supplementalTransformsList: Array<common_v1_common_pb.Transform.AsObject>,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetPoseResponse extends jspb.Message {
+  hasPose(): boolean;
+  clearPose(): void;
+  getPose(): common_v1_common_pb.PoseInFrame | undefined;
+  setPose(value?: common_v1_common_pb.PoseInFrame): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPoseResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPoseResponse): GetPoseResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPoseResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPoseResponse;
+  static deserializeBinaryFromReader(message: GetPoseResponse, reader: jspb.BinaryReader): GetPoseResponse;
+}
+
+export namespace GetPoseResponse {
+  export type AsObject = {
+    pose?: common_v1_common_pb.PoseInFrame.AsObject,
+  }
+}
+
 export interface PeerConnectionTypeMap {
   PEER_CONNECTION_TYPE_UNSPECIFIED: 0;
   PEER_CONNECTION_TYPE_GRPC: 1;
