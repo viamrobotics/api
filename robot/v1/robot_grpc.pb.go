@@ -32,9 +32,6 @@ type RobotServiceClient interface {
 	BlockForOperation(ctx context.Context, in *BlockForOperationRequest, opts ...grpc.CallOption) (*BlockForOperationResponse, error)
 	// GetModelsFromModules returns the list of models supported in modules on the machine.
 	GetModelsFromModules(ctx context.Context, in *GetModelsFromModulesRequest, opts ...grpc.CallOption) (*GetModelsFromModulesResponse, error)
-	FrameSystemConfig(ctx context.Context, in *FrameSystemConfigRequest, opts ...grpc.CallOption) (*FrameSystemConfigResponse, error)
-	TransformPose(ctx context.Context, in *TransformPoseRequest, opts ...grpc.CallOption) (*TransformPoseResponse, error)
-	TransformPCD(ctx context.Context, in *TransformPCDRequest, opts ...grpc.CallOption) (*TransformPCDResponse, error)
 	// Deprecated: Do not use.
 	// GetStatus returns the list of all statuses requested. An empty request signifies all resources.
 	GetStatus(ctx context.Context, in *GetStatusRequest, opts ...grpc.CallOption) (*GetStatusResponse, error)
@@ -65,6 +62,14 @@ type RobotServiceClient interface {
 	Tunnel(ctx context.Context, opts ...grpc.CallOption) (RobotService_TunnelClient, error)
 	// ListTunnels lists all available tunnels configured on the robot.
 	ListTunnels(ctx context.Context, in *ListTunnelsRequest, opts ...grpc.CallOption) (*ListTunnelsResponse, error)
+	// FrameSystemConfig returns the information relevant to building the robot's frame system.
+	FrameSystemConfig(ctx context.Context, in *FrameSystemConfigRequest, opts ...grpc.CallOption) (*FrameSystemConfigResponse, error)
+	// GetPose returns the pose of a component in a desired referenceframe.
+	GetPose(ctx context.Context, in *GetPoseRequest, opts ...grpc.CallOption) (*GetPoseResponse, error)
+	// TransformPose returns a pose in one referenceframe in a desired referenceframe.
+	TransformPose(ctx context.Context, in *TransformPoseRequest, opts ...grpc.CallOption) (*TransformPoseResponse, error)
+	// TransformPose returns a point cloud in one referenceframe in a desired referenceframe.
+	TransformPCD(ctx context.Context, in *TransformPCDRequest, opts ...grpc.CallOption) (*TransformPCDResponse, error)
 }
 
 type robotServiceClient struct {
@@ -132,33 +137,6 @@ func (c *robotServiceClient) BlockForOperation(ctx context.Context, in *BlockFor
 func (c *robotServiceClient) GetModelsFromModules(ctx context.Context, in *GetModelsFromModulesRequest, opts ...grpc.CallOption) (*GetModelsFromModulesResponse, error) {
 	out := new(GetModelsFromModulesResponse)
 	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetModelsFromModules", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *robotServiceClient) FrameSystemConfig(ctx context.Context, in *FrameSystemConfigRequest, opts ...grpc.CallOption) (*FrameSystemConfigResponse, error) {
-	out := new(FrameSystemConfigResponse)
-	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/FrameSystemConfig", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *robotServiceClient) TransformPose(ctx context.Context, in *TransformPoseRequest, opts ...grpc.CallOption) (*TransformPoseResponse, error) {
-	out := new(TransformPoseResponse)
-	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/TransformPose", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *robotServiceClient) TransformPCD(ctx context.Context, in *TransformPCDRequest, opts ...grpc.CallOption) (*TransformPCDResponse, error) {
-	out := new(TransformPCDResponse)
-	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/TransformPCD", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -329,6 +307,42 @@ func (c *robotServiceClient) ListTunnels(ctx context.Context, in *ListTunnelsReq
 	return out, nil
 }
 
+func (c *robotServiceClient) FrameSystemConfig(ctx context.Context, in *FrameSystemConfigRequest, opts ...grpc.CallOption) (*FrameSystemConfigResponse, error) {
+	out := new(FrameSystemConfigResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/FrameSystemConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *robotServiceClient) GetPose(ctx context.Context, in *GetPoseRequest, opts ...grpc.CallOption) (*GetPoseResponse, error) {
+	out := new(GetPoseResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetPose", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *robotServiceClient) TransformPose(ctx context.Context, in *TransformPoseRequest, opts ...grpc.CallOption) (*TransformPoseResponse, error) {
+	out := new(TransformPoseResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/TransformPose", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *robotServiceClient) TransformPCD(ctx context.Context, in *TransformPCDRequest, opts ...grpc.CallOption) (*TransformPCDResponse, error) {
+	out := new(TransformPCDResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/TransformPCD", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RobotServiceServer is the server API for RobotService service.
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
@@ -343,9 +357,6 @@ type RobotServiceServer interface {
 	BlockForOperation(context.Context, *BlockForOperationRequest) (*BlockForOperationResponse, error)
 	// GetModelsFromModules returns the list of models supported in modules on the machine.
 	GetModelsFromModules(context.Context, *GetModelsFromModulesRequest) (*GetModelsFromModulesResponse, error)
-	FrameSystemConfig(context.Context, *FrameSystemConfigRequest) (*FrameSystemConfigResponse, error)
-	TransformPose(context.Context, *TransformPoseRequest) (*TransformPoseResponse, error)
-	TransformPCD(context.Context, *TransformPCDRequest) (*TransformPCDResponse, error)
 	// Deprecated: Do not use.
 	// GetStatus returns the list of all statuses requested. An empty request signifies all resources.
 	GetStatus(context.Context, *GetStatusRequest) (*GetStatusResponse, error)
@@ -376,6 +387,14 @@ type RobotServiceServer interface {
 	Tunnel(RobotService_TunnelServer) error
 	// ListTunnels lists all available tunnels configured on the robot.
 	ListTunnels(context.Context, *ListTunnelsRequest) (*ListTunnelsResponse, error)
+	// FrameSystemConfig returns the information relevant to building the robot's frame system.
+	FrameSystemConfig(context.Context, *FrameSystemConfigRequest) (*FrameSystemConfigResponse, error)
+	// GetPose returns the pose of a component in a desired referenceframe.
+	GetPose(context.Context, *GetPoseRequest) (*GetPoseResponse, error)
+	// TransformPose returns a pose in one referenceframe in a desired referenceframe.
+	TransformPose(context.Context, *TransformPoseRequest) (*TransformPoseResponse, error)
+	// TransformPose returns a point cloud in one referenceframe in a desired referenceframe.
+	TransformPCD(context.Context, *TransformPCDRequest) (*TransformPCDResponse, error)
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -403,15 +422,6 @@ func (UnimplementedRobotServiceServer) BlockForOperation(context.Context, *Block
 }
 func (UnimplementedRobotServiceServer) GetModelsFromModules(context.Context, *GetModelsFromModulesRequest) (*GetModelsFromModulesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModelsFromModules not implemented")
-}
-func (UnimplementedRobotServiceServer) FrameSystemConfig(context.Context, *FrameSystemConfigRequest) (*FrameSystemConfigResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FrameSystemConfig not implemented")
-}
-func (UnimplementedRobotServiceServer) TransformPose(context.Context, *TransformPoseRequest) (*TransformPoseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TransformPose not implemented")
-}
-func (UnimplementedRobotServiceServer) TransformPCD(context.Context, *TransformPCDRequest) (*TransformPCDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TransformPCD not implemented")
 }
 func (UnimplementedRobotServiceServer) GetStatus(context.Context, *GetStatusRequest) (*GetStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
@@ -451,6 +461,18 @@ func (UnimplementedRobotServiceServer) Tunnel(RobotService_TunnelServer) error {
 }
 func (UnimplementedRobotServiceServer) ListTunnels(context.Context, *ListTunnelsRequest) (*ListTunnelsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTunnels not implemented")
+}
+func (UnimplementedRobotServiceServer) FrameSystemConfig(context.Context, *FrameSystemConfigRequest) (*FrameSystemConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FrameSystemConfig not implemented")
+}
+func (UnimplementedRobotServiceServer) GetPose(context.Context, *GetPoseRequest) (*GetPoseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPose not implemented")
+}
+func (UnimplementedRobotServiceServer) TransformPose(context.Context, *TransformPoseRequest) (*TransformPoseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TransformPose not implemented")
+}
+func (UnimplementedRobotServiceServer) TransformPCD(context.Context, *TransformPCDRequest) (*TransformPCDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TransformPCD not implemented")
 }
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
@@ -587,60 +609,6 @@ func _RobotService_GetModelsFromModules_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RobotServiceServer).GetModelsFromModules(ctx, req.(*GetModelsFromModulesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _RobotService_FrameSystemConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FrameSystemConfigRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RobotServiceServer).FrameSystemConfig(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.robot.v1.RobotService/FrameSystemConfig",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RobotServiceServer).FrameSystemConfig(ctx, req.(*FrameSystemConfigRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _RobotService_TransformPose_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TransformPoseRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RobotServiceServer).TransformPose(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.robot.v1.RobotService/TransformPose",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RobotServiceServer).TransformPose(ctx, req.(*TransformPoseRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _RobotService_TransformPCD_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TransformPCDRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RobotServiceServer).TransformPCD(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.robot.v1.RobotService/TransformPCD",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RobotServiceServer).TransformPCD(ctx, req.(*TransformPCDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -890,6 +858,78 @@ func _RobotService_ListTunnels_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_FrameSystemConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FrameSystemConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).FrameSystemConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/FrameSystemConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).FrameSystemConfig(ctx, req.(*FrameSystemConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RobotService_GetPose_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPoseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).GetPose(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/GetPose",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).GetPose(ctx, req.(*GetPoseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RobotService_TransformPose_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransformPoseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).TransformPose(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/TransformPose",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).TransformPose(ctx, req.(*TransformPoseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RobotService_TransformPCD_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransformPCDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).TransformPCD(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/TransformPCD",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).TransformPCD(ctx, req.(*TransformPCDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RobotService_ServiceDesc is the grpc.ServiceDesc for RobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -924,18 +964,6 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetModelsFromModules",
 			Handler:    _RobotService_GetModelsFromModules_Handler,
-		},
-		{
-			MethodName: "FrameSystemConfig",
-			Handler:    _RobotService_FrameSystemConfig_Handler,
-		},
-		{
-			MethodName: "TransformPose",
-			Handler:    _RobotService_TransformPose_Handler,
-		},
-		{
-			MethodName: "TransformPCD",
-			Handler:    _RobotService_TransformPCD_Handler,
 		},
 		{
 			MethodName: "GetStatus",
@@ -980,6 +1008,22 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTunnels",
 			Handler:    _RobotService_ListTunnels_Handler,
+		},
+		{
+			MethodName: "FrameSystemConfig",
+			Handler:    _RobotService_FrameSystemConfig_Handler,
+		},
+		{
+			MethodName: "GetPose",
+			Handler:    _RobotService_GetPose_Handler,
+		},
+		{
+			MethodName: "TransformPose",
+			Handler:    _RobotService_TransformPose_Handler,
+		},
+		{
+			MethodName: "TransformPCD",
+			Handler:    _RobotService_TransformPCD_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
