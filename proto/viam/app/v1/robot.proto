@@ -47,6 +47,7 @@ message RobotConfig {
   // Disables the robot's log deduplication (identical, noisy logs will still
   // be output individually instead of aggregated.)
   bool disable_log_deduplication = 17;
+  repeated JobConfig jobs = 18;
 }
 
 // LogPatternConfig allows you to specify a 2-tuple consisting
@@ -54,6 +55,21 @@ message RobotConfig {
 message LogPatternConfig {
   string pattern = 1;
   string level = 2;
+}
+
+message JobConfig {
+  // unique name of the job.
+  string name = 1;
+  // a unix-cron string or a Golang-parsable duration string,
+  // specifies the interval at which the job is run.
+  string schedule = 2;
+  // the resource associated with this job.
+  string resource = 3;
+  // the gRPC request of this job's resource.
+  string method = 4;
+  // in case method is "DoCommand", specifies the
+  // command argument of the gRPC request.
+  google.protobuf.Struct command = 5;
 }
 
 // Valid location secret that can be used for authentication to the robot.
