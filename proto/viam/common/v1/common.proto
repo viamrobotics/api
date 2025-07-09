@@ -89,8 +89,8 @@ message Mesh {
   bytes mesh = 2;
 }
 
-message Points {
-  repeated float array = 1;
+message PointCloud {
+  bytes point_cloud = 1;
 }
 
 message Line {
@@ -107,7 +107,7 @@ message Geometry {
     RectangularPrism box = 3;
     Capsule capsule = 5;
     Mesh mesh = 6;
-    Points points = 7;
+    PointCloud pointcloud = 7;
     Line line = 8;
   }
   // Label of the geometry. If none supplied, will be an empty string.
@@ -148,21 +148,21 @@ message GeoGeometry {
 // Transform contains a pose and two reference frames. `parent` is the starting reference frame, and `name` is the observer reference frame.
 // `pose` represents the pose of an object in the `parent` frame as observed within the `name` frame.
 message Transform {
-  // The name of the parent reference frame
-  string parent = 1;
+  // The name of the transform
+  string name = 1;
   reserved "reference_frame";
 
-  // Deprecated: use `name` and `pose` instead
+  // Deprecated: use `parent` and `pose` instead
   reserved 2;
   reserved "pose_in_observer_frame";
 
-  optional Geometry geometry = 3;
+  repeated Geometry geometry = 3;
   reserved "physical_object";
 
   // The name of the observer reference frame
-  string name = 4;
+  string parent = 4;
 
-  // The pose of the object in the `parent` frame as observed within the `name` frame
+  // The pose of the named frame as observed from the parent frame
   Pose pose = 5;
 
   // The UUID of the transform
