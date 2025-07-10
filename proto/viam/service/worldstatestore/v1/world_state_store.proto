@@ -54,7 +54,6 @@ message GetTransformResponse {
   common.v1.Transform transform = 2;
 }
 
-// TransformChangeType is the type of change that has occurred for a transform.
 enum TransformChangeType {
   TRANSFORM_CHANGE_TYPE_UNSPECIFIED = 0;
   TRANSFORM_CHANGE_TYPE_ADDED = 1;
@@ -71,10 +70,7 @@ message StreamTransformChangesRequest {
 }
 
 message StreamTransformChangesResponse {
-  // The type of change that has occurred
   TransformChangeType change_type = 1;
-
-  // The transform that has changed
   common.v1.Transform transform = 2;
 
   // The field mask of the transform that has changed, if any. For added transforms, this will be empty. For updated
