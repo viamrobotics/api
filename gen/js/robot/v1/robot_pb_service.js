@@ -73,33 +73,6 @@ RobotService.GetModelsFromModules = {
   responseType: robot_v1_robot_pb.GetModelsFromModulesResponse
 };
 
-RobotService.FrameSystemConfig = {
-  methodName: "FrameSystemConfig",
-  service: RobotService,
-  requestStream: false,
-  responseStream: false,
-  requestType: robot_v1_robot_pb.FrameSystemConfigRequest,
-  responseType: robot_v1_robot_pb.FrameSystemConfigResponse
-};
-
-RobotService.TransformPose = {
-  methodName: "TransformPose",
-  service: RobotService,
-  requestStream: false,
-  responseStream: false,
-  requestType: robot_v1_robot_pb.TransformPoseRequest,
-  responseType: robot_v1_robot_pb.TransformPoseResponse
-};
-
-RobotService.TransformPCD = {
-  methodName: "TransformPCD",
-  service: RobotService,
-  requestStream: false,
-  responseStream: false,
-  requestType: robot_v1_robot_pb.TransformPCDRequest,
-  responseType: robot_v1_robot_pb.TransformPCDResponse
-};
-
 RobotService.GetStatus = {
   methodName: "GetStatus",
   service: RobotService,
@@ -215,6 +188,42 @@ RobotService.ListTunnels = {
   responseStream: false,
   requestType: robot_v1_robot_pb.ListTunnelsRequest,
   responseType: robot_v1_robot_pb.ListTunnelsResponse
+};
+
+RobotService.FrameSystemConfig = {
+  methodName: "FrameSystemConfig",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.FrameSystemConfigRequest,
+  responseType: robot_v1_robot_pb.FrameSystemConfigResponse
+};
+
+RobotService.GetPose = {
+  methodName: "GetPose",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.GetPoseRequest,
+  responseType: robot_v1_robot_pb.GetPoseResponse
+};
+
+RobotService.TransformPose = {
+  methodName: "TransformPose",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.TransformPoseRequest,
+  responseType: robot_v1_robot_pb.TransformPoseResponse
+};
+
+RobotService.TransformPCD = {
+  methodName: "TransformPCD",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.TransformPCDRequest,
+  responseType: robot_v1_robot_pb.TransformPCDResponse
 };
 
 exports.RobotService = RobotService;
@@ -415,99 +424,6 @@ RobotServiceClient.prototype.getModelsFromModules = function getModelsFromModule
     callback = arguments[1];
   }
   var client = grpc.unary(RobotService.GetModelsFromModules, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-RobotServiceClient.prototype.frameSystemConfig = function frameSystemConfig(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(RobotService.FrameSystemConfig, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-RobotServiceClient.prototype.transformPose = function transformPose(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(RobotService.TransformPose, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-RobotServiceClient.prototype.transformPCD = function transformPCD(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(RobotService.TransformPCD, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -933,6 +849,130 @@ RobotServiceClient.prototype.listTunnels = function listTunnels(requestMessage, 
     callback = arguments[1];
   }
   var client = grpc.unary(RobotService.ListTunnels, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.frameSystemConfig = function frameSystemConfig(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.FrameSystemConfig, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.getPose = function getPose(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.GetPose, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.transformPose = function transformPose(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.TransformPose, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.transformPCD = function transformPCD(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.TransformPCD, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

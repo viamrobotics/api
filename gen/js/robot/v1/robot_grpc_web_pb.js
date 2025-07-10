@@ -516,189 +516,6 @@ proto.viam.robot.v1.RobotServicePromiseClient.prototype.getModelsFromModules =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.FrameSystemConfigRequest,
- *   !proto.viam.robot.v1.FrameSystemConfigResponse>}
- */
-const methodDescriptor_RobotService_FrameSystemConfig = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/FrameSystemConfig',
-  grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.FrameSystemConfigRequest,
-  proto.viam.robot.v1.FrameSystemConfigResponse,
-  /**
-   * @param {!proto.viam.robot.v1.FrameSystemConfigRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.robot.v1.FrameSystemConfigResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.robot.v1.FrameSystemConfigRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.FrameSystemConfigResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.FrameSystemConfigResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.robot.v1.RobotServiceClient.prototype.frameSystemConfig =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/FrameSystemConfig',
-      request,
-      metadata || {},
-      methodDescriptor_RobotService_FrameSystemConfig,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.robot.v1.FrameSystemConfigRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.FrameSystemConfigResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.frameSystemConfig =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/FrameSystemConfig',
-      request,
-      metadata || {},
-      methodDescriptor_RobotService_FrameSystemConfig);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.TransformPoseRequest,
- *   !proto.viam.robot.v1.TransformPoseResponse>}
- */
-const methodDescriptor_RobotService_TransformPose = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/TransformPose',
-  grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.TransformPoseRequest,
-  proto.viam.robot.v1.TransformPoseResponse,
-  /**
-   * @param {!proto.viam.robot.v1.TransformPoseRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.robot.v1.TransformPoseResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.robot.v1.TransformPoseRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.TransformPoseResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.TransformPoseResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.robot.v1.RobotServiceClient.prototype.transformPose =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/TransformPose',
-      request,
-      metadata || {},
-      methodDescriptor_RobotService_TransformPose,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.robot.v1.TransformPoseRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.TransformPoseResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.transformPose =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/TransformPose',
-      request,
-      metadata || {},
-      methodDescriptor_RobotService_TransformPose);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.robot.v1.TransformPCDRequest,
- *   !proto.viam.robot.v1.TransformPCDResponse>}
- */
-const methodDescriptor_RobotService_TransformPCD = new grpc.web.MethodDescriptor(
-  '/viam.robot.v1.RobotService/TransformPCD',
-  grpc.web.MethodType.UNARY,
-  proto.viam.robot.v1.TransformPCDRequest,
-  proto.viam.robot.v1.TransformPCDResponse,
-  /**
-   * @param {!proto.viam.robot.v1.TransformPCDRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.robot.v1.TransformPCDResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.robot.v1.TransformPCDRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.TransformPCDResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.TransformPCDResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.robot.v1.RobotServiceClient.prototype.transformPCD =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/TransformPCD',
-      request,
-      metadata || {},
-      methodDescriptor_RobotService_TransformPCD,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.robot.v1.TransformPCDRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.robot.v1.TransformPCDResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.robot.v1.RobotServicePromiseClient.prototype.transformPCD =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.robot.v1.RobotService/TransformPCD',
-      request,
-      metadata || {},
-      methodDescriptor_RobotService_TransformPCD);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.robot.v1.GetStatusRequest,
  *   !proto.viam.robot.v1.GetStatusResponse>}
  */
@@ -1420,6 +1237,250 @@ proto.viam.robot.v1.RobotServicePromiseClient.prototype.listTunnels =
       request,
       metadata || {},
       methodDescriptor_RobotService_ListTunnels);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.FrameSystemConfigRequest,
+ *   !proto.viam.robot.v1.FrameSystemConfigResponse>}
+ */
+const methodDescriptor_RobotService_FrameSystemConfig = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/FrameSystemConfig',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.FrameSystemConfigRequest,
+  proto.viam.robot.v1.FrameSystemConfigResponse,
+  /**
+   * @param {!proto.viam.robot.v1.FrameSystemConfigRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.FrameSystemConfigResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.FrameSystemConfigRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.FrameSystemConfigResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.FrameSystemConfigResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.frameSystemConfig =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/FrameSystemConfig',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_FrameSystemConfig,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.FrameSystemConfigRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.FrameSystemConfigResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.frameSystemConfig =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/FrameSystemConfig',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_FrameSystemConfig);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.GetPoseRequest,
+ *   !proto.viam.robot.v1.GetPoseResponse>}
+ */
+const methodDescriptor_RobotService_GetPose = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/GetPose',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.GetPoseRequest,
+  proto.viam.robot.v1.GetPoseResponse,
+  /**
+   * @param {!proto.viam.robot.v1.GetPoseRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.GetPoseResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.GetPoseRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.GetPoseResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.GetPoseResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.getPose =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/GetPose',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_GetPose,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.GetPoseRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.GetPoseResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.getPose =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/GetPose',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_GetPose);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.TransformPoseRequest,
+ *   !proto.viam.robot.v1.TransformPoseResponse>}
+ */
+const methodDescriptor_RobotService_TransformPose = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/TransformPose',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.TransformPoseRequest,
+  proto.viam.robot.v1.TransformPoseResponse,
+  /**
+   * @param {!proto.viam.robot.v1.TransformPoseRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.TransformPoseResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.TransformPoseRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.TransformPoseResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.TransformPoseResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.transformPose =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/TransformPose',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_TransformPose,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.TransformPoseRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.TransformPoseResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.transformPose =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/TransformPose',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_TransformPose);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.TransformPCDRequest,
+ *   !proto.viam.robot.v1.TransformPCDResponse>}
+ */
+const methodDescriptor_RobotService_TransformPCD = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/TransformPCD',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.TransformPCDRequest,
+  proto.viam.robot.v1.TransformPCDResponse,
+  /**
+   * @param {!proto.viam.robot.v1.TransformPCDRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.TransformPCDResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.TransformPCDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.TransformPCDResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.TransformPCDResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.transformPCD =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/TransformPCD',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_TransformPCD,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.TransformPCDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.TransformPCDResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.transformPCD =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/TransformPCD',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_TransformPCD);
 };
 
 
