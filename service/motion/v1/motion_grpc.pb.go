@@ -33,6 +33,7 @@ type MotionServiceClient interface {
 	// May replan to avoid obstacles & account for location drift.
 	// Creates a new plan upon replanning.
 	MoveOnGlobe(ctx context.Context, in *MoveOnGlobeRequest, opts ...grpc.CallOption) (*MoveOnGlobeResponse, error)
+	// Deprecated: Do not use.
 	GetPose(ctx context.Context, in *GetPoseRequest, opts ...grpc.CallOption) (*GetPoseResponse, error)
 	// Stops a Plan
 	StopPlan(ctx context.Context, in *StopPlanRequest, opts ...grpc.CallOption) (*StopPlanResponse, error)
@@ -88,6 +89,7 @@ func (c *motionServiceClient) MoveOnGlobe(ctx context.Context, in *MoveOnGlobeRe
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *motionServiceClient) GetPose(ctx context.Context, in *GetPoseRequest, opts ...grpc.CallOption) (*GetPoseResponse, error) {
 	out := new(GetPoseResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/GetPose", in, out, opts...)
@@ -147,6 +149,7 @@ type MotionServiceServer interface {
 	// May replan to avoid obstacles & account for location drift.
 	// Creates a new plan upon replanning.
 	MoveOnGlobe(context.Context, *MoveOnGlobeRequest) (*MoveOnGlobeResponse, error)
+	// Deprecated: Do not use.
 	GetPose(context.Context, *GetPoseRequest) (*GetPoseResponse, error)
 	// Stops a Plan
 	StopPlan(context.Context, *StopPlanRequest) (*StopPlanResponse, error)
