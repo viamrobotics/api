@@ -4,6 +4,7 @@ package viam.service.worldstatestore.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
 import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/service/worldstatestore/v1";
@@ -15,6 +16,11 @@ service WorldStateStoreService {
 
   // GetTransform returns a world state transform by uuid
   rpc GetTransform(GetTransformRequest) returns (GetTransformResponse) {}
+
+  // StreamTransformChanges streams changes to world state transforms
+  rpc StreamTransformChanges(StreamTransformChangesRequest) returns (stream StreamTransformChangesResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/worldstatestore/{name}/stream_transform_changes"};
+  }
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
@@ -46,4 +52,33 @@ message GetTransformRequest {
 
 message GetTransformResponse {
   common.v1.Transform transform = 2;
+}
+
+// TransformChangeType is the type of change that has occurred for a transform.
+enum TransformChangeType {
+  TRANSFORM_CHANGE_TYPE_UNSPECIFIED = 0;
+  TRANSFORM_CHANGE_TYPE_ADDED = 1;
+  TRANSFORM_CHANGE_TYPE_REMOVED = 2;
+  TRANSFORM_CHANGE_TYPE_UPDATED = 3;
+}
+
+message StreamTransformChangesRequest {
+  // Name of the world object store service
+  string name = 1;
+
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message StreamTransformChangesResponse {
+  // The type of change that has occurred
+  TransformChangeType change_type = 1;
+
+  // The transform that has changed
+  common.v1.Transform transform = 2;
+
+  // The field mask of the transform that has changed, if any. For added transforms, this will be empty. For updated
+  // transforms, this will be the fields that have changed. For removed transforms, this will be the transform's UUID
+  // path.  
+  google.protobuf.FieldMask updated_fields = 3;
 }
