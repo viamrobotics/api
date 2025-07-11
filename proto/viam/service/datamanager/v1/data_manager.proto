@@ -22,9 +22,9 @@ service DataManagerService {
     option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/do_command"};
   }
 
-  // UploadImageToDataset uploads a single image to a given dataset
-  rpc UploadImageToDataset(UploadImageToDatasetRequest) returns (UploadImageToDatasetResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/upload_image_to_dataset"};
+  // UploadBinaryDataToDataset uploads raw bytes to a given dataset
+  rpc UploadRawDataToDataset(UploadBinaryDataToDatasetRequest) returns (UploadBinaryDataToDatasetResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/upload_binary_data_to_dataset"};
   }
 }
 
@@ -36,7 +36,7 @@ message SyncRequest {
 
 message SyncResponse {}
 
-message UploadImageToDatasetRequest {
+message UploadBinaryDataToDatasetRequest {
   string name = 1;
   bytes image = 2;
   repeated string tags = 3;
@@ -46,4 +46,4 @@ message UploadImageToDatasetRequest {
   google.protobuf.Struct extra = 99;
 }
 
-message UploadImageToDatasetResponse {}
+message UploadBinaryDataToDatasetResponse {}
