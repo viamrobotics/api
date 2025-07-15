@@ -64,6 +64,23 @@ message DataPipeline {
   optional viam.app.data.v1.TabularDataSourceType data_source_type = 9;
 }
 
+enum PipelineScopeType {
+  PIPELINE_SCOPE_TYPE_UNSPECIFIED = 0;
+
+  // PIPELINE_SCOPE_TYPE_ALL_MACHINES specifies that the pipeline should run for each machine in the organization.
+  PIPELINE_SCOPE_TYPE_ALL_MACHINES = 1;
+
+  // PIPELINE_SCOPE_TYPE_ALL_MACHINES_WITH_FRAGMENTS specifies that the pipeline should run for each machine with at least one of the specified fragments.
+  PIPELINE_SCOPE_TYPE_ALL_MACHINES_WITH_FRAGMENTS = 2;
+}
+
+message PipelineScope {
+  PipelineScopeType scope = 1;
+
+  // Required when using SCOPE_ALL_MACHINES_WITH_FRAGMENTS. When specified, the pipeline will only be run on machines with at least one of these specified fragments. If scope is SCOPE_ALL_MACHINES, this field will have no effect.
+  repeated string fragment_ids = 2;
+}
+
 message GetDataPipelineRequest {
   // The ID of the data pipeline to retrieve.
   string id = 1;
@@ -90,7 +107,8 @@ message CreateDataPipelineRequest {
   string name = 2;
 
   // A MongoDB aggregation pipeline as a list of BSON documents, where
-  // each document is one stage in the pipeline.
+  // each document is one stage in the pipeline. The pipeline will be run
+  // for the defined scope.
   repeated bytes mql_binary = 3;
 
   // A cron expression representing the expected execution schedule in UTC (note this also
@@ -102,6 +120,9 @@ message CreateDataPipelineRequest {
 
   // The type of data source for the pipeline. If not specified, default is standard data storage.
   optional viam.app.data.v1.TabularDataSourceType data_source_type = 6;
+
+  // Defines the set of resources that the pipeline should execute against.
+  PipelineScope scope = 7;
 }
 
 message CreateDataPipelineResponse {
