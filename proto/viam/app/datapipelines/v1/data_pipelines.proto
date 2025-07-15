@@ -77,7 +77,7 @@ enum PipelineScopeType {
 message PipelineScope {
   PipelineScopeType scope = 1;
 
-  // Required when using SCOPE_ALL_MACHINES_WITH_FRAGMENTS. When specified, the pipeline will only be run on machines with at least one of these specified fragments. If scope is SCOPE_ALL_MACHINES, this field will have no effect.
+  // Required when using PIPELINE_SCOPE_TYPE_ALL_MACHINES_WITH_FRAGMENTS. When specified, the pipeline will only be run on machines with at least one of these specified fragments. If scope is PIPELINE_SCOPE_TYPE_ALL_MACHINES, this field will have no effect.
   repeated string fragment_ids = 2;
 }
 
