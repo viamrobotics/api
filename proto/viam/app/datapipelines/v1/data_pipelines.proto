@@ -100,7 +100,8 @@ message ListDataPipelinesResponse {
 }
 
 message CreateDataPipelineRequest {
-  // The associated Viam organization ID.
+  // The associated Viam organization ID. This organization will also be billed for
+ // data usage.
   string organization_id = 1;
 
   // A unique identifier at the org level.
