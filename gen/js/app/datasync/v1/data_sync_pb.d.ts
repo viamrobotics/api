@@ -312,6 +312,11 @@ export class UploadMetadata extends jspb.Message {
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
+  clearDatasetIdsList(): void;
+  getDatasetIdsList(): Array<string>;
+  setDatasetIdsList(value: Array<string>): void;
+  addDatasetIds(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UploadMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UploadMetadata): UploadMetadata.AsObject;
@@ -333,6 +338,7 @@ export namespace UploadMetadata {
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
     fileExtension: string,
     tagsList: Array<string>,
+    datasetIdsList: Array<string>,
   }
 }
 
