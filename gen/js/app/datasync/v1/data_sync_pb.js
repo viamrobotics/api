@@ -2227,7 +2227,7 @@ proto.viam.app.datasync.v1.FileData.prototype.setData = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.datasync.v1.UploadMetadata.repeatedFields_ = [10];
+proto.viam.app.datasync.v1.UploadMetadata.repeatedFields_ = [10,12];
 
 
 
@@ -2268,7 +2268,8 @@ proto.viam.app.datasync.v1.UploadMetadata.toObject = function(includeInstance, m
     fileName: jspb.Message.getFieldWithDefault(msg, 7, ""),
     methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
     fileExtension: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f
+    tagsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
+    datasetIdsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2342,6 +2343,10 @@ proto.viam.app.datasync.v1.UploadMetadata.deserializeBinaryFromReader = function
     case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.addTags(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addDatasetIds(value);
       break;
     default:
       reader.skipField();
@@ -2429,6 +2434,13 @@ proto.viam.app.datasync.v1.UploadMetadata.serializeBinaryToWriter = function(mes
   if (f.length > 0) {
     writer.writeRepeatedString(
       10,
+      f
+    );
+  }
+  f = message.getDatasetIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      12,
       f
     );
   }
@@ -2617,6 +2629,43 @@ proto.viam.app.datasync.v1.UploadMetadata.prototype.addTags = function(value, op
  */
 proto.viam.app.datasync.v1.UploadMetadata.prototype.clearTagsList = function() {
   return this.setTagsList([]);
+};
+
+
+/**
+ * repeated string dataset_ids = 12;
+ * @return {!Array<string>}
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.getDatasetIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 12));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.datasync.v1.UploadMetadata} returns this
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.setDatasetIdsList = function(value) {
+  return jspb.Message.setField(this, 12, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.datasync.v1.UploadMetadata} returns this
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.addDatasetIds = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 12, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.datasync.v1.UploadMetadata} returns this
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.clearDatasetIdsList = function() {
+  return this.setDatasetIdsList([]);
 };
 
 
