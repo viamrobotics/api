@@ -26,8 +26,6 @@ service DataManagerService {
   rpc UploadBinaryDataToDataset(UploadBinaryDataToDatasetRequest) returns (UploadBinaryDataToDatasetResponse) {
     option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/upload_binary_data_to_dataset"};
   }
-
-
 }
 
 message SyncRequest {
