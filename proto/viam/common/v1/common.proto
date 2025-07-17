@@ -93,10 +93,6 @@ message PointCloud {
   bytes point_cloud = 1;
 }
 
-message Line {
-  repeated float segments = 1;
-}
-
 // Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
 message Geometry {
   // Pose of a geometries center point
@@ -108,7 +104,6 @@ message Geometry {
     Capsule capsule = 5;
     Mesh mesh = 6;
     PointCloud pointcloud = 7;
-    Line line = 8;
   }
   // Label of the geometry. If none supplied, will be an empty string.
   string label = 4;
@@ -156,7 +151,7 @@ message Transform {
   reserved 2;
   reserved "pose_in_observer_frame";
 
-  repeated Geometry geometry = 3;
+  repeated Geometry geometries = 3;
   reserved "physical_object";
 
   // The name of the observer reference frame

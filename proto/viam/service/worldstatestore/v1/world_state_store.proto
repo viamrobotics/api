@@ -75,6 +75,6 @@ message StreamTransformChangesResponse {
 
   // The field mask of the transform that has changed, if any. For added transforms, this will be empty. For updated
   // transforms, this will be the fields that have changed. For removed transforms, this will be the transform's UUID
-  // path.  
+  // path.
   google.protobuf.FieldMask updated_fields = 3;
 }
