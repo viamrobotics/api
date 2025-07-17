@@ -17,6 +17,9 @@ service AppService {
   // Get the id of the user with the email
   rpc GetUserIDByEmail(GetUserIDByEmailRequest) returns (GetUserIDByEmailResponse);
 
+  // Update that last_access time of an org for a user
+  rpc UpdateUserOrgLastAccess(UpdateUserOrgLastAccessRequest) returns (UpdateUserOrgLastAccessResponse);
+
   // Organizations
 
   // Create a new organization
@@ -1722,6 +1725,14 @@ message GetUserIDByEmailRequest {
 message GetUserIDByEmailResponse {
   string user_id = 1;
 }
+
+message UpdateUserOrgLastAccessRequest {
+  string user_id = 1;
+  string org_id = 2;
+  google.protobuf.Timestamp last_access = 3;
+}
+
+message UpdateUserOrgLastAccessResponse {}
 
 message ListOrganizationsByUserRequest {
   string user_id = 1;
