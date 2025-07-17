@@ -20,6 +20,8 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 
+var app_datasync_v1_data_sync_pb = require('../../../app/datasync/v1/data_sync_pb.js')
+
 var common_v1_common_pb = require('../../../common/v1/common_pb.js')
 
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
@@ -202,6 +204,67 @@ proto.viam.service.datamanager.v1.DataManagerServicePromiseClient.prototype.doCo
       request,
       metadata || {},
       methodDescriptor_DataManagerService_DoCommand);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.datamanager.v1.UploadBinaryDataToDatasetRequest,
+ *   !proto.viam.service.datamanager.v1.UploadBinaryDataToDatasetResponse>}
+ */
+const methodDescriptor_DataManagerService_UploadBinaryDataToDataset = new grpc.web.MethodDescriptor(
+  '/viam.service.datamanager.v1.DataManagerService/UploadBinaryDataToDataset',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.datamanager.v1.UploadBinaryDataToDatasetRequest,
+  proto.viam.service.datamanager.v1.UploadBinaryDataToDatasetResponse,
+  /**
+   * @param {!proto.viam.service.datamanager.v1.UploadBinaryDataToDatasetRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.datamanager.v1.UploadBinaryDataToDatasetResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.datamanager.v1.UploadBinaryDataToDatasetRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.datamanager.v1.UploadBinaryDataToDatasetResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.datamanager.v1.UploadBinaryDataToDatasetResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.datamanager.v1.DataManagerServiceClient.prototype.uploadBinaryDataToDataset =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.datamanager.v1.DataManagerService/UploadBinaryDataToDataset',
+      request,
+      metadata || {},
+      methodDescriptor_DataManagerService_UploadBinaryDataToDataset,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.datamanager.v1.UploadBinaryDataToDatasetRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.datamanager.v1.UploadBinaryDataToDatasetResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.datamanager.v1.DataManagerServicePromiseClient.prototype.uploadBinaryDataToDataset =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.datamanager.v1.DataManagerService/UploadBinaryDataToDataset',
+      request,
+      metadata || {},
+      methodDescriptor_DataManagerService_UploadBinaryDataToDataset);
 };
 
 
