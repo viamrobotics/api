@@ -22,9 +22,9 @@ service DataManagerService {
     option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/do_command"};
   }
 
-  // UploadBinaryDataToDataset uploads binary data to a dataset.
-  rpc UploadBinaryDataToDataset(UploadBinaryDataToDatasetRequest) returns (UploadBinaryDataToDatasetResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/upload_binary_data_to_dataset"};
+  // UploadBinaryDataToDatasets uploads binary data to specified datasets.
+  rpc UploadBinaryDataToDatasets(UploadBinaryDataToDatasetsRequest) returns (UploadBinaryDataToDatasetsResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/upload_binary_data_to_datasets"};
   }
 }
 
@@ -36,7 +36,7 @@ message SyncRequest {
 
 message SyncResponse {}
 
-message UploadBinaryDataToDatasetRequest {
+message UploadBinaryDataToDatasetsRequest {
   string name = 1;
   bytes binary_data = 2;
   repeated string tags = 3;
@@ -46,4 +46,4 @@ message UploadBinaryDataToDatasetRequest {
   google.protobuf.Struct extra = 99;
 }
 
-message UploadBinaryDataToDatasetResponse {}
+message UploadBinaryDataToDatasetsResponse {}
