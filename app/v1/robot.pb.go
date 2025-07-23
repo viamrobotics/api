@@ -1773,6 +1773,7 @@ type RemoteConfig struct {
 	ServiceConfigs          []*ResourceLevelServiceConfig `protobuf:"bytes,9,rep,name=service_configs,json=serviceConfigs,proto3" json:"service_config"`
 	// Secret is a helper for a robot location secret.
 	Secret string `protobuf:"bytes,10,opt,name=secret,proto3" json:"secret,omitempty"`
+	// A string with which to prefix all resource names fetched from this remote.
 	Prefix string `protobuf:"bytes,11,opt,name=prefix,proto3" json:"prefix,omitempty"`
 }
 
