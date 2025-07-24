@@ -44,17 +44,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           # note: check out fork because we will need it when we push below
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-      - uses: actions/setup-node@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version-file: go.mod
-      # todo: cache download
-      - name: grpc-web
-        run: |
-          wget --quiet https://github.com/grpc/grpc-web/releases/download/${{ env.GRPC_WEB_VERSION }}/protoc-gen-grpc-web-${{ env.GRPC_WEB_VERSION }}-linux-x86_64 -O protoc-gen-grpc-web
-          chmod +x protoc-gen-grpc-web
-          sudo mv protoc-gen-grpc-web /usr/local/bin
-          which protoc-gen-grpc-web
+
       - name: Set environment variables for previous commit
         run: |
           echo "commit-message=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
@@ -64,12 +54,15 @@ jobs:
         if: startsWith(env.commit-message, env.CI_COMMIT_MESSAGE_PREFIX) && env.commit-author == env.CI_COMMIT_AUTHOR
         run: echo "is-auto-commit=true" >> $GITHUB_ENV
 
+      - uses: jdx/mise-action@v2
+        if: ${{ !env.is-auto-commit }}
+        with:
+          experimental: true
+
       - uses: bufbuild/buf-setup-action@v1
         if: ${{ !env.is-auto-commit }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: arduino/setup-protoc@v1
-        if: ${{ !env.is-auto-commit }}
 
       - name: Compile protos
         if: ${{ !env.is-auto-commit }}

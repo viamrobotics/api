@@ -13,18 +13,8 @@ clean:
 	git clean -fxd
 
 dist/tool-install: Makefile
+	mise install
 	npm ci --audit=false
-	go install google.golang.org/protobuf/cmd/protoc-gen-go \
-		github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking \
-		github.com/bufbuild/buf/cmd/protoc-gen-buf-lint \
-		github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc \
-		google.golang.org/grpc/cmd/protoc-gen-go-grpc \
-		github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway \
-		github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \
-		github.com/srikrsna/protoc-gen-gotag \
-		github.com/edaniels/golinters/cmd/combined \
-		github.com/golangci/golangci-lint/cmd/golangci-lint \
-		github.com/bufbuild/buf/cmd/buf
 	mkdir -p dist
 	touch dist/tool-install
 

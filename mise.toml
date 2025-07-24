@@ -1,0 +1,18 @@
+[tools]
+buf = "1.55.1"
+go = "1.23.1"
+"go:github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking" = "1.55.1"
+"go:github.com/bufbuild/buf/cmd/protoc-gen-buf-lint" = "1.55.1"
+"go:github.com/edaniels/golinters/cmd/combined" = "0.0.5"
+"go:github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway" = "2.20.0"
+"go:github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2" = "2.27.1"
+"go:github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc" = "1.5.1"
+"go:github.com/srikrsna/protoc-gen-gotag" = "1.0.2"
+# This one can be installed as a binary but it produces very slightly different output.
+# Switch to that when upgrading.
+"go:google.golang.org/grpc/cmd/protoc-gen-go-grpc" = "1.2.0"
+golangci-lint = "2.3.0"
+node = "22"
+protobuf = "3.20.2"
+protoc-gen-go = "1.35.1"
+protoc-gen-grpc-web = "1.5.0"
