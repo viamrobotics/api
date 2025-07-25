@@ -12,7 +12,7 @@ all: clean dist/buf
 clean:
 	git clean -fxd
 
-dist/tool-install: Makefile
+dist/tool-install: Makefile mise.toml
 	mise install
 	npm ci --audit=false
 	mkdir -p dist
