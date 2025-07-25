@@ -14,7 +14,6 @@ clean:
 
 dist/tool-install: Makefile mise.toml
 	mise install
-	npm ci --audit=false
 	mkdir -p dist
 	touch dist/tool-install
 
