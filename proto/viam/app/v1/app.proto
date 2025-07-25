@@ -310,6 +310,7 @@ message Robot {
   string location = 3 [(tagger.v1.tags) = "bson:\"location\" json:\"location\""];
   google.protobuf.Timestamp last_access = 4 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
   google.protobuf.Timestamp created_on = 5 [(tagger.v1.tags) = "bson:\"created_on\""];
+  repeated RobotPart parts = 6;
 }
 
 message RobotPart {
@@ -1171,6 +1172,8 @@ message PartSummary {
   optional string platform = 7;
   optional string public_ip_address = 8;
   repeated FragmentSummary fragments = 9;
+  google.protobuf.Timestamp last_access = 10;
+  string fqdn = 11;
 }
 
 message ListRobotsResponse {

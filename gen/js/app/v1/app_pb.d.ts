@@ -29,6 +29,11 @@ export class Robot extends jspb.Message {
   getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  clearPartsList(): void;
+  getPartsList(): Array<RobotPart>;
+  setPartsList(value: Array<RobotPart>): void;
+  addParts(value?: RobotPart, index?: number): RobotPart;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Robot.AsObject;
   static toObject(includeInstance: boolean, msg: Robot): Robot.AsObject;
@@ -46,6 +51,7 @@ export namespace Robot {
     location: string,
     lastAccess?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    partsList: Array<RobotPart.AsObject>,
   }
 }
 
@@ -3985,6 +3991,14 @@ export class PartSummary extends jspb.Message {
   setFragmentsList(value: Array<FragmentSummary>): void;
   addFragments(value?: FragmentSummary, index?: number): FragmentSummary;
 
+  hasLastAccess(): boolean;
+  clearLastAccess(): void;
+  getLastAccess(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastAccess(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getFqdn(): string;
+  setFqdn(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PartSummary.AsObject;
   static toObject(includeInstance: boolean, msg: PartSummary): PartSummary.AsObject;
@@ -4006,6 +4020,8 @@ export namespace PartSummary {
     platform: string,
     publicIpAddress: string,
     fragmentsList: Array<FragmentSummary.AsObject>,
+    lastAccess?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    fqdn: string,
   }
 }
 
