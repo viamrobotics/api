@@ -52,19 +52,16 @@ outputs = ['gen/js/**/*.js', 'gen/js/**/*.ts']
 depends = ['lint-buf']
 wait_for = ['clean']
 run = [
-	'buf generate --template ./proto/viam/buf.gen.web.yaml',
-	'buf generate --timeout 5m --template ./proto/viam/buf.gen.web.yaml buf.build/googleapis/googleapis',
+  'buf generate --template ./proto/viam/buf.gen.web.yaml',
+  'buf generate --timeout 5m --template ./proto/viam/buf.gen.web.yaml buf.build/googleapis/googleapis',
 ]
 
 [tasks.lint]
-depends=['lint-buf', 'lint-go']
+depends = ['lint-buf', 'lint-go']
 
 [tasks.lint-buf]
 wait_for = ['clean']
-run = [
-  'buf lint',
-  'buf format -w',
-]
+run = ['buf lint', 'buf format -w']
 
 [tasks.lint-go]
 wait_for = ['clean']
