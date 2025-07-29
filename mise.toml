@@ -1,3 +1,13 @@
+[settings]
+# (Josh) Testing shows that mise only generates new lockfile entries for the
+# platform it is run on, so adding new tools on MacOS causes the CI runs to
+# create a diff for the corresponding Linux entries. We can also assume that
+# updating versions on one OS would leave the other(s) out of date. For now
+# we'll rely on specifying exact versions here (or as exact as we feel is
+# necessary) and revisit the lockfile if and when it improves and we feel it's
+# needed.
+lockfile = false
+
 [tools]
 buf = "1.55.1"
 go = "1.23"
