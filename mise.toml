@@ -1,6 +1,6 @@
 [tools]
 buf = "1.55.1"
-go = "1.23.1"
+go = "1.23"
 "go:github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking" = "1.55.1"
 "go:github.com/bufbuild/buf/cmd/protoc-gen-buf-lint" = "1.55.1"
 "go:github.com/edaniels/golinters/cmd/combined" = "0.0.5"
@@ -11,9 +11,58 @@ go = "1.23.1"
 # This one can be installed as a binary but it produces very slightly different output.
 # Switch to that when upgrading.
 "go:google.golang.org/grpc/cmd/protoc-gen-go-grpc" = "1.2.0"
-golangci-lint = "2.3.0"
+golangci-lint = "1.61"
 node = "22"
 "npm:ts-protoc-gen" = "0.15.0"
 protobuf = "3.20.2"
 protoc-gen-go = "1.35.1"
 protoc-gen-grpc-web = "1.5.0"
+
+[tasks.clean]
+run = 'git clean -fdx'
+
+[tasks.buf]
+depends = ['buf-go', 'buf-web']
+
+[tasks.buf-go]
+sources = ["proto/**/*.proto"]
+outputs = ['**/*.pb.go', '**/*.pb.gw.go']
+depends = ['lint-buf']
+wait_for = ['clean']
+run = [
+  'buf generate --template ./proto/viam/buf.gen.yaml',
+  'buf generate --template ./proto/viam/buf.gen.tagger.yaml',
+  'mkdir -p dist',
+  'touch dist/buf-go',
+]
+
+[tasks.buf-web]
+sources = ["proto/**/*.proto"]
+outputs = ['gen/js/**/*.js', 'gen/js/**/*.ts']
+depends = ['lint-buf']
+wait_for = ['clean']
+run = [
+	'buf generate --template ./proto/viam/buf.gen.web.yaml',
+	'buf generate --timeout 5m --template ./proto/viam/buf.gen.web.yaml buf.build/googleapis/googleapis',
+]
+
+[tasks.lint]
+depends=['lint-buf', 'lint-go']
+
+[tasks.lint-buf]
+wait_for = ['clean']
+run = [
+  'buf lint',
+  'buf format -w',
+]
+
+[tasks.lint-go]
+wait_for = ['clean']
+depends = ['lint-buf']
+run = """
+  {% raw %}
+  #!/usr/bin/env bash
+  export pkgs=`go list -f '{{.Dir}}' ./... | grep -v gen | grep -v proto` && echo "$pkgs" | xargs go vet -vettool=$(which combined)
+  export GOGC=50 pkgs=`go list -f '{{.Dir}}' ./... | grep -v gen | grep -v proto` && echo "$pkgs" | xargs golangci-lint run $LINT_BUILD_TAGS -v --fix --config=./etc/.golangci.yaml
+  {% endraw %}
+"""

@@ -3,8 +3,13 @@ version = "1.55.1"
 backend = "aqua:bufbuild/buf"
 
 [tools.go]
-version = "1.23.1"
+version = "1.23.11"
 backend = "core:go"
+
+[tools.go.platforms.macos-arm64]
+checksum = "sha256:d3c2c69a79eb3e2a06e5d8bbca692c9166b27421f7251ccbafcada0ba35a05ee"
+size = 71665541
+url = "https://dl.google.com/go/go1.23.11.darwin-arm64.tar.gz"
 
 [tools."go:github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking"]
 version = "1.55.1"
@@ -39,7 +44,7 @@ version = "1.2.0"
 backend = "go:google.golang.org/grpc/cmd/protoc-gen-go-grpc"
 
 [tools.golangci-lint]
-version = "2.3.0"
+version = "1.61.0"
 backend = "aqua:golangci/golangci-lint"
 
 [tools.node]
