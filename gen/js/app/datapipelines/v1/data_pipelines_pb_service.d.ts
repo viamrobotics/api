@@ -31,13 +31,13 @@ type DataPipelinesServiceCreateDataPipeline = {
   readonly responseType: typeof app_datapipelines_v1_data_pipelines_pb.CreateDataPipelineResponse;
 };
 
-type DataPipelinesServiceUpdateDataPipeline = {
+type DataPipelinesServiceRenameDataPipeline = {
   readonly methodName: string;
   readonly service: typeof DataPipelinesService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_datapipelines_v1_data_pipelines_pb.UpdateDataPipelineRequest;
-  readonly responseType: typeof app_datapipelines_v1_data_pipelines_pb.UpdateDataPipelineResponse;
+  readonly requestType: typeof app_datapipelines_v1_data_pipelines_pb.RenameDataPipelineRequest;
+  readonly responseType: typeof app_datapipelines_v1_data_pipelines_pb.RenameDataPipelineResponse;
 };
 
 type DataPipelinesServiceDeleteDataPipeline = {
@@ -81,7 +81,7 @@ export class DataPipelinesService {
   static readonly GetDataPipeline: DataPipelinesServiceGetDataPipeline;
   static readonly ListDataPipelines: DataPipelinesServiceListDataPipelines;
   static readonly CreateDataPipeline: DataPipelinesServiceCreateDataPipeline;
-  static readonly UpdateDataPipeline: DataPipelinesServiceUpdateDataPipeline;
+  static readonly RenameDataPipeline: DataPipelinesServiceRenameDataPipeline;
   static readonly DeleteDataPipeline: DataPipelinesServiceDeleteDataPipeline;
   static readonly EnableDataPipeline: DataPipelinesServiceEnableDataPipeline;
   static readonly DisableDataPipeline: DataPipelinesServiceDisableDataPipeline;
@@ -147,14 +147,14 @@ export class DataPipelinesServiceClient {
     requestMessage: app_datapipelines_v1_data_pipelines_pb.CreateDataPipelineRequest,
     callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.CreateDataPipelineResponse|null) => void
   ): UnaryResponse;
-  updateDataPipeline(
-    requestMessage: app_datapipelines_v1_data_pipelines_pb.UpdateDataPipelineRequest,
+  renameDataPipeline(
+    requestMessage: app_datapipelines_v1_data_pipelines_pb.RenameDataPipelineRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.UpdateDataPipelineResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.RenameDataPipelineResponse|null) => void
   ): UnaryResponse;
-  updateDataPipeline(
-    requestMessage: app_datapipelines_v1_data_pipelines_pb.UpdateDataPipelineRequest,
-    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.UpdateDataPipelineResponse|null) => void
+  renameDataPipeline(
+    requestMessage: app_datapipelines_v1_data_pipelines_pb.RenameDataPipelineRequest,
+    callback: (error: ServiceError|null, responseMessage: app_datapipelines_v1_data_pipelines_pb.RenameDataPipelineResponse|null) => void
   ): UnaryResponse;
   deleteDataPipeline(
     requestMessage: app_datapipelines_v1_data_pipelines_pb.DeleteDataPipelineRequest,

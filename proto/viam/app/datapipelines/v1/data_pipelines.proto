@@ -112,10 +112,9 @@ message CreateDataPipelineResponse {
 message RenameDataPipelineRequest {
   // The ID of the data pipeline to rename.
   string id = 1;
-  // A unique identifier at the org level.
+  // A unique identifier at the organization level.
   string name = 2;
 }
-
 
 message RenameDataPipelineResponse {}
 
