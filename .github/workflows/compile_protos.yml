@@ -54,12 +54,12 @@ jobs:
         if: startsWith(env.commit-message, env.CI_COMMIT_MESSAGE_PREFIX) && env.commit-author == env.CI_COMMIT_AUTHOR
         run: echo "is-auto-commit=true" >> $GITHUB_ENV
 
-      - uses: jdx/mise-action@v2
+      - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac
         if: ${{ !env.is-auto-commit }}
         with:
           experimental: true
 
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99
         if: ${{ !env.is-auto-commit }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
