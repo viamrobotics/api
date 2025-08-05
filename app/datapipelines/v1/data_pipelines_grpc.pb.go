@@ -28,8 +28,8 @@ type DataPipelinesServiceClient interface {
 	ListDataPipelines(ctx context.Context, in *ListDataPipelinesRequest, opts ...grpc.CallOption) (*ListDataPipelinesResponse, error)
 	// CreateDataPipeline creates a new data pipeline with the provided configuration.
 	CreateDataPipeline(ctx context.Context, in *CreateDataPipelineRequest, opts ...grpc.CallOption) (*CreateDataPipelineResponse, error)
-	// UpdateDataPipeline modifies an existing data pipeline's configuration.
-	UpdateDataPipeline(ctx context.Context, in *UpdateDataPipelineRequest, opts ...grpc.CallOption) (*UpdateDataPipelineResponse, error)
+	// RenameDataPipeline changes a data pipeline's name.
+	RenameDataPipeline(ctx context.Context, in *RenameDataPipelineRequest, opts ...grpc.CallOption) (*RenameDataPipelineResponse, error)
 	// DeleteDataPipeline deletes a data pipeline from the database.
 	DeleteDataPipeline(ctx context.Context, in *DeleteDataPipelineRequest, opts ...grpc.CallOption) (*DeleteDataPipelineResponse, error)
 	// EnableDataPipeline enables a data pipeline.
@@ -75,9 +75,9 @@ func (c *dataPipelinesServiceClient) CreateDataPipeline(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *dataPipelinesServiceClient) UpdateDataPipeline(ctx context.Context, in *UpdateDataPipelineRequest, opts ...grpc.CallOption) (*UpdateDataPipelineResponse, error) {
-	out := new(UpdateDataPipelineResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.datapipelines.v1.DataPipelinesService/UpdateDataPipeline", in, out, opts...)
+func (c *dataPipelinesServiceClient) RenameDataPipeline(ctx context.Context, in *RenameDataPipelineRequest, opts ...grpc.CallOption) (*RenameDataPipelineResponse, error) {
+	out := new(RenameDataPipelineResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.datapipelines.v1.DataPipelinesService/RenameDataPipeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -130,8 +130,8 @@ type DataPipelinesServiceServer interface {
 	ListDataPipelines(context.Context, *ListDataPipelinesRequest) (*ListDataPipelinesResponse, error)
 	// CreateDataPipeline creates a new data pipeline with the provided configuration.
 	CreateDataPipeline(context.Context, *CreateDataPipelineRequest) (*CreateDataPipelineResponse, error)
-	// UpdateDataPipeline modifies an existing data pipeline's configuration.
-	UpdateDataPipeline(context.Context, *UpdateDataPipelineRequest) (*UpdateDataPipelineResponse, error)
+	// RenameDataPipeline changes a data pipeline's name.
+	RenameDataPipeline(context.Context, *RenameDataPipelineRequest) (*RenameDataPipelineResponse, error)
 	// DeleteDataPipeline deletes a data pipeline from the database.
 	DeleteDataPipeline(context.Context, *DeleteDataPipelineRequest) (*DeleteDataPipelineResponse, error)
 	// EnableDataPipeline enables a data pipeline.
@@ -156,8 +156,8 @@ func (UnimplementedDataPipelinesServiceServer) ListDataPipelines(context.Context
 func (UnimplementedDataPipelinesServiceServer) CreateDataPipeline(context.Context, *CreateDataPipelineRequest) (*CreateDataPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDataPipeline not implemented")
 }
-func (UnimplementedDataPipelinesServiceServer) UpdateDataPipeline(context.Context, *UpdateDataPipelineRequest) (*UpdateDataPipelineResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateDataPipeline not implemented")
+func (UnimplementedDataPipelinesServiceServer) RenameDataPipeline(context.Context, *RenameDataPipelineRequest) (*RenameDataPipelineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameDataPipeline not implemented")
 }
 func (UnimplementedDataPipelinesServiceServer) DeleteDataPipeline(context.Context, *DeleteDataPipelineRequest) (*DeleteDataPipelineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteDataPipeline not implemented")
@@ -238,20 +238,20 @@ func _DataPipelinesService_CreateDataPipeline_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DataPipelinesService_UpdateDataPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateDataPipelineRequest)
+func _DataPipelinesService_RenameDataPipeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameDataPipelineRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DataPipelinesServiceServer).UpdateDataPipeline(ctx, in)
+		return srv.(DataPipelinesServiceServer).RenameDataPipeline(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.app.datapipelines.v1.DataPipelinesService/UpdateDataPipeline",
+		FullMethod: "/viam.app.datapipelines.v1.DataPipelinesService/RenameDataPipeline",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataPipelinesServiceServer).UpdateDataPipeline(ctx, req.(*UpdateDataPipelineRequest))
+		return srv.(DataPipelinesServiceServer).RenameDataPipeline(ctx, req.(*RenameDataPipelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -348,8 +348,8 @@ var DataPipelinesService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataPipelinesService_CreateDataPipeline_Handler,
 		},
 		{
-			MethodName: "UpdateDataPipeline",
-			Handler:    _DataPipelinesService_UpdateDataPipeline_Handler,
+			MethodName: "RenameDataPipeline",
+			Handler:    _DataPipelinesService_RenameDataPipeline_Handler,
 		},
 		{
 			MethodName: "DeleteDataPipeline",
