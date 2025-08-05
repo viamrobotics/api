@@ -7,6 +7,9 @@
 # necessary) and revisit the lockfile if and when it improves and we feel it's
 # needed.
 lockfile = false
+# (Josh) At time of writing the go backend is experimental. When it's promoted
+# to stable this can be removed.
+experimental = true
 
 [tools]
 buf = "1.55.1"
