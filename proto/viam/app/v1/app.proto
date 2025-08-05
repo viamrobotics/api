@@ -37,6 +37,9 @@ service AppService {
   // Get an organization
   rpc GetOrganization(GetOrganizationRequest) returns (GetOrganizationResponse);
 
+  // Get the most recently used organization for a user
+  rpc GetMostRecentOrganization(GetMostRecentOrganizationRequest) returns (GetMostRecentOrganizationResponse);
+
   // Checks for namespace availablity throughout all orgs.
   rpc GetOrganizationNamespaceAvailability(GetOrganizationNamespaceAvailabilityRequest) returns (GetOrganizationNamespaceAvailabilityResponse);
 
@@ -411,6 +414,14 @@ message GetOrganizationRequest {
 }
 
 message GetOrganizationResponse {
+  Organization organization = 1;
+}
+
+message GetMostRecentOrganizationRequest {
+  string user_id = 1;
+}
+
+message GetMostRecentOrganizationResponse {
   Organization organization = 1;
 }
 
