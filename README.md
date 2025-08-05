@@ -6,8 +6,10 @@ Protobuf definitions for Viam's public-facing API.
 
 ### Development
 
-Ensure that relevant tooling has been installed; use `make setup` from within
-the [rdk](https://github.com/viamrobotics/rdk) repo to do so.
+We use [mise-en-place][mise] manage relevant tooling. It should be installed
+automatically by all relevant make targets using your system's package manager.
+You can also find other installation methods in the
+[official docs][install-mise].
 
 - `make all` - Clean and build the Go and web generated libraries
 - `make dist/buf` - Build the Go and web generated libraries without cleaning
@@ -36,3 +38,6 @@ Other guidelines:
 Copyright 2023 Viam Inc.
 
 Apache 2.0 - See [LICENSE](https://github.com/viamrobotics/api/blob/main/LICENSE) file
+
+[mise]: https://mise.jdx.dev/
+[install-mise]: https://mise.jdx.dev/installing-mise.html

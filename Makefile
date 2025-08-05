@@ -1,32 +1,29 @@
 SHELL := bash
 
 .PHONY: all
-all: print_deprecation
-	mise r clean ::: buf
-
-.PHONY: print_deprecation
-print_deprecation:
-	@echo "Makefile deprecated; please call mise run directly"
+all: dist/tool-install
+	mise r --force clean ::: buf
 
 .PHONY: clean
-clean: print_deprecation
+clean:
 	git clean -fxd
 
 .PHONY: dist/tool-install
-dist/tool-install: print_deprecation
+dist/tool-install:
+	./etc/setup.sh
 	mise install
 
 .PHONY: dist/buf
-dist/buf: dist/buf-go dist/buf-web print_deprecation
+dist/buf: dist/buf-go dist/buf-web
 
 .PHONY: dist/buf-go
-dist/buf-go: print_deprecation
+dist/buf-go: dist/tool-install
 	mise r buf-go
 
 .PHONY: dist/buf-web
-dist/buf-web: dist/tool-install $(PROTO_FILES) print_deprecation
+dist/buf-web: dist/tool-install
 	mise r buf-web
 
 .PHONY: lint
-lint: dist/tool-install print_deprecation
+lint: dist/tool-install
 	mise r lint
