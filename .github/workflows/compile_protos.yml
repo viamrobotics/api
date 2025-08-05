@@ -66,7 +66,7 @@ jobs:
 
       - name: Compile protos
         if: ${{ !env.is-auto-commit }}
-        run: 'mise r --force clean ::: buf'
+        run: 'mise run --force clean ::: buf'
 
       - name: commit + push
         if: ${{ !env.is-auto-commit }}
