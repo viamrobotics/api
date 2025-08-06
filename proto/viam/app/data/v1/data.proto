@@ -447,6 +447,7 @@ message DeleteBinaryDataByIDsResponse {
 
 // AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided.
 message AddTagsToBinaryDataByIDsRequest {
+  option deprecated = true;
   repeated BinaryID binary_ids = 3 [deprecated = true];
   repeated string binary_data_ids = 4;
   repeated string tags = 2;
@@ -467,6 +468,7 @@ message AddTagsToBinaryDataByFilterResponse {}
 
 // RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.
 message RemoveTagsFromBinaryDataByIDsRequest {
+  option deprecated = true;
   repeated BinaryID binary_ids = 3 [deprecated = true];
   repeated string binary_data_ids = 4;
   repeated string tags = 2;
