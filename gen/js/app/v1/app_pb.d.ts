@@ -453,6 +453,44 @@ export namespace GetOrganizationResponse {
   }
 }
 
+export class GetMostRecentOrganizationRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetMostRecentOrganizationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetMostRecentOrganizationRequest): GetMostRecentOrganizationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetMostRecentOrganizationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetMostRecentOrganizationRequest;
+  static deserializeBinaryFromReader(message: GetMostRecentOrganizationRequest, reader: jspb.BinaryReader): GetMostRecentOrganizationRequest;
+}
+
+export namespace GetMostRecentOrganizationRequest {
+  export type AsObject = {
+  }
+}
+
+export class GetMostRecentOrganizationResponse extends jspb.Message {
+  hasOrganization(): boolean;
+  clearOrganization(): void;
+  getOrganization(): Organization | undefined;
+  setOrganization(value?: Organization): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetMostRecentOrganizationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetMostRecentOrganizationResponse): GetMostRecentOrganizationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetMostRecentOrganizationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetMostRecentOrganizationResponse;
+  static deserializeBinaryFromReader(message: GetMostRecentOrganizationResponse, reader: jspb.BinaryReader): GetMostRecentOrganizationResponse;
+}
+
+export namespace GetMostRecentOrganizationResponse {
+  export type AsObject = {
+    organization?: Organization.AsObject,
+  }
+}
+
 export class GetOrganizationNamespaceAvailabilityRequest extends jspb.Message {
   getPublicNamespace(): string;
   setPublicNamespace(value: string): void;

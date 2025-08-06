@@ -36,6 +36,8 @@ type AppServiceClient interface {
 	SearchOrganizations(ctx context.Context, in *SearchOrganizationsRequest, opts ...grpc.CallOption) (*SearchOrganizationsResponse, error)
 	// Get an organization
 	GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error)
+	// Get the most recently used organization for a user
+	GetMostRecentOrganization(ctx context.Context, in *GetMostRecentOrganizationRequest, opts ...grpc.CallOption) (*GetMostRecentOrganizationResponse, error)
 	// Checks for namespace availablity throughout all orgs.
 	GetOrganizationNamespaceAvailability(ctx context.Context, in *GetOrganizationNamespaceAvailabilityRequest, opts ...grpc.CallOption) (*GetOrganizationNamespaceAvailabilityResponse, error)
 	// Update an organization
@@ -275,6 +277,15 @@ func (c *appServiceClient) SearchOrganizations(ctx context.Context, in *SearchOr
 func (c *appServiceClient) GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error) {
 	out := new(GetOrganizationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganization", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetMostRecentOrganization(ctx context.Context, in *GetMostRecentOrganizationRequest, opts ...grpc.CallOption) (*GetMostRecentOrganizationResponse, error) {
+	out := new(GetMostRecentOrganizationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetMostRecentOrganization", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1265,6 +1276,8 @@ type AppServiceServer interface {
 	SearchOrganizations(context.Context, *SearchOrganizationsRequest) (*SearchOrganizationsResponse, error)
 	// Get an organization
 	GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error)
+	// Get the most recently used organization for a user
+	GetMostRecentOrganization(context.Context, *GetMostRecentOrganizationRequest) (*GetMostRecentOrganizationResponse, error)
 	// Checks for namespace availablity throughout all orgs.
 	GetOrganizationNamespaceAvailability(context.Context, *GetOrganizationNamespaceAvailabilityRequest) (*GetOrganizationNamespaceAvailabilityResponse, error)
 	// Update an organization
@@ -1464,6 +1477,9 @@ func (UnimplementedAppServiceServer) SearchOrganizations(context.Context, *Searc
 }
 func (UnimplementedAppServiceServer) GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganization not implemented")
+}
+func (UnimplementedAppServiceServer) GetMostRecentOrganization(context.Context, *GetMostRecentOrganizationRequest) (*GetMostRecentOrganizationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMostRecentOrganization not implemented")
 }
 func (UnimplementedAppServiceServer) GetOrganizationNamespaceAvailability(context.Context, *GetOrganizationNamespaceAvailabilityRequest) (*GetOrganizationNamespaceAvailabilityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationNamespaceAvailability not implemented")
@@ -1906,6 +1922,24 @@ func _AppService_GetOrganization_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).GetOrganization(ctx, req.(*GetOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetMostRecentOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMostRecentOrganizationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetMostRecentOrganization(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetMostRecentOrganization",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetMostRecentOrganization(ctx, req.(*GetMostRecentOrganizationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3791,6 +3825,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOrganization",
 			Handler:    _AppService_GetOrganization_Handler,
+		},
+		{
+			MethodName: "GetMostRecentOrganization",
+			Handler:    _AppService_GetMostRecentOrganization_Handler,
 		},
 		{
 			MethodName: "GetOrganizationNamespaceAvailability",

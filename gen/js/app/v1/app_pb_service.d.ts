@@ -67,6 +67,15 @@ type AppServiceGetOrganization = {
   readonly responseType: typeof app_v1_app_pb.GetOrganizationResponse;
 };
 
+type AppServiceGetMostRecentOrganization = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetMostRecentOrganizationRequest;
+  readonly responseType: typeof app_v1_app_pb.GetMostRecentOrganizationResponse;
+};
+
 type AppServiceGetOrganizationNamespaceAvailability = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -994,6 +1003,7 @@ export class AppService {
   static readonly ListOrganizationsByUser: AppServiceListOrganizationsByUser;
   static readonly SearchOrganizations: AppServiceSearchOrganizations;
   static readonly GetOrganization: AppServiceGetOrganization;
+  static readonly GetMostRecentOrganization: AppServiceGetMostRecentOrganization;
   static readonly GetOrganizationNamespaceAvailability: AppServiceGetOrganizationNamespaceAvailability;
   static readonly UpdateOrganization: AppServiceUpdateOrganization;
   static readonly UpdateOrganizationNamespace: AppServiceUpdateOrganizationNamespace;
@@ -1192,6 +1202,15 @@ export class AppServiceClient {
   getOrganization(
     requestMessage: app_v1_app_pb.GetOrganizationRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationResponse|null) => void
+  ): UnaryResponse;
+  getMostRecentOrganization(
+    requestMessage: app_v1_app_pb.GetMostRecentOrganizationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetMostRecentOrganizationResponse|null) => void
+  ): UnaryResponse;
+  getMostRecentOrganization(
+    requestMessage: app_v1_app_pb.GetMostRecentOrganizationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetMostRecentOrganizationResponse|null) => void
   ): UnaryResponse;
   getOrganizationNamespaceAvailability(
     requestMessage: app_v1_app_pb.GetOrganizationNamespaceAvailabilityRequest,
