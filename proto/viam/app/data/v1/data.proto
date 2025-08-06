@@ -464,7 +464,9 @@ message AddTagsToBinaryDataByFilterRequest {
   repeated string tags = 2;
 }
 
-message AddTagsToBinaryDataByFilterResponse {}
+message AddTagsToBinaryDataByFilterResponse {
+  option deprecated = true;
+}
 
 // RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.
 message RemoveTagsFromBinaryDataByIDsRequest {
@@ -490,6 +492,7 @@ message RemoveTagsFromBinaryDataByFilterRequest {
 
 // RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed.
 message RemoveTagsFromBinaryDataByFilterResponse {
+  option deprecated = true;
   uint64 deleted_count = 1;
 }
 
