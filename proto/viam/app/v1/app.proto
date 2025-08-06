@@ -417,9 +417,7 @@ message GetOrganizationResponse {
   Organization organization = 1;
 }
 
-message GetMostRecentOrganizationRequest {
-  string user_id = 1;
-}
+message GetMostRecentOrganizationRequest {}
 
 message GetMostRecentOrganizationResponse {
   Organization organization = 1;
