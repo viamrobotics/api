@@ -1821,9 +1821,9 @@ message GetAppContentRequest {
 }
 
 enum AppType {
-  UNSPECIFIED = 0;
-  SINGLE_MACHINE = 1;
-  MULTI_MACHINE = 2;
+  APP_TYPE_UNSPECIFIED = 0;
+  APP_TYPE_SINGLE_MACHINE = 1;
+  APP_TYPE_MULTI_MACHINE = 2;
 }
 
 message GetAppContentResponse {
