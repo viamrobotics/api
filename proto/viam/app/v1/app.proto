@@ -1820,10 +1820,16 @@ message GetAppContentRequest {
   string name = 2;
 }
 
+enum AppType {
+  UNSPECIFIED = 0;
+  SINGLE_MACHINE = 1;
+  MULTI_MACHINE = 2;
+}
+
 message GetAppContentResponse {
   string blob_path = 1;
   string entrypoint = 2;
-  string app_type = 3;
+  AppType app_type = 3;
 }
 
 message OrganizationSetLogoRequest {
