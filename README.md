@@ -6,14 +6,30 @@ Protobuf definitions for Viam's public-facing API.
 
 ### Development
 
-We use [mise-en-place][mise] manage relevant tooling. It should be installed
-automatically by all relevant make targets using your system's package manager.
-You can also find other installation methods in the
-[official docs][install-mise].
+Our development environment has some dependencies that you should install
+through your system's package manager:
 
-- `make all` - Clean and build the Go and web generated libraries
-- `make dist/buf` - Build the Go and web generated libraries without cleaning
-- `make clean` - Clean tool cache
+- `curl`
+- `gpg` (called `gnupg` in Homebrew)
+
+We use [mise-en-place][mise] to manage additional required tools. You can
+install it on MacOS and most Linux distributions with the following command:
+
+```bash
+curl https://mise.run | sh
+```
+
+Note that the install script will print instructions for activating mise in
+your shell that you will need to follow to get a working build environment.
+
+Mise is also available in Homebrew and several package repositories. See the
+[official documentation][install-mise] for a list of installation methods.
+
+Once mise is set up you can run `mise tasks` to view the available targets.
+Some common ones are:
+
+- `mise r -f buf` - Unconditionally build the Go and web generated libraries
+- `mise r clean` - Remove untracked files from the workspace
 
 ### Submitting PRs for Protobuf Changes
 

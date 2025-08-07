@@ -32,12 +32,15 @@ protoc-gen-go = "1.35.1"
 protoc-gen-grpc-web = "1.5.0"
 
 [tasks.clean]
+description = "Remove all untracked files"
 run = 'git clean -fdx'
 
 [tasks.buf]
+description = "Compile protos for all platforms"
 depends = ['buf-go', 'buf-web']
 
 [tasks.buf-go]
+description = "Compile protos for Go"
 sources = ["proto/**/*.proto"]
 outputs = ['**/*.pb.go', '**/*.pb.gw.go']
 depends = ['lint-buf']
@@ -50,6 +53,7 @@ run = [
 ]
 
 [tasks.buf-web]
+description = "Compile protos for web (js/ts)"
 sources = ["proto/**/*.proto"]
 outputs = ['gen/js/**/*.js', 'gen/js/**/*.ts']
 depends = ['lint-buf']
@@ -60,13 +64,16 @@ run = [
 ]
 
 [tasks.lint]
+description = "Run all linters"
 depends = ['lint-buf', 'lint-go']
 
 [tasks.lint-buf]
+description = "Lint + format protos"
 wait_for = ['clean']
 run = ['buf lint', 'buf format -w']
 
 [tasks.lint-go]
+description = "Lint Go files"
 wait_for = ['clean']
 depends = ['lint-buf']
 run = """

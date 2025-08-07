@@ -10,7 +10,6 @@ clean:
 
 .PHONY: dist/tool-install
 dist/tool-install:
-	./etc/setup.sh
 	mise install
 
 .PHONY: dist/buf
