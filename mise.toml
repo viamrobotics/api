@@ -29,7 +29,9 @@ node = "22"
 "npm:ts-protoc-gen" = "0.15.0"
 protobuf = "3.20.2"
 protoc-gen-go = "1.35.1"
-protoc-gen-grpc-web = "1.5.0"
+# The default asdf backend for this downloads the wrong binary on aarch64 linux.
+# Use ubi to grab the correct binary directly from the Github release.
+"ubi:grpc/grpc-web" = { version = "1.5.0", rename_exe = "protoc-gen-grpc-web" }
 
 [tasks.clean]
 description = "Remove all untracked files"
