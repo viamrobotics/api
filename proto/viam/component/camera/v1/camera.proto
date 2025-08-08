@@ -69,6 +69,8 @@ message GetImageResponse {
 message GetImagesRequest {
   // Name of a camera
   string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetImagesResponse {
