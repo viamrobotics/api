@@ -67,6 +67,11 @@ export class GetImagesRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetImagesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetImagesRequest): GetImagesRequest.AsObject;
@@ -80,6 +85,7 @@ export class GetImagesRequest extends jspb.Message {
 export namespace GetImagesRequest {
   export type AsObject = {
     name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 

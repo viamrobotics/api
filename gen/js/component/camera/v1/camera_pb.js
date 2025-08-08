@@ -781,7 +781,8 @@ proto.viam.component.camera.v1.GetImagesRequest.prototype.toObject = function(op
  */
 proto.viam.component.camera.v1.GetImagesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -822,6 +823,11 @@ proto.viam.component.camera.v1.GetImagesRequest.deserializeBinaryFromReader = fu
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -858,6 +864,14 @@ proto.viam.component.camera.v1.GetImagesRequest.serializeBinaryToWriter = functi
       f
     );
   }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -876,6 +890,43 @@ proto.viam.component.camera.v1.GetImagesRequest.prototype.getName = function() {
  */
 proto.viam.component.camera.v1.GetImagesRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.camera.v1.GetImagesRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.camera.v1.GetImagesRequest} returns this
+*/
+proto.viam.component.camera.v1.GetImagesRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.camera.v1.GetImagesRequest} returns this
+ */
+proto.viam.component.camera.v1.GetImagesRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.camera.v1.GetImagesRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
