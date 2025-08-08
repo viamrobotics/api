@@ -6677,6 +6677,9 @@ export class GetAppContentResponse extends jspb.Message {
   getEntrypoint(): string;
   setEntrypoint(value: string): void;
 
+  getAppType(): AppTypeMap[keyof AppTypeMap];
+  setAppType(value: AppTypeMap[keyof AppTypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAppContentResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetAppContentResponse): GetAppContentResponse.AsObject;
@@ -6691,6 +6694,7 @@ export namespace GetAppContentResponse {
   export type AsObject = {
     blobPath: string,
     entrypoint: string,
+    appType: AppTypeMap[keyof AppTypeMap],
   }
 }
 
@@ -7307,6 +7311,14 @@ export interface VisibilityMap {
 }
 
 export const Visibility: VisibilityMap;
+
+export interface AppTypeMap {
+  APP_TYPE_UNSPECIFIED: 0;
+  APP_TYPE_SINGLE_MACHINE: 1;
+  APP_TYPE_MULTI_MACHINE: 2;
+}
+
+export const AppType: AppTypeMap;
 
 export interface ClientAuthenticationMap {
   CLIENT_AUTHENTICATION_UNSPECIFIED: 0;
