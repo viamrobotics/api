@@ -27,6 +27,8 @@ type DataManagerServiceClient interface {
 	Sync(ctx context.Context, in *SyncRequest, opts ...grpc.CallOption) (*SyncResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// UploadBinaryDataToDatasets uploads binary data to specified datasets.
+	UploadBinaryDataToDatasets(ctx context.Context, in *UploadBinaryDataToDatasetsRequest, opts ...grpc.CallOption) (*UploadBinaryDataToDatasetsResponse, error)
 }
 
 type dataManagerServiceClient struct {
@@ -55,6 +57,15 @@ func (c *dataManagerServiceClient) DoCommand(ctx context.Context, in *v1.DoComma
 	return out, nil
 }
 
+func (c *dataManagerServiceClient) UploadBinaryDataToDatasets(ctx context.Context, in *UploadBinaryDataToDatasetsRequest, opts ...grpc.CallOption) (*UploadBinaryDataToDatasetsResponse, error) {
+	out := new(UploadBinaryDataToDatasetsResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.datamanager.v1.DataManagerService/UploadBinaryDataToDatasets", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataManagerServiceServer is the server API for DataManagerService service.
 // All implementations must embed UnimplementedDataManagerServiceServer
 // for forward compatibility
@@ -63,6 +74,8 @@ type DataManagerServiceServer interface {
 	Sync(context.Context, *SyncRequest) (*SyncResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// UploadBinaryDataToDatasets uploads binary data to specified datasets.
+	UploadBinaryDataToDatasets(context.Context, *UploadBinaryDataToDatasetsRequest) (*UploadBinaryDataToDatasetsResponse, error)
 	mustEmbedUnimplementedDataManagerServiceServer()
 }
 
@@ -75,6 +88,9 @@ func (UnimplementedDataManagerServiceServer) Sync(context.Context, *SyncRequest)
 }
 func (UnimplementedDataManagerServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedDataManagerServiceServer) UploadBinaryDataToDatasets(context.Context, *UploadBinaryDataToDatasetsRequest) (*UploadBinaryDataToDatasetsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadBinaryDataToDatasets not implemented")
 }
 func (UnimplementedDataManagerServiceServer) mustEmbedUnimplementedDataManagerServiceServer() {}
 
@@ -125,6 +141,24 @@ func _DataManagerService_DoCommand_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataManagerService_UploadBinaryDataToDatasets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadBinaryDataToDatasetsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataManagerServiceServer).UploadBinaryDataToDatasets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.datamanager.v1.DataManagerService/UploadBinaryDataToDatasets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataManagerServiceServer).UploadBinaryDataToDatasets(ctx, req.(*UploadBinaryDataToDatasetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataManagerService_ServiceDesc is the grpc.ServiceDesc for DataManagerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -139,6 +173,10 @@ var DataManagerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _DataManagerService_DoCommand_Handler,
+		},
+		{
+			MethodName: "UploadBinaryDataToDatasets",
+			Handler:    _DataManagerService_UploadBinaryDataToDatasets_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
