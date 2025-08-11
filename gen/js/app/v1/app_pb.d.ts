@@ -3790,8 +3790,6 @@ export namespace ListMachineFragmentsResponse {
 }
 
 export class ListMachineSummariesRequest extends jspb.Message {
-  hasOrganizationId(): boolean;
-  clearOrganizationId(): void;
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
