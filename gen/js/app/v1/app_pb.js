@@ -32535,8 +32535,8 @@ proto.viam.app.v1.ListMachineSummariesRequest.prototype.serializeBinary = functi
  */
 proto.viam.app.v1.ListMachineSummariesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getOrganizationId();
-  if (f.length > 0) {
+  f = /** @type {string} */ (jspb.Message.getField(message, 1));
+  if (f != null) {
     writer.writeString(
       1,
       f
@@ -32580,7 +32580,25 @@ proto.viam.app.v1.ListMachineSummariesRequest.prototype.getOrganizationId = func
  * @return {!proto.viam.app.v1.ListMachineSummariesRequest} returns this
  */
 proto.viam.app.v1.ListMachineSummariesRequest.prototype.setOrganizationId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.ListMachineSummariesRequest} returns this
+ */
+proto.viam.app.v1.ListMachineSummariesRequest.prototype.clearOrganizationId = function() {
+  return jspb.Message.setField(this, 1, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ListMachineSummariesRequest.prototype.hasOrganizationId = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
