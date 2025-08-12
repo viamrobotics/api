@@ -50,8 +50,6 @@ wait_for = ['clean']
 run = [
   'buf generate --template ./proto/viam/buf.gen.yaml',
   'buf generate --template ./proto/viam/buf.gen.tagger.yaml',
-  'mkdir -p dist',
-  'touch dist/buf-go',
 ]
 
 [tasks.buf-web]
