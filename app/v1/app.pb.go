@@ -8413,6 +8413,7 @@ type ListMachineSummariesRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// Optional organization ID. If no value is set it will search among all the organanizations the caller has access to
 	OrganizationId string `protobuf:"bytes,1,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
 	// Optional list of fragment IDs to filter machines that use any of these fragments
 	FragmentIds []string `protobuf:"bytes,2,rep,name=fragment_ids,json=fragmentIds,proto3" json:"fragment_ids,omitempty"`
