@@ -7989,6 +7989,7 @@ proto.viam.app.data.v1.Classification.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.data.v1.Classification.toObject = function(includeInstance, msg) {
   var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 3, ""),
     label: jspb.Message.getFieldWithDefault(msg, 1, ""),
     confidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
@@ -8027,6 +8028,10 @@ proto.viam.app.data.v1.Classification.deserializeBinaryFromReader = function(msg
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
     case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.setLabel(value);
@@ -8064,6 +8069,13 @@ proto.viam.app.data.v1.Classification.prototype.serializeBinary = function() {
  */
 proto.viam.app.data.v1.Classification.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
   f = message.getLabel();
   if (f.length > 0) {
     writer.writeString(
@@ -8078,6 +8090,24 @@ proto.viam.app.data.v1.Classification.serializeBinaryToWriter = function(message
       f
     );
   }
+};
+
+
+/**
+ * optional string id = 3;
+ * @return {string}
+ */
+proto.viam.app.data.v1.Classification.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.Classification} returns this
+ */
+proto.viam.app.data.v1.Classification.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
