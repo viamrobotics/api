@@ -60,10 +60,22 @@ sources = ["proto/**/*.proto"]
 outputs = ['gen/js/**/*.js', 'gen/js/**/*.ts']
 depends = ['lint-buf']
 wait_for = ['clean']
-run = [
-  'buf generate --template ./proto/viam/buf.gen.web.yaml',
-  'buf generate --timeout 5m --template ./proto/viam/buf.gen.web.yaml buf.build/googleapis/googleapis',
-]
+quiet = true
+run = """
+  # Buf has very weird behavior where any protoc-gen-<whatever> in your path
+  # will take precedence over the protoc builtin compilers. This causes issues
+  # for users with protoc-gen-js installed via the system package manager for
+  # other projects. We work around the issue here by constructing a new PATH
+  # that only contains binaries managed by mise. This can be removed when we
+  # update from our very old protoc's builtin js compiler to a protoc-gen-js
+  # managed by mise.
+  PATH="$(mise bin-paths --raw | paste -sd: -)"
+  # Set this so the user can see the commands being run in a similar way to
+  # how tasks defined in an array are displayed.
+  set -x
+  buf generate --template ./proto/viam/buf.gen.web.yaml
+  buf generate --timeout 5m --template ./proto/viam/buf.gen.web.yaml buf.build/googleapis/googleapis
+"""
 
 [tasks.lint]
 description = "Run all linters"
