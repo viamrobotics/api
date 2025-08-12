@@ -293,6 +293,9 @@ message RemoteConfig {
 
   // Secret is a helper for a robot location secret.
   string secret = 10;
+
+  // A string with which to prefix all resource names fetched from this remote.
+  string prefix = 11;
 }
 
 // RemoteAuth specifies how to authenticate against a remote. If no credentials are

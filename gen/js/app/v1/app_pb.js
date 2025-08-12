@@ -34,6 +34,7 @@ goog.exportSymbol('proto.viam.app.v1.AddRoleResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.AdditionalFragment', null, global);
 goog.exportSymbol('proto.viam.app.v1.App', null, global);
 goog.exportSymbol('proto.viam.app.v1.AppCustomizations', null, global);
+goog.exportSymbol('proto.viam.app.v1.AppType', null, global);
 goog.exportSymbol('proto.viam.app.v1.AuthenticationType', null, global);
 goog.exportSymbol('proto.viam.app.v1.AuthenticatorInfo', null, global);
 goog.exportSymbol('proto.viam.app.v1.Authorization', null, global);
@@ -52720,7 +52721,8 @@ proto.viam.app.v1.GetAppContentResponse.prototype.toObject = function(opt_includ
 proto.viam.app.v1.GetAppContentResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     blobPath: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    entrypoint: jspb.Message.getFieldWithDefault(msg, 2, "")
+    entrypoint: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    appType: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -52765,6 +52767,10 @@ proto.viam.app.v1.GetAppContentResponse.deserializeBinaryFromReader = function(m
       var value = /** @type {string} */ (reader.readString());
       msg.setEntrypoint(value);
       break;
+    case 3:
+      var value = /** @type {!proto.viam.app.v1.AppType} */ (reader.readEnum());
+      msg.setAppType(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -52808,6 +52814,13 @@ proto.viam.app.v1.GetAppContentResponse.serializeBinaryToWriter = function(messa
       f
     );
   }
+  f = message.getAppType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -52844,6 +52857,24 @@ proto.viam.app.v1.GetAppContentResponse.prototype.getEntrypoint = function() {
  */
 proto.viam.app.v1.GetAppContentResponse.prototype.setEntrypoint = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional AppType app_type = 3;
+ * @return {!proto.viam.app.v1.AppType}
+ */
+proto.viam.app.v1.GetAppContentResponse.prototype.getAppType = function() {
+  return /** @type {!proto.viam.app.v1.AppType} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.AppType} value
+ * @return {!proto.viam.app.v1.GetAppContentResponse} returns this
+ */
+proto.viam.app.v1.GetAppContentResponse.prototype.setAppType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -56787,6 +56818,15 @@ proto.viam.app.v1.Visibility = {
   VISIBILITY_PRIVATE: 1,
   VISIBILITY_PUBLIC: 2,
   VISIBILITY_PUBLIC_UNLISTED: 3
+};
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.v1.AppType = {
+  APP_TYPE_UNSPECIFIED: 0,
+  APP_TYPE_SINGLE_MACHINE: 1,
+  APP_TYPE_MULTI_MACHINE: 2
 };
 
 /**
