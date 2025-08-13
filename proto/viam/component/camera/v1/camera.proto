@@ -69,6 +69,9 @@ message GetImageResponse {
 message GetImagesRequest {
   // Name of a camera
   string name = 1;
+  // The names of the sensors to retrieve images from. If this is not provided,
+  // all images from all sensors will be returned.
+  repeated string filter_source_names = 2;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -87,6 +90,8 @@ message Image {
   Format format = 2;
   // image in bytes
   bytes image = 3;
+  // The mime type of the image
+  string mime_type = 4;
 }
 
 enum Format {
