@@ -67,6 +67,15 @@ type BillingServiceUpdateOrganizationBillingTier = {
   readonly responseType: typeof app_v1_billing_pb.UpdateOrganizationBillingTierResponse;
 };
 
+type BillingServiceCreateInvoiceAndChargeImmediately = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyRequest;
+  readonly responseType: typeof app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyResponse;
+};
+
 export class BillingService {
   static readonly serviceName: string;
   static readonly GetCurrentMonthUsage: BillingServiceGetCurrentMonthUsage;
@@ -76,6 +85,7 @@ export class BillingService {
   static readonly SendPaymentRequiredEmail: BillingServiceSendPaymentRequiredEmail;
   static readonly GetAvailableBillingTiers: BillingServiceGetAvailableBillingTiers;
   static readonly UpdateOrganizationBillingTier: BillingServiceUpdateOrganizationBillingTier;
+  static readonly CreateInvoiceAndChargeImmediately: BillingServiceCreateInvoiceAndChargeImmediately;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -164,6 +174,15 @@ export class BillingServiceClient {
   updateOrganizationBillingTier(
     requestMessage: app_v1_billing_pb.UpdateOrganizationBillingTierRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.UpdateOrganizationBillingTierResponse|null) => void
+  ): UnaryResponse;
+  createInvoiceAndChargeImmediately(
+    requestMessage: app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyResponse|null) => void
+  ): UnaryResponse;
+  createInvoiceAndChargeImmediately(
+    requestMessage: app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyResponse|null) => void
   ): UnaryResponse;
 }
 
