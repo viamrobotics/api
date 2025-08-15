@@ -177,6 +177,9 @@ message DataPipelineRun {
 
   // The status of the run.
   DataPipelineRunStatus status = 6;
+
+  // The error message if the run failed.
+  string error_message = 7;
 }
 
 enum DataPipelineRunStatus {
