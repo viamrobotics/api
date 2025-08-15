@@ -1160,7 +1160,6 @@ message LocationSummary {
 message MachineSummary {
   string machine_id = 1;
   string machine_name = 2;
-  optional string main_part_dns_name = 4;
   repeated PartSummary part_summaries = 3;
 }
 
