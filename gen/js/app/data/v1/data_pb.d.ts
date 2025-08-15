@@ -910,6 +910,9 @@ export namespace BoundingBox {
 }
 
 export class Classification extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
   getLabel(): string;
   setLabel(value: string): void;
 
@@ -930,6 +933,7 @@ export class Classification extends jspb.Message {
 
 export namespace Classification {
   export type AsObject = {
+    id: string,
     label: string,
     confidence: number,
   }

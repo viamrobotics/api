@@ -32,6 +32,8 @@ type DatasetServiceClient interface {
 	ListDatasetsByOrganizationID(ctx context.Context, in *ListDatasetsByOrganizationIDRequest, opts ...grpc.CallOption) (*ListDatasetsByOrganizationIDResponse, error)
 	// ListDatasetsByIDs lists all of the datasets specified by the given dataset IDs.
 	ListDatasetsByIDs(ctx context.Context, in *ListDatasetsByIDsRequest, opts ...grpc.CallOption) (*ListDatasetsByIDsResponse, error)
+	// MergeDatasets merges multiple datasets into a new dataset.
+	MergeDatasets(ctx context.Context, in *MergeDatasetsRequest, opts ...grpc.CallOption) (*MergeDatasetsResponse, error)
 }
 
 type datasetServiceClient struct {
@@ -87,6 +89,15 @@ func (c *datasetServiceClient) ListDatasetsByIDs(ctx context.Context, in *ListDa
 	return out, nil
 }
 
+func (c *datasetServiceClient) MergeDatasets(ctx context.Context, in *MergeDatasetsRequest, opts ...grpc.CallOption) (*MergeDatasetsResponse, error) {
+	out := new(MergeDatasetsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.dataset.v1.DatasetService/MergeDatasets", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DatasetServiceServer is the server API for DatasetService service.
 // All implementations must embed UnimplementedDatasetServiceServer
 // for forward compatibility
@@ -101,6 +112,8 @@ type DatasetServiceServer interface {
 	ListDatasetsByOrganizationID(context.Context, *ListDatasetsByOrganizationIDRequest) (*ListDatasetsByOrganizationIDResponse, error)
 	// ListDatasetsByIDs lists all of the datasets specified by the given dataset IDs.
 	ListDatasetsByIDs(context.Context, *ListDatasetsByIDsRequest) (*ListDatasetsByIDsResponse, error)
+	// MergeDatasets merges multiple datasets into a new dataset.
+	MergeDatasets(context.Context, *MergeDatasetsRequest) (*MergeDatasetsResponse, error)
 	mustEmbedUnimplementedDatasetServiceServer()
 }
 
@@ -122,6 +135,9 @@ func (UnimplementedDatasetServiceServer) ListDatasetsByOrganizationID(context.Co
 }
 func (UnimplementedDatasetServiceServer) ListDatasetsByIDs(context.Context, *ListDatasetsByIDsRequest) (*ListDatasetsByIDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDatasetsByIDs not implemented")
+}
+func (UnimplementedDatasetServiceServer) MergeDatasets(context.Context, *MergeDatasetsRequest) (*MergeDatasetsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MergeDatasets not implemented")
 }
 func (UnimplementedDatasetServiceServer) mustEmbedUnimplementedDatasetServiceServer() {}
 
@@ -226,6 +242,24 @@ func _DatasetService_ListDatasetsByIDs_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DatasetService_MergeDatasets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MergeDatasetsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatasetServiceServer).MergeDatasets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.dataset.v1.DatasetService/MergeDatasets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatasetServiceServer).MergeDatasets(ctx, req.(*MergeDatasetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DatasetService_ServiceDesc is the grpc.ServiceDesc for DatasetService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -252,6 +286,10 @@ var DatasetService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListDatasetsByIDs",
 			Handler:    _DatasetService_ListDatasetsByIDs_Handler,
+		},
+		{
+			MethodName: "MergeDatasets",
+			Handler:    _DatasetService_MergeDatasets_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

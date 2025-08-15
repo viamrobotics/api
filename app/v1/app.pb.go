@@ -292,6 +292,55 @@ func (Visibility) EnumDescriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{4}
 }
 
+type AppType int32
+
+const (
+	AppType_APP_TYPE_UNSPECIFIED    AppType = 0
+	AppType_APP_TYPE_SINGLE_MACHINE AppType = 1
+	AppType_APP_TYPE_MULTI_MACHINE  AppType = 2
+)
+
+// Enum value maps for AppType.
+var (
+	AppType_name = map[int32]string{
+		0: "APP_TYPE_UNSPECIFIED",
+		1: "APP_TYPE_SINGLE_MACHINE",
+		2: "APP_TYPE_MULTI_MACHINE",
+	}
+	AppType_value = map[string]int32{
+		"APP_TYPE_UNSPECIFIED":    0,
+		"APP_TYPE_SINGLE_MACHINE": 1,
+		"APP_TYPE_MULTI_MACHINE":  2,
+	}
+)
+
+func (x AppType) Enum() *AppType {
+	p := new(AppType)
+	*p = x
+	return p
+}
+
+func (x AppType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (AppType) Descriptor() protoreflect.EnumDescriptor {
+	return file_app_v1_app_proto_enumTypes[5].Descriptor()
+}
+
+func (AppType) Type() protoreflect.EnumType {
+	return &file_app_v1_app_proto_enumTypes[5]
+}
+
+func (x AppType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use AppType.Descriptor instead.
+func (AppType) EnumDescriptor() ([]byte, []int) {
+	return file_app_v1_app_proto_rawDescGZIP(), []int{5}
+}
+
 type ClientAuthentication int32
 
 const (
@@ -328,11 +377,11 @@ func (x ClientAuthentication) String() string {
 }
 
 func (ClientAuthentication) Descriptor() protoreflect.EnumDescriptor {
-	return file_app_v1_app_proto_enumTypes[5].Descriptor()
+	return file_app_v1_app_proto_enumTypes[6].Descriptor()
 }
 
 func (ClientAuthentication) Type() protoreflect.EnumType {
-	return &file_app_v1_app_proto_enumTypes[5]
+	return &file_app_v1_app_proto_enumTypes[6]
 }
 
 func (x ClientAuthentication) Number() protoreflect.EnumNumber {
@@ -341,7 +390,7 @@ func (x ClientAuthentication) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClientAuthentication.Descriptor instead.
 func (ClientAuthentication) EnumDescriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{5}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{6}
 }
 
 type PKCE int32
@@ -380,11 +429,11 @@ func (x PKCE) String() string {
 }
 
 func (PKCE) Descriptor() protoreflect.EnumDescriptor {
-	return file_app_v1_app_proto_enumTypes[6].Descriptor()
+	return file_app_v1_app_proto_enumTypes[7].Descriptor()
 }
 
 func (PKCE) Type() protoreflect.EnumType {
-	return &file_app_v1_app_proto_enumTypes[6]
+	return &file_app_v1_app_proto_enumTypes[7]
 }
 
 func (x PKCE) Number() protoreflect.EnumNumber {
@@ -393,7 +442,7 @@ func (x PKCE) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PKCE.Descriptor instead.
 func (PKCE) EnumDescriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{6}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{7}
 }
 
 type URLValidation int32
@@ -429,11 +478,11 @@ func (x URLValidation) String() string {
 }
 
 func (URLValidation) Descriptor() protoreflect.EnumDescriptor {
-	return file_app_v1_app_proto_enumTypes[7].Descriptor()
+	return file_app_v1_app_proto_enumTypes[8].Descriptor()
 }
 
 func (URLValidation) Type() protoreflect.EnumType {
-	return &file_app_v1_app_proto_enumTypes[7]
+	return &file_app_v1_app_proto_enumTypes[8]
 }
 
 func (x URLValidation) Number() protoreflect.EnumNumber {
@@ -442,7 +491,7 @@ func (x URLValidation) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use URLValidation.Descriptor instead.
 func (URLValidation) EnumDescriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{7}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{8}
 }
 
 type EnabledGrant int32
@@ -487,11 +536,11 @@ func (x EnabledGrant) String() string {
 }
 
 func (EnabledGrant) Descriptor() protoreflect.EnumDescriptor {
-	return file_app_v1_app_proto_enumTypes[8].Descriptor()
+	return file_app_v1_app_proto_enumTypes[9].Descriptor()
 }
 
 func (EnabledGrant) Type() protoreflect.EnumType {
-	return &file_app_v1_app_proto_enumTypes[8]
+	return &file_app_v1_app_proto_enumTypes[9]
 }
 
 func (x EnabledGrant) Number() protoreflect.EnumNumber {
@@ -500,7 +549,7 @@ func (x EnabledGrant) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use EnabledGrant.Descriptor instead.
 func (EnabledGrant) EnumDescriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{8}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{9}
 }
 
 type SharedSecret_State int32
@@ -538,11 +587,11 @@ func (x SharedSecret_State) String() string {
 }
 
 func (SharedSecret_State) Descriptor() protoreflect.EnumDescriptor {
-	return file_app_v1_app_proto_enumTypes[9].Descriptor()
+	return file_app_v1_app_proto_enumTypes[10].Descriptor()
 }
 
 func (SharedSecret_State) Type() protoreflect.EnumType {
-	return &file_app_v1_app_proto_enumTypes[9]
+	return &file_app_v1_app_proto_enumTypes[10]
 }
 
 func (x SharedSecret_State) Number() protoreflect.EnumNumber {
@@ -8364,6 +8413,7 @@ type ListMachineSummariesRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// Optional organization ID. If no value is set it will search among all the organanizations the caller has access to
 	OrganizationId string `protobuf:"bytes,1,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
 	// Optional list of fragment IDs to filter machines that use any of these fragments
 	FragmentIds []string `protobuf:"bytes,2,rep,name=fragment_ids,json=fragmentIds,proto3" json:"fragment_ids,omitempty"`
@@ -14349,8 +14399,9 @@ type GetAppContentResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	BlobPath   string `protobuf:"bytes,1,opt,name=blob_path,json=blobPath,proto3" json:"blob_path,omitempty"`
-	Entrypoint string `protobuf:"bytes,2,opt,name=entrypoint,proto3" json:"entrypoint,omitempty"`
+	BlobPath   string  `protobuf:"bytes,1,opt,name=blob_path,json=blobPath,proto3" json:"blob_path,omitempty"`
+	Entrypoint string  `protobuf:"bytes,2,opt,name=entrypoint,proto3" json:"entrypoint,omitempty"`
+	AppType    AppType `protobuf:"varint,3,opt,name=app_type,json=appType,proto3,enum=viam.app.v1.AppType" json:"app_type,omitempty"`
 }
 
 func (x *GetAppContentResponse) Reset() {
@@ -14395,6 +14446,13 @@ func (x *GetAppContentResponse) GetEntrypoint() string {
 		return x.Entrypoint
 	}
 	return ""
+}
+
+func (x *GetAppContentResponse) GetAppType() AppType {
+	if x != nil {
+		return x.AppType
+	}
+	return AppType_APP_TYPE_UNSPECIFIED
 }
 
 type OrganizationSetLogoRequest struct {
@@ -17586,215 +17644,224 @@ var file_app_v1_app_proto_rawDesc = []byte{
 	0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x70, 0x75,
 	0x62, 0x6c, 0x69, 0x63, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x12, 0x12, 0x0a,
 	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
-	0x65, 0x22, 0x54, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x41, 0x70, 0x70, 0x43, 0x6f, 0x6e, 0x74, 0x65,
-	0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x62, 0x6c,
-	0x6f, 0x62, 0x5f, 0x70, 0x61, 0x74, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x62,
-	0x6c, 0x6f, 0x62, 0x50, 0x61, 0x74, 0x68, 0x12, 0x1e, 0x0a, 0x0a, 0x65, 0x6e, 0x74, 0x72, 0x79,
-	0x70, 0x6f, 0x69, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x6e, 0x74,
-	0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x22, 0x47, 0x0a, 0x1a, 0x4f, 0x72, 0x67, 0x61, 0x6e,
-	0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x74, 0x4c, 0x6f, 0x67, 0x6f, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04,
-	0x6c, 0x6f, 0x67, 0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x04, 0x6c, 0x6f, 0x67, 0x6f,
-	0x22, 0x1d, 0x0a, 0x1b, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x53, 0x65, 0x74, 0x4c, 0x6f, 0x67, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x33, 0x0a, 0x1a, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x47,
-	0x65, 0x74, 0x4c, 0x6f, 0x67, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x15, 0x0a,
-	0x06, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f,
-	0x72, 0x67, 0x49, 0x64, 0x22, 0x2f, 0x0a, 0x1b, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x47, 0x65, 0x74, 0x4c, 0x6f, 0x67, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x03, 0x75, 0x72, 0x6c, 0x22, 0x31, 0x0a, 0x18, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x41,
-	0x75, 0x74, 0x68, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x15, 0x0a, 0x06, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x22, 0x1b, 0x0a, 0x19, 0x45, 0x6e, 0x61, 0x62,
-	0x6c, 0x65, 0x41, 0x75, 0x74, 0x68, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x32, 0x0a, 0x19, 0x44, 0x69, 0x73, 0x61, 0x62, 0x6c, 0x65,
-	0x41, 0x75, 0x74, 0x68, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x22, 0x1c, 0x0a, 0x1a, 0x44, 0x69, 0x73,
-	0x61, 0x62, 0x6c, 0x65, 0x41, 0x75, 0x74, 0x68, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x8c, 0x01, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61,
-	0x74, 0x65, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x15, 0x0a, 0x06, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x63, 0x6c, 0x69, 0x65,
-	0x6e, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63,
-	0x6c, 0x69, 0x65, 0x6e, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x3b, 0x0a, 0x0c, 0x6f, 0x61, 0x75,
-	0x74, 0x68, 0x5f, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x18, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4f, 0x41,
-	0x75, 0x74, 0x68, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x0b, 0x6f, 0x61, 0x75, 0x74, 0x68,
-	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0x5a, 0x0a, 0x16, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x4f, 0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x1b, 0x0a, 0x09, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x08, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x23, 0x0a,
-	0x0d, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x73, 0x65, 0x63, 0x72, 0x65, 0x74, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x53, 0x65, 0x63, 0x72,
-	0x65, 0x74, 0x22, 0x49, 0x0a, 0x13, 0x52, 0x65, 0x61, 0x64, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x41,
-	0x70, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6f, 0x72, 0x67,
-	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64,
-	0x12, 0x1b, 0x0a, 0x09, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x08, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x22, 0x99, 0x01,
-	0x0a, 0x14, 0x52, 0x65, 0x61, 0x64, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74,
-	0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x6c, 0x69,
-	0x65, 0x6e, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x23, 0x0a, 0x0d, 0x63, 0x6c, 0x69, 0x65, 0x6e,
-	0x74, 0x5f, 0x73, 0x65, 0x63, 0x72, 0x65, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c,
-	0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x12, 0x3b, 0x0a, 0x0c,
-	0x6f, 0x61, 0x75, 0x74, 0x68, 0x5f, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x03, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x18, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31,
-	0x2e, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x0b, 0x6f, 0x61,
-	0x75, 0x74, 0x68, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0xa9, 0x01, 0x0a, 0x15, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x22, 0x85, 0x01, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x41, 0x70, 0x70, 0x43, 0x6f, 0x6e, 0x74,
+	0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x62,
+	0x6c, 0x6f, 0x62, 0x5f, 0x70, 0x61, 0x74, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
+	0x62, 0x6c, 0x6f, 0x62, 0x50, 0x61, 0x74, 0x68, 0x12, 0x1e, 0x0a, 0x0a, 0x65, 0x6e, 0x74, 0x72,
+	0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x6e,
+	0x74, 0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x2f, 0x0a, 0x08, 0x61, 0x70, 0x70, 0x5f,
+	0x74, 0x79, 0x70, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x14, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x70, 0x70, 0x54, 0x79, 0x70, 0x65,
+	0x52, 0x07, 0x61, 0x70, 0x70, 0x54, 0x79, 0x70, 0x65, 0x22, 0x47, 0x0a, 0x1a, 0x4f, 0x72, 0x67,
+	0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x74, 0x4c, 0x6f, 0x67, 0x6f,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6f, 0x72, 0x67, 0x5f, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x12, 0x12,
+	0x0a, 0x04, 0x6c, 0x6f, 0x67, 0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x04, 0x6c, 0x6f,
+	0x67, 0x6f, 0x22, 0x1d, 0x0a, 0x1b, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x53, 0x65, 0x74, 0x4c, 0x6f, 0x67, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x33, 0x0a, 0x1a, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x47, 0x65, 0x74, 0x4c, 0x6f, 0x67, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x15, 0x0a, 0x06, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x22, 0x2f, 0x0a, 0x1b, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69,
+	0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x47, 0x65, 0x74, 0x4c, 0x6f, 0x67, 0x6f, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x22, 0x31, 0x0a, 0x18, 0x45, 0x6e, 0x61, 0x62, 0x6c,
+	0x65, 0x41, 0x75, 0x74, 0x68, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75,
 	0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x63, 0x6c,
-	0x69, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x63,
-	0x6c, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x63, 0x6c, 0x69, 0x65, 0x6e,
-	0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x6c,
-	0x69, 0x65, 0x6e, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x3b, 0x0a, 0x0c, 0x6f, 0x61, 0x75, 0x74,
-	0x68, 0x5f, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18,
-	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4f, 0x41, 0x75,
-	0x74, 0x68, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x0b, 0x6f, 0x61, 0x75, 0x74, 0x68, 0x43,
-	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0x18, 0x0a, 0x16, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4f,
-	0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x4b, 0x0a, 0x15, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x41, 0x70,
-	0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6f, 0x72, 0x67, 0x5f,
-	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x12,
-	0x1b, 0x0a, 0x09, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x08, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x22, 0x18, 0x0a, 0x16,
-	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2d, 0x0a, 0x14, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x41,
-	0x75, 0x74, 0x68, 0x41, 0x70, 0x70, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x15,
-	0x0a, 0x06, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05,
-	0x6f, 0x72, 0x67, 0x49, 0x64, 0x22, 0x36, 0x0a, 0x15, 0x4c, 0x69, 0x73, 0x74, 0x4f, 0x41, 0x75,
-	0x74, 0x68, 0x41, 0x70, 0x70, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1d,
-	0x0a, 0x0a, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03,
-	0x28, 0x09, 0x52, 0x09, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x73, 0x22, 0xf6, 0x02,
-	0x0a, 0x0b, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x56, 0x0a,
-	0x15, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69,
-	0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x21, 0x2e, 0x76,
-	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6c, 0x69, 0x65, 0x6e,
-	0x74, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52,
-	0x14, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x25, 0x0a, 0x04, 0x70, 0x6b, 0x63, 0x65, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x0e, 0x32, 0x11, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76,
-	0x31, 0x2e, 0x50, 0x4b, 0x43, 0x45, 0x52, 0x04, 0x70, 0x6b, 0x63, 0x65, 0x12, 0x41, 0x0a, 0x0e,
-	0x75, 0x72, 0x6c, 0x5f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x0e, 0x32, 0x1a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e,
-	0x76, 0x31, 0x2e, 0x55, 0x52, 0x4c, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x52, 0x0d, 0x75, 0x72, 0x6c, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12,
-	0x1f, 0x0a, 0x0b, 0x6f, 0x72, 0x69, 0x67, 0x69, 0x6e, 0x5f, 0x75, 0x72, 0x69, 0x73, 0x18, 0x04,
-	0x20, 0x03, 0x28, 0x09, 0x52, 0x0a, 0x6f, 0x72, 0x69, 0x67, 0x69, 0x6e, 0x55, 0x72, 0x69, 0x73,
-	0x12, 0x23, 0x0a, 0x0d, 0x72, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x5f, 0x75, 0x72, 0x69,
-	0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0c, 0x72, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63,
-	0x74, 0x55, 0x72, 0x69, 0x73, 0x12, 0x1d, 0x0a, 0x0a, 0x6c, 0x6f, 0x67, 0x6f, 0x75, 0x74, 0x5f,
-	0x75, 0x72, 0x69, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6c, 0x6f, 0x67, 0x6f, 0x75,
-	0x74, 0x55, 0x72, 0x69, 0x12, 0x40, 0x0a, 0x0e, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x5f,
-	0x67, 0x72, 0x61, 0x6e, 0x74, 0x73, 0x18, 0x07, 0x20, 0x03, 0x28, 0x0e, 0x32, 0x19, 0x2e, 0x76,
-	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x6e, 0x61, 0x62, 0x6c,
-	0x65, 0x64, 0x47, 0x72, 0x61, 0x6e, 0x74, 0x52, 0x0d, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
-	0x47, 0x72, 0x61, 0x6e, 0x74, 0x73, 0x22, 0x56, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x41, 0x70, 0x70,
-	0x42, 0x72, 0x61, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
-	0x29, 0x0a, 0x10, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70,
-	0x61, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x70, 0x75, 0x62, 0x6c, 0x69,
-	0x63, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
-	0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x8a,
-	0x01, 0x0a, 0x0d, 0x54, 0x65, 0x78, 0x74, 0x4f, 0x76, 0x65, 0x72, 0x72, 0x69, 0x64, 0x65, 0x73,
-	0x12, 0x3e, 0x0a, 0x06, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
-	0x32, 0x26, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x54,
-	0x65, 0x78, 0x74, 0x4f, 0x76, 0x65, 0x72, 0x72, 0x69, 0x64, 0x65, 0x73, 0x2e, 0x46, 0x69, 0x65,
-	0x6c, 0x64, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x06, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73,
-	0x1a, 0x39, 0x0a, 0x0b, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12,
-	0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65,
-	0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0xbc, 0x02, 0x0a, 0x16,
-	0x47, 0x65, 0x74, 0x41, 0x70, 0x70, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x20, 0x0a, 0x09, 0x6c, 0x6f, 0x67, 0x6f, 0x5f, 0x70,
-	0x61, 0x74, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x08, 0x6c, 0x6f, 0x67,
-	0x6f, 0x50, 0x61, 0x74, 0x68, 0x88, 0x01, 0x01, 0x12, 0x6c, 0x0a, 0x13, 0x74, 0x65, 0x78, 0x74,
-	0x5f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18,
-	0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x3b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x70, 0x70, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x69,
-	0x6e, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x54, 0x65, 0x78, 0x74, 0x43,
-	0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x45, 0x6e, 0x74,
-	0x72, 0x79, 0x52, 0x12, 0x74, 0x65, 0x78, 0x74, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x21, 0x0a, 0x0c, 0x66, 0x72, 0x61, 0x67, 0x6d, 0x65,
-	0x6e, 0x74, 0x5f, 0x69, 0x64, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b, 0x66, 0x72,
-	0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x73, 0x1a, 0x61, 0x0a, 0x17, 0x54, 0x65, 0x78,
+	0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x22, 0x1b, 0x0a, 0x19, 0x45, 0x6e,
+	0x61, 0x62, 0x6c, 0x65, 0x41, 0x75, 0x74, 0x68, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x32, 0x0a, 0x19, 0x44, 0x69, 0x73, 0x61, 0x62,
+	0x6c, 0x65, 0x41, 0x75, 0x74, 0x68, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x22, 0x1c, 0x0a, 0x1a, 0x44,
+	0x69, 0x73, 0x61, 0x62, 0x6c, 0x65, 0x41, 0x75, 0x74, 0x68, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x8c, 0x01, 0x0a, 0x15, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x63, 0x6c,
+	0x69, 0x65, 0x6e, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0a, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x3b, 0x0a, 0x0c, 0x6f,
+	0x61, 0x75, 0x74, 0x68, 0x5f, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x18, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e,
+	0x4f, 0x41, 0x75, 0x74, 0x68, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x0b, 0x6f, 0x61, 0x75,
+	0x74, 0x68, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0x5a, 0x0a, 0x16, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x12,
+	0x23, 0x0a, 0x0d, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x73, 0x65, 0x63, 0x72, 0x65, 0x74,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x53, 0x65,
+	0x63, 0x72, 0x65, 0x74, 0x22, 0x49, 0x0a, 0x13, 0x52, 0x65, 0x61, 0x64, 0x4f, 0x41, 0x75, 0x74,
+	0x68, 0x41, 0x70, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6f,
+	0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x72, 0x67,
+	0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x22,
+	0x99, 0x01, 0x0a, 0x14, 0x52, 0x65, 0x61, 0x64, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x63, 0x6c, 0x69, 0x65,
+	0x6e, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63,
+	0x6c, 0x69, 0x65, 0x6e, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x23, 0x0a, 0x0d, 0x63, 0x6c, 0x69,
+	0x65, 0x6e, 0x74, 0x5f, 0x73, 0x65, 0x63, 0x72, 0x65, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0c, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x12, 0x3b,
+	0x0a, 0x0c, 0x6f, 0x61, 0x75, 0x74, 0x68, 0x5f, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e,
+	0x76, 0x31, 0x2e, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x0b,
+	0x6f, 0x61, 0x75, 0x74, 0x68, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0xa9, 0x01, 0x0a, 0x15,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09,
+	0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x63, 0x6c, 0x69,
+	0x65, 0x6e, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a,
+	0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x3b, 0x0a, 0x0c, 0x6f, 0x61,
+	0x75, 0x74, 0x68, 0x5f, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x18, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4f,
+	0x41, 0x75, 0x74, 0x68, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x0b, 0x6f, 0x61, 0x75, 0x74,
+	0x68, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0x18, 0x0a, 0x16, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x4b, 0x0a, 0x15, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x41, 0x75, 0x74, 0x68,
+	0x41, 0x70, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6f, 0x72,
+	0x67, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x72, 0x67, 0x49,
+	0x64, 0x12, 0x1b, 0x0a, 0x09, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x22, 0x18,
+	0x0a, 0x16, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2d, 0x0a, 0x14, 0x4c, 0x69, 0x73, 0x74,
+	0x4f, 0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x15, 0x0a, 0x06, 0x6f, 0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x05, 0x6f, 0x72, 0x67, 0x49, 0x64, 0x22, 0x36, 0x0a, 0x15, 0x4c, 0x69, 0x73, 0x74, 0x4f,
+	0x41, 0x75, 0x74, 0x68, 0x41, 0x70, 0x70, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x73, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x09, 0x52, 0x09, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x73, 0x22,
+	0xf6, 0x02, 0x0a, 0x0b, 0x4f, 0x41, 0x75, 0x74, 0x68, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12,
+	0x56, 0x0a, 0x15, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x65, 0x6e,
+	0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x21,
+	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6c, 0x69,
+	0x65, 0x6e, 0x74, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x52, 0x14, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74,
+	0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x25, 0x0a, 0x04, 0x70, 0x6b, 0x63, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x11, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
+	0x2e, 0x76, 0x31, 0x2e, 0x50, 0x4b, 0x43, 0x45, 0x52, 0x04, 0x70, 0x6b, 0x63, 0x65, 0x12, 0x41,
+	0x0a, 0x0e, 0x75, 0x72, 0x6c, 0x5f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
+	0x70, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x52, 0x4c, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x52, 0x0d, 0x75, 0x72, 0x6c, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x12, 0x1f, 0x0a, 0x0b, 0x6f, 0x72, 0x69, 0x67, 0x69, 0x6e, 0x5f, 0x75, 0x72, 0x69, 0x73,
+	0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0a, 0x6f, 0x72, 0x69, 0x67, 0x69, 0x6e, 0x55, 0x72,
+	0x69, 0x73, 0x12, 0x23, 0x0a, 0x0d, 0x72, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x5f, 0x75,
+	0x72, 0x69, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0c, 0x72, 0x65, 0x64, 0x69, 0x72,
+	0x65, 0x63, 0x74, 0x55, 0x72, 0x69, 0x73, 0x12, 0x1d, 0x0a, 0x0a, 0x6c, 0x6f, 0x67, 0x6f, 0x75,
+	0x74, 0x5f, 0x75, 0x72, 0x69, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6c, 0x6f, 0x67,
+	0x6f, 0x75, 0x74, 0x55, 0x72, 0x69, 0x12, 0x40, 0x0a, 0x0e, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65,
+	0x64, 0x5f, 0x67, 0x72, 0x61, 0x6e, 0x74, 0x73, 0x18, 0x07, 0x20, 0x03, 0x28, 0x0e, 0x32, 0x19,
+	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x6e, 0x61,
+	0x62, 0x6c, 0x65, 0x64, 0x47, 0x72, 0x61, 0x6e, 0x74, 0x52, 0x0d, 0x65, 0x6e, 0x61, 0x62, 0x6c,
+	0x65, 0x64, 0x47, 0x72, 0x61, 0x6e, 0x74, 0x73, 0x22, 0x56, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x41,
+	0x70, 0x70, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x29, 0x0a, 0x10, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x5f, 0x6e, 0x61, 0x6d, 0x65,
+	0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x70, 0x75, 0x62,
+	0x6c, 0x69, 0x63, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x12, 0x12, 0x0a, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x22, 0x8a, 0x01, 0x0a, 0x0d, 0x54, 0x65, 0x78, 0x74, 0x4f, 0x76, 0x65, 0x72, 0x72, 0x69, 0x64,
+	0x65, 0x73, 0x12, 0x3e, 0x0a, 0x06, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x26, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31,
+	0x2e, 0x54, 0x65, 0x78, 0x74, 0x4f, 0x76, 0x65, 0x72, 0x72, 0x69, 0x64, 0x65, 0x73, 0x2e, 0x46,
+	0x69, 0x65, 0x6c, 0x64, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x06, 0x66, 0x69, 0x65, 0x6c,
+	0x64, 0x73, 0x1a, 0x39, 0x0a, 0x0b, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x45, 0x6e, 0x74, 0x72,
+	0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
+	0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0xbc, 0x02,
+	0x0a, 0x16, 0x47, 0x65, 0x74, 0x41, 0x70, 0x70, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x69, 0x6e, 0x67,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x20, 0x0a, 0x09, 0x6c, 0x6f, 0x67, 0x6f,
+	0x5f, 0x70, 0x61, 0x74, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x08, 0x6c,
+	0x6f, 0x67, 0x6f, 0x50, 0x61, 0x74, 0x68, 0x88, 0x01, 0x01, 0x12, 0x6c, 0x0a, 0x13, 0x74, 0x65,
+	0x78, 0x74, 0x5f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x3b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x70, 0x70, 0x42, 0x72, 0x61, 0x6e,
+	0x64, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x54, 0x65, 0x78,
 	0x74, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x45,
-	0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x30, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x78, 0x74, 0x4f, 0x76, 0x65, 0x72, 0x72, 0x69, 0x64, 0x65,
-	0x73, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x42, 0x0c, 0x0a, 0x0a,
-	0x5f, 0x6c, 0x6f, 0x67, 0x6f, 0x5f, 0x70, 0x61, 0x74, 0x68, 0x22, 0x64, 0x0a, 0x11, 0x41, 0x70,
-	0x70, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12,
-	0x4f, 0x0a, 0x0e, 0x6d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x5f, 0x70, 0x69, 0x63, 0x6b, 0x65,
-	0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
-	0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x50, 0x69, 0x63,
+	0x6e, 0x74, 0x72, 0x79, 0x52, 0x12, 0x74, 0x65, 0x78, 0x74, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d,
+	0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x21, 0x0a, 0x0c, 0x66, 0x72, 0x61, 0x67,
+	0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b,
+	0x66, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x73, 0x1a, 0x61, 0x0a, 0x17, 0x54,
+	0x65, 0x78, 0x74, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x30, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x78, 0x74, 0x4f, 0x76, 0x65, 0x72, 0x72, 0x69,
+	0x64, 0x65, 0x73, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x42, 0x0c,
+	0x0a, 0x0a, 0x5f, 0x6c, 0x6f, 0x67, 0x6f, 0x5f, 0x70, 0x61, 0x74, 0x68, 0x22, 0x64, 0x0a, 0x11,
+	0x41, 0x70, 0x70, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x12, 0x4f, 0x0a, 0x0e, 0x6d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x5f, 0x70, 0x69, 0x63,
+	0x6b, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x50,
+	0x69, 0x63, 0x6b, 0x65, 0x72, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x52, 0x0d, 0x6d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x50, 0x69, 0x63, 0x6b,
+	0x65, 0x72, 0x22, 0x7c, 0x0a, 0x1b, 0x4d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x50, 0x69, 0x63,
 	0x6b, 0x65, 0x72, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x73, 0x52, 0x0d, 0x6d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x50, 0x69, 0x63, 0x6b, 0x65, 0x72,
-	0x22, 0x7c, 0x0a, 0x1b, 0x4d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x50, 0x69, 0x63, 0x6b, 0x65,
-	0x72, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12,
-	0x1d, 0x0a, 0x07, 0x68, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x48, 0x00, 0x52, 0x07, 0x68, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67, 0x88, 0x01, 0x01, 0x12, 0x23,
-	0x0a, 0x0a, 0x73, 0x75, 0x62, 0x68, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x09, 0x48, 0x01, 0x52, 0x0a, 0x73, 0x75, 0x62, 0x68, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67,
-	0x88, 0x01, 0x01, 0x42, 0x0a, 0x0a, 0x08, 0x5f, 0x68, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67, 0x42,
-	0x0d, 0x0a, 0x0b, 0x5f, 0x73, 0x75, 0x62, 0x68, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67, 0x2a, 0xd1,
-	0x01, 0x0a, 0x12, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x54, 0x79, 0x70, 0x65, 0x12, 0x23, 0x0a, 0x1f, 0x41, 0x55, 0x54, 0x48, 0x45, 0x4e, 0x54,
-	0x49, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53,
-	0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x21, 0x0a, 0x1d, 0x41, 0x55,
-	0x54, 0x48, 0x45, 0x4e, 0x54, 0x49, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54, 0x59, 0x50,
-	0x45, 0x5f, 0x57, 0x45, 0x42, 0x5f, 0x4f, 0x41, 0x55, 0x54, 0x48, 0x10, 0x01, 0x12, 0x1f, 0x0a,
-	0x1b, 0x41, 0x55, 0x54, 0x48, 0x45, 0x4e, 0x54, 0x49, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f,
-	0x54, 0x59, 0x50, 0x45, 0x5f, 0x41, 0x50, 0x49, 0x5f, 0x4b, 0x45, 0x59, 0x10, 0x02, 0x12, 0x29,
-	0x0a, 0x25, 0x41, 0x55, 0x54, 0x48, 0x45, 0x4e, 0x54, 0x49, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e,
-	0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x52, 0x4f, 0x42, 0x4f, 0x54, 0x5f, 0x50, 0x41, 0x52, 0x54,
-	0x5f, 0x53, 0x45, 0x43, 0x52, 0x45, 0x54, 0x10, 0x03, 0x12, 0x27, 0x0a, 0x23, 0x41, 0x55, 0x54,
-	0x48, 0x45, 0x4e, 0x54, 0x49, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45,
-	0x5f, 0x4c, 0x4f, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x53, 0x45, 0x43, 0x52, 0x45, 0x54,
-	0x10, 0x04, 0x2a, 0xa3, 0x01, 0x0a, 0x12, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x56,
-	0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x12, 0x23, 0x0a, 0x1f, 0x46, 0x52, 0x41,
-	0x47, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59,
-	0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x1f,
-	0x0a, 0x1b, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x56, 0x49, 0x53, 0x49, 0x42,
-	0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x52, 0x49, 0x56, 0x41, 0x54, 0x45, 0x10, 0x01, 0x12,
-	0x1e, 0x0a, 0x1a, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x56, 0x49, 0x53, 0x49,
-	0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x55, 0x42, 0x4c, 0x49, 0x43, 0x10, 0x02, 0x12,
-	0x27, 0x0a, 0x23, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x56, 0x49, 0x53, 0x49,
-	0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x55, 0x42, 0x4c, 0x49, 0x43, 0x5f, 0x55, 0x4e,
-	0x4c, 0x49, 0x53, 0x54, 0x45, 0x44, 0x10, 0x03, 0x2a, 0xdd, 0x01, 0x0a, 0x11, 0x46, 0x72, 0x61,
-	0x67, 0x6d, 0x65, 0x6e, 0x74, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x54, 0x79, 0x70, 0x65, 0x12, 0x23,
-	0x0a, 0x1f, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x45, 0x52, 0x52, 0x4f, 0x52,
-	0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45,
-	0x44, 0x10, 0x00, 0x12, 0x21, 0x0a, 0x1d, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45, 0x4e, 0x54, 0x5f,
-	0x45, 0x52, 0x52, 0x4f, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x4e, 0x4f, 0x5f, 0x41, 0x43,
-	0x43, 0x45, 0x53, 0x53, 0x10, 0x01, 0x12, 0x2e, 0x0a, 0x2a, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45,
-	0x4e, 0x54, 0x5f, 0x45, 0x52, 0x52, 0x4f, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x4e, 0x45,
-	0x53, 0x54, 0x49, 0x4e, 0x47, 0x5f, 0x4c, 0x49, 0x4d, 0x49, 0x54, 0x5f, 0x45, 0x58, 0x43, 0x45,
-	0x45, 0x44, 0x45, 0x44, 0x10, 0x02, 0x12, 0x28, 0x0a, 0x24, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45,
-	0x4e, 0x54, 0x5f, 0x45, 0x52, 0x52, 0x4f, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x43, 0x48,
-	0x49, 0x4c, 0x44, 0x5f, 0x49, 0x44, 0x5f, 0x49, 0x4e, 0x56, 0x41, 0x4c, 0x49, 0x44, 0x10, 0x03,
-	0x12, 0x26, 0x0a, 0x22, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x45, 0x52, 0x52,
-	0x4f, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x43, 0x59, 0x43, 0x4c, 0x45, 0x5f, 0x44, 0x45,
-	0x54, 0x45, 0x43, 0x54, 0x45, 0x44, 0x10, 0x04, 0x2a, 0x87, 0x01, 0x0a, 0x12, 0x52, 0x65, 0x67,
-	0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12,
-	0x24, 0x0a, 0x20, 0x52, 0x45, 0x47, 0x49, 0x53, 0x54, 0x52, 0x59, 0x5f, 0x49, 0x54, 0x45, 0x4d,
-	0x5f, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46,
-	0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x22, 0x0a, 0x1e, 0x52, 0x45, 0x47, 0x49, 0x53, 0x54, 0x52,
-	0x59, 0x5f, 0x49, 0x54, 0x45, 0x4d, 0x5f, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x50, 0x55,
-	0x42, 0x4c, 0x49, 0x53, 0x48, 0x45, 0x44, 0x10, 0x01, 0x12, 0x27, 0x0a, 0x23, 0x52, 0x45, 0x47,
-	0x49, 0x53, 0x54, 0x52, 0x59, 0x5f, 0x49, 0x54, 0x45, 0x4d, 0x5f, 0x53, 0x54, 0x41, 0x54, 0x55,
-	0x53, 0x5f, 0x49, 0x4e, 0x5f, 0x44, 0x45, 0x56, 0x45, 0x4c, 0x4f, 0x50, 0x4d, 0x45, 0x4e, 0x54,
-	0x10, 0x02, 0x2a, 0x77, 0x0a, 0x0a, 0x56, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79,
-	0x12, 0x1a, 0x0a, 0x16, 0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x55,
-	0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x16, 0x0a, 0x12,
-	0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x52, 0x49, 0x56, 0x41,
-	0x54, 0x45, 0x10, 0x01, 0x12, 0x15, 0x0a, 0x11, 0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49,
-	0x54, 0x59, 0x5f, 0x50, 0x55, 0x42, 0x4c, 0x49, 0x43, 0x10, 0x02, 0x12, 0x1e, 0x0a, 0x1a, 0x56,
-	0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x55, 0x42, 0x4c, 0x49, 0x43,
-	0x5f, 0x55, 0x4e, 0x4c, 0x49, 0x53, 0x54, 0x45, 0x44, 0x10, 0x03, 0x2a, 0xc1, 0x01, 0x0a, 0x14,
+	0x73, 0x12, 0x1d, 0x0a, 0x07, 0x68, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x48, 0x00, 0x52, 0x07, 0x68, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67, 0x88, 0x01, 0x01,
+	0x12, 0x23, 0x0a, 0x0a, 0x73, 0x75, 0x62, 0x68, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x48, 0x01, 0x52, 0x0a, 0x73, 0x75, 0x62, 0x68, 0x65, 0x61, 0x64, 0x69,
+	0x6e, 0x67, 0x88, 0x01, 0x01, 0x42, 0x0a, 0x0a, 0x08, 0x5f, 0x68, 0x65, 0x61, 0x64, 0x69, 0x6e,
+	0x67, 0x42, 0x0d, 0x0a, 0x0b, 0x5f, 0x73, 0x75, 0x62, 0x68, 0x65, 0x61, 0x64, 0x69, 0x6e, 0x67,
+	0x2a, 0xd1, 0x01, 0x0a, 0x12, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x12, 0x23, 0x0a, 0x1f, 0x41, 0x55, 0x54, 0x48, 0x45,
+	0x4e, 0x54, 0x49, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55,
+	0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x21, 0x0a, 0x1d,
+	0x41, 0x55, 0x54, 0x48, 0x45, 0x4e, 0x54, 0x49, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54,
+	0x59, 0x50, 0x45, 0x5f, 0x57, 0x45, 0x42, 0x5f, 0x4f, 0x41, 0x55, 0x54, 0x48, 0x10, 0x01, 0x12,
+	0x1f, 0x0a, 0x1b, 0x41, 0x55, 0x54, 0x48, 0x45, 0x4e, 0x54, 0x49, 0x43, 0x41, 0x54, 0x49, 0x4f,
+	0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x41, 0x50, 0x49, 0x5f, 0x4b, 0x45, 0x59, 0x10, 0x02,
+	0x12, 0x29, 0x0a, 0x25, 0x41, 0x55, 0x54, 0x48, 0x45, 0x4e, 0x54, 0x49, 0x43, 0x41, 0x54, 0x49,
+	0x4f, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x52, 0x4f, 0x42, 0x4f, 0x54, 0x5f, 0x50, 0x41,
+	0x52, 0x54, 0x5f, 0x53, 0x45, 0x43, 0x52, 0x45, 0x54, 0x10, 0x03, 0x12, 0x27, 0x0a, 0x23, 0x41,
+	0x55, 0x54, 0x48, 0x45, 0x4e, 0x54, 0x49, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54, 0x59,
+	0x50, 0x45, 0x5f, 0x4c, 0x4f, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x53, 0x45, 0x43, 0x52,
+	0x45, 0x54, 0x10, 0x04, 0x2a, 0xa3, 0x01, 0x0a, 0x12, 0x46, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e,
+	0x74, 0x56, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x12, 0x23, 0x0a, 0x1f, 0x46,
+	0x52, 0x41, 0x47, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49,
+	0x54, 0x59, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00,
+	0x12, 0x1f, 0x0a, 0x1b, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x56, 0x49, 0x53,
+	0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x52, 0x49, 0x56, 0x41, 0x54, 0x45, 0x10,
+	0x01, 0x12, 0x1e, 0x0a, 0x1a, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x56, 0x49,
+	0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x55, 0x42, 0x4c, 0x49, 0x43, 0x10,
+	0x02, 0x12, 0x27, 0x0a, 0x23, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x56, 0x49,
+	0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x55, 0x42, 0x4c, 0x49, 0x43, 0x5f,
+	0x55, 0x4e, 0x4c, 0x49, 0x53, 0x54, 0x45, 0x44, 0x10, 0x03, 0x2a, 0xdd, 0x01, 0x0a, 0x11, 0x46,
+	0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x54, 0x79, 0x70, 0x65,
+	0x12, 0x23, 0x0a, 0x1f, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x45, 0x52, 0x52,
+	0x4f, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46,
+	0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x21, 0x0a, 0x1d, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45, 0x4e,
+	0x54, 0x5f, 0x45, 0x52, 0x52, 0x4f, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x4e, 0x4f, 0x5f,
+	0x41, 0x43, 0x43, 0x45, 0x53, 0x53, 0x10, 0x01, 0x12, 0x2e, 0x0a, 0x2a, 0x46, 0x52, 0x41, 0x47,
+	0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x45, 0x52, 0x52, 0x4f, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f,
+	0x4e, 0x45, 0x53, 0x54, 0x49, 0x4e, 0x47, 0x5f, 0x4c, 0x49, 0x4d, 0x49, 0x54, 0x5f, 0x45, 0x58,
+	0x43, 0x45, 0x45, 0x44, 0x45, 0x44, 0x10, 0x02, 0x12, 0x28, 0x0a, 0x24, 0x46, 0x52, 0x41, 0x47,
+	0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x45, 0x52, 0x52, 0x4f, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f,
+	0x43, 0x48, 0x49, 0x4c, 0x44, 0x5f, 0x49, 0x44, 0x5f, 0x49, 0x4e, 0x56, 0x41, 0x4c, 0x49, 0x44,
+	0x10, 0x03, 0x12, 0x26, 0x0a, 0x22, 0x46, 0x52, 0x41, 0x47, 0x4d, 0x45, 0x4e, 0x54, 0x5f, 0x45,
+	0x52, 0x52, 0x4f, 0x52, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x43, 0x59, 0x43, 0x4c, 0x45, 0x5f,
+	0x44, 0x45, 0x54, 0x45, 0x43, 0x54, 0x45, 0x44, 0x10, 0x04, 0x2a, 0x87, 0x01, 0x0a, 0x12, 0x52,
+	0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x53, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x12, 0x24, 0x0a, 0x20, 0x52, 0x45, 0x47, 0x49, 0x53, 0x54, 0x52, 0x59, 0x5f, 0x49, 0x54,
+	0x45, 0x4d, 0x5f, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43,
+	0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x22, 0x0a, 0x1e, 0x52, 0x45, 0x47, 0x49, 0x53,
+	0x54, 0x52, 0x59, 0x5f, 0x49, 0x54, 0x45, 0x4d, 0x5f, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f,
+	0x50, 0x55, 0x42, 0x4c, 0x49, 0x53, 0x48, 0x45, 0x44, 0x10, 0x01, 0x12, 0x27, 0x0a, 0x23, 0x52,
+	0x45, 0x47, 0x49, 0x53, 0x54, 0x52, 0x59, 0x5f, 0x49, 0x54, 0x45, 0x4d, 0x5f, 0x53, 0x54, 0x41,
+	0x54, 0x55, 0x53, 0x5f, 0x49, 0x4e, 0x5f, 0x44, 0x45, 0x56, 0x45, 0x4c, 0x4f, 0x50, 0x4d, 0x45,
+	0x4e, 0x54, 0x10, 0x02, 0x2a, 0x77, 0x0a, 0x0a, 0x56, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69,
+	0x74, 0x79, 0x12, 0x1a, 0x0a, 0x16, 0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59,
+	0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x16,
+	0x0a, 0x12, 0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x52, 0x49,
+	0x56, 0x41, 0x54, 0x45, 0x10, 0x01, 0x12, 0x15, 0x0a, 0x11, 0x56, 0x49, 0x53, 0x49, 0x42, 0x49,
+	0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x55, 0x42, 0x4c, 0x49, 0x43, 0x10, 0x02, 0x12, 0x1e, 0x0a,
+	0x1a, 0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x55, 0x42, 0x4c,
+	0x49, 0x43, 0x5f, 0x55, 0x4e, 0x4c, 0x49, 0x53, 0x54, 0x45, 0x44, 0x10, 0x03, 0x2a, 0x5c, 0x0a,
+	0x07, 0x41, 0x70, 0x70, 0x54, 0x79, 0x70, 0x65, 0x12, 0x18, 0x0a, 0x14, 0x41, 0x50, 0x50, 0x5f,
+	0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44,
+	0x10, 0x00, 0x12, 0x1b, 0x0a, 0x17, 0x41, 0x50, 0x50, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x53,
+	0x49, 0x4e, 0x47, 0x4c, 0x45, 0x5f, 0x4d, 0x41, 0x43, 0x48, 0x49, 0x4e, 0x45, 0x10, 0x01, 0x12,
+	0x1a, 0x0a, 0x16, 0x41, 0x50, 0x50, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x4d, 0x55, 0x4c, 0x54,
+	0x49, 0x5f, 0x4d, 0x41, 0x43, 0x48, 0x49, 0x4e, 0x45, 0x10, 0x02, 0x2a, 0xc1, 0x01, 0x0a, 0x14,
 	0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x41, 0x75, 0x74, 0x68, 0x65, 0x6e, 0x74, 0x69, 0x63, 0x61,
 	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x25, 0x0a, 0x21, 0x43, 0x4c, 0x49, 0x45, 0x4e, 0x54, 0x5f, 0x41,
 	0x55, 0x54, 0x48, 0x45, 0x4e, 0x54, 0x49, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x55, 0x4e,
@@ -18540,7 +18607,7 @@ func file_app_v1_app_proto_rawDescGZIP() []byte {
 	return file_app_v1_app_proto_rawDescData
 }
 
-var file_app_v1_app_proto_enumTypes = make([]protoimpl.EnumInfo, 10)
+var file_app_v1_app_proto_enumTypes = make([]protoimpl.EnumInfo, 11)
 var file_app_v1_app_proto_msgTypes = make([]protoimpl.MessageInfo, 274)
 var file_app_v1_app_proto_goTypes = []any{
 	(AuthenticationType)(0),                                // 0: viam.app.v1.AuthenticationType
@@ -18548,712 +18615,714 @@ var file_app_v1_app_proto_goTypes = []any{
 	(FragmentErrorType)(0),                                 // 2: viam.app.v1.FragmentErrorType
 	(RegistryItemStatus)(0),                                // 3: viam.app.v1.RegistryItemStatus
 	(Visibility)(0),                                        // 4: viam.app.v1.Visibility
-	(ClientAuthentication)(0),                              // 5: viam.app.v1.ClientAuthentication
-	(PKCE)(0),                                              // 6: viam.app.v1.PKCE
-	(URLValidation)(0),                                     // 7: viam.app.v1.URLValidation
-	(EnabledGrant)(0),                                      // 8: viam.app.v1.EnabledGrant
-	(SharedSecret_State)(0),                                // 9: viam.app.v1.SharedSecret.State
-	(*Robot)(nil),                                          // 10: viam.app.v1.Robot
-	(*RobotPart)(nil),                                      // 11: viam.app.v1.RobotPart
-	(*RobotPartHistoryEntry)(nil),                          // 12: viam.app.v1.RobotPartHistoryEntry
-	(*AuthenticatorInfo)(nil),                              // 13: viam.app.v1.AuthenticatorInfo
-	(*ListOrganizationsRequest)(nil),                       // 14: viam.app.v1.ListOrganizationsRequest
-	(*Organization)(nil),                                   // 15: viam.app.v1.Organization
-	(*OrganizationMember)(nil),                             // 16: viam.app.v1.OrganizationMember
-	(*ListOrganizationsResponse)(nil),                      // 17: viam.app.v1.ListOrganizationsResponse
-	(*OrganizationInvite)(nil),                             // 18: viam.app.v1.OrganizationInvite
-	(*CreateOrganizationRequest)(nil),                      // 19: viam.app.v1.CreateOrganizationRequest
-	(*CreateOrganizationResponse)(nil),                     // 20: viam.app.v1.CreateOrganizationResponse
-	(*GetOrganizationRequest)(nil),                         // 21: viam.app.v1.GetOrganizationRequest
-	(*GetOrganizationResponse)(nil),                        // 22: viam.app.v1.GetOrganizationResponse
-	(*GetOrganizationNamespaceAvailabilityRequest)(nil),    // 23: viam.app.v1.GetOrganizationNamespaceAvailabilityRequest
-	(*GetOrganizationNamespaceAvailabilityResponse)(nil),   // 24: viam.app.v1.GetOrganizationNamespaceAvailabilityResponse
-	(*UpdateOrganizationRequest)(nil),                      // 25: viam.app.v1.UpdateOrganizationRequest
-	(*UpdateOrganizationResponse)(nil),                     // 26: viam.app.v1.UpdateOrganizationResponse
-	(*UpdateOrganizationNamespaceRequest)(nil),             // 27: viam.app.v1.UpdateOrganizationNamespaceRequest
-	(*UpdateOrganizationNamespaceResponse)(nil),            // 28: viam.app.v1.UpdateOrganizationNamespaceResponse
-	(*DeleteOrganizationRequest)(nil),                      // 29: viam.app.v1.DeleteOrganizationRequest
-	(*DeleteOrganizationResponse)(nil),                     // 30: viam.app.v1.DeleteOrganizationResponse
-	(*GetOrganizationMetadataRequest)(nil),                 // 31: viam.app.v1.GetOrganizationMetadataRequest
-	(*GetOrganizationMetadataResponse)(nil),                // 32: viam.app.v1.GetOrganizationMetadataResponse
-	(*UpdateOrganizationMetadataRequest)(nil),              // 33: viam.app.v1.UpdateOrganizationMetadataRequest
-	(*UpdateOrganizationMetadataResponse)(nil),             // 34: viam.app.v1.UpdateOrganizationMetadataResponse
-	(*ListOrganizationMembersRequest)(nil),                 // 35: viam.app.v1.ListOrganizationMembersRequest
-	(*ListOrganizationMembersResponse)(nil),                // 36: viam.app.v1.ListOrganizationMembersResponse
-	(*CreateOrganizationInviteRequest)(nil),                // 37: viam.app.v1.CreateOrganizationInviteRequest
-	(*CreateOrganizationInviteResponse)(nil),               // 38: viam.app.v1.CreateOrganizationInviteResponse
-	(*UpdateOrganizationInviteAuthorizationsRequest)(nil),  // 39: viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest
-	(*UpdateOrganizationInviteAuthorizationsResponse)(nil), // 40: viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse
-	(*DeleteOrganizationInviteRequest)(nil),                // 41: viam.app.v1.DeleteOrganizationInviteRequest
-	(*DeleteOrganizationInviteResponse)(nil),               // 42: viam.app.v1.DeleteOrganizationInviteResponse
-	(*ResendOrganizationInviteRequest)(nil),                // 43: viam.app.v1.ResendOrganizationInviteRequest
-	(*ResendOrganizationInviteResponse)(nil),               // 44: viam.app.v1.ResendOrganizationInviteResponse
-	(*DeleteOrganizationMemberRequest)(nil),                // 45: viam.app.v1.DeleteOrganizationMemberRequest
-	(*DeleteOrganizationMemberResponse)(nil),               // 46: viam.app.v1.DeleteOrganizationMemberResponse
-	(*BillingAddress)(nil),                                 // 47: viam.app.v1.BillingAddress
-	(*EnableBillingServiceRequest)(nil),                    // 48: viam.app.v1.EnableBillingServiceRequest
-	(*EnableBillingServiceResponse)(nil),                   // 49: viam.app.v1.EnableBillingServiceResponse
-	(*UpdateBillingServiceRequest)(nil),                    // 50: viam.app.v1.UpdateBillingServiceRequest
-	(*UpdateBillingServiceResponse)(nil),                   // 51: viam.app.v1.UpdateBillingServiceResponse
-	(*GetBillingServiceConfigRequest)(nil),                 // 52: viam.app.v1.GetBillingServiceConfigRequest
-	(*GetBillingServiceConfigResponse)(nil),                // 53: viam.app.v1.GetBillingServiceConfigResponse
-	(*DisableBillingServiceRequest)(nil),                   // 54: viam.app.v1.DisableBillingServiceRequest
-	(*DisableBillingServiceResponse)(nil),                  // 55: viam.app.v1.DisableBillingServiceResponse
-	(*OrganizationSetSupportEmailRequest)(nil),             // 56: viam.app.v1.OrganizationSetSupportEmailRequest
-	(*OrganizationSetSupportEmailResponse)(nil),            // 57: viam.app.v1.OrganizationSetSupportEmailResponse
-	(*OrganizationGetSupportEmailRequest)(nil),             // 58: viam.app.v1.OrganizationGetSupportEmailRequest
-	(*OrganizationGetSupportEmailResponse)(nil),            // 59: viam.app.v1.OrganizationGetSupportEmailResponse
-	(*OrganizationIdentity)(nil),                           // 60: viam.app.v1.OrganizationIdentity
-	(*LocationOrganization)(nil),                           // 61: viam.app.v1.LocationOrganization
-	(*LocationAuth)(nil),                                   // 62: viam.app.v1.LocationAuth
-	(*StorageConfig)(nil),                                  // 63: viam.app.v1.StorageConfig
-	(*Location)(nil),                                       // 64: viam.app.v1.Location
-	(*SharedSecret)(nil),                                   // 65: viam.app.v1.SharedSecret
-	(*CreateLocationRequest)(nil),                          // 66: viam.app.v1.CreateLocationRequest
-	(*CreateLocationResponse)(nil),                         // 67: viam.app.v1.CreateLocationResponse
-	(*GetLocationRequest)(nil),                             // 68: viam.app.v1.GetLocationRequest
-	(*GetLocationResponse)(nil),                            // 69: viam.app.v1.GetLocationResponse
-	(*UpdateLocationRequest)(nil),                          // 70: viam.app.v1.UpdateLocationRequest
-	(*UpdateLocationResponse)(nil),                         // 71: viam.app.v1.UpdateLocationResponse
-	(*DeleteLocationRequest)(nil),                          // 72: viam.app.v1.DeleteLocationRequest
-	(*DeleteLocationResponse)(nil),                         // 73: viam.app.v1.DeleteLocationResponse
-	(*GetLocationMetadataRequest)(nil),                     // 74: viam.app.v1.GetLocationMetadataRequest
-	(*GetLocationMetadataResponse)(nil),                    // 75: viam.app.v1.GetLocationMetadataResponse
-	(*UpdateLocationMetadataRequest)(nil),                  // 76: viam.app.v1.UpdateLocationMetadataRequest
-	(*UpdateLocationMetadataResponse)(nil),                 // 77: viam.app.v1.UpdateLocationMetadataResponse
-	(*GetOrganizationsWithAccessToLocationRequest)(nil),    // 78: viam.app.v1.GetOrganizationsWithAccessToLocationRequest
-	(*GetOrganizationsWithAccessToLocationResponse)(nil),   // 79: viam.app.v1.GetOrganizationsWithAccessToLocationResponse
-	(*ListLocationsRequest)(nil),                           // 80: viam.app.v1.ListLocationsRequest
-	(*ShareLocationRequest)(nil),                           // 81: viam.app.v1.ShareLocationRequest
-	(*ShareLocationResponse)(nil),                          // 82: viam.app.v1.ShareLocationResponse
-	(*UnshareLocationRequest)(nil),                         // 83: viam.app.v1.UnshareLocationRequest
-	(*UnshareLocationResponse)(nil),                        // 84: viam.app.v1.UnshareLocationResponse
-	(*ListLocationsResponse)(nil),                          // 85: viam.app.v1.ListLocationsResponse
-	(*CreateLocationSecretRequest)(nil),                    // 86: viam.app.v1.CreateLocationSecretRequest
-	(*CreateLocationSecretResponse)(nil),                   // 87: viam.app.v1.CreateLocationSecretResponse
-	(*DeleteLocationSecretRequest)(nil),                    // 88: viam.app.v1.DeleteLocationSecretRequest
-	(*DeleteLocationSecretResponse)(nil),                   // 89: viam.app.v1.DeleteLocationSecretResponse
-	(*LocationAuthRequest)(nil),                            // 90: viam.app.v1.LocationAuthRequest
-	(*LocationAuthResponse)(nil),                           // 91: viam.app.v1.LocationAuthResponse
-	(*GetRobotRequest)(nil),                                // 92: viam.app.v1.GetRobotRequest
-	(*GetRoverRentalRobotsRequest)(nil),                    // 93: viam.app.v1.GetRoverRentalRobotsRequest
-	(*RoverRentalRobot)(nil),                               // 94: viam.app.v1.RoverRentalRobot
-	(*GetRoverRentalRobotsResponse)(nil),                   // 95: viam.app.v1.GetRoverRentalRobotsResponse
-	(*GetRobotResponse)(nil),                               // 96: viam.app.v1.GetRobotResponse
-	(*GetRobotPartsRequest)(nil),                           // 97: viam.app.v1.GetRobotPartsRequest
-	(*GetRobotPartsResponse)(nil),                          // 98: viam.app.v1.GetRobotPartsResponse
-	(*GetRobotPartRequest)(nil),                            // 99: viam.app.v1.GetRobotPartRequest
-	(*GetRobotPartResponse)(nil),                           // 100: viam.app.v1.GetRobotPartResponse
-	(*GetRobotPartByNameAndLocationRequest)(nil),           // 101: viam.app.v1.GetRobotPartByNameAndLocationRequest
-	(*GetRobotPartByNameAndLocationResponse)(nil),          // 102: viam.app.v1.GetRobotPartByNameAndLocationResponse
-	(*GetRobotPartLogsRequest)(nil),                        // 103: viam.app.v1.GetRobotPartLogsRequest
-	(*GetRobotPartLogsResponse)(nil),                       // 104: viam.app.v1.GetRobotPartLogsResponse
-	(*TailRobotPartLogsRequest)(nil),                       // 105: viam.app.v1.TailRobotPartLogsRequest
-	(*TailRobotPartLogsResponse)(nil),                      // 106: viam.app.v1.TailRobotPartLogsResponse
-	(*GetRobotPartHistoryRequest)(nil),                     // 107: viam.app.v1.GetRobotPartHistoryRequest
-	(*GetRobotPartHistoryResponse)(nil),                    // 108: viam.app.v1.GetRobotPartHistoryResponse
-	(*UpdateRobotPartRequest)(nil),                         // 109: viam.app.v1.UpdateRobotPartRequest
-	(*UpdateRobotPartResponse)(nil),                        // 110: viam.app.v1.UpdateRobotPartResponse
-	(*NewRobotPartRequest)(nil),                            // 111: viam.app.v1.NewRobotPartRequest
-	(*NewRobotPartResponse)(nil),                           // 112: viam.app.v1.NewRobotPartResponse
-	(*DeleteRobotPartRequest)(nil),                         // 113: viam.app.v1.DeleteRobotPartRequest
-	(*GetRobotPartMetadataRequest)(nil),                    // 114: viam.app.v1.GetRobotPartMetadataRequest
-	(*GetRobotPartMetadataResponse)(nil),                   // 115: viam.app.v1.GetRobotPartMetadataResponse
-	(*UpdateRobotPartMetadataRequest)(nil),                 // 116: viam.app.v1.UpdateRobotPartMetadataRequest
-	(*UpdateRobotPartMetadataResponse)(nil),                // 117: viam.app.v1.UpdateRobotPartMetadataResponse
-	(*GetRobotAPIKeysRequest)(nil),                         // 118: viam.app.v1.GetRobotAPIKeysRequest
-	(*APIKey)(nil),                                         // 119: viam.app.v1.APIKey
-	(*GetRobotAPIKeysResponse)(nil),                        // 120: viam.app.v1.GetRobotAPIKeysResponse
-	(*DeleteRobotPartResponse)(nil),                        // 121: viam.app.v1.DeleteRobotPartResponse
-	(*Fragment)(nil),                                       // 122: viam.app.v1.Fragment
-	(*FragmentHistoryEntry)(nil),                           // 123: viam.app.v1.FragmentHistoryEntry
-	(*FragmentRevision)(nil),                               // 124: viam.app.v1.FragmentRevision
-	(*FragmentTag)(nil),                                    // 125: viam.app.v1.FragmentTag
-	(*FragmentError)(nil),                                  // 126: viam.app.v1.FragmentError
-	(*FragmentUsage)(nil),                                  // 127: viam.app.v1.FragmentUsage
-	(*ResolvedFragment)(nil),                               // 128: viam.app.v1.ResolvedFragment
-	(*ListFragmentsRequest)(nil),                           // 129: viam.app.v1.ListFragmentsRequest
-	(*ListFragmentsResponse)(nil),                          // 130: viam.app.v1.ListFragmentsResponse
-	(*GetFragmentRequest)(nil),                             // 131: viam.app.v1.GetFragmentRequest
-	(*GetFragmentResponse)(nil),                            // 132: viam.app.v1.GetFragmentResponse
-	(*CreateFragmentRequest)(nil),                          // 133: viam.app.v1.CreateFragmentRequest
-	(*CreateFragmentResponse)(nil),                         // 134: viam.app.v1.CreateFragmentResponse
-	(*UpdateFragmentRequest)(nil),                          // 135: viam.app.v1.UpdateFragmentRequest
-	(*UpdateFragmentResponse)(nil),                         // 136: viam.app.v1.UpdateFragmentResponse
-	(*DeleteFragmentRequest)(nil),                          // 137: viam.app.v1.DeleteFragmentRequest
-	(*DeleteFragmentResponse)(nil),                         // 138: viam.app.v1.DeleteFragmentResponse
-	(*GetFragmentHistoryRequest)(nil),                      // 139: viam.app.v1.GetFragmentHistoryRequest
-	(*GetFragmentHistoryResponse)(nil),                     // 140: viam.app.v1.GetFragmentHistoryResponse
-	(*GetFragmentUsageRequest)(nil),                        // 141: viam.app.v1.GetFragmentUsageRequest
-	(*GetFragmentUsageResponse)(nil),                       // 142: viam.app.v1.GetFragmentUsageResponse
-	(*SetFragmentTagRequest)(nil),                          // 143: viam.app.v1.SetFragmentTagRequest
-	(*SetFragmentTagResponse)(nil),                         // 144: viam.app.v1.SetFragmentTagResponse
-	(*DeleteFragmentTagRequest)(nil),                       // 145: viam.app.v1.DeleteFragmentTagRequest
-	(*DeleteFragmentTagResponse)(nil),                      // 146: viam.app.v1.DeleteFragmentTagResponse
-	(*ListRobotsRequest)(nil),                              // 147: viam.app.v1.ListRobotsRequest
-	(*ListRobotsForLocationsRequest)(nil),                  // 148: viam.app.v1.ListRobotsForLocationsRequest
-	(*ListRobotsForOrgRequest)(nil),                        // 149: viam.app.v1.ListRobotsForOrgRequest
-	(*AdditionalFragment)(nil),                             // 150: viam.app.v1.AdditionalFragment
-	(*ListNestedFragmentsRequest)(nil),                     // 151: viam.app.v1.ListNestedFragmentsRequest
-	(*ListNestedFragmentsResponse)(nil),                    // 152: viam.app.v1.ListNestedFragmentsResponse
-	(*ListMachineFragmentsRequest)(nil),                    // 153: viam.app.v1.ListMachineFragmentsRequest
-	(*ListMachineFragmentsResponse)(nil),                   // 154: viam.app.v1.ListMachineFragmentsResponse
-	(*ListMachineSummariesRequest)(nil),                    // 155: viam.app.v1.ListMachineSummariesRequest
-	(*ListMachineSummariesResponse)(nil),                   // 156: viam.app.v1.ListMachineSummariesResponse
-	(*LocationSummary)(nil),                                // 157: viam.app.v1.LocationSummary
-	(*MachineSummary)(nil),                                 // 158: viam.app.v1.MachineSummary
-	(*FragmentSummary)(nil),                                // 159: viam.app.v1.FragmentSummary
-	(*ViamServerVersion)(nil),                              // 160: viam.app.v1.ViamServerVersion
-	(*ViamAgentVersion)(nil),                               // 161: viam.app.v1.ViamAgentVersion
-	(*PartSummary)(nil),                                    // 162: viam.app.v1.PartSummary
-	(*ListRobotsResponse)(nil),                             // 163: viam.app.v1.ListRobotsResponse
-	(*ListRobotsForLocationsResponse)(nil),                 // 164: viam.app.v1.ListRobotsForLocationsResponse
-	(*ListRobotsForOrgResponse)(nil),                       // 165: viam.app.v1.ListRobotsForOrgResponse
-	(*NewRobotRequest)(nil),                                // 166: viam.app.v1.NewRobotRequest
-	(*NewRobotResponse)(nil),                               // 167: viam.app.v1.NewRobotResponse
-	(*UpdateRobotRequest)(nil),                             // 168: viam.app.v1.UpdateRobotRequest
-	(*UpdateRobotResponse)(nil),                            // 169: viam.app.v1.UpdateRobotResponse
-	(*DeleteRobotRequest)(nil),                             // 170: viam.app.v1.DeleteRobotRequest
-	(*DeleteRobotResponse)(nil),                            // 171: viam.app.v1.DeleteRobotResponse
-	(*GetRobotMetadataRequest)(nil),                        // 172: viam.app.v1.GetRobotMetadataRequest
-	(*GetRobotMetadataResponse)(nil),                       // 173: viam.app.v1.GetRobotMetadataResponse
-	(*UpdateRobotMetadataRequest)(nil),                     // 174: viam.app.v1.UpdateRobotMetadataRequest
-	(*UpdateRobotMetadataResponse)(nil),                    // 175: viam.app.v1.UpdateRobotMetadataResponse
-	(*MarkPartAsMainRequest)(nil),                          // 176: viam.app.v1.MarkPartAsMainRequest
-	(*MarkPartAsMainResponse)(nil),                         // 177: viam.app.v1.MarkPartAsMainResponse
-	(*MarkPartForRestartRequest)(nil),                      // 178: viam.app.v1.MarkPartForRestartRequest
-	(*MarkPartForRestartResponse)(nil),                     // 179: viam.app.v1.MarkPartForRestartResponse
-	(*CreateRobotPartSecretRequest)(nil),                   // 180: viam.app.v1.CreateRobotPartSecretRequest
-	(*CreateRobotPartSecretResponse)(nil),                  // 181: viam.app.v1.CreateRobotPartSecretResponse
-	(*DeleteRobotPartSecretRequest)(nil),                   // 182: viam.app.v1.DeleteRobotPartSecretRequest
-	(*DeleteRobotPartSecretResponse)(nil),                  // 183: viam.app.v1.DeleteRobotPartSecretResponse
-	(*Authorization)(nil),                                  // 184: viam.app.v1.Authorization
-	(*AddRoleRequest)(nil),                                 // 185: viam.app.v1.AddRoleRequest
-	(*AddRoleResponse)(nil),                                // 186: viam.app.v1.AddRoleResponse
-	(*RemoveRoleRequest)(nil),                              // 187: viam.app.v1.RemoveRoleRequest
-	(*RemoveRoleResponse)(nil),                             // 188: viam.app.v1.RemoveRoleResponse
-	(*ChangeRoleRequest)(nil),                              // 189: viam.app.v1.ChangeRoleRequest
-	(*ChangeRoleResponse)(nil),                             // 190: viam.app.v1.ChangeRoleResponse
-	(*ListAuthorizationsRequest)(nil),                      // 191: viam.app.v1.ListAuthorizationsRequest
-	(*ListAuthorizationsResponse)(nil),                     // 192: viam.app.v1.ListAuthorizationsResponse
-	(*CheckPermissionsRequest)(nil),                        // 193: viam.app.v1.CheckPermissionsRequest
-	(*AuthorizedPermissions)(nil),                          // 194: viam.app.v1.AuthorizedPermissions
-	(*CheckPermissionsResponse)(nil),                       // 195: viam.app.v1.CheckPermissionsResponse
-	(*ModuleVersion)(nil),                                  // 196: viam.app.v1.ModuleVersion
-	(*ModuleMetadata)(nil),                                 // 197: viam.app.v1.ModuleMetadata
-	(*MLModelMetadata)(nil),                                // 198: viam.app.v1.MLModelMetadata
-	(*MLTrainingVersion)(nil),                              // 199: viam.app.v1.MLTrainingVersion
-	(*MLTrainingMetadata)(nil),                             // 200: viam.app.v1.MLTrainingMetadata
-	(*RegistryItem)(nil),                                   // 201: viam.app.v1.RegistryItem
-	(*GetRegistryItemRequest)(nil),                         // 202: viam.app.v1.GetRegistryItemRequest
-	(*GetRegistryItemResponse)(nil),                        // 203: viam.app.v1.GetRegistryItemResponse
-	(*CreateRegistryItemRequest)(nil),                      // 204: viam.app.v1.CreateRegistryItemRequest
-	(*CreateRegistryItemResponse)(nil),                     // 205: viam.app.v1.CreateRegistryItemResponse
-	(*UpdateRegistryItemRequest)(nil),                      // 206: viam.app.v1.UpdateRegistryItemRequest
-	(*UpdateRegistryItemResponse)(nil),                     // 207: viam.app.v1.UpdateRegistryItemResponse
-	(*ListRegistryItemsRequest)(nil),                       // 208: viam.app.v1.ListRegistryItemsRequest
-	(*ListRegistryItemsResponse)(nil),                      // 209: viam.app.v1.ListRegistryItemsResponse
-	(*DeleteRegistryItemRequest)(nil),                      // 210: viam.app.v1.DeleteRegistryItemRequest
-	(*DeleteRegistryItemResponse)(nil),                     // 211: viam.app.v1.DeleteRegistryItemResponse
-	(*RenameRegistryItemRequest)(nil),                      // 212: viam.app.v1.RenameRegistryItemRequest
-	(*RenameRegistryItemResponse)(nil),                     // 213: viam.app.v1.RenameRegistryItemResponse
-	(*TransferRegistryItemRequest)(nil),                    // 214: viam.app.v1.TransferRegistryItemRequest
-	(*TransferRegistryItemResponse)(nil),                   // 215: viam.app.v1.TransferRegistryItemResponse
-	(*CreateModuleRequest)(nil),                            // 216: viam.app.v1.CreateModuleRequest
-	(*CreateModuleResponse)(nil),                           // 217: viam.app.v1.CreateModuleResponse
-	(*UpdateModuleRequest)(nil),                            // 218: viam.app.v1.UpdateModuleRequest
-	(*App)(nil),                                            // 219: viam.app.v1.App
-	(*UpdateModuleResponse)(nil),                           // 220: viam.app.v1.UpdateModuleResponse
-	(*UpdateModuleMetadata)(nil),                           // 221: viam.app.v1.UpdateModuleMetadata
-	(*UpdateMLModelMetadata)(nil),                          // 222: viam.app.v1.UpdateMLModelMetadata
-	(*UpdateMLTrainingMetadata)(nil),                       // 223: viam.app.v1.UpdateMLTrainingMetadata
-	(*Model)(nil),                                          // 224: viam.app.v1.Model
-	(*ModuleFileInfo)(nil),                                 // 225: viam.app.v1.ModuleFileInfo
-	(*UploadModuleFileRequest)(nil),                        // 226: viam.app.v1.UploadModuleFileRequest
-	(*UploadModuleFileResponse)(nil),                       // 227: viam.app.v1.UploadModuleFileResponse
-	(*GetModuleRequest)(nil),                               // 228: viam.app.v1.GetModuleRequest
-	(*GetModuleResponse)(nil),                              // 229: viam.app.v1.GetModuleResponse
-	(*Module)(nil),                                         // 230: viam.app.v1.Module
-	(*VersionHistory)(nil),                                 // 231: viam.app.v1.VersionHistory
-	(*Uploads)(nil),                                        // 232: viam.app.v1.Uploads
-	(*ListModulesRequest)(nil),                             // 233: viam.app.v1.ListModulesRequest
-	(*ListModulesResponse)(nil),                            // 234: viam.app.v1.ListModulesResponse
-	(*GetUserIDByEmailRequest)(nil),                        // 235: viam.app.v1.GetUserIDByEmailRequest
-	(*GetUserIDByEmailResponse)(nil),                       // 236: viam.app.v1.GetUserIDByEmailResponse
-	(*ListOrganizationsByUserRequest)(nil),                 // 237: viam.app.v1.ListOrganizationsByUserRequest
-	(*OrgDetails)(nil),                                     // 238: viam.app.v1.OrgDetails
-	(*ListOrganizationsByUserResponse)(nil),                // 239: viam.app.v1.ListOrganizationsByUserResponse
-	(*SearchOrganizationsRequest)(nil),                     // 240: viam.app.v1.SearchOrganizationsRequest
-	(*SearchOrganizationsResponse)(nil),                    // 241: viam.app.v1.SearchOrganizationsResponse
-	(*CreateKeyRequest)(nil),                               // 242: viam.app.v1.CreateKeyRequest
-	(*CreateKeyResponse)(nil),                              // 243: viam.app.v1.CreateKeyResponse
-	(*DeleteKeyRequest)(nil),                               // 244: viam.app.v1.DeleteKeyRequest
-	(*DeleteKeyResponse)(nil),                              // 245: viam.app.v1.DeleteKeyResponse
-	(*RenameKeyRequest)(nil),                               // 246: viam.app.v1.RenameKeyRequest
-	(*RenameKeyResponse)(nil),                              // 247: viam.app.v1.RenameKeyResponse
-	(*AuthorizationDetails)(nil),                           // 248: viam.app.v1.AuthorizationDetails
-	(*APIKeyWithAuthorizations)(nil),                       // 249: viam.app.v1.APIKeyWithAuthorizations
-	(*ListKeysRequest)(nil),                                // 250: viam.app.v1.ListKeysRequest
-	(*ListKeysResponse)(nil),                               // 251: viam.app.v1.ListKeysResponse
-	(*RotateKeyRequest)(nil),                               // 252: viam.app.v1.RotateKeyRequest
-	(*RotateKeyResponse)(nil),                              // 253: viam.app.v1.RotateKeyResponse
-	(*CreateKeyFromExistingKeyAuthorizationsRequest)(nil),  // 254: viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest
-	(*CreateKeyFromExistingKeyAuthorizationsResponse)(nil), // 255: viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse
-	(*GetAppContentRequest)(nil),                           // 256: viam.app.v1.GetAppContentRequest
-	(*GetAppContentResponse)(nil),                          // 257: viam.app.v1.GetAppContentResponse
-	(*OrganizationSetLogoRequest)(nil),                     // 258: viam.app.v1.OrganizationSetLogoRequest
-	(*OrganizationSetLogoResponse)(nil),                    // 259: viam.app.v1.OrganizationSetLogoResponse
-	(*OrganizationGetLogoRequest)(nil),                     // 260: viam.app.v1.OrganizationGetLogoRequest
-	(*OrganizationGetLogoResponse)(nil),                    // 261: viam.app.v1.OrganizationGetLogoResponse
-	(*EnableAuthServiceRequest)(nil),                       // 262: viam.app.v1.EnableAuthServiceRequest
-	(*EnableAuthServiceResponse)(nil),                      // 263: viam.app.v1.EnableAuthServiceResponse
-	(*DisableAuthServiceRequest)(nil),                      // 264: viam.app.v1.DisableAuthServiceRequest
-	(*DisableAuthServiceResponse)(nil),                     // 265: viam.app.v1.DisableAuthServiceResponse
-	(*CreateOAuthAppRequest)(nil),                          // 266: viam.app.v1.CreateOAuthAppRequest
-	(*CreateOAuthAppResponse)(nil),                         // 267: viam.app.v1.CreateOAuthAppResponse
-	(*ReadOAuthAppRequest)(nil),                            // 268: viam.app.v1.ReadOAuthAppRequest
-	(*ReadOAuthAppResponse)(nil),                           // 269: viam.app.v1.ReadOAuthAppResponse
-	(*UpdateOAuthAppRequest)(nil),                          // 270: viam.app.v1.UpdateOAuthAppRequest
-	(*UpdateOAuthAppResponse)(nil),                         // 271: viam.app.v1.UpdateOAuthAppResponse
-	(*DeleteOAuthAppRequest)(nil),                          // 272: viam.app.v1.DeleteOAuthAppRequest
-	(*DeleteOAuthAppResponse)(nil),                         // 273: viam.app.v1.DeleteOAuthAppResponse
-	(*ListOAuthAppsRequest)(nil),                           // 274: viam.app.v1.ListOAuthAppsRequest
-	(*ListOAuthAppsResponse)(nil),                          // 275: viam.app.v1.ListOAuthAppsResponse
-	(*OAuthConfig)(nil),                                    // 276: viam.app.v1.OAuthConfig
-	(*GetAppBrandingRequest)(nil),                          // 277: viam.app.v1.GetAppBrandingRequest
-	(*TextOverrides)(nil),                                  // 278: viam.app.v1.TextOverrides
-	(*GetAppBrandingResponse)(nil),                         // 279: viam.app.v1.GetAppBrandingResponse
-	(*AppCustomizations)(nil),                              // 280: viam.app.v1.AppCustomizations
-	(*MachinePickerCustomizations)(nil),                    // 281: viam.app.v1.MachinePickerCustomizations
-	nil,                                                    // 282: viam.app.v1.TextOverrides.FieldsEntry
-	nil,                                                    // 283: viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry
-	(*timestamppb.Timestamp)(nil),                          // 284: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                                // 285: google.protobuf.Struct
-	(*v1.LogEntry)(nil),                                    // 286: viam.common.v1.LogEntry
-	(v11.ModelType)(0),                                     // 287: viam.app.mltraining.v1.ModelType
-	(v11.ModelFramework)(0),                                // 288: viam.app.mltraining.v1.ModelFramework
-	(v12.PackageType)(0),                                   // 289: viam.app.packages.v1.PackageType
+	(AppType)(0),                                           // 5: viam.app.v1.AppType
+	(ClientAuthentication)(0),                              // 6: viam.app.v1.ClientAuthentication
+	(PKCE)(0),                                              // 7: viam.app.v1.PKCE
+	(URLValidation)(0),                                     // 8: viam.app.v1.URLValidation
+	(EnabledGrant)(0),                                      // 9: viam.app.v1.EnabledGrant
+	(SharedSecret_State)(0),                                // 10: viam.app.v1.SharedSecret.State
+	(*Robot)(nil),                                          // 11: viam.app.v1.Robot
+	(*RobotPart)(nil),                                      // 12: viam.app.v1.RobotPart
+	(*RobotPartHistoryEntry)(nil),                          // 13: viam.app.v1.RobotPartHistoryEntry
+	(*AuthenticatorInfo)(nil),                              // 14: viam.app.v1.AuthenticatorInfo
+	(*ListOrganizationsRequest)(nil),                       // 15: viam.app.v1.ListOrganizationsRequest
+	(*Organization)(nil),                                   // 16: viam.app.v1.Organization
+	(*OrganizationMember)(nil),                             // 17: viam.app.v1.OrganizationMember
+	(*ListOrganizationsResponse)(nil),                      // 18: viam.app.v1.ListOrganizationsResponse
+	(*OrganizationInvite)(nil),                             // 19: viam.app.v1.OrganizationInvite
+	(*CreateOrganizationRequest)(nil),                      // 20: viam.app.v1.CreateOrganizationRequest
+	(*CreateOrganizationResponse)(nil),                     // 21: viam.app.v1.CreateOrganizationResponse
+	(*GetOrganizationRequest)(nil),                         // 22: viam.app.v1.GetOrganizationRequest
+	(*GetOrganizationResponse)(nil),                        // 23: viam.app.v1.GetOrganizationResponse
+	(*GetOrganizationNamespaceAvailabilityRequest)(nil),    // 24: viam.app.v1.GetOrganizationNamespaceAvailabilityRequest
+	(*GetOrganizationNamespaceAvailabilityResponse)(nil),   // 25: viam.app.v1.GetOrganizationNamespaceAvailabilityResponse
+	(*UpdateOrganizationRequest)(nil),                      // 26: viam.app.v1.UpdateOrganizationRequest
+	(*UpdateOrganizationResponse)(nil),                     // 27: viam.app.v1.UpdateOrganizationResponse
+	(*UpdateOrganizationNamespaceRequest)(nil),             // 28: viam.app.v1.UpdateOrganizationNamespaceRequest
+	(*UpdateOrganizationNamespaceResponse)(nil),            // 29: viam.app.v1.UpdateOrganizationNamespaceResponse
+	(*DeleteOrganizationRequest)(nil),                      // 30: viam.app.v1.DeleteOrganizationRequest
+	(*DeleteOrganizationResponse)(nil),                     // 31: viam.app.v1.DeleteOrganizationResponse
+	(*GetOrganizationMetadataRequest)(nil),                 // 32: viam.app.v1.GetOrganizationMetadataRequest
+	(*GetOrganizationMetadataResponse)(nil),                // 33: viam.app.v1.GetOrganizationMetadataResponse
+	(*UpdateOrganizationMetadataRequest)(nil),              // 34: viam.app.v1.UpdateOrganizationMetadataRequest
+	(*UpdateOrganizationMetadataResponse)(nil),             // 35: viam.app.v1.UpdateOrganizationMetadataResponse
+	(*ListOrganizationMembersRequest)(nil),                 // 36: viam.app.v1.ListOrganizationMembersRequest
+	(*ListOrganizationMembersResponse)(nil),                // 37: viam.app.v1.ListOrganizationMembersResponse
+	(*CreateOrganizationInviteRequest)(nil),                // 38: viam.app.v1.CreateOrganizationInviteRequest
+	(*CreateOrganizationInviteResponse)(nil),               // 39: viam.app.v1.CreateOrganizationInviteResponse
+	(*UpdateOrganizationInviteAuthorizationsRequest)(nil),  // 40: viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest
+	(*UpdateOrganizationInviteAuthorizationsResponse)(nil), // 41: viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse
+	(*DeleteOrganizationInviteRequest)(nil),                // 42: viam.app.v1.DeleteOrganizationInviteRequest
+	(*DeleteOrganizationInviteResponse)(nil),               // 43: viam.app.v1.DeleteOrganizationInviteResponse
+	(*ResendOrganizationInviteRequest)(nil),                // 44: viam.app.v1.ResendOrganizationInviteRequest
+	(*ResendOrganizationInviteResponse)(nil),               // 45: viam.app.v1.ResendOrganizationInviteResponse
+	(*DeleteOrganizationMemberRequest)(nil),                // 46: viam.app.v1.DeleteOrganizationMemberRequest
+	(*DeleteOrganizationMemberResponse)(nil),               // 47: viam.app.v1.DeleteOrganizationMemberResponse
+	(*BillingAddress)(nil),                                 // 48: viam.app.v1.BillingAddress
+	(*EnableBillingServiceRequest)(nil),                    // 49: viam.app.v1.EnableBillingServiceRequest
+	(*EnableBillingServiceResponse)(nil),                   // 50: viam.app.v1.EnableBillingServiceResponse
+	(*UpdateBillingServiceRequest)(nil),                    // 51: viam.app.v1.UpdateBillingServiceRequest
+	(*UpdateBillingServiceResponse)(nil),                   // 52: viam.app.v1.UpdateBillingServiceResponse
+	(*GetBillingServiceConfigRequest)(nil),                 // 53: viam.app.v1.GetBillingServiceConfigRequest
+	(*GetBillingServiceConfigResponse)(nil),                // 54: viam.app.v1.GetBillingServiceConfigResponse
+	(*DisableBillingServiceRequest)(nil),                   // 55: viam.app.v1.DisableBillingServiceRequest
+	(*DisableBillingServiceResponse)(nil),                  // 56: viam.app.v1.DisableBillingServiceResponse
+	(*OrganizationSetSupportEmailRequest)(nil),             // 57: viam.app.v1.OrganizationSetSupportEmailRequest
+	(*OrganizationSetSupportEmailResponse)(nil),            // 58: viam.app.v1.OrganizationSetSupportEmailResponse
+	(*OrganizationGetSupportEmailRequest)(nil),             // 59: viam.app.v1.OrganizationGetSupportEmailRequest
+	(*OrganizationGetSupportEmailResponse)(nil),            // 60: viam.app.v1.OrganizationGetSupportEmailResponse
+	(*OrganizationIdentity)(nil),                           // 61: viam.app.v1.OrganizationIdentity
+	(*LocationOrganization)(nil),                           // 62: viam.app.v1.LocationOrganization
+	(*LocationAuth)(nil),                                   // 63: viam.app.v1.LocationAuth
+	(*StorageConfig)(nil),                                  // 64: viam.app.v1.StorageConfig
+	(*Location)(nil),                                       // 65: viam.app.v1.Location
+	(*SharedSecret)(nil),                                   // 66: viam.app.v1.SharedSecret
+	(*CreateLocationRequest)(nil),                          // 67: viam.app.v1.CreateLocationRequest
+	(*CreateLocationResponse)(nil),                         // 68: viam.app.v1.CreateLocationResponse
+	(*GetLocationRequest)(nil),                             // 69: viam.app.v1.GetLocationRequest
+	(*GetLocationResponse)(nil),                            // 70: viam.app.v1.GetLocationResponse
+	(*UpdateLocationRequest)(nil),                          // 71: viam.app.v1.UpdateLocationRequest
+	(*UpdateLocationResponse)(nil),                         // 72: viam.app.v1.UpdateLocationResponse
+	(*DeleteLocationRequest)(nil),                          // 73: viam.app.v1.DeleteLocationRequest
+	(*DeleteLocationResponse)(nil),                         // 74: viam.app.v1.DeleteLocationResponse
+	(*GetLocationMetadataRequest)(nil),                     // 75: viam.app.v1.GetLocationMetadataRequest
+	(*GetLocationMetadataResponse)(nil),                    // 76: viam.app.v1.GetLocationMetadataResponse
+	(*UpdateLocationMetadataRequest)(nil),                  // 77: viam.app.v1.UpdateLocationMetadataRequest
+	(*UpdateLocationMetadataResponse)(nil),                 // 78: viam.app.v1.UpdateLocationMetadataResponse
+	(*GetOrganizationsWithAccessToLocationRequest)(nil),    // 79: viam.app.v1.GetOrganizationsWithAccessToLocationRequest
+	(*GetOrganizationsWithAccessToLocationResponse)(nil),   // 80: viam.app.v1.GetOrganizationsWithAccessToLocationResponse
+	(*ListLocationsRequest)(nil),                           // 81: viam.app.v1.ListLocationsRequest
+	(*ShareLocationRequest)(nil),                           // 82: viam.app.v1.ShareLocationRequest
+	(*ShareLocationResponse)(nil),                          // 83: viam.app.v1.ShareLocationResponse
+	(*UnshareLocationRequest)(nil),                         // 84: viam.app.v1.UnshareLocationRequest
+	(*UnshareLocationResponse)(nil),                        // 85: viam.app.v1.UnshareLocationResponse
+	(*ListLocationsResponse)(nil),                          // 86: viam.app.v1.ListLocationsResponse
+	(*CreateLocationSecretRequest)(nil),                    // 87: viam.app.v1.CreateLocationSecretRequest
+	(*CreateLocationSecretResponse)(nil),                   // 88: viam.app.v1.CreateLocationSecretResponse
+	(*DeleteLocationSecretRequest)(nil),                    // 89: viam.app.v1.DeleteLocationSecretRequest
+	(*DeleteLocationSecretResponse)(nil),                   // 90: viam.app.v1.DeleteLocationSecretResponse
+	(*LocationAuthRequest)(nil),                            // 91: viam.app.v1.LocationAuthRequest
+	(*LocationAuthResponse)(nil),                           // 92: viam.app.v1.LocationAuthResponse
+	(*GetRobotRequest)(nil),                                // 93: viam.app.v1.GetRobotRequest
+	(*GetRoverRentalRobotsRequest)(nil),                    // 94: viam.app.v1.GetRoverRentalRobotsRequest
+	(*RoverRentalRobot)(nil),                               // 95: viam.app.v1.RoverRentalRobot
+	(*GetRoverRentalRobotsResponse)(nil),                   // 96: viam.app.v1.GetRoverRentalRobotsResponse
+	(*GetRobotResponse)(nil),                               // 97: viam.app.v1.GetRobotResponse
+	(*GetRobotPartsRequest)(nil),                           // 98: viam.app.v1.GetRobotPartsRequest
+	(*GetRobotPartsResponse)(nil),                          // 99: viam.app.v1.GetRobotPartsResponse
+	(*GetRobotPartRequest)(nil),                            // 100: viam.app.v1.GetRobotPartRequest
+	(*GetRobotPartResponse)(nil),                           // 101: viam.app.v1.GetRobotPartResponse
+	(*GetRobotPartByNameAndLocationRequest)(nil),           // 102: viam.app.v1.GetRobotPartByNameAndLocationRequest
+	(*GetRobotPartByNameAndLocationResponse)(nil),          // 103: viam.app.v1.GetRobotPartByNameAndLocationResponse
+	(*GetRobotPartLogsRequest)(nil),                        // 104: viam.app.v1.GetRobotPartLogsRequest
+	(*GetRobotPartLogsResponse)(nil),                       // 105: viam.app.v1.GetRobotPartLogsResponse
+	(*TailRobotPartLogsRequest)(nil),                       // 106: viam.app.v1.TailRobotPartLogsRequest
+	(*TailRobotPartLogsResponse)(nil),                      // 107: viam.app.v1.TailRobotPartLogsResponse
+	(*GetRobotPartHistoryRequest)(nil),                     // 108: viam.app.v1.GetRobotPartHistoryRequest
+	(*GetRobotPartHistoryResponse)(nil),                    // 109: viam.app.v1.GetRobotPartHistoryResponse
+	(*UpdateRobotPartRequest)(nil),                         // 110: viam.app.v1.UpdateRobotPartRequest
+	(*UpdateRobotPartResponse)(nil),                        // 111: viam.app.v1.UpdateRobotPartResponse
+	(*NewRobotPartRequest)(nil),                            // 112: viam.app.v1.NewRobotPartRequest
+	(*NewRobotPartResponse)(nil),                           // 113: viam.app.v1.NewRobotPartResponse
+	(*DeleteRobotPartRequest)(nil),                         // 114: viam.app.v1.DeleteRobotPartRequest
+	(*GetRobotPartMetadataRequest)(nil),                    // 115: viam.app.v1.GetRobotPartMetadataRequest
+	(*GetRobotPartMetadataResponse)(nil),                   // 116: viam.app.v1.GetRobotPartMetadataResponse
+	(*UpdateRobotPartMetadataRequest)(nil),                 // 117: viam.app.v1.UpdateRobotPartMetadataRequest
+	(*UpdateRobotPartMetadataResponse)(nil),                // 118: viam.app.v1.UpdateRobotPartMetadataResponse
+	(*GetRobotAPIKeysRequest)(nil),                         // 119: viam.app.v1.GetRobotAPIKeysRequest
+	(*APIKey)(nil),                                         // 120: viam.app.v1.APIKey
+	(*GetRobotAPIKeysResponse)(nil),                        // 121: viam.app.v1.GetRobotAPIKeysResponse
+	(*DeleteRobotPartResponse)(nil),                        // 122: viam.app.v1.DeleteRobotPartResponse
+	(*Fragment)(nil),                                       // 123: viam.app.v1.Fragment
+	(*FragmentHistoryEntry)(nil),                           // 124: viam.app.v1.FragmentHistoryEntry
+	(*FragmentRevision)(nil),                               // 125: viam.app.v1.FragmentRevision
+	(*FragmentTag)(nil),                                    // 126: viam.app.v1.FragmentTag
+	(*FragmentError)(nil),                                  // 127: viam.app.v1.FragmentError
+	(*FragmentUsage)(nil),                                  // 128: viam.app.v1.FragmentUsage
+	(*ResolvedFragment)(nil),                               // 129: viam.app.v1.ResolvedFragment
+	(*ListFragmentsRequest)(nil),                           // 130: viam.app.v1.ListFragmentsRequest
+	(*ListFragmentsResponse)(nil),                          // 131: viam.app.v1.ListFragmentsResponse
+	(*GetFragmentRequest)(nil),                             // 132: viam.app.v1.GetFragmentRequest
+	(*GetFragmentResponse)(nil),                            // 133: viam.app.v1.GetFragmentResponse
+	(*CreateFragmentRequest)(nil),                          // 134: viam.app.v1.CreateFragmentRequest
+	(*CreateFragmentResponse)(nil),                         // 135: viam.app.v1.CreateFragmentResponse
+	(*UpdateFragmentRequest)(nil),                          // 136: viam.app.v1.UpdateFragmentRequest
+	(*UpdateFragmentResponse)(nil),                         // 137: viam.app.v1.UpdateFragmentResponse
+	(*DeleteFragmentRequest)(nil),                          // 138: viam.app.v1.DeleteFragmentRequest
+	(*DeleteFragmentResponse)(nil),                         // 139: viam.app.v1.DeleteFragmentResponse
+	(*GetFragmentHistoryRequest)(nil),                      // 140: viam.app.v1.GetFragmentHistoryRequest
+	(*GetFragmentHistoryResponse)(nil),                     // 141: viam.app.v1.GetFragmentHistoryResponse
+	(*GetFragmentUsageRequest)(nil),                        // 142: viam.app.v1.GetFragmentUsageRequest
+	(*GetFragmentUsageResponse)(nil),                       // 143: viam.app.v1.GetFragmentUsageResponse
+	(*SetFragmentTagRequest)(nil),                          // 144: viam.app.v1.SetFragmentTagRequest
+	(*SetFragmentTagResponse)(nil),                         // 145: viam.app.v1.SetFragmentTagResponse
+	(*DeleteFragmentTagRequest)(nil),                       // 146: viam.app.v1.DeleteFragmentTagRequest
+	(*DeleteFragmentTagResponse)(nil),                      // 147: viam.app.v1.DeleteFragmentTagResponse
+	(*ListRobotsRequest)(nil),                              // 148: viam.app.v1.ListRobotsRequest
+	(*ListRobotsForLocationsRequest)(nil),                  // 149: viam.app.v1.ListRobotsForLocationsRequest
+	(*ListRobotsForOrgRequest)(nil),                        // 150: viam.app.v1.ListRobotsForOrgRequest
+	(*AdditionalFragment)(nil),                             // 151: viam.app.v1.AdditionalFragment
+	(*ListNestedFragmentsRequest)(nil),                     // 152: viam.app.v1.ListNestedFragmentsRequest
+	(*ListNestedFragmentsResponse)(nil),                    // 153: viam.app.v1.ListNestedFragmentsResponse
+	(*ListMachineFragmentsRequest)(nil),                    // 154: viam.app.v1.ListMachineFragmentsRequest
+	(*ListMachineFragmentsResponse)(nil),                   // 155: viam.app.v1.ListMachineFragmentsResponse
+	(*ListMachineSummariesRequest)(nil),                    // 156: viam.app.v1.ListMachineSummariesRequest
+	(*ListMachineSummariesResponse)(nil),                   // 157: viam.app.v1.ListMachineSummariesResponse
+	(*LocationSummary)(nil),                                // 158: viam.app.v1.LocationSummary
+	(*MachineSummary)(nil),                                 // 159: viam.app.v1.MachineSummary
+	(*FragmentSummary)(nil),                                // 160: viam.app.v1.FragmentSummary
+	(*ViamServerVersion)(nil),                              // 161: viam.app.v1.ViamServerVersion
+	(*ViamAgentVersion)(nil),                               // 162: viam.app.v1.ViamAgentVersion
+	(*PartSummary)(nil),                                    // 163: viam.app.v1.PartSummary
+	(*ListRobotsResponse)(nil),                             // 164: viam.app.v1.ListRobotsResponse
+	(*ListRobotsForLocationsResponse)(nil),                 // 165: viam.app.v1.ListRobotsForLocationsResponse
+	(*ListRobotsForOrgResponse)(nil),                       // 166: viam.app.v1.ListRobotsForOrgResponse
+	(*NewRobotRequest)(nil),                                // 167: viam.app.v1.NewRobotRequest
+	(*NewRobotResponse)(nil),                               // 168: viam.app.v1.NewRobotResponse
+	(*UpdateRobotRequest)(nil),                             // 169: viam.app.v1.UpdateRobotRequest
+	(*UpdateRobotResponse)(nil),                            // 170: viam.app.v1.UpdateRobotResponse
+	(*DeleteRobotRequest)(nil),                             // 171: viam.app.v1.DeleteRobotRequest
+	(*DeleteRobotResponse)(nil),                            // 172: viam.app.v1.DeleteRobotResponse
+	(*GetRobotMetadataRequest)(nil),                        // 173: viam.app.v1.GetRobotMetadataRequest
+	(*GetRobotMetadataResponse)(nil),                       // 174: viam.app.v1.GetRobotMetadataResponse
+	(*UpdateRobotMetadataRequest)(nil),                     // 175: viam.app.v1.UpdateRobotMetadataRequest
+	(*UpdateRobotMetadataResponse)(nil),                    // 176: viam.app.v1.UpdateRobotMetadataResponse
+	(*MarkPartAsMainRequest)(nil),                          // 177: viam.app.v1.MarkPartAsMainRequest
+	(*MarkPartAsMainResponse)(nil),                         // 178: viam.app.v1.MarkPartAsMainResponse
+	(*MarkPartForRestartRequest)(nil),                      // 179: viam.app.v1.MarkPartForRestartRequest
+	(*MarkPartForRestartResponse)(nil),                     // 180: viam.app.v1.MarkPartForRestartResponse
+	(*CreateRobotPartSecretRequest)(nil),                   // 181: viam.app.v1.CreateRobotPartSecretRequest
+	(*CreateRobotPartSecretResponse)(nil),                  // 182: viam.app.v1.CreateRobotPartSecretResponse
+	(*DeleteRobotPartSecretRequest)(nil),                   // 183: viam.app.v1.DeleteRobotPartSecretRequest
+	(*DeleteRobotPartSecretResponse)(nil),                  // 184: viam.app.v1.DeleteRobotPartSecretResponse
+	(*Authorization)(nil),                                  // 185: viam.app.v1.Authorization
+	(*AddRoleRequest)(nil),                                 // 186: viam.app.v1.AddRoleRequest
+	(*AddRoleResponse)(nil),                                // 187: viam.app.v1.AddRoleResponse
+	(*RemoveRoleRequest)(nil),                              // 188: viam.app.v1.RemoveRoleRequest
+	(*RemoveRoleResponse)(nil),                             // 189: viam.app.v1.RemoveRoleResponse
+	(*ChangeRoleRequest)(nil),                              // 190: viam.app.v1.ChangeRoleRequest
+	(*ChangeRoleResponse)(nil),                             // 191: viam.app.v1.ChangeRoleResponse
+	(*ListAuthorizationsRequest)(nil),                      // 192: viam.app.v1.ListAuthorizationsRequest
+	(*ListAuthorizationsResponse)(nil),                     // 193: viam.app.v1.ListAuthorizationsResponse
+	(*CheckPermissionsRequest)(nil),                        // 194: viam.app.v1.CheckPermissionsRequest
+	(*AuthorizedPermissions)(nil),                          // 195: viam.app.v1.AuthorizedPermissions
+	(*CheckPermissionsResponse)(nil),                       // 196: viam.app.v1.CheckPermissionsResponse
+	(*ModuleVersion)(nil),                                  // 197: viam.app.v1.ModuleVersion
+	(*ModuleMetadata)(nil),                                 // 198: viam.app.v1.ModuleMetadata
+	(*MLModelMetadata)(nil),                                // 199: viam.app.v1.MLModelMetadata
+	(*MLTrainingVersion)(nil),                              // 200: viam.app.v1.MLTrainingVersion
+	(*MLTrainingMetadata)(nil),                             // 201: viam.app.v1.MLTrainingMetadata
+	(*RegistryItem)(nil),                                   // 202: viam.app.v1.RegistryItem
+	(*GetRegistryItemRequest)(nil),                         // 203: viam.app.v1.GetRegistryItemRequest
+	(*GetRegistryItemResponse)(nil),                        // 204: viam.app.v1.GetRegistryItemResponse
+	(*CreateRegistryItemRequest)(nil),                      // 205: viam.app.v1.CreateRegistryItemRequest
+	(*CreateRegistryItemResponse)(nil),                     // 206: viam.app.v1.CreateRegistryItemResponse
+	(*UpdateRegistryItemRequest)(nil),                      // 207: viam.app.v1.UpdateRegistryItemRequest
+	(*UpdateRegistryItemResponse)(nil),                     // 208: viam.app.v1.UpdateRegistryItemResponse
+	(*ListRegistryItemsRequest)(nil),                       // 209: viam.app.v1.ListRegistryItemsRequest
+	(*ListRegistryItemsResponse)(nil),                      // 210: viam.app.v1.ListRegistryItemsResponse
+	(*DeleteRegistryItemRequest)(nil),                      // 211: viam.app.v1.DeleteRegistryItemRequest
+	(*DeleteRegistryItemResponse)(nil),                     // 212: viam.app.v1.DeleteRegistryItemResponse
+	(*RenameRegistryItemRequest)(nil),                      // 213: viam.app.v1.RenameRegistryItemRequest
+	(*RenameRegistryItemResponse)(nil),                     // 214: viam.app.v1.RenameRegistryItemResponse
+	(*TransferRegistryItemRequest)(nil),                    // 215: viam.app.v1.TransferRegistryItemRequest
+	(*TransferRegistryItemResponse)(nil),                   // 216: viam.app.v1.TransferRegistryItemResponse
+	(*CreateModuleRequest)(nil),                            // 217: viam.app.v1.CreateModuleRequest
+	(*CreateModuleResponse)(nil),                           // 218: viam.app.v1.CreateModuleResponse
+	(*UpdateModuleRequest)(nil),                            // 219: viam.app.v1.UpdateModuleRequest
+	(*App)(nil),                                            // 220: viam.app.v1.App
+	(*UpdateModuleResponse)(nil),                           // 221: viam.app.v1.UpdateModuleResponse
+	(*UpdateModuleMetadata)(nil),                           // 222: viam.app.v1.UpdateModuleMetadata
+	(*UpdateMLModelMetadata)(nil),                          // 223: viam.app.v1.UpdateMLModelMetadata
+	(*UpdateMLTrainingMetadata)(nil),                       // 224: viam.app.v1.UpdateMLTrainingMetadata
+	(*Model)(nil),                                          // 225: viam.app.v1.Model
+	(*ModuleFileInfo)(nil),                                 // 226: viam.app.v1.ModuleFileInfo
+	(*UploadModuleFileRequest)(nil),                        // 227: viam.app.v1.UploadModuleFileRequest
+	(*UploadModuleFileResponse)(nil),                       // 228: viam.app.v1.UploadModuleFileResponse
+	(*GetModuleRequest)(nil),                               // 229: viam.app.v1.GetModuleRequest
+	(*GetModuleResponse)(nil),                              // 230: viam.app.v1.GetModuleResponse
+	(*Module)(nil),                                         // 231: viam.app.v1.Module
+	(*VersionHistory)(nil),                                 // 232: viam.app.v1.VersionHistory
+	(*Uploads)(nil),                                        // 233: viam.app.v1.Uploads
+	(*ListModulesRequest)(nil),                             // 234: viam.app.v1.ListModulesRequest
+	(*ListModulesResponse)(nil),                            // 235: viam.app.v1.ListModulesResponse
+	(*GetUserIDByEmailRequest)(nil),                        // 236: viam.app.v1.GetUserIDByEmailRequest
+	(*GetUserIDByEmailResponse)(nil),                       // 237: viam.app.v1.GetUserIDByEmailResponse
+	(*ListOrganizationsByUserRequest)(nil),                 // 238: viam.app.v1.ListOrganizationsByUserRequest
+	(*OrgDetails)(nil),                                     // 239: viam.app.v1.OrgDetails
+	(*ListOrganizationsByUserResponse)(nil),                // 240: viam.app.v1.ListOrganizationsByUserResponse
+	(*SearchOrganizationsRequest)(nil),                     // 241: viam.app.v1.SearchOrganizationsRequest
+	(*SearchOrganizationsResponse)(nil),                    // 242: viam.app.v1.SearchOrganizationsResponse
+	(*CreateKeyRequest)(nil),                               // 243: viam.app.v1.CreateKeyRequest
+	(*CreateKeyResponse)(nil),                              // 244: viam.app.v1.CreateKeyResponse
+	(*DeleteKeyRequest)(nil),                               // 245: viam.app.v1.DeleteKeyRequest
+	(*DeleteKeyResponse)(nil),                              // 246: viam.app.v1.DeleteKeyResponse
+	(*RenameKeyRequest)(nil),                               // 247: viam.app.v1.RenameKeyRequest
+	(*RenameKeyResponse)(nil),                              // 248: viam.app.v1.RenameKeyResponse
+	(*AuthorizationDetails)(nil),                           // 249: viam.app.v1.AuthorizationDetails
+	(*APIKeyWithAuthorizations)(nil),                       // 250: viam.app.v1.APIKeyWithAuthorizations
+	(*ListKeysRequest)(nil),                                // 251: viam.app.v1.ListKeysRequest
+	(*ListKeysResponse)(nil),                               // 252: viam.app.v1.ListKeysResponse
+	(*RotateKeyRequest)(nil),                               // 253: viam.app.v1.RotateKeyRequest
+	(*RotateKeyResponse)(nil),                              // 254: viam.app.v1.RotateKeyResponse
+	(*CreateKeyFromExistingKeyAuthorizationsRequest)(nil),  // 255: viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest
+	(*CreateKeyFromExistingKeyAuthorizationsResponse)(nil), // 256: viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse
+	(*GetAppContentRequest)(nil),                           // 257: viam.app.v1.GetAppContentRequest
+	(*GetAppContentResponse)(nil),                          // 258: viam.app.v1.GetAppContentResponse
+	(*OrganizationSetLogoRequest)(nil),                     // 259: viam.app.v1.OrganizationSetLogoRequest
+	(*OrganizationSetLogoResponse)(nil),                    // 260: viam.app.v1.OrganizationSetLogoResponse
+	(*OrganizationGetLogoRequest)(nil),                     // 261: viam.app.v1.OrganizationGetLogoRequest
+	(*OrganizationGetLogoResponse)(nil),                    // 262: viam.app.v1.OrganizationGetLogoResponse
+	(*EnableAuthServiceRequest)(nil),                       // 263: viam.app.v1.EnableAuthServiceRequest
+	(*EnableAuthServiceResponse)(nil),                      // 264: viam.app.v1.EnableAuthServiceResponse
+	(*DisableAuthServiceRequest)(nil),                      // 265: viam.app.v1.DisableAuthServiceRequest
+	(*DisableAuthServiceResponse)(nil),                     // 266: viam.app.v1.DisableAuthServiceResponse
+	(*CreateOAuthAppRequest)(nil),                          // 267: viam.app.v1.CreateOAuthAppRequest
+	(*CreateOAuthAppResponse)(nil),                         // 268: viam.app.v1.CreateOAuthAppResponse
+	(*ReadOAuthAppRequest)(nil),                            // 269: viam.app.v1.ReadOAuthAppRequest
+	(*ReadOAuthAppResponse)(nil),                           // 270: viam.app.v1.ReadOAuthAppResponse
+	(*UpdateOAuthAppRequest)(nil),                          // 271: viam.app.v1.UpdateOAuthAppRequest
+	(*UpdateOAuthAppResponse)(nil),                         // 272: viam.app.v1.UpdateOAuthAppResponse
+	(*DeleteOAuthAppRequest)(nil),                          // 273: viam.app.v1.DeleteOAuthAppRequest
+	(*DeleteOAuthAppResponse)(nil),                         // 274: viam.app.v1.DeleteOAuthAppResponse
+	(*ListOAuthAppsRequest)(nil),                           // 275: viam.app.v1.ListOAuthAppsRequest
+	(*ListOAuthAppsResponse)(nil),                          // 276: viam.app.v1.ListOAuthAppsResponse
+	(*OAuthConfig)(nil),                                    // 277: viam.app.v1.OAuthConfig
+	(*GetAppBrandingRequest)(nil),                          // 278: viam.app.v1.GetAppBrandingRequest
+	(*TextOverrides)(nil),                                  // 279: viam.app.v1.TextOverrides
+	(*GetAppBrandingResponse)(nil),                         // 280: viam.app.v1.GetAppBrandingResponse
+	(*AppCustomizations)(nil),                              // 281: viam.app.v1.AppCustomizations
+	(*MachinePickerCustomizations)(nil),                    // 282: viam.app.v1.MachinePickerCustomizations
+	nil,                                                    // 283: viam.app.v1.TextOverrides.FieldsEntry
+	nil,                                                    // 284: viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry
+	(*timestamppb.Timestamp)(nil),                          // 285: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                                // 286: google.protobuf.Struct
+	(*v1.LogEntry)(nil),                                    // 287: viam.common.v1.LogEntry
+	(v11.ModelType)(0),                                     // 288: viam.app.mltraining.v1.ModelType
+	(v11.ModelFramework)(0),                                // 289: viam.app.mltraining.v1.ModelFramework
+	(v12.PackageType)(0),                                   // 290: viam.app.packages.v1.PackageType
 }
 var file_app_v1_app_proto_depIdxs = []int32{
-	284, // 0: viam.app.v1.Robot.last_access:type_name -> google.protobuf.Timestamp
-	284, // 1: viam.app.v1.Robot.created_on:type_name -> google.protobuf.Timestamp
-	285, // 2: viam.app.v1.RobotPart.robot_config:type_name -> google.protobuf.Struct
-	284, // 3: viam.app.v1.RobotPart.last_access:type_name -> google.protobuf.Timestamp
-	285, // 4: viam.app.v1.RobotPart.user_supplied_info:type_name -> google.protobuf.Struct
-	284, // 5: viam.app.v1.RobotPart.created_on:type_name -> google.protobuf.Timestamp
-	65,  // 6: viam.app.v1.RobotPart.secrets:type_name -> viam.app.v1.SharedSecret
-	284, // 7: viam.app.v1.RobotPart.last_updated:type_name -> google.protobuf.Timestamp
-	284, // 8: viam.app.v1.RobotPartHistoryEntry.when:type_name -> google.protobuf.Timestamp
-	11,  // 9: viam.app.v1.RobotPartHistoryEntry.old:type_name -> viam.app.v1.RobotPart
-	13,  // 10: viam.app.v1.RobotPartHistoryEntry.edited_by:type_name -> viam.app.v1.AuthenticatorInfo
+	285, // 0: viam.app.v1.Robot.last_access:type_name -> google.protobuf.Timestamp
+	285, // 1: viam.app.v1.Robot.created_on:type_name -> google.protobuf.Timestamp
+	286, // 2: viam.app.v1.RobotPart.robot_config:type_name -> google.protobuf.Struct
+	285, // 3: viam.app.v1.RobotPart.last_access:type_name -> google.protobuf.Timestamp
+	286, // 4: viam.app.v1.RobotPart.user_supplied_info:type_name -> google.protobuf.Struct
+	285, // 5: viam.app.v1.RobotPart.created_on:type_name -> google.protobuf.Timestamp
+	66,  // 6: viam.app.v1.RobotPart.secrets:type_name -> viam.app.v1.SharedSecret
+	285, // 7: viam.app.v1.RobotPart.last_updated:type_name -> google.protobuf.Timestamp
+	285, // 8: viam.app.v1.RobotPartHistoryEntry.when:type_name -> google.protobuf.Timestamp
+	12,  // 9: viam.app.v1.RobotPartHistoryEntry.old:type_name -> viam.app.v1.RobotPart
+	14,  // 10: viam.app.v1.RobotPartHistoryEntry.edited_by:type_name -> viam.app.v1.AuthenticatorInfo
 	0,   // 11: viam.app.v1.AuthenticatorInfo.type:type_name -> viam.app.v1.AuthenticationType
-	284, // 12: viam.app.v1.Organization.created_on:type_name -> google.protobuf.Timestamp
-	284, // 13: viam.app.v1.OrganizationMember.date_added:type_name -> google.protobuf.Timestamp
-	284, // 14: viam.app.v1.OrganizationMember.last_login:type_name -> google.protobuf.Timestamp
-	284, // 15: viam.app.v1.OrganizationMember.last_access:type_name -> google.protobuf.Timestamp
-	15,  // 16: viam.app.v1.ListOrganizationsResponse.organizations:type_name -> viam.app.v1.Organization
-	284, // 17: viam.app.v1.OrganizationInvite.created_on:type_name -> google.protobuf.Timestamp
-	184, // 18: viam.app.v1.OrganizationInvite.authorizations:type_name -> viam.app.v1.Authorization
-	15,  // 19: viam.app.v1.CreateOrganizationResponse.organization:type_name -> viam.app.v1.Organization
-	15,  // 20: viam.app.v1.GetOrganizationResponse.organization:type_name -> viam.app.v1.Organization
-	15,  // 21: viam.app.v1.UpdateOrganizationResponse.organization:type_name -> viam.app.v1.Organization
-	15,  // 22: viam.app.v1.UpdateOrganizationNamespaceResponse.organization:type_name -> viam.app.v1.Organization
-	285, // 23: viam.app.v1.GetOrganizationMetadataResponse.data:type_name -> google.protobuf.Struct
-	285, // 24: viam.app.v1.UpdateOrganizationMetadataRequest.data:type_name -> google.protobuf.Struct
-	16,  // 25: viam.app.v1.ListOrganizationMembersResponse.members:type_name -> viam.app.v1.OrganizationMember
-	18,  // 26: viam.app.v1.ListOrganizationMembersResponse.invites:type_name -> viam.app.v1.OrganizationInvite
-	184, // 27: viam.app.v1.CreateOrganizationInviteRequest.authorizations:type_name -> viam.app.v1.Authorization
-	18,  // 28: viam.app.v1.CreateOrganizationInviteResponse.invite:type_name -> viam.app.v1.OrganizationInvite
-	184, // 29: viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest.add_authorizations:type_name -> viam.app.v1.Authorization
-	184, // 30: viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest.remove_authorizations:type_name -> viam.app.v1.Authorization
-	18,  // 31: viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse.invite:type_name -> viam.app.v1.OrganizationInvite
-	18,  // 32: viam.app.v1.ResendOrganizationInviteResponse.invite:type_name -> viam.app.v1.OrganizationInvite
-	47,  // 33: viam.app.v1.EnableBillingServiceRequest.billing_address:type_name -> viam.app.v1.BillingAddress
-	47,  // 34: viam.app.v1.UpdateBillingServiceRequest.billing_address:type_name -> viam.app.v1.BillingAddress
-	47,  // 35: viam.app.v1.GetBillingServiceConfigResponse.billing_address:type_name -> viam.app.v1.BillingAddress
-	65,  // 36: viam.app.v1.LocationAuth.secrets:type_name -> viam.app.v1.SharedSecret
-	62,  // 37: viam.app.v1.Location.auth:type_name -> viam.app.v1.LocationAuth
-	61,  // 38: viam.app.v1.Location.organizations:type_name -> viam.app.v1.LocationOrganization
-	284, // 39: viam.app.v1.Location.created_on:type_name -> google.protobuf.Timestamp
-	63,  // 40: viam.app.v1.Location.config:type_name -> viam.app.v1.StorageConfig
-	60,  // 41: viam.app.v1.Location.primary_org_identity:type_name -> viam.app.v1.OrganizationIdentity
-	284, // 42: viam.app.v1.SharedSecret.created_on:type_name -> google.protobuf.Timestamp
-	9,   // 43: viam.app.v1.SharedSecret.state:type_name -> viam.app.v1.SharedSecret.State
-	64,  // 44: viam.app.v1.CreateLocationResponse.location:type_name -> viam.app.v1.Location
-	64,  // 45: viam.app.v1.GetLocationResponse.location:type_name -> viam.app.v1.Location
-	64,  // 46: viam.app.v1.UpdateLocationResponse.location:type_name -> viam.app.v1.Location
-	285, // 47: viam.app.v1.GetLocationMetadataResponse.data:type_name -> google.protobuf.Struct
-	285, // 48: viam.app.v1.UpdateLocationMetadataRequest.data:type_name -> google.protobuf.Struct
-	60,  // 49: viam.app.v1.GetOrganizationsWithAccessToLocationResponse.organization_identities:type_name -> viam.app.v1.OrganizationIdentity
-	64,  // 50: viam.app.v1.ListLocationsResponse.locations:type_name -> viam.app.v1.Location
-	62,  // 51: viam.app.v1.CreateLocationSecretResponse.auth:type_name -> viam.app.v1.LocationAuth
-	62,  // 52: viam.app.v1.LocationAuthResponse.auth:type_name -> viam.app.v1.LocationAuth
-	94,  // 53: viam.app.v1.GetRoverRentalRobotsResponse.robots:type_name -> viam.app.v1.RoverRentalRobot
-	10,  // 54: viam.app.v1.GetRobotResponse.robot:type_name -> viam.app.v1.Robot
-	11,  // 55: viam.app.v1.GetRobotPartsResponse.parts:type_name -> viam.app.v1.RobotPart
-	11,  // 56: viam.app.v1.GetRobotPartResponse.part:type_name -> viam.app.v1.RobotPart
-	11,  // 57: viam.app.v1.GetRobotPartByNameAndLocationResponse.part:type_name -> viam.app.v1.RobotPart
-	284, // 58: viam.app.v1.GetRobotPartLogsRequest.start:type_name -> google.protobuf.Timestamp
-	284, // 59: viam.app.v1.GetRobotPartLogsRequest.end:type_name -> google.protobuf.Timestamp
-	286, // 60: viam.app.v1.GetRobotPartLogsResponse.logs:type_name -> viam.common.v1.LogEntry
-	286, // 61: viam.app.v1.TailRobotPartLogsResponse.logs:type_name -> viam.common.v1.LogEntry
-	12,  // 62: viam.app.v1.GetRobotPartHistoryResponse.history:type_name -> viam.app.v1.RobotPartHistoryEntry
-	285, // 63: viam.app.v1.UpdateRobotPartRequest.robot_config:type_name -> google.protobuf.Struct
-	284, // 64: viam.app.v1.UpdateRobotPartRequest.last_known_update:type_name -> google.protobuf.Timestamp
-	11,  // 65: viam.app.v1.UpdateRobotPartResponse.part:type_name -> viam.app.v1.RobotPart
-	285, // 66: viam.app.v1.GetRobotPartMetadataResponse.data:type_name -> google.protobuf.Struct
-	285, // 67: viam.app.v1.UpdateRobotPartMetadataRequest.data:type_name -> google.protobuf.Struct
-	284, // 68: viam.app.v1.APIKey.created_on:type_name -> google.protobuf.Timestamp
-	249, // 69: viam.app.v1.GetRobotAPIKeysResponse.api_keys:type_name -> viam.app.v1.APIKeyWithAuthorizations
-	285, // 70: viam.app.v1.Fragment.fragment:type_name -> google.protobuf.Struct
-	284, // 71: viam.app.v1.Fragment.created_on:type_name -> google.protobuf.Timestamp
+	285, // 12: viam.app.v1.Organization.created_on:type_name -> google.protobuf.Timestamp
+	285, // 13: viam.app.v1.OrganizationMember.date_added:type_name -> google.protobuf.Timestamp
+	285, // 14: viam.app.v1.OrganizationMember.last_login:type_name -> google.protobuf.Timestamp
+	285, // 15: viam.app.v1.OrganizationMember.last_access:type_name -> google.protobuf.Timestamp
+	16,  // 16: viam.app.v1.ListOrganizationsResponse.organizations:type_name -> viam.app.v1.Organization
+	285, // 17: viam.app.v1.OrganizationInvite.created_on:type_name -> google.protobuf.Timestamp
+	185, // 18: viam.app.v1.OrganizationInvite.authorizations:type_name -> viam.app.v1.Authorization
+	16,  // 19: viam.app.v1.CreateOrganizationResponse.organization:type_name -> viam.app.v1.Organization
+	16,  // 20: viam.app.v1.GetOrganizationResponse.organization:type_name -> viam.app.v1.Organization
+	16,  // 21: viam.app.v1.UpdateOrganizationResponse.organization:type_name -> viam.app.v1.Organization
+	16,  // 22: viam.app.v1.UpdateOrganizationNamespaceResponse.organization:type_name -> viam.app.v1.Organization
+	286, // 23: viam.app.v1.GetOrganizationMetadataResponse.data:type_name -> google.protobuf.Struct
+	286, // 24: viam.app.v1.UpdateOrganizationMetadataRequest.data:type_name -> google.protobuf.Struct
+	17,  // 25: viam.app.v1.ListOrganizationMembersResponse.members:type_name -> viam.app.v1.OrganizationMember
+	19,  // 26: viam.app.v1.ListOrganizationMembersResponse.invites:type_name -> viam.app.v1.OrganizationInvite
+	185, // 27: viam.app.v1.CreateOrganizationInviteRequest.authorizations:type_name -> viam.app.v1.Authorization
+	19,  // 28: viam.app.v1.CreateOrganizationInviteResponse.invite:type_name -> viam.app.v1.OrganizationInvite
+	185, // 29: viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest.add_authorizations:type_name -> viam.app.v1.Authorization
+	185, // 30: viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest.remove_authorizations:type_name -> viam.app.v1.Authorization
+	19,  // 31: viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse.invite:type_name -> viam.app.v1.OrganizationInvite
+	19,  // 32: viam.app.v1.ResendOrganizationInviteResponse.invite:type_name -> viam.app.v1.OrganizationInvite
+	48,  // 33: viam.app.v1.EnableBillingServiceRequest.billing_address:type_name -> viam.app.v1.BillingAddress
+	48,  // 34: viam.app.v1.UpdateBillingServiceRequest.billing_address:type_name -> viam.app.v1.BillingAddress
+	48,  // 35: viam.app.v1.GetBillingServiceConfigResponse.billing_address:type_name -> viam.app.v1.BillingAddress
+	66,  // 36: viam.app.v1.LocationAuth.secrets:type_name -> viam.app.v1.SharedSecret
+	63,  // 37: viam.app.v1.Location.auth:type_name -> viam.app.v1.LocationAuth
+	62,  // 38: viam.app.v1.Location.organizations:type_name -> viam.app.v1.LocationOrganization
+	285, // 39: viam.app.v1.Location.created_on:type_name -> google.protobuf.Timestamp
+	64,  // 40: viam.app.v1.Location.config:type_name -> viam.app.v1.StorageConfig
+	61,  // 41: viam.app.v1.Location.primary_org_identity:type_name -> viam.app.v1.OrganizationIdentity
+	285, // 42: viam.app.v1.SharedSecret.created_on:type_name -> google.protobuf.Timestamp
+	10,  // 43: viam.app.v1.SharedSecret.state:type_name -> viam.app.v1.SharedSecret.State
+	65,  // 44: viam.app.v1.CreateLocationResponse.location:type_name -> viam.app.v1.Location
+	65,  // 45: viam.app.v1.GetLocationResponse.location:type_name -> viam.app.v1.Location
+	65,  // 46: viam.app.v1.UpdateLocationResponse.location:type_name -> viam.app.v1.Location
+	286, // 47: viam.app.v1.GetLocationMetadataResponse.data:type_name -> google.protobuf.Struct
+	286, // 48: viam.app.v1.UpdateLocationMetadataRequest.data:type_name -> google.protobuf.Struct
+	61,  // 49: viam.app.v1.GetOrganizationsWithAccessToLocationResponse.organization_identities:type_name -> viam.app.v1.OrganizationIdentity
+	65,  // 50: viam.app.v1.ListLocationsResponse.locations:type_name -> viam.app.v1.Location
+	63,  // 51: viam.app.v1.CreateLocationSecretResponse.auth:type_name -> viam.app.v1.LocationAuth
+	63,  // 52: viam.app.v1.LocationAuthResponse.auth:type_name -> viam.app.v1.LocationAuth
+	95,  // 53: viam.app.v1.GetRoverRentalRobotsResponse.robots:type_name -> viam.app.v1.RoverRentalRobot
+	11,  // 54: viam.app.v1.GetRobotResponse.robot:type_name -> viam.app.v1.Robot
+	12,  // 55: viam.app.v1.GetRobotPartsResponse.parts:type_name -> viam.app.v1.RobotPart
+	12,  // 56: viam.app.v1.GetRobotPartResponse.part:type_name -> viam.app.v1.RobotPart
+	12,  // 57: viam.app.v1.GetRobotPartByNameAndLocationResponse.part:type_name -> viam.app.v1.RobotPart
+	285, // 58: viam.app.v1.GetRobotPartLogsRequest.start:type_name -> google.protobuf.Timestamp
+	285, // 59: viam.app.v1.GetRobotPartLogsRequest.end:type_name -> google.protobuf.Timestamp
+	287, // 60: viam.app.v1.GetRobotPartLogsResponse.logs:type_name -> viam.common.v1.LogEntry
+	287, // 61: viam.app.v1.TailRobotPartLogsResponse.logs:type_name -> viam.common.v1.LogEntry
+	13,  // 62: viam.app.v1.GetRobotPartHistoryResponse.history:type_name -> viam.app.v1.RobotPartHistoryEntry
+	286, // 63: viam.app.v1.UpdateRobotPartRequest.robot_config:type_name -> google.protobuf.Struct
+	285, // 64: viam.app.v1.UpdateRobotPartRequest.last_known_update:type_name -> google.protobuf.Timestamp
+	12,  // 65: viam.app.v1.UpdateRobotPartResponse.part:type_name -> viam.app.v1.RobotPart
+	286, // 66: viam.app.v1.GetRobotPartMetadataResponse.data:type_name -> google.protobuf.Struct
+	286, // 67: viam.app.v1.UpdateRobotPartMetadataRequest.data:type_name -> google.protobuf.Struct
+	285, // 68: viam.app.v1.APIKey.created_on:type_name -> google.protobuf.Timestamp
+	250, // 69: viam.app.v1.GetRobotAPIKeysResponse.api_keys:type_name -> viam.app.v1.APIKeyWithAuthorizations
+	286, // 70: viam.app.v1.Fragment.fragment:type_name -> google.protobuf.Struct
+	285, // 71: viam.app.v1.Fragment.created_on:type_name -> google.protobuf.Timestamp
 	1,   // 72: viam.app.v1.Fragment.visibility:type_name -> viam.app.v1.FragmentVisibility
-	284, // 73: viam.app.v1.Fragment.last_updated:type_name -> google.protobuf.Timestamp
-	284, // 74: viam.app.v1.FragmentHistoryEntry.edited_on:type_name -> google.protobuf.Timestamp
-	122, // 75: viam.app.v1.FragmentHistoryEntry.old:type_name -> viam.app.v1.Fragment
-	13,  // 76: viam.app.v1.FragmentHistoryEntry.edited_by:type_name -> viam.app.v1.AuthenticatorInfo
-	285, // 77: viam.app.v1.FragmentHistoryEntry.config:type_name -> google.protobuf.Struct
-	284, // 78: viam.app.v1.FragmentRevision.created_at:type_name -> google.protobuf.Timestamp
+	285, // 73: viam.app.v1.Fragment.last_updated:type_name -> google.protobuf.Timestamp
+	285, // 74: viam.app.v1.FragmentHistoryEntry.edited_on:type_name -> google.protobuf.Timestamp
+	123, // 75: viam.app.v1.FragmentHistoryEntry.old:type_name -> viam.app.v1.Fragment
+	14,  // 76: viam.app.v1.FragmentHistoryEntry.edited_by:type_name -> viam.app.v1.AuthenticatorInfo
+	286, // 77: viam.app.v1.FragmentHistoryEntry.config:type_name -> google.protobuf.Struct
+	285, // 78: viam.app.v1.FragmentRevision.created_at:type_name -> google.protobuf.Timestamp
 	2,   // 79: viam.app.v1.FragmentError.error_type:type_name -> viam.app.v1.FragmentErrorType
-	285, // 80: viam.app.v1.ResolvedFragment.resolved_config:type_name -> google.protobuf.Struct
-	126, // 81: viam.app.v1.ResolvedFragment.error:type_name -> viam.app.v1.FragmentError
+	286, // 80: viam.app.v1.ResolvedFragment.resolved_config:type_name -> google.protobuf.Struct
+	127, // 81: viam.app.v1.ResolvedFragment.error:type_name -> viam.app.v1.FragmentError
 	1,   // 82: viam.app.v1.ListFragmentsRequest.fragment_visibility:type_name -> viam.app.v1.FragmentVisibility
-	122, // 83: viam.app.v1.ListFragmentsResponse.fragments:type_name -> viam.app.v1.Fragment
-	127, // 84: viam.app.v1.ListFragmentsResponse.fragment_usages:type_name -> viam.app.v1.FragmentUsage
-	122, // 85: viam.app.v1.GetFragmentResponse.fragment:type_name -> viam.app.v1.Fragment
-	127, // 86: viam.app.v1.GetFragmentResponse.fragment_usage:type_name -> viam.app.v1.FragmentUsage
-	124, // 87: viam.app.v1.GetFragmentResponse.revisions:type_name -> viam.app.v1.FragmentRevision
-	125, // 88: viam.app.v1.GetFragmentResponse.tags:type_name -> viam.app.v1.FragmentTag
-	285, // 89: viam.app.v1.CreateFragmentRequest.config:type_name -> google.protobuf.Struct
+	123, // 83: viam.app.v1.ListFragmentsResponse.fragments:type_name -> viam.app.v1.Fragment
+	128, // 84: viam.app.v1.ListFragmentsResponse.fragment_usages:type_name -> viam.app.v1.FragmentUsage
+	123, // 85: viam.app.v1.GetFragmentResponse.fragment:type_name -> viam.app.v1.Fragment
+	128, // 86: viam.app.v1.GetFragmentResponse.fragment_usage:type_name -> viam.app.v1.FragmentUsage
+	125, // 87: viam.app.v1.GetFragmentResponse.revisions:type_name -> viam.app.v1.FragmentRevision
+	126, // 88: viam.app.v1.GetFragmentResponse.tags:type_name -> viam.app.v1.FragmentTag
+	286, // 89: viam.app.v1.CreateFragmentRequest.config:type_name -> google.protobuf.Struct
 	1,   // 90: viam.app.v1.CreateFragmentRequest.visibility:type_name -> viam.app.v1.FragmentVisibility
-	122, // 91: viam.app.v1.CreateFragmentResponse.fragment:type_name -> viam.app.v1.Fragment
-	285, // 92: viam.app.v1.UpdateFragmentRequest.config:type_name -> google.protobuf.Struct
+	123, // 91: viam.app.v1.CreateFragmentResponse.fragment:type_name -> viam.app.v1.Fragment
+	286, // 92: viam.app.v1.UpdateFragmentRequest.config:type_name -> google.protobuf.Struct
 	1,   // 93: viam.app.v1.UpdateFragmentRequest.visibility:type_name -> viam.app.v1.FragmentVisibility
-	284, // 94: viam.app.v1.UpdateFragmentRequest.last_known_update:type_name -> google.protobuf.Timestamp
-	122, // 95: viam.app.v1.UpdateFragmentResponse.fragment:type_name -> viam.app.v1.Fragment
-	123, // 96: viam.app.v1.GetFragmentHistoryResponse.history:type_name -> viam.app.v1.FragmentHistoryEntry
-	127, // 97: viam.app.v1.GetFragmentUsageResponse.version_usages:type_name -> viam.app.v1.FragmentUsage
-	125, // 98: viam.app.v1.SetFragmentTagResponse.tags:type_name -> viam.app.v1.FragmentTag
-	125, // 99: viam.app.v1.DeleteFragmentTagResponse.tags:type_name -> viam.app.v1.FragmentTag
-	150, // 100: viam.app.v1.ListNestedFragmentsRequest.additional_fragments:type_name -> viam.app.v1.AdditionalFragment
-	122, // 101: viam.app.v1.ListNestedFragmentsResponse.fragments:type_name -> viam.app.v1.Fragment
-	128, // 102: viam.app.v1.ListNestedFragmentsResponse.resolved_fragments:type_name -> viam.app.v1.ResolvedFragment
-	150, // 103: viam.app.v1.ListMachineFragmentsRequest.additional_fragments:type_name -> viam.app.v1.AdditionalFragment
-	122, // 104: viam.app.v1.ListMachineFragmentsResponse.fragments:type_name -> viam.app.v1.Fragment
-	128, // 105: viam.app.v1.ListMachineFragmentsResponse.resolved_fragments:type_name -> viam.app.v1.ResolvedFragment
-	157, // 106: viam.app.v1.ListMachineSummariesResponse.location_summaries:type_name -> viam.app.v1.LocationSummary
-	158, // 107: viam.app.v1.LocationSummary.machine_summaries:type_name -> viam.app.v1.MachineSummary
-	162, // 108: viam.app.v1.MachineSummary.part_summaries:type_name -> viam.app.v1.PartSummary
-	284, // 109: viam.app.v1.PartSummary.last_online:type_name -> google.protobuf.Timestamp
-	160, // 110: viam.app.v1.PartSummary.viam_server_version:type_name -> viam.app.v1.ViamServerVersion
-	161, // 111: viam.app.v1.PartSummary.viam_agent_version:type_name -> viam.app.v1.ViamAgentVersion
-	159, // 112: viam.app.v1.PartSummary.fragments:type_name -> viam.app.v1.FragmentSummary
-	10,  // 113: viam.app.v1.ListRobotsResponse.robots:type_name -> viam.app.v1.Robot
-	10,  // 114: viam.app.v1.ListRobotsForLocationsResponse.robots:type_name -> viam.app.v1.Robot
-	10,  // 115: viam.app.v1.ListRobotsForOrgResponse.robots:type_name -> viam.app.v1.Robot
-	10,  // 116: viam.app.v1.UpdateRobotResponse.robot:type_name -> viam.app.v1.Robot
-	285, // 117: viam.app.v1.GetRobotMetadataResponse.data:type_name -> google.protobuf.Struct
-	285, // 118: viam.app.v1.UpdateRobotMetadataRequest.data:type_name -> google.protobuf.Struct
-	11,  // 119: viam.app.v1.CreateRobotPartSecretResponse.part:type_name -> viam.app.v1.RobotPart
-	184, // 120: viam.app.v1.AddRoleRequest.authorization:type_name -> viam.app.v1.Authorization
-	184, // 121: viam.app.v1.RemoveRoleRequest.authorization:type_name -> viam.app.v1.Authorization
-	184, // 122: viam.app.v1.ChangeRoleRequest.old_authorization:type_name -> viam.app.v1.Authorization
-	184, // 123: viam.app.v1.ChangeRoleRequest.new_authorization:type_name -> viam.app.v1.Authorization
-	184, // 124: viam.app.v1.ListAuthorizationsResponse.authorizations:type_name -> viam.app.v1.Authorization
-	194, // 125: viam.app.v1.CheckPermissionsRequest.permissions:type_name -> viam.app.v1.AuthorizedPermissions
-	194, // 126: viam.app.v1.CheckPermissionsResponse.authorized_permissions:type_name -> viam.app.v1.AuthorizedPermissions
-	232, // 127: viam.app.v1.ModuleVersion.files:type_name -> viam.app.v1.Uploads
-	224, // 128: viam.app.v1.ModuleVersion.models:type_name -> viam.app.v1.Model
-	219, // 129: viam.app.v1.ModuleVersion.apps:type_name -> viam.app.v1.App
-	224, // 130: viam.app.v1.ModuleMetadata.models:type_name -> viam.app.v1.Model
-	196, // 131: viam.app.v1.ModuleMetadata.versions:type_name -> viam.app.v1.ModuleVersion
-	219, // 132: viam.app.v1.ModuleMetadata.apps:type_name -> viam.app.v1.App
-	287, // 133: viam.app.v1.MLModelMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
-	288, // 134: viam.app.v1.MLModelMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
-	284, // 135: viam.app.v1.MLTrainingVersion.created_on:type_name -> google.protobuf.Timestamp
-	199, // 136: viam.app.v1.MLTrainingMetadata.versions:type_name -> viam.app.v1.MLTrainingVersion
-	287, // 137: viam.app.v1.MLTrainingMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
-	288, // 138: viam.app.v1.MLTrainingMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
-	289, // 139: viam.app.v1.RegistryItem.type:type_name -> viam.app.packages.v1.PackageType
+	285, // 94: viam.app.v1.UpdateFragmentRequest.last_known_update:type_name -> google.protobuf.Timestamp
+	123, // 95: viam.app.v1.UpdateFragmentResponse.fragment:type_name -> viam.app.v1.Fragment
+	124, // 96: viam.app.v1.GetFragmentHistoryResponse.history:type_name -> viam.app.v1.FragmentHistoryEntry
+	128, // 97: viam.app.v1.GetFragmentUsageResponse.version_usages:type_name -> viam.app.v1.FragmentUsage
+	126, // 98: viam.app.v1.SetFragmentTagResponse.tags:type_name -> viam.app.v1.FragmentTag
+	126, // 99: viam.app.v1.DeleteFragmentTagResponse.tags:type_name -> viam.app.v1.FragmentTag
+	151, // 100: viam.app.v1.ListNestedFragmentsRequest.additional_fragments:type_name -> viam.app.v1.AdditionalFragment
+	123, // 101: viam.app.v1.ListNestedFragmentsResponse.fragments:type_name -> viam.app.v1.Fragment
+	129, // 102: viam.app.v1.ListNestedFragmentsResponse.resolved_fragments:type_name -> viam.app.v1.ResolvedFragment
+	151, // 103: viam.app.v1.ListMachineFragmentsRequest.additional_fragments:type_name -> viam.app.v1.AdditionalFragment
+	123, // 104: viam.app.v1.ListMachineFragmentsResponse.fragments:type_name -> viam.app.v1.Fragment
+	129, // 105: viam.app.v1.ListMachineFragmentsResponse.resolved_fragments:type_name -> viam.app.v1.ResolvedFragment
+	158, // 106: viam.app.v1.ListMachineSummariesResponse.location_summaries:type_name -> viam.app.v1.LocationSummary
+	159, // 107: viam.app.v1.LocationSummary.machine_summaries:type_name -> viam.app.v1.MachineSummary
+	163, // 108: viam.app.v1.MachineSummary.part_summaries:type_name -> viam.app.v1.PartSummary
+	285, // 109: viam.app.v1.PartSummary.last_online:type_name -> google.protobuf.Timestamp
+	161, // 110: viam.app.v1.PartSummary.viam_server_version:type_name -> viam.app.v1.ViamServerVersion
+	162, // 111: viam.app.v1.PartSummary.viam_agent_version:type_name -> viam.app.v1.ViamAgentVersion
+	160, // 112: viam.app.v1.PartSummary.fragments:type_name -> viam.app.v1.FragmentSummary
+	11,  // 113: viam.app.v1.ListRobotsResponse.robots:type_name -> viam.app.v1.Robot
+	11,  // 114: viam.app.v1.ListRobotsForLocationsResponse.robots:type_name -> viam.app.v1.Robot
+	11,  // 115: viam.app.v1.ListRobotsForOrgResponse.robots:type_name -> viam.app.v1.Robot
+	11,  // 116: viam.app.v1.UpdateRobotResponse.robot:type_name -> viam.app.v1.Robot
+	286, // 117: viam.app.v1.GetRobotMetadataResponse.data:type_name -> google.protobuf.Struct
+	286, // 118: viam.app.v1.UpdateRobotMetadataRequest.data:type_name -> google.protobuf.Struct
+	12,  // 119: viam.app.v1.CreateRobotPartSecretResponse.part:type_name -> viam.app.v1.RobotPart
+	185, // 120: viam.app.v1.AddRoleRequest.authorization:type_name -> viam.app.v1.Authorization
+	185, // 121: viam.app.v1.RemoveRoleRequest.authorization:type_name -> viam.app.v1.Authorization
+	185, // 122: viam.app.v1.ChangeRoleRequest.old_authorization:type_name -> viam.app.v1.Authorization
+	185, // 123: viam.app.v1.ChangeRoleRequest.new_authorization:type_name -> viam.app.v1.Authorization
+	185, // 124: viam.app.v1.ListAuthorizationsResponse.authorizations:type_name -> viam.app.v1.Authorization
+	195, // 125: viam.app.v1.CheckPermissionsRequest.permissions:type_name -> viam.app.v1.AuthorizedPermissions
+	195, // 126: viam.app.v1.CheckPermissionsResponse.authorized_permissions:type_name -> viam.app.v1.AuthorizedPermissions
+	233, // 127: viam.app.v1.ModuleVersion.files:type_name -> viam.app.v1.Uploads
+	225, // 128: viam.app.v1.ModuleVersion.models:type_name -> viam.app.v1.Model
+	220, // 129: viam.app.v1.ModuleVersion.apps:type_name -> viam.app.v1.App
+	225, // 130: viam.app.v1.ModuleMetadata.models:type_name -> viam.app.v1.Model
+	197, // 131: viam.app.v1.ModuleMetadata.versions:type_name -> viam.app.v1.ModuleVersion
+	220, // 132: viam.app.v1.ModuleMetadata.apps:type_name -> viam.app.v1.App
+	288, // 133: viam.app.v1.MLModelMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
+	289, // 134: viam.app.v1.MLModelMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
+	285, // 135: viam.app.v1.MLTrainingVersion.created_on:type_name -> google.protobuf.Timestamp
+	200, // 136: viam.app.v1.MLTrainingMetadata.versions:type_name -> viam.app.v1.MLTrainingVersion
+	288, // 137: viam.app.v1.MLTrainingMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
+	289, // 138: viam.app.v1.MLTrainingMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
+	290, // 139: viam.app.v1.RegistryItem.type:type_name -> viam.app.packages.v1.PackageType
 	4,   // 140: viam.app.v1.RegistryItem.visibility:type_name -> viam.app.v1.Visibility
-	197, // 141: viam.app.v1.RegistryItem.module_metadata:type_name -> viam.app.v1.ModuleMetadata
-	198, // 142: viam.app.v1.RegistryItem.ml_model_metadata:type_name -> viam.app.v1.MLModelMetadata
-	200, // 143: viam.app.v1.RegistryItem.ml_training_metadata:type_name -> viam.app.v1.MLTrainingMetadata
-	284, // 144: viam.app.v1.RegistryItem.created_at:type_name -> google.protobuf.Timestamp
-	284, // 145: viam.app.v1.RegistryItem.updated_at:type_name -> google.protobuf.Timestamp
-	201, // 146: viam.app.v1.GetRegistryItemResponse.item:type_name -> viam.app.v1.RegistryItem
-	289, // 147: viam.app.v1.CreateRegistryItemRequest.type:type_name -> viam.app.packages.v1.PackageType
-	289, // 148: viam.app.v1.UpdateRegistryItemRequest.type:type_name -> viam.app.packages.v1.PackageType
+	198, // 141: viam.app.v1.RegistryItem.module_metadata:type_name -> viam.app.v1.ModuleMetadata
+	199, // 142: viam.app.v1.RegistryItem.ml_model_metadata:type_name -> viam.app.v1.MLModelMetadata
+	201, // 143: viam.app.v1.RegistryItem.ml_training_metadata:type_name -> viam.app.v1.MLTrainingMetadata
+	285, // 144: viam.app.v1.RegistryItem.created_at:type_name -> google.protobuf.Timestamp
+	285, // 145: viam.app.v1.RegistryItem.updated_at:type_name -> google.protobuf.Timestamp
+	202, // 146: viam.app.v1.GetRegistryItemResponse.item:type_name -> viam.app.v1.RegistryItem
+	290, // 147: viam.app.v1.CreateRegistryItemRequest.type:type_name -> viam.app.packages.v1.PackageType
+	290, // 148: viam.app.v1.UpdateRegistryItemRequest.type:type_name -> viam.app.packages.v1.PackageType
 	4,   // 149: viam.app.v1.UpdateRegistryItemRequest.visibility:type_name -> viam.app.v1.Visibility
-	221, // 150: viam.app.v1.UpdateRegistryItemRequest.update_module_metadata:type_name -> viam.app.v1.UpdateModuleMetadata
-	222, // 151: viam.app.v1.UpdateRegistryItemRequest.update_ml_model_metadata:type_name -> viam.app.v1.UpdateMLModelMetadata
-	223, // 152: viam.app.v1.UpdateRegistryItemRequest.update_ml_training_metadata:type_name -> viam.app.v1.UpdateMLTrainingMetadata
-	289, // 153: viam.app.v1.ListRegistryItemsRequest.types:type_name -> viam.app.packages.v1.PackageType
+	222, // 150: viam.app.v1.UpdateRegistryItemRequest.update_module_metadata:type_name -> viam.app.v1.UpdateModuleMetadata
+	223, // 151: viam.app.v1.UpdateRegistryItemRequest.update_ml_model_metadata:type_name -> viam.app.v1.UpdateMLModelMetadata
+	224, // 152: viam.app.v1.UpdateRegistryItemRequest.update_ml_training_metadata:type_name -> viam.app.v1.UpdateMLTrainingMetadata
+	290, // 153: viam.app.v1.ListRegistryItemsRequest.types:type_name -> viam.app.packages.v1.PackageType
 	4,   // 154: viam.app.v1.ListRegistryItemsRequest.visibilities:type_name -> viam.app.v1.Visibility
 	3,   // 155: viam.app.v1.ListRegistryItemsRequest.statuses:type_name -> viam.app.v1.RegistryItemStatus
-	201, // 156: viam.app.v1.ListRegistryItemsResponse.items:type_name -> viam.app.v1.RegistryItem
-	201, // 157: viam.app.v1.RenameRegistryItemResponse.item:type_name -> viam.app.v1.RegistryItem
+	202, // 156: viam.app.v1.ListRegistryItemsResponse.items:type_name -> viam.app.v1.RegistryItem
+	202, // 157: viam.app.v1.RenameRegistryItemResponse.item:type_name -> viam.app.v1.RegistryItem
 	4,   // 158: viam.app.v1.UpdateModuleRequest.visibility:type_name -> viam.app.v1.Visibility
-	224, // 159: viam.app.v1.UpdateModuleRequest.models:type_name -> viam.app.v1.Model
-	219, // 160: viam.app.v1.UpdateModuleRequest.apps:type_name -> viam.app.v1.App
-	280, // 161: viam.app.v1.App.customizations:type_name -> viam.app.v1.AppCustomizations
-	224, // 162: viam.app.v1.UpdateModuleMetadata.models:type_name -> viam.app.v1.Model
-	219, // 163: viam.app.v1.UpdateModuleMetadata.apps:type_name -> viam.app.v1.App
-	287, // 164: viam.app.v1.UpdateMLModelMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
-	288, // 165: viam.app.v1.UpdateMLModelMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
-	287, // 166: viam.app.v1.UpdateMLTrainingMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
-	288, // 167: viam.app.v1.UpdateMLTrainingMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
-	225, // 168: viam.app.v1.UploadModuleFileRequest.module_file_info:type_name -> viam.app.v1.ModuleFileInfo
-	230, // 169: viam.app.v1.GetModuleResponse.module:type_name -> viam.app.v1.Module
+	225, // 159: viam.app.v1.UpdateModuleRequest.models:type_name -> viam.app.v1.Model
+	220, // 160: viam.app.v1.UpdateModuleRequest.apps:type_name -> viam.app.v1.App
+	281, // 161: viam.app.v1.App.customizations:type_name -> viam.app.v1.AppCustomizations
+	225, // 162: viam.app.v1.UpdateModuleMetadata.models:type_name -> viam.app.v1.Model
+	220, // 163: viam.app.v1.UpdateModuleMetadata.apps:type_name -> viam.app.v1.App
+	288, // 164: viam.app.v1.UpdateMLModelMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
+	289, // 165: viam.app.v1.UpdateMLModelMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
+	288, // 166: viam.app.v1.UpdateMLTrainingMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
+	289, // 167: viam.app.v1.UpdateMLTrainingMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
+	226, // 168: viam.app.v1.UploadModuleFileRequest.module_file_info:type_name -> viam.app.v1.ModuleFileInfo
+	231, // 169: viam.app.v1.GetModuleResponse.module:type_name -> viam.app.v1.Module
 	4,   // 170: viam.app.v1.Module.visibility:type_name -> viam.app.v1.Visibility
-	231, // 171: viam.app.v1.Module.versions:type_name -> viam.app.v1.VersionHistory
-	224, // 172: viam.app.v1.Module.models:type_name -> viam.app.v1.Model
-	219, // 173: viam.app.v1.Module.apps:type_name -> viam.app.v1.App
-	232, // 174: viam.app.v1.VersionHistory.files:type_name -> viam.app.v1.Uploads
-	224, // 175: viam.app.v1.VersionHistory.models:type_name -> viam.app.v1.Model
-	219, // 176: viam.app.v1.VersionHistory.apps:type_name -> viam.app.v1.App
-	284, // 177: viam.app.v1.Uploads.uploaded_at:type_name -> google.protobuf.Timestamp
-	230, // 178: viam.app.v1.ListModulesResponse.modules:type_name -> viam.app.v1.Module
-	238, // 179: viam.app.v1.ListOrganizationsByUserResponse.orgs:type_name -> viam.app.v1.OrgDetails
-	238, // 180: viam.app.v1.SearchOrganizationsResponse.organizations:type_name -> viam.app.v1.OrgDetails
-	184, // 181: viam.app.v1.CreateKeyRequest.authorizations:type_name -> viam.app.v1.Authorization
-	119, // 182: viam.app.v1.APIKeyWithAuthorizations.api_key:type_name -> viam.app.v1.APIKey
-	248, // 183: viam.app.v1.APIKeyWithAuthorizations.authorizations:type_name -> viam.app.v1.AuthorizationDetails
-	249, // 184: viam.app.v1.ListKeysResponse.api_keys:type_name -> viam.app.v1.APIKeyWithAuthorizations
-	276, // 185: viam.app.v1.CreateOAuthAppRequest.oauth_config:type_name -> viam.app.v1.OAuthConfig
-	276, // 186: viam.app.v1.ReadOAuthAppResponse.oauth_config:type_name -> viam.app.v1.OAuthConfig
-	276, // 187: viam.app.v1.UpdateOAuthAppRequest.oauth_config:type_name -> viam.app.v1.OAuthConfig
-	5,   // 188: viam.app.v1.OAuthConfig.client_authentication:type_name -> viam.app.v1.ClientAuthentication
-	6,   // 189: viam.app.v1.OAuthConfig.pkce:type_name -> viam.app.v1.PKCE
-	7,   // 190: viam.app.v1.OAuthConfig.url_validation:type_name -> viam.app.v1.URLValidation
-	8,   // 191: viam.app.v1.OAuthConfig.enabled_grants:type_name -> viam.app.v1.EnabledGrant
-	282, // 192: viam.app.v1.TextOverrides.fields:type_name -> viam.app.v1.TextOverrides.FieldsEntry
-	283, // 193: viam.app.v1.GetAppBrandingResponse.text_customizations:type_name -> viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry
-	281, // 194: viam.app.v1.AppCustomizations.machine_picker:type_name -> viam.app.v1.MachinePickerCustomizations
-	278, // 195: viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry.value:type_name -> viam.app.v1.TextOverrides
-	235, // 196: viam.app.v1.AppService.GetUserIDByEmail:input_type -> viam.app.v1.GetUserIDByEmailRequest
-	19,  // 197: viam.app.v1.AppService.CreateOrganization:input_type -> viam.app.v1.CreateOrganizationRequest
-	14,  // 198: viam.app.v1.AppService.ListOrganizations:input_type -> viam.app.v1.ListOrganizationsRequest
-	78,  // 199: viam.app.v1.AppService.GetOrganizationsWithAccessToLocation:input_type -> viam.app.v1.GetOrganizationsWithAccessToLocationRequest
-	237, // 200: viam.app.v1.AppService.ListOrganizationsByUser:input_type -> viam.app.v1.ListOrganizationsByUserRequest
-	240, // 201: viam.app.v1.AppService.SearchOrganizations:input_type -> viam.app.v1.SearchOrganizationsRequest
-	21,  // 202: viam.app.v1.AppService.GetOrganization:input_type -> viam.app.v1.GetOrganizationRequest
-	23,  // 203: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:input_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityRequest
-	25,  // 204: viam.app.v1.AppService.UpdateOrganization:input_type -> viam.app.v1.UpdateOrganizationRequest
-	27,  // 205: viam.app.v1.AppService.UpdateOrganizationNamespace:input_type -> viam.app.v1.UpdateOrganizationNamespaceRequest
-	29,  // 206: viam.app.v1.AppService.DeleteOrganization:input_type -> viam.app.v1.DeleteOrganizationRequest
-	31,  // 207: viam.app.v1.AppService.GetOrganizationMetadata:input_type -> viam.app.v1.GetOrganizationMetadataRequest
-	33,  // 208: viam.app.v1.AppService.UpdateOrganizationMetadata:input_type -> viam.app.v1.UpdateOrganizationMetadataRequest
-	35,  // 209: viam.app.v1.AppService.ListOrganizationMembers:input_type -> viam.app.v1.ListOrganizationMembersRequest
-	37,  // 210: viam.app.v1.AppService.CreateOrganizationInvite:input_type -> viam.app.v1.CreateOrganizationInviteRequest
-	39,  // 211: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:input_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest
-	45,  // 212: viam.app.v1.AppService.DeleteOrganizationMember:input_type -> viam.app.v1.DeleteOrganizationMemberRequest
-	41,  // 213: viam.app.v1.AppService.DeleteOrganizationInvite:input_type -> viam.app.v1.DeleteOrganizationInviteRequest
-	43,  // 214: viam.app.v1.AppService.ResendOrganizationInvite:input_type -> viam.app.v1.ResendOrganizationInviteRequest
-	48,  // 215: viam.app.v1.AppService.EnableBillingService:input_type -> viam.app.v1.EnableBillingServiceRequest
-	54,  // 216: viam.app.v1.AppService.DisableBillingService:input_type -> viam.app.v1.DisableBillingServiceRequest
-	50,  // 217: viam.app.v1.AppService.UpdateBillingService:input_type -> viam.app.v1.UpdateBillingServiceRequest
-	52,  // 218: viam.app.v1.AppService.GetBillingServiceConfig:input_type -> viam.app.v1.GetBillingServiceConfigRequest
-	56,  // 219: viam.app.v1.AppService.OrganizationSetSupportEmail:input_type -> viam.app.v1.OrganizationSetSupportEmailRequest
-	58,  // 220: viam.app.v1.AppService.OrganizationGetSupportEmail:input_type -> viam.app.v1.OrganizationGetSupportEmailRequest
-	258, // 221: viam.app.v1.AppService.OrganizationSetLogo:input_type -> viam.app.v1.OrganizationSetLogoRequest
-	260, // 222: viam.app.v1.AppService.OrganizationGetLogo:input_type -> viam.app.v1.OrganizationGetLogoRequest
-	262, // 223: viam.app.v1.AppService.EnableAuthService:input_type -> viam.app.v1.EnableAuthServiceRequest
-	264, // 224: viam.app.v1.AppService.DisableAuthService:input_type -> viam.app.v1.DisableAuthServiceRequest
-	266, // 225: viam.app.v1.AppService.CreateOAuthApp:input_type -> viam.app.v1.CreateOAuthAppRequest
-	268, // 226: viam.app.v1.AppService.ReadOAuthApp:input_type -> viam.app.v1.ReadOAuthAppRequest
-	270, // 227: viam.app.v1.AppService.UpdateOAuthApp:input_type -> viam.app.v1.UpdateOAuthAppRequest
-	272, // 228: viam.app.v1.AppService.DeleteOAuthApp:input_type -> viam.app.v1.DeleteOAuthAppRequest
-	274, // 229: viam.app.v1.AppService.ListOAuthApps:input_type -> viam.app.v1.ListOAuthAppsRequest
-	66,  // 230: viam.app.v1.AppService.CreateLocation:input_type -> viam.app.v1.CreateLocationRequest
-	68,  // 231: viam.app.v1.AppService.GetLocation:input_type -> viam.app.v1.GetLocationRequest
-	70,  // 232: viam.app.v1.AppService.UpdateLocation:input_type -> viam.app.v1.UpdateLocationRequest
-	72,  // 233: viam.app.v1.AppService.DeleteLocation:input_type -> viam.app.v1.DeleteLocationRequest
-	74,  // 234: viam.app.v1.AppService.GetLocationMetadata:input_type -> viam.app.v1.GetLocationMetadataRequest
-	76,  // 235: viam.app.v1.AppService.UpdateLocationMetadata:input_type -> viam.app.v1.UpdateLocationMetadataRequest
-	80,  // 236: viam.app.v1.AppService.ListLocations:input_type -> viam.app.v1.ListLocationsRequest
-	81,  // 237: viam.app.v1.AppService.ShareLocation:input_type -> viam.app.v1.ShareLocationRequest
-	83,  // 238: viam.app.v1.AppService.UnshareLocation:input_type -> viam.app.v1.UnshareLocationRequest
-	90,  // 239: viam.app.v1.AppService.LocationAuth:input_type -> viam.app.v1.LocationAuthRequest
-	86,  // 240: viam.app.v1.AppService.CreateLocationSecret:input_type -> viam.app.v1.CreateLocationSecretRequest
-	88,  // 241: viam.app.v1.AppService.DeleteLocationSecret:input_type -> viam.app.v1.DeleteLocationSecretRequest
-	92,  // 242: viam.app.v1.AppService.GetRobot:input_type -> viam.app.v1.GetRobotRequest
-	172, // 243: viam.app.v1.AppService.GetRobotMetadata:input_type -> viam.app.v1.GetRobotMetadataRequest
-	174, // 244: viam.app.v1.AppService.UpdateRobotMetadata:input_type -> viam.app.v1.UpdateRobotMetadataRequest
-	93,  // 245: viam.app.v1.AppService.GetRoverRentalRobots:input_type -> viam.app.v1.GetRoverRentalRobotsRequest
-	97,  // 246: viam.app.v1.AppService.GetRobotParts:input_type -> viam.app.v1.GetRobotPartsRequest
-	99,  // 247: viam.app.v1.AppService.GetRobotPart:input_type -> viam.app.v1.GetRobotPartRequest
-	101, // 248: viam.app.v1.AppService.GetRobotPartByNameAndLocation:input_type -> viam.app.v1.GetRobotPartByNameAndLocationRequest
-	103, // 249: viam.app.v1.AppService.GetRobotPartLogs:input_type -> viam.app.v1.GetRobotPartLogsRequest
-	105, // 250: viam.app.v1.AppService.TailRobotPartLogs:input_type -> viam.app.v1.TailRobotPartLogsRequest
-	107, // 251: viam.app.v1.AppService.GetRobotPartHistory:input_type -> viam.app.v1.GetRobotPartHistoryRequest
-	109, // 252: viam.app.v1.AppService.UpdateRobotPart:input_type -> viam.app.v1.UpdateRobotPartRequest
-	111, // 253: viam.app.v1.AppService.NewRobotPart:input_type -> viam.app.v1.NewRobotPartRequest
-	113, // 254: viam.app.v1.AppService.DeleteRobotPart:input_type -> viam.app.v1.DeleteRobotPartRequest
-	114, // 255: viam.app.v1.AppService.GetRobotPartMetadata:input_type -> viam.app.v1.GetRobotPartMetadataRequest
-	116, // 256: viam.app.v1.AppService.UpdateRobotPartMetadata:input_type -> viam.app.v1.UpdateRobotPartMetadataRequest
-	118, // 257: viam.app.v1.AppService.GetRobotAPIKeys:input_type -> viam.app.v1.GetRobotAPIKeysRequest
-	176, // 258: viam.app.v1.AppService.MarkPartAsMain:input_type -> viam.app.v1.MarkPartAsMainRequest
-	178, // 259: viam.app.v1.AppService.MarkPartForRestart:input_type -> viam.app.v1.MarkPartForRestartRequest
-	180, // 260: viam.app.v1.AppService.CreateRobotPartSecret:input_type -> viam.app.v1.CreateRobotPartSecretRequest
-	182, // 261: viam.app.v1.AppService.DeleteRobotPartSecret:input_type -> viam.app.v1.DeleteRobotPartSecretRequest
-	147, // 262: viam.app.v1.AppService.ListRobots:input_type -> viam.app.v1.ListRobotsRequest
-	148, // 263: viam.app.v1.AppService.ListRobotsForLocations:input_type -> viam.app.v1.ListRobotsForLocationsRequest
-	149, // 264: viam.app.v1.AppService.ListRobotsForOrg:input_type -> viam.app.v1.ListRobotsForOrgRequest
-	166, // 265: viam.app.v1.AppService.NewRobot:input_type -> viam.app.v1.NewRobotRequest
-	168, // 266: viam.app.v1.AppService.UpdateRobot:input_type -> viam.app.v1.UpdateRobotRequest
-	170, // 267: viam.app.v1.AppService.DeleteRobot:input_type -> viam.app.v1.DeleteRobotRequest
-	129, // 268: viam.app.v1.AppService.ListFragments:input_type -> viam.app.v1.ListFragmentsRequest
-	131, // 269: viam.app.v1.AppService.GetFragment:input_type -> viam.app.v1.GetFragmentRequest
-	133, // 270: viam.app.v1.AppService.CreateFragment:input_type -> viam.app.v1.CreateFragmentRequest
-	135, // 271: viam.app.v1.AppService.UpdateFragment:input_type -> viam.app.v1.UpdateFragmentRequest
-	137, // 272: viam.app.v1.AppService.DeleteFragment:input_type -> viam.app.v1.DeleteFragmentRequest
-	151, // 273: viam.app.v1.AppService.ListNestedFragments:input_type -> viam.app.v1.ListNestedFragmentsRequest
-	153, // 274: viam.app.v1.AppService.ListMachineFragments:input_type -> viam.app.v1.ListMachineFragmentsRequest
-	155, // 275: viam.app.v1.AppService.ListMachineSummaries:input_type -> viam.app.v1.ListMachineSummariesRequest
-	139, // 276: viam.app.v1.AppService.GetFragmentHistory:input_type -> viam.app.v1.GetFragmentHistoryRequest
-	141, // 277: viam.app.v1.AppService.GetFragmentUsage:input_type -> viam.app.v1.GetFragmentUsageRequest
-	143, // 278: viam.app.v1.AppService.SetFragmentTag:input_type -> viam.app.v1.SetFragmentTagRequest
-	145, // 279: viam.app.v1.AppService.DeleteFragmentTag:input_type -> viam.app.v1.DeleteFragmentTagRequest
-	185, // 280: viam.app.v1.AppService.AddRole:input_type -> viam.app.v1.AddRoleRequest
-	187, // 281: viam.app.v1.AppService.RemoveRole:input_type -> viam.app.v1.RemoveRoleRequest
-	189, // 282: viam.app.v1.AppService.ChangeRole:input_type -> viam.app.v1.ChangeRoleRequest
-	191, // 283: viam.app.v1.AppService.ListAuthorizations:input_type -> viam.app.v1.ListAuthorizationsRequest
-	193, // 284: viam.app.v1.AppService.CheckPermissions:input_type -> viam.app.v1.CheckPermissionsRequest
-	202, // 285: viam.app.v1.AppService.GetRegistryItem:input_type -> viam.app.v1.GetRegistryItemRequest
-	204, // 286: viam.app.v1.AppService.CreateRegistryItem:input_type -> viam.app.v1.CreateRegistryItemRequest
-	206, // 287: viam.app.v1.AppService.UpdateRegistryItem:input_type -> viam.app.v1.UpdateRegistryItemRequest
-	208, // 288: viam.app.v1.AppService.ListRegistryItems:input_type -> viam.app.v1.ListRegistryItemsRequest
-	210, // 289: viam.app.v1.AppService.DeleteRegistryItem:input_type -> viam.app.v1.DeleteRegistryItemRequest
-	212, // 290: viam.app.v1.AppService.RenameRegistryItem:input_type -> viam.app.v1.RenameRegistryItemRequest
-	214, // 291: viam.app.v1.AppService.TransferRegistryItem:input_type -> viam.app.v1.TransferRegistryItemRequest
-	216, // 292: viam.app.v1.AppService.CreateModule:input_type -> viam.app.v1.CreateModuleRequest
-	218, // 293: viam.app.v1.AppService.UpdateModule:input_type -> viam.app.v1.UpdateModuleRequest
-	226, // 294: viam.app.v1.AppService.UploadModuleFile:input_type -> viam.app.v1.UploadModuleFileRequest
-	228, // 295: viam.app.v1.AppService.GetModule:input_type -> viam.app.v1.GetModuleRequest
-	233, // 296: viam.app.v1.AppService.ListModules:input_type -> viam.app.v1.ListModulesRequest
-	242, // 297: viam.app.v1.AppService.CreateKey:input_type -> viam.app.v1.CreateKeyRequest
-	244, // 298: viam.app.v1.AppService.DeleteKey:input_type -> viam.app.v1.DeleteKeyRequest
-	250, // 299: viam.app.v1.AppService.ListKeys:input_type -> viam.app.v1.ListKeysRequest
-	246, // 300: viam.app.v1.AppService.RenameKey:input_type -> viam.app.v1.RenameKeyRequest
-	252, // 301: viam.app.v1.AppService.RotateKey:input_type -> viam.app.v1.RotateKeyRequest
-	254, // 302: viam.app.v1.AppService.CreateKeyFromExistingKeyAuthorizations:input_type -> viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest
-	256, // 303: viam.app.v1.AppService.GetAppContent:input_type -> viam.app.v1.GetAppContentRequest
-	277, // 304: viam.app.v1.AppService.GetAppBranding:input_type -> viam.app.v1.GetAppBrandingRequest
-	236, // 305: viam.app.v1.AppService.GetUserIDByEmail:output_type -> viam.app.v1.GetUserIDByEmailResponse
-	20,  // 306: viam.app.v1.AppService.CreateOrganization:output_type -> viam.app.v1.CreateOrganizationResponse
-	17,  // 307: viam.app.v1.AppService.ListOrganizations:output_type -> viam.app.v1.ListOrganizationsResponse
-	79,  // 308: viam.app.v1.AppService.GetOrganizationsWithAccessToLocation:output_type -> viam.app.v1.GetOrganizationsWithAccessToLocationResponse
-	239, // 309: viam.app.v1.AppService.ListOrganizationsByUser:output_type -> viam.app.v1.ListOrganizationsByUserResponse
-	241, // 310: viam.app.v1.AppService.SearchOrganizations:output_type -> viam.app.v1.SearchOrganizationsResponse
-	22,  // 311: viam.app.v1.AppService.GetOrganization:output_type -> viam.app.v1.GetOrganizationResponse
-	24,  // 312: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:output_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityResponse
-	26,  // 313: viam.app.v1.AppService.UpdateOrganization:output_type -> viam.app.v1.UpdateOrganizationResponse
-	28,  // 314: viam.app.v1.AppService.UpdateOrganizationNamespace:output_type -> viam.app.v1.UpdateOrganizationNamespaceResponse
-	30,  // 315: viam.app.v1.AppService.DeleteOrganization:output_type -> viam.app.v1.DeleteOrganizationResponse
-	32,  // 316: viam.app.v1.AppService.GetOrganizationMetadata:output_type -> viam.app.v1.GetOrganizationMetadataResponse
-	34,  // 317: viam.app.v1.AppService.UpdateOrganizationMetadata:output_type -> viam.app.v1.UpdateOrganizationMetadataResponse
-	36,  // 318: viam.app.v1.AppService.ListOrganizationMembers:output_type -> viam.app.v1.ListOrganizationMembersResponse
-	38,  // 319: viam.app.v1.AppService.CreateOrganizationInvite:output_type -> viam.app.v1.CreateOrganizationInviteResponse
-	40,  // 320: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:output_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse
-	46,  // 321: viam.app.v1.AppService.DeleteOrganizationMember:output_type -> viam.app.v1.DeleteOrganizationMemberResponse
-	42,  // 322: viam.app.v1.AppService.DeleteOrganizationInvite:output_type -> viam.app.v1.DeleteOrganizationInviteResponse
-	44,  // 323: viam.app.v1.AppService.ResendOrganizationInvite:output_type -> viam.app.v1.ResendOrganizationInviteResponse
-	49,  // 324: viam.app.v1.AppService.EnableBillingService:output_type -> viam.app.v1.EnableBillingServiceResponse
-	55,  // 325: viam.app.v1.AppService.DisableBillingService:output_type -> viam.app.v1.DisableBillingServiceResponse
-	51,  // 326: viam.app.v1.AppService.UpdateBillingService:output_type -> viam.app.v1.UpdateBillingServiceResponse
-	53,  // 327: viam.app.v1.AppService.GetBillingServiceConfig:output_type -> viam.app.v1.GetBillingServiceConfigResponse
-	57,  // 328: viam.app.v1.AppService.OrganizationSetSupportEmail:output_type -> viam.app.v1.OrganizationSetSupportEmailResponse
-	59,  // 329: viam.app.v1.AppService.OrganizationGetSupportEmail:output_type -> viam.app.v1.OrganizationGetSupportEmailResponse
-	259, // 330: viam.app.v1.AppService.OrganizationSetLogo:output_type -> viam.app.v1.OrganizationSetLogoResponse
-	261, // 331: viam.app.v1.AppService.OrganizationGetLogo:output_type -> viam.app.v1.OrganizationGetLogoResponse
-	263, // 332: viam.app.v1.AppService.EnableAuthService:output_type -> viam.app.v1.EnableAuthServiceResponse
-	265, // 333: viam.app.v1.AppService.DisableAuthService:output_type -> viam.app.v1.DisableAuthServiceResponse
-	267, // 334: viam.app.v1.AppService.CreateOAuthApp:output_type -> viam.app.v1.CreateOAuthAppResponse
-	269, // 335: viam.app.v1.AppService.ReadOAuthApp:output_type -> viam.app.v1.ReadOAuthAppResponse
-	271, // 336: viam.app.v1.AppService.UpdateOAuthApp:output_type -> viam.app.v1.UpdateOAuthAppResponse
-	273, // 337: viam.app.v1.AppService.DeleteOAuthApp:output_type -> viam.app.v1.DeleteOAuthAppResponse
-	275, // 338: viam.app.v1.AppService.ListOAuthApps:output_type -> viam.app.v1.ListOAuthAppsResponse
-	67,  // 339: viam.app.v1.AppService.CreateLocation:output_type -> viam.app.v1.CreateLocationResponse
-	69,  // 340: viam.app.v1.AppService.GetLocation:output_type -> viam.app.v1.GetLocationResponse
-	71,  // 341: viam.app.v1.AppService.UpdateLocation:output_type -> viam.app.v1.UpdateLocationResponse
-	73,  // 342: viam.app.v1.AppService.DeleteLocation:output_type -> viam.app.v1.DeleteLocationResponse
-	75,  // 343: viam.app.v1.AppService.GetLocationMetadata:output_type -> viam.app.v1.GetLocationMetadataResponse
-	77,  // 344: viam.app.v1.AppService.UpdateLocationMetadata:output_type -> viam.app.v1.UpdateLocationMetadataResponse
-	85,  // 345: viam.app.v1.AppService.ListLocations:output_type -> viam.app.v1.ListLocationsResponse
-	82,  // 346: viam.app.v1.AppService.ShareLocation:output_type -> viam.app.v1.ShareLocationResponse
-	84,  // 347: viam.app.v1.AppService.UnshareLocation:output_type -> viam.app.v1.UnshareLocationResponse
-	91,  // 348: viam.app.v1.AppService.LocationAuth:output_type -> viam.app.v1.LocationAuthResponse
-	87,  // 349: viam.app.v1.AppService.CreateLocationSecret:output_type -> viam.app.v1.CreateLocationSecretResponse
-	89,  // 350: viam.app.v1.AppService.DeleteLocationSecret:output_type -> viam.app.v1.DeleteLocationSecretResponse
-	96,  // 351: viam.app.v1.AppService.GetRobot:output_type -> viam.app.v1.GetRobotResponse
-	173, // 352: viam.app.v1.AppService.GetRobotMetadata:output_type -> viam.app.v1.GetRobotMetadataResponse
-	175, // 353: viam.app.v1.AppService.UpdateRobotMetadata:output_type -> viam.app.v1.UpdateRobotMetadataResponse
-	95,  // 354: viam.app.v1.AppService.GetRoverRentalRobots:output_type -> viam.app.v1.GetRoverRentalRobotsResponse
-	98,  // 355: viam.app.v1.AppService.GetRobotParts:output_type -> viam.app.v1.GetRobotPartsResponse
-	100, // 356: viam.app.v1.AppService.GetRobotPart:output_type -> viam.app.v1.GetRobotPartResponse
-	102, // 357: viam.app.v1.AppService.GetRobotPartByNameAndLocation:output_type -> viam.app.v1.GetRobotPartByNameAndLocationResponse
-	104, // 358: viam.app.v1.AppService.GetRobotPartLogs:output_type -> viam.app.v1.GetRobotPartLogsResponse
-	106, // 359: viam.app.v1.AppService.TailRobotPartLogs:output_type -> viam.app.v1.TailRobotPartLogsResponse
-	108, // 360: viam.app.v1.AppService.GetRobotPartHistory:output_type -> viam.app.v1.GetRobotPartHistoryResponse
-	110, // 361: viam.app.v1.AppService.UpdateRobotPart:output_type -> viam.app.v1.UpdateRobotPartResponse
-	112, // 362: viam.app.v1.AppService.NewRobotPart:output_type -> viam.app.v1.NewRobotPartResponse
-	121, // 363: viam.app.v1.AppService.DeleteRobotPart:output_type -> viam.app.v1.DeleteRobotPartResponse
-	115, // 364: viam.app.v1.AppService.GetRobotPartMetadata:output_type -> viam.app.v1.GetRobotPartMetadataResponse
-	117, // 365: viam.app.v1.AppService.UpdateRobotPartMetadata:output_type -> viam.app.v1.UpdateRobotPartMetadataResponse
-	120, // 366: viam.app.v1.AppService.GetRobotAPIKeys:output_type -> viam.app.v1.GetRobotAPIKeysResponse
-	177, // 367: viam.app.v1.AppService.MarkPartAsMain:output_type -> viam.app.v1.MarkPartAsMainResponse
-	179, // 368: viam.app.v1.AppService.MarkPartForRestart:output_type -> viam.app.v1.MarkPartForRestartResponse
-	181, // 369: viam.app.v1.AppService.CreateRobotPartSecret:output_type -> viam.app.v1.CreateRobotPartSecretResponse
-	183, // 370: viam.app.v1.AppService.DeleteRobotPartSecret:output_type -> viam.app.v1.DeleteRobotPartSecretResponse
-	163, // 371: viam.app.v1.AppService.ListRobots:output_type -> viam.app.v1.ListRobotsResponse
-	164, // 372: viam.app.v1.AppService.ListRobotsForLocations:output_type -> viam.app.v1.ListRobotsForLocationsResponse
-	165, // 373: viam.app.v1.AppService.ListRobotsForOrg:output_type -> viam.app.v1.ListRobotsForOrgResponse
-	167, // 374: viam.app.v1.AppService.NewRobot:output_type -> viam.app.v1.NewRobotResponse
-	169, // 375: viam.app.v1.AppService.UpdateRobot:output_type -> viam.app.v1.UpdateRobotResponse
-	171, // 376: viam.app.v1.AppService.DeleteRobot:output_type -> viam.app.v1.DeleteRobotResponse
-	130, // 377: viam.app.v1.AppService.ListFragments:output_type -> viam.app.v1.ListFragmentsResponse
-	132, // 378: viam.app.v1.AppService.GetFragment:output_type -> viam.app.v1.GetFragmentResponse
-	134, // 379: viam.app.v1.AppService.CreateFragment:output_type -> viam.app.v1.CreateFragmentResponse
-	136, // 380: viam.app.v1.AppService.UpdateFragment:output_type -> viam.app.v1.UpdateFragmentResponse
-	138, // 381: viam.app.v1.AppService.DeleteFragment:output_type -> viam.app.v1.DeleteFragmentResponse
-	152, // 382: viam.app.v1.AppService.ListNestedFragments:output_type -> viam.app.v1.ListNestedFragmentsResponse
-	154, // 383: viam.app.v1.AppService.ListMachineFragments:output_type -> viam.app.v1.ListMachineFragmentsResponse
-	156, // 384: viam.app.v1.AppService.ListMachineSummaries:output_type -> viam.app.v1.ListMachineSummariesResponse
-	140, // 385: viam.app.v1.AppService.GetFragmentHistory:output_type -> viam.app.v1.GetFragmentHistoryResponse
-	142, // 386: viam.app.v1.AppService.GetFragmentUsage:output_type -> viam.app.v1.GetFragmentUsageResponse
-	144, // 387: viam.app.v1.AppService.SetFragmentTag:output_type -> viam.app.v1.SetFragmentTagResponse
-	146, // 388: viam.app.v1.AppService.DeleteFragmentTag:output_type -> viam.app.v1.DeleteFragmentTagResponse
-	186, // 389: viam.app.v1.AppService.AddRole:output_type -> viam.app.v1.AddRoleResponse
-	188, // 390: viam.app.v1.AppService.RemoveRole:output_type -> viam.app.v1.RemoveRoleResponse
-	190, // 391: viam.app.v1.AppService.ChangeRole:output_type -> viam.app.v1.ChangeRoleResponse
-	192, // 392: viam.app.v1.AppService.ListAuthorizations:output_type -> viam.app.v1.ListAuthorizationsResponse
-	195, // 393: viam.app.v1.AppService.CheckPermissions:output_type -> viam.app.v1.CheckPermissionsResponse
-	203, // 394: viam.app.v1.AppService.GetRegistryItem:output_type -> viam.app.v1.GetRegistryItemResponse
-	205, // 395: viam.app.v1.AppService.CreateRegistryItem:output_type -> viam.app.v1.CreateRegistryItemResponse
-	207, // 396: viam.app.v1.AppService.UpdateRegistryItem:output_type -> viam.app.v1.UpdateRegistryItemResponse
-	209, // 397: viam.app.v1.AppService.ListRegistryItems:output_type -> viam.app.v1.ListRegistryItemsResponse
-	211, // 398: viam.app.v1.AppService.DeleteRegistryItem:output_type -> viam.app.v1.DeleteRegistryItemResponse
-	213, // 399: viam.app.v1.AppService.RenameRegistryItem:output_type -> viam.app.v1.RenameRegistryItemResponse
-	215, // 400: viam.app.v1.AppService.TransferRegistryItem:output_type -> viam.app.v1.TransferRegistryItemResponse
-	217, // 401: viam.app.v1.AppService.CreateModule:output_type -> viam.app.v1.CreateModuleResponse
-	220, // 402: viam.app.v1.AppService.UpdateModule:output_type -> viam.app.v1.UpdateModuleResponse
-	227, // 403: viam.app.v1.AppService.UploadModuleFile:output_type -> viam.app.v1.UploadModuleFileResponse
-	229, // 404: viam.app.v1.AppService.GetModule:output_type -> viam.app.v1.GetModuleResponse
-	234, // 405: viam.app.v1.AppService.ListModules:output_type -> viam.app.v1.ListModulesResponse
-	243, // 406: viam.app.v1.AppService.CreateKey:output_type -> viam.app.v1.CreateKeyResponse
-	245, // 407: viam.app.v1.AppService.DeleteKey:output_type -> viam.app.v1.DeleteKeyResponse
-	251, // 408: viam.app.v1.AppService.ListKeys:output_type -> viam.app.v1.ListKeysResponse
-	247, // 409: viam.app.v1.AppService.RenameKey:output_type -> viam.app.v1.RenameKeyResponse
-	253, // 410: viam.app.v1.AppService.RotateKey:output_type -> viam.app.v1.RotateKeyResponse
-	255, // 411: viam.app.v1.AppService.CreateKeyFromExistingKeyAuthorizations:output_type -> viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse
-	257, // 412: viam.app.v1.AppService.GetAppContent:output_type -> viam.app.v1.GetAppContentResponse
-	279, // 413: viam.app.v1.AppService.GetAppBranding:output_type -> viam.app.v1.GetAppBrandingResponse
-	305, // [305:414] is the sub-list for method output_type
-	196, // [196:305] is the sub-list for method input_type
-	196, // [196:196] is the sub-list for extension type_name
-	196, // [196:196] is the sub-list for extension extendee
-	0,   // [0:196] is the sub-list for field type_name
+	232, // 171: viam.app.v1.Module.versions:type_name -> viam.app.v1.VersionHistory
+	225, // 172: viam.app.v1.Module.models:type_name -> viam.app.v1.Model
+	220, // 173: viam.app.v1.Module.apps:type_name -> viam.app.v1.App
+	233, // 174: viam.app.v1.VersionHistory.files:type_name -> viam.app.v1.Uploads
+	225, // 175: viam.app.v1.VersionHistory.models:type_name -> viam.app.v1.Model
+	220, // 176: viam.app.v1.VersionHistory.apps:type_name -> viam.app.v1.App
+	285, // 177: viam.app.v1.Uploads.uploaded_at:type_name -> google.protobuf.Timestamp
+	231, // 178: viam.app.v1.ListModulesResponse.modules:type_name -> viam.app.v1.Module
+	239, // 179: viam.app.v1.ListOrganizationsByUserResponse.orgs:type_name -> viam.app.v1.OrgDetails
+	239, // 180: viam.app.v1.SearchOrganizationsResponse.organizations:type_name -> viam.app.v1.OrgDetails
+	185, // 181: viam.app.v1.CreateKeyRequest.authorizations:type_name -> viam.app.v1.Authorization
+	120, // 182: viam.app.v1.APIKeyWithAuthorizations.api_key:type_name -> viam.app.v1.APIKey
+	249, // 183: viam.app.v1.APIKeyWithAuthorizations.authorizations:type_name -> viam.app.v1.AuthorizationDetails
+	250, // 184: viam.app.v1.ListKeysResponse.api_keys:type_name -> viam.app.v1.APIKeyWithAuthorizations
+	5,   // 185: viam.app.v1.GetAppContentResponse.app_type:type_name -> viam.app.v1.AppType
+	277, // 186: viam.app.v1.CreateOAuthAppRequest.oauth_config:type_name -> viam.app.v1.OAuthConfig
+	277, // 187: viam.app.v1.ReadOAuthAppResponse.oauth_config:type_name -> viam.app.v1.OAuthConfig
+	277, // 188: viam.app.v1.UpdateOAuthAppRequest.oauth_config:type_name -> viam.app.v1.OAuthConfig
+	6,   // 189: viam.app.v1.OAuthConfig.client_authentication:type_name -> viam.app.v1.ClientAuthentication
+	7,   // 190: viam.app.v1.OAuthConfig.pkce:type_name -> viam.app.v1.PKCE
+	8,   // 191: viam.app.v1.OAuthConfig.url_validation:type_name -> viam.app.v1.URLValidation
+	9,   // 192: viam.app.v1.OAuthConfig.enabled_grants:type_name -> viam.app.v1.EnabledGrant
+	283, // 193: viam.app.v1.TextOverrides.fields:type_name -> viam.app.v1.TextOverrides.FieldsEntry
+	284, // 194: viam.app.v1.GetAppBrandingResponse.text_customizations:type_name -> viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry
+	282, // 195: viam.app.v1.AppCustomizations.machine_picker:type_name -> viam.app.v1.MachinePickerCustomizations
+	279, // 196: viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry.value:type_name -> viam.app.v1.TextOverrides
+	236, // 197: viam.app.v1.AppService.GetUserIDByEmail:input_type -> viam.app.v1.GetUserIDByEmailRequest
+	20,  // 198: viam.app.v1.AppService.CreateOrganization:input_type -> viam.app.v1.CreateOrganizationRequest
+	15,  // 199: viam.app.v1.AppService.ListOrganizations:input_type -> viam.app.v1.ListOrganizationsRequest
+	79,  // 200: viam.app.v1.AppService.GetOrganizationsWithAccessToLocation:input_type -> viam.app.v1.GetOrganizationsWithAccessToLocationRequest
+	238, // 201: viam.app.v1.AppService.ListOrganizationsByUser:input_type -> viam.app.v1.ListOrganizationsByUserRequest
+	241, // 202: viam.app.v1.AppService.SearchOrganizations:input_type -> viam.app.v1.SearchOrganizationsRequest
+	22,  // 203: viam.app.v1.AppService.GetOrganization:input_type -> viam.app.v1.GetOrganizationRequest
+	24,  // 204: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:input_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityRequest
+	26,  // 205: viam.app.v1.AppService.UpdateOrganization:input_type -> viam.app.v1.UpdateOrganizationRequest
+	28,  // 206: viam.app.v1.AppService.UpdateOrganizationNamespace:input_type -> viam.app.v1.UpdateOrganizationNamespaceRequest
+	30,  // 207: viam.app.v1.AppService.DeleteOrganization:input_type -> viam.app.v1.DeleteOrganizationRequest
+	32,  // 208: viam.app.v1.AppService.GetOrganizationMetadata:input_type -> viam.app.v1.GetOrganizationMetadataRequest
+	34,  // 209: viam.app.v1.AppService.UpdateOrganizationMetadata:input_type -> viam.app.v1.UpdateOrganizationMetadataRequest
+	36,  // 210: viam.app.v1.AppService.ListOrganizationMembers:input_type -> viam.app.v1.ListOrganizationMembersRequest
+	38,  // 211: viam.app.v1.AppService.CreateOrganizationInvite:input_type -> viam.app.v1.CreateOrganizationInviteRequest
+	40,  // 212: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:input_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest
+	46,  // 213: viam.app.v1.AppService.DeleteOrganizationMember:input_type -> viam.app.v1.DeleteOrganizationMemberRequest
+	42,  // 214: viam.app.v1.AppService.DeleteOrganizationInvite:input_type -> viam.app.v1.DeleteOrganizationInviteRequest
+	44,  // 215: viam.app.v1.AppService.ResendOrganizationInvite:input_type -> viam.app.v1.ResendOrganizationInviteRequest
+	49,  // 216: viam.app.v1.AppService.EnableBillingService:input_type -> viam.app.v1.EnableBillingServiceRequest
+	55,  // 217: viam.app.v1.AppService.DisableBillingService:input_type -> viam.app.v1.DisableBillingServiceRequest
+	51,  // 218: viam.app.v1.AppService.UpdateBillingService:input_type -> viam.app.v1.UpdateBillingServiceRequest
+	53,  // 219: viam.app.v1.AppService.GetBillingServiceConfig:input_type -> viam.app.v1.GetBillingServiceConfigRequest
+	57,  // 220: viam.app.v1.AppService.OrganizationSetSupportEmail:input_type -> viam.app.v1.OrganizationSetSupportEmailRequest
+	59,  // 221: viam.app.v1.AppService.OrganizationGetSupportEmail:input_type -> viam.app.v1.OrganizationGetSupportEmailRequest
+	259, // 222: viam.app.v1.AppService.OrganizationSetLogo:input_type -> viam.app.v1.OrganizationSetLogoRequest
+	261, // 223: viam.app.v1.AppService.OrganizationGetLogo:input_type -> viam.app.v1.OrganizationGetLogoRequest
+	263, // 224: viam.app.v1.AppService.EnableAuthService:input_type -> viam.app.v1.EnableAuthServiceRequest
+	265, // 225: viam.app.v1.AppService.DisableAuthService:input_type -> viam.app.v1.DisableAuthServiceRequest
+	267, // 226: viam.app.v1.AppService.CreateOAuthApp:input_type -> viam.app.v1.CreateOAuthAppRequest
+	269, // 227: viam.app.v1.AppService.ReadOAuthApp:input_type -> viam.app.v1.ReadOAuthAppRequest
+	271, // 228: viam.app.v1.AppService.UpdateOAuthApp:input_type -> viam.app.v1.UpdateOAuthAppRequest
+	273, // 229: viam.app.v1.AppService.DeleteOAuthApp:input_type -> viam.app.v1.DeleteOAuthAppRequest
+	275, // 230: viam.app.v1.AppService.ListOAuthApps:input_type -> viam.app.v1.ListOAuthAppsRequest
+	67,  // 231: viam.app.v1.AppService.CreateLocation:input_type -> viam.app.v1.CreateLocationRequest
+	69,  // 232: viam.app.v1.AppService.GetLocation:input_type -> viam.app.v1.GetLocationRequest
+	71,  // 233: viam.app.v1.AppService.UpdateLocation:input_type -> viam.app.v1.UpdateLocationRequest
+	73,  // 234: viam.app.v1.AppService.DeleteLocation:input_type -> viam.app.v1.DeleteLocationRequest
+	75,  // 235: viam.app.v1.AppService.GetLocationMetadata:input_type -> viam.app.v1.GetLocationMetadataRequest
+	77,  // 236: viam.app.v1.AppService.UpdateLocationMetadata:input_type -> viam.app.v1.UpdateLocationMetadataRequest
+	81,  // 237: viam.app.v1.AppService.ListLocations:input_type -> viam.app.v1.ListLocationsRequest
+	82,  // 238: viam.app.v1.AppService.ShareLocation:input_type -> viam.app.v1.ShareLocationRequest
+	84,  // 239: viam.app.v1.AppService.UnshareLocation:input_type -> viam.app.v1.UnshareLocationRequest
+	91,  // 240: viam.app.v1.AppService.LocationAuth:input_type -> viam.app.v1.LocationAuthRequest
+	87,  // 241: viam.app.v1.AppService.CreateLocationSecret:input_type -> viam.app.v1.CreateLocationSecretRequest
+	89,  // 242: viam.app.v1.AppService.DeleteLocationSecret:input_type -> viam.app.v1.DeleteLocationSecretRequest
+	93,  // 243: viam.app.v1.AppService.GetRobot:input_type -> viam.app.v1.GetRobotRequest
+	173, // 244: viam.app.v1.AppService.GetRobotMetadata:input_type -> viam.app.v1.GetRobotMetadataRequest
+	175, // 245: viam.app.v1.AppService.UpdateRobotMetadata:input_type -> viam.app.v1.UpdateRobotMetadataRequest
+	94,  // 246: viam.app.v1.AppService.GetRoverRentalRobots:input_type -> viam.app.v1.GetRoverRentalRobotsRequest
+	98,  // 247: viam.app.v1.AppService.GetRobotParts:input_type -> viam.app.v1.GetRobotPartsRequest
+	100, // 248: viam.app.v1.AppService.GetRobotPart:input_type -> viam.app.v1.GetRobotPartRequest
+	102, // 249: viam.app.v1.AppService.GetRobotPartByNameAndLocation:input_type -> viam.app.v1.GetRobotPartByNameAndLocationRequest
+	104, // 250: viam.app.v1.AppService.GetRobotPartLogs:input_type -> viam.app.v1.GetRobotPartLogsRequest
+	106, // 251: viam.app.v1.AppService.TailRobotPartLogs:input_type -> viam.app.v1.TailRobotPartLogsRequest
+	108, // 252: viam.app.v1.AppService.GetRobotPartHistory:input_type -> viam.app.v1.GetRobotPartHistoryRequest
+	110, // 253: viam.app.v1.AppService.UpdateRobotPart:input_type -> viam.app.v1.UpdateRobotPartRequest
+	112, // 254: viam.app.v1.AppService.NewRobotPart:input_type -> viam.app.v1.NewRobotPartRequest
+	114, // 255: viam.app.v1.AppService.DeleteRobotPart:input_type -> viam.app.v1.DeleteRobotPartRequest
+	115, // 256: viam.app.v1.AppService.GetRobotPartMetadata:input_type -> viam.app.v1.GetRobotPartMetadataRequest
+	117, // 257: viam.app.v1.AppService.UpdateRobotPartMetadata:input_type -> viam.app.v1.UpdateRobotPartMetadataRequest
+	119, // 258: viam.app.v1.AppService.GetRobotAPIKeys:input_type -> viam.app.v1.GetRobotAPIKeysRequest
+	177, // 259: viam.app.v1.AppService.MarkPartAsMain:input_type -> viam.app.v1.MarkPartAsMainRequest
+	179, // 260: viam.app.v1.AppService.MarkPartForRestart:input_type -> viam.app.v1.MarkPartForRestartRequest
+	181, // 261: viam.app.v1.AppService.CreateRobotPartSecret:input_type -> viam.app.v1.CreateRobotPartSecretRequest
+	183, // 262: viam.app.v1.AppService.DeleteRobotPartSecret:input_type -> viam.app.v1.DeleteRobotPartSecretRequest
+	148, // 263: viam.app.v1.AppService.ListRobots:input_type -> viam.app.v1.ListRobotsRequest
+	149, // 264: viam.app.v1.AppService.ListRobotsForLocations:input_type -> viam.app.v1.ListRobotsForLocationsRequest
+	150, // 265: viam.app.v1.AppService.ListRobotsForOrg:input_type -> viam.app.v1.ListRobotsForOrgRequest
+	167, // 266: viam.app.v1.AppService.NewRobot:input_type -> viam.app.v1.NewRobotRequest
+	169, // 267: viam.app.v1.AppService.UpdateRobot:input_type -> viam.app.v1.UpdateRobotRequest
+	171, // 268: viam.app.v1.AppService.DeleteRobot:input_type -> viam.app.v1.DeleteRobotRequest
+	130, // 269: viam.app.v1.AppService.ListFragments:input_type -> viam.app.v1.ListFragmentsRequest
+	132, // 270: viam.app.v1.AppService.GetFragment:input_type -> viam.app.v1.GetFragmentRequest
+	134, // 271: viam.app.v1.AppService.CreateFragment:input_type -> viam.app.v1.CreateFragmentRequest
+	136, // 272: viam.app.v1.AppService.UpdateFragment:input_type -> viam.app.v1.UpdateFragmentRequest
+	138, // 273: viam.app.v1.AppService.DeleteFragment:input_type -> viam.app.v1.DeleteFragmentRequest
+	152, // 274: viam.app.v1.AppService.ListNestedFragments:input_type -> viam.app.v1.ListNestedFragmentsRequest
+	154, // 275: viam.app.v1.AppService.ListMachineFragments:input_type -> viam.app.v1.ListMachineFragmentsRequest
+	156, // 276: viam.app.v1.AppService.ListMachineSummaries:input_type -> viam.app.v1.ListMachineSummariesRequest
+	140, // 277: viam.app.v1.AppService.GetFragmentHistory:input_type -> viam.app.v1.GetFragmentHistoryRequest
+	142, // 278: viam.app.v1.AppService.GetFragmentUsage:input_type -> viam.app.v1.GetFragmentUsageRequest
+	144, // 279: viam.app.v1.AppService.SetFragmentTag:input_type -> viam.app.v1.SetFragmentTagRequest
+	146, // 280: viam.app.v1.AppService.DeleteFragmentTag:input_type -> viam.app.v1.DeleteFragmentTagRequest
+	186, // 281: viam.app.v1.AppService.AddRole:input_type -> viam.app.v1.AddRoleRequest
+	188, // 282: viam.app.v1.AppService.RemoveRole:input_type -> viam.app.v1.RemoveRoleRequest
+	190, // 283: viam.app.v1.AppService.ChangeRole:input_type -> viam.app.v1.ChangeRoleRequest
+	192, // 284: viam.app.v1.AppService.ListAuthorizations:input_type -> viam.app.v1.ListAuthorizationsRequest
+	194, // 285: viam.app.v1.AppService.CheckPermissions:input_type -> viam.app.v1.CheckPermissionsRequest
+	203, // 286: viam.app.v1.AppService.GetRegistryItem:input_type -> viam.app.v1.GetRegistryItemRequest
+	205, // 287: viam.app.v1.AppService.CreateRegistryItem:input_type -> viam.app.v1.CreateRegistryItemRequest
+	207, // 288: viam.app.v1.AppService.UpdateRegistryItem:input_type -> viam.app.v1.UpdateRegistryItemRequest
+	209, // 289: viam.app.v1.AppService.ListRegistryItems:input_type -> viam.app.v1.ListRegistryItemsRequest
+	211, // 290: viam.app.v1.AppService.DeleteRegistryItem:input_type -> viam.app.v1.DeleteRegistryItemRequest
+	213, // 291: viam.app.v1.AppService.RenameRegistryItem:input_type -> viam.app.v1.RenameRegistryItemRequest
+	215, // 292: viam.app.v1.AppService.TransferRegistryItem:input_type -> viam.app.v1.TransferRegistryItemRequest
+	217, // 293: viam.app.v1.AppService.CreateModule:input_type -> viam.app.v1.CreateModuleRequest
+	219, // 294: viam.app.v1.AppService.UpdateModule:input_type -> viam.app.v1.UpdateModuleRequest
+	227, // 295: viam.app.v1.AppService.UploadModuleFile:input_type -> viam.app.v1.UploadModuleFileRequest
+	229, // 296: viam.app.v1.AppService.GetModule:input_type -> viam.app.v1.GetModuleRequest
+	234, // 297: viam.app.v1.AppService.ListModules:input_type -> viam.app.v1.ListModulesRequest
+	243, // 298: viam.app.v1.AppService.CreateKey:input_type -> viam.app.v1.CreateKeyRequest
+	245, // 299: viam.app.v1.AppService.DeleteKey:input_type -> viam.app.v1.DeleteKeyRequest
+	251, // 300: viam.app.v1.AppService.ListKeys:input_type -> viam.app.v1.ListKeysRequest
+	247, // 301: viam.app.v1.AppService.RenameKey:input_type -> viam.app.v1.RenameKeyRequest
+	253, // 302: viam.app.v1.AppService.RotateKey:input_type -> viam.app.v1.RotateKeyRequest
+	255, // 303: viam.app.v1.AppService.CreateKeyFromExistingKeyAuthorizations:input_type -> viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest
+	257, // 304: viam.app.v1.AppService.GetAppContent:input_type -> viam.app.v1.GetAppContentRequest
+	278, // 305: viam.app.v1.AppService.GetAppBranding:input_type -> viam.app.v1.GetAppBrandingRequest
+	237, // 306: viam.app.v1.AppService.GetUserIDByEmail:output_type -> viam.app.v1.GetUserIDByEmailResponse
+	21,  // 307: viam.app.v1.AppService.CreateOrganization:output_type -> viam.app.v1.CreateOrganizationResponse
+	18,  // 308: viam.app.v1.AppService.ListOrganizations:output_type -> viam.app.v1.ListOrganizationsResponse
+	80,  // 309: viam.app.v1.AppService.GetOrganizationsWithAccessToLocation:output_type -> viam.app.v1.GetOrganizationsWithAccessToLocationResponse
+	240, // 310: viam.app.v1.AppService.ListOrganizationsByUser:output_type -> viam.app.v1.ListOrganizationsByUserResponse
+	242, // 311: viam.app.v1.AppService.SearchOrganizations:output_type -> viam.app.v1.SearchOrganizationsResponse
+	23,  // 312: viam.app.v1.AppService.GetOrganization:output_type -> viam.app.v1.GetOrganizationResponse
+	25,  // 313: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:output_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityResponse
+	27,  // 314: viam.app.v1.AppService.UpdateOrganization:output_type -> viam.app.v1.UpdateOrganizationResponse
+	29,  // 315: viam.app.v1.AppService.UpdateOrganizationNamespace:output_type -> viam.app.v1.UpdateOrganizationNamespaceResponse
+	31,  // 316: viam.app.v1.AppService.DeleteOrganization:output_type -> viam.app.v1.DeleteOrganizationResponse
+	33,  // 317: viam.app.v1.AppService.GetOrganizationMetadata:output_type -> viam.app.v1.GetOrganizationMetadataResponse
+	35,  // 318: viam.app.v1.AppService.UpdateOrganizationMetadata:output_type -> viam.app.v1.UpdateOrganizationMetadataResponse
+	37,  // 319: viam.app.v1.AppService.ListOrganizationMembers:output_type -> viam.app.v1.ListOrganizationMembersResponse
+	39,  // 320: viam.app.v1.AppService.CreateOrganizationInvite:output_type -> viam.app.v1.CreateOrganizationInviteResponse
+	41,  // 321: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:output_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse
+	47,  // 322: viam.app.v1.AppService.DeleteOrganizationMember:output_type -> viam.app.v1.DeleteOrganizationMemberResponse
+	43,  // 323: viam.app.v1.AppService.DeleteOrganizationInvite:output_type -> viam.app.v1.DeleteOrganizationInviteResponse
+	45,  // 324: viam.app.v1.AppService.ResendOrganizationInvite:output_type -> viam.app.v1.ResendOrganizationInviteResponse
+	50,  // 325: viam.app.v1.AppService.EnableBillingService:output_type -> viam.app.v1.EnableBillingServiceResponse
+	56,  // 326: viam.app.v1.AppService.DisableBillingService:output_type -> viam.app.v1.DisableBillingServiceResponse
+	52,  // 327: viam.app.v1.AppService.UpdateBillingService:output_type -> viam.app.v1.UpdateBillingServiceResponse
+	54,  // 328: viam.app.v1.AppService.GetBillingServiceConfig:output_type -> viam.app.v1.GetBillingServiceConfigResponse
+	58,  // 329: viam.app.v1.AppService.OrganizationSetSupportEmail:output_type -> viam.app.v1.OrganizationSetSupportEmailResponse
+	60,  // 330: viam.app.v1.AppService.OrganizationGetSupportEmail:output_type -> viam.app.v1.OrganizationGetSupportEmailResponse
+	260, // 331: viam.app.v1.AppService.OrganizationSetLogo:output_type -> viam.app.v1.OrganizationSetLogoResponse
+	262, // 332: viam.app.v1.AppService.OrganizationGetLogo:output_type -> viam.app.v1.OrganizationGetLogoResponse
+	264, // 333: viam.app.v1.AppService.EnableAuthService:output_type -> viam.app.v1.EnableAuthServiceResponse
+	266, // 334: viam.app.v1.AppService.DisableAuthService:output_type -> viam.app.v1.DisableAuthServiceResponse
+	268, // 335: viam.app.v1.AppService.CreateOAuthApp:output_type -> viam.app.v1.CreateOAuthAppResponse
+	270, // 336: viam.app.v1.AppService.ReadOAuthApp:output_type -> viam.app.v1.ReadOAuthAppResponse
+	272, // 337: viam.app.v1.AppService.UpdateOAuthApp:output_type -> viam.app.v1.UpdateOAuthAppResponse
+	274, // 338: viam.app.v1.AppService.DeleteOAuthApp:output_type -> viam.app.v1.DeleteOAuthAppResponse
+	276, // 339: viam.app.v1.AppService.ListOAuthApps:output_type -> viam.app.v1.ListOAuthAppsResponse
+	68,  // 340: viam.app.v1.AppService.CreateLocation:output_type -> viam.app.v1.CreateLocationResponse
+	70,  // 341: viam.app.v1.AppService.GetLocation:output_type -> viam.app.v1.GetLocationResponse
+	72,  // 342: viam.app.v1.AppService.UpdateLocation:output_type -> viam.app.v1.UpdateLocationResponse
+	74,  // 343: viam.app.v1.AppService.DeleteLocation:output_type -> viam.app.v1.DeleteLocationResponse
+	76,  // 344: viam.app.v1.AppService.GetLocationMetadata:output_type -> viam.app.v1.GetLocationMetadataResponse
+	78,  // 345: viam.app.v1.AppService.UpdateLocationMetadata:output_type -> viam.app.v1.UpdateLocationMetadataResponse
+	86,  // 346: viam.app.v1.AppService.ListLocations:output_type -> viam.app.v1.ListLocationsResponse
+	83,  // 347: viam.app.v1.AppService.ShareLocation:output_type -> viam.app.v1.ShareLocationResponse
+	85,  // 348: viam.app.v1.AppService.UnshareLocation:output_type -> viam.app.v1.UnshareLocationResponse
+	92,  // 349: viam.app.v1.AppService.LocationAuth:output_type -> viam.app.v1.LocationAuthResponse
+	88,  // 350: viam.app.v1.AppService.CreateLocationSecret:output_type -> viam.app.v1.CreateLocationSecretResponse
+	90,  // 351: viam.app.v1.AppService.DeleteLocationSecret:output_type -> viam.app.v1.DeleteLocationSecretResponse
+	97,  // 352: viam.app.v1.AppService.GetRobot:output_type -> viam.app.v1.GetRobotResponse
+	174, // 353: viam.app.v1.AppService.GetRobotMetadata:output_type -> viam.app.v1.GetRobotMetadataResponse
+	176, // 354: viam.app.v1.AppService.UpdateRobotMetadata:output_type -> viam.app.v1.UpdateRobotMetadataResponse
+	96,  // 355: viam.app.v1.AppService.GetRoverRentalRobots:output_type -> viam.app.v1.GetRoverRentalRobotsResponse
+	99,  // 356: viam.app.v1.AppService.GetRobotParts:output_type -> viam.app.v1.GetRobotPartsResponse
+	101, // 357: viam.app.v1.AppService.GetRobotPart:output_type -> viam.app.v1.GetRobotPartResponse
+	103, // 358: viam.app.v1.AppService.GetRobotPartByNameAndLocation:output_type -> viam.app.v1.GetRobotPartByNameAndLocationResponse
+	105, // 359: viam.app.v1.AppService.GetRobotPartLogs:output_type -> viam.app.v1.GetRobotPartLogsResponse
+	107, // 360: viam.app.v1.AppService.TailRobotPartLogs:output_type -> viam.app.v1.TailRobotPartLogsResponse
+	109, // 361: viam.app.v1.AppService.GetRobotPartHistory:output_type -> viam.app.v1.GetRobotPartHistoryResponse
+	111, // 362: viam.app.v1.AppService.UpdateRobotPart:output_type -> viam.app.v1.UpdateRobotPartResponse
+	113, // 363: viam.app.v1.AppService.NewRobotPart:output_type -> viam.app.v1.NewRobotPartResponse
+	122, // 364: viam.app.v1.AppService.DeleteRobotPart:output_type -> viam.app.v1.DeleteRobotPartResponse
+	116, // 365: viam.app.v1.AppService.GetRobotPartMetadata:output_type -> viam.app.v1.GetRobotPartMetadataResponse
+	118, // 366: viam.app.v1.AppService.UpdateRobotPartMetadata:output_type -> viam.app.v1.UpdateRobotPartMetadataResponse
+	121, // 367: viam.app.v1.AppService.GetRobotAPIKeys:output_type -> viam.app.v1.GetRobotAPIKeysResponse
+	178, // 368: viam.app.v1.AppService.MarkPartAsMain:output_type -> viam.app.v1.MarkPartAsMainResponse
+	180, // 369: viam.app.v1.AppService.MarkPartForRestart:output_type -> viam.app.v1.MarkPartForRestartResponse
+	182, // 370: viam.app.v1.AppService.CreateRobotPartSecret:output_type -> viam.app.v1.CreateRobotPartSecretResponse
+	184, // 371: viam.app.v1.AppService.DeleteRobotPartSecret:output_type -> viam.app.v1.DeleteRobotPartSecretResponse
+	164, // 372: viam.app.v1.AppService.ListRobots:output_type -> viam.app.v1.ListRobotsResponse
+	165, // 373: viam.app.v1.AppService.ListRobotsForLocations:output_type -> viam.app.v1.ListRobotsForLocationsResponse
+	166, // 374: viam.app.v1.AppService.ListRobotsForOrg:output_type -> viam.app.v1.ListRobotsForOrgResponse
+	168, // 375: viam.app.v1.AppService.NewRobot:output_type -> viam.app.v1.NewRobotResponse
+	170, // 376: viam.app.v1.AppService.UpdateRobot:output_type -> viam.app.v1.UpdateRobotResponse
+	172, // 377: viam.app.v1.AppService.DeleteRobot:output_type -> viam.app.v1.DeleteRobotResponse
+	131, // 378: viam.app.v1.AppService.ListFragments:output_type -> viam.app.v1.ListFragmentsResponse
+	133, // 379: viam.app.v1.AppService.GetFragment:output_type -> viam.app.v1.GetFragmentResponse
+	135, // 380: viam.app.v1.AppService.CreateFragment:output_type -> viam.app.v1.CreateFragmentResponse
+	137, // 381: viam.app.v1.AppService.UpdateFragment:output_type -> viam.app.v1.UpdateFragmentResponse
+	139, // 382: viam.app.v1.AppService.DeleteFragment:output_type -> viam.app.v1.DeleteFragmentResponse
+	153, // 383: viam.app.v1.AppService.ListNestedFragments:output_type -> viam.app.v1.ListNestedFragmentsResponse
+	155, // 384: viam.app.v1.AppService.ListMachineFragments:output_type -> viam.app.v1.ListMachineFragmentsResponse
+	157, // 385: viam.app.v1.AppService.ListMachineSummaries:output_type -> viam.app.v1.ListMachineSummariesResponse
+	141, // 386: viam.app.v1.AppService.GetFragmentHistory:output_type -> viam.app.v1.GetFragmentHistoryResponse
+	143, // 387: viam.app.v1.AppService.GetFragmentUsage:output_type -> viam.app.v1.GetFragmentUsageResponse
+	145, // 388: viam.app.v1.AppService.SetFragmentTag:output_type -> viam.app.v1.SetFragmentTagResponse
+	147, // 389: viam.app.v1.AppService.DeleteFragmentTag:output_type -> viam.app.v1.DeleteFragmentTagResponse
+	187, // 390: viam.app.v1.AppService.AddRole:output_type -> viam.app.v1.AddRoleResponse
+	189, // 391: viam.app.v1.AppService.RemoveRole:output_type -> viam.app.v1.RemoveRoleResponse
+	191, // 392: viam.app.v1.AppService.ChangeRole:output_type -> viam.app.v1.ChangeRoleResponse
+	193, // 393: viam.app.v1.AppService.ListAuthorizations:output_type -> viam.app.v1.ListAuthorizationsResponse
+	196, // 394: viam.app.v1.AppService.CheckPermissions:output_type -> viam.app.v1.CheckPermissionsResponse
+	204, // 395: viam.app.v1.AppService.GetRegistryItem:output_type -> viam.app.v1.GetRegistryItemResponse
+	206, // 396: viam.app.v1.AppService.CreateRegistryItem:output_type -> viam.app.v1.CreateRegistryItemResponse
+	208, // 397: viam.app.v1.AppService.UpdateRegistryItem:output_type -> viam.app.v1.UpdateRegistryItemResponse
+	210, // 398: viam.app.v1.AppService.ListRegistryItems:output_type -> viam.app.v1.ListRegistryItemsResponse
+	212, // 399: viam.app.v1.AppService.DeleteRegistryItem:output_type -> viam.app.v1.DeleteRegistryItemResponse
+	214, // 400: viam.app.v1.AppService.RenameRegistryItem:output_type -> viam.app.v1.RenameRegistryItemResponse
+	216, // 401: viam.app.v1.AppService.TransferRegistryItem:output_type -> viam.app.v1.TransferRegistryItemResponse
+	218, // 402: viam.app.v1.AppService.CreateModule:output_type -> viam.app.v1.CreateModuleResponse
+	221, // 403: viam.app.v1.AppService.UpdateModule:output_type -> viam.app.v1.UpdateModuleResponse
+	228, // 404: viam.app.v1.AppService.UploadModuleFile:output_type -> viam.app.v1.UploadModuleFileResponse
+	230, // 405: viam.app.v1.AppService.GetModule:output_type -> viam.app.v1.GetModuleResponse
+	235, // 406: viam.app.v1.AppService.ListModules:output_type -> viam.app.v1.ListModulesResponse
+	244, // 407: viam.app.v1.AppService.CreateKey:output_type -> viam.app.v1.CreateKeyResponse
+	246, // 408: viam.app.v1.AppService.DeleteKey:output_type -> viam.app.v1.DeleteKeyResponse
+	252, // 409: viam.app.v1.AppService.ListKeys:output_type -> viam.app.v1.ListKeysResponse
+	248, // 410: viam.app.v1.AppService.RenameKey:output_type -> viam.app.v1.RenameKeyResponse
+	254, // 411: viam.app.v1.AppService.RotateKey:output_type -> viam.app.v1.RotateKeyResponse
+	256, // 412: viam.app.v1.AppService.CreateKeyFromExistingKeyAuthorizations:output_type -> viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse
+	258, // 413: viam.app.v1.AppService.GetAppContent:output_type -> viam.app.v1.GetAppContentResponse
+	280, // 414: viam.app.v1.AppService.GetAppBranding:output_type -> viam.app.v1.GetAppBrandingResponse
+	306, // [306:415] is the sub-list for method output_type
+	197, // [197:306] is the sub-list for method input_type
+	197, // [197:197] is the sub-list for extension type_name
+	197, // [197:197] is the sub-list for extension extendee
+	0,   // [0:197] is the sub-list for field type_name
 }
 
 func init() { file_app_v1_app_proto_init() }
@@ -19324,7 +19393,7 @@ func file_app_v1_app_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_app_v1_app_proto_rawDesc,
-			NumEnums:      10,
+			NumEnums:      11,
 			NumMessages:   274,
 			NumExtensions: 0,
 			NumServices:   1,

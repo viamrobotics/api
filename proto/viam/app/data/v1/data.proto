@@ -374,6 +374,7 @@ message BoundingBox {
 
 // Classification represents a confidence score with a label.
 message Classification {
+  string id = 3;
   string label = 1;
   // confidence is an optional range from 0 - 1
   optional double confidence = 2;

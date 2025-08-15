@@ -530,6 +530,58 @@ export namespace UpdateOrganizationBillingTierResponse {
   }
 }
 
+export class CreateInvoiceAndChargeImmediatelyRequest extends jspb.Message {
+  getOrgIdToCharge(): string;
+  setOrgIdToCharge(value: string): void;
+
+  getAmount(): number;
+  setAmount(value: number): void;
+
+  hasDescription(): boolean;
+  clearDescription(): void;
+  getDescription(): string;
+  setDescription(value: string): void;
+
+  hasOrgIdForBranding(): boolean;
+  clearOrgIdForBranding(): void;
+  getOrgIdForBranding(): string;
+  setOrgIdForBranding(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateInvoiceAndChargeImmediatelyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateInvoiceAndChargeImmediatelyRequest): CreateInvoiceAndChargeImmediatelyRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateInvoiceAndChargeImmediatelyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateInvoiceAndChargeImmediatelyRequest;
+  static deserializeBinaryFromReader(message: CreateInvoiceAndChargeImmediatelyRequest, reader: jspb.BinaryReader): CreateInvoiceAndChargeImmediatelyRequest;
+}
+
+export namespace CreateInvoiceAndChargeImmediatelyRequest {
+  export type AsObject = {
+    orgIdToCharge: string,
+    amount: number,
+    description: string,
+    orgIdForBranding: string,
+  }
+}
+
+export class CreateInvoiceAndChargeImmediatelyResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateInvoiceAndChargeImmediatelyResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateInvoiceAndChargeImmediatelyResponse): CreateInvoiceAndChargeImmediatelyResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateInvoiceAndChargeImmediatelyResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateInvoiceAndChargeImmediatelyResponse;
+  static deserializeBinaryFromReader(message: CreateInvoiceAndChargeImmediatelyResponse, reader: jspb.BinaryReader): CreateInvoiceAndChargeImmediatelyResponse;
+}
+
+export namespace CreateInvoiceAndChargeImmediatelyResponse {
+  export type AsObject = {
+  }
+}
+
 export interface PaymentMethodTypeMap {
   PAYMENT_METHOD_TYPE_UNSPECIFIED: 0;
   PAYMENT_METHOD_TYPE_CARD: 1;
