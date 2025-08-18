@@ -21,6 +21,8 @@ service BillingService {
   rpc GetAvailableBillingTiers(GetAvailableBillingTiersRequest) returns (GetAvailableBillingTiersResponse);
   // Update an organization's billing tier
   rpc UpdateOrganizationBillingTier(UpdateOrganizationBillingTierRequest) returns (UpdateOrganizationBillingTierResponse);
+  // Directly create a flat fee invoice for an organization and charge on the spot
+  rpc CreateInvoiceAndChargeImmediately(CreateInvoiceAndChargeImmediatelyRequest) returns (CreateInvoiceAndChargeImmediatelyResponse);
 }
 
 message InvoiceSummary {
@@ -171,3 +173,12 @@ message UpdateOrganizationBillingTierRequest {
 }
 
 message UpdateOrganizationBillingTierResponse {}
+
+message CreateInvoiceAndChargeImmediatelyRequest {
+  string org_id_to_charge = 1;
+  double amount = 2;
+  optional string description = 3;
+  optional string org_id_for_branding = 4;
+}
+
+message CreateInvoiceAndChargeImmediatelyResponse {}

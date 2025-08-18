@@ -1186,12 +1186,14 @@ message ViamAgentVersion {
 message PartSummary {
   string part_id = 1;
   string part_name = 2;
+  bool is_main_part = 11;
   optional google.protobuf.Timestamp last_online = 3;
   optional ViamServerVersion viam_server_version = 4;
   optional ViamAgentVersion viam_agent_version = 5;
   optional string os = 6;
   optional string platform = 7;
   optional string public_ip_address = 8;
+  optional string dns_name = 10;
   repeated FragmentSummary fragments = 9;
 }
 
