@@ -33939,12 +33939,14 @@ proto.viam.app.v1.PartSummary.toObject = function(includeInstance, msg) {
   var f, obj = {
     partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     partName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    isMainPart: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
     lastOnline: (f = msg.getLastOnline()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     viamServerVersion: (f = msg.getViamServerVersion()) && proto.viam.app.v1.ViamServerVersion.toObject(includeInstance, f),
     viamAgentVersion: (f = msg.getViamAgentVersion()) && proto.viam.app.v1.ViamAgentVersion.toObject(includeInstance, f),
     os: jspb.Message.getFieldWithDefault(msg, 6, ""),
     platform: jspb.Message.getFieldWithDefault(msg, 7, ""),
     publicIpAddress: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    dnsName: jspb.Message.getFieldWithDefault(msg, 10, ""),
     fragmentsList: jspb.Message.toObjectList(msg.getFragmentsList(),
     proto.viam.app.v1.FragmentSummary.toObject, includeInstance)
   };
@@ -33991,6 +33993,10 @@ proto.viam.app.v1.PartSummary.deserializeBinaryFromReader = function(msg, reader
       var value = /** @type {string} */ (reader.readString());
       msg.setPartName(value);
       break;
+    case 11:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsMainPart(value);
+      break;
     case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
@@ -34017,6 +34023,10 @@ proto.viam.app.v1.PartSummary.deserializeBinaryFromReader = function(msg, reader
     case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setPublicIpAddress(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDnsName(value);
       break;
     case 9:
       var value = new proto.viam.app.v1.FragmentSummary;
@@ -34066,6 +34076,13 @@ proto.viam.app.v1.PartSummary.serializeBinaryToWriter = function(message, writer
       f
     );
   }
+  f = message.getIsMainPart();
+  if (f) {
+    writer.writeBool(
+      11,
+      f
+    );
+  }
   f = message.getLastOnline();
   if (f != null) {
     writer.writeMessage(
@@ -34108,6 +34125,13 @@ proto.viam.app.v1.PartSummary.serializeBinaryToWriter = function(message, writer
   if (f != null) {
     writer.writeString(
       8,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeString(
+      10,
       f
     );
   }
@@ -34155,6 +34179,24 @@ proto.viam.app.v1.PartSummary.prototype.getPartName = function() {
  */
 proto.viam.app.v1.PartSummary.prototype.setPartName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional bool is_main_part = 11;
+ * @return {boolean}
+ */
+proto.viam.app.v1.PartSummary.prototype.getIsMainPart = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.PartSummary} returns this
+ */
+proto.viam.app.v1.PartSummary.prototype.setIsMainPart = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 11, value);
 };
 
 
@@ -34374,6 +34416,42 @@ proto.viam.app.v1.PartSummary.prototype.clearPublicIpAddress = function() {
  */
 proto.viam.app.v1.PartSummary.prototype.hasPublicIpAddress = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional string dns_name = 10;
+ * @return {string}
+ */
+proto.viam.app.v1.PartSummary.prototype.getDnsName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.PartSummary} returns this
+ */
+proto.viam.app.v1.PartSummary.prototype.setDnsName = function(value) {
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.PartSummary} returns this
+ */
+proto.viam.app.v1.PartSummary.prototype.clearDnsName = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.PartSummary.prototype.hasDnsName = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
