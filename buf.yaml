@@ -1,0 +1,28 @@
+version: v2
+modules:
+  - path: proto/viam
+    name: buf.build/viamrobotics/api
+    excludes:
+      - proto/viam/node_modules
+deps:
+  - buf.build/googleapis/googleapis:62f35d8aed1149c291d606d958a7ce32
+lint:
+  use:
+    - STANDARD
+  except:
+    - FIELD_NOT_REQUIRED
+    - PACKAGE_DIRECTORY_MATCH
+    - PACKAGE_NO_IMPORT_CYCLE
+  ignore_only:
+    RPC_REQUEST_RESPONSE_UNIQUE:
+      - proto/viam/component
+      - proto/viam/service
+    RPC_RESPONSE_STANDARD_NAME:
+      - proto/viam/component/audioinput/v1/audioinput.proto
+      - proto/viam/component/camera/v1/camera.proto
+breaking:
+  use:
+    - FILE
+  except:
+    - EXTENSION_NO_DELETE
+    - FIELD_SAME_DEFAULT

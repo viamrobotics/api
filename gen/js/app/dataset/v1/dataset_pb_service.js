@@ -55,6 +55,15 @@ DatasetService.ListDatasetsByIDs = {
   responseType: app_dataset_v1_dataset_pb.ListDatasetsByIDsResponse
 };
 
+DatasetService.MergeDatasets = {
+  methodName: "MergeDatasets",
+  service: DatasetService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_dataset_v1_dataset_pb.MergeDatasetsRequest,
+  responseType: app_dataset_v1_dataset_pb.MergeDatasetsResponse
+};
+
 exports.DatasetService = DatasetService;
 
 function DatasetServiceClient(serviceHost, options) {
@@ -191,6 +200,37 @@ DatasetServiceClient.prototype.listDatasetsByIDs = function listDatasetsByIDs(re
     callback = arguments[1];
   }
   var client = grpc.unary(DatasetService.ListDatasetsByIDs, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DatasetServiceClient.prototype.mergeDatasets = function mergeDatasets(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DatasetService.MergeDatasets, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

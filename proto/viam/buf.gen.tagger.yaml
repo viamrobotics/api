@@ -1,6 +1,5 @@
-version: v1
+version: v2
 plugins:
-  - name: gotag
+  - local: protoc-gen-gotag
     out: .
-    opt:
-      - paths=source_relative
+    opt: paths=source_relative
