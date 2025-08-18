@@ -452,6 +452,9 @@ export class DataPipelineRun extends jspb.Message {
   getStatus(): DataPipelineRunStatusMap[keyof DataPipelineRunStatusMap];
   setStatus(value: DataPipelineRunStatusMap[keyof DataPipelineRunStatusMap]): void;
 
+  getErrorMessage(): string;
+  setErrorMessage(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataPipelineRun.AsObject;
   static toObject(includeInstance: boolean, msg: DataPipelineRun): DataPipelineRun.AsObject;
@@ -470,6 +473,7 @@ export namespace DataPipelineRun {
     dataStartTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     dataEndTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     status: DataPipelineRunStatusMap[keyof DataPipelineRunStatusMap],
+    errorMessage: string,
   }
 }
 

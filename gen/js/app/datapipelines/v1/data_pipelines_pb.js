@@ -3364,7 +3364,8 @@ proto.viam.app.datapipelines.v1.DataPipelineRun.toObject = function(includeInsta
     endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     dataStartTime: (f = msg.getDataStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     dataEndTime: (f = msg.getDataEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    status: jspb.Message.getFieldWithDefault(msg, 6, 0)
+    status: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    errorMessage: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -3428,6 +3429,10 @@ proto.viam.app.datapipelines.v1.DataPipelineRun.deserializeBinaryFromReader = fu
     case 6:
       var value = /** @type {!proto.viam.app.datapipelines.v1.DataPipelineRunStatus} */ (reader.readEnum());
       msg.setStatus(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setErrorMessage(value);
       break;
     default:
       reader.skipField();
@@ -3501,6 +3506,13 @@ proto.viam.app.datapipelines.v1.DataPipelineRun.serializeBinaryToWriter = functi
   if (f !== 0.0) {
     writer.writeEnum(
       6,
+      f
+    );
+  }
+  f = message.getErrorMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
       f
     );
   }
@@ -3688,6 +3700,24 @@ proto.viam.app.datapipelines.v1.DataPipelineRun.prototype.getStatus = function()
  */
 proto.viam.app.datapipelines.v1.DataPipelineRun.prototype.setStatus = function(value) {
   return jspb.Message.setProto3EnumField(this, 6, value);
+};
+
+
+/**
+ * optional string error_message = 7;
+ * @return {string}
+ */
+proto.viam.app.datapipelines.v1.DataPipelineRun.prototype.getErrorMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datapipelines.v1.DataPipelineRun} returns this
+ */
+proto.viam.app.datapipelines.v1.DataPipelineRun.prototype.setErrorMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
