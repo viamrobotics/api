@@ -10,6 +10,11 @@ lockfile = false
 # (Josh) At time of writing the go backend is experimental. When it's promoted
 # to stable this can be removed.
 experimental = true
+# (Josh) asdf plugins are just shell scripts that can impose dependencies on
+# arbitrary cli tools and are just generally worse than all the other backend
+# options. If we really need to we can reenable asdf but for now it's disabled
+# to ensure it is not selected by any future `buf use` invocations.
+disable_backends = ["asdf"]
 
 [tools]
 buf = "1.55.1"
