@@ -20,7 +20,17 @@ jobs:
     - uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.sha }}
-    - uses: bufbuild/buf-setup-action@v1
+    - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac
+      with:
+        install: false
+        experimental: true
+    - name: Extract buf version from mise
+      id: buf-version
+      run:
+        echo "version=$(mise tool buf --active)" >> $GITHUB_OUTPUT
+    - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99
+      with:
+        version: ${{ steps.buf-version.outputs.version }}
     # Run all Lint runs
     - uses: bufbuild/buf-lint-action@v1
     # Run breaking change detection against the `main` branch

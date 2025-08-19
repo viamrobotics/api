@@ -59,11 +59,6 @@ jobs:
         with:
           experimental: true
 
-      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99
-        if: ${{ !env.is-auto-commit }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Compile protos
         if: ${{ !env.is-auto-commit }}
         run: 'mise run --force clean ::: buf'
