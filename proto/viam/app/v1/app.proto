@@ -1137,6 +1137,7 @@ message ListMachineFragmentsResponse {
 }
 
 message ListMachineSummariesRequest {
+  // Optional organization ID. If no value is set it will search among all the organanizations the caller has access to
   string organization_id = 1;
   // Optional list of fragment IDs to filter machines that use any of these fragments
   repeated string fragment_ids = 2;
@@ -1185,12 +1186,14 @@ message ViamAgentVersion {
 message PartSummary {
   string part_id = 1;
   string part_name = 2;
+  bool is_main_part = 11;
   optional google.protobuf.Timestamp last_online = 3;
   optional ViamServerVersion viam_server_version = 4;
   optional ViamAgentVersion viam_agent_version = 5;
   optional string os = 6;
   optional string platform = 7;
   optional string public_ip_address = 8;
+  optional string dns_name = 10;
   repeated FragmentSummary fragments = 9;
 }
 
@@ -1820,9 +1823,16 @@ message GetAppContentRequest {
   string name = 2;
 }
 
+enum AppType {
+  APP_TYPE_UNSPECIFIED = 0;
+  APP_TYPE_SINGLE_MACHINE = 1;
+  APP_TYPE_MULTI_MACHINE = 2;
+}
+
 message GetAppContentResponse {
   string blob_path = 1;
   string entrypoint = 2;
+  AppType app_type = 3;
 }
 
 message OrganizationSetLogoRequest {

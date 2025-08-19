@@ -45,10 +45,12 @@ type DataServiceClient interface {
 	DeleteBinaryDataByIDs(ctx context.Context, in *DeleteBinaryDataByIDsRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByIDsResponse, error)
 	// AddTagsToBinaryDataByIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
 	AddTagsToBinaryDataByIDs(ctx context.Context, in *AddTagsToBinaryDataByIDsRequest, opts ...grpc.CallOption) (*AddTagsToBinaryDataByIDsResponse, error)
+	// Deprecated: Do not use.
 	// AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
 	AddTagsToBinaryDataByFilter(ctx context.Context, in *AddTagsToBinaryDataByFilterRequest, opts ...grpc.CallOption) (*AddTagsToBinaryDataByFilterResponse, error)
 	// RemoveTagsToBinaryDataByIDs removes string tags from binary data based on given IDs.
 	RemoveTagsFromBinaryDataByIDs(ctx context.Context, in *RemoveTagsFromBinaryDataByIDsRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByIDsResponse, error)
+	// Deprecated: Do not use.
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(ctx context.Context, in *RemoveTagsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFilterResponse, error)
 	// TagsByFilter gets all unique tags from data based on given filter.
@@ -204,6 +206,7 @@ func (c *dataServiceClient) AddTagsToBinaryDataByIDs(ctx context.Context, in *Ad
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *dataServiceClient) AddTagsToBinaryDataByFilter(ctx context.Context, in *AddTagsToBinaryDataByFilterRequest, opts ...grpc.CallOption) (*AddTagsToBinaryDataByFilterResponse, error) {
 	out := new(AddTagsToBinaryDataByFilterResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/AddTagsToBinaryDataByFilter", in, out, opts...)
@@ -222,6 +225,7 @@ func (c *dataServiceClient) RemoveTagsFromBinaryDataByIDs(ctx context.Context, i
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *dataServiceClient) RemoveTagsFromBinaryDataByFilter(ctx context.Context, in *RemoveTagsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFilterResponse, error) {
 	out := new(RemoveTagsFromBinaryDataByFilterResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFilter", in, out, opts...)
@@ -339,10 +343,12 @@ type DataServiceServer interface {
 	DeleteBinaryDataByIDs(context.Context, *DeleteBinaryDataByIDsRequest) (*DeleteBinaryDataByIDsResponse, error)
 	// AddTagsToBinaryDataByIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
 	AddTagsToBinaryDataByIDs(context.Context, *AddTagsToBinaryDataByIDsRequest) (*AddTagsToBinaryDataByIDsResponse, error)
+	// Deprecated: Do not use.
 	// AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
 	AddTagsToBinaryDataByFilter(context.Context, *AddTagsToBinaryDataByFilterRequest) (*AddTagsToBinaryDataByFilterResponse, error)
 	// RemoveTagsToBinaryDataByIDs removes string tags from binary data based on given IDs.
 	RemoveTagsFromBinaryDataByIDs(context.Context, *RemoveTagsFromBinaryDataByIDsRequest) (*RemoveTagsFromBinaryDataByIDsResponse, error)
+	// Deprecated: Do not use.
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(context.Context, *RemoveTagsFromBinaryDataByFilterRequest) (*RemoveTagsFromBinaryDataByFilterResponse, error)
 	// TagsByFilter gets all unique tags from data based on given filter.

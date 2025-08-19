@@ -46,13 +46,17 @@ service DataService {
   rpc AddTagsToBinaryDataByIDs(AddTagsToBinaryDataByIDsRequest) returns (AddTagsToBinaryDataByIDsResponse);
 
   // AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
-  rpc AddTagsToBinaryDataByFilter(AddTagsToBinaryDataByFilterRequest) returns (AddTagsToBinaryDataByFilterResponse);
+  rpc AddTagsToBinaryDataByFilter(AddTagsToBinaryDataByFilterRequest) returns (AddTagsToBinaryDataByFilterResponse) {
+    option deprecated = true;
+  }
 
   // RemoveTagsToBinaryDataByIDs removes string tags from binary data based on given IDs.
   rpc RemoveTagsFromBinaryDataByIDs(RemoveTagsFromBinaryDataByIDsRequest) returns (RemoveTagsFromBinaryDataByIDsResponse);
 
   // RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
-  rpc RemoveTagsFromBinaryDataByFilter(RemoveTagsFromBinaryDataByFilterRequest) returns (RemoveTagsFromBinaryDataByFilterResponse);
+  rpc RemoveTagsFromBinaryDataByFilter(RemoveTagsFromBinaryDataByFilterRequest) returns (RemoveTagsFromBinaryDataByFilterResponse) {
+    option deprecated = true;
+  }
 
   // TagsByFilter gets all unique tags from data based on given filter.
   rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse);
@@ -370,6 +374,7 @@ message BoundingBox {
 
 // Classification represents a confidence score with a label.
 message Classification {
+  string id = 3;
   string label = 1;
   // confidence is an optional range from 0 - 1
   optional double confidence = 2;
@@ -455,11 +460,14 @@ message AddTagsToBinaryDataByIDsResponse {}
 
 // AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided.
 message AddTagsToBinaryDataByFilterRequest {
+  option deprecated = true;
   Filter filter = 1;
   repeated string tags = 2;
 }
 
-message AddTagsToBinaryDataByFilterResponse {}
+message AddTagsToBinaryDataByFilterResponse {
+  option deprecated = true;
+}
 
 // RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.
 message RemoveTagsFromBinaryDataByIDsRequest {
@@ -478,12 +486,14 @@ message RemoveTagsFromBinaryDataByIDsResponse {
 
 // RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided.
 message RemoveTagsFromBinaryDataByFilterRequest {
+  option deprecated = true;
   Filter filter = 1;
   repeated string tags = 2;
 }
 
 // RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed.
 message RemoveTagsFromBinaryDataByFilterResponse {
+  option deprecated = true;
   uint64 deleted_count = 1;
 }
 

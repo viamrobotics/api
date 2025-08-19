@@ -109,28 +109,28 @@ func local_request_DataPipelinesService_CreateDataPipeline_0(ctx context.Context
 
 }
 
-func request_DataPipelinesService_UpdateDataPipeline_0(ctx context.Context, marshaler runtime.Marshaler, client DataPipelinesServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateDataPipelineRequest
+func request_DataPipelinesService_RenameDataPipeline_0(ctx context.Context, marshaler runtime.Marshaler, client DataPipelinesServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq RenameDataPipelineRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.UpdateDataPipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.RenameDataPipeline(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_DataPipelinesService_UpdateDataPipeline_0(ctx context.Context, marshaler runtime.Marshaler, server DataPipelinesServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateDataPipelineRequest
+func local_request_DataPipelinesService_RenameDataPipeline_0(ctx context.Context, marshaler runtime.Marshaler, server DataPipelinesServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq RenameDataPipelineRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.UpdateDataPipeline(ctx, &protoReq)
+	msg, err := server.RenameDataPipeline(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -320,7 +320,7 @@ func RegisterDataPipelinesServiceHandlerServer(ctx context.Context, mux *runtime
 
 	})
 
-	mux.Handle("POST", pattern_DataPipelinesService_UpdateDataPipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DataPipelinesService_RenameDataPipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -328,12 +328,12 @@ func RegisterDataPipelinesServiceHandlerServer(ctx context.Context, mux *runtime
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.datapipelines.v1.DataPipelinesService/UpdateDataPipeline", runtime.WithHTTPPathPattern("/viam.app.datapipelines.v1.DataPipelinesService/UpdateDataPipeline"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.datapipelines.v1.DataPipelinesService/RenameDataPipeline", runtime.WithHTTPPathPattern("/viam.app.datapipelines.v1.DataPipelinesService/RenameDataPipeline"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_DataPipelinesService_UpdateDataPipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_DataPipelinesService_RenameDataPipeline_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -341,7 +341,7 @@ func RegisterDataPipelinesServiceHandlerServer(ctx context.Context, mux *runtime
 			return
 		}
 
-		forward_DataPipelinesService_UpdateDataPipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DataPipelinesService_RenameDataPipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -552,25 +552,25 @@ func RegisterDataPipelinesServiceHandlerClient(ctx context.Context, mux *runtime
 
 	})
 
-	mux.Handle("POST", pattern_DataPipelinesService_UpdateDataPipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DataPipelinesService_RenameDataPipeline_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.datapipelines.v1.DataPipelinesService/UpdateDataPipeline", runtime.WithHTTPPathPattern("/viam.app.datapipelines.v1.DataPipelinesService/UpdateDataPipeline"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.datapipelines.v1.DataPipelinesService/RenameDataPipeline", runtime.WithHTTPPathPattern("/viam.app.datapipelines.v1.DataPipelinesService/RenameDataPipeline"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_DataPipelinesService_UpdateDataPipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_DataPipelinesService_RenameDataPipeline_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_DataPipelinesService_UpdateDataPipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DataPipelinesService_RenameDataPipeline_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -672,7 +672,7 @@ var (
 
 	pattern_DataPipelinesService_CreateDataPipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.datapipelines.v1.DataPipelinesService", "CreateDataPipeline"}, ""))
 
-	pattern_DataPipelinesService_UpdateDataPipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.datapipelines.v1.DataPipelinesService", "UpdateDataPipeline"}, ""))
+	pattern_DataPipelinesService_RenameDataPipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.datapipelines.v1.DataPipelinesService", "RenameDataPipeline"}, ""))
 
 	pattern_DataPipelinesService_DeleteDataPipeline_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.datapipelines.v1.DataPipelinesService", "DeleteDataPipeline"}, ""))
 
@@ -690,7 +690,7 @@ var (
 
 	forward_DataPipelinesService_CreateDataPipeline_0 = runtime.ForwardResponseMessage
 
-	forward_DataPipelinesService_UpdateDataPipeline_0 = runtime.ForwardResponseMessage
+	forward_DataPipelinesService_RenameDataPipeline_0 = runtime.ForwardResponseMessage
 
 	forward_DataPipelinesService_DeleteDataPipeline_0 = runtime.ForwardResponseMessage
 

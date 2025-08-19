@@ -37,13 +37,13 @@ DataPipelinesService.CreateDataPipeline = {
   responseType: app_datapipelines_v1_data_pipelines_pb.CreateDataPipelineResponse
 };
 
-DataPipelinesService.UpdateDataPipeline = {
-  methodName: "UpdateDataPipeline",
+DataPipelinesService.RenameDataPipeline = {
+  methodName: "RenameDataPipeline",
   service: DataPipelinesService,
   requestStream: false,
   responseStream: false,
-  requestType: app_datapipelines_v1_data_pipelines_pb.UpdateDataPipelineRequest,
-  responseType: app_datapipelines_v1_data_pipelines_pb.UpdateDataPipelineResponse
+  requestType: app_datapipelines_v1_data_pipelines_pb.RenameDataPipelineRequest,
+  responseType: app_datapipelines_v1_data_pipelines_pb.RenameDataPipelineResponse
 };
 
 DataPipelinesService.DeleteDataPipeline = {
@@ -182,11 +182,11 @@ DataPipelinesServiceClient.prototype.createDataPipeline = function createDataPip
   };
 };
 
-DataPipelinesServiceClient.prototype.updateDataPipeline = function updateDataPipeline(requestMessage, metadata, callback) {
+DataPipelinesServiceClient.prototype.renameDataPipeline = function renameDataPipeline(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataPipelinesService.UpdateDataPipeline, {
+  var client = grpc.unary(DataPipelinesService.RenameDataPipeline, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -4010,6 +4010,9 @@ export class PartSummary extends jspb.Message {
   getPartName(): string;
   setPartName(value: string): void;
 
+  getIsMainPart(): boolean;
+  setIsMainPart(value: boolean): void;
+
   hasLastOnline(): boolean;
   clearLastOnline(): void;
   getLastOnline(): google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -4040,6 +4043,11 @@ export class PartSummary extends jspb.Message {
   getPublicIpAddress(): string;
   setPublicIpAddress(value: string): void;
 
+  hasDnsName(): boolean;
+  clearDnsName(): void;
+  getDnsName(): string;
+  setDnsName(value: string): void;
+
   clearFragmentsList(): void;
   getFragmentsList(): Array<FragmentSummary>;
   setFragmentsList(value: Array<FragmentSummary>): void;
@@ -4059,12 +4067,14 @@ export namespace PartSummary {
   export type AsObject = {
     partId: string,
     partName: string,
+    isMainPart: boolean,
     lastOnline?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     viamServerVersion?: ViamServerVersion.AsObject,
     viamAgentVersion?: ViamAgentVersion.AsObject,
     os: string,
     platform: string,
     publicIpAddress: string,
+    dnsName: string,
     fragmentsList: Array<FragmentSummary.AsObject>,
   }
 }
@@ -6677,6 +6687,9 @@ export class GetAppContentResponse extends jspb.Message {
   getEntrypoint(): string;
   setEntrypoint(value: string): void;
 
+  getAppType(): AppTypeMap[keyof AppTypeMap];
+  setAppType(value: AppTypeMap[keyof AppTypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAppContentResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetAppContentResponse): GetAppContentResponse.AsObject;
@@ -6691,6 +6704,7 @@ export namespace GetAppContentResponse {
   export type AsObject = {
     blobPath: string,
     entrypoint: string,
+    appType: AppTypeMap[keyof AppTypeMap],
   }
 }
 
@@ -7307,6 +7321,14 @@ export interface VisibilityMap {
 }
 
 export const Visibility: VisibilityMap;
+
+export interface AppTypeMap {
+  APP_TYPE_UNSPECIFIED: 0;
+  APP_TYPE_SINGLE_MACHINE: 1;
+  APP_TYPE_MULTI_MACHINE: 2;
+}
+
+export const AppType: AppTypeMap;
 
 export interface ClientAuthenticationMap {
   CLIENT_AUTHENTICATION_UNSPECIFIED: 0;

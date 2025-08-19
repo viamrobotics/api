@@ -500,5 +500,66 @@ proto.viam.app.v1.BillingServicePromiseClient.prototype.updateOrganizationBillin
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest,
+ *   !proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse>}
+ */
+const methodDescriptor_BillingService_CreateInvoiceAndChargeImmediately = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/CreateInvoiceAndChargeImmediately',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest,
+  proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse,
+  /**
+   * @param {!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.createInvoiceAndChargeImmediately =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/CreateInvoiceAndChargeImmediately',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_CreateInvoiceAndChargeImmediately,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.createInvoiceAndChargeImmediately =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/CreateInvoiceAndChargeImmediately',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_CreateInvoiceAndChargeImmediately);
+};
+
+
 module.exports = proto.viam.app.v1;
 

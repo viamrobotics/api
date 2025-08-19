@@ -244,3 +244,53 @@ export namespace ListDatasetsByIDsResponse {
   }
 }
 
+export class MergeDatasetsRequest extends jspb.Message {
+  clearDatasetIdsList(): void;
+  getDatasetIdsList(): Array<string>;
+  setDatasetIdsList(value: Array<string>): void;
+  addDatasetIds(value: string, index?: number): string;
+
+  getName(): string;
+  setName(value: string): void;
+
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MergeDatasetsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: MergeDatasetsRequest): MergeDatasetsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MergeDatasetsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MergeDatasetsRequest;
+  static deserializeBinaryFromReader(message: MergeDatasetsRequest, reader: jspb.BinaryReader): MergeDatasetsRequest;
+}
+
+export namespace MergeDatasetsRequest {
+  export type AsObject = {
+    datasetIdsList: Array<string>,
+    name: string,
+    organizationId: string,
+  }
+}
+
+export class MergeDatasetsResponse extends jspb.Message {
+  getDatasetId(): string;
+  setDatasetId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MergeDatasetsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: MergeDatasetsResponse): MergeDatasetsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MergeDatasetsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MergeDatasetsResponse;
+  static deserializeBinaryFromReader(message: MergeDatasetsResponse, reader: jspb.BinaryReader): MergeDatasetsResponse;
+}
+
+export namespace MergeDatasetsResponse {
+  export type AsObject = {
+    datasetId: string,
+  }
+}
+
