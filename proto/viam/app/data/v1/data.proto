@@ -59,9 +59,9 @@ service DataService {
   }
 
   // TagsByFilter gets all unique tags from data based on given filter.
-  rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse){
-        option deprecated = true;
-  };
+  rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse) {
+    option deprecated = true;
+  }
 
   // AddBoundingBoxToImageByID adds a bounding box to an image with the given ID.
   rpc AddBoundingBoxToImageByID(AddBoundingBoxToImageByIDRequest) returns (AddBoundingBoxToImageByIDResponse);
@@ -70,9 +70,9 @@ service DataService {
   rpc RemoveBoundingBoxFromImageByID(RemoveBoundingBoxFromImageByIDRequest) returns (RemoveBoundingBoxFromImageByIDResponse);
 
   // BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
-  rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse){
-        option deprecated = true;
-  };
+  rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse) {
+    option deprecated = true;
+  }
 
   // UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
   rpc UpdateBoundingBox(UpdateBoundingBoxRequest) returns (UpdateBoundingBoxResponse);
