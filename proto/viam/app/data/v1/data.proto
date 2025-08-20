@@ -59,7 +59,9 @@ service DataService {
   }
 
   // TagsByFilter gets all unique tags from data based on given filter.
-  rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse);
+  rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse){
+        option deprecated = true;
+  };
 
   // AddBoundingBoxToImageByID adds a bounding box to an image with the given ID.
   rpc AddBoundingBoxToImageByID(AddBoundingBoxToImageByIDRequest) returns (AddBoundingBoxToImageByIDResponse);
@@ -68,7 +70,9 @@ service DataService {
   rpc RemoveBoundingBoxFromImageByID(RemoveBoundingBoxFromImageByIDRequest) returns (RemoveBoundingBoxFromImageByIDResponse);
 
   // BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
-  rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse);
+  rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse){
+        option deprecated = true;
+  };
 
   // UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
   rpc UpdateBoundingBox(UpdateBoundingBoxRequest) returns (UpdateBoundingBoxResponse);
@@ -499,11 +503,13 @@ message RemoveTagsFromBinaryDataByFilterResponse {
 
 // TagsByFilterRequest requests the unique tags from data based on given filter.
 message TagsByFilterRequest {
+  option deprecated = true;
   Filter filter = 1;
 }
 
 // TagsByFilterResponse returns the unique tags from data based on given filter.
 message TagsByFilterResponse {
+  option deprecated = true;
   repeated string tags = 1;
 }
 
@@ -555,11 +561,13 @@ message UpdateBoundingBoxResponse {}
 
 // BoundingBoxLabelsByFilterRequest requests all the labels of the bounding boxes from files from a given filter.
 message BoundingBoxLabelsByFilterRequest {
+  option deprecated = true;
   Filter filter = 1;
 }
 
 // BoundingBoxLabelsByFilterRequest returns all the labels of the bounding boxes from files from a given filter.
 message BoundingBoxLabelsByFilterResponse {
+  option deprecated = true;
   repeated string labels = 1;
 }
 
