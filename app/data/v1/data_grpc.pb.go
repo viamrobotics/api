@@ -53,12 +53,14 @@ type DataServiceClient interface {
 	// Deprecated: Do not use.
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(ctx context.Context, in *RemoveTagsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFilterResponse, error)
+	// Deprecated: Do not use.
 	// TagsByFilter gets all unique tags from data based on given filter.
 	TagsByFilter(ctx context.Context, in *TagsByFilterRequest, opts ...grpc.CallOption) (*TagsByFilterResponse, error)
 	// AddBoundingBoxToImageByID adds a bounding box to an image with the given ID.
 	AddBoundingBoxToImageByID(ctx context.Context, in *AddBoundingBoxToImageByIDRequest, opts ...grpc.CallOption) (*AddBoundingBoxToImageByIDResponse, error)
 	// RemoveBoundingBoxFromImageByID removes a bounding box from an image with the given ID.
 	RemoveBoundingBoxFromImageByID(ctx context.Context, in *RemoveBoundingBoxFromImageByIDRequest, opts ...grpc.CallOption) (*RemoveBoundingBoxFromImageByIDResponse, error)
+	// Deprecated: Do not use.
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(ctx context.Context, in *BoundingBoxLabelsByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxLabelsByFilterResponse, error)
 	// UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
@@ -235,6 +237,7 @@ func (c *dataServiceClient) RemoveTagsFromBinaryDataByFilter(ctx context.Context
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *dataServiceClient) TagsByFilter(ctx context.Context, in *TagsByFilterRequest, opts ...grpc.CallOption) (*TagsByFilterResponse, error) {
 	out := new(TagsByFilterResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/TagsByFilter", in, out, opts...)
@@ -262,6 +265,7 @@ func (c *dataServiceClient) RemoveBoundingBoxFromImageByID(ctx context.Context, 
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *dataServiceClient) BoundingBoxLabelsByFilter(ctx context.Context, in *BoundingBoxLabelsByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxLabelsByFilterResponse, error) {
 	out := new(BoundingBoxLabelsByFilterResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/BoundingBoxLabelsByFilter", in, out, opts...)
@@ -351,12 +355,14 @@ type DataServiceServer interface {
 	// Deprecated: Do not use.
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(context.Context, *RemoveTagsFromBinaryDataByFilterRequest) (*RemoveTagsFromBinaryDataByFilterResponse, error)
+	// Deprecated: Do not use.
 	// TagsByFilter gets all unique tags from data based on given filter.
 	TagsByFilter(context.Context, *TagsByFilterRequest) (*TagsByFilterResponse, error)
 	// AddBoundingBoxToImageByID adds a bounding box to an image with the given ID.
 	AddBoundingBoxToImageByID(context.Context, *AddBoundingBoxToImageByIDRequest) (*AddBoundingBoxToImageByIDResponse, error)
 	// RemoveBoundingBoxFromImageByID removes a bounding box from an image with the given ID.
 	RemoveBoundingBoxFromImageByID(context.Context, *RemoveBoundingBoxFromImageByIDRequest) (*RemoveBoundingBoxFromImageByIDResponse, error)
+	// Deprecated: Do not use.
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error)
 	// UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
