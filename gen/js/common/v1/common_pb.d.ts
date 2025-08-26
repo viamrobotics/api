@@ -270,6 +270,28 @@ export namespace Mesh {
   }
 }
 
+export class PointCloud extends jspb.Message {
+  getPointCloud(): Uint8Array | string;
+  getPointCloud_asU8(): Uint8Array;
+  getPointCloud_asB64(): string;
+  setPointCloud(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PointCloud.AsObject;
+  static toObject(includeInstance: boolean, msg: PointCloud): PointCloud.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PointCloud, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PointCloud;
+  static deserializeBinaryFromReader(message: PointCloud, reader: jspb.BinaryReader): PointCloud;
+}
+
+export namespace PointCloud {
+  export type AsObject = {
+    pointCloud: Uint8Array | string,
+  }
+}
+
 export class Geometry extends jspb.Message {
   hasCenter(): boolean;
   clearCenter(): void;
@@ -296,6 +318,11 @@ export class Geometry extends jspb.Message {
   getMesh(): Mesh | undefined;
   setMesh(value?: Mesh): void;
 
+  hasPointcloud(): boolean;
+  clearPointcloud(): void;
+  getPointcloud(): PointCloud | undefined;
+  setPointcloud(value?: PointCloud): void;
+
   getLabel(): string;
   setLabel(value: string): void;
 
@@ -317,6 +344,7 @@ export namespace Geometry {
     box?: RectangularPrism.AsObject,
     capsule?: Capsule.AsObject,
     mesh?: Mesh.AsObject,
+    pointcloud?: PointCloud.AsObject,
     label: string,
   }
 
@@ -326,6 +354,7 @@ export namespace Geometry {
     BOX = 3,
     CAPSULE = 5,
     MESH = 6,
+    POINTCLOUD = 7,
   }
 }
 
@@ -449,6 +478,16 @@ export class Transform extends jspb.Message {
   getPhysicalObject(): Geometry | undefined;
   setPhysicalObject(value?: Geometry): void;
 
+  getUuid(): Uint8Array | string;
+  getUuid_asU8(): Uint8Array;
+  getUuid_asB64(): string;
+  setUuid(value: Uint8Array | string): void;
+
+  hasMetadata(): boolean;
+  clearMetadata(): void;
+  getMetadata(): google_protobuf_struct_pb.Struct | undefined;
+  setMetadata(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Transform.AsObject;
   static toObject(includeInstance: boolean, msg: Transform): Transform.AsObject;
@@ -464,6 +503,8 @@ export namespace Transform {
     referenceFrame: string,
     poseInObserverFrame?: PoseInFrame.AsObject,
     physicalObject?: Geometry.AsObject,
+    uuid: Uint8Array | string,
+    metadata?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
