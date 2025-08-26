@@ -571,6 +571,11 @@ export class Constraints extends jspb.Message {
   setCollisionSpecificationList(value: Array<CollisionSpecification>): void;
   addCollisionSpecification(value?: CollisionSpecification, index?: number): CollisionSpecification;
 
+  clearPseudolinearConstraintList(): void;
+  getPseudolinearConstraintList(): Array<PseudolinearConstraint>;
+  setPseudolinearConstraintList(value: Array<PseudolinearConstraint>): void;
+  addPseudolinearConstraint(value?: PseudolinearConstraint, index?: number): PseudolinearConstraint;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Constraints.AsObject;
   static toObject(includeInstance: boolean, msg: Constraints): Constraints.AsObject;
@@ -586,6 +591,7 @@ export namespace Constraints {
     linearConstraintList: Array<LinearConstraint.AsObject>,
     orientationConstraintList: Array<OrientationConstraint.AsObject>,
     collisionSpecificationList: Array<CollisionSpecification.AsObject>,
+    pseudolinearConstraintList: Array<PseudolinearConstraint.AsObject>,
   }
 }
 
@@ -614,6 +620,34 @@ export namespace LinearConstraint {
   export type AsObject = {
     lineToleranceMm: number,
     orientationToleranceDegs: number,
+  }
+}
+
+export class PseudolinearConstraint extends jspb.Message {
+  hasLineToleranceFactor(): boolean;
+  clearLineToleranceFactor(): void;
+  getLineToleranceFactor(): number;
+  setLineToleranceFactor(value: number): void;
+
+  hasOrientationToleranceFactor(): boolean;
+  clearOrientationToleranceFactor(): void;
+  getOrientationToleranceFactor(): number;
+  setOrientationToleranceFactor(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PseudolinearConstraint.AsObject;
+  static toObject(includeInstance: boolean, msg: PseudolinearConstraint): PseudolinearConstraint.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PseudolinearConstraint, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PseudolinearConstraint;
+  static deserializeBinaryFromReader(message: PseudolinearConstraint, reader: jspb.BinaryReader): PseudolinearConstraint;
+}
+
+export namespace PseudolinearConstraint {
+  export type AsObject = {
+    lineToleranceFactor: number,
+    orientationToleranceFactor: number,
   }
 }
 
