@@ -72,15 +72,15 @@ message MoveRequest {
   string name = 1;
   // Destination to move to, which can a pose in the reference frame of any frame in the robot's frame system
   common.v1.PoseInFrame destination = 2;
-   // Deprecated, use component_name_string field.
-  common.v1.ResourceName component_name = 3 [deprecated = true];
+   // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 3 [deprecated = true];
   // Avoid obstacles by specifying their geometries in the world state
   // Augment the frame system of the robot by specifying additional transforms to add to it for the duration of the Move
   optional common.v1.WorldState world_state = 4;
   // Constrain the way the robot will move
   optional Constraints constraints = 5;
   // Component on the robot to move to the specified destination
-  string component_name_string = 6;
+  string component_name = 6;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -94,18 +94,18 @@ message MoveOnMapRequest {
   string name = 1;
   // Specify a destination to, which can be any pose with respect to the SLAM map's origin
   common.v1.Pose destination = 2;
-   // Deprecated, use component_name_string field.
-  common.v1.ResourceName component_name = 3 [deprecated = true];
-   // Deprecated, use slam_service_name_string field.
-  common.v1.ResourceName slam_service_name = 4 [deprecated = true];
+   // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 3 [deprecated = true];
+   // Deprecated, use slam_service_name field.
+  common.v1.ResourceName slam_service_name_deprecated = 4 [deprecated = true];
   // Optional set of motion configuration options
   optional MotionConfiguration motion_configuration = 5;
   // Obstacles to be considered for motion planning
   repeated common.v1.Geometry obstacles = 6;
   // Component on the robot to move to the specified destination
-  string component_name_string = 7;
+  string component_name = 7;
   // Name of the slam service from which the SLAM map is requested
-  string slam_service_name_string = 8;
+  string slam_service_name = 8;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -119,10 +119,10 @@ message MoveOnMapResponse {
 
 // Pairs a vision service with a camera, informing the service about which camera it may use
 message ObstacleDetector {
-  common.v1.ResourceName vision_service = 1 [deprecated = true];
-  common.v1.ResourceName camera = 2 [deprecated = true];
-  string vision_service_string = 3;
-  string camera_string = 4;
+  common.v1.ResourceName vision_service_deprecated = 1 [deprecated = true];
+  common.v1.ResourceName camera_deprecated = 2 [deprecated = true];
+  string vision_service = 3;
+  string camera = 4;
 }
 
 message MotionConfiguration {
@@ -147,10 +147,10 @@ message MoveOnGlobeRequest {
   common.v1.GeoPoint destination = 2;
   // Optional compass heading to achieve at the destination, in degrees [0-360)
   optional double heading = 3;
-   // Deprecated, use component_name_string field.
-  common.v1.ResourceName component_name = 4 [deprecated = true];
-   // Deprecated, use movement_sensor_name_string field.
-  common.v1.ResourceName movement_sensor_name = 5 [deprecated = true];
+   // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 4 [deprecated = true];
+   // Deprecated, use movement_sensor_name field.
+  common.v1.ResourceName movement_sensor_name_deprecated = 5 [deprecated = true];
   // Obstacles to be considered for motion planning
   repeated common.v1.GeoGeometry obstacles = 6;
   // Optional set of motion configuration options
@@ -158,9 +158,9 @@ message MoveOnGlobeRequest {
   // Set of obstacles which the robot must remain within while navigating
   repeated common.v1.GeoGeometry bounding_regions = 8;
   // Component on the robot to move to the specified destination
-  string component_name_string = 9;
+  string component_name = 9;
   // Name of the movement sensor which will be used to check robot location
-  string movement_sensor_name_string = 10;
+  string movement_sensor_name = 10;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -175,8 +175,8 @@ message MoveOnGlobeResponse {
 message GetPoseRequest {
   option deprecated = true;
   string name = 1;
-  // Deprecated, use component_name_string field.
-  common.v1.ResourceName component_name = 2 [deprecated = true];
+  // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 2 [deprecated = true];
   // the reference frame in which the component's pose
   // should be provided, if unset this defaults
   // to the "world" reference frame
@@ -185,7 +185,7 @@ message GetPoseRequest {
   // to compute the component's pose
   repeated common.v1.Transform supplemental_transforms = 4;
   // the component whose pose is being requested
-  string component_name_string = 5;
+  string component_name = 5;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -199,11 +199,11 @@ message StopPlanRequest {
   // The name of the motion service
   string name = 1;
 
-  // Deprecated, use component_name_string field.
-  common.v1.ResourceName component_name = 2 [deprecated = true];
+  // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 2 [deprecated = true];
 
   // The component of the currently executing plan to stop
-  string component_name_string = 3;
+  string component_name = 3;
 
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
@@ -233,8 +233,8 @@ message GetPlanRequest {
   // The name of the motion service
   string name = 1;
 
-  // Deprecated, use component_name_string field.
-  common.v1.ResourceName component_name = 2 [deprecated = true];
+  // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 2 [deprecated = true];
 
   // If supplied, the response will only return
   // the the last plan for the component / execution
@@ -244,7 +244,7 @@ message GetPlanRequest {
   optional string execution_id = 4;
 
   // The name of the component which was requested to be moved.
-  string component_name_string = 5;
+  string component_name = 5;
 
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
@@ -315,8 +315,8 @@ message PlanStatusWithID {
   // The unique ID of the plan
   string plan_id = 1;
 
-  // Deprecated, use component_name_string field.
-  common.v1.ResourceName component_name = 2 [deprecated = true];
+  // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 2 [deprecated = true];
 
   // The unique ID which identifies the plan execution.
   // Multiple plans will share the same execution_id if they were
@@ -328,8 +328,8 @@ message PlanStatusWithID {
   // The component to be moved.
   // Used for tracking & stopping.
   // NOTE: A plan may move more components than just the
-  // component_name_string.
-  string component_name_string = 5;
+  // component_name.
+  string component_name = 5;
 }
 
 // Plan status describes the state of a given plan at a
@@ -366,8 +366,8 @@ message Plan {
   // The plan's unique ID
   string id = 1;
 
-  // Deprecated, use component_name_string field.
-  common.v1.ResourceName component_name = 2 [deprecated = true];
+  // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 2 [deprecated = true];
 
   // The unique ID which identifies the execution.
   // Multiple plans will share the same execution_id if they were
@@ -381,7 +381,7 @@ message Plan {
   // Used for tracking & stopping.
   // NOTE: A plan may move more components than just the
   // root component.
-  string component_name_string = 5;
+  string component_name = 5;
 }
 
 message PlanStep {
