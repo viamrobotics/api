@@ -674,9 +674,10 @@ proto.viam.service.motion.v1.MoveRequest.toObject = function(includeInstance, ms
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     destination: (f = msg.getDestination()) && common_v1_common_pb.PoseInFrame.toObject(includeInstance, f),
-    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    componentNameDeprecated: (f = msg.getComponentNameDeprecated()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     worldState: (f = msg.getWorldState()) && common_v1_common_pb.WorldState.toObject(includeInstance, f),
     constraints: (f = msg.getConstraints()) && proto.viam.service.motion.v1.Constraints.toObject(includeInstance, f),
+    componentName: jspb.Message.getFieldWithDefault(msg, 6, ""),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -726,7 +727,7 @@ proto.viam.service.motion.v1.MoveRequest.deserializeBinaryFromReader = function(
     case 3:
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
-      msg.setComponentName(value);
+      msg.setComponentNameDeprecated(value);
       break;
     case 4:
       var value = new common_v1_common_pb.WorldState;
@@ -737,6 +738,10 @@ proto.viam.service.motion.v1.MoveRequest.deserializeBinaryFromReader = function(
       var value = new proto.viam.service.motion.v1.Constraints;
       reader.readMessage(value,proto.viam.service.motion.v1.Constraints.deserializeBinaryFromReader);
       msg.setConstraints(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setComponentName(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -787,7 +792,7 @@ proto.viam.service.motion.v1.MoveRequest.serializeBinaryToWriter = function(mess
       common_v1_common_pb.PoseInFrame.serializeBinaryToWriter
     );
   }
-  f = message.getComponentName();
+  f = message.getComponentNameDeprecated();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -809,6 +814,13 @@ proto.viam.service.motion.v1.MoveRequest.serializeBinaryToWriter = function(mess
       5,
       f,
       proto.viam.service.motion.v1.Constraints.serializeBinaryToWriter
+    );
+  }
+  f = message.getComponentName();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
     );
   }
   f = message.getExtra();
@@ -878,10 +890,10 @@ proto.viam.service.motion.v1.MoveRequest.prototype.hasDestination = function() {
 
 
 /**
- * optional viam.common.v1.ResourceName component_name = 3;
+ * optional viam.common.v1.ResourceName component_name_deprecated = 3;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.service.motion.v1.MoveRequest.prototype.getComponentName = function() {
+proto.viam.service.motion.v1.MoveRequest.prototype.getComponentNameDeprecated = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 3));
 };
@@ -891,7 +903,7 @@ proto.viam.service.motion.v1.MoveRequest.prototype.getComponentName = function()
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
  * @return {!proto.viam.service.motion.v1.MoveRequest} returns this
 */
-proto.viam.service.motion.v1.MoveRequest.prototype.setComponentName = function(value) {
+proto.viam.service.motion.v1.MoveRequest.prototype.setComponentNameDeprecated = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
@@ -900,8 +912,8 @@ proto.viam.service.motion.v1.MoveRequest.prototype.setComponentName = function(v
  * Clears the message field making it undefined.
  * @return {!proto.viam.service.motion.v1.MoveRequest} returns this
  */
-proto.viam.service.motion.v1.MoveRequest.prototype.clearComponentName = function() {
-  return this.setComponentName(undefined);
+proto.viam.service.motion.v1.MoveRequest.prototype.clearComponentNameDeprecated = function() {
+  return this.setComponentNameDeprecated(undefined);
 };
 
 
@@ -909,7 +921,7 @@ proto.viam.service.motion.v1.MoveRequest.prototype.clearComponentName = function
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.MoveRequest.prototype.hasComponentName = function() {
+proto.viam.service.motion.v1.MoveRequest.prototype.hasComponentNameDeprecated = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -985,6 +997,24 @@ proto.viam.service.motion.v1.MoveRequest.prototype.clearConstraints = function()
  */
 proto.viam.service.motion.v1.MoveRequest.prototype.hasConstraints = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional string component_name = 6;
+ * @return {string}
+ */
+proto.viam.service.motion.v1.MoveRequest.prototype.getComponentName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.motion.v1.MoveRequest} returns this
+ */
+proto.viam.service.motion.v1.MoveRequest.prototype.setComponentName = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -1196,11 +1226,13 @@ proto.viam.service.motion.v1.MoveOnMapRequest.toObject = function(includeInstanc
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     destination: (f = msg.getDestination()) && common_v1_common_pb.Pose.toObject(includeInstance, f),
-    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-    slamServiceName: (f = msg.getSlamServiceName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    componentNameDeprecated: (f = msg.getComponentNameDeprecated()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    slamServiceNameDeprecated: (f = msg.getSlamServiceNameDeprecated()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     motionConfiguration: (f = msg.getMotionConfiguration()) && proto.viam.service.motion.v1.MotionConfiguration.toObject(includeInstance, f),
     obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
     common_v1_common_pb.Geometry.toObject, includeInstance),
+    componentName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    slamServiceName: jspb.Message.getFieldWithDefault(msg, 8, ""),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -1250,12 +1282,12 @@ proto.viam.service.motion.v1.MoveOnMapRequest.deserializeBinaryFromReader = func
     case 3:
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
-      msg.setComponentName(value);
+      msg.setComponentNameDeprecated(value);
       break;
     case 4:
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
-      msg.setSlamServiceName(value);
+      msg.setSlamServiceNameDeprecated(value);
       break;
     case 5:
       var value = new proto.viam.service.motion.v1.MotionConfiguration;
@@ -1266,6 +1298,14 @@ proto.viam.service.motion.v1.MoveOnMapRequest.deserializeBinaryFromReader = func
       var value = new common_v1_common_pb.Geometry;
       reader.readMessage(value,common_v1_common_pb.Geometry.deserializeBinaryFromReader);
       msg.addObstacles(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setComponentName(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSlamServiceName(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -1316,7 +1356,7 @@ proto.viam.service.motion.v1.MoveOnMapRequest.serializeBinaryToWriter = function
       common_v1_common_pb.Pose.serializeBinaryToWriter
     );
   }
-  f = message.getComponentName();
+  f = message.getComponentNameDeprecated();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -1324,7 +1364,7 @@ proto.viam.service.motion.v1.MoveOnMapRequest.serializeBinaryToWriter = function
       common_v1_common_pb.ResourceName.serializeBinaryToWriter
     );
   }
-  f = message.getSlamServiceName();
+  f = message.getSlamServiceNameDeprecated();
   if (f != null) {
     writer.writeMessage(
       4,
@@ -1346,6 +1386,20 @@ proto.viam.service.motion.v1.MoveOnMapRequest.serializeBinaryToWriter = function
       6,
       f,
       common_v1_common_pb.Geometry.serializeBinaryToWriter
+    );
+  }
+  f = message.getComponentName();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getSlamServiceName();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
     );
   }
   f = message.getExtra();
@@ -1415,10 +1469,10 @@ proto.viam.service.motion.v1.MoveOnMapRequest.prototype.hasDestination = functio
 
 
 /**
- * optional viam.common.v1.ResourceName component_name = 3;
+ * optional viam.common.v1.ResourceName component_name_deprecated = 3;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.service.motion.v1.MoveOnMapRequest.prototype.getComponentName = function() {
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.getComponentNameDeprecated = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 3));
 };
@@ -1428,7 +1482,7 @@ proto.viam.service.motion.v1.MoveOnMapRequest.prototype.getComponentName = funct
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
  * @return {!proto.viam.service.motion.v1.MoveOnMapRequest} returns this
 */
-proto.viam.service.motion.v1.MoveOnMapRequest.prototype.setComponentName = function(value) {
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.setComponentNameDeprecated = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
@@ -1437,8 +1491,8 @@ proto.viam.service.motion.v1.MoveOnMapRequest.prototype.setComponentName = funct
  * Clears the message field making it undefined.
  * @return {!proto.viam.service.motion.v1.MoveOnMapRequest} returns this
  */
-proto.viam.service.motion.v1.MoveOnMapRequest.prototype.clearComponentName = function() {
-  return this.setComponentName(undefined);
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.clearComponentNameDeprecated = function() {
+  return this.setComponentNameDeprecated(undefined);
 };
 
 
@@ -1446,16 +1500,16 @@ proto.viam.service.motion.v1.MoveOnMapRequest.prototype.clearComponentName = fun
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.MoveOnMapRequest.prototype.hasComponentName = function() {
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.hasComponentNameDeprecated = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional viam.common.v1.ResourceName slam_service_name = 4;
+ * optional viam.common.v1.ResourceName slam_service_name_deprecated = 4;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.service.motion.v1.MoveOnMapRequest.prototype.getSlamServiceName = function() {
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.getSlamServiceNameDeprecated = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 4));
 };
@@ -1465,7 +1519,7 @@ proto.viam.service.motion.v1.MoveOnMapRequest.prototype.getSlamServiceName = fun
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
  * @return {!proto.viam.service.motion.v1.MoveOnMapRequest} returns this
 */
-proto.viam.service.motion.v1.MoveOnMapRequest.prototype.setSlamServiceName = function(value) {
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.setSlamServiceNameDeprecated = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
@@ -1474,8 +1528,8 @@ proto.viam.service.motion.v1.MoveOnMapRequest.prototype.setSlamServiceName = fun
  * Clears the message field making it undefined.
  * @return {!proto.viam.service.motion.v1.MoveOnMapRequest} returns this
  */
-proto.viam.service.motion.v1.MoveOnMapRequest.prototype.clearSlamServiceName = function() {
-  return this.setSlamServiceName(undefined);
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.clearSlamServiceNameDeprecated = function() {
+  return this.setSlamServiceNameDeprecated(undefined);
 };
 
 
@@ -1483,7 +1537,7 @@ proto.viam.service.motion.v1.MoveOnMapRequest.prototype.clearSlamServiceName = f
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.MoveOnMapRequest.prototype.hasSlamServiceName = function() {
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.hasSlamServiceNameDeprecated = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -1560,6 +1614,42 @@ proto.viam.service.motion.v1.MoveOnMapRequest.prototype.addObstacles = function(
  */
 proto.viam.service.motion.v1.MoveOnMapRequest.prototype.clearObstaclesList = function() {
   return this.setObstaclesList([]);
+};
+
+
+/**
+ * optional string component_name = 7;
+ * @return {string}
+ */
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.getComponentName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.motion.v1.MoveOnMapRequest} returns this
+ */
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.setComponentName = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string slam_service_name = 8;
+ * @return {string}
+ */
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.getSlamServiceName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.motion.v1.MoveOnMapRequest} returns this
+ */
+proto.viam.service.motion.v1.MoveOnMapRequest.prototype.setSlamServiceName = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
@@ -1762,8 +1852,10 @@ proto.viam.service.motion.v1.ObstacleDetector.prototype.toObject = function(opt_
  */
 proto.viam.service.motion.v1.ObstacleDetector.toObject = function(includeInstance, msg) {
   var f, obj = {
-    visionService: (f = msg.getVisionService()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-    camera: (f = msg.getCamera()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f)
+    visionServiceDeprecated: (f = msg.getVisionServiceDeprecated()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    cameraDeprecated: (f = msg.getCameraDeprecated()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    visionService: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    camera: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -1803,11 +1895,19 @@ proto.viam.service.motion.v1.ObstacleDetector.deserializeBinaryFromReader = func
     case 1:
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
-      msg.setVisionService(value);
+      msg.setVisionServiceDeprecated(value);
       break;
     case 2:
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
+      msg.setCameraDeprecated(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVisionService(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
       msg.setCamera(value);
       break;
     default:
@@ -1839,7 +1939,7 @@ proto.viam.service.motion.v1.ObstacleDetector.prototype.serializeBinary = functi
  */
 proto.viam.service.motion.v1.ObstacleDetector.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getVisionService();
+  f = message.getVisionServiceDeprecated();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -1847,7 +1947,7 @@ proto.viam.service.motion.v1.ObstacleDetector.serializeBinaryToWriter = function
       common_v1_common_pb.ResourceName.serializeBinaryToWriter
     );
   }
-  f = message.getCamera();
+  f = message.getCameraDeprecated();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -1855,14 +1955,28 @@ proto.viam.service.motion.v1.ObstacleDetector.serializeBinaryToWriter = function
       common_v1_common_pb.ResourceName.serializeBinaryToWriter
     );
   }
+  f = message.getVisionService();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getCamera();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
 };
 
 
 /**
- * optional viam.common.v1.ResourceName vision_service = 1;
+ * optional viam.common.v1.ResourceName vision_service_deprecated = 1;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.service.motion.v1.ObstacleDetector.prototype.getVisionService = function() {
+proto.viam.service.motion.v1.ObstacleDetector.prototype.getVisionServiceDeprecated = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 1));
 };
@@ -1872,7 +1986,7 @@ proto.viam.service.motion.v1.ObstacleDetector.prototype.getVisionService = funct
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
  * @return {!proto.viam.service.motion.v1.ObstacleDetector} returns this
 */
-proto.viam.service.motion.v1.ObstacleDetector.prototype.setVisionService = function(value) {
+proto.viam.service.motion.v1.ObstacleDetector.prototype.setVisionServiceDeprecated = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -1881,8 +1995,8 @@ proto.viam.service.motion.v1.ObstacleDetector.prototype.setVisionService = funct
  * Clears the message field making it undefined.
  * @return {!proto.viam.service.motion.v1.ObstacleDetector} returns this
  */
-proto.viam.service.motion.v1.ObstacleDetector.prototype.clearVisionService = function() {
-  return this.setVisionService(undefined);
+proto.viam.service.motion.v1.ObstacleDetector.prototype.clearVisionServiceDeprecated = function() {
+  return this.setVisionServiceDeprecated(undefined);
 };
 
 
@@ -1890,16 +2004,16 @@ proto.viam.service.motion.v1.ObstacleDetector.prototype.clearVisionService = fun
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.ObstacleDetector.prototype.hasVisionService = function() {
+proto.viam.service.motion.v1.ObstacleDetector.prototype.hasVisionServiceDeprecated = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional viam.common.v1.ResourceName camera = 2;
+ * optional viam.common.v1.ResourceName camera_deprecated = 2;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.service.motion.v1.ObstacleDetector.prototype.getCamera = function() {
+proto.viam.service.motion.v1.ObstacleDetector.prototype.getCameraDeprecated = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 2));
 };
@@ -1909,7 +2023,7 @@ proto.viam.service.motion.v1.ObstacleDetector.prototype.getCamera = function() {
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
  * @return {!proto.viam.service.motion.v1.ObstacleDetector} returns this
 */
-proto.viam.service.motion.v1.ObstacleDetector.prototype.setCamera = function(value) {
+proto.viam.service.motion.v1.ObstacleDetector.prototype.setCameraDeprecated = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -1918,8 +2032,8 @@ proto.viam.service.motion.v1.ObstacleDetector.prototype.setCamera = function(val
  * Clears the message field making it undefined.
  * @return {!proto.viam.service.motion.v1.ObstacleDetector} returns this
  */
-proto.viam.service.motion.v1.ObstacleDetector.prototype.clearCamera = function() {
-  return this.setCamera(undefined);
+proto.viam.service.motion.v1.ObstacleDetector.prototype.clearCameraDeprecated = function() {
+  return this.setCameraDeprecated(undefined);
 };
 
 
@@ -1927,8 +2041,44 @@ proto.viam.service.motion.v1.ObstacleDetector.prototype.clearCamera = function()
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.ObstacleDetector.prototype.hasCamera = function() {
+proto.viam.service.motion.v1.ObstacleDetector.prototype.hasCameraDeprecated = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional string vision_service = 3;
+ * @return {string}
+ */
+proto.viam.service.motion.v1.ObstacleDetector.prototype.getVisionService = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.motion.v1.ObstacleDetector} returns this
+ */
+proto.viam.service.motion.v1.ObstacleDetector.prototype.setVisionService = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string camera = 4;
+ * @return {string}
+ */
+proto.viam.service.motion.v1.ObstacleDetector.prototype.getCamera = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.motion.v1.ObstacleDetector} returns this
+ */
+proto.viam.service.motion.v1.ObstacleDetector.prototype.setCamera = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -2374,13 +2524,15 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.toObject = function(includeInsta
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     destination: (f = msg.getDestination()) && common_v1_common_pb.GeoPoint.toObject(includeInstance, f),
     heading: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
-    movementSensorName: (f = msg.getMovementSensorName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    componentNameDeprecated: (f = msg.getComponentNameDeprecated()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    movementSensorNameDeprecated: (f = msg.getMovementSensorNameDeprecated()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
     common_v1_common_pb.GeoGeometry.toObject, includeInstance),
     motionConfiguration: (f = msg.getMotionConfiguration()) && proto.viam.service.motion.v1.MotionConfiguration.toObject(includeInstance, f),
     boundingRegionsList: jspb.Message.toObjectList(msg.getBoundingRegionsList(),
     common_v1_common_pb.GeoGeometry.toObject, includeInstance),
+    componentName: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    movementSensorName: jspb.Message.getFieldWithDefault(msg, 10, ""),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -2434,12 +2586,12 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.deserializeBinaryFromReader = fu
     case 4:
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
-      msg.setComponentName(value);
+      msg.setComponentNameDeprecated(value);
       break;
     case 5:
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
-      msg.setMovementSensorName(value);
+      msg.setMovementSensorNameDeprecated(value);
       break;
     case 6:
       var value = new common_v1_common_pb.GeoGeometry;
@@ -2455,6 +2607,14 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.deserializeBinaryFromReader = fu
       var value = new common_v1_common_pb.GeoGeometry;
       reader.readMessage(value,common_v1_common_pb.GeoGeometry.deserializeBinaryFromReader);
       msg.addBoundingRegions(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setComponentName(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMovementSensorName(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -2512,7 +2672,7 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.serializeBinaryToWriter = functi
       f
     );
   }
-  f = message.getComponentName();
+  f = message.getComponentNameDeprecated();
   if (f != null) {
     writer.writeMessage(
       4,
@@ -2520,7 +2680,7 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.serializeBinaryToWriter = functi
       common_v1_common_pb.ResourceName.serializeBinaryToWriter
     );
   }
-  f = message.getMovementSensorName();
+  f = message.getMovementSensorNameDeprecated();
   if (f != null) {
     writer.writeMessage(
       5,
@@ -2550,6 +2710,20 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.serializeBinaryToWriter = functi
       8,
       f,
       common_v1_common_pb.GeoGeometry.serializeBinaryToWriter
+    );
+  }
+  f = message.getComponentName();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getMovementSensorName();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
     );
   }
   f = message.getExtra();
@@ -2655,10 +2829,10 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.hasHeading = function(
 
 
 /**
- * optional viam.common.v1.ResourceName component_name = 4;
+ * optional viam.common.v1.ResourceName component_name_deprecated = 4;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.getComponentName = function() {
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.getComponentNameDeprecated = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 4));
 };
@@ -2668,7 +2842,7 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.getComponentName = fun
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
  * @return {!proto.viam.service.motion.v1.MoveOnGlobeRequest} returns this
 */
-proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.setComponentName = function(value) {
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.setComponentNameDeprecated = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
@@ -2677,8 +2851,8 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.setComponentName = fun
  * Clears the message field making it undefined.
  * @return {!proto.viam.service.motion.v1.MoveOnGlobeRequest} returns this
  */
-proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.clearComponentName = function() {
-  return this.setComponentName(undefined);
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.clearComponentNameDeprecated = function() {
+  return this.setComponentNameDeprecated(undefined);
 };
 
 
@@ -2686,16 +2860,16 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.clearComponentName = f
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.hasComponentName = function() {
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.hasComponentNameDeprecated = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * optional viam.common.v1.ResourceName movement_sensor_name = 5;
+ * optional viam.common.v1.ResourceName movement_sensor_name_deprecated = 5;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.getMovementSensorName = function() {
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.getMovementSensorNameDeprecated = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 5));
 };
@@ -2705,7 +2879,7 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.getMovementSensorName 
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
  * @return {!proto.viam.service.motion.v1.MoveOnGlobeRequest} returns this
 */
-proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.setMovementSensorName = function(value) {
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.setMovementSensorNameDeprecated = function(value) {
   return jspb.Message.setWrapperField(this, 5, value);
 };
 
@@ -2714,8 +2888,8 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.setMovementSensorName 
  * Clears the message field making it undefined.
  * @return {!proto.viam.service.motion.v1.MoveOnGlobeRequest} returns this
  */
-proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.clearMovementSensorName = function() {
-  return this.setMovementSensorName(undefined);
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.clearMovementSensorNameDeprecated = function() {
+  return this.setMovementSensorNameDeprecated(undefined);
 };
 
 
@@ -2723,7 +2897,7 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.clearMovementSensorNam
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.hasMovementSensorName = function() {
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.hasMovementSensorNameDeprecated = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
@@ -2838,6 +3012,42 @@ proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.addBoundingRegions = f
  */
 proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.clearBoundingRegionsList = function() {
   return this.setBoundingRegionsList([]);
+};
+
+
+/**
+ * optional string component_name = 9;
+ * @return {string}
+ */
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.getComponentName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.motion.v1.MoveOnGlobeRequest} returns this
+ */
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.setComponentName = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional string movement_sensor_name = 10;
+ * @return {string}
+ */
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.getMovementSensorName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.motion.v1.MoveOnGlobeRequest} returns this
+ */
+proto.viam.service.motion.v1.MoveOnGlobeRequest.prototype.setMovementSensorName = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
@@ -3048,10 +3258,11 @@ proto.viam.service.motion.v1.GetPoseRequest.prototype.toObject = function(opt_in
 proto.viam.service.motion.v1.GetPoseRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    componentNameDeprecated: (f = msg.getComponentNameDeprecated()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     destinationFrame: jspb.Message.getFieldWithDefault(msg, 3, ""),
     supplementalTransformsList: jspb.Message.toObjectList(msg.getSupplementalTransformsList(),
     common_v1_common_pb.Transform.toObject, includeInstance),
+    componentName: jspb.Message.getFieldWithDefault(msg, 5, ""),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -3096,7 +3307,7 @@ proto.viam.service.motion.v1.GetPoseRequest.deserializeBinaryFromReader = functi
     case 2:
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
-      msg.setComponentName(value);
+      msg.setComponentNameDeprecated(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -3106,6 +3317,10 @@ proto.viam.service.motion.v1.GetPoseRequest.deserializeBinaryFromReader = functi
       var value = new common_v1_common_pb.Transform;
       reader.readMessage(value,common_v1_common_pb.Transform.deserializeBinaryFromReader);
       msg.addSupplementalTransforms(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setComponentName(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -3148,7 +3363,7 @@ proto.viam.service.motion.v1.GetPoseRequest.serializeBinaryToWriter = function(m
       f
     );
   }
-  f = message.getComponentName();
+  f = message.getComponentNameDeprecated();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -3169,6 +3384,13 @@ proto.viam.service.motion.v1.GetPoseRequest.serializeBinaryToWriter = function(m
       4,
       f,
       common_v1_common_pb.Transform.serializeBinaryToWriter
+    );
+  }
+  f = message.getComponentName();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
     );
   }
   f = message.getExtra();
@@ -3201,10 +3423,10 @@ proto.viam.service.motion.v1.GetPoseRequest.prototype.setName = function(value) 
 
 
 /**
- * optional viam.common.v1.ResourceName component_name = 2;
+ * optional viam.common.v1.ResourceName component_name_deprecated = 2;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.service.motion.v1.GetPoseRequest.prototype.getComponentName = function() {
+proto.viam.service.motion.v1.GetPoseRequest.prototype.getComponentNameDeprecated = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 2));
 };
@@ -3214,7 +3436,7 @@ proto.viam.service.motion.v1.GetPoseRequest.prototype.getComponentName = functio
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
  * @return {!proto.viam.service.motion.v1.GetPoseRequest} returns this
 */
-proto.viam.service.motion.v1.GetPoseRequest.prototype.setComponentName = function(value) {
+proto.viam.service.motion.v1.GetPoseRequest.prototype.setComponentNameDeprecated = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -3223,8 +3445,8 @@ proto.viam.service.motion.v1.GetPoseRequest.prototype.setComponentName = functio
  * Clears the message field making it undefined.
  * @return {!proto.viam.service.motion.v1.GetPoseRequest} returns this
  */
-proto.viam.service.motion.v1.GetPoseRequest.prototype.clearComponentName = function() {
-  return this.setComponentName(undefined);
+proto.viam.service.motion.v1.GetPoseRequest.prototype.clearComponentNameDeprecated = function() {
+  return this.setComponentNameDeprecated(undefined);
 };
 
 
@@ -3232,7 +3454,7 @@ proto.viam.service.motion.v1.GetPoseRequest.prototype.clearComponentName = funct
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.GetPoseRequest.prototype.hasComponentName = function() {
+proto.viam.service.motion.v1.GetPoseRequest.prototype.hasComponentNameDeprecated = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -3290,6 +3512,24 @@ proto.viam.service.motion.v1.GetPoseRequest.prototype.addSupplementalTransforms 
  */
 proto.viam.service.motion.v1.GetPoseRequest.prototype.clearSupplementalTransformsList = function() {
   return this.setSupplementalTransformsList([]);
+};
+
+
+/**
+ * optional string component_name = 5;
+ * @return {string}
+ */
+proto.viam.service.motion.v1.GetPoseRequest.prototype.getComponentName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.motion.v1.GetPoseRequest} returns this
+ */
+proto.viam.service.motion.v1.GetPoseRequest.prototype.setComponentName = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -3514,7 +3754,8 @@ proto.viam.service.motion.v1.StopPlanRequest.prototype.toObject = function(opt_i
 proto.viam.service.motion.v1.StopPlanRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    componentNameDeprecated: (f = msg.getComponentNameDeprecated()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    componentName: jspb.Message.getFieldWithDefault(msg, 3, ""),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -3559,6 +3800,10 @@ proto.viam.service.motion.v1.StopPlanRequest.deserializeBinaryFromReader = funct
     case 2:
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
+      msg.setComponentNameDeprecated(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
       msg.setComponentName(value);
       break;
     case 99:
@@ -3602,12 +3847,19 @@ proto.viam.service.motion.v1.StopPlanRequest.serializeBinaryToWriter = function(
       f
     );
   }
-  f = message.getComponentName();
+  f = message.getComponentNameDeprecated();
   if (f != null) {
     writer.writeMessage(
       2,
       f,
       common_v1_common_pb.ResourceName.serializeBinaryToWriter
+    );
+  }
+  f = message.getComponentName();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
     );
   }
   f = message.getExtra();
@@ -3640,10 +3892,10 @@ proto.viam.service.motion.v1.StopPlanRequest.prototype.setName = function(value)
 
 
 /**
- * optional viam.common.v1.ResourceName component_name = 2;
+ * optional viam.common.v1.ResourceName component_name_deprecated = 2;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.service.motion.v1.StopPlanRequest.prototype.getComponentName = function() {
+proto.viam.service.motion.v1.StopPlanRequest.prototype.getComponentNameDeprecated = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 2));
 };
@@ -3653,7 +3905,7 @@ proto.viam.service.motion.v1.StopPlanRequest.prototype.getComponentName = functi
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
  * @return {!proto.viam.service.motion.v1.StopPlanRequest} returns this
 */
-proto.viam.service.motion.v1.StopPlanRequest.prototype.setComponentName = function(value) {
+proto.viam.service.motion.v1.StopPlanRequest.prototype.setComponentNameDeprecated = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -3662,8 +3914,8 @@ proto.viam.service.motion.v1.StopPlanRequest.prototype.setComponentName = functi
  * Clears the message field making it undefined.
  * @return {!proto.viam.service.motion.v1.StopPlanRequest} returns this
  */
-proto.viam.service.motion.v1.StopPlanRequest.prototype.clearComponentName = function() {
-  return this.setComponentName(undefined);
+proto.viam.service.motion.v1.StopPlanRequest.prototype.clearComponentNameDeprecated = function() {
+  return this.setComponentNameDeprecated(undefined);
 };
 
 
@@ -3671,8 +3923,26 @@ proto.viam.service.motion.v1.StopPlanRequest.prototype.clearComponentName = func
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.StopPlanRequest.prototype.hasComponentName = function() {
+proto.viam.service.motion.v1.StopPlanRequest.prototype.hasComponentNameDeprecated = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional string component_name = 3;
+ * @return {string}
+ */
+proto.viam.service.motion.v1.StopPlanRequest.prototype.getComponentName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.motion.v1.StopPlanRequest} returns this
+ */
+proto.viam.service.motion.v1.StopPlanRequest.prototype.setComponentName = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -4218,9 +4488,10 @@ proto.viam.service.motion.v1.GetPlanRequest.prototype.toObject = function(opt_in
 proto.viam.service.motion.v1.GetPlanRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    componentNameDeprecated: (f = msg.getComponentNameDeprecated()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     lastPlanOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
     executionId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    componentName: jspb.Message.getFieldWithDefault(msg, 5, ""),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -4265,7 +4536,7 @@ proto.viam.service.motion.v1.GetPlanRequest.deserializeBinaryFromReader = functi
     case 2:
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
-      msg.setComponentName(value);
+      msg.setComponentNameDeprecated(value);
       break;
     case 3:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -4274,6 +4545,10 @@ proto.viam.service.motion.v1.GetPlanRequest.deserializeBinaryFromReader = functi
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setExecutionId(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setComponentName(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -4316,7 +4591,7 @@ proto.viam.service.motion.v1.GetPlanRequest.serializeBinaryToWriter = function(m
       f
     );
   }
-  f = message.getComponentName();
+  f = message.getComponentNameDeprecated();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -4335,6 +4610,13 @@ proto.viam.service.motion.v1.GetPlanRequest.serializeBinaryToWriter = function(m
   if (f != null) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getComponentName();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -4368,10 +4650,10 @@ proto.viam.service.motion.v1.GetPlanRequest.prototype.setName = function(value) 
 
 
 /**
- * optional viam.common.v1.ResourceName component_name = 2;
+ * optional viam.common.v1.ResourceName component_name_deprecated = 2;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.service.motion.v1.GetPlanRequest.prototype.getComponentName = function() {
+proto.viam.service.motion.v1.GetPlanRequest.prototype.getComponentNameDeprecated = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 2));
 };
@@ -4381,7 +4663,7 @@ proto.viam.service.motion.v1.GetPlanRequest.prototype.getComponentName = functio
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
  * @return {!proto.viam.service.motion.v1.GetPlanRequest} returns this
 */
-proto.viam.service.motion.v1.GetPlanRequest.prototype.setComponentName = function(value) {
+proto.viam.service.motion.v1.GetPlanRequest.prototype.setComponentNameDeprecated = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -4390,8 +4672,8 @@ proto.viam.service.motion.v1.GetPlanRequest.prototype.setComponentName = functio
  * Clears the message field making it undefined.
  * @return {!proto.viam.service.motion.v1.GetPlanRequest} returns this
  */
-proto.viam.service.motion.v1.GetPlanRequest.prototype.clearComponentName = function() {
-  return this.setComponentName(undefined);
+proto.viam.service.motion.v1.GetPlanRequest.prototype.clearComponentNameDeprecated = function() {
+  return this.setComponentNameDeprecated(undefined);
 };
 
 
@@ -4399,7 +4681,7 @@ proto.viam.service.motion.v1.GetPlanRequest.prototype.clearComponentName = funct
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.GetPlanRequest.prototype.hasComponentName = function() {
+proto.viam.service.motion.v1.GetPlanRequest.prototype.hasComponentNameDeprecated = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -4455,6 +4737,24 @@ proto.viam.service.motion.v1.GetPlanRequest.prototype.clearExecutionId = functio
  */
 proto.viam.service.motion.v1.GetPlanRequest.prototype.hasExecutionId = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional string component_name = 5;
+ * @return {string}
+ */
+proto.viam.service.motion.v1.GetPlanRequest.prototype.getComponentName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.motion.v1.GetPlanRequest} returns this
+ */
+proto.viam.service.motion.v1.GetPlanRequest.prototype.setComponentName = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -6180,9 +6480,10 @@ proto.viam.service.motion.v1.PlanStatusWithID.prototype.toObject = function(opt_
 proto.viam.service.motion.v1.PlanStatusWithID.toObject = function(includeInstance, msg) {
   var f, obj = {
     planId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    componentNameDeprecated: (f = msg.getComponentNameDeprecated()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     executionId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    status: (f = msg.getStatus()) && proto.viam.service.motion.v1.PlanStatus.toObject(includeInstance, f)
+    status: (f = msg.getStatus()) && proto.viam.service.motion.v1.PlanStatus.toObject(includeInstance, f),
+    componentName: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -6226,7 +6527,7 @@ proto.viam.service.motion.v1.PlanStatusWithID.deserializeBinaryFromReader = func
     case 2:
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
-      msg.setComponentName(value);
+      msg.setComponentNameDeprecated(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -6236,6 +6537,10 @@ proto.viam.service.motion.v1.PlanStatusWithID.deserializeBinaryFromReader = func
       var value = new proto.viam.service.motion.v1.PlanStatus;
       reader.readMessage(value,proto.viam.service.motion.v1.PlanStatus.deserializeBinaryFromReader);
       msg.setStatus(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setComponentName(value);
       break;
     default:
       reader.skipField();
@@ -6273,7 +6578,7 @@ proto.viam.service.motion.v1.PlanStatusWithID.serializeBinaryToWriter = function
       f
     );
   }
-  f = message.getComponentName();
+  f = message.getComponentNameDeprecated();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -6294,6 +6599,13 @@ proto.viam.service.motion.v1.PlanStatusWithID.serializeBinaryToWriter = function
       4,
       f,
       proto.viam.service.motion.v1.PlanStatus.serializeBinaryToWriter
+    );
+  }
+  f = message.getComponentName();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
     );
   }
 };
@@ -6318,10 +6630,10 @@ proto.viam.service.motion.v1.PlanStatusWithID.prototype.setPlanId = function(val
 
 
 /**
- * optional viam.common.v1.ResourceName component_name = 2;
+ * optional viam.common.v1.ResourceName component_name_deprecated = 2;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.service.motion.v1.PlanStatusWithID.prototype.getComponentName = function() {
+proto.viam.service.motion.v1.PlanStatusWithID.prototype.getComponentNameDeprecated = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 2));
 };
@@ -6331,7 +6643,7 @@ proto.viam.service.motion.v1.PlanStatusWithID.prototype.getComponentName = funct
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
  * @return {!proto.viam.service.motion.v1.PlanStatusWithID} returns this
 */
-proto.viam.service.motion.v1.PlanStatusWithID.prototype.setComponentName = function(value) {
+proto.viam.service.motion.v1.PlanStatusWithID.prototype.setComponentNameDeprecated = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -6340,8 +6652,8 @@ proto.viam.service.motion.v1.PlanStatusWithID.prototype.setComponentName = funct
  * Clears the message field making it undefined.
  * @return {!proto.viam.service.motion.v1.PlanStatusWithID} returns this
  */
-proto.viam.service.motion.v1.PlanStatusWithID.prototype.clearComponentName = function() {
-  return this.setComponentName(undefined);
+proto.viam.service.motion.v1.PlanStatusWithID.prototype.clearComponentNameDeprecated = function() {
+  return this.setComponentNameDeprecated(undefined);
 };
 
 
@@ -6349,7 +6661,7 @@ proto.viam.service.motion.v1.PlanStatusWithID.prototype.clearComponentName = fun
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.PlanStatusWithID.prototype.hasComponentName = function() {
+proto.viam.service.motion.v1.PlanStatusWithID.prototype.hasComponentNameDeprecated = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -6406,6 +6718,24 @@ proto.viam.service.motion.v1.PlanStatusWithID.prototype.clearStatus = function()
  */
 proto.viam.service.motion.v1.PlanStatusWithID.prototype.hasStatus = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional string component_name = 5;
+ * @return {string}
+ */
+proto.viam.service.motion.v1.PlanStatusWithID.prototype.getComponentName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.motion.v1.PlanStatusWithID} returns this
+ */
+proto.viam.service.motion.v1.PlanStatusWithID.prototype.setComponentName = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -6678,10 +7008,11 @@ proto.viam.service.motion.v1.Plan.prototype.toObject = function(opt_includeInsta
 proto.viam.service.motion.v1.Plan.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    componentName: (f = msg.getComponentName()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
+    componentNameDeprecated: (f = msg.getComponentNameDeprecated()) && common_v1_common_pb.ResourceName.toObject(includeInstance, f),
     executionId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     stepsList: jspb.Message.toObjectList(msg.getStepsList(),
-    proto.viam.service.motion.v1.PlanStep.toObject, includeInstance)
+    proto.viam.service.motion.v1.PlanStep.toObject, includeInstance),
+    componentName: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -6725,7 +7056,7 @@ proto.viam.service.motion.v1.Plan.deserializeBinaryFromReader = function(msg, re
     case 2:
       var value = new common_v1_common_pb.ResourceName;
       reader.readMessage(value,common_v1_common_pb.ResourceName.deserializeBinaryFromReader);
-      msg.setComponentName(value);
+      msg.setComponentNameDeprecated(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -6735,6 +7066,10 @@ proto.viam.service.motion.v1.Plan.deserializeBinaryFromReader = function(msg, re
       var value = new proto.viam.service.motion.v1.PlanStep;
       reader.readMessage(value,proto.viam.service.motion.v1.PlanStep.deserializeBinaryFromReader);
       msg.addSteps(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setComponentName(value);
       break;
     default:
       reader.skipField();
@@ -6772,7 +7107,7 @@ proto.viam.service.motion.v1.Plan.serializeBinaryToWriter = function(message, wr
       f
     );
   }
-  f = message.getComponentName();
+  f = message.getComponentNameDeprecated();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -6793,6 +7128,13 @@ proto.viam.service.motion.v1.Plan.serializeBinaryToWriter = function(message, wr
       4,
       f,
       proto.viam.service.motion.v1.PlanStep.serializeBinaryToWriter
+    );
+  }
+  f = message.getComponentName();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
     );
   }
 };
@@ -6817,10 +7159,10 @@ proto.viam.service.motion.v1.Plan.prototype.setId = function(value) {
 
 
 /**
- * optional viam.common.v1.ResourceName component_name = 2;
+ * optional viam.common.v1.ResourceName component_name_deprecated = 2;
  * @return {?proto.viam.common.v1.ResourceName}
  */
-proto.viam.service.motion.v1.Plan.prototype.getComponentName = function() {
+proto.viam.service.motion.v1.Plan.prototype.getComponentNameDeprecated = function() {
   return /** @type{?proto.viam.common.v1.ResourceName} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.ResourceName, 2));
 };
@@ -6830,7 +7172,7 @@ proto.viam.service.motion.v1.Plan.prototype.getComponentName = function() {
  * @param {?proto.viam.common.v1.ResourceName|undefined} value
  * @return {!proto.viam.service.motion.v1.Plan} returns this
 */
-proto.viam.service.motion.v1.Plan.prototype.setComponentName = function(value) {
+proto.viam.service.motion.v1.Plan.prototype.setComponentNameDeprecated = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -6839,8 +7181,8 @@ proto.viam.service.motion.v1.Plan.prototype.setComponentName = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.viam.service.motion.v1.Plan} returns this
  */
-proto.viam.service.motion.v1.Plan.prototype.clearComponentName = function() {
-  return this.setComponentName(undefined);
+proto.viam.service.motion.v1.Plan.prototype.clearComponentNameDeprecated = function() {
+  return this.setComponentNameDeprecated(undefined);
 };
 
 
@@ -6848,7 +7190,7 @@ proto.viam.service.motion.v1.Plan.prototype.clearComponentName = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.service.motion.v1.Plan.prototype.hasComponentName = function() {
+proto.viam.service.motion.v1.Plan.prototype.hasComponentNameDeprecated = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -6906,6 +7248,24 @@ proto.viam.service.motion.v1.Plan.prototype.addSteps = function(opt_value, opt_i
  */
 proto.viam.service.motion.v1.Plan.prototype.clearStepsList = function() {
   return this.setStepsList([]);
+};
+
+
+/**
+ * optional string component_name = 5;
+ * @return {string}
+ */
+proto.viam.service.motion.v1.Plan.prototype.getComponentName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.motion.v1.Plan} returns this
+ */
+proto.viam.service.motion.v1.Plan.prototype.setComponentName = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 

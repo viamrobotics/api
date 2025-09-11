@@ -72,7 +72,7 @@ message MoveRequest {
   string name = 1;
   // Destination to move to, which can a pose in the reference frame of any frame in the robot's frame system
   common.v1.PoseInFrame destination = 2;
-   // Deprecated, use component_name field.
+  // Deprecated, use component_name field.
   common.v1.ResourceName component_name_deprecated = 3 [deprecated = true];
   // Avoid obstacles by specifying their geometries in the world state
   // Augment the frame system of the robot by specifying additional transforms to add to it for the duration of the Move
@@ -94,9 +94,9 @@ message MoveOnMapRequest {
   string name = 1;
   // Specify a destination to, which can be any pose with respect to the SLAM map's origin
   common.v1.Pose destination = 2;
-   // Deprecated, use component_name field.
+  // Deprecated, use component_name field.
   common.v1.ResourceName component_name_deprecated = 3 [deprecated = true];
-   // Deprecated, use slam_service_name field.
+  // Deprecated, use slam_service_name field.
   common.v1.ResourceName slam_service_name_deprecated = 4 [deprecated = true];
   // Optional set of motion configuration options
   optional MotionConfiguration motion_configuration = 5;
@@ -147,9 +147,9 @@ message MoveOnGlobeRequest {
   common.v1.GeoPoint destination = 2;
   // Optional compass heading to achieve at the destination, in degrees [0-360)
   optional double heading = 3;
-   // Deprecated, use component_name field.
+  // Deprecated, use component_name field.
   common.v1.ResourceName component_name_deprecated = 4 [deprecated = true];
-   // Deprecated, use movement_sensor_name field.
+  // Deprecated, use movement_sensor_name field.
   common.v1.ResourceName movement_sensor_name_deprecated = 5 [deprecated = true];
   // Obstacles to be considered for motion planning
   repeated common.v1.GeoGeometry obstacles = 6;
