@@ -147,7 +147,7 @@ message GetOrgBillingInformationResponse {
   // Only return billing_tier for billing dashboard admin users
   optional string billing_tier = 4;
   // defined if type is PAYMENT_METHOD_TYPE_USBANKACCOUNT
-  optional PaymentMethodUsBankAccount method_us_bank_account = 5;
+  optional PaymentMethodUSBankAccount method_us_bank_account = 5;
 }
 
 message GetInvoicesSummaryRequest {
