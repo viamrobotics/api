@@ -37,7 +37,7 @@ message InvoiceSummary {
 enum PaymentMethodType {
   PAYMENT_METHOD_TYPE_UNSPECIFIED = 0;
   PAYMENT_METHOD_TYPE_CARD = 1;
-  PAYMENT_METHOD_TYPE_USBANKACCOUNT =2;
+  PAYMENT_METHOD_TYPE_USBANKACCOUNT = 2;
 }
 
 message PaymentMethodCard {
