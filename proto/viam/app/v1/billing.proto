@@ -37,12 +37,17 @@ message InvoiceSummary {
 enum PaymentMethodType {
   PAYMENT_METHOD_TYPE_UNSPECIFIED = 0;
   PAYMENT_METHOD_TYPE_CARD = 1;
-  PAYMENT_METHOD_TYPE_USBANKACCOUNT =2
+  PAYMENT_METHOD_TYPE_USBANKACCOUNT =2;
 }
 
 message PaymentMethodCard {
   string brand = 1;
   string last_four_digits = 2;
+}
+
+message VerificationInfo {
+  int64 arrival_date = 1;
+  string hosted_verification_page_url = 2;
 }
 
 message PaymentMethodUSBankAccount {
