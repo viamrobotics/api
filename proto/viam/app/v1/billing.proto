@@ -37,11 +37,25 @@ message InvoiceSummary {
 enum PaymentMethodType {
   PAYMENT_METHOD_TYPE_UNSPECIFIED = 0;
   PAYMENT_METHOD_TYPE_CARD = 1;
+  PAYMENT_METHOD_TYPE_USBANKACCOUNT = 2;
 }
 
 message PaymentMethodCard {
   string brand = 1;
   string last_four_digits = 2;
+}
+
+message VerificationInfo {
+  int64 arrival_date = 1;
+  string hosted_verification_page_url = 2;
+}
+
+message PaymentMethodUSBankAccount {
+  string bank_name = 1;
+  string last_four_digits_account_number = 2;
+  string routing_number = 3;
+  string account_type = 4;
+  optional VerificationInfo verification_info = 5; // this is only set if the account is not verified
 }
 
 message GetCurrentMonthUsageRequest {
@@ -132,6 +146,8 @@ message GetOrgBillingInformationResponse {
   optional PaymentMethodCard method = 3;
   // Only return billing_tier for billing dashboard admin users
   optional string billing_tier = 4;
+  // defined if type is PAYMENT_METHOD_TYPE_USBANKACCOUNT
+  optional PaymentMethodUSBankAccount method_us_bank_account = 5;
 }
 
 message GetInvoicesSummaryRequest {
