@@ -71,6 +71,7 @@ message SubmitCustomTrainingJobRequest {
   string model_name = 4 [(tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
   string model_version = 5 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
   map<string, string> arguments = 7;
+  string tf_version = 8 [(tagger.v1.tags) = "bson:\"tf_version\" json:\"tf_version\""];
 }
 
 message SubmitCustomTrainingJobResponse {
@@ -124,6 +125,7 @@ message TrainingJobMetadata {
   string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
   repeated string tags = 16 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
   map<string, string> arguments = 21 [(tagger.v1.tags) = "bson:\"arguments\" json:\"arguments\""];
+  string tf_version = 22 [(tagger.v1.tags) = "bson:\"tf_version\" json:\"tf_version\""];
 
   reserved 1, 6;
   reserved "request", "user_email";
