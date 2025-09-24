@@ -93,6 +93,9 @@ export class SubmitCustomTrainingJobRequest extends jspb.Message {
 
   getArgumentsMap(): jspb.Map<string, string>;
   clearArgumentsMap(): void;
+  getTfVersion(): string;
+  setTfVersion(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SubmitCustomTrainingJobRequest.AsObject;
   static toObject(includeInstance: boolean, msg: SubmitCustomTrainingJobRequest): SubmitCustomTrainingJobRequest.AsObject;
@@ -112,6 +115,7 @@ export namespace SubmitCustomTrainingJobRequest {
     modelName: string,
     modelVersion: string,
     argumentsMap: Array<[string, string]>,
+    tfVersion: string,
   }
 }
 
@@ -292,6 +296,9 @@ export class TrainingJobMetadata extends jspb.Message {
 
   getArgumentsMap(): jspb.Map<string, string>;
   clearArgumentsMap(): void;
+  getTfVersion(): string;
+  setTfVersion(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJobMetadata): TrainingJobMetadata.AsObject;
@@ -323,6 +330,7 @@ export namespace TrainingJobMetadata {
     syncedModelId: string,
     tagsList: Array<string>,
     argumentsMap: Array<[string, string]>,
+    tfVersion: string,
   }
 }
 

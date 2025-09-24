@@ -880,7 +880,8 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.toObject = function(
     organizationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     modelName: jspb.Message.getFieldWithDefault(msg, 4, ""),
     modelVersion: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : []
+    argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : [],
+    tfVersion: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -946,6 +947,10 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.deserializeBinaryFro
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
          });
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTfVersion(value);
       break;
     default:
       reader.skipField();
@@ -1021,6 +1026,13 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.serializeBinaryToWri
   f = message.getArgumentsMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(7, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = message.getTfVersion();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
   }
 };
 
@@ -1153,6 +1165,24 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getArgumen
 proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.clearArgumentsMap = function() {
   this.getArgumentsMap().clear();
   return this;};
+
+
+/**
+ * optional string tf_version = 8;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getTfVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest} returns this
+ */
+proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.setTfVersion = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
 
 
 
@@ -1943,7 +1973,8 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInst
     trainingEnded: (f = msg.getTrainingEnded()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, ""),
     tagsList: (f = jspb.Message.getRepeatedField(msg, 16)) == null ? undefined : f,
-    argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : []
+    argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : [],
+    tfVersion: jspb.Message.getFieldWithDefault(msg, 22, "")
   };
 
   if (includeInstance) {
@@ -2062,6 +2093,10 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
          });
+      break;
+    case 22:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTfVersion(value);
       break;
     default:
       reader.skipField();
@@ -2226,6 +2261,13 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
   f = message.getArgumentsMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(21, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = message.getTfVersion();
+  if (f.length > 0) {
+    writer.writeString(
+      22,
+      f
+    );
   }
 };
 
@@ -2688,6 +2730,24 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getArgumentsMap = fun
 proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.clearArgumentsMap = function() {
   this.getArgumentsMap().clear();
   return this;};
+
+
+/**
+ * optional string tf_version = 22;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getTfVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setTfVersion = function(value) {
+  return jspb.Message.setProto3StringField(this, 22, value);
+};
 
 
 
