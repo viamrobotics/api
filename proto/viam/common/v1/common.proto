@@ -121,13 +121,13 @@ message PointCloudHeader {
 
 // PointCloudDataType enumerates the fundamental data types for point cloud fields
 enum PointCloudDataType {
-  DATA_TYPE_UNSPECIFIED = 0;
+  POINT_CLOUD_DATA_TYPE_UNSPECIFIED = 0;
   // For signed integer types (int8, int16, int32)
-  INT = 1;
+  POINT_CLOUD_DATA_TYPE_INT = 1;
   // For unsigned integer types (uint8, uint16, uint32)
-  UINT = 2;
+  POINT_CLOUD_DATA_TYPE_UINT = 2;
   // For floating-point types (float32, float64)
-  FLOAT = 3;
+  POINT_CLOUD_DATA_TYPE_FLOAT = 3;
 }
 
 // A PointCloud separates the descriptive metadata from the raw binary data,  allowing for efficient network 
