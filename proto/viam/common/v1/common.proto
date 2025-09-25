@@ -100,21 +100,21 @@ message PointCloudHeader {
   // The data type of each dimension, corresponding to the 'fields' list.
   repeated PointCloudDataType type = 3;
 
-  // The number of elements in each dimension. This is typically 1 for most fields like 'x' or 'rgb', but can be 
+  // The number of elements in each dimension. This is typically 1 for most fields like 'x' or 'rgb', but can be
   // larger for feature descriptors.
   repeated uint32 count = 4;
 
-  // Width of the point cloud. For unorganized clouds this is the total number of points. 
+  // Width of the point cloud. For unorganized clouds this is the total number of points.
   uint32 width = 5;
 
-  // Height of the point cloud. For unorganized clouds, this is 1. For organized clouds, this is the number of rows. 
+  // Height of the point cloud. For unorganized clouds, this is 1. For organized clouds, this is the number of rows.
   uint32 height = 6;
 
-  // The acquisition viewpoint of the data, specifying the sensor's pose. This is optional but highly recommended 
+  // The acquisition viewpoint of the data, specifying the sensor's pose. This is optional but highly recommended
   // for sensor fusion and accurate visualization tasks.
   optional common.v1.Pose viewpoint = 7;
 
-  // For partial updates, this specifies the starting element offset in the client's buffer where this new data 
+  // For partial updates, this specifies the starting element offset in the client's buffer where this new data
   // should be written. If this field is absent, the message is treated as a full point cloud replacement.
   optional uint32 start = 8;
 }
@@ -130,14 +130,14 @@ enum PointCloudDataType {
   POINT_CLOUD_DATA_TYPE_FLOAT = 3;
 }
 
-// A PointCloud separates the descriptive metadata from the raw binary data,  allowing for efficient network 
+// A PointCloud separates the descriptive metadata from the raw binary data,  allowing for efficient network
 // transport and zero-copy parsing on the client-side for rendering.
 message PointCloud {
   // The point cloud data, stored as a single, packed binary blob.
   bytes point_cloud = 1;
 
   // The header defining the structure of the data blob.
- PointCloudHeader header = 2;
+  PointCloudHeader header = 2;
 }
 
 // Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
