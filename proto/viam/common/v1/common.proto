@@ -90,7 +90,7 @@ message Mesh {
 }
 
 message PointCloud {
-  bytes point_cloud = 1;
+  repeated float point_cloud = 1;
 }
 
 // Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
