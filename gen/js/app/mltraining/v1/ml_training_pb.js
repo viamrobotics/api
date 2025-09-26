@@ -1974,7 +1974,7 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInst
     syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, ""),
     tagsList: (f = jspb.Message.getRepeatedField(msg, 16)) == null ? undefined : f,
     argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : [],
-    containerVersion: jspb.Message.getFieldWithDefault(msg, 22, "")
+    containerUri: jspb.Message.getFieldWithDefault(msg, 22, "")
   };
 
   if (includeInstance) {
@@ -2096,7 +2096,7 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
       break;
     case 22:
       var value = /** @type {string} */ (reader.readString());
-      msg.setContainerVersion(value);
+      msg.setContainerUri(value);
       break;
     default:
       reader.skipField();
@@ -2262,7 +2262,7 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
   if (f && f.getLength() > 0) {
     f.serializeBinary(21, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
-  f = message.getContainerVersion();
+  f = message.getContainerUri();
   if (f.length > 0) {
     writer.writeString(
       22,
@@ -2733,10 +2733,10 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.clearArgumentsMap = f
 
 
 /**
- * optional string container_version = 22;
+ * optional string container_uri = 22;
  * @return {string}
  */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getContainerVersion = function() {
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getContainerUri = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
 };
 
@@ -2745,7 +2745,7 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getContainerVersion =
  * @param {string} value
  * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
  */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setContainerVersion = function(value) {
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setContainerUri = function(value) {
   return jspb.Message.setProto3StringField(this, 22, value);
 };
 

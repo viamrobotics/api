@@ -296,8 +296,8 @@ export class TrainingJobMetadata extends jspb.Message {
 
   getArgumentsMap(): jspb.Map<string, string>;
   clearArgumentsMap(): void;
-  getContainerVersion(): string;
-  setContainerVersion(value: string): void;
+  getContainerUri(): string;
+  setContainerUri(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
@@ -330,7 +330,7 @@ export namespace TrainingJobMetadata {
     syncedModelId: string,
     tagsList: Array<string>,
     argumentsMap: Array<[string, string]>,
-    containerVersion: string,
+    containerUri: string,
   }
 }
 
