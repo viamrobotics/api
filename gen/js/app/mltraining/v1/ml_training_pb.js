@@ -881,7 +881,7 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.toObject = function(
     modelName: jspb.Message.getFieldWithDefault(msg, 4, ""),
     modelVersion: jspb.Message.getFieldWithDefault(msg, 5, ""),
     argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : [],
-    tfVersion: jspb.Message.getFieldWithDefault(msg, 8, "")
+    containerVersion: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -950,7 +950,7 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.deserializeBinaryFro
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTfVersion(value);
+      msg.setContainerVersion(value);
       break;
     default:
       reader.skipField();
@@ -1027,7 +1027,7 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.serializeBinaryToWri
   if (f && f.getLength() > 0) {
     f.serializeBinary(7, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
-  f = message.getTfVersion();
+  f = message.getContainerVersion();
   if (f.length > 0) {
     writer.writeString(
       8,
@@ -1168,10 +1168,10 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.clearArgum
 
 
 /**
- * optional string tf_version = 8;
+ * optional string container_version = 8;
  * @return {string}
  */
-proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getTfVersion = function() {
+proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getContainerVersion = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -1180,7 +1180,7 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getTfVersi
  * @param {string} value
  * @return {!proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest} returns this
  */
-proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.setTfVersion = function(value) {
+proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.setContainerVersion = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 

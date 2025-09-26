@@ -93,8 +93,8 @@ export class SubmitCustomTrainingJobRequest extends jspb.Message {
 
   getArgumentsMap(): jspb.Map<string, string>;
   clearArgumentsMap(): void;
-  getTfVersion(): string;
-  setTfVersion(value: string): void;
+  getContainerVersion(): string;
+  setContainerVersion(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SubmitCustomTrainingJobRequest.AsObject;
@@ -115,7 +115,7 @@ export namespace SubmitCustomTrainingJobRequest {
     modelName: string,
     modelVersion: string,
     argumentsMap: Array<[string, string]>,
-    tfVersion: string,
+    containerVersion: string,
   }
 }
 
