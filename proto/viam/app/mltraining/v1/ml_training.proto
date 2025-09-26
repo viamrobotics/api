@@ -71,7 +71,7 @@ message SubmitCustomTrainingJobRequest {
   string model_name = 4 [(tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
   string model_version = 5 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
   map<string, string> arguments = 7;
-  string tf_version = 8 [(tagger.v1.tags) = "bson:\"tf_version\" json:\"tf_version\""];
+  string container_version = 8 [(tagger.v1.tags) = "bson:\"container_version\" json:\"container_version\""];
 }
 
 message SubmitCustomTrainingJobResponse {
