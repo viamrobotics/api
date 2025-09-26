@@ -90,6 +90,15 @@ service DataService {
 
   // RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
   rpc RemoveBinaryDataFromDatasetByIDs(RemoveBinaryDataFromDatasetByIDsRequest) returns (RemoveBinaryDataFromDatasetByIDsResponse);
+
+  // CreateIndex starts a custom index build
+  rpc CreateIndex(CreateIndexRequest) returns (CreateIndexResponse);
+
+  // ListIndexes returns all the indexes for a given collection
+  rpc ListIndexes(ListIndexesRequest) returns (ListIndexesResponse);
+
+  // DeleteIndex drops the specified custom index from a collection
+  rpc DeleteIndex(DeleteIndexRequest) returns (DeleteIndexResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -612,3 +621,56 @@ message RemoveBinaryDataFromDatasetByIDsRequest {
 }
 
 message RemoveBinaryDataFromDatasetByIDsResponse {}
+
+// IndexableCollection specifies the types of collections available for custom indexes
+enum IndexableCollection {
+  INDEXABLE_COLLECTION_UNSPECIFIED = 0;
+  INDEXABLE_COLLECTION_HOT_STORE = 1;
+  INDEXABLE_COLLECTION_PIPELINE_SINK = 2;
+}
+
+message CreateIndexRequest {
+  string organization_id = 1;
+  IndexableCollection collection_type = 2;
+  optional string pipeline_name = 3;
+  // index_spec accepts a MongoDB index specification defined in JSON format
+  repeated bytes index_spec = 4;
+}
+
+message CreateIndexResponse {}
+
+message DeleteIndexRequest {
+  string organization_id = 1;
+  IndexableCollection collection_type = 2;
+  optional string pipeline_name = 3;
+  string index_name = 4;
+}
+
+message DeleteIndexResponse {}
+
+message ListIndexesRequest {
+  string organization_id = 1;
+  IndexableCollection collection_type = 2;
+  optional string pipeline_name = 3;
+}
+
+message ListIndexesResponse {
+  repeated Index indexes = 1;
+}
+
+message Index {
+  IndexableCollection collection_type = 1;
+  optional string pipeline_name = 2;
+  string index_name = 3;
+  // index_spec accepts a MongoDB index specification defined in JSON format
+  repeated bytes index_spec = 4;
+  IndexCreator created_by = 5;
+}
+
+// IndexCreator specifies the entity that originally created the index
+enum IndexCreator {
+  INDEX_CREATOR_UNSPECIFIED = 0;
+  INDEX_CREATOR_VIAM = 1;
+  INDEX_CREATOR_CUSTOMER = 2;
+}
+
