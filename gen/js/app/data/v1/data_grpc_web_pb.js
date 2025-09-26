@@ -1481,5 +1481,188 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeBinaryDataFromDa
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.CreateIndexRequest,
+ *   !proto.viam.app.data.v1.CreateIndexResponse>}
+ */
+const methodDescriptor_DataService_CreateIndex = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/CreateIndex',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.CreateIndexRequest,
+  proto.viam.app.data.v1.CreateIndexResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.CreateIndexRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.CreateIndexResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateIndexRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.CreateIndexResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.CreateIndexResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.createIndex =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateIndex',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateIndex,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateIndexRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.CreateIndexResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.createIndex =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateIndex',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateIndex);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.ListIndexesRequest,
+ *   !proto.viam.app.data.v1.ListIndexesResponse>}
+ */
+const methodDescriptor_DataService_ListIndexes = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/ListIndexes',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.ListIndexesRequest,
+  proto.viam.app.data.v1.ListIndexesResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.ListIndexesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.ListIndexesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ListIndexesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.ListIndexesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.ListIndexesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.listIndexes =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ListIndexes',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ListIndexes,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ListIndexesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.ListIndexesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.listIndexes =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ListIndexes',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ListIndexes);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.DeleteIndexRequest,
+ *   !proto.viam.app.data.v1.DeleteIndexResponse>}
+ */
+const methodDescriptor_DataService_DeleteIndex = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/DeleteIndex',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.DeleteIndexRequest,
+  proto.viam.app.data.v1.DeleteIndexResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.DeleteIndexRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.DeleteIndexResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.DeleteIndexRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.DeleteIndexResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.DeleteIndexResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.deleteIndex =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/DeleteIndex',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_DeleteIndex,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.DeleteIndexRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.DeleteIndexResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.deleteIndex =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/DeleteIndex',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_DeleteIndex);
+};
+
+
 module.exports = proto.viam.app.data.v1;
 
