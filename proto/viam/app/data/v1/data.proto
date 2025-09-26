@@ -629,6 +629,7 @@ enum IndexableCollection {
   INDEXABLE_COLLECTION_PIPELINE_SINK = 2;
 }
 
+// CreateIndexRequest starts a custom index build
 message CreateIndexRequest {
   string organization_id = 1;
   IndexableCollection collection_type = 2;
@@ -639,6 +640,7 @@ message CreateIndexRequest {
 
 message CreateIndexResponse {}
 
+// DeleteIndexRequest drops the specified custom index from a collection
 message DeleteIndexRequest {
   string organization_id = 1;
   IndexableCollection collection_type = 2;
@@ -648,6 +650,7 @@ message DeleteIndexRequest {
 
 message DeleteIndexResponse {}
 
+// ListIndexesRequest returns all the indexes for a given collection
 message ListIndexesRequest {
   string organization_id = 1;
   IndexableCollection collection_type = 2;
@@ -662,7 +665,7 @@ message Index {
   IndexableCollection collection_type = 1;
   optional string pipeline_name = 2;
   string index_name = 3;
-  // index_spec accepts a MongoDB index specification defined in JSON format
+  // index_spec defines a MongoDB index in JSON format
   repeated bytes index_spec = 4;
   IndexCreator created_by = 5;
 }
